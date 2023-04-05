@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Provisioning</title>
+    <paragraph>
+        When Adaptive Objects are committed to an adaptor store, a record of 
+        the event, may optionally be recorded by a <literal>Journal 
+        Adaptor</literal> in order to maintain a chronological ordering of 
+        events, which may be used to notify external clients. 
+        <literal>Provisioning</literal> describes the process by which Adaptive 
+        Objects may be synchronized between an adaptor and one or more clients, 
+        or <literal>Provisioning Peers</literal>.
+    </paragraph>  
+    <section>
+        <title>Journal</title>
+        <paragraph>
+            Any adaptor may be configured with an optional 
+            <literal>journalAdaptorId</literal>, which references an adaptor 
+            that supports the Journaling of object events. When an object is
+            modified through the adaptor interface methods (add, delete, modify,
+            replace, update), a <literal>Journal Entry</literal> of the event is 
+            created and sent to the provided Journal Adaptor. This Journal
+            Entry contains information about the event, including the Request
+            and Source information about the entry. The Journal Entry is added
+            to an event queue, and each entry is referenced by a 
+            <literal>Journal Cursor</literal>. Cursors are used to uniquely 
+            identify an Journal Entry and entries may be fetched from the queue 
+            in chronological order, using these chain of cursors. The cursors
+            may be used by both the Provisioning Peer and Journal Adaptor to
+            replay a series of events that have occurred from any range within
+            the Journal.
+        </paragraph>
+        <paragraph>
+            A Journal Entry is produced for the Journal Adaptor, by a single 
+            Provisioning Peer. The Journal Entry may then be consumed by one or 
+            more Provisioning Peers. The Journal Interface routines provide all
+            of the necessary functions to provision in and out of the Journal.
+            For more details on the Journal interface functions, see 
+            <link src="/Reference/Function/journal">Journal</link>.
+        </paragraph> 
+        <paragraph>
+            A <literal>Producer</literal> is anything that produces an event 
+            that will be journaled. In the following diagram, we illustrate how
+            a Provisioning Peer may produce an event simply by calling the
+            <literal>add_object()</literal> routine to an adaptor. The adaptor, 
+            in turn, is configured with a Journal Adaptor, which knows to take
+            the object and add it to its queue of Journal Entries.
+        </paragraph>           
+        <image 
+            src="images/ProvisioningProducer.svg" 
+            description="Provisioning Producer creates an object to be journaled." 
+            caption="Provisioning Producer creates an object to be journaled." 
+        />
+        <paragraph>
+            By contrast, an <literal>Consumer</literal> is a client that 
+            consumes events from the Journal. 
+        </paragraph>
+    </section>
+    <section>
+        <title>Provisioning Peers</title>
+        <paragraph>
+            A Provisioning Peer is a client, external to the Journal, which 
+            may produce and/or consume Journal Entries. Provisioning Peers are 
+            uniquely identified by a <literal>peerId</literal>, which 
+            associates a peer with the following Provisioning Peer object 
+            poperties:
+        </paragraph>
+        <object-type-table objectTypeId="_AdaptiveProvisioningPeer_" />                 
+        <paragraph>
+            When Provisioning Peers call journal functions, the peerId that 
+            is specified by the peering client, should be authenticated and 
+            authorized in order to deliver the appropriate data to the 
+            Provisioning Peer. While anyone can produce events to be journaled, 
+            or consume events from a Journal, the concept of a Provisioning 
+            Peer allows you to pre-define and centrally-manage producers and 
+            consumers in order to support filters, maintain cursors, and 
+            additional information about the peer. Additionally, when a 
+            Provisioning Peer produces an event, the peerId should be provided 
+            in order to avoid event loopback situations, where a consumer could 
+            consume the very event it produced.
+        </paragraph>        
+    </section>
+</doc>

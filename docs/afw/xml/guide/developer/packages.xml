@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Packages</title>
+    <paragraph>
+        You may find yourself using Adaptive Framework Core in order to 
+        build something of your own. There's nothing that prevents you from 
+        setting up your own project to use Adaptive Framework, but you may 
+        find that the <literal>afwdev</literal> provides some convenient 
+        helper commands to get you started and to maintain your project. A 
+        project that uses <literal>afwdev</literal> to build and maintain 
+        is called a <literal>Package</literal>.
+    </paragraph>
+    <paragraph>
+        Packages are Git repositories that hold one or more commands, 
+        extensions, configurations, objects or layouts using Adaptive 
+        Framework and maintained using the <literal>afwdev</literal> 
+        tool. The following illustrates the file system layout of a typical 
+        package:
+    </paragraph>
+    <code><![CDATA[<AFW package root directory>
+|-- doc/                         # Generated docs                   
+|-- generated/                   # Produced by generate subcommand
+|   |-- *.cmake                  # Generated cmake files
+|-- src/                         # Commonly src/ contains source directories
+|   |-- <SRCDIR>/                # One or more command, extension, or server
+|       |-- generate/            # Processed by generate subcommand
+|       |-- generated/           # Produced by generate subcommand
+|       |   |-- c source         # Generated *.h and .c files
+|       |   |-- *.cmake          # Generated cmake files
+|       |   |-- ...              # Other generated files and directories
+|       |-- c source             # <SRCDIR>_*.h and .c files
+|       |-- CMakeLists.txt       # CMakeLists.txt for <SRCDIR>
+|       |-- ...                  # Other source files and directories
+|-- .editorconfig                # Source editor coding style
+|-- .gitattributes               # Command git attributes for pathnames
+|-- .gitignore                   # Command git files to ignore
+|-- afw-package.json             # AFW package file managed by the afwdev
+|-- CMakeLists.txt               # Root CMakeLists.txt for afw package
+|-- COPYING                      # Licensing information.
+|-- Doxyfile                     # Doxygen configuration file
+|-- LICENSE                      # The license.
+|-- package.json                 # Used to build a JavaScript package
+|-- <PACKAGE_ID>_git_info.sh     # Used to produce <PACKAGE_ID>_git_info.h
+|-- <PACKAGE_ID>_git_info.h      # Header file containing git information
+|-- README.md                    # Repository README.md
+|-- miscellaneous directories    # Other directories
+|-- miscellaneous files          # Other files
+]]></code>
+    <section>
+        <title>Creating a New Package</title>
+        <paragraph>
+            New Package are created using the 
+            <literal>afdev make-afw-package</literal> subcommand.
+        </paragraph>
+        <code><![CDATA[afwdev make-afw-package <implementation_id> <afw_package_dir_path>]]></code>        
+    </section>
+</doc>

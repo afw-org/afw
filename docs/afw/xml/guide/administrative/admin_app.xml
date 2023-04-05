@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Administrative Web App</title>
+    <paragraph>
+        This is the web application, developed using Javascript and Adaptive 
+        Layouts to create this interactive app. The Administrative Web
+        Application is not required for functionality, but it may be helpful 
+        for quickly developing your Adaptive Application.
+    </paragraph>
+    <section>
+        <title>Home</title>            
+    </section>
+    <section>
+        <title>Objects</title>            
+    </section>
+    <section>
+        <title>Admin</title>            
+    </section>
+    <section>
+        <title>Documentation</title>            
+    </section>
+    <section>
+        <title>Tools</title>            
+    </section>
+</doc>

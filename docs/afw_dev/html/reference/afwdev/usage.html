@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>Usage</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["afwdev", [["reference/afwdev/introduction.html", "Introduction", false], ["reference/afwdev/usage.html", "Usage", true], ["reference/afwdev/generate.html", "Generate", false]]]], "relative_root_path": "../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">afwdev</a>
+</li><li><span> / </span></li><span>Usage</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">afwdev</a>
+</li><li><span> / </span></li><span>Usage</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Usage</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        When invoking afwdev, you may specify general options, followed 
+        by a subcommand, followed by subcommand-specific options.
+    
+</p><pre><code><span>afwdev [options...] {subcommand} [subcommand-options...]</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    Command afwdev is a development tool used to create, extend, maintain, and
+test an Adaptive Framework (AFW) Package.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    An AFW package can be the one that holds the AFW core (afw) or other AFW
+packages that contains AFW applications, commands, extensions, layouts,
+servers, test data, etc.
+
+</p><hr/><h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">General Options</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    The following are a list of general options, which may be used for all subcommands:
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--debug</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Include maximum detail in output including afwdev debug info.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--quiet</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Only output errors.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--verbose</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Include more detail in output.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--noprompt</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Do not prompt for missing or invalid arguments. The --prompt argument overrides this argument.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prompt</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Prompt for all missing optional arguments even if they normally would not be.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--version</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Display version information.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--version-string</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Display version string information (no git info).</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Subcommands</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    The following subcommands are available:
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Subcommand</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>add-adaptor-type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add a new adaptor type</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>add-content-type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add a new content type</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>add-core-interface</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add a core interface</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>add-log-type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add a new log type</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afwdev-parser-info</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>afwdev parse info as xml</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>build</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Build afw package</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>docs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Generate documentation</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>ebnf</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Generate EBNF diagrams</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>for</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Run a command in a set of directories.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>generate</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Process <SRCDIR>/generate/</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>make-afw-package</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Make a AFW package directory.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>make-command</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Make a new command</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>make-extension</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Make a new extension</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>settings</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Print settings</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>task</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Run a personalized afwdev task</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>test</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Run tests</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>validate</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Validate json files using JSON Schemas</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">add-adaptor-type</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will add skeletons for the basic interfaces afw_adaptor_factory, afw_adaptor, and afw_adaptor_session for a new adaptor type to an existing srcdir. The implementation_id specified will be the adaptor type. If additional interfaces are needed, use subcommand add-core-interface.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>add-adaptor-type</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">add-content-type</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will add skeletons for interfaces afw_content_type and afw_content_type_object_list_writer for a new content type to an existing srcdir, plus add a <CONTENT_TYPE_ID>.c to generate/manifest/content_type/. The implementation_id specified will be the content type id.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>add-content-type</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">add-core-interface</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will add a skeleton for a core interface to an existing scrdir.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>add-core-interface</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;interface&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The name of the core interface to add.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">add-log-type</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will add the skeletons for the interfaces afw_log_factory and afw_log for a new log type to and existing srcdir. The implementation_id specified will be the log type id. If additional interfaces are needed, use subcommand add-core-interface.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>add-log-type</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">afwdev-parser-info</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This subcommand will write the info used for afwdev argument parse to json.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>afwdev-parser-info</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;output_path&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Output file path for {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">build</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This subcommand will build an AFW package using information from the
+afw-package.json file.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    The build switches --cmake, --docker, --docs, --js provide build type context
+that other switches, such as --clean, --install, and --generate will execute
+under. The --all selects all of those contexts.
+
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>build</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--all</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is short for for the build type context switches --cmake, --docker, --docs, and --js.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--clean</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Clean the build directory for each selected build type context before starting the build.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--cmake</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build everything that uses cmake in the AFW package. If no other build type context switches are specified, this is the default.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--docker</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build docker related parts of the AFW package.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--docs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build the docs for the AFW package.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--full</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is short for the switches --clean, --generate, and --install.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--generate</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Call afwdev generate --srcdir-pattern \* before build.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--install</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Install the built AFW package.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--jobs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add -jobs [N] to make. If not specified, the "make_jobs_argument" property in the afwdev-settings.json file will be used if it exists.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--js</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Build JavaScript related parts of the AFW package.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the directory path that is prepended onto all install directories.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--sudo</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Use sudo command when doing the install.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">docs</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will generate documentation for one more more source directories.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>docs</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir-pattern</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span><SRCDIR> name pattern</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">ebnf</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will generate EBNF diagrams from core syntax.ebnf.
+</p><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">for</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        This will run a command in a set of directories identified by the 
+        --set-name argument. 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+            The set name is the name of the settings['forSets'] 
+        property that has the list of directories to use. 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+            Use the afwdev settings command and its --help for more information.
+
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>for</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;command&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the command to run in a set of directories. If the command has arguments, it needs to be in quotes. Backslashes ('\') will need to be escaped with a backslash. Multiple commands can be separated by "&&".</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--ignore-errors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>If specified, the failure of a command in one directory will not stop the running of the command in the remaining directories.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--set-name</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the "set name" used to identify the set of directories in which to run the command. </span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">generate</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    Process generate/ directories.  The SRCDIR_PATTERN is based on a subset of the rules used by unix shell and indicates that all matching <SRCDIR> directories that contain a generate/ directory should be processed.  See src/afwdev/doc/generate.txt in the AdaptiveFramework core package for more information.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>generate</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir-pattern</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span><SRCDIR> name pattern</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">make-afw-package</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will make a new skeleton Adaptive Framework AFW package directory. The implementation_id specified will be the AFW Package Id and afw_package_dir_path it the new AFW packages directory path. An AFW package can hold AFW applications, commands, extensions, etc. The first afwdev make-extension issued in this AFW package will hold the package's manifest.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>make-afw-package</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;afw_package_dir_path&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Directory path of new AFW package.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">make-command</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will make a new command skeleton directory. The implementation_id specified will be the command name. Although more common for extensions, add-* subcommands can be used to add interfaces to this command.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>make-command</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--name</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The command name.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">make-extension</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will make a new extension skeleton directory that can hold implementations of AFW interfaces. The implementation_id specified will be the extension id. Use add-* subcommands to add interfaces to this extension.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>make-extension</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;implementation_id&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Implementation id of this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Name of source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The prefix for file names in the source directory for this {thing}.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--name</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The base part of library name (without .so). The name must begin with "lib".</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>A brief description for this {thing} without an ending period.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The description for this {thing}.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">settings</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+This will print the settings used by afwdev. "
+        
+An "afwdev-settings.json" and/or an "afw.code-space" file 
+located in the current AFW package directory, one of its parents 
+or your home directory is used to produce these settings when 
+afwdev starts. If none of these files exist, settings apply 
+to your current AFW package directory. 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    Information from "afwdev-settings.json" is load into settings 
+first then normalized. 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    If the "afwPackages" property does not exist, it will be 
+constructed from paths in the folders of "afw.code-space" that 
+contain an "afw-package.json" file 
+or with a single entry for the current AFW package's root directory. 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    If a "forSets['default']" property doesn't exist, one is created 
+with all of the paths in "afwPackages". 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    All paths in settings are normalized to their full path with a '/' 
+at the end of all directory names.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    The path to the "code-space" file can be explicitly specified 
+with a "code_workspace_path" property in  "afwdev-settings.json". 
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    The default make --jobs argument for afwdev build can be specified 
+with the "make_jobs_argument" property. For example, 
+"make_jobs_argument":"--jobs 4" will run make using 4 threads 
+if the -jobs argument is not specified on afwdev build.
+
+</p><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">task</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    This will run the command(s) supplied by the "tasks" object property of afwdev-settings.json with a property name matching the specified task_name. Multiple commands can be separated by "&&". The failure of a command will cause the remaining commands to be skipped.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>task</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>&lt;task_name&gt;</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The task name.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">test</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    Run tests for one more more source directories.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>test</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--stop-on-failure</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop on first failure.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--list</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>List tests (do not run)</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--tags</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Test tags to match and run</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--errors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Only show errors.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--coverage</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>List test coverage</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--srcdir-pattern</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span><SRCDIR> name pattern</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--watch</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Watch for changes and re-run tests</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--jobs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Add -jobs [N] to test. If not specified, the "test_jobs_argument" property in the afwdev-settings.json file will be used if it exists.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--env-mode</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>The test environment mode to use.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--output</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Where to send test output (default is stdout).</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">validate</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+This command will validate json files using JSON Schemas in the
+generate/schemas/afw/ directory.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    The pattern of objects to be validated are specified using the --pattern
+argument. The default for pattern is "src/*/generate*/objects/*/*.json".
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    This pattern can have "*", "?", and "**" wildcards, much like Unix style
+pathname patterns. The "**" wildcard will match any number of directories and
+subdirectories. For example, the pattern "src/**/objects/*/*.json" will match
+all *.json files in the objects/ directory of any subdirectory of the src/
+package directory. '*' will match any number of characters except a '/' and '?'
+will match any single character except a '/'.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    If the pattern starts with a "/", it will be treated as an absolute path. If it
+does not start with a "/", it will be treated as a relative path within the
+afw package root directory that afwdev is operating on.
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    If a json file contains a "$schema" property, the value of that property will be
+used to determine the schema to use. Otherwise, the schema will be determined
+by the parent directory of the file. For example, if the json file is in the
+"src/afw/generate/objects/_AdaptiveDataType_" directory, the
+"_AdaptiveDataType_.json" schema in the "generated/schemas/afw/" directory will
+be used.
+
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    <span class="italic">The following options may be used for the <code>validate</code> subcommand:</span>
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Option</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--errors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Only show validation errors.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--stop-on-failure</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop on first validation failure.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--pattern</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>One or more patterns, separated with a semicolon (';'), of files to validate.</span></td>    
+</tr>
+        </tbody>
+    </table>
+</div><div style="height: 20px;"></div><h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Examples</h2><pre><code><span>
+Directory structure of an AFW package
+-------------------------------------
+
+The basic structure of an AFW package is:
+
+&lt;AFW package root directory&gt;
+|-- doc/                         # Generated docs                   
+|-- generated/                   # Produced by generate subcommand
+|   |-- *.cmake                  # Generated cmake files
+|-- src/                         # Commonly src/ contains source directories
+|   |-- &lt;SRCDIR&gt;/                # One or more command, extension, or server
+|       |-- generate/            # Processed by generate subcommand
+|       |-- generated/           # Produced by generate subcommand
+|       |   |-- c source         # Generated *.h and .c files
+|       |   |-- *.cmake          # Generated cmake files
+|       |   |-- ...              # Other generated files and directories
+|       |-- c source             # &lt;SRCDIR&gt;_*.h and .c files
+|       |-- CMakeLists.txt       # CMakeLists.txt for &lt;SRCDIR&gt;
+|       |-- ...                  # Other source files and directories
+|-- .editorconfig                # Source editor coding style
+|-- .gitattributes               # Command git attributes for pathnames
+|-- .gitignore                   # Command git files to ignore
+|-- afw-package.json             # AFW package file managed by the afwdev
+|-- CMakeLists.txt               # Root CMakeLists.txt for afw package
+|-- COPYING                      # Licensing information.
+|-- Doxyfile                     # Doxygen configuration file
+|-- LICENSE                      # The license.
+|-- package.json                 # Used to build a JavaScript package
+|-- &lt;PACKAGE_ID&gt;_git_info.sh     # Used to produce &lt;PACKAGE_ID&gt;_git_info.h
+|-- &lt;PACKAGE_ID&gt;_git_info.h      # Header file containing git information
+|-- README.md                    # Repository README.md
+|-- miscellaneous directories    # Other directories
+|-- miscellaneous files          # Other files
+
+Zero or more &lt;SRCDIR&gt; directories can exist.  Each &lt;SRCDIR&gt; contains the
+source for one command, extension, or server implementation provided by the
+AFW package. There can also be &lt;SRCDIR&gt; directories for other buildtypes.
+This information is kept in afw-package.json.
+
+All make-* subcommands make a new directory. The make-afw-package subcommand
+makes a skeleton package directory that includes an afw-package.json file.
+The other make-* subcommands make a skeleton directory in the src/ directory
+and adds an entry to the afw-package.json &quot;srcdir&quot; property.
+
+All add-* subcommands expect an existing &quot;srcdir&quot; entry in the afw-package.json
+file that is either their implementation id or the value specified with the
+--srcdir argument.
+
+All add-* and make-* subcommands produces files with @todo comments that
+should be searched for and replaced as appropriate.
+
+If certain optional arguments are not specified, a prompt will occur that
+allows the default value to be overridden. If the --noprompt argument is
+specified or the specific optional argument is defined to never prompt, this
+prompting will not occur. Specify the --prompt argument to insure prompting
+occurs for all missing optional parameters.
+
+Examples
+--------
+
+1) Make an AFW package &quot;mypackage&quot; in directory ~/mypackage:
+
+    afwdev make-afw-package mypackage ~/mypackage
+
+2) Make an extension &quot;myextension&quot; srcdir in &quot;mypackage&quot;:
+
+    cd ~/mypackage
+    afwdev make-extension myextension
+
+3) Add an adaptor type with id &quot;myadaptor&quot; to &quot;myextension&quot;:
+
+    cd ~/mypackage
+    afwdev add-adaptor-type myadaptor --srcdir myextension
+
+4) Make command &quot;mycommand&quot; srcdir in &quot;mypackage&quot;:
+
+    cd ~/mypackage
+    afwdev make-command mycommand
+
+5) Generate afwdev maintained files for &quot;mypackage&quot; after changes:
+
+    cd ~/mypackage
+    afwdev generate --srcdir-pattern \*
+
+6) Run tests defined in &quot;mypackage&quot;:
+
+    cd ~/mypackage
+    afwdev test --srcdir-pattern \*
+
+7) Run tests defined in &quot;mypackage&quot; and show only errors:
+
+    cd ~/mypackage
+    afwdev test --errors --srcdir-pattern \*
+
+</span></code></pre>
+</section>                        
+                            <footer class="text-sm leading-6 mt-12">
+    <div class="mb-10 text-slate-700 font-semibold flex items-center dark:text-slate-200">
+    <a class="group flex items-center hover:text-slate-900 dark:hover:text-white" href="introduction.html"><svg viewBox="0 0 3 6" class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M3 0L0 3L3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Introduction</a>
+    <a class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white" href="generate.html">Generate<svg viewBox="0 0 3 6" class="ml-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</footer>
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>

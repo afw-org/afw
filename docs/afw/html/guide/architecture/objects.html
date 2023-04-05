@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>Adaptive Objects</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["Architecture", [["guide/architecture/introduction.html", "Introduction", false], ["guide/architecture/objects.html", "Adaptive Objects", true], ["guide/architecture/interfaces.html", "Interfaces", false], ["guide/architecture/extensions.html", "Extensions", false], ["guide/architecture/data_types.html", "Data Types", false], ["guide/architecture/functions.html", "Functions", false], ["guide/architecture/services.html", "Services", false], ["guide/architecture/models.html", "Models", false], ["guide/architecture/authorization.html", "Authorization", false], ["guide/architecture/provisioning.html", "Provisioning", false]]], ["Administrative", [["guide/administrative/introduction.html", "Introduction", false], ["guide/administrative/installation.html", "Installation", false], ["guide/administrative/configuration.html", "Configuration", false], ["guide/administrative/adaptors.html", "Adaptors", false], ["guide/administrative/authorization_handlers.html", "Authorization Handlers", false], ["guide/administrative/admin_app.html", "Administrative Web App", false], ["guide/administrative/tools.html", "Tools and Applications", false], ["guide/administrative/appendix.html", "Appendix", false]]], ["Developer", [["guide/developer/introduction.html", "Introduction", false], ["guide/developer/contributing.html", "Contributing", false], ["guide/developer/tools.html", "Development Tools", false], ["guide/developer/packages.html", "Packages", false], ["guide/developer/rest.html", "Web Service APIs", false], ["guide/developer/layouts.html", "Adaptive Layouts", false]]]], "relative_root_path": "../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Architecture</a>
+</li><li><span> / </span></li><span>Adaptive Objects</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Architecture</a>
+</li><li><span> / </span></li><span>Adaptive Objects</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <h1 class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Adaptive Objects</h1><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        Throughout these guides, we will refer to objects, many of which were
+        initially created in JSON format before being generated into 
+        native C structures and stored in physical memory. For convenience, we 
+        will often represent objects in the guides in JSON format. To learn 
+        more  about the JSON format, please visit 
+        <a href="http://www.json.org">http://www.json.org</a>.
+    
+</p><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Adaptive Object Model</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            <code>Adaptive Objects</code> are similar to many Object 
+            paradigms you may have been introduced to in a programming or data 
+            structure lessons. They contain data in a structured way, just as 
+            key/values, dictionaries or hashes encapsulate data in other popular 
+            languages. With <code>Adaptive Objects</code>, the object 
+            that contains data is described by another object, called its 
+            <code>Object Type</code>. The keys and values on the Adaptive 
+            Object are referred to as <code>Adaptive Properties</code> 
+            and the definitions of those properties, which are contained within 
+            the Object Type definition, are called <code>Property 
+            Types</code>. These definitions provide us with useful metadata 
+            that can be used for data validation, user interface representation, 
+            authorization controls, and even data transformation and generation.  
+            The following diagram illustrates these relationships, and is 
+            commonly referred to as the Type Square Pattern:
+        
+</p><img src="images/TypeSquarePattern.svg" alt="Type Square Pattern" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            An Adaptive Object may have one or more Adaptive Properties. 
+            Likewise, an Object Type may have one or more Property Types.  
+            Moreover, an Object Type describes one or more Adaptive Object 
+            instances, just as an Adaptive Property Type may describe one or 
+            more Adaptive Properties. Let's examine these objects, in detail, 
+            in order to get a better sense of how they are related.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Let's define an Adaptive Object of interest with something that is 
+            familiar. As a <code>Person</code>, I have some properties 
+            that describe me. For example, I have a <code>First Name</code>, 
+            a <code>Last Name</code> and an <code>Age</code>. Other 
+            people also have names and ages. Therefore, we can describe a 
+            Person with the Object Type that contains Property Types 
+            "First Name", "Last Name" and "Age".
+        
+</p><pre><code><span>{
+    &quot;First Name&quot;: &quot;Kevin&quot;,
+    &quot;Last Name&quot;: &quot;Smith&quot;,
+    &quot;Age&quot;: 40
+}</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Now, let's examine the Property Types. In this example, First Name 
+            and Last Name Property Types have structured values that describes 
+            them with a <code>dataType</code> of 
+            <code>string</code> and <code>Age</code> is described 
+            as an <code>integer</code>:
+        
+</p><pre><code><span>{
+    &quot;propertyTypes&quot;: {
+        &quot;First Name&quot;: {
+            &quot;dataType&quot;: &quot;string&quot;
+        },
+        &quot;Last Name&quot;: {
+            &quot;dataType&quot;: &quot;string&quot;        
+        },
+        &quot;Age&quot;: {
+            &quot;dataType&quot;: &quot;integer&quot;
+        }
+    }
+}</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This very simple example also demonstrates an aspect of Adaptive 
+            Objects that may not seem obvious on the surface. "Object Type" 
+            Person is also an Adaptive Object, and "Property Types" here is 
+            also an Adaptive Property, with values of "First Name", 
+            "Last Name" and "Age". It's only when we establish the Object Type 
+            relationship between these two that we apply semantics to it. In 
+            fact, the Person Object Type in this example also has an Object Type, 
+            <code>_AdaptiveObjectType_</code>, which describes how an 
+            Adaptive Object Type is structured. Likewise, the object type 
+            <code>_AdaptivePropertyType_</code> is used to describe how 
+            an Adaptive Property Type is structured. These two special objects 
+            are defined by Core as compiled object definitions. We can change 
+            the Person Object Type, because it's an object not defined to core, 
+            but we cannot change "_AdaptiveObjectType_" or 
+            "_AdaptivePropertyType_" without recompiling Adaptive Framework.
+        
+</p>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Object Types and Property Types</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            In the previous section, we demonstrated how an Object Type and 
+            Property Type can describe an instance of an Object and a Property.  
+            We also introduced the idea that Object Types and Property Types are 
+            also objects, themselves, described by "_AdaptiveObjectType_" 
+            and "_AdaptivePropertyType_" and defined as compiled-in objects to 
+            Adaptive Framework Core. Let's first look at what makes an 
+            Adaptive Property Type, using the example from the previous 
+            section. The Adaptive Property "First Name" had a Property Type 
+            definition that included a property called dataType. The dataType 
+            property is an important one that we will get into more details 
+            later. more properties that define an Property Type:
+        
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>additionalConstraints</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Additional constraint for the value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowQuery</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowWrite</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowedValues</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a predicate for this value meta, with the first letter capitalized and without a trailing period.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>collectionURIs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection&#x27;s objectId if it resides in the in the same adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>contextType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>dataType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Data type of this value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>dataTypeParameter</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>See the data type&#x27;s dataTypeParameterType property to determine how to interpret this.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>dataTypeParameterFormatted</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>defaultValue</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The description of this value meta.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>hints</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Hints that can optionally be used by UI to render this value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>label</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Label used to identify this value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>maxLength</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is maximum length of the to_string() for this value. If not specified, there is no maximum length.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>maxNormalLength</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>maxValue</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>minLength</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is minimum length of the to_string() for this value. If not specified, there is no minimum length.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>minValue</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>originURI</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>possibleValues</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Possible values of this value. This can be the typed value or the string value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>referenceURI</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>URI of more reference information about this value meta.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>required</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that value is required.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>runtime</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is only valid for runtime object types. These are objects that are accessed with adaptorId afw. See afw_runtime.h for more information.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>skeleton</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type hybrid value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>tags</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with &quot;_Adaptive&quot;.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>testDataParameter</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This contains additional information about values with this meta that is used to produce test data.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>unique</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Value of property must be unique within object type.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>valueInfId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a runtime property that is the implementation id of the value interface.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Object Meta</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            We've now covered Object Types and Property Types and how 
+            useful they are in describing an object or collection of objects by 
+            extracting their "metadata" and storing it in a common place. In 
+            addition to Object Types and Property Types, all objects contain 
+            some additional metadata that is useful for Adaptive Framework 
+            Core, Adaptors, and even clients. As you may have already guessed, 
+            these too are documented and stored in a special Object Type called 
+            <code>_AdaptiveMeta_</code>, which looks like the following:
+        
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowChange</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowDelete</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>ancestorPaths</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is all of the associated object&#x27;s ancestor paths.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The optional description of the object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>errors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Object errors.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>hasErrors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that at least one errors property exists in the meta.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This the id of the associated object&#x27;s object type within the object&#x27;s adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectTypes</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a object with a property with a name of the objectType for each _AdaptiveObjectType_ used by this object and all of its embedded objects.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>parentPaths</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the associated object&#x27;s direct parent paths.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>path</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the associated object&#x27;s path within an Adaptive Framework environment. The path is of the form &quot;/adaptorId/objectType/objectId&quot;.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>propertyTypes</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is additional meta information that overrides and supplements property type information for specific associated object&#x27;s properties. The property name of properties in this object corresponds to properties with the same name in the associated object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>reconcilable</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This strings represents a stateful token, used by the reconcile_object() method, to perform a reconcile request on an object that has been obtained in reconcilable mode.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>resolvedParentPaths</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the associated object&#x27;s direct parent paths before they were resolved by object option composite.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Absolute Object Paths</h2><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Object Paths</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Every Adaptive Object in Adaptive Framework is uniquely identified
+            by an <code>Object Path</code> of the form: 
+        
+</p><pre><code><span>/&lt;adaptorId&gt;/&lt;objectTypeId&gt;/&lt;objectId&gt;</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            An <code>objectId</code> is the unique object identifier of
+            the entity, optionally followed by a slash-separated representation
+            of embedded properties.
+        
+</p><pre><code><span>/&lt;adaptorId&lt;/&lt;objectType&lt;/objectId
+/&lt;adaptorId&lt;/&lt;objectType&lt;/objectId/propertyName
+/&lt;adaptorId&lt;/&lt;objectType&lt;/objectId/propertyNameA/propertyNameB</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            If the property value is a list, a property name can be followed 
+            with a zero based integer index enclosed in square brackets 
+            (<code>[n]</code>).
+        
+</p><pre><code><span>/&lt;adaptorId&gt;/&lt;objectTypeId&gt;/&lt;objectId&gt;/&lt;propertyNameA&gt;[&lt;index&gt;]
+/&lt;adaptorId&gt;/&lt;objectTypeId&gt;/&lt;objectId&gt;/&lt;propertyNameA&gt;[&lt;index&gt;]/&lt;property name&gt;
+/&lt;adaptorId&gt;/&lt;objectTypeId&gt;/&lt;objectId&gt;/&lt;propertyNameA&gt;/&lt;propertyNameB&gt;[&lt;index&gt;]
+/&lt;adaptorId&gt;/&lt;objectTypeId&gt;/&lt;objectId&gt;/&lt;propertyNameA&gt;[&lt;index&gt;]/&lt;propertyNameB&gt;[&lt;index&gt;]</span></code></pre><h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Relative Adaptive Object Path</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            An <code>Object URI</code> can contain a path as defined
+            above, a full URI with scheme, or a relative path. If a path is
+            relative, it must be resolved relative to a supplied path.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            If a relative path begins with a <code>/</code>, its structure
+            is the same as an absolute path with <code>*</code> specified
+            in <adaptorId>, <objectTypeId>, and each dotted part of
+            <objectId> to use the corresponding value from the supplied
+            path. The <objectId> can also be <code>**</code> to
+            indicate that the entire <objectId> including all
+            slash-separated properties should be used.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            If a relative path does not begin with a <code>/</code>, the
+            <code>&lt;adaptorId&gt;</code> and
+            <code>&lt;objectTypeId&gt;</code> from the supplied path
+            will be used and the relative path will be used as the
+            <code>/&lt;objectId&gt;</code>. The character sequence 
+            <code>/*</code> can be used as a corresponding part from the
+            supplied path's <code>/&lt;objectId&gt;</code>.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Examples of relative references using supplied path 
+            <code>/adaptorId/objectTypeId/objectId/prop1/prop2</code>:
+        
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Relative Path</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Resolved Path</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>objectid2</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectid2</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>objectid2.prop4</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectid2.prop4</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/objecttypeid2/objectid3.prop5</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objecttypeid2/objectid3.prop5</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/objecttypeid2/*.prop5</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objecttypeid2/objectid.prop5</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>*.prop6</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop6</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>*.*.prop7</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop1.prop7</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorid2/*/**</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorid2/objecttypeid/objectid.prop1.prop2</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/*/**</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop1.prop2</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/*/*</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Embedded Objects</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Some Adaptive Objects may have properties that also contain 
+            objects. We call these objects <code>Embedded Objects</code>.
+            The following object illustrates an example of an Embedded Object, 
+            referenced by the <code>Embedding Property</code> address:
+        
+</p><pre><code><span>{
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;address&quot;: {
+        &quot;street&quot;: &quot;123 Main St.&quot;,
+        &quot;city&quot;: &quot;Anytown&quot;,
+        &quot;state&quot;: &quot;CA&quot;,
+        &quot;zip&quot;: &quot;12345&quot;
+    }
+}</span></code></pre>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Inheritance</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Adaptive Objects also allow for inheritance, so that Adaptive Objects 
+            can borrow properties from other Adaptive Objects. This is done 
+            through a special "meta" property called <code>parentPaths</code>:
+        
+</p><pre><code><span>{
+    &quot;_meta_&quot;: {
+        &quot;parentPaths&quot;: [
+            &quot;/registry/_AdaptiveObjectType_/Person&quot;
+        ]
+    },
+    &quot;employeeId&quot;: &quot;12345&quot;,
+    &quot;officeAddress&quot;: {
+        &quot;street&quot;: &quot;123 Main St.&quot;,
+        &quot;city&quot;: &quot;Anytown&quot;,
+        &quot;state&quot;: &quot;CA&quot;,
+        &quot;zip&quot;: &quot;12345&quot;
+    }
+}</span></code></pre>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Object Options</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Adaptive Objects can be provided with <code>Object
+            Options</code> that influence how an object should be displayed,
+            including what metadata should be provided, or how Adaptive Property
+            values should be interpreted or represented. The options that one
+            uses is up to the application or client that is consuming or
+            providing the objects. For example, a UI may require a lot of
+            metadata to understand how to render properties on a screen, while a
+            programmatic parser may request property values to be encoded in a
+            way that's convenient for the client. Below is a table of the
+            object options that are available.
+        
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>checkRequired</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that object should be checked for missing required properties. This option implies the normalize option.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>composite</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that both direct and embedded inheritance should be performed.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>debug</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This will cause the errors in object meta to include additional debug information. If not specified, only the message will be included.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>includeDefaultValues</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This indicates that default property values should be included. This option implies the normalize option.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>includeDescendentObjectTypes</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This only applies to retrieve objects requests and indicates that objects with the supplied object type along with objects with any of its descendent object types should be included in the search.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>inheritedFrom</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that the inheritedFrom property in meta propertyTypes.&lt;propertyName&gt;, where &lt;propertyName&gt; is the associated property name, should be set. This option is ignored unless composite option is also set.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>integersAsString</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This overrides the largeIntegersAsString option. If neither the integersAsString or large_integer_as_string is specified, integers will remain integers. If this option is specified, all data type integer values will be converted to the string data type.\n\nThis options is useful if a content type is used that represents integers as double (floating point) values.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>largeIntegersAsString</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This option is overridden by the integersAsString option.\n\nIf this option is specified, all integers that have a magnitude that exceeds plus or minus 9007199254740991 (2^53-1) will be converted to the string data type.\n\nThis options is useful if integers of a content type are interpreted as double (floating point) values, but integers are normally small enough to be represented properly. An example is Javascript&#x27;s use of JSON.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>metaFull</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This indicates that all meta, including properties that are not part of delta from object type, are to be included. This overrides metaLimited.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>metaLimited</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that only requested and essential (parentPaths) meta is returned.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>normalize</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that each object&#x27;s object type should be processed, assigned each embedded object&#x27;s object type, converting any properties to their correct data type, plus computing values when needed. If there is dataType or dataTypeParameter information available during normalization that is not in the associated _AdaptiveObjectType_, it will be added at the appropriate place in the object&#x27;s meta.\n\nUse the includeDefaultValues option to include default values.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that objectId property should be included in the meta for entity objects.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that objectType property should be included in the meta for entity and embedded objects, if assigned.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectTypes</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that the objectTypes property should be added to the meta of the entity containing a property of each object type used by the entity and all of its embedded objects. This option implies normalize.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>path</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that meta path should be included for entity objects.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>pathEmbedded</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that meta path should be included for embedded objects.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>reconcilable</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that meta reconcilable should be included in entity&#x27;s meta. If this is specified on a get_object or retrieve_objects request and a retrieved object is changed, calling reconcile_object() with the changed object will use the information in meta reconcilable to produce a modify request for only the changes. The reconcilable option assumes the path option and possibly other options as needed.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>resolvedParentPaths</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Indicates that meta resolvedParentPaths should be included with a list of parent paths that have been resolved by the composite option.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>typedValues</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>*** EXPERIMENTAL *** This option indicates that a value&#x27;s type information (valueType, dataType, and objectType) should be included with each value. See the content type to determines how this is represented.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>whitespace</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This option can be optionally supported by a content type implementation. In the case of JSON, this indicates that newline, space, and tab characters should be included to make the output more readable.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>                        
+                            <footer class="text-sm leading-6 mt-12">
+    <div class="mb-10 text-slate-700 font-semibold flex items-center dark:text-slate-200">
+    <a class="group flex items-center hover:text-slate-900 dark:hover:text-white" href="introduction.html"><svg viewBox="0 0 3 6" class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M3 0L0 3L3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Introduction</a>
+    <a class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white" href="interfaces.html">Interfaces<svg viewBox="0 0 3 6" class="ml-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</footer>
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>

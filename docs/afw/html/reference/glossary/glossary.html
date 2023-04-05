@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>Glossary</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["Language", [["reference/language/introduction.html", "Introduction", false], ["reference/language/lexical.html", "Lexical", false], ["reference/language/expressions.html", "Templates and Expressions", false], ["reference/language/statements.html", "Statements", false], ["reference/language/qualified-variables.html", "Qualified Variables", false]]], ["Bindings", [["reference/bindings/introduction.html", "Introduction", false], ["reference/bindings/javascript.html", "Javascript Bindings", false], ["reference/bindings/python.html", "Python Bindings", false]]], ["Data Types", [["reference/data_types/any.html", "any", false], ["reference/data_types/anyURI.html", "anyURI", false], ["reference/data_types/base64Binary.html", "base64Binary", false], ["reference/data_types/boolean.html", "boolean", false], ["reference/data_types/date.html", "date", false], ["reference/data_types/dateTime.html", "dateTime", false], ["reference/data_types/dayTimeDuration.html", "dayTimeDuration", false], ["reference/data_types/dnsName.html", "dnsName", false], ["reference/data_types/double.html", "double", false], ["reference/data_types/expression.html", "expression", false], ["reference/data_types/function.html", "function", false], ["reference/data_types/hexBinary.html", "hexBinary", false], ["reference/data_types/hybrid.html", "hybrid", false], ["reference/data_types/ia5String.html", "ia5String", false], ["reference/data_types/implied.html", "implied", false], ["reference/data_types/integer.html", "integer", false], ["reference/data_types/ipAddress.html", "ipAddress", false], ["reference/data_types/list.html", "list", false], ["reference/data_types/null.html", "null", false], ["reference/data_types/object.html", "object", false], ["reference/data_types/objectId.html", "objectId", false], ["reference/data_types/objectPath.html", "objectPath", false], ["reference/data_types/password.html", "password", false], ["reference/data_types/regexp.html", "regexp", false], ["reference/data_types/rfc822Name.html", "rfc822Name", false], ["reference/data_types/script.html", "script", false], ["reference/data_types/string.html", "string", false], ["reference/data_types/template.html", "template", false], ["reference/data_types/time.html", "time", false], ["reference/data_types/unevaluated.html", "unevaluated", false], ["reference/data_types/x500Name.html", "x500Name", false], ["reference/data_types/xpathExpression.html", "xpathExpression", false], ["reference/data_types/yearMonthDuration.html", "yearMonthDuration", false]]], ["Functions", [["reference/functions/adaptor", "adaptor", false], ["reference/functions/administrative", "administrative", false], ["reference/functions/anyURI", "anyURI", false], ["reference/functions/authorization", "authorization", false], ["reference/functions/base64Binary", "base64Binary", false], ["reference/functions/boolean", "boolean", false], ["reference/functions/compiler", "compiler", false], ["reference/functions/date", "date", false], ["reference/functions/dateTime", "dateTime", false], ["reference/functions/dayTimeDuration", "dayTimeDuration", false], ["reference/functions/dnsName", "dnsName", false], ["reference/functions/double", "double", false], ["reference/functions/expression", "expression", false], ["reference/functions/function", "function", false], ["reference/functions/hexBinary", "hexBinary", false], ["reference/functions/higher_order_list", "higher_order_list", false], ["reference/functions/hybrid", "hybrid", false], ["reference/functions/ia5String", "ia5String", false], ["reference/functions/indexes", "indexes", false], ["reference/functions/integer", "integer", false], ["reference/functions/ipAddress", "ipAddress", false], ["reference/functions/journal", "journal", false], ["reference/functions/list", "list", false], ["reference/functions/logical", "logical", false], ["reference/functions/miscellaneous", "miscellaneous", false], ["reference/functions/model", "model", false], ["reference/functions/null", "null", false], ["reference/functions/object", "object", false], ["reference/functions/objectId", "objectId", false], ["reference/functions/objectPath", "objectPath", false], ["reference/functions/password", "password", false], ["reference/functions/polymorphic", "polymorphic", false], ["reference/functions/random", "random", false], ["reference/functions/regexp", "regexp", false], ["reference/functions/rfc822Name", "rfc822Name", false], ["reference/functions/script", "script", false], ["reference/functions/stream", "stream", false], ["reference/functions/string", "string", false], ["reference/functions/template", "template", false], ["reference/functions/time", "time", false], ["reference/functions/value", "value", false], ["reference/functions/x500Name", "x500Name", false], ["reference/functions/xpath", "xpath", false], ["reference/functions/xpathExpression", "xpathExpression", false], ["reference/functions/yearMonthDuration", "yearMonthDuration", false]]], ["Object Types", [["reference/object_types/_AdaptiveAction_.html", "_AdaptiveAction_", false], ["reference/object_types/_AdaptiveActions_.html", "_AdaptiveActions_", false], ["reference/object_types/_AdaptiveAdaptorMetrics_.html", "_AdaptiveAdaptorMetrics_", false], ["reference/object_types/_AdaptiveAdaptorType_.html", "_AdaptiveAdaptorType_", false], ["reference/object_types/_AdaptiveAdaptor_.html", "_AdaptiveAdaptor_", false], ["reference/object_types/_AdaptiveAnnotation_.html", "_AdaptiveAnnotation_", false], ["reference/object_types/_AdaptiveApplicationComponents_.html", "_AdaptiveApplicationComponents_", false], ["reference/object_types/_AdaptiveApplication_.html", "_AdaptiveApplication_", false], ["reference/object_types/_AdaptiveAuthorizationControl_.html", "_AdaptiveAuthorizationControl_", false], ["reference/object_types/_AdaptiveAuthorizationDecision_.html", "_AdaptiveAuthorizationDecision_", false], ["reference/object_types/_AdaptiveAuthorizationHandlerType_.html", "_AdaptiveAuthorizationHandlerType_", false], ["reference/object_types/_AdaptiveAuthorizationHandler_.html", "_AdaptiveAuthorizationHandler_", false], ["reference/object_types/_AdaptiveAuthorizationMode_.html", "_AdaptiveAuthorizationMode_", false], ["reference/object_types/_AdaptiveAuthorizationResult_.html", "_AdaptiveAuthorizationResult_", false], ["reference/object_types/_AdaptiveCollection_.html", "_AdaptiveCollection_", false], ["reference/object_types/_AdaptiveConfType_.html", "_AdaptiveConfType_", false], ["reference/object_types/_AdaptiveConf_.html", "_AdaptiveConf_", false], ["reference/object_types/_AdaptiveConf_adaptor.html", "_AdaptiveConf_adaptor", false], ["reference/object_types/_AdaptiveConf_adaptor_afw_runtime.html", "_AdaptiveConf_adaptor_afw_runtime", false], ["reference/object_types/_AdaptiveConf_adaptor_file.html", "_AdaptiveConf_adaptor_file", false], ["reference/object_types/_AdaptiveConf_adaptor_model.html", "_AdaptiveConf_adaptor_model", false], ["reference/object_types/_AdaptiveConf_application.html", "_AdaptiveConf_application", false], ["reference/object_types/_AdaptiveConf_authorizationHandler.html", "_AdaptiveConf_authorizationHandler", false], ["reference/object_types/_AdaptiveConf_authorizationHandler_script.html", "_AdaptiveConf_authorizationHandler_script", false], ["reference/object_types/_AdaptiveConf_extension.html", "_AdaptiveConf_extension", false], ["reference/object_types/_AdaptiveConf_log.html", "_AdaptiveConf_log", false], ["reference/object_types/_AdaptiveConf_log_event_log.html", "_AdaptiveConf_log_event_log", false], ["reference/object_types/_AdaptiveConf_log_standard.html", "_AdaptiveConf_log_standard", false], ["reference/object_types/_AdaptiveConf_log_syslog.html", "_AdaptiveConf_log_syslog", false], ["reference/object_types/_AdaptiveConf_requestHandler.html", "_AdaptiveConf_requestHandler", false], ["reference/object_types/_AdaptiveConf_requestHandler_adaptor.html", "_AdaptiveConf_requestHandler_adaptor", false], ["reference/object_types/_AdaptiveContentType_.html", "_AdaptiveContentType_", false], ["reference/object_types/_AdaptiveContextType_.html", "_AdaptiveContextType_", false], ["reference/object_types/_AdaptiveDataTypeGenerate_.html", "_AdaptiveDataTypeGenerate_", false], ["reference/object_types/_AdaptiveDataTypeTestCase_.html", "_AdaptiveDataTypeTestCase_", false], ["reference/object_types/_AdaptiveDataTypeTest_.html", "_AdaptiveDataTypeTest_", false], ["reference/object_types/_AdaptiveDataType_.html", "_AdaptiveDataType_", false], ["reference/object_types/_AdaptiveEnvironmentRegistryType_.html", "_AdaptiveEnvironmentRegistryType_", false], ["reference/object_types/_AdaptiveEnvironmentRegistry_.html", "_AdaptiveEnvironmentRegistry_", false], ["reference/object_types/_AdaptiveErrorRVDecoder_.html", "_AdaptiveErrorRVDecoder_", false], ["reference/object_types/_AdaptiveExtension_.html", "_AdaptiveExtension_", false], ["reference/object_types/_AdaptiveFlag_.html", "_AdaptiveFlag_", false], ["reference/object_types/_AdaptiveFunctionCategory_.html", "_AdaptiveFunctionCategory_", false], ["reference/object_types/_AdaptiveFunctionDeclaration_.html", "_AdaptiveFunctionDeclaration_", false], ["reference/object_types/_AdaptiveFunctionErrorThrown_.html", "_AdaptiveFunctionErrorThrown_", false], ["reference/object_types/_AdaptiveFunctionGenerate_.html", "_AdaptiveFunctionGenerate_", false], ["reference/object_types/_AdaptiveFunctionParameter_.html", "_AdaptiveFunctionParameter_", false], ["reference/object_types/_AdaptiveFunctionTestArgument_.html", "_AdaptiveFunctionTestArgument_", false], ["reference/object_types/_AdaptiveFunctionTestCase_.html", "_AdaptiveFunctionTestCase_", false], ["reference/object_types/_AdaptiveFunctionTestResult_.html", "_AdaptiveFunctionTestResult_", false], ["reference/object_types/_AdaptiveFunctionTest_.html", "_AdaptiveFunctionTest_", false], ["reference/object_types/_AdaptiveFunction_.html", "_AdaptiveFunction_", false], ["reference/object_types/_AdaptiveHybridPropertiesObjects_.html", "_AdaptiveHybridPropertiesObjects_", false], ["reference/object_types/_AdaptiveHybridProperties_.html", "_AdaptiveHybridProperties_", false], ["reference/object_types/_AdaptiveInterface_.html", "_AdaptiveInterface_", false], ["reference/object_types/_AdaptiveJournalEntryRequest_.html", "_AdaptiveJournalEntryRequest_", false], ["reference/object_types/_AdaptiveJournalEntrySource_.html", "_AdaptiveJournalEntrySource_", false], ["reference/object_types/_AdaptiveJournalEntry_.html", "_AdaptiveJournalEntry_", false], ["reference/object_types/_AdaptiveLayoutComponentTypeCategory_.html", "_AdaptiveLayoutComponentTypeCategory_", false], ["reference/object_types/_AdaptiveLayoutComponentType_.html", "_AdaptiveLayoutComponentType_", false], ["reference/object_types/_AdaptiveLayoutComponent_.html", "_AdaptiveLayoutComponent_", false], ["reference/object_types/_AdaptiveLock_.html", "_AdaptiveLock_", false], ["reference/object_types/_AdaptiveLogType_.html", "_AdaptiveLogType_", false], ["reference/object_types/_AdaptiveLog_.html", "_AdaptiveLog_", false], ["reference/object_types/_AdaptiveManifest_.html", "_AdaptiveManifest_", false], ["reference/object_types/_AdaptiveMetaPropertyType_.html", "_AdaptiveMetaPropertyType_", false], ["reference/object_types/_AdaptiveMetaPropertyTypes_.html", "_AdaptiveMetaPropertyTypes_", false], ["reference/object_types/_AdaptiveMeta_.html", "_AdaptiveMeta_", false], ["reference/object_types/_AdaptiveModelCurrentOnAddObject_.html", "_AdaptiveModelCurrentOnAddObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnDeleteObject_.html", "_AdaptiveModelCurrentOnDeleteObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetInitialObjectId_.html", "_AdaptiveModelCurrentOnGetInitialObjectId_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetInitialValue_.html", "_AdaptiveModelCurrentOnGetInitialValue_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetObject_.html", "_AdaptiveModelCurrentOnGetObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetProperty_.html", "_AdaptiveModelCurrentOnGetProperty_", false], ["reference/object_types/_AdaptiveModelCurrentOnModifyObject_.html", "_AdaptiveModelCurrentOnModifyObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnReplaceObject_.html", "_AdaptiveModelCurrentOnReplaceObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnRetrieveObjects_.html", "_AdaptiveModelCurrentOnRetrieveObjects_", false], ["reference/object_types/_AdaptiveModelCurrentOnSetProperty_.html", "_AdaptiveModelCurrentOnSetProperty_", false], ["reference/object_types/_AdaptiveModelCurrent_.html", "_AdaptiveModelCurrent_", false], ["reference/object_types/_AdaptiveModelObjectType_.html", "_AdaptiveModelObjectType_", false], ["reference/object_types/_AdaptiveModelObjectTypes_.html", "_AdaptiveModelObjectTypes_", false], ["reference/object_types/_AdaptiveModelPropertyType_.html", "_AdaptiveModelPropertyType_", false], ["reference/object_types/_AdaptiveModelPropertyTypes_.html", "_AdaptiveModelPropertyTypes_", false], ["reference/object_types/_AdaptiveModel_.html", "_AdaptiveModel_", false], ["reference/object_types/_AdaptiveObjectOptions_.html", "_AdaptiveObjectOptions_", false], ["reference/object_types/_AdaptiveObjectType_.html", "_AdaptiveObjectType_", false], ["reference/object_types/_AdaptiveObjectTypes_.html", "_AdaptiveObjectTypes_", false], ["reference/object_types/_AdaptiveObject_.html", "_AdaptiveObject_", false], ["reference/object_types/_AdaptivePackageCompileOptions_.html", "_AdaptivePackageCompileOptions_", false], ["reference/object_types/_AdaptivePackageSrcdirInfo_.html", "_AdaptivePackageSrcdirInfo_", false], ["reference/object_types/_AdaptivePackageSrcdirs_.html", "_AdaptivePackageSrcdirs_", false], ["reference/object_types/_AdaptivePackage_.html", "_AdaptivePackage_", false], ["reference/object_types/_AdaptiveParsedURI_.html", "_AdaptiveParsedURI_", false], ["reference/object_types/_AdaptivePolymorphicFunction_.html", "_AdaptivePolymorphicFunction_", false], ["reference/object_types/_AdaptivePropertyTypes_.html", "_AdaptivePropertyTypes_", false], ["reference/object_types/_AdaptiveProvisioningPeer_.html", "_AdaptiveProvisioningPeer_", false], ["reference/object_types/_AdaptiveQualifierDefinitions_.html", "_AdaptiveQualifierDefinitions_", false], ["reference/object_types/_AdaptiveQueryCriteriaFilter_.html", "_AdaptiveQueryCriteriaFilter_", false], ["reference/object_types/_AdaptiveQueryCriteria_.html", "_AdaptiveQueryCriteria_", false], ["reference/object_types/_AdaptiveRequestContext_.html", "_AdaptiveRequestContext_", false], ["reference/object_types/_AdaptiveRequestHandlerType_.html", "_AdaptiveRequestHandlerType_", false], ["reference/object_types/_AdaptiveRequestHandler_.html", "_AdaptiveRequestHandler_", false], ["reference/object_types/_AdaptiveRequestProperties_.html", "_AdaptiveRequestProperties_", false], ["reference/object_types/_AdaptiveResponseAction_.html", "_AdaptiveResponseAction_", false], ["reference/object_types/_AdaptiveResponseError_.html", "_AdaptiveResponseError_", false], ["reference/object_types/_AdaptiveResponse_.html", "_AdaptiveResponse_", false], ["reference/object_types/_AdaptiveRootFilePaths_.html", "_AdaptiveRootFilePaths_", false], ["reference/object_types/_AdaptiveRuntimeCustom_.html", "_AdaptiveRuntimeCustom_", false], ["reference/object_types/_AdaptiveRuntimeLabels_.html", "_AdaptiveRuntimeLabels_", false], ["reference/object_types/_AdaptiveRuntimeObjectMapInf_.html", "_AdaptiveRuntimeObjectMapInf_", false], ["reference/object_types/_AdaptiveRuntimeObject_.html", "_AdaptiveRuntimeObject_", false], ["reference/object_types/_AdaptiveRuntimeProperty_.html", "_AdaptiveRuntimeProperty_", false], ["reference/object_types/_AdaptiveRuntimeValueAccessor_.html", "_AdaptiveRuntimeValueAccessor_", false], ["reference/object_types/_AdaptiveServer_.html", "_AdaptiveServer_", false], ["reference/object_types/_AdaptiveServiceConf_.html", "_AdaptiveServiceConf_", false], ["reference/object_types/_AdaptiveServiceType_.html", "_AdaptiveServiceType_", false], ["reference/object_types/_AdaptiveService_.html", "_AdaptiveService_", false], ["reference/object_types/_AdaptiveSingleton_.html", "_AdaptiveSingleton_", false], ["reference/object_types/_AdaptiveSystemInfo_.html", "_AdaptiveSystemInfo_", false], ["reference/object_types/_AdaptiveTag_.html", "_AdaptiveTag_", false], ["reference/object_types/_AdaptiveTestScriptResult_.html", "_AdaptiveTestScriptResult_", false], ["reference/object_types/_AdaptiveTestScriptTestResult_.html", "_AdaptiveTestScriptTestResult_", false], ["reference/object_types/_AdaptiveValueInf_.html", "_AdaptiveValueInf_", false], ["reference/object_types/_AdaptiveValueMeta_.html", "_AdaptiveValueMeta_", false], ["reference/object_types/_AdaptiveValuePath_.html", "_AdaptiveValuePath_", false], ["reference/object_types/_AdaptiveVersionInfo_.html", "_AdaptiveVersionInfo_", false]]], ["Glossary", [["reference/glossary/glossary.html", "Glossary", true]]]], "relative_root_path": "../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Glossary</a>
+</li><li><span> / </span></li><span>Glossary</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Glossary</a>
+</li><li><span> / </span></li><span>Glossary</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Glossary</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        The following terms are used throughout the Adaptive Framework documentation. 
+    
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        In order to distinguish between broader terms used in technology and industry, 
+        you will find we use the prefix "Adaptive" liberally. This is done to avoid 
+        confusion with more common terms, which often change semantics for a given time
+        or software context.
+    
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Identifier</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Layout Component</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An Adaptive Layout Component is a UI primitive. It takes parameters and renders a portion of the UI, along side other components, through a composition relationship. It can be implemented by the appropriate technology/framework that is being used to build user interfaces.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Data Type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The data type of an adaptive value. Each adaptive data type is described by an adaptive object that has properties concerning the data type, such as how values of the data type are represented in c, json, etc. An adaptive data type also has associated functions to convert a value of the data type to internal representation, to string, to compare two values, etc.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Framework</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A set of interfaces for developing servers, requests, object access, etc. in an adaptive way, along with implementations, language bindings, commands, and administrative applications.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Framework Application</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Any application built on top of Adaptive framework.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Framework Core</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The core functions and objects built into libafw.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Framework Environment</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The environment includes registered adaptor factories, adaptors, configuration handlers, content types, data types, functions, module paths, request handler factories, request handlers, value interfaces, etc. Adaptive Framework has a core environment that can be extended by extensions.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Framework Extension</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A loadable module that extends the Adaptive Framework environment. Extensions can register all of the type of things that are in the core environment. There are extensions included with Adaptive Framework plus additional extensions can be created by using libafw and the associated headers.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Function</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A function that is defined by Adaptive Framework Core, or by an extension loaded by core, which is declared and may be invoked by expressions, scripts or templates.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Layout</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that describes a UI layout and how values map in as similar way to an adaptive model.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Model</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that maps the properties of an adaptive object of a model adaptive object type to their source and destination values, possibly in one or more other adaptors.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Service</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that contains configuration for a service type such as an adaptor, log, or authorizationHandler, along with options for how to start the service.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Request Handler</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Bindings</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Language-specific implementations that wrap Adaptive Functions provided by Adaptive Framework Core.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Property Type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that contains metadata for a property of an object, such as data type, constraints, description, label, etc.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Object</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object is zero or more pairs of property name and adaptive value. An adaptive object can have an associated adaptive object type that contains additional information about the object and its properties.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Object Type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object type is an adaptive object that can be associated with another adaptive object to define additional information about that object and its properties.
+
+An adaptive object type object itself has an associated adaptive object type, _AdaptiveObjectType_, which can be referenced to see what information is available.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Object Id</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object id is a string used to uniquely identify an object for a given adaptor and object type.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Object Path</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object path is a string used to uniquely identify an adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Object Store</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Any place adaptive objects can be stored and accessed via an adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Expression</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A value that is computed by an expression, which may use any combination of adaptive functions and operators.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Expression Tuple</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive expression, represented by in tuple format, making it easier to parse and interpret for tools or user interfaces.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Context</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Flag</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Hybrid</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A data type whose value may contain either an expression, expression tuple or template.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Script</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A language that can be executed by core, which contains both functional and procedural constructs, and used to perform complex custom tasks defined by users to operate on adaptive objects and values.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Template</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A string value that may contain adaptive expressions or even scripts, embedded inline.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Schema</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A collection of Object Types returned by an adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Value</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive value holds an evaluated value of a particular adaptive data type or a value that can be evaluated via an adaptive value interface.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptive Value Interface</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Each adaptive value has a adaptive value interface used to evaluate and get its data type. There is an adaptive value interface for each data type as well others for calls, expression definitions, function definitions, lambda definitions, etc.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Adaptor</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptor is a implementation of the necessary Adaptive Framework interfaces to provide access to adaptive objects and associated adaptive object types, along with adaptor specific tools and documentation.
+
+Each implementation is identified by an adaptorType and is responsible for providing a common way of accessing adaptive objects for its associated backend. For instance, adaptorType ldap provides a way to access objects via a ldap server and provides an _AdaptiveObjectType_ object for each object class which is manufactured from information derived from the ldap schema. In the case of adaptorType dbd, the adaptor provides an object for each row in a table and an _AdaptiveObjectType_ object for each table.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Log</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Authorization Handler</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Content Type</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Qualified Variable</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>
+
+</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Consume</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>To process a journal entry.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Consumer</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Anything that consumes a journal entry.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Embedded Inheritance</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Adaptive objects that are property values of an adaptive object inherit the properties of the embedding object's parent's properties of the same property name.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Embedded Object</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that is the value of a property of another adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Embedder</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An embedding object, property name, and inheritance options.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Embedding Object</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The adaptive object that an embedded object is a property value of.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Inherit</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The act of including uniquely named properties from another adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Instance</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A single occurrence of an adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Journal</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An ordered list of journal entries.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Journal Cursor</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A token used to reference a journal entry in a journal.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Journal Entry</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An entry recording an action, event, etc. in a journal. In Adaptive Framework, this is often a record of an action taken though an adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Entity</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object that is not embedded in another adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>List</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A list of adaptive values that can be of different adaptive value and data types.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Own Property</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A property of an adaptive object that is not inherited.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Parent</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An adaptive object who's unique property names will be included as properties of an adaptive object.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Produce</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>To cause a journal entry to be added to a journal.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Producer</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Anything that causes a journal entry to be produced.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>Provisioning Peers</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Two peers that optionally produce and/or consume each other's journal entries.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>                        
+                            
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Introduction</title>
+    <paragraph>
+        In Adaptive Framework, functions are naturally exposed to the outside 
+        world as C library functions, which can be dynamically linked to an 
+        application or a library by linking them at compile time.
+    </paragraph>
+    <paragraph>
+        However, in some cases, it is desirable to expose a function to the 
+        outside world in another language that may be more convenient to write 
+        in. We make this possible by providing a HTTP-based interface to 
+        invoking function calls and using an appropriate language library to 
+        implement this call. This allows us to call Adaptive Functions in 
+        languages such as Javascript, Python, PHP or Perl.
+    </paragraph>
+    <paragraph>
+        At this time, the language bindings do not link directly to the shared 
+        libraries that contain the functions. Instead, they may use the 
+        HTTP-based interface, or the local command-line interface to invoke the 
+        functions. This allows us to use the same interface for all languages.
+    </paragraph>
+</doc>

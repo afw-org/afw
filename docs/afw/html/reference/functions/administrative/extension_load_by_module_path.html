@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>extension_load_by_module_path</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["Language", [["reference/language/introduction.html", "Introduction", false], ["reference/language/lexical.html", "Lexical", false], ["reference/language/expressions.html", "Templates and Expressions", false], ["reference/language/statements.html", "Statements", false], ["reference/language/qualified-variables.html", "Qualified Variables", false]]], ["Bindings", [["reference/bindings/introduction.html", "Introduction", false], ["reference/bindings/javascript.html", "Javascript Bindings", false], ["reference/bindings/python.html", "Python Bindings", false]]], ["Data Types", [["reference/data_types/any.html", "any", false], ["reference/data_types/anyURI.html", "anyURI", false], ["reference/data_types/base64Binary.html", "base64Binary", false], ["reference/data_types/boolean.html", "boolean", false], ["reference/data_types/date.html", "date", false], ["reference/data_types/dateTime.html", "dateTime", false], ["reference/data_types/dayTimeDuration.html", "dayTimeDuration", false], ["reference/data_types/dnsName.html", "dnsName", false], ["reference/data_types/double.html", "double", false], ["reference/data_types/expression.html", "expression", false], ["reference/data_types/function.html", "function", false], ["reference/data_types/hexBinary.html", "hexBinary", false], ["reference/data_types/hybrid.html", "hybrid", false], ["reference/data_types/ia5String.html", "ia5String", false], ["reference/data_types/implied.html", "implied", false], ["reference/data_types/integer.html", "integer", false], ["reference/data_types/ipAddress.html", "ipAddress", false], ["reference/data_types/list.html", "list", false], ["reference/data_types/null.html", "null", false], ["reference/data_types/object.html", "object", false], ["reference/data_types/objectId.html", "objectId", false], ["reference/data_types/objectPath.html", "objectPath", false], ["reference/data_types/password.html", "password", false], ["reference/data_types/regexp.html", "regexp", false], ["reference/data_types/rfc822Name.html", "rfc822Name", false], ["reference/data_types/script.html", "script", false], ["reference/data_types/string.html", "string", false], ["reference/data_types/template.html", "template", false], ["reference/data_types/time.html", "time", false], ["reference/data_types/unevaluated.html", "unevaluated", false], ["reference/data_types/x500Name.html", "x500Name", false], ["reference/data_types/xpathExpression.html", "xpathExpression", false], ["reference/data_types/yearMonthDuration.html", "yearMonthDuration", false]]], ["Functions", [["reference/functions/adaptor", "adaptor", false], ["reference/functions/administrative", "administrative", true], ["reference/functions/anyURI", "anyURI", false], ["reference/functions/authorization", "authorization", false], ["reference/functions/base64Binary", "base64Binary", false], ["reference/functions/boolean", "boolean", false], ["reference/functions/compiler", "compiler", false], ["reference/functions/date", "date", false], ["reference/functions/dateTime", "dateTime", false], ["reference/functions/dayTimeDuration", "dayTimeDuration", false], ["reference/functions/dnsName", "dnsName", false], ["reference/functions/double", "double", false], ["reference/functions/expression", "expression", false], ["reference/functions/function", "function", false], ["reference/functions/hexBinary", "hexBinary", false], ["reference/functions/higher_order_list", "higher_order_list", false], ["reference/functions/hybrid", "hybrid", false], ["reference/functions/ia5String", "ia5String", false], ["reference/functions/indexes", "indexes", false], ["reference/functions/integer", "integer", false], ["reference/functions/ipAddress", "ipAddress", false], ["reference/functions/journal", "journal", false], ["reference/functions/list", "list", false], ["reference/functions/logical", "logical", false], ["reference/functions/miscellaneous", "miscellaneous", false], ["reference/functions/model", "model", false], ["reference/functions/null", "null", false], ["reference/functions/object", "object", false], ["reference/functions/objectId", "objectId", false], ["reference/functions/objectPath", "objectPath", false], ["reference/functions/password", "password", false], ["reference/functions/polymorphic", "polymorphic", false], ["reference/functions/random", "random", false], ["reference/functions/regexp", "regexp", false], ["reference/functions/rfc822Name", "rfc822Name", false], ["reference/functions/script", "script", false], ["reference/functions/stream", "stream", false], ["reference/functions/string", "string", false], ["reference/functions/template", "template", false], ["reference/functions/time", "time", false], ["reference/functions/value", "value", false], ["reference/functions/x500Name", "x500Name", false], ["reference/functions/xpath", "xpath", false], ["reference/functions/xpathExpression", "xpathExpression", false], ["reference/functions/yearMonthDuration", "yearMonthDuration", false]]], ["Object Types", [["reference/object_types/_AdaptiveAction_.html", "_AdaptiveAction_", false], ["reference/object_types/_AdaptiveActions_.html", "_AdaptiveActions_", false], ["reference/object_types/_AdaptiveAdaptorMetrics_.html", "_AdaptiveAdaptorMetrics_", false], ["reference/object_types/_AdaptiveAdaptorType_.html", "_AdaptiveAdaptorType_", false], ["reference/object_types/_AdaptiveAdaptor_.html", "_AdaptiveAdaptor_", false], ["reference/object_types/_AdaptiveAnnotation_.html", "_AdaptiveAnnotation_", false], ["reference/object_types/_AdaptiveApplicationComponents_.html", "_AdaptiveApplicationComponents_", false], ["reference/object_types/_AdaptiveApplication_.html", "_AdaptiveApplication_", false], ["reference/object_types/_AdaptiveAuthorizationControl_.html", "_AdaptiveAuthorizationControl_", false], ["reference/object_types/_AdaptiveAuthorizationDecision_.html", "_AdaptiveAuthorizationDecision_", false], ["reference/object_types/_AdaptiveAuthorizationHandlerType_.html", "_AdaptiveAuthorizationHandlerType_", false], ["reference/object_types/_AdaptiveAuthorizationHandler_.html", "_AdaptiveAuthorizationHandler_", false], ["reference/object_types/_AdaptiveAuthorizationMode_.html", "_AdaptiveAuthorizationMode_", false], ["reference/object_types/_AdaptiveAuthorizationResult_.html", "_AdaptiveAuthorizationResult_", false], ["reference/object_types/_AdaptiveCollection_.html", "_AdaptiveCollection_", false], ["reference/object_types/_AdaptiveConfType_.html", "_AdaptiveConfType_", false], ["reference/object_types/_AdaptiveConf_.html", "_AdaptiveConf_", false], ["reference/object_types/_AdaptiveConf_adaptor.html", "_AdaptiveConf_adaptor", false], ["reference/object_types/_AdaptiveConf_adaptor_afw_runtime.html", "_AdaptiveConf_adaptor_afw_runtime", false], ["reference/object_types/_AdaptiveConf_adaptor_file.html", "_AdaptiveConf_adaptor_file", false], ["reference/object_types/_AdaptiveConf_adaptor_model.html", "_AdaptiveConf_adaptor_model", false], ["reference/object_types/_AdaptiveConf_application.html", "_AdaptiveConf_application", false], ["reference/object_types/_AdaptiveConf_authorizationHandler.html", "_AdaptiveConf_authorizationHandler", false], ["reference/object_types/_AdaptiveConf_authorizationHandler_script.html", "_AdaptiveConf_authorizationHandler_script", false], ["reference/object_types/_AdaptiveConf_extension.html", "_AdaptiveConf_extension", false], ["reference/object_types/_AdaptiveConf_log.html", "_AdaptiveConf_log", false], ["reference/object_types/_AdaptiveConf_log_event_log.html", "_AdaptiveConf_log_event_log", false], ["reference/object_types/_AdaptiveConf_log_standard.html", "_AdaptiveConf_log_standard", false], ["reference/object_types/_AdaptiveConf_log_syslog.html", "_AdaptiveConf_log_syslog", false], ["reference/object_types/_AdaptiveConf_requestHandler.html", "_AdaptiveConf_requestHandler", false], ["reference/object_types/_AdaptiveConf_requestHandler_adaptor.html", "_AdaptiveConf_requestHandler_adaptor", false], ["reference/object_types/_AdaptiveContentType_.html", "_AdaptiveContentType_", false], ["reference/object_types/_AdaptiveContextType_.html", "_AdaptiveContextType_", false], ["reference/object_types/_AdaptiveDataTypeGenerate_.html", "_AdaptiveDataTypeGenerate_", false], ["reference/object_types/_AdaptiveDataTypeTestCase_.html", "_AdaptiveDataTypeTestCase_", false], ["reference/object_types/_AdaptiveDataTypeTest_.html", "_AdaptiveDataTypeTest_", false], ["reference/object_types/_AdaptiveDataType_.html", "_AdaptiveDataType_", false], ["reference/object_types/_AdaptiveEnvironmentRegistryType_.html", "_AdaptiveEnvironmentRegistryType_", false], ["reference/object_types/_AdaptiveEnvironmentRegistry_.html", "_AdaptiveEnvironmentRegistry_", false], ["reference/object_types/_AdaptiveErrorRVDecoder_.html", "_AdaptiveErrorRVDecoder_", false], ["reference/object_types/_AdaptiveExtension_.html", "_AdaptiveExtension_", false], ["reference/object_types/_AdaptiveFlag_.html", "_AdaptiveFlag_", false], ["reference/object_types/_AdaptiveFunctionCategory_.html", "_AdaptiveFunctionCategory_", false], ["reference/object_types/_AdaptiveFunctionDeclaration_.html", "_AdaptiveFunctionDeclaration_", false], ["reference/object_types/_AdaptiveFunctionErrorThrown_.html", "_AdaptiveFunctionErrorThrown_", false], ["reference/object_types/_AdaptiveFunctionGenerate_.html", "_AdaptiveFunctionGenerate_", false], ["reference/object_types/_AdaptiveFunctionParameter_.html", "_AdaptiveFunctionParameter_", false], ["reference/object_types/_AdaptiveFunctionTestArgument_.html", "_AdaptiveFunctionTestArgument_", false], ["reference/object_types/_AdaptiveFunctionTestCase_.html", "_AdaptiveFunctionTestCase_", false], ["reference/object_types/_AdaptiveFunctionTestResult_.html", "_AdaptiveFunctionTestResult_", false], ["reference/object_types/_AdaptiveFunctionTest_.html", "_AdaptiveFunctionTest_", false], ["reference/object_types/_AdaptiveFunction_.html", "_AdaptiveFunction_", false], ["reference/object_types/_AdaptiveHybridPropertiesObjects_.html", "_AdaptiveHybridPropertiesObjects_", false], ["reference/object_types/_AdaptiveHybridProperties_.html", "_AdaptiveHybridProperties_", false], ["reference/object_types/_AdaptiveInterface_.html", "_AdaptiveInterface_", false], ["reference/object_types/_AdaptiveJournalEntryRequest_.html", "_AdaptiveJournalEntryRequest_", false], ["reference/object_types/_AdaptiveJournalEntrySource_.html", "_AdaptiveJournalEntrySource_", false], ["reference/object_types/_AdaptiveJournalEntry_.html", "_AdaptiveJournalEntry_", false], ["reference/object_types/_AdaptiveLayoutComponentTypeCategory_.html", "_AdaptiveLayoutComponentTypeCategory_", false], ["reference/object_types/_AdaptiveLayoutComponentType_.html", "_AdaptiveLayoutComponentType_", false], ["reference/object_types/_AdaptiveLayoutComponent_.html", "_AdaptiveLayoutComponent_", false], ["reference/object_types/_AdaptiveLock_.html", "_AdaptiveLock_", false], ["reference/object_types/_AdaptiveLogType_.html", "_AdaptiveLogType_", false], ["reference/object_types/_AdaptiveLog_.html", "_AdaptiveLog_", false], ["reference/object_types/_AdaptiveManifest_.html", "_AdaptiveManifest_", false], ["reference/object_types/_AdaptiveMetaPropertyType_.html", "_AdaptiveMetaPropertyType_", false], ["reference/object_types/_AdaptiveMetaPropertyTypes_.html", "_AdaptiveMetaPropertyTypes_", false], ["reference/object_types/_AdaptiveMeta_.html", "_AdaptiveMeta_", false], ["reference/object_types/_AdaptiveModelCurrentOnAddObject_.html", "_AdaptiveModelCurrentOnAddObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnDeleteObject_.html", "_AdaptiveModelCurrentOnDeleteObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetInitialObjectId_.html", "_AdaptiveModelCurrentOnGetInitialObjectId_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetInitialValue_.html", "_AdaptiveModelCurrentOnGetInitialValue_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetObject_.html", "_AdaptiveModelCurrentOnGetObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnGetProperty_.html", "_AdaptiveModelCurrentOnGetProperty_", false], ["reference/object_types/_AdaptiveModelCurrentOnModifyObject_.html", "_AdaptiveModelCurrentOnModifyObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnReplaceObject_.html", "_AdaptiveModelCurrentOnReplaceObject_", false], ["reference/object_types/_AdaptiveModelCurrentOnRetrieveObjects_.html", "_AdaptiveModelCurrentOnRetrieveObjects_", false], ["reference/object_types/_AdaptiveModelCurrentOnSetProperty_.html", "_AdaptiveModelCurrentOnSetProperty_", false], ["reference/object_types/_AdaptiveModelCurrent_.html", "_AdaptiveModelCurrent_", false], ["reference/object_types/_AdaptiveModelObjectType_.html", "_AdaptiveModelObjectType_", false], ["reference/object_types/_AdaptiveModelObjectTypes_.html", "_AdaptiveModelObjectTypes_", false], ["reference/object_types/_AdaptiveModelPropertyType_.html", "_AdaptiveModelPropertyType_", false], ["reference/object_types/_AdaptiveModelPropertyTypes_.html", "_AdaptiveModelPropertyTypes_", false], ["reference/object_types/_AdaptiveModel_.html", "_AdaptiveModel_", false], ["reference/object_types/_AdaptiveObjectOptions_.html", "_AdaptiveObjectOptions_", false], ["reference/object_types/_AdaptiveObjectType_.html", "_AdaptiveObjectType_", false], ["reference/object_types/_AdaptiveObjectTypes_.html", "_AdaptiveObjectTypes_", false], ["reference/object_types/_AdaptiveObject_.html", "_AdaptiveObject_", false], ["reference/object_types/_AdaptivePackageCompileOptions_.html", "_AdaptivePackageCompileOptions_", false], ["reference/object_types/_AdaptivePackageSrcdirInfo_.html", "_AdaptivePackageSrcdirInfo_", false], ["reference/object_types/_AdaptivePackageSrcdirs_.html", "_AdaptivePackageSrcdirs_", false], ["reference/object_types/_AdaptivePackage_.html", "_AdaptivePackage_", false], ["reference/object_types/_AdaptiveParsedURI_.html", "_AdaptiveParsedURI_", false], ["reference/object_types/_AdaptivePolymorphicFunction_.html", "_AdaptivePolymorphicFunction_", false], ["reference/object_types/_AdaptivePropertyTypes_.html", "_AdaptivePropertyTypes_", false], ["reference/object_types/_AdaptiveProvisioningPeer_.html", "_AdaptiveProvisioningPeer_", false], ["reference/object_types/_AdaptiveQualifierDefinitions_.html", "_AdaptiveQualifierDefinitions_", false], ["reference/object_types/_AdaptiveQueryCriteriaFilter_.html", "_AdaptiveQueryCriteriaFilter_", false], ["reference/object_types/_AdaptiveQueryCriteria_.html", "_AdaptiveQueryCriteria_", false], ["reference/object_types/_AdaptiveRequestContext_.html", "_AdaptiveRequestContext_", false], ["reference/object_types/_AdaptiveRequestHandlerType_.html", "_AdaptiveRequestHandlerType_", false], ["reference/object_types/_AdaptiveRequestHandler_.html", "_AdaptiveRequestHandler_", false], ["reference/object_types/_AdaptiveRequestProperties_.html", "_AdaptiveRequestProperties_", false], ["reference/object_types/_AdaptiveResponseAction_.html", "_AdaptiveResponseAction_", false], ["reference/object_types/_AdaptiveResponseError_.html", "_AdaptiveResponseError_", false], ["reference/object_types/_AdaptiveResponse_.html", "_AdaptiveResponse_", false], ["reference/object_types/_AdaptiveRootFilePaths_.html", "_AdaptiveRootFilePaths_", false], ["reference/object_types/_AdaptiveRuntimeCustom_.html", "_AdaptiveRuntimeCustom_", false], ["reference/object_types/_AdaptiveRuntimeLabels_.html", "_AdaptiveRuntimeLabels_", false], ["reference/object_types/_AdaptiveRuntimeObjectMapInf_.html", "_AdaptiveRuntimeObjectMapInf_", false], ["reference/object_types/_AdaptiveRuntimeObject_.html", "_AdaptiveRuntimeObject_", false], ["reference/object_types/_AdaptiveRuntimeProperty_.html", "_AdaptiveRuntimeProperty_", false], ["reference/object_types/_AdaptiveRuntimeValueAccessor_.html", "_AdaptiveRuntimeValueAccessor_", false], ["reference/object_types/_AdaptiveServer_.html", "_AdaptiveServer_", false], ["reference/object_types/_AdaptiveServiceConf_.html", "_AdaptiveServiceConf_", false], ["reference/object_types/_AdaptiveServiceType_.html", "_AdaptiveServiceType_", false], ["reference/object_types/_AdaptiveService_.html", "_AdaptiveService_", false], ["reference/object_types/_AdaptiveSingleton_.html", "_AdaptiveSingleton_", false], ["reference/object_types/_AdaptiveSystemInfo_.html", "_AdaptiveSystemInfo_", false], ["reference/object_types/_AdaptiveTag_.html", "_AdaptiveTag_", false], ["reference/object_types/_AdaptiveTestScriptResult_.html", "_AdaptiveTestScriptResult_", false], ["reference/object_types/_AdaptiveTestScriptTestResult_.html", "_AdaptiveTestScriptTestResult_", false], ["reference/object_types/_AdaptiveValueInf_.html", "_AdaptiveValueInf_", false], ["reference/object_types/_AdaptiveValueMeta_.html", "_AdaptiveValueMeta_", false], ["reference/object_types/_AdaptiveValuePath_.html", "_AdaptiveValuePath_", false], ["reference/object_types/_AdaptiveVersionInfo_.html", "_AdaptiveVersionInfo_", false]]], ["Glossary", [["reference/glossary/glossary.html", "Glossary", false]]]], "relative_root_path": "../../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../index.html">Functions</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">administrative</a>
+</li><li><span> / </span></li><span>extension_load_by_module_path</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../index.html">Functions</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">administrative</a>
+</li><li><span> / </span></li><span>extension_load_by_module_path</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <h1 class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">extension_load_by_module_path</h1><p class="text-lg text-slate-700 dark:text-slate-400">
+    The following is a list of properties for the function <code>extension_load_by_module_path</code>:
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Load extension by module path</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>category</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>administrative</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Load an extension by its module path. Loading an AFW package&#x27;s manifest extension will register the manifest of all extensions in the package.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>functionId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>extension_load_by_module_path</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>functionLabel</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>extension_load_by_module_path</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>parameters</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>[
+    {
+        &quot;dataType&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;This is the path to the dso containing the extension. If the extension is installed in the normal place, the library name without a file extension (.so) will suffice.&quot;,
+        &quot;name&quot;: &quot;module_path&quot;
+    }
+]</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>returns</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>{
+    &quot;dataType&quot;: &quot;string&quot;,
+    &quot;description&quot;: &quot;The extension id of the extension loaded.&quot;
+}</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>sideEffects</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>[
+    &quot;The loading of the extension may add environment registry entries as well as make other changes.&quot;
+]</td>    
+</tr>
+        </tbody>
+    </table>
+</div>                        
+                            
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>

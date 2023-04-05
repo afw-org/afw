@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Authorization</title>
+    <paragraph>
+        Within some parts of Adaptive Framework, a decision has to be made on 
+        whether to permit an operation or not. These decisions may invoke  
+        external logic to execute through a process collectively known as  
+        <literal>Authorization</literal>. For instance, when a client wishes to 
+        update the property of an object, or request that a new extension be 
+        loaded, or a service to be stopped, we invoke Authorization code, when 
+        such code is available. This gives administrators the ability to plug 
+        in their own authorization logic, and to make decisions based on 
+        business policy.
+    </paragraph>
+    <paragraph>
+        How Adaptive Framework locates the appropriate Authorization policy to 
+        invoke somewhat depends upon the operation being performed. Some 
+        authorization logic can be specified at the Application level, which 
+        will apply to all decisions. Other authorization logic may be declared  
+        on just a particular service, so that its decisions will only apply to 
+        operations pertaining to an adaptor being used.
+    </paragraph>
+    <paragraph>
+        An authorization decision in Adaptive Framework borrows heavily from 
+        the way <literal>XACML</literal> defines it: Can a <literal>Subject</literal>
+        perform a particular <literal>Action</literal> on a particular 
+        <literal>Resource</literal> within a given <literal>Environment</literal>?         
+        Authorization scripts are provided access to each of these parts 
+        in order to render a decision.
+    </paragraph>
+</doc>

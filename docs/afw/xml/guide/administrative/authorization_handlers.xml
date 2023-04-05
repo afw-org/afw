@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Authorization Handlers</title>
+    <paragraph>
+        This chapter goes through the different Authorization Handlers and 
+        when each one is appropriate to use. It also shows how to configure 
+        each of them.
+    </paragraph>
+    <section>
+        <title>Policy</title>
+        <paragraph>
+            This handler performs authorization through policies.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+        </section>
+    </section>
+    <section>
+        <title>Script</title>
+        <paragraph>
+            This handler performs authorization by executing an adaptive script.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+        </section>
+    </section>    
+</doc>

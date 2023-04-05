@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>Adaptors</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["Architecture", [["guide/architecture/introduction.html", "Introduction", false], ["guide/architecture/objects.html", "Adaptive Objects", false], ["guide/architecture/interfaces.html", "Interfaces", false], ["guide/architecture/extensions.html", "Extensions", false], ["guide/architecture/data_types.html", "Data Types", false], ["guide/architecture/functions.html", "Functions", false], ["guide/architecture/services.html", "Services", false], ["guide/architecture/models.html", "Models", false], ["guide/architecture/authorization.html", "Authorization", false], ["guide/architecture/provisioning.html", "Provisioning", false]]], ["Administrative", [["guide/administrative/introduction.html", "Introduction", false], ["guide/administrative/installation.html", "Installation", false], ["guide/administrative/configuration.html", "Configuration", false], ["guide/administrative/adaptors.html", "Adaptors", true], ["guide/administrative/authorization_handlers.html", "Authorization Handlers", false], ["guide/administrative/admin_app.html", "Administrative Web App", false], ["guide/administrative/tools.html", "Tools and Applications", false], ["guide/administrative/appendix.html", "Appendix", false]]], ["Developer", [["guide/developer/introduction.html", "Introduction", false], ["guide/developer/contributing.html", "Contributing", false], ["guide/developer/tools.html", "Development Tools", false], ["guide/developer/packages.html", "Packages", false], ["guide/developer/rest.html", "Web Service APIs", false], ["guide/developer/layouts.html", "Adaptive Layouts", false]]]], "relative_root_path": "../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Administrative</a>
+</li><li><span> / </span></li><span>Adaptors</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Administrative</a>
+</li><li><span> / </span></li><span>Adaptors</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <h1 class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Adaptors</h1><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        This chapter goes over the various Adaptors, how and when each should
+        be used, and how to configure them.
+    
+</p><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Adaptive Framework Core</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This adaptor is a special adaptor, because it always exists and 
+            there is only one instance of its type. This adaptor is provided 
+            by the Adaptive Framework Core and uses the adaptorId of "afw".  
+            It presents objects that have been compiled into memory and also 
+            generates runtime objects that exist from configurations and 
+            environment. Objects from the Core adaptor are read-only.
+        
+</p>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">File</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This adaptor allows adaptive objects to be stored in the native 
+            file system as directories and files.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Features</h3>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Parameters</h3><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>contentType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the content type to be used for this file adaptor. This must be a content-type that is registered by core or by an extension.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>filenameSuffix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>isDevelopmentInput</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This should only be used during Adaptive Framework core and extension development. It allows core object type instances to be written to the directory used by generate.py.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>isModelLocation</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If specified, this adaptor can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>isPolicyLocation</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects. The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>root</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">LDAP</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This adaptor provides access to adaptive objects stored in 
+            Lightweight Directory Access Protocol (LDAP) compliant databases.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Features</h3>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Parameters</h3><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>bindParameters</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Bind parameters for this LDAP adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>preventVerifyCert</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme. If this parameter is false or not specified, the adaptor does not influence the decision to verify the server certificate.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>url</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>URL of LDAP Server. For example, ldaps://ldap-server:636</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">LMDB</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This adaptor allows adaptive objects to be stored in the 
+            memory-mapped key-value database, LMDB.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Features</h3>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Parameters</h3><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>env</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Environment settings for LMDB.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>limits</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Database limits for LMDB.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Model</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This is a special adaptor that's used to support mapping objects 
+            based on model adaptive object types to one or more objects from 
+            another adaptor.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Features</h3>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Parameters</h3><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>custom</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Qualifier custom:: variables available to model expressions.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>mappedAdaptorId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the default mappedAdaptorId value.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>modelId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>modelLocationAdaptorId</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">VFS</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This adaptor allows you to access files as objects through a 
+            Virtual File System.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Features</h3>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Parameters</h3><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Property</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>markExecutable</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, [&quot;*.as&quot;] will mark Adaptive Scripts whose vfsPath ends with &quot;.as&quot; as executable.
+
+A PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:
+
+There are no illegal patterns.
+
+PATTERN: Backslash followed by any character, including another backslash.
+MATCHES: That character exactly.
+
+PATTERN: ?
+MATCHES: Any single character.
+
+PATTERN: *
+MATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)
+
+PATTERN: Any character other than \?*[ or a \ at the end of the pattern
+MATCHES: That character exactly. (Case sensitive.)
+
+PATTERN: [ followed by a class description followed by ]
+MATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.
+
+Note that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>vfsMap</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This property is a list of vfs map entries.
+
+The vfsPath of objects in this vfs adaptor is of the form:
+
+/&lt;adaptorId&gt;/&lt;objectId&gt;
+
+Where &lt;adaptorId&gt; is the id of this adaptor and where &lt;objectId&gt; is the relative path from the vfs root directory (&quot;&lt;adaptorId&gt;/&quot;) to the associated file or directory. An &lt;objectId&gt; of a directory ends with a slash (&#x27;/&#x27;).
+
+Each vfsMap entry is a string of the form:
+
+&lt;objectId_prefix&gt;=&lt;host file system directory path&gt;
+
+&lt;objectId_prefix&gt; can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.
+
+The &lt;host file system directory path&gt; must end in a slash (&#x27;/&#x27;). A backslash is tolerated on a Windows host. The host system file path is the &lt;objectId&gt; with &lt;objectId_prefix&gt; removed appended to the associated &lt;host file system directory path&gt;.
+
+The map entry with the longest matching &lt;objectId_prefix&gt; is the one used for any adaptor functions objectId parameter.
+
+For retrieve_objects*() the entries are processed in longest to shortest &lt;objectId_prefix&gt; order. If &quot;subdirectory&quot; is supplied in the retrieve_objects*() adaptorSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section>
+</section>                        
+                            <footer class="text-sm leading-6 mt-12">
+    <div class="mb-10 text-slate-700 font-semibold flex items-center dark:text-slate-200">
+    <a class="group flex items-center hover:text-slate-900 dark:hover:text-white" href="configuration.html"><svg viewBox="0 0 3 6" class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M3 0L0 3L3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Configuration</a>
+    <a class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white" href="authorization_handlers.html">Authorization<svg viewBox="0 0 3 6" class="ml-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</footer>
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>

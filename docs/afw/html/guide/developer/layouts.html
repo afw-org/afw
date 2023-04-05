@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>        
+        <meta charset="utf-8">
+        <title>Adaptive Layouts</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />        
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        
+        <script type="text/javascript" src="../../../../afw.js"></script>    
+        <link rel="stylesheet" href="../../../../afw.css">    
+        <script>
+            window.addEventListener('load', function() {
+                createNav({"nav_groups": [["Architecture", [["guide/architecture/introduction.html", "Introduction", false], ["guide/architecture/objects.html", "Adaptive Objects", false], ["guide/architecture/interfaces.html", "Interfaces", false], ["guide/architecture/extensions.html", "Extensions", false], ["guide/architecture/data_types.html", "Data Types", false], ["guide/architecture/functions.html", "Functions", false], ["guide/architecture/services.html", "Services", false], ["guide/architecture/models.html", "Models", false], ["guide/architecture/authorization.html", "Authorization", false], ["guide/architecture/provisioning.html", "Provisioning", false]]], ["Administrative", [["guide/administrative/introduction.html", "Introduction", false], ["guide/administrative/installation.html", "Installation", false], ["guide/administrative/configuration.html", "Configuration", false], ["guide/administrative/adaptors.html", "Adaptors", false], ["guide/administrative/authorization_handlers.html", "Authorization Handlers", false], ["guide/administrative/admin_app.html", "Administrative Web App", false], ["guide/administrative/tools.html", "Tools and Applications", false], ["guide/administrative/appendix.html", "Appendix", false]]], ["Developer", [["guide/developer/introduction.html", "Introduction", false], ["guide/developer/contributing.html", "Contributing", false], ["guide/developer/tools.html", "Development Tools", false], ["guide/developer/packages.html", "Packages", false], ["guide/developer/rest.html", "Web Service APIs", false], ["guide/developer/layouts.html", "Adaptive Layouts", true]]]], "relative_root_path": "../../"});
+            });
+        </script>        
+    </head>
+    <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div class="mx-auto" style="max-width: 90rem;">
+                <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">		
+                    <div class="relative flex items-center">
+                        <span class="group flex whitespace-pre-wrap text-black font-bold dark:text-slate-100 text-lg mr-3">Adaptive Framework</span>
+                        <span class="text-sm text-black dark:text-slate-300">0.9.0</span>
+                        <div class="relative lg:flex items-center ml-auto">
+                            <nav class="hidden lg:block text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                                <ul class="flex space-x-2">
+                                    <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Developer</a>
+</li><li><span> / </span></li><span>Adaptive Layouts</span>
+                                </ul>
+                            </nav>
+                            <div class="flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
+                                <a href="https://github.com/afw-org/afw" class="ml-6 block text-black dark:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+                                    <span class="sr-only">Adaptive Framework on GitHub</span>
+                                    <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>		
+                    </div>
+                </div>
+                <div class="lg:hidden py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+                    <div class="relative flex items-center">                        
+                        <button id="nav-button" type="button"
+                            class="text-black hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                            <span class="sr-only">Navigation</span><svg width="24" height="24">
+                                <path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </button>                        
+                        <nav class="ml-4 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                            <ul class="flex space-x-2">
+                                <li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="../../../../index.html">Docs</a>
+</li><li><span> / </span></li><li>
+    <a class="hover:text-sky-500 dark:hover:text-sky-400" href="index.html">Developer</a>
+</li><li><span> / </span></li><span>Adaptive Layouts</span>
+                            </ul>
+                        </nav>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="mx-auto px-4 sm:px-6 md:px-8" style="max-width: 90rem;">
+                <div id="nav-menu" class="fixed z-50 inset-0 overflow-y-auto hidden" id="headlessui-dialog-7" role="dialog" aria-modal="true" data-headlessui-state="open">
+                    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" id="headlessui-dialog-overlay-10" aria-hidden="true" data-headlessui-state="open">                        
+                    </div>
+                    <div class="relative bg-white w-80 max-w-[calc(100%-3rem)] p-6 dark:bg-slate-800">
+                        <button id="nav-menu-close" type="button" class="absolute z-10 top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" tabindex="0">
+                            <span class="sr-only">Close navigation</span>
+                            <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible">
+                                <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </button>
+                        <nav class="lg:text-sm lg:leading-6 relative">
+                            <ul id="mobile-nav">
+                            </ul>
+                        </nav>                        
+                    </div>                    
+                </div>
+                <div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">    
+                    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">       
+                        <ul id="desktop-nav">                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lg:pl-[25rem]">                        
+                    <main class="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">                        
+                        <div class="prose dark:prose-invert max-w-3xl">
+                                    
+                            <h1 class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Adaptive Layouts</h1><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        An Adaptive Layout uses primary input sources, namely:    
+    
+</p><ul class="list-disc">
+    <li>Data and its Metadata</li><li>Layout Instructions</li><li>Metadata Layout Components</li><li>Registered Layout Components</li>
+</ul><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        An Adaptive Layout uses those inputs and produces a composition of 
+        Adaptive Layout Components. Not all inputs are required, and the 
+        degree to which the inputs are used depends on the use case, described 
+        later in this document. Adaptive Layouts understand how to take data 
+        and map, or translate them, into meaningful component parameters.  
+        Adaptive Layouts also understand how to take changes from the 
+        components and store them back into the corresponding object adaptor.  
+        Some layouts are built into the core library and are used by default 
+        when no other layout is applicable. Some layouts can be created, 
+        stored and retrieved to augment the core with additional, registered 
+        layouts.
+    
+</p><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Adaptive Layout Components</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            These are the building blocks for creating user interfaces. They 
+            are simple units for building up more complex UI patterns, while 
+            maintaining some degree of generality, left to the implementation 
+            details. This slight abstraction allows for the Layout Component 
+            to be portable between UI implementation frameworks. For example, 
+            a Text Field Layout Component may suggest that it has a label, a 
+            description and a value, but it doesn't specify how the inputs are 
+            arranged out and rendered. It contains no direct influence over, 
+            say, the font style or spacing, or whether the field has an outline 
+            or not. The implementation may even have more complex features 
+            than the generic Layout Component definition requires.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Layout Components are also “dumb”, so to speak. They are unaware 
+            of where data comes from or where it needs to be stored. So, to 
+            produce something meaningful, a composite collection of components 
+            need to work together and a layer placed on top to handle the data 
+            synchronization. This is where Layouts and Metadata Components 
+            come in.
+        
+</p><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            The following table is a complete list of Layout Components:
+        
+</p><div class="overflow-auto">
+    <table class="table-auto">
+        <thead>
+            <tr>                               
+                <th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Layout Component</th><th class="border-b dark:border-slate-600 font-medium p-4 pl-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Autocomplete</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Component to display a list of options that may be selected or can be autocompleted by typing.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Box</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a flexible Box of content.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Breadcrumb</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a Breadcrumb path with links</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Button</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Component to display a Button.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Callout</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that displays content inside a popup.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Chart</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Component to display data in a Chart.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Checkbox</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a checkbox.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>ChoiceGroup</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component to display a selectable choice of options.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>CodeEditor</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a rich text editor.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Collapsible</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that displays content that can be hidden by a collapsible control.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>DatePicker</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows you to select a date from a calendar.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>DateTimePicker</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows you to select a date and time.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Dialog</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that displays content inside a popup, with a confirmation response.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>DiffEditor</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that compares two objects.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Divider</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a Divider line to separate content.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Dropdown</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a set of options that can be selected from a dropdown.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>DropdownEditor</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that manages a list of options in a Dropdown picker.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>EditableCallout</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that calls out with an editable multiline text area.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>EditableLabel</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders an label, which can be edited when clicked.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Hidden</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that hides content under screen breakpoint conditions.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Icon</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays an icon.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Image</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays an image.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Link</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a url link.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>List</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that renders a list of components.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>ListEditor</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows the user to manage a list of text items.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Menu</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a Menu to be displayed.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Message</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a message to be displayed.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Modal</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that displays content inside a popup.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Native</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a native HTML element.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Nav</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A navigational component that displays a list of links.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Paper</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows contents to be displayed on a Paper like surface.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Picker</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows one or more items to be picked from a list.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Responsive</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Skeleton</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Slider</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays numeric values in a slider control.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Snackbar</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a Snackbar to be displayed.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>SpinButton</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a numeric field that an be incremented or decremented.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Spinner</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a spinner progress indicator.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Stepper</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays a Stepper indicating a list of steps and the current one you are on.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Table</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that displays data in a table format.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Tabs</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A layout container that renders a series of tabs.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>TextField</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a text field with a label and description.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>TimeDuration</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a time duration.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>TimePicker</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows a time to be chosen.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>TimezonePicker</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that allows a timezone to be chosen.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Toggle</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a boolean value as a toggleable switch.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>ToggleButtons</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component to display a selectable choice of options, presented as buttons that can be toggled on or off.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Toolbar</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A container component that arranges a series of buttons or other minor content in a horizontal bar.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Tooltip</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that surrounds content with a tooltip.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Tree</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders data in a Tree structure.</td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Typography</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>A component that renders a text label.</td>    
+</tr>
+        </tbody>
+    </table>
+</div>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Generating Adaptive Layouts</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        There are a variety of methods for building Adaptive Layouts. Some 
+        require very little effort, while others require varying degrees of 
+        programming. This range of flexibility resembles the patterns of 
+        Declarative vs Imperative design. We will visit each method of 
+        creating layouts, beginning with the most declarative way and move 
+        towards more imperative methods.
+    
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Method 1</h3><img src="images/LayoutsMethod1.svg" alt="Method 1" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            By simply defining objects and their metadata - objectType and 
+            propertyType definitions - we have already given the Adaptive 
+            Layout processor much of what it needs to know to leverage built-in 
+            components and parameter mappings to generate some simple layouts.  
+            For example, suppose we have an object containing:
+        
+</p><pre><code><span>obj = {
+    “givenName”: “Robert”,
+    “surname”: “Smith”,
+    “registered”: true,
+}</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            And supposed we also define an Object Type to handle those 
+            properties:
+        
+</p><pre><code><span>objectType = {
+    “propertyTypes”: {
+        “givenName”: {
+            “dataType”: “string”,
+            “label”: “Given Name”,
+            “description”: “Your first name”
+        },
+        “surname”: {
+            “dataType”: “string”,
+            “label”: “Surname”,
+            &quot;description&quot;: “Your last name”
+        },
+	      “registered”: {
+            “dataType”: “boolean”
+        }
+    }
+}</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            This may not seem like much, but already, we have enough to render 
+            the object with some appropriate default components. The 
+            properties givenName and surname would use TextField components, 
+            while registered would use a Checkbox component. Using metadata 
+            this way allows you to use declarative efforts to create your 
+            layouts. By changing the metadata and adding in constraints and 
+            dataTypeParameters, you can influence the way a layout is created.  
+            In this method, we are not explicitly defining any real Layout 
+            designs.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Results</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                When we are finished, we may see something like:
+            
+</p><img src="images/LayoutsMethod1Result.svg" alt="Method 1 Results" class="dark:invert" />
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Pros</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                Layouts are implicitly generated simply by declaring metadata.  
+                This eliminates code and boilerplates, necessary for 
+                influencing the final output. Great for simple designs, or for 
+                end-users with little to no time or programming experience.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Cons</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                You are limited to what can be added to metadata, and therefore 
+                layouts auto-generated in this way may seem cookie-cutter like 
+                in their final output.
+            
+</p>
+</section>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Method 2</h3><img src="images/LayoutsMethod2.svg" alt="Method 2" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+          This method piggy-backs the first Method, but introduces the ability 
+          to declare some Layout Parameters. These parameters are instructions 
+          that the Adaptive Layout processor uses to influence which components 
+          to select, and how to handle parameter mappings to individual 
+          Components. If we reuse the example from Method 1, we may decide to 
+          tweak the design slightly so that boolean dataTypes are represented 
+          by Switch components instead of Checkbox components, and TextFields 
+          should ignore descriptions. To do this, we may create some Layout 
+          Parameters, such as:
+        
+</p><pre><code><span>layoutParameters = {
+    “preferredComponents”: [
+        {
+            “dataType”: “boolean”,
+            “componentType”: “Switch”
+        },
+        {
+            “dataType”: “string”,
+            “componentType”: “TextField”,
+            “componentProps”: {
+                “showDescriptions”: false
+            }
+        }
+  ]
+}</span></code></pre><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Results</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                When we're finished, we may see something like:
+            
+</p><img src="images/LayoutsMethod2Result.svg" alt="Method 2 Results" class="dark:invert" />
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Pros</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                This method still uses metadata for much of its rendering, but 
+                with some parameter declaration, we can produce much more 
+                flexible outputs than previously.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Cons</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                In addition to object metadata, we will have to actually create 
+                Adaptive Layouts to declare our Layout Parameters.
+            
+</p>
+</section>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Method 3</h3><img src="images/LayoutsMethod3.svg" alt="Method 3" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Now, we're going to have to start declaring our layouts much more 
+            directly. This method takes the Layouts that we created via Method 
+            2 and enhances them with some explicit instructions on how to 
+            actually layout the data we have to work with. In addition, we no 
+            longer need to tether the layout to object data or metadata, if we 
+            don't really want to. We are free to add spontaneous boxes, 
+            headers, text labels or icons.
+        
+</p><pre><code><span>layout = {
+        “componentType”: “Box”,
+        “parameters”: {
+            “contains”: [
+                {
+                    “componentType”: “Typography”,
+                    “parameters”: {
+                        “text”: “Register User Form”
+                    }
+                },
+                {
+                    “componentType”: “Box”,
+                    “parameters”: {
+                        “contains”: [
+                            {
+                                “componentType”: “TextField”,
+                                “parameters”: {
+                                    “label”: “Given Name”
+                                }
+                            },
+                            {
+                                “componentType”: “TextField”,
+                                “parameters”: {
+                                    “label”: “Surname”
+                                }
+                            },
+                            {
+                                “componentType”: “Switch”,
+                                “parameters”: {
+                                    “label”: “registered”
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+}</span></code></pre><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Results</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                When we're finished, we may see something like:
+            
+</p><img src="images/LayoutsMethod3Result.svg" alt="Method 3 Results" class="dark:invert" />
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Pros</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                The rendered output will be very customizable, while still 
+                maintaining the flexibility and portability offered by keeping 
+                the designs inside Adaptive Layouts.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Cons</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                More effort will be required, using the Adaptive Layout design 
+                tool to generate the layout instructions and any additional 
+                layout parameters. For a programmer with more experience, they 
+                may wish to simply use the underlying components directly 
+                inside an IDE.
+            
+</p>
+</section>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Method 4</h3><img src="images/LayoutsMethod4.svg" alt="Method 4" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            At this point, we are breaking away from Adaptive Layouts and 
+            directly importing and using layouts that have been implemented by 
+            a technology, such as Javascript/ReactJS. In this use-case, you 
+            are a programmer and may be writing a full-blown application that 
+            contains data and components that are outside of Adaptive Layouts 
+            or their purpose, but still want to pull in some Adaptive Layout 
+            code for an easier integration with Adaptive Framework data. You 
+            may also want to massage the data going in and out of the 
+            components in order to store and present them in different ways.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Results</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                A complete application, independent of Adaptive Framework, but 
+                importing common layouts:
+            
+</p><img src="images/LayoutsMethod4Result.svg" alt="Method 4 Results" class="dark:invert" />
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Pros</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                As a programmer, you get to work with tools and libraries that 
+                you may be more familiar with, while still extracting some of 
+                the work done by Adaptive Layouts. Entire apps can integrate 
+                parts of the framework without too much effort.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Cons</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                You must be an experienced programmer.
+            
+</p>
+</section>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Method 5</h3><img src="images/LayoutsMethod5.svg" alt="Method 5" class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            From here on out, we're not really talking about Adaptive Layouts 
+            at all, but more interested in the direct interfaces and APIs that 
+            can be used to integrate Adaptive Framework data. Perhaps, you 
+            import and use the Javascript bindings, or even hit the RESTful 
+            interfaces to access and use data. All of the UI is up to you and 
+            you may choose to use third-party component libraries to present 
+            the UI.
+        
+</p><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Results</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    The sky's the limit!
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Pros</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                You have the ultimate flexibility here. Use what you need and 
+                discard the rest.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Cons</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                Some assembly required.
+            
+</p>
+</section>
+</section>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Metadata Components</h2><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            In the previous section, the more declarative methods for creating 
+            Adaptive Layouts did some hand-waving to suggest the Layout 
+            processor that generated the layouts understood the best way to do 
+            so, given the data, metadata, instructions. This requires there be 
+            some default behavior when those instructions are not present.  
+            That's where Metadata Components come in. In general, there are 
+            three categories of built-ins. Not surprisingly, they are:
+        
+</p><ul class="list-disc">
+    <li>Data Type Components</li><li>Property Type Components</li><li>Object Type Components</li>
+</ul><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            The first set of Metadata Components, Data Type Components are 
+            fairly simple. They take a dataType and dataType parameter, along 
+            with any operational property, such as "editable", and return a 
+            Layout Component, such as a TextField, with its parameters 
+            appropriately mapped from the object and its object metadata. These 
+            Metadata Components map one-to-one with dataTypes:
+        
+</p><ul class="list-disc">
+    <li>anyURI</li><li>Base64Binary</li><li>Boolean</li><li>Date</li><li>DateTime</li><li>DayTimeDuration</li><li>DnsName</li><li>Double</li><li>Expression</li><li>HexBinary</li><li>Hybrid</li><li>Ia5String</li><li>Integer</li><li>IpAddress</li><li>List</li><li>Null</li><li>Object</li><li>ObjectId</li><li>ObjectPath</li><li>Password</li><li>Rfc822Name</li><li>String</li><li>Template</li><li>Time</li><li>X500Name</li><li>XpathExpression</li><li>YearMonthDuration</li>
+</ul><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            The next set of Metadata Components handle specific Property Types.  
+            These aren't as obvious, but some of the common ones are:
+        
+</p><ul class="list-disc">
+    <li>AdaptorDropdown</li><li>DataTypeDropdown</li><li>PropertyTypeDropdown</li><li>ObjectTypeDrodown</li><li>CustomVariables</li>
+</ul><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            Finally, some Metadata Components handle specific Object Types.  
+            For example, _AdaptiveObjectType_ objects are specially handled in 
+            order to display them in an easy-to-consume way.
+        
+</p>
+</section><section class="mt-12">
+    <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Customization</h2><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Custom Adaptive Layouts</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+        
+                Adaptive Layouts are intended to be created by end-users and 
+                developers in order to provide layout instructions for the 
+                Object Types and Property Types that are unique to your data.  
+                This section describes the process of creating and maintaining 
+                custom Adaptive Layouts.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Custom Adaptive Components</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+        
+                There's a lot of flexibility and options that have been 
+                provided with the Adaptive Components provided out of the box.  
+                However, just like everything else in Adaptive Framework, these 
+                Adaptive Components are intended to be extended, so developers 
+                can create and add new Adaptive Components to be used and 
+                shared. This section provides steps to being creating your own 
+                custom Adaptive Components. 
+            
+</p>
+</section>
+</section>                        
+                            <footer class="text-sm leading-6 mt-12">
+    <div class="mb-10 text-slate-700 font-semibold flex items-center dark:text-slate-200">
+    <a class="group flex items-center hover:text-slate-900 dark:hover:text-white" href="rest.html"><svg viewBox="0 0 3 6" class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300">
+        <path d="M3 0L0 3L3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Web Services</a>    
+</div>
+</footer>
+                            <p></p>
+                        </div>                        
+                    </main>                    
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>
