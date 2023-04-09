@@ -222,9 +222,9 @@
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>allowedValues</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a predicate for this value meta, with the first letter capitalized and without a trailing period.</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>brief</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is a predicate for this value, with the first letter capitalized and without a trailing period.</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>collectionURIs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection&#x27;s objectId if it resides in the in the same adaptor.</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>collectionURIs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection&#x27;s objectId if it resides in the in the same adaptor.</td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>contextType</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.</td>    
 </tr><tr>
@@ -236,7 +236,7 @@
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>defaultValue</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The description of this value meta.</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>description</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>The description of this value.</td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>hints</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Hints that can optionally be used by UI to render this value.</td>    
 </tr><tr>
@@ -359,12 +359,14 @@
 </p><p class="text-lg text-slate-700 dark:text-slate-400">
     
             If a relative path begins with a <code>/</code>, its structure
-            is the same as an absolute path with <code>*</code> specified
-            in <adaptorId>, <objectTypeId>, and each dotted part of
-            <objectId> to use the corresponding value from the supplied
-            path. The <objectId> can also be <code>**</code> to
-            indicate that the entire <objectId> including all
-            slash-separated properties should be used.
+            is the same as an absolute path with <code>*</code> used in 
+            place of &lt;adaptorId&gt;, &lt;objectTypeId&gt;, 
+            and each shashed part of &lt;objectId&gt; to use the
+            corresponding value from the supplied path. The
+            &lt;objectId&gt; can also be
+            <code>**</code> to indicate that the entire
+            &lt;objectId&gt; including all slash-separated properties
+            should be used.
         
 </p><p class="text-lg text-slate-700 dark:text-slate-400">
     
@@ -378,7 +380,8 @@
         
 </p><p class="text-lg text-slate-700 dark:text-slate-400">
     
-            Examples of relative references using supplied path 
+            The following are some examples of relative references using the
+            given path: 
             <code>/adaptorId/objectTypeId/objectId/prop1/prop2</code>:
         
 </p><div class="overflow-auto">
@@ -390,23 +393,23 @@
         </thead>
         <tbody>
             <tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>objectid2</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectid2</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectId2</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId2</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>objectid2.prop4</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectid2.prop4</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>objectId2/prop4</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId2/prop4</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/objecttypeid2/objectid3.prop5</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objecttypeid2/objectid3.prop5</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>/*/objectTypeId2/objectId3/prop5</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId2/objectId3/prop5</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/objecttypeid2/*.prop5</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objecttypeid2/objectid.prop5</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>/*/objectTypeId2/*/prop5</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId2/objectId/prop5</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>*.prop6</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop6</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>*/prop6</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId/prop6</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>*.*.prop7</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop1.prop7</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>*/*/prop7</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId/prop1/prop7</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorid2/*/**</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorid2/objecttypeid/objectid.prop1.prop2</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>/adaptorId2/*/**</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId2/objectTypeId/objectId/prop1/prop2</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/*/**</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId.prop1.prop2</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>/*/*/**</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId/prop1/prop2</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/*/*/*</td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId</td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>/*/*/*</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>/adaptorId/objectTypeId/objectId</td>    
 </tr>
         </tbody>
     </table>
@@ -441,6 +444,25 @@
             &quot;/registry/_AdaptiveObjectType_/Person&quot;
         ]
     },
+    &quot;employeeId&quot;: &quot;12345&quot;,
+    &quot;officeAddress&quot;: {
+        &quot;street&quot;: &quot;123 Main St.&quot;,
+        &quot;city&quot;: &quot;Anytown&quot;,
+        &quot;state&quot;: &quot;CA&quot;,
+        &quot;zip&quot;: &quot;12345&quot;
+    }
+}</span></code></pre><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+            When observing an Adaptive Object that contains a parent path, the 
+            Object Option <code>composite</code> can be specified to 
+            resolve the parent and include their properties in the returned 
+            object. The following is an example of the same object with the
+            <code>composite</code> option specified:
+        
+</p><pre><code><span>{    
+    &quot;first&quot;: &quot;John&quot;,
+    &quot;last&quot;: &quot;Doe&quot;,
+    &quot;age&quot;: 42,
     &quot;employeeId&quot;: &quot;12345&quot;,
     &quot;officeAddress&quot;: {
         &quot;street&quot;: &quot;123 Main St.&quot;,
