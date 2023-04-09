@@ -90,28 +90,28 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__afw__writer.html#ga6d28a4fb40ab1a5808d129179cc1e801">   45</a></span>&#160;<span class="preprocessor">#define afw_writer_write_z(writer, s_z, scope) \</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">afw_writer_write(writer, s_z, strlen(s_z), scope)</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__afw__writer.html#ga424296a0b8523078b30bd656835fe8b2">   45</a></span>&#160;<span class="preprocessor">#define afw_writer_write_z(writer, s_z, xctx) \</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">afw_writer_write(writer, s_z, strlen(s_z), xctx)</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__afw__writer.html#gaf401293df4d321d5272178491d42dd5a">   55</a></span>&#160;<span class="preprocessor">#define afw_writer_write_utf8(writer, S, scope) \</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">afw_writer_write(writer, (S)-&gt;s, (S)-&gt;len, scope)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__afw__writer.html#gab18743005d62e70bdc6a3b185332eff4">   55</a></span>&#160;<span class="preprocessor">#define afw_writer_write_utf8(writer, S, xctx) \</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">afw_writer_write(writer, (S)-&gt;s, (S)-&gt;len, xctx)</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="group__afw__writer.html#gabed1de447819548bd9b3250c983aaa36">afw_writer_write_integer</a>(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="group__afw__writer.html#ga2efb10ead35b31543ee07254b360806f">afw_writer_write_integer</a>(</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *writer,</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> integer,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<a class="code" href="group__afw__writer.html#ga40487971af1579b75ffb1bdde3bf38b0">afw_writer_write_size</a>(</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<a class="code" href="group__afw__writer.html#ga714247fe2b9567b023bc9bf588237146">afw_writer_write_size</a>(</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *writer,</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
@@ -123,14 +123,14 @@ $(function() {
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
 <div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaf758b90e3fadf75b6264795b4f8a1e57"><div class="ttname"><a href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></div><div class="ttdeci">apr_int64_t afw_integer_t</div><div class="ttdoc">typedef for big signed int.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00319">afw_common.h:319</a></div></div>
-<div class="ttc" id="agroup__afw__writer_html_ga40487971af1579b75ffb1bdde3bf38b0"><div class="ttname"><a href="group__afw__writer.html#ga40487971af1579b75ffb1bdde3bf38b0">afw_writer_write_size</a></div><div class="ttdeci">void afw_writer_write_size(const afw_writer_t *writer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdoc">Call afw_writer_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00162">afw_writer.c:162</a></div></div>
-<div class="ttc" id="agroup__afw__writer_html_gabed1de447819548bd9b3250c983aaa36"><div class="ttname"><a href="group__afw__writer.html#gabed1de447819548bd9b3250c983aaa36">afw_writer_write_integer</a></div><div class="ttdeci">void afw_writer_write_integer(const afw_writer_t *writer, afw_integer_t integer, afw_scope_t *scope)</div><div class="ttdoc">Call afw_writer_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00146">afw_writer.c:146</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
-<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05664">afw_interface.h:5664</a></div></div>
+<div class="ttc" id="agroup__afw__writer_html_ga2efb10ead35b31543ee07254b360806f"><div class="ttname"><a href="group__afw__writer.html#ga2efb10ead35b31543ee07254b360806f">afw_writer_write_integer</a></div><div class="ttdeci">void afw_writer_write_integer(const afw_writer_t *writer, afw_integer_t integer, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_writer_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00146">afw_writer.c:146</a></div></div>
+<div class="ttc" id="agroup__afw__writer_html_ga714247fe2b9567b023bc9bf588237146"><div class="ttname"><a href="group__afw__writer.html#ga714247fe2b9567b023bc9bf588237146">afw_writer_write_size</a></div><div class="ttdeci">void afw_writer_write_size(const afw_writer_t *writer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_writer_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00162">afw_writer.c:162</a></div></div>
+<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05540">afw_interface.h:5540</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

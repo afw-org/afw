@@ -92,20 +92,20 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__connection__interface.html#ga58fe977af2ca1dd728842c1b04dbad52">AFW_CONNECTION_INTERFACE_NAME</a>&#160;&#160;&#160;&quot;afw_connection&quot;</td></tr>
 <tr class="memdesc:ga58fe977af2ca1dd728842c1b04dbad52"><td class="mdescLeft">&#160;</td><td class="mdescRight">#define for interface afw_connection name. <br /></td></tr>
 <tr class="separator:ga58fe977af2ca1dd728842c1b04dbad52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga45d28317d435ceb0e8b264ee696d99a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__connection__interface.html#ga45d28317d435ceb0e8b264ee696d99a9">afw_connection_release</a>(instance,  scope)</td></tr>
-<tr class="memdesc:ga45d28317d435ceb0e8b264ee696d99a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method release of interface afw_connection.  <a href="group__afw__connection__interface.html#ga45d28317d435ceb0e8b264ee696d99a9">More...</a><br /></td></tr>
-<tr class="separator:ga45d28317d435ceb0e8b264ee696d99a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab658191289b1ae07861ec61eb186a92b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__connection__interface.html#gab658191289b1ae07861ec61eb186a92b">afw_connection_release</a>(instance,  xctx)</td></tr>
+<tr class="memdesc:gab658191289b1ae07861ec61eb186a92b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method release of interface afw_connection.  <a href="group__afw__connection__interface.html#gab658191289b1ae07861ec61eb186a92b">More...</a><br /></td></tr>
+<tr class="separator:gab658191289b1ae07861ec61eb186a92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga053d16146276e6a8cde99250b074bdb4"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__connection__interface.html#ga053d16146276e6a8cde99250b074bdb4">afw_connection_release_t</a>) (const <a class="el" href="structafw__connection__s.html">afw_connection_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga053d16146276e6a8cde99250b074bdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4544a1fc996db872183509c5ff525da6"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__connection__interface.html#ga4544a1fc996db872183509c5ff525da6">afw_connection_release_t</a>) (const <a class="el" href="structafw__connection__s.html">afw_connection_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga4544a1fc996db872183509c5ff525da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive Framework connection. This has not yet been developed. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga45d28317d435ceb0e8b264ee696d99a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga45d28317d435ceb0e8b264ee696d99a9">&#9670;&nbsp;</a></span>afw_connection_release</h2>
+<a id="gab658191289b1ae07861ec61eb186a92b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab658191289b1ae07861ec61eb186a92b">&#9670;&nbsp;</a></span>afw_connection_release</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -120,7 +120,7 @@ Typedefs</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -131,14 +131,14 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">(instance)-&gt;inf-&gt;release( \</div>
 <div class="line">    (instance), \</div>
-<div class="line">    (scope) \</div>
+<div class="line">    (xctx) \</div>
 <div class="line">)</div>
 </div><!-- fragment -->
 <p>Call method release of interface afw_connection. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this adaptive request instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>This is the caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>This is the caller's xctx. </td></tr>
   </table>
   </dd>
 </dl>
@@ -148,18 +148,18 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="ga053d16146276e6a8cde99250b074bdb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga053d16146276e6a8cde99250b074bdb4">&#9670;&nbsp;</a></span>afw_connection_release_t</h2>
+<a id="ga4544a1fc996db872183509c5ff525da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4544a1fc996db872183509c5ff525da6">&#9670;&nbsp;</a></span>afw_connection_release_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* afw_connection_release_t) (const <a class="el" href="structafw__connection__s.html">afw_connection_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef void(* afw_connection_release_t) (const <a class="el" href="structafw__connection__s.html">afw_connection_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__connection__interface.html#ga45d28317d435ceb0e8b264ee696d99a9" title="Call method release of interface afw_connection.">afw_connection_release()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__connection__interface.html#gab658191289b1ae07861ec61eb186a92b" title="Call method release of interface afw_connection.">afw_connection_release()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__interface_8h_source.html#l04003">4003</a> of file <a class="el" href="afw__interface_8h_source.html">afw_interface.h</a>.</p>
 
@@ -168,7 +168,7 @@ Typedefs</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

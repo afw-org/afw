@@ -85,33 +85,33 @@ typedef apr_uuid_t&#160;</td><td class="memItemRight" valign="bottom"><b>afw_uui
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1506c89fce2eaa7d64087839efeaa8c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga1506c89fce2eaa7d64087839efeaa8c1">afw_uuid_generate</a> (afw_uuid_t *uuid, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga1506c89fce2eaa7d64087839efeaa8c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a new UUID.  <a href="group__afw__uuid.html#ga1506c89fce2eaa7d64087839efeaa8c1">More...</a><br /></td></tr>
-<tr class="separator:ga1506c89fce2eaa7d64087839efeaa8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafcfac92b37ab1278848e8541b2e80dec"><td class="memItemLeft" align="right" valign="top">const afw_uuid_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#gafcfac92b37ab1278848e8541b2e80dec">afw_uuid_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gafcfac92b37ab1278848e8541b2e80dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID.  <a href="group__afw__uuid.html#gafcfac92b37ab1278848e8541b2e80dec">More...</a><br /></td></tr>
-<tr class="separator:gafcfac92b37ab1278848e8541b2e80dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeac5865dd0bce3d28391c5404c788d40"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#gaeac5865dd0bce3d28391c5404c788d40">afw_uuid_create_string</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaeac5865dd0bce3d28391c5404c788d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID as a standard format UUID utf-8 string value.  <a href="group__afw__uuid.html#gaeac5865dd0bce3d28391c5404c788d40">More...</a><br /></td></tr>
-<tr class="separator:gaeac5865dd0bce3d28391c5404c788d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga757d13596fe72a6721eff8fa952984b2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga757d13596fe72a6721eff8fa952984b2">afw_uuid_create_utf8</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga757d13596fe72a6721eff8fa952984b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID as a standard format UUID utf-8 string.  <a href="group__afw__uuid.html#ga757d13596fe72a6721eff8fa952984b2">More...</a><br /></td></tr>
-<tr class="separator:ga757d13596fe72a6721eff8fa952984b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8e2a2da15cc217b12b3e80964e845bb6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga8e2a2da15cc217b12b3e80964e845bb6">afw_uuid_to_utf8</a> (const afw_uuid_t *uuid, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga8e2a2da15cc217b12b3e80964e845bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert uuid to a standard format UUID utf-8 string.  <a href="group__afw__uuid.html#ga8e2a2da15cc217b12b3e80964e845bb6">More...</a><br /></td></tr>
-<tr class="separator:ga8e2a2da15cc217b12b3e80964e845bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga76fd5222f64898a5a1edc4aed9563dbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga76fd5222f64898a5a1edc4aed9563dbb">afw_uuid_parse</a> (afw_uuid_t *uuid, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *s, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga76fd5222f64898a5a1edc4aed9563dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a standard format UUID string to a uuid.  <a href="group__afw__uuid.html#ga76fd5222f64898a5a1edc4aed9563dbb">More...</a><br /></td></tr>
-<tr class="separator:ga76fd5222f64898a5a1edc4aed9563dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga65a9afe7210ac3a85df5a48696f6f70a"><td class="memItemLeft" align="right" valign="top">const afw_uuid_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga65a9afe7210ac3a85df5a48696f6f70a">afw_uuid_from_utf8</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *s, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga65a9afe7210ac3a85df5a48696f6f70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert standard format UUID utf-8 string to uuid.  <a href="group__afw__uuid.html#ga65a9afe7210ac3a85df5a48696f6f70a">More...</a><br /></td></tr>
-<tr class="separator:ga65a9afe7210ac3a85df5a48696f6f70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae1d0e2f9408d79f3bb11833eb0b0caf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#gae1d0e2f9408d79f3bb11833eb0b0caf8">afw_uuid_generate</a> (afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gae1d0e2f9408d79f3bb11833eb0b0caf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a new UUID.  <a href="group__afw__uuid.html#gae1d0e2f9408d79f3bb11833eb0b0caf8">More...</a><br /></td></tr>
+<tr class="separator:gae1d0e2f9408d79f3bb11833eb0b0caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5efc7e6d12bae8f15975de2f36f048e2"><td class="memItemLeft" align="right" valign="top">const afw_uuid_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga5efc7e6d12bae8f15975de2f36f048e2">afw_uuid_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga5efc7e6d12bae8f15975de2f36f048e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID.  <a href="group__afw__uuid.html#ga5efc7e6d12bae8f15975de2f36f048e2">More...</a><br /></td></tr>
+<tr class="separator:ga5efc7e6d12bae8f15975de2f36f048e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d31a545fbe55c4670138c482c543008"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga6d31a545fbe55c4670138c482c543008">afw_uuid_create_string</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga6d31a545fbe55c4670138c482c543008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID as a standard format UUID utf-8 string value.  <a href="group__afw__uuid.html#ga6d31a545fbe55c4670138c482c543008">More...</a><br /></td></tr>
+<tr class="separator:ga6d31a545fbe55c4670138c482c543008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6cb75169c52113187ca5de12f66429e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#gac6cb75169c52113187ca5de12f66429e">afw_uuid_create_utf8</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gac6cb75169c52113187ca5de12f66429e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a UUID as a standard format UUID utf-8 string.  <a href="group__afw__uuid.html#gac6cb75169c52113187ca5de12f66429e">More...</a><br /></td></tr>
+<tr class="separator:gac6cb75169c52113187ca5de12f66429e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff760608e1392c0a3f761f7acc699924"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#gaff760608e1392c0a3f761f7acc699924">afw_uuid_to_utf8</a> (const afw_uuid_t *uuid, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaff760608e1392c0a3f761f7acc699924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert uuid to a standard format UUID utf-8 string.  <a href="group__afw__uuid.html#gaff760608e1392c0a3f761f7acc699924">More...</a><br /></td></tr>
+<tr class="separator:gaff760608e1392c0a3f761f7acc699924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ecf2b492cf5447da9f56af3516adf2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga4ecf2b492cf5447da9f56af3516adf2e">afw_uuid_parse</a> (afw_uuid_t *uuid, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *s, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga4ecf2b492cf5447da9f56af3516adf2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a standard format UUID string to a uuid.  <a href="group__afw__uuid.html#ga4ecf2b492cf5447da9f56af3516adf2e">More...</a><br /></td></tr>
+<tr class="separator:ga4ecf2b492cf5447da9f56af3516adf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e51569540b3dcf7d5faeade93da879b"><td class="memItemLeft" align="right" valign="top">const afw_uuid_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__uuid.html#ga0e51569540b3dcf7d5faeade93da879b">afw_uuid_from_utf8</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *s, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga0e51569540b3dcf7d5faeade93da879b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert standard format UUID utf-8 string to uuid.  <a href="group__afw__uuid.html#ga0e51569540b3dcf7d5faeade93da879b">More...</a><br /></td></tr>
+<tr class="separator:ga0e51569540b3dcf7d5faeade93da879b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>UUID functions </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gafcfac92b37ab1278848e8541b2e80dec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafcfac92b37ab1278848e8541b2e80dec">&#9670;&nbsp;</a></span>afw_uuid_create()</h2>
+<a id="ga5efc7e6d12bae8f15975de2f36f048e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5efc7e6d12bae8f15975de2f36f048e2">&#9670;&nbsp;</a></span>afw_uuid_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,8 +125,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,7 +139,7 @@ Functions</h2></td></tr>
 <p>Create a UUID. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
   </table>
   </dd>
@@ -150,8 +150,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaeac5865dd0bce3d28391c5404c788d40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaeac5865dd0bce3d28391c5404c788d40">&#9670;&nbsp;</a></span>afw_uuid_create_string()</h2>
+<a id="ga6d31a545fbe55c4670138c482c543008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d31a545fbe55c4670138c482c543008">&#9670;&nbsp;</a></span>afw_uuid_create_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,8 +165,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -179,7 +179,7 @@ Functions</h2></td></tr>
 <p>Create a UUID as a standard format UUID utf-8 string value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
   </table>
   </dd>
@@ -190,8 +190,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga757d13596fe72a6721eff8fa952984b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga757d13596fe72a6721eff8fa952984b2">&#9670;&nbsp;</a></span>afw_uuid_create_utf8()</h2>
+<a id="gac6cb75169c52113187ca5de12f66429e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac6cb75169c52113187ca5de12f66429e">&#9670;&nbsp;</a></span>afw_uuid_create_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,8 +205,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
 <p>Create a UUID as a standard format UUID utf-8 string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
   </table>
   </dd>
@@ -230,8 +230,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga65a9afe7210ac3a85df5a48696f6f70a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga65a9afe7210ac3a85df5a48696f6f70a">&#9670;&nbsp;</a></span>afw_uuid_from_utf8()</h2>
+<a id="ga0e51569540b3dcf7d5faeade93da879b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e51569540b3dcf7d5faeade93da879b">&#9670;&nbsp;</a></span>afw_uuid_from_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,8 +251,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -267,7 +267,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">s</td><td>standard format UUID utf-8 string. </td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -277,8 +277,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1506c89fce2eaa7d64087839efeaa8c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1506c89fce2eaa7d64087839efeaa8c1">&#9670;&nbsp;</a></span>afw_uuid_generate()</h2>
+<a id="gae1d0e2f9408d79f3bb11833eb0b0caf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae1d0e2f9408d79f3bb11833eb0b0caf8">&#9670;&nbsp;</a></span>afw_uuid_generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,8 +292,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -307,7 +307,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uuid</td><td>Place to put generated UUID. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -316,8 +316,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga76fd5222f64898a5a1edc4aed9563dbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga76fd5222f64898a5a1edc4aed9563dbb">&#9670;&nbsp;</a></span>afw_uuid_parse()</h2>
+<a id="ga4ecf2b492cf5447da9f56af3516adf2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4ecf2b492cf5447da9f56af3516adf2e">&#9670;&nbsp;</a></span>afw_uuid_parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -337,8 +337,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -353,7 +353,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">uuid</td><td>Place to put parsed UUID. </td></tr>
     <tr><td class="paramname">s</td><td>standard format UUID utf-8 string to parse. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -362,8 +362,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8e2a2da15cc217b12b3e80964e845bb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8e2a2da15cc217b12b3e80964e845bb6">&#9670;&nbsp;</a></span>afw_uuid_to_utf8()</h2>
+<a id="gaff760608e1392c0a3f761f7acc699924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff760608e1392c0a3f761f7acc699924">&#9670;&nbsp;</a></span>afw_uuid_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,8 +383,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -399,7 +399,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">uuid</td><td></td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -412,7 +412,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

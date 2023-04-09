@@ -92,25 +92,25 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga02fc495902edbe68d976d46b37637bee">AFW_AUTHORIZATION_HANDLER_INTERFACE_NAME</a>&#160;&#160;&#160;&quot;afw_authorization_handler&quot;</td></tr>
 <tr class="memdesc:ga02fc495902edbe68d976d46b37637bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">#define for interface afw_authorization_handler name. <br /></td></tr>
 <tr class="separator:ga02fc495902edbe68d976d46b37637bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8e281ac7adc625c649e9f851d69922ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga8e281ac7adc625c649e9f851d69922ea">afw_authorization_handler_destroy</a>(instance,  scope)</td></tr>
-<tr class="memdesc:ga8e281ac7adc625c649e9f851d69922ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method destroy of interface afw_authorization_handler.  <a href="group__afw__authorization__handler__interface.html#ga8e281ac7adc625c649e9f851d69922ea">More...</a><br /></td></tr>
-<tr class="separator:ga8e281ac7adc625c649e9f851d69922ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga371976238ede91a5646ba85685930b25"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga371976238ede91a5646ba85685930b25">afw_authorization_handler_check</a>(instance,  resource_id,  object,  action_id,  p,  scope)</td></tr>
-<tr class="memdesc:ga371976238ede91a5646ba85685930b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method check of interface afw_authorization_handler.  <a href="group__afw__authorization__handler__interface.html#ga371976238ede91a5646ba85685930b25">More...</a><br /></td></tr>
-<tr class="separator:ga371976238ede91a5646ba85685930b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18fcab0d0cc4fedc2a8914b2b5e1816b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga18fcab0d0cc4fedc2a8914b2b5e1816b">afw_authorization_handler_destroy</a>(instance,  xctx)</td></tr>
+<tr class="memdesc:ga18fcab0d0cc4fedc2a8914b2b5e1816b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method destroy of interface afw_authorization_handler.  <a href="group__afw__authorization__handler__interface.html#ga18fcab0d0cc4fedc2a8914b2b5e1816b">More...</a><br /></td></tr>
+<tr class="separator:ga18fcab0d0cc4fedc2a8914b2b5e1816b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga81f07ec54d1ff48611c91c09c444cfa4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga81f07ec54d1ff48611c91c09c444cfa4">afw_authorization_handler_check</a>(instance,  resource_id,  object,  action_id,  p,  xctx)</td></tr>
+<tr class="memdesc:ga81f07ec54d1ff48611c91c09c444cfa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method check of interface afw_authorization_handler.  <a href="group__afw__authorization__handler__interface.html#ga81f07ec54d1ff48611c91c09c444cfa4">More...</a><br /></td></tr>
+<tr class="separator:ga81f07ec54d1ff48611c91c09c444cfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gac0fc90bf3d6624239a81dc060e866f5d"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#gac0fc90bf3d6624239a81dc060e866f5d">afw_authorization_handler_destroy_t</a>) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:gac0fc90bf3d6624239a81dc060e866f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2e9dae304922290e55a78547c2054812"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#ga2e9dae304922290e55a78547c2054812">afw_authorization_handler_check_t</a>) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga2e9dae304922290e55a78547c2054812"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac70aa326c220e61dc966ecee6df34a47"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#gac70aa326c220e61dc966ecee6df34a47">afw_authorization_handler_destroy_t</a>) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gac70aa326c220e61dc966ecee6df34a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd57c0888ee544582cdc56ef833e4a86"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization__handler__interface.html#gacd57c0888ee544582cdc56ef833e4a86">afw_authorization_handler_check_t</a>) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gacd57c0888ee544582cdc56ef833e4a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive framework authorization handler interface. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga371976238ede91a5646ba85685930b25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga371976238ede91a5646ba85685930b25">&#9670;&nbsp;</a></span>afw_authorization_handler_check</h2>
+<a id="ga81f07ec54d1ff48611c91c09c444cfa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81f07ec54d1ff48611c91c09c444cfa4">&#9670;&nbsp;</a></span>afw_authorization_handler_check</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Typedefs</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -164,7 +164,7 @@ Typedefs</h2></td></tr>
 <div class="line">    (<span class="keywordtype">object</span>), \</div>
 <div class="line">    (action_id), \</div>
 <div class="line">    (p), \</div>
-<div class="line">    (scope) \</div>
+<div class="line">    (xctx) \</div>
 <div class="line">)</div>
 </div><!-- fragment -->
 <p>Call method check of interface afw_authorization_handler. </p>
@@ -175,7 +175,7 @@ Typedefs</h2></td></tr>
     <tr><td class="paramname">object</td><td>Adaptive object value for the object associated with resource or NULL. </td></tr>
     <tr><td class="paramname">action_id</td><td>Adaptive string value for the action to check. </td></tr>
     <tr><td class="paramname">p</td><td>Pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>This is the caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>This is the caller's xctx. </td></tr>
   </table>
   </dd>
 </dl>
@@ -184,8 +184,8 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8e281ac7adc625c649e9f851d69922ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8e281ac7adc625c649e9f851d69922ea">&#9670;&nbsp;</a></span>afw_authorization_handler_destroy</h2>
+<a id="ga18fcab0d0cc4fedc2a8914b2b5e1816b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18fcab0d0cc4fedc2a8914b2b5e1816b">&#9670;&nbsp;</a></span>afw_authorization_handler_destroy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +200,7 @@ Typedefs</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -211,14 +211,14 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">(instance)-&gt;inf-&gt;destroy( \</div>
 <div class="line">    (instance), \</div>
-<div class="line">    (scope) \</div>
+<div class="line">    (xctx) \</div>
 <div class="line">)</div>
 </div><!-- fragment -->
 <p>Call method destroy of interface afw_authorization_handler. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this adaptive authorization handler instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>This is the caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>This is the caller's xctx. </td></tr>
   </table>
   </dd>
 </dl>
@@ -228,35 +228,35 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="ga2e9dae304922290e55a78547c2054812"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2e9dae304922290e55a78547c2054812">&#9670;&nbsp;</a></span>afw_authorization_handler_check_t</h2>
+<a id="gacd57c0888ee544582cdc56ef833e4a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd57c0888ee544582cdc56ef833e4a86">&#9670;&nbsp;</a></span>afw_authorization_handler_check_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_authorization_handler_check_t) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_authorization_handler_check_t) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__authorization__handler__interface.html#ga371976238ede91a5646ba85685930b25" title="Call method check of interface afw_authorization_handler.">afw_authorization_handler_check()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__authorization__handler__interface.html#ga81f07ec54d1ff48611c91c09c444cfa4" title="Call method check of interface afw_authorization_handler.">afw_authorization_handler_check()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__interface_8h_source.html#l01739">1739</a> of file <a class="el" href="afw__interface_8h_source.html">afw_interface.h</a>.</p>
 
 </div>
 </div>
-<a id="gac0fc90bf3d6624239a81dc060e866f5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac0fc90bf3d6624239a81dc060e866f5d">&#9670;&nbsp;</a></span>afw_authorization_handler_destroy_t</h2>
+<a id="gac70aa326c220e61dc966ecee6df34a47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac70aa326c220e61dc966ecee6df34a47">&#9670;&nbsp;</a></span>afw_authorization_handler_destroy_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* afw_authorization_handler_destroy_t) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef void(* afw_authorization_handler_destroy_t) (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__authorization__handler__interface.html#ga8e281ac7adc625c649e9f851d69922ea" title="Call method destroy of interface afw_authorization_handler.">afw_authorization_handler_destroy()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__authorization__handler__interface.html#ga18fcab0d0cc4fedc2a8914b2b5e1816b" title="Call method destroy of interface afw_authorization_handler.">afw_authorization_handler_destroy()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__interface_8h_source.html#l01733">1733</a> of file <a class="el" href="afw__interface_8h_source.html">afw_interface.h</a>.</p>
 
@@ -265,7 +265,7 @@ Typedefs</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -193,7 +193,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -206,7 +206,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(boolean) If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00424">424</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00426">426</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -233,7 +233,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -246,7 +246,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(string) The extension id of the extension loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00478">478</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00480">480</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -273,18 +273,18 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Get a list of of the flagId of flags that are set in the current scope (request).</p>
+<p>Get a list of of the flagId of flags that are set in the current execution context (xctx).</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
 <p>function flag_get_active(</p>
 <p>): (list string);</p>
 <p>Parameters:</p>
 <p>Returns:</p>
-<p>(list string) This is a list of the flagId of flags that are set in the current scope (request). </p>
+<p>(list string) This is a list of the flagId of flags that are set in the current execution context (xctx). </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00045">45</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
@@ -313,18 +313,18 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Get a list of the flagId of flags that are set by default when a scope (request) is created.</p>
+<p>Get a list of the flagId of flags that are set by default when a new execution context (xctx) is created.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
 <p>function flag_get_active_defaults(</p>
 <p>): (list string);</p>
 <p>Parameters:</p>
 <p>Returns:</p>
-<p>(list string) This is a list of the flagId of flags that are set by default when a scope (request) is created. </p>
+<p>(list string) This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00096">96</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
@@ -353,11 +353,11 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Get the list of the flagId of flags that are used to determine the default active flags when a scope (request) is created. This list can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags.</p>
+<p>Get the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
 <p>function flag_get_defaults(</p>
@@ -393,11 +393,11 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Add or remove flags from the list of the flagId of flags that are used to determine the default active flags when a scope (request) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.</p>
+<p>Add or remove flags from the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.</p>
 <p>This change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
@@ -408,7 +408,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(null) </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00217">217</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00218">218</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -435,11 +435,11 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Completely replace the list of the flagId of flags that are used to determine the default active flags when a scope (request) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.</p>
+<p>Completely replace the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.</p>
 <p>This change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
@@ -449,7 +449,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(null) </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00299">299</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00301">301</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -476,11 +476,11 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Set or unset one or more active scope (request) flags.</p>
+<p>Set or unset one or more active xctx (request) flags.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
 <p>function flag_set( flagId: (list string), setTo?: boolean ): null;</p>
@@ -490,7 +490,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(null) </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00344">344</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00346">346</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -517,7 +517,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -532,7 +532,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(boolean) If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00539">539</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00541">541</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -559,7 +559,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -572,7 +572,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(object <em>AdaptiveService</em>) <em>AdaptiveService</em> object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00616">616</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00618">618</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -599,7 +599,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -612,7 +612,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(object <em>AdaptiveService</em>) <em>AdaptiveService</em> object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00665">665</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00667">667</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -639,7 +639,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -652,7 +652,7 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(object <em>AdaptiveService</em>) <em>AdaptiveService</em> object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00716">716</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00718">718</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
@@ -679,7 +679,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
     <tr><td class="paramname">argv</td><td>list of values. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -692,14 +692,14 @@ Variables</h2></td></tr>
 <p>Returns:</p>
 <p>(object <em>AdaptiveService</em>) <em>AdaptiveService</em> object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00767">767</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function__administrative_8c_source.html#l00769">769</a> of file <a class="el" href="afw__function__administrative_8c_source.html">afw_function_administrative.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

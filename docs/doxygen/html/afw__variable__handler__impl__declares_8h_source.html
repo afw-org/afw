@@ -113,7 +113,7 @@ $(function() {
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__variable__handler__s.html">afw_variable_handler_t</a> * instance,</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * qualifier,</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * name,</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#ifndef impl_afw_variable_handler_set_variable</span></div>
@@ -124,7 +124,7 @@ $(function() {
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * qualifier,</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * name,</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> * value,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
@@ -162,15 +162,15 @@ $(function() {
 <div class="ttc" id="aafw__interface__opaques_8h_html"><div class="ttname"><a href="afw__interface__opaques_8h.html">afw_interface_opaques.h</a></div><div class="ttdoc">Interface afw_interface opaque typedefs.</div></div>
 <div class="ttc" id="agroup__afw__common_html_ga294533d3f49933f65de247a76acca81b"><div class="ttname"><a href="group__afw__common.html#ga294533d3f49933f65de247a76acca81b">AFW_UTF8_LITERAL</a></div><div class="ttdeci">#define AFW_UTF8_LITERAL(A_STRING)</div><div class="ttdoc">String literal initializer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00581">afw_common.h:581</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
-<div class="ttc" id="astructafw__variable__handler__inf__s_html"><div class="ttname"><a href="structafw__variable__handler__inf__s.html">afw_variable_handler_inf_s</a></div><div class="ttdoc">Interface afw_variable_handler_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05603">afw_interface.h:5603</a></div></div>
-<div class="ttc" id="astructafw__variable__handler__s_html"><div class="ttname"><a href="structafw__variable__handler__s.html">afw_variable_handler_s</a></div><div class="ttdoc">Interface afw_variable_handler public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05577">afw_interface.h:5577</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="astructafw__variable__handler__inf__s_html"><div class="ttname"><a href="structafw__variable__handler__inf__s.html">afw_variable_handler_inf_s</a></div><div class="ttdoc">Interface afw_variable_handler_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05479">afw_interface.h:5479</a></div></div>
+<div class="ttc" id="astructafw__variable__handler__s_html"><div class="ttname"><a href="structafw__variable__handler__s.html">afw_variable_handler_s</a></div><div class="ttdoc">Interface afw_variable_handler public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05453">afw_interface.h:5453</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

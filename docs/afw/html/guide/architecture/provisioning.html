@@ -140,12 +140,16 @@
             in turn, is configured with a Journal Adaptor, which knows to take
             the object and add it to its queue of Journal Entries.
         
-</p><img src="images/ProvisioningProducer.svg" alt="Provisioning Producer creates an object to be journaled." class="dark:invert" /><p class="text-lg text-slate-700 dark:text-slate-400">
+</p><div class="flex justify-center"><img src="images/ProvisioningProducer.svg" alt="Provisioning Producer creates an object to be journaled." class="dark:invert" /></div><div class="flex justify-center pb-8"><span class="text-sm">Provisioning Producer creates an object to be journaled.</span></div><p class="text-lg text-slate-700 dark:text-slate-400">
     
             By contrast, an <code>Consumer</code> is a client that 
-            consumes events from the Journal. 
+            consumes events from the Journal. These clients interact directly 
+            with the Journal Adaptor itself by calling Journal routines that 
+            can fetch the first event, or an event after a positional cursor. 
+            When consumed, the event is removed from the Journal through a 
+            request to mark it consumed.
         
-</p>
+</p><div class="flex justify-center"><img src="images/ProvisioningConsumer.svg" alt="Provisioning Consumer consumes an object from the Journal." class="dark:invert" /></div><div class="flex justify-center pb-8"><span class="text-sm">Provisioning Consumer consumes an object from the Journal.</span></div>
 </section><section class="mt-12">
     <h2 class="group flex whitespace-pre-wrap -ml-4 pl-4 mb-2 text-sm leading-6 text-sky-500 font-semibold tracking-normal dark:text-sky-400">Provisioning Peers</h2><p class="text-lg text-slate-700 dark:text-slate-400">
     
@@ -153,7 +157,7 @@
             may produce and/or consume Journal Entries. Provisioning Peers are 
             uniquely identified by a <code>peerId</code>, which 
             associates a peer with the following Provisioning Peer object 
-            poperties:
+            properties:
         
 </p><div class="overflow-auto">
     <table class="table-auto">

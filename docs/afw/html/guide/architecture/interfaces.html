@@ -166,17 +166,11 @@
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_request</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Adaptive framework request interface.</td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_scope</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Adaptive framework scope interface. Scopes have a lifetime. Types of scope can be &quot;server&quot;, &quot;request_session&#x27;, etc. The scope&#x27;s pool, properties, and object cache will last for the life of the scope. A scope&#x27;s parent will always have a longer life.</td>    
-</tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_execution_context</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>This is the Adaptive Framework execution context interface.
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_xctx</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Adaptive Framework Execution Context (xctx) interface.
 
-An execution context has a lifetime appropriate for its type. Its parent, if there is one, always has a longer lifetime.
+An execution context holds common information related to a unit of work in Adaptive Framwork. This unit of work runs in a single thread of a single-threaded or multi-threaded process. In a multi-threaded process, the main thread has the global execution context. Other threads have their own execution context and required the appropriate mutexes or queued work to access memory in the global execution context.
 
-The type of an execution contexts can be &quot;server&quot;, &quot;request_session&#x27;, or anything else descriptive of the execution being done.
-
-The execution context points to the top level scope and contains anything else that is common to all scopes.</td>    
-</tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_scope_new</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>Adaptive Framework scope interface.</td>    
+The type of execution contexts can be &quot;server&quot;, &quot;request_session&#x27;, etc. A execution context&#x27;s pool, properties, and object cache will last for the life of the execution context. An execution context&#x27;s parent will always have a longer life.</td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>afw_stream</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'>An interface for a stream.</td>    
 </tr><tr>
@@ -194,7 +188,7 @@ The execution context points to the top level scope and contains anything else t
     </table>
 </div><p class="text-lg text-slate-700 dark:text-slate-400">
     
-        The followign sections describe a few interfaces that are significant 
+        The following sections describe a few interfaces that are significant 
         to discussion of the Adaptive Framework architecture. For a more 
         comprehensive list, refer to the Developer Guide.
     
@@ -303,7 +297,7 @@ The execution context points to the top level scope and contains anything else t
             interface and allow for object events to be journaled into a
             persistent queue. Journals must maintain cursors into this queue to
             track clients (or <code>Provisioning Peers</code>) who are 
-            producing or consuming journal entrires. Currently, two adaptors 
+            producing or consuming journal entries. Currently, two adaptors 
             also support the Journal interface:
         
 </p><div class="overflow-auto">

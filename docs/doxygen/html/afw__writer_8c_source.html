@@ -106,7 +106,7 @@ $(function() {
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;impl_afw_writer_release(</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        (<a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *)instance;</div>
@@ -122,7 +122,7 @@ $(function() {
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;impl_afw_writer_flush(</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/* Ignore flush. */</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
@@ -131,11 +131,11 @@ $(function() {
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * Implementation of method write for interface afw_writer.</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__afw__writer__impl__declares.html#gaab40ae1521ae7178ffe790edb9a13dbf">   67</a></span>&#160;<a class="code" href="group__afw__writer__impl__declares.html#gaab40ae1521ae7178ffe790edb9a13dbf">impl_afw_writer_write</a>(</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__afw__writer__impl__declares.html#ga66955e155cbc085180bf26c297725740">   67</a></span>&#160;<a class="code" href="group__afw__writer__impl__declares.html#ga66955e155cbc085180bf26c297725740">impl_afw_writer_write</a>(</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> *buffer,</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        (<a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *)instance;</div>
@@ -144,9 +144,9 @@ $(function() {
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (size != 0) {</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        len = fwrite(buffer, size, 1, self-&gt;fd);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span> (len == 0) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, NULL, ferror(self-&gt;fd),</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, NULL, ferror(self-&gt;fd),</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="stringliteral">&quot;fwrite() failed&quot;</span>,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                scope);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                xctx);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
@@ -155,9 +155,9 @@ $(function() {
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> * Implementation of method write_eol for interface afw_writer.</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__afw__writer__impl__declares.html#gab56a1162ad7a2420f591524893c2b18c">   92</a></span>&#160;<a class="code" href="group__afw__writer__impl__declares.html#gab56a1162ad7a2420f591524893c2b18c">impl_afw_writer_write_eol</a>(</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__afw__writer__impl__declares.html#gacc7dd46ed41986aa23b86ca1937b28f7">   92</a></span>&#160;<a class="code" href="group__afw__writer__impl__declares.html#gacc7dd46ed41986aa23b86ca1937b28f7">impl_afw_writer_write_eol</a>(</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        (<a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *)instance;</div>
@@ -165,9 +165,9 @@ $(function() {
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    len = fwrite(<span class="stringliteral">&quot;\n&quot;</span>, 1, 1, self-&gt;fd);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span> (len == 0) {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, NULL, ferror(self-&gt;fd),</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, NULL, ferror(self-&gt;fd),</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="stringliteral">&quot;fwrite() failed&quot;</span>,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            scope);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            xctx);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
@@ -177,7 +177,7 @@ $(function() {
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;impl_afw_writer_increment_indent(</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        (<a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *)instance;</div>
@@ -191,15 +191,15 @@ $(function() {
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;impl_afw_writer_decrement_indent(</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *instance,</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        (<a class="code" href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_t</a> *)instance;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">if</span> (self-&gt;pub.indent == 0) {</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="stringliteral">&quot;afw_writer_decrement_indent() call when indent is already 0&quot;</span>,</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            scope);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            xctx);</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    (<span class="keyword">self</span>-&gt;pub.indent)--;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
@@ -208,32 +208,32 @@ $(function() {
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">/* Call afw_writer_write() with an integer. */</span></div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group__afw__writer.html#gabed1de447819548bd9b3250c983aaa36">  146</a></span>&#160;<a class="code" href="group__afw__writer.html#gabed1de447819548bd9b3250c983aaa36">afw_writer_write_integer</a>(</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group__afw__writer.html#ga2efb10ead35b31543ee07254b360806f">  146</a></span>&#160;<a class="code" href="group__afw__writer.html#ga2efb10ead35b31543ee07254b360806f">afw_writer_write_integer</a>(</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    const <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *writer,</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> integer,</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;{</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">char</span> buf[<a class="code" href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a>];</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    snprintf(buf, <a class="code" href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a>, <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga4696e562681c680da397c0cd1bac19a8">AFW_INTEGER_FMT</a>,</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        integer);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="group__afw__writer.html#ga6d28a4fb40ab1a5808d129179cc1e801">afw_writer_write_z</a>(writer, buf, scope);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="group__afw__writer.html#ga424296a0b8523078b30bd656835fe8b2">afw_writer_write_z</a>(writer, buf, xctx);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">/* Call afw_writer_write() with a size. */</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__afw__writer.html#ga40487971af1579b75ffb1bdde3bf38b0">  162</a></span>&#160;<a class="code" href="group__afw__writer.html#ga40487971af1579b75ffb1bdde3bf38b0">afw_writer_write_size</a>(</div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__afw__writer.html#ga714247fe2b9567b023bc9bf588237146">  162</a></span>&#160;<a class="code" href="group__afw__writer.html#ga714247fe2b9567b023bc9bf588237146">afw_writer_write_size</a>(</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    const <a class="code" href="structafw__writer__s.html">afw_writer_t</a> *writer,</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordtype">char</span> buf[<a class="code" href="group__afw__common.html#ga3c86f46fd8981bfe41b9546210dedc96">AFW_SIZE_T_MAX_BUFFER</a>];</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    snprintf(buf, <a class="code" href="group__afw__common.html#ga3c86f46fd8981bfe41b9546210dedc96">AFW_SIZE_T_MAX_BUFFER</a>, <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#gadce5f4fbd744c35fc70adece36a6e118">AFW_SIZE_T_FMT</a>,</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        size);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="group__afw__writer.html#ga6d28a4fb40ab1a5808d129179cc1e801">afw_writer_write_z</a>(writer, buf, scope);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="group__afw__writer.html#ga424296a0b8523078b30bd656835fe8b2">afw_writer_write_z</a>(writer, buf, xctx);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a53c27301be573580f47f98f0fbccde3b"><div class="ttname"><a href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a></div><div class="ttdeci">#define AFW_DEFINE(type)</div><div class="ttdoc">Define a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00209">afw_declare_helpers.h:209</a></div></div>
 <div class="ttc" id="aafw__internal_8h_html"><div class="ttname"><a href="afw__internal_8h.html">afw_internal.h</a></div><div class="ttdoc">Adaptive Framework Core Internal.</div></div>
@@ -245,20 +245,20 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_gadce5f4fbd744c35fc70adece36a6e118"><div class="ttname"><a href="group__afw__common.html#gadce5f4fbd744c35fc70adece36a6e118">AFW_SIZE_T_FMT</a></div><div class="ttdeci">#define AFW_SIZE_T_FMT</div><div class="ttdoc">Format string specifier used for afw_size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00339">afw_common.h:339</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaf07e0bfc1c151bed8127398ad33cf140"><div class="ttname"><a href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a></div><div class="ttdeci">#define AFW_INTEGER_MAX_BUFFER</div><div class="ttdoc">this is the maximum number of digits that can be produced by afw_integer_t plus negative sign plus nu...</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00273">afw_common.h:273</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaf758b90e3fadf75b6264795b4f8a1e57"><div class="ttname"><a href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></div><div class="ttdeci">apr_int64_t afw_integer_t</div><div class="ttdoc">typedef for big signed int.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00319">afw_common.h:319</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga5a711cdfb9990f4d2b628e8288815457"><div class="ttname"><a href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, scope)</div><div class="ttdoc">Macro used to set error and 0 rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_gaa7d98ebac6b5ef3b64bbcbbb8f76c445"><div class="ttname"><a href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, scope)</div><div class="ttdoc">Macro used to set error and rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00305">afw_error.h:305</a></div></div>
-<div class="ttc" id="agroup__afw__writer__impl__declares_html_gaab40ae1521ae7178ffe790edb9a13dbf"><div class="ttname"><a href="group__afw__writer__impl__declares.html#gaab40ae1521ae7178ffe790edb9a13dbf">impl_afw_writer_write</a></div><div class="ttdeci">void impl_afw_writer_write(const afw_writer_t *instance, const void *buffer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00067">afw_writer.c:67</a></div></div>
-<div class="ttc" id="agroup__afw__writer__impl__declares_html_gab56a1162ad7a2420f591524893c2b18c"><div class="ttname"><a href="group__afw__writer__impl__declares.html#gab56a1162ad7a2420f591524893c2b18c">impl_afw_writer_write_eol</a></div><div class="ttdeci">void impl_afw_writer_write_eol(const afw_writer_t *instance, afw_scope_t *scope)</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00092">afw_writer.c:92</a></div></div>
-<div class="ttc" id="agroup__afw__writer_html_ga40487971af1579b75ffb1bdde3bf38b0"><div class="ttname"><a href="group__afw__writer.html#ga40487971af1579b75ffb1bdde3bf38b0">afw_writer_write_size</a></div><div class="ttdeci">afw_writer_write_size(const afw_writer_t *writer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdoc">Call afw_writer_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00162">afw_writer.c:162</a></div></div>
-<div class="ttc" id="agroup__afw__writer_html_ga6d28a4fb40ab1a5808d129179cc1e801"><div class="ttname"><a href="group__afw__writer.html#ga6d28a4fb40ab1a5808d129179cc1e801">afw_writer_write_z</a></div><div class="ttdeci">#define afw_writer_write_z(writer, s_z, scope)</div><div class="ttdoc">Call afw_writer_write() with zero terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8h_source.html#l00045">afw_writer.h:45</a></div></div>
-<div class="ttc" id="agroup__afw__writer_html_gabed1de447819548bd9b3250c983aaa36"><div class="ttname"><a href="group__afw__writer.html#gabed1de447819548bd9b3250c983aaa36">afw_writer_write_integer</a></div><div class="ttdeci">afw_writer_write_integer(const afw_writer_t *writer, afw_integer_t integer, afw_scope_t *scope)</div><div class="ttdoc">Call afw_writer_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00146">afw_writer.c:146</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga6e989df174e149c384023e57f18b22f7"><div class="ttname"><a href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, xctx)</div><div class="ttdoc">Macro used to set error and rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00305">afw_error.h:305</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_gae3ef33256454849b39a6e9710f519c8b"><div class="ttname"><a href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, xctx)</div><div class="ttdoc">Macro used to set error and 0 rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
+<div class="ttc" id="agroup__afw__writer__impl__declares_html_ga66955e155cbc085180bf26c297725740"><div class="ttname"><a href="group__afw__writer__impl__declares.html#ga66955e155cbc085180bf26c297725740">impl_afw_writer_write</a></div><div class="ttdeci">void impl_afw_writer_write(const afw_writer_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00067">afw_writer.c:67</a></div></div>
+<div class="ttc" id="agroup__afw__writer__impl__declares_html_gacc7dd46ed41986aa23b86ca1937b28f7"><div class="ttname"><a href="group__afw__writer__impl__declares.html#gacc7dd46ed41986aa23b86ca1937b28f7">impl_afw_writer_write_eol</a></div><div class="ttdeci">void impl_afw_writer_write_eol(const afw_writer_t *instance, afw_xctx_t *xctx)</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00092">afw_writer.c:92</a></div></div>
+<div class="ttc" id="agroup__afw__writer_html_ga2efb10ead35b31543ee07254b360806f"><div class="ttname"><a href="group__afw__writer.html#ga2efb10ead35b31543ee07254b360806f">afw_writer_write_integer</a></div><div class="ttdeci">afw_writer_write_integer(const afw_writer_t *writer, afw_integer_t integer, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_writer_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00146">afw_writer.c:146</a></div></div>
+<div class="ttc" id="agroup__afw__writer_html_ga424296a0b8523078b30bd656835fe8b2"><div class="ttname"><a href="group__afw__writer.html#ga424296a0b8523078b30bd656835fe8b2">afw_writer_write_z</a></div><div class="ttdeci">#define afw_writer_write_z(writer, s_z, xctx)</div><div class="ttdoc">Call afw_writer_write() with zero terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8h_source.html#l00045">afw_writer.h:45</a></div></div>
+<div class="ttc" id="agroup__afw__writer_html_ga714247fe2b9567b023bc9bf588237146"><div class="ttname"><a href="group__afw__writer.html#ga714247fe2b9567b023bc9bf588237146">afw_writer_write_size</a></div><div class="ttdeci">afw_writer_write_size(const afw_writer_t *writer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_writer_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00162">afw_writer.c:162</a></div></div>
 <div class="ttc" id="astructafw__writer__fd__afw__writer__self__s_html"><div class="ttname"><a href="structafw__writer__fd__afw__writer__self__s.html">afw_writer_fd_afw_writer_self_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__writer_8c_source.html#l00027">afw_writer.c:28</a></div></div>
-<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05664">afw_interface.h:5664</a></div></div>
+<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05540">afw_interface.h:5540</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

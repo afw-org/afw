@@ -100,12 +100,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gac5ec961b3b7e38f71487691c41f954b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gac5ec961b3b7e38f71487691c41f954b0">afw_pool_calloc_type</a>(instance,  type,  scope)&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga7366649ba5fa8667b16d35013707d0e1">afw_pool_calloc</a>(instance, sizeof(type), scope)</td></tr>
-<tr class="memdesc:gac5ec961b3b7e38f71487691c41f954b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to allocate cleared memory to hold type in pool.  <a href="group__afw__pool.html#gac5ec961b3b7e38f71487691c41f954b0">More...</a><br /></td></tr>
-<tr class="separator:gac5ec961b3b7e38f71487691c41f954b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf93f5f6235ca5407acdbb1b034552943"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gaf93f5f6235ca5407acdbb1b034552943">afw_pool_malloc_type</a>(instance,  type,  scope)&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga27351730ba8a941f7f63f19067e7024b">afw_pool_malloc</a>(instance, sizeof(type), scope)</td></tr>
-<tr class="memdesc:gaf93f5f6235ca5407acdbb1b034552943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to allocate uncleared memory to hold type in pool.  <a href="group__afw__pool.html#gaf93f5f6235ca5407acdbb1b034552943">More...</a><br /></td></tr>
-<tr class="separator:gaf93f5f6235ca5407acdbb1b034552943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga028594c9632d440f3204a55a92b99429"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga028594c9632d440f3204a55a92b99429">afw_pool_calloc_type</a>(instance,  type,  xctx)&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#gaaa40790e9d86449a6e9b24ff15cfddd2">afw_pool_calloc</a>(instance, sizeof(type), xctx)</td></tr>
+<tr class="memdesc:ga028594c9632d440f3204a55a92b99429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to allocate cleared memory to hold type in pool.  <a href="group__afw__pool.html#ga028594c9632d440f3204a55a92b99429">More...</a><br /></td></tr>
+<tr class="separator:ga028594c9632d440f3204a55a92b99429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f2cc387c478c65fedcc63b832b21dad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga6f2cc387c478c65fedcc63b832b21dad">afw_pool_malloc_type</a>(instance,  type,  xctx)&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga604ef68fc449df3641d092f20f8dc576">afw_pool_malloc</a>(instance, sizeof(type), xctx)</td></tr>
+<tr class="memdesc:ga6f2cc387c478c65fedcc63b832b21dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to allocate uncleared memory to hold type in pool.  <a href="group__afw__pool.html#ga6f2cc387c478c65fedcc63b832b21dad">More...</a><br /></td></tr>
+<tr class="separator:ga6f2cc387c478c65fedcc63b832b21dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga677a86b855e84ca4850d7bcd40628245"><td class="memItemLeft" align="right" valign="top"><a id="ga677a86b855e84ca4850d7bcd40628245"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga677a86b855e84ca4850d7bcd40628245">afw_thread_mutex_create</a>&#160;&#160;&#160;apr_thread_mutex_create</td></tr>
 <tr class="memdesc:ga677a86b855e84ca4850d7bcd40628245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses apr_thread_mutex_t asis. <br /></td></tr>
@@ -130,9 +130,9 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga553a439d96e400f35b8b0781fc6125c6">AFW_THREAD_FUNCTION</a>&#160;&#160;&#160;APR_THREAD_FUNC</td></tr>
 <tr class="memdesc:ga553a439d96e400f35b8b0781fc6125c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses APR_THREAD_FUNC as AFW_THREAD_FUNCTION. <br /></td></tr>
 <tr class="separator:ga553a439d96e400f35b8b0781fc6125c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga24d30af2f5a9d64026c401869c634c8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga24d30af2f5a9d64026c401869c634c8a">AFW_THREAD_MUTEX_LOCK</a>(mutex,  scope)</td></tr>
-<tr class="memdesc:ga24d30af2f5a9d64026c401869c634c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin a mutex lock section.  <a href="group__afw__pool.html#ga24d30af2f5a9d64026c401869c634c8a">More...</a><br /></td></tr>
-<tr class="separator:ga24d30af2f5a9d64026c401869c634c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46f98102d15aa9149292b09c70d1dc91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga46f98102d15aa9149292b09c70d1dc91">AFW_THREAD_MUTEX_LOCK</a>(mutex,  xctx)</td></tr>
+<tr class="memdesc:ga46f98102d15aa9149292b09c70d1dc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin a mutex lock section.  <a href="group__afw__pool.html#ga46f98102d15aa9149292b09c70d1dc91">More...</a><br /></td></tr>
+<tr class="separator:ga46f98102d15aa9149292b09c70d1dc91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga32a9b0a39fba68811fabd41a86d041f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga32a9b0a39fba68811fabd41a86d041f8">AFW_THREAD_MUTEX_UNLOCK</a>()</td></tr>
 <tr class="memdesc:ga32a9b0a39fba68811fabd41a86d041f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end a mutex lock.  <a href="group__afw__pool.html#ga32a9b0a39fba68811fabd41a86d041f8">More...</a><br /></td></tr>
 <tr class="separator:ga32a9b0a39fba68811fabd41a86d041f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,42 +160,42 @@ typedef struct afw_thread_attr_s&#160;</td><td class="memItemRight" valign="bott
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga918447cc5ff654257393b4370c1f7641"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga918447cc5ff654257393b4370c1f7641">afw_pool_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga918447cc5ff654257393b4370c1f7641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new pool.  <a href="group__afw__pool.html#ga918447cc5ff654257393b4370c1f7641">More...</a><br /></td></tr>
-<tr class="separator:ga918447cc5ff654257393b4370c1f7641"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga42ecd44ab9769aa467bd0d4103eba950"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga42ecd44ab9769aa467bd0d4103eba950">afw_pool_create_debug</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:ga42ecd44ab9769aa467bd0d4103eba950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of create a new pool.  <a href="group__afw__pool.html#ga42ecd44ab9769aa467bd0d4103eba950">More...</a><br /></td></tr>
-<tr class="separator:ga42ecd44ab9769aa467bd0d4103eba950"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga71033fbf3daff951d7fe7b3058d718ff"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga71033fbf3daff951d7fe7b3058d718ff">afw_pool_create_multithreaded</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga71033fbf3daff951d7fe7b3058d718ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new multithreaded pool.  <a href="group__afw__pool.html#ga71033fbf3daff951d7fe7b3058d718ff">More...</a><br /></td></tr>
-<tr class="separator:ga71033fbf3daff951d7fe7b3058d718ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac139193656fc148221bc63764d5d26fa"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gac139193656fc148221bc63764d5d26fa">afw_pool_create_multithreaded_debug</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:gac139193656fc148221bc63764d5d26fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of create a new multithreaded pool.  <a href="group__afw__pool.html#gac139193656fc148221bc63764d5d26fa">More...</a><br /></td></tr>
-<tr class="separator:gac139193656fc148221bc63764d5d26fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c63deb23873d803babf840e74ca9e94"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga2c63deb23873d803babf840e74ca9e94">afw_pool_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga2c63deb23873d803babf840e74ca9e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new pool.  <a href="group__afw__pool.html#ga2c63deb23873d803babf840e74ca9e94">More...</a><br /></td></tr>
+<tr class="separator:ga2c63deb23873d803babf840e74ca9e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff37cd2417b542182d22c2292bf4ca75"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gaff37cd2417b542182d22c2292bf4ca75">afw_pool_create_debug</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
+<tr class="memdesc:gaff37cd2417b542182d22c2292bf4ca75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of create a new pool.  <a href="group__afw__pool.html#gaff37cd2417b542182d22c2292bf4ca75">More...</a><br /></td></tr>
+<tr class="separator:gaff37cd2417b542182d22c2292bf4ca75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae8769aca2b11f289b5937797f7a320cb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gae8769aca2b11f289b5937797f7a320cb">afw_pool_create_multithreaded</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gae8769aca2b11f289b5937797f7a320cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new multithreaded pool.  <a href="group__afw__pool.html#gae8769aca2b11f289b5937797f7a320cb">More...</a><br /></td></tr>
+<tr class="separator:gae8769aca2b11f289b5937797f7a320cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf476546786dd563d0852571ad270ce83"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gaf476546786dd563d0852571ad270ce83">afw_pool_create_multithreaded_debug</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *parent, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
+<tr class="memdesc:gaf476546786dd563d0852571ad270ce83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of create a new multithreaded pool.  <a href="group__afw__pool.html#gaf476546786dd563d0852571ad270ce83">More...</a><br /></td></tr>
+<tr class="separator:gaf476546786dd563d0852571ad270ce83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf06dcb1035bcfc2c193b111cfa85c993"><td class="memItemLeft" align="right" valign="top"><a id="gaf06dcb1035bcfc2c193b111cfa85c993"></a>
 const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_pool_internal_create_base_pool</b> ()</td></tr>
 <tr class="separator:gaf06dcb1035bcfc2c193b111cfa85c993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3fae6e96ad5a37501945e623de301f76"><td class="memItemLeft" align="right" valign="top"><a id="ga3fae6e96ad5a37501945e623de301f76"></a>
-<a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_pool_internal_create_thread</b> (<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga3fae6e96ad5a37501945e623de301f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga85f62596c9f08fbc3ae359c7542e99ac"><td class="memItemLeft" align="right" valign="top"><a id="ga85f62596c9f08fbc3ae359c7542e99ac"></a>
-<a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_pool_internal_create_thread_debug</b> (<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="separator:ga85f62596c9f08fbc3ae359c7542e99ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab303906cc70998d119d4123152176e49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gac2dd196c68c25ef6688acd4508d871ce">afw_thread_attr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gab303906cc70998d119d4123152176e49">afw_thread_attr_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gab303906cc70998d119d4123152176e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a thread attr.  <a href="group__afw__pool.html#gab303906cc70998d119d4123152176e49">More...</a><br /></td></tr>
-<tr class="separator:gab303906cc70998d119d4123152176e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafdb8ebf39d7ab906b2d4be56a4b66a27"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gafdb8ebf39d7ab906b2d4be56a4b66a27">afw_thread_create</a> (<a class="el" href="group__afw__common.html#gac2dd196c68c25ef6688acd4508d871ce">afw_thread_attr_t</a> *thread_attr, <a class="el" href="group__afw__pool.html#ga29d3dd1df68f32ce228618f414a7425b">afw_thread_function_t</a> start_function, void *start_function_arg, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> thread_number, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gafdb8ebf39d7ab906b2d4be56a4b66a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a thread.  <a href="group__afw__pool.html#gafdb8ebf39d7ab906b2d4be56a4b66a27">More...</a><br /></td></tr>
-<tr class="separator:gafdb8ebf39d7ab906b2d4be56a4b66a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga968205f9b276bb214c8239d482c5a5c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga968205f9b276bb214c8239d482c5a5c0">afw_thread_join</a> (const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *thread, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga968205f9b276bb214c8239d482c5a5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join a thread.  <a href="group__afw__pool.html#ga968205f9b276bb214c8239d482c5a5c0">More...</a><br /></td></tr>
-<tr class="separator:ga968205f9b276bb214c8239d482c5a5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c9bb39c731378dcb2abb79de5002900"><td class="memItemLeft" align="right" valign="top"><a id="ga4c9bb39c731378dcb2abb79de5002900"></a>
+<a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_pool_internal_create_thread</b> (<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga4c9bb39c731378dcb2abb79de5002900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed28264f754f55a0120c3166b5b01945"><td class="memItemLeft" align="right" valign="top"><a id="gaed28264f754f55a0120c3166b5b01945"></a>
+<a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_pool_internal_create_thread_debug</b> (<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
+<tr class="separator:gaed28264f754f55a0120c3166b5b01945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad911e93483739bce67a10dcd488e9293"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gac2dd196c68c25ef6688acd4508d871ce">afw_thread_attr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#gad911e93483739bce67a10dcd488e9293">afw_thread_attr_create</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gad911e93483739bce67a10dcd488e9293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a thread attr.  <a href="group__afw__pool.html#gad911e93483739bce67a10dcd488e9293">More...</a><br /></td></tr>
+<tr class="separator:gad911e93483739bce67a10dcd488e9293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e5c720e33e815d289d2203b55767eca"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga8e5c720e33e815d289d2203b55767eca">afw_thread_create</a> (<a class="el" href="group__afw__common.html#gac2dd196c68c25ef6688acd4508d871ce">afw_thread_attr_t</a> *thread_attr, <a class="el" href="group__afw__pool.html#ga29d3dd1df68f32ce228618f414a7425b">afw_thread_function_t</a> start_function, void *start_function_arg, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> thread_number, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga8e5c720e33e815d289d2203b55767eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a thread.  <a href="group__afw__pool.html#ga8e5c720e33e815d289d2203b55767eca">More...</a><br /></td></tr>
+<tr class="separator:ga8e5c720e33e815d289d2203b55767eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30de8375b7a0126cd525b0610f5b21e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__pool.html#ga30de8375b7a0126cd525b0610f5b21e5">afw_thread_join</a> (const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *thread, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga30de8375b7a0126cd525b0610f5b21e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join a thread.  <a href="group__afw__pool.html#ga30de8375b7a0126cd525b0610f5b21e5">More...</a><br /></td></tr>
+<tr class="separator:ga30de8375b7a0126cd525b0610f5b21e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Pool support </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="gac5ec961b3b7e38f71487691c41f954b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac5ec961b3b7e38f71487691c41f954b0">&#9670;&nbsp;</a></span>afw_pool_calloc_type</h2>
+<a id="ga028594c9632d440f3204a55a92b99429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga028594c9632d440f3204a55a92b99429">&#9670;&nbsp;</a></span>afw_pool_calloc_type</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,12 +216,12 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga7366649ba5fa8667b16d35013707d0e1">afw_pool_calloc</a>(instance, sizeof(type), scope)</td>
+          <td></td><td>&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#gaaa40790e9d86449a6e9b24ff15cfddd2">afw_pool_calloc</a>(instance, sizeof(type), xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -231,19 +231,19 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
   <table class="params">
     <tr><td class="paramname">instance</td><td>of pool. </td></tr>
     <tr><td class="paramname">type</td><td>to allocate. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to memory allocated cast to pointer of type.</dd></dl>
-<p>This is a helper macro to call <a class="el" href="group__afw__pool__interface.html#ga7366649ba5fa8667b16d35013707d0e1" title="Call method calloc of interface afw_pool.">afw_pool_calloc()</a> to allocate memory for a specified type and cast the return pointer to a pointer to that type. </p>
+<p>This is a helper macro to call <a class="el" href="group__afw__pool__interface.html#gaaa40790e9d86449a6e9b24ff15cfddd2" title="Call method calloc of interface afw_pool.">afw_pool_calloc()</a> to allocate memory for a specified type and cast the return pointer to a pointer to that type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool_8h_source.html#l00170">170</a> of file <a class="el" href="afw__pool_8h_source.html">afw_pool.h</a>.</p>
 
 </div>
 </div>
-<a id="gaf93f5f6235ca5407acdbb1b034552943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf93f5f6235ca5407acdbb1b034552943">&#9670;&nbsp;</a></span>afw_pool_malloc_type</h2>
+<a id="ga6f2cc387c478c65fedcc63b832b21dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f2cc387c478c65fedcc63b832b21dad">&#9670;&nbsp;</a></span>afw_pool_malloc_type</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,12 +264,12 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga27351730ba8a941f7f63f19067e7024b">afw_pool_malloc</a>(instance, sizeof(type), scope)</td>
+          <td></td><td>&#160;&#160;&#160;    (type *) <a class="el" href="group__afw__pool__interface.html#ga604ef68fc449df3641d092f20f8dc576">afw_pool_malloc</a>(instance, sizeof(type), xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -279,19 +279,19 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
   <table class="params">
     <tr><td class="paramname">instance</td><td>of pool. </td></tr>
     <tr><td class="paramname">type</td><td>to allocate. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to memory allocated cast to pointer of type.</dd></dl>
-<p>This is a helper macro to call <a class="el" href="group__afw__pool__interface.html#ga27351730ba8a941f7f63f19067e7024b" title="Call method malloc of interface afw_pool.">afw_pool_malloc()</a> to allocate memory for a specified type and cast the return pointer to a pointer to that type. </p>
+<p>This is a helper macro to call <a class="el" href="group__afw__pool__interface.html#ga604ef68fc449df3641d092f20f8dc576" title="Call method malloc of interface afw_pool.">afw_pool_malloc()</a> to allocate memory for a specified type and cast the return pointer to a pointer to that type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool_8h_source.html#l00185">185</a> of file <a class="el" href="afw__pool_8h_source.html">afw_pool.h</a>.</p>
 
 </div>
 </div>
-<a id="ga24d30af2f5a9d64026c401869c634c8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga24d30af2f5a9d64026c401869c634c8a">&#9670;&nbsp;</a></span>AFW_THREAD_MUTEX_LOCK</h2>
+<a id="ga46f98102d15aa9149292b09c70d1dc91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46f98102d15aa9149292b09c70d1dc91">&#9670;&nbsp;</a></span>AFW_THREAD_MUTEX_LOCK</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +306,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -324,12 +324,12 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <p>Macro to begin a mutex lock section. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Usage:</p>
-<p><a class="el" href="group__afw__pool.html#ga24d30af2f5a9d64026c401869c634c8a" title="Macro to begin a mutex lock section.">AFW_THREAD_MUTEX_LOCK(scope)</a> { ... a very small amount of code that doesn't call anything } <a class="el" href="group__afw__pool.html#ga32a9b0a39fba68811fabd41a86d041f8" title="Macro to end a mutex lock.">AFW_THREAD_MUTEX_UNLOCK()</a>; </p>
+<p><a class="el" href="group__afw__pool.html#ga46f98102d15aa9149292b09c70d1dc91" title="Macro to begin a mutex lock section.">AFW_THREAD_MUTEX_LOCK(xctx)</a> { ... a very small amount of code that doesn't call anything } <a class="el" href="group__afw__pool.html#ga32a9b0a39fba68811fabd41a86d041f8" title="Macro to end a mutex lock.">AFW_THREAD_MUTEX_UNLOCK()</a>; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__thread_8h_source.html#l00140">140</a> of file <a class="el" href="afw__thread_8h_source.html">afw_thread.h</a>.</p>
 
@@ -364,8 +364,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga918447cc5ff654257393b4370c1f7641"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga918447cc5ff654257393b4370c1f7641">&#9670;&nbsp;</a></span>afw_pool_create()</h2>
+<a id="ga2c63deb23873d803babf840e74ca9e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c63deb23873d803babf840e74ca9e94">&#9670;&nbsp;</a></span>afw_pool_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -379,8 +379,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -394,21 +394,21 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>of new pool. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new pool.</dd></dl>
 <p>A pool created with this function is either thread specific or a multithreaded pool depending on the parent.</p>
 <p>If the parent is a thread specific pool, the created pool will also be thread specific. Thread specific pools are single threaded and no locking is allowed. If any of the pool functions are called from other than the specific thread, an error is thrown.</p>
-<p>If the parent is a multithread pool, the created pool will also be a multithreaded pool. Calls to lock function will be directed to the nearest ancestor pool that was created with <a class="el" href="group__afw__pool.html#ga71033fbf3daff951d7fe7b3058d718ff" title="Create a new multithreaded pool.">afw_pool_create_multithreaded()</a> or the base pool for the environment. </p>
+<p>If the parent is a multithread pool, the created pool will also be a multithreaded pool. Calls to lock function will be directed to the nearest ancestor pool that was created with <a class="el" href="group__afw__pool.html#gae8769aca2b11f289b5937797f7a320cb" title="Create a new multithreaded pool.">afw_pool_create_multithreaded()</a> or the base pool for the environment. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool__singlethreaded_8c_source.html#l00159">159</a> of file <a class="el" href="afw__pool__singlethreaded_8c_source.html">afw_pool_singlethreaded.c</a>.</p>
 
 </div>
 </div>
-<a id="ga42ecd44ab9769aa467bd0d4103eba950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga42ecd44ab9769aa467bd0d4103eba950">&#9670;&nbsp;</a></span>afw_pool_create_debug()</h2>
+<a id="gaff37cd2417b542182d22c2292bf4ca75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff37cd2417b542182d22c2292bf4ca75">&#9670;&nbsp;</a></span>afw_pool_create_debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,8 +422,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -443,20 +443,20 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>of new pool. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new pool. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__pool.html#ga918447cc5ff654257393b4370c1f7641" title="Create a new pool.">afw_pool_create()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__pool.html#ga2c63deb23873d803babf840e74ca9e94" title="Create a new pool.">afw_pool_create()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool__singlethreaded_8c_source.html#l00183">183</a> of file <a class="el" href="afw__pool__singlethreaded_8c_source.html">afw_pool_singlethreaded.c</a>.</p>
 
 </div>
 </div>
-<a id="ga71033fbf3daff951d7fe7b3058d718ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga71033fbf3daff951d7fe7b3058d718ff">&#9670;&nbsp;</a></span>afw_pool_create_multithreaded()</h2>
+<a id="gae8769aca2b11f289b5937797f7a320cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae8769aca2b11f289b5937797f7a320cb">&#9670;&nbsp;</a></span>afw_pool_create_multithreaded()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -470,8 +470,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -485,7 +485,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>of new pool or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -502,8 +502,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 
 </div>
 </div>
-<a id="gac139193656fc148221bc63764d5d26fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac139193656fc148221bc63764d5d26fa">&#9670;&nbsp;</a></span>afw_pool_create_multithreaded_debug()</h2>
+<a id="gaf476546786dd563d0852571ad270ce83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf476546786dd563d0852571ad270ce83">&#9670;&nbsp;</a></span>afw_pool_create_multithreaded_debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -517,8 +517,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -538,20 +538,20 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>of new pool or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new pool. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__pool.html#ga71033fbf3daff951d7fe7b3058d718ff" title="Create a new multithreaded pool.">afw_pool_create_multithreaded()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__pool.html#gae8769aca2b11f289b5937797f7a320cb" title="Create a new multithreaded pool.">afw_pool_create_multithreaded()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool__multithreaded_8c_source.html#l00222">222</a> of file <a class="el" href="afw__pool__multithreaded_8c_source.html">afw_pool_multithreaded.c</a>.</p>
 
 </div>
 </div>
-<a id="gab303906cc70998d119d4123152176e49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab303906cc70998d119d4123152176e49">&#9670;&nbsp;</a></span>afw_thread_attr_create()</h2>
+<a id="gad911e93483739bce67a10dcd488e9293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad911e93483739bce67a10dcd488e9293">&#9670;&nbsp;</a></span>afw_thread_attr_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -565,8 +565,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -580,7 +580,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -590,8 +590,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 
 </div>
 </div>
-<a id="gafdb8ebf39d7ab906b2d4be56a4b66a27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafdb8ebf39d7ab906b2d4be56a4b66a27">&#9670;&nbsp;</a></span>afw_thread_create()</h2>
+<a id="ga8e5c720e33e815d289d2203b55767eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e5c720e33e815d289d2203b55767eca">&#9670;&nbsp;</a></span>afw_thread_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -629,8 +629,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -649,7 +649,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
     <tr><td class="paramname">name</td><td>to be associated with thread. </td></tr>
     <tr><td class="paramname">thread_number</td><td>to be associated with thread. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -659,8 +659,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 
 </div>
 </div>
-<a id="ga968205f9b276bb214c8239d482c5a5c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga968205f9b276bb214c8239d482c5a5c0">&#9670;&nbsp;</a></span>afw_thread_join()</h2>
+<a id="ga30de8375b7a0126cd525b0610f5b21e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30de8375b7a0126cd525b0610f5b21e5">&#9670;&nbsp;</a></span>afw_thread_join()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -674,8 +674,8 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -689,7 +689,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">thread</td><td>to join. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -702,7 +702,7 @@ const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td><t
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

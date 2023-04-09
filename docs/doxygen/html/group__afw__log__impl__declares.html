@@ -94,14 +94,14 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga209b6c96f47fda2766b74e04f886202a"><td class="memItemLeft" align="right" valign="top"><a id="ga209b6c96f47fda2766b74e04f886202a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_log_destroy</b> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga209b6c96f47fda2766b74e04f886202a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafb120b87c699e66db9a880640a30480d"><td class="memItemLeft" align="right" valign="top"><a id="gafb120b87c699e66db9a880640a30480d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_log_set_own_mask</b> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="group__afw__common.html#ga68a6441ffe935c3e340c4c94562ff3db">afw_log_priority_mask_t</a> mask, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:gafb120b87c699e66db9a880640a30480d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga758f471fee095101de45ea5833075989"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log__impl__declares.html#ga758f471fee095101de45ea5833075989">impl_afw_log_write</a> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *message, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga758f471fee095101de45ea5833075989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6fae3facdde2d97018dd80472d0e914"><td class="memItemLeft" align="right" valign="top"><a id="gae6fae3facdde2d97018dd80472d0e914"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_log_destroy</b> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gae6fae3facdde2d97018dd80472d0e914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1a5f40f6ff7016f2bad268a3fb838bc"><td class="memItemLeft" align="right" valign="top"><a id="gaf1a5f40f6ff7016f2bad268a3fb838bc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_log_set_own_mask</b> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="group__afw__common.html#ga68a6441ffe935c3e340c4c94562ff3db">afw_log_priority_mask_t</a> mask, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gaf1a5f40f6ff7016f2bad268a3fb838bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga286acc4c8ec10e3e12f0181f6a8bb3e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log__impl__declares.html#ga286acc4c8ec10e3e12f0181f6a8bb3e3">impl_afw_log_write</a> (const <a class="el" href="structafw__log__s.html">afw_log_t</a> *instance, <a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *message, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga286acc4c8ec10e3e12f0181f6a8bb3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This file should only be included in c source files that implement interface afw_log.</p>
@@ -131,8 +131,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="stringliteral">&quot; *   #define &quot;</span>AFW_LOG_INF_ONLY<span class="stringliteral">&quot; is specified to generate inf only.&quot;</span></div>
 <div class="ttc" id="aafw__log__impl__declares_8h_html"><div class="ttname"><a href="afw__log__impl__declares_8h.html">afw_log_impl_declares.h</a></div><div class="ttdoc">Interface afw_interface implementation declares.</div></div>
 </div><!-- fragment --> <h2 class="groupheader">Function Documentation</h2>
-<a id="ga758f471fee095101de45ea5833075989"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga758f471fee095101de45ea5833075989">&#9670;&nbsp;</a></span>impl_afw_log_write()</h2>
+<a id="ga286acc4c8ec10e3e12f0181f6a8bb3e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga286acc4c8ec10e3e12f0181f6a8bb3e3">&#9670;&nbsp;</a></span>impl_afw_log_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,8 +164,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,7 +185,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -113,7 +113,7 @@ $(function() {
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__data__type__s.html">afw_data_type_t</a> * instance,</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * from_internal,</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> * p,</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_utf8_to_internal</span></div>
@@ -124,7 +124,7 @@ $(function() {
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> * to_internal,</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * from_utf8,</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> * p,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_compare_internal</span></div>
@@ -134,7 +134,7 @@ $(function() {
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__data__type__s.html">afw_data_type_t</a> * instance,</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * internal1,</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * internal2,</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_convert_internal</span></div>
@@ -146,7 +146,7 @@ $(function() {
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * from_internal,</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__data__type__s.html">afw_data_type_t</a> * to_data_type,</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> * p,</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_clone_internal</span></div>
@@ -157,7 +157,7 @@ $(function() {
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">void</span> * to_internal,</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * from_internal,</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> * p,</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_value_compiler_listing</span></div>
@@ -167,7 +167,7 @@ $(function() {
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__data__type__s.html">afw_data_type_t</a> * instance,</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> * writer,</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> * value,</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#ifndef impl_afw_data_type_write_as_expression</span></div>
@@ -177,7 +177,7 @@ $(function() {
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__data__type__s.html">afw_data_type_t</a> * instance,</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__writer__s.html">afw_writer_t</a> * writer,</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * from_internal,</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
@@ -221,15 +221,15 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_ga294533d3f49933f65de247a76acca81b"><div class="ttname"><a href="group__afw__common.html#ga294533d3f49933f65de247a76acca81b">AFW_UTF8_LITERAL</a></div><div class="ttdeci">#define AFW_UTF8_LITERAL(A_STRING)</div><div class="ttdoc">String literal initializer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00581">afw_common.h:581</a></div></div>
 <div class="ttc" id="astructafw__data__type__inf__s_html"><div class="ttname"><a href="structafw__data__type__inf__s.html">afw_data_type_inf_s</a></div><div class="ttdoc">Interface afw_data_type_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l02175">afw_interface.h:2175</a></div></div>
 <div class="ttc" id="astructafw__data__type__s_html"><div class="ttname"><a href="structafw__data__type__s.html">afw_data_type_s</a></div><div class="ttdoc">Interface afw_data_type public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l02086">afw_interface.h:2086</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
-<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05664">afw_interface.h:5664</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="astructafw__writer__s_html"><div class="ttname"><a href="structafw__writer__s.html">afw_writer_s</a></div><div class="ttdoc">Interface afw_writer public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05540">afw_interface.h:5540</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:14 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

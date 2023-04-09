@@ -413,12 +413,12 @@ typedef <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1f
 <tr class="memitem:gaa6086794bcf1454d3682a7b3360f5d22"><td class="memItemLeft" align="right" valign="top">typedef char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a></td></tr>
 <tr class="memdesc:gaa6086794bcf1454d3682a7b3360f5d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">8 bits of utf-8 codepoint.  <a href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">More...</a><br /></td></tr>
 <tr class="separator:gaa6086794bcf1454d3682a7b3360f5d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22f9628159cc459b42b2d4290e9cd76d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga7c104ee4d1037f17fc0dc7e2f99538a5">afw_code_point_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga22f9628159cc459b42b2d4290e9cd76d">afw_code_point_get_cb_t</a>) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga22f9628159cc459b42b2d4290e9cd76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Unicode code point callback.  <a href="group__afw__common.html#ga22f9628159cc459b42b2d4290e9cd76d">More...</a><br /></td></tr>
-<tr class="separator:ga22f9628159cc459b42b2d4290e9cd76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93eea8d9bb28ab19eb24262337d071a3"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a>) (<a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *octet, void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga93eea8d9bb28ab19eb24262337d071a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an utf-8 octet (8 bits).  <a href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">More...</a><br /></td></tr>
-<tr class="separator:ga93eea8d9bb28ab19eb24262337d071a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf329f12fd196ce82cbe35b8e97912d2a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga7c104ee4d1037f17fc0dc7e2f99538a5">afw_code_point_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaf329f12fd196ce82cbe35b8e97912d2a">afw_code_point_get_cb_t</a>) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaf329f12fd196ce82cbe35b8e97912d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Unicode code point callback.  <a href="group__afw__common.html#gaf329f12fd196ce82cbe35b8e97912d2a">More...</a><br /></td></tr>
+<tr class="separator:gaf329f12fd196ce82cbe35b8e97912d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d90483aa60c16e6b9378c1c306a805d"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a>) (<a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *octet, void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga8d90483aa60c16e6b9378c1c306a805d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an utf-8 octet (8 bits).  <a href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">More...</a><br /></td></tr>
+<tr class="separator:ga8d90483aa60c16e6b9378c1c306a805d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf758b90e3fadf75b6264795b4f8a1e57"><td class="memItemLeft" align="right" valign="top"><a id="gaf758b90e3fadf75b6264795b4f8a1e57"></a>
 typedef apr_int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></td></tr>
 <tr class="memdesc:gaf758b90e3fadf75b6264795b4f8a1e57"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef for big signed int. <br /></td></tr>
@@ -479,12 +479,12 @@ typedef struct <a class="el" href="structafw__key__z__string__z__s.html">afw_key
 <tr class="separator:ga0106e232c0e8f89158b0d6119a1a4f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga64c19e9defee8ec3ec6e4d5cf1d800f5"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="group__afw__common.html#gafd5141b559541e1f242749b0865d992e">afw_error_code_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a></td></tr>
 <tr class="separator:ga64c19e9defee8ec3ec6e4d5cf1d800f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8e4e52888aead22e6527c216cd20f355"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga8e4e52888aead22e6527c216cd20f355">afw_pool_cleanup_function_p_t</a>) (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga8e4e52888aead22e6527c216cd20f355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for pool cleanup functions.  <a href="group__afw__common.html#ga8e4e52888aead22e6527c216cd20f355">More...</a><br /></td></tr>
-<tr class="separator:ga8e4e52888aead22e6527c216cd20f355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga00851a8f63a50c413cf091d25400e754"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga00851a8f63a50c413cf091d25400e754">afw_scope_get_variable_t</a>) (const <a class="el" href="group__afw__common.html#ga9239d235242ca08f41e04c4cbcad33a2">afw_scope_qualifier_stack_entry_t</a> *entry, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga00851a8f63a50c413cf091d25400e754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function to get a qualified variable.  <a href="group__afw__common.html#ga00851a8f63a50c413cf091d25400e754">More...</a><br /></td></tr>
-<tr class="separator:ga00851a8f63a50c413cf091d25400e754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1a3b9414fe5d23a9ee2c774c749ad4a"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gac1a3b9414fe5d23a9ee2c774c749ad4a">afw_pool_cleanup_function_p_t</a>) (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gac1a3b9414fe5d23a9ee2c774c749ad4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for pool cleanup functions.  <a href="group__afw__common.html#gac1a3b9414fe5d23a9ee2c774c749ad4a">More...</a><br /></td></tr>
+<tr class="separator:gac1a3b9414fe5d23a9ee2c774c749ad4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9982b09576e8d831bfd291125be1e39"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gab9982b09576e8d831bfd291125be1e39">afw_xctx_get_variable_t</a>) (const <a class="el" href="group__afw__common.html#ga0d22ec2a6d165423893db1f65f205938">afw_xctx_qualifier_stack_entry_t</a> *entry, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gab9982b09576e8d831bfd291125be1e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function to get a qualified variable.  <a href="group__afw__common.html#gab9982b09576e8d831bfd291125be1e39">More...</a><br /></td></tr>
+<tr class="separator:gab9982b09576e8d831bfd291125be1e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae106573d9765e938905369f32d52322a"><td class="memItemLeft" align="right" valign="top"><a id="gae106573d9765e938905369f32d52322a"></a>
 typedef enum <a class="el" href="group__afw__common.html#ga241f4e05d908324f9ab4dfe7a9674cff">afw_log_priority_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a></td></tr>
 <tr class="memdesc:gae106573d9765e938905369f32d52322a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log levels. See <a class="el" href="afw__log_8h.html" title="Adaptive Framework afw_log interface helpers header.">afw_log.h</a> for more information. <br /></td></tr>
@@ -492,30 +492,30 @@ typedef enum <a class="el" href="group__afw__common.html#ga241f4e05d908324f9ab4d
 <tr class="memitem:gaf9ffaefeb352d9588090cc7d6f4d62cc"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="group__afw__common.html#gabecb2d6f36f6391d9e7bd75ba2644362">afw_adaptor_journal_option_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaf9ffaefeb352d9588090cc7d6f4d62cc">afw_adaptor_journal_option_t</a></td></tr>
 <tr class="memdesc:gaf9ffaefeb352d9588090cc7d6f4d62cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for afw_adaptor_journal get_entry options enum.  <a href="group__afw__common.html#gaf9ffaefeb352d9588090cc7d6f4d62cc">More...</a><br /></td></tr>
 <tr class="separator:gaf9ffaefeb352d9588090cc7d6f4d62cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaab1f58200ca604b0ccac274eaa22410a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">afw_object_cb_t</a>) (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, void *context, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaab1f58200ca604b0ccac274eaa22410a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for afw_adaptor_session_object callback.  <a href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">More...</a><br /></td></tr>
-<tr class="separator:gaab1f58200ca604b0ccac274eaa22410a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5f4a23341b49a7c13c2614d10787ac9d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga5f4a23341b49a7c13c2614d10787ac9d">afw_value_cb_t</a>) (const void *value, void *context, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga5f4a23341b49a7c13c2614d10787ac9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for value callback.  <a href="group__afw__common.html#ga5f4a23341b49a7c13c2614d10787ac9d">More...</a><br /></td></tr>
-<tr class="separator:ga5f4a23341b49a7c13c2614d10787ac9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9fa2b75a946874dcad8008a15a9929b2"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga9fa2b75a946874dcad8008a15a9929b2">afw_read_cb_t</a>) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> *more_to_read, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga9fa2b75a946874dcad8008a15a9929b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for read callback function.  <a href="group__afw__common.html#ga9fa2b75a946874dcad8008a15a9929b2">More...</a><br /></td></tr>
-<tr class="separator:ga9fa2b75a946874dcad8008a15a9929b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga508c696d1024c0cb37e1d5fee9ac74d0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga508c696d1024c0cb37e1d5fee9ac74d0">afw_write_cb_t</a>) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga508c696d1024c0cb37e1d5fee9ac74d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for write callback function.  <a href="group__afw__common.html#ga508c696d1024c0cb37e1d5fee9ac74d0">More...</a><br /></td></tr>
-<tr class="separator:ga508c696d1024c0cb37e1d5fee9ac74d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5a32761f82fe490f747b5ce77b5785ea"><td class="memItemLeft" align="right" valign="top"><a id="ga5a32761f82fe490f747b5ce77b5785ea"></a>
-typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_runtime_value_accessor_t</b>) (const <a class="el" href="group__afw__common.html#gada4c9a176494e214dd6cf2ccc9545d1d">afw_runtime_object_map_property_t</a> *property, const void *internal, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga5a32761f82fe490f747b5ce77b5785ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22a202cea2255b41bc016d2b26950140"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">afw_object_cb_t</a>) (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, void *context, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga22a202cea2255b41bc016d2b26950140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for afw_adaptor_session_object callback.  <a href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">More...</a><br /></td></tr>
+<tr class="separator:ga22a202cea2255b41bc016d2b26950140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7187d1d635fd54d296ca5af7d6f080b4"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga7187d1d635fd54d296ca5af7d6f080b4">afw_value_cb_t</a>) (const void *value, void *context, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga7187d1d635fd54d296ca5af7d6f080b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for value callback.  <a href="group__afw__common.html#ga7187d1d635fd54d296ca5af7d6f080b4">More...</a><br /></td></tr>
+<tr class="separator:ga7187d1d635fd54d296ca5af7d6f080b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9830e77b219380182d4de5d2fdeba480"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga9830e77b219380182d4de5d2fdeba480">afw_read_cb_t</a>) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> *more_to_read, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga9830e77b219380182d4de5d2fdeba480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for read callback function.  <a href="group__afw__common.html#ga9830e77b219380182d4de5d2fdeba480">More...</a><br /></td></tr>
+<tr class="separator:ga9830e77b219380182d4de5d2fdeba480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6384d57e6cf107c279b72404c65a305"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a>) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaf6384d57e6cf107c279b72404c65a305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for write callback function.  <a href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">More...</a><br /></td></tr>
+<tr class="separator:gaf6384d57e6cf107c279b72404c65a305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga45c5bcdf5faadf5a8970a23e899332d4"><td class="memItemLeft" align="right" valign="top"><a id="ga45c5bcdf5faadf5a8970a23e899332d4"></a>
+typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_runtime_value_accessor_t</b>) (const <a class="el" href="group__afw__common.html#gada4c9a176494e214dd6cf2ccc9545d1d">afw_runtime_object_map_property_t</a> *property, const void *internal, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga45c5bcdf5faadf5a8970a23e899332d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6aab261ce9cae8d0589e1746b4d9eada"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga6aab261ce9cae8d0589e1746b4d9eada">afw_function_execute_cb_t</a>) (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x)</td></tr>
 <tr class="memdesc:ga6aab261ce9cae8d0589e1746b4d9eada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function execute functions.  <a href="group__afw__common.html#ga6aab261ce9cae8d0589e1746b4d9eada">More...</a><br /></td></tr>
 <tr class="separator:ga6aab261ce9cae8d0589e1746b4d9eada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga407242c0ef84c660326cd3ac8727520f"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga407242c0ef84c660326cd3ac8727520f">afw_function_thunk_execute_t</a>) (const <a class="el" href="group__afw__common.html#ga404e46ac61bd04bc1a34f67aebe1c7d0">afw_value_function_thunk_t</a> *function, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *argv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga407242c0ef84c660326cd3ac8727520f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function thunk execute functions.  <a href="group__afw__common.html#ga407242c0ef84c660326cd3ac8727520f">More...</a><br /></td></tr>
-<tr class="separator:ga407242c0ef84c660326cd3ac8727520f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3c4e2892b07fc6b5234719dd1cc69fd0"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga3c4e2892b07fc6b5234719dd1cc69fd0">afw_function_arg_check_t</a>) (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *argv[], const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga3c4e2892b07fc6b5234719dd1cc69fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function arg check functions.  <a href="group__afw__common.html#ga3c4e2892b07fc6b5234719dd1cc69fd0">More...</a><br /></td></tr>
-<tr class="separator:ga3c4e2892b07fc6b5234719dd1cc69fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4946da276243d1179a745bc79674774"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gac4946da276243d1179a745bc79674774">afw_function_thunk_execute_t</a>) (const <a class="el" href="group__afw__common.html#ga404e46ac61bd04bc1a34f67aebe1c7d0">afw_value_function_thunk_t</a> *function, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *argv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gac4946da276243d1179a745bc79674774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function thunk execute functions.  <a href="group__afw__common.html#gac4946da276243d1179a745bc79674774">More...</a><br /></td></tr>
+<tr class="separator:gac4946da276243d1179a745bc79674774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga357099a35a9e22fd0ef1d672db24ae0a"><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga357099a35a9e22fd0ef1d672db24ae0a">afw_function_arg_check_t</a>) (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *argv[], const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga357099a35a9e22fd0ef1d672db24ae0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for function arg check functions.  <a href="group__afw__common.html#ga357099a35a9e22fd0ef1d672db24ae0a">More...</a><br /></td></tr>
+<tr class="separator:ga357099a35a9e22fd0ef1d672db24ae0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8019f489b6ee725e70be54ed7b10c06c"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="group__afw__common.html#ga5bb1e1a15e184635334034a950fe25f0">afw_service_startup_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga8019f489b6ee725e70be54ed7b10c06c">afw_service_startup_t</a></td></tr>
 <tr class="memdesc:ga8019f489b6ee725e70be54ed7b10c06c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service startup type enum.  <a href="group__afw__common.html#ga8019f489b6ee725e70be54ed7b10c06c">More...</a><br /></td></tr>
 <tr class="separator:ga8019f489b6ee725e70be54ed7b10c06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -571,12 +571,12 @@ typedef struct <a class="el" href="structafw__time__s.html">afw_time_s</a>&#160;
 typedef struct <a class="el" href="structafw__date_time__s.html">afw_dateTime_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a></td></tr>
 <tr class="memdesc:ga1d6b4dc122a04030e1b32d42635dfbe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">date, time, and time zone. <br /></td></tr>
 <tr class="separator:ga1d6b4dc122a04030e1b32d42635dfbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeea341d6d2b0fb22068767be082f5e16"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaeea341d6d2b0fb22068767be082f5e16">afw_service_wrapper_start_cb</a>) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaeea341d6d2b0fb22068767be082f5e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service wrapper start call back.  <a href="group__afw__common.html#gaeea341d6d2b0fb22068767be082f5e16">More...</a><br /></td></tr>
-<tr class="separator:gaeea341d6d2b0fb22068767be082f5e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1833d2711782b7552843dd856638bbd9"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga1833d2711782b7552843dd856638bbd9">afw_service_wrapper_stop_cb</a>) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga1833d2711782b7552843dd856638bbd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service wrapper stop call back.  <a href="group__afw__common.html#ga1833d2711782b7552843dd856638bbd9">More...</a><br /></td></tr>
-<tr class="separator:ga1833d2711782b7552843dd856638bbd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeaa6658e2862a5fc89d7722875c49286"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaeaa6658e2862a5fc89d7722875c49286">afw_service_wrapper_start_cb</a>) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaeaa6658e2862a5fc89d7722875c49286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service wrapper start call back.  <a href="group__afw__common.html#gaeaa6658e2862a5fc89d7722875c49286">More...</a><br /></td></tr>
+<tr class="separator:gaeaa6658e2862a5fc89d7722875c49286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga05bce7e78192df64cfc93fef5d530920"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga05bce7e78192df64cfc93fef5d530920">afw_service_wrapper_stop_cb</a>) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga05bce7e78192df64cfc93fef5d530920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service wrapper stop call back.  <a href="group__afw__common.html#ga05bce7e78192df64cfc93fef5d530920">More...</a><br /></td></tr>
+<tr class="separator:ga05bce7e78192df64cfc93fef5d530920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2e21fd88d005cd2a154a3a3e4758e04d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__adaptor__id__anchor__s.html">afw_adaptor_id_anchor_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga2e21fd88d005cd2a154a3a3e4758e04d">afw_adaptor_id_anchor_t</a></td></tr>
 <tr class="separator:ga2e21fd88d005cd2a154a3a3e4758e04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga697d94d4cf4b0847084c67e33254cf7d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__adaptor__impl__s.html">afw_adaptor_impl_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga697d94d4cf4b0847084c67e33254cf7d">afw_adaptor_impl_t</a></td></tr>
@@ -591,8 +591,8 @@ typedef struct <a class="el" href="structafw__date_time__s.html">afw_dateTime_s<
 <tr class="separator:ga62df3e82582d864431bf8b4597265830"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaf7077536ffc201c8e579275d777c952"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__adaptor__modify__entry__s.html">afw_adaptor_modify_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaaf7077536ffc201c8e579275d777c952">afw_adaptor_modify_entry_t</a></td></tr>
 <tr class="separator:gaaf7077536ffc201c8e579275d777c952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga347f8777264c1303f793ca32856bd56f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__adaptor__scope__internal__s.html">afw_adaptor_scope_internal_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga347f8777264c1303f793ca32856bd56f">afw_adaptor_scope_internal_t</a></td></tr>
-<tr class="separator:ga347f8777264c1303f793ca32856bd56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a9c923d3d12e578c3afa001a1889648"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__adaptor__xctx__internal__s.html">afw_adaptor_xctx_internal_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga0a9c923d3d12e578c3afa001a1889648">afw_adaptor_xctx_internal_t</a></td></tr>
+<tr class="separator:ga0a9c923d3d12e578c3afa001a1889648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeb517740bb200a8ab1a2f0840d9fd390"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__components__s.html">afw_components_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaeb517740bb200a8ab1a2f0840d9fd390">afw_components_t</a></td></tr>
 <tr class="memdesc:gaeb517740bb200a8ab1a2f0840d9fd390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application app (afw_app) object.  <a href="group__afw__common.html#gaeb517740bb200a8ab1a2f0840d9fd390">More...</a><br /></td></tr>
 <tr class="separator:gaeb517740bb200a8ab1a2f0840d9fd390"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -746,16 +746,16 @@ typedef struct <a class="el" href="structafw__date_time__s.html">afw_dateTime_s<
 <tr class="separator:gac8e24071d36504e1fbc84ddcce7572df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga552f9dc4a96efd5f0339fbe805c34fbe"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__runtime__unresolved__value__s.html">afw_runtime_unresolved_value_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga552f9dc4a96efd5f0339fbe805c34fbe">afw_runtime_unresolved_value_t</a></td></tr>
 <tr class="separator:ga552f9dc4a96efd5f0339fbe805c34fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga490abfb02338e274fdb1f14db0f1a22f"><td class="memItemLeft" align="right" valign="top">typedef struct afw_scope_evaluation_stack_s&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga490abfb02338e274fdb1f14db0f1a22f">afw_scope_evaluation_stack_t</a></td></tr>
-<tr class="separator:ga490abfb02338e274fdb1f14db0f1a22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaedcf63834fd2449df6523429bbf3a660"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__scope__evaluation__stack__entry__s.html">afw_scope_evaluation_stack_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gaedcf63834fd2449df6523429bbf3a660">afw_scope_evaluation_stack_entry_t</a></td></tr>
-<tr class="separator:gaedcf63834fd2449df6523429bbf3a660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5116e2678bab75e8c4ee0ce922311cf9"><td class="memItemLeft" align="right" valign="top">typedef struct afw_scope_internal_qualifier_stack_s&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga5116e2678bab75e8c4ee0ce922311cf9">afw_scope_qualifier_stack_t</a></td></tr>
-<tr class="memdesc:ga5116e2678bab75e8c4ee0ce922311cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for scope qualifier stack.  <a href="group__afw__common.html#ga5116e2678bab75e8c4ee0ce922311cf9">More...</a><br /></td></tr>
-<tr class="separator:ga5116e2678bab75e8c4ee0ce922311cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9239d235242ca08f41e04c4cbcad33a2"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__scope__qualifier__stack__entry__s.html">afw_scope_qualifier_stack_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga9239d235242ca08f41e04c4cbcad33a2">afw_scope_qualifier_stack_entry_t</a></td></tr>
-<tr class="memdesc:ga9239d235242ca08f41e04c4cbcad33a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for scope qualifier stack entry.  <a href="group__afw__common.html#ga9239d235242ca08f41e04c4cbcad33a2">More...</a><br /></td></tr>
-<tr class="separator:ga9239d235242ca08f41e04c4cbcad33a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga966d8083cf6741144d51d38e37056020"><td class="memItemLeft" align="right" valign="top">typedef struct afw_xctx_evaluation_stack_s&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga966d8083cf6741144d51d38e37056020">afw_xctx_evaluation_stack_t</a></td></tr>
+<tr class="separator:ga966d8083cf6741144d51d38e37056020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e3ab5ce217c89f0be04a76e865483a8"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__xctx__evaluation__stack__entry__s.html">afw_xctx_evaluation_stack_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga0e3ab5ce217c89f0be04a76e865483a8">afw_xctx_evaluation_stack_entry_t</a></td></tr>
+<tr class="separator:ga0e3ab5ce217c89f0be04a76e865483a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2981f1d079ba37a6b097798ba9f58fe4"><td class="memItemLeft" align="right" valign="top">typedef struct afw_xctx_internal_qualifier_stack_s&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga2981f1d079ba37a6b097798ba9f58fe4">afw_xctx_qualifier_stack_t</a></td></tr>
+<tr class="memdesc:ga2981f1d079ba37a6b097798ba9f58fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for xctx qualifier stack.  <a href="group__afw__common.html#ga2981f1d079ba37a6b097798ba9f58fe4">More...</a><br /></td></tr>
+<tr class="separator:ga2981f1d079ba37a6b097798ba9f58fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d22ec2a6d165423893db1f65f205938"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__xctx__qualifier__stack__entry__s.html">afw_xctx_qualifier_stack_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga0d22ec2a6d165423893db1f65f205938">afw_xctx_qualifier_stack_entry_t</a></td></tr>
+<tr class="memdesc:ga0d22ec2a6d165423893db1f65f205938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for xctx qualifier stack entry.  <a href="group__afw__common.html#ga0d22ec2a6d165423893db1f65f205938">More...</a><br /></td></tr>
+<tr class="separator:ga0d22ec2a6d165423893db1f65f205938"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4896700d0c7efc19b8a3e97268f85095"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__service__s.html">afw_service_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga4896700d0c7efc19b8a3e97268f85095">afw_service_t</a></td></tr>
 <tr class="memdesc:ga4896700d0c7efc19b8a3e97268f85095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service.  <a href="group__afw__common.html#ga4896700d0c7efc19b8a3e97268f85095">More...</a><br /></td></tr>
 <tr class="separator:ga4896700d0c7efc19b8a3e97268f85095"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1065,11 +1065,11 @@ Functions</h2></td></tr>
 <p>bad_request - Something about the request was bad.</p>
 <p>query_to_complex - The query is too complex for the particular adaptor and/or index.</p>
 <p>request_syntax - A error occurred while parsing the request.</p>
-<p>objects_needed - This error will not occur if the object whose URI is in error.additional is available in the scope's cache. Function <a class="el" href="group__afw__object.html#ga5767556c98ceaaa57bd3334b6e7bead6" title="Resolve an object&#39;s instance pointer.">afw_object_resolve_instance()</a> uses this error code when object is NULL and the object with the URI passed is not in the cache.</p>
+<p>objects_needed - This error will not occur if the object whose URI is in error.additional is available in the xctx's cache. Function <a class="el" href="group__afw__object.html#ga5eaa1999e3a9a0e8590f35872437bd6d" title="Resolve an object&#39;s instance pointer.">afw_object_resolve_instance()</a> uses this error code when object is NULL and the object with the URI passed is not in the cache.</p>
 <p>authentication_required - Subject authentication required.</p>
 <p>denied - The caller is not authorized to perform the request. See error.additional for more information.</p>
 <p>read_only - Something is read only. See error.additional for an indication of what is write protected.</p>
-<p>not_found - Something was not found. If "not found" is a normal condition that might happen in a function or method, returning NULL or using a parameter should communicate "not found" instead of throwing an error with this error code. For example, function <a class="el" href="group__afw__object__interface.html#ga0b8e920e6a86ac2d9cab5c8f1a829db3" title="Call method get_property of interface afw_object.">afw_object_get_property()</a> sets its "found" parameter to AFW_FALSE and <a class="el" href="group__afw__object.html#ga5767556c98ceaaa57bd3334b6e7bead6" title="Resolve an object&#39;s instance pointer.">afw_object_resolve_instance()</a> return NULL to indicate "not found".</p>
+<p>not_found - Something was not found. If "not found" is a normal condition that might happen in a function or method, returning NULL or using a parameter should communicate "not found" instead of throwing an error with this error code. For example, function <a class="el" href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76" title="Call method get_property of interface afw_object.">afw_object_get_property()</a> sets its "found" parameter to AFW_FALSE and <a class="el" href="group__afw__object.html#ga5eaa1999e3a9a0e8590f35872437bd6d" title="Resolve an object&#39;s instance pointer.">afw_object_resolve_instance()</a> return NULL to indicate "not found".</p>
 <p>method_not_allowed - Method is not allowed for this resource.</p>
 <p>unsupported_accept - None of the request's acceptable response content types are supported.</p>
 <p>client_time_out - Timed out waiting on client.</p>
@@ -1247,7 +1247,7 @@ Functions</h2></td></tr>
 <div class="line">        }; \</div>
 <div class="line">    }; \</div>
 <div class="line">}</div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 </div><!-- fragment -->
 <p>Define a struct for a stack with the specified entry type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1614,14 +1614,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga347f8777264c1303f793ca32856bd56f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga347f8777264c1303f793ca32856bd56f">&#9670;&nbsp;</a></span>afw_adaptor_scope_internal_t</h2>
+<a id="ga0a9c923d3d12e578c3afa001a1889648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a9c923d3d12e578c3afa001a1889648">&#9670;&nbsp;</a></span>afw_adaptor_xctx_internal_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="structafw__adaptor__scope__internal__s.html">afw_adaptor_scope_internal_s</a> <a class="el" href="group__afw__common.html#ga347f8777264c1303f793ca32856bd56f">afw_adaptor_scope_internal_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="structafw__adaptor__xctx__internal__s.html">afw_adaptor_xctx_internal_s</a> <a class="el" href="group__afw__common.html#ga0a9c923d3d12e578c3afa001a1889648">afw_adaptor_xctx_internal_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1904,14 +1904,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga22f9628159cc459b42b2d4290e9cd76d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga22f9628159cc459b42b2d4290e9cd76d">&#9670;&nbsp;</a></span>afw_code_point_get_cb_t</h2>
+<a id="gaf329f12fd196ce82cbe35b8e97912d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf329f12fd196ce82cbe35b8e97912d2a">&#9670;&nbsp;</a></span>afw_code_point_get_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga7c104ee4d1037f17fc0dc7e2f99538a5">afw_code_point_t</a>(* afw_code_point_get_cb_t) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga7c104ee4d1037f17fc0dc7e2f99538a5">afw_code_point_t</a>(* afw_code_point_get_cb_t) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1920,7 +1920,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>from provider of callback. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller to callback </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller to callback </td></tr>
   </table>
   </dd>
 </dl>
@@ -2377,14 +2377,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga3c4e2892b07fc6b5234719dd1cc69fd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3c4e2892b07fc6b5234719dd1cc69fd0">&#9670;&nbsp;</a></span>afw_function_arg_check_t</h2>
+<a id="ga357099a35a9e22fd0ef1d672db24ae0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga357099a35a9e22fd0ef1d672db24ae0a">&#9670;&nbsp;</a></span>afw_function_arg_check_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a>*(* afw_function_arg_check_t) (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *argv[], const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a>*(* afw_function_arg_check_t) (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *argv[], const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2396,7 +2396,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">argc</td><td>The number of function parameters (does not include argv[0]). </td></tr>
     <tr><td class="paramname">argv</td><td>The function to call argv[0] followed by function parameters. </td></tr>
     <tr><td class="paramname">p</td><td>The memory pool allocated by the expression compiler. </td></tr>
-    <tr><td class="paramname">scope</td><td>The scope of the caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of the caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2468,14 +2468,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga407242c0ef84c660326cd3ac8727520f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga407242c0ef84c660326cd3ac8727520f">&#9670;&nbsp;</a></span>afw_function_thunk_execute_t</h2>
+<a id="gac4946da276243d1179a745bc79674774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac4946da276243d1179a745bc79674774">&#9670;&nbsp;</a></span>afw_function_thunk_execute_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_function_thunk_execute_t) (const <a class="el" href="group__afw__common.html#ga404e46ac61bd04bc1a34f67aebe1c7d0">afw_value_function_thunk_t</a> *function, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *argv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_function_thunk_execute_t) (const <a class="el" href="group__afw__common.html#ga404e46ac61bd04bc1a34f67aebe1c7d0">afw_value_function_thunk_t</a> *function, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> argc, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *argv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2597,7 +2597,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Struct for memory pointer and size. </p>
-<p>IMPORTANT: This must match up with afw_utf8_t since it is accepted to cast from afw_utf8_t to afw_memory_t. Don't cast the other way around unless you are positive ptr point to NFC Unicode &ndash; use <a class="el" href="group__afw__utf8.html#ga04d7c3048209098826ada2f9b319001a" title="Convert raw to a utf-8 NFC normalizing if necessary in specified pool.">afw_utf8_from_raw()</a> instead. </p>
+<p>IMPORTANT: This must match up with afw_utf8_t since it is accepted to cast from afw_utf8_t to afw_memory_t. Don't cast the other way around unless you are positive ptr point to NFC Unicode &ndash; use <a class="el" href="group__afw__utf8.html#ga452952a4ba451bf417cf99c0d40fcce8" title="Convert raw to a utf-8 NFC normalizing if necessary in specified pool.">afw_utf8_from_raw()</a> instead. </p>
 
 </div>
 </div>
@@ -2782,14 +2782,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaab1f58200ca604b0ccac274eaa22410a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaab1f58200ca604b0ccac274eaa22410a">&#9670;&nbsp;</a></span>afw_object_cb_t</h2>
+<a id="ga22a202cea2255b41bc016d2b26950140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga22a202cea2255b41bc016d2b26950140">&#9670;&nbsp;</a></span>afw_object_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(* afw_object_cb_t) (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, void *context, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(* afw_object_cb_t) (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, void *context, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2799,16 +2799,16 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">object</td><td>pointer or NULL. </td></tr>
     <tr><td class="paramname">context</td><td>supplied with callback </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the callback function requests that it not be called again.</dd></dl>
 <p>The purpose of returning true from a callback function is to short circuit a retrieve request when the callback has determined that it is "complete". Unless the callback has a special purpose like this, it should always return false so that it will continue to called until there are no more objects.</p>
-<p>This is the callback passed to <a class="el" href="group__afw__adaptor__session__interface.html#gab4d31fe84aa0db71843467b9b2e5ab64" title="Call method retrieve_objects of interface afw_adaptor_session.">afw_adaptor_session_retrieve_objects()</a> and <a class="el" href="group__afw__adaptor__session__interface.html#gab7da67aec3450d9dd0275e7a5b620f7e" title="Call method get_object of interface afw_adaptor_session.">afw_adaptor_session_get_object()</a>.</p>
-<p>For <a class="el" href="group__afw__adaptor__session__interface.html#gab4d31fe84aa0db71843467b9b2e5ab64" title="Call method retrieve_objects of interface afw_adaptor_session.">afw_adaptor_session_retrieve_objects()</a>, it is called each time an object is retrieved and once with an object pointer when finished.</p>
-<p>For <a class="el" href="group__afw__adaptor__session__interface.html#gab7da67aec3450d9dd0275e7a5b620f7e" title="Call method get_object of interface afw_adaptor_session.">afw_adaptor_session_get_object()</a>, it is called once, either with the object retrieved or NULL if not found.</p>
-<p>The callback function should call <a class="el" href="group__afw__object__interface.html#gacce57fe2a0c8508718a92979cb581d81" title="Call method release of interface afw_object.">afw_object_release()</a> on object once finished with it. </p>
+<p>This is the callback passed to <a class="el" href="group__afw__adaptor__session__interface.html#ga080e20a0ef1361d1d7412c997e906989" title="Call method retrieve_objects of interface afw_adaptor_session.">afw_adaptor_session_retrieve_objects()</a> and <a class="el" href="group__afw__adaptor__session__interface.html#gaf048b6d78207f5dd153ec9fe43ffee4d" title="Call method get_object of interface afw_adaptor_session.">afw_adaptor_session_get_object()</a>.</p>
+<p>For <a class="el" href="group__afw__adaptor__session__interface.html#ga080e20a0ef1361d1d7412c997e906989" title="Call method retrieve_objects of interface afw_adaptor_session.">afw_adaptor_session_retrieve_objects()</a>, it is called each time an object is retrieved and once with an object pointer when finished.</p>
+<p>For <a class="el" href="group__afw__adaptor__session__interface.html#gaf048b6d78207f5dd153ec9fe43ffee4d" title="Call method get_object of interface afw_adaptor_session.">afw_adaptor_session_get_object()</a>, it is called once, either with the object retrieved or NULL if not found.</p>
+<p>The callback function should call <a class="el" href="group__afw__object__interface.html#ga9d4659f85efca9c522fb96a018df4667" title="Call method release of interface afw_object.">afw_object_release()</a> on object once finished with it. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__common_8h_source.html#l01174">1174</a> of file <a class="el" href="afw__common_8h_source.html">afw_common.h</a>.</p>
 
@@ -2979,14 +2979,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8e4e52888aead22e6527c216cd20f355"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8e4e52888aead22e6527c216cd20f355">&#9670;&nbsp;</a></span>afw_pool_cleanup_function_p_t</h2>
+<a id="gac1a3b9414fe5d23a9ee2c774c749ad4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac1a3b9414fe5d23a9ee2c774c749ad4a">&#9670;&nbsp;</a></span>afw_pool_cleanup_function_p_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* afw_pool_cleanup_function_p_t) (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef void(* afw_pool_cleanup_function_p_t) (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2997,7 +2997,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">data</td><td>supplied on cleanup register. </td></tr>
     <tr><td class="paramname">data2</td><td>supplied on cleanup register. </td></tr>
     <tr><td class="paramname">p</td><td>being cleaned up. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller to cleanup. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller to cleanup. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3059,14 +3059,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga9fa2b75a946874dcad8008a15a9929b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9fa2b75a946874dcad8008a15a9929b2">&#9670;&nbsp;</a></span>afw_read_cb_t</h2>
+<a id="ga9830e77b219380182d4de5d2fdeba480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9830e77b219380182d4de5d2fdeba480">&#9670;&nbsp;</a></span>afw_read_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(* afw_read_cb_t) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> *more_to_read, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(* afw_read_cb_t) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> *more_to_read, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3079,7 +3079,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">size</td><td>is the number of bytes to read. A value of -1 reads a line. </td></tr>
     <tr><td class="paramname">more_to_read</td><td>indicates that there is possibly more input to read. </td></tr>
     <tr><td class="paramname">p</td><td>is pool to use if resources are needed. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3341,108 +3341,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaedcf63834fd2449df6523429bbf3a660"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaedcf63834fd2449df6523429bbf3a660">&#9670;&nbsp;</a></span>afw_scope_evaluation_stack_entry_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="structafw__scope__evaluation__stack__entry__s.html">afw_scope_evaluation_stack_entry_s</a> <a class="el" href="group__afw__common.html#gaedcf63834fd2449df6523429bbf3a660">afw_scope_evaluation_stack_entry_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Opaque typedef for afw_scope_evaluation_stack_entry_t.</p>
-<p>See <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a> for struct and more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
-
-</div>
-</div>
-<a id="ga490abfb02338e274fdb1f14db0f1a22f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga490abfb02338e274fdb1f14db0f1a22f">&#9670;&nbsp;</a></span>afw_scope_evaluation_stack_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct afw_scope_evaluation_stack_s <a class="el" href="group__afw__common.html#ga490abfb02338e274fdb1f14db0f1a22f">afw_scope_evaluation_stack_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Opaque typedef for afw_scope_evaluation_stack_t.</p>
-<p>See <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a> for struct and more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
-
-</div>
-</div>
-<a id="ga00851a8f63a50c413cf091d25400e754"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga00851a8f63a50c413cf091d25400e754">&#9670;&nbsp;</a></span>afw_scope_get_variable_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_scope_get_variable_t) (const <a class="el" href="group__afw__common.html#ga9239d235242ca08f41e04c4cbcad33a2">afw_scope_qualifier_stack_entry_t</a> *entry, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Typedef for function to get a qualified variable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">entry</td><td>Qualifier stack entry. </td></tr>
-    <tr><td class="paramname">name</td><td>Name of variable. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>value or NULL if not found.</dd></dl>
-<p>The stack is searched from newest to oldest. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__common_8h_source.html#l00967">967</a> of file <a class="el" href="afw__common_8h_source.html">afw_common.h</a>.</p>
-
-</div>
-</div>
-<a id="ga9239d235242ca08f41e04c4cbcad33a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9239d235242ca08f41e04c4cbcad33a2">&#9670;&nbsp;</a></span>afw_scope_qualifier_stack_entry_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="structafw__scope__qualifier__stack__entry__s.html">afw_scope_qualifier_stack_entry_s</a> <a class="el" href="group__afw__common.html#ga9239d235242ca08f41e04c4cbcad33a2">afw_scope_qualifier_stack_entry_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Typedef for scope qualifier stack entry. </p>
-<p>Struct defined in <a class="el" href="afw__scope_8h.html" title="Adaptive Framework Scope Implementation Header.">afw_scope.h</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
-
-</div>
-</div>
-<a id="ga5116e2678bab75e8c4ee0ce922311cf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5116e2678bab75e8c4ee0ce922311cf9">&#9670;&nbsp;</a></span>afw_scope_qualifier_stack_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct afw_scope_internal_qualifier_stack_s <a class="el" href="group__afw__common.html#ga5116e2678bab75e8c4ee0ce922311cf9">afw_scope_qualifier_stack_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Typedef for scope qualifier stack. </p>
-<p>Struct defined in <a class="el" href="afw__scope__internal_8h.html" title="Adaptive Framework Scope Internal Header.">afw_scope_internal.h</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
-
-</div>
-</div>
 <a id="ga8019f489b6ee725e70be54ed7b10c06c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga8019f489b6ee725e70be54ed7b10c06c">&#9670;&nbsp;</a></span>afw_service_startup_t</h2>
 
@@ -3496,14 +3394,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaeea341d6d2b0fb22068767be082f5e16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaeea341d6d2b0fb22068767be082f5e16">&#9670;&nbsp;</a></span>afw_service_wrapper_start_cb</h2>
+<a id="gaeaa6658e2862a5fc89d7722875c49286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeaa6658e2862a5fc89d7722875c49286">&#9670;&nbsp;</a></span>afw_service_wrapper_start_cb</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* afw_service_wrapper_start_cb) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef void(* afw_service_wrapper_start_cb) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3515,14 +3413,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1833d2711782b7552843dd856638bbd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1833d2711782b7552843dd856638bbd9">&#9670;&nbsp;</a></span>afw_service_wrapper_stop_cb</h2>
+<a id="ga05bce7e78192df64cfc93fef5d530920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05bce7e78192df64cfc93fef5d530920">&#9670;&nbsp;</a></span>afw_service_wrapper_stop_cb</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* afw_service_wrapper_stop_cb) (void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef void(* afw_service_wrapper_stop_cb) (void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3661,14 +3559,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga93eea8d9bb28ab19eb24262337d071a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga93eea8d9bb28ab19eb24262337d071a3">&#9670;&nbsp;</a></span>afw_utf8_octet_get_cb_t</h2>
+<a id="ga8d90483aa60c16e6b9378c1c306a805d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8d90483aa60c16e6b9378c1c306a805d">&#9670;&nbsp;</a></span>afw_utf8_octet_get_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* afw_utf8_octet_get_cb_t) (<a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *octet, void *data, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef int(* afw_utf8_octet_get_cb_t) (<a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *octet, void *data, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3677,7 +3575,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>from provider of callback. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller to callback </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller to callback </td></tr>
   </table>
   </dd>
 </dl>
@@ -3751,7 +3649,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>NFC normalized UTF-8 string. </p>
-<p>IMPORTANT: This must match up with afw_utf8_t since it is accepted to cast from afw_utf8_t to afw_memory_t. Don't cast the other way around unless you are positive ptr point to NFC Unicode &ndash; use <a class="el" href="group__afw__utf8.html#ga04d7c3048209098826ada2f9b319001a" title="Convert raw to a utf-8 NFC normalizing if necessary in specified pool.">afw_utf8_from_raw()</a> instead.</p>
+<p>IMPORTANT: This must match up with afw_utf8_t since it is accepted to cast from afw_utf8_t to afw_memory_t. Don't cast the other way around unless you are positive ptr point to NFC Unicode &ndash; use <a class="el" href="group__afw__utf8.html#ga452952a4ba451bf417cf99c0d40fcce8" title="Convert raw to a utf-8 NFC normalizing if necessary in specified pool.">afw_utf8_from_raw()</a> instead.</p>
 <p>All UTF-8 strings MUST be NFC normalized. Doing otherwise can cause unintended minor or major errors.</p>
 <p>See RFC 5198 and <a href="http://unicode.org/reports/tr15/">http://unicode.org/reports/tr15/</a></p>
 <p>This string is not null terminated, so it can contain NUL characters. The number of bytes in the sting is stored in len and a pointer to the first byte in s.</p>
@@ -3943,14 +3841,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga5f4a23341b49a7c13c2614d10787ac9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5f4a23341b49a7c13c2614d10787ac9d">&#9670;&nbsp;</a></span>afw_value_cb_t</h2>
+<a id="ga7187d1d635fd54d296ca5af7d6f080b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7187d1d635fd54d296ca5af7d6f080b4">&#9670;&nbsp;</a></span>afw_value_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(* afw_value_cb_t) (const void *value, void *context, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>(* afw_value_cb_t) (const void *value, void *context, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3960,7 +3858,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">void</td><td>pointer or NULL. </td></tr>
     <tr><td class="paramname">context</td><td>supplied with callback </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller </td></tr>
   </table>
   </dd>
 </dl>
@@ -4312,14 +4210,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga508c696d1024c0cb37e1d5fee9ac74d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga508c696d1024c0cb37e1d5fee9ac74d0">&#9670;&nbsp;</a></span>afw_write_cb_t</h2>
+<a id="gaf6384d57e6cf107c279b72404c65a305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf6384d57e6cf107c279b72404c65a305">&#9670;&nbsp;</a></span>afw_write_cb_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(* afw_write_cb_t) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td>
+          <td class="memname">typedef <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>(* afw_write_cb_t) (void *context, const void *buffer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -4331,13 +4229,115 @@ Functions</h2></td></tr>
     <tr><td class="paramname">buffer</td><td>containing bytes to written. </td></tr>
     <tr><td class="paramname">size</td><td>is the number of bytes to write. </td></tr>
     <tr><td class="paramname">p</td><td>is pool to use if resources are needed. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes written. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__common_8h_source.html#l01224">1224</a> of file <a class="el" href="afw__common_8h_source.html">afw_common.h</a>.</p>
+
+</div>
+</div>
+<a id="ga0e3ab5ce217c89f0be04a76e865483a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e3ab5ce217c89f0be04a76e865483a8">&#9670;&nbsp;</a></span>afw_xctx_evaluation_stack_entry_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structafw__xctx__evaluation__stack__entry__s.html">afw_xctx_evaluation_stack_entry_s</a> <a class="el" href="group__afw__common.html#ga0e3ab5ce217c89f0be04a76e865483a8">afw_xctx_evaluation_stack_entry_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opaque typedef for afw_xctx_evaluation_stack_entry_t.</p>
+<p>See <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a> for struct and more information. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
+
+</div>
+</div>
+<a id="ga966d8083cf6741144d51d38e37056020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga966d8083cf6741144d51d38e37056020">&#9670;&nbsp;</a></span>afw_xctx_evaluation_stack_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct afw_xctx_evaluation_stack_s <a class="el" href="group__afw__common.html#ga966d8083cf6741144d51d38e37056020">afw_xctx_evaluation_stack_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opaque typedef for afw_xctx_evaluation_stack_t.</p>
+<p>See <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a> for struct and more information. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
+
+</div>
+</div>
+<a id="gab9982b09576e8d831bfd291125be1e39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab9982b09576e8d831bfd291125be1e39">&#9670;&nbsp;</a></span>afw_xctx_get_variable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a>*(* afw_xctx_get_variable_t) (const <a class="el" href="group__afw__common.html#ga0d22ec2a6d165423893db1f65f205938">afw_xctx_qualifier_stack_entry_t</a> *entry, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typedef for function to get a qualified variable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entry</td><td>Qualifier stack entry. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of variable. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value or NULL if not found.</dd></dl>
+<p>The stack is searched from newest to oldest. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__common_8h_source.html#l00967">967</a> of file <a class="el" href="afw__common_8h_source.html">afw_common.h</a>.</p>
+
+</div>
+</div>
+<a id="ga0d22ec2a6d165423893db1f65f205938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0d22ec2a6d165423893db1f65f205938">&#9670;&nbsp;</a></span>afw_xctx_qualifier_stack_entry_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structafw__xctx__qualifier__stack__entry__s.html">afw_xctx_qualifier_stack_entry_s</a> <a class="el" href="group__afw__common.html#ga0d22ec2a6d165423893db1f65f205938">afw_xctx_qualifier_stack_entry_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typedef for xctx qualifier stack entry. </p>
+<p>Struct defined in <a class="el" href="afw__xctx_8h.html" title="Adaptive Framework Execution Context (xctx) Implementation Header.">afw_xctx.h</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
+
+</div>
+</div>
+<a id="ga2981f1d079ba37a6b097798ba9f58fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2981f1d079ba37a6b097798ba9f58fe4">&#9670;&nbsp;</a></span>afw_xctx_qualifier_stack_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct afw_xctx_internal_qualifier_stack_s <a class="el" href="group__afw__common.html#ga2981f1d079ba37a6b097798ba9f58fe4">afw_xctx_qualifier_stack_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typedef for xctx qualifier stack. </p>
+<p>Struct defined in <a class="el" href="afw__xctx__internal_8h.html" title="Adaptive Framework The execution context (xctx) Internal Header.">afw_xctx_internal.h</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__common__opaques_8h_source.html#l00001">1</a> of file <a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>.</p>
 
 </div>
 </div>
@@ -4578,7 +4578,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

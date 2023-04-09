@@ -110,7 +110,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end an adaptor write lock section.  <a href="group__afw__adaptor__impl.html#ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b">More...</a><br /></td></tr>
 <tr class="separator:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac14f46cfce16b79ea6a4afc3b8748cd1"><td class="memItemLeft" align="right" valign="top"><a id="gac14f46cfce16b79ea6a4afc3b8748cd1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE</b>&#160;&#160;&#160;<a class="el" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(read_only, &quot;Adaptor is read-only.&quot;, scope)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE</b>&#160;&#160;&#160;<a class="el" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(read_only, &quot;Adaptor is read-only.&quot;, xctx)</td></tr>
 <tr class="separator:gac14f46cfce16b79ea6a4afc3b8748cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -122,36 +122,36 @@ typedef struct <a class="el" href="structafw__adaptor__impl__core__object__type_
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga7b630fcfc4698c4cac7bd775ef6352ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga7b630fcfc4698c4cac7bd775ef6352ea">afw_adaptor_impl_create_cede_p</a> (const <a class="el" href="structafw__adaptor__inf__s.html">afw_adaptor_inf_t</a> *inf, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> instance_size, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *properties, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga7b630fcfc4698c4cac7bd775ef6352ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this in all create functions for afw_adaptor.  <a href="group__afw__adaptor__impl.html#ga7b630fcfc4698c4cac7bd775ef6352ea">More...</a><br /></td></tr>
-<tr class="separator:ga7b630fcfc4698c4cac7bd775ef6352ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab11839e5d13ab7bcd7ad8477f904044a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gab11839e5d13ab7bcd7ad8477f904044a">afw_adaptor_impl_object_type_cache_initialize</a> (<a class="el" href="structafw__adaptor__object__type__cache__s.html">afw_adaptor_object_type_cache_t</a> *object_type_cache, const <a class="el" href="structafw__adaptor__object__type__cache__inf__s.html">afw_adaptor_object_type_cache_inf_t</a> *inf, const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> all_object_types_immutable, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gab11839e5d13ab7bcd7ad8477f904044a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize object type cache instance.  <a href="group__afw__adaptor__impl.html#gab11839e5d13ab7bcd7ad8477f904044a">More...</a><br /></td></tr>
-<tr class="separator:gab11839e5d13ab7bcd7ad8477f904044a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28e71ac83eb6a93ef03d3fcfd4fa32ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga28e71ac83eb6a93ef03d3fcfd4fa32ed">afw_adaptor_impl_set_object_types_fully_loaded</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga28e71ac83eb6a93ef03d3fcfd4fa32ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set object types fully loaded.  <a href="group__afw__adaptor__impl.html#ga28e71ac83eb6a93ef03d3fcfd4fa32ed">More...</a><br /></td></tr>
-<tr class="separator:ga28e71ac83eb6a93ef03d3fcfd4fa32ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3c6d6ea489e9df50644b6a3a134da075"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga3c6d6ea489e9df50644b6a3a134da075">afw_adaptor_impl_generic_object_type_object_get</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga3c6d6ea489e9df50644b6a3a134da075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a generic object type object.  <a href="group__afw__adaptor__impl.html#ga3c6d6ea489e9df50644b6a3a134da075">More...</a><br /></td></tr>
-<tr class="separator:ga3c6d6ea489e9df50644b6a3a134da075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae0cbeea46d248c58cf29ad230aab4c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gaae0cbeea46d248c58cf29ad230aab4c8">afw_adaptor_impl_push_qualifiers</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaae0cbeea46d248c58cf29ad230aab4c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push adaptor qualifiers to scope.  <a href="group__afw__adaptor__impl.html#gaae0cbeea46d248c58cf29ad230aab4c8">More...</a><br /></td></tr>
-<tr class="separator:gaae0cbeea46d248c58cf29ad230aab4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4d5a008aafb936d4537f83527765ca0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga4d5a008aafb936d4537f83527765ca0d">afw_adaptor_impl_throw_property_invalid</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga4d5a008aafb936d4537f83527765ca0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this for configuration property errors.  <a href="group__afw__adaptor__impl.html#ga4d5a008aafb936d4537f83527765ca0d">More...</a><br /></td></tr>
-<tr class="separator:ga4d5a008aafb936d4537f83527765ca0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga62cffaede6a126b858a96ac1839d51be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga62cffaede6a126b858a96ac1839d51be">afw_adaptor_impl_throw_property_required</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga62cffaede6a126b858a96ac1839d51be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this for missing required configuration property.  <a href="group__afw__adaptor__impl.html#ga62cffaede6a126b858a96ac1839d51be">More...</a><br /></td></tr>
-<tr class="separator:ga62cffaede6a126b858a96ac1839d51be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93baf9a2faf75f8b8229dfe8e0caa1b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga93baf9a2faf75f8b8229dfe8e0caa1b6">afw_adaptor_impl_call_object_cb_from_list</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, void *context, <a class="el" href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">afw_object_cb_t</a> callback, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga93baf9a2faf75f8b8229dfe8e0caa1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call object cb from list.  <a href="group__afw__adaptor__impl.html#ga93baf9a2faf75f8b8229dfe8e0caa1b6">More...</a><br /></td></tr>
-<tr class="separator:ga93baf9a2faf75f8b8229dfe8e0caa1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae36bb7387c6aa001b98bf415be6a864d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gae36bb7387c6aa001b98bf415be6a864d">afw_adaptor_impl_is_journal_entry_applicable</a> (const <a class="el" href="structafw__adaptor__journal__s.html">afw_adaptor_journal_t</a> *instance, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *entry, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *consumer, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *filter, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gae36bb7387c6aa001b98bf415be6a864d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine whether a journal entry is applicable to a consumer.  <a href="group__afw__adaptor__impl.html#gae36bb7387c6aa001b98bf415be6a864d">More...</a><br /></td></tr>
-<tr class="separator:gae36bb7387c6aa001b98bf415be6a864d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e8531a60ad71f367fcac01b4b58a59e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga7e8531a60ad71f367fcac01b4b58a59e">afw_adaptor_impl_set_supported_core_object_type</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_entity, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_write, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga7e8531a60ad71f367fcac01b4b58a59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates support of a core object type.  <a href="group__afw__adaptor__impl.html#ga7e8531a60ad71f367fcac01b4b58a59e">More...</a><br /></td></tr>
-<tr class="separator:ga7e8531a60ad71f367fcac01b4b58a59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga799074e2d83c6aa095c459dfef8e7449"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449">afw_adaptor_impl_create_cede_p</a> (const <a class="el" href="structafw__adaptor__inf__s.html">afw_adaptor_inf_t</a> *inf, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> instance_size, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *properties, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga799074e2d83c6aa095c459dfef8e7449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this in all create functions for afw_adaptor.  <a href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449">More...</a><br /></td></tr>
+<tr class="separator:ga799074e2d83c6aa095c459dfef8e7449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5fab8498a269d0bf1f174d591dc1741b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b">afw_adaptor_impl_object_type_cache_initialize</a> (<a class="el" href="structafw__adaptor__object__type__cache__s.html">afw_adaptor_object_type_cache_t</a> *object_type_cache, const <a class="el" href="structafw__adaptor__object__type__cache__inf__s.html">afw_adaptor_object_type_cache_inf_t</a> *inf, const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> all_object_types_immutable, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga5fab8498a269d0bf1f174d591dc1741b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize object type cache instance.  <a href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b">More...</a><br /></td></tr>
+<tr class="separator:ga5fab8498a269d0bf1f174d591dc1741b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad63198696017e4e211ec406857429424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gad63198696017e4e211ec406857429424">afw_adaptor_impl_set_object_types_fully_loaded</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gad63198696017e4e211ec406857429424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set object types fully loaded.  <a href="group__afw__adaptor__impl.html#gad63198696017e4e211ec406857429424">More...</a><br /></td></tr>
+<tr class="separator:gad63198696017e4e211ec406857429424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1018d92e5e88b0d1cb6839b1cc56d80e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga1018d92e5e88b0d1cb6839b1cc56d80e">afw_adaptor_impl_generic_object_type_object_get</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga1018d92e5e88b0d1cb6839b1cc56d80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a generic object type object.  <a href="group__afw__adaptor__impl.html#ga1018d92e5e88b0d1cb6839b1cc56d80e">More...</a><br /></td></tr>
+<tr class="separator:ga1018d92e5e88b0d1cb6839b1cc56d80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga152b3b353a86d1d7a8447be57d9d75c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga152b3b353a86d1d7a8447be57d9d75c3">afw_adaptor_impl_push_qualifiers</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga152b3b353a86d1d7a8447be57d9d75c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push adaptor qualifiers to xctx.  <a href="group__afw__adaptor__impl.html#ga152b3b353a86d1d7a8447be57d9d75c3">More...</a><br /></td></tr>
+<tr class="separator:ga152b3b353a86d1d7a8447be57d9d75c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga057edc69c7d7c754f3935a56d2e9bbbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga057edc69c7d7c754f3935a56d2e9bbbf">afw_adaptor_impl_throw_property_invalid</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga057edc69c7d7c754f3935a56d2e9bbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this for configuration property errors.  <a href="group__afw__adaptor__impl.html#ga057edc69c7d7c754f3935a56d2e9bbbf">More...</a><br /></td></tr>
+<tr class="separator:ga057edc69c7d7c754f3935a56d2e9bbbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga076a6ff63a8ca23307e6dc98f032e767"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga076a6ff63a8ca23307e6dc98f032e767">afw_adaptor_impl_throw_property_required</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga076a6ff63a8ca23307e6dc98f032e767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this for missing required configuration property.  <a href="group__afw__adaptor__impl.html#ga076a6ff63a8ca23307e6dc98f032e767">More...</a><br /></td></tr>
+<tr class="separator:ga076a6ff63a8ca23307e6dc98f032e767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c12604b636e85131eff33160e195145"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga4c12604b636e85131eff33160e195145">afw_adaptor_impl_call_object_cb_from_list</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, void *context, <a class="el" href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">afw_object_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga4c12604b636e85131eff33160e195145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call object cb from list.  <a href="group__afw__adaptor__impl.html#ga4c12604b636e85131eff33160e195145">More...</a><br /></td></tr>
+<tr class="separator:ga4c12604b636e85131eff33160e195145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaebc98ae0f83138e7db5c642a6e196008"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gaebc98ae0f83138e7db5c642a6e196008">afw_adaptor_impl_is_journal_entry_applicable</a> (const <a class="el" href="structafw__adaptor__journal__s.html">afw_adaptor_journal_t</a> *instance, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *entry, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *consumer, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *filter, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaebc98ae0f83138e7db5c642a6e196008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine whether a journal entry is applicable to a consumer.  <a href="group__afw__adaptor__impl.html#gaebc98ae0f83138e7db5c642a6e196008">More...</a><br /></td></tr>
+<tr class="separator:gaebc98ae0f83138e7db5c642a6e196008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea881ace6bc3e24f769ab87d15334df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gaea881ace6bc3e24f769ab87d15334df8">afw_adaptor_impl_set_supported_core_object_type</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_entity, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_write, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaea881ace6bc3e24f769ab87d15334df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates support of a core object type.  <a href="group__afw__adaptor__impl.html#gaea881ace6bc3e24f769ab87d15334df8">More...</a><br /></td></tr>
+<tr class="separator:gaea881ace6bc3e24f769ab87d15334df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -181,12 +181,12 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Usage:</p>
-<p><a class="el" href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e" title="Macro to begin an adaptor read lock section.">AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN(adaptor, scope)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_READ_END; </p>
+<p><a class="el" href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e" title="Macro to begin an adaptor read lock section.">AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN(adaptor, xctx)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_READ_END; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00044">44</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
@@ -231,12 +231,12 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Usage:</p>
-<p><a class="el" href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873" title="Macro to begin an adaptor write lock section.">AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN(adaptor, scope)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_WRITE_END; </p>
+<p><a class="el" href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873" title="Macro to begin an adaptor write lock section.">AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN(adaptor, xctx)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_WRITE_END; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00070">70</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
@@ -262,8 +262,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga93baf9a2faf75f8b8229dfe8e0caa1b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga93baf9a2faf75f8b8229dfe8e0caa1b6">&#9670;&nbsp;</a></span>afw_adaptor_impl_call_object_cb_from_list()</h2>
+<a id="ga4c12604b636e85131eff33160e195145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c12604b636e85131eff33160e195145">&#9670;&nbsp;</a></span>afw_adaptor_impl_call_object_cb_from_list()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,14 +283,14 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">afw_object_cb_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">afw_object_cb_t</a>&#160;</td>
           <td class="paramname"><em>callback</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -306,7 +306,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">list</td><td></td></tr>
     <tr><td class="paramname">context</td><td></td></tr>
     <tr><td class="paramname">callback</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -316,8 +316,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ga7b630fcfc4698c4cac7bd775ef6352ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7b630fcfc4698c4cac7bd775ef6352ea">&#9670;&nbsp;</a></span>afw_adaptor_impl_create_cede_p()</h2>
+<a id="ga799074e2d83c6aa095c459dfef8e7449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga799074e2d83c6aa095c459dfef8e7449">&#9670;&nbsp;</a></span>afw_adaptor_impl_create_cede_p()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,8 +349,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -369,27 +369,27 @@ Variables</h2></td></tr>
     <tr><td class="paramname">start</td><td>is function to call to start adaptor. </td></tr>
     <tr><td class="paramname">stop</td><td>is function to call to stop adaptor. </td></tr>
     <tr><td class="paramname">p</td><td>to use as parent when creating adaptor pool. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>instance of afw_adaptor_t that optionally with extra memory based on instance_size parameter.</dd></dl>
 <p>This function creates and initializes an afw_adaptor instance. After calling this function, the caller should do additional adaptor type specific processing. The instance_size parameter can be specified to get a larger instance size than sizeof(afw_adaptor_t) for adaptor type specific use.</p>
-<p>A new pool is created in the callings scope's pool for use by the adaptor.</p>
+<p>A new pool is created in the callings xctx's pool for use by the adaptor.</p>
 <p>This function validates and normalizes the adaptor properties based on /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_&lt;adaptorType&gt;, where &lt;adaptorType&gt; is the value of the adaptorType property.</p>
 <p>All properties from /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor are processed.</p>
 <p>Some additional properties are processed if they pass validation. Properties isModelLocation and isPolicyLocation cause the appropriate core object types to be supported.</p>
 <p>If this adaptorId is the layout adaptorId, the appropriate core object types are supported.</p>
 <p>See <a class="el" href="structafw__adaptor__impl__s.html" title="Internal struct used by common adaptor code for all adaptors.">afw_adaptor_impl_s</a> for more information on how on how common adaptor code uses this information. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>FIXME: Reuse if already exists or reuse correct pool. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>FIXME: have way for extension to add these. If isPolicyLocation is true, provide appropriate object types. b = afw_object_old_get_property_as_boolean_deprecated(properties, &amp;afw_s_isPolicyLocation, scope); if (b) { impl-&gt;policy_location = afw_authorization_policy_internal_location_create( adaptor, p, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationAdviceExpression_, false, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationCombinerParameter_, false, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationObligationExpression_, false, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicy_, true, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicySet_, true, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationRule_, false, true, scope); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveHybridProperties_, false, true, scope); }</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>FIXME: have way for extension to add these. If isPolicyLocation is true, provide appropriate object types. b = afw_object_old_get_property_as_boolean_deprecated(properties, &amp;afw_s_isPolicyLocation, xctx); if (b) { impl-&gt;policy_location = afw_authorization_policy_internal_location_create( adaptor, p, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationAdviceExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationCombinerParameter_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationObligationExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicy_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicySet_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationRule_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveHybridProperties_, false, true, xctx); }</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8c_source.html#l00212">212</a> of file <a class="el" href="afw__adaptor__impl_8c_source.html">afw_adaptor_impl.c</a>.</p>
 
 </div>
 </div>
-<a id="ga3c6d6ea489e9df50644b6a3a134da075"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3c6d6ea489e9df50644b6a3a134da075">&#9670;&nbsp;</a></span>afw_adaptor_impl_generic_object_type_object_get()</h2>
+<a id="ga1018d92e5e88b0d1cb6839b1cc56d80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1018d92e5e88b0d1cb6839b1cc56d80e">&#9670;&nbsp;</a></span>afw_adaptor_impl_generic_object_type_object_get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -415,8 +415,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -432,7 +432,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">adaptor_id.</td><td></td></tr>
     <tr><td class="paramname">object_type_id.</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -444,8 +444,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="gae36bb7387c6aa001b98bf415be6a864d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae36bb7387c6aa001b98bf415be6a864d">&#9670;&nbsp;</a></span>afw_adaptor_impl_is_journal_entry_applicable()</h2>
+<a id="gaebc98ae0f83138e7db5c642a6e196008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaebc98ae0f83138e7db5c642a6e196008">&#9670;&nbsp;</a></span>afw_adaptor_impl_is_journal_entry_applicable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,8 +477,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -495,7 +495,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">entry</td><td>from journal. </td></tr>
     <tr><td class="paramname">consumer</td><td>object. </td></tr>
     <tr><td class="paramname">filter</td><td>should be initialized to NULL on first call and anytime the filter has changed. The value returned should be passed to subsequent calls. This holds the evaluated expression from the consumer filter property. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -505,8 +505,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="gab11839e5d13ab7bcd7ad8477f904044a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab11839e5d13ab7bcd7ad8477f904044a">&#9670;&nbsp;</a></span>afw_adaptor_impl_object_type_cache_initialize()</h2>
+<a id="ga5fab8498a269d0bf1f174d591dc1741b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fab8498a269d0bf1f174d591dc1741b">&#9670;&nbsp;</a></span>afw_adaptor_impl_object_type_cache_initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,8 +538,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -556,7 +556,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">inf</td><td>for instance. </td></tr>
     <tr><td class="paramname">session</td><td>for instance. </td></tr>
     <tr><td class="paramname">all_object_types_immutable</td><td>for instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -566,8 +566,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="gaae0cbeea46d248c58cf29ad230aab4c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaae0cbeea46d248c58cf29ad230aab4c8">&#9670;&nbsp;</a></span>afw_adaptor_impl_push_qualifiers()</h2>
+<a id="ga152b3b353a86d1d7a8447be57d9d75c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga152b3b353a86d1d7a8447be57d9d75c3">&#9670;&nbsp;</a></span>afw_adaptor_impl_push_qualifiers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -581,8 +581,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -592,22 +592,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Push adaptor qualifiers to scope. </p>
+<p>Push adaptor qualifiers to xctx. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Call this to add adaptor related qualifiers to scope. Make sure to save and restore scope-&gt;qualifier_stack-&gt;nelts. </p>
+<p>Call this to add adaptor related qualifiers to xctx. Make sure to save and restore xctx-&gt;qualifier_stack-&gt;nelts. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8c_source.html#l00194">194</a> of file <a class="el" href="afw__adaptor__impl_8c_source.html">afw_adaptor_impl.c</a>.</p>
 
 </div>
 </div>
-<a id="ga28e71ac83eb6a93ef03d3fcfd4fa32ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga28e71ac83eb6a93ef03d3fcfd4fa32ed">&#9670;&nbsp;</a></span>afw_adaptor_impl_set_object_types_fully_loaded()</h2>
+<a id="gad63198696017e4e211ec406857429424"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad63198696017e4e211ec406857429424">&#9670;&nbsp;</a></span>afw_adaptor_impl_set_object_types_fully_loaded()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -621,8 +621,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -639,8 +639,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ga7e8531a60ad71f367fcac01b4b58a59e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7e8531a60ad71f367fcac01b4b58a59e">&#9670;&nbsp;</a></span>afw_adaptor_impl_set_supported_core_object_type()</h2>
+<a id="gaea881ace6bc3e24f769ab87d15334df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaea881ace6bc3e24f769ab87d15334df8">&#9670;&nbsp;</a></span>afw_adaptor_impl_set_supported_core_object_type()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -672,8 +672,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -690,12 +690,12 @@ Variables</h2></td></tr>
     <tr><td class="paramname">object_type_id.</td><td></td></tr>
     <tr><td class="paramname">allow_entity</td><td>indicates adaptor allows entities of this type. </td></tr>
     <tr><td class="paramname">allow_write</td><td>indicates adaptor can store instances of this type. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p><a class="el" href="group__afw__adaptor__impl.html#ga7b630fcfc4698c4cac7bd775ef6352ea" title="Developers should call this in all create functions for afw_adaptor.">afw_adaptor_impl_create_cede_p()</a> calls this for <em>AdaptiveObjectType</em> with allow_write false. Other common conf parameters can cause allow_write to change to true and for other object types to be added.</p>
-<p>After return from <a class="el" href="group__afw__adaptor__impl.html#ga7b630fcfc4698c4cac7bd775ef6352ea" title="Developers should call this in all create functions for afw_adaptor.">afw_adaptor_impl_create_cede_p()</a>, an implementation can call this to add additional ids.</p>
+<p><a class="el" href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449" title="Developers should call this in all create functions for afw_adaptor.">afw_adaptor_impl_create_cede_p()</a> calls this for <em>AdaptiveObjectType</em> with allow_write false. Other common conf parameters can cause allow_write to change to true and for other object types to be added.</p>
+<p>After return from <a class="el" href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449" title="Developers should call this in all create functions for afw_adaptor.">afw_adaptor_impl_create_cede_p()</a>, an implementation can call this to add additional ids.</p>
 <p>The common session impl code will use this information before calling a custom adaptor type implementation. This includes returning these object types for get/retrieve requests and insuring the objects are not modified if allow_write is false. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>FIXME: This is where object wrapper would be good to just hold deltas. </dd></dl>
 
@@ -703,8 +703,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ga4d5a008aafb936d4537f83527765ca0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4d5a008aafb936d4537f83527765ca0d">&#9670;&nbsp;</a></span>afw_adaptor_impl_throw_property_invalid()</h2>
+<a id="ga057edc69c7d7c754f3935a56d2e9bbbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga057edc69c7d7c754f3935a56d2e9bbbf">&#9670;&nbsp;</a></span>afw_adaptor_impl_throw_property_invalid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -724,8 +724,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -740,7 +740,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">adaptor.</td><td></td></tr>
     <tr><td class="paramname">property_name</td><td>this is in error. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -749,8 +749,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ga62cffaede6a126b858a96ac1839d51be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga62cffaede6a126b858a96ac1839d51be">&#9670;&nbsp;</a></span>afw_adaptor_impl_throw_property_required()</h2>
+<a id="ga076a6ff63a8ca23307e6dc98f032e767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga076a6ff63a8ca23307e6dc98f032e767">&#9670;&nbsp;</a></span>afw_adaptor_impl_throw_property_required()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -770,8 +770,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -786,7 +786,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">adaptor.</td><td></td></tr>
     <tr><td class="paramname">property_name</td><td>this is in error. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -809,7 +809,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>inf for an implementation of afw_adaptor_object_type_cache. </p>
-<p>This is the inf for an implementation of afw_adaptor_object_type_cache that provided life of the adaptor cache support for object types. The address of this can be passed as the inf parameter of <a class="el" href="group__afw__adaptor__impl.html#gab11839e5d13ab7bcd7ad8477f904044a" title="Initialize object type cache instance.">afw_adaptor_impl_object_type_cache_initialize()</a> if this meets the needs of the adaptor implementation. </p>
+<p>This is the inf for an implementation of afw_adaptor_object_type_cache that provided life of the adaptor cache support for object types. The address of this can be passed as the inf parameter of <a class="el" href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b" title="Initialize object type cache instance.">afw_adaptor_impl_object_type_cache_initialize()</a> if this meets the needs of the adaptor implementation. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00335">335</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
@@ -818,7 +818,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

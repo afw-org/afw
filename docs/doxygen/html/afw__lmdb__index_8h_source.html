@@ -92,13 +92,13 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> * <a class="code" href="classsession.html">session</a>,</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a>         * adaptor,</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    MDB_txn                          * txn,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a>                      * scope);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a>                      * xctx);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * afw_lmdb_index_database(</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *object_type_id,</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *property_name,</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *pool,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -109,13 +109,13 @@ $(function() {
 <div class="ttc" id="astructafw__adaptor__impl__index__s_html"><div class="ttname"><a href="structafw__adaptor__impl__index__s.html">afw_adaptor_impl_index_s</a></div><div class="ttdoc">Interface afw_adaptor_impl_index public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l01256">afw_interface.h:1256</a></div></div>
 <div class="ttc" id="astructafw__lmdb__adaptor__s_html"><div class="ttname"><a href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lmdb__internal_8h_source.html#l00047">afw_lmdb_internal.h:47</a></div></div>
 <div class="ttc" id="astructafw__lmdb__adaptor__session__s_html"><div class="ttname"><a href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lmdb__internal_8h_source.html#l00082">afw_lmdb_internal.h:82</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

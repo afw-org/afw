@@ -111,7 +111,7 @@ $(function() {
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;AFW_DECLARE_STATIC(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;impl_afw_stream_release(</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> * instance,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#ifndef impl_afw_stream_flush</span></div>
@@ -119,27 +119,27 @@ $(function() {
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;AFW_DECLARE_STATIC(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;impl_afw_stream_flush(</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> * instance,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#ifndef impl_afw_stream_read</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">/* Declare method read */</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;AFW_DECLARE_STATIC(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<a class="code" href="group__afw__stream__impl__declares.html#gaee7c74c0bae8878c9e4b6ed467125283">impl_afw_stream_read</a>(</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<a class="code" href="group__afw__stream__impl__declares.html#gae260a2c748eed925b963cc59bbbfd5ab">impl_afw_stream_read</a>(</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> * instance,</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * buffer,</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#ifndef impl_afw_stream_write</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">/* Declare method write */</span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;AFW_DECLARE_STATIC(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="group__afw__stream__impl__declares.html#gaa543b31a46a6769b299276fe37837fd0">impl_afw_stream_write</a>(</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="group__afw__stream__impl__declares.html#ga1e537db856cec8fbae2ef5f63c360170">impl_afw_stream_write</a>(</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> * instance,</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> * buffer,</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> * xctx);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
@@ -167,8 +167,8 @@ $(function() {
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    },</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    impl_afw_stream_release,</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    impl_afw_stream_flush,</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="group__afw__stream__impl__declares.html#gaee7c74c0bae8878c9e4b6ed467125283">impl_afw_stream_read</a>,</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="group__afw__stream__impl__declares.html#gaa543b31a46a6769b299276fe37837fd0">impl_afw_stream_write</a></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="group__afw__stream__impl__declares.html#gae260a2c748eed925b963cc59bbbfd5ab">impl_afw_stream_read</a>,</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="group__afw__stream__impl__declares.html#ga1e537db856cec8fbae2ef5f63c360170">impl_afw_stream_write</a></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;};</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#undef _AFW_IMPLEMENTATION_ID_</span></div>
@@ -179,15 +179,15 @@ $(function() {
 <div class="ttc" id="aafw__interface__opaques_8h_html"><div class="ttname"><a href="afw__interface__opaques_8h.html">afw_interface_opaques.h</a></div><div class="ttdoc">Interface afw_interface opaque typedefs.</div></div>
 <div class="ttc" id="agroup__afw__common_html_ga294533d3f49933f65de247a76acca81b"><div class="ttname"><a href="group__afw__common.html#ga294533d3f49933f65de247a76acca81b">AFW_UTF8_LITERAL</a></div><div class="ttdeci">#define AFW_UTF8_LITERAL(A_STRING)</div><div class="ttdoc">String literal initializer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00581">afw_common.h:581</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
-<div class="ttc" id="agroup__afw__stream__impl__declares_html_gaa543b31a46a6769b299276fe37837fd0"><div class="ttname"><a href="group__afw__stream__impl__declares.html#gaa543b31a46a6769b299276fe37837fd0">impl_afw_stream_write</a></div><div class="ttdeci">impl_afw_stream_write(const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00285">afw_content_type_application_afw.c:285</a></div></div>
-<div class="ttc" id="agroup__afw__stream__impl__declares_html_gaee7c74c0bae8878c9e4b6ed467125283"><div class="ttname"><a href="group__afw__stream__impl__declares.html#gaee7c74c0bae8878c9e4b6ed467125283">impl_afw_stream_read</a></div><div class="ttdeci">impl_afw_stream_read(const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00234">afw_content_type_application_afw.c:234</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
-<div class="ttc" id="astructafw__stream__inf__s_html"><div class="ttname"><a href="structafw__stream__inf__s.html">afw_stream_inf_s</a></div><div class="ttdoc">Interface afw_stream_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04552">afw_interface.h:4552</a></div></div>
-<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04510">afw_interface.h:4510</a></div></div>
+<div class="ttc" id="agroup__afw__stream__impl__declares_html_ga1e537db856cec8fbae2ef5f63c360170"><div class="ttname"><a href="group__afw__stream__impl__declares.html#ga1e537db856cec8fbae2ef5f63c360170">impl_afw_stream_write</a></div><div class="ttdeci">impl_afw_stream_write(const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00285">afw_content_type_application_afw.c:285</a></div></div>
+<div class="ttc" id="agroup__afw__stream__impl__declares_html_gae260a2c748eed925b963cc59bbbfd5ab"><div class="ttname"><a href="group__afw__stream__impl__declares.html#gae260a2c748eed925b963cc59bbbfd5ab">impl_afw_stream_read</a></div><div class="ttdeci">impl_afw_stream_read(const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00234">afw_content_type_application_afw.c:234</a></div></div>
+<div class="ttc" id="astructafw__stream__inf__s_html"><div class="ttname"><a href="structafw__stream__inf__s.html">afw_stream_inf_s</a></div><div class="ttdoc">Interface afw_stream_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04428">afw_interface.h:4428</a></div></div>
+<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04386">afw_interface.h:4386</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

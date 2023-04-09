@@ -91,7 +91,7 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;LDAPMessage *</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;afw_ldap_internal_search_s(</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="code" href="classsession.html">session</a>, <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *dn,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> ldap_scope, <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *filter, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> ldap_scope, <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *filter, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> rv;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    LDAPMessage *result;</div>
@@ -99,12 +99,12 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    rv = ldap_search_s(<a class="code" href="classsession.html">session</a>-&gt;ld, (<span class="keywordtype">char</span> *)dn, ldap_scope, (<span class="keywordtype">char</span> *)filter,</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        afw_ldap_internal_allattrs, 0, &amp;result);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (result) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="group__afw__pool__interface.html#gaae8baf9d18a9dd03354cdd40c5f7de37">afw_pool_register_cleanup_before</a>(<a class="code" href="classsession.html">session</a>-&gt;pub.p, result, NULL,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            afw_ldap_internal_cleanup_ldap_msgfree, scope);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="group__afw__pool__interface.html#gae350a0dffe25e92cd0994c27f84dc077">afw_pool_register_cleanup_before</a>(<a class="code" href="classsession.html">session</a>-&gt;pub.p, result, NULL,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            afw_ldap_internal_cleanup_ldap_msgfree, xctx);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span> (rv != LDAP_SUCCESS) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, <span class="stringliteral">&quot;ldap_search_s() failed.&quot;</span>,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            scope);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, <span class="stringliteral">&quot;ldap_search_s() failed.&quot;</span>,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            xctx);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">return</span> result;</div>
@@ -113,21 +113,21 @@ $(function() {
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;afw_ldap_internal_cleanup_ldap_msgfree(</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    ldap_msgfree((LDAPMessage *)data);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;afw_ldap_internal_cleanup_ldap_value_free_len(</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    ldap_value_free_len((<span class="keyword">struct</span> berval **)data);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;afw_ldap_internal_cleanup_ldap_memfree(</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> *data, <span class="keywordtype">void</span> *data2, <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    ldap_memfree(data);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
@@ -136,24 +136,24 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;afw_ldap_internal_get_object_id(</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<span class="keyword">self</span>,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    LDAPMessage *e, <a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> check_base, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    LDAPMessage *e, <a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> check_base, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *dn_z;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> errno;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    dn_z = ldap_get_dn(self-&gt;ld, e);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">if</span> (dn_z) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="group__afw__pool__interface.html#gaae8baf9d18a9dd03354cdd40c5f7de37">afw_pool_register_cleanup_before</a>(self-&gt;pub.p, dn_z, NULL,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="group__afw__pool__interface.html#gae350a0dffe25e92cd0994c27f84dc077">afw_pool_register_cleanup_before</a>(self-&gt;pub.p, dn_z, NULL,</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            afw_ldap_internal_cleanup_ldap_memfree,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            scope);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            xctx);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        ldap_get_option(self-&gt;ld, LDAP_OPT_ERROR_NUMBER, &amp;errno);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, errno, <span class="stringliteral">&quot;ldap_get_dn() error.&quot;</span>,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            scope);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, errno, <span class="stringliteral">&quot;ldap_get_dn() error.&quot;</span>,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            xctx);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__utf8.html#gad93bf34979e1aa16d3ea117bc2220bb8">afw_utf8_create</a>(dn_z, <a class="code" href="group__afw__common.html#ga1eba6715c6c8f2de01ce351d2c870f62">AFW_UTF8_Z_LEN</a>, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__utf8.html#gafea45cb153564b5854549b494ab26430">afw_utf8_create</a>(dn_z, <a class="code" href="group__afw__common.html#ga1eba6715c6c8f2de01ce351d2c870f62">AFW_UTF8_Z_LEN</a>, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
@@ -171,7 +171,7 @@ $(function() {
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;afw_ldap_internal_session_begin(</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<span class="keyword">self</span>,</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__s.html">afw_ldap_internal_adaptor_t</a> *adaptor =</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        (<a class="code" href="structafw__ldap__internal__adaptor__s.html">afw_ldap_internal_adaptor_t</a> *)self-&gt;pub.adaptor;</div>
@@ -200,8 +200,8 @@ $(function() {
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        self-&gt;adaptor-&gt;lud-&gt;lud_host, self-&gt;adaptor-&gt;lud-&gt;lud_port,</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        secure, &amp;err);</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (rv != LDAP_SUCCESS) {</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv,</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            (err &amp;&amp; err-&gt;msg)?err-&gt;msg:<span class="stringliteral">&quot;Unknown error.&quot;</span>, scope);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            (err &amp;&amp; err-&gt;msg)?err-&gt;msg:<span class="stringliteral">&quot;Unknown error.&quot;</span>, xctx);</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">/* Set version to 3 as required by OpenLDAP and supported by others. */</span></div>
@@ -210,7 +210,7 @@ $(function() {
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        (<span class="keywordtype">void</span>*)&amp;version,</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        &amp;err);</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">if</span> (rv != LDAP_SUCCESS) {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, err-&gt;msg, scope);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, err-&gt;msg, xctx);</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="comment">/* Set prevent verify cert if requested.*/</span></div>
@@ -231,35 +231,35 @@ $(function() {
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">if</span> (rv != LDAP_SUCCESS) {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, err-&gt;msg, scope);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv, err-&gt;msg, xctx);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">/* Set to use referral.</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">    rv = apr_ldap_set_option(scope-&gt;p, self-&gt;ld,</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">    rv = apr_ldap_set_option(xctx-&gt;p, self-&gt;ld,</span></div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">        APR_LDAP_OPT_REFERRALS,</span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">        (void*)&amp;one,</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">        &amp;err);</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">    if (rv != LDAP_SUCCESS) {</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">        AFW_THROW_ERROR_RV_Z(general, ldap, rv, err-&gt;msg, scope);</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">        AFW_THROW_ERROR_RV_Z(general, ldap, rv, err-&gt;msg, xctx);</span></div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">    }</span></div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="comment">/* Get bind dn and password */</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    bind_parameters_value = <a class="code" href="group__afw__value.html#ga79a2cbd7a47ccf454874fe89071c0759">afw_value_evaluate</a>(</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        self-&gt;adaptor-&gt;bind_parameters, p, scope);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    bind_parameters_value = <a class="code" href="group__afw__value.html#ga40886eecb706e198c54e58b3fa683a36">afw_value_evaluate</a>(</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        self-&gt;adaptor-&gt;bind_parameters, p, xctx);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="group__afw__core__data__type__object.html#ga374d0de057ffb7a2b539eff5ddc2c638">afw_value_is_object</a>(bind_parameters_value)) {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <a class="code" href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">AFW_THROW_ERROR_FZ</a>(general, scope,</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <a class="code" href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">AFW_THROW_ERROR_FZ</a>(general, xctx,</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="stringliteral">&quot;Invalid bindParameters for adaptorId %&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            &amp;adaptor-&gt;pub.adaptor_id);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    bind_parameters = ((<span class="keyword">const</span> <a class="code" href="structafw__value__object__s.html">afw_value_object_t</a> *)bind_parameters_value)</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        -&gt;internal;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">self</span>-&gt;bind_dn_z = <a class="code" href="group__afw__object.html#ga297f93e6ac1aacd2fd2fc27a2a818a3f">afw_object_old_get_property_as_utf8_z</a>(bind_parameters,</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        &amp;afw_ldap_s_dn, p, scope);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">self</span>-&gt;bind_password_z = <a class="code" href="group__afw__object.html#ga297f93e6ac1aacd2fd2fc27a2a818a3f">afw_object_old_get_property_as_utf8_z</a>(bind_parameters,</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        &amp;afw_ldap_s_password, p, scope);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">self</span>-&gt;bind_dn_z = <a class="code" href="group__afw__object.html#ga1cabb8aede4a40c9b0fab12ba7abbde7">afw_object_old_get_property_as_utf8_z</a>(bind_parameters,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        &amp;afw_ldap_s_dn, p, xctx);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">self</span>-&gt;bind_password_z = <a class="code" href="group__afw__object.html#ga1cabb8aede4a40c9b0fab12ba7abbde7">afw_object_old_get_property_as_utf8_z</a>(bind_parameters,</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        &amp;afw_ldap_s_password, p, xctx);</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">if</span> (!self-&gt;bind_dn_z || !self-&gt;bind_password_z) {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">AFW_THROW_ERROR_FZ</a>(general, scope,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">AFW_THROW_ERROR_FZ</a>(general, xctx,</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="stringliteral">&quot;Invalid bindParameters for adaptorId %&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            &amp;adaptor-&gt;pub.adaptor_id);</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
@@ -275,8 +275,8 @@ $(function() {
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        (<span class="keywordtype">char</span> *)self-&gt;bind_dn_z,</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        (<span class="keywordtype">char</span> *)self-&gt;bind_password_z);</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">if</span> (rv != LDAP_SUCCESS) {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <a class="code" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv,</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="stringliteral">&quot;Error binding with user and password.&quot;</span>, scope);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <a class="code" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(general, ldap, rv,</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="stringliteral">&quot;Error binding with user and password.&quot;</span>, xctx);</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    }</div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
@@ -301,7 +301,7 @@ $(function() {
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *object_id,</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    LDAPMessage *e,</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;{</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *o;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">char</span> *a;</div>
@@ -313,7 +313,7 @@ $(function() {
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_t</a> *attribute;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">if</span> (!object_id || !object_id-&gt;s) {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        object_id = afw_ldap_internal_get_object_id(<span class="keyword">self</span>, e, FALSE, scope);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        object_id = afw_ldap_internal_get_object_id(<span class="keyword">self</span>, e, FALSE, xctx);</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="comment">/*</span></div>
@@ -329,7 +329,7 @@ $(function() {
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                object_type_id-&gt;s, object_type_id-&gt;len);</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    }</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    o = <a class="code" href="group__afw__object.html#gac9c2bfbcbbcc324b3b2b95457e100aa3">afw_object_create_managed</a>(p, scope);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    o = <a class="code" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3">afw_object_create_managed</a>(p, xctx);</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    bv = NULL;</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    a = NULL;</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    be = NULL;</div>
@@ -338,8 +338,8 @@ $(function() {
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            a = ldap_next_attribute(self-&gt;ld, e, be))</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        {</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            bv = ldap_get_values_len(self-&gt;ld, e, a);</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            property_name = <a class="code" href="group__afw__utf8.html#gac3536d868dc610cfb9e6cb4dffe92e99">afw_utf8_create_copy</a>(a, <a class="code" href="group__afw__common.html#ga1eba6715c6c8f2de01ce351d2c870f62">AFW_UTF8_Z_LEN</a>,</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                o-&gt;p, scope);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            property_name = <a class="code" href="group__afw__utf8.html#ga233ab3d2f9d3cda6708f86389c181f59">afw_utf8_create_copy</a>(a, <a class="code" href="group__afw__common.html#ga1eba6715c6c8f2de01ce351d2c870f62">AFW_UTF8_Z_LEN</a>,</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                o-&gt;p, xctx);</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="comment">/* Get attribute for this property name if there is one. */</span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            attribute = <a class="code" href="afw__ldap__metadata_8c.html#ad7d9495a331b02a09f59f680bd7e690a">afw_ldap_metadata_get_object_type_attribute</a>(</div>
@@ -347,11 +347,11 @@ $(function() {
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="comment">/* Change bv to value. */</span></div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            value = afw_ldap_metadata_bv_to_value(<span class="keyword">self</span>, attribute,</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                property_name, bv, o-&gt;p, scope);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                property_name, bv, o-&gt;p, xctx);</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            <span class="comment">/* If there is a value, set its property. */</span></div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">if</span> (value) {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                <a class="code" href="group__afw__object.html#gaf2906785727dd3625f93dbcefd84929f">afw_object_set_property</a>(o, property_name, value, scope);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                <a class="code" href="group__afw__object.html#gacbacbce370c748c939eda3c458997322">afw_object_set_property</a>(o, property_name, value, xctx);</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            }</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <span class="comment">/* Free bv and a. */</span></div>
@@ -380,8 +380,8 @@ $(function() {
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="group__afw__error.html#ga72c6d06b6c2695b5359af76da5feb00d">AFW_ENDTRY</a>;</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <a class="code" href="group__afw__object.html#gae49cd805b71ea12fa63ba530c93df057">afw_object_meta_set_ids</a>(o, &amp;self-&gt;adaptor-&gt;pub.adaptor_id,</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        object_type_id, object_id, scope);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <a class="code" href="group__afw__object.html#gaf5014ba44a50f552a0c7472bb713681f">afw_object_meta_set_ids</a>(o, &amp;self-&gt;adaptor-&gt;pub.adaptor_id,</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        object_type_id, object_id, xctx);</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">return</span> o;</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
@@ -401,7 +401,7 @@ $(function() {
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;afw_ldap_internal_expression_from_filter_entry(</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="code" href="classsession.html">session</a>,</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__query__criteria__filter__entry__s.html">afw_query_criteria_filter_entry_t</a> * entry,</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;{</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *filter_expression = NULL;</div>
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *property_name, *property_value;</div>
@@ -417,55 +417,55 @@ $(function() {
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    property_name = entry-&gt;property_name;</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="comment">/* convert the filter value to a string for LDAP comparison to use */</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    bv = afw_ldap_metadata_value_to_bv(<a class="code" href="classsession.html">session</a>, property_name, entry-&gt;value, scope);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    bv = afw_ldap_metadata_value_to_bv(<a class="code" href="classsession.html">session</a>, property_name, entry-&gt;value, xctx);</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (bv == NULL) {</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="stringliteral">&quot;Query criteria could not be converted into an LDAP filter string.&quot;</span>, scope);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="stringliteral">&quot;Query criteria could not be converted into an LDAP filter string.&quot;</span>, xctx);</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    }</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="comment">/* turn it into an afw string for easy use by the format routines */</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    property_value = <a class="code" href="group__afw__utf8.html#gad93bf34979e1aa16d3ea117bc2220bb8">afw_utf8_create</a>((*bv)-&gt;bv_val, (*bv)-&gt;bv_len, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    property_value = <a class="code" href="group__afw__utf8.html#gafea45cb153564b5854549b494ab26430">afw_utf8_create</a>((*bv)-&gt;bv_val, (*bv)-&gt;bv_len, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">switch</span> (entry-&gt;op_id) {</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_eq:</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;=%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_ne:</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                <span class="stringliteral">&quot;!(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;=%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)&quot;</span>,</div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_lt:</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;&lt;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_le:</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;&lt;=%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_gt:</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;&gt;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">case</span> afw_query_criteria_filter_op_id_ge:</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;&gt;=%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a>,</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_name), </div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(property_value));</div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <span class="stringliteral">&quot;query operator not supported by LDAP&quot;</span>, scope);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <span class="stringliteral">&quot;query operator not supported by LDAP&quot;</span>, xctx);</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    }</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
@@ -479,14 +479,14 @@ $(function() {
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;afw_ldap_internal_expression_from_query_criteria(</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <a class="code" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="code" href="classsession.html">session</a>,</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__query__criteria__filter__entry__s.html">afw_query_criteria_filter_entry_t</a> * entry,</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;{</div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *filter_expression = NULL;</div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *on_true;</div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *on_false;</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    filter_expression = afw_ldap_internal_expression_from_filter_entry(</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        <a class="code" href="classsession.html">session</a>, entry, scope);</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        <a class="code" href="classsession.html">session</a>, entry, xctx);</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="comment">/* A bottom leaf of our decision tree, so return our expression */</span></div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keywordflow">if</span> (entry-&gt;on_true == <a class="code" href="group__afw__query__criteria.html#gae3c7562cb3e8a6e6d7e63669bc8f3443">AFW_QUERY_CRITERIA_TRUE</a> &amp;&amp;</div>
@@ -500,12 +500,12 @@ $(function() {
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            AFW_QUERY_CRITERIA_CONTINUE(entry-&gt;on_false))</div>
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    {</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        on_true = afw_ldap_internal_expression_from_query_criteria(</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_true, scope);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_true, xctx);</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        on_false = afw_ldap_internal_expression_from_query_criteria(</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_false, scope);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_false, xctx);</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="comment">/* (|(&amp;(filter_expression)(on_true))(on_false)) */</span></div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            <span class="stringliteral">&quot;|(&amp;(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;))(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)&quot;</span>,</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(filter_expression), </div>
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(on_true), <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(on_false));</div>
@@ -515,10 +515,10 @@ $(function() {
 <div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AFW_QUERY_CRITERIA_CONTINUE(entry-&gt;on_true)) </div>
 <div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    {</div>
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        on_true = afw_ldap_internal_expression_from_query_criteria(</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_true, scope);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_true, xctx);</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="comment">/* (&amp;(filter_expression)(on_true)) */</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope, <span class="stringliteral">&quot;&amp;(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)&quot;</span>,</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx, <span class="stringliteral">&quot;&amp;(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)&quot;</span>,</div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            filter_expression-&gt;len, filter_expression-&gt;s,</div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            on_true-&gt;len, on_true-&gt;s);</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    }</div>
@@ -527,10 +527,10 @@ $(function() {
 <div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AFW_QUERY_CRITERIA_CONTINUE(entry-&gt;on_false))</div>
 <div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    {</div>
 <div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        on_false = afw_ldap_internal_expression_from_query_criteria(</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_false, scope);</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <a class="code" href="classsession.html">session</a>, entry-&gt;on_false, xctx);</div>
 <div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
 <div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="comment">/* (|(filter_expression)(on_false)) */</span></div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a>(scope-&gt;p, scope,</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        filter_expression = <a class="code" href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a>(xctx-&gt;p, xctx,</div>
 <div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;            <span class="stringliteral">&quot;|(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)(%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot;)&quot;</span>,</div>
 <div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;            <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(filter_expression),</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(on_false));</div>
@@ -551,37 +551,37 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00522">afw_common.h:522</a></div></div>
 <div class="ttc" id="agroup__afw__core__data__type__object_html_ga374d0de057ffb7a2b539eff5ddc2c638"><div class="ttname"><a href="group__afw__core__data__type__object.html#ga374d0de057ffb7a2b539eff5ddc2c638">afw_value_is_object</a></div><div class="ttdeci">#define afw_value_is_object(A_VALUE)</div><div class="ttdoc">Macro to determine if value is evaluated object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8h_source.html#l00115">afw_data_type_object_binding.h:115</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga09be8438b41e77dd92a388cd3bc8073e"><div class="ttname"><a href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a></div><div class="ttdeci">#define AFW_FINALLY</div><div class="ttdoc">Always executed regardless of error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00706">afw_error.h:706</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga382b6d0b1dad3d4654d2de5b7cc07732"><div class="ttname"><a href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">AFW_THROW_ERROR_FZ</a></div><div class="ttdeci">#define AFW_THROW_ERROR_FZ(code, scope, format_z,...)</div><div class="ttdoc">Macro used to set error and 0 rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00323">afw_error.h:323</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga5a711cdfb9990f4d2b628e8288815457"><div class="ttname"><a href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, scope)</div><div class="ttdoc">Macro used to set error and 0 rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga6e989df174e149c384023e57f18b22f7"><div class="ttname"><a href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, xctx)</div><div class="ttdoc">Macro used to set error and rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00305">afw_error.h:305</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga72c6d06b6c2695b5359af76da5feb00d"><div class="ttname"><a href="group__afw__error.html#ga72c6d06b6c2695b5359af76da5feb00d">AFW_ENDTRY</a></div><div class="ttdeci">#define AFW_ENDTRY</div><div class="ttdoc">Ends an AFW try block.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00731">afw_error.h:731</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga84b03cc465607056941a88bd3cc76df3"><div class="ttname"><a href="group__afw__error.html#ga84b03cc465607056941a88bd3cc76df3">AFW_TRY</a></div><div class="ttdeci">#define AFW_TRY</div><div class="ttdoc">Begin an AFW TRY block.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00638">afw_error.h:638</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_gaa7d98ebac6b5ef3b64bbcbbb8f76c445"><div class="ttname"><a href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, scope)</div><div class="ttdoc">Macro used to set error and rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00305">afw_error.h:305</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_ga297f93e6ac1aacd2fd2fc27a2a818a3f"><div class="ttname"><a href="group__afw__object.html#ga297f93e6ac1aacd2fd2fc27a2a818a3f">afw_object_old_get_property_as_utf8_z</a></div><div class="ttdeci">afw_object_old_get_property_as_utf8_z(const afw_object_t *instance, const afw_utf8_t *property_name, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Get an object's property value including ancestors as utf8_z in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8c_source.html#l00495">afw_object.c:495</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_gac9c2bfbcbbcc324b3b2b95457e100aa3"><div class="ttname"><a href="group__afw__object.html#gac9c2bfbcbbcc324b3b2b95457e100aa3">afw_object_create_managed</a></div><div class="ttdeci">#define afw_object_create_managed(p, scope)</div><div class="ttdoc">Create an empty entity object in its own pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00870">afw_object.h:870</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_gae49cd805b71ea12fa63ba530c93df057"><div class="ttname"><a href="group__afw__object.html#gae49cd805b71ea12fa63ba530c93df057">afw_object_meta_set_ids</a></div><div class="ttdeci">afw_object_meta_set_ids(const afw_object_t *instance, const afw_utf8_t *adaptor_id, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, afw_scope_t *scope)</div><div class="ttdoc">Set object's ids.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__meta_8c_source.html#l00510">afw_object_meta.c:510</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_gaf2906785727dd3625f93dbcefd84929f"><div class="ttname"><a href="group__afw__object.html#gaf2906785727dd3625f93dbcefd84929f">afw_object_set_property</a></div><div class="ttdeci">afw_object_set_property(const afw_object_t *instance, const afw_utf8_t *property_name, const afw_value_t *value, afw_scope_t *scope)</div><div class="ttdoc">Set the value of an object's property.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8c_source.html#l00046">afw_object.c:46</a></div></div>
-<div class="ttc" id="agroup__afw__pool__interface_html_gaae8baf9d18a9dd03354cdd40c5f7de37"><div class="ttname"><a href="group__afw__pool__interface.html#gaae8baf9d18a9dd03354cdd40c5f7de37">afw_pool_register_cleanup_before</a></div><div class="ttdeci">#define afw_pool_register_cleanup_before(instance, data, data2, cleanup, scope)</div><div class="ttdoc">Call method register_cleanup_before of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04916">afw_interface.h:4916</a></div></div>
-<div class="ttc" id="agroup__afw__pool__interface_html_gacde5c5139a11020894d70217fe30ee32"><div class="ttname"><a href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a></div><div class="ttdeci">#define afw_pool_get_apr_pool(instance)</div><div class="ttdoc">Call method get_apr_pool of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04847">afw_interface.h:4847</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga86c7285b0589f9df4f54ba939fec8f92"><div class="ttname"><a href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">AFW_THROW_ERROR_FZ</a></div><div class="ttdeci">#define AFW_THROW_ERROR_FZ(code, xctx, format_z,...)</div><div class="ttdoc">Macro used to set error and 0 rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00323">afw_error.h:323</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_gae3ef33256454849b39a6e9710f519c8b"><div class="ttname"><a href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, xctx)</div><div class="ttdoc">Macro used to set error and 0 rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga1cabb8aede4a40c9b0fab12ba7abbde7"><div class="ttname"><a href="group__afw__object.html#ga1cabb8aede4a40c9b0fab12ba7abbde7">afw_object_old_get_property_as_utf8_z</a></div><div class="ttdeci">afw_object_old_get_property_as_utf8_z(const afw_object_t *instance, const afw_utf8_t *property_name, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Get an object's property value including ancestors as utf8_z in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8c_source.html#l00495">afw_object.c:495</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga5a29f6a9be2505ca9675b10ceeca31a3"><div class="ttname"><a href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3">afw_object_create_managed</a></div><div class="ttdeci">#define afw_object_create_managed(p, xctx)</div><div class="ttdoc">Create an empty entity object in its own pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00870">afw_object.h:870</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gacbacbce370c748c939eda3c458997322"><div class="ttname"><a href="group__afw__object.html#gacbacbce370c748c939eda3c458997322">afw_object_set_property</a></div><div class="ttdeci">afw_object_set_property(const afw_object_t *instance, const afw_utf8_t *property_name, const afw_value_t *value, afw_xctx_t *xctx)</div><div class="ttdoc">Set the value of an object's property.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8c_source.html#l00046">afw_object.c:46</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gaf5014ba44a50f552a0c7472bb713681f"><div class="ttname"><a href="group__afw__object.html#gaf5014ba44a50f552a0c7472bb713681f">afw_object_meta_set_ids</a></div><div class="ttdeci">afw_object_meta_set_ids(const afw_object_t *instance, const afw_utf8_t *adaptor_id, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, afw_xctx_t *xctx)</div><div class="ttdoc">Set object's ids.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__meta_8c_source.html#l00510">afw_object_meta.c:510</a></div></div>
+<div class="ttc" id="agroup__afw__pool__interface_html_gacde5c5139a11020894d70217fe30ee32"><div class="ttname"><a href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a></div><div class="ttdeci">#define afw_pool_get_apr_pool(instance)</div><div class="ttdoc">Call method get_apr_pool of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04723">afw_interface.h:4723</a></div></div>
+<div class="ttc" id="agroup__afw__pool__interface_html_gae350a0dffe25e92cd0994c27f84dc077"><div class="ttname"><a href="group__afw__pool__interface.html#gae350a0dffe25e92cd0994c27f84dc077">afw_pool_register_cleanup_before</a></div><div class="ttdeci">#define afw_pool_register_cleanup_before(instance, data, data2, cleanup, xctx)</div><div class="ttdoc">Call method register_cleanup_before of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04792">afw_interface.h:4792</a></div></div>
 <div class="ttc" id="agroup__afw__query__criteria_html_ga0964aae16a91752436ca605bc1456b6a"><div class="ttname"><a href="group__afw__query__criteria.html#ga0964aae16a91752436ca605bc1456b6a">AFW_QUERY_CRITERIA_FALSE</a></div><div class="ttdeci">#define AFW_QUERY_CRITERIA_FALSE</div><div class="ttdef"><b>Definition:</b> <a href="afw__query__criteria_8h_source.html#l00134">afw_query_criteria.h:134</a></div></div>
 <div class="ttc" id="agroup__afw__query__criteria_html_gae3c7562cb3e8a6e6d7e63669bc8f3443"><div class="ttname"><a href="group__afw__query__criteria.html#gae3c7562cb3e8a6e6d7e63669bc8f3443">AFW_QUERY_CRITERIA_TRUE</a></div><div class="ttdeci">#define AFW_QUERY_CRITERIA_TRUE</div><div class="ttdef"><b>Definition:</b> <a href="afw__query__criteria_8h_source.html#l00131">afw_query_criteria.h:131</a></div></div>
-<div class="ttc" id="agroup__afw__utf8_html_gac3536d868dc610cfb9e6cb4dffe92e99"><div class="ttname"><a href="group__afw__utf8.html#gac3536d868dc610cfb9e6cb4dffe92e99">afw_utf8_create_copy</a></div><div class="ttdeci">#define afw_utf8_create_copy(s, len, p, scope)</div><div class="ttdoc">Make a utf-8 sting from chars in pool specified.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8h_source.html#l00372">afw_utf8.h:372</a></div></div>
-<div class="ttc" id="agroup__afw__utf8_html_gad93bf34979e1aa16d3ea117bc2220bb8"><div class="ttname"><a href="group__afw__utf8.html#gad93bf34979e1aa16d3ea117bc2220bb8">afw_utf8_create</a></div><div class="ttdeci">#define afw_utf8_create(s, len, p, scope)</div><div class="ttdoc">Create utf-8 string without copy unless necessary in pool specified.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8h_source.html#l00242">afw_utf8.h:242</a></div></div>
-<div class="ttc" id="agroup__afw__utf8_html_gae6f2b1198c018047ae9f16442216f2ae"><div class="ttname"><a href="group__afw__utf8.html#gae6f2b1198c018047ae9f16442216f2ae">afw_utf8_printf</a></div><div class="ttdeci">afw_utf8_printf(const afw_pool_t *p, afw_scope_t *scope, const afw_utf8_z_t *format,...)</div><div class="ttdoc">Create a utf-8 string using a c format string in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8c_source.html#l00459">afw_utf8.c:459</a></div></div>
-<div class="ttc" id="agroup__afw__value_html_ga79a2cbd7a47ccf454874fe89071c0759"><div class="ttname"><a href="group__afw__value.html#ga79a2cbd7a47ccf454874fe89071c0759">afw_value_evaluate</a></div><div class="ttdeci">#define afw_value_evaluate(value, p, scope)</div><div class="ttdoc">Evaluate value if needed using specific pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00820">afw_value.h:820</a></div></div>
+<div class="ttc" id="agroup__afw__utf8_html_ga233ab3d2f9d3cda6708f86389c181f59"><div class="ttname"><a href="group__afw__utf8.html#ga233ab3d2f9d3cda6708f86389c181f59">afw_utf8_create_copy</a></div><div class="ttdeci">#define afw_utf8_create_copy(s, len, p, xctx)</div><div class="ttdoc">Make a utf-8 sting from chars in pool specified.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8h_source.html#l00372">afw_utf8.h:372</a></div></div>
+<div class="ttc" id="agroup__afw__utf8_html_gac7dcb75119836c430f05cb36193fa907"><div class="ttname"><a href="group__afw__utf8.html#gac7dcb75119836c430f05cb36193fa907">afw_utf8_printf</a></div><div class="ttdeci">afw_utf8_printf(const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format,...)</div><div class="ttdoc">Create a utf-8 string using a c format string in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8c_source.html#l00459">afw_utf8.c:459</a></div></div>
+<div class="ttc" id="agroup__afw__utf8_html_gafea45cb153564b5854549b494ab26430"><div class="ttname"><a href="group__afw__utf8.html#gafea45cb153564b5854549b494ab26430">afw_utf8_create</a></div><div class="ttdeci">#define afw_utf8_create(s, len, p, xctx)</div><div class="ttdoc">Create utf-8 string without copy unless necessary in pool specified.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8_8h_source.html#l00242">afw_utf8.h:242</a></div></div>
+<div class="ttc" id="agroup__afw__value_html_ga40886eecb706e198c54e58b3fa683a36"><div class="ttname"><a href="group__afw__value.html#ga40886eecb706e198c54e58b3fa683a36">afw_value_evaluate</a></div><div class="ttdeci">#define afw_value_evaluate(value, p, xctx)</div><div class="ttdoc">Evaluate value if needed using specific pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00820">afw_value.h:820</a></div></div>
 <div class="ttc" id="astructafw__ldap__internal__adaptor__s_html"><div class="ttname"><a href="structafw__ldap__internal__adaptor__s.html">afw_ldap_internal_adaptor_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__ldap__internal_8h_source.html#l00075">afw_ldap_internal.h:75</a></div></div>
 <div class="ttc" id="astructafw__ldap__internal__adaptor__session__s_html"><div class="ttname"><a href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__ldap__internal_8h_source.html#l00085">afw_ldap_internal.h:85</a></div></div>
 <div class="ttc" id="astructafw__ldap__object__type__attribute__s_html"><div class="ttname"><a href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__ldap__metadata_8h_source.html#l00038">afw_ldap_metadata.h:38</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__query__criteria__filter__entry__s_html"><div class="ttname"><a href="structafw__query__criteria__filter__entry__s.html">afw_query_criteria_filter_entry_s</a></div><div class="ttdoc">Parsed filter entry from query string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__query__criteria_8h_source.html#l00142">afw_query_criteria.h:142</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
 <div class="ttc" id="astructafw__value__object__s_html"><div class="ttname"><a href="structafw__value__object__s.html">afw_value_object_s</a></div><div class="ttdoc">struct for data type object values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8h_source.html#l00157">afw_data_type_object_binding.h:157</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

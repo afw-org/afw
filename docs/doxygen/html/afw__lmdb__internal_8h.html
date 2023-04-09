@@ -113,9 +113,9 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a04f8917b7b9fb1adbc6e32718c13b34d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a04f8917b7b9fb1adbc6e32718c13b34d">AFW_LMDB_BEGIN_TRANSACTION</a>(adaptor,  <a class="el" href="classsession.html">session</a>,  flags,  exclusive,  scope)</td></tr>
-<tr class="memdesc:a04f8917b7b9fb1adbc6e32718c13b34d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin an LMDB transaction.  <a href="afw__lmdb__internal_8h.html#a04f8917b7b9fb1adbc6e32718c13b34d">More...</a><br /></td></tr>
-<tr class="separator:a04f8917b7b9fb1adbc6e32718c13b34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96118b04eae65a6da5a3f7b9577617cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">AFW_LMDB_BEGIN_TRANSACTION</a>(adaptor,  <a class="el" href="classsession.html">session</a>,  flags,  exclusive,  xctx)</td></tr>
+<tr class="memdesc:a96118b04eae65a6da5a3f7b9577617cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin an LMDB transaction.  <a href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">More...</a><br /></td></tr>
+<tr class="separator:a96118b04eae65a6da5a3f7b9577617cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe89207555b0a6b27e9f783f4bc8bb18"><td class="memItemLeft" align="right" valign="top"><a id="abe89207555b0a6b27e9f783f4bc8bb18"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_LMDB_GET_TRANSACTION</b>()&#160;&#160;&#160;    (this_session &amp;&amp; this_session-&gt;currTxn) ? this_session-&gt;currTxn : this_txn</td></tr>
 <tr class="separator:abe89207555b0a6b27e9f783f4bc8bb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,102 +167,102 @@ Functions</h2></td></tr>
 <tr class="memitem:afc48e99cb913bf45c55b837f9305d82b"><td class="memItemLeft" align="right" valign="top"><a id="afc48e99cb913bf45c55b837f9305d82b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AFW_LMDB_DECLARE_INTERNAL_CONST_DATA</b> (<a class="el" href="structafw__adaptor__factory__s.html">afw_adaptor_factory_t</a>) afw_lmdb_adaptor_factory</td></tr>
 <tr class="separator:afc48e99cb913bf45c55b837f9305d82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfaf9481a7a9c4ee462d5a90dd81121e"><td class="memItemLeft" align="right" valign="top"><a id="adfaf9481a7a9c4ee462d5a90dd81121e"></a>
-<a class="el" href="structafw__lmdb__dbi__t.html">afw_lmdb_dbi_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_dbi_handle</b> (MDB_env *env, MDB_dbi dbi, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *pool, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:adfaf9481a7a9c4ee462d5a90dd81121e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76f8c1ef479b30402a1b95960e60ac8f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a76f8c1ef479b30402a1b95960e60ac8f">afw_lmdb_adaptor_create_cede_p</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *properties, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a76f8c1ef479b30402a1b95960e60ac8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create an LMDB adaptor.  <a href="afw__lmdb__internal_8h.html#a76f8c1ef479b30402a1b95960e60ac8f">More...</a><br /></td></tr>
-<tr class="separator:a76f8c1ef479b30402a1b95960e60ac8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6916175b1cd5f3fcea224fa1d76415a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a6916175b1cd5f3fcea224fa1d76415a7">afw_lmdb_adaptor_session_create</a> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a6916175b1cd5f3fcea224fa1d76415a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor session.  <a href="afw__lmdb__internal_8h.html#a6916175b1cd5f3fcea224fa1d76415a7">More...</a><br /></td></tr>
-<tr class="separator:a6916175b1cd5f3fcea224fa1d76415a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab293fdb93000bce20a746a906cfeba44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__journal__s.html">afw_lmdb_journal_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#ab293fdb93000bce20a746a906cfeba44">afw_lmdb_journal_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ab293fdb93000bce20a746a906cfeba44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor journal.  <a href="afw__lmdb__internal_8h.html#ab293fdb93000bce20a746a906cfeba44">More...</a><br /></td></tr>
-<tr class="separator:ab293fdb93000bce20a746a906cfeba44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab43576ee73cadf095dd6d8a4ce48655e"><td class="memItemLeft" align="right" valign="top"><a id="ab43576ee73cadf095dd6d8a4ce48655e"></a>
-<a class="el" href="structafw__lmdb__key__value__s.html">afw_lmdb_key_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_key_value_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ab43576ee73cadf095dd6d8a4ce48655e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a082736dea353d2ba5f4326e5e6d08669"><td class="memItemLeft" align="right" valign="top"><a id="a082736dea353d2ba5f4326e5e6d08669"></a>
-<a class="el" href="structafw__lmdb__transaction__s.html">afw_lmdb_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_transaction_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a082736dea353d2ba5f4326e5e6d08669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af135913fb965ee7f994deee4ae818001"><td class="memItemLeft" align="right" valign="top"><a id="af135913fb965ee7f994deee4ae818001"></a>
+<a class="el" href="structafw__lmdb__dbi__t.html">afw_lmdb_dbi_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_dbi_handle</b> (MDB_env *env, MDB_dbi dbi, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *pool, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:af135913fb965ee7f994deee4ae818001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac320cf9ce56f40f51e380d6747badbcd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#ac320cf9ce56f40f51e380d6747badbcd">afw_lmdb_adaptor_create_cede_p</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *properties, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ac320cf9ce56f40f51e380d6747badbcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create an LMDB adaptor.  <a href="afw__lmdb__internal_8h.html#ac320cf9ce56f40f51e380d6747badbcd">More...</a><br /></td></tr>
+<tr class="separator:ac320cf9ce56f40f51e380d6747badbcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8803bdfb08a73159d241e87dee2068f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#ac8803bdfb08a73159d241e87dee2068f">afw_lmdb_adaptor_session_create</a> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ac8803bdfb08a73159d241e87dee2068f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor session.  <a href="afw__lmdb__internal_8h.html#ac8803bdfb08a73159d241e87dee2068f">More...</a><br /></td></tr>
+<tr class="separator:ac8803bdfb08a73159d241e87dee2068f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b8193226d7c39f3bd491d862d9e4b23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__journal__s.html">afw_lmdb_journal_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a9b8193226d7c39f3bd491d862d9e4b23">afw_lmdb_journal_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a9b8193226d7c39f3bd491d862d9e4b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor journal.  <a href="afw__lmdb__internal_8h.html#a9b8193226d7c39f3bd491d862d9e4b23">More...</a><br /></td></tr>
+<tr class="separator:a9b8193226d7c39f3bd491d862d9e4b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22bcda09a5e17750717937f3752a833"><td class="memItemLeft" align="right" valign="top"><a id="aa22bcda09a5e17750717937f3752a833"></a>
+<a class="el" href="structafw__lmdb__key__value__s.html">afw_lmdb_key_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_key_value_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:aa22bcda09a5e17750717937f3752a833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="memItemLeft" align="right" valign="top"><a id="a4f80082f9d77790feecacb2dbcfe5a5d"></a>
+<a class="el" href="structafw__lmdb__transaction__s.html">afw_lmdb_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_transaction_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6732e816143a7ef1d85fd612dfbc3b0b"><td class="memItemLeft" align="right" valign="top"><a id="a6732e816143a7ef1d85fd612dfbc3b0b"></a>
 <a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_cleanup_free_result</b> (void *data)</td></tr>
 <tr class="separator:a6732e816143a7ef1d85fd612dfbc3b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a230578970de686541ffc1c46fdd8b28e"><td class="memItemLeft" align="right" valign="top"><a id="a230578970de686541ffc1c46fdd8b28e"></a>
-const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_get_object_id</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a230578970de686541ffc1c46fdd8b28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff2c385db9c5776ed3f5d67a66add49"><td class="memItemLeft" align="right" valign="top"><a id="a4ff2c385db9c5776ed3f5d67a66add49"></a>
+const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_get_object_id</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a4ff2c385db9c5776ed3f5d67a66add49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29c414734551c5eab3e98a7617a06e13"><td class="memItemLeft" align="right" valign="top"><a id="a29c414734551c5eab3e98a7617a06e13"></a>
 <a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_close_database</b> (void *val)</td></tr>
 <tr class="separator:a29c414734551c5eab3e98a7617a06e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48f2bfe26708c207d17133ee6ff5df98"><td class="memItemLeft" align="right" valign="top"><a id="a48f2bfe26708c207d17133ee6ff5df98"></a>
 <a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_close_cursor</b> (void *val)</td></tr>
 <tr class="separator:a48f2bfe26708c207d17133ee6ff5df98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae20dfdaae0aca2825b0d53e715432d04"><td class="memItemLeft" align="right" valign="top"><a id="ae20dfdaae0aca2825b0d53e715432d04"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_close_transaction</b> (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ae20dfdaae0aca2825b0d53e715432d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19151c6f8f04e07a4f07be2f06f40ed8"><td class="memItemLeft" align="right" valign="top"><a id="a19151c6f8f04e07a4f07be2f06f40ed8"></a>
-MDB_dbi&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_database</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *database, unsigned int flags, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a19151c6f8f04e07a4f07be2f06f40ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3646b8e65bd538f95b6dc81c844b074e"><td class="memItemLeft" align="right" valign="top"><a id="a3646b8e65bd538f95b6dc81c844b074e"></a>
-MDB_cursor *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_cursor</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, MDB_dbi dbi, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a3646b8e65bd538f95b6dc81c844b074e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a764e711435b80e70afc21d4ad170b96f"><td class="memItemLeft" align="right" valign="top"><a id="a764e711435b80e70afc21d4ad170b96f"></a>
-<a class="el" href="structafw__lmdb__txn__t.html">afw_lmdb_txn_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, unsigned int flags, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> exclusive, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a764e711435b80e70afc21d4ad170b96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a703bbea5702ca36447fbe6b1dad48cce"><td class="memItemLeft" align="right" valign="top"><a id="a703bbea5702ca36447fbe6b1dad48cce"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_commit_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a703bbea5702ca36447fbe6b1dad48cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5767cf927a0ae642509f36d2f15587e9"><td class="memItemLeft" align="right" valign="top"><a id="a5767cf927a0ae642509f36d2f15587e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_abort_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a5767cf927a0ae642509f36d2f15587e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8049829ebbd19e1bb77a503b9af6ceee"><td class="memItemLeft" align="right" valign="top"><a id="a8049829ebbd19e1bb77a503b9af6ceee"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const afw_uuid_t *uuid, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a8049829ebbd19e1bb77a503b9af6ceee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a892c19d1f55ea3fba93dab7162109e92"><td class="memItemLeft" align="right" valign="top"><a id="a892c19d1f55ea3fba93dab7162109e92"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_property</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *value, const afw_uuid_t *uuid, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a892c19d1f55ea3fba93dab7162109e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a281feedb2100053e6b603af5e77dd766"><td class="memItemLeft" align="right" valign="top"><a id="a281feedb2100053e6b603af5e77dd766"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_index</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a281feedb2100053e6b603af5e77dd766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf7d5147274960387aa0210931778999"><td class="memItemLeft" align="right" valign="top"><a id="abf7d5147274960387aa0210931778999"></a>
-<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_is_property_indexed</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:abf7d5147274960387aa0210931778999"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a217e870fdc4f00e65c09031f2d982865"><td class="memItemLeft" align="right" valign="top"><a id="a217e870fdc4f00e65c09031f2d982865"></a>
-const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_object_from_entry</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, MDB_dbi dbi, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a217e870fdc4f00e65c09031f2d982865"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af69ca1752945dfc8e141558b87256b1f"><td class="memItemLeft" align="right" valign="top"><a id="af69ca1752945dfc8e141558b87256b1f"></a>
-const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_value_from_entry</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, MDB_dbi dbi, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:af69ca1752945dfc8e141558b87256b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ffe8cdb259e6adf550ad165401bec5f"><td class="memItemLeft" align="right" valign="top"><a id="a2ffe8cdb259e6adf550ad165401bec5f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_entry_from_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, MDB_dbi dbi, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a2ffe8cdb259e6adf550ad165401bec5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a892d7a71d867103dd1c105d08bccd0"><td class="memItemLeft" align="right" valign="top"><a id="a1a892d7a71d867103dd1c105d08bccd0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_replace_entry_from_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, MDB_dbi dbi, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a1a892d7a71d867103dd1c105d08bccd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd52a0dd69ef7691f0a0ad94977d9cc4"><td class="memItemLeft" align="right" valign="top"><a id="abd52a0dd69ef7691f0a0ad94977d9cc4"></a>
-<a class="el" href="structafw__adaptor__impl__index__cursor__s.html">afw_adaptor_impl_index_cursor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_cursor_create</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *database, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *value, const <a class="el" href="group__afw__query__criteria.html#ga4d8acae60aed52486371743923d9e0dc">afw_query_criteria_filter_op_id_t</a> operator, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> unique, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:abd52a0dd69ef7691f0a0ad94977d9cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a745419bdcfd48125074841eebb82ee35"><td class="memItemLeft" align="right" valign="top"><a id="a745419bdcfd48125074841eebb82ee35"></a>
-const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_get_config</b> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *self, MDB_txn *txn, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a745419bdcfd48125074841eebb82ee35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68aa2083ddbb52067a80ee37d8ffd344"><td class="memItemLeft" align="right" valign="top"><a id="a68aa2083ddbb52067a80ee37d8ffd344"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_save_config</b> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *self, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *config, MDB_txn *txn, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a68aa2083ddbb52067a80ee37d8ffd344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac77f3cf7c48182d6e40d596dd8921009"><td class="memItemLeft" align="right" valign="top"><a id="ac77f3cf7c48182d6e40d596dd8921009"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_set_key</b> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *key, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const afw_uuid_t *uuid, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ac77f3cf7c48182d6e40d596dd8921009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d67493854c68f8f2e58c4c93dd845c8"><td class="memItemLeft" align="right" valign="top"><a id="a0d67493854c68f8f2e58c4c93dd845c8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_close_transaction</b> (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a0d67493854c68f8f2e58c4c93dd845c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf025b1abdee6aa6152d7726f4fc8af"><td class="memItemLeft" align="right" valign="top"><a id="aeaf025b1abdee6aa6152d7726f4fc8af"></a>
+MDB_dbi&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_database</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *database, unsigned int flags, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:aeaf025b1abdee6aa6152d7726f4fc8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e04e0accbc65b47282c72738cb59b6"><td class="memItemLeft" align="right" valign="top"><a id="a91e04e0accbc65b47282c72738cb59b6"></a>
+MDB_cursor *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_cursor</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a91e04e0accbc65b47282c72738cb59b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64961c2571bf08b206ae690e4ecbdaf7"><td class="memItemLeft" align="right" valign="top"><a id="a64961c2571bf08b206ae690e4ecbdaf7"></a>
+<a class="el" href="structafw__lmdb__txn__t.html">afw_lmdb_txn_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, unsigned int flags, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> exclusive, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a64961c2571bf08b206ae690e4ecbdaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f126959943d90e6824ba69195ba9998"><td class="memItemLeft" align="right" valign="top"><a id="a5f126959943d90e6824ba69195ba9998"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_commit_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a5f126959943d90e6824ba69195ba9998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0606cfd70e104a947e69032f377db65"><td class="memItemLeft" align="right" valign="top"><a id="ac0606cfd70e104a947e69032f377db65"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_abort_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac0606cfd70e104a947e69032f377db65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b21769a778db459cb2b8807a69f1fe7"><td class="memItemLeft" align="right" valign="top"><a id="a4b21769a778db459cb2b8807a69f1fe7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a4b21769a778db459cb2b8807a69f1fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea8510945f8bdb73a59db1d69f46826"><td class="memItemLeft" align="right" valign="top"><a id="a3ea8510945f8bdb73a59db1d69f46826"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_property</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *value, const afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a3ea8510945f8bdb73a59db1d69f46826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec6cb49b7a3284ee294ce19fe1a95bdd"><td class="memItemLeft" align="right" valign="top"><a id="aec6cb49b7a3284ee294ce19fe1a95bdd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_index</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:aec6cb49b7a3284ee294ce19fe1a95bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8c540b6747eb8837c342c6a6a33589"><td class="memItemLeft" align="right" valign="top"><a id="a9c8c540b6747eb8837c342c6a6a33589"></a>
+<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_is_property_indexed</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a9c8c540b6747eb8837c342c6a6a33589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a1dc690a2b2faad4e02bee038c0bfe"><td class="memItemLeft" align="right" valign="top"><a id="a44a1dc690a2b2faad4e02bee038c0bfe"></a>
+const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_object_from_entry</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a44a1dc690a2b2faad4e02bee038c0bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0f080fa27de746b7de19d98850823f4"><td class="memItemLeft" align="right" valign="top"><a id="ad0f080fa27de746b7de19d98850823f4"></a>
+const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_value_from_entry</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ad0f080fa27de746b7de19d98850823f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ddc5555c620db3d90155255acf0dba"><td class="memItemLeft" align="right" valign="top"><a id="a20ddc5555c620db3d90155255acf0dba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_create_entry_from_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a20ddc5555c620db3d90155255acf0dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb98a6960d1b653846e15c05d87a7378"><td class="memItemLeft" align="right" valign="top"><a id="adb98a6960d1b653846e15c05d87a7378"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_replace_entry_from_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:adb98a6960d1b653846e15c05d87a7378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd151fd04ab93e9dc5672c58eb9638a"><td class="memItemLeft" align="right" valign="top"><a id="a6bd151fd04ab93e9dc5672c58eb9638a"></a>
+<a class="el" href="structafw__adaptor__impl__index__cursor__s.html">afw_adaptor_impl_index_cursor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_cursor_create</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *database, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *value, const <a class="el" href="group__afw__query__criteria.html#ga4d8acae60aed52486371743923d9e0dc">afw_query_criteria_filter_op_id_t</a> operator, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> unique, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a6bd151fd04ab93e9dc5672c58eb9638a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc52defe0dbb862f1fbab616082c1f0"><td class="memItemLeft" align="right" valign="top"><a id="a7dc52defe0dbb862f1fbab616082c1f0"></a>
+const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_get_config</b> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *self, MDB_txn *txn, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a7dc52defe0dbb862f1fbab616082c1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add6feaf2a5a489dd3f4a908ed8401b6e"><td class="memItemLeft" align="right" valign="top"><a id="add6feaf2a5a489dd3f4a908ed8401b6e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_save_config</b> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *self, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *config, MDB_txn *txn, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:add6feaf2a5a489dd3f4a908ed8401b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74a3053d671c46907db5e4ffffebc94"><td class="memItemLeft" align="right" valign="top"><a id="ac74a3053d671c46907db5e4ffffebc94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_set_key</b> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *key, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const afw_uuid_t *uuid, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac74a3053d671c46907db5e4ffffebc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ecfcb6bf0b1ee957478c5389748ead6"><td class="memItemLeft" align="right" valign="top"><a id="a4ecfcb6bf0b1ee957478c5389748ead6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_get_key</b> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *key, <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, afw_uuid_t *uuid)</td></tr>
 <tr class="separator:a4ecfcb6bf0b1ee957478c5389748ead6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53024f5bacec92961084c8c6bb9ce738"><td class="memItemLeft" align="right" valign="top"><a id="a53024f5bacec92961084c8c6bb9ce738"></a>
-<a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_entry</b> (MDB_txn *txn, MDB_dbi dbi, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *raw_key, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *raw_value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a53024f5bacec92961084c8c6bb9ce738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08b117b6966d159fff027972e247c3cc"><td class="memItemLeft" align="right" valign="top"><a id="a08b117b6966d159fff027972e247c3cc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_reader_check</b> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *instance, int *deadReaders, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a08b117b6966d159fff027972e247c3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fd3289800f5cb625acacfc06fc9fcd2"><td class="memItemLeft" align="right" valign="top"><a id="a9fd3289800f5cb625acacfc06fc9fcd2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_reader_list</b> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> **list, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *pool, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a9fd3289800f5cb625acacfc06fc9fcd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7506d0f58b9d76eb17359177e7936fd8"><td class="memItemLeft" align="right" valign="top"><a id="a7506d0f58b9d76eb17359177e7936fd8"></a>
+<a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_entry</b> (MDB_txn *txn, MDB_dbi dbi, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *raw_key, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *raw_value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a7506d0f58b9d76eb17359177e7936fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18f5f9baa5185ff768736b6c3c7ccec"><td class="memItemLeft" align="right" valign="top"><a id="ac18f5f9baa5185ff768736b6c3c7ccec"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_reader_check</b> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *instance, int *deadReaders, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac18f5f9baa5185ff768736b6c3c7ccec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cbefa5c83b75af554792dc4788fbb06"><td class="memItemLeft" align="right" valign="top"><a id="a7cbefa5c83b75af554792dc4788fbb06"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_reader_list</b> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> **list, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *pool, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a7cbefa5c83b75af554792dc4788fbb06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Adaptive Framework LMDB Adaptor Internal Header. </p>
@@ -289,7 +289,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">            txnHandled = <span class="keyword">true</span>; \</div>
 <div class="line">            if (this_rc) { \</div>
 <div class="line">                AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \</div>
-<div class="line">                    <span class="stringliteral">&quot;Unable to abort transaction.&quot;</span>, this_scope); \</div>
+<div class="line">                    <span class="stringliteral">&quot;Unable to abort transaction.&quot;</span>, this_xctx); \</div>
 <div class="line">            } \</div>
 <div class="line">        } \</div>
 <div class="line">    }</div>
@@ -300,8 +300,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 
 </div>
 </div>
-<a id="a04f8917b7b9fb1adbc6e32718c13b34d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04f8917b7b9fb1adbc6e32718c13b34d">&#9670;&nbsp;</a></span>AFW_LMDB_BEGIN_TRANSACTION</h2>
+<a id="a96118b04eae65a6da5a3f7b9577617cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96118b04eae65a6da5a3f7b9577617cd">&#9670;&nbsp;</a></span>AFW_LMDB_BEGIN_TRANSACTION</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +334,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -348,7 +348,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">    bool this_txnHandled = <span class="keyword">false</span>; \</div>
 <div class="line">    const <a class="code" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> * this_adaptor = adaptor; \</div>
 <div class="line">    const <a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> * this_session = <a class="code" href="classsession.html">session</a>; \</div>
-<div class="line">    afw_scope_t * this_scope = scope; \</div>
+<div class="line">    afw_xctx_t * this_xctx = xctx; \</div>
 <div class="line">    int this_rc; \</div>
 <div class="line">    AFW_TRY { \</div>
 <div class="line">        if (<a class="code" href="classsession.html">session</a> &amp;&amp; <a class="code" href="classsession.html">session</a>-&gt;transaction) { \</div>
@@ -363,7 +363,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">            if (this_rc) { \</div>
 <div class="line">                apr_thread_rwlock_unlock(adaptor-&gt;dbLock); \</div>
 <div class="line">                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \</div>
-<div class="line">                    <span class="stringliteral">&quot;Unable to begin transaction.&quot;</span>, this_scope); \</div>
+<div class="line">                    <span class="stringliteral">&quot;Unable to begin transaction.&quot;</span>, this_xctx); \</div>
 <div class="line">            } \</div>
 <div class="line">            if (<a class="code" href="classsession.html">session</a>) \</div>
 <div class="line">                ((<a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *)<a class="code" href="classsession.html">session</a>)-&gt;currTxn = this_txn; \</div>
@@ -401,7 +401,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">            this_txnHandled = <span class="keyword">true</span>; \</div>
 <div class="line">            if (this_rc) { \</div>
 <div class="line">                AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \</div>
-<div class="line">                    <span class="stringliteral">&quot;Unable to commit transaction.&quot;</span>, this_scope); \</div>
+<div class="line">                    <span class="stringliteral">&quot;Unable to commit transaction.&quot;</span>, this_xctx); \</div>
 <div class="line">            } \</div>
 <div class="line">        } \</div>
 <div class="line">    }</div>
@@ -448,8 +448,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a76f8c1ef479b30402a1b95960e60ac8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76f8c1ef479b30402a1b95960e60ac8f">&#9670;&nbsp;</a></span>afw_lmdb_adaptor_create_cede_p()</h2>
+<a id="ac320cf9ce56f40f51e380d6747badbcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac320cf9ce56f40f51e380d6747badbcd">&#9670;&nbsp;</a></span>afw_lmdb_adaptor_create_cede_p()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,8 +469,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -485,7 +485,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
   <table class="params">
     <tr><td class="paramname">properties</td><td>Parameters. </td></tr>
     <tr><td class="paramname">p</td><td>to use for adaptor resources. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -495,8 +495,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 
 </div>
 </div>
-<a id="a6916175b1cd5f3fcea224fa1d76415a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6916175b1cd5f3fcea224fa1d76415a7">&#9670;&nbsp;</a></span>afw_lmdb_adaptor_session_create()</h2>
+<a id="ac8803bdfb08a73159d241e87dee2068f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8803bdfb08a73159d241e87dee2068f">&#9670;&nbsp;</a></span>afw_lmdb_adaptor_session_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -510,8 +510,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -525,7 +525,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor</td><td>Internal instance of adaptor. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -535,8 +535,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 
 </div>
 </div>
-<a id="ab293fdb93000bce20a746a906cfeba44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab293fdb93000bce20a746a906cfeba44">&#9670;&nbsp;</a></span>afw_lmdb_journal_create()</h2>
+<a id="a9b8193226d7c39f3bd491d862d9e4b23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8193226d7c39f3bd491d862d9e4b23">&#9670;&nbsp;</a></span>afw_lmdb_journal_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -550,8 +550,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -565,7 +565,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor</td><td>Internal instance of adaptor session. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -578,7 +578,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

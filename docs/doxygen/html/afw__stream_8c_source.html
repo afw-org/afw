@@ -72,7 +72,7 @@ $(function() {
 <div class="contents">
 <a href="afw__stream_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// See the &#39;COPYING&#39; file in the project root for licensing information.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Implementation of afw_scope interface</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Implementation of afw_xctx interface</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Copyright (c) 2010-2023 Clemson University</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
@@ -83,41 +83,41 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* Get stream by streamId. */</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">   19</a></span>&#160;<a class="code" href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">afw_stream_get_by_streamId</a>(</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">   19</a></span>&#160;<a class="code" href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">afw_stream_get_by_streamId</a>(</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    const <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *streamId,</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    const <a class="code" href="structafw__stream__s.html">afw_stream_t</a> **stream,</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> *streamNumber,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> * <span class="keyword">const</span> *streams;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> number;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    *stream = NULL;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    *streamNumber = -1;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (scope-&gt;stream_anchor) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (xctx-&gt;stream_anchor) {</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>(streamId, &amp;afw_s_stdout)) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(stdout, scope);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(stdout, xctx);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            *streamNumber = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)afw_stream_number_stdout;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>(streamId, &amp;afw_s_stderr)) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(stderr, scope);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(stderr, xctx);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            *streamNumber = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)afw_stream_number_stderr;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>(streamId, &amp;afw_s_console)) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(console, scope);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(console, xctx);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            *streamNumber = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)afw_stream_number_console;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>(streamId, &amp;afw_s_response_body)) {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(response_body, scope);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(response_body, xctx);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            *streamNumber = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)afw_stream_number_response_body;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>(streamId, &amp;afw_s_raw_response_body)) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            *streamNumber = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)afw_stream_number_raw_response_body;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">for</span> (streams = scope-&gt;stream_anchor-&gt;streams,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">for</span> (streams = xctx-&gt;stream_anchor-&gt;streams,</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            number = afw_stream_number_count;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            number &lt; scope-&gt;stream_anchor-&gt;maximum_number_of_streams;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            number &lt; xctx-&gt;stream_anchor-&gt;maximum_number_of_streams;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            streams++, number++)</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a>((*streams)-&gt;streamId, streamId)) {</div>
@@ -132,27 +132,27 @@ $(function() {
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">/*  Get stream by streamNumber. */</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *)</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__afw__stream.html#gaa606177d29bae2c9e9bdea4316c3746a">   68</a></span>&#160;<a class="code" href="group__afw__stream.html#gaa606177d29bae2c9e9bdea4316c3746a">afw_stream_get_by_streamNumber</a>(</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga26c8bc756691601d36cca639b1c51cc7">   68</a></span>&#160;<a class="code" href="group__afw__stream.html#ga26c8bc756691601d36cca639b1c51cc7">afw_stream_get_by_streamNumber</a>(</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    const <a class="code" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> streamNumber,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *stream;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> number;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span> (streamNumber &gt;= 0 &amp;&amp; streamNumber &lt; afw_stream_number_count) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        stream = <a class="code" href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a>(</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            (<a class="code" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a>)streamNumber, scope);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        stream = <a class="code" href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a>(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            (<a class="code" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a>)streamNumber, xctx);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> stream;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    number = (<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)streamNumber;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    stream = NULL;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (scope-&gt;stream_anchor &amp;&amp;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (xctx-&gt;stream_anchor &amp;&amp;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        streamNumber &gt;= 0 &amp;&amp;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        number == streamNumber &amp;&amp;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        number &lt; scope-&gt;stream_anchor-&gt;maximum_number_of_streams)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        number &lt; xctx-&gt;stream_anchor-&gt;maximum_number_of_streams)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        stream = scope-&gt;stream_anchor-&gt;streams[number];</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        stream = xctx-&gt;stream_anchor-&gt;streams[number];</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> stream;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
@@ -161,15 +161,15 @@ $(function() {
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* Get streamNumber for streamId. */</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__afw__stream.html#gaf6ca584431603ee567b3c607a8880574">   97</a></span>&#160;<a class="code" href="group__afw__stream.html#gaf6ca584431603ee567b3c607a8880574">afw_stream_get_streamNumber_for_streamId</a>(</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga402d6efcf0dd8894d09c2ffa33348465">   97</a></span>&#160;<a class="code" href="group__afw__stream.html#ga402d6efcf0dd8894d09c2ffa33348465">afw_stream_get_streamNumber_for_streamId</a>(</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    const <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *streamId,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *stream;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> streamNumber;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">afw_stream_get_by_streamId</a>(streamId,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        &amp;stream, &amp;streamNumber, scope);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">afw_stream_get_by_streamId</a>(streamId,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        &amp;stream, &amp;streamNumber, xctx);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">return</span> streamNumber;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
@@ -178,18 +178,18 @@ $(function() {
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">/* Get streamNumber for streamId. */</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>)</div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga7c9ab5a1d2789501610956ce2de6aa54">  114</a></span>&#160;<a class="code" href="group__afw__stream.html#ga7c9ab5a1d2789501610956ce2de6aa54">afw_stream_set</a>(</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga2d7b1773d09597486de1245b6e467863">  114</a></span>&#160;<a class="code" href="group__afw__stream.html#ga2d7b1773d09597486de1245b6e467863">afw_stream_set</a>(</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    const <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *stream,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> **streams;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, number;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    number = -1;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (scope-&gt;stream_anchor) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">for</span> (streams = (<span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)scope-&gt;stream_anchor-&gt;streams,</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (xctx-&gt;stream_anchor) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">for</span> (streams = (<span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)xctx-&gt;stream_anchor-&gt;streams,</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            count = 0;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            count &lt; scope-&gt;stream_anchor-&gt;maximum_number_of_streams;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            count &lt; xctx-&gt;stream_anchor-&gt;maximum_number_of_streams;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            count++, streams++)</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        {</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordflow">if</span> (*streams) {</div>
@@ -212,23 +212,23 @@ $(function() {
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">/* Implementation for get scope writer instance. */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">/* Implementation for get xctx writer instance. */</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *)</div>
-<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">  150</a></span>&#160;<a class="code" href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a>(<a class="code" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a> n, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">  150</a></span>&#160;<a class="code" href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a>(<a class="code" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a> n, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__content__type__s.html">afw_content_type_t</a> *response_content_type;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a> *stream_anchor =</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        (<a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a> *)scope-&gt;stream_anchor;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        (<a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a> *)xctx-&gt;stream_anchor;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__stream__s.html">afw_stream_t</a> **stream;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    if (n &lt; 0 || n &gt;= afw_stream_number_count) {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="stringliteral">&quot;afw_stream_standard_impl() n parameter out of range&quot;</span>,</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            scope);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            xctx);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    response_content_type = (scope-&gt;request)</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        ? afw_request_prepare_response_content_type(scope-&gt;request, scope)</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    response_content_type = (xctx-&gt;request)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        ? afw_request_prepare_response_content_type(xctx-&gt;request, xctx)</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        : NULL;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">if</span> (!stream_anchor-&gt;streams[n]) {</div>
@@ -236,118 +236,118 @@ $(function() {
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        switch (n) {</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">case</span> afw_stream_number_raw_response_body:</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">if</span> (scope-&gt;request) {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">if</span> (xctx-&gt;request) {</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                *stream = afw_request_response_body_raw_writer_create(</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    scope-&gt;request, scope);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    xctx-&gt;request, xctx);</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            }</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a>(scope-&gt;env-&gt;stdout_fd,</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a>(xctx-&gt;env-&gt;stdout_fd,</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    &amp;afw_s_raw_response_body, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>,</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    scope-&gt;p, scope);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            }</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">case</span> afw_stream_number_response_body:</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__content__type.html#ga552ddb6e1bdff2976bb7d0dbf0257a8b">afw_content_type_is_application_afw</a>(response_content_type))</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                *stream = <a class="code" href="group__afw__content__type.html#gad0bb58cc3b35a66753deeb164654a3fa">afw_content_type_application_afw_stream_create</a>(</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope),</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    &amp;afw_s_response, NULL, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                *stream = <a class="code" href="group__afw__content__type.html#gafb398e81e187996eb4f0871bdd74e742">afw_content_type_application_afw_stream_create</a>(</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx),</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    &amp;afw_s_response, NULL, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            }</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx);</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">case</span> afw_stream_number_console:</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                &amp;afw_s_a_flag_response_console_stream, scope))</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                &amp;afw_s_a_flag_response_console_stream, xctx))</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            {</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="group__afw__content__type.html#ga552ddb6e1bdff2976bb7d0dbf0257a8b">afw_content_type_is_application_afw</a>(response_content_type))</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gad0bb58cc3b35a66753deeb164654a3fa">afw_content_type_application_afw_stream_create</a>(</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                        <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope),</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                        &amp;afw_s_console, NULL, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gafb398e81e187996eb4f0871bdd74e742">afw_content_type_application_afw_stream_create</a>(</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                        <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx),</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                        &amp;afw_s_console, NULL, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                }</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                    <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                    <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                        <span class="stringliteral">&quot;flag response:console:stream requires content-type &quot;</span></div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                        <span class="stringliteral">&quot;application/x-afw&quot;</span>,</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                        scope);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                        xctx);</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                }</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                &amp;afw_s_a_flag_response_console, scope))</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                &amp;afw_s_a_flag_response_console, xctx))</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gaf61caded24833e53b76397d63b93ac1e">afw_utf8_stream_create</a>(&amp;afw_s_console,</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    scope-&gt;p, scope);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gab70c3b3428cf341b48086a6797175b45">afw_utf8_stream_create</a>(&amp;afw_s_console,</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            }</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a>(scope-&gt;env-&gt;stdout_fd,</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                    &amp;afw_s_console, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a>(xctx-&gt;env-&gt;stdout_fd,</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                    &amp;afw_s_console, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            }</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">case</span> afw_stream_number_stderr:</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                &amp;afw_s_a_flag_response_stderr_stream, scope))</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                &amp;afw_s_a_flag_response_stderr_stream, xctx))</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            {</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="group__afw__content__type.html#ga552ddb6e1bdff2976bb7d0dbf0257a8b">afw_content_type_is_application_afw</a>(response_content_type))</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gad0bb58cc3b35a66753deeb164654a3fa">afw_content_type_application_afw_stream_create</a>(</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                        <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope),</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                        &amp;afw_s_stderr, NULL, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gafb398e81e187996eb4f0871bdd74e742">afw_content_type_application_afw_stream_create</a>(</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                        <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx),</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                        &amp;afw_s_stderr, NULL, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                }</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                        <span class="stringliteral">&quot;flag response:stderr:stream requires content-type &quot;</span></div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                        <span class="stringliteral">&quot;application/x-afw&quot;</span>,</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        scope);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        xctx);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                }</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                &amp;afw_s_a_flag_response_stderr, scope))</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                &amp;afw_s_a_flag_response_stderr, xctx))</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gaf61caded24833e53b76397d63b93ac1e">afw_utf8_stream_create</a>(&amp;afw_s_stderr,</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    scope-&gt;p, scope);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gab70c3b3428cf341b48086a6797175b45">afw_utf8_stream_create</a>(&amp;afw_s_stderr,</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            }</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a>(scope-&gt;env-&gt;stdout_fd,</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    &amp;afw_s_stderr, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a>(xctx-&gt;env-&gt;stdout_fd,</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    &amp;afw_s_stderr, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            }</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordflow">case</span> afw_stream_number_stdout:</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                &amp;afw_s_a_flag_response_stdout_stream, scope))</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                &amp;afw_s_a_flag_response_stdout_stream, xctx))</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            {</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="group__afw__content__type.html#ga552ddb6e1bdff2976bb7d0dbf0257a8b">afw_content_type_is_application_afw</a>(response_content_type))</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gad0bb58cc3b35a66753deeb164654a3fa">afw_content_type_application_afw_stream_create</a>(</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                        <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope),</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                        &amp;afw_s_stdout, NULL, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                    *stream = <a class="code" href="group__afw__content__type.html#gafb398e81e187996eb4f0871bdd74e742">afw_content_type_application_afw_stream_create</a>(</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                        <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx),</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                        &amp;afw_s_stdout, NULL, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                }</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general,</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general,</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                        <span class="stringliteral">&quot;flag response:stdout:stream requires content-type &quot;</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        <span class="stringliteral">&quot;application/x-afw&quot;</span>,</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                        scope);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                        xctx);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                }</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a>(</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                &amp;afw_s_a_flag_response_stdout, scope))</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a>(</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                &amp;afw_s_a_flag_response_stdout, xctx))</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            {</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gaf61caded24833e53b76397d63b93ac1e">afw_utf8_stream_create</a>(&amp;afw_s_stdout,</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    scope-&gt;p, scope);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                *stream = <a class="code" href="group__afw__utf8.html#gab70c3b3428cf341b48086a6797175b45">afw_utf8_stream_create</a>(&amp;afw_s_stdout,</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a>(scope-&gt;env-&gt;stdout_fd,</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                    &amp;afw_s_stdout, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                *stream = <a class="code" href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a>(xctx-&gt;env-&gt;stdout_fd,</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                    &amp;afw_s_stdout, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            }</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <a class="code" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(general, <span class="stringliteral">&quot;Internal error&quot;</span>, scope);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <a class="code" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general, <span class="stringliteral">&quot;Internal error&quot;</span>, xctx);</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        }</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
@@ -356,42 +356,42 @@ $(function() {
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keyword">const</span> <a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a> *)</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;afw_stream_internal_stream_anchor_create(<a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;afw_stream_internal_stream_anchor_create(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;{</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a> *stream_anchor;</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    stream_anchor = apr_pcalloc(<a class="code" href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a>(scope-&gt;p),</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    stream_anchor = apr_pcalloc(<a class="code" href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a>(xctx-&gt;p),</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keyword">sizeof</span>(<a class="code" href="structafw__stream__anchor__s.html">afw_stream_anchor_t</a>));</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    stream_anchor-&gt;maximum_number_of_streams = afw_stream_number_count + 20;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    stream_anchor-&gt;streams = apr_pcalloc(<a class="code" href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a>(scope-&gt;p),</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    stream_anchor-&gt;streams = apr_pcalloc(<a class="code" href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a>(xctx-&gt;p),</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        stream_anchor-&gt;maximum_number_of_streams * <span class="keyword">sizeof</span>(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> *));</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordflow">return</span> stream_anchor;</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">/* Release scope streams. */</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">/* Release xctx streams. */</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;afw_stream_internal_release_all_streams(<a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;afw_stream_internal_release_all_streams(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;{</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a> i;</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="comment">/* Release writers. */</span></div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; afw_stream_number_count; i++) {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <span class="keywordflow">if</span> (scope-&gt;stream_anchor-&gt;streams[i] &amp;&amp;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <span class="keywordflow">if</span> (xctx-&gt;stream_anchor-&gt;streams[i] &amp;&amp;</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            i != afw_stream_number_raw_response_body)</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <a class="code" href="group__afw__stream__interface.html#ga274e33242968eb75a2a6f5b868eb26d4">afw_stream_release</a>(scope-&gt;stream_anchor-&gt;streams[i], scope);</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            *(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)&amp;scope-&gt;stream_anchor-&gt;streams[i] = NULL;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <a class="code" href="group__afw__stream__interface.html#gab34303edb9c0cb21c319370cc99f5142">afw_stream_release</a>(xctx-&gt;stream_anchor-&gt;streams[i], xctx);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            *(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)&amp;xctx-&gt;stream_anchor-&gt;streams[i] = NULL;</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        }</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="comment">/* Release raw_response_body last. */</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope)) {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <a class="code" href="group__afw__stream__interface.html#ga274e33242968eb75a2a6f5b868eb26d4">afw_stream_release</a>(</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <a class="code" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(raw_response_body, scope), scope);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx)) {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <a class="code" href="group__afw__stream__interface.html#gab34303edb9c0cb21c319370cc99f5142">afw_stream_release</a>(</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <a class="code" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(raw_response_body, xctx), xctx);</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        *(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            &amp;scope-&gt;stream_anchor-&gt;streams[afw_stream_number_raw_response_body]</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            &amp;xctx-&gt;stream_anchor-&gt;streams[afw_stream_number_raw_response_body]</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            = NULL;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;}</div>
@@ -400,32 +400,32 @@ $(function() {
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">/* Call afw_stream_write() with an integer. */</span></div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga7f8e7314faf390c84ac1a0abcf13c4a4">  341</a></span>&#160;<a class="code" href="group__afw__stream.html#ga7f8e7314faf390c84ac1a0abcf13c4a4">afw_stream_write_integer</a>(</div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="group__afw__stream.html#gabab90460c25eefcdcbb959681dcde438">  341</a></span>&#160;<a class="code" href="group__afw__stream.html#gabab90460c25eefcdcbb959681dcde438">afw_stream_write_integer</a>(</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    const <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *writer,</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <a class="code" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> integer,</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordtype">char</span> buf[<a class="code" href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a>];</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    snprintf(buf, <a class="code" href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a>, <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga4696e562681c680da397c0cd1bac19a8">AFW_INTEGER_FMT</a>,</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        integer);</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <a class="code" href="group__afw__stream.html#gabecc747c334afa4bb476e5f4242083f9">afw_stream_write_z</a>(writer, buf, scope);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <a class="code" href="group__afw__stream.html#ga375c4e6f3809ae4d822eeeb05e3b7598">afw_stream_write_z</a>(writer, buf, xctx);</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment">/* Call afw_stream_write() with a size. */</span></div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="group__afw__stream.html#ga3d0be4d9f883ea139d321d000d6950d8">  357</a></span>&#160;<a class="code" href="group__afw__stream.html#ga3d0be4d9f883ea139d321d000d6950d8">afw_stream_write_size</a>(</div>
+<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="group__afw__stream.html#gafa960bbbb9c06b13b0e09199a3af7007">  357</a></span>&#160;<a class="code" href="group__afw__stream.html#gafa960bbbb9c06b13b0e09199a3af7007">afw_stream_write_size</a>(</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    const <a class="code" href="structafw__stream__s.html">afw_stream_t</a> *writer,</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size,</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;{</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keywordtype">char</span> buf[<a class="code" href="group__afw__common.html#ga3c86f46fd8981bfe41b9546210dedc96">AFW_SIZE_T_MAX_BUFFER</a>];</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    snprintf(buf, <a class="code" href="group__afw__common.html#ga3c86f46fd8981bfe41b9546210dedc96">AFW_SIZE_T_MAX_BUFFER</a>, <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#gadce5f4fbd744c35fc70adece36a6e118">AFW_SIZE_T_FMT</a>,</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        size);</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <a class="code" href="group__afw__stream.html#gabecc747c334afa4bb476e5f4242083f9">afw_stream_write_z</a>(writer, buf, scope);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <a class="code" href="group__afw__stream.html#ga375c4e6f3809ae4d822eeeb05e3b7598">afw_stream_write_z</a>(writer, buf, xctx);</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;}</div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a28778bbad95b4bb0c7b0023cc75c8bdf"><div class="ttname"><a href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a></div><div class="ttdeci">#define AFW_DEFINE_INTERNAL(type)</div><div class="ttdoc">Define an internal function for /src/afw/ source*.c files.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00122">afw_declare_helpers.h:122</a></div></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a53c27301be573580f47f98f0fbccde3b"><div class="ttname"><a href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a></div><div class="ttdeci">#define AFW_DEFINE(type)</div><div class="ttdoc">Define a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00209">afw_declare_helpers.h:209</a></div></div>
@@ -437,33 +437,33 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_gaf07e0bfc1c151bed8127398ad33cf140"><div class="ttname"><a href="group__afw__common.html#gaf07e0bfc1c151bed8127398ad33cf140">AFW_INTEGER_MAX_BUFFER</a></div><div class="ttdeci">#define AFW_INTEGER_MAX_BUFFER</div><div class="ttdoc">this is the maximum number of digits that can be produced by afw_integer_t plus negative sign plus nu...</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00273">afw_common.h:273</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaf758b90e3fadf75b6264795b4f8a1e57"><div class="ttname"><a href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></div><div class="ttdeci">apr_int64_t afw_integer_t</div><div class="ttdoc">typedef for big signed int.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00319">afw_common.h:319</a></div></div>
 <div class="ttc" id="agroup__afw__content__type_html_ga552ddb6e1bdff2976bb7d0dbf0257a8b"><div class="ttname"><a href="group__afw__content__type.html#ga552ddb6e1bdff2976bb7d0dbf0257a8b">afw_content_type_is_application_afw</a></div><div class="ttdeci">#define afw_content_type_is_application_afw(instance)</div><div class="ttdoc">Determine if content type it application/x-afw.</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type_8h_source.html#l00111">afw_content_type.h:111</a></div></div>
-<div class="ttc" id="agroup__afw__content__type_html_gad0bb58cc3b35a66753deeb164654a3fa"><div class="ttname"><a href="group__afw__content__type.html#gad0bb58cc3b35a66753deeb164654a3fa">afw_content_type_application_afw_stream_create</a></div><div class="ttdeci">const afw_stream_t * afw_content_type_application_afw_stream_create(const afw_stream_t *response_stream, const afw_utf8_t *streamId, const afw_utf8_t *info, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create a stream for content type application/afw.</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00309">afw_content_type_application_afw.c:309</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga5a711cdfb9990f4d2b628e8288815457"><div class="ttname"><a href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, scope)</div><div class="ttdoc">Macro used to set error and 0 rv in scope and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
-<div class="ttc" id="agroup__afw__flag_html_ga875103ccf499bb2400873e2c9a266d8e"><div class="ttname"><a href="group__afw__flag.html#ga875103ccf499bb2400873e2c9a266d8e">afw_flag_by_id_is_active</a></div><div class="ttdeci">afw_boolean_t afw_flag_by_id_is_active(const afw_utf8_t *flag_id, afw_scope_t *scope)</div><div class="ttdoc">Determine if flag for flag id is set in scope.</div><div class="ttdef"><b>Definition:</b> <a href="afw__flag_8c_source.html#l00565">afw_flag.c:565</a></div></div>
-<div class="ttc" id="agroup__afw__pool__interface_html_gacde5c5139a11020894d70217fe30ee32"><div class="ttname"><a href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a></div><div class="ttdeci">#define afw_pool_get_apr_pool(instance)</div><div class="ttdoc">Call method get_apr_pool of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04847">afw_interface.h:4847</a></div></div>
-<div class="ttc" id="agroup__afw__stream__interface_html_ga274e33242968eb75a2a6f5b868eb26d4"><div class="ttname"><a href="group__afw__stream__interface.html#ga274e33242968eb75a2a6f5b868eb26d4">afw_stream_release</a></div><div class="ttdeci">#define afw_stream_release(instance, scope)</div><div class="ttdoc">Call method release of interface afw_stream.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04565">afw_interface.h:4565</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga3b919e10f8a54a814e05bd1c73d9b2ef"><div class="ttname"><a href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a></div><div class="ttdeci">#define afw_stream_standard(enum_suffix, scope)</div><div class="ttdoc">Get scope stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00126">afw_stream.h:126</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga3d0be4d9f883ea139d321d000d6950d8"><div class="ttname"><a href="group__afw__stream.html#ga3d0be4d9f883ea139d321d000d6950d8">afw_stream_write_size</a></div><div class="ttdeci">afw_stream_write_size(const afw_stream_t *writer, afw_size_t size, afw_scope_t *scope)</div><div class="ttdoc">Call afw_stream_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00357">afw_stream.c:357</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga79498059e8610ba6fb515e02950d4278"><div class="ttname"><a href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a></div><div class="ttdeci">const afw_stream_t * afw_stream_fd_create(FILE *fd, const afw_utf8_t *streamId, afw_boolean_t allow_read, afw_boolean_t allow_write, afw_boolean_t auto_flush, afw_boolean_t close_on_release, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create a stream to a file descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream__fd_8c_source.html#l00138">afw_stream_fd.c:138</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga7c9ab5a1d2789501610956ce2de6aa54"><div class="ttname"><a href="group__afw__stream.html#ga7c9ab5a1d2789501610956ce2de6aa54">afw_stream_set</a></div><div class="ttdeci">afw_stream_set(const afw_stream_t *stream, afw_scope_t *scope)</div><div class="ttdoc">Set an opening stream and get its streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00114">afw_stream.c:114</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga7f8e7314faf390c84ac1a0abcf13c4a4"><div class="ttname"><a href="group__afw__stream.html#ga7f8e7314faf390c84ac1a0abcf13c4a4">afw_stream_write_integer</a></div><div class="ttdeci">afw_stream_write_integer(const afw_stream_t *writer, afw_integer_t integer, afw_scope_t *scope)</div><div class="ttdoc">Call afw_stream_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00341">afw_stream.c:341</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_ga8c11c56361bc3a7a72052f7388bd1a27"><div class="ttname"><a href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">afw_stream_get_by_streamId</a></div><div class="ttdeci">afw_stream_get_by_streamId(const afw_utf8_t *streamId, const afw_stream_t **stream, afw_size_t *streamNumber, afw_scope_t *scope)</div><div class="ttdoc">Get stream by streamId and streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00019">afw_stream.c:19</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_gaa606177d29bae2c9e9bdea4316c3746a"><div class="ttname"><a href="group__afw__stream.html#gaa606177d29bae2c9e9bdea4316c3746a">afw_stream_get_by_streamNumber</a></div><div class="ttdeci">afw_stream_get_by_streamNumber(const afw_integer_t streamNumber, afw_scope_t *scope)</div><div class="ttdoc">Get stream by streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00068">afw_stream.c:68</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_gab8c9a363ef7d9457ca788f7dc557d418"><div class="ttname"><a href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a></div><div class="ttdeci">afw_stream_number_t</div><div class="ttdoc">enum for common scope streams</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00035">afw_stream.h:35</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_gabecc747c334afa4bb476e5f4242083f9"><div class="ttname"><a href="group__afw__stream.html#gabecc747c334afa4bb476e5f4242083f9">afw_stream_write_z</a></div><div class="ttdeci">#define afw_stream_write_z(writer, s_z, scope)</div><div class="ttdoc">Call afw_stream_write() with zero terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00182">afw_stream.h:182</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_gaf42c17ecf66708767c61737948945996"><div class="ttname"><a href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a></div><div class="ttdeci">afw_stream_standard_impl(afw_stream_number_t n, afw_scope_t *scope)</div><div class="ttdoc">Implementation for get scope standard stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00150">afw_stream.c:150</a></div></div>
-<div class="ttc" id="agroup__afw__stream_html_gaf6ca584431603ee567b3c607a8880574"><div class="ttname"><a href="group__afw__stream.html#gaf6ca584431603ee567b3c607a8880574">afw_stream_get_streamNumber_for_streamId</a></div><div class="ttdeci">afw_stream_get_streamNumber_for_streamId(const afw_utf8_t *streamId, afw_scope_t *scope)</div><div class="ttdoc">Get streamNumber for streamId.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00097">afw_stream.c:97</a></div></div>
+<div class="ttc" id="agroup__afw__content__type_html_gafb398e81e187996eb4f0871bdd74e742"><div class="ttname"><a href="group__afw__content__type.html#gafb398e81e187996eb4f0871bdd74e742">afw_content_type_application_afw_stream_create</a></div><div class="ttdeci">const afw_stream_t * afw_content_type_application_afw_stream_create(const afw_stream_t *response_stream, const afw_utf8_t *streamId, const afw_utf8_t *info, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create a stream for content type application/afw.</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type__application__afw_8c_source.html#l00309">afw_content_type_application_afw.c:309</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_gae3ef33256454849b39a6e9710f519c8b"><div class="ttname"><a href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a></div><div class="ttdeci">#define AFW_THROW_ERROR_Z(code, message_z, xctx)</div><div class="ttdoc">Macro used to set error and 0 rv in xctx and throw it.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00287">afw_error.h:287</a></div></div>
+<div class="ttc" id="agroup__afw__flag_html_ga201ac788241ce3b0e39d8cb9a1e49239"><div class="ttname"><a href="group__afw__flag.html#ga201ac788241ce3b0e39d8cb9a1e49239">afw_flag_by_id_is_active</a></div><div class="ttdeci">afw_boolean_t afw_flag_by_id_is_active(const afw_utf8_t *flag_id, afw_xctx_t *xctx)</div><div class="ttdoc">Determine if flag for flag id is set in xctx.</div><div class="ttdef"><b>Definition:</b> <a href="afw__flag_8c_source.html#l00565">afw_flag.c:565</a></div></div>
+<div class="ttc" id="agroup__afw__pool__interface_html_gacde5c5139a11020894d70217fe30ee32"><div class="ttname"><a href="group__afw__pool__interface.html#gacde5c5139a11020894d70217fe30ee32">afw_pool_get_apr_pool</a></div><div class="ttdeci">#define afw_pool_get_apr_pool(instance)</div><div class="ttdoc">Call method get_apr_pool of interface afw_pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04723">afw_interface.h:4723</a></div></div>
+<div class="ttc" id="agroup__afw__stream__interface_html_gab34303edb9c0cb21c319370cc99f5142"><div class="ttname"><a href="group__afw__stream__interface.html#gab34303edb9c0cb21c319370cc99f5142">afw_stream_release</a></div><div class="ttdeci">#define afw_stream_release(instance, xctx)</div><div class="ttdoc">Call method release of interface afw_stream.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04441">afw_interface.h:4441</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga0c3a8f9dbdde2af5426b5e1890ab29ab"><div class="ttname"><a href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a></div><div class="ttdeci">afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)</div><div class="ttdoc">Implementation for get xctx standard stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00150">afw_stream.c:150</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga26c8bc756691601d36cca639b1c51cc7"><div class="ttname"><a href="group__afw__stream.html#ga26c8bc756691601d36cca639b1c51cc7">afw_stream_get_by_streamNumber</a></div><div class="ttdeci">afw_stream_get_by_streamNumber(const afw_integer_t streamNumber, afw_xctx_t *xctx)</div><div class="ttdoc">Get stream by streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00068">afw_stream.c:68</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga2d7b1773d09597486de1245b6e467863"><div class="ttname"><a href="group__afw__stream.html#ga2d7b1773d09597486de1245b6e467863">afw_stream_set</a></div><div class="ttdeci">afw_stream_set(const afw_stream_t *stream, afw_xctx_t *xctx)</div><div class="ttdoc">Set an opening stream and get its streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00114">afw_stream.c:114</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga375c4e6f3809ae4d822eeeb05e3b7598"><div class="ttname"><a href="group__afw__stream.html#ga375c4e6f3809ae4d822eeeb05e3b7598">afw_stream_write_z</a></div><div class="ttdeci">#define afw_stream_write_z(writer, s_z, xctx)</div><div class="ttdoc">Call afw_stream_write() with zero terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00182">afw_stream.h:182</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga402d6efcf0dd8894d09c2ffa33348465"><div class="ttname"><a href="group__afw__stream.html#ga402d6efcf0dd8894d09c2ffa33348465">afw_stream_get_streamNumber_for_streamId</a></div><div class="ttdeci">afw_stream_get_streamNumber_for_streamId(const afw_utf8_t *streamId, afw_xctx_t *xctx)</div><div class="ttdoc">Get streamNumber for streamId.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00097">afw_stream.c:97</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga47c35b8c2b24ce02af9453fb97e1d46e"><div class="ttname"><a href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a></div><div class="ttdeci">const afw_stream_t * afw_stream_fd_create(FILE *fd, const afw_utf8_t *streamId, afw_boolean_t allow_read, afw_boolean_t allow_write, afw_boolean_t auto_flush, afw_boolean_t close_on_release, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create a stream to a file descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream__fd_8c_source.html#l00138">afw_stream_fd.c:138</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga5df8f128c22ed1529e3421691fac8f28"><div class="ttname"><a href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a></div><div class="ttdeci">#define afw_stream_standard(enum_suffix, xctx)</div><div class="ttdoc">Get xctx stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00126">afw_stream.h:126</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_ga9422b1d7f5d1c315a814639fd6cb6995"><div class="ttname"><a href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">afw_stream_get_by_streamId</a></div><div class="ttdeci">afw_stream_get_by_streamId(const afw_utf8_t *streamId, const afw_stream_t **stream, afw_size_t *streamNumber, afw_xctx_t *xctx)</div><div class="ttdoc">Get stream by streamId and streamNumber.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00019">afw_stream.c:19</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_gab8c9a363ef7d9457ca788f7dc557d418"><div class="ttname"><a href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a></div><div class="ttdeci">afw_stream_number_t</div><div class="ttdoc">enum for common xctx streams</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00035">afw_stream.h:35</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_gabab90460c25eefcdcbb959681dcde438"><div class="ttname"><a href="group__afw__stream.html#gabab90460c25eefcdcbb959681dcde438">afw_stream_write_integer</a></div><div class="ttdeci">afw_stream_write_integer(const afw_stream_t *writer, afw_integer_t integer, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_stream_write() with an integer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00341">afw_stream.c:341</a></div></div>
+<div class="ttc" id="agroup__afw__stream_html_gafa960bbbb9c06b13b0e09199a3af7007"><div class="ttname"><a href="group__afw__stream.html#gafa960bbbb9c06b13b0e09199a3af7007">afw_stream_write_size</a></div><div class="ttdeci">afw_stream_write_size(const afw_stream_t *writer, afw_size_t size, afw_xctx_t *xctx)</div><div class="ttdoc">Call afw_stream_write() with an size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00357">afw_stream.c:357</a></div></div>
 <div class="ttc" id="agroup__afw__utf8_html_ga552f0dde7698dbc98c347188081e68ad"><div class="ttname"><a href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a></div><div class="ttdeci">afw_boolean_t afw_utf8_equal(const afw_utf8_t *s1, const afw_utf8_t *s2)</div><div class="ttdoc">Check to see if a string equals another string.</div></div>
-<div class="ttc" id="agroup__afw__utf8_html_gaf61caded24833e53b76397d63b93ac1e"><div class="ttname"><a href="group__afw__utf8.html#gaf61caded24833e53b76397d63b93ac1e">afw_utf8_stream_create</a></div><div class="ttdeci">const afw_stream_t * afw_utf8_stream_create(const afw_utf8_t *streamId, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create UTF-8 stream.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8__stream_8c_source.html#l00052">afw_utf8_stream.c:52</a></div></div>
+<div class="ttc" id="agroup__afw__utf8_html_gab70c3b3428cf341b48086a6797175b45"><div class="ttname"><a href="group__afw__utf8.html#gab70c3b3428cf341b48086a6797175b45">afw_utf8_stream_create</a></div><div class="ttdeci">const afw_stream_t * afw_utf8_stream_create(const afw_utf8_t *streamId, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create UTF-8 stream.</div><div class="ttdef"><b>Definition:</b> <a href="afw__utf8__stream_8c_source.html#l00052">afw_utf8_stream.c:52</a></div></div>
 <div class="ttc" id="astructafw__content__type__s_html"><div class="ttname"><a href="structafw__content__type__s.html">afw_content_type_s</a></div><div class="ttdoc">Interface afw_content_type public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l01808">afw_interface.h:1808</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
-<div class="ttc" id="astructafw__stream__anchor__s_html"><div class="ttname"><a href="structafw__stream__anchor__s.html">afw_stream_anchor_s</a></div><div class="ttdoc">struct for common scope streams</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00046">afw_stream.h:46</a></div></div>
-<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04510">afw_interface.h:4510</a></div></div>
+<div class="ttc" id="astructafw__stream__anchor__s_html"><div class="ttname"><a href="structafw__stream__anchor__s.html">afw_stream_anchor_s</a></div><div class="ttdoc">struct for common xctx streams</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8h_source.html#l00046">afw_stream.h:46</a></div></div>
+<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04386">afw_interface.h:4386</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -92,23 +92,23 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ade6533787de846e97ca48e980d64df83"><td class="memItemLeft" align="right" valign="top"><a id="ade6533787de846e97ca48e980d64df83"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_LIST_ERROR_OBJECT_IMMUTABLE</b>&#160;&#160;&#160;<a class="el" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(read_only, &quot;List immutable&quot;, scope)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_LIST_ERROR_OBJECT_IMMUTABLE</b>&#160;&#160;&#160;<a class="el" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(read_only, &quot;List immutable&quot;, xctx)</td></tr>
 <tr class="separator:ade6533787de846e97ca48e980d64df83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e5cc2d5975e386546aea3a19aed99e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a4e5cc2d5975e386546aea3a19aed99e9">afw_list_of_create</a>(data_type,  p,  scope)&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">afw_list_create_with_options</a>(0, data_type, p, scope)</td></tr>
-<tr class="memdesc:a4e5cc2d5975e386546aea3a19aed99e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an list of a specific data type in memory.  <a href="afw__list_8h.html#a4e5cc2d5975e386546aea3a19aed99e9">More...</a><br /></td></tr>
-<tr class="separator:a4e5cc2d5975e386546aea3a19aed99e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5536ee93028b9a84174a83319e7750cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a5536ee93028b9a84174a83319e7750cb">afw_list_create_generic</a>(p,  scope)&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">afw_list_create_with_options</a>(0, NULL, p, scope)</td></tr>
-<tr class="memdesc:a5536ee93028b9a84174a83319e7750cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an value list in memory.  <a href="afw__list_8h.html#a5536ee93028b9a84174a83319e7750cb">More...</a><br /></td></tr>
-<tr class="separator:a5536ee93028b9a84174a83319e7750cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77bd0acc7e0000464a5e9ae531cde5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#af77bd0acc7e0000464a5e9ae531cde5c">afw_list_of_create</a>(data_type,  p,  xctx)&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a>(0, data_type, p, xctx)</td></tr>
+<tr class="memdesc:af77bd0acc7e0000464a5e9ae531cde5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an list of a specific data type in memory.  <a href="afw__list_8h.html#af77bd0acc7e0000464a5e9ae531cde5c">More...</a><br /></td></tr>
+<tr class="separator:af77bd0acc7e0000464a5e9ae531cde5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c20ff28edffd9aaab3a300bef3c011"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a81c20ff28edffd9aaab3a300bef3c011">afw_list_create_generic</a>(p,  xctx)&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a>(0, NULL, p, xctx)</td></tr>
+<tr class="memdesc:a81c20ff28edffd9aaab3a300bef3c011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an value list in memory.  <a href="afw__list_8h.html#a81c20ff28edffd9aaab3a300bef3c011">More...</a><br /></td></tr>
+<tr class="separator:a81c20ff28edffd9aaab3a300bef3c011"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a001f3fa7ac4e4b81c02ec83bd9493daf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a001f3fa7ac4e4b81c02ec83bd9493daf">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY</a>(instance,  _internal,  _indirect,  _data_type,  _count)</td></tr>
 <tr class="memdesc:a001f3fa7ac4e4b81c02ec83bd9493daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro to fill out afw_list_wrapper_for_array_self_t.  <a href="afw__list_8h.html#a001f3fa7ac4e4b81c02ec83bd9493daf">More...</a><br /></td></tr>
 <tr class="separator:a001f3fa7ac4e4b81c02ec83bd9493daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab966167d7ff1f3635b1fceb6a3a0a8cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ab966167d7ff1f3635b1fceb6a3a0a8cb">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY_P</a>(instance,  _internal,  _indirect,  _data_type,  _count,  _p)</td></tr>
 <tr class="memdesc:ab966167d7ff1f3635b1fceb6a3a0a8cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro to fill out afw_list_wrapper_for_array_self_t.  <a href="afw__list_8h.html#ab966167d7ff1f3635b1fceb6a3a0a8cb">More...</a><br /></td></tr>
 <tr class="separator:ab966167d7ff1f3635b1fceb6a3a0a8cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1adb17e4691eb3d442dd922fa8cafb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ad1adb17e4691eb3d442dd922fa8cafb1">afw_list_is_immutable</a>(list,  scope)&#160;&#160;&#160;(<a class="el" href="group__afw__list__interface.html#ga4c125df8fc0daa0b901795cbbda348e4">afw_list_get_setter</a>(list, scope) == NULL)</td></tr>
-<tr class="memdesc:ad1adb17e4691eb3d442dd922fa8cafb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if list is immutable.  <a href="afw__list_8h.html#ad1adb17e4691eb3d442dd922fa8cafb1">More...</a><br /></td></tr>
-<tr class="separator:ad1adb17e4691eb3d442dd922fa8cafb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de8ecfbc9cff04995b19a43035d11a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a4de8ecfbc9cff04995b19a43035d11a0">afw_list_is_immutable</a>(list,  xctx)&#160;&#160;&#160;(<a class="el" href="group__afw__list__interface.html#ga0326a105cd1c53d6ce6bae15afbee401">afw_list_get_setter</a>(list, xctx) == NULL)</td></tr>
+<tr class="memdesc:a4de8ecfbc9cff04995b19a43035d11a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if list is immutable.  <a href="afw__list_8h.html#a4de8ecfbc9cff04995b19a43035d11a0">More...</a><br /></td></tr>
+<tr class="separator:a4de8ecfbc9cff04995b19a43035d11a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -118,63 +118,63 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac0165e068ae60317582f15d6600e6d9f"><td class="memItemLeft" align="right" valign="top"><a id="ac0165e068ae60317582f15d6600e6d9f"></a>
-<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_list_count</b> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ac0165e068ae60317582f15d6600e6d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c1f9c529dd64d7778303fb29aeade2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">afw_list_create_with_options</a> (int options, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a66c1f9c529dd64d7778303fb29aeade2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an list in memory with options.  <a href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">More...</a><br /></td></tr>
-<tr class="separator:a66c1f9c529dd64d7778303fb29aeade2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b955c33a06e15a2386484947ded419b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a9b955c33a06e15a2386484947ded419b">afw_list_const_create_array_of_objects</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *const *objects, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a9b955c33a06e15a2386484947ded419b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from an array of objects.  <a href="afw__list_8h.html#a9b955c33a06e15a2386484947ded419b">More...</a><br /></td></tr>
-<tr class="separator:a9b955c33a06e15a2386484947ded419b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58cbf7662ff6e5afdccda3402b393b9d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a58cbf7662ff6e5afdccda3402b393b9d">afw_list_const_create_array_of_values</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *values, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a58cbf7662ff6e5afdccda3402b393b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from an array of values.  <a href="afw__list_8h.html#a58cbf7662ff6e5afdccda3402b393b9d">More...</a><br /></td></tr>
-<tr class="separator:a58cbf7662ff6e5afdccda3402b393b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2549cc940c01dd4f62d87a137358e306"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a2549cc940c01dd4f62d87a137358e306">afw_list_const_create_null_terminated_array_of_objects</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *const *objects, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a2549cc940c01dd4f62d87a137358e306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from NULL terminated array of objects.  <a href="afw__list_8h.html#a2549cc940c01dd4f62d87a137358e306">More...</a><br /></td></tr>
-<tr class="separator:a2549cc940c01dd4f62d87a137358e306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1787e291498c73bce8c12aac0fdfc543"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a1787e291498c73bce8c12aac0fdfc543">afw_list_const_create_null_terminated_array_of_values</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *values, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a1787e291498c73bce8c12aac0fdfc543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from NULL terminated array of values.  <a href="afw__list_8h.html#a1787e291498c73bce8c12aac0fdfc543">More...</a><br /></td></tr>
-<tr class="separator:a1787e291498c73bce8c12aac0fdfc543"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6acb228c6e2568709ac1e8c7ac00e03f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a6acb228c6e2568709ac1e8c7ac00e03f">afw_list_create_or_clone</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> clone_values, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a6acb228c6e2568709ac1e8c7ac00e03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a clone of a list in memory.  <a href="afw__list_8h.html#a6acb228c6e2568709ac1e8c7ac00e03f">More...</a><br /></td></tr>
-<tr class="separator:a6acb228c6e2568709ac1e8c7ac00e03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e73c5e12f4a443872297e37946fcfda"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a6e73c5e12f4a443872297e37946fcfda">afw_list_of_create_from_value</a> (const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a6e73c5e12f4a443872297e37946fcfda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a typed list from a value.  <a href="afw__list_8h.html#a6e73c5e12f4a443872297e37946fcfda">More...</a><br /></td></tr>
-<tr class="separator:a6e73c5e12f4a443872297e37946fcfda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac154937b75d0f668b6be5f7fea98b3f9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ac154937b75d0f668b6be5f7fea98b3f9">afw_list_convert_to_list_of_strings</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ac154937b75d0f668b6be5f7fea98b3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a list to a list of strings.  <a href="afw__list_8h.html#ac154937b75d0f668b6be5f7fea98b3f9">More...</a><br /></td></tr>
-<tr class="separator:ac154937b75d0f668b6be5f7fea98b3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6c7b372b59acb1f6aa3ec1837274773"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ae6c7b372b59acb1f6aa3ec1837274773">afw_list_create_wrapper_for_array</a> (const void *array, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> indirect, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ae6c7b372b59acb1f6aa3ec1837274773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a immutable list wrapper for an array.  <a href="afw__list_8h.html#ae6c7b372b59acb1f6aa3ec1837274773">More...</a><br /></td></tr>
-<tr class="separator:ae6c7b372b59acb1f6aa3ec1837274773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9e74554dbbfa39c07c05f421772747e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#af9e74554dbbfa39c07c05f421772747e">afw_list_of_utf8_get_next</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a> **iterator, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:af9e74554dbbfa39c07c05f421772747e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next value from list whose data type cType is afw_utf8_t.  <a href="afw__list_8h.html#af9e74554dbbfa39c07c05f421772747e">More...</a><br /></td></tr>
-<tr class="separator:af9e74554dbbfa39c07c05f421772747e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38a3453c88b96f56b3a0ed662e9c5a14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a38a3453c88b96f56b3a0ed662e9c5a14">afw_list_set_immutable</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a38a3453c88b96f56b3a0ed662e9c5a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a list to immutable if not already.  <a href="afw__list_8h.html#a38a3453c88b96f56b3a0ed662e9c5a14">More...</a><br /></td></tr>
-<tr class="separator:a38a3453c88b96f56b3a0ed662e9c5a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37119387b3b812d3dd55cc66b35ea0a3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a37119387b3b812d3dd55cc66b35ea0a3">afw_list_determine_data_type_and_set_immutable</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a37119387b3b812d3dd55cc66b35ea0a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set list to immutable and determine data type of entries.  <a href="afw__list_8h.html#a37119387b3b812d3dd55cc66b35ea0a3">More...</a><br /></td></tr>
-<tr class="separator:a37119387b3b812d3dd55cc66b35ea0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52affb53b9f2273289955aa75a9c51f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a52affb53b9f2273289955aa75a9c51f4">afw_list_add_internal</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const void *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a52affb53b9f2273289955aa75a9c51f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method add of interface afw_list_setter.  <a href="afw__list_8h.html#a52affb53b9f2273289955aa75a9c51f4">More...</a><br /></td></tr>
-<tr class="separator:a52affb53b9f2273289955aa75a9c51f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5e957efa506e8cd5229104b7759a449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ad5e957efa506e8cd5229104b7759a449">afw_list_add_value</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ad5e957efa506e8cd5229104b7759a449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method add_value of interface afw_list_setter.  <a href="afw__list_8h.html#ad5e957efa506e8cd5229104b7759a449">More...</a><br /></td></tr>
-<tr class="separator:ad5e957efa506e8cd5229104b7759a449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a321185253299db879c2b295b2464db18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a321185253299db879c2b295b2464db18">afw_list_remove_all_values</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a321185253299db879c2b295b2464db18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove_all_values of interface afw_list_setter.  <a href="afw__list_8h.html#a321185253299db879c2b295b2464db18">More...</a><br /></td></tr>
-<tr class="separator:a321185253299db879c2b295b2464db18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d764a95d44b1265f53b3028e974dd70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a0d764a95d44b1265f53b3028e974dd70">afw_list_remove_internal</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const void *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a0d764a95d44b1265f53b3028e974dd70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove of interface afw_list_setter.  <a href="afw__list_8h.html#a0d764a95d44b1265f53b3028e974dd70">More...</a><br /></td></tr>
-<tr class="separator:a0d764a95d44b1265f53b3028e974dd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3f0dd5ee003baf22ad31086f534d41a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#af3f0dd5ee003baf22ad31086f534d41a">afw_list_remove_value</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:af3f0dd5ee003baf22ad31086f534d41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove_value of interface afw_list_setter.  <a href="afw__list_8h.html#af3f0dd5ee003baf22ad31086f534d41a">More...</a><br /></td></tr>
-<tr class="separator:af3f0dd5ee003baf22ad31086f534d41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6c50889a3f69d8b4931d44ac1e020d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ad6c50889a3f69d8b4931d44ac1e020d1">afw_list_set_value_by_index</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> index, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ad6c50889a3f69d8b4931d44ac1e020d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method set_value_by_index of interface afw_list_setter.  <a href="afw__list_8h.html#ad6c50889a3f69d8b4931d44ac1e020d1">More...</a><br /></td></tr>
-<tr class="separator:ad6c50889a3f69d8b4931d44ac1e020d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2f406c0c6b06503a0640c8a9be4a029"><td class="memItemLeft" align="right" valign="top"><a id="aa2f406c0c6b06503a0640c8a9be4a029"></a>
+<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_list_count</b> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:aa2f406c0c6b06503a0640c8a9be4a029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae971ffa923f2b62c0e4ffa985d282ef8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a> (int options, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ae971ffa923f2b62c0e4ffa985d282ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an list in memory with options.  <a href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">More...</a><br /></td></tr>
+<tr class="separator:ae971ffa923f2b62c0e4ffa985d282ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe07db15751db270c81344afd10331fd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#abe07db15751db270c81344afd10331fd">afw_list_const_create_array_of_objects</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *const *objects, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:abe07db15751db270c81344afd10331fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from an array of objects.  <a href="afw__list_8h.html#abe07db15751db270c81344afd10331fd">More...</a><br /></td></tr>
+<tr class="separator:abe07db15751db270c81344afd10331fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac03b863179869120eda72bfa82ed112b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ac03b863179869120eda72bfa82ed112b">afw_list_const_create_array_of_values</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *values, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ac03b863179869120eda72bfa82ed112b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from an array of values.  <a href="afw__list_8h.html#ac03b863179869120eda72bfa82ed112b">More...</a><br /></td></tr>
+<tr class="separator:ac03b863179869120eda72bfa82ed112b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e935f26b92521f8bc5ce7ec0fcb254"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a10e935f26b92521f8bc5ce7ec0fcb254">afw_list_const_create_null_terminated_array_of_objects</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *const *objects, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a10e935f26b92521f8bc5ce7ec0fcb254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from NULL terminated array of objects.  <a href="afw__list_8h.html#a10e935f26b92521f8bc5ce7ec0fcb254">More...</a><br /></td></tr>
+<tr class="separator:a10e935f26b92521f8bc5ce7ec0fcb254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de096267c67cb65f17373c59a69e8cd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a4de096267c67cb65f17373c59a69e8cd">afw_list_const_create_null_terminated_array_of_values</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *const *values, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a4de096267c67cb65f17373c59a69e8cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an immutable list from NULL terminated array of values.  <a href="afw__list_8h.html#a4de096267c67cb65f17373c59a69e8cd">More...</a><br /></td></tr>
+<tr class="separator:a4de096267c67cb65f17373c59a69e8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4097440ae7c34ce1840c5351a70dc356"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a4097440ae7c34ce1840c5351a70dc356">afw_list_create_or_clone</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> clone_values, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a4097440ae7c34ce1840c5351a70dc356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a clone of a list in memory.  <a href="afw__list_8h.html#a4097440ae7c34ce1840c5351a70dc356">More...</a><br /></td></tr>
+<tr class="separator:a4097440ae7c34ce1840c5351a70dc356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee0e87ca0ba5c4e2377be376cf02390"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a6ee0e87ca0ba5c4e2377be376cf02390">afw_list_of_create_from_value</a> (const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a6ee0e87ca0ba5c4e2377be376cf02390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a typed list from a value.  <a href="afw__list_8h.html#a6ee0e87ca0ba5c4e2377be376cf02390">More...</a><br /></td></tr>
+<tr class="separator:a6ee0e87ca0ba5c4e2377be376cf02390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5544ed0bb982b89c6334a2a6b91b3f4e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a5544ed0bb982b89c6334a2a6b91b3f4e">afw_list_convert_to_list_of_strings</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a5544ed0bb982b89c6334a2a6b91b3f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a list to a list of strings.  <a href="afw__list_8h.html#a5544ed0bb982b89c6334a2a6b91b3f4e">More...</a><br /></td></tr>
+<tr class="separator:a5544ed0bb982b89c6334a2a6b91b3f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2906638efc9e02b9c06efeb45a699910"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a2906638efc9e02b9c06efeb45a699910">afw_list_create_wrapper_for_array</a> (const void *array, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> indirect, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a2906638efc9e02b9c06efeb45a699910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a immutable list wrapper for an array.  <a href="afw__list_8h.html#a2906638efc9e02b9c06efeb45a699910">More...</a><br /></td></tr>
+<tr class="separator:a2906638efc9e02b9c06efeb45a699910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6600c22be4b34d6967356d4931b1e3a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a6600c22be4b34d6967356d4931b1e3a1">afw_list_of_utf8_get_next</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a> **iterator, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a6600c22be4b34d6967356d4931b1e3a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next value from list whose data type cType is afw_utf8_t.  <a href="afw__list_8h.html#a6600c22be4b34d6967356d4931b1e3a1">More...</a><br /></td></tr>
+<tr class="separator:a6600c22be4b34d6967356d4931b1e3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc4a3cbcc1f9ccd187c2a76a7a6a0e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#afc4a3cbcc1f9ccd187c2a76a7a6a0e07">afw_list_set_immutable</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:afc4a3cbcc1f9ccd187c2a76a7a6a0e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a list to immutable if not already.  <a href="afw__list_8h.html#afc4a3cbcc1f9ccd187c2a76a7a6a0e07">More...</a><br /></td></tr>
+<tr class="separator:afc4a3cbcc1f9ccd187c2a76a7a6a0e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2529fa249f253ec01ba168e2581b14ce"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a2529fa249f253ec01ba168e2581b14ce">afw_list_determine_data_type_and_set_immutable</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a2529fa249f253ec01ba168e2581b14ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set list to immutable and determine data type of entries.  <a href="afw__list_8h.html#a2529fa249f253ec01ba168e2581b14ce">More...</a><br /></td></tr>
+<tr class="separator:a2529fa249f253ec01ba168e2581b14ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7855bb4c806bacd005bc557004f3ab51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a7855bb4c806bacd005bc557004f3ab51">afw_list_add_internal</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const void *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a7855bb4c806bacd005bc557004f3ab51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method add of interface afw_list_setter.  <a href="afw__list_8h.html#a7855bb4c806bacd005bc557004f3ab51">More...</a><br /></td></tr>
+<tr class="separator:a7855bb4c806bacd005bc557004f3ab51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f89653be3bf08f16e747756a55f54d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#ae8f89653be3bf08f16e747756a55f54d">afw_list_add_value</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ae8f89653be3bf08f16e747756a55f54d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method add_value of interface afw_list_setter.  <a href="afw__list_8h.html#ae8f89653be3bf08f16e747756a55f54d">More...</a><br /></td></tr>
+<tr class="separator:ae8f89653be3bf08f16e747756a55f54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a054f43042a9e98b05be9f6ba33d196d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a054f43042a9e98b05be9f6ba33d196d8">afw_list_remove_all_values</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a054f43042a9e98b05be9f6ba33d196d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove_all_values of interface afw_list_setter.  <a href="afw__list_8h.html#a054f43042a9e98b05be9f6ba33d196d8">More...</a><br /></td></tr>
+<tr class="separator:a054f43042a9e98b05be9f6ba33d196d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f869811e9803f2e36bde9caa1bd7ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a44f869811e9803f2e36bde9caa1bd7ba">afw_list_remove_internal</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const void *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a44f869811e9803f2e36bde9caa1bd7ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove of interface afw_list_setter.  <a href="afw__list_8h.html#a44f869811e9803f2e36bde9caa1bd7ba">More...</a><br /></td></tr>
+<tr class="separator:a44f869811e9803f2e36bde9caa1bd7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a4fe3fc1437488f449131fca267f53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a32a4fe3fc1437488f449131fca267f53">afw_list_remove_value</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a32a4fe3fc1437488f449131fca267f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method remove_value of interface afw_list_setter.  <a href="afw__list_8h.html#a32a4fe3fc1437488f449131fca267f53">More...</a><br /></td></tr>
+<tr class="separator:a32a4fe3fc1437488f449131fca267f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af9222348bb10d84539261428447ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__list_8h.html#a2af9222348bb10d84539261428447ab4">afw_list_set_value_by_index</a> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *instance, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> index, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a2af9222348bb10d84539261428447ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call method set_value_by_index of interface afw_list_setter.  <a href="afw__list_8h.html#a2af9222348bb10d84539261428447ab4">More...</a><br /></td></tr>
+<tr class="separator:a2af9222348bb10d84539261428447ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -187,8 +187,8 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a5536ee93028b9a84174a83319e7750cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5536ee93028b9a84174a83319e7750cb">&#9670;&nbsp;</a></span>afw_list_create_generic</h2>
+<a id="a81c20ff28edffd9aaab3a300bef3c011"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81c20ff28edffd9aaab3a300bef3c011">&#9670;&nbsp;</a></span>afw_list_create_generic</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,12 +203,12 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">afw_list_create_with_options</a>(0, NULL, p, scope)</td>
+          <td></td><td>&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a>(0, NULL, p, xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -217,13 +217,13 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>to use for the object. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new value list.</dd></dl>
 <p>Use this function to create a value list that is not associated with an adaptor.</p>
-<p>If only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga9380ae6c1eec209d22a3d2a04b5bfde5" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
+<p>If only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga7af6bfc542df3ec641b16e822dfa5b5f" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00079">79</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
@@ -290,7 +290,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>If method <a class="el" href="group__afw__list__interface.html#gae9369737206bd0a3a37a04324fdaf2b6" title="Call method get_next_value of interface afw_list.">afw_list_get_next_value()</a> will be called, use helper macro <a class="el" href="afw__list_8h.html#ab966167d7ff1f3635b1fceb6a3a0a8cb" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY_P()</a> instead. Calling afw_list_get_next() will work fine since it does not allocate memory.</p>
+<p>If method <a class="el" href="group__afw__list__interface.html#ga680cc38e37d590e90252b6824e4b7f4b" title="Call method get_next_value of interface afw_list.">afw_list_get_next_value()</a> will be called, use helper macro <a class="el" href="afw__list_8h.html#ab966167d7ff1f3635b1fceb6a3a0a8cb" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY_P()</a> instead. Calling afw_list_get_next() will work fine since it does not allocate memory.</p>
 <p>Example:</p>
 <p>afw_list_wrapper_for_array_self_t wrapper;</p>
 <p><a class="el" href="afw__list_8h.html#a001f3fa7ac4e4b81c02ec83bd9493daf" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY(&amp;wrapper, array, data_type, count)</a>; </p>
@@ -362,7 +362,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">_indirect</td><td>if true array is array of pointers to internal value. </td></tr>
     <tr><td class="paramname">_data_type</td><td>of array. </td></tr>
     <tr><td class="paramname">_count</td><td>of entries in array or -1 for NULL terminated. </td></tr>
-    <tr><td class="paramname">_p</td><td>for use by method <a class="el" href="group__afw__list__interface.html#gae9369737206bd0a3a37a04324fdaf2b6" title="Call method get_next_value of interface afw_list.">afw_list_get_next_value()</a>.</td></tr>
+    <tr><td class="paramname">_p</td><td>for use by method <a class="el" href="group__afw__list__interface.html#ga680cc38e37d590e90252b6824e4b7f4b" title="Call method get_next_value of interface afw_list.">afw_list_get_next_value()</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -372,8 +372,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1adb17e4691eb3d442dd922fa8cafb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1adb17e4691eb3d442dd922fa8cafb1">&#9670;&nbsp;</a></span>afw_list_is_immutable</h2>
+<a id="a4de8ecfbc9cff04995b19a43035d11a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de8ecfbc9cff04995b19a43035d11a0">&#9670;&nbsp;</a></span>afw_list_is_immutable</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,12 +388,12 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(<a class="el" href="group__afw__list__interface.html#ga4c125df8fc0daa0b901795cbbda348e4">afw_list_get_setter</a>(list, scope) == NULL)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="group__afw__list__interface.html#ga0326a105cd1c53d6ce6bae15afbee401">afw_list_get_setter</a>(list, xctx) == NULL)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -402,7 +402,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>of list. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -412,8 +412,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e5cc2d5975e386546aea3a19aed99e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e5cc2d5975e386546aea3a19aed99e9">&#9670;&nbsp;</a></span>afw_list_of_create</h2>
+<a id="af77bd0acc7e0000464a5e9ae531cde5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af77bd0acc7e0000464a5e9ae531cde5c">&#9670;&nbsp;</a></span>afw_list_of_create</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,12 +434,12 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#a66c1f9c529dd64d7778303fb29aeade2">afw_list_create_with_options</a>(0, data_type, p, scope)</td>
+          <td></td><td>&#160;&#160;&#160;    <a class="el" href="afw__list_8h.html#ae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a>(0, data_type, p, xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -449,12 +449,12 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">data_type</td><td>if list only holds one data type or NULL. </td></tr>
     <tr><td class="paramname">p</td><td>to use for the list. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new value list.</dd></dl>
-<p>If data_type is NULL and only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga9380ae6c1eec209d22a3d2a04b5bfde5" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
+<p>If data_type is NULL and only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga7af6bfc542df3ec641b16e822dfa5b5f" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00062">62</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
@@ -474,13 +474,13 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Self for immutable list wrapper for a array. </p>
-<p>This is self for immutable list wrapper for a array. This can defined and filled out in a local variable instead of calling <a class="el" href="afw__list_8h.html#ae6c7b372b59acb1f6aa3ec1837274773" title="Create a immutable list wrapper for an array.">afw_list_create_wrapper_for_array()</a> if the instance is only needed temporarily. Helper macro AFW_LIST_WRAPPER_FOR_ARRAY_P() can be used to do this. </p>
+<p>This is self for immutable list wrapper for a array. This can defined and filled out in a local variable instead of calling <a class="el" href="afw__list_8h.html#a2906638efc9e02b9c06efeb45a699910" title="Create a immutable list wrapper for an array.">afw_list_create_wrapper_for_array()</a> if the instance is only needed temporarily. Helper macro AFW_LIST_WRAPPER_FOR_ARRAY_P() can be used to do this. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a52affb53b9f2273289955aa75a9c51f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52affb53b9f2273289955aa75a9c51f4">&#9670;&nbsp;</a></span>afw_list_add_internal()</h2>
+<a id="a7855bb4c806bacd005bc557004f3ab51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7855bb4c806bacd005bc557004f3ab51">&#9670;&nbsp;</a></span>afw_list_add_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -506,8 +506,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -523,7 +523,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
     <tr><td class="paramname">data_type</td><td>of internal. </td></tr>
     <tr><td class="paramname">internal</td><td>A value. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -532,8 +532,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ad5e957efa506e8cd5229104b7759a449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5e957efa506e8cd5229104b7759a449">&#9670;&nbsp;</a></span>afw_list_add_value()</h2>
+<a id="ae8f89653be3bf08f16e747756a55f54d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f89653be3bf08f16e747756a55f54d">&#9670;&nbsp;</a></span>afw_list_add_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,8 +553,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -569,10 +569,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
     <tr><td class="paramname">value</td><td>A value. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
-    <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
-    <tr><td class="paramname">value</td><td>A value. </td></tr>
-    <tr><td class="paramname">scope</td><td>Caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -581,8 +578,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9b955c33a06e15a2386484947ded419b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b955c33a06e15a2386484947ded419b">&#9670;&nbsp;</a></span>afw_list_const_create_array_of_objects()</h2>
+<a id="abe07db15751db270c81344afd10331fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe07db15751db270c81344afd10331fd">&#9670;&nbsp;</a></span>afw_list_const_create_array_of_objects()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -608,8 +605,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -625,7 +622,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">values</td><td>is address of first value in array. </td></tr>
     <tr><td class="paramname">count</td><td>is number for values. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -635,8 +632,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a58cbf7662ff6e5afdccda3402b393b9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58cbf7662ff6e5afdccda3402b393b9d">&#9670;&nbsp;</a></span>afw_list_const_create_array_of_values()</h2>
+<a id="ac03b863179869120eda72bfa82ed112b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac03b863179869120eda72bfa82ed112b">&#9670;&nbsp;</a></span>afw_list_const_create_array_of_values()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -662,8 +659,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -679,7 +676,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">values</td><td>is address of first value in array. </td></tr>
     <tr><td class="paramname">count</td><td>is number for values. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -689,8 +686,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2549cc940c01dd4f62d87a137358e306"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2549cc940c01dd4f62d87a137358e306">&#9670;&nbsp;</a></span>afw_list_const_create_null_terminated_array_of_objects()</h2>
+<a id="a10e935f26b92521f8bc5ce7ec0fcb254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e935f26b92521f8bc5ce7ec0fcb254">&#9670;&nbsp;</a></span>afw_list_const_create_null_terminated_array_of_objects()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -710,8 +707,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -726,7 +723,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">values</td><td>is NULL terminated array of objects. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -736,8 +733,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1787e291498c73bce8c12aac0fdfc543"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1787e291498c73bce8c12aac0fdfc543">&#9670;&nbsp;</a></span>afw_list_const_create_null_terminated_array_of_values()</h2>
+<a id="a4de096267c67cb65f17373c59a69e8cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de096267c67cb65f17373c59a69e8cd">&#9670;&nbsp;</a></span>afw_list_const_create_null_terminated_array_of_values()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -757,8 +754,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -773,7 +770,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">values</td><td>is NULL terminated array of values. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -783,8 +780,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac154937b75d0f668b6be5f7fea98b3f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac154937b75d0f668b6be5f7fea98b3f9">&#9670;&nbsp;</a></span>afw_list_convert_to_list_of_strings()</h2>
+<a id="a5544ed0bb982b89c6334a2a6b91b3f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5544ed0bb982b89c6334a2a6b91b3f4e">&#9670;&nbsp;</a></span>afw_list_convert_to_list_of_strings()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -804,8 +801,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -820,7 +817,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">list</td><td>to convert. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -830,8 +827,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6acb228c6e2568709ac1e8c7ac00e03f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6acb228c6e2568709ac1e8c7ac00e03f">&#9670;&nbsp;</a></span>afw_list_create_or_clone()</h2>
+<a id="a4097440ae7c34ce1840c5351a70dc356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4097440ae7c34ce1840c5351a70dc356">&#9670;&nbsp;</a></span>afw_list_create_or_clone()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -863,8 +860,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -881,7 +878,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">data_type</td><td>to use if list is NULL. </td></tr>
     <tr><td class="paramname">clone_values</td><td>true will clone values as well. </td></tr>
     <tr><td class="paramname">p</td><td>to use for the list. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -892,8 +889,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a66c1f9c529dd64d7778303fb29aeade2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66c1f9c529dd64d7778303fb29aeade2">&#9670;&nbsp;</a></span>afw_list_create_with_options()</h2>
+<a id="ae971ffa923f2b62c0e4ffa985d282ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae971ffa923f2b62c0e4ffa985d282ef8">&#9670;&nbsp;</a></span>afw_list_create_with_options()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -919,8 +916,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -936,19 +933,19 @@ Variables</h2></td></tr>
     <tr><td class="paramname">options</td><td></td></tr>
     <tr><td class="paramname">data_type</td><td>if list only holds one data type or NULL. </td></tr>
     <tr><td class="paramname">p</td><td>to use for the list. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new value list.</dd></dl>
-<p>If data_type is NULL and only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga9380ae6c1eec209d22a3d2a04b5bfde5" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
+<p>If data_type is NULL and only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga7af6bfc542df3ec641b16e822dfa5b5f" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__list__memory_8c_source.html#l00056">56</a> of file <a class="el" href="afw__list__memory_8c_source.html">afw_list_memory.c</a>.</p>
 
 </div>
 </div>
-<a id="ae6c7b372b59acb1f6aa3ec1837274773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6c7b372b59acb1f6aa3ec1837274773">&#9670;&nbsp;</a></span>afw_list_create_wrapper_for_array()</h2>
+<a id="a2906638efc9e02b9c06efeb45a699910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2906638efc9e02b9c06efeb45a699910">&#9670;&nbsp;</a></span>afw_list_create_wrapper_for_array()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -986,8 +983,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1005,7 +1002,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">data_type</td><td>of array. </td></tr>
     <tr><td class="paramname">count</td><td>of entries in array or -1 for NULL terminated. </td></tr>
     <tr><td class="paramname">p</td><td>is pool for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1017,8 +1014,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a37119387b3b812d3dd55cc66b35ea0a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37119387b3b812d3dd55cc66b35ea0a3">&#9670;&nbsp;</a></span>afw_list_determine_data_type_and_set_immutable()</h2>
+<a id="a2529fa249f253ec01ba168e2581b14ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2529fa249f253ec01ba168e2581b14ce">&#9670;&nbsp;</a></span>afw_list_determine_data_type_and_set_immutable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1032,8 +1029,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1047,7 +1044,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1059,8 +1056,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6e73c5e12f4a443872297e37946fcfda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e73c5e12f4a443872297e37946fcfda">&#9670;&nbsp;</a></span>afw_list_of_create_from_value()</h2>
+<a id="a6ee0e87ca0ba5c4e2377be376cf02390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ee0e87ca0ba5c4e2377be376cf02390">&#9670;&nbsp;</a></span>afw_list_of_create_from_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1086,8 +1083,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1103,7 +1100,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">data_type</td><td>of list </td></tr>
     <tr><td class="paramname">value.</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use for the list. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1113,8 +1110,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="af9e74554dbbfa39c07c05f421772747e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9e74554dbbfa39c07c05f421772747e">&#9670;&nbsp;</a></span>afw_list_of_utf8_get_next()</h2>
+<a id="a6600c22be4b34d6967356d4931b1e3a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6600c22be4b34d6967356d4931b1e3a1">&#9670;&nbsp;</a></span>afw_list_of_utf8_get_next()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1134,8 +1131,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1150,7 +1147,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">instance</td><td>of list. </td></tr>
     <tr><td class="paramname">iterator.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1161,8 +1158,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a321185253299db879c2b295b2464db18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a321185253299db879c2b295b2464db18">&#9670;&nbsp;</a></span>afw_list_remove_all_values()</h2>
+<a id="a054f43042a9e98b05be9f6ba33d196d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a054f43042a9e98b05be9f6ba33d196d8">&#9670;&nbsp;</a></span>afw_list_remove_all_values()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1176,8 +1173,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1191,9 +1188,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
-    <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>Caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1202,8 +1197,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0d764a95d44b1265f53b3028e974dd70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d764a95d44b1265f53b3028e974dd70">&#9670;&nbsp;</a></span>afw_list_remove_internal()</h2>
+<a id="a44f869811e9803f2e36bde9caa1bd7ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44f869811e9803f2e36bde9caa1bd7ba">&#9670;&nbsp;</a></span>afw_list_remove_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1229,8 +1224,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1246,7 +1241,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
     <tr><td class="paramname">data_type</td><td>of internal. </td></tr>
     <tr><td class="paramname">internal</td><td>A value. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1255,8 +1250,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="af3f0dd5ee003baf22ad31086f534d41a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3f0dd5ee003baf22ad31086f534d41a">&#9670;&nbsp;</a></span>afw_list_remove_value()</h2>
+<a id="a32a4fe3fc1437488f449131fca267f53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32a4fe3fc1437488f449131fca267f53">&#9670;&nbsp;</a></span>afw_list_remove_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1276,8 +1271,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1292,7 +1287,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
     <tr><td class="paramname">value</td><td>Value. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1301,8 +1296,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a38a3453c88b96f56b3a0ed662e9c5a14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38a3453c88b96f56b3a0ed662e9c5a14">&#9670;&nbsp;</a></span>afw_list_set_immutable()</h2>
+<a id="afc4a3cbcc1f9ccd187c2a76a7a6a0e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc4a3cbcc1f9ccd187c2a76a7a6a0e07">&#9670;&nbsp;</a></span>afw_list_set_immutable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1316,8 +1311,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1331,7 +1326,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1341,8 +1336,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ad6c50889a3f69d8b4931d44ac1e020d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6c50889a3f69d8b4931d44ac1e020d1">&#9670;&nbsp;</a></span>afw_list_set_value_by_index()</h2>
+<a id="a2af9222348bb10d84539261428447ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af9222348bb10d84539261428447ab4">&#9670;&nbsp;</a></span>afw_list_set_value_by_index()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1368,8 +1363,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1385,7 +1380,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">instance</td><td>Pointer to this value list instance. </td></tr>
     <tr><td class="paramname">index.</td><td></td></tr>
     <tr><td class="paramname">value.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1417,7 +1412,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

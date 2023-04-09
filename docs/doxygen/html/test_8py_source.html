@@ -77,7 +77,7 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> fnmatch</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">from</span> _afwdev.common <span class="keyword">import</span> msg, nfc, package</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">from</span> _afwdev.test <span class="keyword">import</span> coverage, watch, runner</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">from</span> _afwdev.test <span class="keyword">import</span> coverage, watch, runner, js</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"># This routine is the main entry point from which afwdev invokes in order </span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"># to run any and all test-related subcommands (watch, runner, coverage):</span></div>
@@ -128,69 +128,74 @@ $(function() {
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            )</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        )</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;coverage&#39;</span>):</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="coverage_8py.html#a7fdd32872becb2c7edaa0dcb513218d9">coverage.run</a>(options, srcdirs)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;javascript&#39;</span>):</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="js_8py.html#a52c0fad1b50dcae6b6c029964f342f77">js.run</a>(options, srcdirs)</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">elif</span> options.get(<span class="stringliteral">&#39;watch&#39;</span>):</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="watch_8py.html#a6fed8641dc483d4099c345ea5839320e">watch.run</a>(options, srcdirs)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">elif</span> options.get(<span class="stringliteral">&#39;coverage&#39;</span>):</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="coverage_8py.html#a7fdd32872becb2c7edaa0dcb513218d9">coverage.run</a>(options, srcdirs)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">elif</span> options.get(<span class="stringliteral">&#39;watch&#39;</span>):</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        start = time.time()</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        results = <a class="code" href="runner_8py.html#ab47fc2ba9fd5a2dcf6712518eb2c0ab5">runner.run</a>(options, srcdirs)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        end = time.time()</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="watch_8py.html#a6fed8641dc483d4099c345ea5839320e">watch.run</a>(options, srcdirs)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">else</span>:</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment"># iterate over results dict and print results</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">for</span> srcdir, stats <span class="keywordflow">in</span> results.items():            </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            passed, skipped, failed = stats</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        start = time.time()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        results = <a class="code" href="runner_8py.html#ab47fc2ba9fd5a2dcf6712518eb2c0ab5">runner.run</a>(options, srcdirs)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        end = time.time()</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            total_passed += passed</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            total_skipped += skipped</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            total_failed += failed</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            total_tests += passed + skipped + failed</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">if</span> failed &gt; 0:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                srcdirs_failed += 1</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment"># Print summary</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Source Dirs:   &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">if</span> srcdirs_failed &gt; 0:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;{} failed&quot;</span>.format(srcdirs_failed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> srcdirs_skipped &gt; 0:</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&quot;{} skipped&quot;</span>.format(srcdirs_skipped), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">if</span> srcdirs_passed &gt; 0:</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="msg_8py.html#acd3c12861b027eb86986b6376a8cd09d">msg.success</a>(<span class="stringliteral">&quot;{} passed&quot;</span>.format(srcdirs_passed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)    </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;{} total&quot;</span>.format(total_srcdirs))</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Tests:         &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">if</span> total_failed &gt; 0:</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;{} failed&quot;</span>.format(total_failed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">if</span> total_skipped &gt; 0:</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&quot;{} skipped&quot;</span>.format(total_skipped), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> total_passed &gt; 0:</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <a class="code" href="msg_8py.html#acd3c12861b027eb86986b6376a8cd09d">msg.success</a>(<span class="stringliteral">&quot;{} passed&quot;</span>.format(total_passed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)    </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;{} total&quot;</span>.format(total_tests))</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Time:          {}s&quot;</span>.format(</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            round(end - start, 2)))    </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">if</span> total_failed &gt; 0:</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            sys.exit(1)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            sys.exit(0)   </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment"># iterate over results dict and print results</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">for</span> srcdir, stats <span class="keywordflow">in</span> results.items():            </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            passed, skipped, failed = stats</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            total_passed += passed</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            total_skipped += skipped</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            total_failed += failed</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            total_tests += passed + skipped + failed</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">if</span> failed &gt; 0:</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                srcdirs_failed += 1</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment"># Print summary</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Source Dirs:   &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> srcdirs_failed &gt; 0:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;{} failed&quot;</span>.format(srcdirs_failed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span> srcdirs_skipped &gt; 0:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&quot;{} skipped&quot;</span>.format(srcdirs_skipped), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> srcdirs_passed &gt; 0:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <a class="code" href="msg_8py.html#acd3c12861b027eb86986b6376a8cd09d">msg.success</a>(<span class="stringliteral">&quot;{} passed&quot;</span>.format(srcdirs_passed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)    </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;{} total&quot;</span>.format(total_srcdirs))</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Tests:         &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">if</span> total_failed &gt; 0:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;{} failed&quot;</span>.format(total_failed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> total_skipped &gt; 0:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&quot;{} skipped&quot;</span>.format(total_skipped), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">if</span> total_passed &gt; 0:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <a class="code" href="msg_8py.html#acd3c12861b027eb86986b6376a8cd09d">msg.success</a>(<span class="stringliteral">&quot;{} passed&quot;</span>.format(total_passed), end=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;, &quot;</span>, end=<span class="stringliteral">&quot;&quot;</span>)    </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;{} total&quot;</span>.format(total_tests))</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="msg_8py.html#ae704fec066f776bc244e5691369e14c6">msg.highlighted_info</a>(<span class="stringliteral">&quot;Time:          {}s&quot;</span>.format(</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            round(end - start, 2)))    </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">if</span> total_failed &gt; 0:</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            sys.exit(1)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            sys.exit(0)   </div>
 <div class="ttc" id="acoverage_8py_html_a7fdd32872becb2c7edaa0dcb513218d9"><div class="ttname"><a href="coverage_8py.html#a7fdd32872becb2c7edaa0dcb513218d9">coverage.run</a></div><div class="ttdeci">def run(options, srcdirs)</div><div class="ttdef"><b>Definition:</b> <a href="coverage_8py_source.html#l00058">coverage.py:58</a></div></div>
+<div class="ttc" id="ajs_8py_html_a52c0fad1b50dcae6b6c029964f342f77"><div class="ttname"><a href="js_8py.html#a52c0fad1b50dcae6b6c029964f342f77">js.run</a></div><div class="ttdeci">def run(options, srcdirs)</div><div class="ttdef"><b>Definition:</b> <a href="js_8py_source.html#l00006">js.py:6</a></div></div>
 <div class="ttc" id="amsg_8py_html_a686e028d3de3a828fb9ce0cb37e7af64"><div class="ttname"><a href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a></div><div class="ttdeci">def warn(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00140">msg.py:140</a></div></div>
 <div class="ttc" id="amsg_8py_html_ac117f3f50e400f8f72bd1fbf0ba10fad"><div class="ttname"><a href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a></div><div class="ttdeci">def error(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00085">msg.py:85</a></div></div>
 <div class="ttc" id="amsg_8py_html_acd3c12861b027eb86986b6376a8cd09d"><div class="ttname"><a href="msg_8py.html#acd3c12861b027eb86986b6376a8cd09d">msg.success</a></div><div class="ttdeci">def success(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00127">msg.py:127</a></div></div>
@@ -202,7 +207,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

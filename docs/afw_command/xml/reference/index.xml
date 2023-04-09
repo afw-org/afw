@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<doc>
-    <title>afw Command Reference</title>
-    <description>
-        The afw Reference contains all information related to the afw command.
-    </description>
-    <section href="usage.xml" label="Usage" content-type="xml"/>
-</doc>

@@ -91,36 +91,36 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memItemLeft" align="right" valign="top"><a id="a0a0e7155f4f8df32ce34ae00e35a72dc"></a>
 typedef struct <a class="el" href="structafw__associative__array__s.html">afw_associative_array_s</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_t</b></td></tr>
 <tr class="separator:a0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e1ecd04f0a321161988afc6a4496223"><td class="memItemLeft" align="right" valign="top"><a id="a2e1ecd04f0a321161988afc6a4496223"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference_value_cb</b>) (const void *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a2e1ecd04f0a321161988afc6a4496223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a769da52c9ff51a383e3e3d08d9c5cad6"><td class="memItemLeft" align="right" valign="top"><a id="a769da52c9ff51a383e3e3d08d9c5cad6"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release_value_cb</b>) (const void *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a769da52c9ff51a383e3e3d08d9c5cad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3644be5b12261f9b77363a8a71e8603a"><td class="memItemLeft" align="right" valign="top"><a id="a3644be5b12261f9b77363a8a71e8603a"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference_value_cb</b>) (const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a3644be5b12261f9b77363a8a71e8603a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fbe3336e93a0c5231e946324d6608ce"><td class="memItemLeft" align="right" valign="top"><a id="a9fbe3336e93a0c5231e946324d6608ce"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release_value_cb</b>) (const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a9fbe3336e93a0c5231e946324d6608ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ac236225371967877a98e98848f2934"><td class="memItemLeft" align="right" valign="top"><a id="a0ac236225371967877a98e98848f2934"></a>
-const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_create</b> (afw_associative_array_add_reference_value_cb add_reference_value, afw_associative_array_release_value_cb release_value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a0ac236225371967877a98e98848f2934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac98eca3f1c6df5bc5d7987920d41892c"><td class="memItemLeft" align="right" valign="top"><a id="ac98eca3f1c6df5bc5d7987920d41892c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ac98eca3f1c6df5bc5d7987920d41892c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acba3e69e78b6195c9a073158109dafcf"><td class="memItemLeft" align="right" valign="top"><a id="acba3e69e78b6195c9a073158109dafcf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:acba3e69e78b6195c9a073158109dafcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4862dec2219dcf0c844def5ccad62a7"><td class="memItemLeft" align="right" valign="top"><a id="ab4862dec2219dcf0c844def5ccad62a7"></a>
-const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ab4862dec2219dcf0c844def5ccad62a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf49aa442ee8dbcc8fe57ee39c43702b"><td class="memItemLeft" align="right" valign="top"><a id="acf49aa442ee8dbcc8fe57ee39c43702b"></a>
-const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:acf49aa442ee8dbcc8fe57ee39c43702b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af705d3998c15e747de026a7da0c57716"><td class="memItemLeft" align="right" valign="top"><a id="af705d3998c15e747de026a7da0c57716"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_for_each</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, void *context, <a class="el" href="group__afw__common.html#ga5f4a23341b49a7c13c2614d10787ac9d">afw_value_cb_t</a> callback, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:af705d3998c15e747de026a7da0c57716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d679b96308ae7611a1db038714b12c"><td class="memItemLeft" align="right" valign="top"><a id="aa9d679b96308ae7611a1db038714b12c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_set</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, const void *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:aa9d679b96308ae7611a1db038714b12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a509df34835b5eb164168b787d675ab1a"><td class="memItemLeft" align="right" valign="top"><a id="a509df34835b5eb164168b787d675ab1a"></a>
+const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_create</b> (afw_associative_array_add_reference_value_cb add_reference_value, afw_associative_array_release_value_cb release_value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a509df34835b5eb164168b787d675ab1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3015a22789303b7562b02eb6c03c1e"><td class="memItemLeft" align="right" valign="top"><a id="a0e3015a22789303b7562b02eb6c03c1e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a0e3015a22789303b7562b02eb6c03c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2aeba2c68b054199b0ae16df65adde"><td class="memItemLeft" align="right" valign="top"><a id="a9b2aeba2c68b054199b0ae16df65adde"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a9b2aeba2c68b054199b0ae16df65adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1b27da0f11363523977b24f6a0926d6"><td class="memItemLeft" align="right" valign="top"><a id="ac1b27da0f11363523977b24f6a0926d6"></a>
+const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac1b27da0f11363523977b24f6a0926d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af97546c588358918852d6f7ec3e6e4b5"><td class="memItemLeft" align="right" valign="top"><a id="af97546c588358918852d6f7ec3e6e4b5"></a>
+const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:af97546c588358918852d6f7ec3e6e4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memItemLeft" align="right" valign="top"><a id="a82d29fd9efdc8b1c7cc9aa090c11d707"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_for_each</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, void *context, <a class="el" href="group__afw__common.html#ga7187d1d635fd54d296ca5af7d6f080b4">afw_value_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc4d879efcb930c2de99f7e3e196af53"><td class="memItemLeft" align="right" valign="top"><a id="afc4d879efcb930c2de99f7e3e196af53"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_set</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:afc4d879efcb930c2de99f7e3e196af53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Adaptive Framework implementation of associative array. </p>
@@ -130,7 +130,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -305,8 +305,8 @@ $(function() {
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="comment">/* Some things still use apr pools. */</span></div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    apr_pool_t *apr_p;</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="comment">/* Scope of caller to parser. */</span></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="comment">/* The execution context (xctx) of caller to parser. */</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx;</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="comment">/* Shared resources. */</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__compile__internal__shared__s.html">afw_compile_shared_t</a> *shared;</div>
@@ -320,7 +320,7 @@ $(function() {
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> estimated_size;</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a> callback;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a> callback;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordtype">void</span> *callback_data;</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
@@ -623,27 +623,27 @@ $(function() {
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160; </div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160; </div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;<span class="preprocessor">#define afw_compile_set_contextual() \</span></div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;<span class="preprocessor">    parser-&gt;scope-&gt;error-&gt;contextual = &amp;parser-&gt;contextual; \</span></div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;<span class="preprocessor">    parser-&gt;scope-&gt;error-&gt;parser_cursor = parser-&gt;cursor</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;<span class="preprocessor">    parser-&gt;xctx-&gt;error-&gt;contextual = &amp;parser-&gt;contextual; \</span></div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;<span class="preprocessor">    parser-&gt;xctx-&gt;error-&gt;parser_cursor = parser-&gt;cursor</span></div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160; </div>
 <div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160; </div>
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160; </div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<span class="comment">/*  Macro used to set parse error in scope and throw it. */</span></div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<span class="comment">/*  Macro used to set parse error in xctx and throw it. */</span></div>
 <div class="line"><a name="l00603"></a><span class="lineno"><a class="line" href="afw__compile__internal_8h.html#ab409601ccc5e64e3a7087f7637c8fe2d">  603</a></span>&#160;<span class="preprocessor">#define AFW_COMPILE_THROW_ERROR_Z(message_z) \</span></div>
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;<span class="preprocessor">    afw_compile_parse_set_error_z(parser, \</span></div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, message_z); \</span></div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;<span class="preprocessor">    longjmp(((parser-&gt;scope)-&gt;current_try-&gt;throw_jmp_buf), \</span></div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;<span class="preprocessor">    longjmp(((parser-&gt;xctx)-&gt;current_try-&gt;throw_jmp_buf), \</span></div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;<span class="preprocessor">        (afw_error_code_syntax)); \</span></div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160; </div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160; </div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="comment">/*  Macro used to set parse error in scope and throw it. */</span></div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="comment">/*  Macro used to set parse error in xctx and throw it. */</span></div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="preprocessor">#define AFW_COMPILE_THROW_ERROR_FZ(format_z, ...) \</span></div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="preprocessor">    afw_compile_parse_set_error_fz(parser, \</span></div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, format_z, __VA_ARGS__); \</span></div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="preprocessor">    longjmp(((parser-&gt;scope)-&gt;current_try-&gt;throw_jmp_buf), \</span></div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="preprocessor">    longjmp(((parser-&gt;xctx)-&gt;current_try-&gt;throw_jmp_buf), \</span></div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;<span class="preprocessor">        (afw_error_code_syntax)); \</span></div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160; </div>
@@ -1249,20 +1249,20 @@ $(function() {
 <div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;<span class="comment">/* Create instance of args. */</span></div>
 <div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;<span class="preprocessor">#define afw_compile_args_create(parser) \</span></div>
 <div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;<span class="preprocessor">afw_stack_create(afw_compile_args_t, 10, 0, true, \</span></div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="preprocessor">    (parser)-&gt;p, (parser)-&gt;scope)</span></div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="preprocessor">    (parser)-&gt;p, (parser)-&gt;xctx)</span></div>
 <div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160; </div>
 <div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160; </div>
 <div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160; </div>
 <div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;<span class="comment">/* Add a value to args. */</span></div>
 <div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="preprocessor">#define afw_compile_args_add_value(args, value) \</span></div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="preprocessor">afw_stack_push(args, (parser)-&gt;scope) = value</span></div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="preprocessor">afw_stack_push(args, (parser)-&gt;xctx) = value</span></div>
 <div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160; </div>
 <div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160; </div>
 <div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160; </div>
 <div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="comment">/* Get argc and argv from args and release work resources. */</span></div>
 <div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="preprocessor">#define afw_compile_args_finalize(args, argc, argv) \</span></div>
 <div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="preprocessor">afw_stack_copy_and_release((args), (argc), (argv), \</span></div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="preprocessor">    (parser)-&gt;p, (parser)-&gt;scope)</span></div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="preprocessor">    (parser)-&gt;p, (parser)-&gt;xctx)</span></div>
 <div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160; </div>
 <div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160; </div>
 <div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;<span class="comment">/* Make sure there is no residual data. */</span></div>
@@ -1275,7 +1275,7 @@ $(function() {
 <div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a8634630fd9b7630402a4ec72e8aa80a8">AFW_DECLARE_INTERNAL</a>(<a class="code" href="structafw__compile__internal__parser__s.html">afw_compile_parser_t</a> *)</div>
 <div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;afw_compile_lexical_parser_create(</div>
 <div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *source,</div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;    <a class="code" href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a> callback,</div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;    <a class="code" href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a> callback,</div>
 <div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;    <span class="keywordtype">void</span> *callback_data,</div>
 <div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *source_location,</div>
 <div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    <a class="code" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a> compile_type,</div>
@@ -1284,14 +1284,14 @@ $(function() {
 <div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__internal__compiled__value__s.html">afw_value_compiled_value_t</a> *parent,</div>
 <div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__compile__internal__shared__s.html">afw_compile_shared_t</a> *shared,</div>
 <div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160; </div>
 <div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160; </div>
 <div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;<span class="comment">/* Call when finished with parser. */</span></div>
 <div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a8634630fd9b7630402a4ec72e8aa80a8">AFW_DECLARE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;afw_compile_lexical_parser_finish_and_release(</div>
 <div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;    <a class="code" href="structafw__compile__internal__parser__s.html">afw_compile_parser_t</a> *parser,</div>
-<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160; </div>
 <div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160; </div>
 <div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160; </div>
@@ -1329,7 +1329,7 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_ga2b61eba54c13d6a3fc1c47a01cdee617"><div class="ttname"><a href="group__afw__common.html#ga2b61eba54c13d6a3fc1c47a01cdee617">afw_double_t</a></div><div class="ttdeci">double afw_double_t</div><div class="ttdoc">Normal AFW number is double.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00201">afw_common.h:201</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga7c104ee4d1037f17fc0dc7e2f99538a5"><div class="ttname"><a href="group__afw__common.html#ga7c104ee4d1037f17fc0dc7e2f99538a5">afw_code_point_t</a></div><div class="ttdeci">afw_int32_t afw_code_point_t</div><div class="ttdoc">Unicode code point.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00204">afw_common.h:204</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_ga93eea8d9bb28ab19eb24262337d071a3"><div class="ttname"><a href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a></div><div class="ttdeci">int(* afw_utf8_octet_get_cb_t)(afw_utf8_octet_t *octet, void *data, afw_scope_t *scope)</div><div class="ttdoc">Get an utf-8 octet (8 bits).</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00253">afw_common.h:253</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga8d90483aa60c16e6b9378c1c306a805d"><div class="ttname"><a href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a></div><div class="ttdeci">int(* afw_utf8_octet_get_cb_t)(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)</div><div class="ttdoc">Get an utf-8 octet (8 bits).</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00253">afw_common.h:253</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00522">afw_common.h:522</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaa3ed4512b367a8e75798354e6b3e0212"><div class="ttname"><a href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a></div><div class="ttdeci">enum afw_compile_type_e afw_compile_type_t</div><div class="ttdoc">Compile type enum.</div></div>
 <div class="ttc" id="agroup__afw__common_html_gaa6086794bcf1454d3682a7b3360f5d22"><div class="ttname"><a href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a></div><div class="ttdeci">char afw_utf8_octet_t</div><div class="ttdoc">8 bits of utf-8 codepoint.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00235">afw_common.h:235</a></div></div>
@@ -1352,20 +1352,20 @@ $(function() {
 <div class="ttc" id="astructafw__compile__internal__value__contextual__s_html_a9c78edead83dd2a3df44b0d7c2934724"><div class="ttname"><a href="structafw__compile__internal__value__contextual__s.html#a9c78edead83dd2a3df44b0d7c2934724">afw_compile_internal_value_contextual_s::value_offset</a></div><div class="ttdeci">afw_size_t value_offset</div><div class="ttdoc">Offset in full source of compiled value to this value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__compile__internal_8h_source.html#l00249">afw_compile_internal.h:249</a></div></div>
 <div class="ttc" id="astructafw__error__s_html"><div class="ttname"><a href="structafw__error__s.html">afw_error_s</a></div><div class="ttdoc">Adaptive Framework Error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00069">afw_error.h:69</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
 <div class="ttc" id="astructafw__value__block__s_html"><div class="ttname"><a href="structafw__value__block__s.html">afw_value_block_s</a></div><div class="ttdoc">struct for afw_value_block_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00096">afw_value_internal.h:96</a></div></div>
 <div class="ttc" id="astructafw__value__block__symbol__s_html"><div class="ttname"><a href="structafw__value__block__symbol__s.html">afw_value_block_symbol_s</a></div><div class="ttdoc">struct for afw_value_block_symbol_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00189">afw_value_internal.h:189</a></div></div>
 <div class="ttc" id="astructafw__value__internal__compiled__value__s_html"><div class="ttname"><a href="structafw__value__internal__compiled__value__s.html">afw_value_internal_compiled_value_s</a></div><div class="ttdoc">Struct for compiled value value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00264">afw_value_internal.h:264</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
 <div class="ttc" id="astructafw__value__script__function__signature__s_html"><div class="ttname"><a href="structafw__value__script__function__signature__s.html">afw_value_script_function_signature_s</a></div><div class="ttdoc">Struct for lambda parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00392">afw_value_internal.h:392</a></div></div>
 <div class="ttc" id="astructafw__value__type__s_html"><div class="ttname"><a href="structafw__value__type__s.html">afw_value_type_s</a></div><div class="ttdoc">Type meta (data type, data type parameters, and value meta object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00136">afw_value_internal.h:136</a></div></div>
 <div class="ttc" id="astructafw__value__variable__reference__s_html"><div class="ttname"><a href="structafw__value__variable__reference__s.html">afw_value_variable_reference_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00448">afw_value_internal.h:448</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:11 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:12 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

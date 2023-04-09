@@ -123,6 +123,17 @@
         Authorization scripts are provided access to each of these parts 
         in order to render a decision.
     
+</p><div class="flex justify-center"><img src="images/AuthorizationDiagram.svg" alt="Authorization Diagram" class="dark:invert" /></div><div class="flex justify-center pb-8"><span class="text-sm">Diagram illustrating an authorization process</span></div><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+        The previous diagram illustrates the steps that are taken from the start
+        of a client request to the response that is returned. The 
+        <code>Authentication</code> in steps (2) and (3) are optional, but
+        they are steps that are often taken when an un-verified client wishes to
+        make a request for data. The role of Adaptive Framework does not really
+        start until step (5), when all of the subject information has been
+        gathered and that will be needed in order to make an authorization
+        decision.
+    
 </p>                        
                             <footer class="text-sm leading-6 mt-12">
     <div class="mb-10 text-slate-700 font-semibold flex items-center dark:text-slate-200">

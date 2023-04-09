@@ -95,7 +95,7 @@ $(function() {
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">   65</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *<a class="code" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">p</a>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structafw__function__execute__s.html#a4c04247de4600af23f8fa5015ed67450">   68</a></span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *<a class="code" href="structafw__function__execute__s.html#a4c04247de4600af23f8fa5015ed67450">scope</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">   68</a></span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *<a class="code" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">xctx</a>;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structafw__function__execute__s.html#a49c4a4e29f73e0c39e2a271f3e7910e1">   77</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__function__definition__s.html">afw_value_function_definition_t</a> *<span class="keyword">function</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
@@ -156,7 +156,7 @@ $(function() {
 <div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="group__afw__function.html#gabb0fea784af18a07488c045c79a53f90">  178</a></span>&#160;<span class="preprocessor">#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(n) \</span></div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">    if ((x-&gt;argc) != (n)) {\</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting &quot;</span> #n &quot; parameters.&quot;, x-&gt;scope);\</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting &quot;</span> #n &quot; parameters.&quot;, x-&gt;xctx);\</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    } \</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;} while (0)</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
@@ -165,7 +165,7 @@ $(function() {
 <div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="group__afw__function.html#ga2aa213adb2c71eb9802419bb73e3522f">  195</a></span>&#160;<span class="preprocessor">#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(n) \</span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">    if (x-&gt;argc &lt; (n)) {\</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting at least &quot;</span> #n &quot; parameters.&quot;, x-&gt;scope);\</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting at least &quot;</span> #n &quot; parameters.&quot;, x-&gt;xctx);\</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    } \</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;} while (0)</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
@@ -174,7 +174,7 @@ $(function() {
 <div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="group__afw__function.html#ga8edee46e88ea337b3ba5e7773ea792c7">  212</a></span>&#160;<span class="preprocessor">#define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(n) \</span></div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">    if (x-&gt;argc &gt; (n)) {\</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting no more than &quot;</span> #n &quot; parameters.&quot;, x-&gt;scope);\</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;Expecting no more than &quot;</span> #n &quot; parameters.&quot;, x-&gt;xctx);\</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    } \</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;} while (0)</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
@@ -182,11 +182,11 @@ $(function() {
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
 <div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="group__afw__function.html#ga3542eac31ac389271a60f0a1080fd722">  229</a></span>&#160;<span class="preprocessor">#define AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(A_VALUE) \</span></div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">if (!(A_VALUE) || !afw_utf8_equal( \</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">    &amp;afw_value_get_data_type(((const afw_value_t *)A_VALUE), x-&gt;scope)-&gt;cType, \</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">    &amp;afw_value_get_data_type(((const afw_value_t *)A_VALUE), x-&gt;xctx)-&gt;cType, \</span></div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">    &amp;afw_s_afw_utf8_t)) \</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">{ \</span></div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">    AFW_THROW_ERROR_Z(arg_error, \</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">        &quot;Value&#39;s data type not supported for this function&quot;</span>, x-&gt;scope); \</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">        &quot;Value&#39;s data type not supported for this function&quot;</span>, x-&gt;xctx); \</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
@@ -216,7 +216,7 @@ $(function() {
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor">A_RESULT = (const afw_value_boolean_t *) \</span></div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">    afw_function_evaluate_required_parameter(x, A_N, NULL); \</span></div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">    if (!afw_value_is_boolean(A_RESULT)) \</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(arg_error, scope, \</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(arg_error, xctx, \</span></div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">            &quot;Condition must be boolean (parameter %d)&quot;</span>, (A_N))</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
@@ -229,7 +229,7 @@ $(function() {
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
 <div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="group__afw__function.html#ga148e15be65eccd0ad10753eea34d1da5">  347</a></span>&#160;<span class="preprocessor">#define AFW_FUNCTION_SOURCE_LOCATION \</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="preprocessor">afw_compile_source_location_of_value( \</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">    (const afw_value_t *)x-&gt;self, x-&gt;p, x-&gt;scope)</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">    (const afw_value_t *)x-&gt;self, x-&gt;p, x-&gt;xctx)</span></div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
@@ -237,14 +237,14 @@ $(function() {
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment"> * @brief Evaluate function parameter.</span></div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment"> * @param function_arg.</span></div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment"> * @param p Pool to use for result.</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment"> * @param scope Scope for function to use.</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment"> * @param xctx of caller.</span></div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment"> * @return function.</span></div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *)</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;afw_function_evaluate_function_parameter(</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *function_arg,</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
@@ -281,11 +281,11 @@ $(function() {
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
 <div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; </div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *)</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<a class="code" href="group__afw__function.html#ga030626f52073c5151955bc9aeb292c37">afw_function_evaluate_parameter_with_type</a>(</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<a class="code" href="group__afw__function.html#ga7c7fb453dec18cbca411b5397f7e5e7c">afw_function_evaluate_parameter_with_type</a>(</div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *value,</div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> parameter_number,</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__type__s.html">afw_value_type_t</a> *type,</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160; </div>
 <div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160; </div>
 <div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
@@ -297,8 +297,8 @@ $(function() {
 <div class="ttc" id="aafw__declare__helpers_8h_html_ab5b5f226d95b87a930ca1128be6bdcfe"><div class="ttname"><a href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a></div><div class="ttdeci">#define AFW_DECLARE(type)</div><div class="ttdoc">Declare a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00141">afw_declare_helpers.h:141</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
 <div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
-<div class="ttc" id="agroup__afw__function_html_ga030626f52073c5151955bc9aeb292c37"><div class="ttname"><a href="group__afw__function.html#ga030626f52073c5151955bc9aeb292c37">afw_function_evaluate_parameter_with_type</a></div><div class="ttdeci">const afw_value_t * afw_function_evaluate_parameter_with_type(const afw_value_t *value, afw_size_t parameter_number, const afw_value_type_t *type, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Evaluate a parameter with dataTypeParameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8c_source.html#l00243">afw_function.c:243</a></div></div>
 <div class="ttc" id="agroup__afw__function_html_ga095a73a95ae5eca4ff12ea997d8ad12a"><div class="ttname"><a href="group__afw__function.html#ga095a73a95ae5eca4ff12ea997d8ad12a">afw_function_evaluate_required_parameter</a></div><div class="ttdeci">afw_function_evaluate_required_parameter(afw_function_execute_t *x, afw_size_t parameter_number, const afw_data_type_t *data_type)</div><div class="ttdoc">Evaluate an required parameter and convert if necessary.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8c_source.html#l00213">afw_function.c:213</a></div></div>
+<div class="ttc" id="agroup__afw__function_html_ga7c7fb453dec18cbca411b5397f7e5e7c"><div class="ttname"><a href="group__afw__function.html#ga7c7fb453dec18cbca411b5397f7e5e7c">afw_function_evaluate_parameter_with_type</a></div><div class="ttdeci">const afw_value_t * afw_function_evaluate_parameter_with_type(const afw_value_t *value, afw_size_t parameter_number, const afw_value_type_t *type, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Evaluate a parameter with dataTypeParameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8c_source.html#l00243">afw_function.c:243</a></div></div>
 <div class="ttc" id="agroup__afw__function_html_ga9e7458c83081dec2c766612e729479ab"><div class="ttname"><a href="group__afw__function.html#ga9e7458c83081dec2c766612e729479ab">afw_function_evaluate_parameter</a></div><div class="ttdeci">const afw_value_t * afw_function_evaluate_parameter(afw_function_execute_t *x, afw_size_t parameter_number, const afw_data_type_t *data_type)</div><div class="ttdoc">Evaluate a parameter and convert if necessary.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8c_source.html#l00129">afw_function.c:129</a></div></div>
 <div class="ttc" id="astructafw__data__type__s_html"><div class="ttname"><a href="structafw__data__type__s.html">afw_data_type_s</a></div><div class="ttdoc">Interface afw_data_type public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l02086">afw_interface.h:2086</a></div></div>
 <div class="ttc" id="astructafw__function__environment__s_html"><div class="ttname"><a href="structafw__function__environment__s.html">afw_function_environment_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00101">afw_function.h:101</a></div></div>
@@ -320,22 +320,22 @@ $(function() {
 <div class="ttc" id="astructafw__function__environment__s_html_af6f56788410b4597f6bcf34f4bec329e"><div class="ttname"><a href="structafw__function__environment__s.html#af6f56788410b4597f6bcf34f4bec329e">afw_function_environment_s::equal_to_operator_function</a></div><div class="ttdeci">const afw_value_function_definition_t * equal_to_operator_function</div><div class="ttdoc">Equal to operator function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00134">afw_function.h:134</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html"><div class="ttname"><a href="structafw__function__execute__s.html">afw_function_execute_s</a></div><div class="ttdoc">Function execute parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00059">afw_function.h:59</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html_a00d8045422b03429c15c0996bd9b03ad"><div class="ttname"><a href="structafw__function__execute__s.html#a00d8045422b03429c15c0996bd9b03ad">afw_function_execute_s::argv</a></div><div class="ttdeci">const afw_value_t *const  * argv</div><div class="ttdoc">This is the function parameters.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00092">afw_function.h:92</a></div></div>
-<div class="ttc" id="astructafw__function__execute__s_html_a4c04247de4600af23f8fa5015ed67450"><div class="ttname"><a href="structafw__function__execute__s.html#a4c04247de4600af23f8fa5015ed67450">afw_function_execute_s::scope</a></div><div class="ttdeci">afw_scope_t * scope</div><div class="ttdoc">Scope of caller.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00068">afw_function.h:68</a></div></div>
+<div class="ttc" id="astructafw__function__execute__s_html_a29f583ea5c94df1a961404bf16a5714d"><div class="ttname"><a href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">afw_function_execute_s::xctx</a></div><div class="ttdeci">afw_xctx_t * xctx</div><div class="ttdoc">The execution context (xctx) of caller.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00068">afw_function.h:68</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html_a75fe9a094eff81d1e4fd229db64d0c71"><div class="ttname"><a href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">afw_function_execute_s::p</a></div><div class="ttdeci">const afw_pool_t * p</div><div class="ttdoc">Pool for result.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00065">afw_function.h:65</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html_a88675d0d07afe2935f1ac23234780c91"><div class="ttname"><a href="structafw__function__execute__s.html#a88675d0d07afe2935f1ac23234780c91">afw_function_execute_s::data_type</a></div><div class="ttdeci">const afw_data_type_t * data_type</div><div class="ttdoc">This is the &lt;dataType&gt; for data type functions or NULL.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00080">afw_function.h:80</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html_ac8c38fbaaab7902678a5c848e54b57f5"><div class="ttname"><a href="structafw__function__execute__s.html#ac8c38fbaaab7902678a5c848e54b57f5">afw_function_execute_s::argc</a></div><div class="ttdeci">afw_size_t argc</div><div class="ttdoc">This is the argv count not counting argv[0].</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00095">afw_function.h:95</a></div></div>
 <div class="ttc" id="astructafw__function__execute__s_html_ad290a029f0c42c8c18b36fbcec2bb511"><div class="ttname"><a href="structafw__function__execute__s.html#ad290a029f0c42c8c18b36fbcec2bb511">afw_function_execute_s::first_arg</a></div><div class="ttdeci">const afw_value_t * first_arg</div><div class="ttdoc">This is the evaluated first parameter if data type function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00083">afw_function.h:83</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
 <div class="ttc" id="astructafw__value__call__built__in__function__s_html"><div class="ttname"><a href="structafw__value__call__built__in__function__s.html">afw_value_call_built_in_function_s</a></div><div class="ttdoc">Struct for call value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00241">afw_value_internal.h:241</a></div></div>
 <div class="ttc" id="astructafw__value__function__definition__s_html"><div class="ttname"><a href="structafw__value__function__definition__s.html">afw_value_function_definition_s</a></div><div class="ttdoc">Struct for function value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00107">afw_value.h:107</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
 <div class="ttc" id="astructafw__value__type__s_html"><div class="ttname"><a href="structafw__value__type__s.html">afw_value_type_s</a></div><div class="ttdoc">Type meta (data type, data type parameters, and value meta object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value__internal_8h_source.html#l00136">afw_value_internal.h:136</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:14 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

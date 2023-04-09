@@ -115,7 +115,7 @@ $(function() {
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/* Get current environment registry object. */</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *)</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__afw__environment.html#ga4ab5e280ae73e1f1dee6c342d88e4f58">   52</a></span>&#160;<a class="code" href="group__afw__environment.html#ga4ab5e280ae73e1f1dee6c342d88e4f58">afw_environment_registry_object_get_current</a>(<a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__afw__environment.html#gaa7ae6f648ea1a0fb59eeb286f6f38dd7">   52</a></span>&#160;<a class="code" href="group__afw__environment.html#gaa7ae6f648ea1a0fb59eeb286f6f38dd7">afw_environment_registry_object_get_current</a>(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> &amp;impl_current_object;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
@@ -126,9 +126,9 @@ $(function() {
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * Implementation of method release of interface afw_object.</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga2b52c566f0e9e267aa2adafc059e2021">   63</a></span>&#160;impl_afw_object_release (</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga65afaebe650b4ff867bc5c458c022577">   63</a></span>&#160;impl_afw_object_release (</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/* Nothing to do. */</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
@@ -139,9 +139,9 @@ $(function() {
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> * Implementation of method add_reference of interface afw_object.</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#gab6440247e02cfe061f9aff78e74c2ce3">   76</a></span>&#160;impl_afw_object_add_reference (</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga3f8c01d0a1bd931076d65cfbc43bf232">   76</a></span>&#160;impl_afw_object_add_reference (</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">/* Nothing to do. */</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
@@ -152,15 +152,15 @@ $(function() {
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;impl_entry_cb(</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *<span class="keywordtype">object</span>,</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> *context,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *entries = (<span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *)context;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *property_name;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">if</span> (<span class="keywordtype">object</span>) {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        property_name = <a class="code" href="group__afw__object.html#ga7a7fb75ed108def3ff3732e8b29070b9">afw_object_meta_get_object_id</a>(<span class="keywordtype">object</span>, scope);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="group__afw__core__data__type__object.html#ga421e7a913f1ce49468451f71a8e44c72">afw_object_set_property_as_object</a>(entries, property_name,</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordtype">object</span>, scope);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        property_name = <a class="code" href="group__afw__object.html#gafc0a7d8f88cd7e7fab503850fbfa754c">afw_object_meta_get_object_id</a>(<span class="keywordtype">object</span>, xctx);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="group__afw__core__data__type__object.html#ga5d30094b46095c6bc944f5efa05574c9">afw_object_set_property_as_object</a>(entries, property_name,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordtype">object</span>, xctx);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -171,16 +171,16 @@ $(function() {
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;impl_make_registry_type_value(</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * object_type_id,</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *entries;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    entries = <a class="code" href="group__afw__object.html#gac9c2bfbcbbcc324b3b2b95457e100aa3">afw_object_create_managed</a>(scope-&gt;p, scope);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    entries = <a class="code" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3">afw_object_create_managed</a>(xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="group__afw__runtime.html#ga2e3b548873fcb7c65b399deadfbc729a">afw_runtime_foreach</a>(object_type_id, (<span class="keywordtype">void</span> *)entries,</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        impl_entry_cb, scope);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="group__afw__runtime.html#gab698a63091cd17bb159afa6c4ad0bfde">afw_runtime_foreach</a>(object_type_id, (<span class="keywordtype">void</span> *)entries,</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        impl_entry_cb, xctx);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__core__data__type__object.html#ga7310202c4a9d96c39bd43a0160ff04ec">afw_value_create_object</a>(entries, scope-&gt;p, scope);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__core__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a>(entries, xctx-&gt;p, xctx);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
@@ -189,18 +189,18 @@ $(function() {
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"> * Implementation of method get_property of interface afw_object.</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga79256925f99ef7b3af9a97c137cfb101">  126</a></span>&#160;impl_afw_object_get_property (</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga926823ae5061902a9376103d744f172a">  126</a></span>&#160;impl_afw_object_get_property (</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * property_name,</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__environment__registry__type__s.html">afw_environment_registry_type_t</a> *type;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    type = <a class="code" href="group__afw__environment.html#ga4840b1663166b6e00f47d780605b0f53">afw_environment_get_registry_type</a>(</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        property_name, scope);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    type = <a class="code" href="group__afw__environment.html#ga41a196644b95bcc4360d25840d893f90">afw_environment_get_registry_type</a>(</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        property_name, xctx);</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">return</span> (type &amp;&amp; type-&gt;object_type_id)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        ? impl_make_registry_type_value(type-&gt;object_type_id, scope)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        ? impl_make_registry_type_value(type-&gt;object_type_id, xctx)</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        : NULL;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
@@ -210,11 +210,11 @@ $(function() {
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"> * Implementation of method get_next_property of interface afw_object.</span></div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga9529e0e5f8a5f18bcb78041693ab09c0">  147</a></span>&#160;impl_afw_object_get_next_property (</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga5de98b6856ff6a6e5b2bd49d2bdc192e">  147</a></span>&#160;impl_afw_object_get_next_property (</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a> * * iterator,</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * * property_name,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">int</span> registry_type_number;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result = NULL;</div>
@@ -223,14 +223,14 @@ $(function() {
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">for</span> (</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        registry_type_number = (<span class="keywordtype">int</span>)(*((<span class="keywordtype">char</span> **)iterator) - (<span class="keywordtype">char</span> *)0);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        (registry_type = <a class="code" href="group__afw__environment.html#ga2c35da384ba9033efe1603e59ccf5bf2">afw_environment_get_registry_type_by_number</a>(</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            registry_type_number, scope));</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        (registry_type = <a class="code" href="group__afw__environment.html#ga43532e7a017c39a9033687cacb417155">afw_environment_get_registry_type_by_number</a>(</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            registry_type_number, xctx));</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        registry_type_number++)</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    {</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> (registry_type-&gt;object_type_id) {</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            result = impl_make_registry_type_value(</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                registry_type-&gt;object_type_id, scope);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                registry_type-&gt;object_type_id, xctx);</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
@@ -258,12 +258,12 @@ $(function() {
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment"> * Implementation of method has_property of interface afw_object.</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div>
-<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#gaac5e3c2b6d3d7f46f3f44ee3c3472af1">  195</a></span>&#160;impl_afw_object_has_property (</div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga9f4f89bb9827024934b1c351199ae6b8">  195</a></span>&#160;impl_afw_object_has_property (</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * property_name,</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;{</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">return</span> impl_afw_object_get_property(instance, property_name, scope) != NULL;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">return</span> impl_afw_object_get_property(instance, property_name, xctx) != NULL;</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
@@ -272,9 +272,9 @@ $(function() {
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment"> * Implementation of method get_setter of interface afw_object.</span></div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__object__setter__s.html">afw_object_setter_t</a> *</div>
-<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#gadebdab18a1e5e50381f0e1f6016bf86d">  209</a></span>&#160;impl_afw_object_get_setter (</div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="group__afw__object__impl__declares.html#ga02968ecff26bd754b439ea04211d697b">  209</a></span>&#160;impl_afw_object_get_setter (</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;{</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="comment">/* Immutable. */</span></div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
@@ -285,24 +285,24 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_ga294533d3f49933f65de247a76acca81b"><div class="ttname"><a href="group__afw__common.html#ga294533d3f49933f65de247a76acca81b">AFW_UTF8_LITERAL</a></div><div class="ttdeci">#define AFW_UTF8_LITERAL(A_STRING)</div><div class="ttdoc">String literal initializer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00581">afw_common.h:581</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga31e6f96a6d1ed6b7055fa6221b7a9cea"><div class="ttname"><a href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a></div><div class="ttdeci">struct afw_iterator_s afw_iterator_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common__opaques_8h_source.html#l00001">afw_common_opaques.h:403</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
-<div class="ttc" id="agroup__afw__core__data__type__object_html_ga421e7a913f1ce49468451f71a8e44c72"><div class="ttname"><a href="group__afw__core__data__type__object.html#ga421e7a913f1ce49468451f71a8e44c72">afw_object_set_property_as_object</a></div><div class="ttdeci">afw_object_set_property_as_object(const afw_object_t *object, const afw_utf8_t *property_name, const afw_object_t *internal, afw_scope_t *scope)</div><div class="ttdoc">Set property function for data type object values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00210">afw_data_type_object_binding.c:210</a></div></div>
-<div class="ttc" id="agroup__afw__core__data__type__object_html_ga7310202c4a9d96c39bd43a0160ff04ec"><div class="ttname"><a href="group__afw__core__data__type__object.html#ga7310202c4a9d96c39bd43a0160ff04ec">afw_value_create_object</a></div><div class="ttdeci">afw_value_create_object(const afw_object_t *internal, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create function for unmanaged data type object value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00267">afw_data_type_object_binding.c:267</a></div></div>
-<div class="ttc" id="agroup__afw__environment_html_ga2c35da384ba9033efe1603e59ccf5bf2"><div class="ttname"><a href="group__afw__environment.html#ga2c35da384ba9033efe1603e59ccf5bf2">afw_environment_get_registry_type_by_number</a></div><div class="ttdeci">afw_environment_get_registry_type_by_number(int registry_type_number, afw_scope_t *scope)</div><div class="ttdoc">Get the registry type associated with a registry type number.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8c_source.html#l00549">afw_environment.c:549</a></div></div>
-<div class="ttc" id="agroup__afw__environment_html_ga4840b1663166b6e00f47d780605b0f53"><div class="ttname"><a href="group__afw__environment.html#ga4840b1663166b6e00f47d780605b0f53">afw_environment_get_registry_type</a></div><div class="ttdeci">const afw_environment_registry_type_t * afw_environment_get_registry_type(const afw_utf8_t *property_name, afw_scope_t *scope)</div><div class="ttdoc">Get the registry type associated with property name.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8h_source.html#l00790">afw_environment.h:790</a></div></div>
-<div class="ttc" id="agroup__afw__environment_html_ga4ab5e280ae73e1f1dee6c342d88e4f58"><div class="ttname"><a href="group__afw__environment.html#ga4ab5e280ae73e1f1dee6c342d88e4f58">afw_environment_registry_object_get_current</a></div><div class="ttdeci">afw_environment_registry_object_get_current(afw_scope_t *scope)</div><div class="ttdoc">Get current environment registry object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment__registry__object_8c_source.html#l00052">afw_environment_registry_object.c:52</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_ga7a7fb75ed108def3ff3732e8b29070b9"><div class="ttname"><a href="group__afw__object.html#ga7a7fb75ed108def3ff3732e8b29070b9">afw_object_meta_get_object_id</a></div><div class="ttdeci">afw_object_meta_get_object_id(const afw_object_t *instance, afw_scope_t *scope)</div><div class="ttdoc">Get entity object's object id.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__meta_8c_source.html#l00199">afw_object_meta.c:199</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_gac9c2bfbcbbcc324b3b2b95457e100aa3"><div class="ttname"><a href="group__afw__object.html#gac9c2bfbcbbcc324b3b2b95457e100aa3">afw_object_create_managed</a></div><div class="ttdeci">#define afw_object_create_managed(p, scope)</div><div class="ttdoc">Create an empty entity object in its own pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00870">afw_object.h:870</a></div></div>
-<div class="ttc" id="agroup__afw__runtime_html_ga2e3b548873fcb7c65b399deadfbc729a"><div class="ttname"><a href="group__afw__runtime.html#ga2e3b548873fcb7c65b399deadfbc729a">afw_runtime_foreach</a></div><div class="ttdeci">afw_runtime_foreach(const afw_utf8_t *object_type_id, void *context, afw_object_cb_t callback, afw_scope_t *scope)</div><div class="ttdoc">Call a callback for each runtime object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__runtime_8c_source.html#l00900">afw_runtime.c:900</a></div></div>
+<div class="ttc" id="agroup__afw__core__data__type__object_html_ga5d30094b46095c6bc944f5efa05574c9"><div class="ttname"><a href="group__afw__core__data__type__object.html#ga5d30094b46095c6bc944f5efa05574c9">afw_object_set_property_as_object</a></div><div class="ttdeci">afw_object_set_property_as_object(const afw_object_t *object, const afw_utf8_t *property_name, const afw_object_t *internal, afw_xctx_t *xctx)</div><div class="ttdoc">Set property function for data type object values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00210">afw_data_type_object_binding.c:210</a></div></div>
+<div class="ttc" id="agroup__afw__core__data__type__object_html_gaa2a9bd355eee4bd6d8cab45b02d86ac1"><div class="ttname"><a href="group__afw__core__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a></div><div class="ttdeci">afw_value_create_object(const afw_object_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create function for unmanaged data type object value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00267">afw_data_type_object_binding.c:267</a></div></div>
+<div class="ttc" id="agroup__afw__environment_html_ga41a196644b95bcc4360d25840d893f90"><div class="ttname"><a href="group__afw__environment.html#ga41a196644b95bcc4360d25840d893f90">afw_environment_get_registry_type</a></div><div class="ttdeci">const afw_environment_registry_type_t * afw_environment_get_registry_type(const afw_utf8_t *property_name, afw_xctx_t *xctx)</div><div class="ttdoc">Get the registry type associated with property name.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8h_source.html#l00790">afw_environment.h:790</a></div></div>
+<div class="ttc" id="agroup__afw__environment_html_ga43532e7a017c39a9033687cacb417155"><div class="ttname"><a href="group__afw__environment.html#ga43532e7a017c39a9033687cacb417155">afw_environment_get_registry_type_by_number</a></div><div class="ttdeci">afw_environment_get_registry_type_by_number(int registry_type_number, afw_xctx_t *xctx)</div><div class="ttdoc">Get the registry type associated with a registry type number.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8c_source.html#l00549">afw_environment.c:549</a></div></div>
+<div class="ttc" id="agroup__afw__environment_html_gaa7ae6f648ea1a0fb59eeb286f6f38dd7"><div class="ttname"><a href="group__afw__environment.html#gaa7ae6f648ea1a0fb59eeb286f6f38dd7">afw_environment_registry_object_get_current</a></div><div class="ttdeci">afw_environment_registry_object_get_current(afw_xctx_t *xctx)</div><div class="ttdoc">Get current environment registry object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment__registry__object_8c_source.html#l00052">afw_environment_registry_object.c:52</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga5a29f6a9be2505ca9675b10ceeca31a3"><div class="ttname"><a href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3">afw_object_create_managed</a></div><div class="ttdeci">#define afw_object_create_managed(p, xctx)</div><div class="ttdoc">Create an empty entity object in its own pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00870">afw_object.h:870</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gafc0a7d8f88cd7e7fab503850fbfa754c"><div class="ttname"><a href="group__afw__object.html#gafc0a7d8f88cd7e7fab503850fbfa754c">afw_object_meta_get_object_id</a></div><div class="ttdeci">afw_object_meta_get_object_id(const afw_object_t *instance, afw_xctx_t *xctx)</div><div class="ttdoc">Get entity object's object id.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__meta_8c_source.html#l00199">afw_object_meta.c:199</a></div></div>
+<div class="ttc" id="agroup__afw__runtime_html_gab698a63091cd17bb159afa6c4ad0bfde"><div class="ttname"><a href="group__afw__runtime.html#gab698a63091cd17bb159afa6c4ad0bfde">afw_runtime_foreach</a></div><div class="ttdeci">afw_runtime_foreach(const afw_utf8_t *object_type_id, void *context, afw_object_cb_t callback, afw_xctx_t *xctx)</div><div class="ttdoc">Call a callback for each runtime object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__runtime_8c_source.html#l00900">afw_runtime.c:900</a></div></div>
 <div class="ttc" id="astructafw__environment__registry__type__s_html"><div class="ttname"><a href="structafw__environment__registry__type__s.html">afw_environment_registry_type_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8h_source.html#l00352">afw_environment.h:352</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
 <div class="ttc" id="astructafw__object__setter__s_html"><div class="ttname"><a href="structafw__object__setter__s.html">afw_object_setter_s</a></div><div class="ttdoc">Interface afw_object_setter public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03119">afw_interface.h:3119</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:14 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

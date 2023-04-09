@@ -155,10 +155,10 @@ Use path /afw/_AdaptiveConf_application/current to access this entry at run time
         &quot;required&quot;: false
     },
     &quot;defaultFlags&quot;: {
-        &quot;brief&quot;: &quot;List of default flags to be set when a scope (request) is created.&quot;,
+        &quot;brief&quot;: &quot;List of default flags to be set when an execution context (xctx) is created.&quot;,
         &quot;dataType&quot;: &quot;list&quot;,
         &quot;dataTypeParameter&quot;: &quot;string&quot;,
-        &quot;description&quot;: &quot;This is a list of the flagId of default flags that will be set when a scope (request) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.&quot;,
+        &quot;description&quot;: &quot;This is a list of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.&quot;,
         &quot;label&quot;: &quot;Default Flags&quot;,
         &quot;required&quot;: false
     },
@@ -216,7 +216,7 @@ Use path /afw/_AdaptiveConf_application/current to access this entry at run time
         &quot;brief&quot;: &quot;Qualified set of variables&quot;,
         &quot;dataType&quot;: &quot;object&quot;,
         &quot;dataTypeParameter&quot;: &quot;_AdaptiveHybridPropertiesObjects_&quot;,
-        &quot;description&quot;: &quot;The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these \&quot;qualifier objects\&quot; are hybrid values that are accessible as qualified variables. These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.&quot;,
+        &quot;description&quot;: &quot;The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these \&quot;qualifier objects\&quot; are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.&quot;,
         &quot;label&quot;: &quot;Qualified Variables&quot;
     },
     &quot;rootFilePaths&quot;: {

@@ -101,29 +101,29 @@ const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</t
 <tr class="memitem:ad7d9495a331b02a09f59f680bd7e690a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#ad7d9495a331b02a09f59f680bd7e690a">afw_ldap_metadata_get_object_type_attribute</a> (<a class="el" href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_t</a> *first, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *name)</td></tr>
 <tr class="memdesc:ad7d9495a331b02a09f59f680bd7e690a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return afw_ldap_object_type_attribute_t * for name.  <a href="afw__ldap__metadata_8c.html#ad7d9495a331b02a09f59f680bd7e690a">More...</a><br /></td></tr>
 <tr class="separator:ad7d9495a331b02a09f59f680bd7e690a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8e56a4614aa3a75f1c73125175cf26f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#ab8e56a4614aa3a75f1c73125175cf26f">afw_ldap_metadata_load</a> (<a class="el" href="structafw__ldap__internal__adaptor__s.html">afw_ldap_internal_adaptor_t</a> *adaptor, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ab8e56a4614aa3a75f1c73125175cf26f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load LDAP adaptors Metadata .  <a href="afw__ldap__metadata_8c.html#ab8e56a4614aa3a75f1c73125175cf26f">More...</a><br /></td></tr>
-<tr class="separator:ab8e56a4614aa3a75f1c73125175cf26f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71ed13e487f44aa15320b0e821710ef2"><td class="memItemLeft" align="right" valign="top"><a id="a71ed13e487f44aa15320b0e821710ef2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#a71ed13e487f44aa15320b0e821710ef2">afw_ldap_metadata_retrieve_objects</a> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gacbb4b086900bf3b9c5f70ae1fbe879f8">afw_query_criteria_t</a> *criteria, void *context, <a class="el" href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">afw_object_cb_t</a> callback, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a71ed13e487f44aa15320b0e821710ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by afw_ldap_adaptor_session() to retrieve metadata objects. <br /></td></tr>
-<tr class="separator:a71ed13e487f44aa15320b0e821710ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8717d1e080fdc05493047d35ceb3014f"><td class="memItemLeft" align="right" valign="top"><a id="a8717d1e080fdc05493047d35ceb3014f"></a>
-const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>impl_get_object</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, apr_hash_t *ht, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a8717d1e080fdc05493047d35ceb3014f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185f767bb9ec9a9c5e497fadac83947a"><td class="memItemLeft" align="right" valign="top"><a id="a185f767bb9ec9a9c5e497fadac83947a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#a185f767bb9ec9a9c5e497fadac83947a">afw_ldap_metadata_get_object</a> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, void *context, <a class="el" href="group__afw__common.html#gaab1f58200ca604b0ccac274eaa22410a">afw_object_cb_t</a> callback, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a185f767bb9ec9a9c5e497fadac83947a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by afw_ldap_adaptor_session() to get a metadata object. <br /></td></tr>
-<tr class="separator:a185f767bb9ec9a9c5e497fadac83947a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee21d4495b195f9c219bddcf3729103f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#aee21d4495b195f9c219bddcf3729103f">afw_ldap_metadata_load</a> (<a class="el" href="structafw__ldap__internal__adaptor__s.html">afw_ldap_internal_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aee21d4495b195f9c219bddcf3729103f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load LDAP adaptors Metadata .  <a href="afw__ldap__metadata_8c.html#aee21d4495b195f9c219bddcf3729103f">More...</a><br /></td></tr>
+<tr class="separator:aee21d4495b195f9c219bddcf3729103f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6258ca55ca151062aecc61c2691050d8"><td class="memItemLeft" align="right" valign="top"><a id="a6258ca55ca151062aecc61c2691050d8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#a6258ca55ca151062aecc61c2691050d8">afw_ldap_metadata_retrieve_objects</a> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gacbb4b086900bf3b9c5f70ae1fbe879f8">afw_query_criteria_t</a> *criteria, void *context, <a class="el" href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">afw_object_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a6258ca55ca151062aecc61c2691050d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by afw_ldap_adaptor_session() to retrieve metadata objects. <br /></td></tr>
+<tr class="separator:a6258ca55ca151062aecc61c2691050d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f559c294cd80c460e8aa754c2fdc4db"><td class="memItemLeft" align="right" valign="top"><a id="a6f559c294cd80c460e8aa754c2fdc4db"></a>
+const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>impl_get_object</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, apr_hash_t *ht, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a6f559c294cd80c460e8aa754c2fdc4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad71ff693a5034ecc2604c2dc7e72803e"><td class="memItemLeft" align="right" valign="top"><a id="ad71ff693a5034ecc2604c2dc7e72803e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__metadata_8c.html#ad71ff693a5034ecc2604c2dc7e72803e">afw_ldap_metadata_get_object</a> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, void *context, <a class="el" href="group__afw__common.html#ga22a202cea2255b41bc016d2b26950140">afw_object_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ad71ff693a5034ecc2604c2dc7e72803e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by afw_ldap_adaptor_session() to get a metadata object. <br /></td></tr>
+<tr class="separator:ad71ff693a5034ecc2604c2dc7e72803e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fa0685ce4201abb59648b324f835f0f"><td class="memItemLeft" align="right" valign="top"><a id="a3fa0685ce4201abb59648b324f835f0f"></a>
 <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_metadata_handles</b> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type)</td></tr>
 <tr class="separator:a3fa0685ce4201abb59648b324f835f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ce61d7fb605145319659f263d87c1c"><td class="memItemLeft" align="right" valign="top"><a id="a19ce61d7fb605145319659f263d87c1c"></a>
-const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_metadata_bv_to_value</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_t</a> *attribute, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *attribute_name, struct berval **bv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a19ce61d7fb605145319659f263d87c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92992701d778c44b55e68953dc335fe1"><td class="memItemLeft" align="right" valign="top"><a id="a92992701d778c44b55e68953dc335fe1"></a>
-struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_metadata_value_to_bv</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *attribute_name, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a92992701d778c44b55e68953dc335fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6fcc890f733be166ab2ff0e74ed967"><td class="memItemLeft" align="right" valign="top"><a id="a9c6fcc890f733be166ab2ff0e74ed967"></a>
+const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_metadata_bv_to_value</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__ldap__object__type__attribute__s.html">afw_ldap_object_type_attribute_t</a> *attribute, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *attribute_name, struct berval **bv, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a9c6fcc890f733be166ab2ff0e74ed967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7450f672cea22d6b2410ba8f77939207"><td class="memItemLeft" align="right" valign="top"><a id="a7450f672cea22d6b2410ba8f77939207"></a>
+struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_metadata_value_to_bv</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *attribute_name, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a7450f672cea22d6b2410ba8f77939207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal LDAP Schema parser. </p>
@@ -170,8 +170,8 @@ struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_
 
 </div>
 </div>
-<a id="ab8e56a4614aa3a75f1c73125175cf26f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8e56a4614aa3a75f1c73125175cf26f">&#9670;&nbsp;</a></span>afw_ldap_metadata_load()</h2>
+<a id="aee21d4495b195f9c219bddcf3729103f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee21d4495b195f9c219bddcf3729103f">&#9670;&nbsp;</a></span>afw_ldap_metadata_load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,8 +185,8 @@ struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,7 +200,7 @@ struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adaptor</td><td>Internal ldap adaptor. </td></tr>
-    <tr><td class="paramname">scope</td><td>Scope of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -225,7 +225,7 @@ struct berval **&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -96,14 +96,14 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a>(<span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *)</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="group__afw__object.html#ga8c81686bdf2c861fcccff0c076954430">   34</a></span>&#160;<a class="code" href="group__afw__object.html#ga8c81686bdf2c861fcccff0c076954430">afw_object_aggregate_external_create</a>(</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="group__afw__object.html#ga90928a78c3083590466953872a7f4416">   34</a></span>&#160;<a class="code" href="group__afw__object.html#ga90928a78c3083590466953872a7f4416">afw_object_aggregate_external_create</a>(</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    const <a class="code" href="structafw__object__s.html">afw_object_t</a> * const *object_list,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    const <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *<span class="keyword">self</span>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">self</span> = <a class="code" href="group__afw__pool.html#gac5ec961b3b7e38f71487691c41f954b0">afw_pool_calloc_type</a>(p, <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a>, scope);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">self</span> = <a class="code" href="group__afw__pool.html#ga028594c9632d440f3204a55a92b99429">afw_pool_calloc_type</a>(p, <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a>, xctx);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">self</span>-&gt;pub.inf = &amp;impl_afw_object_inf;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">self</span>-&gt;pub.p = p;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">self</span>-&gt;object_list = object_list;</div>
@@ -118,7 +118,7 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;impl_afw_object_release(</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">/* Not managed. */</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
@@ -129,7 +129,7 @@ $(function() {
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;impl_afw_object_add_reference(</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/* Not managed. */</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
@@ -141,7 +141,7 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;impl_afw_object_get_property(</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * property_name,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        (<a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *)instance;</div>
@@ -149,7 +149,7 @@ $(function() {
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">for</span> (obj = self-&gt;object_list, result = NULL; *obj; obj++) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        result = <a class="code" href="group__afw__object__interface.html#ga0b8e920e6a86ac2d9cab5c8f1a829db3">afw_object_get_property</a>(*obj, property_name, scope);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        result = <a class="code" href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76">afw_object_get_property</a>(*obj, property_name, xctx);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
@@ -166,7 +166,7 @@ $(function() {
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a> * * iterator,</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * * property_name,</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        (<a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *)instance;</div>
@@ -180,9 +180,9 @@ $(function() {
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    result = NULL;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">for</span> (; *<span class="keyword">self</span>-&gt;iterator.object; <span class="keyword">self</span>-&gt;iterator.object++) {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        result = <a class="code" href="group__afw__object__interface.html#gab4657c3c943d83973b5d272c9ed4d41e">afw_object_get_next_property</a>(</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        result = <a class="code" href="group__afw__object__interface.html#ga60459363560428fd5ba0b88a37e7836e">afw_object_get_next_property</a>(</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            *self-&gt;iterator.object, &amp;self-&gt;iterator.iterator,</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            property_name, scope);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            property_name, xctx);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }       </div>
@@ -202,9 +202,9 @@ $(function() {
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;impl_afw_object_has_property(</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * property_name,</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">return</span> impl_afw_object_get_property(instance, property_name, scope) != NULL;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">return</span> impl_afw_object_get_property(instance, property_name, xctx) != NULL;</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">/*</span></div>
@@ -213,34 +213,34 @@ $(function() {
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__object__setter__s.html">afw_object_setter_t</a> *</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;impl_afw_object_get_setter(</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * instance,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *<span class="keyword">self</span> =</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        (<a class="code" href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_t</a> *)instance;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__object__interface.html#gaf92cca2aea7973b93a18f2be2aa980b2">afw_object_get_setter</a>(*self-&gt;object_list, scope);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__afw__object__interface.html#gafcb3c5a140e48ea3ebe73ef891dda6d3">afw_object_get_setter</a>(*self-&gt;object_list, xctx);</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;}</div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a53c27301be573580f47f98f0fbccde3b"><div class="ttname"><a href="afw__declare__helpers_8h.html#a53c27301be573580f47f98f0fbccde3b">AFW_DEFINE</a></div><div class="ttdeci">#define AFW_DEFINE(type)</div><div class="ttdoc">Define a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00209">afw_declare_helpers.h:209</a></div></div>
 <div class="ttc" id="aafw__internal_8h_html"><div class="ttname"><a href="afw__internal_8h.html">afw_internal.h</a></div><div class="ttdoc">Adaptive Framework Core Internal.</div></div>
 <div class="ttc" id="aafw__object__impl__declares_8h_html"><div class="ttname"><a href="afw__object__impl__declares_8h.html">afw_object_impl_declares.h</a></div><div class="ttdoc">Interface afw_interface implementation declares.</div></div>
 <div class="ttc" id="agroup__afw__common_html_ga31e6f96a6d1ed6b7055fa6221b7a9cea"><div class="ttname"><a href="group__afw__common.html#ga31e6f96a6d1ed6b7055fa6221b7a9cea">afw_iterator_t</a></div><div class="ttdeci">struct afw_iterator_s afw_iterator_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common__opaques_8h_source.html#l00001">afw_common_opaques.h:403</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
-<div class="ttc" id="agroup__afw__object__interface_html_ga0b8e920e6a86ac2d9cab5c8f1a829db3"><div class="ttname"><a href="group__afw__object__interface.html#ga0b8e920e6a86ac2d9cab5c8f1a829db3">afw_object_get_property</a></div><div class="ttdeci">#define afw_object_get_property(instance, property_name, scope)</div><div class="ttdoc">Call method get_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03336">afw_interface.h:3336</a></div></div>
-<div class="ttc" id="agroup__afw__object__interface_html_gab4657c3c943d83973b5d272c9ed4d41e"><div class="ttname"><a href="group__afw__object__interface.html#gab4657c3c943d83973b5d272c9ed4d41e">afw_object_get_next_property</a></div><div class="ttdeci">#define afw_object_get_next_property(instance, iterator, property_name, scope)</div><div class="ttdoc">Call method get_next_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03375">afw_interface.h:3375</a></div></div>
-<div class="ttc" id="agroup__afw__object__interface_html_gaf92cca2aea7973b93a18f2be2aa980b2"><div class="ttname"><a href="group__afw__object__interface.html#gaf92cca2aea7973b93a18f2be2aa980b2">afw_object_get_setter</a></div><div class="ttdeci">#define afw_object_get_setter(instance, scope)</div><div class="ttdoc">Call method get_setter of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03434">afw_interface.h:3434</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_ga8c81686bdf2c861fcccff0c076954430"><div class="ttname"><a href="group__afw__object.html#ga8c81686bdf2c861fcccff0c076954430">afw_object_aggregate_external_create</a></div><div class="ttdeci">afw_object_aggregate_external_create(const afw_object_t *const *object_list, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create an aggregate object with an external object list.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__aggregate__external_8c_source.html#l00034">afw_object_aggregate_external.c:34</a></div></div>
-<div class="ttc" id="agroup__afw__pool_html_gac5ec961b3b7e38f71487691c41f954b0"><div class="ttname"><a href="group__afw__pool.html#gac5ec961b3b7e38f71487691c41f954b0">afw_pool_calloc_type</a></div><div class="ttdeci">#define afw_pool_calloc_type(instance, type, scope)</div><div class="ttdoc">Macro to allocate cleared memory to hold type in pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__pool_8h_source.html#l00170">afw_pool.h:170</a></div></div>
+<div class="ttc" id="agroup__afw__object__interface_html_ga047bb2c3d32379692d67ac95f69d2b76"><div class="ttname"><a href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76">afw_object_get_property</a></div><div class="ttdeci">#define afw_object_get_property(instance, property_name, xctx)</div><div class="ttdoc">Call method get_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03336">afw_interface.h:3336</a></div></div>
+<div class="ttc" id="agroup__afw__object__interface_html_ga60459363560428fd5ba0b88a37e7836e"><div class="ttname"><a href="group__afw__object__interface.html#ga60459363560428fd5ba0b88a37e7836e">afw_object_get_next_property</a></div><div class="ttdeci">#define afw_object_get_next_property(instance, iterator, property_name, xctx)</div><div class="ttdoc">Call method get_next_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03375">afw_interface.h:3375</a></div></div>
+<div class="ttc" id="agroup__afw__object__interface_html_gafcb3c5a140e48ea3ebe73ef891dda6d3"><div class="ttname"><a href="group__afw__object__interface.html#gafcb3c5a140e48ea3ebe73ef891dda6d3">afw_object_get_setter</a></div><div class="ttdeci">#define afw_object_get_setter(instance, xctx)</div><div class="ttdoc">Call method get_setter of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03434">afw_interface.h:3434</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga90928a78c3083590466953872a7f4416"><div class="ttname"><a href="group__afw__object.html#ga90928a78c3083590466953872a7f4416">afw_object_aggregate_external_create</a></div><div class="ttdeci">afw_object_aggregate_external_create(const afw_object_t *const *object_list, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create an aggregate object with an external object list.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__aggregate__external_8c_source.html#l00034">afw_object_aggregate_external.c:34</a></div></div>
+<div class="ttc" id="agroup__afw__pool_html_ga028594c9632d440f3204a55a92b99429"><div class="ttname"><a href="group__afw__pool.html#ga028594c9632d440f3204a55a92b99429">afw_pool_calloc_type</a></div><div class="ttdeci">#define afw_pool_calloc_type(instance, type, xctx)</div><div class="ttdoc">Macro to allocate cleared memory to hold type in pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__pool_8h_source.html#l00170">afw_pool.h:170</a></div></div>
 <div class="ttc" id="astructafw__object__aggregate__external__self__s_html"><div class="ttname"><a href="structafw__object__aggregate__external__self__s.html">afw_object_aggregate_external_self_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__object__internal_8h_source.html#l00176">afw_object_internal.h:177</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
 <div class="ttc" id="astructafw__object__setter__s_html"><div class="ttname"><a href="structafw__object__setter__s.html">afw_object_setter_s</a></div><div class="ttdoc">Interface afw_object_setter public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03119">afw_interface.h:3119</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05282">afw_interface.h:5282</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

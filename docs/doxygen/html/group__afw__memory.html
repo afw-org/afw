@@ -81,7 +81,7 @@ Files</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return value from <a class="el" href="group__afw__memory.html#ga3ba813b7e278ecc5f5c95dbddeab4a9d" title="Create a memory writer.">afw_memory_create_writer()</a>.  <a href="structafw__memory__writer__t.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return value from <a class="el" href="group__afw__memory.html#gaa3763f66b22cb96ca4fc3330dcabb091" title="Create a memory writer.">afw_memory_create_writer()</a>.  <a href="structafw__memory__writer__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -95,36 +95,36 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga17c7e43c316f58a47a946be0233e41a7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga17c7e43c316f58a47a946be0233e41a7">afw_memory_create</a> (const <a class="el" href="group__afw__common.html#ga6a428e1d309677e61ab9c406deb464a5">afw_byte_t</a> *ptr, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga17c7e43c316f58a47a946be0233e41a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a afw_memory_t struct for a ptr and size.  <a href="group__afw__memory.html#ga17c7e43c316f58a47a946be0233e41a7">More...</a><br /></td></tr>
-<tr class="separator:ga17c7e43c316f58a47a946be0233e41a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8a69325b1e2ce683a4b4a646f86d4fcc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga8a69325b1e2ce683a4b4a646f86d4fcc">afw_memory_dup</a> (const void *from, apr_size_t size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga8a69325b1e2ce683a4b4a646f86d4fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate a block of memory into specified pool.  <a href="group__afw__memory.html#ga8a69325b1e2ce683a4b4a646f86d4fcc">More...</a><br /></td></tr>
-<tr class="separator:ga8a69325b1e2ce683a4b4a646f86d4fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8cbcd9568fa062730bc20be3eafd3074"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga8cbcd9568fa062730bc20be3eafd3074">afw_memory_encode_base64</a> (<a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga8cbcd9568fa062730bc20be3eafd3074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode memory to as base64 string.  <a href="group__afw__memory.html#ga8cbcd9568fa062730bc20be3eafd3074">More...</a><br /></td></tr>
-<tr class="separator:ga8cbcd9568fa062730bc20be3eafd3074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1b22b956bafa91ddf5904e4968992de1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga1b22b956bafa91ddf5904e4968992de1">afw_memory_decode_base64</a> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga1b22b956bafa91ddf5904e4968992de1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode memory to a base64 string.  <a href="group__afw__memory.html#ga1b22b956bafa91ddf5904e4968992de1">More...</a><br /></td></tr>
-<tr class="separator:ga1b22b956bafa91ddf5904e4968992de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga64d6b98289de56c04b6d0210c1dfdd3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga64d6b98289de56c04b6d0210c1dfdd3c">afw_memory_encode_printable_hex</a> (<a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga64d6b98289de56c04b6d0210c1dfdd3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode memory to a printable hex string.  <a href="group__afw__memory.html#ga64d6b98289de56c04b6d0210c1dfdd3c">More...</a><br /></td></tr>
-<tr class="separator:ga64d6b98289de56c04b6d0210c1dfdd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabc51838dd96a8ded26bb587f403828e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gabc51838dd96a8ded26bb587f403828e6">afw_memory_decode_printable_hex</a> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gabc51838dd96a8ded26bb587f403828e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode memory to a printable hex string.  <a href="group__afw__memory.html#gabc51838dd96a8ded26bb587f403828e6">More...</a><br /></td></tr>
-<tr class="separator:gabc51838dd96a8ded26bb587f403828e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3ba813b7e278ecc5f5c95dbddeab4a9d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga3ba813b7e278ecc5f5c95dbddeab4a9d">afw_memory_create_writer</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga3ba813b7e278ecc5f5c95dbddeab4a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a memory writer.  <a href="group__afw__memory.html#ga3ba813b7e278ecc5f5c95dbddeab4a9d">More...</a><br /></td></tr>
-<tr class="separator:ga3ba813b7e278ecc5f5c95dbddeab4a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga87b6fbb589d2a9031b0a950da114d102"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga87b6fbb589d2a9031b0a950da114d102">afw_memory_writer_get_current_size</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga87b6fbb589d2a9031b0a950da114d102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as one chunk from memory writer and release writer.  <a href="group__afw__memory.html#ga87b6fbb589d2a9031b0a950da114d102">More...</a><br /></td></tr>
-<tr class="separator:ga87b6fbb589d2a9031b0a950da114d102"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ebf9c38e194e037845ef5950729cafe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga0ebf9c38e194e037845ef5950729cafe">afw_memory_writer_retrieve_using_callback_and_release</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, void *context, <a class="el" href="group__afw__common.html#ga508c696d1024c0cb37e1d5fee9ac74d0">afw_write_cb_t</a> callback, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga0ebf9c38e194e037845ef5950729cafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as using callback.  <a href="group__afw__memory.html#ga0ebf9c38e194e037845ef5950729cafe">More...</a><br /></td></tr>
-<tr class="separator:ga0ebf9c38e194e037845ef5950729cafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad6c0dac30333f4deac02f2723b170920"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gad6c0dac30333f4deac02f2723b170920">afw_memory_writer_retrieve_and_release</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gad6c0dac30333f4deac02f2723b170920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as one chunk from memory writer and release writer.  <a href="group__afw__memory.html#gad6c0dac30333f4deac02f2723b170920">More...</a><br /></td></tr>
-<tr class="separator:gad6c0dac30333f4deac02f2723b170920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5cab644acf040fe1662dfbb985b04da"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gab5cab644acf040fe1662dfbb985b04da">afw_memory_create</a> (const <a class="el" href="group__afw__common.html#ga6a428e1d309677e61ab9c406deb464a5">afw_byte_t</a> *ptr, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gab5cab644acf040fe1662dfbb985b04da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a afw_memory_t struct for a ptr and size.  <a href="group__afw__memory.html#gab5cab644acf040fe1662dfbb985b04da">More...</a><br /></td></tr>
+<tr class="separator:gab5cab644acf040fe1662dfbb985b04da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0b9503eaecb2e45ea66d6448bc04092"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gae0b9503eaecb2e45ea66d6448bc04092">afw_memory_dup</a> (const void *from, apr_size_t size, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gae0b9503eaecb2e45ea66d6448bc04092"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate a block of memory into specified pool.  <a href="group__afw__memory.html#gae0b9503eaecb2e45ea66d6448bc04092">More...</a><br /></td></tr>
+<tr class="separator:gae0b9503eaecb2e45ea66d6448bc04092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92ed41f698b9ffc144ab50d6a93d1dcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga92ed41f698b9ffc144ab50d6a93d1dcc">afw_memory_encode_base64</a> (<a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga92ed41f698b9ffc144ab50d6a93d1dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode memory to as base64 string.  <a href="group__afw__memory.html#ga92ed41f698b9ffc144ab50d6a93d1dcc">More...</a><br /></td></tr>
+<tr class="separator:ga92ed41f698b9ffc144ab50d6a93d1dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f3cf3c5b8282e8c9905b4864dd8dcd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga0f3cf3c5b8282e8c9905b4864dd8dcd2">afw_memory_decode_base64</a> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga0f3cf3c5b8282e8c9905b4864dd8dcd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode memory to a base64 string.  <a href="group__afw__memory.html#ga0f3cf3c5b8282e8c9905b4864dd8dcd2">More...</a><br /></td></tr>
+<tr class="separator:ga0f3cf3c5b8282e8c9905b4864dd8dcd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e665d2831f7a1238c7f5a3f9ceceb18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga5e665d2831f7a1238c7f5a3f9ceceb18">afw_memory_encode_printable_hex</a> (<a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga5e665d2831f7a1238c7f5a3f9ceceb18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode memory to a printable hex string.  <a href="group__afw__memory.html#ga5e665d2831f7a1238c7f5a3f9ceceb18">More...</a><br /></td></tr>
+<tr class="separator:ga5e665d2831f7a1238c7f5a3f9ceceb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab956ee025d9cdee0c402fb1eb030d270"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gab956ee025d9cdee0c402fb1eb030d270">afw_memory_decode_printable_hex</a> (<a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *memory, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *encoded, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gab956ee025d9cdee0c402fb1eb030d270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode memory to a printable hex string.  <a href="group__afw__memory.html#gab956ee025d9cdee0c402fb1eb030d270">More...</a><br /></td></tr>
+<tr class="separator:gab956ee025d9cdee0c402fb1eb030d270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3763f66b22cb96ca4fc3330dcabb091"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#gaa3763f66b22cb96ca4fc3330dcabb091">afw_memory_create_writer</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaa3763f66b22cb96ca4fc3330dcabb091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a memory writer.  <a href="group__afw__memory.html#gaa3763f66b22cb96ca4fc3330dcabb091">More...</a><br /></td></tr>
+<tr class="separator:gaa3763f66b22cb96ca4fc3330dcabb091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c08ed7a05ccd3108df0f2033badc3ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga7c08ed7a05ccd3108df0f2033badc3ad">afw_memory_writer_get_current_size</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga7c08ed7a05ccd3108df0f2033badc3ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as one chunk from memory writer and release writer.  <a href="group__afw__memory.html#ga7c08ed7a05ccd3108df0f2033badc3ad">More...</a><br /></td></tr>
+<tr class="separator:ga7c08ed7a05ccd3108df0f2033badc3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b9d668b05d8c8676853dcff51f69e2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga1b9d668b05d8c8676853dcff51f69e2a">afw_memory_writer_retrieve_using_callback_and_release</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, void *context, <a class="el" href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga1b9d668b05d8c8676853dcff51f69e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as using callback.  <a href="group__afw__memory.html#ga1b9d668b05d8c8676853dcff51f69e2a">More...</a><br /></td></tr>
+<tr class="separator:ga1b9d668b05d8c8676853dcff51f69e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9108882bf35cf5553b2a62b69e227c9a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga924f652888f47105c57582cc7077c4c7">afw_memory_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__memory.html#ga9108882bf35cf5553b2a62b69e227c9a">afw_memory_writer_retrieve_and_release</a> (const <a class="el" href="structafw__memory__writer__t.html">afw_memory_writer_t</a> *writer, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga9108882bf35cf5553b2a62b69e227c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve memory as one chunk from memory writer and release writer.  <a href="group__afw__memory.html#ga9108882bf35cf5553b2a62b69e227c9a">More...</a><br /></td></tr>
+<tr class="separator:ga9108882bf35cf5553b2a62b69e227c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive framework memory support functions. </p>
@@ -198,8 +198,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga17c7e43c316f58a47a946be0233e41a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga17c7e43c316f58a47a946be0233e41a7">&#9670;&nbsp;</a></span>afw_memory_create()</h2>
+<a id="gab5cab644acf040fe1662dfbb985b04da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5cab644acf040fe1662dfbb985b04da">&#9670;&nbsp;</a></span>afw_memory_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,8 +225,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -242,7 +242,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">ptr.</td><td></td></tr>
     <tr><td class="paramname">size</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -252,8 +252,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga3ba813b7e278ecc5f5c95dbddeab4a9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3ba813b7e278ecc5f5c95dbddeab4a9d">&#9670;&nbsp;</a></span>afw_memory_create_writer()</h2>
+<a id="gaa3763f66b22cb96ca4fc3330dcabb091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa3763f66b22cb96ca4fc3330dcabb091">&#9670;&nbsp;</a></span>afw_memory_create_writer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,8 +267,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -282,7 +282,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -292,8 +292,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1b22b956bafa91ddf5904e4968992de1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1b22b956bafa91ddf5904e4968992de1">&#9670;&nbsp;</a></span>afw_memory_decode_base64()</h2>
+<a id="ga0f3cf3c5b8282e8c9905b4864dd8dcd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0f3cf3c5b8282e8c9905b4864dd8dcd2">&#9670;&nbsp;</a></span>afw_memory_decode_base64()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,8 +319,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -336,7 +336,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">memory</td><td>is a afw_memory_t that will be updated with result. </td></tr>
     <tr><td class="paramname">encoded</td><td>is a base64 encoded string to decode. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -345,8 +345,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gabc51838dd96a8ded26bb587f403828e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabc51838dd96a8ded26bb587f403828e6">&#9670;&nbsp;</a></span>afw_memory_decode_printable_hex()</h2>
+<a id="gab956ee025d9cdee0c402fb1eb030d270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab956ee025d9cdee0c402fb1eb030d270">&#9670;&nbsp;</a></span>afw_memory_decode_printable_hex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,8 +372,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -389,7 +389,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">memory</td><td>is a afw_memory_t that will be updated with result. </td></tr>
     <tr><td class="paramname">encoded</td><td>is a printable hex encoded string to decode. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -398,8 +398,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8a69325b1e2ce683a4b4a646f86d4fcc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8a69325b1e2ce683a4b4a646f86d4fcc">&#9670;&nbsp;</a></span>afw_memory_dup()</h2>
+<a id="gae0b9503eaecb2e45ea66d6448bc04092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae0b9503eaecb2e45ea66d6448bc04092">&#9670;&nbsp;</a></span>afw_memory_dup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,8 +425,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -442,19 +442,19 @@ Functions</h2></td></tr>
     <tr><td class="paramname">from</td><td>From address. </td></tr>
     <tr><td class="paramname">size</td><td>Size of memory to duplicate. </td></tr>
     <tr><td class="paramname">p</td><td>Pool to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to memory allocated or NULL is size is 0.</dd></dl>
-<p>The default pool from scope will be used. </p>
+<p>The default pool from xctx will be used. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__memory_8h_source.html#l00090">90</a> of file <a class="el" href="afw__memory_8h_source.html">afw_memory.h</a>.</p>
 
 </div>
 </div>
-<a id="ga8cbcd9568fa062730bc20be3eafd3074"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8cbcd9568fa062730bc20be3eafd3074">&#9670;&nbsp;</a></span>afw_memory_encode_base64()</h2>
+<a id="ga92ed41f698b9ffc144ab50d6a93d1dcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92ed41f698b9ffc144ab50d6a93d1dcc">&#9670;&nbsp;</a></span>afw_memory_encode_base64()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,8 +480,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -497,7 +497,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">encode</td><td>is a afw_utf8_t that will be updated with result. </td></tr>
     <tr><td class="paramname">memory</td><td>to encode. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -506,8 +506,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga64d6b98289de56c04b6d0210c1dfdd3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga64d6b98289de56c04b6d0210c1dfdd3c">&#9670;&nbsp;</a></span>afw_memory_encode_printable_hex()</h2>
+<a id="ga5e665d2831f7a1238c7f5a3f9ceceb18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e665d2831f7a1238c7f5a3f9ceceb18">&#9670;&nbsp;</a></span>afw_memory_encode_printable_hex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -533,8 +533,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -550,7 +550,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">encode</td><td>is a afw_utf8_t that will be updated with result. </td></tr>
     <tr><td class="paramname">memory</td><td>to encode. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -559,8 +559,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga87b6fbb589d2a9031b0a950da114d102"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga87b6fbb589d2a9031b0a950da114d102">&#9670;&nbsp;</a></span>afw_memory_writer_get_current_size()</h2>
+<a id="ga7c08ed7a05ccd3108df0f2033badc3ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c08ed7a05ccd3108df0f2033badc3ad">&#9670;&nbsp;</a></span>afw_memory_writer_get_current_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,8 +574,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -589,7 +589,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance of memory writer. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -599,8 +599,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gad6c0dac30333f4deac02f2723b170920"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad6c0dac30333f4deac02f2723b170920">&#9670;&nbsp;</a></span>afw_memory_writer_retrieve_and_release()</h2>
+<a id="ga9108882bf35cf5553b2a62b69e227c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9108882bf35cf5553b2a62b69e227c9a">&#9670;&nbsp;</a></span>afw_memory_writer_retrieve_and_release()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -614,8 +614,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -629,18 +629,18 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance of memory writer. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>memory in pool specified on <a class="el" href="group__afw__memory.html#ga3ba813b7e278ecc5f5c95dbddeab4a9d" title="Create a memory writer.">afw_memory_create_writer()</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>memory in pool specified on <a class="el" href="group__afw__memory.html#gaa3763f66b22cb96ca4fc3330dcabb091" title="Create a memory writer.">afw_memory_create_writer()</a>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__memory_8c_source.html#l00441">441</a> of file <a class="el" href="afw__memory_8c_source.html">afw_memory.c</a>.</p>
 
 </div>
 </div>
-<a id="ga0ebf9c38e194e037845ef5950729cafe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ebf9c38e194e037845ef5950729cafe">&#9670;&nbsp;</a></span>afw_memory_writer_retrieve_using_callback_and_release()</h2>
+<a id="ga1b9d668b05d8c8676853dcff51f69e2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b9d668b05d8c8676853dcff51f69e2a">&#9670;&nbsp;</a></span>afw_memory_writer_retrieve_using_callback_and_release()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -660,14 +660,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#ga508c696d1024c0cb37e1d5fee9ac74d0">afw_write_cb_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a>&#160;</td>
           <td class="paramname"><em>callback</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -683,7 +683,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">writer</td><td>instance of memory writer. </td></tr>
     <tr><td class="paramname">context</td><td>to pass to callback. </td></tr>
     <tr><td class="paramname">callback</td><td>to call. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -696,7 +696,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

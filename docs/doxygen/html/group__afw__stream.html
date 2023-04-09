@@ -82,32 +82,32 @@ Files</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__stream__anchor__s.html">afw_stream_anchor_s</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">struct for common scope streams  <a href="structafw__stream__anchor__s.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">struct for common xctx streams  <a href="structafw__stream__anchor__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga3b919e10f8a54a814e05bd1c73d9b2ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">afw_stream_standard</a>(enum_suffix,  scope)</td></tr>
-<tr class="memdesc:ga3b919e10f8a54a814e05bd1c73d9b2ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get scope stream instance.  <a href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef">More...</a><br /></td></tr>
-<tr class="separator:ga3b919e10f8a54a814e05bd1c73d9b2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga68949c2d04a3f7133d704e23381a3c7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga68949c2d04a3f7133d704e23381a3c7a">afw_stream_standard_is_set</a>(enum_suffix,  scope)&#160;&#160;&#160;((scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] != NULL )</td></tr>
-<tr class="memdesc:ga68949c2d04a3f7133d704e23381a3c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if a scope's standard stream is set.  <a href="group__afw__stream.html#ga68949c2d04a3f7133d704e23381a3c7a">More...</a><br /></td></tr>
-<tr class="separator:ga68949c2d04a3f7133d704e23381a3c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b4005535a17851a94594e199ef2ea6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga8b4005535a17851a94594e199ef2ea6a">afw_stream_standard_set</a>(enum_suffix,  stream,  scope)</td></tr>
-<tr class="memdesc:ga8b4005535a17851a94594e199ef2ea6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set scope's enum_suffix stream.  <a href="group__afw__stream.html#ga8b4005535a17851a94594e199ef2ea6a">More...</a><br /></td></tr>
-<tr class="separator:ga8b4005535a17851a94594e199ef2ea6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9c0d76aa2ab97deae84c5b271da1e2ee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga9c0d76aa2ab97deae84c5b271da1e2ee">afw_stream_standard_release</a>(enum_suffix,  scope)</td></tr>
-<tr class="memdesc:ga9c0d76aa2ab97deae84c5b271da1e2ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release a scope's stream.  <a href="group__afw__stream.html#ga9c0d76aa2ab97deae84c5b271da1e2ee">More...</a><br /></td></tr>
-<tr class="separator:ga9c0d76aa2ab97deae84c5b271da1e2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabecc747c334afa4bb476e5f4242083f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gabecc747c334afa4bb476e5f4242083f9">afw_stream_write_z</a>(writer,  s_z,  scope)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, s_z, strlen(s_z), scope)</td></tr>
-<tr class="memdesc:gabecc747c334afa4bb476e5f4242083f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with zero terminated string.  <a href="group__afw__stream.html#gabecc747c334afa4bb476e5f4242083f9">More...</a><br /></td></tr>
-<tr class="separator:gabecc747c334afa4bb476e5f4242083f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga484f18bb85cfbb3dbcf0ae4a494943ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga484f18bb85cfbb3dbcf0ae4a494943ed">afw_stream_write_eol</a>(writer,  scope)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, &quot;\n&quot;, strlen(&quot;\n&quot;), scope)</td></tr>
-<tr class="memdesc:ga484f18bb85cfbb3dbcf0ae4a494943ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write eol char to stream.  <a href="group__afw__stream.html#ga484f18bb85cfbb3dbcf0ae4a494943ed">More...</a><br /></td></tr>
-<tr class="separator:ga484f18bb85cfbb3dbcf0ae4a494943ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac1e37609ca782ea21774c7748f6b60de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gac1e37609ca782ea21774c7748f6b60de">afw_stream_write_utf8</a>(writer,  S,  scope)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, (S)-&gt;s, (S)-&gt;len, scope)</td></tr>
-<tr class="memdesc:gac1e37609ca782ea21774c7748f6b60de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with a afw_utf8_t string.  <a href="group__afw__stream.html#gac1e37609ca782ea21774c7748f6b60de">More...</a><br /></td></tr>
-<tr class="separator:gac1e37609ca782ea21774c7748f6b60de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5df8f128c22ed1529e3421691fac8f28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">afw_stream_standard</a>(enum_suffix,  xctx)</td></tr>
+<tr class="memdesc:ga5df8f128c22ed1529e3421691fac8f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get xctx stream instance.  <a href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28">More...</a><br /></td></tr>
+<tr class="separator:ga5df8f128c22ed1529e3421691fac8f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bfac09eeba21a9a9e257565c793fd3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga3bfac09eeba21a9a9e257565c793fd3f">afw_stream_standard_is_set</a>(enum_suffix,  xctx)&#160;&#160;&#160;((xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] != NULL )</td></tr>
+<tr class="memdesc:ga3bfac09eeba21a9a9e257565c793fd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if an xctx's standard stream is set.  <a href="group__afw__stream.html#ga3bfac09eeba21a9a9e257565c793fd3f">More...</a><br /></td></tr>
+<tr class="separator:ga3bfac09eeba21a9a9e257565c793fd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72d981405b1e4b25c41ead9d1b64ace2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga72d981405b1e4b25c41ead9d1b64ace2">afw_stream_standard_set</a>(enum_suffix,  stream,  xctx)</td></tr>
+<tr class="memdesc:ga72d981405b1e4b25c41ead9d1b64ace2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set xctx's enum_suffix stream.  <a href="group__afw__stream.html#ga72d981405b1e4b25c41ead9d1b64ace2">More...</a><br /></td></tr>
+<tr class="separator:ga72d981405b1e4b25c41ead9d1b64ace2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga719aa381a98bc2d804d08d64833f6553"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga719aa381a98bc2d804d08d64833f6553">afw_stream_standard_release</a>(enum_suffix,  xctx)</td></tr>
+<tr class="memdesc:ga719aa381a98bc2d804d08d64833f6553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release an xctx's stream.  <a href="group__afw__stream.html#ga719aa381a98bc2d804d08d64833f6553">More...</a><br /></td></tr>
+<tr class="separator:ga719aa381a98bc2d804d08d64833f6553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga375c4e6f3809ae4d822eeeb05e3b7598"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga375c4e6f3809ae4d822eeeb05e3b7598">afw_stream_write_z</a>(writer,  s_z,  xctx)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, s_z, strlen(s_z), xctx)</td></tr>
+<tr class="memdesc:ga375c4e6f3809ae4d822eeeb05e3b7598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with zero terminated string.  <a href="group__afw__stream.html#ga375c4e6f3809ae4d822eeeb05e3b7598">More...</a><br /></td></tr>
+<tr class="separator:ga375c4e6f3809ae4d822eeeb05e3b7598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga294f48b3462ce8b35aebb119e0e27a86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga294f48b3462ce8b35aebb119e0e27a86">afw_stream_write_eol</a>(writer,  xctx)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, &quot;\n&quot;, strlen(&quot;\n&quot;), xctx)</td></tr>
+<tr class="memdesc:ga294f48b3462ce8b35aebb119e0e27a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write eol char to stream.  <a href="group__afw__stream.html#ga294f48b3462ce8b35aebb119e0e27a86">More...</a><br /></td></tr>
+<tr class="separator:ga294f48b3462ce8b35aebb119e0e27a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4df4ca743e34e148120c7046e033ea32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga4df4ca743e34e148120c7046e033ea32">afw_stream_write_utf8</a>(writer,  S,  xctx)&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, (S)-&gt;s, (S)-&gt;len, xctx)</td></tr>
+<tr class="memdesc:ga4df4ca743e34e148120c7046e033ea32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with a afw_utf8_t string.  <a href="group__afw__stream.html#ga4df4ca743e34e148120c7046e033ea32">More...</a><br /></td></tr>
+<tr class="separator:ga4df4ca743e34e148120c7046e033ea32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -121,50 +121,50 @@ Enumerations</h2></td></tr>
 , <b>afw_stream_number_count</b>
 <br />
  }</td></tr>
-<tr class="memdesc:gab8c9a363ef7d9457ca788f7dc557d418"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum for common scope streams <br /></td></tr>
+<tr class="memdesc:gab8c9a363ef7d9457ca788f7dc557d418"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum for common xctx streams <br /></td></tr>
 <tr class="separator:gab8c9a363ef7d9457ca788f7dc557d418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga8c11c56361bc3a7a72052f7388bd1a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">afw_stream_get_by_streamId</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> **stream, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> *streamNumber, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga8c11c56361bc3a7a72052f7388bd1a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream by streamId and streamNumber.  <a href="group__afw__stream.html#ga8c11c56361bc3a7a72052f7388bd1a27">More...</a><br /></td></tr>
-<tr class="separator:ga8c11c56361bc3a7a72052f7388bd1a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa606177d29bae2c9e9bdea4316c3746a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gaa606177d29bae2c9e9bdea4316c3746a">afw_stream_get_by_streamNumber</a> (const <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> streamNumber, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaa606177d29bae2c9e9bdea4316c3746a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream by streamNumber.  <a href="group__afw__stream.html#gaa606177d29bae2c9e9bdea4316c3746a">More...</a><br /></td></tr>
-<tr class="separator:gaa606177d29bae2c9e9bdea4316c3746a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf6ca584431603ee567b3c607a8880574"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gaf6ca584431603ee567b3c607a8880574">afw_stream_get_streamNumber_for_streamId</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaf6ca584431603ee567b3c607a8880574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get streamNumber for streamId.  <a href="group__afw__stream.html#gaf6ca584431603ee567b3c607a8880574">More...</a><br /></td></tr>
-<tr class="separator:gaf6ca584431603ee567b3c607a8880574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7c9ab5a1d2789501610956ce2de6aa54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga7c9ab5a1d2789501610956ce2de6aa54">afw_stream_set</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *stream, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga7c9ab5a1d2789501610956ce2de6aa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an opening stream and get its streamNumber.  <a href="group__afw__stream.html#ga7c9ab5a1d2789501610956ce2de6aa54">More...</a><br /></td></tr>
-<tr class="separator:ga7c9ab5a1d2789501610956ce2de6aa54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf42c17ecf66708767c61737948945996"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a> (<a class="el" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a> n, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaf42c17ecf66708767c61737948945996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation for get scope standard stream instance.  <a href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">More...</a><br /></td></tr>
-<tr class="separator:gaf42c17ecf66708767c61737948945996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7f8e7314faf390c84ac1a0abcf13c4a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga7f8e7314faf390c84ac1a0abcf13c4a4">afw_stream_write_integer</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *writer, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> integer, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga7f8e7314faf390c84ac1a0abcf13c4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an integer.  <a href="group__afw__stream.html#ga7f8e7314faf390c84ac1a0abcf13c4a4">More...</a><br /></td></tr>
-<tr class="separator:ga7f8e7314faf390c84ac1a0abcf13c4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3d0be4d9f883ea139d321d000d6950d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga3d0be4d9f883ea139d321d000d6950d8">afw_stream_write_size</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *writer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga3d0be4d9f883ea139d321d000d6950d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an size.  <a href="group__afw__stream.html#ga3d0be4d9f883ea139d321d000d6950d8">More...</a><br /></td></tr>
-<tr class="separator:ga3d0be4d9f883ea139d321d000d6950d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga79498059e8610ba6fb515e02950d4278"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">afw_stream_fd_create</a> (FILE *fd, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_read, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_write, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> auto_flush, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> close_on_release, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga79498059e8610ba6fb515e02950d4278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a stream to a file descriptor.  <a href="group__afw__stream.html#ga79498059e8610ba6fb515e02950d4278">More...</a><br /></td></tr>
-<tr class="separator:ga79498059e8610ba6fb515e02950d4278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga104c0b96e6081be4862f4786dd900fa9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga104c0b96e6081be4862f4786dd900fa9">afw_stream_fd_open_and_create</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *path, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *mode, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> auto_flush, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga104c0b96e6081be4862f4786dd900fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a file and create a stream for it.  <a href="group__afw__stream.html#ga104c0b96e6081be4862f4786dd900fa9">More...</a><br /></td></tr>
-<tr class="separator:ga104c0b96e6081be4862f4786dd900fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8195f21e968014a43c5cc9ad14425d73"><td class="memItemLeft" align="right" valign="top"><a id="ga8195f21e968014a43c5cc9ad14425d73"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>afw_stream_internal_stream_anchor_create</b> (<a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga8195f21e968014a43c5cc9ad14425d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga70c30e94b3814e80488b6526f2c42dfc"><td class="memItemLeft" align="right" valign="top"><a id="ga70c30e94b3814e80488b6526f2c42dfc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>afw_stream_internal_release_all_streams</b> (<a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga70c30e94b3814e80488b6526f2c42dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9422b1d7f5d1c315a814639fd6cb6995"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">afw_stream_get_by_streamId</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> **stream, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> *streamNumber, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga9422b1d7f5d1c315a814639fd6cb6995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream by streamId and streamNumber.  <a href="group__afw__stream.html#ga9422b1d7f5d1c315a814639fd6cb6995">More...</a><br /></td></tr>
+<tr class="separator:ga9422b1d7f5d1c315a814639fd6cb6995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26c8bc756691601d36cca639b1c51cc7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga26c8bc756691601d36cca639b1c51cc7">afw_stream_get_by_streamNumber</a> (const <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> streamNumber, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga26c8bc756691601d36cca639b1c51cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream by streamNumber.  <a href="group__afw__stream.html#ga26c8bc756691601d36cca639b1c51cc7">More...</a><br /></td></tr>
+<tr class="separator:ga26c8bc756691601d36cca639b1c51cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga402d6efcf0dd8894d09c2ffa33348465"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga402d6efcf0dd8894d09c2ffa33348465">afw_stream_get_streamNumber_for_streamId</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga402d6efcf0dd8894d09c2ffa33348465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get streamNumber for streamId.  <a href="group__afw__stream.html#ga402d6efcf0dd8894d09c2ffa33348465">More...</a><br /></td></tr>
+<tr class="separator:ga402d6efcf0dd8894d09c2ffa33348465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d7b1773d09597486de1245b6e467863"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga2d7b1773d09597486de1245b6e467863">afw_stream_set</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *stream, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga2d7b1773d09597486de1245b6e467863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an opening stream and get its streamNumber.  <a href="group__afw__stream.html#ga2d7b1773d09597486de1245b6e467863">More...</a><br /></td></tr>
+<tr class="separator:ga2d7b1773d09597486de1245b6e467863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c3a8f9dbdde2af5426b5e1890ab29ab"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a> (<a class="el" href="group__afw__stream.html#gab8c9a363ef7d9457ca788f7dc557d418">afw_stream_number_t</a> n, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga0c3a8f9dbdde2af5426b5e1890ab29ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation for get xctx standard stream instance.  <a href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">More...</a><br /></td></tr>
+<tr class="separator:ga0c3a8f9dbdde2af5426b5e1890ab29ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabab90460c25eefcdcbb959681dcde438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gabab90460c25eefcdcbb959681dcde438">afw_stream_write_integer</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *writer, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> integer, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gabab90460c25eefcdcbb959681dcde438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an integer.  <a href="group__afw__stream.html#gabab90460c25eefcdcbb959681dcde438">More...</a><br /></td></tr>
+<tr class="separator:gabab90460c25eefcdcbb959681dcde438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafa960bbbb9c06b13b0e09199a3af7007"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#gafa960bbbb9c06b13b0e09199a3af7007">afw_stream_write_size</a> (const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *writer, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> size, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gafa960bbbb9c06b13b0e09199a3af7007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an size.  <a href="group__afw__stream.html#gafa960bbbb9c06b13b0e09199a3af7007">More...</a><br /></td></tr>
+<tr class="separator:gafa960bbbb9c06b13b0e09199a3af7007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga47c35b8c2b24ce02af9453fb97e1d46e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">afw_stream_fd_create</a> (FILE *fd, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_read, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_write, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> auto_flush, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> close_on_release, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga47c35b8c2b24ce02af9453fb97e1d46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a stream to a file descriptor.  <a href="group__afw__stream.html#ga47c35b8c2b24ce02af9453fb97e1d46e">More...</a><br /></td></tr>
+<tr class="separator:ga47c35b8c2b24ce02af9453fb97e1d46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga752ca5a573e0be1dd92b61e555199b28"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__stream__s.html">afw_stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__stream.html#ga752ca5a573e0be1dd92b61e555199b28">afw_stream_fd_open_and_create</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *streamId, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *path, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *mode, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> auto_flush, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga752ca5a573e0be1dd92b61e555199b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a file and create a stream for it.  <a href="group__afw__stream.html#ga752ca5a573e0be1dd92b61e555199b28">More...</a><br /></td></tr>
+<tr class="separator:ga752ca5a573e0be1dd92b61e555199b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga12fb465e8e6858504ff8b8b4552677b3"><td class="memItemLeft" align="right" valign="top"><a id="ga12fb465e8e6858504ff8b8b4552677b3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>afw_stream_internal_stream_anchor_create</b> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga12fb465e8e6858504ff8b8b4552677b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f87ed5a621328e69fdd1978327f4fa0"><td class="memItemLeft" align="right" valign="top"><a id="ga7f87ed5a621328e69fdd1978327f4fa0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>afw_stream_internal_release_all_streams</b> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga7f87ed5a621328e69fdd1978327f4fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive Framework Stream. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga3b919e10f8a54a814e05bd1c73d9b2ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3b919e10f8a54a814e05bd1c73d9b2ef">&#9670;&nbsp;</a></span>afw_stream_standard</h2>
+<a id="ga5df8f128c22ed1529e3421691fac8f28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5df8f128c22ed1529e3421691fac8f28">&#9670;&nbsp;</a></span>afw_stream_standard</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +179,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -188,16 +188,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">(((scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) \</div>
-<div class="line">? (scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] \</div>
-<div class="line">: <a class="code" href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a>(afw_stream_number_ ## enum_suffix, scope) )</div>
-<div class="ttc" id="agroup__afw__stream_html_gaf42c17ecf66708767c61737948945996"><div class="ttname"><a href="group__afw__stream.html#gaf42c17ecf66708767c61737948945996">afw_stream_standard_impl</a></div><div class="ttdeci">const afw_stream_t * afw_stream_standard_impl(afw_stream_number_t n, afw_scope_t *scope)</div><div class="ttdoc">Implementation for get scope standard stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00150">afw_stream.c:150</a></div></div>
+<b>Value:</b><div class="fragment"><div class="line">(((xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) \</div>
+<div class="line">? (xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] \</div>
+<div class="line">: <a class="code" href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a>(afw_stream_number_ ## enum_suffix, xctx) )</div>
+<div class="ttc" id="agroup__afw__stream_html_ga0c3a8f9dbdde2af5426b5e1890ab29ab"><div class="ttname"><a href="group__afw__stream.html#ga0c3a8f9dbdde2af5426b5e1890ab29ab">afw_stream_standard_impl</a></div><div class="ttdeci">const afw_stream_t * afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)</div><div class="ttdoc">Implementation for get xctx standard stream instance.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stream_8c_source.html#l00150">afw_stream.c:150</a></div></div>
 </div><!-- fragment -->
-<p>Get scope stream instance. </p>
+<p>Get xctx stream instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enum_suffix</td><td>is appended to afw_stream_number_ </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -206,8 +206,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga68949c2d04a3f7133d704e23381a3c7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga68949c2d04a3f7133d704e23381a3c7a">&#9670;&nbsp;</a></span>afw_stream_standard_is_set</h2>
+<a id="ga3bfac09eeba21a9a9e257565c793fd3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3bfac09eeba21a9a9e257565c793fd3f">&#9670;&nbsp;</a></span>afw_stream_standard_is_set</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,21 +222,21 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] != NULL )</td>
+          <td></td><td>&#160;&#160;&#160;((xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] != NULL )</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Determine if a scope's standard stream is set. </p>
+<p>Determine if an xctx's standard stream is set. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enum_suffix</td><td>is appended to afw_stream_number_ </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -245,8 +245,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga9c0d76aa2ab97deae84c5b271da1e2ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9c0d76aa2ab97deae84c5b271da1e2ee">&#9670;&nbsp;</a></span>afw_stream_standard_release</h2>
+<a id="ga719aa381a98bc2d804d08d64833f6553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga719aa381a98bc2d804d08d64833f6553">&#9670;&nbsp;</a></span>afw_stream_standard_release</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +261,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -270,20 +270,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) { \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) { \</div>
 <div class="line">    afw_stream_release( \</div>
-<div class="line">        (scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix], \</div>
-<div class="line">        scope); \</div>
-<div class="line">    *(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)&amp;(scope)-&gt;stream_anchor-&gt; \</div>
+<div class="line">        (xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix], \</div>
+<div class="line">        xctx); \</div>
+<div class="line">    *(<a class="code" href="structafw__stream__s.html">afw_stream_t</a> **)&amp;(xctx)-&gt;stream_anchor-&gt; \</div>
 <div class="line">        streams[afw_stream_number_ ## enum_suffix] = NULL; \</div>
 <div class="line">}</div>
-<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04510">afw_interface.h:4510</a></div></div>
+<div class="ttc" id="astructafw__stream__s_html"><div class="ttname"><a href="structafw__stream__s.html">afw_stream_s</a></div><div class="ttdoc">Interface afw_stream public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04386">afw_interface.h:4386</a></div></div>
 </div><!-- fragment -->
-<p>Release a scope's stream. </p>
+<p>Release an xctx's stream. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enum_suffix</td><td>is appended to afw_stream_number_ </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -293,8 +293,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8b4005535a17851a94594e199ef2ea6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8b4005535a17851a94594e199ef2ea6a">&#9670;&nbsp;</a></span>afw_stream_standard_set</h2>
+<a id="ga72d981405b1e4b25c41ead9d1b64ace2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72d981405b1e4b25c41ead9d1b64ace2">&#9670;&nbsp;</a></span>afw_stream_standard_set</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,7 +315,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -324,17 +324,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) { \</div>
-<div class="line">    AFW_THROW_ERROR(general, <span class="stringliteral">&quot;Stream already set&quot;</span>, scope); \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix]) { \</div>
+<div class="line">    AFW_THROW_ERROR(general, <span class="stringliteral">&quot;Stream already set&quot;</span>, xctx); \</div>
 <div class="line">} \</div>
-<div class="line">(scope)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] = stream</div>
+<div class="line">(xctx)-&gt;stream_anchor-&gt;streams[afw_stream_number_ ## enum_suffix] = stream</div>
 </div><!-- fragment -->
-<p>Set scope's enum_suffix stream. </p>
+<p>Set xctx's enum_suffix stream. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enum_suffix</td><td>is appended to afw_stream_number_ </td></tr>
     <tr><td class="paramname">stream</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -344,8 +344,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga484f18bb85cfbb3dbcf0ae4a494943ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga484f18bb85cfbb3dbcf0ae4a494943ed">&#9670;&nbsp;</a></span>afw_stream_write_eol</h2>
+<a id="ga294f48b3462ce8b35aebb119e0e27a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga294f48b3462ce8b35aebb119e0e27a86">&#9670;&nbsp;</a></span>afw_stream_write_eol</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -360,12 +360,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, &quot;\n&quot;, strlen(&quot;\n&quot;), scope)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, &quot;\n&quot;, strlen(&quot;\n&quot;), xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -374,7 +374,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -383,8 +383,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac1e37609ca782ea21774c7748f6b60de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac1e37609ca782ea21774c7748f6b60de">&#9670;&nbsp;</a></span>afw_stream_write_utf8</h2>
+<a id="ga4df4ca743e34e148120c7046e033ea32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4df4ca743e34e148120c7046e033ea32">&#9670;&nbsp;</a></span>afw_stream_write_utf8</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -405,22 +405,22 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, (S)-&gt;s, (S)-&gt;len, scope)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, (S)-&gt;s, (S)-&gt;len, xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with a afw_utf8_t string. </p>
+<p>Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with a afw_utf8_t string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance. </td></tr>
     <tr><td class="paramname">s</td><td>utf8 string. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -429,8 +429,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gabecc747c334afa4bb476e5f4242083f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabecc747c334afa4bb476e5f4242083f9">&#9670;&nbsp;</a></span>afw_stream_write_z</h2>
+<a id="ga375c4e6f3809ae4d822eeeb05e3b7598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga375c4e6f3809ae4d822eeeb05e3b7598">&#9670;&nbsp;</a></span>afw_stream_write_z</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -451,22 +451,22 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b">afw_stream_write</a>(writer, s_z, strlen(s_z), scope)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1">afw_stream_write</a>(writer, s_z, strlen(s_z), xctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with zero terminated string. </p>
+<p>Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with zero terminated string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance. </td></tr>
     <tr><td class="paramname">s_z</td><td>zero terminated string to write. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -476,8 +476,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga79498059e8610ba6fb515e02950d4278"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga79498059e8610ba6fb515e02950d4278">&#9670;&nbsp;</a></span>afw_stream_fd_create()</h2>
+<a id="ga47c35b8c2b24ce02af9453fb97e1d46e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga47c35b8c2b24ce02af9453fb97e1d46e">&#9670;&nbsp;</a></span>afw_stream_fd_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -527,8 +527,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -548,7 +548,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">auto_flush</td><td>after each write. </td></tr>
     <tr><td class="paramname">close_on_release</td><td>true closes fd on release call. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -557,8 +557,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga104c0b96e6081be4862f4786dd900fa9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga104c0b96e6081be4862f4786dd900fa9">&#9670;&nbsp;</a></span>afw_stream_fd_open_and_create()</h2>
+<a id="ga752ca5a573e0be1dd92b61e555199b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga752ca5a573e0be1dd92b61e555199b28">&#9670;&nbsp;</a></span>afw_stream_fd_open_and_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -596,8 +596,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -615,19 +615,19 @@ Functions</h2></td></tr>
     <tr><td class="paramname">mode</td><td></td></tr>
     <tr><td class="paramname">auto_flush</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>stream </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000331">Todo:</a></b></dt><dd>FIXME: use application rootPaths </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000325">Todo:</a></b></dt><dd>FIXME: use application rootPaths </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__stream__fd_8c_source.html#l00171">171</a> of file <a class="el" href="afw__stream__fd_8c_source.html">afw_stream_fd.c</a>.</p>
 
 </div>
 </div>
-<a id="ga8c11c56361bc3a7a72052f7388bd1a27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8c11c56361bc3a7a72052f7388bd1a27">&#9670;&nbsp;</a></span>afw_stream_get_by_streamId()</h2>
+<a id="ga9422b1d7f5d1c315a814639fd6cb6995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9422b1d7f5d1c315a814639fd6cb6995">&#9670;&nbsp;</a></span>afw_stream_get_by_streamId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -653,8 +653,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -670,7 +670,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">streamId.</td><td></td></tr>
     <tr><td class="paramname">stream</td><td>return pointer. </td></tr>
     <tr><td class="paramname">streamNumber</td><td>return pointer. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -679,8 +679,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaa606177d29bae2c9e9bdea4316c3746a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa606177d29bae2c9e9bdea4316c3746a">&#9670;&nbsp;</a></span>afw_stream_get_by_streamNumber()</h2>
+<a id="ga26c8bc756691601d36cca639b1c51cc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga26c8bc756691601d36cca639b1c51cc7">&#9670;&nbsp;</a></span>afw_stream_get_by_streamNumber()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -694,8 +694,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -709,7 +709,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">streamNumber.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -719,8 +719,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaf6ca584431603ee567b3c607a8880574"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf6ca584431603ee567b3c607a8880574">&#9670;&nbsp;</a></span>afw_stream_get_streamNumber_for_streamId()</h2>
+<a id="ga402d6efcf0dd8894d09c2ffa33348465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga402d6efcf0dd8894d09c2ffa33348465">&#9670;&nbsp;</a></span>afw_stream_get_streamNumber_for_streamId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -734,8 +734,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -749,7 +749,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">streamId.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -759,8 +759,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga7c9ab5a1d2789501610956ce2de6aa54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7c9ab5a1d2789501610956ce2de6aa54">&#9670;&nbsp;</a></span>afw_stream_set()</h2>
+<a id="ga2d7b1773d09597486de1245b6e467863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2d7b1773d09597486de1245b6e467863">&#9670;&nbsp;</a></span>afw_stream_set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,8 +774,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -789,7 +789,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -799,8 +799,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaf42c17ecf66708767c61737948945996"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf42c17ecf66708767c61737948945996">&#9670;&nbsp;</a></span>afw_stream_standard_impl()</h2>
+<a id="ga0c3a8f9dbdde2af5426b5e1890ab29ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c3a8f9dbdde2af5426b5e1890ab29ab">&#9670;&nbsp;</a></span>afw_stream_standard_impl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -814,8 +814,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -825,22 +825,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implementation for get scope standard stream instance. </p>
+<p>Implementation for get xctx standard stream instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>of streams indexed by afw_stream_number_t. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__stream.html#ga3b919e10f8a54a814e05bd1c73d9b2ef" title="Get scope stream instance.">afw_stream_standard()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__afw__stream.html#ga5df8f128c22ed1529e3421691fac8f28" title="Get xctx stream instance.">afw_stream_standard()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__stream_8c_source.html#l00150">150</a> of file <a class="el" href="afw__stream_8c_source.html">afw_stream.c</a>.</p>
 
 </div>
 </div>
-<a id="ga7f8e7314faf390c84ac1a0abcf13c4a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7f8e7314faf390c84ac1a0abcf13c4a4">&#9670;&nbsp;</a></span>afw_stream_write_integer()</h2>
+<a id="gabab90460c25eefcdcbb959681dcde438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabab90460c25eefcdcbb959681dcde438">&#9670;&nbsp;</a></span>afw_stream_write_integer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -860,8 +860,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -871,12 +871,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an integer. </p>
+<p>Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an integer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance. </td></tr>
     <tr><td class="paramname">integer</td><td>to write as as string. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -885,8 +885,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga3d0be4d9f883ea139d321d000d6950d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3d0be4d9f883ea139d321d000d6950d8">&#9670;&nbsp;</a></span>afw_stream_write_size()</h2>
+<a id="gafa960bbbb9c06b13b0e09199a3af7007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafa960bbbb9c06b13b0e09199a3af7007">&#9670;&nbsp;</a></span>afw_stream_write_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -906,8 +906,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -917,12 +917,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call <a class="el" href="group__afw__stream__interface.html#gae2402e8b0644d129eadb74f62c58bb8b" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an size. </p>
+<p>Call <a class="el" href="group__afw__stream__interface.html#ga39347b14fe82cfaa5f5773df106bfac1" title="Call method write of interface afw_stream.">afw_stream_write()</a> with an size. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">writer</td><td>instance. </td></tr>
     <tr><td class="paramname">size</td><td>to write as string. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -934,7 +934,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

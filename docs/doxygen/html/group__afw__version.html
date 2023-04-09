@@ -82,12 +82,12 @@ Macros</h2></td></tr>
 <tr class="memitem:ga91bf44fd67b692591449250338753214"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#ga91bf44fd67b692591449250338753214">AFW_VERSION_CHECK</a>&#160;&#160;&#160;<a class="el" href="group__afw__version.html#ga82ae3a5eccc1be5bd2608278fae5b3f9">afw_version_check</a>(AFW_VERSION_HEX)</td></tr>
 <tr class="memdesc:ga91bf44fd67b692591449250338753214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version check against the version compiled against.  <a href="group__afw__version.html#ga91bf44fd67b692591449250338753214">More...</a><br /></td></tr>
 <tr class="separator:ga91bf44fd67b692591449250338753214"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9571d5e2b03cfe645b175dd9b603fc48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#ga9571d5e2b03cfe645b175dd9b603fc48">AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE</a>(info,  compiled_version,  scope)</td></tr>
-<tr class="memdesc:ga9571d5e2b03cfe645b175dd9b603fc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw error if AFW core is not compatible with the supplied version.  <a href="group__afw__version.html#ga9571d5e2b03cfe645b175dd9b603fc48">More...</a><br /></td></tr>
-<tr class="separator:ga9571d5e2b03cfe645b175dd9b603fc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4029144c367d81ccedfb96bed962fe52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#ga4029144c367d81ccedfb96bed962fe52">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE</a>(id_z,  scope)</td></tr>
-<tr class="memdesc:ga4029144c367d81ccedfb96bed962fe52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw error if AFW core is not compatible with the version compiled against.  <a href="group__afw__version.html#ga4029144c367d81ccedfb96bed962fe52">More...</a><br /></td></tr>
-<tr class="separator:ga4029144c367d81ccedfb96bed962fe52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa19365e85aeb7f546194a0964c6d62a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#gaa19365e85aeb7f546194a0964c6d62a9">AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE</a>(info,  compiled_version,  xctx)</td></tr>
+<tr class="memdesc:gaa19365e85aeb7f546194a0964c6d62a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw error if AFW core is not compatible with the supplied version.  <a href="group__afw__version.html#gaa19365e85aeb7f546194a0964c6d62a9">More...</a><br /></td></tr>
+<tr class="separator:gaa19365e85aeb7f546194a0964c6d62a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97f8ea37dbcd4c31417c1ec570a39a8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#ga97f8ea37dbcd4c31417c1ec570a39a8b">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE</a>(id_z,  xctx)</td></tr>
+<tr class="memdesc:ga97f8ea37dbcd4c31417c1ec570a39a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throw error if AFW core is not compatible with the version compiled against.  <a href="group__afw__version.html#ga97f8ea37dbcd4c31417c1ec570a39a8b">More...</a><br /></td></tr>
+<tr class="separator:ga97f8ea37dbcd4c31417c1ec570a39a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa77916c61075dc8a6a39e4a0d64585c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__version.html#gaa77916c61075dc8a6a39e4a0d64585c1">AFW_VERSION_ABORT_IF_NOT_COMPATIBLE</a>(id_z)</td></tr>
 <tr class="memdesc:gaa77916c61075dc8a6a39e4a0d64585c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort if AFW core is not compatible with the version compiled against.  <a href="group__afw__version.html#gaa77916c61075dc8a6a39e4a0d64585c1">More...</a><br /></td></tr>
 <tr class="separator:gaa77916c61075dc8a6a39e4a0d64585c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,7 +106,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive Framework uses the semantic versioning scheme. See <a href="http://semver.org/">http://semver.org/</a>.</p>
-<p><a class="el" href="group__afw__version.html#ga4029144c367d81ccedfb96bed962fe52" title="Throw error if AFW core is not compatible with the version compiled against.">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE()</a> or AFW_VERSION_ABORT_IF_NOT_COMPATIBLE should be executed early in the life of Adaptive Framework extensions and applications to ensure compatibility with Adaptive Framework Core (libafw). </p>
+<p><a class="el" href="group__afw__version.html#ga97f8ea37dbcd4c31417c1ec570a39a8b" title="Throw error if AFW core is not compatible with the version compiled against.">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE()</a> or AFW_VERSION_ABORT_IF_NOT_COMPATIBLE should be executed early in the life of Adaptive Framework extensions and applications to ensure compatibility with Adaptive Framework Core (libafw). </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="gaa77916c61075dc8a6a39e4a0d64585c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa77916c61075dc8a6a39e4a0d64585c1">&#9670;&nbsp;</a></span>AFW_VERSION_ABORT_IF_NOT_COMPATIBLE</h2>
@@ -141,7 +141,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Use <a class="el" href="group__afw__version.html#ga4029144c367d81ccedfb96bed962fe52" title="Throw error if AFW core is not compatible with the version compiled against.">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(scope)</a> instead if scope is available.</p>
+<p>Use <a class="el" href="group__afw__version.html#ga97f8ea37dbcd4c31417c1ec570a39a8b" title="Throw error if AFW core is not compatible with the version compiled against.">AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(xctx)</a> instead if xctx is available.</p>
 <p>Print error and abort() if this version of Adaptive Framework is not compatible with the version compiled against, as well as if any dependency are not the appropriate level. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__version_8h_source.html#l00123">123</a> of file <a class="el" href="afw__version_8h_source.html">afw_version.h</a>.</p>
@@ -167,8 +167,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga4029144c367d81ccedfb96bed962fe52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4029144c367d81ccedfb96bed962fe52">&#9670;&nbsp;</a></span>AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE</h2>
+<a id="ga97f8ea37dbcd4c31417c1ec570a39a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga97f8ea37dbcd4c31417c1ec570a39a8b">&#9670;&nbsp;</a></span>AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,7 +196,7 @@ Functions</h2></td></tr>
 <div class="line">    const <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *msg_z; \</div>
 <div class="line">    msg_z = <a class="code" href="group__afw__version.html#ga91bf44fd67b692591449250338753214">AFW_VERSION_CHECK</a>; \</div>
 <div class="line">    if (msg_z) { \</div>
-<div class="line">        AFW_THROW_ERROR_FZ(general, scope, <span class="stringliteral">&quot;%s %s&quot;</span>, id_z, msg_z); \</div>
+<div class="line">        AFW_THROW_ERROR_FZ(general, xctx, <span class="stringliteral">&quot;%s %s&quot;</span>, id_z, msg_z); \</div>
 <div class="line">    } \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
@@ -204,7 +204,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id_z</td><td>is a afw_utf8_z_t * that will be included in error message. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -214,8 +214,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga9571d5e2b03cfe645b175dd9b603fc48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9571d5e2b03cfe645b175dd9b603fc48">&#9670;&nbsp;</a></span>AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE</h2>
+<a id="gaa19365e85aeb7f546194a0964c6d62a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa19365e85aeb7f546194a0964c6d62a9">&#9670;&nbsp;</a></span>AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +236,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -249,7 +249,7 @@ Functions</h2></td></tr>
 <div class="line">    const <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *msg_z; \</div>
 <div class="line">    msg_z = <a class="code" href="group__afw__version.html#ga82ae3a5eccc1be5bd2608278fae5b3f9">afw_version_check</a>(compiled_version); \</div>
 <div class="line">    if (msg_z) { \</div>
-<div class="line">        AFW_THROW_ERROR_FZ(general, scope, \</div>
+<div class="line">        AFW_THROW_ERROR_FZ(general, xctx, \</div>
 <div class="line">            <span class="stringliteral">&quot;%&quot;</span> <a class="code" href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a> <span class="stringliteral">&quot; %s&quot;</span>, \</div>
 <div class="line">            <a class="code" href="group__afw__common.html#ga00e34b170d56b63d49fe8f25d254fb11">AFW_UTF8_FMT_ARG</a>(info), msg_z); \</div>
 <div class="line">    } \</div>
@@ -263,7 +263,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">info</td><td>will be included in error message. </td></tr>
     <tr><td class="paramname">compiled_version</td><td>is AFW_VERSION_HEX to check against. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -359,7 +359,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

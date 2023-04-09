@@ -102,7 +102,7 @@ $(function() {
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structafw__error__s.html">   69</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structafw__error__s.html">afw_error_s</a> {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/*</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     * IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear from code up to</span></div>
@@ -193,14 +193,14 @@ $(function() {
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordtype">int</span> related_rv,</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * message_z,</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;afw_error_set_z(</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <a class="code" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code,</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * message_z,</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a596ad71d4d2053cfb0c0caa74e41c1d8">AFW_DECLARE_ELLIPSIS</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;afw_error_rv_set_fz(</div>
@@ -208,14 +208,14 @@ $(function() {
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z,</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">int</span> related_rv,</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope,</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx,</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * format_z, ...);</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a596ad71d4d2053cfb0c0caa74e41c1d8">AFW_DECLARE_ELLIPSIS</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;afw_error_set_fz(</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code,</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope,</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx,</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * format_z, ...);</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
@@ -225,120 +225,120 @@ $(function() {
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">int</span> related_rv,</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * format_z, va_list ap,</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;) afw_error_set_vz(</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code,</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * source_z,</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> * format_z, va_list ap,</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga4307879fc2403ef5c17f83bdbc805644">  275</a></span>&#160;<span class="preprocessor">#define AFW_THROW(scope) \</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (scope)-&gt;error-&gt;code)</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga51268c26074993b0c3fe26c57f565cb2">  275</a></span>&#160;<span class="preprocessor">#define AFW_THROW(xctx) \</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (xctx)-&gt;error-&gt;code)</span></div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">  287</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_Z(code, message_z, scope) \</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">  287</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_Z(code, message_z, xctx) \</span></div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">    afw_error_set_z(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, message_z, scope); \</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, message_z, xctx); \</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
-<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">  305</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, scope) \</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">  305</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, xctx) \</span></div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor">    afw_error_rv_set_z(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, message_z, scope); \</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, message_z, xctx); \</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
-<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">  323</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FZ(code, scope, format_z, ...) \</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">  323</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FZ(code, xctx, format_z, ...) \</span></div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="preprocessor">    afw_error_set_fz(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, scope, format_z, __VA_ARGS__); \</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga5f5c17b168faa2fe169438f57570adfe">  342</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_FZ(code, rv_source_id, rv, scope, format_z, ...) \</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaa65326c714bf0457b01e6600a5c43867">  342</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_FZ(code, rv_source_id, rv, xctx, format_z, ...) \</span></div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="preprocessor">    afw_error_rv_set_fz(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, scope, format_z, __VA_ARGS__); \</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga879a58d36d6b5f89cfb1ff7cc5ab5ac8">  359</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_VZ(code, format_z, ap, scope) \</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga70e5cbf796ad3caf676f65fbbfb3eee9">  359</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_VZ(code, format_z, ap, xctx) \</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor">    afw_error_set_vz(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, format_z, ap, scope); \</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, format_z, ap, xctx); \</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
-<div class="line"><a name="l00375"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga7e48879347d6b87b0caa8d099a1c9407">  375</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_VZ(code, rv_source_id, rv, format_z, ap, scope) \</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga43a4b105a0c0eb64253f358eb395c362">  375</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_RV_VZ(code, rv_source_id, rv, format_z, ap, xctx) \</span></div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="preprocessor">    afw_error_rv_set_vz(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, format_z, ap, scope); \</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, format_z, ap, xctx); \</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
-<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga5022b203c8ee89f748533a65c00ed52a">  392</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_Z(code, message_z, scope) \</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaa5b59a23efc356cd080466d919056673">  392</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_Z(code, message_z, xctx) \</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">    afw_error_set_z(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">        footprint.source_z, message_z, scope); \</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">        footprint.source_z, message_z, xctx); \</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
-<div class="line"><a name="l00412"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaa8f4297701a9ee40ffd592a79626f266">  412</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_Z(code, rv_source_id, rv, message_z, scope) \</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno"><a class="line" href="group__afw__error.html#gad674f6e9ef05dcc2a8965d8e0fd12c3a">  412</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_Z(code, rv_source_id, rv, message_z, xctx) \</span></div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;<span class="preprocessor">    afw_error_rv_set_z(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="preprocessor">        footprint.source_z, message_z, scope); \</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="preprocessor">        footprint.source_z, message_z, xctx); \</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
-<div class="line"><a name="l00432"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga2bd3059b11c5930fdaf467e5e262d335">  432</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_FZ(code, scope, format_z, ...) \</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno"><a class="line" href="group__afw__error.html#gad6b83c7c50a397cdf8d0eb02a4bb9142">  432</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_FZ(code, xctx, format_z, ...) \</span></div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="preprocessor">    afw_error_set_fz(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="preprocessor">        footprint.source_z, scope, format_z, __VA_ARGS__); \</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="preprocessor">        footprint.source_z, xctx, format_z, __VA_ARGS__); \</span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
-<div class="line"><a name="l00453"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga6e6408ec02e72a8d83d94b3ebe52b2b3">  453</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_FZ(code, rv_source_id, rv, scope, format_z, ...) \</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno"><a class="line" href="group__afw__error.html#gae63a7b560e6b8b10bb003d0c84bf8e3c">  453</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_FZ(code, rv_source_id, rv, xctx, format_z, ...) \</span></div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="preprocessor">    afw_error_rv_set_fz(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="preprocessor">        footprint.source_z, scope, format_z, __VA_ARGS__); \</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="preprocessor">        footprint.source_z, xctx, format_z, __VA_ARGS__); \</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
-<div class="line"><a name="l00472"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga0fd4774d52f7d3257a570f5d251edbf5">  472</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_VZ(code, format_z, ap, scope) \</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaf3591472c315fb8c1710411e3f36953e">  472</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_VZ(code, format_z, ap, xctx) \</span></div>
 <div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="preprocessor">    afw_error_set_vz(afw_error_code_ ## code, \</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="preprocessor">        footprint.source_z, format_z, ap, scope); \</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="preprocessor">        footprint.source_z, format_z, ap, xctx); \</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
-<div class="line"><a name="l00490"></a><span class="lineno"><a class="line" href="group__afw__error.html#gaf0b1fb49a2310141eb29d8970368adf9">  490</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_VZ(code, rv_source_id, rv, format_z, ap, scope) \</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga87fcda9c32759a0cf8975ecc4325d1d5">  490</a></span>&#160;<span class="preprocessor">#define AFW_THROW_ERROR_FOOTPRINT_RV_VZ(code, rv_source_id, rv, format_z, ap, xctx) \</span></div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="preprocessor">    afw_error_rv_set_vz(afw_error_code_ ## code, \</span></div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="preprocessor">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="preprocessor">        footprint.source_z, format_z, ap, scope); \</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="preprocessor">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="preprocessor">        footprint.source_z, format_z, ap, xctx); \</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="preprocessor">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</span></div>
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160; </div>
-<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga00e138d0fe43a61dccd4fff158645d14">  503</a></span>&#160;<span class="preprocessor">#define AFW_THROW_MEMORY_ERROR(scope) \</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga4b46e55082b99db6845a23983f9ade17">  503</a></span>&#160;<span class="preprocessor">#define AFW_THROW_MEMORY_ERROR(xctx) \</span></div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="preprocessor">    afw_error_set_z(afw_error_code_memory, \</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, &quot;Memory error&quot;</span>, scope); \</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_memory)); \</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="preprocessor">        AFW__FILE_LINE__, &quot;Memory error&quot;</span>, xctx); \</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_memory)); \</div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;} while (0)</div>
 <div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160; </div>
 <div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="preprocessor">#define AFW_ERROR_INTERNAL_ON_UNHANDLED(__TRY_) \</span></div>
@@ -367,14 +367,14 @@ $(function() {
 <div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;<span class="preprocessor">    afw_boolean_t this_ERROR_OCCURRED = false; \</span></div>
 <div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;<span class="preprocessor">    afw_boolean_t this_ERROR_CAUGHT = false; \</span></div>
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;<span class="preprocessor">    AFW_POSSIBLY_UNUSED_VARIABLE afw_boolean_t this_FINALLY_ENTERED = false; \</span></div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="preprocessor">    this_TRY.prev = scope-&gt;current_try;\</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="preprocessor">    scope-&gt;current_try = &amp;this_TRY;\</span></div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;<span class="preprocessor">    this_TOP_OFFSET = scope-&gt;evaluation_stack-&gt;top - \</span></div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="preprocessor">        scope-&gt;evaluation_stack-&gt;first; \</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="preprocessor">    this_TRY.prev = xctx-&gt;current_try;\</span></div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="preprocessor">    xctx-&gt;current_try = &amp;this_TRY;\</span></div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;<span class="preprocessor">    this_TOP_OFFSET = xctx-&gt;evaluation_stack-&gt;top - \</span></div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="preprocessor">        xctx-&gt;evaluation_stack-&gt;first; \</span></div>
 <div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="preprocessor">    do { \</span></div>
 <div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;<span class="preprocessor">        if (setjmp(this_TRY.throw_jmp_buf) != 0) { \</span></div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="preprocessor">            AFW_ERROR_COPY(&amp;this_THROWN_ERROR, scope-&gt;error); \</span></div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="preprocessor">            AFW_ERROR_CLEAR_PARTIAL(scope-&gt;error); \</span></div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="preprocessor">            AFW_ERROR_COPY(&amp;this_THROWN_ERROR, xctx-&gt;error); \</span></div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="preprocessor">            AFW_ERROR_CLEAR_PARTIAL(xctx-&gt;error); \</span></div>
 <div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;<span class="preprocessor">            if (this_ERROR_OCCURRED) { \</span></div>
 <div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="preprocessor">                this_THROWN_ERROR.recursive_error = true; \</span></div>
 <div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="preprocessor">                this_ERROR_CAUGHT = false; \</span></div>
@@ -389,7 +389,7 @@ $(function() {
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;<span class="preprocessor">            while(0); \</span></div>
 <div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;<span class="preprocessor">            break; \</span></div>
 <div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;<span class="preprocessor">        } \</span></div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;<span class="preprocessor">        if (scope-&gt;error-&gt;code == (afw_error_code_ ## __CODE_)) \</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;<span class="preprocessor">        if (xctx-&gt;error-&gt;code == (afw_error_code_ ## __CODE_)) \</span></div>
 <div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;<span class="preprocessor">        { \</span></div>
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;<span class="preprocessor">            this_ERROR_CAUGHT = true; \</span></div>
 <div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;<span class="preprocessor">            do</span></div>
@@ -419,12 +419,12 @@ $(function() {
 <div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;<span class="preprocessor">            while(0); \</span></div>
 <div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;<span class="preprocessor">        } \</span></div>
 <div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;<span class="preprocessor">    } while(0); \</span></div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;<span class="preprocessor">    scope-&gt;current_try = this_TRY.prev; \</span></div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;<span class="preprocessor">    xctx-&gt;current_try = this_TRY.prev; \</span></div>
 <div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;<span class="preprocessor">    if (this_ERROR_OCCURRED &amp;&amp; !this_ERROR_CAUGHT) { \</span></div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;<span class="preprocessor">        AFW_ERROR_COPY(scope-&gt;error, &amp;this_THROWN_ERROR); \</span></div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;<span class="preprocessor">        longjmp(scope-&gt;current_try-&gt;throw_jmp_buf, this_THROWN_ERROR.code); \</span></div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;<span class="preprocessor">        AFW_ERROR_COPY(xctx-&gt;error, &amp;this_THROWN_ERROR); \</span></div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;<span class="preprocessor">        longjmp(xctx-&gt;current_try-&gt;throw_jmp_buf, this_THROWN_ERROR.code); \</span></div>
 <div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;<span class="preprocessor">    }\</span></div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;<span class="preprocessor">    scope-&gt;evaluation_stack-&gt;top = scope-&gt;evaluation_stack-&gt;first + \</span></div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;<span class="preprocessor">    xctx-&gt;evaluation_stack-&gt;top = xctx-&gt;evaluation_stack-&gt;first + \</span></div>
 <div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;<span class="preprocessor">        this_TOP_OFFSET; \</span></div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;<span class="preprocessor">} while (0)</span></div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160; </div>
@@ -435,16 +435,16 @@ $(function() {
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;<span class="preprocessor">    break;</span></div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160; </div>
 <div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *)</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;<a class="code" href="group__afw__error.html#ga2ac8ddfe36603dbe32b6efda8cd21358">afw_error_to_object</a>(</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;<a class="code" href="group__afw__error.html#gad00896769cf22c89115dbac454dbfc81">afw_error_to_object</a>(</div>
 <div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error,</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160; </div>
 <div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160; </div>
 <div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;<a class="code" href="group__afw__error.html#gae32806ff98e44d7036b7455eb067fb3a">afw_error_add_to_object</a>(</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;<a class="code" href="group__afw__error.html#ga73ad8c533d788edef17331df833ecbd0">afw_error_add_to_object</a>(</div>
 <div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *<span class="keywordtype">object</span>,</div>
 <div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error,</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160; </div>
 <div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160; </div>
 <div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160; </div>
@@ -459,25 +459,25 @@ $(function() {
 <div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160; </div>
 <div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160; </div>
 <div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">int</span>)</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;<a class="code" href="group__afw__error.html#ga9285cfcc099e57dd078303a637d59e93">afw_error_print_with_scope</a>(</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;<a class="code" href="group__afw__error.html#ga18f1889fa42a08346cb4d033c99f8aa7">afw_error_print_with_xctx</a>(</div>
 <div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;    FILE *fp,</div>
 <div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error,</div>
 <div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    </div>
 <div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160; </div>
 <div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;<a class="code" href="group__afw__error.html#ga0b4113c52c2fd48bc7afa948c52acc2a">afw_error_write_log</a>(<a class="code" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error, </div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;<a class="code" href="group__afw__error.html#ga245c6a51be3e0c270da22fa888b82689">afw_error_write_log</a>(<a class="code" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error, </div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160; </div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160; </div>
 <div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a596ad71d4d2053cfb0c0caa74e41c1d8">AFW_DECLARE_ELLIPSIS</a>(<span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *)</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;<a class="code" href="group__afw__error.html#gad718e404afbd0aba1d741acf066105cc">afw_error_message</a>(<a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope, <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, ...);</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;<a class="code" href="group__afw__error.html#ga77d451cded4527575d843f2047f04c8c">afw_error_message</a>(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, ...);</div>
 <div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160; </div>
 <div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160; </div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *)</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<a class="code" href="group__afw__error.html#ga46555602ea9d7023242c99041b044209">afw_error_message_vz</a>(<span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, va_list ap,</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<a class="code" href="group__afw__error.html#gaee41af3c77340ca5fe359f9e2bdf3734">afw_error_message_vz</a>(<span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, va_list ap,</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160; </div>
 <div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160; </div>
 <div class="line"><a name="l00883"></a><span class="lineno"><a class="line" href="group__afw__error.html#ga9f705c4717e7404a0e44f806676cb714">  883</a></span>&#160;<span class="preprocessor">#define afw_error_source_file(error) \</span></div>
@@ -494,10 +494,10 @@ $(function() {
 <div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160; </div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160; </div>
 <div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *)</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;<a class="code" href="group__afw__error.html#ga18cbbe76196f38e074049caf97626d45">afw_error_to_utf8</a>(</div>
+<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;<a class="code" href="group__afw__error.html#ga87a0429c4cc97978c39cea833e1a163a">afw_error_to_utf8</a>(</div>
 <div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__error__s.html">afw_error_t</a> *error,</div>
 <div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160; </div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160; </div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;AFW_END_DECLARES</div>
@@ -513,18 +513,18 @@ $(function() {
 <div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00522">afw_common.h:522</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gae106573d9765e938905369f32d52322a"><div class="ttname"><a href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a></div><div class="ttdeci">enum afw_log_priority_e afw_log_priority_t</div><div class="ttdoc">Log levels. See afw_log.h for more information.</div></div>
-<div class="ttc" id="agroup__afw__error_html_ga0b4113c52c2fd48bc7afa948c52acc2a"><div class="ttname"><a href="group__afw__error.html#ga0b4113c52c2fd48bc7afa948c52acc2a">afw_error_write_log</a></div><div class="ttdeci">void afw_error_write_log(afw_log_priority_t priority, const afw_error_t *error, afw_scope_t *scope)</div><div class="ttdoc">Write error to environment log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00639">afw_error.c:639</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga0fdd456cb24266a47f10b4501b1fe271"><div class="ttname"><a href="group__afw__error.html#ga0fdd456cb24266a47f10b4501b1fe271">afw_error_http_status</a></div><div class="ttdeci">afw_error_http_status(const afw_error_t *error)</div><div class="ttdoc">Returns http status for error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01041">afw_error.c:1041</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga18cbbe76196f38e074049caf97626d45"><div class="ttname"><a href="group__afw__error.html#ga18cbbe76196f38e074049caf97626d45">afw_error_to_utf8</a></div><div class="ttdeci">const afw_utf8_t * afw_error_to_utf8(const afw_error_t *error, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Convert error to utf8.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00547">afw_error.c:547</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga18f1889fa42a08346cb4d033c99f8aa7"><div class="ttname"><a href="group__afw__error.html#ga18f1889fa42a08346cb4d033c99f8aa7">afw_error_print_with_xctx</a></div><div class="ttdeci">int afw_error_print_with_xctx(FILE *fp, const afw_error_t *error, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Print error when xctx is available.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00783">afw_error.c:783</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga236690172951f1ef42caf28605c261b3"><div class="ttname"><a href="group__afw__error.html#ga236690172951f1ef42caf28605c261b3">afw_error_print</a></div><div class="ttdeci">int afw_error_print(FILE *fp, const afw_error_t *error)</div><div class="ttdoc">Print error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00679">afw_error.c:679</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga2ac8ddfe36603dbe32b6efda8cd21358"><div class="ttname"><a href="group__afw__error.html#ga2ac8ddfe36603dbe32b6efda8cd21358">afw_error_to_object</a></div><div class="ttdeci">const afw_object_t * afw_error_to_object(const afw_error_t *error, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Create an object with error info in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00998">afw_error.c:998</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga46555602ea9d7023242c99041b044209"><div class="ttname"><a href="group__afw__error.html#ga46555602ea9d7023242c99041b044209">afw_error_message_vz</a></div><div class="ttdeci">const afw_utf8_z_t * afw_error_message_vz(const afw_utf8_z_t *format, va_list ap, afw_scope_t *scope)</div><div class="ttdoc">Build message in scope error message_wa and return pointer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01012">afw_error.c:1012</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga245c6a51be3e0c270da22fa888b82689"><div class="ttname"><a href="group__afw__error.html#ga245c6a51be3e0c270da22fa888b82689">afw_error_write_log</a></div><div class="ttdeci">void afw_error_write_log(afw_log_priority_t priority, const afw_error_t *error, afw_xctx_t *xctx)</div><div class="ttdoc">Write error to environment log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00639">afw_error.c:639</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga47c4c9252ad91685ac9b83a1138514be"><div class="ttname"><a href="group__afw__error.html#ga47c4c9252ad91685ac9b83a1138514be">afw_error_code_id_z</a></div><div class="ttdeci">const afw_utf8_z_t * afw_error_code_id_z(const afw_error_t *error)</div><div class="ttdoc">Returns error-&gt;code id.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01062">afw_error.c:1062</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_ga9285cfcc099e57dd078303a637d59e93"><div class="ttname"><a href="group__afw__error.html#ga9285cfcc099e57dd078303a637d59e93">afw_error_print_with_scope</a></div><div class="ttdeci">int afw_error_print_with_scope(FILE *fp, const afw_error_t *error, const afw_pool_t *p, afw_scope_t *scope)</div><div class="ttdoc">Print error when scope is available.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00783">afw_error.c:783</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga73ad8c533d788edef17331df833ecbd0"><div class="ttname"><a href="group__afw__error.html#ga73ad8c533d788edef17331df833ecbd0">afw_error_add_to_object</a></div><div class="ttdeci">void afw_error_add_to_object(const afw_object_t *object, const afw_error_t *error, afw_xctx_t *xctx)</div><div class="ttdoc">Add error info to existing object using specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00862">afw_error.c:862</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga77d451cded4527575d843f2047f04c8c"><div class="ttname"><a href="group__afw__error.html#ga77d451cded4527575d843f2047f04c8c">afw_error_message</a></div><div class="ttdeci">const afw_utf8_z_t * afw_error_message(afw_xctx_t *xctx, const afw_utf8_z_t *format,...)</div><div class="ttdoc">Build message in xctx error message_wa and return pointer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01023">afw_error.c:1023</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga87a0429c4cc97978c39cea833e1a163a"><div class="ttname"><a href="group__afw__error.html#ga87a0429c4cc97978c39cea833e1a163a">afw_error_to_utf8</a></div><div class="ttdeci">const afw_utf8_t * afw_error_to_utf8(const afw_error_t *error, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Convert error to utf8.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00547">afw_error.c:547</a></div></div>
 <div class="ttc" id="agroup__afw__error_html_ga9788c4f012e566bba848fe69e2fabc4a"><div class="ttname"><a href="group__afw__error.html#ga9788c4f012e566bba848fe69e2fabc4a">afw_error_footprint_t</a></div><div class="ttdeci">struct afw_error_footprint_s afw_error_footprint_t</div><div class="ttdoc">error footprint</div></div>
 <div class="ttc" id="agroup__afw__error_html_gaa99d455502dded3b0b481b0d57649051"><div class="ttname"><a href="group__afw__error.html#gaa99d455502dded3b0b481b0d57649051">afw_error_allow_in_response</a></div><div class="ttdeci">afw_boolean_t afw_error_allow_in_response(afw_error_code_t code)</div><div class="ttdoc">Determine if the error object for code is allowed in HTTP response.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01082">afw_error.c:1082</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_gad718e404afbd0aba1d741acf066105cc"><div class="ttname"><a href="group__afw__error.html#gad718e404afbd0aba1d741acf066105cc">afw_error_message</a></div><div class="ttdeci">const afw_utf8_z_t * afw_error_message(afw_scope_t *scope, const afw_utf8_z_t *format,...)</div><div class="ttdoc">Build message in scope error message_wa and return pointer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01023">afw_error.c:1023</a></div></div>
-<div class="ttc" id="agroup__afw__error_html_gae32806ff98e44d7036b7455eb067fb3a"><div class="ttname"><a href="group__afw__error.html#gae32806ff98e44d7036b7455eb067fb3a">afw_error_add_to_object</a></div><div class="ttdeci">void afw_error_add_to_object(const afw_object_t *object, const afw_error_t *error, afw_scope_t *scope)</div><div class="ttdoc">Add error info to existing object using specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00862">afw_error.c:862</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_gad00896769cf22c89115dbac454dbfc81"><div class="ttname"><a href="group__afw__error.html#gad00896769cf22c89115dbac454dbfc81">afw_error_to_object</a></div><div class="ttdeci">const afw_object_t * afw_error_to_object(const afw_error_t *error, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create an object with error info in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l00998">afw_error.c:998</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_gaee41af3c77340ca5fe359f9e2bdf3734"><div class="ttname"><a href="group__afw__error.html#gaee41af3c77340ca5fe359f9e2bdf3734">afw_error_message_vz</a></div><div class="ttdeci">const afw_utf8_z_t * afw_error_message_vz(const afw_utf8_z_t *format, va_list ap, afw_xctx_t *xctx)</div><div class="ttdoc">Build message in xctx error message_wa and return pointer.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8c_source.html#l01012">afw_error.c:1012</a></div></div>
 <div class="ttc" id="astructafw__compile__internal__value__contextual__s_html"><div class="ttname"><a href="structafw__compile__internal__value__contextual__s.html">afw_compile_internal_value_contextual_s</a></div><div class="ttdoc">Contextual information provided in some values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__compile__internal_8h_source.html#l00240">afw_compile_internal.h:240</a></div></div>
 <div class="ttc" id="astructafw__error__context__s_html"><div class="ttname"><a href="structafw__error__context__s.html">afw_error_context_s</a></div><div class="ttdoc">Adaptive Framework Error Context.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00057">afw_error.h:57</a></div></div>
 <div class="ttc" id="astructafw__error__footprint__s_html"><div class="ttname"><a href="structafw__error__footprint__s.html">afw_error_footprint_s</a></div><div class="ttdoc">error footprint</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00158">afw_error.h:158</a></div></div>
@@ -546,14 +546,14 @@ $(function() {
 <div class="ttc" id="astructafw__error__s_html_ae71416c45fcdb502f71d008573368b45"><div class="ttname"><a href="structafw__error__s.html#ae71416c45fcdb502f71d008573368b45">afw_error_s::decode_rv_wa_safety_zero_terminator</a></div><div class="ttdeci">afw_utf8_z_t decode_rv_wa_safety_zero_terminator</div><div class="ttdoc">Makes sure there is a zero terminator after decode_rv_wa.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00130">afw_error.h:130</a></div></div>
 <div class="ttc" id="astructafw__error__s_html_aed1f91d451384f4610fbf25be4decfb1"><div class="ttname"><a href="structafw__error__s.html#aed1f91d451384f4610fbf25be4decfb1">afw_error_s::parser_cursor</a></div><div class="ttdeci">afw_size_t parser_cursor</div><div class="ttdoc">If syntax error, this is cursor when parse error occurred or 0.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00105">afw_error.h:105</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__try__s_html"><div class="ttname"><a href="structafw__try__s.html">afw_try_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00215">afw_error.h:215</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:14 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

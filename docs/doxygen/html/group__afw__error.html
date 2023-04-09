@@ -116,46 +116,46 @@ Macros</h2></td></tr>
 <tr class="separator:ga00322080e2676c9fd9cfee6e43eabb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga969187bf9ba2601338deadc12627fa37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga969187bf9ba2601338deadc12627fa37">AFW_ERROR_OCCURRED</a>(__ERROR_)&#160;&#160;&#160;((__ERROR_)-&gt;code != afw_error_code_none)</td></tr>
 <tr class="separator:ga969187bf9ba2601338deadc12627fa37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4307879fc2403ef5c17f83bdbc805644"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga4307879fc2403ef5c17f83bdbc805644">AFW_THROW</a>(scope)&#160;&#160;&#160;    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (scope)-&gt;error-&gt;code)</td></tr>
-<tr class="separator:ga4307879fc2403ef5c17f83bdbc805644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5a711cdfb9990f4d2b628e8288815457"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">AFW_THROW_ERROR_Z</a>(code,  message_z,  scope)</td></tr>
-<tr class="memdesc:ga5a711cdfb9990f4d2b628e8288815457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope and throw it.  <a href="group__afw__error.html#ga5a711cdfb9990f4d2b628e8288815457">More...</a><br /></td></tr>
-<tr class="separator:ga5a711cdfb9990f4d2b628e8288815457"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa7d98ebac6b5ef3b64bbcbbb8f76c445"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">AFW_THROW_ERROR_RV_Z</a>(code,  rv_source_id,  rv,  message_z,  scope)</td></tr>
-<tr class="memdesc:gaa7d98ebac6b5ef3b64bbcbbb8f76c445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope and throw it.  <a href="group__afw__error.html#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">More...</a><br /></td></tr>
-<tr class="separator:gaa7d98ebac6b5ef3b64bbcbbb8f76c445"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga382b6d0b1dad3d4654d2de5b7cc07732"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">AFW_THROW_ERROR_FZ</a>(code,  scope,  format_z, ...)</td></tr>
-<tr class="memdesc:ga382b6d0b1dad3d4654d2de5b7cc07732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope and throw it.  <a href="group__afw__error.html#ga382b6d0b1dad3d4654d2de5b7cc07732">More...</a><br /></td></tr>
-<tr class="separator:ga382b6d0b1dad3d4654d2de5b7cc07732"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5f5c17b168faa2fe169438f57570adfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga5f5c17b168faa2fe169438f57570adfe">AFW_THROW_ERROR_RV_FZ</a>(code,  rv_source_id,  rv,  scope,  format_z, ...)</td></tr>
-<tr class="memdesc:ga5f5c17b168faa2fe169438f57570adfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope and throw it.  <a href="group__afw__error.html#ga5f5c17b168faa2fe169438f57570adfe">More...</a><br /></td></tr>
-<tr class="separator:ga5f5c17b168faa2fe169438f57570adfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga879a58d36d6b5f89cfb1ff7cc5ab5ac8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga879a58d36d6b5f89cfb1ff7cc5ab5ac8">AFW_THROW_ERROR_VZ</a>(code,  format_z,  ap,  scope)</td></tr>
-<tr class="memdesc:ga879a58d36d6b5f89cfb1ff7cc5ab5ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope and throw it.  <a href="group__afw__error.html#ga879a58d36d6b5f89cfb1ff7cc5ab5ac8">More...</a><br /></td></tr>
-<tr class="separator:ga879a58d36d6b5f89cfb1ff7cc5ab5ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e48879347d6b87b0caa8d099a1c9407"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga7e48879347d6b87b0caa8d099a1c9407">AFW_THROW_ERROR_RV_VZ</a>(code,  rv_source_id,  rv,  format_z,  ap,  scope)</td></tr>
-<tr class="memdesc:ga7e48879347d6b87b0caa8d099a1c9407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope and throw it.  <a href="group__afw__error.html#ga7e48879347d6b87b0caa8d099a1c9407">More...</a><br /></td></tr>
-<tr class="separator:ga7e48879347d6b87b0caa8d099a1c9407"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5022b203c8ee89f748533a65c00ed52a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga5022b203c8ee89f748533a65c00ed52a">AFW_THROW_ERROR_FOOTPRINT_Z</a>(code,  message_z,  scope)</td></tr>
-<tr class="memdesc:ga5022b203c8ee89f748533a65c00ed52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#ga5022b203c8ee89f748533a65c00ed52a">More...</a><br /></td></tr>
-<tr class="separator:ga5022b203c8ee89f748533a65c00ed52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa8f4297701a9ee40ffd592a79626f266"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaa8f4297701a9ee40ffd592a79626f266">AFW_THROW_ERROR_FOOTPRINT_RV_Z</a>(code,  rv_source_id,  rv,  message_z,  scope)</td></tr>
-<tr class="memdesc:gaa8f4297701a9ee40ffd592a79626f266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#gaa8f4297701a9ee40ffd592a79626f266">More...</a><br /></td></tr>
-<tr class="separator:gaa8f4297701a9ee40ffd592a79626f266"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2bd3059b11c5930fdaf467e5e262d335"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga2bd3059b11c5930fdaf467e5e262d335">AFW_THROW_ERROR_FOOTPRINT_FZ</a>(code,  scope,  format_z, ...)</td></tr>
-<tr class="memdesc:ga2bd3059b11c5930fdaf467e5e262d335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#ga2bd3059b11c5930fdaf467e5e262d335">More...</a><br /></td></tr>
-<tr class="separator:ga2bd3059b11c5930fdaf467e5e262d335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e6408ec02e72a8d83d94b3ebe52b2b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga6e6408ec02e72a8d83d94b3ebe52b2b3">AFW_THROW_ERROR_FOOTPRINT_RV_FZ</a>(code,  rv_source_id,  rv,  scope,  format_z, ...)</td></tr>
-<tr class="memdesc:ga6e6408ec02e72a8d83d94b3ebe52b2b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#ga6e6408ec02e72a8d83d94b3ebe52b2b3">More...</a><br /></td></tr>
-<tr class="separator:ga6e6408ec02e72a8d83d94b3ebe52b2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0fd4774d52f7d3257a570f5d251edbf5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga0fd4774d52f7d3257a570f5d251edbf5">AFW_THROW_ERROR_FOOTPRINT_VZ</a>(code,  format_z,  ap,  scope)</td></tr>
-<tr class="memdesc:ga0fd4774d52f7d3257a570f5d251edbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#ga0fd4774d52f7d3257a570f5d251edbf5">More...</a><br /></td></tr>
-<tr class="separator:ga0fd4774d52f7d3257a570f5d251edbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf0b1fb49a2310141eb29d8970368adf9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaf0b1fb49a2310141eb29d8970368adf9">AFW_THROW_ERROR_FOOTPRINT_RV_VZ</a>(code,  rv_source_id,  rv,  format_z,  ap,  scope)</td></tr>
-<tr class="memdesc:gaf0b1fb49a2310141eb29d8970368adf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in scope using line number in footprint then throw it.  <a href="group__afw__error.html#gaf0b1fb49a2310141eb29d8970368adf9">More...</a><br /></td></tr>
-<tr class="separator:gaf0b1fb49a2310141eb29d8970368adf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga00e138d0fe43a61dccd4fff158645d14"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga00e138d0fe43a61dccd4fff158645d14">AFW_THROW_MEMORY_ERROR</a>(scope)</td></tr>
-<tr class="separator:ga00e138d0fe43a61dccd4fff158645d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51268c26074993b0c3fe26c57f565cb2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga51268c26074993b0c3fe26c57f565cb2">AFW_THROW</a>(xctx)&#160;&#160;&#160;    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (xctx)-&gt;error-&gt;code)</td></tr>
+<tr class="separator:ga51268c26074993b0c3fe26c57f565cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3ef33256454849b39a6e9710f519c8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(code,  message_z,  xctx)</td></tr>
+<tr class="memdesc:gae3ef33256454849b39a6e9710f519c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx and throw it.  <a href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">More...</a><br /></td></tr>
+<tr class="separator:gae3ef33256454849b39a6e9710f519c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e989df174e149c384023e57f18b22f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">AFW_THROW_ERROR_RV_Z</a>(code,  rv_source_id,  rv,  message_z,  xctx)</td></tr>
+<tr class="memdesc:ga6e989df174e149c384023e57f18b22f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx and throw it.  <a href="group__afw__error.html#ga6e989df174e149c384023e57f18b22f7">More...</a><br /></td></tr>
+<tr class="separator:ga6e989df174e149c384023e57f18b22f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86c7285b0589f9df4f54ba939fec8f92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">AFW_THROW_ERROR_FZ</a>(code,  xctx,  format_z, ...)</td></tr>
+<tr class="memdesc:ga86c7285b0589f9df4f54ba939fec8f92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx and throw it.  <a href="group__afw__error.html#ga86c7285b0589f9df4f54ba939fec8f92">More...</a><br /></td></tr>
+<tr class="separator:ga86c7285b0589f9df4f54ba939fec8f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa65326c714bf0457b01e6600a5c43867"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaa65326c714bf0457b01e6600a5c43867">AFW_THROW_ERROR_RV_FZ</a>(code,  rv_source_id,  rv,  xctx,  format_z, ...)</td></tr>
+<tr class="memdesc:gaa65326c714bf0457b01e6600a5c43867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx and throw it.  <a href="group__afw__error.html#gaa65326c714bf0457b01e6600a5c43867">More...</a><br /></td></tr>
+<tr class="separator:gaa65326c714bf0457b01e6600a5c43867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70e5cbf796ad3caf676f65fbbfb3eee9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga70e5cbf796ad3caf676f65fbbfb3eee9">AFW_THROW_ERROR_VZ</a>(code,  format_z,  ap,  xctx)</td></tr>
+<tr class="memdesc:ga70e5cbf796ad3caf676f65fbbfb3eee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx and throw it.  <a href="group__afw__error.html#ga70e5cbf796ad3caf676f65fbbfb3eee9">More...</a><br /></td></tr>
+<tr class="separator:ga70e5cbf796ad3caf676f65fbbfb3eee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43a4b105a0c0eb64253f358eb395c362"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga43a4b105a0c0eb64253f358eb395c362">AFW_THROW_ERROR_RV_VZ</a>(code,  rv_source_id,  rv,  format_z,  ap,  xctx)</td></tr>
+<tr class="memdesc:ga43a4b105a0c0eb64253f358eb395c362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx and throw it.  <a href="group__afw__error.html#ga43a4b105a0c0eb64253f358eb395c362">More...</a><br /></td></tr>
+<tr class="separator:ga43a4b105a0c0eb64253f358eb395c362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5b59a23efc356cd080466d919056673"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaa5b59a23efc356cd080466d919056673">AFW_THROW_ERROR_FOOTPRINT_Z</a>(code,  message_z,  xctx)</td></tr>
+<tr class="memdesc:gaa5b59a23efc356cd080466d919056673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#gaa5b59a23efc356cd080466d919056673">More...</a><br /></td></tr>
+<tr class="separator:gaa5b59a23efc356cd080466d919056673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad674f6e9ef05dcc2a8965d8e0fd12c3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gad674f6e9ef05dcc2a8965d8e0fd12c3a">AFW_THROW_ERROR_FOOTPRINT_RV_Z</a>(code,  rv_source_id,  rv,  message_z,  xctx)</td></tr>
+<tr class="memdesc:gad674f6e9ef05dcc2a8965d8e0fd12c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#gad674f6e9ef05dcc2a8965d8e0fd12c3a">More...</a><br /></td></tr>
+<tr class="separator:gad674f6e9ef05dcc2a8965d8e0fd12c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6b83c7c50a397cdf8d0eb02a4bb9142"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gad6b83c7c50a397cdf8d0eb02a4bb9142">AFW_THROW_ERROR_FOOTPRINT_FZ</a>(code,  xctx,  format_z, ...)</td></tr>
+<tr class="memdesc:gad6b83c7c50a397cdf8d0eb02a4bb9142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#gad6b83c7c50a397cdf8d0eb02a4bb9142">More...</a><br /></td></tr>
+<tr class="separator:gad6b83c7c50a397cdf8d0eb02a4bb9142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae63a7b560e6b8b10bb003d0c84bf8e3c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gae63a7b560e6b8b10bb003d0c84bf8e3c">AFW_THROW_ERROR_FOOTPRINT_RV_FZ</a>(code,  rv_source_id,  rv,  xctx,  format_z, ...)</td></tr>
+<tr class="memdesc:gae63a7b560e6b8b10bb003d0c84bf8e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#gae63a7b560e6b8b10bb003d0c84bf8e3c">More...</a><br /></td></tr>
+<tr class="separator:gae63a7b560e6b8b10bb003d0c84bf8e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf3591472c315fb8c1710411e3f36953e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaf3591472c315fb8c1710411e3f36953e">AFW_THROW_ERROR_FOOTPRINT_VZ</a>(code,  format_z,  ap,  xctx)</td></tr>
+<tr class="memdesc:gaf3591472c315fb8c1710411e3f36953e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and 0 rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#gaf3591472c315fb8c1710411e3f36953e">More...</a><br /></td></tr>
+<tr class="separator:gaf3591472c315fb8c1710411e3f36953e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga87fcda9c32759a0cf8975ecc4325d1d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga87fcda9c32759a0cf8975ecc4325d1d5">AFW_THROW_ERROR_FOOTPRINT_RV_VZ</a>(code,  rv_source_id,  rv,  format_z,  ap,  xctx)</td></tr>
+<tr class="memdesc:ga87fcda9c32759a0cf8975ecc4325d1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to set error and rv in xctx using line number in footprint then throw it.  <a href="group__afw__error.html#ga87fcda9c32759a0cf8975ecc4325d1d5">More...</a><br /></td></tr>
+<tr class="separator:ga87fcda9c32759a0cf8975ecc4325d1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b46e55082b99db6845a23983f9ade17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga4b46e55082b99db6845a23983f9ade17">AFW_THROW_MEMORY_ERROR</a>(xctx)</td></tr>
+<tr class="separator:ga4b46e55082b99db6845a23983f9ade17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacaaef8fe2946e6b391b67f1d1026ee79"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_ERROR_INTERNAL_ON_UNHANDLED</b>(__TRY_)</td></tr>
 <tr class="separator:gacaaef8fe2946e6b391b67f1d1026ee79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3db195bccce14f063576bc3f49a7279b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga3db195bccce14f063576bc3f49a7279b">AFW_ERROR_COPY</a>(to,  from)</td></tr>
@@ -194,57 +194,57 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaad46869e3ce9c5553ecb30076119affa"><td class="memItemLeft" align="right" valign="top"><a id="gaad46869e3ce9c5553ecb30076119affa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_z</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *message_z, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:gaad46869e3ce9c5553ecb30076119affa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac646be8331699f1dc9dbd0c155cab2bc"><td class="memItemLeft" align="right" valign="top"><a id="gac646be8331699f1dc9dbd0c155cab2bc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_z</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *message_z, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:gac646be8331699f1dc9dbd0c155cab2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ba506668527a4560aafffc9b45ef954"><td class="memItemLeft" align="right" valign="top"><a id="ga0ba506668527a4560aafffc9b45ef954"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_fz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z,...)</td></tr>
-<tr class="separator:ga0ba506668527a4560aafffc9b45ef954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5aecf5307bfc61ee37b4a060d9684462"><td class="memItemLeft" align="right" valign="top"><a id="ga5aecf5307bfc61ee37b4a060d9684462"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_fz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z,...)</td></tr>
-<tr class="separator:ga5aecf5307bfc61ee37b4a060d9684462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6841c18ebf87dd982e1b9f1100b665e1"><td class="memItemLeft" align="right" valign="top"><a id="ga6841c18ebf87dd982e1b9f1100b665e1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_vz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z, va_list ap, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ga6841c18ebf87dd982e1b9f1100b665e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae57f69cf09bf8b866d03485407fd0d3a"><td class="memItemLeft" align="right" valign="top"><a id="gae57f69cf09bf8b866d03485407fd0d3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z, va_list ap, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:gae57f69cf09bf8b866d03485407fd0d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2ac8ddfe36603dbe32b6efda8cd21358"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga2ac8ddfe36603dbe32b6efda8cd21358">afw_error_to_object</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga2ac8ddfe36603dbe32b6efda8cd21358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an object with error info in specified pool.  <a href="group__afw__error.html#ga2ac8ddfe36603dbe32b6efda8cd21358">More...</a><br /></td></tr>
-<tr class="separator:ga2ac8ddfe36603dbe32b6efda8cd21358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae32806ff98e44d7036b7455eb067fb3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gae32806ff98e44d7036b7455eb067fb3a">afw_error_add_to_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gae32806ff98e44d7036b7455eb067fb3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add error info to existing object using specified pool.  <a href="group__afw__error.html#gae32806ff98e44d7036b7455eb067fb3a">More...</a><br /></td></tr>
-<tr class="separator:gae32806ff98e44d7036b7455eb067fb3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga48db64af9656c1fd2847b577d251fda0"><td class="memItemLeft" align="right" valign="top"><a id="ga48db64af9656c1fd2847b577d251fda0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_z</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *message_z, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga48db64af9656c1fd2847b577d251fda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d783d81e86b1a7f415ac329a8dcb64f"><td class="memItemLeft" align="right" valign="top"><a id="ga2d783d81e86b1a7f415ac329a8dcb64f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_z</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *message_z, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga2d783d81e86b1a7f415ac329a8dcb64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga717828210e01ea6637e4df8733f3c379"><td class="memItemLeft" align="right" valign="top"><a id="ga717828210e01ea6637e4df8733f3c379"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_fz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z,...)</td></tr>
+<tr class="separator:ga717828210e01ea6637e4df8733f3c379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f985fd97a78c91060bd8c9c2de7e274"><td class="memItemLeft" align="right" valign="top"><a id="ga7f985fd97a78c91060bd8c9c2de7e274"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_fz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z,...)</td></tr>
+<tr class="separator:ga7f985fd97a78c91060bd8c9c2de7e274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76bebfa1c7ed7a9136d4f8583f83bb9e"><td class="memItemLeft" align="right" valign="top"><a id="ga76bebfa1c7ed7a9136d4f8583f83bb9e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_rv_set_vz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *rv_source_id_z, int related_rv, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z, va_list ap, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga76bebfa1c7ed7a9136d4f8583f83bb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcc236003e7916c760ae5647d7762659"><td class="memItemLeft" align="right" valign="top"><a id="gadcc236003e7916c760ae5647d7762659"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format_z, va_list ap, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gadcc236003e7916c760ae5647d7762659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad00896769cf22c89115dbac454dbfc81"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gad00896769cf22c89115dbac454dbfc81">afw_error_to_object</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gad00896769cf22c89115dbac454dbfc81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an object with error info in specified pool.  <a href="group__afw__error.html#gad00896769cf22c89115dbac454dbfc81">More...</a><br /></td></tr>
+<tr class="separator:gad00896769cf22c89115dbac454dbfc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73ad8c533d788edef17331df833ecbd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga73ad8c533d788edef17331df833ecbd0">afw_error_add_to_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga73ad8c533d788edef17331df833ecbd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add error info to existing object using specified pool.  <a href="group__afw__error.html#ga73ad8c533d788edef17331df833ecbd0">More...</a><br /></td></tr>
+<tr class="separator:ga73ad8c533d788edef17331df833ecbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa99d455502dded3b0b481b0d57649051"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaa99d455502dded3b0b481b0d57649051">afw_error_allow_in_response</a> (<a class="el" href="group__afw__common.html#ga64c19e9defee8ec3ec6e4d5cf1d800f5">afw_error_code_t</a> code)</td></tr>
 <tr class="memdesc:gaa99d455502dded3b0b481b0d57649051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if the error object for code is allowed in HTTP response.  <a href="group__afw__error.html#gaa99d455502dded3b0b481b0d57649051">More...</a><br /></td></tr>
 <tr class="separator:gaa99d455502dded3b0b481b0d57649051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga236690172951f1ef42caf28605c261b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga236690172951f1ef42caf28605c261b3">afw_error_print</a> (FILE *fp, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error)</td></tr>
 <tr class="memdesc:ga236690172951f1ef42caf28605c261b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print error.  <a href="group__afw__error.html#ga236690172951f1ef42caf28605c261b3">More...</a><br /></td></tr>
 <tr class="separator:ga236690172951f1ef42caf28605c261b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9285cfcc099e57dd078303a637d59e93"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga9285cfcc099e57dd078303a637d59e93">afw_error_print_with_scope</a> (FILE *fp, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga9285cfcc099e57dd078303a637d59e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print error when scope is available.  <a href="group__afw__error.html#ga9285cfcc099e57dd078303a637d59e93">More...</a><br /></td></tr>
-<tr class="separator:ga9285cfcc099e57dd078303a637d59e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0b4113c52c2fd48bc7afa948c52acc2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga0b4113c52c2fd48bc7afa948c52acc2a">afw_error_write_log</a> (<a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga0b4113c52c2fd48bc7afa948c52acc2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write error to environment log.  <a href="group__afw__error.html#ga0b4113c52c2fd48bc7afa948c52acc2a">More...</a><br /></td></tr>
-<tr class="separator:ga0b4113c52c2fd48bc7afa948c52acc2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad718e404afbd0aba1d741acf066105cc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gad718e404afbd0aba1d741acf066105cc">afw_error_message</a> (<a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format,...)</td></tr>
-<tr class="memdesc:gad718e404afbd0aba1d741acf066105cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build message in scope error message_wa and return pointer.  <a href="group__afw__error.html#gad718e404afbd0aba1d741acf066105cc">More...</a><br /></td></tr>
-<tr class="separator:gad718e404afbd0aba1d741acf066105cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga46555602ea9d7023242c99041b044209"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga46555602ea9d7023242c99041b044209">afw_error_message_vz</a> (const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, va_list ap, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga46555602ea9d7023242c99041b044209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build message in scope error message_wa and return pointer.  <a href="group__afw__error.html#ga46555602ea9d7023242c99041b044209">More...</a><br /></td></tr>
-<tr class="separator:ga46555602ea9d7023242c99041b044209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18f1889fa42a08346cb4d033c99f8aa7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga18f1889fa42a08346cb4d033c99f8aa7">afw_error_print_with_xctx</a> (FILE *fp, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga18f1889fa42a08346cb4d033c99f8aa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print error when xctx is available.  <a href="group__afw__error.html#ga18f1889fa42a08346cb4d033c99f8aa7">More...</a><br /></td></tr>
+<tr class="separator:ga18f1889fa42a08346cb4d033c99f8aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga245c6a51be3e0c270da22fa888b82689"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga245c6a51be3e0c270da22fa888b82689">afw_error_write_log</a> (<a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a> priority, const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga245c6a51be3e0c270da22fa888b82689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write error to environment log.  <a href="group__afw__error.html#ga245c6a51be3e0c270da22fa888b82689">More...</a><br /></td></tr>
+<tr class="separator:ga245c6a51be3e0c270da22fa888b82689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77d451cded4527575d843f2047f04c8c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga77d451cded4527575d843f2047f04c8c">afw_error_message</a> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format,...)</td></tr>
+<tr class="memdesc:ga77d451cded4527575d843f2047f04c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build message in xctx error message_wa and return pointer.  <a href="group__afw__error.html#ga77d451cded4527575d843f2047f04c8c">More...</a><br /></td></tr>
+<tr class="separator:ga77d451cded4527575d843f2047f04c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee41af3c77340ca5fe359f9e2bdf3734"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#gaee41af3c77340ca5fe359f9e2bdf3734">afw_error_message_vz</a> (const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *format, va_list ap, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaee41af3c77340ca5fe359f9e2bdf3734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build message in xctx error message_wa and return pointer.  <a href="group__afw__error.html#gaee41af3c77340ca5fe359f9e2bdf3734">More...</a><br /></td></tr>
+<tr class="separator:gaee41af3c77340ca5fe359f9e2bdf3734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0fdd456cb24266a47f10b4501b1fe271"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga0fdd456cb24266a47f10b4501b1fe271">afw_error_http_status</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error)</td></tr>
 <tr class="memdesc:ga0fdd456cb24266a47f10b4501b1fe271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns http status for error.  <a href="group__afw__error.html#ga0fdd456cb24266a47f10b4501b1fe271">More...</a><br /></td></tr>
 <tr class="separator:ga0fdd456cb24266a47f10b4501b1fe271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga47c4c9252ad91685ac9b83a1138514be"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga47c4c9252ad91685ac9b83a1138514be">afw_error_code_id_z</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error)</td></tr>
 <tr class="memdesc:ga47c4c9252ad91685ac9b83a1138514be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns error-&gt;code id.  <a href="group__afw__error.html#ga47c4c9252ad91685ac9b83a1138514be">More...</a><br /></td></tr>
 <tr class="separator:ga47c4c9252ad91685ac9b83a1138514be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga18cbbe76196f38e074049caf97626d45"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga18cbbe76196f38e074049caf97626d45">afw_error_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga18cbbe76196f38e074049caf97626d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert error to utf8.  <a href="group__afw__error.html#ga18cbbe76196f38e074049caf97626d45">More...</a><br /></td></tr>
-<tr class="separator:ga18cbbe76196f38e074049caf97626d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga87a0429c4cc97978c39cea833e1a163a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__error.html#ga87a0429c4cc97978c39cea833e1a163a">afw_error_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga969687f074b4929d953af60f47e32acc">afw_error_t</a> *error, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga87a0429c4cc97978c39cea833e1a163a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert error to utf8.  <a href="group__afw__error.html#ga87a0429c4cc97978c39cea833e1a163a">More...</a><br /></td></tr>
+<tr class="separator:ga87a0429c4cc97978c39cea833e1a163a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive Framework error</p>
@@ -268,13 +268,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line">            <span class="keywordflow">while</span>(0); \</div>
 <div class="line">            break; \</div>
 <div class="line">        } \</div>
-<div class="line">        if (scope-&gt;error-&gt;code == (afw_error_code_ ## __CODE_)) \</div>
+<div class="line">        if (xctx-&gt;error-&gt;code == (afw_error_code_ ## __CODE_)) \</div>
 <div class="line">        { \</div>
 <div class="line">            this_ERROR_CAUGHT = <span class="keyword">true</span>; \</div>
 <div class="line">            do</div>
 </div><!-- fragment -->
 <p>Catch a particular error that occurs in a AFW_TRY block. </p>
-<p>The scope's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH block will be handle by the previous try; </p>
+<p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH block will be handle by the previous try; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00672">672</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -299,7 +299,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">            do</div>
 </div><!-- fragment -->
 <p>Catch an unhandled error that occurs in a AFW_TRY block. </p>
-<p>The scope's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH_UNHANDLED block will be handle by the previous try; </p>
+<p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH_UNHANDLED block will be handle by the previous try; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00688">688</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -319,18 +319,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line">            <span class="keywordflow">while</span>(0); \</div>
 <div class="line">        } \</div>
 <div class="line">    } <span class="keywordflow">while</span>(0); \</div>
-<div class="line">    scope-&gt;current_try = this_TRY.prev; \</div>
+<div class="line">    xctx-&gt;current_try = this_TRY.prev; \</div>
 <div class="line">    if (this_ERROR_OCCURRED &amp;&amp; !this_ERROR_CAUGHT) { \</div>
-<div class="line">        AFW_ERROR_COPY(scope-&gt;error, &amp;this_THROWN_ERROR); \</div>
-<div class="line">        longjmp(scope-&gt;current_try-&gt;throw_jmp_buf, this_THROWN_ERROR.code); \</div>
+<div class="line">        AFW_ERROR_COPY(xctx-&gt;error, &amp;this_THROWN_ERROR); \</div>
+<div class="line">        longjmp(xctx-&gt;current_try-&gt;throw_jmp_buf, this_THROWN_ERROR.code); \</div>
 <div class="line">    }\</div>
-<div class="line">    scope-&gt;evaluation_stack-&gt;top = scope-&gt;evaluation_stack-&gt;first + \</div>
+<div class="line">    xctx-&gt;evaluation_stack-&gt;top = xctx-&gt;evaluation_stack-&gt;first + \</div>
 <div class="line">        this_TOP_OFFSET; \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
 <p>Ends an AFW try block. </p>
-<p>Ends a TRY bock. If error was not handled, it will be rethrown so previous try can hand it. If error was handled, the scope's error is cleared.</p>
-<p>The scope's current_try is set to its value before entering the AFW_TRY block, so errors thrown after this AFW_ENDTRY block will be handle by the previous try;</p>
+<p>Ends a TRY bock. If error was not handled, it will be rethrown so previous try can hand it. If error was handled, the xctx's error is cleared.</p>
+<p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown after this AFW_ENDTRY block will be handle by the previous try;</p>
 <p>Always follow AFW_ENDTRY with a semicolon. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00731">731</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
@@ -487,7 +487,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <p>Macro used to test if error-&gt;code is not afw_error_code_none. <br  />
 </p>
-<p>This macro should normally only be used when a scope is not available. AFW_THROW related macros should be used instead. </p>
+<p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00212">212</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -605,7 +605,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><!-- fragment -->
 <p>Always executed regardless of error. </p>
 <p>The body of AFW_FINALLY is executed after the body of the AFW_TRY and bodies of AFW_CATCH* macros, regardless of whether an error has occurred.</p>
-<p>The scope's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_FINALLY block will be handle by the previous try; </p>
+<p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_FINALLY block will be handle by the previous try; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00706">706</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -649,14 +649,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
       </table>
 </div><div class="memdoc">
 <p>Macro used to test if error-&gt;code is afw_error_code_none.</p>
-<p>This macro should normally only be used when a scope is not available. AFW_THROW related macros should be used instead. </p>
+<p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00204">204</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
-<a id="ga4307879fc2403ef5c17f83bdbc805644"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4307879fc2403ef5c17f83bdbc805644">&#9670;&nbsp;</a></span>AFW_THROW</h2>
+<a id="ga51268c26074993b0c3fe26c57f565cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51268c26074993b0c3fe26c57f565cb2">&#9670;&nbsp;</a></span>AFW_THROW</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -665,20 +665,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="memname">#define AFW_THROW</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope</td><td>)</td>
-          <td>&#160;&#160;&#160;    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (scope)-&gt;error-&gt;code)</td>
+          <td class="paramname">xctx</td><td>)</td>
+          <td>&#160;&#160;&#160;    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (xctx)-&gt;error-&gt;code)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Macro used to throw an error. The error should already be set using macro AFW_SET_ERROR().</p>
-<p>Always follow with a semicolon ( <a class="el" href="group__afw__error.html#ga4307879fc2403ef5c17f83bdbc805644">AFW_THROW(scope)</a>; ). </p>
+<p>Always follow with a semicolon ( <a class="el" href="group__afw__error.html#ga51268c26074993b0c3fe26c57f565cb2">AFW_THROW(xctx)</a>; ). </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00275">275</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
-<a id="ga2bd3059b11c5930fdaf467e5e262d335"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2bd3059b11c5930fdaf467e5e262d335">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_FZ</h2>
+<a id="gad6b83c7c50a397cdf8d0eb02a4bb9142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6b83c7c50a397cdf8d0eb02a4bb9142">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_FZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -693,7 +693,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope, </td>
+          <td class="paramname">xctx, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -716,16 +716,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_fz(afw_error_code_ ## code, \</div>
-<div class="line">        footprint.source_z, scope, format_z, __VA_ARGS__); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, xctx, format_z, __VA_ARGS__); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and 0 rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">line_number</td><td>of footprint </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">...</td><td>for format_z</td></tr>
   </table>
@@ -737,8 +737,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga6e6408ec02e72a8d83d94b3ebe52b2b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6e6408ec02e72a8d83d94b3ebe52b2b3">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_FZ</h2>
+<a id="gae63a7b560e6b8b10bb003d0c84bf8e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae63a7b560e6b8b10bb003d0c84bf8e3c">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_FZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -765,7 +765,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope, </td>
+          <td class="paramname">xctx, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -789,18 +789,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_fz(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        footprint.source_z, scope, format_z, __VA_ARGS__); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, xctx, format_z, __VA_ARGS__); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">line_number</td><td>of footprint </td></tr>
     <tr><td class="paramname">rv_source_id</td><td>to append to AFW_ERROR_RV_SOURCE_ID_Z_ </td></tr>
     <tr><td class="paramname">rv</td><td>associated with rv_source_id </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">...</td><td>for format_z</td></tr>
   </table>
@@ -812,8 +812,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="gaf0b1fb49a2310141eb29d8970368adf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf0b1fb49a2310141eb29d8970368adf9">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_VZ</h2>
+<a id="ga87fcda9c32759a0cf8975ecc4325d1d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga87fcda9c32759a0cf8975ecc4325d1d5">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_VZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -852,7 +852,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -864,11 +864,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_vz(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        footprint.source_z, format_z, ap, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, format_z, ap, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
@@ -877,7 +877,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
     <tr><td class="paramname">rv</td><td>associated with rv_source_id </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">ap</td><td>arguments for format_z </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -886,8 +886,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="gaa8f4297701a9ee40ffd592a79626f266"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa8f4297701a9ee40ffd592a79626f266">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_Z</h2>
+<a id="gad674f6e9ef05dcc2a8965d8e0fd12c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad674f6e9ef05dcc2a8965d8e0fd12c3a">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_RV_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -920,7 +920,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -932,11 +932,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_z(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        footprint.source_z, message_z, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, message_z, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
@@ -944,7 +944,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
     <tr><td class="paramname">rv_source_id</td><td>to append to AFW_ERROR_RV_SOURCE_ID_Z_ </td></tr>
     <tr><td class="paramname">rv</td><td>associated with rv_source_id_z </td></tr>
     <tr><td class="paramname">message_z</td><td>error message. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -954,8 +954,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga0fd4774d52f7d3257a570f5d251edbf5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0fd4774d52f7d3257a570f5d251edbf5">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_VZ</h2>
+<a id="gaf3591472c315fb8c1710411e3f36953e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3591472c315fb8c1710411e3f36953e">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_VZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -982,7 +982,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -993,18 +993,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_vz(afw_error_code_ ## code, \</div>
-<div class="line">        footprint.source_z, format_z, ap, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, format_z, ap, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and 0 rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">line_number</td><td>of footprint </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">ap</td><td>arguments for format_z </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1014,8 +1014,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga5022b203c8ee89f748533a65c00ed52a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5022b203c8ee89f748533a65c00ed52a">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_Z</h2>
+<a id="gaa5b59a23efc356cd080466d919056673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa5b59a23efc356cd080466d919056673">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FOOTPRINT_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1036,7 +1036,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1047,16 +1047,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_z(afw_error_code_ ## code, \</div>
-<div class="line">        footprint.source_z, message_z, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        footprint.source_z, message_z, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope using line number in footprint then throw it. </p>
+<p>Macro used to set error and 0 rv in xctx using line number in footprint then throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">message_z</td><td>error message. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1066,8 +1066,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga382b6d0b1dad3d4654d2de5b7cc07732"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga382b6d0b1dad3d4654d2de5b7cc07732">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FZ</h2>
+<a id="ga86c7285b0589f9df4f54ba939fec8f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga86c7285b0589f9df4f54ba939fec8f92">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_FZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1082,7 +1082,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope, </td>
+          <td class="paramname">xctx, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1105,15 +1105,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_fz(afw_error_code_ ## code, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, scope, format_z, __VA_ARGS__); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, xctx, format_z, __VA_ARGS__); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope and throw it. </p>
+<p>Macro used to set error and 0 rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">...</td><td>for format_z</td></tr>
   </table>
@@ -1125,8 +1125,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga5f5c17b168faa2fe169438f57570adfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5f5c17b168faa2fe169438f57570adfe">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_FZ</h2>
+<a id="gaa65326c714bf0457b01e6600a5c43867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa65326c714bf0457b01e6600a5c43867">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_FZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1153,7 +1153,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope, </td>
+          <td class="paramname">xctx, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1177,17 +1177,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_fz(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, scope, format_z, __VA_ARGS__); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, xctx, format_z, __VA_ARGS__); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope and throw it. </p>
+<p>Macro used to set error and rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">rv_source_id</td><td>to append to AFW_ERROR_RV_SOURCE_ID_Z_ </td></tr>
     <tr><td class="paramname">rv</td><td>associated with rv_source_id </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">...</td><td>for format_z</td></tr>
   </table>
@@ -1199,8 +1199,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga7e48879347d6b87b0caa8d099a1c9407"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7e48879347d6b87b0caa8d099a1c9407">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_VZ</h2>
+<a id="ga43a4b105a0c0eb64253f358eb395c362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43a4b105a0c0eb64253f358eb395c362">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_VZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1239,7 +1239,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1251,11 +1251,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_vz(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, format_z, ap, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, format_z, ap, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope and throw it. </p>
+<p>Macro used to set error and rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
@@ -1263,7 +1263,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
     <tr><td class="paramname">rv</td><td>associated with rv_source_id </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">ap</td><td>arguments for format_z </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1272,8 +1272,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="gaa7d98ebac6b5ef3b64bbcbbb8f76c445"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa7d98ebac6b5ef3b64bbcbbb8f76c445">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_Z</h2>
+<a id="ga6e989df174e149c384023e57f18b22f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6e989df174e149c384023e57f18b22f7">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_RV_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1306,7 +1306,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1318,18 +1318,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_rv_set_z(afw_error_code_ ## code, \</div>
 <div class="line">        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message_z, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message_z, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and rv in scope and throw it. </p>
+<p>Macro used to set error and rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">rv_source_id</td><td>to append to AFW_ERROR_RV_SOURCE_ID_Z_ </td></tr>
     <tr><td class="paramname">rv</td><td>associated with rv_source_id_z </td></tr>
     <tr><td class="paramname">message_z</td><td>error message. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1339,8 +1339,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga879a58d36d6b5f89cfb1ff7cc5ab5ac8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga879a58d36d6b5f89cfb1ff7cc5ab5ac8">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_VZ</h2>
+<a id="ga70e5cbf796ad3caf676f65fbbfb3eee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70e5cbf796ad3caf676f65fbbfb3eee9">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_VZ</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1367,7 +1367,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1378,17 +1378,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_vz(afw_error_code_ ## code, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, format_z, ap, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, format_z, ap, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope and throw it. </p>
+<p>Macro used to set error and 0 rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">format_z</td><td>format for error message </td></tr>
     <tr><td class="paramname">ap</td><td>arguments for format_z </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1398,8 +1398,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga5a711cdfb9990f4d2b628e8288815457"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5a711cdfb9990f4d2b628e8288815457">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_Z</h2>
+<a id="gae3ef33256454849b39a6e9710f519c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3ef33256454849b39a6e9710f519c8b">&#9670;&nbsp;</a></span>AFW_THROW_ERROR_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1420,7 +1420,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope&#160;</td>
+          <td class="paramname">xctx&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1431,16 +1431,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_z(afw_error_code_ ## code, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message_z, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message_z, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_ ## code)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Macro used to set error and 0 rv in scope and throw it. </p>
+<p>Macro used to set error and 0 rv in xctx and throw it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>to be appended to afw_error_code_ </td></tr>
     <tr><td class="paramname">message_z</td><td>error message. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1450,8 +1450,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga00e138d0fe43a61dccd4fff158645d14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga00e138d0fe43a61dccd4fff158645d14">&#9670;&nbsp;</a></span>AFW_THROW_MEMORY_ERROR</h2>
+<a id="ga4b46e55082b99db6845a23983f9ade17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b46e55082b99db6845a23983f9ade17">&#9670;&nbsp;</a></span>AFW_THROW_MEMORY_ERROR</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1460,17 +1460,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
           <td class="memname">#define AFW_THROW_MEMORY_ERROR</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">scope</td><td>)</td>
+          <td class="paramname">xctx</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">    afw_error_set_z(afw_error_code_memory, \</div>
-<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, <span class="stringliteral">&quot;Memory error&quot;</span>, scope); \</div>
-<div class="line">    longjmp(((scope)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_memory)); \</div>
+<div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, <span class="stringliteral">&quot;Memory error&quot;</span>, xctx); \</div>
+<div class="line">    longjmp(((xctx)-&gt;current_try-&gt;throw_jmp_buf), (afw_error_code_memory)); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-</div><!-- fragment --><p>Macro used to set memory error in scope and throw it.</p>
+</div><!-- fragment --><p>Macro used to set memory error in xctx and throw it.</p>
 <p>Always follow with a semicolon; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00503">503</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
@@ -1536,7 +1536,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">    longjmp((unhandled_error)-&gt;throw_jmp_buf, afw_error_code_ ##_CODE); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0);</div>
 </div><!-- fragment --><p>Macro used to set error and return.</p>
-<p>This macro should normally only be used when a scope is not available. AFW_THROW related macros should be used instead. </p>
+<p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00186">186</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -1561,14 +1561,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">    afw_boolean_t this_ERROR_OCCURRED = <span class="keyword">false</span>; \</div>
 <div class="line">    afw_boolean_t this_ERROR_CAUGHT = <span class="keyword">false</span>; \</div>
 <div class="line">    AFW_POSSIBLY_UNUSED_VARIABLE <a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> this_FINALLY_ENTERED = <span class="keyword">false</span>; \</div>
-<div class="line">    this_TRY.prev = scope-&gt;current_try;\</div>
-<div class="line">    scope-&gt;current_try = &amp;this_TRY;\</div>
-<div class="line">    this_TOP_OFFSET = scope-&gt;evaluation_stack-&gt;top - \</div>
-<div class="line">        scope-&gt;evaluation_stack-&gt;first; \</div>
+<div class="line">    this_TRY.prev = xctx-&gt;current_try;\</div>
+<div class="line">    xctx-&gt;current_try = &amp;this_TRY;\</div>
+<div class="line">    this_TOP_OFFSET = xctx-&gt;evaluation_stack-&gt;top - \</div>
+<div class="line">        xctx-&gt;evaluation_stack-&gt;first; \</div>
 <div class="line">    do { \</div>
 <div class="line">        if (setjmp(this_TRY.throw_jmp_buf) != 0) { \</div>
-<div class="line">            AFW_ERROR_COPY(&amp;this_THROWN_ERROR, scope-&gt;error); \</div>
-<div class="line">            AFW_ERROR_CLEAR_PARTIAL(scope-&gt;error); \</div>
+<div class="line">            AFW_ERROR_COPY(&amp;this_THROWN_ERROR, xctx-&gt;error); \</div>
+<div class="line">            AFW_ERROR_CLEAR_PARTIAL(xctx-&gt;error); \</div>
 <div class="line">            if (this_ERROR_OCCURRED) { \</div>
 <div class="line">                this_THROWN_ERROR.recursive_error = <span class="keyword">true</span>; \</div>
 <div class="line">                this_ERROR_CAUGHT = <span class="keyword">false</span>; \</div>
@@ -1581,13 +1581,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
 </div><!-- fragment -->
 <p>Begin an AFW TRY block. </p>
-<p>The name of the current scope must be named scope.</p>
+<p>The variable name of the current xctx must be named xctx.</p>
 <p>AFW_ERROR_THROWN can be used to access a copy of the thrown error struct (const afw_error_t *) in AFW_CATCH and AFW_CATCH_UNHANDLED.</p>
 <p>Variable names this_ERROR_COPIED, this_THROWN_ERROR, this_TOP_OFFSET, and this_TRY are used internal by AFW TRY block macros.</p>
 <p>&mdash; WARNING &mdash;</p>
-<p>DO NOT use return, goto, or any other means of exiting TRY block, TRY_CATCH* blocks or AFW_FINALLY block, other than the associated AFW_ macros or the scope's current_try will not be set correctly and AFW_FINALLY might be skipped.</p>
+<p>DO NOT use return, goto, or any other means of exiting TRY block, TRY_CATCH* blocks or AFW_FINALLY block, other than the associated AFW_ macros or the xctx's current_try will not be set correctly and AFW_FINALLY might be skipped.</p>
 <p>AFW_TRY and associated macros are used as follows:</p>
-<p>AFW_TRY { (Required) Beginning of TRY block, where "scope" is the current scope's pointer variable.</p>
+<p>AFW_TRY { (Required) Beginning of TRY block, where "xctx" is the current xctx's pointer variable.</p>
 <p>... Body of TRY.</p>
 <p>break; (optional) goes to AFW_FINALLY if present or ENDTRY if not.</p>
 <p>}</p>
@@ -1607,7 +1607,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>... Body of FINALLY is executed after the body of the AFW_TRY and bodies of AFW_CATCH* macros, regardless of whether an error has occurred.</p>
 <p>break; (optional) goes to AFW_ENDTRY</p>
 <p>}</p>
-<p>AFW_ENDTRY; (Required) End of TRY block. The scope's current_try will be set to its value before entering the TRY block. If error is unhandled, it will be rethrown. </p>
+<p>AFW_ENDTRY; (Required) End of TRY block. The xctx's current_try will be set to its value before entering the TRY block. If error is unhandled, it will be rethrown. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00638">638</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
@@ -1632,8 +1632,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gae32806ff98e44d7036b7455eb067fb3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae32806ff98e44d7036b7455eb067fb3a">&#9670;&nbsp;</a></span>afw_error_add_to_object()</h2>
+<a id="ga73ad8c533d788edef17331df833ecbd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73ad8c533d788edef17331df833ecbd0">&#9670;&nbsp;</a></span>afw_error_add_to_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1653,8 +1653,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1669,11 +1669,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   <table class="params">
     <tr><td class="paramname">object</td><td>to set error properties in. </td></tr>
     <tr><td class="paramname">error</td><td>info. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>This function leaves scope-&gt;error unchanged if it is successful. </p>
+<p>This function leaves xctx-&gt;error unchanged if it is successful. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l00862">862</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
 
@@ -1766,8 +1766,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="gad718e404afbd0aba1d741acf066105cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad718e404afbd0aba1d741acf066105cc">&#9670;&nbsp;</a></span>afw_error_message()</h2>
+<a id="ga77d451cded4527575d843f2047f04c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77d451cded4527575d843f2047f04c8c">&#9670;&nbsp;</a></span>afw_error_message()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1775,8 +1775,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="memname">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a>* afw_error_message </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>, </td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1798,25 +1798,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
       </table>
 </div><div class="memdoc">
 
-<p>Build message in scope error message_wa and return pointer. </p>
+<p>Build message in xctx error message_wa and return pointer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>Caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
     <tr><td class="paramname">format</td><td>Format string. </td></tr>
     <tr><td class="paramname">...</td><td>List of arguments need by format string. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>pointer to message_wa in scope-&gt;error.</dd></dl>
-<p>This function leaves scope-&gt;error unchanged if it is successful.</p>
+<dl class="section return"><dt>Returns</dt><dd>pointer to message_wa in xctx-&gt;error.</dd></dl>
+<p>This function leaves xctx-&gt;error unchanged if it is successful.</p>
 <p>This is for use with AFW_ERROR related macros for formatted message. Messages are built in error's message_wa which is pre-allocated. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l01023">1023</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
 
 </div>
 </div>
-<a id="ga46555602ea9d7023242c99041b044209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga46555602ea9d7023242c99041b044209">&#9670;&nbsp;</a></span>afw_error_message_vz()</h2>
+<a id="gaee41af3c77340ca5fe359f9e2bdf3734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee41af3c77340ca5fe359f9e2bdf3734">&#9670;&nbsp;</a></span>afw_error_message_vz()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1836,8 +1836,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1847,17 +1847,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
       </table>
 </div><div class="memdoc">
 
-<p>Build message in scope error message_wa and return pointer. </p>
+<p>Build message in xctx error message_wa and return pointer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">format</td><td>Format string. </td></tr>
     <tr><td class="paramname">ap</td><td>Argument list initialized by va_start used by format string. </td></tr>
-    <tr><td class="paramname">scope</td><td>Caller's scope. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>pointer to message_wa in scope-&gt;error.</dd></dl>
-<p>This function leaves scope-&gt;error unchanged if it is successful.</p>
+<dl class="section return"><dt>Returns</dt><dd>pointer to message_wa in xctx-&gt;error.</dd></dl>
+<p>This function leaves xctx-&gt;error unchanged if it is successful.</p>
 <p>This is for use with AFW_ERROR related macros for formatted message. Messages are built in error's message_wa which is pre-allocated. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l01012">1012</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
@@ -1904,14 +1904,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga9285cfcc099e57dd078303a637d59e93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9285cfcc099e57dd078303a637d59e93">&#9670;&nbsp;</a></span>afw_error_print_with_scope()</h2>
+<a id="ga18f1889fa42a08346cb4d033c99f8aa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18f1889fa42a08346cb4d033c99f8aa7">&#9670;&nbsp;</a></span>afw_error_print_with_xctx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int afw_error_print_with_scope </td>
+          <td class="memname">int afw_error_print_with_xctx </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>fp</em>, </td>
@@ -1931,8 +1931,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1942,13 +1942,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
       </table>
 </div><div class="memdoc">
 
-<p>Print error when scope is available. </p>
+<p>Print error when xctx is available. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fp</td><td>open FILE. </td></tr>
     <tr><td class="paramname">error</td><td>to print. </td></tr>
     <tr><td class="paramname">p</td><td>to use if needed. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1959,8 +1959,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga2ac8ddfe36603dbe32b6efda8cd21358"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2ac8ddfe36603dbe32b6efda8cd21358">&#9670;&nbsp;</a></span>afw_error_to_object()</h2>
+<a id="gad00896769cf22c89115dbac454dbfc81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad00896769cf22c89115dbac454dbfc81">&#9670;&nbsp;</a></span>afw_error_to_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1980,8 +1980,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1996,19 +1996,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   <table class="params">
     <tr><td class="paramname">error</td><td>info. </td></tr>
     <tr><td class="paramname">p</td><td>to use for object. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>object with error.</dd></dl>
-<p>This function leaves scope-&gt;error unchanged if it is successful. </p>
+<p>This function leaves xctx-&gt;error unchanged if it is successful. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l00998">998</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
 
 </div>
 </div>
-<a id="ga18cbbe76196f38e074049caf97626d45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga18cbbe76196f38e074049caf97626d45">&#9670;&nbsp;</a></span>afw_error_to_utf8()</h2>
+<a id="ga87a0429c4cc97978c39cea833e1a163a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga87a0429c4cc97978c39cea833e1a163a">&#9670;&nbsp;</a></span>afw_error_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2028,8 +2028,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2044,7 +2044,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   <table class="params">
     <tr><td class="paramname">error</td><td>struct. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2055,8 +2055,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 
 </div>
 </div>
-<a id="ga0b4113c52c2fd48bc7afa948c52acc2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0b4113c52c2fd48bc7afa948c52acc2a">&#9670;&nbsp;</a></span>afw_error_write_log()</h2>
+<a id="ga245c6a51be3e0c270da22fa888b82689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga245c6a51be3e0c270da22fa888b82689">&#9670;&nbsp;</a></span>afw_error_write_log()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2076,8 +2076,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2092,11 +2092,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   <table class="params">
     <tr><td class="paramname">priority</td><td>level. </td></tr>
     <tr><td class="paramname">error</td><td>to write. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>This function leaves scope-&gt;error unchanged if it is successful. </p>
+<p>This function leaves xctx-&gt;error unchanged if it is successful. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000096">Todo:</a></b></dt><dd>FIXME: </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l00639">639</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
@@ -2106,7 +2106,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

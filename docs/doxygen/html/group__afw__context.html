@@ -83,53 +83,53 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct used in <a class="el" href="structafw__context__cb__variable__s.html" title="Struct passed to afw_context_type_register_cb_variables()">afw_context_cb_variable_s</a>.  <a href="structafw__context__cb__variable__meta__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__context__cb__variable__s.html">afw_context_cb_variable_s</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct passed to <a class="el" href="group__afw__context.html#ga90ee29c4a924b7458624668f1c84f7da" title="Register context type id for array of current variable callbacks.">afw_context_type_register_cb_variables()</a>  <a href="structafw__context__cb__variable__s.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct passed to <a class="el" href="group__afw__context.html#ga8fc3d4e9e6e3397bc12c30379079c88c" title="Register context type id for array of current variable callbacks.">afw_context_type_register_cb_variables()</a>  <a href="structafw__context__cb__variable__s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga89657f3e34b1e9cddb75000e6600ea2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga89657f3e34b1e9cddb75000e6600ea2a">afw_context_push_cb_variables</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#ga37e2bc1f2d4297de98d22b32311725a4">afw_context_cb_variable_t</a> *const *variables, void *data, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga89657f3e34b1e9cddb75000e6600ea2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push NULL terminated list of variable callback structs.  <a href="group__afw__context.html#ga89657f3e34b1e9cddb75000e6600ea2a">More...</a><br /></td></tr>
-<tr class="separator:ga89657f3e34b1e9cddb75000e6600ea2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaffc14f79b2d3fb91c6a43a2f9a2e7540"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaffc14f79b2d3fb91c6a43a2f9a2e7540">afw_context_type_create</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *context_type_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaffc14f79b2d3fb91c6a43a2f9a2e7540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a context type object.  <a href="group__afw__context.html#gaffc14f79b2d3fb91c6a43a2f9a2e7540">More...</a><br /></td></tr>
-<tr class="separator:gaffc14f79b2d3fb91c6a43a2f9a2e7540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga031db9e152220de5bb38f52c35ac77f0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga031db9e152220de5bb38f52c35ac77f0">afw_context_type_insure_qualifier_definitions_object_exists</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga031db9e152220de5bb38f52c35ac77f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insure qualifier definitions object exists.  <a href="group__afw__context.html#ga031db9e152220de5bb38f52c35ac77f0">More...</a><br /></td></tr>
-<tr class="separator:ga031db9e152220de5bb38f52c35ac77f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaebc7a01efe88b5b2ebe13545189b2f0c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaebc7a01efe88b5b2ebe13545189b2f0c">afw_context_type_insure_variable_definitions_object_exists</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaebc7a01efe88b5b2ebe13545189b2f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insure variable definitions object exists for qualifier id.  <a href="group__afw__context.html#gaebc7a01efe88b5b2ebe13545189b2f0c">More...</a><br /></td></tr>
-<tr class="separator:gaebc7a01efe88b5b2ebe13545189b2f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae51ad01191306ba624f325beea332e6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gae51ad01191306ba624f325beea332e6b">afw_context_qualifier_definitions_merge</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *qualifier_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *definitions_to_add, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> replace_duplicates, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gae51ad01191306ba624f325beea332e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge qualifier definitions.  <a href="group__afw__context.html#gae51ad01191306ba624f325beea332e6b">More...</a><br /></td></tr>
-<tr class="separator:gae51ad01191306ba624f325beea332e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga90ee29c4a924b7458624668f1c84f7da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga90ee29c4a924b7458624668f1c84f7da">afw_context_type_register_cb_variables</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *context_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *description_z, const <a class="el" href="group__afw__common.html#ga37e2bc1f2d4297de98d22b32311725a4">afw_context_cb_variable_t</a> *const *variables, int include_mask, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga90ee29c4a924b7458624668f1c84f7da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register context type id for array of current variable callbacks.  <a href="group__afw__context.html#ga90ee29c4a924b7458624668f1c84f7da">More...</a><br /></td></tr>
-<tr class="separator:ga90ee29c4a924b7458624668f1c84f7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga906bb692aec94637e73e5cfe7ca52b55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga906bb692aec94637e73e5cfe7ca52b55">afw_context_variable_definition_add_z</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *variable_name, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source, const <a class="el" href="structafw__value__inf__s.html">afw_value_inf_t</a> *value_inf, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *label_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *description_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *data_type_parameter_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *data_type_parameter_formatted_z, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga906bb692aec94637e73e5cfe7ca52b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definition using 0 terminated label and description.  <a href="group__afw__context.html#ga906bb692aec94637e73e5cfe7ca52b55">More...</a><br /></td></tr>
-<tr class="separator:ga906bb692aec94637e73e5cfe7ca52b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2e3eaf58e42351a5c300ab508f10f3bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga2e3eaf58e42351a5c300ab508f10f3bb">afw_context_variable_definitions_add</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *definitions_to_add, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> replace_duplicates, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga2e3eaf58e42351a5c300ab508f10f3bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions.  <a href="group__afw__context.html#ga2e3eaf58e42351a5c300ab508f10f3bb">More...</a><br /></td></tr>
-<tr class="separator:ga2e3eaf58e42351a5c300ab508f10f3bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae3dcee51e0b136b6d735a62072c06c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gae3dcee51e0b136b6d735a62072c06c07">afw_context_variable_definitions_add_based_on_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gae3dcee51e0b136b6d735a62072c06c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions based on object.  <a href="group__afw__context.html#gae3dcee51e0b136b6d735a62072c06c07">More...</a><br /></td></tr>
-<tr class="separator:gae3dcee51e0b136b6d735a62072c06c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad4c3279d5636a811aa44f124a95d2cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gad4c3279d5636a811aa44f124a95d2cf6">afw_context_variable_definitions_add_based_on_object_type_id</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> include_evaluated, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gad4c3279d5636a811aa44f124a95d2cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions based on object type id.  <a href="group__afw__context.html#gad4c3279d5636a811aa44f124a95d2cf6">More...</a><br /></td></tr>
-<tr class="separator:gad4c3279d5636a811aa44f124a95d2cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9da1029b3628cddb08b4410e9754e9cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga9da1029b3628cddb08b4410e9754e9cf">afw_context_variable_definitions_compile_and_add_based_on_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ga9da1029b3628cddb08b4410e9754e9cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and add variable definitions based on <em>AdaptiveHybridProperties</em> object.  <a href="group__afw__context.html#ga9da1029b3628cddb08b4410e9754e9cf">More...</a><br /></td></tr>
-<tr class="separator:ga9da1029b3628cddb08b4410e9754e9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf359847d638bfc9a97131b7604c9ef4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaf359847d638bfc9a97131b7604c9ef4c">afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *objects, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:gaf359847d638bfc9a97131b7604c9ef4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and add variable definitions based on <em>AdaptiveHybridProperties</em> object.  <a href="group__afw__context.html#gaf359847d638bfc9a97131b7604c9ef4c">More...</a><br /></td></tr>
-<tr class="separator:gaf359847d638bfc9a97131b7604c9ef4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeec2df969dbce732faed308dc767383e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaeec2df969dbce732faed308dc767383e">afw_context_push_cb_variables</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#ga37e2bc1f2d4297de98d22b32311725a4">afw_context_cb_variable_t</a> *const *variables, void *data, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaeec2df969dbce732faed308dc767383e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push NULL terminated list of variable callback structs.  <a href="group__afw__context.html#gaeec2df969dbce732faed308dc767383e">More...</a><br /></td></tr>
+<tr class="separator:gaeec2df969dbce732faed308dc767383e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaedb813af65d2f148c1f26f215e6431b1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaedb813af65d2f148c1f26f215e6431b1">afw_context_type_create</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *context_type_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaedb813af65d2f148c1f26f215e6431b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a context type object.  <a href="group__afw__context.html#gaedb813af65d2f148c1f26f215e6431b1">More...</a><br /></td></tr>
+<tr class="separator:gaedb813af65d2f148c1f26f215e6431b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac7f7d48f99ae28254af0945aa9a6fca"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaac7f7d48f99ae28254af0945aa9a6fca">afw_context_type_insure_qualifier_definitions_object_exists</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaac7f7d48f99ae28254af0945aa9a6fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insure qualifier definitions object exists.  <a href="group__afw__context.html#gaac7f7d48f99ae28254af0945aa9a6fca">More...</a><br /></td></tr>
+<tr class="separator:gaac7f7d48f99ae28254af0945aa9a6fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd338ee14719baf4f7de054a39db8e69"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gabd338ee14719baf4f7de054a39db8e69">afw_context_type_insure_variable_definitions_object_exists</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gabd338ee14719baf4f7de054a39db8e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insure variable definitions object exists for qualifier id.  <a href="group__afw__context.html#gabd338ee14719baf4f7de054a39db8e69">More...</a><br /></td></tr>
+<tr class="separator:gabd338ee14719baf4f7de054a39db8e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f06df589399eac4b48f05a31ad50e0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga3f06df589399eac4b48f05a31ad50e0d">afw_context_qualifier_definitions_merge</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *qualifier_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *definitions_to_add, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> replace_duplicates, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga3f06df589399eac4b48f05a31ad50e0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge qualifier definitions.  <a href="group__afw__context.html#ga3f06df589399eac4b48f05a31ad50e0d">More...</a><br /></td></tr>
+<tr class="separator:ga3f06df589399eac4b48f05a31ad50e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8fc3d4e9e6e3397bc12c30379079c88c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga8fc3d4e9e6e3397bc12c30379079c88c">afw_context_type_register_cb_variables</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *context_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#gaa6086794bcf1454d3682a7b3360f5d22">afw_utf8_octet_t</a> *description_z, const <a class="el" href="group__afw__common.html#ga37e2bc1f2d4297de98d22b32311725a4">afw_context_cb_variable_t</a> *const *variables, int include_mask, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga8fc3d4e9e6e3397bc12c30379079c88c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register context type id for array of current variable callbacks.  <a href="group__afw__context.html#ga8fc3d4e9e6e3397bc12c30379079c88c">More...</a><br /></td></tr>
+<tr class="separator:ga8fc3d4e9e6e3397bc12c30379079c88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga532b4a3087b6ae36f9dbab3f29967e0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga532b4a3087b6ae36f9dbab3f29967e0d">afw_context_variable_definition_add_z</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *variable_name, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source, const <a class="el" href="structafw__value__inf__s.html">afw_value_inf_t</a> *value_inf, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *label_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *description_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *data_type_parameter_z, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *data_type_parameter_formatted_z, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga532b4a3087b6ae36f9dbab3f29967e0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definition using 0 terminated label and description.  <a href="group__afw__context.html#ga532b4a3087b6ae36f9dbab3f29967e0d">More...</a><br /></td></tr>
+<tr class="separator:ga532b4a3087b6ae36f9dbab3f29967e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga200af75afcaeac95ee8955f96f3782ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga200af75afcaeac95ee8955f96f3782ca">afw_context_variable_definitions_add</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *definitions_to_add, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> replace_duplicates, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga200af75afcaeac95ee8955f96f3782ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions.  <a href="group__afw__context.html#ga200af75afcaeac95ee8955f96f3782ca">More...</a><br /></td></tr>
+<tr class="separator:ga200af75afcaeac95ee8955f96f3782ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga522eb8679be88a1fccd8bcc9b2d737c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#ga522eb8679be88a1fccd8bcc9b2d737c1">afw_context_variable_definitions_add_based_on_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga522eb8679be88a1fccd8bcc9b2d737c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions based on object.  <a href="group__afw__context.html#ga522eb8679be88a1fccd8bcc9b2d737c1">More...</a><br /></td></tr>
+<tr class="separator:ga522eb8679be88a1fccd8bcc9b2d737c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae456ad50f7e37a0fed015aee14e7e774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gae456ad50f7e37a0fed015aee14e7e774">afw_context_variable_definitions_add_based_on_object_type_id</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *variable_definitions, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> include_evaluated, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gae456ad50f7e37a0fed015aee14e7e774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add variable definitions based on object type id.  <a href="group__afw__context.html#gae456ad50f7e37a0fed015aee14e7e774">More...</a><br /></td></tr>
+<tr class="separator:gae456ad50f7e37a0fed015aee14e7e774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2315ac71f8a1b08a6a45e819d9b049c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gab2315ac71f8a1b08a6a45e819d9b049c">afw_context_variable_definitions_compile_and_add_based_on_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *qualifier_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gab2315ac71f8a1b08a6a45e819d9b049c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and add variable definitions based on <em>AdaptiveHybridProperties</em> object.  <a href="group__afw__context.html#gab2315ac71f8a1b08a6a45e819d9b049c">More...</a><br /></td></tr>
+<tr class="separator:gab2315ac71f8a1b08a6a45e819d9b049c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa039041451de9936305613c808a9afc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__context.html#gaa039041451de9936305613c808a9afc1">afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *context_type_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *objects, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gaa039041451de9936305613c808a9afc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and add variable definitions based on <em>AdaptiveHybridProperties</em> object.  <a href="group__afw__context.html#gaa039041451de9936305613c808a9afc1">More...</a><br /></td></tr>
+<tr class="separator:gaa039041451de9936305613c808a9afc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Adaptive Framework Context. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga89657f3e34b1e9cddb75000e6600ea2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga89657f3e34b1e9cddb75000e6600ea2a">&#9670;&nbsp;</a></span>afw_context_push_cb_variables()</h2>
+<a id="gaeec2df969dbce732faed308dc767383e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeec2df969dbce732faed308dc767383e">&#9670;&nbsp;</a></span>afw_context_push_cb_variables()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,8 +161,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -179,7 +179,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">variables</td><td>NULL terminated list. </td></tr>
     <tr><td class="paramname">data</td><td>to pass to callbacks. Usually ctx. </td></tr>
     <tr><td class="paramname">p</td><td>to use. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,8 +188,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gae51ad01191306ba624f325beea332e6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae51ad01191306ba624f325beea332e6b">&#9670;&nbsp;</a></span>afw_context_qualifier_definitions_merge()</h2>
+<a id="ga3f06df589399eac4b48f05a31ad50e0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3f06df589399eac4b48f05a31ad50e0d">&#9670;&nbsp;</a></span>afw_context_qualifier_definitions_merge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,8 +215,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -232,7 +232,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">qualifier_definitions</td><td>preallocated object. </td></tr>
     <tr><td class="paramname">definitions_to_add.</td><td></td></tr>
     <tr><td class="paramname">replace_duplicates</td><td>true will replace variables with same name. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -241,8 +241,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaffc14f79b2d3fb91c6a43a2f9a2e7540"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaffc14f79b2d3fb91c6a43a2f9a2e7540">&#9670;&nbsp;</a></span>afw_context_type_create()</h2>
+<a id="gaedb813af65d2f148c1f26f215e6431b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaedb813af65d2f148c1f26f215e6431b1">&#9670;&nbsp;</a></span>afw_context_type_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,8 +262,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -278,7 +278,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">context_type_id.</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use for context. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -288,8 +288,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga031db9e152220de5bb38f52c35ac77f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga031db9e152220de5bb38f52c35ac77f0">&#9670;&nbsp;</a></span>afw_context_type_insure_qualifier_definitions_object_exists()</h2>
+<a id="gaac7f7d48f99ae28254af0945aa9a6fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaac7f7d48f99ae28254af0945aa9a6fca">&#9670;&nbsp;</a></span>afw_context_type_insure_qualifier_definitions_object_exists()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -303,8 +303,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -318,7 +318,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">context_type_object.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -329,8 +329,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaebc7a01efe88b5b2ebe13545189b2f0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaebc7a01efe88b5b2ebe13545189b2f0c">&#9670;&nbsp;</a></span>afw_context_type_insure_variable_definitions_object_exists()</h2>
+<a id="gabd338ee14719baf4f7de054a39db8e69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabd338ee14719baf4f7de054a39db8e69">&#9670;&nbsp;</a></span>afw_context_type_insure_variable_definitions_object_exists()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -350,8 +350,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -366,7 +366,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">context_type_object.</td><td></td></tr>
     <tr><td class="paramname">qualifier_id.</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -377,8 +377,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga90ee29c4a924b7458624668f1c84f7da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga90ee29c4a924b7458624668f1c84f7da">&#9670;&nbsp;</a></span>afw_context_type_register_cb_variables()</h2>
+<a id="ga8fc3d4e9e6e3397bc12c30379079c88c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fc3d4e9e6e3397bc12c30379079c88c">&#9670;&nbsp;</a></span>afw_context_type_register_cb_variables()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -416,8 +416,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -435,7 +435,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">description_z</td><td>of context. </td></tr>
     <tr><td class="paramname">variables</td><td>is a NULL terminated array of afw_context_cb_variable_t *. </td></tr>
     <tr><td class="paramname">include_mask</td><td>logical anded with entry's include_mask determines if entry should be included. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
@@ -445,8 +445,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga906bb692aec94637e73e5cfe7ca52b55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga906bb692aec94637e73e5cfe7ca52b55">&#9670;&nbsp;</a></span>afw_context_variable_definition_add_z()</h2>
+<a id="ga532b4a3087b6ae36f9dbab3f29967e0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga532b4a3087b6ae36f9dbab3f29967e0d">&#9670;&nbsp;</a></span>afw_context_variable_definition_add_z()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -502,8 +502,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -524,7 +524,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">description_z</td><td></td></tr>
     <tr><td class="paramname">data_type_parameter_z</td><td>or NULL </td></tr>
     <tr><td class="paramname">data_type_parameter_formatted_z</td><td>or NULL </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -533,8 +533,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga2e3eaf58e42351a5c300ab508f10f3bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2e3eaf58e42351a5c300ab508f10f3bb">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add()</h2>
+<a id="ga200af75afcaeac95ee8955f96f3782ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga200af75afcaeac95ee8955f96f3782ca">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -560,8 +560,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -577,7 +577,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">variable_definitions</td><td>object. </td></tr>
     <tr><td class="paramname">definitions_to_add.</td><td></td></tr>
     <tr><td class="paramname">replace_duplicates</td><td>true will replace variables with same name. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -586,8 +586,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gae3dcee51e0b136b6d735a62072c06c07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae3dcee51e0b136b6d735a62072c06c07">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add_based_on_object()</h2>
+<a id="ga522eb8679be88a1fccd8bcc9b2d737c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga522eb8679be88a1fccd8bcc9b2d737c1">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add_based_on_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -607,8 +607,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -623,24 +623,24 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">variable_definitions</td><td>preallocated object. </td></tr>
     <tr><td class="paramname">object</td><td>used as basis for new definitions. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>See <a class="el" href="group__afw__scope.html#ga1a3d3926572c72c03b5b439b257654b7" title="Push qualifier on to stack.">afw_scope_push_qualifier()</a> for use pattern.</p>
+<p>See <a class="el" href="group__afw__xctx.html#gaf1d740d1b17f4e44229864292018fe22" title="Push qualifier on to stack.">afw_xctx_push_qualifier()</a> for use pattern.</p>
 <p>Any object properties that have a data type whose value must be compiled will be ignored, so compile the property that should be included before this call. These compiled values will use annotation (if present) and then the property type associatedPropertyType to produce the variable definition. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000077">Todo:</a></b></dt><dd>FIXME: Should be way to get one that is already composite. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000078">Todo:</a></b></dt><dd>FIXME: How should this be handled? </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000079">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. Use dataTypeParameter. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000080">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. pt = afw_object_old_get_property_as_object(pt, &amp;afw_s_relatedPropertyType, scope); </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000080">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. pt = afw_object_old_get_property_as_object(pt, &amp;afw_s_relatedPropertyType, xctx); </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000081">Todo:</a></b></dt><dd>FIXME: Think about dataType override more. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__context_8c_source.html#l00315">315</a> of file <a class="el" href="afw__context_8c_source.html">afw_context.c</a>.</p>
 
 </div>
 </div>
-<a id="gad4c3279d5636a811aa44f124a95d2cf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad4c3279d5636a811aa44f124a95d2cf6">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add_based_on_object_type_id()</h2>
+<a id="gae456ad50f7e37a0fed015aee14e7e774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae456ad50f7e37a0fed015aee14e7e774">&#9670;&nbsp;</a></span>afw_context_variable_definitions_add_based_on_object_type_id()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -666,8 +666,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -683,21 +683,21 @@ Functions</h2></td></tr>
     <tr><td class="paramname">variable_definitions</td><td>preallocated object. </td></tr>
     <tr><td class="paramname">object_type_id.</td><td></td></tr>
     <tr><td class="paramname">include_evaluated</td><td>determines if variables with an evaluated data type should be included. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller.</td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
   </table>
   </dd>
 </dl>
-<p>See <a class="el" href="group__afw__scope.html#ga1a3d3926572c72c03b5b439b257654b7" title="Push qualifier on to stack.">afw_scope_push_qualifier()</a> for use pattern. </p>
+<p>See <a class="el" href="group__afw__xctx.html#gaf1d740d1b17f4e44229864292018fe22" title="Push qualifier on to stack.">afw_xctx_push_qualifier()</a> for use pattern. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000082">Todo:</a></b></dt><dd>FIXME: Should be way to get one that is already composite. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000083">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. Use dataTypeParameter. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000084">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. related_pt = afw_object_old_get_property_as_object( pt, &amp;afw_s_relatedPropertyType, scope); </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000084">Todo:</a></b></dt><dd>FIXME: NOW relatedPropertyType no longer exists. related_pt = afw_object_old_get_property_as_object( pt, &amp;afw_s_relatedPropertyType, xctx); </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__context_8c_source.html#l00433">433</a> of file <a class="el" href="afw__context_8c_source.html">afw_context.c</a>.</p>
 
 </div>
 </div>
-<a id="ga9da1029b3628cddb08b4410e9754e9cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9da1029b3628cddb08b4410e9754e9cf">&#9670;&nbsp;</a></span>afw_context_variable_definitions_compile_and_add_based_on_object()</h2>
+<a id="gab2315ac71f8a1b08a6a45e819d9b049c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab2315ac71f8a1b08a6a45e819d9b049c">&#9670;&nbsp;</a></span>afw_context_variable_definitions_compile_and_add_based_on_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -729,8 +729,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -747,7 +747,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">object</td><td>used as basis for new definitions. </td></tr>
     <tr><td class="paramname">qualifier_id.</td><td></td></tr>
     <tr><td class="paramname">source_location</td><td>to associate with compiled string or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -756,8 +756,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaf359847d638bfc9a97131b7604c9ef4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf359847d638bfc9a97131b7604c9ef4c">&#9670;&nbsp;</a></span>afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object()</h2>
+<a id="gaa039041451de9936305613c808a9afc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa039041451de9936305613c808a9afc1">&#9670;&nbsp;</a></span>afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -783,8 +783,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -800,7 +800,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">context_type_object.</td><td></td></tr>
     <tr><td class="paramname">objects</td><td>used as basis for new definitions. </td></tr>
     <tr><td class="paramname">source_location</td><td>to associate with compiled string or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -812,7 +812,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

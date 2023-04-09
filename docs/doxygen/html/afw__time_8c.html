@@ -107,119 +107,119 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8478a99caec53c94e1a67441d5355900"><td class="memItemLeft" align="right" valign="top"><a id="a8478a99caec53c94e1a67441d5355900"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_dateTime_tm_set</b> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, apr_time_exp_t *tm, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a8478a99caec53c94e1a67441d5355900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d17a50034ce1850ec92e6b029ae69b7"><td class="memItemLeft" align="right" valign="top"><a id="a1d17a50034ce1850ec92e6b029ae69b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_time_tm_set</b> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, apr_time_exp_t *tm, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a1d17a50034ce1850ec92e6b029ae69b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57d2c911b5a92a085f1ee3dca934f89c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a57d2c911b5a92a085f1ee3dca934f89c">impl_set_date_no_time_zone</a> (<a class="el" href="group__afw__common.html#gafc91acb81ec956c7cdacf94195036ebd">afw_date_no_time_zone_t</a> *date, int year, int month, int day, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:a57d2c911b5a92a085f1ee3dca934f89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0d6eda8edcd4f7c840b07723fbfae8e"><td class="memItemLeft" align="right" valign="top"><a id="ae0d6eda8edcd4f7c840b07723fbfae8e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_no_time_zone</b> (<a class="el" href="group__afw__common.html#ga2623e83768d418a5625bd4eb48728672">afw_time_no_time_zone_t</a> *time, int hour, int minute, int second, int microsecond, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ae0d6eda8edcd4f7c840b07723fbfae8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0ec2073a161d3464f397c5e4506fe9b"><td class="memItemLeft" align="right" valign="top"><a id="ac0ec2073a161d3464f397c5e4506fe9b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b> (<a class="el" href="group__afw__common.html#ga7e6246da7e6d57d4c5832b6533daa235">afw_time_zone_t</a> *time_zone, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ac0ec2073a161d3464f397c5e4506fe9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55f3a549c4677ade6d19d18f5fadb97a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a55f3a549c4677ade6d19d18f5fadb97a">afw_date_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, int year, int month, int day, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a55f3a549c4677ade6d19d18f5fadb97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_date_t from parts.  <a href="afw__time_8c.html#a55f3a549c4677ade6d19d18f5fadb97a">More...</a><br /></td></tr>
-<tr class="separator:a55f3a549c4677ade6d19d18f5fadb97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaf606b6b4ab6b1e381cccb3ee2be49b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aaaf606b6b4ab6b1e381cccb3ee2be49b">afw_date_create_from_parts</a> (int year, int month, int day, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aaaf606b6b4ab6b1e381cccb3ee2be49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_date_t from parts in specific pool.  <a href="afw__time_8c.html#aaaf606b6b4ab6b1e381cccb3ee2be49b">More...</a><br /></td></tr>
-<tr class="separator:aaaf606b6b4ab6b1e381cccb3ee2be49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1aff899a705a3fbdf7a91df20fc4773"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ac1aff899a705a3fbdf7a91df20fc4773">afw_dateTime_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, int year, int month, int day, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ac1aff899a705a3fbdf7a91df20fc4773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dateTime_t from parts.  <a href="afw__time_8c.html#ac1aff899a705a3fbdf7a91df20fc4773">More...</a><br /></td></tr>
-<tr class="separator:ac1aff899a705a3fbdf7a91df20fc4773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeba7e7ef3e5519d6fedff1bab7413a2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aeba7e7ef3e5519d6fedff1bab7413a2f">afw_dateTime_create_from_parts</a> (int year, int month, int day, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aeba7e7ef3e5519d6fedff1bab7413a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dateTime_t from parts in specific pool.  <a href="afw__time_8c.html#aeba7e7ef3e5519d6fedff1bab7413a2f">More...</a><br /></td></tr>
-<tr class="separator:aeba7e7ef3e5519d6fedff1bab7413a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454fb43b934523b1953c0f7312a7134b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a454fb43b934523b1953c0f7312a7134b">afw_dateTime_set_from_apr_time</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, apr_time_t apr_time, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a454fb43b934523b1953c0f7312a7134b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dateTime_t from apr_time.  <a href="afw__time_8c.html#a454fb43b934523b1953c0f7312a7134b">More...</a><br /></td></tr>
-<tr class="separator:a454fb43b934523b1953c0f7312a7134b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb789347bb596278126e6e62e96c301f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#abb789347bb596278126e6e62e96c301f">afw_dateTime_create_from_apr_time</a> (apr_time_t apr_time, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:abb789347bb596278126e6e62e96c301f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dateTime_t from apr time.  <a href="afw__time_8c.html#abb789347bb596278126e6e62e96c301f">More...</a><br /></td></tr>
-<tr class="separator:abb789347bb596278126e6e62e96c301f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf869a9bbc272d1368ad1696972da9ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#acf869a9bbc272d1368ad1696972da9ad">afw_dayTimeDuration_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, int days, int hours, int minutes, int seconds, int microseconds, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:acf869a9bbc272d1368ad1696972da9ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dayTimeDuration_t from parts.  <a href="afw__time_8c.html#acf869a9bbc272d1368ad1696972da9ad">More...</a><br /></td></tr>
-<tr class="separator:acf869a9bbc272d1368ad1696972da9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf7e948106bc7556f9bc2709efdef018"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aaf7e948106bc7556f9bc2709efdef018">afw_dayTimeDuration_create_from_parts</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> days, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> hours, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> minutes, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> seconds, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> microseconds, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aaf7e948106bc7556f9bc2709efdef018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dayTimeDuration_t from parts in specific pool.  <a href="afw__time_8c.html#aaf7e948106bc7556f9bc2709efdef018">More...</a><br /></td></tr>
-<tr class="separator:aaf7e948106bc7556f9bc2709efdef018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3999d98f396bc50d6988beb44b03dbe3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a3999d98f396bc50d6988beb44b03dbe3">afw_time_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a3999d98f396bc50d6988beb44b03dbe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_time_t from parts.  <a href="afw__time_8c.html#a3999d98f396bc50d6988beb44b03dbe3">More...</a><br /></td></tr>
-<tr class="separator:a3999d98f396bc50d6988beb44b03dbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85dae9d91dfbc2c8e671a352ac3ac4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad85dae9d91dfbc2c8e671a352ac3ac4f">afw_time_create_from_parts</a> (int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ad85dae9d91dfbc2c8e671a352ac3ac4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_time_t from parts in specific pool.  <a href="afw__time_8c.html#ad85dae9d91dfbc2c8e671a352ac3ac4f">More...</a><br /></td></tr>
-<tr class="separator:ad85dae9d91dfbc2c8e671a352ac3ac4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4287b3e035323b01ae349ea6049058c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a4287b3e035323b01ae349ea6049058c0">afw_yearMonthDuration_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, int years, int months, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a4287b3e035323b01ae349ea6049058c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_yearMonthDuration_t from parts.  <a href="afw__time_8c.html#a4287b3e035323b01ae349ea6049058c0">More...</a><br /></td></tr>
-<tr class="separator:a4287b3e035323b01ae349ea6049058c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08ff47c7341ca1c43ab8b4482b5859e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a08ff47c7341ca1c43ab8b4482b5859e7">afw_yearMonthDuration_create_from_parts</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> years, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> months, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a08ff47c7341ca1c43ab8b4482b5859e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_yearMonthDuration_t from parts in specific pool.  <a href="afw__time_8c.html#a08ff47c7341ca1c43ab8b4482b5859e7">More...</a><br /></td></tr>
-<tr class="separator:a08ff47c7341ca1c43ab8b4482b5859e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada7304bf564f78c7448fc4fc47ca4ecb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ada7304bf564f78c7448fc4fc47ca4ecb">afw_dateTime_set_now</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime_local, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime_utc, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ada7304bf564f78c7448fc4fc47ca4ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set local and/or utc dateTime to now.  <a href="afw__time_8c.html#ada7304bf564f78c7448fc4fc47ca4ecb">More...</a><br /></td></tr>
-<tr class="separator:ada7304bf564f78c7448fc4fc47ca4ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6c95de5ec197f26e9641b893120b74b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad6c95de5ec197f26e9641b893120b74b">afw_time_set_now</a> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time_local, <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time_utc, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ad6c95de5ec197f26e9641b893120b74b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set local and/or utc time to now.  <a href="afw__time_8c.html#ad6c95de5ec197f26e9641b893120b74b">More...</a><br /></td></tr>
-<tr class="separator:ad6c95de5ec197f26e9641b893120b74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e094ab2819fc768f669c9b4223d018"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a09e094ab2819fc768f669c9b4223d018">afw_dateTime_now_utc</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a09e094ab2819fc768f669c9b4223d018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now time as dateTime in specified pool.  <a href="afw__time_8c.html#a09e094ab2819fc768f669c9b4223d018">More...</a><br /></td></tr>
-<tr class="separator:a09e094ab2819fc768f669c9b4223d018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19c406aa3cf565799a5729775ac49259"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a19c406aa3cf565799a5729775ac49259">afw_time_now_utc</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a19c406aa3cf565799a5729775ac49259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now time as time only in specified pool.  <a href="afw__time_8c.html#a19c406aa3cf565799a5729775ac49259">More...</a><br /></td></tr>
-<tr class="separator:a19c406aa3cf565799a5729775ac49259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade0a1222595f0fb48df50b39878fbcad"><td class="memItemLeft" align="right" valign="top"><a id="ade0a1222595f0fb48df50b39878fbcad"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>afw_time_set_now_local</b> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="separator:ade0a1222595f0fb48df50b39878fbcad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad13eba5c280ebc1a0264ea97bd499cfc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad13eba5c280ebc1a0264ea97bd499cfc">afw_dateTime_now_local</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ad13eba5c280ebc1a0264ea97bd499cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now local time as dateTime in specified pool.  <a href="afw__time_8c.html#ad13eba5c280ebc1a0264ea97bd499cfc">More...</a><br /></td></tr>
-<tr class="separator:ad13eba5c280ebc1a0264ea97bd499cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a085e04a4295d55d40700163dcea9a621"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a085e04a4295d55d40700163dcea9a621">afw_time_now_local</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a085e04a4295d55d40700163dcea9a621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now local time as time only in specified pool.  <a href="afw__time_8c.html#a085e04a4295d55d40700163dcea9a621">More...</a><br /></td></tr>
-<tr class="separator:a085e04a4295d55d40700163dcea9a621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae19b2febaa4d47b5edbddc273e4ac80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aae19b2febaa4d47b5edbddc273e4ac80">afw_time_to_microseconds_utc</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aae19b2febaa4d47b5edbddc273e4ac80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert time normalize to utc to microseconds.  <a href="afw__time_8c.html#aae19b2febaa4d47b5edbddc273e4ac80">More...</a><br /></td></tr>
-<tr class="separator:aae19b2febaa4d47b5edbddc273e4ac80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d0ec5406bc6e8641f1b9abdcb9a3363"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a0d0ec5406bc6e8641f1b9abdcb9a3363">afw_date_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a0d0ec5406bc6e8641f1b9abdcb9a3363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal date to utf8 xml schema date in specified pool.  <a href="afw__time_8c.html#a0d0ec5406bc6e8641f1b9abdcb9a3363">More...</a><br /></td></tr>
-<tr class="separator:a0d0ec5406bc6e8641f1b9abdcb9a3363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e313c3762ad8c50c86500571ca989d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a1e313c3762ad8c50c86500571ca989d7">afw_date_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a1e313c3762ad8c50c86500571ca989d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema date to internal and set.  <a href="afw__time_8c.html#a1e313c3762ad8c50c86500571ca989d7">More...</a><br /></td></tr>
-<tr class="separator:a1e313c3762ad8c50c86500571ca989d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd4ed7cca65a71b72f6f1b3778fb35b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#afd4ed7cca65a71b72f6f1b3778fb35b8">afw_dateTime_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:afd4ed7cca65a71b72f6f1b3778fb35b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dateTime to utf8 xml schema dateTime in specified pool.  <a href="afw__time_8c.html#afd4ed7cca65a71b72f6f1b3778fb35b8">More...</a><br /></td></tr>
-<tr class="separator:afd4ed7cca65a71b72f6f1b3778fb35b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf499a4e862f5eaf6c9ca88272a0a4eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aaf499a4e862f5eaf6c9ca88272a0a4eb">afw_dateTime_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aaf499a4e862f5eaf6c9ca88272a0a4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dateTime to internal and set.  <a href="afw__time_8c.html#aaf499a4e862f5eaf6c9ca88272a0a4eb">More...</a><br /></td></tr>
-<tr class="separator:aaf499a4e862f5eaf6c9ca88272a0a4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28caf73e6b8eb07cca49a2322ffa9bc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a28caf73e6b8eb07cca49a2322ffa9bc2">afw_dayTimeDuration_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a28caf73e6b8eb07cca49a2322ffa9bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dayTimeDuration to utf8 xml schema dayTimeDuration in specified pool.  <a href="afw__time_8c.html#a28caf73e6b8eb07cca49a2322ffa9bc2">More...</a><br /></td></tr>
-<tr class="separator:a28caf73e6b8eb07cca49a2322ffa9bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1460ad82197310ea8f18727bb27a76da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a1460ad82197310ea8f18727bb27a76da">afw_dayTimeDuration_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a1460ad82197310ea8f18727bb27a76da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dayTimeDuration to internal and set.  <a href="afw__time_8c.html#a1460ad82197310ea8f18727bb27a76da">More...</a><br /></td></tr>
-<tr class="separator:a1460ad82197310ea8f18727bb27a76da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab73b64440b67a408ead435c60fa9a0d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ab73b64440b67a408ead435c60fa9a0d3">afw_time_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ab73b64440b67a408ead435c60fa9a0d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal time to utf8 xml schema time in specified pool.  <a href="afw__time_8c.html#ab73b64440b67a408ead435c60fa9a0d3">More...</a><br /></td></tr>
-<tr class="separator:ab73b64440b67a408ead435c60fa9a0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af42b1b4fe1919305587d4e527b16f8ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#af42b1b4fe1919305587d4e527b16f8ac">afw_time_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:af42b1b4fe1919305587d4e527b16f8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dateTime to internal and set.  <a href="afw__time_8c.html#af42b1b4fe1919305587d4e527b16f8ac">More...</a><br /></td></tr>
-<tr class="separator:af42b1b4fe1919305587d4e527b16f8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c50e54667c756eab90c34ba8518c9f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a0c50e54667c756eab90c34ba8518c9f9">afw_yearMonthDuration_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a0c50e54667c756eab90c34ba8518c9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal yearMonthDuration to utf8 xml schema yearMonthDuration in specified pool.  <a href="afw__time_8c.html#a0c50e54667c756eab90c34ba8518c9f9">More...</a><br /></td></tr>
-<tr class="separator:a0c50e54667c756eab90c34ba8518c9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f3a673216e47aad781a4b40eaf77bd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a4f3a673216e47aad781a4b40eaf77bd3">afw_yearMonthDuration_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a4f3a673216e47aad781a4b40eaf77bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema yearMonthDuration to internal and set.  <a href="afw__time_8c.html#a4f3a673216e47aad781a4b40eaf77bd3">More...</a><br /></td></tr>
-<tr class="separator:a4f3a673216e47aad781a4b40eaf77bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae82534a46c2147ca5313afe27d465afd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ae82534a46c2147ca5313afe27d465afd">afw_date_compare</a> (const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *v1, const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *v2, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ae82534a46c2147ca5313afe27d465afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two date values.  <a href="afw__time_8c.html#ae82534a46c2147ca5313afe27d465afd">More...</a><br /></td></tr>
-<tr class="separator:ae82534a46c2147ca5313afe27d465afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa642b20b080231d77a09b7158c3aae85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aa642b20b080231d77a09b7158c3aae85">afw_dateTime_compare</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *v1, const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *v2, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:aa642b20b080231d77a09b7158c3aae85"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two dateTime values.  <a href="afw__time_8c.html#aa642b20b080231d77a09b7158c3aae85">More...</a><br /></td></tr>
-<tr class="separator:aa642b20b080231d77a09b7158c3aae85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7abc233a36e8aefac79cae0954142ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#af7abc233a36e8aefac79cae0954142ae">afw_time_compare</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *v1, const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *v2, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:af7abc233a36e8aefac79cae0954142ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two time values.  <a href="afw__time_8c.html#af7abc233a36e8aefac79cae0954142ae">More...</a><br /></td></tr>
-<tr class="separator:af7abc233a36e8aefac79cae0954142ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13b75332acd0176655fb50c630348cf"><td class="memItemLeft" align="right" valign="top"><a id="ac13b75332acd0176655fb50c630348cf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_dateTime_tm_set</b> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, apr_time_exp_t *tm, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac13b75332acd0176655fb50c630348cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308546866b079d374ad0a34f4de1d780"><td class="memItemLeft" align="right" valign="top"><a id="a308546866b079d374ad0a34f4de1d780"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_time_tm_set</b> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, apr_time_exp_t *tm, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a308546866b079d374ad0a34f4de1d780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac12870e7782746c8bf2e0a32273e3536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ac12870e7782746c8bf2e0a32273e3536">impl_set_date_no_time_zone</a> (<a class="el" href="group__afw__common.html#gafc91acb81ec956c7cdacf94195036ebd">afw_date_no_time_zone_t</a> *date, int year, int month, int day, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ac12870e7782746c8bf2e0a32273e3536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab39bb63eb1bdbb22d2352d39709d1423"><td class="memItemLeft" align="right" valign="top"><a id="ab39bb63eb1bdbb22d2352d39709d1423"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_no_time_zone</b> (<a class="el" href="group__afw__common.html#ga2623e83768d418a5625bd4eb48728672">afw_time_no_time_zone_t</a> *time, int hour, int minute, int second, int microsecond, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ab39bb63eb1bdbb22d2352d39709d1423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6975e444c314a256d61e418b693db792"><td class="memItemLeft" align="right" valign="top"><a id="a6975e444c314a256d61e418b693db792"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b> (<a class="el" href="group__afw__common.html#ga7e6246da7e6d57d4c5832b6533daa235">afw_time_zone_t</a> *time_zone, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a6975e444c314a256d61e418b693db792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b12c924ff01fb46ff1d8285158b144"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad6b12c924ff01fb46ff1d8285158b144">afw_date_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, int year, int month, int day, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ad6b12c924ff01fb46ff1d8285158b144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_date_t from parts.  <a href="afw__time_8c.html#ad6b12c924ff01fb46ff1d8285158b144">More...</a><br /></td></tr>
+<tr class="separator:ad6b12c924ff01fb46ff1d8285158b144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a047881f8df8b28c53c55c9a1be17563c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a047881f8df8b28c53c55c9a1be17563c">afw_date_create_from_parts</a> (int year, int month, int day, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a047881f8df8b28c53c55c9a1be17563c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_date_t from parts in specific pool.  <a href="afw__time_8c.html#a047881f8df8b28c53c55c9a1be17563c">More...</a><br /></td></tr>
+<tr class="separator:a047881f8df8b28c53c55c9a1be17563c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d693e412db81573f0ee6d480a7ddf99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a2d693e412db81573f0ee6d480a7ddf99">afw_dateTime_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, int year, int month, int day, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a2d693e412db81573f0ee6d480a7ddf99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dateTime_t from parts.  <a href="afw__time_8c.html#a2d693e412db81573f0ee6d480a7ddf99">More...</a><br /></td></tr>
+<tr class="separator:a2d693e412db81573f0ee6d480a7ddf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7749b406d05a860039341c484c937a25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a7749b406d05a860039341c484c937a25">afw_dateTime_create_from_parts</a> (int year, int month, int day, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a7749b406d05a860039341c484c937a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dateTime_t from parts in specific pool.  <a href="afw__time_8c.html#a7749b406d05a860039341c484c937a25">More...</a><br /></td></tr>
+<tr class="separator:a7749b406d05a860039341c484c937a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7fe986979d8a3a7397acf28b038fb65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad7fe986979d8a3a7397acf28b038fb65">afw_dateTime_set_from_apr_time</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, apr_time_t apr_time, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ad7fe986979d8a3a7397acf28b038fb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dateTime_t from apr_time.  <a href="afw__time_8c.html#ad7fe986979d8a3a7397acf28b038fb65">More...</a><br /></td></tr>
+<tr class="separator:ad7fe986979d8a3a7397acf28b038fb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a765002126b7233c7ac5133693fd435f5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a765002126b7233c7ac5133693fd435f5">afw_dateTime_create_from_apr_time</a> (apr_time_t apr_time, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a765002126b7233c7ac5133693fd435f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dateTime_t from apr time.  <a href="afw__time_8c.html#a765002126b7233c7ac5133693fd435f5">More...</a><br /></td></tr>
+<tr class="separator:a765002126b7233c7ac5133693fd435f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658bdaa13a58fcf554cad2391db65613"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a658bdaa13a58fcf554cad2391db65613">afw_dayTimeDuration_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, int days, int hours, int minutes, int seconds, int microseconds, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a658bdaa13a58fcf554cad2391db65613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_dayTimeDuration_t from parts.  <a href="afw__time_8c.html#a658bdaa13a58fcf554cad2391db65613">More...</a><br /></td></tr>
+<tr class="separator:a658bdaa13a58fcf554cad2391db65613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c2d652bd78dbbdb82c9595e3431f1a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ac3c2d652bd78dbbdb82c9595e3431f1a">afw_dayTimeDuration_create_from_parts</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> days, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> hours, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> minutes, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> seconds, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> microseconds, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ac3c2d652bd78dbbdb82c9595e3431f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_dayTimeDuration_t from parts in specific pool.  <a href="afw__time_8c.html#ac3c2d652bd78dbbdb82c9595e3431f1a">More...</a><br /></td></tr>
+<tr class="separator:ac3c2d652bd78dbbdb82c9595e3431f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8743e2b6816db3e515b8d68d35ab1d88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a8743e2b6816db3e515b8d68d35ab1d88">afw_time_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a8743e2b6816db3e515b8d68d35ab1d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_time_t from parts.  <a href="afw__time_8c.html#a8743e2b6816db3e515b8d68d35ab1d88">More...</a><br /></td></tr>
+<tr class="separator:a8743e2b6816db3e515b8d68d35ab1d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1be985c51a89092eaef65e1242514a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ab1be985c51a89092eaef65e1242514a7">afw_time_create_from_parts</a> (int hour, int minute, int second, int microsecond, int tz_hours_offset, int tz_minutes_offset, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ab1be985c51a89092eaef65e1242514a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_time_t from parts in specific pool.  <a href="afw__time_8c.html#ab1be985c51a89092eaef65e1242514a7">More...</a><br /></td></tr>
+<tr class="separator:ab1be985c51a89092eaef65e1242514a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e62e2d3dd7670bad904289a4691a0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aa2e62e2d3dd7670bad904289a4691a0d">afw_yearMonthDuration_set_from_parts</a> (<a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, int years, int months, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aa2e62e2d3dd7670bad904289a4691a0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set afw_yearMonthDuration_t from parts.  <a href="afw__time_8c.html#aa2e62e2d3dd7670bad904289a4691a0d">More...</a><br /></td></tr>
+<tr class="separator:aa2e62e2d3dd7670bad904289a4691a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129adf98c39a98b6553233de73bfb856"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a129adf98c39a98b6553233de73bfb856">afw_yearMonthDuration_create_from_parts</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_positive, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> years, <a class="el" href="group__afw__common.html#ga399b944af09f0f7f4f73bd1b1fb32ff2">afw_int32_t</a> months, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a129adf98c39a98b6553233de73bfb856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create afw_yearMonthDuration_t from parts in specific pool.  <a href="afw__time_8c.html#a129adf98c39a98b6553233de73bfb856">More...</a><br /></td></tr>
+<tr class="separator:a129adf98c39a98b6553233de73bfb856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ddcbeb187b2278fb5604f974481cdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a51ddcbeb187b2278fb5604f974481cdc">afw_dateTime_set_now</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime_local, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime_utc, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a51ddcbeb187b2278fb5604f974481cdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set local and/or utc dateTime to now.  <a href="afw__time_8c.html#a51ddcbeb187b2278fb5604f974481cdc">More...</a><br /></td></tr>
+<tr class="separator:a51ddcbeb187b2278fb5604f974481cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e6dcf7343c58ce789867dc23ff9edc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a34e6dcf7343c58ce789867dc23ff9edc">afw_time_set_now</a> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time_local, <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time_utc, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a34e6dcf7343c58ce789867dc23ff9edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set local and/or utc time to now.  <a href="afw__time_8c.html#a34e6dcf7343c58ce789867dc23ff9edc">More...</a><br /></td></tr>
+<tr class="separator:a34e6dcf7343c58ce789867dc23ff9edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72cc0fed1a34ed093656bfba0e888427"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a72cc0fed1a34ed093656bfba0e888427">afw_dateTime_now_utc</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a72cc0fed1a34ed093656bfba0e888427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now time as dateTime in specified pool.  <a href="afw__time_8c.html#a72cc0fed1a34ed093656bfba0e888427">More...</a><br /></td></tr>
+<tr class="separator:a72cc0fed1a34ed093656bfba0e888427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf29ad8769f601ad3133c2adf5e14df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aeaf29ad8769f601ad3133c2adf5e14df">afw_time_now_utc</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aeaf29ad8769f601ad3133c2adf5e14df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now time as time only in specified pool.  <a href="afw__time_8c.html#aeaf29ad8769f601ad3133c2adf5e14df">More...</a><br /></td></tr>
+<tr class="separator:aeaf29ad8769f601ad3133c2adf5e14df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7068d5f80e2430729fe9ef9c0194fe47"><td class="memItemLeft" align="right" valign="top"><a id="a7068d5f80e2430729fe9ef9c0194fe47"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>afw_time_set_now_local</b> (<a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:a7068d5f80e2430729fe9ef9c0194fe47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b80f76256278ea7a7f7553f2fdc2a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aa1b80f76256278ea7a7f7553f2fdc2a8">afw_dateTime_now_local</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aa1b80f76256278ea7a7f7553f2fdc2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now local time as dateTime in specified pool.  <a href="afw__time_8c.html#aa1b80f76256278ea7a7f7553f2fdc2a8">More...</a><br /></td></tr>
+<tr class="separator:aa1b80f76256278ea7a7f7553f2fdc2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeabfc65d304787951c45fd9358d4956c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aeabfc65d304787951c45fd9358d4956c">afw_time_now_local</a> (const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aeabfc65d304787951c45fd9358d4956c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get now local time as time only in specified pool.  <a href="afw__time_8c.html#aeabfc65d304787951c45fd9358d4956c">More...</a><br /></td></tr>
+<tr class="separator:aeabfc65d304787951c45fd9358d4956c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f6a4074dfad26b7d52d0dae7bf307c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a3f6a4074dfad26b7d52d0dae7bf307c6">afw_time_to_microseconds_utc</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a3f6a4074dfad26b7d52d0dae7bf307c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert time normalize to utc to microseconds.  <a href="afw__time_8c.html#a3f6a4074dfad26b7d52d0dae7bf307c6">More...</a><br /></td></tr>
+<tr class="separator:a3f6a4074dfad26b7d52d0dae7bf307c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9114ba65024c921628030794dab1e470"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a9114ba65024c921628030794dab1e470">afw_date_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a9114ba65024c921628030794dab1e470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal date to utf8 xml schema date in specified pool.  <a href="afw__time_8c.html#a9114ba65024c921628030794dab1e470">More...</a><br /></td></tr>
+<tr class="separator:a9114ba65024c921628030794dab1e470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a396f9e292fca369f78f8ec1f889e3ad1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a396f9e292fca369f78f8ec1f889e3ad1">afw_date_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a396f9e292fca369f78f8ec1f889e3ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema date to internal and set.  <a href="afw__time_8c.html#a396f9e292fca369f78f8ec1f889e3ad1">More...</a><br /></td></tr>
+<tr class="separator:a396f9e292fca369f78f8ec1f889e3ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6e0fc618627382bf6463353a656edb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ac6e0fc618627382bf6463353a656edb3">afw_dateTime_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ac6e0fc618627382bf6463353a656edb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dateTime to utf8 xml schema dateTime in specified pool.  <a href="afw__time_8c.html#ac6e0fc618627382bf6463353a656edb3">More...</a><br /></td></tr>
+<tr class="separator:ac6e0fc618627382bf6463353a656edb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf24fda1541a5b50d562fb362376bb94"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#adf24fda1541a5b50d562fb362376bb94">afw_dateTime_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:adf24fda1541a5b50d562fb362376bb94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dateTime to internal and set.  <a href="afw__time_8c.html#adf24fda1541a5b50d562fb362376bb94">More...</a><br /></td></tr>
+<tr class="separator:adf24fda1541a5b50d562fb362376bb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971c35374760bb1bd917c126bf115366"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a971c35374760bb1bd917c126bf115366">afw_dayTimeDuration_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a971c35374760bb1bd917c126bf115366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dayTimeDuration to utf8 xml schema dayTimeDuration in specified pool.  <a href="afw__time_8c.html#a971c35374760bb1bd917c126bf115366">More...</a><br /></td></tr>
+<tr class="separator:a971c35374760bb1bd917c126bf115366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab7a77f2845f5fdb788f3e4f756cdd81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aab7a77f2845f5fdb788f3e4f756cdd81">afw_dayTimeDuration_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aab7a77f2845f5fdb788f3e4f756cdd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dayTimeDuration to internal and set.  <a href="afw__time_8c.html#aab7a77f2845f5fdb788f3e4f756cdd81">More...</a><br /></td></tr>
+<tr class="separator:aab7a77f2845f5fdb788f3e4f756cdd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07a8384d4b9c4014843bd6873f14a629"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a07a8384d4b9c4014843bd6873f14a629">afw_time_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *time, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a07a8384d4b9c4014843bd6873f14a629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal time to utf8 xml schema time in specified pool.  <a href="afw__time_8c.html#a07a8384d4b9c4014843bd6873f14a629">More...</a><br /></td></tr>
+<tr class="separator:a07a8384d4b9c4014843bd6873f14a629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88bf75872908a23d2807b4a169892b4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a88bf75872908a23d2807b4a169892b4d">afw_time_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a88bf75872908a23d2807b4a169892b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema dateTime to internal and set.  <a href="afw__time_8c.html#a88bf75872908a23d2807b4a169892b4d">More...</a><br /></td></tr>
+<tr class="separator:a88bf75872908a23d2807b4a169892b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a112fa11e0e8808f376ae97bd136aa58c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a112fa11e0e8808f376ae97bd136aa58c">afw_yearMonthDuration_internal_to_utf8</a> (const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a112fa11e0e8808f376ae97bd136aa58c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal yearMonthDuration to utf8 xml schema yearMonthDuration in specified pool.  <a href="afw__time_8c.html#a112fa11e0e8808f376ae97bd136aa58c">More...</a><br /></td></tr>
+<tr class="separator:a112fa11e0e8808f376ae97bd136aa58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d4c6e05cf488d3bde32e0a0ce1b977"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a60d4c6e05cf488d3bde32e0a0ce1b977">afw_yearMonthDuration_utf8_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *utf8, <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a60d4c6e05cf488d3bde32e0a0ce1b977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert utf8 xml schema yearMonthDuration to internal and set.  <a href="afw__time_8c.html#a60d4c6e05cf488d3bde32e0a0ce1b977">More...</a><br /></td></tr>
+<tr class="separator:a60d4c6e05cf488d3bde32e0a0ce1b977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe781664fe85400c41281d7cd938db5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a7fe781664fe85400c41281d7cd938db5">afw_date_compare</a> (const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *v1, const <a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *v2, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a7fe781664fe85400c41281d7cd938db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two date values.  <a href="afw__time_8c.html#a7fe781664fe85400c41281d7cd938db5">More...</a><br /></td></tr>
+<tr class="separator:a7fe781664fe85400c41281d7cd938db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a20b15791b646615b71fc1476de597"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a49a20b15791b646615b71fc1476de597">afw_dateTime_compare</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *v1, const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *v2, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a49a20b15791b646615b71fc1476de597"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two dateTime values.  <a href="afw__time_8c.html#a49a20b15791b646615b71fc1476de597">More...</a><br /></td></tr>
+<tr class="separator:a49a20b15791b646615b71fc1476de597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3876024c166c5cfb5a78739eaf83e52c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a3876024c166c5cfb5a78739eaf83e52c">afw_time_compare</a> (const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *v1, const <a class="el" href="group__afw__common.html#ga506766fda0723e58531ea4d65021c159">afw_time_t</a> *v2, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a3876024c166c5cfb5a78739eaf83e52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two time values.  <a href="afw__time_8c.html#a3876024c166c5cfb5a78739eaf83e52c">More...</a><br /></td></tr>
+<tr class="separator:a3876024c166c5cfb5a78739eaf83e52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a4068c454ee86d514ea879e39bf617f"><td class="memItemLeft" align="right" valign="top"><a id="a3a4068c454ee86d514ea879e39bf617f"></a>
 <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>impl_fQuotient2</b> (<a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> a, unsigned int b)</td></tr>
 <tr class="separator:a3a4068c454ee86d514ea879e39bf617f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,36 +235,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <tr class="memitem:ad81400e486b7e3c037c7953ca67771b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ad81400e486b7e3c037c7953ca67771b5">afw_date_maximum_days_in_month</a> (<a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> year, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> month)</td></tr>
 <tr class="memdesc:ad81400e486b7e3c037c7953ca67771b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine maximum days in a month.  <a href="afw__time_8c.html#ad81400e486b7e3c037c7953ca67771b5">More...</a><br /></td></tr>
 <tr class="separator:ad81400e486b7e3c037c7953ca67771b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6017d4c3e98eff838cdeafa8a34bbe82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a6017d4c3e98eff838cdeafa8a34bbe82">afw_dayTimeDuration_compare</a> (const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *v1, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *v2, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a6017d4c3e98eff838cdeafa8a34bbe82"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two dateTime values.  <a href="afw__time_8c.html#a6017d4c3e98eff838cdeafa8a34bbe82">More...</a><br /></td></tr>
-<tr class="separator:a6017d4c3e98eff838cdeafa8a34bbe82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a785f8b1013fcd10a060d2de7a9e8c20c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a785f8b1013fcd10a060d2de7a9e8c20c">afw_yearMonthDuration_compare</a> (const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *v1, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *v2, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a785f8b1013fcd10a060d2de7a9e8c20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two yearMonthDuration values.  <a href="afw__time_8c.html#a785f8b1013fcd10a060d2de7a9e8c20c">More...</a><br /></td></tr>
-<tr class="separator:a785f8b1013fcd10a060d2de7a9e8c20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06eb0ed27b7273905837a9601c73f666"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a06eb0ed27b7273905837a9601c73f666">afw_date_add_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a06eb0ed27b7273905837a9601c73f666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add yearMonthDuration to date.  <a href="afw__time_8c.html#a06eb0ed27b7273905837a9601c73f666">More...</a><br /></td></tr>
-<tr class="separator:a06eb0ed27b7273905837a9601c73f666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ba54f50939e2a13c02e6117af9c0abd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a9ba54f50939e2a13c02e6117af9c0abd">afw_date_subtract_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a9ba54f50939e2a13c02e6117af9c0abd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract yearMonthDuration from date.  <a href="afw__time_8c.html#a9ba54f50939e2a13c02e6117af9c0abd">More...</a><br /></td></tr>
-<tr class="separator:a9ba54f50939e2a13c02e6117af9c0abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c237f43372e1944198b19f05bf5fb07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a6c237f43372e1944198b19f05bf5fb07">afw_dateTime_add_dayTimeDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a6c237f43372e1944198b19f05bf5fb07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add dayTimeDuration to dateTime.  <a href="afw__time_8c.html#a6c237f43372e1944198b19f05bf5fb07">More...</a><br /></td></tr>
-<tr class="separator:a6c237f43372e1944198b19f05bf5fb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e54150a3956260f4539a3a08764c01d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a0e54150a3956260f4539a3a08764c01d">afw_dateTime_subtract_dayTimeDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a0e54150a3956260f4539a3a08764c01d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract dayTimeDuration from dateTime.  <a href="afw__time_8c.html#a0e54150a3956260f4539a3a08764c01d">More...</a><br /></td></tr>
-<tr class="separator:a0e54150a3956260f4539a3a08764c01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0caad38bbd8f612582cfa5835e869d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ae0caad38bbd8f612582cfa5835e869d1">afw_dateTime_add_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ae0caad38bbd8f612582cfa5835e869d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add yearMonthDuration to dateTime.  <a href="afw__time_8c.html#ae0caad38bbd8f612582cfa5835e869d1">More...</a><br /></td></tr>
-<tr class="separator:ae0caad38bbd8f612582cfa5835e869d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7826b877de6fd3159d6e27ecca1ff21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#ae7826b877de6fd3159d6e27ecca1ff21">afw_dateTime_subtract_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:ae7826b877de6fd3159d6e27ecca1ff21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract yearMonthDuration from dateTime.  <a href="afw__time_8c.html#ae7826b877de6fd3159d6e27ecca1ff21">More...</a><br /></td></tr>
-<tr class="separator:ae7826b877de6fd3159d6e27ecca1ff21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ff4da40b5082864a4e0e459fa815b71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a3ff4da40b5082864a4e0e459fa815b71">afw_dateType_internal_to_generalized_time</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a3ff4da40b5082864a4e0e459fa815b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dateTime to generalized time (see X.208) in specified pool.  <a href="afw__time_8c.html#a3ff4da40b5082864a4e0e459fa815b71">More...</a><br /></td></tr>
-<tr class="separator:a3ff4da40b5082864a4e0e459fa815b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a042c66f3091dd8b169774e0267e2fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a4a042c66f3091dd8b169774e0267e2fa">afw_dataType_generalized_time_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *generalized_time, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *internal, <a class="el" href="structafw__scope__s.html">afw_scope_t</a> *scope)</td></tr>
-<tr class="memdesc:a4a042c66f3091dd8b169774e0267e2fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert generalized time (see X.208) to internal and set.  <a href="afw__time_8c.html#a4a042c66f3091dd8b169774e0267e2fa">More...</a><br /></td></tr>
-<tr class="separator:a4a042c66f3091dd8b169774e0267e2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a247b52b764d6d59c81c18b30f90aba4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a247b52b764d6d59c81c18b30f90aba4b">afw_dayTimeDuration_compare</a> (const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *v1, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *v2, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a247b52b764d6d59c81c18b30f90aba4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two dateTime values.  <a href="afw__time_8c.html#a247b52b764d6d59c81c18b30f90aba4b">More...</a><br /></td></tr>
+<tr class="separator:a247b52b764d6d59c81c18b30f90aba4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d8fc32ff363072e584f69d8f559bcb4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a7d8fc32ff363072e584f69d8f559bcb4">afw_yearMonthDuration_compare</a> (const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *v1, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *v2, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a7d8fc32ff363072e584f69d8f559bcb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two yearMonthDuration values.  <a href="afw__time_8c.html#a7d8fc32ff363072e584f69d8f559bcb4">More...</a><br /></td></tr>
+<tr class="separator:a7d8fc32ff363072e584f69d8f559bcb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a213eeb3e8f49fe0a07e3f3fa12dec4c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a213eeb3e8f49fe0a07e3f3fa12dec4c7">afw_date_add_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a213eeb3e8f49fe0a07e3f3fa12dec4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add yearMonthDuration to date.  <a href="afw__time_8c.html#a213eeb3e8f49fe0a07e3f3fa12dec4c7">More...</a><br /></td></tr>
+<tr class="separator:a213eeb3e8f49fe0a07e3f3fa12dec4c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41867ddab74db413639646757a7dea30"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a41867ddab74db413639646757a7dea30">afw_date_subtract_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga9347443cddd66dff32d7c5d0e909097b">afw_date_t</a> *date, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a41867ddab74db413639646757a7dea30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract yearMonthDuration from date.  <a href="afw__time_8c.html#a41867ddab74db413639646757a7dea30">More...</a><br /></td></tr>
+<tr class="separator:a41867ddab74db413639646757a7dea30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc78babf53cd2d9d2fe42a14b2f879f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#abc78babf53cd2d9d2fe42a14b2f879f2">afw_dateTime_add_dayTimeDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:abc78babf53cd2d9d2fe42a14b2f879f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add dayTimeDuration to dateTime.  <a href="afw__time_8c.html#abc78babf53cd2d9d2fe42a14b2f879f2">More...</a><br /></td></tr>
+<tr class="separator:abc78babf53cd2d9d2fe42a14b2f879f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c34daa4b7473203057d524dfce9b2d2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a9c34daa4b7473203057d524dfce9b2d2">afw_dateTime_subtract_dayTimeDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga80a671212c3e1906a9e87283e174f458">afw_dayTimeDuration_t</a> *dayTimeDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a9c34daa4b7473203057d524dfce9b2d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract dayTimeDuration from dateTime.  <a href="afw__time_8c.html#a9c34daa4b7473203057d524dfce9b2d2">More...</a><br /></td></tr>
+<tr class="separator:a9c34daa4b7473203057d524dfce9b2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa5e99782899e2bfcaed0ae654cf759f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aaa5e99782899e2bfcaed0ae654cf759f">afw_dateTime_add_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aaa5e99782899e2bfcaed0ae654cf759f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add yearMonthDuration to dateTime.  <a href="afw__time_8c.html#aaa5e99782899e2bfcaed0ae654cf759f">More...</a><br /></td></tr>
+<tr class="separator:aaa5e99782899e2bfcaed0ae654cf759f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb0c5ee334fc77d09fe861104fb6287"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a0bb0c5ee334fc77d09fe861104fb6287">afw_dateTime_subtract_yearMonthDuration</a> (<a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="group__afw__common.html#ga5bbe334328c39d5bb2a1a1e849108edc">afw_yearMonthDuration_t</a> *yearMonthDuration, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a0bb0c5ee334fc77d09fe861104fb6287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract yearMonthDuration from dateTime.  <a href="afw__time_8c.html#a0bb0c5ee334fc77d09fe861104fb6287">More...</a><br /></td></tr>
+<tr class="separator:a0bb0c5ee334fc77d09fe861104fb6287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dda0c0c2ef884aaff2a05791def6b48"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#a0dda0c0c2ef884aaff2a05791def6b48">afw_dateType_internal_to_generalized_time</a> (const <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *dateTime, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a0dda0c0c2ef884aaff2a05791def6b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert internal dateTime to generalized time (see X.208) in specified pool.  <a href="afw__time_8c.html#a0dda0c0c2ef884aaff2a05791def6b48">More...</a><br /></td></tr>
+<tr class="separator:a0dda0c0c2ef884aaff2a05791def6b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8cbfbb6823c1b06ee5f39a170d964f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__time_8c.html#aae8cbfbb6823c1b06ee5f39a170d964f">afw_dataType_generalized_time_set_internal</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *generalized_time, <a class="el" href="group__afw__common.html#ga1d6b4dc122a04030e1b32d42635dfbe6">afw_dateTime_t</a> *internal, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aae8cbfbb6823c1b06ee5f39a170d964f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert generalized time (see X.208) to internal and set.  <a href="afw__time_8c.html#aae8cbfbb6823c1b06ee5f39a170d964f">More...</a><br /></td></tr>
+<tr class="separator:aae8cbfbb6823c1b06ee5f39a170d964f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Adaptive Framework Time Support. </p>
@@ -331,8 +331,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4a042c66f3091dd8b169774e0267e2fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a042c66f3091dd8b169774e0267e2fa">&#9670;&nbsp;</a></span>afw_dataType_generalized_time_set_internal()</h2>
+<a id="aae8cbfbb6823c1b06ee5f39a170d964f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae8cbfbb6823c1b06ee5f39a170d964f">&#9670;&nbsp;</a></span>afw_dataType_generalized_time_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,8 +352,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -368,7 +368,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">generalized_time</td><td>(see X.208). </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -377,8 +377,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a06eb0ed27b7273905837a9601c73f666"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06eb0ed27b7273905837a9601c73f666">&#9670;&nbsp;</a></span>afw_date_add_yearMonthDuration()</h2>
+<a id="a213eeb3e8f49fe0a07e3f3fa12dec4c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a213eeb3e8f49fe0a07e3f3fa12dec4c7">&#9670;&nbsp;</a></span>afw_date_add_yearMonthDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,8 +398,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -414,7 +414,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">date</td><td>pointer. </td></tr>
     <tr><td class="paramname">yearMonthDuration</td><td>to add to date. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -423,8 +423,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ae82534a46c2147ca5313afe27d465afd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae82534a46c2147ca5313afe27d465afd">&#9670;&nbsp;</a></span>afw_date_compare()</h2>
+<a id="a7fe781664fe85400c41281d7cd938db5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe781664fe85400c41281d7cd938db5">&#9670;&nbsp;</a></span>afw_date_compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -444,8 +444,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -470,8 +470,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aaaf606b6b4ab6b1e381cccb3ee2be49b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaaf606b6b4ab6b1e381cccb3ee2be49b">&#9670;&nbsp;</a></span>afw_date_create_from_parts()</h2>
+<a id="a047881f8df8b28c53c55c9a1be17563c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a047881f8df8b28c53c55c9a1be17563c">&#9670;&nbsp;</a></span>afw_date_create_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -515,8 +515,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -536,7 +536,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -546,8 +546,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a0d0ec5406bc6e8641f1b9abdcb9a3363"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d0ec5406bc6e8641f1b9abdcb9a3363">&#9670;&nbsp;</a></span>afw_date_internal_to_utf8()</h2>
+<a id="a9114ba65024c921628030794dab1e470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9114ba65024c921628030794dab1e470">&#9670;&nbsp;</a></span>afw_date_internal_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -567,8 +567,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -582,7 +582,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -632,8 +632,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a55f3a549c4677ade6d19d18f5fadb97a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55f3a549c4677ade6d19d18f5fadb97a">&#9670;&nbsp;</a></span>afw_date_set_from_parts()</h2>
+<a id="ad6b12c924ff01fb46ff1d8285158b144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6b12c924ff01fb46ff1d8285158b144">&#9670;&nbsp;</a></span>afw_date_set_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -677,8 +677,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -697,7 +697,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">day</td><td>of month (1-31). Month limited to days in month.. </td></tr>
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -706,8 +706,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a9ba54f50939e2a13c02e6117af9c0abd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ba54f50939e2a13c02e6117af9c0abd">&#9670;&nbsp;</a></span>afw_date_subtract_yearMonthDuration()</h2>
+<a id="a41867ddab74db413639646757a7dea30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41867ddab74db413639646757a7dea30">&#9670;&nbsp;</a></span>afw_date_subtract_yearMonthDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -727,8 +727,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -743,7 +743,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">date</td><td>pointer. </td></tr>
     <tr><td class="paramname">yearMonthDuration</td><td>to subtract from date. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -752,8 +752,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a1e313c3762ad8c50c86500571ca989d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e313c3762ad8c50c86500571ca989d7">&#9670;&nbsp;</a></span>afw_date_utf8_set_internal()</h2>
+<a id="a396f9e292fca369f78f8ec1f889e3ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a396f9e292fca369f78f8ec1f889e3ad1">&#9670;&nbsp;</a></span>afw_date_utf8_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -773,8 +773,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -789,7 +789,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">utf8</td><td>is xml schema compliant date. </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -798,8 +798,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a6c237f43372e1944198b19f05bf5fb07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c237f43372e1944198b19f05bf5fb07">&#9670;&nbsp;</a></span>afw_dateTime_add_dayTimeDuration()</h2>
+<a id="abc78babf53cd2d9d2fe42a14b2f879f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc78babf53cd2d9d2fe42a14b2f879f2">&#9670;&nbsp;</a></span>afw_dateTime_add_dayTimeDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,8 +819,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -835,7 +835,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>pointer. </td></tr>
     <tr><td class="paramname">dayTimeDuration</td><td>to add to dateTime. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -844,8 +844,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ae0caad38bbd8f612582cfa5835e869d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0caad38bbd8f612582cfa5835e869d1">&#9670;&nbsp;</a></span>afw_dateTime_add_yearMonthDuration()</h2>
+<a id="aaa5e99782899e2bfcaed0ae654cf759f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5e99782899e2bfcaed0ae654cf759f">&#9670;&nbsp;</a></span>afw_dateTime_add_yearMonthDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -865,8 +865,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -881,7 +881,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>pointer. </td></tr>
     <tr><td class="paramname">yearMonthDuration</td><td>to add to dateTime. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -890,8 +890,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aa642b20b080231d77a09b7158c3aae85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa642b20b080231d77a09b7158c3aae85">&#9670;&nbsp;</a></span>afw_dateTime_compare()</h2>
+<a id="a49a20b15791b646615b71fc1476de597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49a20b15791b646615b71fc1476de597">&#9670;&nbsp;</a></span>afw_dateTime_compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -911,8 +911,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -937,8 +937,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="abb789347bb596278126e6e62e96c301f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb789347bb596278126e6e62e96c301f">&#9670;&nbsp;</a></span>afw_dateTime_create_from_apr_time()</h2>
+<a id="a765002126b7233c7ac5133693fd435f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a765002126b7233c7ac5133693fd435f5">&#9670;&nbsp;</a></span>afw_dateTime_create_from_apr_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -958,8 +958,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -974,7 +974,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">apr_time</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -984,8 +984,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aeba7e7ef3e5519d6fedff1bab7413a2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeba7e7ef3e5519d6fedff1bab7413a2f">&#9670;&nbsp;</a></span>afw_dateTime_create_from_parts()</h2>
+<a id="a7749b406d05a860039341c484c937a25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7749b406d05a860039341c484c937a25">&#9670;&nbsp;</a></span>afw_dateTime_create_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1053,8 +1053,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1078,7 +1078,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1088,8 +1088,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="afd4ed7cca65a71b72f6f1b3778fb35b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd4ed7cca65a71b72f6f1b3778fb35b8">&#9670;&nbsp;</a></span>afw_dateTime_internal_to_utf8()</h2>
+<a id="ac6e0fc618627382bf6463353a656edb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6e0fc618627382bf6463353a656edb3">&#9670;&nbsp;</a></span>afw_dateTime_internal_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1109,8 +1109,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1124,7 +1124,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1134,8 +1134,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ad13eba5c280ebc1a0264ea97bd499cfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad13eba5c280ebc1a0264ea97bd499cfc">&#9670;&nbsp;</a></span>afw_dateTime_now_local()</h2>
+<a id="aa1b80f76256278ea7a7f7553f2fdc2a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b80f76256278ea7a7f7553f2fdc2a8">&#9670;&nbsp;</a></span>afw_dateTime_now_local()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1149,8 +1149,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1164,7 +1164,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1174,8 +1174,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a09e094ab2819fc768f669c9b4223d018"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09e094ab2819fc768f669c9b4223d018">&#9670;&nbsp;</a></span>afw_dateTime_now_utc()</h2>
+<a id="a72cc0fed1a34ed093656bfba0e888427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72cc0fed1a34ed093656bfba0e888427">&#9670;&nbsp;</a></span>afw_dateTime_now_utc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1189,8 +1189,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1204,7 +1204,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1214,8 +1214,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a454fb43b934523b1953c0f7312a7134b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a454fb43b934523b1953c0f7312a7134b">&#9670;&nbsp;</a></span>afw_dateTime_set_from_apr_time()</h2>
+<a id="ad7fe986979d8a3a7397acf28b038fb65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7fe986979d8a3a7397acf28b038fb65">&#9670;&nbsp;</a></span>afw_dateTime_set_from_apr_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1235,8 +1235,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1251,7 +1251,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>is pointer to preallocated afw_dateTime_t. </td></tr>
     <tr><td class="paramname">apr_time</td><td></td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1260,8 +1260,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ac1aff899a705a3fbdf7a91df20fc4773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1aff899a705a3fbdf7a91df20fc4773">&#9670;&nbsp;</a></span>afw_dateTime_set_from_parts()</h2>
+<a id="a2d693e412db81573f0ee6d480a7ddf99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d693e412db81573f0ee6d480a7ddf99">&#9670;&nbsp;</a></span>afw_dateTime_set_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1329,8 +1329,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1353,7 +1353,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">microsecond</td><td>(0-999999). </td></tr>
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1362,8 +1362,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ada7304bf564f78c7448fc4fc47ca4ecb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada7304bf564f78c7448fc4fc47ca4ecb">&#9670;&nbsp;</a></span>afw_dateTime_set_now()</h2>
+<a id="a51ddcbeb187b2278fb5604f974481cdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ddcbeb187b2278fb5604f974481cdc">&#9670;&nbsp;</a></span>afw_dateTime_set_now()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1383,8 +1383,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1399,7 +1399,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>local pointer to place to set or NULL. </td></tr>
     <tr><td class="paramname">dateTime</td><td>utc pointer to place to set or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1408,8 +1408,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a0e54150a3956260f4539a3a08764c01d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e54150a3956260f4539a3a08764c01d">&#9670;&nbsp;</a></span>afw_dateTime_subtract_dayTimeDuration()</h2>
+<a id="a9c34daa4b7473203057d524dfce9b2d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c34daa4b7473203057d524dfce9b2d2">&#9670;&nbsp;</a></span>afw_dateTime_subtract_dayTimeDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1429,8 +1429,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1445,7 +1445,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>pointer. </td></tr>
     <tr><td class="paramname">dayTimeDuration</td><td>to subtract from dateTime. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1454,8 +1454,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ae7826b877de6fd3159d6e27ecca1ff21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7826b877de6fd3159d6e27ecca1ff21">&#9670;&nbsp;</a></span>afw_dateTime_subtract_yearMonthDuration()</h2>
+<a id="a0bb0c5ee334fc77d09fe861104fb6287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb0c5ee334fc77d09fe861104fb6287">&#9670;&nbsp;</a></span>afw_dateTime_subtract_yearMonthDuration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1475,8 +1475,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1491,7 +1491,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">dateTime</td><td>pointer. </td></tr>
     <tr><td class="paramname">yearMonthDuration</td><td>to subtract from dateTime. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1500,8 +1500,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aaf499a4e862f5eaf6c9ca88272a0a4eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf499a4e862f5eaf6c9ca88272a0a4eb">&#9670;&nbsp;</a></span>afw_dateTime_utf8_set_internal()</h2>
+<a id="adf24fda1541a5b50d562fb362376bb94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf24fda1541a5b50d562fb362376bb94">&#9670;&nbsp;</a></span>afw_dateTime_utf8_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1521,8 +1521,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1537,7 +1537,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">utf8</td><td>is xml schema compliant date. </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1546,8 +1546,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a3ff4da40b5082864a4e0e459fa815b71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ff4da40b5082864a4e0e459fa815b71">&#9670;&nbsp;</a></span>afw_dateType_internal_to_generalized_time()</h2>
+<a id="a0dda0c0c2ef884aaff2a05791def6b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dda0c0c2ef884aaff2a05791def6b48">&#9670;&nbsp;</a></span>afw_dateType_internal_to_generalized_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1567,8 +1567,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1582,7 +1582,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1592,8 +1592,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a6017d4c3e98eff838cdeafa8a34bbe82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6017d4c3e98eff838cdeafa8a34bbe82">&#9670;&nbsp;</a></span>afw_dayTimeDuration_compare()</h2>
+<a id="a247b52b764d6d59c81c18b30f90aba4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a247b52b764d6d59c81c18b30f90aba4b">&#9670;&nbsp;</a></span>afw_dayTimeDuration_compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1613,8 +1613,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1639,8 +1639,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aaf7e948106bc7556f9bc2709efdef018"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf7e948106bc7556f9bc2709efdef018">&#9670;&nbsp;</a></span>afw_dayTimeDuration_create_from_parts()</h2>
+<a id="ac3c2d652bd78dbbdb82c9595e3431f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c2d652bd78dbbdb82c9595e3431f1a">&#9670;&nbsp;</a></span>afw_dayTimeDuration_create_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1690,8 +1690,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1711,7 +1711,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">seconds</td><td>(must be positive). </td></tr>
     <tr><td class="paramname">microseconds</td><td>(must be positive). </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1721,8 +1721,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a28caf73e6b8eb07cca49a2322ffa9bc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28caf73e6b8eb07cca49a2322ffa9bc2">&#9670;&nbsp;</a></span>afw_dayTimeDuration_internal_to_utf8()</h2>
+<a id="a971c35374760bb1bd917c126bf115366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971c35374760bb1bd917c126bf115366">&#9670;&nbsp;</a></span>afw_dayTimeDuration_internal_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1742,8 +1742,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1757,7 +1757,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1767,8 +1767,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="acf869a9bbc272d1368ad1696972da9ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf869a9bbc272d1368ad1696972da9ad">&#9670;&nbsp;</a></span>afw_dayTimeDuration_set_from_parts()</h2>
+<a id="a658bdaa13a58fcf554cad2391db65613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658bdaa13a58fcf554cad2391db65613">&#9670;&nbsp;</a></span>afw_dayTimeDuration_set_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1818,8 +1818,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1839,7 +1839,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">minutes</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
     <tr><td class="paramname">seconds</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
     <tr><td class="paramname">microseconds</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1848,8 +1848,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a1460ad82197310ea8f18727bb27a76da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1460ad82197310ea8f18727bb27a76da">&#9670;&nbsp;</a></span>afw_dayTimeDuration_utf8_set_internal()</h2>
+<a id="aab7a77f2845f5fdb788f3e4f756cdd81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab7a77f2845f5fdb788f3e4f756cdd81">&#9670;&nbsp;</a></span>afw_dayTimeDuration_utf8_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1869,8 +1869,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1885,7 +1885,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">utf8</td><td>is xml schema compliant dayTimeDuration. </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1894,8 +1894,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="af7abc233a36e8aefac79cae0954142ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7abc233a36e8aefac79cae0954142ae">&#9670;&nbsp;</a></span>afw_time_compare()</h2>
+<a id="a3876024c166c5cfb5a78739eaf83e52c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3876024c166c5cfb5a78739eaf83e52c">&#9670;&nbsp;</a></span>afw_time_compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1915,8 +1915,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1941,8 +1941,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ad85dae9d91dfbc2c8e671a352ac3ac4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad85dae9d91dfbc2c8e671a352ac3ac4f">&#9670;&nbsp;</a></span>afw_time_create_from_parts()</h2>
+<a id="ab1be985c51a89092eaef65e1242514a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1be985c51a89092eaef65e1242514a7">&#9670;&nbsp;</a></span>afw_time_create_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1992,8 +1992,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2014,7 +2014,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2024,8 +2024,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ab73b64440b67a408ead435c60fa9a0d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73b64440b67a408ead435c60fa9a0d3">&#9670;&nbsp;</a></span>afw_time_internal_to_utf8()</h2>
+<a id="a07a8384d4b9c4014843bd6873f14a629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07a8384d4b9c4014843bd6873f14a629">&#9670;&nbsp;</a></span>afw_time_internal_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2045,8 +2045,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2060,7 +2060,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2070,8 +2070,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a085e04a4295d55d40700163dcea9a621"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a085e04a4295d55d40700163dcea9a621">&#9670;&nbsp;</a></span>afw_time_now_local()</h2>
+<a id="aeabfc65d304787951c45fd9358d4956c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeabfc65d304787951c45fd9358d4956c">&#9670;&nbsp;</a></span>afw_time_now_local()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2085,8 +2085,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2100,7 +2100,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2110,8 +2110,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a19c406aa3cf565799a5729775ac49259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19c406aa3cf565799a5729775ac49259">&#9670;&nbsp;</a></span>afw_time_now_utc()</h2>
+<a id="aeaf29ad8769f601ad3133c2adf5e14df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf29ad8769f601ad3133c2adf5e14df">&#9670;&nbsp;</a></span>afw_time_now_utc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2125,8 +2125,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2140,7 +2140,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2150,8 +2150,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a3999d98f396bc50d6988beb44b03dbe3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3999d98f396bc50d6988beb44b03dbe3">&#9670;&nbsp;</a></span>afw_time_set_from_parts()</h2>
+<a id="a8743e2b6816db3e515b8d68d35ab1d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8743e2b6816db3e515b8d68d35ab1d88">&#9670;&nbsp;</a></span>afw_time_set_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2201,8 +2201,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2222,7 +2222,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">microsecond</td><td>(0-999999). </td></tr>
     <tr><td class="paramname">tz_hours_offset</td><td>Hours (-14 - +14). If +14 or -14, minutes must be 0. </td></tr>
     <tr><td class="paramname">tz_minutes_offset</td><td>Minutes (0 - 59 or -1). -1 indicates no time zone, in which case, hours must be 0. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2231,8 +2231,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="ad6c95de5ec197f26e9641b893120b74b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6c95de5ec197f26e9641b893120b74b">&#9670;&nbsp;</a></span>afw_time_set_now()</h2>
+<a id="a34e6dcf7343c58ce789867dc23ff9edc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e6dcf7343c58ce789867dc23ff9edc">&#9670;&nbsp;</a></span>afw_time_set_now()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2252,8 +2252,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2268,7 +2268,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">time</td><td>local pointer to place to set or NULL. </td></tr>
     <tr><td class="paramname">time</td><td>utc pointer to place to set or NULL. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2277,8 +2277,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="aae19b2febaa4d47b5edbddc273e4ac80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae19b2febaa4d47b5edbddc273e4ac80">&#9670;&nbsp;</a></span>afw_time_to_microseconds_utc()</h2>
+<a id="a3f6a4074dfad26b7d52d0dae7bf307c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f6a4074dfad26b7d52d0dae7bf307c6">&#9670;&nbsp;</a></span>afw_time_to_microseconds_utc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2292,8 +2292,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2307,7 +2307,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">time</td><td>to convert. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2317,8 +2317,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="af42b1b4fe1919305587d4e527b16f8ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af42b1b4fe1919305587d4e527b16f8ac">&#9670;&nbsp;</a></span>afw_time_utf8_set_internal()</h2>
+<a id="a88bf75872908a23d2807b4a169892b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88bf75872908a23d2807b4a169892b4d">&#9670;&nbsp;</a></span>afw_time_utf8_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2338,8 +2338,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2354,7 +2354,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">utf8</td><td>is xml schema compliant date. </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2363,8 +2363,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a785f8b1013fcd10a060d2de7a9e8c20c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a785f8b1013fcd10a060d2de7a9e8c20c">&#9670;&nbsp;</a></span>afw_yearMonthDuration_compare()</h2>
+<a id="a7d8fc32ff363072e584f69d8f559bcb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d8fc32ff363072e584f69d8f559bcb4">&#9670;&nbsp;</a></span>afw_yearMonthDuration_compare()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2384,8 +2384,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2409,8 +2409,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a08ff47c7341ca1c43ab8b4482b5859e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08ff47c7341ca1c43ab8b4482b5859e7">&#9670;&nbsp;</a></span>afw_yearMonthDuration_create_from_parts()</h2>
+<a id="a129adf98c39a98b6553233de73bfb856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a129adf98c39a98b6553233de73bfb856">&#9670;&nbsp;</a></span>afw_yearMonthDuration_create_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2442,8 +2442,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2460,7 +2460,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">years</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
     <tr><td class="paramname">months</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2470,8 +2470,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a0c50e54667c756eab90c34ba8518c9f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c50e54667c756eab90c34ba8518c9f9">&#9670;&nbsp;</a></span>afw_yearMonthDuration_internal_to_utf8()</h2>
+<a id="a112fa11e0e8808f376ae97bd136aa58c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a112fa11e0e8808f376ae97bd136aa58c">&#9670;&nbsp;</a></span>afw_yearMonthDuration_internal_to_utf8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2491,8 +2491,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2506,7 +2506,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>pool to use for result. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2516,8 +2516,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a4287b3e035323b01ae349ea6049058c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4287b3e035323b01ae349ea6049058c0">&#9670;&nbsp;</a></span>afw_yearMonthDuration_set_from_parts()</h2>
+<a id="aa2e62e2d3dd7670bad904289a4691a0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e62e2d3dd7670bad904289a4691a0d">&#9670;&nbsp;</a></span>afw_yearMonthDuration_set_from_parts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2549,8 +2549,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2567,7 +2567,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
     <tr><td class="paramname">is_positive</td><td>true if duration is positive or false if negative. </td></tr>
     <tr><td class="paramname">years</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
     <tr><td class="paramname">months</td><td>(must be between 0 and AFW_INT32_MAX). </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2576,8 +2576,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a4f3a673216e47aad781a4b40eaf77bd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f3a673216e47aad781a4b40eaf77bd3">&#9670;&nbsp;</a></span>afw_yearMonthDuration_utf8_set_internal()</h2>
+<a id="a60d4c6e05cf488d3bde32e0a0ce1b977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60d4c6e05cf488d3bde32e0a0ce1b977">&#9670;&nbsp;</a></span>afw_yearMonthDuration_utf8_set_internal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2597,8 +2597,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2613,7 +2613,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
   <table class="params">
     <tr><td class="paramname">utf8</td><td>is xml schema compliant yearMonthDuration. </td></tr>
     <tr><td class="paramname">internal</td><td>is place to return internal representation. </td></tr>
-    <tr><td class="paramname">scope</td><td>of caller. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2622,8 +2622,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 
 </div>
 </div>
-<a id="a57d2c911b5a92a085f1ee3dca934f89c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57d2c911b5a92a085f1ee3dca934f89c">&#9670;&nbsp;</a></span>impl_set_date_no_time_zone()</h2>
+<a id="ac12870e7782746c8bf2e0a32273e3536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac12870e7782746c8bf2e0a32273e3536">&#9670;&nbsp;</a></span>impl_set_date_no_time_zone()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2655,8 +2655,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structafw__scope__s.html">afw_scope_t</a> *&#160;</td>
-          <td class="paramname"><em>scope</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2665,7 +2665,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000332">Todo:</a></b></dt><dd>FIXME: check for leapyear. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000326">Todo:</a></b></dt><dd>FIXME: check for leapyear. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__time_8c_source.html#l00080">80</a> of file <a class="el" href="afw__time_8c_source.html">afw_time.c</a>.</p>
 
@@ -2674,7 +2674,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_set_time_zone</b
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

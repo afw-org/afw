@@ -103,7 +103,7 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__extension__s.html">afw_extension_t</a> * instance,</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> * properties,</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> * p,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/*</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">     *  IMPORTANT:</span></div>
@@ -114,7 +114,7 @@ $(function() {
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">/* See function in generated/afw_ldap_generated.c. */</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="afw__ldap__generated_8c.html#afbb442c6a28f2d17f9bf77c118c14636">afw_ldap_generated_register</a>(scope);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="afw__ldap__generated_8c.html#a10693413369f1b93b7b8241bd5b07d95">afw_ldap_generated_register</a>(xctx);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">/* Return extension info. */</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> &amp;impl_extension;</div>
@@ -126,25 +126,25 @@ $(function() {
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;impl_afw_extension_release(</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__extension__s.html">afw_extension_t</a> * instance,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> * scope)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* Extension release() is not currently called. */</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 <div class="ttc" id="aafw_8h_html"><div class="ttname"><a href="afw_8h.html">afw.h</a></div><div class="ttdoc">Adaptive Framework Core API.</div></div>
 <div class="ttc" id="aafw__extension__impl__declares_8h_html"><div class="ttname"><a href="afw__extension__impl__declares_8h.html">afw_extension_impl_declares.h</a></div><div class="ttdoc">Interface afw_interface implementation declares.</div></div>
-<div class="ttc" id="aafw__ldap__generated_8c_html_afbb442c6a28f2d17f9bf77c118c14636"><div class="ttname"><a href="afw__ldap__generated_8c.html#afbb442c6a28f2d17f9bf77c118c14636">afw_ldap_generated_register</a></div><div class="ttdeci">void afw_ldap_generated_register(afw_scope_t *scope)</div><div class="ttdoc">Generated register for afw_ldap.</div><div class="ttdef"><b>Definition:</b> <a href="afw__ldap__generated_8c_source.html#l00046">afw_ldap_generated.c:46</a></div></div>
+<div class="ttc" id="aafw__ldap__generated_8c_html_a10693413369f1b93b7b8241bd5b07d95"><div class="ttname"><a href="afw__ldap__generated_8c.html#a10693413369f1b93b7b8241bd5b07d95">afw_ldap_generated_register</a></div><div class="ttdeci">void afw_ldap_generated_register(afw_xctx_t *xctx)</div><div class="ttdoc">Generated register for afw_ldap.</div><div class="ttdef"><b>Definition:</b> <a href="afw__ldap__generated_8c_source.html#l00046">afw_ldap_generated.c:46</a></div></div>
 <div class="ttc" id="aafw__ldap__generated_8h_html"><div class="ttname"><a href="afw__ldap__generated_8h.html">afw_ldap_generated.h</a></div><div class="ttdoc">Adaptive Framework register generated (afw_ldap) header.</div></div>
 <div class="ttc" id="aafw__ldap__internal_8h_html"><div class="ttname"><a href="afw__ldap__internal_8h.html">afw_ldap_internal.h</a></div><div class="ttdoc">Adaptive Framework LDAP Internal Header</div></div>
 <div class="ttc" id="aafw__ldap__version__info_8h_html"><div class="ttname"><a href="afw__ldap__version__info_8h.html">afw_ldap_version_info.h</a></div><div class="ttdoc">Adaptive Framework Version (afw_ldap_) header.</div></div>
 <div class="ttc" id="agroup__afw__environment_html_ga8c15739615324929eb088630766c1a04"><div class="ttname"><a href="group__afw__environment.html#ga8c15739615324929eb088630766c1a04">AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL</a></div><div class="ttdeci">#define AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL()</div><div class="ttdoc">Macro to put in each afw_extension implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8h_source.html#l00280">afw_environment.h:280</a></div></div>
 <div class="ttc" id="astructafw__extension__s_html"><div class="ttname"><a href="structafw__extension__s.html">afw_extension_s</a></div><div class="ttdoc">Interface afw_extension public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l00055">afw_interface.h:55</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

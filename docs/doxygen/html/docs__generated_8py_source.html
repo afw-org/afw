@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> pathlib</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> re</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">from</span> _afwdev.common <span class="keyword">import</span> msg, nfc</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">from</span> _afwdev.common <span class="keyword">import</span> msg, nfc, package</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"># This function generates the page data for an individual dataType</span></div>
@@ -275,7 +275,7 @@ $(function() {
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            val = str(val).lower()</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keywordflow">return</span> [</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;           docsHtml.literal(o[0]),</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            docsHtml.literal(o[0]),</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            docsHtml.escape(str(val))</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        ]            </div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
@@ -575,7 +575,7 @@ $(function() {
 <div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> text:</div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    paras = re.split(<span class="stringliteral">r&quot;\n +\n&quot;</span>, text)    </div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    paras = re.split(<span class="stringliteral">r&quot;\n *\n&quot;</span>, text)        </div>
 <div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\n\n&quot;</span>.join(map(<span class="keyword">lambda</span> x: <span class="stringliteral">&quot; &quot;</span>.join(x.split()), paras))</div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; </div>
 <div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="keyword">def </span>generate_interfaces_table(options, docsHtml):</div>
@@ -693,43 +693,46 @@ $(function() {
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    content = <span class="stringliteral">&quot;&quot;</span></div>
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160; </div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;    <span class="keywordflow">if</span> srcdir:</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <span class="comment"># fixme skip for now</span></div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;        <span class="keywordflow">return</span> content</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;    </div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;    <span class="keywordflow">if</span> os.path.exists(generated_object_type_path):</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;        <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(generated_object_type_path, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> fp:</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;            src = <a class="code" href="nfc_8py.html#ad8e4c8aadfc2384a2289ff1c07326e93">nfc.json_load</a>(fp)</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160; </div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;            rows = []</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;            propertyTypes = src[<span class="stringliteral">&#39;propertyTypes&#39;</span>]               </div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;            <span class="keywordflow">for</span> pType <span class="keywordflow">in</span> propertyTypes:</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                <span class="keywordflow">if</span> pType == <span class="stringliteral">&quot;_meta_&quot;</span>:</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                    <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                rows.append([ docsHtml.literal(pType), docsHtml.escape(propertyTypes[pType].get(<span class="stringliteral">&#39;description&#39;</span>)) ])</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;            </div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;            <span class="keywordflow">if</span> len(rows) &gt; 0:</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                content = docsHtml.table( </div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                    [ </div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                        propertyColumn <span class="keywordflow">if</span> propertyColumn <span class="keywordflow">else</span> <span class="stringliteral">&quot;Property&quot;</span>, </div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                        <span class="stringliteral">&quot;Description&quot;</span> </div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                    ], </div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                    rows</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                )</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;        <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;Path does not exist: %s&quot;</span> % generated_object_type_path)</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160; </div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160; </div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;    <span class="keywordflow">return</span> content</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <span class="keywordflow">if</span> <a class="code" href="package_8py.html#ab07de571da6d1f4025611aafa0904918">package.get_afw_package</a>(options)[<span class="stringliteral">&#39;srcdirs&#39;</span>].get(srcdir, <span class="keywordtype">None</span>):</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;            srcdirPath = <a class="code" href="package_8py.html#ab07de571da6d1f4025611aafa0904918">package.get_afw_package</a>(options)[<span class="stringliteral">&#39;srcdirs&#39;</span>].get(srcdir).get(<span class="stringliteral">&#39;srcdirPath&#39;</span>)</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;            generated_object_type_path = options.get(<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>) + \</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                srcdirPath + <span class="stringliteral">&#39;generated/objects/_AdaptiveObjectType_/&#39;</span> + objectTypeId + <span class="stringliteral">&#39;.json&#39;</span>            </div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;    </div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;    <span class="keywordflow">if</span> os.path.exists(generated_object_type_path):</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;        <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(generated_object_type_path, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> fp:</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;            src = <a class="code" href="nfc_8py.html#ad8e4c8aadfc2384a2289ff1c07326e93">nfc.json_load</a>(fp)</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160; </div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;            rows = []</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;            propertyTypes = src[<span class="stringliteral">&#39;propertyTypes&#39;</span>]               </div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;            <span class="keywordflow">for</span> pType <span class="keywordflow">in</span> propertyTypes:</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                <span class="keywordflow">if</span> pType == <span class="stringliteral">&quot;_meta_&quot;</span>:</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                    <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                rows.append([ docsHtml.literal(pType), docsHtml.escape(propertyTypes[pType].get(<span class="stringliteral">&#39;description&#39;</span>)) ])</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;            </div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;            <span class="keywordflow">if</span> len(rows) &gt; 0:</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                content = docsHtml.table( </div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                    [ </div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                        propertyColumn <span class="keywordflow">if</span> propertyColumn <span class="keywordflow">else</span> <span class="stringliteral">&quot;Property&quot;</span>, </div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                        <span class="stringliteral">&quot;Description&quot;</span> </div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                    ], </div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                    rows</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                )</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;        <a class="code" href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a>(<span class="stringliteral">&quot;Path does not exist: %s&quot;</span> % generated_object_type_path)</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160; </div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160; </div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    <span class="keywordflow">return</span> content</div>
 <div class="ttc" id="amsg_8py_html_ac117f3f50e400f8f72bd1fbf0ba10fad"><div class="ttname"><a href="msg_8py.html#ac117f3f50e400f8f72bd1fbf0ba10fad">msg.error</a></div><div class="ttdeci">def error(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00085">msg.py:85</a></div></div>
 <div class="ttc" id="amsg_8py_html_afcba0b47cdddd8bfab77538419c8bd30"><div class="ttname"><a href="msg_8py.html#afcba0b47cdddd8bfab77538419c8bd30">msg.info</a></div><div class="ttdeci">def info(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00114">msg.py:114</a></div></div>
 <div class="ttc" id="anfc_8py_html_a58eb15270a41bde5ff0fb2d629059de3"><div class="ttname"><a href="nfc_8py.html#a58eb15270a41bde5ff0fb2d629059de3">nfc.json_load_from_file</a></div><div class="ttdeci">def json_load_from_file(path)</div><div class="ttdef"><b>Definition:</b> <a href="nfc_8py_source.html#l00043">nfc.py:43</a></div></div>
 <div class="ttc" id="anfc_8py_html_aaf2096279660bfb02b7844a3d3b15202"><div class="ttname"><a href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a></div><div class="ttdeci">def open(path, mode='r')</div><div class="ttdef"><b>Definition:</b> <a href="nfc_8py_source.html#l00005">nfc.py:5</a></div></div>
 <div class="ttc" id="anfc_8py_html_acd912a41f3a7d85e65d740e33de9f00a"><div class="ttname"><a href="nfc_8py.html#acd912a41f3a7d85e65d740e33de9f00a">nfc.json_dumps</a></div><div class="ttdeci">def json_dumps(obj, *args, **kwargs)</div><div class="ttdef"><b>Definition:</b> <a href="nfc_8py_source.html#l00028">nfc.py:28</a></div></div>
 <div class="ttc" id="anfc_8py_html_ad8e4c8aadfc2384a2289ff1c07326e93"><div class="ttname"><a href="nfc_8py.html#ad8e4c8aadfc2384a2289ff1c07326e93">nfc.json_load</a></div><div class="ttdeci">def json_load(fd)</div><div class="ttdef"><b>Definition:</b> <a href="nfc_8py_source.html#l00032">nfc.py:32</a></div></div>
+<div class="ttc" id="apackage_8py_html_ab07de571da6d1f4025611aafa0904918"><div class="ttname"><a href="package_8py.html#ab07de571da6d1f4025611aafa0904918">package.get_afw_package</a></div><div class="ttdeci">def get_afw_package(options)</div><div class="ttdef"><b>Definition:</b> <a href="package_8py_source.html#l00120">package.py:120</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -102,13 +102,13 @@ $(function() {
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__model__location__s.html">afw_model_location_t</a> *)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;afw_model_location_create(</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga6f4354d5ad5ef1f4d628864f62445fc4">afw_model_t</a> *)</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;afw_model_location_get_model(</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__adaptor__s.html">afw_adaptor_t</a> *model_location_adaptor,</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *model_id,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;AFW_END_DECLARES</div>
@@ -124,13 +124,13 @@ $(function() {
 <div class="ttc" id="astructafw__model__location__s_html_a267ce5974c06c07989ca3aa173060590"><div class="ttname"><a href="structafw__model__location__s.html#a267ce5974c06c07989ca3aa173060590">afw_model_location_s::first_model</a></div><div class="ttdeci">const afw_model_t *AFW_ATOMIC first_model</div><div class="ttdoc">First loaded model.</div><div class="ttdef"><b>Definition:</b> <a href="afw__model__location_8h_source.html#l00049">afw_model_location.h:49</a></div></div>
 <div class="ttc" id="astructafw__model__location__s_html_a42f46d2fb4f58d90c5f8ecc8c6373e16"><div class="ttname"><a href="structafw__model__location__s.html#a42f46d2fb4f58d90c5f8ecc8c6373e16">afw_model_location_s::mutex</a></div><div class="ttdeci">afw_thread_mutex_t * mutex</div><div class="ttdoc">Mutex for locking access to this struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__model__location_8h_source.html#l00046">afw_model_location.h:46</a></div></div>
 <div class="ttc" id="astructafw__model__location__s_html_a90816a00746f2ca2b88553a8917c4a5c"><div class="ttname"><a href="structafw__model__location__s.html#a90816a00746f2ca2b88553a8917c4a5c">afw_model_location_s::model_location_adaptor</a></div><div class="ttdeci">const afw_adaptor_t * model_location_adaptor</div><div class="ttdoc">Model location adaptor.</div><div class="ttdef"><b>Definition:</b> <a href="afw__model__location_8h_source.html#l00043">afw_model_location.h:43</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04642">afw_interface.h:4642</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

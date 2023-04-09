@@ -101,24 +101,24 @@ $(function() {
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__afw__version.html#ga91bf44fd67b692591449250338753214">   68</a></span>&#160;<span class="preprocessor">#define AFW_VERSION_CHECK afw_version_check(AFW_VERSION_HEX)</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="group__afw__version.html#ga9571d5e2b03cfe645b175dd9b603fc48">   80</a></span>&#160;<span class="preprocessor">#define AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE( \</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">    info, compiled_version, scope) \</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="group__afw__version.html#gaa19365e85aeb7f546194a0964c6d62a9">   80</a></span>&#160;<span class="preprocessor">#define AFW_VERSION_THROW_ERROR_SUPPLIED_HEX_VERSION_IF_NOT_COMPATIBLE( \</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">    info, compiled_version, xctx) \</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">    const afw_utf8_z_t *msg_z; \</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">    msg_z = afw_version_check(compiled_version); \</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">    if (msg_z) { \</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(general, scope, \</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(general, xctx, \</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">            &quot;%&quot;</span> AFW_UTF8_FMT &quot; %s&quot;, \</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            AFW_UTF8_FMT_ARG(info), msg_z); \</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    } \</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} while (0)</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__afw__version.html#ga4029144c367d81ccedfb96bed962fe52">  102</a></span>&#160;<span class="preprocessor">#define AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(id_z, scope) \</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__afw__version.html#ga97f8ea37dbcd4c31417c1ec570a39a8b">  102</a></span>&#160;<span class="preprocessor">#define AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE(id_z, xctx) \</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">do { \</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">    const afw_utf8_z_t *msg_z; \</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">    msg_z = AFW_VERSION_CHECK; \</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">    if (msg_z) { \</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(general, scope, &quot;%s %s&quot;</span>, id_z, msg_z); \</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_FZ(general, xctx, &quot;%s %s&quot;</span>, id_z, msg_z); \</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    } \</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} while (0)</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
@@ -147,7 +147,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

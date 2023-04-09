@@ -240,177 +240,175 @@ $(function() {
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">elif</span> resource_name.startswith(<span class="stringliteral">&#39;objects/&#39;</span>):</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                path = <span class="keywordtype">None</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                possible_paths = glob.glob(</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    <span class="stringliteral">&#39;*/generated/&#39;</span> + resource_name,</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    root_dir=options[<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>] + <span class="stringliteral">&#39;src&#39;</span>)</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &lt; 1:</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    possible_paths = glob.glob(</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                        <span class="stringliteral">&#39;*/generate/&#39;</span> + resource_name,</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                        root_dir=options[<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>] + <span class="stringliteral">&#39;src&#39;</span>)</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &gt; 1:</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Multiple paths found for resource &#39;</span> + resource_name)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &gt; 0:</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    path = options[<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>] + <span class="stringliteral">&#39;src/&#39;</span> + possible_paths[0]</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">if</span> path <span class="keywordflow">and</span> <span class="keywordflow">not</span> os.path.exists(path):</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    path = <span class="keywordtype">None</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">if</span> path <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Resource &#39;</span> + resource_name + <span class="stringliteral">&#39; not found&#39;</span>)</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    options[<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>] + <span class="stringliteral">&#39;src/*/generated/&#39;</span> + resource_name)</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &lt; 1:</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    possible_paths = glob.glob(</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                        options[<span class="stringliteral">&#39;afw_package_dir_path&#39;</span>] + <span class="stringliteral">&#39;src/*/generate/&#39;</span> + resource_name,)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &gt; 1:</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Multiple paths found for resource &#39;</span> + resource_name)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="keywordflow">if</span> len(possible_paths) &gt; 0:</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    path = possible_paths[0]</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keywordflow">if</span> path <span class="keywordflow">and</span> <span class="keywordflow">not</span> os.path.exists(path):</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    path = <span class="keywordtype">None</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">if</span> path <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Resource &#39;</span> + resource_name + <span class="stringliteral">&#39; not found&#39;</span>)</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    resource = <a class="code" href="nfc_8py.html#af665126bc218fc145305af90ad4ae425">nfc.read_path</a>(path)</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    resource = <a class="code" href="nfc_8py.html#af665126bc218fc145305af90ad4ae425">nfc.read_path</a>(path)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> substitution:</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;license_c&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(options[<span class="stringliteral">&#39;afwdev_dir_path&#39;</span>] + <span class="stringliteral">&#39;_resources/closet/default_license.c&#39;</span>) <span class="keyword">as</span> fd:</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                options[<span class="stringliteral">&#39;license_c&#39;</span>]  = fd.read()</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        resource = do_afwdev_substitutions(options, resource, path)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">if</span> substitution:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;license_c&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(options[<span class="stringliteral">&#39;afwdev_dir_path&#39;</span>] + <span class="stringliteral">&#39;_resources/closet/default_license.c&#39;</span>) <span class="keyword">as</span> fd:</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                options[<span class="stringliteral">&#39;license_c&#39;</span>]  = fd.read()</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        resource = do_afwdev_substitutions(options, resource, path)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">return</span> resource</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">return</span> resource</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">def </span>_zipped_load_resource(options, resource_name, substitution=False):</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="keyword">def </span>_zipped_load_resource(options, resource_name, substitution=False):</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keyword">with</span> zipfile.ZipFile(options[<span class="stringliteral">&#39;afwdev_path&#39;</span>]) <span class="keyword">as</span> zf:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        path = <span class="stringliteral">&#39;_resources/&#39;</span> + resource_name</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            resource = str(zf.read(path), <span class="stringliteral">&#39;utf-8&#39;</span>)</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">except</span> KeyError:</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Resource &#39;</span> + resource_name + <span class="stringliteral">&#39; not found&#39;</span>)</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">if</span> substitution <span class="keywordflow">and</span> options.get(<span class="stringliteral">&#39;license_c&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            options[<span class="stringliteral">&#39;license_c&#39;</span>]  = str(zf.read(<span class="stringliteral">&#39;_resources/closet/default_license.c&#39;</span>), <span class="stringliteral">&#39;utf-8&#39;</span>)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">if</span> substitution:</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        resource = do_afwdev_substitutions(options, resource, path)</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">with</span> zipfile.ZipFile(options[<span class="stringliteral">&#39;afwdev_path&#39;</span>]) <span class="keyword">as</span> zf:</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        path = <span class="stringliteral">&#39;_resources/&#39;</span> + resource_name</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            resource = str(zf.read(path), <span class="stringliteral">&#39;utf-8&#39;</span>)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">except</span> KeyError:</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Resource &#39;</span> + resource_name + <span class="stringliteral">&#39; not found&#39;</span>)</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">if</span> substitution <span class="keywordflow">and</span> options.get(<span class="stringliteral">&#39;license_c&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            options[<span class="stringliteral">&#39;license_c&#39;</span>]  = str(zf.read(<span class="stringliteral">&#39;_resources/closet/default_license.c&#39;</span>), <span class="stringliteral">&#39;utf-8&#39;</span>)</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">if</span> substitution:</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        resource = do_afwdev_substitutions(options, resource, path)</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">return</span> resource</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">return</span> resource</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="keyword">def </span>load_resource(options, resource_name, substitution=False):</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">if</span> options[<span class="stringliteral">&#39;afwdev_is_zipped&#39;</span>]:</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        resource = _zipped_load_resource(options, resource_name, substitution)</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        resource = _afwdev_src_load_resource(options, resource_name, substitution)</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">return</span> resource</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keyword">def </span>load_skeleton(options, skeleton_name, substitution=False):</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">return</span> load_resource(options, <span class="stringliteral">&#39;closet/skeleton_&#39;</span> + skeleton_name, substitution)</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="keyword">def </span>load_resource(options, resource_name, substitution=False):</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">if</span> options[<span class="stringliteral">&#39;afwdev_is_zipped&#39;</span>]:</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        resource = _zipped_load_resource(options, resource_name, substitution)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        resource = _afwdev_src_load_resource(options, resource_name, substitution)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">return</span> resource</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword">def </span>load_skeleton(options, skeleton_name, substitution=False):</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">return</span> load_resource(options, <span class="stringliteral">&#39;closet/skeleton_&#39;</span> + skeleton_name, substitution)</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="keyword">def </span>get_core_object_types(options):</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    object_type_objects = []</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    list = copy_resources(options, <span class="stringliteral">&#39;objects/_AdaptiveObjectType_/&#39;</span>)</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">for</span> item <span class="keywordflow">in</span> list:</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        obj = <a class="code" href="nfc_8py.html#aa5213de948f41c688ec159fd44ee36bb">nfc.json_loads</a>(item.get(<span class="stringliteral">&#39;resource&#39;</span>))</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>] = {}</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>][<span class="stringliteral">&#39;objectId&#39;</span>] = obj[<span class="stringliteral">&#39;objectType&#39;</span>]</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>][<span class="stringliteral">&#39;objectType&#39;</span>] = <span class="stringliteral">&#39;_AdaptiveObjectType_&#39;</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        object_type_objects.append(obj)</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    object_type_objects.sort(key=sort_use_id_cb)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="keyword">def </span>get_core_object_types(options):</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    object_type_objects = []</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    list = copy_resources(options, <span class="stringliteral">&#39;objects/_AdaptiveObjectType_/&#39;</span>)</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">for</span> item <span class="keywordflow">in</span> list:</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        obj = <a class="code" href="nfc_8py.html#aa5213de948f41c688ec159fd44ee36bb">nfc.json_loads</a>(item.get(<span class="stringliteral">&#39;resource&#39;</span>))</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>] = {}</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>][<span class="stringliteral">&#39;objectId&#39;</span>] = obj[<span class="stringliteral">&#39;objectType&#39;</span>]</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        obj[<span class="stringliteral">&#39;_meta_&#39;</span>][<span class="stringliteral">&#39;objectType&#39;</span>] = <span class="stringliteral">&#39;_AdaptiveObjectType_&#39;</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        object_type_objects.append(obj)</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    object_type_objects.sort(key=sort_use_id_cb)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">return</span> object_type_objects</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">return</span> object_type_objects</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword">def </span>_set_get_git_info(options, cwd=None):</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;git_info&#39;</span>) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keywordflow">return</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="comment"># allow git info to be passed in via environment variables</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="comment"># this is useful for workflows that do not run out of a git repo</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    git_branch = os.environ.get(<span class="stringliteral">&#39;GIT_BRANCH&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    git_describe = os.environ.get(<span class="stringliteral">&#39;GIT_DESCRIBE&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    git_sha = os.environ.get(<span class="stringliteral">&#39;GIT_SHA&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    git_info = {}</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordflow">if</span> git_branch != <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">and</span> git_describe != <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">and</span> git_sha != <span class="stringliteral">&#39;&#39;</span>:</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = git_branch</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = git_describe</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = git_sha</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;rev-parse&quot;</span>, <span class="stringliteral">&quot;--abbrev-ref&quot;</span>, <span class="stringliteral">&quot;HEAD&quot;</span>], stdout=PIPE, cwd=cwd)</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">if</span> result.returncode != 0:</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Failed: git rev-parse --abbrev-ref HEAD&#39;</span>)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Using fake git rev-parse info&#39;</span>)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = <span class="stringliteral">&#39;unavailable-branch&#39;</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = <span class="stringliteral">&#39;unavailable-describe&#39;</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = <span class="stringliteral">&quot;unavailable-sha&quot;</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = result.stdout.decode().strip()</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;describe&quot;</span>, <span class="stringliteral">&quot;--dirty&quot;</span>, <span class="stringliteral">&quot;--always&quot;</span>, <span class="stringliteral">&quot;--tags&quot;</span>], stdout=PIPE, cwd=cwd)</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="keywordflow">if</span> result.returncode != 0:</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Failed: git describe --dirty --always --tags&#39;</span>)</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = result.stdout.decode().strip()</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;rev-parse&quot;</span>, <span class="stringliteral">&quot;HEAD&quot;</span>], stdout=PIPE, cwd=cwd)</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">if</span> result.returncode != 0:</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Failed: git rev-parse HEAD&#39;</span>)</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = result.stdout.decode().strip()</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keyword">def </span>_set_get_git_info(options, cwd=None):</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;git_info&#39;</span>) <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="comment"># allow git info to be passed in via environment variables</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="comment"># this is useful for workflows that do not run out of a git repo</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    git_branch = os.environ.get(<span class="stringliteral">&#39;GIT_BRANCH&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    git_describe = os.environ.get(<span class="stringliteral">&#39;GIT_DESCRIBE&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    git_sha = os.environ.get(<span class="stringliteral">&#39;GIT_SHA&#39;</span>, <span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    git_info = {}</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">if</span> git_branch != <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">and</span> git_describe != <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">and</span> git_sha != <span class="stringliteral">&#39;&#39;</span>:</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = git_branch</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = git_describe</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = git_sha</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;rev-parse&quot;</span>, <span class="stringliteral">&quot;--abbrev-ref&quot;</span>, <span class="stringliteral">&quot;HEAD&quot;</span>], stdout=PIPE, cwd=cwd)</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordflow">if</span> result.returncode != 0:</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Failed: git rev-parse --abbrev-ref HEAD&#39;</span>)</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <a class="code" href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a>(<span class="stringliteral">&#39;Using fake git rev-parse info&#39;</span>)</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = <span class="stringliteral">&#39;unavailable-branch&#39;</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = <span class="stringliteral">&#39;unavailable-describe&#39;</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = <span class="stringliteral">&quot;unavailable-sha&quot;</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            git_info[<span class="stringliteral">&#39;git_branch&#39;</span>] = result.stdout.decode().strip()</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;describe&quot;</span>, <span class="stringliteral">&quot;--dirty&quot;</span>, <span class="stringliteral">&quot;--always&quot;</span>, <span class="stringliteral">&quot;--tags&quot;</span>], stdout=PIPE, cwd=cwd)</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">if</span> result.returncode != 0:</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Failed: git describe --dirty --always --tags&#39;</span>)</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            git_info[<span class="stringliteral">&#39;git_describe&#39;</span>] = result.stdout.decode().strip()</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            result = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;rev-parse&quot;</span>, <span class="stringliteral">&quot;HEAD&quot;</span>], stdout=PIPE, cwd=cwd)</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="keywordflow">if</span> result.returncode != 0:</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;Failed: git rev-parse HEAD&#39;</span>)</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            git_info[<span class="stringliteral">&#39;git_sha&#39;</span>] = result.stdout.decode().strip()</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    options[<span class="stringliteral">&#39;git_info&#39;</span>] = git_info</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    options[<span class="stringliteral">&#39;git_info&#39;</span>] = git_info</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="keyword">def </span>set_git_and_version_info_options(options, cwd=None):</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="keyword">def </span>set_git_and_version_info_options(options, cwd=None):</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    _set_get_git_info(options, cwd=cwd)</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    _set_get_git_info(options, cwd=cwd)</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;version&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;version= property in afw-package.json is missing&#39;</span>)</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    result = options[<span class="stringliteral">&#39;git_info&#39;</span>].copy()</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    result[<span class="stringliteral">&#39;version&#39;</span>] = options[<span class="stringliteral">&#39;version&#39;</span>]</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    version_major, version_minor, version_patch = result[<span class="stringliteral">&#39;version&#39;</span>].split(<span class="stringliteral">&#39;.&#39;</span>)</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    result[<span class="stringliteral">&#39;version_major&#39;</span>] = version_major</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    result[<span class="stringliteral">&#39;version_minor&#39;</span>] = version_minor</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    result[<span class="stringliteral">&#39;version_patch&#39;</span>] = version_patch</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    result[<span class="stringliteral">&#39;version_string&#39;</span>] = version_major + <span class="stringliteral">&#39;.&#39;</span> + version_minor + <span class="stringliteral">&#39;.&#39;</span> + version_patch</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    version_with_git_info = result[<span class="stringliteral">&#39;version&#39;</span>]</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">if</span> result[<span class="stringliteral">&#39;git_branch&#39;</span>] != <span class="stringliteral">&#39;main&#39;</span>:</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        version_with_git_info += <span class="stringliteral">&#39;-&#39;</span> + result[<span class="stringliteral">&#39;git_branch&#39;</span>]</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    version_with_git_info += <span class="stringliteral">&#39;+&#39;</span> + result[<span class="stringliteral">&#39;git_describe&#39;</span>]</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    result[<span class="stringliteral">&#39;version_with_git_info&#39;</span>] = version_with_git_info</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    options.update(result)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">return</span> result</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="keyword">def </span>get_afwdev_git_info(options):</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">if</span> options[<span class="stringliteral">&#39;afwdev_is_zipped&#39;</span>]:</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        afwdev_git_info = _zipped_load_resource(options, <span class="stringliteral">&#39;afwdev_git_info.json&#39;</span>)</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        afwdev_git_info = <a class="code" href="nfc_8py.html#aa5213de948f41c688ec159fd44ee36bb">nfc.json_loads</a>(afwdev_git_info)</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        cwd = os.path.realpath(options[<span class="stringliteral">&#39;afwdev_dir_path&#39;</span>] + <span class="stringliteral">&#39;../../&#39;</span>)</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(os.path.join(cwd, <span class="stringliteral">&#39;afw-package.json&#39;</span>)) <span class="keyword">as</span> fd:</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            afw_package = <a class="code" href="nfc_8py.html#ad8e4c8aadfc2384a2289ff1c07326e93">nfc.json_load</a>(fd)</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        options[<span class="stringliteral">&#39;version&#39;</span>] = afw_package.get(<span class="stringliteral">&#39;version&#39;</span>,<span class="stringliteral">&#39;unknown&#39;</span>)</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        afwdev_git_info = set_git_and_version_info_options(options, cwd=cwd)</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordflow">return</span> afwdev_git_info</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="keyword">def </span>make_executable(path):</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">if</span> platform.system() == <span class="stringliteral">&#39;Linux&#39;</span> <span class="keywordflow">or</span> platform.system() == <span class="stringliteral">&#39;Darwin&#39;</span>:</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        st = os.stat(path)</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        os.chmod(path, st.st_mode | stat.S_IEXEC)     </div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="keyword">def </span>write_resource(options, resource_name, path, substitution=False, executable=False):</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    resource = load_resource(options, resource_name, substitution=substitution)</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(path, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> fd:</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        fd.write(resource)</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">if</span> executable:</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        make_executable(path) </div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="keyword">def </span>write_skeleton(options, skeleton_name, path, substitution=False, executable=False):</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    skeleton = load_skeleton(options, skeleton_name, substitution=substitution)</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(path, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> fd:</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        fd.write(skeleton)</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">if</span> executable:</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        make_executable(path) </div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <span class="keywordflow">if</span> options.get(<span class="stringliteral">&#39;version&#39;</span>) <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <a class="code" href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a>(<span class="stringliteral">&#39;version= property in afw-package.json is missing&#39;</span>)</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    result = options[<span class="stringliteral">&#39;git_info&#39;</span>].copy()</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    result[<span class="stringliteral">&#39;version&#39;</span>] = options[<span class="stringliteral">&#39;version&#39;</span>]</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    version_major, version_minor, version_patch = result[<span class="stringliteral">&#39;version&#39;</span>].split(<span class="stringliteral">&#39;.&#39;</span>)</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    result[<span class="stringliteral">&#39;version_major&#39;</span>] = version_major</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    result[<span class="stringliteral">&#39;version_minor&#39;</span>] = version_minor</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    result[<span class="stringliteral">&#39;version_patch&#39;</span>] = version_patch</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    result[<span class="stringliteral">&#39;version_string&#39;</span>] = version_major + <span class="stringliteral">&#39;.&#39;</span> + version_minor + <span class="stringliteral">&#39;.&#39;</span> + version_patch</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    version_with_git_info = result[<span class="stringliteral">&#39;version&#39;</span>]</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordflow">if</span> result[<span class="stringliteral">&#39;git_branch&#39;</span>] != <span class="stringliteral">&#39;main&#39;</span>:</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        version_with_git_info += <span class="stringliteral">&#39;-&#39;</span> + result[<span class="stringliteral">&#39;git_branch&#39;</span>]</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    version_with_git_info += <span class="stringliteral">&#39;+&#39;</span> + result[<span class="stringliteral">&#39;git_describe&#39;</span>]</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    result[<span class="stringliteral">&#39;version_with_git_info&#39;</span>] = version_with_git_info</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    options.update(result)</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordflow">return</span> result</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="keyword">def </span>get_afwdev_git_info(options):</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">if</span> options[<span class="stringliteral">&#39;afwdev_is_zipped&#39;</span>]:</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        afwdev_git_info = _zipped_load_resource(options, <span class="stringliteral">&#39;afwdev_git_info.json&#39;</span>)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        afwdev_git_info = <a class="code" href="nfc_8py.html#aa5213de948f41c688ec159fd44ee36bb">nfc.json_loads</a>(afwdev_git_info)</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        cwd = os.path.realpath(options[<span class="stringliteral">&#39;afwdev_dir_path&#39;</span>] + <span class="stringliteral">&#39;../../&#39;</span>)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(os.path.join(cwd, <span class="stringliteral">&#39;afw-package.json&#39;</span>)) <span class="keyword">as</span> fd:</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            afw_package = <a class="code" href="nfc_8py.html#ad8e4c8aadfc2384a2289ff1c07326e93">nfc.json_load</a>(fd)</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        options[<span class="stringliteral">&#39;version&#39;</span>] = afw_package.get(<span class="stringliteral">&#39;version&#39;</span>,<span class="stringliteral">&#39;unknown&#39;</span>)</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        afwdev_git_info = set_git_and_version_info_options(options, cwd=cwd)</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span> afwdev_git_info</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="keyword">def </span>make_executable(path):</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">if</span> platform.system() == <span class="stringliteral">&#39;Linux&#39;</span> <span class="keywordflow">or</span> platform.system() == <span class="stringliteral">&#39;Darwin&#39;</span>:</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        st = os.stat(path)</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        os.chmod(path, st.st_mode | stat.S_IEXEC)     </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="keyword">def </span>write_resource(options, resource_name, path, substitution=False, executable=False):</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    resource = load_resource(options, resource_name, substitution=substitution)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(path, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> fd:</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        fd.write(resource)</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordflow">if</span> executable:</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        make_executable(path) </div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keyword">def </span>write_skeleton(options, skeleton_name, path, substitution=False, executable=False):</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    skeleton = load_skeleton(options, skeleton_name, substitution=substitution)</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keyword">with</span> <a class="code" href="nfc_8py.html#aaf2096279660bfb02b7844a3d3b15202">nfc.open</a>(path, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> fd:</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        fd.write(skeleton)</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordflow">if</span> executable:</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        make_executable(path) </div>
 <div class="ttc" id="amsg_8py_html_a686e028d3de3a828fb9ce0cb37e7af64"><div class="ttname"><a href="msg_8py.html#a686e028d3de3a828fb9ce0cb37e7af64">msg.warn</a></div><div class="ttdeci">def warn(message, empty_before=False, empty_after=False, end='\n')</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00140">msg.py:140</a></div></div>
 <div class="ttc" id="amsg_8py_html_a7a0e4c073c9ef6114be3eef940bc3c16"><div class="ttname"><a href="msg_8py.html#a7a0e4c073c9ef6114be3eef940bc3c16">msg.error_exit</a></div><div class="ttdeci">def error_exit(message, empty_before=False, empty_after=False)</div><div class="ttdef"><b>Definition:</b> <a href="msg_8py_source.html#l00096">msg.py:96</a></div></div>
 <div class="ttc" id="anfc_8py_html_aa5213de948f41c688ec159fd44ee36bb"><div class="ttname"><a href="nfc_8py.html#aa5213de948f41c688ec159fd44ee36bb">nfc.json_loads</a></div><div class="ttdeci">def json_loads(s)</div><div class="ttdef"><b>Definition:</b> <a href="nfc_8py_source.html#l00038">nfc.py:38</a></div></div>
@@ -422,7 +420,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

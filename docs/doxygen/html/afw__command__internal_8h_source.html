@@ -88,7 +88,7 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structafw__command__self__s.html">   28</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__command__self__s.html">afw_command_self_s</a> {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="structafw__scope__s.html">afw_scope_t</a> *scope;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> index_first_non_option;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *source_location;</div>
@@ -135,7 +135,7 @@ $(function() {
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    apr_array_header_t *input_buffer;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a> callback;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a> callback;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> *callback_data;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
@@ -170,20 +170,20 @@ $(function() {
 <div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
 <div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_ga93eea8d9bb28ab19eb24262337d071a3"><div class="ttname"><a href="group__afw__common.html#ga93eea8d9bb28ab19eb24262337d071a3">afw_utf8_octet_get_cb_t</a></div><div class="ttdeci">int(* afw_utf8_octet_get_cb_t)(afw_utf8_octet_t *octet, void *data, afw_scope_t *scope)</div><div class="ttdoc">Get an utf-8 octet (8 bits).</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00253">afw_common.h:253</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga8d90483aa60c16e6b9378c1c306a805d"><div class="ttname"><a href="group__afw__common.html#ga8d90483aa60c16e6b9378c1c306a805d">afw_utf8_octet_get_cb_t</a></div><div class="ttdeci">int(* afw_utf8_octet_get_cb_t)(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)</div><div class="ttdoc">Get an utf-8 octet (8 bits).</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00253">afw_common.h:253</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00522">afw_common.h:522</a></div></div>
 <div class="ttc" id="agroup__afw__common_html_gaa3ed4512b367a8e75798354e6b3e0212"><div class="ttname"><a href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a></div><div class="ttdeci">enum afw_compile_type_e afw_compile_type_t</div><div class="ttdoc">Compile type enum.</div></div>
 <div class="ttc" id="agroup__afw__compile_html_ga023394449bc195a14af662b8aacdb5cd"><div class="ttname"><a href="group__afw__compile.html#ga023394449bc195a14af662b8aacdb5cd">afw_compile_residual_check_t</a></div><div class="ttdeci">enum afw_compile_residual_check_e afw_compile_residual_check_t</div><div class="ttdoc">Residual checking options.</div></div>
 <div class="ttc" id="astructafw__command__self__s_html"><div class="ttname"><a href="structafw__command__self__s.html">afw_command_self_s</a></div><div class="ttdoc">Self typedef for afw_command self.</div><div class="ttdef"><b>Definition:</b> <a href="afw__command__internal_8h_source.html#l00028">afw_command_internal.h:28</a></div></div>
 <div class="ttc" id="astructafw__content__type__s_html"><div class="ttname"><a href="structafw__content__type__s.html">afw_content_type_s</a></div><div class="ttdoc">Interface afw_content_type public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l01808">afw_interface.h:1808</a></div></div>
 <div class="ttc" id="astructafw__memory__s_html"><div class="ttname"><a href="structafw__memory__s.html">afw_memory_s</a></div><div class="ttdoc">Struct for memory pointer and size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00504">afw_common.h:504</a></div></div>
-<div class="ttc" id="astructafw__scope__s_html"><div class="ttname"><a href="structafw__scope__s.html">afw_scope_s</a></div><div class="ttdoc">Interface afw_scope public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04297">afw_interface.h:4297</a></div></div>
 <div class="ttc" id="astructafw__server__s_html"><div class="ttname"><a href="structafw__server__s.html">afw_server_s</a></div><div class="ttdoc">Interface afw_server public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03455">afw_interface.h:3455</a></div></div>
 <div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 4 2023 17:55:11 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Apr 8 2023 19:30:12 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

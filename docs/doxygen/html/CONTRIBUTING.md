@@ -21,8 +21,8 @@ guidelines before contributing to ensure your contributions are successful.
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the 
-[Adaptive Framework Code of Conduct](CODE_OF_CONDUCT.md). By participating, you
+This project and everyone participating in it has adopted the 
+[Contributor Covenant](CODE_OF_CONDUCT.md). By participating, you
 are expected to uphold this code.
 
 
@@ -30,7 +30,7 @@ are expected to uphold this code.
 
 If you are new to the project, and wish to learn what Adaptive Framework is all 
 about, please start with the currently published 
-[Documentation](https://afw-org.github.io/afw).
+[documentation](https://afw-org.github.io/afw).
 
 
 ## How to Contribute
