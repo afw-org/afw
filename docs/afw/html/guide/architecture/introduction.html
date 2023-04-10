@@ -198,8 +198,10 @@
     
                 The <code>Adaptive Framework Core</code> refers to the
                 functionality that is provided by the framework, by default.  
-                Core includes some built-in data types, adaptive functions,
-                extensions and adaptors for creating and storing objects.
+                Core includes built-in interfaces, data types, functions,
+                extensions, adaptors for persisting objects, logs and request 
+                handlers. It also includes a runtime environment and a language 
+                interpreter to evaluate Adaptive Scripts and Expressions.
             
 </p>
 </section><section class="mt-12">
@@ -224,16 +226,34 @@
             
 </p>
 </section><section class="mt-12">
-    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Adaptive Application</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Configuration Objects</h3><p class="text-lg text-slate-700 dark:text-slate-400">
     
-                The <code>Adaptive Application</code> is the sum of
-                everything in this diagram, and is represented by a special
-                object of type <code>_AdaptiveConf_application</code>.  
-                This object documents the application and may provide some
-                additional processing instructions, such as which extensions to
-                load at startup, a default authorization script, general file
-                path information and some properties useful for the
-                Administrative Web Application.
+                In order to configure an application, we use 
+                <code>Configuration Objects</code>, along with a single 
+                <code>afw.conf</code> file to instruct the application 
+                instance which extensions to load, what services to start and 
+                where to locate additional configurations.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Data</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                The <code>Data</code> in this diagram may be optional, 
+                structured databases, object stores, log files, event journals,
+                or anything else that may be used by services to read or persist
+                data.
+            
+</p>
+</section><section class="mt-12">
+    <h3 class="group flex whitespace-pre-wrap -ml-4 pl-4">Application</h3><p class="text-lg text-slate-700 dark:text-slate-400">
+    
+                The <code>Application</code> is the sum of
+                everything in this diagram, and is defined to Adaptive Framework
+                through a special configuration object. This documents the
+                application and provides some additional processing
+                instructions, such as which extensions to load at startup, a
+                default authorization script, general file path information and
+                some properties useful for the Administrative Web Application.
             
 </p>
 </section>
