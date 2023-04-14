@@ -60,7 +60,7 @@ then
     ./afwdev build --js -j && \
     mv build/doc build/js/apps/admin && \
     cd src/afw_app/admin && \
-    mv build afw_app && \
+    mv admin afw_app && \
     tar cf admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar afw_app
 
     # copy to /
