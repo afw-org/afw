@@ -1,0 +1,38 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIncludesString",
+    "brief": "Checks whether the string value includes a string",
+    "camelCaseFunctionLabel": "includesString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks whether the string value includes a string and return the boolean result.",
+    "functionId": "includes<string>",
+    "functionLabel": "includes_string",
+    "parameters": [
+        {
+            "brief": "The string to search",
+            "dataType": "string",
+            "description": "The string to search.",
+            "name": "searchString"
+        },
+        {
+            "brief": "Substring to find",
+            "dataType": "string",
+            "description": "Substring to find.",
+            "name": "subString"
+        },
+        {
+            "brief": "Zero-based position in the search string to start search",
+            "dataType": "integer",
+            "description": "Zero-based position in the search string to start search.",
+            "name": "position",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "brief": "Indicates if the substring is found",
+        "dataType": "boolean",
+        "description": "Indicates if the substring is contained in the search string."
+    },
+    "useExecuteFunction": "afw_function_execute_includes"
+}

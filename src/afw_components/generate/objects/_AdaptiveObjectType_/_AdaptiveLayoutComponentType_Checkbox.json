@@ -1,0 +1,50 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Checkbox component.",
+    "objectType": "_AdaptiveLayoutComponentType_Checkbox",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "boxSide": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies which side the checkbox is on (start or end).",
+            "label": "Box Side"
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The description for the Checkbox component.",
+            "testDataParameter": "This is the description.",
+            "label": "Description"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Checkbox component is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Checkbox component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The value for the Checkbox component.",
+            "label": "Value"
+        }
+    }
+}

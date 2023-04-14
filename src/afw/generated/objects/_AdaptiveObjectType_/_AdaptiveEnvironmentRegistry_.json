@@ -1,0 +1,14 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+    "objectType": "_AdaptiveEnvironmentRegistry_",
+    "otherProperties": {
+        "dataType": "object"
+    }
+}

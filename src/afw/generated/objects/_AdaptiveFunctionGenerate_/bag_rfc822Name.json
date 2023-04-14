@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagRfc822Name",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Takes any number of rfc822Name values and returns a list of list.",
+    "functionId": "bag<rfc822Name>",
+    "functionLabel": "bag_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "rfc822Name"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

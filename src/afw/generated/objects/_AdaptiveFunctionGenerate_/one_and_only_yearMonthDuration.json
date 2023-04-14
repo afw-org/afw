@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyYearMonthDuration",
+    "brief": "Converts a one value list to a yearMonthDuration value",
+    "camelCaseFunctionLabel": "oneAndOnlyYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "This converts a list of yearMonthDuration values that contains one value to a single yearMonthDuration value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<yearMonthDuration>",
+    "functionLabel": "one_and_only_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "yearMonthDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

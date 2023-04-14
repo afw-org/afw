@@ -1,0 +1,108 @@
+#
+# Test afwdev make* and add* subcommands and make sure they build.
+#
+
+# Remove the temporary project directory if it already exists.
+rm -rf /tmp/afwdev_test1
+
+#
+# Make a skeleton AFW package directory.
+#
+# The tests that follow will add to this package. After each addition,
+# a build is done to make sure the addition is good.
+# 
+afwdev --noprompt make-afw-package test1 /tmp/afwdev_test1
+
+# Change to the AFW package directory.
+cd /tmp/afwdev_test1
+
+# Build the empty AFW package directory.
+afwdev build
+
+# Make an extension call myextension.
+afwdev --noprompt make-extension myextension
+
+# Build AFW package with myextension added.
+# And another line.
+afwdev build
+
+# Add adaptor type myadaptor1 to myextension.
+afwdev --noprompt add-adaptor-type --srcdir myextension myadaptor1
+
+# Build AFW package with myadaptor1 added.
+afwdev build
+
+# Add adaptor type myadaptor2 to myextension.
+afwdev --noprompt add-adaptor-type --srcdir myextension myadaptor2
+
+# Build AFW package with myadaptor2 added.
+afwdev build
+
+# Make a command1 command
+afwdev --noprompt make-command command1
+
+# Build AFW package with command1 added.
+afwdev build
+
+# Make a testall extension where all interface will be added.
+afwdev --noprompt make-extension testall
+
+# Add adaptor1 to testall
+afwdev --noprompt add-adaptor-type --srcdir testall adaptor1
+
+# Add a transaction interface to adaptor1
+afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_transaction adaptor1 
+
+# Add a journal interface to adaptor1
+afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_journal adaptor1 
+
+# Add a index cursor interface to adaptor1
+afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_impl_index_cursor adaptor1 
+
+# Add a key value interface to adaptor1
+afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_key_value adaptor1 
+
+# Add a impl index interface to adaptor1
+afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_impl_index adaptor1 
+
+# Build AFW package with extra interfaces added to adaptor1.
+afwdev build --generate
+
+# Add authorization_handler_factory for handler ah1
+afwdev --noprompt add-core-interface --srcdir testall afw_authorization_handler_factory ah1 
+
+# Add afw_authorization_handler for handler ah1
+afwdev --noprompt add-core-interface --srcdir testall afw_authorization_handler ah1 
+
+# Build AFW package with authorization handler interfaces added.
+afwdev build
+
+# Add content type ct1
+afwdev --noprompt add-content-type --srcdir testall ct1
+
+# Build AFW package with content type ct1 added.
+afwdev build --generate
+
+# Add list interfaces for list1
+afwdev --noprompt add-core-interface --srcdir testall afw_list list1
+
+# Add list setter interface for list1
+afwdev --noprompt add-core-interface --srcdir testall afw_list_setter list1
+
+# Build AFW package with list1 interfaces added.
+afwdev build
+
+# Add log1 to testall
+afwdev --noprompt add-log-type --srcdir testall log1
+
+# Build AFW package with log1 added.
+afwdev build --generate
+
+# Add request_handler_factory for handler rh1
+afwdev --noprompt add-core-interface --srcdir testall afw_request_handler_factory rh1 
+
+# Add request_handler for handler rh1
+afwdev --noprompt add-core-interface --srcdir testall afw_request_handler rh1 
+
+# Build AFW package with request handler interfaces added.
+afwdev build

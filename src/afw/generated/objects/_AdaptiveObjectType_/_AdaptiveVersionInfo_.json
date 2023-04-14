@@ -1,0 +1,77 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "The version information associated with an id.",
+    "objectIdPropertyName": "id",
+    "objectType": "_AdaptiveVersionInfo_",
+    "otherProperties": {
+        "dataType": "string"
+    },
+    "propertyTypes": {
+        "compileDate": {
+            "brief": "Date at time of compile.",
+            "dataType": "string",
+            "description": "This uses the C preprocessor macro __DATE__ at time of compile.",
+            "label": "Compile Date"
+        },
+        "compileTime": {
+            "brief": "Time at time of compile.",
+            "dataType": "string",
+            "description": "This uses the C preprocessor macro __TIME__ at time of compile.",
+            "label": "Compile Time"
+        },
+        "gitBranch": {
+            "brief": "The current Git branch used for this build",
+            "dataType": "string",
+            "description": "The current Git branch used for this build. It's calculated with the command, \"git rev-parse --abbrev-ref HEAD\"",
+            "label": "Git Branch"
+        },
+        "gitDescribe": {
+            "brief": "The most recent tag that is reachable from the current Git commit",
+            "dataType": "string",
+            "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command \"git describe --dirty --always --tags\"",
+            "label": "Git Describe"
+        },
+        "gitSha": {
+            "brief": "The SHA-1 object name that is unique within this repository",
+            "dataType": "string",
+            "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command \"git rev-parse HEAD\"",
+            "label": "Git SHA"
+        },
+        "id": {
+            "brief": "The id associated with the version information",
+            "dataType": "string",
+            "description": "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+            "label": "ID"
+        },
+        "libafwVersion": {
+            "brief": "libafw version",
+            "dataType": "string",
+            "description": "AFW_VERSION_STRING at time of compile.",
+            "label": "libafw Version"
+        },
+        "libafwVersionWithGitInfo": {
+            "brief": "libafw version + git info",
+            "dataType": "string",
+            "description": "AFW_VERSION_WITH_GIT_INFO at time of compile.",
+            "label": "libafw Version+Git"
+        },
+        "version": {
+            "brief": "<srcdir> version",
+            "dataType": "string",
+            "description": "<srcdir>_VERSION_STRING at time of compile.",
+            "label": "<srcdir> Version"
+        },
+        "versionWithGitInfo": {
+            "brief": "<srcdir> version + git info",
+            "dataType": "string",
+            "description": "<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+            "label": "<srcdir> Version+Git"
+        }
+    }
+}

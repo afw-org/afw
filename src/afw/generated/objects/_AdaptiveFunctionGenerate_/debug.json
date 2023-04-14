@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDebug",
+    "brief": "Conditionally write a debug value",
+    "camelCaseFunctionLabel": "debug",
+    "category": "miscellaneous",
+    "description": "Conditionally, based on the detail parameter, write a value as a string to the debug file descriptor (usually stderr).",
+    "functionId": "debug",
+    "functionLabel": "debug",
+    "parameters": [
+        {
+            "description": "This is the value that will be converted to its string representation and written. An undefined value is represented by '<undefined>'.",
+            "name": "value"
+        },
+        {
+            "dataType": "boolean",
+            "description": "If true, the string will only written if the debug:function_active:detail flag is on. If false or not specified, the string will only written if the debug:function_active flag is on.",
+            "name": "detail",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Value written"
+    ]
+}

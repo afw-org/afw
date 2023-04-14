@@ -1,0 +1,152 @@
+{
+    "description": "Tests for subset<integer> function.",
+    "functionId": "subset<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": []
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": []
+                }
+            ],
+            "description": "\n            Integer subset of bags:\n            { },\n            { }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "11",
+                        "-11",
+                        "-1024",
+                        "0",
+                        "-0.0",
+                        "986"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "200",
+                        "11",
+                        "-11.2",
+                        "96",
+                        "99",
+                        "-102",
+                        "-586.5",
+                        "387",
+                        "512618",
+                        "-512618",
+                        "200",
+                        "11",
+                        "-11",
+                        "96",
+                        "-1024",
+                        "99",
+                        "-102",
+                        "-586",
+                        "986",
+                        "-0.0",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "\n            Integer subset of bags:\n            { \"11\", \"-11\", \"-1024\", \"0\" },\n            {\n                \"200\", \"11\", \"-11.2\", \"96\", \"99\", \"-102\", \"-586.5\", \"387\", \"512618\", \"-512618\", \"200\",\n                \"11\", \"-11\", \"96\", \"-1024\", \"99\", \"-102\", \"-586\", \"986\", \"-0.0\", \"0\"\n            }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "11",
+                        "-11",
+                        "0",
+                        "-512618",
+                        "1024"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "11",
+                        "-11.2",
+                        "96",
+                        "-102",
+                        "-586.5",
+                        "986",
+                        "387",
+                        "512618",
+                        "-512618",
+                        "11",
+                        "96",
+                        "-102",
+                        "-586",
+                        "986",
+                        "-0.0"
+                    ]
+                }
+            ],
+            "description": "\n            Integer subset of bags:\n            { \"11\", \"-11\", \"0\", \"-512618\", \"1024\" },\n            {\n                \"11\", \"-11.2\", \"96\", \"-102\", \"-586.5\", \"986\", \"387\", \"512618\",\n                \"-512618\", \"11\", \"96\", \"-102\", \"-586\", \"986\", \"0\"\n            }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "11",
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "1"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "-1",
+                        "11",
+                        "1024",
+                        "-11",
+                        "-1024",
+                        "0",
+                        "-512618",
+                        "1"
+                    ]
+                }
+            ],
+            "description": "\n            Integer subset of bags:\n            { \"11\",  \"1\",  \"1\",  \"1\",  \"1\",  \"1\",  \"1\",  \"1\" },\n            { \"-1\", \"11\", \"1024\", \"-11\", \"-1024\", \"0\", \"-512618\", \"1\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

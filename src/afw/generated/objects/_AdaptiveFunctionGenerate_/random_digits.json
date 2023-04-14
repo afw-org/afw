@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRandomDigits",
+    "brief": "Generate random decimal digits",
+    "camelCaseFunctionLabel": "randomDigits",
+    "category": "random",
+    "dataTypeMethod": false,
+    "description": "Generate a string containing a specified number of random decimal digits.",
+    "functionId": "random_digits",
+    "functionLabel": "random_digits",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "The number (1-18) of digits to generate.",
+            "name": "numberOfDigits"
+        }
+    ],
+    "returns": {
+        "dataType": "string"
+    }
+}

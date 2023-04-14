@@ -1,0 +1,61 @@
+{
+    "description": "Tests for is_in<rfc822Name> function.",
+    "functionId": "is_in<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "LocalPart@DOMAINPart"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A component to display data in a Chart.",
+    "label": "Chart",
+    "objectType": "_AdaptiveLayoutComponentType_Chart",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "animateDuration": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Duration in milliseconds to animate the chart data.",
+            "label": "Animate Duration"
+        },
+        "data": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Chart_Data",
+            "description": "The data for the Chart.",
+            "label": "Data"
+        },
+        "tooltip": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether or not the Chart contains tooltips.",
+            "label": "Tooltip"
+        },
+        "type": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The type of Chart to display (bar, area, line, pie).",
+            "label": "Type"
+        }
+    }
+}

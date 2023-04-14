@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetInteger",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in integer list1 are all in integer list2.",
+    "functionId": "subset<integer>",
+    "functionLabel": "subset_integer",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

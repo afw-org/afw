@@ -1,0 +1,9 @@
+{
+    "category": "utilities",
+    "componentType": "Snackbar",
+    "brief": "A component that renders a Snackbar to be displayed.",
+    "description": "This component pops up a small bar at the bottom of the screen to alert the user of a recent activity, such as a success or error status, typically following an action that was taken by the user.",
+    "implementationId": "Snackbar",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Snackbar",
+    "label": "Snackbar"
+}

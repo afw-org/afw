@@ -1,0 +1,109 @@
+46
+extension_load_by_module_path("libafwprivate")0
+56
+++afw-local-mode-http-like:{"ACCEPT":"application/json"}0
+45
+GET /afw/_AdaptiveDataType_/integer HTTP/1.1
+0
+54
+GET /afw/_AdaptiveRequestProperties_/current HTTP/1.1
+0
+262
+POST /afw HTTP/1.1
+ALLOW: "application/xml"
+SOMETHING: "just testing"
+"YOUCANQUOTEME": "you can quote me"
+ORNOT: application/xml
+
+{
+    "function": "get_object",
+    "adaptorId": "afw",
+    "objectType": "_AdaptiveRequestProperties_",
+    "objectId": "current"
+}0
+54
+++afw-local-mode-evaluate:{"ACCEPT":"application/xml"}0
+9
+add(1,2)
+0
+15
+"Hello World!"
+0
+47
+get_object('afw','_AdaptiveServer_','current')
+0
+62
+++afw-local-mode-action-direct:{"ACCEPT":"application/x-yaml"}0
+124
+{
+    "function": "get_object",
+    "adaptorId": "afw",
+    "objectType": "_AdaptiveDataType_",
+    "objectId": "integer"
+}
+0
+58
+{
+    "function": "add<integer>",
+    "args": [1,2,3,4]
+}
+0
+54
+++afw-local-mode-evaluate:{"ACCEPT":"application/xml"}0
+14
+"Hello World"
+0
+7
+"Hello
+9
+ World!"
+0
+6
+"Hello9
+ World!"
+0
+15
+"Hello World!"
+0
+52
+++afw-local-mode-action:{"ACCEPT":"application/xml"}0
+124
+{
+    "function": "get_object",
+    "adaptorId": "afw",
+    "objectType": "_AdaptiveDataType_",
+    "objectId": "integer"
+}
+0
+58
+{
+    "function": "add<integer>",
+    "args": [1,2,3,4]
+}
+0
+25
+++afw-local-mode-evaluate0
+58
+get_object('afw', '_AdaptiveRequestProperties_','current')0
+82
+++afw-local-multi-request-properties:
+{
+    "prop1":"Hello",
+    "prop2":"World"
+}0
+25
+++afw-local-mode-evaluate0
+58
+get_object('afw', '_AdaptiveRequestProperties_','current')0
+63
+++afw-local-mode-evaluate:
+{
+    "ACCEPT":"application/x-afw"
+}0
+58
+get_object('afw', '_AdaptiveRequestProperties_','current')0
+57
+retrieve_objects_to_response('afw', '_AdaptiveDataType_')0
+5
+exit
+0

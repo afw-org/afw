@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsBase64Binary",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if base64Binary list1 and base64Binary list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<base64Binary>",
+    "functionLabel": "set_equals_base64Binary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "base64Binary",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "base64Binary",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

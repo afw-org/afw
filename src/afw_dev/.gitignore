@@ -1,0 +1,3 @@
+# .gitignore specific to src/afw_dev and its subdirectories
+
+temp/

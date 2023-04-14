@@ -1,0 +1,27 @@
+{
+    "additionalArgCheck": true,
+    "afwCamelCaseFunctionLabel": "afwAllOf",
+    "brief": "All values pass a test",
+    "camelCaseFunctionLabel": "allOf",
+    "category": "higher_order_list",
+    "description": "Returns true if all values in a list pass the predicate test.",
+    "functionId": "all_of",
+    "functionLabel": "all_of",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(... values: any): boolean",
+            "description": "This function is called for each value in the first list in values or until false is returned. If no calls return false, the result is true.",
+            "name": "predicate"
+        },
+        {
+            "description": "These are the parameters passed to predicate with the exception that the first list is passed one value at a time. At least one list is required.",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

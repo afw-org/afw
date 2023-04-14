@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagAnyURI",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Takes any number of anyURI values and returns a list of list.",
+    "functionId": "bag<anyURI>",
+    "functionLabel": "bag_anyURI",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "anyURI"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

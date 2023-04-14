@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Adaptors</title>
+    <paragraph>
+        This chapter goes over the various Adaptors, how and when each should
+        be used, and how to configure them.
+    </paragraph>
+    <section>
+        <title>Adaptive Framework Core</title>
+        <paragraph>
+            This adaptor is a special adaptor, because it always exists and 
+            there is only one instance of its type. This adaptor is provided 
+            by the Adaptive Framework Core and uses the adaptorId of "afw".  
+            It presents objects that have been compiled into memory and also 
+            generates runtime objects that exist from configurations and 
+            environment. Objects from the Core adaptor are read-only.
+        </paragraph>
+    </section>
+    <section>
+        <title>File</title>
+        <paragraph>
+            This adaptor allows adaptive objects to be stored in the native 
+            file system as directories and files.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>    
+            <object-type-table objectTypeId="_AdaptiveConf_adaptor_file" />                    
+        </section>
+    </section>    
+    <section>
+        <title>LDAP</title>
+        <paragraph>
+            This adaptor provides access to adaptive objects stored in 
+            Lightweight Directory Access Protocol (LDAP) compliant databases.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+            <object-type-table srcdir="afw_ldap" objectTypeId="_AdaptiveConf_adaptor_ldap" />                                
+        </section>
+    </section>
+    <section>
+        <title>LMDB</title>
+        <paragraph>
+            This adaptor allows adaptive objects to be stored in the 
+            memory-mapped key-value database, LMDB.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+            <object-type-table srcdir="afw_lmdb" objectTypeId="_AdaptiveConf_adaptor_lmdb" />                                
+        </section>
+    </section>    
+    <section>
+        <title>Model</title>
+        <paragraph>
+            This is a special adaptor that's used to support mapping objects 
+            based on model adaptive object types to one or more objects from 
+            another adaptor.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+            <object-type-table objectTypeId="_AdaptiveConf_adaptor_model" />                                
+        </section>
+    </section>    
+    <section>
+        <title>VFS</title>
+        <paragraph>
+            This adaptor allows you to access files as objects through a 
+            Virtual File System.
+        </paragraph>
+        <section>
+            <title>Features</title>
+        </section>
+        <section>
+            <title>Configuration Parameters</title>
+            <object-type-table srcdir="afw_vfs" objectTypeId="_AdaptiveConf_adaptor_vfs" />                                
+        </section>
+    </section>
+</doc>

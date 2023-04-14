@@ -1,0 +1,38 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Label component.",
+    "label": "Label",
+    "objectType": "_AdaptiveLayoutComponentType_Label",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the the Label is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value for the Label component.",
+            "testDataParameter": "This is a label",
+            "label": "Value"
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the associated form field is required.",
+            "label": "Required"
+        }
+    }
+}

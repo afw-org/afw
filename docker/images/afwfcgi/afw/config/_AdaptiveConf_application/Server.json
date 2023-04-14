@@ -1,0 +1,7 @@
+{
+    "title":"Server",
+    "description":"Adaptive Framework Server FCGI.",
+    "defaultModelAdaptorId":"models",
+    "layoutsAdaptorId":"layouts",
+    "extensions":["afw_yaml","afw_ldap","afw_lmdb"]
+}

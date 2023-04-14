@@ -1,0 +1,76 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the common properties.",
+    "objectType": "_AdaptiveLayoutComponentType_Common",
+    "propertyTypes": {
+        "designMode": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Used internally, to indicate that the component is being rendered in \"design mode\", in case it needs to behave differently.",
+            "label": "Design Mode"
+        },
+        "className": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The CSS class to be assigned to this layout component type.",
+            "label": "Class Name"
+        },
+        "style": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_Style",
+            "description": "An object representing the CSS style to be applied to this layout component type.",
+            "label": "Style Properties"
+        },
+        "id": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies a unique id for an element.",
+            "label": "Id"
+        },
+        "title": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies extra information about an element.",
+            "label": "Title"
+        },
+        "aria-label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "This attribute is used to define a string that labels the current element. Use it in cases where a text label is not visible on the screen.",
+            "label": "ARIA Label"
+        },
+        "aria-labelledby": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Establishes the relationships between objects and their label(s).",
+            "label": "ARIA Labelled By"
+        },
+        "role": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Identifies to parsing software the exact function of an element (and its children) as part of a web application.",
+            "possibleValues": [
+                "button",
+                "checkbox",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "option",
+                "radio",
+                "switch",
+                "tab",
+                "treeitem",
+                "group"
+            ],
+            "label": "Role"
+        }
+    },
+    "otherProperties": {}
+}

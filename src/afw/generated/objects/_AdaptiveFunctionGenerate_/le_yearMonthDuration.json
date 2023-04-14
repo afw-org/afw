@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeYearMonthDuration",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Checks for yearMonthDuration arg1 is less than or equal to yearMonthDuration arg2 and return the boolean result.",
+    "functionId": "le<yearMonthDuration>",
+    "functionLabel": "le_yearMonthDuration",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

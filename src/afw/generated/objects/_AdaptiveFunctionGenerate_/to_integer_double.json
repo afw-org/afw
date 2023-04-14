@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToIntegerDouble",
+    "brief": "Converts to integer",
+    "camelCaseFunctionLabel": "toIntegerDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Truncate double value to a whole number and returns integer result.",
+    "functionId": "to_integer<double>",
+    "functionLabel": "to_integer_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_to_integer_double"
+}

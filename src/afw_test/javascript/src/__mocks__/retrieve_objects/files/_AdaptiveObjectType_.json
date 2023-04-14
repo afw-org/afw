@@ -1,0 +1,898 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveDataTypeGenerate_"
+            },
+            "propertyTypes": {
+                "scalar": {
+                    "label": "Scalar",
+                    "description": "Data type represents a scalar value.",
+                    "dataType": "boolean",
+                    "brief": "Data type represents a scalar value",
+                    "allowQuery": true
+                },
+                "relationalCompares": {
+                    "label": "Relational Compares",
+                    "description": "If true, this data type supports equality (equal) and relational compares (greater than and less than).  If false, only equality compares are allowed.",
+                    "dataType": "boolean",
+                    "brief": "This dataType supports relational compares in addition to equality compares",
+                    "allowQuery": true
+                },
+                "ldapOid": {
+                    "required": false,
+                    "label": "Ldap Oid",
+                    "description": "LDAP OID.",
+                    "dataType": "string",
+                    "brief": "LDAP OID",
+                    "allowQuery": true
+                },
+                "jsonPrimitive": {
+                    "required": true,
+                    "label": "JSON Primitive",
+                    "description": "This specifies the JSON primitive type that is used to represent this dataType.",
+                    "dataType": "string",
+                    "brief": "JSON primitive type",
+                    "allowQuery": true
+                },
+                "jsonImpliesDataType": {
+                    "runtime": {
+                        "memberName": "json_implies_data_type"
+                    },
+                    "required": true,
+                    "label": "JSON Implies Data Type",
+                    "description": "Indicates that dataType needs to be available to fully interpret json value.  If not available, this data type can be implied from the appropriate JSON value.",
+                    "dataType": "boolean",
+                    "brief": "Indicates that dataType needs to be available to fully interpret json value",
+                    "allowQuery": true
+                },
+                "evaluated": {
+                    "label": "Evaluated",
+                    "description": "This data type is compiled and evaluated.",
+                    "dataType": "boolean",
+                    "brief": "This data type is compiled and evaluated",
+                    "allowQuery": true
+                },
+                "directReturn": {
+                    "label": "Direct Return",
+                    "description": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+                    "dataType": "boolean",
+                    "brief": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer",
+                    "allowQuery": true
+                },
+                "description": {
+                    "required": false,
+                    "label": "Description",
+                    "description": "Description of this object type.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description of this object type",
+                    "allowQuery": true
+                },
+                "dataTypeParameterType": {
+                    "runtime": {
+                        "memberName": "data_type_parameter_type"
+                    },
+                    "required": false,
+                    "possibleValues": [
+                        "dataType",
+                        "evaluatedDataType",
+                        "functionPrototypePattern",
+                        "mediaType",
+                        "objectType"
+                    ],
+                    "label": "Parameter Type",
+                    "description": "This is the type of parameter this data type takes, if present.  A data type parameter is specified after the data type name in the \"dataType\" parameter of an _AdaptiveValueMeta_, in the type information in a lambda function, etc.",
+                    "dataType": "string",
+                    "brief": "The type of parameter this data type takes",
+                    "allowQuery": true
+                },
+                "dataType": {
+                    "runtime": {
+                        "memberName": "data_type_id"
+                    },
+                    "required": true,
+                    "label": "Data Type",
+                    "description": "Data type id.",
+                    "dataType": "string",
+                    "brief": "Data type id",
+                    "allowQuery": true
+                },
+                "cType": {
+                    "required": true,
+                    "label": "C Type",
+                    "description": "C data type.",
+                    "dataType": "string",
+                    "brief": "C data type",
+                    "allowQuery": true
+                },
+                "brief": {
+                    "required": false,
+                    "label": "Brief",
+                    "description": "This is a predicate for the data type with the first letter capitalized and without a trailing period.",
+                    "dataType": "string",
+                    "brief": "Brief description",
+                    "allowQuery": true
+                },
+                "afw_value_get_evaluated_metas": {
+                    "required": false,
+                    "label": "afw_value_get_evaluated_metas",
+                    "description": "This is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+                    "dataType": "string",
+                    "brief": "Label for afw_value_get_evaluated_metas",
+                    "allowQuery": true
+                },
+                "afw_value_get_evaluated_meta": {
+                    "required": false,
+                    "label": "afw_value_get_evaluated_meta",
+                    "description": "This is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+                    "dataType": "string",
+                    "brief": "Label for afw_value_get_evaluated_meta",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveDataTypeGenerate_",
+            "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories.  These objects are used by the \"dev.py generate\" script to generate _AdaptiveDataType_ objects.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true,
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true
+        },
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveManifest_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "registers": {
+                    "label": "Registers",
+                    "description": "Each entry is a string of the form \"<registry type>/<registry key>\", where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc.  If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered.  See afw/afw_environment.h for more information.",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of entries this extension registers"
+                },
+                "modulePath": {
+                    "required": true,
+                    "label": "Module Path",
+                    "description": "Module path.  A system appropriate suffix will be added (\".so\" for Linux and \".dll\" for Windows).",
+                    "dataType": "string",
+                    "brief": "Module path to locate extension",
+                    "allowQuery": true
+                },
+                "extensionId": {
+                    "required": true,
+                    "label": "Extension",
+                    "description": "Extension id.",
+                    "dataType": "string",
+                    "brief": "Extension id",
+                    "allowQuery": true
+                },
+                "description": {
+                    "label": "Description",
+                    "description": "Description for this extension in more detail.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description for this extension in more detail",
+                    "allowQuery": true
+                },
+                "brief": {
+                    "label": "Brief",
+                    "description": "Brief description for this extension.",
+                    "dataType": "string",
+                    "brief": "Brief description for this extension",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveManifest_",
+            "description": "Adaptive Framework extension manifest.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveObjectType_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "tags": {
+                    "label": "Tags",
+                    "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of keywords associated with this object type"
+                },
+                "runtime": {
+                    "label": "Runtime",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "dataTypeParameter": "_AdaptiveRuntimeObject_",
+                    "dataType": "object",
+                    "brief": "Runtime information, available to runtime objects"
+                },
+                "referenceURI": {
+                    "label": "Reference URI",
+                    "description": "URI of more reference information about this object.",
+                    "dataType": "anyURI",
+                    "brief": "URI of more reference information about this object",
+                    "allowQuery": true
+                },
+                "propertyTypes": {
+                    "label": "Property Types",
+                    "description": "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_.",
+                    "dataTypeParameter": "_AdaptivePropertyTypes_",
+                    "dataType": "object",
+                    "brief": "Describes the properties for this object type",
+                    "allowQuery": true
+                },
+                "otherProperties": {
+                    "label": "Other Properties",
+                    "description": "If specified, this is the property type for properties that are not explicitly specified.  If otherProperties is not specified, only explicitly specified properties are allowed.",
+                    "dataTypeParameter": "_AdaptiveValueMeta_",
+                    "dataType": "object",
+                    "brief": "Property Type for properties not explicitly specified",
+                    "allowQuery": true
+                },
+                "originURI": {
+                    "label": "Origin URI",
+                    "description": "The origin URI of this object type.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "dataType": "anyURI",
+                    "brief": "The origin URI of this object type",
+                    "allowQuery": true
+                },
+                "objectType": {
+                    "label": "Object Type",
+                    "description": "The object id of the object type.",
+                    "dataType": "string",
+                    "brief": "Object id of the object type",
+                    "allowQuery": true
+                },
+                "objectIdPropertyName": {
+                    "label": "Object Id Property Name",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "dataType": "string",
+                    "brief": "The name of the property that is used as the \"objectId\" meta property",
+                    "allowQuery": true
+                },
+                "label": {
+                    "label": "Label",
+                    "description": "Label used to identify this instance.",
+                    "dataType": "string",
+                    "brief": "Label used to identify this instance",
+                    "allowQuery": true
+                },
+                "descriptionPropertyName": {
+                    "label": "Description Property Name",
+                    "description": "The name of the property in an instance that is used as the \"description\" property in the meta for instances of this object type.  If not specified, no description will be available.",
+                    "dataType": "string",
+                    "brief": "The name of the property that is used as the \"description\" meta property",
+                    "allowQuery": true
+                },
+                "description": {
+                    "label": "Description",
+                    "description": "The description of the object type.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description of the object type",
+                    "allowQuery": true
+                },
+                "collectionURIs": {
+                    "label": "Collection URIs",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "dataTypeParameter": "anyURI",
+                    "dataType": "list",
+                    "brief": "The URIs of the collections this object type is a part of",
+                    "allowQuery": true
+                },
+                "allowEntity": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Allow Entity",
+                    "description": "Instances of this object type can exist as an entity object, not just an embedded object.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Instances of this type can exist as entities",
+                    "allowQuery": true
+                },
+                "allowDelete": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Allow Delete",
+                    "description": "If false, objects of this type can NEVER be deleted via an adaptor.  If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be deleted",
+                    "allowQuery": true
+                },
+                "allowChange": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Allow Change",
+                    "description": "If false, objects of this type can NEVER be changed via an adaptor.  If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be changed",
+                    "allowQuery": true
+                },
+                "allowAdd": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Allow Add",
+                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be created",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveObjectType_",
+            "objectIdPropertyName": "objectType",
+            "descriptionPropertyName": "description",
+            "description": "The adaptive object type of all adaptive object type objects.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveCollection_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "originURI": {
+                    "label": "Origin URI",
+                    "description": "The origin URI of this collection.  This may be different from the URI within this instance of Adaptive Framework.",
+                    "dataType": "anyURI",
+                    "allowQuery": true
+                },
+                "objectId": {
+                    "required": true,
+                    "label": "Object",
+                    "description": "Id of the collection.",
+                    "dataType": "string",
+                    "allowQuery": true
+                },
+                "description": {
+                    "label": "Description",
+                    "description": "Description of the collection.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "allowQuery": true
+                },
+                "brief": {
+                    "label": "Brief",
+                    "description": "Brief description of the collection",
+                    "dataType": "string",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveCollection_",
+            "description": "Describes a collection.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveFunctionGenerate_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "useExecuteFunction": {
+                    "required": false,
+                    "label": "Function Label",
+                    "description": "This is the label in the C source of the execute function used for this function.",
+                    "dataType": "string",
+                    "brief": "Execute function label",
+                    "allowQuery": true
+                },
+                "sideEffects": {
+                    "label": "Side Effects",
+                    "description": "Any side effects that this function may produce as a result of execution.",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "Side effects for this function.",
+                    "allowQuery": true
+                },
+                "scriptSupport": {
+                    "label": "Script support",
+                    "description": "This property can only be true for afw core functions that supports a statement in adaptive script.  If true, there must be a #define in afw_value.h of the form \"AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_\" followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.",
+                    "dataType": "boolean",
+                    "brief": "Script support function",
+                    "allowQuery": true
+                },
+                "returns": {
+                    "required": true,
+                    "label": "Returns",
+                    "description": "The return parameter.",
+                    "dataTypeParameter": "_AdaptiveFunctionParameter_",
+                    "dataType": "object",
+                    "brief": "The return parameter",
+                    "allowQuery": true
+                },
+                "pure": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Pure",
+                    "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+                    "defaultValue": false,
+                    "dataType": "boolean",
+                    "brief": "Given exactly the same parameter values, this function will always return the same result",
+                    "allowQuery": true
+                },
+                "polymorphicExecuteFunction": {
+                    "required": false,
+                    "label": "Polymorphic Function Label",
+                    "description": "This is the label in the C source of the polymorphic execute function used for this function.",
+                    "dataType": "string",
+                    "brief": "Polymorphic execute function label",
+                    "allowQuery": true
+                },
+                "polymorphicDataTypes": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Polymorphic Data Types",
+                    "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+                    "defaultValue": false,
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "This function will call the appropriate function when the first parameter is one of these data types",
+                    "allowQuery": true
+                },
+                "polymorphic": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Polymorphic",
+                    "description": "This indicates that this function can be called polymorphically without specifying the <dataType>:: qualifier.  The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+                    "defaultValue": false,
+                    "dataType": "boolean",
+                    "brief": "This function can be called polymorphically",
+                    "allowQuery": true
+                },
+                "parameters": {
+                    "label": "Parameters",
+                    "description": "These are the function's parameters.",
+                    "dataTypeParameter": "object _AdaptiveFunctionParameter_",
+                    "dataType": "list",
+                    "brief": "The function's parameters"
+                },
+                "op": {
+                    "label": "Op",
+                    "description": "This is the function's operator.  This is not used at the moment, but may be used in a future expression syntax.",
+                    "dataType": "string",
+                    "brief": "The function's operator",
+                    "allowQuery": true
+                },
+                "functionPrototype": {
+                    "required": true,
+                    "label": "Function Prototype",
+                    "description": "This is the function's prototype.",
+                    "dataType": "string",
+                    "brief": "The function's prototype",
+                    "allowQuery": true
+                },
+                "functionLabel": {
+                    "required": true,
+                    "label": "Function Label",
+                    "description": "This is the function's label.",
+                    "dataType": "string",
+                    "brief": "The function's label",
+                    "allowQuery": true
+                },
+                "functionId": {
+                    "required": true,
+                    "label": "Function",
+                    "description": "This is the function's id.",
+                    "dataType": "string",
+                    "brief": "The function's id",
+                    "allowQuery": true
+                },
+                "errorsThrown": {
+                    "required": false,
+                    "label": "Errors Thrown",
+                    "description": "Errors that can be thrown by this function.",
+                    "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
+                    "dataType": "list",
+                    "brief": "Errors thrown by this function"
+                },
+                "details": {
+                    "label": "Details",
+                    "description": "This is a sentence that contains details about the other properties of this function.",
+                    "dataType": "string",
+                    "brief": "Details about this function's other properties",
+                    "allowQuery": true
+                },
+                "description": {
+                    "required": false,
+                    "label": "Description",
+                    "description": "This is the function's description, used for documentation purposes.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description of this function",
+                    "allowQuery": true
+                },
+                "deprecated": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        }
+                    },
+                    "label": "Deprecated",
+                    "description": "This indicates that the function is deprecated and may go away at some point.",
+                    "defaultValue": false,
+                    "dataType": "boolean",
+                    "brief": "This function is deprecated",
+                    "allowQuery": true
+                },
+                "dataTypeMethod": {
+                    "required": false,
+                    "label": "Data Type Method",
+                    "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+                    "dataType": "boolean",
+                    "brief": "Data type method",
+                    "allowQuery": true
+                },
+                "dataType": {
+                    "required": false,
+                    "label": "Data Type",
+                    "description": "If present, this is a method for this data type.",
+                    "dataType": "string",
+                    "brief": "Method for this data type",
+                    "allowQuery": true
+                },
+                "category": {
+                    "required": true,
+                    "label": "Category",
+                    "description": "Function category.",
+                    "dataType": "string",
+                    "brief": "Function category",
+                    "allowQuery": true
+                },
+                "camelCaseFunctionLabel": {
+                    "required": false,
+                    "label": "Camel Case",
+                    "description": "This is the functionLabel converted to camel case.",
+                    "dataType": "string",
+                    "brief": "The functionLabel converted to camel case.",
+                    "allowQuery": true
+                },
+                "brief": {
+                    "required": false,
+                    "label": "Brief",
+                    "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+                    "dataType": "string",
+                    "brief": "Brief description for this function",
+                    "allowQuery": true
+                },
+                "afwCamelCaseFunctionLabel": {
+                    "required": false,
+                    "label": "Prefixed Camel Case",
+                    "description": "This is the functionLabel prefixed with \"afw\" and converted to camel case.",
+                    "dataType": "string",
+                    "brief": "The functionLabel prefixed with \"afw\" and converted to camel case",
+                    "allowQuery": true
+                },
+                "additionalArgCheck": {
+                    "required": false,
+                    "label": "Additional Arg Check",
+                    "description": "Additional argument checking is needed.  This is residual from before auto casting so may be deprecated in the future.",
+                    "dataType": "boolean",
+                    "brief": "Additional argument check",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveFunctionGenerate_",
+            "description": "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories.  These objects are used by the \"dev.py generate\" script to generate _AdaptiveFunction_ objects.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/files/_AdaptiveObjectType_/_AdaptiveValueMeta_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "valueInfId": {
+                    "label": "valueInf",
+                    "description": "This is a runtime property that is the implementation id of the value interface.",
+                    "dataType": "string",
+                    "brief": "This is a runtime property that is the implementation id of the value interface",
+                    "allowWrite": false,
+                    "allowQuery": true
+                },
+                "unique": {
+                    "label": "Unique",
+                    "description": "Value of property must be unique within object type.",
+                    "dataType": "boolean",
+                    "brief": "Value of property must be unique within object type",
+                    "allowQuery": true
+                },
+                "testDataParameter": {
+                    "label": "Test Data Parameter",
+                    "description": "This contains additional information about values with this meta that is used to produce test data.",
+                    "dataType": "string",
+                    "brief": "Additional information about this value that can be used to produce test data",
+                    "allowQuery": true
+                },
+                "tags": {
+                    "label": "Tags",
+                    "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of keywords and terms associated with values with this meta"
+                },
+                "runtime": {
+                    "label": "Runtime",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "dataTypeParameter": "_AdaptiveRuntimeProperty_",
+                    "dataType": "object",
+                    "brief": "Runtime information for runtime values",
+                    "allowQuery": true
+                },
+                "required": {
+                    "label": "Required",
+                    "description": "Indicates that value is required.",
+                    "dataType": "boolean",
+                    "brief": "A value is required",
+                    "allowQuery": true
+                },
+                "referenceURI": {
+                    "label": "Reference URI",
+                    "description": "URI of more reference information about this value meta.",
+                    "dataType": "anyURI",
+                    "brief": "URI of more reference information about this value meta",
+                    "allowQuery": true
+                },
+                "possibleValues": {
+                    "label": "Possible Values",
+                    "description": "Possible values of this value.  This can be the typed value or the string value.",
+                    "dataType": "list",
+                    "brief": "Possible values of this value",
+                    "allowQuery": false
+                },
+                "originURI": {
+                    "label": "Origin URI",
+                    "description": "The origin URI of this value meta.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "dataType": "anyURI",
+                    "brief": "The origin URI of this value meta",
+                    "allowQuery": true
+                },
+                "minValue": {
+                    "label": "Minimum Value",
+                    "description": "This is the minimum for this.  If not specified, there is no minimum value.  The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "brief": "The minimum for this value",
+                    "allowQuery": true
+                },
+                "minLength": {
+                    "label": "Minimum Length",
+                    "description": "This is minimum length of the to_string() for this value.  If not specified, there is no minimum length.",
+                    "dataType": "integer",
+                    "brief": "The minimum string length for this value",
+                    "allowQuery": true
+                },
+                "maxValue": {
+                    "label": "Maximum Value",
+                    "description": "This is the maximum for this value.  If not specified, there is no maximum value.  The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "brief": "The maximum for this value",
+                    "allowQuery": true
+                },
+                "maxNormalLength": {
+                    "label": "Normal Maximum Length",
+                    "description": "This is maximum normal length of the to_string() for this value.   If not specified, maxLength is used.",
+                    "dataType": "integer",
+                    "brief": "The maximum normal string length for this value",
+                    "allowQuery": true
+                },
+                "maxLength": {
+                    "label": "Maximum Length",
+                    "description": "This is maximum length of the to_string() for this value.  If not specified, there is no maximum length.",
+                    "dataType": "integer",
+                    "brief": "The maximum string length for this value",
+                    "allowQuery": true
+                },
+                "label": {
+                    "label": "Label",
+                    "description": "Label used to identify this value.",
+                    "dataType": "string",
+                    "brief": "Label used to identify this value",
+                    "allowQuery": true
+                },
+                "hints": {
+                    "label": "Hints",
+                    "description": "Hints that can optionally be used by UI to render this value.",
+                    "dataTypeParameter": "_AdaptiveObject_",
+                    "dataType": "object",
+                    "brief": "Hints that can optionally be used by UI to render this value",
+                    "allowQuery": true
+                },
+                "description": {
+                    "label": "Description",
+                    "description": "The description of this value meta.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description of this value meta",
+                    "allowQuery": true
+                },
+                "defaultValue": {
+                    "label": "Default Value",
+                    "description": "This is the default value.  If needed, this value will be normalized.",
+                    "brief": "This is the default value",
+                    "allowQuery": true
+                },
+                "dataTypeParameter": {
+                    "label": "Data Type Parameter",
+                    "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "dataType": "string",
+                    "brief": "The parameter used to interpret this dataType",
+                    "allowQuery": true
+                },
+                "dataType": {
+                    "label": "Data Type",
+                    "description": "Data type of this value.",
+                    "dataType": "string",
+                    "brief": "Data type of this value",
+                    "allowQuery": true
+                },
+                "contextType": {
+                    "label": "Context Type",
+                    "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                    "dataType": "string",
+                    "brief": "The context type used for the evaluation",
+                    "allowQuery": true
+                },
+                "collectionURIs": {
+                    "label": "Collection URIs",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "dataTypeParameter": "anyURI",
+                    "dataType": "list",
+                    "brief": "The URIs of the collection this value meta is a part of",
+                    "allowQuery": true
+                },
+                "brief": {
+                    "label": "Brief",
+                    "description": "This is a predicate for this value meta, with the first letter capitalized and without a trailing period.",
+                    "dataType": "string",
+                    "brief": "Brief description of this value",
+                    "allowQuery": true
+                },
+                "allowedValues": {
+                    "label": "Allowed Values",
+                    "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "dataType": "list",
+                    "brief": "A list of allowed values for this adaptive value",
+                    "allowQuery": true
+                },
+                "allowWrite": {
+                    "label": "Allow Write",
+                    "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true.  If false, the value can only be written if required is true when adding a new object.",
+                    "dataType": "boolean",
+                    "brief": "The value can be written",
+                    "allowQuery": true
+                },
+                "allowQuery": {
+                    "label": "Allow Query",
+                    "description": "If false, this value can NEVER be queried.  If true, this value can be queried if allowed by authorization policy.",
+                    "dataType": "boolean",
+                    "brief": "This value value be queried",
+                    "allowQuery": true
+                },
+                "additionalConstraints": {
+                    "label": "Additional Constraints",
+                    "description": "Additional constraint for the value.",
+                    "dataType": "hybrid",
+                    "brief": "Additional constraint for the value",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveValueMeta_",
+            "description": "The object type for an adaptive value's meta.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        }
+    ],
+    "status": "success"
+}

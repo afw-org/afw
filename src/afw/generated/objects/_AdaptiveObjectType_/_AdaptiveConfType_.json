@@ -1,0 +1,127 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive configuration (conf) type.",
+    "objectType": "_AdaptiveConfType_",
+    "propertyTypes": {
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this configuration type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this configuration type.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "idPropertyName": {
+            "allowQuery": true,
+            "brief": "The id property name for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the id property name for instances of this conf type. For adaptor, this is \"adaptorId\".",
+            "label": "Id Property Name",
+            "runtime": {
+                "memberName": "id_property_name",
+                "valueAccessor": "indirect"
+            }
+        },
+        "idRegistryType": {
+            "allowQuery": true,
+            "brief": "Registry type for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the registry type for instances of this conf type. For adaptor, this is \"adaptor_id\".",
+            "label": "Id Registry Type",
+            "runtime": {
+                "memberName": "id_registry_type_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "idRuntimeObjectType": {
+            "allowQuery": true,
+            "brief": "Runtime object type for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the runtime object type for instances of this conf type. For adaptor, this is \"_AdaptiveAdaptor_\".",
+            "label": "Id Runtime Object Type",
+            "runtime": {
+                "memberName": "id_runtime_object_type_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "isUnique": {
+            "allowQuery": true,
+            "brief": "This configuration type can only be specified once",
+            "dataType": "boolean",
+            "description": "This configuration type can only be specified once.",
+            "label": "Is Unique",
+            "runtime": {
+                "memberName": "is_unique"
+            }
+        },
+        "subtypePropertyName": {
+            "allowQuery": true,
+            "brief": "The subtype property name for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the subtype property name for instances of this conf type.  For adaptor, this is \"adaptorType\".",
+            "label": "Subtype Property Name",
+            "runtime": {
+                "memberName": "subtype_property_name",
+                "valueAccessor": "indirect"
+            }
+        },
+        "subtypeRegistryType": {
+            "allowQuery": true,
+            "brief": "The subtype registry type for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the subtype registry type for instances of this conf type. For adaptor, this is \"adaptor_type\".",
+            "label": "Subtype Registry Type",
+            "runtime": {
+                "memberName": "subtype_registry_type_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "subtypeRuntimeObjectType": {
+            "allowQuery": true,
+            "brief": "The subtype runtime object type for instances of this conf type",
+            "dataType": "string",
+            "description": "This is the subtype runtime object type for instances of this conf type. For adaptor, this is \"_AdaptiveAdaptorType_\".",
+            "label": "Subtype Runtime Object Type",
+            "runtime": {
+                "memberName": "subtype_runtime_object_type_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "title": {
+            "allowQuery": true,
+            "brief": "Title for this configuration type",
+            "dataType": "string",
+            "description": "Title for this configuration type.",
+            "label": "Title",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "type": {
+            "allowQuery": true,
+            "brief": "Configuration type id",
+            "dataType": "string",
+            "description": "Configuration type id.",
+            "label": "Type",
+            "runtime": {
+                "memberName": "conf_type_id"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "conf_type_id"
+        },
+        "typedef": "afw_environment_conf_type_t"
+    }
+}

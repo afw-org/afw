@@ -1,0 +1,40 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type for the filter property of the queryCriteria parameter of retrieve object functions.",
+    "objectType": "_AdaptiveQueryCriteriaFilter_",
+    "propertyTypes": {
+        "filters": {
+            "brief": "Filters",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveQueryCriteriaFilter_",
+            "description": "This is a list of _AdaptiveQueryCriteriaFilter_ objects for \"and\" and \"or\" operations. This property is allowed and required if the operation is \"and\" or \"or\".",
+            "label": "Filters"
+        },
+        "op": {
+            "brief": "The filter operation",
+            "dataType": "string",
+            "description": "This is the filter operations.",
+            "label": "Operation",
+            "possibleValues": [ "and", "or", "eq", "ne", "lt", "le", "lte", "gt", "ge", "match", "contains", "in" ],
+            "required": true
+        },
+        "property": {
+            "brief": "Property name",
+            "dataType": "string",
+            "description": "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".",
+            "label": "Property Name"
+        },
+        "value": {
+            "brief": "Value",
+            "dataType": "string",
+            "description": "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".",
+            "label": "Value"
+        }
+    }
+}

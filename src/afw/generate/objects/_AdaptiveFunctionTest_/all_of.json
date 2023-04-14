@@ -1,0 +1,73 @@
+{
+    "description": "Tests for all_of function.",
+    "functionId": "all_of",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "gt"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "10"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "4",
+                        "2",
+                        "9",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "True because the first argument (10) is greater than all of the elements of the bag (9,3,4 and 2).",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "gt"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "10"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "4",
+                        "2",
+                        "9",
+                        "10"
+                    ]
+                }
+            ],
+            "description": "false because the first argument (10) is not greater than all of the elements of the bag (9,3,4 and 2).",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

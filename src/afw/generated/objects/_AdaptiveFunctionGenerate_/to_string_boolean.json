@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringBoolean",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Converts boolean value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<boolean>",
+    "functionLabel": "to_string_boolean",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "description": "A boolean value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

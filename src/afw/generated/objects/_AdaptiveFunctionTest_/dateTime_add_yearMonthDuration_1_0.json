@@ -1,0 +1,41 @@
+{
+    "description": "Tests for add_yearMonthDuration_1_0<dateTime> function.",
+    "functionId": "add_yearMonthDuration_1_0<dateTime>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-13T13:20:00.5"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "-P1Y1M"
+                }
+            ],
+            "description": "Subtract a year and a month",
+            "result": {
+                "dataType": "dateTime",
+                "value": "2003-03-13T13:20:00.5"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-13T13:20:00.5"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "P1Y1M"
+                }
+            ],
+            "description": "Add a year and a month",
+            "result": {
+                "dataType": "dateTime",
+                "value": "2005-05-13T13:20:00.5"
+            }
+        }
+    ]
+}

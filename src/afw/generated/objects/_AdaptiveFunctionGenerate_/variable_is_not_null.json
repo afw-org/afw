@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwVariableIsNotNull",
+    "brief": "Determine if a variable exists and is not null",
+    "camelCaseFunctionLabel": "variableIsNotNull",
+    "category": "miscellaneous",
+    "description": "Return the true if the named variable exists and is not null.",
+    "functionId": "variable_is_not_null",
+    "functionLabel": "variable_is_not_null",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by \"::\".",
+            "name": "name"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if variable exists and is not null."
+    }
+}

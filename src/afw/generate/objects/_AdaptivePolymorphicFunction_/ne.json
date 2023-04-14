@@ -1,0 +1,64 @@
+{
+    "brief": "Checks for not equal",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine if <dataType> arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use \"nex\" (\"!==\") instead if you want true to be returned if arg1 and arg2's data type don't match.",
+    "functionId": "ne",
+    "functionLabel": "ne",
+    "errorsThrown": [
+        {
+            "error": "conversion",
+            "reason": "arg2 cannot be converted to the data type of arg1."
+        }
+    ],
+    "op": "!=",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true,
+            "canBeUndefined": true
+        },
+        {
+            "name": "arg2",
+            "canBeUndefined": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "regexp",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_ne",
+    "polymorphicExecuteFunctionEvaluatesFirstParameter": true,
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

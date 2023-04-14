@@ -1,0 +1,46 @@
+# Mark AFW_FCGILIB as an important variable and list it in --help
+AC_ARG_VAR([AFW_FCGILIB], [/full/path/fcgi/library])
+
+# Obtain info from AFW_FCGILIB if it is set.
+if test -n "$AFW_FCGILIB"; then
+ 
+  # todo: make dirname & basename portable
+  AFW_FCGI_LIB_DIR="`dirname $AFW_FCGILIB`"
+  AFW_FCGI_LIB_FILE="`basename $AFW_FCGILIB`"
+
+  # derive library name from file name
+  AFW_FCGI_LIB_NAME="`echo $AFW_FCGI_LIB_FILE |                       sed -e "s/^lib//" |                       sed -e "s/.so.*$//"`"
+
+  # add AFW_FCGI_LIB_DIR to link library search path
+  if test -d "$AFW_FCGI_LIB_DIR"; then
+    # todo: update LDFLAGS in a portable way
+    LDFLAGS+=" -L$AFW_FCGI_LIB_DIR "
+  fi
+
+fi
+
+# set AFW_FCGI_LIB_NAME to default if needed
+if test -z "$AFW_FCGI_LIB_NAME"; then
+  AFW_FCGI_LIB_NAME="fcgi"
+fi
+
+#
+# ... The default value (for LIBS) is empty, but some Autoconf macros may
+# prepend extra libraries to this variable ...
+# ... If (LDFLAGS) is not set in the environment when configure runs, the
+# default value is empty...
+#    - Autoconf Manual: Preset Output Variables
+#
+# Anything from AC_CHECK_LIB will go into LIBS. If we leave it
+# there, it will be used for every link, we don't want that.
+# We will keep what we find in our own variable and reset LIBS to empty.
+#
+AC_CHECK_LIB(["$AFW_FCGI_LIB_NAME"],
+             [FCGX_InitRequest],
+             [],
+             [AC_MSG_ERROR(
+                [specify AFW_FCGILIB=/full/pathname/libfcgi])
+             ])
+AFW_LIBS_FCGI=$LIBS
+AC_SUBST(AFW_LIBS_FCGI)
+LIBS=

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeTemplate",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leTemplate",
+    "category": "template",
+    "dataTypeMethod": true,
+    "description": "Checks for template arg1 is less than or equal to template arg2 and return the boolean result.",
+    "functionId": "le<template>",
+    "functionLabel": "le_template",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "template",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

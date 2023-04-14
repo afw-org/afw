@@ -1,0 +1,57 @@
+{
+    "description": "Tests for regexp_match<ipAddress> function.",
+    "functionId": "regexp_match<ipAddress>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "ipAddress",
+                    "value": "127.0.0.1"
+                },
+                {
+                    "dataType": "string",
+                    "value": "127\\.0\\.0\\..*"
+                }
+            ],
+            "description": "Matches",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "ipAddress",
+                    "value": "127.0.1.1"
+                },
+                {
+                    "dataType": "string",
+                    "value": "127\\.0\\.0\\..*"
+                }
+            ],
+            "description": "Does not match",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "ipAddress",
+                    "value": "127.0.0.1"
+                },
+                {
+                    "dataType": "string",
+                    "value": "127\\.0\\.0\\..*)"
+                }
+            ],
+            "description": "Invalid expression test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

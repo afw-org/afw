@@ -1,0 +1,41 @@
+{
+    "afwCamelCaseFunctionLabel": "afwModifyObjectWithUri",
+    "brief": "Modify adaptive object with URI",
+    "camelCaseFunctionLabel": "modifyObjectWithUri",
+    "category": "adaptor",
+    "description": "Modify an adaptive object with a given URI.",
+    "functionId": "modify_object_with_uri",
+    "functionLabel": "modify_object_with_uri",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "URI of object to modify. If a URI begins with a single slash ('/'), it is the local object path.",
+            "name": "uri"
+        },
+        {
+            "dataType": "list",
+            "description": "List of asserts and modifications. Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
+            "name": "entries"
+        },
+        {
+            "dataType": "object",
+            "description": "The properties of this object will be added to the associated journal entry. Refer to /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to avoid and for ones that have specific semantics.",
+            "name": "journal",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveJournalEntry_",
+        "description": "Resulting journal entry."
+    },
+    "sideEffects": [
+        "Object modified"
+    ]
+}

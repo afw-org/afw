@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeString",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks for string arg1 is less than or equal to string arg2 and return the boolean result.",
+    "functionId": "le<string>",
+    "functionLabel": "le_string",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

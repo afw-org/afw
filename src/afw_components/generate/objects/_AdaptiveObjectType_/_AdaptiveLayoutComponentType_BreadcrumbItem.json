@@ -1,0 +1,34 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Flexible BreadcrumbItem component.",
+    "objectType": "_AdaptiveLayoutComponentType_BreadcrumbItem",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "required": true,
+            "brief": "Unique key",
+            "description": "Unique key",
+            "label": "Key"
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "required": true,
+            "brief": "",
+            "description": "",
+            "label": "Text"
+        }
+    }
+}

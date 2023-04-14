@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagHybrid",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagHybrid",
+    "category": "hybrid",
+    "dataTypeMethod": true,
+    "description": "Takes any number of hybrid values and returns a list of list.",
+    "functionId": "bag<hybrid>",
+    "functionLabel": "bag_hybrid",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hybrid",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "hybrid"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

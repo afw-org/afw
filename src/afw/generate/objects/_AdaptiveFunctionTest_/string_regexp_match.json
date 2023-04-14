@@ -1,0 +1,57 @@
+{
+    "description": "Tests for regexp_match<string> function.",
+    "functionId": "regexp_match<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "aaaab"
+                },
+                {
+                    "dataType": "string",
+                    "value": "(a)*b"
+                }
+            ],
+            "description": "Matches",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "aaaa"
+                },
+                {
+                    "dataType": "string",
+                    "value": "(a)*b"
+                }
+            ],
+            "description": "Does not match",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "aaaab"
+                },
+                {
+                    "dataType": "string",
+                    "value": "(a*b"
+                }
+            ],
+            "description": "Invalid expression test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

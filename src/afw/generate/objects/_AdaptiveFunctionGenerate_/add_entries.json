@@ -1,0 +1,28 @@
+{
+    "brief": "Add entries of one or more lists to another",
+    "category": "list",
+    "description": "Add the entries of one or more lists to another.",
+    "functionId": "add_entries",
+    "functionLabel": "add_entries",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "Target list. This list must not be immutable.",
+            "name": "target"
+        },
+        {
+            "minArgs": 1,
+            "dataType": "list",
+            "description": "Source list(s).",
+            "name": "source"
+        }
+    ],
+    "returns": {
+        "dataType": "list",
+        "description": "The modified target list."
+    },
+    "sideEffects": [
+        "Target list is modified."
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtIa5String",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Checks for ia5String arg1 is less that ia5String arg2 and return the boolean result.",
+    "functionId": "lt<ia5String>",
+    "functionLabel": "lt_ia5String",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "ia5String",
+            "name": "arg1"
+        },
+        {
+            "dataType": "ia5String",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

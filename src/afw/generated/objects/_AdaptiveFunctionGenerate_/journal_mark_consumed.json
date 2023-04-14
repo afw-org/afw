@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwJournalMarkConsumed",
+    "brief": "Mark journal entry consumed",
+    "camelCaseFunctionLabel": "journalMarkConsumed",
+    "category": "journal",
+    "description": "Mark a journal entry returned by get_next_for_consumer() as consumed.",
+    "functionId": "journal_mark_consumed",
+    "functionLabel": "journal_mark_consumed",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "The consumerId property value of the associated _AdaptiveProvisioningPeer_ object.",
+            "name": "consumerId"
+        },
+        {
+            "dataType": "string",
+            "description": "Journal entry cursor.",
+            "name": "cursor"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Journal cursor consumed"
+    ]
+}

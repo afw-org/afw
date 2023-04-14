@@ -1,0 +1,23 @@
+{
+    "$defs": {
+        "_AdaptiveObject_": {
+            "additionalProperties": {},
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveObject_.propertyTypes"
+                }
+            ],
+            "type": "object"
+        },
+        "_AdaptiveObject_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveObject_"
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Flexible BoxItem component.",
+    "objectType": "_AdaptiveLayoutComponentType_BoxItem",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "order": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "brief": "Order of item",
+            "description": "By default, flex items are laid out in the source order. However, the order property controls the order in which they appear in the flex container.",
+            "defaultValue": 0
+        },
+        "grow": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "brief": "Ability to grow",
+            "description": "This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.\n\nIf all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least).",
+            "defaultValue": 0
+        },
+        "shrink": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "brief": "Ability to shrink",
+            "description": "This defines the ability for a flex item to shrink if necessary.",
+            "defaultValue": 1
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "brief": "Components inside of the BoxItem",
+            "description": "This declares the components to be rendered inside the BoxItem.",
+            "label": "Contains"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "description": "Tests for le<time> function.",
+    "functionId": "le<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555+05:00"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5554"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5554"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=requestHandler. This object type is the parent of an _AdaptiveObjectType_ that contains handlerType specific properties.",
+    "objectType": "_AdaptiveConf_requestHandler",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes"
+            ]
+        },
+        "requestHandlerType": {
+            "allowQuery": true,
+            "brief": "Type of request handler that will process requests directed to this handler",
+            "dataType": "string",
+            "description": "Type of request handler that will process requests directed to this handler.",
+            "label": "Handler Type"
+        },
+        "uriPrefix": {
+            "allowQuery": true,
+            "brief": "Prefix of URIs that will be directed to this request handler",
+            "dataType": "string",
+            "description": "Prefix of URIs that will be directed to this request handler.",
+            "label": "URI Prefix",
+            "unique": false
+        }
+    }
+}

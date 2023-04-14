@@ -1,0 +1,59 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Dropdown component.",
+    "label": "Dropdown",
+    "objectType": "_AdaptiveLayoutComponentType_Dropdown",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Dropdown component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The description for this dropdown editor.",
+            "testDataParameter": "This is the description.",
+            "label": "Description"
+        },
+        "editable": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Whether the options managed by this Dropdown Editor are editable.",
+            "label": "Editable"
+        },
+        "multiselect": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Whether this Dropdown allows for multiple selections.",
+            "label": "Multi Select"
+        },
+        "options": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Dropdown_Option",
+            "description": "Specifies the available options for the dropdown.",
+            "label": "Options"
+        },
+        "selectedKeys": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The key(s) that are selected for the Dropdown component.",
+            "label": "Selected Keys"
+        }
+    }
+}

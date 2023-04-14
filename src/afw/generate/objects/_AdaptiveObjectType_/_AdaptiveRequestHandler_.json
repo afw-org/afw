@@ -1,0 +1,20 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime request handler information.",
+    "objectType": "_AdaptiveRequestHandler_",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler/propertyTypes"
+            ]
+        }
+    },
+    "otherProperties": {}
+}

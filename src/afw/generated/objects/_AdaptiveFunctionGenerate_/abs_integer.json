@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAbsInteger",
+    "brief": "Absolute value",
+    "camelCaseFunctionLabel": "absInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Compute the absolute value of the integer value and return the integer result.",
+    "functionId": "abs<integer>",
+    "functionLabel": "abs_integer",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "brief": "Subtract numbers",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType> result.",
+    "functionId": "subtract",
+    "functionLabel": "subtract",
+    "pure": true,
+    "op": "-",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "arg2",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

@@ -1,0 +1,106 @@
+{
+    "description": "Tests for split function.",
+    "functionId": "split",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                }
+            ],
+            "description": "Test split function with no optional parameters",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "string",
+                "value": [
+                    "H",
+                    "e",
+                    "l",
+                    "l",
+                    "o",
+                    " ",
+                    "W",
+                    "o",
+                    "r",
+                    "l",
+                    "d",
+                    "!"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": null
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                }
+            ],
+            "description": "Test split function with limit of 5",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "string",
+                "value": [
+                    "H",
+                    "e",
+                    "l",
+                    "l",
+                    "o"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "l"
+                }
+            ],
+            "description": "Test split function with l as separator",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "string",
+                "value": [
+                    "He",
+                    null,
+                    "o Wor",
+                    "d!"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "World"
+                }
+            ],
+            "description": "Test split function with World as separator",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "string",
+                "value": [
+                    "Hello ",
+                    "!"
+                ]
+            }
+        }
+    ]
+}

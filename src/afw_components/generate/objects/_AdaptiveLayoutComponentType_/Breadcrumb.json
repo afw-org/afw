@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Breadcrumb",
+    "brief": "A component that renders a Breadcrumb path with links",
+    "description": "This component renders a path of url links that the user can click to navigate at any point within an application.",
+    "implementationId": "Breadcrumb",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Breadcrumb",
+    "label": "Breadcrumb"
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagDayTimeDuration",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Takes any number of dayTimeDuration values and returns a list of list.",
+    "functionId": "bag<dayTimeDuration>",
+    "functionLabel": "bag_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "dayTimeDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

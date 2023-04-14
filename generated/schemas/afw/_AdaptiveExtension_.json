@@ -1,0 +1,40 @@
+{
+    "$defs": {
+        "_AdaptiveExtension_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveExtension_.propertyTypes"
+                }
+            ],
+            "description": "Run time information for a loaded extension.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveExtension_.propertyTypes": {
+            "properties": {
+                "afwCompiledVersion": {
+                    "description": "Version of libafw this extension was compiled against.",
+                    "title": "AFW Version",
+                    "type": "string"
+                },
+                "extensionId": {
+                    "description": "Id of extension.",
+                    "title": "Extension Id",
+                    "type": "string"
+                },
+                "extensionVersion": {
+                    "description": "Version of this extension.",
+                    "title": "Version",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveExtension_"
+        }
+    ]
+}

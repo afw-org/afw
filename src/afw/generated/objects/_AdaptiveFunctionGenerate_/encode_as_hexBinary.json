@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEncodeAsHexBinary",
+    "brief": "Encode to a hexBinary value",
+    "camelCaseFunctionLabel": "encodeAsHexBinary",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Encode a value as a hexBinary. The effect is to create a hexBinary value with an internal value of the value passed.",
+    "functionId": "encode_as_hexBinary",
+    "functionLabel": "encode_as_hexBinary",
+    "parameters": [
+        {
+            "description": "The <dataType> value to encode.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_encode_as_hexBinary",
+    "pure": true,
+    "returns": {
+        "dataType": "hexBinary",
+        "description": "A hexBinary value."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

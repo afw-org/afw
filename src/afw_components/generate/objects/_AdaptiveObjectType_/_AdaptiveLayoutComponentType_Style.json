@@ -1,0 +1,939 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the CSS style properties.",
+    "objectType": "_AdaptiveLayoutComponentType_Style",
+    "propertyTypes": {
+        "alignContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space"
+        },
+        "alignItems": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the alignment for items inside a flexible container"
+        },
+        "alignSelf": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the alignment for selected items inside a flexible container"
+        },
+        "animation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for all the animation properties below, except the animationPlayState property"
+        },
+        "animationDelay": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns when the animation will start"
+        },
+        "animationDirection": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether or not the animation should play in reverse on alternate cycles"
+        },
+        "animationDuration": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how many seconds or milliseconds an animation takes to complete one cycle"
+        },
+        "animationFillMode": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns what values are applied by the animation outside the time it is executing"
+        },
+        "animationIterationCount": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the number of times an animation should be played"
+        },
+        "animationName": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns a name for the @keyframes animation"
+        },
+        "animationTimingFunction": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the speed curve of the animation"
+        },
+        "animationPlayState": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the animation is running or paused"
+        },
+        "background": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the background properties in one declaration"
+        },
+        "backgroundAttachment": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether a background-image is fixed or scrolls with the page"
+        },
+        "backgroundColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the background-color of an element"
+        },
+        "backgroundImage": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the background-image for an element"
+        },
+        "backgroundPosition": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the starting position of a background-image"
+        },
+        "backgroundRepeat": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how to repeat (tile) a background-image"
+        },
+        "backgroundClip": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the painting area of the background"
+        },
+        "backgroundOrigin": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the positioning area of the background images"
+        },
+        "backgroundSize": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the size of the background image"
+        },
+        "backfaceVisibility": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether or not an element should be visible when not facing the screen"
+        },
+        "border": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns borderWidth, borderStyle, and borderColor in one declaration"
+        },
+        "borderBottom": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the borderBottom properties in one declaration"
+        },
+        "borderBottomColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the bottom border "
+        },
+        "borderBottomLeftRadius": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the shape of the border of the bottom-left corner"
+        },
+        "borderBottomRightRadius": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the shape of the border of the bottom-right corner"
+        },
+        "borderBottomStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the bottom border"
+        },
+        "borderBottomWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the bottom border"
+        },
+        "borderCollapse": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the table border should be collapsed into a single border, or not"
+        },
+        "borderColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of an element's border (can have up to four values)"
+        },
+        "borderImage": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for setting or returning all the borderImage properties"
+        },
+        "borderImageOutset": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the amount by which the border image area extends beyond the border box"
+        },
+        "borderImageRepeat": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the image-border should be repeated, rounded or stretched"
+        },
+        "borderImageSlice": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the inward offsets of the image-border"
+        },
+        "borderImageSource": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the image to be used as a border"
+        },
+        "borderImageWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the widths of the image-border"
+        },
+        "borderLeft": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the borderLeft properties in one declaration"
+        },
+        "borderLeftColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the left border"
+        },
+        "borderLeftStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the left border"
+        },
+        "borderLeftWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the left border"
+        },
+        "borderRadius": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for setting or returning all the four borderRadius properties"
+        },
+        "borderRight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the borderRight properties in one declaration"
+        },
+        "borderRightColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the right border"
+        },
+        "borderRightStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the right border"
+        },
+        "borderRightWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the right border"
+        },
+        "borderSpacing": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the space between cells in a table"
+        },
+        "borderStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of an element's border (can have up to four values)"
+        },
+        "borderTop": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the borderTop properties in one declaration"
+        },
+        "borderTopColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the top border"
+        },
+        "borderTopLeftRadius": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the shape of the border of the top-left corner"
+        },
+        "borderTopRightRadius": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the shape of the border of the top-right corner"
+        },
+        "borderTopStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the top border"
+        },
+        "borderTopWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the top border"
+        },
+        "borderWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of an element's border (can have up to four values)"
+        },
+        "bottom": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the bottom position of a positioned element"
+        },
+        "boxDecorationBreak": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break."
+        },
+        "boxShadow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Attaches one or more drop-shadows to the box"
+        },
+        "boxSizing": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Allows you to define certain elements to fit an area in a certain way"
+        },
+        "captionSide": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the position of the table caption"
+        },
+        "clear": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the position of the element relative to floating objects"
+        },
+        "clip": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns which part of a positioned element is visible"
+        },
+        "color": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the text"
+        },
+        "columnCount": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the number of columns an element should be divided into"
+        },
+        "columnFill": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how to fill columns"
+        },
+        "columnGap": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the gap between the columns"
+        },
+        "columnRule": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for setting or returning all the columnRule properties"
+        },
+        "columnRuleColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the rule between columns"
+        },
+        "columnRuleStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the rule between columns"
+        },
+        "columnRuleWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the rule between columns"
+        },
+        "columns": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for setting or returning columnWidth and columnCount"
+        },
+        "columnSpan": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how many columns an element should span across"
+        },
+        "columnWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the columns"
+        },
+        "content": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Used with the :before and :after pseudo-elements, to insert generated content"
+        },
+        "counterIncrement": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Increments one or more counters"
+        },
+        "counterReset": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Creates or resets one or more counters"
+        },
+        "cursor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the type of cursor to display for the mouse pointer"
+        },
+        "direction": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the text direction"
+        },
+        "display": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns an element's display type"
+        },
+        "emptyCells": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether to show the border and background of empty cells, or not"
+        },
+        "filter": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns image filters (visual effects, like blur and saturation)"
+        },
+        "flex": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the length of the item, relative to the rest"
+        },
+        "flexBasis": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the initial length of a flexible item"
+        },
+        "flexDirection": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the direction of the flexible items"
+        },
+        "flexFlow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for the flexDirection and the flexWrap properties"
+        },
+        "flexGrow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how much the item will grow relative to the rest"
+        },
+        "flexShrink": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how the item will shrink relative to the rest"
+        },
+        "flexWrap": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the flexible items should wrap or not"
+        },
+        "cssFloat": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the horizontal alignment of an element"
+        },
+        "font": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration"
+        },
+        "fontFamily": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the font family for text"
+        },
+        "fontSize": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the font size of the text"
+        },
+        "fontStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the style of the font is normal, italic or oblique"
+        },
+        "fontVariant": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the font should be displayed in small capital letters"
+        },
+        "fontWeight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the boldness of the font"
+        },
+        "fontSizeAdjust": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Preserves the readability of text when font fallback occurs"
+        },
+        "fontStretch": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Selects a normal, condensed, or expanded face from a font family"
+        },
+        "hangingPunctuation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies whether a punctuation character may be placed outside the line box"
+        },
+        "height": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the height of an element"
+        },
+        "hyphens": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets how to split words to improve the layout of paragraphs"
+        },
+        "icon": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Provides the author the ability to style an element with an iconic equivalent"
+        },
+        "imageOrientation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies a rotation in the right or clockwise direction that a user agent applies to an image"
+        },
+        "isolation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Defines whether an element must create a new stacking content"
+        },
+        "justifyContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the alignment between the items inside a flexible container when the items do not use all available space."
+        },
+        "left": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the left position of a positioned element"
+        },
+        "letterSpacing": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the space between characters in a text"
+        },
+        "lineHeight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the distance between lines in a text"
+        },
+        "listStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration"
+        },
+        "listStyleImage": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns an image as the list-item marker"
+        },
+        "listStylePosition": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the position of the list-item marker"
+        },
+        "listStyleType": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the list-item marker type"
+        },
+        "margin": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the margins of an element (can have up to four values)"
+        },
+        "marginBottom": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the bottom margin of an element"
+        },
+        "marginLeft": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the left margin of an element"
+        },
+        "marginRight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the right margin of an element"
+        },
+        "marginTop": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the top margin of an element"
+        },
+        "maxHeight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the maximum height of an element"
+        },
+        "maxWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the maximum width of an element"
+        },
+        "minHeight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the minimum height of an element"
+        },
+        "minWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the minimum width of an element"
+        },
+        "navDown": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns where to navigate when using the arrow-down navigation key"
+        },
+        "navIndex": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the tabbing order for an element"
+        },
+        "navLeft": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns where to navigate when using the arrow-left navigation key"
+        },
+        "navRight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns where to navigate when using the arrow-right navigation key"
+        },
+        "navUp": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns where to navigate when using the arrow-up navigation key"
+        },
+        "objectFit": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"
+        },
+        "objectPosition": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies the alignment of the replaced element inside its box"
+        },
+        "opacity": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the opacity level for an element"
+        },
+        "order": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the order of the flexible item, relative to the rest"
+        },
+        "orphans": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element"
+        },
+        "outline": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns all the outline properties in one declaration"
+        },
+        "outlineColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the outline around a element"
+        },
+        "outlineOffset": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Offsets an outline, and draws it beyond the border edge"
+        },
+        "outlineStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the outline around an element"
+        },
+        "outlineWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of the outline around an element"
+        },
+        "overflow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns what to do with content that renders outside the element box"
+        },
+        "overflowX": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies what to do with the left/right edges of the content, if it overflows the element's content area"
+        },
+        "overflowY": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area"
+        },
+        "padding": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the padding of an element (can have up to four values)"
+        },
+        "paddingBottom": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the bottom padding of an element"
+        },
+        "paddingLeft": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the left padding of an element"
+        },
+        "paddingRight": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the right padding of an element"
+        },
+        "paddingTop": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the top padding of an element"
+        },
+        "pageBreakAfter": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the page-break behavior after an element"
+        },
+        "pageBreakBefore": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the page-break behavior before an element"
+        },
+        "pageBreakInside": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the page-break behavior inside an element"
+        },
+        "perspective": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the perspective on how 3D elements are viewed"
+        },
+        "perspectiveOrigin": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the bottom position of 3D elements"
+        },
+        "position": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)"
+        },
+        "quotes": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the type of quotation marks for embedded quotations"
+        },
+        "resize": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether or not an element is resizable by the user"
+        },
+        "right": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the right position of a positioned element"
+        },
+        "tableLayout": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the way to lay out table cells, rows, and columns"
+        },
+        "tabSize": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the length of the tab-character"
+        },
+        "textAlign": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the horizontal alignment of text"
+        },
+        "textAlignLast": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is \"justify\""
+        },
+        "textDecoration": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the decoration of a text"
+        },
+        "textDecorationColor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the color of the text-decoration"
+        },
+        "textDecorationLine": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the type of line in a text-decoration"
+        },
+        "textDecorationStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the style of the line in a text decoration"
+        },
+        "textIndent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the indentation of the first line of text"
+        },
+        "textJustify": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the justification method used when text-align is \"justify\""
+        },
+        "textOverflow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns what should happen when text overflows the containing element"
+        },
+        "textShadow": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the shadow effect of a text"
+        },
+        "textTransform": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the capitalization of a text"
+        },
+        "top": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the top position of a positioned element"
+        },
+        "transform": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Applies a 2D or 3D transformation to an element"
+        },
+        "transformOrigin": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the position of transformed elements"
+        },
+        "transformStyle": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how nested elements are rendered in 3D space"
+        },
+        "transition": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "A shorthand property for setting or returning the four transition properties"
+        },
+        "transitionProperty": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the CSS property that the transition effect is for"
+        },
+        "transitionDuration": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how many seconds or milliseconds a transition effect takes to complete"
+        },
+        "transitionTimingFunction": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the speed curve of the transition effect"
+        },
+        "transitionDelay": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns when the transition effect will start"
+        },
+        "unicodeBidi": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the text should be overridden to support multiple languages in the same document"
+        },
+        "userSelect": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether the text of an element can be selected or not"
+        },
+        "verticalAlign": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the vertical alignment of the content in an element"
+        },
+        "visibility": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns whether an element should be visible"
+        },
+        "whiteSpace": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns how to handle tabs, line breaks and whitespace in a text"
+        },
+        "width": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the width of an element"
+        },
+        "wordBreak": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns line breaking rules for non-CJK scripts"
+        },
+        "wordSpacing": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the spacing between words in a text"
+        },
+        "wordWrap": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Allows long, unbreakable words to be broken and wrap to the next line"
+        },
+        "widows": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the minimum number of lines for an element that must be visible at the top of a page"
+        },
+        "zIndex": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets or returns the stack order of a positioned element"
+        }
+    },
+    "otherProperties": {}
+}

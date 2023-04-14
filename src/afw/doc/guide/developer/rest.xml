@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Web Service APIs</title>
+    <paragraph>
+        There are two primary ways to interact with Adaptive Framework over the network.  
+        The traditional RESTful way allows you to send standard HTTP operations to 
+        the server and get status and results back with the appropriate content-type.  
+        This method is uri-based, like a typical RESTful service and the HTTP 
+        operations map onto the adaptor_session interface methods. Using the RESTful 
+        interface is particularly useful for web-based applications that are 
+        accustomed to RESTful ways to interact with object data.
+    </paragraph>
+    <section>
+        <title>REST</title>
+        <paragraph>
+            The following table describes each HTTP Request and its corresponding adaptor 
+            session method that is invoked:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Method</column>
+                <column>URI</column>
+                <column>Adaptor Function</column>
+            </columns>
+            <rows>
+                <row>
+                    <column>GET</column>
+                    <column>/adaptorId/objectType[;options]/objectId</column>
+                    <column>get_object()</column>
+                </row>
+                <row>
+                    <column>GET</column>
+                    <column>/adaptorId/objectType[;options]/[queryCriteria]</column>
+                    <column>retrieve_objects()</column>
+                </row>
+                <row>
+                    <column>PUT</column>
+                    <column>/adaptorId/objectType/objectId</column>
+                    <column>replace_object()</column>
+                </row>
+                <row>
+                    <column>POST</column>
+                    <column>/adaptorId/objectType/</column>
+                    <column>add_object()</column>
+                </row>
+                <row>
+                    <column>POST</column>
+                    <column>/adaptorId/objectType/objectId</column>
+                    <column>modify_object()</column>
+                </row>
+                <row>
+                    <column>DELETE</column>
+                    <column>/adaptorId/objectType/objectId</column>
+                    <column>delete_object()</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            HTTP GET requests act as both <literal>get_object()</literal> and 
+            <literal>retrieve_objects()</literal> adaptor session calls, depending on the HTTP URI 
+            that is specified. All HTTP URIs must specify an adaptorId. When an Object Type and 
+            Object Id are also supplied, the GET is treated as a <literal>get_object()</literal>.  
+            When just the adaptorId and Object Type are specified, the GET request is treated as a 
+            <literal>retrieve_objects()</literal> call.  
+        </paragraph>
+        <header>Query Criteria</header>
+        <paragraph>
+            For <literal>retrieve_objects()</literal> calls, you may also specify a query criteria, which is passed along 
+            to the <literal>retrieve_objects()</literal>. This is useful if you need to narrow down the search xctx of 
+            the <literal>retrieve_objects()</literal>, or use an index to obtain performance.
+        </paragraph>
+        <header>Object Options</header>
+        <paragraph>
+            For both GET requests, you may additionally specify object options to instruct the server 
+            on how to construct the object or objects that are being returned. For a complete list of 
+            options, see the Object Type description for 
+            <link href="../../reference/object_types/_AdaptiveQueryCriteria_.html">_AdaptiveQueryCriteria_</link>.
+        </paragraph>
+        <header>Content Types</header>
+        <paragraph>
+            Adaptive Framework can be configured for a variety of content types, each of which can be 
+            used in the RESTful request/response by specifying the appropriate value for the HTTP 
+            Header Content-Type.
+        </paragraph>            
+        <paragraph>
+            It's very easy to demonstrate how to use the RESTful API, using the command-line tool, curl.  
+            If you are running afwfcgi and have Apache or Nginx setup on the 
+            traditional Secure HTTP port 443, and you wanted to get the object <literal>afw</literal> of type 
+            <literal>_AdaptiveAdaptor_</literal>, from the core adaptor, <literal>afw</literal>, 
+            and you wanted it to be formatted with whitespace, you could run the following:
+        </paragraph>
+        <code>curl https://localhost/afw/_AdaptiveAdaptor_;whitespace/afw
+{
+    "adaptorId": "afw",
+    "metrics": {
+        "addObjectCount" : 0,
+        "deleteObjectCount": 0,
+        "getObjectCount": 38422,
+        "modifyObjectCount": 0,
+        "replaceObjectCount": 0,
+        "retrieveObjectsCount": 2370,
+        "updateObjectCount": 0
+    },
+    "properties":{
+        "contextualLabel": "Core afw adaptor",
+        "adaptorId": "afw",
+        "adaptorType": "afw_runtime",
+        "type": "adaptor"
+    },
+    "referenceCount": 3,
+    "serviceId": "adaptor-afw"    
+}</code>
+    </section>
+    <section>
+        <title>Perform Actions</title>
+        <paragraph>
+            The second way to interact with Adaptive Framework remotely is to send 
+            HTTP POST payloads to the core adaptor and specify which adaptive functions 
+            and parameters you'd like to interact with. This method requires clients 
+            to generate and receive payloads, but it offers some 
+            functionality that's not available through traditional REST. For example, 
+            you can invoke any adaptive function through, not just adaptor session ones.  
+            To use this technique, simply use HTTP POST actions to the Core adaptor, 
+            <literal>afw</literal>, along with a payload to instruct the server which 
+            adaptive function to invoke and all of its parameters.
+        </paragraph>
+        <header>Request Format</header>
+        <code>{
+    "actions": [
+        {
+            "adaptorId": &lt;adaptorId&gt;,
+            "function": &lt;adaptive_function_id&gt;
+            &lt;parameters...&gt;
+        },
+        ...
+    ]
+}</code>
+        <header>Response Format</header>
+        <code>{
+  "actions": [
+      "status": &lt;status_level&gt;,
+      {
+          "status": &lt;status_level&gt;,
+          "result": &lt;result&gt;
+      },
+      ...
+  ]
+}</code>
+    </section>    
+    <section>
+        <title>Examples</title>
+        <paragraph>
+            The following section provides some code samples for how to use a 
+            tool such as CURL to interact with adaptive framework by creating, 
+            modifying and and retrieving objects in different ways.
+        </paragraph>    
+        <header>Add Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     -X POST http://localhost/vault/users \
+     -d @- &lt;&lt;EOF 
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@myorg.org"
+}
+EOF</code>
+        <header>Retrieve Objects</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     http://localhost/vault/users;whitespace;objectId/?firstName=John</code>
+        <header>Get Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     http://localhost/vault/users;whitespace;objectId/1234567890</code>
+        <header>Replace Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     -X PUT http://localhost/vault/users/1234567890 \
+     -d @- &lt;&lt;EOF 
+{
+    "firstName": "Joe",
+    "lastName": "Doe",
+    "email": "joe.doe@myorg.org"
+}
+EOF</code>
+        <header>Modify Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     -X POST http://localhost/vault/users/1234567890 \
+     -d @- &lt;&lt;EOF 
+[
+    [
+        "set_property",
+        "firstName",
+        "John"
+    ],
+    [
+        "remove_property",
+        "lastName",
+        "email"
+    ]        
+]
+EOF</code>
+        <header>Delete Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     -X DELETE http://localhost/vault/users/1234567890</code>
+    </section>
+</doc>

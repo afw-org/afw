@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwModInteger",
+    "brief": "Remainder of dividing numbers",
+    "camelCaseFunctionLabel": "modInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Divide integer dividend by integer divisor and return the integer remainder.",
+    "functionId": "mod<integer>",
+    "functionLabel": "mod_integer",
+    "op": "%",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "dividend"
+        },
+        {
+            "dataType": "integer",
+            "name": "divisor"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "brief": "Converts to lower case",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Normalize <dataType> value to lower case and returns <dataType> result.",
+    "functionId": "normalize_to_lower_case",
+    "functionLabel": "normalize_to_lower_case",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "string",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

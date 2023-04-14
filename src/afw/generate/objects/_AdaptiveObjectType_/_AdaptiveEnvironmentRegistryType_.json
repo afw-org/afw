@@ -1,0 +1,74 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An environment registry type.",
+    "objectType": "_AdaptiveEnvironmentRegistryType_",
+    "propertyTypes": {
+        "allowReregister": {
+            "allowQuery": true,
+            "brief": "Reregister of a key is allowed",
+            "dataType": "boolean",
+            "description": "Indicates reregister of a key is allowed.",
+            "label": "Allow Reregister",
+            "runtime": {
+                "memberName": "allow_reregister"
+            }
+        },
+        "autoRegister": {
+            "allowQuery": true,
+            "brief": "Entries are automatically added for this type",
+            "dataType": "boolean",
+            "description": "Indicates if entries are automatically added for this type.",
+            "label": "Auto Register",
+            "runtime": {
+                "memberName": "auto_register_specified"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of registry type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of registry type.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "objectType": {
+            "allowQuery": true,
+            "brief": "There is an objectType object for each registered entry",
+            "dataType": "string",
+            "description": "There is an /afw/<objectType>/<key> object for each registered entry.",
+            "label": "Object Type",
+            "runtime": {
+                "memberName": "object_type_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "registryType": {
+            "allowQuery": true,
+            "brief": "Registry type",
+            "dataType": "string",
+            "description": "Registry type.",
+            "label": "Registry Type",
+            "runtime": {
+                "memberName": "registry_type_id",
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "indirectObjectId": true,
+            "objectId": "registry_type_id"
+        },
+        "typedef": "afw_environment_registry_type_t"
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive flag.",
+    "objectType": "_AdaptiveLock_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief predicate about this lock",
+            "dataType": "string",
+            "description": "Brief predicate about this lock.",
+            "label": "Brief",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "debugFlagId": {
+            "allowQuery": true,
+            "brief": "Flag id of the lock's debug flag",
+            "dataType": "string",
+            "description": "Flag id of the lock's debug flag.",
+            "label": "Debug Flag Id",
+            "runtime": {
+                "memberName": "flag_id_debug",
+                "valueAccessor": "indirect"
+            }
+        },
+        "debugFlagIndex": {
+            "allowQuery": true,
+            "brief": "Index of the lock's debug flag",
+            "dataType": "integer",
+            "description": "Index of the lock's debug flag.",
+            "label": "Debug Flag Index",
+            "runtime": {
+                "memberName": "flag_index_debug",
+                "valueAccessor": "size"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this lock",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description of this lock.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "lockId": {
+            "allowQuery": true,
+            "brief": "The key for this lock",
+            "dataType": "string",
+            "description": "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
+            "label": "Lock Id",
+            "runtime": {
+                "memberName": "lock_id",
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "lock_id"
+        },
+        "typedef": "afw_lock_t"
+    }
+}

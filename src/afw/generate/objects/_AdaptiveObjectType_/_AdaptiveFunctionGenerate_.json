@@ -1,0 +1,224 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveFunction_ objects.",
+    "objectType": "_AdaptiveFunctionGenerate_",
+    "propertyTypes": {
+        "additionalArgCheck": {
+            "allowQuery": true,
+            "brief": "Additional argument check",
+            "dataType": "boolean",
+            "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+            "label": "Additional Arg Check",
+            "required": false
+        },
+        "afwCamelCaseFunctionLabel": {
+            "allowQuery": true,
+            "brief": "The functionLabel prefixed with \"afw\" and converted to camel case",
+            "dataType": "string",
+            "description": "This is the functionLabel prefixed with \"afw\" and converted to camel case.",
+            "label": "Prefixed Camel Case",
+            "required": false
+        },
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description for this function",
+            "dataType": "string",
+            "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "camelCaseFunctionLabel": {
+            "allowQuery": true,
+            "brief": "The functionLabel converted to camel case.",
+            "dataType": "string",
+            "description": "This is the functionLabel converted to camel case.",
+            "label": "Camel Case",
+            "required": false
+        },
+        "category": {
+            "allowQuery": true,
+            "brief": "Function category",
+            "dataType": "string",
+            "description": "Function category.",
+            "label": "Category",
+            "required": true
+        },
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Method for this data type",
+            "dataType": "string",
+            "description": "If present, this is a method for this data type.",
+            "label": "Data Type",
+            "required": false
+        },
+        "dataTypeMethod": {
+            "allowQuery": true,
+            "brief": "Data type method",
+            "dataType": "boolean",
+            "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+            "label": "Data Type Method",
+            "required": false
+        },
+        "deprecated": {
+            "allowQuery": true,
+            "brief": "This function is deprecated",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that the function is deprecated and may go away at some point.",
+            "label": "Deprecated"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this function",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the function's description, used for documentation purposes.",
+            "label": "Description",
+            "required": false
+        },
+        "details": {
+            "allowQuery": true,
+            "brief": "Details about this function's other properties",
+            "dataType": "string",
+            "description": "This is a sentence that contains details about the other properties of this function.",
+            "label": "Details"
+        },
+        "errorsThrown": {
+            "brief": "Errors thrown by this function",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
+            "description": "Errors that can be thrown by this function.",
+            "label": "Errors Thrown",
+            "required": false
+        },
+        "functionId": {
+            "allowQuery": true,
+            "brief": "The function's id",
+            "dataType": "string",
+            "description": "This is the function's id.",
+            "label": "Function",
+            "required": true
+        },
+        "functionLabel": {
+            "allowQuery": true,
+            "brief": "The function's label",
+            "dataType": "string",
+            "description": "This is the function's label.",
+            "label": "Function Label",
+            "required": true
+        },
+        "functionSignature": {
+            "allowQuery": true,
+            "brief": "The function's signature",
+            "dataType": "string",
+            "description": "This is the function's signature.",
+            "label": "Function Signature",
+            "required": false
+        },
+        "op": {
+            "allowQuery": true,
+            "brief": "The function's operator",
+            "dataType": "string",
+            "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+            "label": "Operator"
+        },
+        "parameters": {
+            "brief": "The function's parameters",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionParameter_",
+            "description": "These are the function's parameters.",
+            "label": "Parameters"
+        },
+        "polymorphic": {
+            "allowQuery": true,
+            "brief": "This function can be called polymorphically",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+            "label": "Polymorphic"
+        },
+        "polymorphicDataTypes": {
+            "allowQuery": true,
+            "brief": "This function will call the appropriate function when the first parameter is one of these data types",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "defaultValue": false,
+            "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+            "label": "Polymorphic Data Types"
+        },
+        "polymorphicExecuteFunction": {
+            "allowQuery": true,
+            "brief": "Polymorphic execute function label",
+            "dataType": "string",
+            "description": "This is the label in the C source of the polymorphic execute function used for this function.",
+            "label": "Polymorphic Function Label",
+            "required": false
+        },
+        "polymorphicOverrides": {
+            "allowQuery": false,
+            "brief": "Polymorphic overrides",
+            "dataType": "object",
+            "description": "This allows overrides, for particular data types, of properties for this function.",
+            "label": "Polymorphic Function Label",
+            "required": false
+        },
+        "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+            "allowQuery": true,
+            "brief": "First parameter evaluate deferred to polymorphicExecuteFunction",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+            "label": "Defer Evaluate"
+        },
+        "pure": {
+            "allowQuery": true,
+            "brief": "Given exactly the same parameter values, this function will always return the same result",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+            "label": "Pure"
+        },
+        "returns": {
+            "allowQuery": true,
+            "brief": "The return parameter",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveFunctionParameter_",
+            "description": "The return parameter.",
+            "label": "Returns",
+            "required": true
+        },
+        "scriptSupport": {
+            "allowQuery": true,
+            "brief": "Script support function",
+            "dataType": "boolean",
+            "description": "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form \"AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_\" followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.",
+            "label": "Script support"
+        },
+        "sideEffects": {
+            "allowQuery": true,
+            "brief": "Side effects for this function",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Any side effects that this function may produce as a result of execution.",
+            "label": "Side Effects"
+        },
+        "signatureOnly": {
+            "allowQuery": true,
+            "brief": "Signature only",
+            "dataType": "boolean",
+            "description": "This is a signature with an unimplemented execute function.",
+            "label": "Signature Only"
+        },
+        "useExecuteFunction": {
+            "allowQuery": true,
+            "brief": "Execute function label",
+            "dataType": "string",
+            "description": "This is the label in the C source of the execute function used for this function.",
+            "label": "Use Execute Function",
+            "required": false
+        }
+    }
+}

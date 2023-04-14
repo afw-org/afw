@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwQualifiers",
+    "brief": "Access qualifiers as an object",
+    "camelCaseFunctionLabel": "qualifiers",
+    "category": "compiler",
+    "description": "This function allows the active qualifiers to be accessed as properties of an object. The value of each of these properties is an object whose properties are the variables for the corresponding qualifier.",
+    "functionId": "qualifiers",
+    "functionLabel": "qualifiers",
+    "parameters": [
+        {
+            "brief": "For testing if true",
+            "dataType": "boolean",
+            "description": "If specified and true, the object returned will be suitable to pass as the additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This is intended for testing purposes and should not be used in production.",
+            "name": "forTesting",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "All qualifiers and their variables",
+        "dataType": "object",
+        "description": "Each property is the name of a qualifier with a value that is an object whose properties are the variables of that qualifier. The value of the variable properties is influenced by the forTesting property."
+    }
+}

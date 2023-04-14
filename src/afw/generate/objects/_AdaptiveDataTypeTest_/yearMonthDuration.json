@@ -1,0 +1,21 @@
+{
+    "dataType": "yearMonthDuration",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "P2Y6M"
+        },
+        {
+            "value": "P20M"
+        },
+        {
+            "value": "P0Y20M"
+        },
+        {
+            "value": "P0Y"
+        },
+        {
+            "value": "-P60Y"
+        }
+    ]
+}

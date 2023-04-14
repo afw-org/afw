@@ -1,0 +1,67 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEq",
+    "brief": "Checks for equal",
+    "camelCaseFunctionLabel": "eq",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine if <dataType> arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use \"eqx\" (\"===\") instead if you want false to be returned if arg1 and arg2's data type don't match.",
+    "errorsThrown": [
+        {
+            "error": "conversion",
+            "reason": "arg2 cannot be converted to the data type of arg1."
+        }
+    ],
+    "functionId": "eq",
+    "functionLabel": "eq",
+    "op": "==",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "regexp",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_eq",
+    "polymorphicExecuteFunctionEvaluatesFirstParameter": true,
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eq"
+}

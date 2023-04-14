@@ -1,0 +1,32 @@
+{
+    "description": "Tests for assert.",
+    "functionId": "assert",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": true
+                }                
+            ],
+            "description": "Assertion on true",
+            "result": {           
+                "dataType": "null",
+                "value": null
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": false
+                }                
+            ],
+            "description": "Assertion on false",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

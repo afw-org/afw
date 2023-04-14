@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringX500Name",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Converts x500Name value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<x500Name>",
+    "functionLabel": "to_string_x500Name",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "description": "A x500Name value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

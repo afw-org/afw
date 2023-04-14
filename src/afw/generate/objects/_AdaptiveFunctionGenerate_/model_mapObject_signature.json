@@ -1,0 +1,21 @@
+{
+    "brief": "Signature used for current:mapObject()",
+    "category": "model",
+    "description": "This is the function signature for current:mapObject used by onAddObject. onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly will throw a \"Do not call directly\" error.",
+    "functionId": "model_mapObject_signature",
+    "functionLabel": "model_mapObject_signature",
+    "parameters": [
+        {
+            "dataType": "object",
+            "brief": "The object to map",
+            "description": "This is the object to map.",
+            "name": "object"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "brief": "The mapped object",
+        "description": "This is the object mapped to mappedAdaptor object."
+    },
+    "signatureOnly": true
+}

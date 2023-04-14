@@ -1,0 +1,9 @@
+{
+    "category": "navigation",
+    "componentType": "Menu",
+    "brief": "A component that renders a Menu to be displayed.",
+    "description": "This component pops up a Menu of items, each of which take an appropriate action when clicked. Menu items may also open up new submenus in order to organize or filter a set of items in a way that's easy for the end user to understand and select from.",
+    "implementationId": "Menu",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Menu",
+    "label": "Menu"
+}

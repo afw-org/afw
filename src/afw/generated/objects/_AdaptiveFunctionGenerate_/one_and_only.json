@@ -1,0 +1,48 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnly",
+    "brief": "Converts a one value list to a <dataType> value",
+    "camelCaseFunctionLabel": "oneAndOnly",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "This converts a list of <dataType> values that contains one value to a single <dataType> value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only",
+    "functionLabel": "one_and_only",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "hexBinary",
+        "integer",
+        "ipAddress",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_one_and_only",
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

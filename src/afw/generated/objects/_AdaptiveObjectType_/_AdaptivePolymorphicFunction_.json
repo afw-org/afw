@@ -1,0 +1,51 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes.",
+    "objectType": "_AdaptivePolymorphicFunction_",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes"
+            ]
+        },
+        "dataTypeMethod": {
+            "allowQuery": true,
+            "brief": "Data type method",
+            "dataType": "boolean",
+            "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+            "label": "Data Type Method",
+            "required": false
+        },
+        "errorsThrown": {
+            "brief": "Errors thrown by this function",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
+            "description": "Errors that can be thrown by this function.",
+            "label": "Errors Thrown",
+            "required": false
+        },
+        "polymorphicExecuteFunction": {
+            "allowQuery": true,
+            "brief": "Polymorphic Function",
+            "dataType": "string",
+            "description": "Polymorphic Function.",
+            "label": "Adaptor"
+        },
+        "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+            "allowQuery": true,
+            "brief": "First parameter evaluate deferred to polymorphicExecuteFunction",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+            "label": "Defer Evaluate"
+        },
+        "polymorphicOverrides": {
+            "dataType": "object",
+            "label": "Polymorphic Overrides"
+        }
+    }
+}

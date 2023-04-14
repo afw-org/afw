@@ -1,0 +1,60 @@
+{
+    "description": "Tests for union<anyURI> function.",
+    "functionId": "union<anyURI>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "http://www.w3schools.com/images/smiley.gif",
+                        "http://datypic.com",
+                        "../%C3%A9dition.html",
+                        "../dition.html"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "http://datypic.com/prod.html#shirt",
+                        "../prod.html#shirt",
+                        "urn:example:org"
+                    ]
+                }
+            ],
+            "description": "Union set of 4 with set of 3.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "anyURI",
+                "value": [
+                    "http://www.w3schools.com/images/smiley.gif",
+                    "http://datypic.com",
+                    "../%C3%A9dition.html",
+                    "../dition.html",
+                    "http://datypic.com/prod.html#shirt",
+                    "../prod.html#shirt",
+                    "urn:example:org"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

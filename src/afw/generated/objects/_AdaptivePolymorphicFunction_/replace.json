@@ -1,0 +1,42 @@
+{
+    "brief": "Replace strings",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Replace string(s) in a <dataType> value.",
+    "functionId": "replace",
+    "functionLabel": "replace",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The original <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "The string to replace.",
+            "name": "match"
+        },
+        {
+            "dataType": "string",
+            "description": "The replacement string.",
+            "name": "replacement"
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_replace",
+    "returns": {
+        "description": "A <dataType> value with the matched string(s) replaced.",
+        "polymorphicDataType": true
+    }
+}

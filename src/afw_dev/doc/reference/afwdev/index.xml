@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>afwdev Reference</title>
+    <description>
+        The afwdev reference contains all information related to the afwdev command, 
+        a development-time command-line tool to create, maintain, build and
+        test an Adaptive Framework (AFW) Package.
+    </description>
+    <section href="introduction.xml" label="Introduction" content-type="xml"/>
+    <section href="usage.xml" label="Usage" content-type="xml"/>
+    <section href="generate.xml" label="Generate" content-type="xml"/>
+</doc>

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeObject",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leObject",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Checks for object arg1 is less than or equal to object arg2 and return the boolean result.",
+    "functionId": "le<object>",
+    "functionLabel": "le_object",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "object",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

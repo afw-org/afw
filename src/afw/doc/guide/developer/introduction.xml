@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Introduction</title>
+    <paragraph>
+        The Developer Guide is written for two types of developers in mind: those who intend to 
+        work on Adaptive Framework Core and those who are interested in developing Adaptive 
+        Framework Packages.
+    </paragraph>
+    <paragraph>
+        This guide will provide some background and procedures for developers who wish to 
+        contribute to the Adaptive Framework project or integrate the framework into their 
+        own applications. However, you may want to read the Architecture Guide first, which 
+        will provide a more detailed overview of the Adaptive Framework and why it was 
+        designed the way it was.
+    </paragraph>
+    <paragraph>
+        Additionally, the Reference material will be helpful in referring back to, for more 
+        detailed, technical documentation. In particular, the Doxygen reference for C.
+    </paragraph>
+</doc>

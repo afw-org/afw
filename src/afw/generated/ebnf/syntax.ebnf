@@ -1,0 +1,981 @@
+/* Generate by: afwdev generate afw */
+
+
+/* From afw_compile_parse.c                                                   */
+/* This grammar uses W3C (https://www.w3.org/) EBNF notation.                 */
+/*                                                                            */
+/* Note: This grammar is intended as documentation and is not                 */
+/* precise.                                                                   */
+/*                                                                            */
+/* Directory src/afw/doc/syntax/ must be produced manually from               */
+/* src/afw/generated/ebnf/syntax.ebnf using the following steps:              */
+/*                                                                            */
+/* 1) Visit http://bottlecaps.de/rr/ui in a web browser.                      */
+/* 2) Optionally, go to the "Options" tab and change Color to one             */
+/*    compatible with the admin app such as #DCDCDC which is shades           */
+/*    of gray.                                                                */
+/* 3) Paste the contents of src/afw/generated/syntax/compile.ebnf in          */
+/*    the text area of the "Edit Grammar" tab.                                */
+/* 4) Select the "View Diagram" tab then click the PNG radio button           */
+/*    in "Download diagram" box in the top right corner and press             */
+/*    the "Download" button.                                                  */
+/* 5) Replace the contents of the syntax/ directory with the contents         */
+/*    of the downloaded zip file.                                             */
+/*                                                                            */
+/* Root productions                                                           */
+/*                                                                            */
+/* A parameter passed to the adaptive compiler determines the first           */
+/* production used for parse.                                                 */
+/*                                                                            */
+/* Expression - afw_compile_type_expression                                   */
+/*                                                                            */
+/* Hybrid - afw_compile_type_hybrid                                           */
+/*                                                                            */
+/* Json - afw_compile_type_json and afw_compile_type_relaxed_json             */
+/*                                                                            */
+/* ParenthesizedExpression - afw_compile_type_parenthesized_expression        */
+/*                                                                            */
+/* Script - afw_compile_type_script                                           */
+/*                                                                            */
+/* Template - afw_compile_type_template                                       */
+/*                                                                            */
+
+/* From afw_compile_parse.c                                                   */
+/* Hybrid is used to parse data type hybrid.                                  */
+/*                                                                            */
+/* A hybrid is parsed as a Script, ExpressionTuple, Template, or an evaluated */
+/* string as follows:                                                         */
+/*                                                                            */
+/*     1) If it begins with a '#!', it is parsed as a Script.                 */
+/*     2) If it begins with '[', it is parsed as an ExpressionTuple.          */
+/*     3) Otherwise, it is parsed as a Template.  Note that if the            */
+/*        template does not contain '${', it produces an evaluated string.    */
+/*                                                                            */
+
+Hybrid ::= Script | ExpressionTuple | Template
+
+/* From afw_compile_parse_assignment_target.c                                 */
+
+AssignmentListDestructureTarget ::=
+  '['
+       (
+           ( '...' AssignmentBindingTarget ) |
+           ( AssignmentElement (',' AssignmentElement )*
+               ( ',' '...' AssignmentBindingTarget )? )
+       )
+  ']'
+
+/* From afw_compile_parse_assignment_target.c                                 */
+
+AssignmentElement ::=
+   AssignmentBindingTarget ( '=' Expression )?
+
+/* From afw_compile_parse_assignment_target.c                                 */
+
+AssignmentObjectDestructureTarget ::=
+   '{'
+       (
+           ( '...' AssignmentBindingTarget ) |
+           (
+               AssignmentProperty ( ',' AssignmentProperty )*
+               ( ',' '...' AssignmentBindingTarget )?
+           )
+       )?
+   '}'
+
+/* From afw_compile_parse_assignment_target.c                                 */
+
+AssignmentProperty ::=
+   ( PropertyName ('=' Expression )? ) |
+   ( PropertyName ( ':' AssignmentElement )? )
+
+/* From afw_compile_parse_assignment_target.c                                 */
+/*                                                                            */
+/* Reference is only valid if assignment_type is assign_only                  */
+/*                                                                            */
+
+AssignmentBindingTarget ::=
+   AssignmentListDestructureTarget |
+   AssignmentObjectDestructureTarget |
+   ( VariableName - ReservedWords )
+
+/* From afw_compile_parse_assignment_target.c                                 */
+/*                                                                            */
+/* If AssignmentBindingTarget does not return an assignment_target but        */
+/* it does return a variable_reference and this is an assignment_type of      */
+/* assign_only, create an assignment_target value from the variable_reference. */
+/*                                                                            */
+
+AssignmentTarget ::= AssignmentBindingTarget | Reference
+
+/* From afw_compile_parse_expression.c                                        */
+/* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */
+/* This production only applies if ':' occurs before the end of current line. */
+
+ColonBeforeEndOfLine ::= ':'
+
+DataType ::=
+   'any' |
+   'anyURI' |
+   'base64Binary' |
+   'boolean' |
+   'date' |
+   'dataTimeDuration' |
+   'dnsName' |
+   'double' |
+   'expression' |
+   'function' |
+   'hexBinary' |
+   'hybrid' |
+   'ia5String' |
+   'implied' |
+   'integer' |
+   'ipAddress' |
+   'list' |
+   'null' |
+   'object' |
+   'objectId' |
+   'objectPath' |
+   'password' |
+   'rfc822Name' |
+   'string' |
+   'template' |
+   'time' |
+   'unevaluated' |
+   'x500Name' |
+   'xpathExpression' |
+   'yearMonthDuration'
+/* ObjectType should be in quoted string since some may not conform to        */
+/* Identifier and consistency is desired.                                     */
+
+ObjectType ::= String
+
+Category ::= Identifier
+
+FunctionName ::= ( 'fn' '::')? Identifier ( '<' DataType '>' )?
+
+MethodName ::= ( ('fn' | Category | Qualifier) '::')? Identifier
+
+ParameterName ::= Identifier - ReservedWords
+
+PropertyName ::= Identifier
+
+Qualifier ::= Identifier
+
+VariableName ::= Identifier - ReservedWords
+
+VariableReference ::= ( Qualifier '::' Identifier) || VariableName
+
+/* From afw_compile_parse_expression.c                                        */
+/* Reference is any Evaluation that evaluates to a value inf id of            */
+/* reference_by_key, qualified_variable_reference, or variable_reference.     */
+
+Reference ::= Evaluation
+
+/* From afw_compile_parse_expression.c                                        */
+
+EntryFunctionLambdaOrVariableReference ::=
+   (
+     FunctionName |
+     Lambda |
+     VariableReference
+   )
+
+/* From afw_compile_parse_expression.c                                        */
+/*                                                                            */
+/* Evaluation can call a FunctionName, call a Lambda defined inline, call a   */
+/* function in a variable, access a local variable, or access qualified a     */
+/* =variable.                                                                 */
+/*                                                                            */
+/* '->' calls EntryFunctionLambdaOrVariableReference with the first parameter */
+/* as the value to the left of the '->' followed by the remaining parameters  */
+/* in ParametersExceptFirst. This acts like a function called as a method.    */
+/*                                                                            */
+/* '?->' is the same as '->' except it will return undefined if               */
+/* EntryFunctionLambdaOrVariableReference does not exist or contains a nullish */
+/* value.  A syntax error will still be produced for a unqualified name that  */
+/* is not a declared variable or the name of a built-in function.             */
+/*                                                                            */
+
+Evaluation ::=
+   EntryFunctionLambdaOrVariableReference ( '?.'? Parameters )?
+   (
+       ( '?.'? ParametersExceptFirst ) |
+       (
+           ( '?.'? '[' Expression ']' ) |
+           ( ( '.' | '?.' ) PropertyName )
+       ) |
+       (
+           ( '->' | '?->' )
+           EntryFunctionLambdaOrVariableReference
+           '?.'? ParametersExceptFirst
+       )
+   )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+ParameterList ::=
+   (
+       (
+           ( RequiredParameterList | OptionalParameterList )
+           ( ',' OptionalParameterList )*
+           ( ',' EllipsisParameter )?
+       ) |
+       EllipsisParameter
+   )
+
+RequiredParameterList ::=
+   ParameterName OptionalType
+   (',' ParameterName OptionalType)*
+
+OptionalParameterList ::=
+   ( ParameterName '?'? OptionalType ( '=' Literal )? )
+   (
+       ','
+       ( ParameterName '?'? OptionalType ( '=' Literal )? )
+   )*
+
+EllipsisParameter ::=
+   '...' ParameterName OptionalType
+/*                                                                            */
+/* An object with object type _AdaptiveFunctionDeclaration_                   */
+/*                                                                            */
+
+FunctionDeclarationObject ::= object
+
+FunctionSignature ::= '(' ParameterList ')' OptionalReturnType
+
+/* From afw_compile_parse_expression.c                                        */
+/*                                                                            */
+/* If Expression is an object literal it must be enclosed with parentheses.   */
+/*                                                                            */
+
+FunctionSignatureAndBody ::= FunctionSignature FunctionBody
+
+FunctionBody ::= ( '{' Script '}' ) | Expression
+
+/* From afw_compile_parse_expression.c                                        */
+/* 'function' is a reserved variable/function name.                           */
+
+Lambda ::= 'lambda::'? 'function' FunctionSignatureAndBody
+
+/* From afw_compile_parse_expression.c                                        */
+
+Parameters ::= '(' Expression (',' Expression)*')'
+/*                                                                            */
+/* Denotes a parameter list without first parameter (method style call).      */
+/*                                                                            */
+
+ParametersExceptFirst ::= Parameters
+
+/* From afw_compile_parse_expression.c                                        */
+
+ParenthesizedExpression ::= '(' Expression ')'
+
+/* From afw_compile_parse_expression.c                                        */
+/* See RFC https://tools.ietf.org/html/rfc2616#section-3.7                    */
+/* This is media-type in a quoted string                                      */
+
+MediaType ::= String
+
+ListOf ::= ( 'of' 'list' )* ( 'of' Type )
+
+DataTypeWithParameter ::= '('
+              ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
+              ( ( 'expression' | 'hybrid' | 'script' | 'template' ) ReturnType ) |
+              ( 'function' FunctionSignature ) |
+              ( 'list' ListOf ) |
+              ( ( 'object' | 'objectId' ) ObjectType ) |
+              ( 'unevaluated' Type ) |
+     ')'
+
+TypeName ::= DataType | TypeVariableName | InterfaceName
+
+TypeObject ::=
+     '{'
+         PropertyName '?'?  ':' Type
+         ( ',' PropertyName '?'?  ':' Type )*
+         ','?
+     '}' ';'
+/* An object type _AdaptiveValueMeta_ object.                                 */
+
+ValueMeta ::= 'meta' Object
+
+Type ::=  DataTypeWithParameter | TypeName | TypeObject | ValueMeta
+
+/* From afw_compile_parse_expression.c                                        */
+/* If Type is not specified, default is any.                                  */
+
+OptionalType ::= ( ':' Type )?
+
+OptionalReturnType ::= ( ':' ( 'void' | Type ) )?
+
+/* From afw_compile_parse_expression.c                                        */
+
+NullishCoalescing ::= LogicalExpression ( '??'  LogicalExpression )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+LogicalExpression ::= LogicalAnd ( '||' LogicalAnd )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+LogicalAnd ::= Equality ( '&&' Equality )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Equality ::= Comparison
+  ( ('==' | '===' | '!=' | '!==' ) Comparison )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Comparison ::= Factor ( ('<' | '<=' | '>' | '>=' ) Factor )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Factor ::= Term ( ('+' | '-' ) Term )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Term ::= Exponentiation ( ('*' | '/' | '%') Exponentiation )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Exponentiation ::= Prefixed ( '**' Prefixed )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+Prefixed ::= ( ( '+' | '-' | '!' ) Value ) | Value
+
+/* From afw_compile_parse_expression.c                                        */
+
+Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+
+QuotedExpression ::= '"' Expression '"' /* ws: explicit */
+
+QuotedFunctionName ::= '"' FunctionName '"' /* ws: explicit */
+
+QuotedMethodName ::= '"' MethodName '"' /* ws: explicit */
+
+QuotedPropertyName ::= '"' PropertyName '"' /* ws: explicit */
+
+QuotedScript ::= '"' Script '"' /* ws: explicit */
+
+QuotedTemplate ::= '"' Template '"' /* ws: explicit */
+
+QuotedVariableReference ::= '"' VariableReference '"' /* ws: explicit */
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+
+ExpressionTuple ::= '[' ExpressionTupleAnnotation ',' ExpressionTupleOperation ']'
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+
+ExpressionTupleAnnotation ::= 'null' | Object
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Expression tuple version of an expression with variable assignments        */
+
+ExpressionTupleOperation_expressionTuple  ::= '"exprT"' ','
+   '['
+       ( ( QuotedVariableReference "," ExpressionTupleValue )
+       ( "," QuotedVariableReference "," ExpressionTupleValue )* )?
+   ']' ',' ExpressionTupleValue
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Lambda function (return type, parameter names, expression tuple)           */
+
+ExpressionTupleOperation_lambda ::= '"lambda"' ','
+   ( FunctionDeclarationObject | FunctionDeclarationURI ) ','
+   ExpressionTupleValue
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* An list with ExpressionTupleValue property values.                         */
+
+ExpressionTupleOperation_list ::='"list"' ( "," ExpressionTupleValue )*
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* An object with ExpressionTupleValue property values.                       */
+
+ExpressionTupleOperation_object ::='"obj"'
+   ( "," QuotedPropertyName "," ExpressionTupleValue )*
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Property reference (property name)                                         */
+/*                                                                            */
+/* This is either QuotedPropertyName or an ExpressionTuple that evaluates to a */
+/* property name.                                                             */
+
+ExpressionTupleOperation_propertyReference ::='"prop"' ','
+   ( QuotedPropertyName | ExpressionTupleValue ) ',' ExpressionTupleObject
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* A script in a string (See Script production)                               */
+
+ExpressionTupleOperation_script ::='"script"' ',' QuotedScript
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* A template in a string (See Template production)                           */
+
+ExpressionTupleOperation_template ::='"tmpl"' ',' QuotedTemplate
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* A reference to a variable (variable name)                                  */
+
+ExpressionTupleOperation_variableReference ::='"var"' ','
+   QuotedVariableReference
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* An expression in a string (See Expression production)                      */
+
+ExpressionTupleOperation_expression ::= '"expr"' ',' QuotedExpression
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* ExpressionTuple must evaluate to a single object.                          */
+
+ExpressionTupleObject ::= Object | ExpressionTuple
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Expression operation                                                       */
+
+ExpressionTupleOperation ::=
+   ExpressionTupleOperation_call |
+   ExpressionTupleOperation_callAdaptiveFunction |
+   ExpressionTupleOperation_callLambdaFunction |
+   ExpressionTupleOperation_callMethod |
+   ExpressionTupleOperation_expressionTuple |
+   ExpressionTupleOperation_lambda |
+   ExpressionTupleOperation_list |
+   ExpressionTupleOperation_object |
+   ExpressionTupleOperation_propertyReference |
+   ExpressionTupleOperation_script |
+   ExpressionTupleOperation_template |
+   ExpressionTupleOperation_variableReference |
+   ExpressionTupleOperation_expression
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Call an built-in adaptive function (function, parameters ...)              */
+
+ExpressionTupleOperation_callAdaptiveFunction ::= ( '"callA"' ',' )?
+   ( QuotedFunctionName | ExpressionTuple )
+   (',' ExpressionTupleValue)*
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Call either a lambda or adaptive function (function, parameters ...)       */
+/*                                                                            */
+/* This is either QuotedVariableReference of a variable containing a lambda value, */
+/* a QuotedFunctionName identifies an adaptive function, or an ExpressionTuple */
+/* that evaluates to a lambda value.                                          */
+
+ExpressionTupleOperation_call  ::= '"call"' ','
+  ( QuotedVariableReference | QuotedFunctionName | ExpressionTuple )
+  (',' ExpressionTupleValue)*
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+/* Call a lambda function (function, parameters ...)                          */
+
+ExpressionTupleOperation_callLambdaFunction ::= '"callL"' ','
+  ( QuotedVariableReference | ExpressionTuple )
+  (',' ExpressionTupleValue)*
+
+/* From afw_compile_parse_expression_tuple.c                                  */
+
+ExpressionTupleValue ::= ExpressionTuple | Double | Integer | Object |
+   String | 'true' | 'false' | 'null'
+
+/* From afw_compile_parse_script.c                                            */
+/*                                                                            */
+/* Must evaluate one of following:                                            */
+/*    VariableReference                                                       */
+/*    ReferenceByIndex                                                        */
+/*    ReferenceByName                                                         */
+
+AssignmentExpression ::= Expression
+
+/* From afw_compile_parse_script.c                                            */
+
+OptionalDefineTarget ::=
+   ( ( 'loc' | 'const' ) AssignmentTarget ) |
+   AssignmentTarget
+
+/* From afw_compile_parse_script.c                                            */
+
+OptionalDefineAssignment ::= (
+    ( ( 'loc' | 'const' ) AssignmentTarget '=' Expression ) |
+    Assignment
+)
+
+/* From afw_compile_parse_script.c                                            */
+
+Assignment ::=
+   (
+       AssignmentExpression
+       ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' | '**=' | '&&=' | '||=' |
+           '??=' )
+       Expression
+   )
+
+/* From afw_compile_parse_script.c                                            */
+
+AssignmentStatement ::=
+   (
+       ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+       Assignment
+   )
+   ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+BreakStatement ::= 'break' ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+InterfaceName ::= Identifier
+
+InterfaceStatement ::= 'interface' InterfaceName
+     '{'
+         ( String | Identifier ) ':' Type
+         ( ','  ( String | Identifier ) ':' Type )*
+         ','?
+     '}' ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+TypeVariableName ::= Identifier
+
+TypeStatement ::= 'type' TypeVariableName '=' Type ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+ContinueStatement ::= 'continue' ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+DeclareStatement ::= 'declare' AssignmentTarget ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+ForStatement ::= 'for'
+  '('
+      ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+      ';' Expression?
+      ';' ( Assignment ( ',' Assignment )* )?
+  ')' Statement
+
+/* From afw_compile_parse_script.c                                            */
+/* This will probably change when set operators are added.                    */
+
+ForeachStatement ::=
+   'foreach' OptionalDefineTarget 'of' Expression Statement
+
+/* From afw_compile_parse_script.c                                            */
+/* Named function                                                             */
+/*                                                                            */
+/* FunctionName must be present for this production to match.                 */
+
+FunctionStatement ::=
+     'function' ( FunctionName - ReservedWords ) FunctionSignatureAndBody ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
+
+/* From afw_compile_parse_script.c                                            */
+
+LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
+
+/* From afw_compile_parse_script.c                                            */
+/* Expression is required if inside a function that has a non-void return.    */
+
+ReturnStatement ::= 'return' Expression? ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+WhileStatement ::= 'while' '(' Expression ')' Statement
+
+/* From afw_compile_parse_script.c                                            */
+/* This is any Evaluation that compiles to a call adaptive value.             */
+
+EvaluationThatCompilesToCallValue ::= Evaluation
+
+CallStatement ::= EvaluationThatCompilesToCallValue
+/* BreakStatement and ContinueStatement can only be in a loop                 */
+
+Block ::= '{' Statement* '}'
+
+Statement ::=
+   ';' |
+   Block |
+   AssignmentStatement |
+   BreakStatement |
+   CallStatement |
+   ConstStatement |
+   ContinueStatement |
+   DeclareStatement |
+   DoWhileStatement |
+   ForStatement |
+   ForeachStatement |
+   FunctionStatement |
+   IfStatement |
+   InterfaceStatement |
+   LocStatement |
+   ReturnStatement |
+   TypeStatement |
+   WhileStatement
+
+/* From afw_compile_parse_script.c                                            */
+/*                                                                            */
+/* The value returned from a script if the Expression specified on an         */
+/* evaluated ReturnStatement, the single Expression specified, or null        */
+/* if none of the above.                                                      */
+/*                                                                            */
+
+Script ::= ScriptShebang? ( Statement* | Expression )
+
+ScriptShebang ::= '#!' UnicodeNonControl* 'afw' UnicodeNonControl* '\n'
+
+/* From afw_compile_parse_script.c                                            */
+
+TestScript ::= TestScriptShebang? TestScriptDefinition TestDefinition+
+
+TestScriptShebang ::= '#!' UnicodeNonControl* 'afw' UnicodeNonControl*
+    ('-s test_script' | '--syntax test_script' ) |  UnicodeNonControl* '\n'
+/* TestDescription, TestSkip, TestSourceType and TestCustomProperty can occur */
+/* in any order                                                               */
+
+TestScriptDefinition ::=
+    TestScriptBegin
+    TestDescription?
+    TestSkip?
+    TestSourceType?
+    TestCustomProperty*
+/* TestDescription, TestExpect, TestSkip, TestSource, TestSourceType and      */
+/* TestUserProperty can occur in any order                                    */
+
+TestDefinition ::=
+    TestBegin
+    TestDescription?
+    TestExpect
+    TestSkip?
+    TestSource
+    TestSourceType?
+    TestCustomProperty*
+/* Must start at the beginning of a line                                      */
+
+TestScriptLineStart ::= ( '//?' '\n')* '//?'
+/* The '//?' of '\n//?' is reused.  The last '/n' is ignored to allow ...     */
+/* values to not end with a '\n'.                                             */
+
+TestScriptValue ::= (
+    ( '...' '\n' UnicodeCodePoint* ( '\n//?' | END ) ) |
+    ( UnicodeNonControl #x20* '\n' )
+)
+
+TestScriptBegin ::= TestScriptLineStart 'test_script:' TestScriptValue
+
+TestBegin ::= TestScriptLineStart 'test:' TestScriptValue
+/* Identifier should be one that will not collide with standard ones.         */
+
+TestCustomProperty ::= Identifier ':' TestScriptValue
+
+TestDescription ::= TestScriptLineStart 'description:' TestScriptValue
+
+TestExpect ::= TestScriptLineStart
+   'expect:' (
+       ( 'error' '\n' ) |
+       ( 'result' TestScriptValue )
+   )
+/* Skip can be use for source that is not ready to test                       */
+
+TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
+/* Default is script or the one specified in TestScriptDefinition             */
+
+TestSourceType ::= TestScriptLineStart 'source_type:'
+    ( 'expression' | 'expression_tuple' | 'hybrid' | 'json' |
+      'parenthesized_expression' | 'relaxed_json' | 'script' |
+      'template' )
+
+TestSource ::= TestScriptLineStart 'source:' TestScriptValue
+
+/* From afw_compile_parse_template.c                                          */
+
+Substitution ::= '${' Script '}'
+
+/* From afw_compile_parse_template.c                                          */
+
+Template ::=
+   (
+       (Char - '$') | ( '\$' ) | '$' (Char - '{') | Substitution
+   )*
+
+/* From afw_compile_parse_template.c                                          */
+
+TemplateString ::= '`' + Template + '`'
+
+/* From afw_compile_parse_template.c                                          */
+
+NamedTemplateString ::= '`' + ((Char - '$') | ('\$') | ('$' (Char - '{')) | '${' PropertyName '}') * '`'
+
+/* From afw_compile_parse_value.c                                             */
+/* Expression must produce a value of data type list.                         */
+
+ListExpression ::= Expression
+
+List ::=
+   '['
+       ( Json (',' Json)* )?
+   ']'
+
+RelaxedList ::=
+   '['
+       ( RelaxedJson (',' RelaxedJson)* )? ','?
+   ']'
+
+ListLiteral ::=
+   '['
+       ( Literal (',' Literal )* )? ','?
+   ']'
+
+ListValue ::=
+   '['
+       (
+           ( Expression | ( '...' ListExpression ) )
+           (',' ( Expression | ( '...' ListExpression ) ) )*
+       )?
+       ','?
+   ']'
+
+/* From afw_compile_parse_value.c                                             */
+/* Expression must produce a value of data type object.                       */
+
+ObjectExpression ::= Expression
+
+Object ::=
+   '{'
+       (
+           ( String ':' Json )
+           (',' String ':' Json )*
+       )?
+   '}'
+
+RelaxedObject ::=
+   '{'
+       (
+           ( ( String | Identifier ) ':' RelaxedJson )
+           (',' ( String | Identifier ) ':' RelaxedJson )*
+           ','?
+       )?
+       ','?
+   '}'
+
+ObjectLiteral ::=
+   '{'
+       (
+           ( ( String | Identifier ) ':' Literal )
+           ( ',' ( String | Identifier ) ':' Literal )*
+       )?
+       ','?
+   '}'
+
+ObjectValue ::=
+   '{'
+       (
+           (
+               ( ( String | Identifier ) ':' Expression ) |
+               ('...' ObjectExpression )
+           )
+           ( ','
+               (
+                   ( ( String | Identifier ) ':' Expression ) |
+                   ('...' ObjectExpression )
+               )
+           )*
+       )?
+       ','?
+   '}'
+
+/* From afw_compile_parse_value.c                                             */
+
+Json ::= Double | Integer | List | Object | String | 'true' | 'false' | 'null'
+
+RelaxedJson ::= Double | Integer | RelaxedList | RelaxedObject | String | 'true' | 'false' | 'null'
+
+/* From afw_compile_parse_value.c                                             */
+
+ScalarLiteral ::= Double | Integer | String | 'true' | 'false' | 'null'
+/* This may want to include Datatype(Literal) at some point too.              */
+
+Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
+
+/* From afw_compile_parse_value.c                                             */
+/*                                                                            */
+/* Evaluation must be before ParenthesizedExpression so Lambda has first shot */
+/* at parenthesis.                                                            */
+/*                                                                            */
+
+Value ::= ListValue |
+        ObjectValue |
+        ScalarLiteral |
+        Evaluation |
+        ParenthesizedExpression |
+        TemplateString
+
+/* From afw_compile_lexical.c                                                 */
+
+HexDigit ::= [0-9a-fA-F]
+
+/* From afw_compile_lexical.c                                                 */
+
+BinaryDigit ::= [0-1]
+
+/* From afw_compile_lexical.c                                                 */
+
+OctalDigit ::= [0-7]
+
+/* From afw_compile_lexical.c                                                 */
+/*                                                                            */
+/* Tab character                                                              */
+
+TAB ::= #x0009
+/* Vertical tab                                                               */
+
+VT ::= #x000B
+/* Forms feed                                                                 */
+
+FF ::= #x000C
+/* Line feed                                                                  */
+
+LF ::= #x000A
+/* Carriage return                                                            */
+
+CR ::= #x000D
+/* No break space                                                             */
+
+NBSP ::= #x00A0
+/* Line Separator                                                             */
+
+LS ::= #x2028
+/* Paragraph Separator                                                        */
+
+PS ::= #x2029
+/* Space Separator code point                                                 */
+
+USP ::= "Any Unicode Space_Separator code point"
+/* Zero Width No-Break Space (Unicode word join)                              */
+
+ZWNBSP ::= #xFEFF
+/* Whitespace                                                                 */
+
+Whitespace ::= ( TAB | VT | FF | ZWNBSP | USP )+
+/* Line Terminators                                                           */
+
+EOL ::= LF | CR | LS | PS
+/* Whitespace in source (between any production tokens without ws: explicit)  */
+
+WhitespaceBetweenTokens ::= ( Whitespace | EOL | Comment )+
+/* Comment is not allowed in strict mode.                                     */
+
+Comment ::= InlineComment | BlockComment
+
+InlineComment ::= '/*' ( [^*] | '*'+ [^*/] )* '*'* '*/'
+
+BlockComment ::= '//' [^\n]* EOL
+
+/* From afw_compile_lexical.c                                                 */
+
+U ::= '\u' ( ( HexDigit HexDigit HexDigit HexDigit ) |
+           ( '{' HexDigit+ '}' ) ) /* ws: explicit */
+
+/* From afw_compile_lexical.c                                                 */
+
+String ::= '"' Char* '"'
+
+Char ::= [^\#x0-#x20] | '\"' | "\'" | '\`' | "\\" | '\/' |
+        '\b' | '\f' | '\n' | '\r' | '\t' | U
+
+UnicodeCodePoint ::= #x0-#x10FFFF
+
+UnicodeNonControl ::= (UnicodeCodePoint - [^\#x0-#x1f] )
+
+UnicodeNonSpaceNonControl ::= (UnicodeCodePoint - [^\#x0-#x20] )
+
+/* From afw_compile_lexical.c                                                 */
+/* Only DecimalIntegerLiteral is allowed in strict mode.                      */
+
+Integer ::= '-'? (
+    DecimalIntegerLiteral |
+    BinaryIntegerLiteral |
+    HexIntegerLiteral |
+    OctetIntegerLiteral )
+
+DecimalIntegerLiteral ::= '0' | ( [1-9] [0-9]* )
+
+BinaryIntegerLiteral ::= '0' ('b' | 'B' ) BinaryDigit+
+
+HexIntegerLiteral ::= '0' ('x' | 'X' ) HexDigit+
+
+OctalIntegerLiteral ::= '0' ('o' | 'O' ) OctalDigit+
+/* Infinity, INF and NaN are not allowed in strict mode.                      */
+
+Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
+   'Infinity' | 'INF' | 'NaN' )
+
+/* From afw_compile_lexical.c                                                 */
+/* ZWNJ - Unicode Zero-width non-joiner (0x200c)                              */
+/* ZWJ - Unicode Zero-width joiner (0x200d)                                   */
+/* ID_START is any codepoint with ID_START flag                               */
+/* ID_CONTINUE is any codepoint with ID_CONTINUE flag                         */
+
+IdentifierStart ::= ID_START | '$' | '_'
+
+IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ
+
+Identifier ::= IdentifierStart IdentifierContinue*
+
+/* From afw_compile_lexical.c                                                 */
+
+ReservedWords ::=
+   'false' |
+   'Infinity' |
+   'null' |
+   'NaN' |
+   'true' |
+   'undefined' |
+   'break' |
+   'case' |
+   'catch' |
+   'const' |
+   'continue' |
+   'do' |
+   'else' |
+   'finally' |
+   'for' |
+   'foreach' |
+   'function' |
+   'if' |
+   'in' |
+   'instanceof' |
+   'interface' |
+   'loc' |
+   'return' |
+   'switch' |
+   'throw' |
+   'try' |
+   'typeof' |
+   'type' |
+   'while'
+
+/* From afw_compile_lexical.c                                                 */
+/* End of source                                                              */
+
+END ::=

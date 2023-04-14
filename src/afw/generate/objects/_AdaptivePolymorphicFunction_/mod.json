@@ -1,0 +1,27 @@
+{
+    "brief": "Remainder of dividing numbers",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Divide <dataType> dividend by <dataType> divisor and return the <dataType> remainder.",
+    "functionId": "mod",
+    "functionLabel": "mod",
+    "pure": true,
+    "op": "%",
+    "parameters": [
+        {
+            "name": "dividend",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "divisor",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

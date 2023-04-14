@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeDouble",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks for double arg1 is less than or equal to double arg2 and return the boolean result.",
+    "functionId": "le<double>",
+    "functionLabel": "le_double",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

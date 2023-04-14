@@ -1,0 +1,43 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive data type test case.",
+    "objectType": "_AdaptiveDataTypeTestCase_",
+    "propertyTypes": {      
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description for this data type test case",
+            "dataType": "string",
+            "description": "This is a predicate for the data type test with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },            
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this data type test case",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the data type test's description, used for documentation purposes.",
+            "label": "Description",
+            "required": false
+        },            
+        "implemented": {
+            "allowQuery": true,
+            "brief": "",
+            "dataType": "boolean",        
+            "description": "",
+            "label": "Implemented",
+            "required": false
+        },
+        "value": {
+            "dataType": "string",
+            "brief": "",
+            "description": "",
+            "label": "Value",
+            "required": true
+        }
+    }
+}
+  

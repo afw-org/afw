@@ -1,0 +1,27 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A layout component.",
+    "objectIdPropertyName": "componentType",
+    "objectType": "_AdaptiveLayoutComponent_",
+    "propertyTypes": {
+        "componentType": {
+            "allowQuery": false,
+            "brief": "The component type of this component",
+            "dataType": "string",
+            "description": "The component type of this component.",
+            "label": "Component Type",
+            "required": true
+        },
+        "parameters": {
+            "allowQuery": false,
+            "brief": "Parameters for this component",
+            "dataType": "object",
+            "description": "The parameters for this component. The object type of this object is determined by the implementation of the component type.",
+            "label": "Parameters",
+            "required": false
+        }
+    }
+}

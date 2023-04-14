@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagYearMonthDuration",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Takes any number of yearMonthDuration values and returns a list of list.",
+    "functionId": "bag<yearMonthDuration>",
+    "functionLabel": "bag_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "yearMonthDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

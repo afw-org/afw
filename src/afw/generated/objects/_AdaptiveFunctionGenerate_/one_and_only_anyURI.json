@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyAnyURI",
+    "brief": "Converts a one value list to a anyURI value",
+    "camelCaseFunctionLabel": "oneAndOnlyAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "This converts a list of anyURI values that contains one value to a single anyURI value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<anyURI>",
+    "functionLabel": "one_and_only_anyURI",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "anyURI"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

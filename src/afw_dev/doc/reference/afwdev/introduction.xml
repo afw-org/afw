@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<section>
+    <title>Introduction</title>
+    <paragraph>
+        The afwdev command is a command-line utility used by Adaptive Framework 
+        Core and external package developers to perform many development-time tasks. 
+        It's aimed to help developers with a variety of tasks, including:
+    </paragraph>
+    <list>
+        <item>Code and Data Generation</item>
+        <item>Package Development</item>
+        <item>Building</item>
+        <item>Testing</item>        
+    </list>
+    <paragraph>
+        This document will explain the usage of the afwdev command in detail.
+    </paragraph>
+</section>
+

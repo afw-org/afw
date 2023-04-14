@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEndsWithAnyURI",
+    "brief": "Checks whether value ends with a string",
+    "camelCaseFunctionLabel": "endsWithAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks whether anyURI value ends with a anyURI and return the boolean result.",
+    "functionId": "ends_with<anyURI>",
+    "functionLabel": "ends_with_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ends_with"
+}

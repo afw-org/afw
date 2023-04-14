@@ -1,0 +1,65 @@
+{
+    "description": "Tests for bag_size<boolean> function.",
+    "functionId": "bag_size<boolean>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Boolean bag size of 2",
+            "result": {
+                "dataType": "integer",
+                "value": "2"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                }
+            ],
+            "description": "Boolean bag size of 0",
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true",
+                        "0",
+                        "true",
+                        "true",
+                        "false",
+                        "1",
+                        "1",
+                        "false",
+                        "true",
+                        "1",
+                        "0",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Boolean bag size of 12",
+            "result": {
+                "dataType": "integer",
+                "value": "12"
+            }
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "brief": "A Uniform Resource Identifier Reference (URI)",
+    "cType": "afw_utf8_t",
+    "dataType": "anyURI",
+    "description": "Data type anyURI holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "uri-reference",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

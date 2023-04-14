@@ -1,0 +1,73 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=log logType=syslog. This log type is only available on Linux.",
+    "objectType": "_AdaptiveConf_log_syslog",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes"
+            ]
+        },
+        "facility": {
+            "brief": "The syslog facility",
+            "dataType": "string",
+            "description": "The facility argument is used to specify what type of program is logging the message. This lets the configuration file specify that messages from different facilities will be handled differently. Valid options are:  auth, authpriv, cron, daemon, ftp, kern, local0 through local7, lpr, mail, news, user, uucp.",
+            "label": "Facility",
+            "required": false
+        },
+        "ident": {
+            "brief": "The syslog message identifier",
+            "dataType": "string",
+            "description": "The identifier is prepended to every message, and is typically set to the program name. If omitted, the program name is used.",
+            "label": "Identifier",
+            "required": false
+        },
+        "optionLogCons": {
+            "brief": "Write to Console on error",
+            "dataType": "boolean",
+            "description": "Write directly to system console if there is an error while sending to system logger.",
+            "label": "Write to Console",
+            "required": false
+        },
+        "optionLogNoDelay": {
+            "brief": "Open the connection immediately",
+            "dataType": "boolean",
+            "description": "Open the connection immediately (normally, the connection is opened when the first message is logged).",
+            "label": "Connect Immediately",
+            "required": false
+        },
+        "optionLogNoWait": {
+            "brief": "Don't wait for child process",
+            "dataType": "boolean",
+            "description": "Don't wait for child processes that may have been created while logging the message. (The GNU C library does not create a child process, so this option has no effect on Linux.)",
+            "label": "No Wait",
+            "required": false
+        },
+        "optionLogODelay": {
+            "brief": "Delay opening the connection",
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "The converse of LOG_NDELAY; opening of the connection is delayed until syslog() is called. (This is the default, and need not be specified.)",
+            "label": "Delay Connection",
+            "required": false
+        },
+        "optionLogPError": {
+            "brief": "Print to stderr as well",
+            "dataType": "boolean",
+            "description": "Print to stderr as well.",
+            "label": "Standard Error",
+            "required": false
+        },
+        "optionLogPid": {
+            "brief": "Include PID with each message",
+            "dataType": "boolean",
+            "description": "Include PID with each message.",
+            "label": "Log PID",
+            "required": false
+        }
+    }
+}

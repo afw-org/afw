@@ -1,0 +1,5 @@
+{
+    "brief": "Intermediate mode",
+    "modeId": "intermediate",
+    "description": "This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adaptors when doing model processing."
+}

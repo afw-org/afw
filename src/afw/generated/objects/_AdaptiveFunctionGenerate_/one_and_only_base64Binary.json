@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyBase64Binary",
+    "brief": "Converts a one value list to a base64Binary value",
+    "camelCaseFunctionLabel": "oneAndOnlyBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "This converts a list of base64Binary values that contains one value to a single base64Binary value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<base64Binary>",
+    "functionLabel": "one_and_only_base64Binary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "base64Binary"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

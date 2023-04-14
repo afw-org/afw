@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReadToBase64Binary",
+    "brief": "Read from a stream to base64Binary",
+    "camelCaseFunctionLabel": "readToBase64Binary",
+    "category": "stream",
+    "description": "Read a stream up to a specified number of octets. The result will be the internal memory of a base64Binary value.",
+    "functionId": "read_to_base64Binary",
+    "functionLabel": "read_to_base64Binary",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number",
+            "name": "streamNumber"
+        },
+        {
+            "brief": "Number of octets",
+            "description": "The maximum number of octets to read.",
+            "name": "n"
+        }
+    ],
+    "returns": {
+        "brief": "The base64Binary read",
+        "dataType": "base64Binary",
+        "description": "The base64Binary value read. Check the size of this value to determine the actual number of octets read."
+    },
+    "sideEffects": [
+        "Stream modified"
+    ]
+}

@@ -1,0 +1,107 @@
+{
+    "description": "Tests for is_finite function.",
+    "functionId": "is_finite",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "Infinity"
+                }
+            ],
+            "description": "Is 'Infinity' finite",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-Infinity"
+                }
+            ],
+            "description": "Is '-Infinity' finite",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "23.0E35"
+                }
+            ],
+            "description": "Is double '23.0E35' finite",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-23.0E35"
+                }
+            ],
+            "description": "Is double '-23.0E35' finite",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "20"
+                }
+            ],
+            "description": "Is integer '20' finite",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-20"
+                }
+            ],
+            "description": "Is integer '-20' finite",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "null",
+                    "value": null
+                }
+            ],
+            "description": "Is 'null' finite",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid argument test",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

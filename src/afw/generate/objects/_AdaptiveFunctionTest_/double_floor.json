@@ -1,0 +1,46 @@
+{
+    "description": "Tests for floor<double> function.",
+    "functionId": "floor<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "2.8"
+                }
+            ],
+            "description": "2.8",
+            "result": {
+                "dataType": "double",
+                "value": "2.0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-2.8"
+                }
+            ],
+            "description": "-2.8",
+            "result": {
+                "dataType": "double",
+                "value": "-3.0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "NaN"
+                }
+            ],
+            "description": "NaN",
+            "result": {
+                "dataType": "double",
+                "value": "NaN"
+            }
+        }
+    ]
+}

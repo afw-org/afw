@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLoc",
+    "brief": "Declare one or more variables in the current block",
+    "camelCaseFunctionLabel": "loc",
+    "category": "script",
+    "description": "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks.",
+    "functionId": "loc",
+    "functionLabel": "loc",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The name of one or more variables to declared in the current block.",
+            "name": "name"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "This is the initial value of the variable(s). If not specified, the variable will have a value of undefined.",
+            "name": "value",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveValueMeta_",
+            "description": "The type of the variable(s).",
+            "name": "type",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "description": "The value assigned."
+    },
+    "scriptSupport": true
+}

@@ -1,0 +1,27 @@
+{
+    "brief": "Get property value",
+    "category": "object",
+    "description": "Return the value of a property of an object. If property is not available, return a default or null value.",
+    "functionId": "property_get",
+    "functionLabel": "property_get",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object to get property from.",
+            "name": "object"
+        },
+        {
+            "dataType": "string",
+            "description": "Name of property to get.",
+            "name": "name"
+        },
+        {
+            "description": "The default value of property if it does not exist in object. If not specified, null value is the default.",
+            "name": "defaultValue",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "description": "Evaluated property value or default."
+    }
+}

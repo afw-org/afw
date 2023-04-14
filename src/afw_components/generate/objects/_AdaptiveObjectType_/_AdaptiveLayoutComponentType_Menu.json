@@ -1,0 +1,32 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Menu component.",
+    "label": "Menu",
+    "objectType": "_AdaptiveLayoutComponentType_Menu",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "items": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Menu_Item",
+            "description": "Item to display under this Menu.",
+            "label": "Item"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this menu is open.",
+            "label": "Open"
+        }
+    }
+}

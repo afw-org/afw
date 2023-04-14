@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDouble",
+    "brief": "Convert to data type double",
+    "camelCaseFunctionLabel": "double",
+    "category": "double",
+    "description": "Converts value to data type double returning double result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "double",
+    "functionLabel": "double",
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfAnyURI",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in anyURI list1 is in anyURI list2.",
+    "functionId": "at_least_one_member_of<anyURI>",
+    "functionLabel": "at_least_one_member_of_anyURI",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

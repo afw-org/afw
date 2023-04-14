@@ -1,0 +1,40 @@
+{
+    "description": "Tests for xpath_node_eq function.",
+    "functionId": "xpath_node_eq",
+    "implemented": false,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "xpathExpression",
+                    "value": "x"
+                },
+                {
+                    "dataType": "xpathExpression",
+                    "value": "x"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "x"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "xpathExpression",
+                    "value": "x"
+                },
+                {
+                    "dataType": "xpathExpression",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

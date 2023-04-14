@@ -1,0 +1,44 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Tooltip component.",
+    "objectType": "_AdaptiveLayoutComponentType_Tooltip",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "content": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The content to display in the Tooltip.",
+            "label": "Content"
+        },
+        "delay": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The time delay, in milliseconds, before displaying tooltip.",
+            "label": "Delay"
+        },
+        "target": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "The target to wrap inside this tooltip.",
+            "label": "Target"
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Content that can be rendered inside this tooltip display.",
+            "label": "Contains"
+        }
+    }
+}

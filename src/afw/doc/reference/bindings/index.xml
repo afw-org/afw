@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Language Bindings</title>
+    <section href="introduction.xml" label="Introduction" content-type="xml"/>
+    <section href="javascript.xml" label="Javascript" content-type="xml"/>
+    <section href="python.xml" label="Python" content-type="xml"/>
+</doc>

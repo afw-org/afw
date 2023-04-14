@@ -1,0 +1,22 @@
+{
+    "brief": "Get a variable value",
+    "category": "miscellaneous",
+    "description": "Return the value of a variable. If variable is not available, return a default or null value.",
+    "functionId": "variable_get",
+    "functionLabel": "variable_get",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Name of variable to get. The name can optionally be preceded with a qualifier followed by \"::\".",
+            "name": "name"
+        },
+        {
+            "description": "The default value of variable if it does not exist in object. If not specified, null value is the default.",
+            "name": "defaultValue",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "description": "Evaluated variable value or default."
+    }
+}

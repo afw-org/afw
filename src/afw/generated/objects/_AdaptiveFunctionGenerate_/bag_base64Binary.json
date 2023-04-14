@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagBase64Binary",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Takes any number of base64Binary values and returns a list of list.",
+    "functionId": "bag<base64Binary>",
+    "functionLabel": "bag_base64Binary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "base64Binary",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "base64Binary"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

@@ -1,0 +1,9 @@
+{
+    "category": "pickers",
+    "componentType": "TimePicker",
+    "brief": "A component that allows a time to be chosen.",
+    "description": "This component allows a time to be chosen, typically from a clock or spin buttons.",
+    "implementationId": "TimePicker",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_TimePicker",
+    "label": "Time Picker"
+}

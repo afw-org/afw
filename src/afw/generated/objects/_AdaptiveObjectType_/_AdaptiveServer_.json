@@ -1,0 +1,132 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/afw_server_fcgi"
+    ],
+    "description": "Object type for afw_server_fcgi server info.",
+    "objectType": "_AdaptiveServer_",
+    "propertyTypes": {
+        "afwCompiledVersion": {
+            "allowQuery": true,
+            "brief": "The version of libafw this server was compiled against",
+            "dataType": "string",
+            "description": "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+            "label": "Compiled AFW Version",
+            "runtime": {
+                "memberName": "afw_compiled_version",
+                "valueAccessor": "indirect"
+            }
+        },
+        "afwVersion": {
+            "allowQuery": true,
+            "brief": "Active Adaptive Framework core (libafw) version",
+            "dataType": "string",
+            "description": "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+            "label": "AFW Version",
+            "runtime": {
+                "memberName": "afw_version",
+                "valueAccessor": "indirect"
+            }
+        },
+        "concurrent": {
+            "allowQuery": true,
+            "brief": "Current number of concurrent threads",
+            "dataType": "integer",
+            "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+            "label": "Concurrent",
+            "required": true,
+            "unique": false
+        },
+        "maxConcurrent": {
+            "allowQuery": true,
+            "brief": "Maximum number of concurrent threads since server started",
+            "dataType": "integer",
+            "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+            "label": "Max Concurrent",
+            "required": true,
+            "runtime": {
+                "memberName": "max_concurrent"
+            },
+            "unique": false
+        },
+        "requestCount": {
+            "allowQuery": true,
+            "brief": "Number of requests since server started",
+            "dataType": "integer",
+            "description": "This is the total number of requests that have been processed since the server was started.",
+            "label": "Request Count",
+            "required": true,
+            "runtime": {
+                "memberName": "request_count"
+            },
+            "unique": false
+        },
+        "serverType": {
+            "allowQuery": true,
+            "brief": "Server type",
+            "dataType": "string",
+            "description": "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+            "label": "Server Type",
+            "runtime": {
+                "memberName": "server_type",
+                "valueAccessor": "indirect"
+            }
+        },
+        "serverVersion": {
+            "allowQuery": true,
+            "brief": "Server version",
+            "dataType": "string",
+            "description": "This version represents the compiled version of the Adaptive Framework server code.",
+            "label": "Server Version",
+            "runtime": {
+                "memberName": "server_version",
+                "valueAccessor": "indirect"
+            }
+        },
+        "startTime": {
+            "allowQuery": true,
+            "brief": "Server start time",
+            "dataType": "dateTime",
+            "description": "This timestamp represents when the server was started.",
+            "label": "Start Time",
+            "runtime": {
+                "memberName": "start_time",
+                "valueAccessor": "indirect"
+            }
+        },
+        "threadCount": {
+            "allowQuery": true,
+            "brief": "Number of threads",
+            "dataType": "integer",
+            "description": "The number of threads to create at startup to process client requests.",
+            "label": "Thread Count",
+            "required": true,
+            "runtime": {
+                "memberName": "thread_count"
+            },
+            "unique": false
+        },
+        "unhandledErrors": {
+            "allowQuery": true,
+            "brief": "The number of errors that remained unreported",
+            "dataType": "integer",
+            "description": "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+            "label": "Unhandled Errors",
+            "required": true,
+            "runtime": {
+                "memberName": "unhandled_errors"
+            },
+            "unique": false
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "objectId"
+        },
+        "typedef": "afw_server_t"
+    }
+}

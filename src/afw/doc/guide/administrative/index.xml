@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Administrative Guide</title>
+    <description>
+        The Administrative Guide covers the installation and configuration 
+        of an application that uses Adaptive Framework.
+    </description>
+    <section href="introduction.xml" label="Introduction" content-type="xml"/>
+    <section href="installation.xml" label="Installation" content-type="xml"/>
+    <section href="configuration.xml" label="Configuration" content-type="xml"/>
+    <section href="adaptors.xml" label="Adaptors" content-type="xml"/>
+    <section href="authorization_handlers.xml" label="Authorization" content-type="xml"/>
+    <section href="admin_app.xml" label="Admin Web App" content-type="xml"/>
+    <section href="tools.xml" label="Tools" content-type="xml"/>
+    <section href="appendix.xml" label="Appendix" content-type="xml"/>    
+</doc>

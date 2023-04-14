@@ -1,0 +1,19 @@
+{
+    "brief": "Logical and",
+    "category": "logical",
+    "description": "Evaluates 0 or more boolean conditions returning boolean true if there are no conditions and boolean false if any condition evaluate to false. All conditions after the first false remain unevaluated.",
+    "functionId": "and",
+    "functionLabel": "and",
+    "pure": true,
+    "op": "&&",
+    "parameters": [
+        {
+            "minArgs": 0,
+            "dataType": "boolean",
+            "name": "conditions"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

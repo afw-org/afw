@@ -1,0 +1,37 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Object Form Preferred Component option.",
+    "objectType": "_AdaptiveLayout_ObjectResponsive_preferredComponent",
+    "propertyTypes": {
+        "component": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The Preferred Component to apply to this layout rule definition. For example, single booleans should be Switch components.",
+            "label": "Component"
+        },
+        "dataType": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Any property that matches this dataType will have a Preferred Component applied to its layout.",
+            "label": "Data Type"
+        },
+        "propertyName": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Any property name that matches this name will have a Preferred Component applied to its layout.",
+            "label": "Property Name"
+        },
+        "componentProps": {
+            "allowWrite": true,
+            "dataType": "object",
+            "description": "Additional properties to be passed to each preferred component.",
+            "label": "Component Properties"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeHexBinary",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Checks for hexBinary arg1 is greater than or equal to hexBinary arg2 and return the boolean result.",
+    "functionId": "ge<hexBinary>",
+    "functionLabel": "ge_hexBinary",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "name": "arg1"
+        },
+        {
+            "dataType": "hexBinary",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

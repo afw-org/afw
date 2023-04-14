@@ -1,0 +1,38 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Paper component.",
+    "objectType": "_AdaptiveLayoutComponentType_Paper",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Contained component on this Paper layout.",
+            "label": "Contains"
+        },
+        "elevation": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Depth elevation appearance of the Paper surface.",
+            "label": "Elevation"
+        },
+        "square": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Use square corners instead of rounded.",
+            "label": "Square"
+        }
+    }
+}

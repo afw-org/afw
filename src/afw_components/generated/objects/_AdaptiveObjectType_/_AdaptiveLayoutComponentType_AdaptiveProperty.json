@@ -1,0 +1,43 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Adaptive Property Layout component.",
+    "objectType": "_AdaptiveLayoutComponentType_PropertyForm",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "breakpoints": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_Responsive_Breakpoints",
+            "description": "Defines the screen size breakpoints for this column definition.",
+            "label": "Breakpoints"
+        },
+        "componentProps": {
+            "allowWrite": true,
+            "dataType": "object",
+            "description": "Defines arbitrary Component properties that may be applicable to a specific Component Type.",
+            "label": "Component Props"
+        },
+        "object": {
+            "allowWrite": true,
+            "dataType": "object",
+            "description": "The object, containing the property, to be displayed by the Adaptive Property Layout component.",
+            "label": "Object"
+        },
+        "propertyName": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The property name in the object to be displayed by the Adaptive Property Layout component.",
+            "label": "Property Name"
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Tabs component.",
+    "label": "Tabs Layout",
+    "objectType": "_AdaptiveLayoutComponentType_Tabs",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "tabs": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tabs_Tab",
+            "description": "The tabs that are defined for this Tabs component.",
+            "label": "Tabs"
+        },
+        "gapSpace": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The amount of space between the tabs and tabbed content.",
+            "label": "Gap Space"
+        }
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "description": "Tests for or function.",
+    "functionId": "or",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

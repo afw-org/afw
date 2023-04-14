@@ -1,0 +1,42 @@
+{
+    "brief": "Replace strings matching a regular expression",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Replace matched values for a regular expression in a <dataType> value.",
+    "functionId": "regexp_replace",
+    "functionLabel": "regexp_replace",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The original <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "A regular expression to use for search.",
+            "name": "regexp"
+        },
+        {
+            "dataType": "string",
+            "description": "The replacement string.",
+            "name": "replacement"
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_regexp_replace",
+    "returns": {
+        "description": "A <dataType> value with the matched string(s) replaced.",
+        "polymorphicDataType": true
+    }
+}

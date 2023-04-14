@@ -1,0 +1,35 @@
+{
+    "brief": "Set ids in a local mutable object",
+    "category": "object",
+    "description": "This is used to set the ids in a local mutable object. The ids are used to construct a local path.",
+    "functionId": "local_object_meta_set_ids",
+    "functionLabel": "local_object_meta_set_ids",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object to set ids in.",
+            "name": "object"
+        },
+        {
+            "dataType": "string",
+            "description": "Adaptor id for object.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "Object type id for object.",
+            "name": "objectType"
+        },
+        {
+            "dataType": "string",
+            "description": "Object id for object.",
+            "name": "objectId"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Object ids set"
+    ]
+}

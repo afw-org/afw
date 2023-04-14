@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtTemplate",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltTemplate",
+    "category": "template",
+    "dataTypeMethod": true,
+    "description": "Checks for template arg1 is less that template arg2 and return the boolean result.",
+    "functionId": "lt<template>",
+    "functionLabel": "lt_template",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "template",
+            "name": "arg1"
+        },
+        {
+            "dataType": "template",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

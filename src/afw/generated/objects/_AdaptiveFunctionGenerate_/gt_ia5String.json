@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtIa5String",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Checks for ia5String arg1 is greater than ia5String arg2 and return the boolean result.",
+    "functionId": "gt<ia5String>",
+    "functionLabel": "gt_ia5String",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "ia5String",
+            "name": "arg1"
+        },
+        {
+            "dataType": "ia5String",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

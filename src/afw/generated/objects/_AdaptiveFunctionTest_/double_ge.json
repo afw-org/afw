@@ -1,0 +1,75 @@
+{
+    "description": "Tests for ge<double> function.",
+    "functionId": "ge<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "6.9"
+                },
+                {
+                    "dataType": "double",
+                    "value": "5.9"
+                }
+            ],
+            "description": "6 > 5 is true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "5.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "5.0"
+                }
+            ],
+            "description": "5 >= 5 is true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-INF"
+                }
+            ],
+            "description": "INF >= -INF is true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "6000000.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "7000000.0"
+                }
+            ],
+            "description": "600000 not greater than 700000",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

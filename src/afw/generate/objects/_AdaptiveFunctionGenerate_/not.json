@@ -1,0 +1,18 @@
+{
+    "brief": "Logical not",
+    "category": "logical",
+    "description": "Evaluates boolean condition returning boolean true if condition evaluates to false and false if condition evaluates to true.",
+    "functionId": "not",
+    "functionLabel": "not",
+    "pure": true,
+    "op": "!",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "condition"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

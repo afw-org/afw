@@ -1,0 +1,37 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveObjectType_/_AdaptiveApplicationComponents_"
+        },
+        "runtime": {
+            "typedef": "afw_components_t",
+            "labels": {
+                "objectId": "object_id",
+                "indirectObjectId": true
+            },
+            "indirect": true
+        },
+        "propertyTypes": {
+            "load": {
+                "runtime": {
+                    "valueAccessor": "ensure_afw_components_extension_loaded",
+                    "memberName": "object_id"
+                },
+                "label": "Load",
+                "description": "Load afw_components",
+                "dataType": "boolean",
+                "brief": "Load afw_components"
+            }
+        },
+        "objectType": "_AdaptiveApplicationComponents_",
+        "description": "Adaptive Application Components (afw_components).",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true,
+        "allowDelete": false,
+        "allowChange": false,
+        "allowAdd": false
+    },
+    "status": "success"
+}

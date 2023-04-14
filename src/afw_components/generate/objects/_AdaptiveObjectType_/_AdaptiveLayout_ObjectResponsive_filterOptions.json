@@ -1,0 +1,66 @@
+{    
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout parameters for ObjectForm filter options.",
+    "objectType": "_AdaptiveLayout_ObjectResponsive_filterOptions",
+    "propertyTypes": {      
+        "recurse": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Recurse filter options to embedded objects.",
+            "label": "Recurse",
+            "defaultValue": true
+        },
+        "filterCondAndProperties": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued).",
+            "label": "Exclusive Property Conditions"
+        },
+        "filterCondOrProperties": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued).",
+            "label": "Inclusive Property Conditions"
+        },
+        "filterExcludeEmbeddedProperties": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Exclude embedded properties from display.",
+            "label": "Hide Embedded Properties"
+        },      
+        "filterProperties": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Display the specified properties.",
+            "label": "Show Properties"
+        },
+        "filterExcludeProperties": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Do not display the specified properties.",
+            "label": "Hide Properties"
+        },
+        "filterRequiredProperties": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Show properties only if they are required.",
+            "label": "Show Required Properties"
+        },
+        "filterValuedProperties": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Show properties only if they contain values.",
+            "label": "Show Valued Properties"
+        }      
+    }
+}

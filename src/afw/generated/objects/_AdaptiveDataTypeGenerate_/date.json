@@ -1,0 +1,12 @@
+{
+    "brief": "A date",
+    "cType": "afw_date_t",
+    "dataType": "date",
+    "description": "Data type date holds a calendar date in format CCYY-MM-DD.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "date",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
+    "relationalCompares": true,
+    "scalar": true
+}

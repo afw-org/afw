@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type boolean",
+    "category": "boolean",
+    "description": "Converts value to data type boolean returning boolean result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "boolean",
+    "functionLabel": "boolean",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMinDouble",
+    "brief": "Minimum value",
+    "camelCaseFunctionLabel": "minDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return the double value that is less than or equal to the others.",
+    "functionId": "min<double>",
+    "functionLabel": "min_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    },
+    "useExecuteFunction": "afw_function_execute_min"
+}

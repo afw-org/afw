@@ -1,0 +1,44 @@
+{
+    "brief": "Checks for at least one value in common",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in <dataType> list1 is in <dataType> list2.",
+    "functionId": "at_least_one_member_of",
+    "functionLabel": "at_least_one_member_of",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "The first list.",
+            "name": "list1",
+            "polymorphicDataTypeParameter": true
+        },
+        {
+            "dataType": "list",
+            "description": "The second list.",
+            "name": "list2",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_at_least_one_member_of",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLengthAnyURI",
+    "brief": "Returns number of codepoints or entries in value",
+    "camelCaseFunctionLabel": "lengthAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "This is a polymorphic function where anyURI can be any of the supported data types. Return the integer number of entries in datatype list or codepoints in others.",
+    "functionId": "length<anyURI>",
+    "functionLabel": "length_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "Returns the number of entries in a list or code points in others.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_length"
+}

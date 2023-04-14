@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsNull",
+    "brief": "Checks whether value is dataType null",
+    "camelCaseFunctionLabel": "isNull",
+    "category": "null",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType null and return the boolean result.",
+    "functionId": "is<null>",
+    "functionLabel": "is_null",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

@@ -1,0 +1,110 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Object type for adaptive object meta information.",
+    "objectType": "_AdaptiveMeta_",
+    "propertyTypes": {
+        "_meta_": {
+            "label": "Meta",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_/propertyTypes"
+            ]
+        },
+        "allowChange": {
+            "allowQuery": true,
+            "brief": "This object can be changed, unless denied by authorization policy or by the adaptor",
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adaptor.",
+            "label": "Allow Change"
+        },
+        "allowDelete": {
+            "allowQuery": true,
+            "brief": "This object can be deleted unless denied by authorization policy or by the adaptor",
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adaptor.",
+            "label": "Allow Delete"
+        },
+        "ancestorPaths": {
+            "brief": "The associated object's ancestor paths",
+            "dataType": "list",
+            "description": "This is all of the associated object's ancestor paths.",
+            "label": "Ancestor Paths"
+        },
+        "description": {
+            "brief": "Optional description of the object",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "The optional description of the object.",
+            "label": "Description"
+        },
+        "errors": {
+            "brief": "Object errors",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Object errors.",
+            "label": "Errors"
+        },
+        "hasErrors": {
+            "brief": "This object has errors",
+            "dataType": "boolean",
+            "description": "Indicates that at least one errors property exists in the meta.",
+            "label": "Has Errors"
+        },
+        "objectId": {
+            "brief": "Id to unique identify this object",
+            "dataType": "string",
+            "description": "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.",
+            "label": "Object Id"
+        },
+        "objectType": {
+            "brief": "The id of the associated object's object type, within the object's adaptor",
+            "dataType": "string",
+            "description": "This the id of the associated object's object type within the object's adaptor.",
+            "label": "Object Type"
+        },
+        "objectTypes": {
+            "brief": "Each of the objectType objects used by this object",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectTypes_",
+            "description": "This is a object with a property with a name of the objectType for each _AdaptiveObjectType_ used by this object and all of its embedded objects.",
+            "label": "Object Types"
+        },
+        "parentPaths": {
+            "brief": "The associated object's direct parent paths",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "This is the associated object's direct parent paths.",
+            "label": "Parent Paths"
+        },
+        "path": {
+            "brief": "The associated object's path",
+            "dataType": "anyURI",
+            "description": "This is the associated object's path within an Adaptive Framework environment. The path is of the form \"/adaptorId/objectType/objectId\".",
+            "label": "Path"
+        },
+        "propertyTypes": {
+            "brief": "Additional meta information for this object's properties",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveMetaPropertyTypes_",
+            "description": "This is additional meta information that overrides and supplements property type information for specific associated object's properties. The property name of properties in this object corresponds to properties with the same name in the associated object.",
+            "label": "Property Types"
+        },
+        "reconcilable": {
+            "brief": "Stateful token used to perform object reconciliation",
+            "dataType": "string",
+            "description": "This strings represents a stateful token, used by the reconcile_object() method, to perform a reconcile request on an object that has been obtained in reconcilable mode.",
+            "label": "Reconcilable"
+        },
+        "resolvedParentPaths": {
+            "brief": "The associated object's direct parent paths",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "This is the associated object's direct parent paths before they were resolved by object option composite.",
+            "label": "Resolved Parent Paths"
+        }
+    }
+}

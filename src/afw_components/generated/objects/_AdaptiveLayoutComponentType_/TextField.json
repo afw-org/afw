@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "TextField",
+    "brief": "A component that renders a text field with a label and description.",
+    "description": "This is a simple component for inputting text. It may display an outlined or underlined field from which the user can enter text into. It may also display a label and description to help the user understand its contents.",
+    "implementationId": "TextField",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_TextField",
+    "label": "Text Field"
+}

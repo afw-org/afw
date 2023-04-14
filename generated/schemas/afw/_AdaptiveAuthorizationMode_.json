@@ -1,0 +1,41 @@
+{
+    "$defs": {
+        "_AdaptiveAuthorizationMode_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAuthorizationMode_.propertyTypes"
+                }
+            ],
+            "description": "This is meta for current::modeId qualified variable value.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveAuthorizationMode_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "This is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the description of this modeId value.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "modeId": {
+                    "description": "This is used to uniquely identify this particular authorization mode.",
+                    "title": "Mode Id",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveAuthorizationMode_"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddObject",
+    "brief": "Add adaptive object",
+    "camelCaseFunctionLabel": "addObject",
+    "category": "adaptor",
+    "description": "Add an adaptive object to an adaptor, specified by the adaptorId, with a specified objectType. You may supply an optional objectId, if the underlying adaptorId allows it.",
+    "functionId": "add_object",
+    "functionLabel": "add_object",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "Id of adaptive object type of object being added.",
+            "name": "objectType"
+        },
+        {
+            "dataType": "object",
+            "description": "Object to add.",
+            "name": "object"
+        },
+        {
+            "dataType": "string",
+            "description": "Optional preferred objectId of object to add. The adaptor may ignore this.",
+            "name": "objectId",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "The properties of this object will be added to the associated journal entry. Refer to /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to avoid and for ones that have specific semantics.",
+            "name": "journal",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nwhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveJournalEntry_",
+        "description": "Resulting journal entry. Property \"objectId\" is the objectId assigned by the adaptor."
+    },
+    "sideEffects": [
+        "Object created"
+    ]
+}

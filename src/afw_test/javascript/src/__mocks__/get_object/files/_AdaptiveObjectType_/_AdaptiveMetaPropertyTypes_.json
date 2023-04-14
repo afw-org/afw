@@ -1,0 +1,23 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/files/_AdaptiveObjectType_/_AdaptiveMetaPropertyTypes_",
+            "objectId": "_AdaptiveMetaPropertyTypes_",
+            "objectType": "_AdaptiveObjectType_"
+        },
+        "otherProperties": {
+            "_meta_": {
+                "objectType": "_AdaptiveValueMeta_"
+            },
+            "dataTypeParameter": "_AdaptiveMetaPropertyType_",
+            "dataType": "object"
+        },
+        "objectType": "_AdaptiveMetaPropertyTypes_",
+        "description": "Object type of the propertyTypes property of _AdaptiveMeta_.",
+        "collectionURIs": [
+            "/files/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

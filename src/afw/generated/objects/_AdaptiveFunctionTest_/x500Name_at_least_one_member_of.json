@@ -1,0 +1,75 @@
+{
+    "description": "Tests for at_least_one_member_of<x500Name> function.",
+    "functionId": "at_least_one_member_of<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme",
+                        "cn=Johnny Smith,ou=Finance,o=Acme",
+                        "cn=Jon Smith,ou=Finance,o=Acme",
+                        "cn=Jonny Smith,ou=Finance,o=Acme"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=Jonny Smith,ou=Finance,o=Acme"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme",
+                        "cn=Johnny Smith,ou=Finance,o=Acme",
+                        "cn=Jon Smith,ou=Finance,o=Acme",
+                        "cn=Jonny Smith,ou=Finance,o=Acme"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=Lonny Smith,ou=Finance,o=Acme"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

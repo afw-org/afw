@@ -1,0 +1,34 @@
+FROM opensuse/leap:15.3
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+# Install packages
+RUN zypper ref -s && \
+    zypper -n --non-interactive in gcc9 gcc9-c++ \
+    libtool apache2-devel cmake \
+    libapr1 libapr1-devel libxml2 libxml2-devel \
+    icu libicu-devel libunwind libunwind-devel \
+    elfutils libdw1 libdw-devel libyaml-devel \
+    FastCGI FastCGI-devel libmysqlclient-devel \
+    libdb-4_8 libdb-4_8-devel libcurl-devel git \
+    lmdb lmdb-devel doxygen rpm-build valgrind lato-fonts \
+    python3 python3-pip java-9-openjdk nodejs16 npm16 && \
+    zypper cc -a
+
+# change compiler symlinks
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 20 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/gcc-9 20 && \
+    update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30 && \
+    update-alternatives --set cc /usr/bin/gcc && \
+    update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30 && \
+    update-alternatives --set c++ /usr/bin/g++
+
+# install python packages
+COPY python-requirements.txt /tmp/python-requirements.txt
+RUN pip3 install -r /tmp/python-requirements.txt
+
+# install railroad ebnf syntax diagram generator
+ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
+
+CMD [ "bash" ]

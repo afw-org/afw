@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "Slider",
+    "brief": "A component that displays numeric values in a slider control.",
+    "description": "This component is used for numeric values, and allows the user to slide a controller to increase or decrease its value without having to enter data manually.",
+    "implementationId": "Slider",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Slider",
+    "label": "Slider"
+}

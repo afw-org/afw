@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtBoolean",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks for boolean arg1 is greater than boolean arg2 and return the boolean result.",
+    "functionId": "gt<boolean>",
+    "functionLabel": "gt_boolean",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "arg1"
+        },
+        {
+            "dataType": "boolean",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

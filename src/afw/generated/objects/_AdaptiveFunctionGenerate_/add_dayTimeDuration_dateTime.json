@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddDayTimeDurationDateTime",
+    "brief": "Add duration",
+    "camelCaseFunctionLabel": "addDayTimeDurationDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Add dateTime arg1 to dayTimeDuration arg2 and return the dateTime result.",
+    "functionId": "add_dayTimeDuration<dateTime>",
+    "functionLabel": "add_dayTimeDuration_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dayTimeDuration",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

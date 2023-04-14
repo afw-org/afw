@@ -1,0 +1,36 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubstringString",
+    "brief": "Extract a substring",
+    "camelCaseFunctionLabel": "substringString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns the string substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omitting endIndex to return up to end of string.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "startIndex or endIndex is out of range"
+        }
+    ],
+    "functionId": "substring<string>",
+    "functionLabel": "substring_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "string"
+        },
+        {
+            "dataType": "integer",
+            "name": "startIndex"
+        },
+        {
+            "dataType": "integer",
+            "name": "endIndex",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_substring"
+}

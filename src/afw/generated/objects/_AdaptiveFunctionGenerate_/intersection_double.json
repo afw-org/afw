@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionDouble",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Returns a list of double with the values that are common to both list of double list1 and list2.",
+    "functionId": "intersection<double>",
+    "functionLabel": "intersection_double",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "double"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

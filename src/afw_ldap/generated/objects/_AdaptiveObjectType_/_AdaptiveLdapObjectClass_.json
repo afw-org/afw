@@ -1,0 +1,62 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "Object type for type=adaptor adaptor_type=ldap synthetic object class object.",
+    "objectType": "_AdaptiveLdapObjectClass_",
+    "otherProperties": {
+    },
+    "propertyTypes": {
+        "ABSTRACT": {
+            "dataType": "boolean",
+            "description": "Abstract Class",
+            "label": "Abstract"
+        },
+        "AUXILIARY": {
+            "dataType": "boolean",
+            "description": "Auxiliary Class",
+            "label": "Auxiliary"
+        },
+        "DESC": {
+            "dataType": "string",
+            "label": "Description"
+        },
+        "MAY": {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Optional attributes of class.",
+            "label": "Optional"
+        },
+        "MUST": {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Required attributes of class.",
+            "label": "Required"
+        },
+        "NAME": {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Name of class.",
+            "label": "Name"
+        },
+        "STRUCTURAL": {
+            "dataType": "boolean",
+            "description": "Structural Class",
+            "label": "Structural"
+        },
+        "SUP": {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Superior classes.",
+            "label": "Sup"
+        },
+        "numericoid": {
+            "dataType": "string",
+            "label": "Numeric OID"
+        }
+    }
+}

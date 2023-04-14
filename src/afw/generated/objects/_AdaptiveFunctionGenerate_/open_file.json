@@ -1,0 +1,44 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOpenFile",
+    "brief": "Open a file stream",
+    "camelCaseFunctionLabel": "openFile",
+    "category": "stream",
+    "description": "This will open a file stream.",
+    "functionId": "open_file",
+    "functionLabel": "open_file",
+    "parameters": [
+        {
+            "brief": "Stream id",
+            "dataType": "string",
+            "description": "This is the streamId that will be associated with this open file stream.",
+            "name": "streamId"
+        },
+        {
+            "brief": "File path",
+            "dataType": "string",
+            "description": "This is the path to the file to open. The rootDirectory of the path is defined in the application object.",
+            "name": "path"
+        },
+        {
+            "brief": "Mode",
+            "dataType": "string",
+            "description": "This is the access mode string. Values can be:\n  r - Open an existing file text file for read.\n  w - Open a text file for writing. If the file does not exist, it will be created.\n  a - Open a text file for writing additional data to the end. If the file does not exist, it will be created.\n  r+ - Open a text file for both reading and writing.\n  w+ - Open a text file for both reading and writing. If the file exists, it will be overwritten. If the file does not exist, it will be created.\n  a+ - Open a text file for both reading and writing. Reading will begin at the start of the file while writing will be appended to the end.\n\nAll of these modes expect data type string. If you are using data type base64Binary or hexBinary you can use corresponding binary modes, \"rb\", \"wb\", \"ab\", \"rb+\", \"r+b\", \"wb+\", \"w+b\", \"ab+\", and \"a+b\".",
+            "name": "mode"
+        },
+        {
+            "brief": "Auto flush",
+            "dataType": "boolean",
+            "description": "If specified and true, this will automatically flush the stream's buffers after every write.",
+            "name": "autoFlush",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "streamNumber",
+        "dataType": "integer",
+        "description": "The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information."
+    },
+    "sideEffects": [
+        "Stream is opened"
+    ]
+}

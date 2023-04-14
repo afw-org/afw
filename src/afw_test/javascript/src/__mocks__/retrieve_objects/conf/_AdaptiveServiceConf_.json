@@ -1,0 +1,259 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-models",
+                "objectId": "adaptor-models",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "models",
+                "description": "Stores adaptive models.",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/models/",
+                "isModelLocation": true,
+                "adaptorType": "file",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-models"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-auth",
+                "objectId": "adaptor-auth",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "auth",
+                "description": "Stores adaptive authorization policies.",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/auth/",
+                "isPolicyLocation": true,
+                "adaptorType": "file",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-auth"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-tier",
+                "objectId": "adaptor-tier",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_model"
+                },
+                "mappedAdaptorId": "lmdb",
+                "modelId": "TIER Core Schema",
+                "modelLocationAdaptorId": "models",
+                "description": "TIER model using LMDB as a backend.",
+                "type": "adaptor",
+                "adaptorType": "model",
+                "adaptorId": "tier"
+            },
+            "serviceId": "adaptor-tier",
+            "startup": "immediate"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script",
+                "objectId": "authorizationHandler-auth-script",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_authorizationHandler_script"
+                },
+                "qualifiedVariables": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveHybridPropertiesObjects_"
+                    },
+                    "x": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveHybridProperties_"
+                        },
+                        "y": "fds"
+                    }
+                },
+                "authorizationCheck": "#! afw\n\nloc decision;\n\ntrace(\"Got into auth script..\\n\");\n\ndecision = {\n    \"decisionId\": \"notApplicable\"\n};\n\n//trace(x::y);\n\nreturn {\n    \"decisionId\": \"permit\"\n};",
+                "description": "Handles authorization using an adaptive script.",
+                "type": "authorizationHandler",
+                "authorizationHandlerType": "script",
+                "authorizationHandlerId": "auth-script"
+            },
+            "serviceId": "authorizationHandler-auth-script",
+            "startup": "immediate"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-files",
+                "objectId": "adaptor-files",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "files",
+                "isDevelopmentInput": true,
+                "description": "Stores objects in files.",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/files/",
+                "adaptorType": "file",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-files"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/log-syslog",
+                "objectId": "log-syslog",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_log_syslog"
+                },
+                "debug": true,
+                "warning": true,
+                "notice": true,
+                "info": true,
+                "err": true,
+                "emerg": true,
+                "crit": true,
+                "alert": true,
+                "description": "Logs messages to syslog.",
+                "logId": "syslog",
+                "logType": "syslog",
+                "type": "log"
+            },
+            "serviceId": "log-syslog",
+            "startup": "immediate"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-lmdb",
+                "objectId": "adaptor-lmdb",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_lmdb"
+                },
+                "env": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveConf_adaptor_lmdb_env"
+                    },
+                    "path": "/afw/lmdb",
+                    "mode": 384,
+                    "maxreaders": 126,
+                    "maxdbs": 128,
+                    "mapsize": 137438953472
+                },
+                "limits": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveConf_adaptor_lmdb_limits"
+                    },
+                    "size": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_size"
+                        },
+                        "soft": 500,
+                        "hard": 1000
+                    },
+                    "time": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_time"
+                        },
+                        "soft": 3600,
+                        "hard": 14400
+                    }
+                },
+                "description": "A LMDB (Lightning Memory-Mapped Database).",
+                "adaptorId": "lmdb",
+                "adaptorType": "lmdb",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-lmdb"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-dev",
+                "objectId": "adaptor-dev",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "contentType": "json",
+                "filenameSuffix": ".json",
+                "isDevelopmentInput": true,
+                "root": "/workspace/src/afw/generate/objects/",
+                "description": "File adaptor for development input strings and objects.",
+                "type": "adaptor",
+                "adaptorType": "file",
+                "adaptorId": "dev"
+            },
+            "serviceId": "adaptor-dev",
+            "startup": "immediate"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-layouts",
+                "objectId": "adaptor-layouts",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "layouts",
+                "description": "Stores adaptive layouts.",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/layouts/",
+                "adaptorType": "file",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-layouts"
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveServiceConf_/adaptor-test1",
+                "objectId": "adaptor-test1",
+                "objectType": "_AdaptiveServiceConf_"
+            },
+            "conf": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "test1",
+                "description": "Service config for testing.",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/test1/",
+                "adaptorType": "file",
+                "type": "adaptor"
+            },
+            "startup": "immediate",
+            "serviceId": "adaptor-test1"
+        }
+    ],
+    "status": "success"
+}

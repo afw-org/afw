@@ -1,0 +1,14 @@
+{
+    "afwCamelCaseFunctionLabel": "afwExecutionStartTimeUtc",
+    "brief": "The execution context (xctx) UTC create dataTime",
+    "camelCaseFunctionLabel": "executionStartTimeUtc",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return UTC dateTime when the execution context was created. This will usually be the start of request time.",
+    "functionId": "execution_start_time_utc",
+    "functionLabel": "execution_start_time_utc",
+    "parameters": [],
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

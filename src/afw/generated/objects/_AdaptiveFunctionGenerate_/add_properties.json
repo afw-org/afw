@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddProperties",
+    "brief": "Add properties of one object to another",
+    "camelCaseFunctionLabel": "addProperties",
+    "category": "object",
+    "description": "Add the properties of one object to another replacing existing properties by the same name.",
+    "functionId": "add_properties",
+    "functionLabel": "add_properties",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Target object. This object must not be immutable.",
+            "name": "target"
+        },
+        {
+            "dataType": "object",
+            "description": "Source object(s).",
+            "minArgs": 1,
+            "name": "source"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "object",
+        "description": "The modified target object."
+    },
+    "sideEffects": [
+        "Target object is modified."
+    ]
+}

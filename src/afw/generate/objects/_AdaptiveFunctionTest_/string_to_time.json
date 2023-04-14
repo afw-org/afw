@@ -1,0 +1,46 @@
+{
+    "description": "Tests for to_time<string> function.",
+    "functionId": "to_time<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "13:20:30.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "time",
+                "value": "13:20:30.5555"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "13:20:00-05:00"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "time",
+                "value": "13:20:00-05:00"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "13:20:30"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "time",
+                "value": "13:20:30"
+            }
+        }
+    ]
+}

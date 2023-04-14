@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Box",
+    "brief": "A component that renders a flexible Box of content.",
+    "description": "This component is a very powerful container, which implements a box allowing items to be added in a flexible way.",
+    "implementationId": "Box",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Box",
+    "label": "Box"
+}

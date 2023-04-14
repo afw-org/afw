@@ -1,0 +1,49 @@
+generate/strings/
+-----------------
+
+All *.txt files in this directory except for README.txt are used to
+produce generated strings.
+
+There will normally be a strings.txt file that includes the following
+comments:
+
+#
+# Strings that will be included in generated/<PREFIX>_strings .h and .c
+# files.
+#
+# - Blank lines and lines that begin with # are ignored
+# - The string name must start in the first colon
+# - All spaces in each line is significant
+# - If a line does not contain an equal sign (=), the string name and
+#   associated value are the same.
+# - For lines that contains an equal sign (=), the name is the characters
+#   that precede the equal sign and the value is everything after the equal
+#   sign up to the end of the line.  The value can contain valid c escape
+#   characters such as \n.  By convention, name should start with a_ to
+#   distinguish it from name where name and value are the same.
+#
+# The generate process will automatically produce strings for object type ids,
+# object is, property names, and a few other things found in the
+# generate/objects directory.  
+#
+# Duplicate string definitions are ignored.  Avoid assigning the same name
+# with different values since all but one will be ignored.
+#
+# Example strings for <SRCSUBDIR> xyz:
+#
+#   afw
+#   
+#   generate a define and corresponding declare, plus several #define:
+#
+#   XYZ_DEFINE_DATA(const afw_utf8_t)
+#   xyz_s_afw = AFW_UTF8_LITERAL("afw");
+#
+#   a_hello_world=Hello World!
+#
+#   generates:
+#
+#   XYZ_DEFINE_DATA(const afw_utf8_t)
+#   xyz_s_a_hello = AFW_UTF8_LITERAL("Hello World!");
+#
+afw
+a_hello_world=Hello World!

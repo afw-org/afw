@@ -1,0 +1,71 @@
+{
+    "description": "Tests for is_in<anyURI> function.",
+    "functionId": "is_in<anyURI>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "urn:example:org"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "http://www.w3schools.com/images/smiley.gif",
+                        "http://datypic.com",
+                        "../%C3%A9dition.html",
+                        "../dition.html",
+                        "http://datypic.com/prod.html#shirt",
+                        "../prod.html#shirt",
+                        "urn:example:org"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "../edition.html"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "http://www.w3schools.com/images/smiley.gif",
+                        "http://datypic.com",
+                        "../%C3%A9dition.html",
+                        "../dition.html",
+                        "http://datypic.com/prod.html#shirt",
+                        "../prod.html#shirt",
+                        "urn:example:org"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

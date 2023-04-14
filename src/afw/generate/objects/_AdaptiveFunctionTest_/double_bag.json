@@ -1,0 +1,152 @@
+{
+    "description": "Tests for bag<double> function.",
+    "functionId": "bag<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "description": "Create empty double bag.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "double",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "52.40215"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-15.8"
+                }
+            ],
+            "description": "Create double bag with 2 doubles.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "double",
+                "value": [
+                    "52.40215",
+                    "-15.8"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "2000.0215"
+                },
+                {
+                    "dataType": "double",
+                    "value": "11.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-11.2151"
+                },
+                {
+                    "dataType": "double",
+                    "value": "961518.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "99.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-102.1651054"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-586.055"
+                },
+                {
+                    "dataType": "double",
+                    "value": "98600.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "0.15387"
+                },
+                {
+                    "dataType": "double",
+                    "value": "5126189454.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-5126189454.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": ".0215200"
+                },
+                {
+                    "dataType": "double",
+                    "value": "11516.105155"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-11.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "51081.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "0.99999999999"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-102.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-0.111115866"
+                },
+                {
+                    "dataType": "double",
+                    "value": "986.3211111"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-0.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "0.000000"
+                }
+            ],
+            "description": "Create double bag with 21 doubles.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "double",
+                "value": [
+                    "2000.0215",
+                    "11.0",
+                    "-11.2151",
+                    "961518.0",
+                    "99.0",
+                    "-102.1651054",
+                    "-586.055",
+                    "98600.0",
+                    "0.15387",
+                    "5126189454.0",
+                    "-5126189454.0",
+                    ".0215200",
+                    "11516.105155",
+                    "-11.0",
+                    "51081.0",
+                    "0.99999999999",
+                    "-102.0",
+                    "-0.111115866",
+                    "986.3211111",
+                    "-0.0",
+                    "0.000000"
+                ]
+            }
+        }
+    ]
+}

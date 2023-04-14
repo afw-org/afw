@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsObjectPath",
+    "brief": "Checks whether value is dataType objectPath",
+    "camelCaseFunctionLabel": "isObjectPath",
+    "category": "objectPath",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType objectPath and return the boolean result.",
+    "functionId": "is<objectPath>",
+    "functionLabel": "is_objectPath",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

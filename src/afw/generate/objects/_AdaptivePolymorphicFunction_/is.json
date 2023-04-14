@@ -1,0 +1,53 @@
+{
+    "brief": "Checks whether value is dataType <dataType>",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType <dataType> and return the boolean result.",
+    "functionId": "is",
+    "functionLabel": "is",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration",
+        "unevaluated"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_is",
+    "polymorphicExecuteFunctionEvaluatesFirstParameter": true,
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

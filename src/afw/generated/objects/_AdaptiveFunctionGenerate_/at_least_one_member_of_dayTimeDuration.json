@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfDayTimeDuration",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in dayTimeDuration list1 is in dayTimeDuration list2.",
+    "functionId": "at_least_one_member_of<dayTimeDuration>",
+    "functionLabel": "at_least_one_member_of_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

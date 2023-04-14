@@ -1,0 +1,8 @@
+# .gitignore specific to src/afw_app and its subdirectories
+
+# admin application ignores
+/admin/public/doc/
+/admin/public/doc/images
+/admin/public/doxygen/
+/admin/public/monaco-editor
+/admin/.env

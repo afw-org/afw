@@ -1,0 +1,25 @@
+{
+    "brief": "Multiply numbers",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Multiply 2 or more <dataType> values and return the <dataType> result.",
+    "functionId": "multiply",
+    "functionLabel": "multiply",
+    "pure": true,
+    "op": "*",
+    "parameters": [
+        {
+            "minArgs": 2,
+            "name": "values",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

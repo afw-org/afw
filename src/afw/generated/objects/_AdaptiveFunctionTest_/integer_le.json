@@ -1,0 +1,74 @@
+{
+    "description": "Tests for le<integer> function.",
+    "functionId": "le<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                }
+            ],
+            "description": "0 less than or equal 0",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "9223372036854775806"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "9223372036854775807"
+                }
+            ],
+            "description": "9223372036854775806 less than 9223372036854775807",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-1"
+                }
+            ],
+            "description": "0 is not less than -1",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

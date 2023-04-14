@@ -1,0 +1,21 @@
+{
+    "brief": "Optional chaining",
+    "category": "miscellaneous",
+    "description": "Returns undefined if arg1 is null or undefined without evaluating arg2, but otherwise returns evaluated value of arg2.",
+    "functionId": "optional_chaining",
+    "functionLabel": "optional_chaining",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "description": "Undefined value if arg1 is null or undefined but otherwise evaluated arg2."
+    }
+}

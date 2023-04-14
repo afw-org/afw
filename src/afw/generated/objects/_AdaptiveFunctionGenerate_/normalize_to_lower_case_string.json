@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalizeToLowerCaseString",
+    "brief": "Converts to lower case",
+    "camelCaseFunctionLabel": "normalizeToLowerCaseString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Normalize string value to lower case and returns string result.",
+    "functionId": "normalize_to_lower_case<string>",
+    "functionLabel": "normalize_to_lower_case_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "string"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubstring",
+    "brief": "Extract a substring",
+    "camelCaseFunctionLabel": "substring",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns the <dataType> substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omitting endIndex to return up to end of <dataType>.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "startIndex or endIndex is out of range"
+        }
+    ],
+    "functionId": "substring",
+    "functionLabel": "substring",
+    "parameters": [
+        {
+            "name": "string",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "integer",
+            "name": "startIndex"
+        },
+        {
+            "dataType": "integer",
+            "name": "endIndex",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_substring",
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

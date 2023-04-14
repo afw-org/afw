@@ -1,0 +1,39 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpReplaceString",
+    "brief": "Replace strings matching a regular expression",
+    "camelCaseFunctionLabel": "regexpReplaceString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Replace matched values for a regular expression in a string value.",
+    "functionId": "regexp_replace<string>",
+    "functionLabel": "regexp_replace_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The original string value.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "A regular expression to use for search.",
+            "name": "regexp"
+        },
+        {
+            "dataType": "string",
+            "description": "The replacement string.",
+            "name": "replacement"
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "A string value with the matched string(s) replaced."
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_replace"
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMaxDouble",
+    "brief": "Maximum value",
+    "camelCaseFunctionLabel": "maxDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return the double value that is greater than or equal to the others.",
+    "functionId": "max<double>",
+    "functionLabel": "max_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    },
+    "useExecuteFunction": "afw_function_execute_max"
+}

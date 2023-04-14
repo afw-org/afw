@@ -1,0 +1,25 @@
+{
+    "brief": "Encode to a base64Binary value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Encode a value as a base64Binary. The effect is to create a base64Binary value with an internal value of the value passed.",
+    "functionId": "encode_as_base64Binary",
+    "functionLabel": "encode_as_base64Binary",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true,
+            "description": "The <dataType> value to encode."
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_encode_as_base64Binary",
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "A base64Binary value."
+    }
+}

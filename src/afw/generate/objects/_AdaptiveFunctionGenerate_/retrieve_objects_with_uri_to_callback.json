@@ -1,0 +1,45 @@
+{
+    "brief": "Retrieve adaptive object with URI",
+    "category": "adaptor",
+    "description": "Retrieve adaptive objects with a given URI.\n\nEach object is passed to the callback as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "functionId": "retrieve_objects_with_uri_to_callback",
+    "functionLabel": "retrieve_objects_with_uri_to_callback",
+    "parameters": [
+        {
+            "brief": "Object Callback",
+            "dataType": "function",
+            "dataTypeParameter": "(object: object, userData: any): boolean",
+            "description": "If this is specified, this function is called once for each object retrieved instead of adding the object to the return list. Parameter object will be an object retrieved or undefined if there are no more objects. This function should return true if it wants to abort the retrieve request.",
+            "name": "objectCallback"
+        },
+        {
+            "brief": "User data",
+            "dataType": "any",
+            "description": "This is the value passed to the objectCallback function in the userData parameter.",
+            "name": "userData"
+        },
+        {
+            "dataType": "anyURI",
+            "description": "URI of objects to retrieve. If a URI begins with a single slash ('/'), it is the local object path. A query string can be specified.",
+            "name": "uri"
+        },
+        {
+            "brief": "Object options",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

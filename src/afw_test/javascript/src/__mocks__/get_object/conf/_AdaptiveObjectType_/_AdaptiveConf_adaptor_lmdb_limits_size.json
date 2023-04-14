@@ -1,0 +1,41 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size"
+        },
+        "propertyTypes": {
+            "_meta_": {
+                "objectType": "_AdaptivePropertyTypes_"
+            },
+            "soft": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Soft Limit",
+                "description": "Soft size limit for requests.",
+                "dataType": "integer",
+                "allowQuery": false
+            },
+            "hard": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Hard Limit",
+                "description": "Hard size limit for requests.",
+                "dataType": "integer",
+                "allowQuery": false
+            }
+        },
+        "objectType": "_AdaptiveConf_adaptor_lmdb_limits_size",
+        "description": "Object type for type=adaptor adaptor_type=lmdb size limit conf entries.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/lmdb_extension"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

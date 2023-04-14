@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringNull",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringNull",
+    "category": "null",
+    "dataTypeMethod": true,
+    "description": "Converts null value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<null>",
+    "functionLabel": "to_string_null",
+    "parameters": [
+        {
+            "dataType": "null",
+            "description": "A null value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

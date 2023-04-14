@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSplitAnyURI",
+    "brief": "Split at a separator",
+    "camelCaseFunctionLabel": "splitAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Split anyURI value into an list of strings using a separator.",
+    "functionId": "split<anyURI>",
+    "functionLabel": "split_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "The anyURI value to split.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "The separator to use. If this is an empty string or separator is not specified, the value is split between characters.",
+            "name": "separator",
+            "optional": true
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum number of splits. Any remaining part of value is ignored.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "description": "An list of strings."
+    },
+    "useExecuteFunction": "afw_function_execute_split"
+}

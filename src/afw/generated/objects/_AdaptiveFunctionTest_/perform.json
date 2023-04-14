@@ -1,0 +1,107 @@
+{
+    "description": "Tests for perform function.",
+    "functionId": "perform",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [                
+                {
+                    "dataType": "object",
+                    "dataTypeParameter": "_AdaptiveAction_",
+                    "value": {
+                        "function": "add",
+                        "values": [
+                            1, 
+                            1
+                        ]
+                    }                    
+                }
+            ],
+            "description": "Test perform function with single top-level action.",
+            "result": {
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveResponse_",
+                "value": {
+                    "result": 2,
+                    "resultDataType": "integer",
+                    "status": "success"
+                }
+            }
+        },
+        {
+            "arguments": [                
+                {
+                    "dataType": "object",
+                    "dataTypeParameter": "_AdaptiveActions_",
+                    "value": {
+                        "actions": [
+                            {
+                                "function": "add",
+                                "values": [
+                                    1, 
+                                    1
+                                ]
+                            }
+                        ]                                                
+                    }                    
+                }
+            ],
+            "description": "Test perform function with actions property",
+            "result": {
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveResponse_",
+                "value": {
+                    "actions": [
+                        {
+                            "result": 2,
+                            "resultDataType": "integer"                            
+                        }
+                    ],
+                    "status": "success"
+                }
+            }
+        },
+        {
+            "arguments": [                
+                {
+                    "dataType": "object",
+                    "dataTypeParameter": "_AdaptiveActions_",
+                    "value": {
+                        "actions": [
+                            {
+                                "function": "add",
+                                "values": [
+                                    1, 
+                                    1
+                                ]
+                            },
+                            {
+                                "function": "subtract",
+                                "arg1": 2,
+                                "arg2": 1
+                            }
+                        ]                                                
+                    }                    
+                }
+            ],
+            "description": "Test perform function with two actions",
+            "result": {
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveResponse_",
+                "value": {
+                    "actions": [
+                        {
+                            "result": 2,
+                            "resultDataType": "integer"                            
+                        },
+                        {
+                            "result": 1,
+                            "resultDataType": "integer"                            
+                        }
+                    ],
+                    "status": "success"
+                }
+            }
+        }
+    ]
+}

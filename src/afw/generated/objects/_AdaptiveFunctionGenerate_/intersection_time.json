@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionTime",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Returns a list of time with the values that are common to both list of time list1 and list2.",
+    "functionId": "intersection<time>",
+    "functionLabel": "intersection_time",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "time"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

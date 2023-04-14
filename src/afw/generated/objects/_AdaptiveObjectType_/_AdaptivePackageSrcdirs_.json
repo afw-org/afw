@@ -1,0 +1,17 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Property name is a srcdir and value is srcdir info.",
+    "objectType": "_AdaptivePackageSrcdirs_",
+    "otherProperties": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptivePackageSrcdirInfo_",
+        "description": "This is the srcdir info for the subdirectory of src/ that has the name of this property.",
+        "label": "Srcdir Info"
+    }
+}

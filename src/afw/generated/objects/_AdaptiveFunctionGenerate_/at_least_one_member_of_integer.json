@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfInteger",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in integer list1 is in integer list2.",
+    "functionId": "at_least_one_member_of<integer>",
+    "functionLabel": "at_least_one_member_of_integer",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

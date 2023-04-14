@@ -1,0 +1,51 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive function test.",
+    "objectType": "_AdaptiveFunctionTest_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description for this function test",
+            "dataType": "string",
+            "description": "This is a predicate for the function test with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this function test",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the function test's description, used for documentation purposes.",
+            "label": "Description",
+            "required": false
+        },
+        "functionId": {
+            "allowQuery": true,
+            "brief": "The adaptive function",
+            "dataType": "string",
+            "description": "This refers to the functionId of the adaptive function being tested.",
+            "label": "Function Id",
+            "required": true
+        },
+        "implemented": {
+            "allowQuery": true,
+            "brief": "Test is implemented",
+            "dataType": "boolean",
+            "description": "If true, this test has been implemented.",
+            "label": "Implemented",
+            "required": false
+        },
+        "tests": {
+            "brief": "List of tests",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionTestCase_",
+            "description": "This is the list of test cases for this function test.",
+            "label": "Tests",
+            "required": true
+        }
+    }
+}

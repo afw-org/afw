@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMatchX500Name",
+    "brief": "Checks if x500Name matches",
+    "camelCaseFunctionLabel": "matchX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_x500Name.",
+    "functionId": "match<x500Name>",
+    "functionLabel": "match_x500Name",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "name": "arg1"
+        },
+        {
+            "dataType": "string",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

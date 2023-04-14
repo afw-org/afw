@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeBoolean",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks for boolean arg1 is greater than or equal to boolean arg2 and return the boolean result.",
+    "functionId": "ge<boolean>",
+    "functionLabel": "ge_boolean",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "arg1"
+        },
+        {
+            "dataType": "boolean",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

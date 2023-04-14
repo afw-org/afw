@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeXpathExpression",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeXpathExpression",
+    "category": "xpathExpression",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<xpathExpression>",
+    "functionLabel": "bag_size_xpathExpression",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "xpathExpression",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

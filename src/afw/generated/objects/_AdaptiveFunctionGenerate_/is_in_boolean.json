@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInBoolean",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks whether boolean value is in list of boolean list and returns the boolean result.",
+    "functionId": "is_in<boolean>",
+    "functionLabel": "is_in_boolean",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

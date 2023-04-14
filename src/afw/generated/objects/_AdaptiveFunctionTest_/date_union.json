@@ -1,0 +1,66 @@
+{
+    "description": "Tests for union<date> function.",
+    "functionId": "union<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01",
+                        "2004-04-12",
+                        "2004-05-12",
+                        "2004-04-13"
+                    ]
+                }
+            ],
+            "description": "test 1",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "date",
+                "value": [
+                    "2004-04-12",
+                    "1970-01-01",
+                    "2004-05-12",
+                    "2004-04-13"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-02"
+                    ]
+                }
+            ],
+            "description": "test 2",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "date",
+                "value": [
+                    "1970-01-01",
+                    "1970-01-02"
+                ]
+            }
+        }
+    ]
+}

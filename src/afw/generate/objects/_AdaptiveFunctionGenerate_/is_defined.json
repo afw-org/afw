@@ -1,0 +1,19 @@
+{
+    "brief": "Is defined",
+    "category": "miscellaneous",
+    "description": "Test value returning boolean True if it is not undefined.",
+    "functionId": "is_defined",
+    "functionLabel": "is_defined",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if value is not undefined."
+    }
+}

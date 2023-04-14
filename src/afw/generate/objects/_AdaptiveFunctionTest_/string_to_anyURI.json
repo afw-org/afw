@@ -1,0 +1,46 @@
+{
+    "description": "Tests for to_anyURI<string> function.",
+    "functionId": "to_anyURI<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "http://www.w3schools.com/images/smiley.gif"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "anyURI",
+                "value": "http://www.w3schools.com/images/smiley.gif"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "../%C3%A9dition.html"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "anyURI",
+                "value": "../%C3%A9dition.html"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "implemented": false,
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

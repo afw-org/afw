@@ -1,0 +1,9 @@
+{
+    "category": "editors",
+    "componentType": "ListEditor",
+    "brief": "A component that allows the user to manage a list of text items.",
+    "description": "This component renders a list of text and optional secondary text, items, which allows the user to add, edit or delete items from the list.",
+    "implementationId": "ListEditor",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_ListEditor",
+    "label": "List Editor"
+}

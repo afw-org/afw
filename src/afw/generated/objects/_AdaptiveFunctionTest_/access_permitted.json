@@ -1,0 +1,40 @@
+{
+    "description": "Tests for access_permitted function.",
+    "functionId": "access_permitted",
+    "implemented": false,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "x"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "x"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "x"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

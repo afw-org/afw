@@ -1,0 +1,28 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A registry type runtime_custom entry.",
+    "objectType": "_AdaptiveRuntimeCustom_",
+    "propertyTypes": {
+        "key": {
+            "allowQuery": true,
+            "brief": "Key of entry",
+            "dataType": "string",
+            "description": "Key of entry.",
+            "label": "Key",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "indirectObjectId": true,
+            "objectId": "key"
+        },
+        "typedef": "afw_environment_default_register_additional_t"
+    }
+}

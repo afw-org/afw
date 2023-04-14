@@ -1,0 +1,19 @@
+{
+    "brief": "Return from the outermost structured block",
+    "category": "script",
+    "description": "Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown.",
+    "functionId": "return",
+    "functionLabel": "return",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The value to evaluate that the outermost block will return. If not specified, the last evaluated value or a null value will be returned.",
+            "name": "value",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "description": "This function returns from the outermost structured block with the last evaluated value."
+    },
+    "scriptSupport": true
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCompileExpressionTuple",
+    "brief": "Compile expression tuple value",
+    "camelCaseFunctionLabel": "compileExpressionTuple",
+    "category": "compiler",
+    "description": "Compile a string containing adaptive expression tuple syntax and return either an unevaluated expression tuple adaptive value or a string containing the compiler listing.",
+    "functionId": "compile_expression_tuple",
+    "functionLabel": "compile_expression_tuple",
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "expression tuple to compile.",
+            "name": "expression_tuple"
+        },
+        {
+            "description": "If specified, a compiler listing is produced instead of an unevaluated expression tuple value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
+            "name": "listing",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "description": "An unevaluated expression tuple value ready for use by function evaluate() or a string containing the compiler listing."
+    }
+}

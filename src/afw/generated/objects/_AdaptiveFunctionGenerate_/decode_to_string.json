@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDecodeToString",
+    "brief": "Decode <dataType> to string",
+    "camelCaseFunctionLabel": "decodeToString",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Decode <dataType> value to string. An error is thrown if decoded value is not valid UTF-8.",
+    "functionId": "decode_to_string",
+    "functionLabel": "decode_to_string",
+    "parameters": [
+        {
+            "description": "The <dataType> value to decode.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "base64Binary",
+        "hexBinary"
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The decoded string."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

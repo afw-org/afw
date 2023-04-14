@@ -1,0 +1,9 @@
+{
+    "category": "content",
+    "componentType": "Divider",
+    "brief": "A component that displays a Divider line to separate content.",
+    "description": "A very simple way to divide content from the remaining content with the user of an dividing line.",
+    "implementationId": "Divider",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Divider",
+    "label": "Divider"
+}

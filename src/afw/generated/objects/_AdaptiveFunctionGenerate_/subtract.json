@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubtract",
+    "brief": "Subtract numbers",
+    "camelCaseFunctionLabel": "subtract",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType> result.",
+    "functionId": "subtract",
+    "functionLabel": "subtract",
+    "op": "-",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "arg2",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

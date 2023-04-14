@@ -1,0 +1,5 @@
+{
+    "brief": "User mode",
+    "modeId": "user",
+    "description": "This authorization mode is used when checking authorization from external sources."
+}

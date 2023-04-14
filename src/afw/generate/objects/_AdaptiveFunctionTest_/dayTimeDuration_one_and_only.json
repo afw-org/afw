@@ -1,0 +1,39 @@
+{
+    "description": "Tests for one_and_only<dayTimeDuration> function.",
+    "functionId": "one_and_only<dayTimeDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "PT1M30.5S"
+                    ]
+                }
+            ],
+            "description": "One",
+            "result": {
+                "dataType": "dayTimeDuration",
+                "value": "PT1M30.5S"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "PT1M30.5S",
+                        "PT1M40.5S"
+                    ]
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

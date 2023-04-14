@@ -1,0 +1,40 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveAdaptor_/models",
+            "objectId": "models",
+            "objectType": "_AdaptiveAdaptor_"
+        },
+        "serviceId": "adaptor-models",
+        "referenceCount": 1,
+        "properties": {
+            "_meta_": {
+                "path": "/afw/_AdaptiveConf_adaptor_file/models",
+                "objectType": "_AdaptiveConf_adaptor_file"
+            },
+            "type": "adaptor",
+            "adaptorType": "file",
+            "isModelLocation": true,
+            "root": "/afw/models/",
+            "contentType": "json",
+            "filenameSuffix": ".json",
+            "description": "Stores adaptive models.",
+            "adaptorId": "models",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-models/conf"
+        },
+        "metrics": {
+            "_meta_": {
+                "objectType": "_AdaptiveAdaptorMetrics_"
+            },
+            "updateObjectCount": 0,
+            "retrieveObjectsCount": 0,
+            "replaceObjectCount": 0,
+            "modifyObjectCount": 0,
+            "getObjectCount": 0,
+            "deleteObjectCount": 0,
+            "addObjectCount": 0
+        },
+        "adaptorId": "models"
+    },
+    "status": "success"
+}

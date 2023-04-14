@@ -1,0 +1,4 @@
+{
+    "name": "afw_request_handler_factory",
+    "description": "Create an instance of an afw_request_handler."
+}

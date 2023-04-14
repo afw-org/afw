@@ -1,0 +1,9 @@
+{
+    "category": "utilities",
+    "componentType": "Skeleton",
+    "brief": "A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded.",
+    "description": "The Skeleton is a feedback utility component, similar to the Spinner, but it takes on a shape that gives the user the perspective that data is nearly ready and the component is attempting to render. It's a component placeholder, which often animates or shimmers.",
+    "implementationId": "Skeleton",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Skeleton",
+    "label": "Skeleton"
+}

@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyIpAddress",
+    "brief": "Converts a one value list to a ipAddress value",
+    "camelCaseFunctionLabel": "oneAndOnlyIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "This converts a list of ipAddress values that contains one value to a single ipAddress value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<ipAddress>",
+    "functionLabel": "one_and_only_ipAddress",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "ipAddress"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

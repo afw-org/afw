@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMaxDate",
+    "brief": "Maximum value",
+    "camelCaseFunctionLabel": "maxDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Return the date value that is greater than or equal to the others..\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "max<date>",
+    "functionLabel": "max_date",
+    "parameters": [
+        {
+            "dataType": "date",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_max"
+}

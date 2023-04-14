@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwXpathNodeMatch",
+    "brief": "Checks whether two node-sets or their children have an equal node",
+    "camelCaseFunctionLabel": "xpathNodeMatch",
+    "category": "xpathExpression",
+    "description": "Returns true if any of the nodes matched by nodeset1 are equal to any of the nodes matched by nodeset2 or their corresponding children.",
+    "functionId": "xpath_node_match",
+    "functionLabel": "xpath_node_match",
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "nodeset2"
+        },
+        {
+            "dataType": "xpathExpression",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

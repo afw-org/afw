@@ -1,0 +1,73 @@
+{
+    "description": "Tests for set_equals<rfc822Name> function.",
+    "functionId": "set_equals<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINParT2"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

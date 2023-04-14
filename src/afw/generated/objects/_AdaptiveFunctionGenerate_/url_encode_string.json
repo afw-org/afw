@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUrlEncodeString",
+    "brief": "URI encode",
+    "camelCaseFunctionLabel": "urlEncodeString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "URL encode a value or bag of values.",
+    "functionId": "url_encode<string>",
+    "functionLabel": "url_encode_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "URL encode a single value. See the url_encode method for the data type of more details.",
+            "name": "unencoded"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "URI encoded string."
+    },
+    "useExecuteFunction": "afw_function_execute_url_encode"
+}

@@ -1,0 +1,6 @@
+{
+    "brief": "Data type object related functions",
+    "category": "object",
+    "dataTypeCategory": true,
+    "description": "These function are related to data type object.\n\nThe \"<object>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

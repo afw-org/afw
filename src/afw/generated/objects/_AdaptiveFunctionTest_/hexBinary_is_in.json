@@ -1,0 +1,69 @@
+{
+    "description": "Tests for is_in<hexBinary> function.",
+    "functionId": "is_in<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "0FB8"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "0FB8"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb8",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "x"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

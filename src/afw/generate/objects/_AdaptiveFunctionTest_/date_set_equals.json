@@ -1,0 +1,65 @@
+{
+    "description": "Tests for set_equals<date> function.",
+    "functionId": "set_equals<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "-1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12",
+                        "2004-04-12"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "-1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12",
+                        "2004-04-12"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "-1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12",
+                        "2004-04-12"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "-1970-01-01"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

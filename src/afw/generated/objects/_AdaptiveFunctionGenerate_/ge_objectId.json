@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeObjectId",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geObjectId",
+    "category": "objectId",
+    "dataTypeMethod": true,
+    "description": "Checks for objectId arg1 is greater than or equal to objectId arg2 and return the boolean result.",
+    "functionId": "ge<objectId>",
+    "functionLabel": "ge_objectId",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "objectId",
+            "name": "arg1"
+        },
+        {
+            "dataType": "objectId",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

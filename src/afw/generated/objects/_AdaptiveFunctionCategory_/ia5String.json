@@ -1,0 +1,6 @@
+{
+    "brief": "Data type ia5String related functions",
+    "category": "ia5String",
+    "dataTypeCategory": true,
+    "description": "These function are related to data type ia5String. \n\nThe \"<ia5String>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

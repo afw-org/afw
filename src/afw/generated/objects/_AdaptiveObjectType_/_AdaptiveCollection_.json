@@ -1,0 +1,36 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Describes a collection.",
+    "objectType": "_AdaptiveCollection_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "dataType": "string",
+            "description": "Brief description of the collection",
+            "label": "Brief"
+        },
+        "description": {
+            "allowQuery": true,
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of the collection.",
+            "label": "Description"
+        },
+        "objectId": {
+            "allowQuery": true,
+            "dataType": "string",
+            "description": "Id of the collection.",
+            "label": "Object",
+            "required": true
+        },
+        "originURI": {
+            "allowQuery": true,
+            "dataType": "anyURI",
+            "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+            "label": "Origin URI"
+        }
+    }
+}

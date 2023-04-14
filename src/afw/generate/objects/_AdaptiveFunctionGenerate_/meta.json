@@ -1,0 +1,18 @@
+{
+    "brief": "Return the meta object about an adaptive value",
+    "category": "value",
+    "description": "This function returns an object containing meta information for an adaptive value.",
+    "functionId": "meta",
+    "functionLabel": "meta",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "This is the adaptive value whose meta object is to be returned.",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "An object containing the meta information for the adaptive value. The objectType of this object is normally _AdaptiveValueMeta_ or one of its descendants."
+    }
+}

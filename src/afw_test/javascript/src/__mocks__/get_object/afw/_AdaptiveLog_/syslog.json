@@ -1,0 +1,34 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveLog_/syslog",
+            "objectId": "syslog",
+            "objectType": "_AdaptiveLog_"
+        },
+        "sourceLocation": "/conf/_AdaptiveServiceConf_/log-syslog/conf",
+        "serviceId": "log-syslog",
+        "properties": {
+            "_meta_": {
+                "path": "/afw/_AdaptiveConf_log_syslog/syslog",
+                "objectType": "_AdaptiveConf_log_syslog"
+            },
+            "type": "log",
+            "logType": "syslog",
+            "logId": "syslog",
+            "description": "Logs messages to syslog.",
+            "alert": true,
+            "crit": true,
+            "emerg": true,
+            "err": true,
+            "info": true,
+            "notice": true,
+            "warning": true,
+            "debug": true,
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/log-syslog/conf",
+            "optionLogODelay": true,
+            "filter": true
+        },
+        "logId": "syslog"
+    },
+    "status": "success"
+}

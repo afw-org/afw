@@ -1,0 +1,38 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A registry type authorization_handler_factory entry.",
+    "objectType": "_AdaptiveAuthorizationHandlerType_",
+    "propertyTypes": {
+        "authorizationHandlerType": {
+            "allowQuery": true,
+            "brief": "Type of authorization handler",
+            "dataType": "string",
+            "description": "Type of authorization handler.",
+            "label": "Authorization Handler Type",
+            "runtime": {
+                "memberName": "authorization_handler_type"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of authorization handler type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of authorization handler type.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "authorization_handler_type"
+        },
+        "typedef": "afw_authorization_handler_factory_t"
+    }
+}

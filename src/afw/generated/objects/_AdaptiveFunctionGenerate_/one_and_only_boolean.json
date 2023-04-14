@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyBoolean",
+    "brief": "Converts a one value list to a boolean value",
+    "camelCaseFunctionLabel": "oneAndOnlyBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "This converts a list of boolean values that contains one value to a single boolean value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<boolean>",
+    "functionLabel": "one_and_only_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

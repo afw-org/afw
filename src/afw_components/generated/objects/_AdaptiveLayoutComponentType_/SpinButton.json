@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "SpinButton",
+    "brief": "A component that renders a numeric field that an be incremented or decremented.",
+    "description": "A component that renders a numeric field that an be incremented or decremented.",
+    "implementationId": "SpinButton",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_SpinButton",
+    "label": "Spin Button"
+}

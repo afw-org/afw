@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFloorDouble",
+    "brief": "Round downwards to nearest integer",
+    "camelCaseFunctionLabel": "floorDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Determine the largest integer that is smaller then or equal to the double value and return the double result.",
+    "functionId": "floor<double>",
+    "functionLabel": "floor_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "number"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

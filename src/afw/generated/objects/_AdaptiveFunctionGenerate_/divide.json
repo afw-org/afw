@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDivide",
+    "brief": "Divide numbers",
+    "camelCaseFunctionLabel": "divide",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Divide <dataType> dividend by <dataType> divisor and return the <dataType> quotient.",
+    "functionId": "divide",
+    "functionLabel": "divide",
+    "op": "/",
+    "parameters": [
+        {
+            "name": "dividend",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "divisor",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

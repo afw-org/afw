@@ -1,0 +1,42 @@
+{
+    "brief": "Checks whether two lists are subsets of each other",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals",
+    "functionLabel": "set_equals",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "name": "list1",
+            "polymorphicDataTypeParameter": true
+        },
+        {
+            "dataType": "list",
+            "name": "list2",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_set_equals",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

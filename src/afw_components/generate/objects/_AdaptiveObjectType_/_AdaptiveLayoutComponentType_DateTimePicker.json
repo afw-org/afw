@@ -1,0 +1,51 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the DateTimePicker component.",
+    "label": "Date Time Picker",
+    "objectType": "_AdaptiveLayoutComponentType_DateTimePicker",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The description for the DateTimePicker component.",
+            "testDataParameter": "This is the description.",
+            "label": "Description"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the DateTimePicker component is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the DateTimePicker component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Date Picker value is required.",
+            "label": "Required"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "dateTime",
+            "description": "The value for the DateTimePicker component.",
+            "label": "Value"
+        }
+    }
+}

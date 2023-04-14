@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInIpAddress",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Checks whether ipAddress value is in list of ipAddress list and returns the boolean result.",
+    "functionId": "is_in<ipAddress>",
+    "functionLabel": "is_in_ipAddress",
+    "parameters": [
+        {
+            "dataType": "ipAddress",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "ipAddress",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

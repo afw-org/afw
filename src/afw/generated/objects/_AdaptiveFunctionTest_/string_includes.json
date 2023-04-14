@@ -1,0 +1,92 @@
+{
+    "description": "Tests for includes<string> function.",
+    "functionId": "includes<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "alice is in the woods"
+                },
+                {
+                    "dataType": "string",
+                    "value": "alice"
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "alice"
+                },
+                {
+                    "dataType": "string",
+                    "value": "alice is in the woods"
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "alice is in the woods"
+                },
+                {
+                    "dataType": "string",
+                    "value": "in the"
+                }
+            ],
+            "description": "middle",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "alice is in the woods"
+                },
+                {
+                    "dataType": "string",
+                    "value": "oods"
+                }
+            ],
+            "description": "end",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "alice"
+                },
+                {
+                    "dataType": "string",
+                    "value": "alice"
+                }
+            ],
+            "description": "same",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

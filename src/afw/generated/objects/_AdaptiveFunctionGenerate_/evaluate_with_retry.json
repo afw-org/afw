@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEvaluateWithRetry",
+    "brief": "Evaluate value with retry",
+    "camelCaseFunctionLabel": "evaluateWithRetry",
+    "category": "compiler",
+    "description": "Evaluate a value and retry up to a limit if an exception occurs.",
+    "functionId": "evaluate_with_retry",
+    "functionLabel": "evaluate_with_retry",
+    "parameters": [
+        {
+            "description": "Value to evaluated",
+            "name": "value"
+        },
+        {
+            "dataType": "integer",
+            "description": "Maximum number to retry if an exception occurs.",
+            "name": "limit"
+        }
+    ],
+    "returns": {
+        "description": "Evaluated value."
+    }
+}

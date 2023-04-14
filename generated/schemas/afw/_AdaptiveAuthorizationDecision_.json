@@ -1,0 +1,46 @@
+{
+    "$defs": {
+        "_AdaptiveAuthorizationDecision_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAuthorizationDecision_.propertyTypes"
+                }
+            ],
+            "description": "This is meta for a decisionId property value of _AdaptiveAuthorizationResult_.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveAuthorizationDecision_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "This is a predicate for this decisionId value with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "decisionId": {
+                    "description": "This is used to uniquely identify this particular decision.",
+                    "title": "Decision Id",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the description of this decisionId value.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "intermediateOnly": {
+                    "description": "Intermediate decision only.",
+                    "title": "Intermediate Only",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveAuthorizationDecision_"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfHexBinary",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in hexBinary list1 is in hexBinary list2.",
+    "functionId": "at_least_one_member_of<hexBinary>",
+    "functionLabel": "at_least_one_member_of_hexBinary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

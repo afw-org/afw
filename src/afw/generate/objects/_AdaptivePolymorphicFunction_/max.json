@@ -1,0 +1,40 @@
+{
+    "brief": "Maximum value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the <dataType> value that is greater than or equal to the others.",
+    "functionId": "max",
+    "functionLabel": "max",
+    "pure": true,
+    "parameters": [
+        {
+            "minArgs": 1,
+            "name": "values",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "date",
+        "dateTime",
+        "double",
+        "integer",
+        "string",
+        "time"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_max",
+    "polymorphicOverrides": {
+        "date": {
+            "description": "Return the date value that is greater than or equal to the others..\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
+        },
+        "dateTime": {
+            "description": "Return the dateTime value that is greater than or equal to the others.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."
+        },
+        "time": {
+            "description": "Return the time value that is greater than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
+        }
+    },
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

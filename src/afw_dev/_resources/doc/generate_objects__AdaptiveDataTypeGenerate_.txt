@@ -1,0 +1,6 @@
+generate/objects/_AdaptiveDataTypeGenerate_/
+--------------------------------------------
+
+Currently only available in core afw/ directory.
+
+@todo add document

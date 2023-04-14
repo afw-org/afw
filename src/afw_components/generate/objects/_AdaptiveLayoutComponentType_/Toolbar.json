@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Toolbar",
+    "brief": "A container component that arranges a series of buttons or other minor content in a horizontal bar.",
+    "description": "This component is used to provide actions, via buttons, labels or other small components, condensed into a common location so the user may use it to view or change data that is presented in the layout below.",
+    "implementationId": "Toolbar",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Toolbar",
+    "label": "Toolbar"
+}

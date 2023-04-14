@@ -1,0 +1,99 @@
+{
+    "description": "Tests for replace function.",
+    "functionId": "replace",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "l"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Test replace function - limit not specified",
+            "result": {
+                "dataType": "string",
+                "value": "Hexlo World!"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "l"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "Test replace function - limit 2",
+            "result": {
+                "dataType": "string",
+                "value": "Hexxo World!"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "l"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-1"
+                }
+            ],
+            "description": "Test replace function - limit -1",
+            "result": {
+                "dataType": "string",
+                "value": "Hexxo Worxd!"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "Hello World!"
+                },
+                {
+                    "dataType": "string",
+                    "value": "World"
+                },
+                {
+                    "dataType": "string",
+                    "value": "Earth"
+                }
+            ],
+            "description": "Test replace function - bigger replace",
+            "result": {
+                "dataType": "string",
+                "value": "Hello Earth!"
+            }
+        }
+    ]
+}

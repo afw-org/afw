@@ -1,0 +1,20 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveObject_/test",
+            "objectId": "test",
+            "objectType": "_AdaptiveObject_"
+        },        
+        "prop1": "abc",
+        "prop2": 123,
+        "prop3": true,
+        "prop4": {
+            "prop4a": "xyz"
+        },
+        "prop5": [
+            "def",
+            "ghi"
+        ]        
+    },
+    "status": "success"
+}

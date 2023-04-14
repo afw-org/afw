@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringObjectPath",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringObjectPath",
+    "category": "objectPath",
+    "dataTypeMethod": true,
+    "description": "Converts objectPath value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<objectPath>",
+    "functionLabel": "to_string_objectPath",
+    "parameters": [
+        {
+            "dataType": "objectPath",
+            "description": "A objectPath value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMinDateTime",
+    "brief": "Minimum value",
+    "camelCaseFunctionLabel": "minDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Return the dateTime value that is less than or equal to the others.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "min<dateTime>",
+    "functionLabel": "min_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dateTime"
+    },
+    "useExecuteFunction": "afw_function_execute_min"
+}

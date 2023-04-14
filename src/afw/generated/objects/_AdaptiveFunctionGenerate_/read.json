@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRead",
+    "brief": "Read from a UTF-8 text stream",
+    "camelCaseFunctionLabel": "read",
+    "category": "stream",
+    "description": "Read a UTF-8 text stream up to a specified number of octets. The stream must contain valid UTF-8 or an error is thrown.",
+    "functionId": "read",
+    "functionLabel": "read",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number",
+            "name": "streamNumber"
+        },
+        {
+            "brief": "Number of octets",
+            "description": "The maximum number of octets to read.",
+            "name": "n"
+        }
+    ],
+    "returns": {
+        "brief": "The string read",
+        "dataType": "string",
+        "description": "The UTF-8 string read. Check the size of this value to determine the actual number of octets read."
+    },
+    "sideEffects": [
+        "Stream modified"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "afw_value_get_evaluated_meta": "afw_value_internal_get_evaluated_meta_for_object",
+    "afw_value_get_evaluated_metas": "afw_value_internal_get_evaluated_metas_for_object",
+    "brief": "An adaptive object",
+    "cType": "const afw_object_t *",
+    "dataType": "object",
+    "dataTypeParameterType": "ObjectType",
+    "description": "Data type object holds an adaptive object.",
+    "directReturn": true,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "object",
+    "relationalCompares": false,
+    "scalar": false
+}

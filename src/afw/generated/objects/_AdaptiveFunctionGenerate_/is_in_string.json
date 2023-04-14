@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInString",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks whether string value is in list of string list and returns the boolean result.",
+    "functionId": "is_in<string>",
+    "functionLabel": "is_in_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

@@ -1,0 +1,34 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRetrieveObjectsWithUriToResponse",
+    "brief": "Retrieve adaptive object with URI to response",
+    "camelCaseFunctionLabel": "retrieveObjectsWithUriToResponse",
+    "category": "adaptor",
+    "description": "This function retrieves adaptive objects with a given URI.\n\nThis function is only allowed when called during a request with content type \"application/x-afw\". An \"_AdaptiveResponse_\" object is written to the request's response as each object is retrieved. This \"_AdaptiveResponse_\" object has a \"result\" property containing the retrieved object and a \"partial\" property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "functionId": "retrieve_objects_with_uri_to_response",
+    "functionLabel": "retrieve_objects_with_uri_to_response",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "URI of objects to retrieve. If a URI begins with a single slash ('/'), it is the local object path. A query string can be specified.",
+            "name": "uri"
+        },
+        {
+            "brief": "Object options",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

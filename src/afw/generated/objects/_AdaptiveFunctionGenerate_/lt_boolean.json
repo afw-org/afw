@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtBoolean",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks for boolean arg1 is less that boolean arg2 and return the boolean result.",
+    "functionId": "lt<boolean>",
+    "functionLabel": "lt_boolean",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "arg1"
+        },
+        {
+            "dataType": "boolean",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

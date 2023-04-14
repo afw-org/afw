@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Icon component.",
+    "label": "Icon",
+    "objectType": "_AdaptiveLayoutComponentType_Icon",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "iconName": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The name of the icon to render.",
+            "testDataParameter": "home",
+            "label": "Icon Name"
+        }
+    }
+}

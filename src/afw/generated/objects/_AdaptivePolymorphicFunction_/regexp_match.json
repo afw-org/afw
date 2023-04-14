@@ -1,0 +1,32 @@
+{
+    "brief": "Search for a match using a regular expression",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether <dataType> value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match",
+    "functionLabel": "regexp_match",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "dnsName",
+        "ipAddress",
+        "rfc822Name",
+        "string",
+        "x500Name"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_regexp_match",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtDayTimeDuration",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Checks for dayTimeDuration arg1 is greater than dayTimeDuration arg2 and return the boolean result.",
+    "functionId": "gt<dayTimeDuration>",
+    "functionLabel": "gt_dayTimeDuration",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "dayTimeDuration",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dayTimeDuration",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

@@ -1,0 +1,67 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework current:: all models.",
+    "objectType": "_AdaptiveModelCurrent_",
+    "propertyTypes": {
+        "adaptorId": {
+            "brief": "Adaptor Id",
+            "dataType": "string",
+            "description": "The adaptor id of the object being converted to mapped object.",
+            "label": "Adaptor Id",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorId"
+            }
+        },
+        "adaptorTypeSpecific": {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is the adaptorTypeSpecific parameter value.",
+            "label": "Adaptor Specific",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorTypeSpecific"
+            }
+        },
+        "objectType": {
+            "brief": "ObjectType",
+            "dataType": "string",
+            "description": "The object type of the object being converted to mapped object.",
+            "label": "Object Type",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_objectType"
+            }
+        },
+        "useDefaultProcessing": {
+            "brief": "Use default processing return value",
+            "description": "Return this value to cause default processing to occur.",
+            "label": "Use Default Processing",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_useDefaultProcessing"
+            }
+        },
+        "mappedAdaptorId": {
+            "brief": "Mapped Adaptor Id",
+            "dataType": "string",
+            "description": "The adaptor id of the object being converted to object.",
+            "label": "Mapped Adaptor Id",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedAdaptorId"
+            }
+        },
+        "mappedObjectType": {
+            "brief": "Mapped Object Type",
+            "dataType": "string",
+            "description": "The object type of the object being converted to object.",
+            "label": "Mapped Object Type",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedObjectType"
+            }
+        }
+    },
+    "runtime": {
+
+    }
+
+}

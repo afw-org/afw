@@ -1,0 +1,33 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Layout Component Type Category.",
+    "objectType": "_AdaptiveLayoutComponentTypeCategory_",
+    "propertyTypes": {
+        "category": {
+            "allowQuery": true,
+            "brief": "Layout Component Type category",
+            "dataType": "string",
+            "description": "Layout Component Type category id. The layout component type category groups similar layout component types together logically.",
+            "label": "Category",
+            "required": true
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of layout component type category",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of layout component type category.",
+            "label": "Description"
+        },
+        "label": {
+            "allowQuery": true,
+            "brief": "Label to represent this category",
+            "dataType": "string",
+            "description": "Label to represent this category.",
+            "label": "Label"
+        }
+    }
+}

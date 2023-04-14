@@ -1,0 +1,38 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Modal component.",
+    "objectType": "_AdaptiveLayoutComponentType_Modal",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Specifies the placeholder text displayed when no value is present.",
+            "label": "Contains"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Modal component is open.",
+            "label": "Open",
+            "required": true
+        },
+        "isBlocking": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Modal component is blocking or can lightly be dismissed.",
+            "label": "Is Blocking"
+        }
+    }
+}

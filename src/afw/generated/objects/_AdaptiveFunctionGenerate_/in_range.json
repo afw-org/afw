@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwInRange",
+    "brief": "Checks if time in range",
+    "camelCaseFunctionLabel": "inRange",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks if <dataType> is between startTime and endTime, inclusive. Regardless of endTime value, it is always considered to be equal to, but less than 24 hours greater than startTime. If no <dataType> zone is specified for <dataType>, the default <dataType> zone is used. If no <dataType> zone is specified for startTime or endTime, the <dataType> zone of <dataType> is used.",
+    "functionId": "in_range",
+    "functionLabel": "in_range",
+    "parameters": [
+        {
+            "name": "time",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "startTime",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "endTime",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "time"
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

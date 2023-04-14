@@ -1,0 +1,57 @@
+{
+    "description": "Tests for set_equals<dayTimeDuration_1_0> function.",
+    "functionId": "set_equals<dayTimeDuration_1_0>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M40.5S",
+                        "PT1M30.5S"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M30.5S",
+                        "PT1M40.5S"
+                    ]
+                }
+            ],
+            "description": "equals",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M40.5S",
+                        "PT1M30.5S"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M30.5S",
+                        "PT1M50.5S"
+                    ]
+                }
+            ],
+            "description": "not equal",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

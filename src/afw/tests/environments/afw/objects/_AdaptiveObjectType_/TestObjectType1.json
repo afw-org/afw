@@ -1,0 +1,17 @@
+{
+    "objectType": "TestObjectType1",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,    
+    "propertyTypes": {
+        "TestString1": {
+            "dataType": "string",
+            "allowQuery": true
+        },
+        "TestInteger1": {
+            "dataType": "integer",
+            "allowQuery": true
+        }
+    }     
+}

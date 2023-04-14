@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "ChoiceGroup",
+    "brief": "A component to display a selectable choice of options.",
+    "description": "This component provides a mutually exclusive list of options, organized as radio buttons, that may be selected.",
+    "implementationId": "ChoiceGroup",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_ChoiceGroup",
+    "label": "Choice Group"
+}

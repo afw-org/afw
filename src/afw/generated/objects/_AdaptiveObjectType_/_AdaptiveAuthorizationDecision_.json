@@ -1,0 +1,46 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is meta for a decisionId property value of _AdaptiveAuthorizationResult_.",
+    "objectIdPropertyName": "decisionId",
+    "objectType": "_AdaptiveAuthorizationDecision_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "dataType": "string",
+            "brief": "Brief description of this decision",
+            "description": "This is a predicate for this decisionId value with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "decisionId": {
+            "brief": "The decisionId for this decision",
+            "dataType": "string",
+            "description": "This is used to uniquely identify this particular decision.",
+            "label": "Decision Id",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this decision in detail",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description of this decisionId value.",
+            "label": "Description",
+            "required": false
+        },
+        "intermediateOnly": {
+            "brief": "Intermediate decision only",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Intermediate decision only.",
+            "label": "Intermediate Only",
+            "required": false
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMultiplyInteger",
+    "brief": "Multiply numbers",
+    "camelCaseFunctionLabel": "multiplyInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Multiply 2 or more integer values and return the integer result.",
+    "functionId": "multiply<integer>",
+    "functionLabel": "multiply_integer",
+    "op": "*",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "minArgs": 2,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMaxString",
+    "brief": "Maximum value",
+    "camelCaseFunctionLabel": "maxString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Return the string value that is greater than or equal to the others.",
+    "functionId": "max<string>",
+    "functionLabel": "max_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_max"
+}

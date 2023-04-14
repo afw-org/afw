@@ -1,0 +1,28 @@
+{
+    "description": "Tests for concat function.",
+    "functionId": "concat",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "a"
+                },
+                {
+                    "dataType": "string",
+                    "value": "bc"
+                },
+                {
+                    "dataType": "string",
+                    "value": "def"
+                }
+            ],
+            "description": "string concatenate test a bc def ",
+            "result": {
+                "dataType": "string",
+                "value": "abcdef"
+            }
+        }
+    ]
+}

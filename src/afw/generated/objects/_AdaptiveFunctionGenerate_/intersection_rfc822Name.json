@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionRfc822Name",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Returns a list of rfc822Name with the values that are common to both list of rfc822Name list1 and list2.",
+    "functionId": "intersection<rfc822Name>",
+    "functionLabel": "intersection_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "rfc822Name"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

@@ -1,0 +1,49 @@
+{
+    "$defs": {
+        "_AdaptiveFunctionCategory_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveFunctionCategory_.propertyTypes"
+                }
+            ],
+            "description": "Function category.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveFunctionCategory_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "This is a predicate for the function category with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "category": {
+                    "description": "Function category that this function belongs to. Categories group similar functions together logically.",
+                    "title": "Category",
+                    "type": "string"
+                },
+                "dataTypeCategory": {
+                    "description": "This is a data type category.",
+                    "title": "Data Type Category",
+                    "type": "boolean"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of function category in more detail, for documentation purposes.",
+                    "title": "Description",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "category"
+            ],
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveFunctionCategory_"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "brief": "Adaptive value functions",
+    "category": "value",
+    "description": "These are function that work on all adaptive values and their associated meta."
+}

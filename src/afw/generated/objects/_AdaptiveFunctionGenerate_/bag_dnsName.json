@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagDnsName",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Takes any number of dnsName values and returns a list of list.",
+    "functionId": "bag<dnsName>",
+    "functionLabel": "bag_dnsName",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dnsName",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "dnsName"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

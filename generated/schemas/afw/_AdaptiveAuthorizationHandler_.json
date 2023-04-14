@@ -1,0 +1,60 @@
+{
+    "$defs": {
+        "_AdaptiveAuthorizationHandler_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAuthorizationHandler_.propertyTypes"
+                }
+            ],
+            "description": "Runtime authorization handler information.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveAuthorizationHandler_.propertyTypes": {
+            "properties": {
+                "authorizationHandlerId": {
+                    "description": "Authorization handler id.",
+                    "title": "Authorization Handler Id",
+                    "type": "string"
+                },
+                "processingOrder": {
+                    "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "title": "Processing Order",
+                    "type": "integer"
+                },
+                "properties": {
+                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "referenceCount": {
+                    "description": "Authorization handler's reference count.",
+                    "title": "Reference Count",
+                    "type": "integer"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "stopping": {
+                    "description": "Reference count of stopping instances.",
+                    "items": {
+                        "description": "Reference count of stopping instances.",
+                        "title": "Reference count of stopping instances",
+                        "type": "integer"
+                    },
+                    "title": "Stopping Instances",
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveAuthorizationHandler_"
+        }
+    ]
+}

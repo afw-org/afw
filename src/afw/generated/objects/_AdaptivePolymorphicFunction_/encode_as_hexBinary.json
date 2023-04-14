@@ -1,0 +1,25 @@
+{
+    "brief": "Encode to a hexBinary value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Encode a value as a hexBinary. The effect is to create a hexBinary value with an internal value of the value passed.",
+    "functionId": "encode_as_hexBinary",
+    "functionLabel": "encode_as_hexBinary",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true,
+            "description": "The <dataType> value to encode."
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_encode_as_hexBinary",
+    "returns": {
+        "dataType": "hexBinary",
+        "description": "A hexBinary value."
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeDnsName",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return the boolean result.",
+    "functionId": "ge<dnsName>",
+    "functionLabel": "ge_dnsName",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "dnsName",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dnsName",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

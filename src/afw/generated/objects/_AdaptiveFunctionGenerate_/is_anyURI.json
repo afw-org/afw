@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsAnyURI",
+    "brief": "Checks whether value is dataType anyURI",
+    "camelCaseFunctionLabel": "isAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType anyURI and return the boolean result.",
+    "functionId": "is<anyURI>",
+    "functionLabel": "is_anyURI",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

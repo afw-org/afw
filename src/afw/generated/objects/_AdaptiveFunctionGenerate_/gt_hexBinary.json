@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtHexBinary",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Checks for hexBinary arg1 is greater than hexBinary arg2 and return the boolean result.",
+    "functionId": "gt<hexBinary>",
+    "functionLabel": "gt_hexBinary",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "name": "arg1"
+        },
+        {
+            "dataType": "hexBinary",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

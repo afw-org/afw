@@ -1,0 +1,5 @@
+{
+    "brief": "Adaptive compiler related functions",
+    "category": "compiler",
+    "description": "These are functions that compile, convert, decompile, and evaluated adaptive syntax."
+}

@@ -1,0 +1,107 @@
+{
+    "description": "Tests for is_NaN function.",
+    "functionId": "is_NaN",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "Infinity"
+                }
+            ],
+            "description": "Is 'Infinity' NaN",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-Infinity"
+                }
+            ],
+            "description": "Is '-Infinity' NaN",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "23.0E35"
+                }
+            ],
+            "description": "Is double '23.0E35' NaN",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-23.0E35"
+                }
+            ],
+            "description": "Is double '-23.0E35' NaN",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "20"
+                }
+            ],
+            "description": "Is integer '20' NaN",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-20"
+                }
+            ],
+            "description": "Is integer '-20' NaN",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "null",
+                    "value": null
+                }
+            ],
+            "description": "Is 'null' NaN",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid argument test",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

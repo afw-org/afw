@@ -1,0 +1,94 @@
+{
+    "description": "Tests for subset<hexBinary> function.",
+    "functionId": "subset<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "5FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "5FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

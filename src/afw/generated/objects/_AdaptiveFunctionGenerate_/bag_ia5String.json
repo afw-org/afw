@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagIa5String",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Takes any number of ia5String values and returns a list of list.",
+    "functionId": "bag<ia5String>",
+    "functionLabel": "bag_ia5String",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "ia5String",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "ia5String"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

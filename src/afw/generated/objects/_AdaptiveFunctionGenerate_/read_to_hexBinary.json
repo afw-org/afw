@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReadToHexBinary",
+    "brief": "Read from a stream to hexBinary",
+    "camelCaseFunctionLabel": "readToHexBinary",
+    "category": "stream",
+    "description": "Read a stream up to a specified number of octets. The result will be the internal memory of a hexBinary value.",
+    "functionId": "read_to_hexBinary",
+    "functionLabel": "read_to_hexBinary",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number",
+            "name": "streamNumber"
+        },
+        {
+            "brief": "Number of octets",
+            "description": "The maximum number of octets to read.",
+            "name": "n"
+        }
+    ],
+    "returns": {
+        "brief": "The hexBinary read",
+        "dataType": "hexBinary",
+        "description": "The hexBinary value read. Check the size of this value to determine the actual number of octets read."
+    },
+    "sideEffects": [
+        "Stream modified"
+    ]
+}

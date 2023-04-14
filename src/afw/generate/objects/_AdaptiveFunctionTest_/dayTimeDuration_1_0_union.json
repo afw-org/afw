@@ -1,0 +1,69 @@
+{
+    "description": "Tests for union<dayTimeDuration_1_0> function.",
+    "functionId": "union<dayTimeDuration_1_0>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "P1DT3H",
+                        "PT20M",
+                        "PT20M",
+                        "PT20M",
+                        "PT20M",
+                        "PT20M"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M30.5S"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "dayTimeDuration_old",
+                "value": [
+                    "P1DT3H",
+                    "PT20M",
+                    "PT1M30.5S"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "P1DT3H",
+                        "PT20M"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration_old",
+                    "value": [
+                        "PT1M30.5S"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "dayTimeDuration_old",
+                "value": [
+                    "P1DT3H",
+                    "PT20M",
+                    "PT1M30.5S"
+                ]
+            }
+        }
+    ]
+}

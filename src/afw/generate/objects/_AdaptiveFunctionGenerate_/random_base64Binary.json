@@ -1,0 +1,18 @@
+{
+    "brief": "Generate random octets (base64Binary)",
+    "category": "random",
+    "dataTypeMethod": false,
+    "description": "This returns a specified number of random octets as dataType base64Binary.",
+    "functionId": "random_base64Binary",
+    "functionLabel": "random_base64Binary",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "The number of random octets to generate.",
+            "name": "numberOfOctets"
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary"
+    }
+}

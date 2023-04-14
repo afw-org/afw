@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringRfc822Name",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Converts rfc822Name value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<rfc822Name>",
+    "functionLabel": "to_string_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "description": "A rfc822Name value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

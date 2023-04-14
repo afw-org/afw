@@ -1,0 +1,79 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveAuthorizationControl_"
+        },
+        "propertyTypes": {
+            "initialAuthorizationCheck": {
+                "required": false,
+                "label": "Initial Check",
+                "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object.  A result of permit or deny is the final decision.  If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed.  Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
+                "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+                "dataType": "hybrid",
+                "contextType": "authorizationCheck",
+                "brief": "Initial Authorization Check"
+            },
+            "denyIfNotApplicable": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "required": false,
+                "label": "Deny If Not Applicable",
+                "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",
+                "defaultValue": false,
+                "dataType": "boolean",
+                "brief": "Deny if not applicable"
+            },
+            "coreAuthorizationCheck": {
+                "required": false,
+                "label": "Core Check",
+                "description": "This is evaluated for authorization checks when running in core mode.  If not specified, access is permitted.  Be very careful when specifying this parameter because an error can cause the application to fail.",
+                "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+                "dataType": "hybrid",
+                "contextType": "authorizationCheck",
+                "brief": "Core Authorization Check"
+            },
+            "checkIntermediateMode": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "required": false,
+                "label": "Check Intermediate",
+                "description": "Do authorization check when running in mode intermediate. If false, the checks will be bypassed.",
+                "defaultValue": false,
+                "dataType": "boolean",
+                "brief": "Check authorization in mode intermediate"
+            }
+        },
+        "objectType": "_AdaptiveAuthorizationControl_",
+        "description": "This controls how authorization checking occurs in an Adaptive Framework application.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true,
+        "allowDelete": false,
+        "allowChange": false,
+        "allowAdd": false
+    },
+    "status": "success"
+}

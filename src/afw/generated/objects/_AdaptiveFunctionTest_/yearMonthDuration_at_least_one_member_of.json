@@ -1,0 +1,88 @@
+{
+    "description": "Tests for at_least_one_member_of<yearMonthDuration> function.",
+    "functionId": "at_least_one_member_of<yearMonthDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P3Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M"
+                    ]
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "-P60Y"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

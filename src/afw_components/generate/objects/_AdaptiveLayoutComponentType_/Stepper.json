@@ -1,0 +1,9 @@
+{
+    "category": "utilities",
+    "componentType": "Stepper",
+    "brief": "A component that displays a Stepper indicating a list of steps and the current one you are on.",
+    "description": "This component is useful for creating a step-by-step wizard, with each step providing a title, its contents, and a Next button to get to the next step.",
+    "implementationId": "Stepper",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Stepper",
+    "label": "Stepper"
+}

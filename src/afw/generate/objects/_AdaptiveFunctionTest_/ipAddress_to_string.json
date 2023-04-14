@@ -1,0 +1,39 @@
+{
+    "description": "Tests for to_string<ipAddress> function.",
+    "functionId": "to_string<ipAddress>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "ipAddress",
+                    "value": "204.11.3.4"
+                }
+            ],
+            "description": "204.11.3.4",
+            "result": {
+                "dataType": "string",
+                "value": "204.11.3.4"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "ipAddress",
+                    "value": "204.0.0.255"
+                }
+            ],
+            "description": "204.0.0.255",
+            "result": {
+                "dataType": "string",
+                "value": "204.0.0.255"
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

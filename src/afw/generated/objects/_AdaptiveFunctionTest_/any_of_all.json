@@ -1,0 +1,87 @@
+{
+    "description": "Tests for any_of_all function.",
+    "functionId": "any_of_all",
+    "implemented": false,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "Ringo",
+                        "Mary"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "Jonh",
+                        "Paul",
+                        "George",
+                        "Ringo"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "gt<integer>"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "3",
+                        "5"
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

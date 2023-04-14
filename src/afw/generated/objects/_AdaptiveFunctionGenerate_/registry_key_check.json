@@ -1,0 +1,34 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegistryKeyCheck",
+    "brief": "Check to see if a registry key exists",
+    "camelCaseFunctionLabel": "registryKeyCheck",
+    "category": "administrative",
+    "description": "This will check to see if a registry key exists for a specified registry type and optionally load it's associated extension if needed.",
+    "functionId": "registry_key_check",
+    "functionLabel": "registry_key_check",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "This is the registry type, which is the object id of a /afw/_AdaptiveEnvironmentRegistryType_/ object.",
+            "name": "registryType"
+        },
+        {
+            "dataType": "string",
+            "description": "This is a key to check for existence in the specified registryType.",
+            "name": "key"
+        },
+        {
+            "dataType": "boolean",
+            "description": "Specifying true for this optional parameter will cause the associated extension to be loaded if needed.",
+            "name": "loadExtension",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem."
+    },
+    "sideEffects": [
+        "The loading of the extension may add environment registry entries as well as make other changes."
+    ]
+}

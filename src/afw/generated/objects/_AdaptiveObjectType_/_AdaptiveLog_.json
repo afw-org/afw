@@ -1,0 +1,60 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime log information.",
+    "objectType": "_AdaptiveLog_",
+    "propertyTypes": {
+        "sourceLocation": {
+            "allowQuery": true,
+            "brief": "The source location for this log",
+            "dataType": "string",
+            "description": "This is a source location to help determine how this log was defined.",
+            "label": "Source Location",
+            "runtime": {
+                "memberName": "source_location",
+                "valueAccessor": "indirect"
+            }
+        },
+        "logId": {
+            "allowQuery": true,
+            "brief": "Log id",
+            "dataType": "string",
+            "description": "Log id.",
+            "label": "Log Id",
+            "runtime": {
+                "memberName": "log_id"
+            }
+        },
+        "properties": {
+            "allowQuery": false,
+            "brief": "Properties associated with this log",
+            "dataType": "object",
+            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "label": "Properties"
+        },
+        "serviceId": {
+            "allowQuery": true,
+            "brief": "The id of the associated service",
+            "dataType": "string",
+            "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+            "label": "Service Id",
+            "runtime": {
+                "memberName": "service_id",
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "indirectObjectId": true,
+            "objectId": "adaptor_id"
+        },
+        "typedef": "afw_log_t"
+    }
+}

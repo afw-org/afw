@@ -1,0 +1,7 @@
+#
+# Produce generated/ebnf/compile.ebnf from >>>ebnf comments in
+# src/afw/afw_compile*.
+#
+syntax.ebnf
+compile/afw_compile_parse*.c
+compile/afw_compile_lexical*.c

@@ -1,0 +1,498 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveObjectType_/_AdaptiveObjectType_",
+                "objectId": "_AdaptiveObjectType_",
+                "objectType": "_AdaptiveObjectType_"
+            },
+            "allowDelete": false,
+            "allowChange": false,
+            "allowAdd": false,
+            "propertyTypes": {
+                "_meta_": {
+                    "objectType": "_AdaptivePropertyTypes_"
+                },
+                "tags": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Tags",
+                    "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of keywords associated with this object type"
+                },
+                "runtime": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Runtime",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "dataTypeParameter": "_AdaptiveRuntimeObject_",
+                    "dataType": "object",
+                    "brief": "Runtime information, available to runtime objects"
+                },
+                "referenceURI": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Reference URI",
+                    "description": "URI of more reference information about this object.",
+                    "dataType": "anyURI",
+                    "brief": "URI of more reference information about this object",
+                    "allowQuery": true
+                },
+                "propertyTypes": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Property Types",
+                    "description": "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_.",
+                    "dataTypeParameter": "_AdaptivePropertyTypes_",
+                    "dataType": "object",
+                    "brief": "Describes the properties for this object type",
+                    "allowQuery": true
+                },
+                "otherProperties": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Other Properties",
+                    "description": "If specified, this is the property type for properties that are not explicitly specified.  If otherProperties is not specified, only explicitly specified properties are allowed.",
+                    "dataTypeParameter": "_AdaptiveValueMeta_",
+                    "dataType": "object",
+                    "brief": "Property Type for properties not explicitly specified",
+                    "allowQuery": true
+                },
+                "originURI": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Origin URI",
+                    "description": "The origin URI of this object type.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "dataType": "anyURI",
+                    "brief": "The origin URI of this object type",
+                    "allowQuery": true
+                },
+                "objectType": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Object Type",
+                    "description": "The object id of the object type.",
+                    "dataType": "string",
+                    "brief": "Object id of the object type",
+                    "allowQuery": true
+                },
+                "objectIdPropertyName": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Object Id Property Name",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "dataType": "string",
+                    "brief": "The name of the property that is used as the \"objectId\" meta property",
+                    "allowQuery": true
+                },
+                "label": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Label",
+                    "description": "Label used to identify this instance.",
+                    "dataType": "string",
+                    "brief": "Label used to identify this instance",
+                    "allowQuery": true
+                },
+                "descriptionPropertyName": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Description Property Name",
+                    "description": "The name of the property in an instance that is used as the \"description\" property in the meta for instances of this object type.  If not specified, no description will be available.",
+                    "dataType": "string",
+                    "brief": "The name of the property that is used as the \"description\" meta property",
+                    "allowQuery": true
+                },
+                "description": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Description",
+                    "description": "The description of the object type.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "Description of the object type",
+                    "allowQuery": true
+                },
+                "collectionURIs": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Collection URIs",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "dataTypeParameter": "anyURI",
+                    "dataType": "list",
+                    "brief": "The URIs of the collections this object type is a part of",
+                    "allowQuery": true
+                },
+                "allowEntity": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        },
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Allow Entity",
+                    "description": "Instances of this object type can exist as an entity object, not just an embedded object.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Instances of this type can exist as entities",
+                    "allowQuery": true
+                },
+                "allowDelete": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        },
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Allow Delete",
+                    "description": "If false, objects of this type can NEVER be deleted via an adaptor.  If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be deleted",
+                    "allowQuery": true
+                },
+                "allowChange": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        },
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Allow Change",
+                    "description": "If false, objects of this type can NEVER be changed via an adaptor.  If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be changed",
+                    "allowQuery": true
+                },
+                "allowAdd": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "boolean"
+                            }
+                        },
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Allow Add",
+                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "defaultValue": true,
+                    "dataType": "boolean",
+                    "brief": "Objects of this type can be created",
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveObjectType_",
+            "objectIdPropertyName": "objectType",
+            "descriptionPropertyName": "description",
+            "description": "The adaptive object type of all adaptive object type objects.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_application",
+                "objectId": "_AdaptiveConf_application",
+                "objectType": "_AdaptiveObjectType_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "propertyTypes": {
+                "_meta_": {
+                    "objectType": "_AdaptivePropertyTypes_"
+                },
+                "type": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": true,
+                    "label": "Type",
+                    "description": "Configuration type.",
+                    "dataType": "string",
+                    "brief": "Configuration type",
+                    "allowQuery": true
+                },
+                "sourceLocation": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Source Location",
+                    "description": "This is a contextual string added when this configuration object is processed.",
+                    "dataType": "string",
+                    "brief": "Contextual string added when this configuration object is processed",
+                    "allowQuery": true
+                },
+                "title": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Title",
+                    "description": "The title of the application.  This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+                    "dataType": "string",
+                    "brief": "The title of the application",
+                    "allowQuery": true
+                },
+                "qualifiedVariables": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Qualified Variables",
+                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application.  The qualifier can not be an empty string.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables.  These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.",
+                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataType": "object",
+                    "brief": "Qualified set of variables"
+                },
+                "layoutsAdaptorId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Layouts Adaptor",
+                    "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
+                    "dataType": "string",
+                    "brief": "The default adaptorId to select for layout component objects",
+                    "allowQuery": true
+                },
+                "extensions": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Extensions",
+                    "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of extensions to load at startup"
+                },
+                "description": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Description",
+                    "description": "The description of the application.",
+                    "dataTypeParameter": "text/plain",
+                    "dataType": "string",
+                    "brief": "The description of the application",
+                    "allowQuery": true
+                },
+                "defaultModelAdaptorId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Default Model Adaptor",
+                    "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
+                    "dataType": "string",
+                    "brief": "The default adaptorId to select for model storage",
+                    "allowQuery": true
+                },
+                "defaultFlags": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Default Flags",
+                    "description": "This is a list of the flagId of default flags that will be set when a scope (request) is created.  Flags in this list that are not yet registered will be set as a default when/if they are registered.  Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                    "dataTypeParameter": "string",
+                    "dataType": "list",
+                    "brief": "List of default flags to be set when a scope (request) is created."
+                },
+                "defaultAdaptorId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "required": false,
+                    "label": "Default Adaptor",
+                    "description": "This is the adaptorId chosen by default for user interface select components.",
+                    "dataType": "string",
+                    "brief": "This is the adaptorId chosen by default for user interface select components",
+                    "allowQuery": true
+                },
+                "confAdaptorId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Conf Adaptor",
+                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                    "dataType": "string",
+                    "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                    "allowWrite": false,
+                    "allowQuery": true
+                },
+                "authorizationControl": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Authorization",
+                    "description": "This defines how authorization checking occurs in this application.",
+                    "dataTypeParameter": "_AdaptiveAuthorizationControl_",
+                    "dataType": "object",
+                    "brief": "This defines how authorization checking occurs in this application",
+                    "allowQuery": false
+                },
+                "applicationId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Application",
+                    "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
+                    "dataType": "string",
+                    "brief": "This is the id of the application",
+                    "allowWrite": false,
+                    "allowQuery": true
+                }
+            },
+            "objectType": "_AdaptiveConf_application",
+            "description": "Adaptive Framework configuration component for type=application.  There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveObjectType_/_AdaptiveHybridProperties_",
+                "objectId": "_AdaptiveHybridProperties_",
+                "objectType": "_AdaptiveObjectType_"
+            },
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true,
+            "otherProperties": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "dataType": "hybrid"
+            },
+            "objectType": "_AdaptiveHybridProperties_",
+            "description": "Each property is a hybrid value.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true
+        },
+        {
+            "_meta_": {
+                "path": "/conf/_AdaptiveObjectType_/_AdaptiveServiceConf_",
+                "objectId": "_AdaptiveServiceConf_",
+                "objectType": "_AdaptiveObjectType_"
+            },
+            "propertyTypes": {
+                "_meta_": {
+                    "objectType": "_AdaptivePropertyTypes_"
+                },
+                "startup": {
+                    "_meta_": {
+                        "propertyTypes": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyTypes_"
+                            },
+                            "defaultValue": {
+                                "_meta_": {
+                                    "objectType": "_AdaptiveMetaPropertyType_"
+                                },
+                                "dataType": "string"
+                            }
+                        },
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Startup",
+                    "description": "Service startup condition specifies how the service should be started.  Choose 'manual', if you intend to start the service by hand.  Choose 'immediate' if the service should be started as soon as it as loaded.  Services defined in the main configuration file are 'permanent', which are started immediately and cannot be stopped.",
+                    "defaultValue": "manual",
+                    "dataType": "string",
+                    "brief": "Service startup condition",
+                    "allowQuery": true
+                },
+                "serviceId": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Service Id",
+                    "description": "Service id.  This is the type and type specific id property separated with a '-'.  For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".",
+                    "dataType": "string",
+                    "brief": "The unique service id",
+                    "allowQuery": true
+                },
+                "conf": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Conf",
+                    "description": "Configuration object.  The object must have type and id property where type is a supported value.",
+                    "dataType": "object",
+                    "brief": "The configuration object"
+                },
+                "annotation": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveValueMeta_"
+                    },
+                    "label": "Annotation",
+                    "description": "Annotation object",
+                    "dataTypeParameter": "_AdaptiveAnnotation_",
+                    "dataType": "object",
+                    "brief": "Annotation object"
+                }
+            },
+            "objectType": "_AdaptiveServiceConf_",
+            "objectIdPropertyName": "serviceId",
+            "description": "An adaptive service.",
+            "collectionURIs": [
+                "/afw/_AdaptiveCollection_/core"
+            ],
+            "allowEntity": true,
+            "allowDelete": true,
+            "allowChange": true,
+            "allowAdd": true
+        }
+    ],
+    "status": "success"
+}

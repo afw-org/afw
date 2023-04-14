@@ -1,0 +1,39 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Link component.",
+    "label": "Link",
+    "objectType": "_AdaptiveLayoutComponentType_Link",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the the Link is disabled.",
+            "label": "Disabled"
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text value displayed for the Link component.",
+            "testDataParameter": "This is the text for the link.",
+            "label": "Text"
+        },
+        "url": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The URL for the link.",
+            "testDataParameter": "http://www.google.com/",
+            "label": "Url"
+        }
+    }
+}

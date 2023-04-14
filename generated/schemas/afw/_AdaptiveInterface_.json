@@ -1,0 +1,39 @@
+{
+    "$defs": {
+        "_AdaptiveInterface_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveInterface_.propertyTypes"
+                }
+            ],
+            "description": "Adaptive interface object.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveInterface_.propertyTypes": {
+            "properties": {
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this interface",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Interface name.",
+                    "title": "Name",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveInterface_"
+        }
+    ]
+}

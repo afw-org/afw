@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "Checkbox",
+    "brief": "A component that displays a checkbox.",
+    "description": "This component is simply a checkbox that allows the user to click to enable or disable its value.",
+    "implementationId": "Checkbox",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Checkbox",
+    "label": "Checkbox"
+}

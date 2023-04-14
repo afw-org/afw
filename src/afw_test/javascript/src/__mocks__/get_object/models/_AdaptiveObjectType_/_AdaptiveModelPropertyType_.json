@@ -1,0 +1,289 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/models/_AdaptiveObjectType_/_AdaptiveModelPropertyType_"
+        },
+        "allowDelete": true,
+        "allowChange": true,
+        "allowAdd": true,
+        "propertyTypes": {
+            "valueInfId": {
+                "label": "valueInf",
+                "description": "This is a runtime property that is the implementation id of the value interface.",
+                "dataType": "string",
+                "brief": "This is a runtime property that is the implementation id of the value interface",
+                "allowWrite": false,
+                "allowQuery": true
+            },
+            "unique": {
+                "label": "Unique",
+                "description": "Value of property must be unique within object type.",
+                "dataType": "boolean",
+                "brief": "Value of property must be unique within object type",
+                "allowQuery": true
+            },
+            "testDataParameter": {
+                "label": "Test Data Parameter",
+                "description": "This contains additional information about values with this meta that is used to produce test data.",
+                "dataType": "string",
+                "brief": "Additional information about this value that can be used to produce test data",
+                "allowQuery": true
+            },
+            "tags": {
+                "label": "Tags",
+                "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                "dataTypeParameter": "string",
+                "dataType": "list",
+                "brief": "List of keywords and terms associated with values with this meta"
+            },
+            "runtime": {
+                "label": "Runtime",
+                "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                "dataTypeParameter": "_AdaptiveRuntimeProperty_",
+                "dataType": "object",
+                "brief": "Runtime information for runtime values",
+                "allowQuery": true
+            },
+            "required": {
+                "label": "Required",
+                "description": "Indicates that value is required.",
+                "dataType": "boolean",
+                "brief": "A value is required",
+                "allowQuery": true
+            },
+            "referenceURI": {
+                "label": "Reference URI",
+                "description": "URI of more reference information about this value meta.",
+                "dataType": "anyURI",
+                "brief": "URI of more reference information about this value meta",
+                "allowQuery": true
+            },
+            "possibleValues": {
+                "label": "Possible Values",
+                "description": "Possible values of this value.  This can be the typed value or the string value.",
+                "dataType": "list",
+                "brief": "Possible values of this value",
+                "allowQuery": false
+            },
+            "originURI": {
+                "label": "Origin URI",
+                "description": "The origin URI of this value meta.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                "dataType": "anyURI",
+                "brief": "The origin URI of this value meta",
+                "allowQuery": true
+            },
+            "minValue": {
+                "label": "Minimum Value",
+                "description": "This is the minimum for this.  If not specified, there is no minimum value.  The dataType and dataTypeParameter of this value is the same as for the value.",
+                "brief": "The minimum for this value",
+                "allowQuery": true
+            },
+            "minLength": {
+                "label": "Minimum Length",
+                "description": "This is minimum length of the to_string() for this value.  If not specified, there is no minimum length.",
+                "dataType": "integer",
+                "brief": "The minimum string length for this value",
+                "allowQuery": true
+            },
+            "maxValue": {
+                "label": "Maximum Value",
+                "description": "This is the maximum for this value.  If not specified, there is no maximum value.  The dataType and dataTypeParameter of this value is the same as for the value.",
+                "brief": "The maximum for this value",
+                "allowQuery": true
+            },
+            "maxNormalLength": {
+                "label": "Normal Maximum Length",
+                "description": "This is maximum normal length of the to_string() for this value.   If not specified, maxLength is used.",
+                "dataType": "integer",
+                "brief": "The maximum normal string length for this value",
+                "allowQuery": true
+            },
+            "maxLength": {
+                "label": "Maximum Length",
+                "description": "This is maximum length of the to_string() for this value.  If not specified, there is no maximum length.",
+                "dataType": "integer",
+                "brief": "The maximum string length for this value",
+                "allowQuery": true
+            },
+            "label": {
+                "label": "Label",
+                "description": "Label used to identify this value.",
+                "dataType": "string",
+                "brief": "Label used to identify this value",
+                "allowQuery": true
+            },
+            "hints": {
+                "label": "Hints",
+                "description": "Hints that can optionally be used by UI to render this value.",
+                "dataTypeParameter": "_AdaptiveObject_",
+                "dataType": "object",
+                "brief": "Hints that can optionally be used by UI to render this value",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "The description of this value meta.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "Description of this value meta",
+                "allowQuery": true
+            },
+            "defaultValue": {
+                "label": "Default Value",
+                "description": "This is the default value.  If needed, this value will be normalized.",
+                "brief": "This is the default value",
+                "allowQuery": true
+            },
+            "dataTypeParameter": {
+                "label": "Data Type Parameter",
+                "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                "dataType": "string",
+                "brief": "The parameter used to interpret this dataType",
+                "allowQuery": true
+            },
+            "dataType": {
+                "label": "Data Type",
+                "description": "Data type of this value.",
+                "dataType": "string",
+                "brief": "Data type of this value",
+                "allowQuery": true
+            },
+            "contextType": {
+                "label": "Context Type",
+                "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                "dataType": "string",
+                "brief": "The context type used for the evaluation",
+                "allowQuery": true
+            },
+            "collectionURIs": {
+                "label": "Collection URIs",
+                "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "The URIs of the collection this value meta is a part of",
+                "allowQuery": true
+            },
+            "brief": {
+                "label": "Brief",
+                "description": "This is a predicate for this value meta, with the first letter capitalized and without a trailing period.",
+                "dataType": "string",
+                "brief": "Brief description of this value",
+                "allowQuery": true
+            },
+            "allowedValues": {
+                "label": "Allowed Values",
+                "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                "dataType": "list",
+                "brief": "A list of allowed values for this adaptive value",
+                "allowQuery": true
+            },
+            "allowWrite": {
+                "label": "Allow Write",
+                "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true.  If false, the value can only be written if required is true when adding a new object.",
+                "dataType": "boolean",
+                "brief": "The value can be written",
+                "allowQuery": true
+            },
+            "allowQuery": {
+                "label": "Allow Query",
+                "description": "If false, this value can NEVER be queried.  If true, this value can be queried if allowed by authorization policy.",
+                "dataType": "boolean",
+                "brief": "This value value be queried",
+                "allowQuery": true
+            },
+            "additionalConstraints": {
+                "label": "Additional Constraints",
+                "description": "Additional constraint for the value.",
+                "dataType": "hybrid",
+                "brief": "Additional constraint for the value",
+                "allowQuery": true
+            },
+            "transitory": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "label": "Transitory",
+                "description": "Indicates that this property is transitory and will not be persisted by the adaptor.  The value can be produced by setValue or supplied in the request.",
+                "defaultValue": false,
+                "dataType": "boolean",
+                "brief": "This property will not be persisted"
+            },
+            "setProperty": {
+                "label": "Set Value",
+                "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests.  If initialValue is specified, setProperty is ignored for add object requests.  If setProperty is not specified and the property exists in the current object, that value is used.  If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                "dataType": "hybrid",
+                "contextType": "modelSetProperty",
+                "brief": "Evaluated when setting an object property"
+            },
+            "method": {
+                "label": "Method",
+                "description": "This is a method for this object that can be called in expressions.  This hybrid value must be a lambda function expressed in either expression or expressionTuple syntax.",
+                "dataType": "hybrid",
+                "brief": "This executes when this property is called as a method"
+            },
+            "mappedPropertyName": {
+                "label": "Mapped Property Name",
+                "description": "This is the property name of this property used internally by an adaptor.  If not specified, propertyName is used.",
+                "dataType": "string",
+                "brief": "Name to map property to and from"
+            },
+            "initialValue": {
+                "label": "Initial Value",
+                "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                "dataType": "hybrid",
+                "brief": "Initial value to for this property"
+            },
+            "getProperty": {
+                "label": "Get Value",
+                "description": "This hybrid is evaluated to produce the value of this property when getting an object.  If a value of null is returned, the property will not be included in the resulting object.",
+                "dataType": "hybrid",
+                "contextType": "modelGetProperty",
+                "brief": "Evaluated when getting an object property"
+            },
+            "custom": {
+                "label": "Custom",
+                "description": "Property type level qualifier custom:: variables available to model expressions.",
+                "dataTypeParameter": "_AdaptiveHybridProperties_",
+                "dataType": "object",
+                "brief": "Custom variables available to the model"
+            },
+            "allowRead": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "label": "Allow Read",
+                "description": "Indicates that this property can be read.  If true, the property will be included in get_object() and retrieve_objects() requests.",
+                "defaultValue": true,
+                "dataType": "boolean",
+                "brief": "Indicates that this property can be read"
+            }
+        },
+        "objectType": "_AdaptiveModelPropertyType_",
+        "description": "The object type for properties in the \"propertyTypes\" property of instances of _AdaptiveModelObjectType_.  This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

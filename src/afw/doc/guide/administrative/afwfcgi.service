@@ -1,0 +1,13 @@
+[Unit]
+Description=Adaptive Framework FCGI systemd service script
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/afwfcgi -n 10 -p /var/run/afw.sock -f /etc/afw.conf
+ExecStartPost=/bin/sleep 2
+ExecStartPost=/usr/bin/chown nginx:nginx /var/run/afw.sock
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

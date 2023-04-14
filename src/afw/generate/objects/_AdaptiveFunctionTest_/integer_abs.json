@@ -1,0 +1,71 @@
+{
+    "description": "Tests for abs<integer> function.",
+    "functionId": "abs<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-45.6"
+                }
+            ],
+            "description": "Absolute value of -45.6",
+            "result": {
+                "dataType": "integer",
+                "value": "45"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "5556"
+                }
+            ],
+            "description": "Absolute value of 5556",
+            "result": {
+                "dataType": "integer",
+                "value": "5556"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-9223372036854775807"
+                }
+            ],
+            "description": "Absolute value of -9,223,372,036,854,775,808 largest negative 64 bit integer",
+            "result": {
+                "dataType": "integer",
+                "value": "9223372036854775807"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "9223372036854775807"
+                }
+            ],
+            "description": "Absolute value of 9,223,372,036,854,775,807 largest positive 64 bit integer",
+            "result": {
+                "dataType": "integer",
+                "value": "9223372036854775807"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

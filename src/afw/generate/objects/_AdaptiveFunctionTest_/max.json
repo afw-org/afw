@@ -1,0 +1,65 @@
+{
+    "description": "Tests for max function (polymorphic).",
+    "functionId": "max",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "extra"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                },
+                {
+                    "dataType": "string",
+                    "value": "t"
+                },
+                {
+                    "dataType": "string",
+                    "value": "r"
+                },
+                {
+                    "dataType": "string",
+                    "value": "a"
+                }
+            ],
+            "description": "String",
+            "result": {
+                "dataType": "string",
+                "value": "x"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-2.8"
+                },
+                {
+                    "dataType": "double",
+                    "value": "2.8"
+                },
+                {
+                    "dataType": "double",
+                    "value": "-12.8"
+                },
+                {
+                    "dataType": "double",
+                    "value": "12.8"
+                },
+                {
+                    "dataType": "double",
+                    "value": "0.0"
+                }
+            ],
+            "description": "Number",
+            "result": {
+                "dataType": "double",
+                "value": "12.8"
+            }
+        }
+    ]
+}

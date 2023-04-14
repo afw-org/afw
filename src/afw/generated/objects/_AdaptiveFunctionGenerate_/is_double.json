@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsDouble",
+    "brief": "Checks whether value is dataType double",
+    "camelCaseFunctionLabel": "isDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType double and return the boolean result.",
+    "functionId": "is<double>",
+    "functionLabel": "is_double",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

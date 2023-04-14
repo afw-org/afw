@@ -1,0 +1,9 @@
+{
+    "category": "editors",
+    "componentType": "EditableCallout",
+    "brief": "A component that calls out with an editable multiline text area.",
+    "description": "This component wraps an editable text field inside a Callout component. This is useful when a label needs to be quickly edited by popping up an editor, rather than navigating them to a new page. The EditableLabel component that it displays may be a multiline text field.",
+    "implementationId": "EditableCallout",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_EditableCallout",
+    "label": "Editable Callout"
+}

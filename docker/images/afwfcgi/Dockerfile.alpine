@@ -1,0 +1,32 @@
+# Build stage for C compilation, which may use multi-arch builds
+FROM ghcr.io/afw-org/afw-dev-base:alpine AS build-stage-c
+
+COPY ./ /src
+COPY ./docker/images/builder/builder-alpine.sh /builder.sh
+
+RUN chmod +x /builder.sh && /builder.sh
+
+FROM ghcr.io/afw-org/afw-base:alpine
+
+# builder images must already be created to grab artifacts
+COPY --from=build-stage-c /afw-*.tar /
+
+RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar 
+
+# Copy service configurations
+COPY ./docker/images/afwfcgi/afw /afw
+COPY ./docker/images/afwfcgi/run.sh /run.sh
+RUN chmod +x /run.sh
+
+RUN mkdir -p /afw/lmdb \
+    /afw/files \
+    /afw/auth \
+    /afw/layouts \
+    /afw/mariadb
+
+RUN tar cvf /afw.tar /afw
+
+# persist data in /afw
+VOLUME "/afw"
+
+CMD [ "/run.sh" ]

@@ -1,0 +1,60 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=adaptor adaptorType=file.",
+    "objectType": "_AdaptiveConf_adaptor_file",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes"
+            ]
+        },
+        "contentType": {
+            "allowQuery": true,
+            "brief": "Content type for file objects",
+            "dataType": "string",
+            "description": "This is the content type to be used for this file adaptor. This must be a content-type that is registered by core or by an extension.",
+            "label": "Content Type",
+            "required": true
+        },
+        "filenameSuffix": {
+            "allowQuery": true,
+            "brief": "Suffix that will be appended to objectId for filename",
+            "dataType": "string",
+            "description": "When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename.",
+            "label": "Filename Suffix"
+        },
+        "isDevelopmentInput": {
+            "allowQuery": true,
+            "brief": "Specifies this adaptor is used for object development input",
+            "dataType": "boolean",
+            "description": "This should only be used during Adaptive Framework core and extension development. It allows core object type instances to be written to the directory used by generate.py.",
+            "label": "Is Development Input"
+        },
+        "isModelLocation": {
+            "allowQuery": true,
+            "brief": "This adaptor can hold _AdaptiveModel_ objects",
+            "dataType": "boolean",
+            "description": "If specified, this adaptor can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor.",
+            "label": "Is Model Location"
+        },
+        "isPolicyLocation": {
+            "allowQuery": true,
+            "brief": "This adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects",
+            "dataType": "boolean",
+            "description": "If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects. The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor.",
+            "label": "Is Policy Location"
+        },
+        "root": {
+            "allowQuery": true,
+            "brief": "Path to the directory holding object type directories",
+            "dataType": "string",
+            "description": "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.",
+            "label": "Root",
+            "required": true
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "description": "Tests for is_in<dateTime> function.",
+    "functionId": "is_in<dateTime>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-12T13:20:00",
+                        "2004-04-12T13:20:15.5",
+                        "2004-04-12T13:20:00",
+                        "2004-04-12T13:20:00"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2005-04-12T13:20:00-05:00"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-12T13:20:00",
+                        "2004-04-12T13:20:15.5",
+                        "2004-04-12T13:20:00-05:00",
+                        "2004-04-12T13:20:00Z"
+                    ]
+                }
+            ],
+            "description": "false",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

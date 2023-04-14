@@ -1,0 +1,71 @@
+{
+    "description": "Tests for set_equals<yearMonthDuration_1_0> function.",
+    "functionId": "set_equals<yearMonthDuration_1_0>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration_old",
+                    "value": [
+                        "P2Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration_old",
+                    "value": [
+                        "P2Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y",
+                        "-P60Y"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration_old",
+                    "value": [
+                        "P3Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration_old",
+                    "value": [
+                        "P2Y6M",
+                        "P20M",
+                        "P0Y20M",
+                        "P0Y",
+                        "-P60Y",
+                        "-P60Y"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

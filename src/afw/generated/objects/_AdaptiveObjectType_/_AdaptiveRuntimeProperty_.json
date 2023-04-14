@@ -1,0 +1,37 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type of the runtime property of _AdaptiveValueMeta_.",
+    "objectType": "_AdaptiveRuntimeProperty_",
+    "propertyTypes": {
+        "memberName": {
+            "brief": "The member name of this property in the runtime struct if other than the property name",
+            "dataType": "string",
+            "description": "The member name of this property in the runtime struct if other than the property name.",
+            "label": "Member Name"
+        },
+        "valueAccessor": {
+            "brief": "The name of the registered value accessor used to access this property",
+            "dataType": "string",
+            "description": "The name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors.",
+            "label": "Value Accessor"
+        },
+        "onGetValueCFunctionName": {
+            "brief": "Name of c callback function",
+            "dataType": "string",
+            "description": "This is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored.",
+            "label": "onGetValueCFunctionName"
+        },
+        "zeroOffset": {
+            "brief": "Indicates that the value accessor is called with a pointer to the struct and a 0 offset",
+            "dataType": "boolean",
+            "description": "Indicates that the value accessor is called with a pointer to the struct and a 0 offset.",
+            "label": "Zero Offset"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "description": "Tests for to_integer<string> function.",
+    "functionId": "to_integer<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "123"
+                }
+            ],
+            "description": "integer from string test 123",
+            "result": {
+                "dataType": "integer",
+                "value": "123"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "-123"
+                }
+            ],
+            "description": "integer from string test -123",
+            "result": {
+                "dataType": "integer",
+                "value": "-123"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

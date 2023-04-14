@@ -1,0 +1,27 @@
+{
+    "serviceId":"adaptor-lmdb",
+    "startup":"immediate",
+    "conf":{
+        "type":"adaptor",
+        "adaptorType":"lmdb",
+        "adaptorId":"lmdb",
+        "description":"A LMDB (Lightning Memory-Mapped Database).",
+        "limits":{
+            "time":{
+                "hard":14400,
+                "soft":3600
+            },
+            "size":{
+                "hard":1000,
+                "soft":500
+            }
+        },
+        "env":{
+            "mapsize":137438953472,
+            "maxdbs":128,
+            "maxreaders":126,
+            "mode":384,
+            "path":"/afw/lmdb"
+        }
+    }
+}

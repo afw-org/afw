@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Paper",
+    "brief": "A component that allows contents to be displayed on a Paper like surface.",
+    "description": "This component allows data on its surface to stand out by providing an edged, or raised outline, with shadow depth and optional corner radius style. This component is another useful container to help separate a section of data from its surrounding contents.",
+    "implementationId": "Paper",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Paper",
+    "label": "Paper"
+}

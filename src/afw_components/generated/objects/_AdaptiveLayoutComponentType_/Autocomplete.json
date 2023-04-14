@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "Autocomplete",
+    "brief": "Component to display a list of options that may be selected or can be autocompleted by typing.",
+    "description": "This component provides a dropdown picker with possible values to quickly select from. By typing, it will narrow down the selection to make the list even shorter to choose a selection from. Additionally, it will offer the user the ability to enter a new value, if allowed.",
+    "implementationId": "Autocomplete",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Autocomplete",
+    "label": "Autocomplete"
+}

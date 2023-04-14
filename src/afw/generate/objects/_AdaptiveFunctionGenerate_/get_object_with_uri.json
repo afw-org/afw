@@ -1,0 +1,31 @@
+{
+    "brief": "Get adaptive object with URI",
+    "category": "adaptor",
+    "description": "Get an object with a given URI.",
+    "functionId": "get_object_with_uri",
+    "functionLabel": "get_object_with_uri",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "URI of object to retrieve. If a URI begins with a single slash ('/'), it is the local object path.",
+            "name": "uri"
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object\n\nwhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "Object retrieved or NULL if not found."
+    }
+}

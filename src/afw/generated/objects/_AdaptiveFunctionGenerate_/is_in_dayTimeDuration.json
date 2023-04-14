@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInDayTimeDuration",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Checks whether dayTimeDuration value is in list of dayTimeDuration list and returns the boolean result.",
+    "functionId": "is_in<dayTimeDuration>",
+    "functionLabel": "is_in_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "dayTimeDuration",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

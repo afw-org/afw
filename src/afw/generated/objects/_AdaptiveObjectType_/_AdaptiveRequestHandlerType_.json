@@ -1,0 +1,41 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A registry type request_handler_factory entry.",
+    "objectType": "_AdaptiveRequestHandlerType_",
+    "propertyTypes": {
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of request handler type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of request handler type.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "requestHandlerType": {
+            "allowQuery": true,
+            "brief": "Type of request handler",
+            "dataType": "string",
+            "description": "Type of request handler.",
+            "label": "Request Handler Type",
+            "runtime": {
+                "memberName": "request_handler_type"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "handler_type"
+        },
+        "typedef": "afw_request_handler_factory_t"
+    }
+}

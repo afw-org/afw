@@ -1,0 +1,47 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Tree component.",
+    "label": "Tree Layout",
+    "objectType": "_AdaptiveLayoutComponentType_Tree",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "children": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
+            "description": "The children of this Tree.",
+            "label": "Children",
+            "required": true
+        },
+        "selectedKeys": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The keys of nodes in this tree that are selected.",
+            "label": "Selected Keys"
+        },
+        "expandedKeys": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The keys of nodes in this tree that are expanded.",
+            "label": "Expanded Keys"
+        },
+        "dense": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The tree nodes should be condensed in space.",
+            "label": "Dense"
+        }
+    }
+}

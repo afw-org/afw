@@ -1,0 +1,62 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Hidden component.",
+    "objectType": "_AdaptiveLayoutComponentType_Hidden",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "The contained component that will be hidden.",
+            "label": "Contains"
+        },
+        "for": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl).",
+            "label": "For"
+        },
+        "xsDown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "This content will only be displayed on extra small displays.",
+            "label": "Extra Small"
+        },
+        "smDown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "This content will only be displayed on small displays or smaller.",
+            "label": "Small"
+        },
+        "mdDown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "This content will only be displayed on medium displays or smaller.",
+            "label": "Medium"
+        },
+        "lgDown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "This content will only be displayed on large displays or smaller.",
+            "label": "Large"
+        },
+        "xlDown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "This content will only be displayed on extra large displays or smaller.",
+            "label": "Extra Large"
+        }
+    }
+}

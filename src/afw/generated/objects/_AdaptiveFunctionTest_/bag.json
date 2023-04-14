@@ -1,0 +1,38 @@
+{
+    "description": "Tests for polymorphic functions.",
+    "functionId": "bag",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "6"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "BAG with integers",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "6",
+                    "5",
+                    "4",
+                    "2"
+                ]
+            }
+        }
+    ]
+}

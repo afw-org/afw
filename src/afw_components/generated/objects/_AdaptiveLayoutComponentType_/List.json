@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "List",
+    "brief": "A layout container that renders a list of components.",
+    "description": "This component is a simple container component that renders its contents in a sequential, scrollable list.",
+    "implementationId": "List",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_List",
+    "label": "List"
+}

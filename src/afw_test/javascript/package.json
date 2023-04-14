@@ -1,0 +1,21 @@
+{
+  "name": "@afw/test",
+  "license": "UNLICENSED",
+  "version": "0.9.0",
+  "description": "Javascript library for internal testing of Adaptive Framework.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afw-org/afw.git"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "typings": "build/esm/index.d.ts",
+  "peerDependencies": {},
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",    
+    "build-p": "npm-run-all --parallel build:cjs build:esm",    
+    "build:cjs": "rimraf build/cjs && cross-env NODE_ENV=production swc src -d build/cjs -s --config-file ../../../.swcrc --copy-files",    
+    "build:esm": "rimraf build/esm && cross-env NODE_ENV=production swc -C module.type=es6 src -d build/esm -s --config-file ../../../.swcrc --copy-files"
+  }
+}
+

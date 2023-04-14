@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type ipAddress",
+    "category": "ipAddress",
+    "description": "Converts value to data type ipAddress returning ipAddress result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "ipAddress",
+    "functionLabel": "ipAddress",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "ipAddress",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

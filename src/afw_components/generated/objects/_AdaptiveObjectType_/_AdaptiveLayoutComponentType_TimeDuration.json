@@ -1,0 +1,57 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the TimeDuration component.",
+    "label": "Time Duration",
+    "objectType": "_AdaptiveLayoutComponentType_TimeDuration",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "dayTimeDuration": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value of the TimeDuration component expressed as a dayTime.",
+            "label": "Value"
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The description for the TimeDuration component that describes this input.",
+            "testDataParameter": "This is the description.",
+            "label": "Description"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the the TimeDuration is disabled.",
+            "label": "Disabled"
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the the TimeDuration is required.",
+            "label": "Required"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the TimeDuration component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "yearMonthDuration": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value of the TimeDuration component expressed as a yearMonth.",
+            "label": "Value"
+        }
+    }
+}

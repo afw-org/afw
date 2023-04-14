@@ -1,0 +1,7 @@
+#
+# Later there needs to be syntax to indicate "ignore text between this string
+# and this string in expect file" to allow ignoring things like time and UUIDs.
+# This is just here as a note now. When this is implemented, local_test_1
+# will not need to be skipped if this file contains the correct things to
+# ignore.
+#

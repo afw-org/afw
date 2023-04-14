@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeBoolean",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks for boolean arg1 is less than or equal to boolean arg2 and return the boolean result.",
+    "functionId": "le<boolean>",
+    "functionLabel": "le_boolean",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

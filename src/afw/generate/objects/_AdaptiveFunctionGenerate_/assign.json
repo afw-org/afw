@@ -1,0 +1,26 @@
+{
+    "brief": "Assign a value to a defined variable",
+    "category": "script",
+    "description": "Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from a list of values in a structured function.",
+    "functionId": "assign",
+    "functionLabel": "assign",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Variable name",
+            "name": "name"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "This is the value to assign to the variable.",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "description": "The value assigned."
+    },
+    "scriptSupport": true,
+    "sideEffects": [
+        "Value assigned"
+    ]
+}

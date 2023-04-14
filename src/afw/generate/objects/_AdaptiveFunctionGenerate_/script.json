@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type script",
+    "category": "script",
+    "description": "Converts value to data type script returning script result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "script",
+    "functionLabel": "script",
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "script",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

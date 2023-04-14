@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "TimeDuration",
+    "brief": "A component that renders a time duration.",
+    "description": "This component understands a time duration data type and renders a convenient way to select a duration of time.",
+    "implementationId": "TimeDuration",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_TimeDuration",
+    "label": "Time Duration"
+}

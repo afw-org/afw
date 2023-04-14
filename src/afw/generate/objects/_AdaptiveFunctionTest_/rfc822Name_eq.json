@@ -1,0 +1,53 @@
+{
+    "description": "Tests for eq<rfc822Name> function.",
+    "functionId": "eq<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                },
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@dOMAINPart"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                },
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A LANG as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation.",
+    "objectType": "_AdaptivePackageCompileOptions_",
+    "otherProperties": {
+        "brief": "Compiler option",
+        "description": "A compiler option for the compiler id with this property name.",
+        "dataType": "list",
+        "dataTypeParameter": "string"
+    }
+}

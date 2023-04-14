@@ -1,0 +1,29 @@
+generate/
+---------
+
+Directory <SRCSUBDIR>/generate/ of each src/ subdirectory is used by the
+afwdev generate subcommand to generate <SRCSUBDIR>/generated and a few other
+things.
+
+Each of the subdirectories of generate/ is processed in a different way.
+The structure of the generate/ directory along with file to see for
+additional information follows:
+
+generate/
+|-- additional_includes/   # See generate_additional_includes.txt
+|-- additional_javascript/ # See generate_additional_javascript.txt
+|-- datatype_tests/        # See generate_datatype_tests.txt
+|-- ebnf/                  # See generate_ebnf.txt
+|-- external/              # See generate_external.txt
+|-- function_tests/        # See generate_function_tests.txt
+|-- interfaces/            # See generate_interfaces.txt
+|-- manifest/              # See generate_manifest.txt
+|-- objects/               # See generate_objects.txt
+    |-- _AdaptiveCollection_/          # See generate_objects__AdaptiveCollection_.txt
+    |-- _AdaptiveDataTypeGenerate_/    # See generate_objects__AdaptiveDataTypeGenerate_
+    |-- _AdaptiveFunctionGenerate_/    # See generate_objects__AdaptiveFunctionGenerate_
+    |-- _AdaptiveObjectType_/          # See generate_objects__AdaptiveObjectType_
+    |-- _AdaptivePolymorphicFunction_/ # See generate_objects__AdaptivePolymorphicFunction_
+    |-- ...                            # See generate_objects.txt
+|-- polymorphic_functions/ # See generate_polymorphic_functions.txt
+|-- strings/               # See generate_strings.txt

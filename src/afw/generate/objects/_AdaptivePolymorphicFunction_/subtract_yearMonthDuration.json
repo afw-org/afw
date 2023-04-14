@@ -1,0 +1,27 @@
+{
+    "brief": "Subtract numbers",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Subtract yearMonthDuration arg2 from <dataType> arg1 and return the <dataType> result.",
+    "functionId": "subtract_yearMonthDuration",
+    "functionLabel": "subtract_yearMonthDuration",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "date",
+        "dateTime"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

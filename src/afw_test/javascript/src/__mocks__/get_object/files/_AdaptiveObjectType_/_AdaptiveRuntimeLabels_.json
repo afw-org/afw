@@ -1,0 +1,39 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/files/_AdaptiveObjectType_/_AdaptiveRuntimeLabels_",
+            "objectId": "_AdaptiveRuntimeLabels_",
+            "objectType": "_AdaptiveObjectType_"
+        },
+        "propertyTypes": {
+            "_meta_": {
+                "objectType": "_AdaptivePropertyTypes_"
+            },
+            "objectId": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "label": "Object Id",
+                "description": "The name of member in the struct that contains the objectId.",
+                "dataType": "string",
+                "brief": "The name of member in the struct that contains the objectId"
+            },
+            "indirectObjectId": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "label": "Indirect Object Id",
+                "description": "Indicates that the objectId in the associated struct is a pointer.",
+                "dataType": "boolean",
+                "brief": "The objectId in the associated struct is a pointer"
+            }
+        },
+        "objectType": "_AdaptiveRuntimeLabels_",
+        "description": "This is the object type of the labels property of _AdaptiveRuntimeObject_.",
+        "collectionURIs": [
+            "/files/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

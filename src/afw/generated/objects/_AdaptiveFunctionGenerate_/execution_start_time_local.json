@@ -1,0 +1,14 @@
+{
+    "afwCamelCaseFunctionLabel": "afwExecutionStartTimeLocal",
+    "brief": "The execution context (xctx) local create dataTime",
+    "camelCaseFunctionLabel": "executionStartTimeLocal",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return local dateTime when the execution context was created. This will usually be the start of request time.",
+    "functionId": "execution_start_time_local",
+    "functionLabel": "execution_start_time_local",
+    "parameters": [],
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionAnyURI",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Returns a list of anyURI contains all of the unique values in two or more list of anyURI values.",
+    "functionId": "union<anyURI>",
+    "functionLabel": "union_anyURI",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "anyURI"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

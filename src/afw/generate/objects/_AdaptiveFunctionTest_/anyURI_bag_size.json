@@ -1,0 +1,49 @@
+{
+    "description": "Tests for bag_size<anyURI> function.",
+    "functionId": "bag_size<anyURI>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": [
+                        "http://www.w3schools.com/images/smiley.gif",
+                        "http://datypic.com",
+                        "../%C3%A9dition.html",
+                        "../dition.html",
+                        "http://datypic.com/prod.html#shirt",
+                        "../prod.html#shirt",
+                        "urn:example:org"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "integer",
+                "value": "7"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "anyURI",
+                    "value": []
+                }
+            ],
+            "description": "Empty",
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

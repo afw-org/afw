@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqIgnoreCaseString",
+    "brief": "Checks for equal ignoring case",
+    "camelCaseFunctionLabel": "eqIgnoreCaseString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks for string arg1 is equal to string arg2 ignoring case and return the boolean result.",
+    "functionId": "eq_ignore_case<string>",
+    "functionLabel": "eq_ignore_case_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "arg1"
+        },
+        {
+            "dataType": "string",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

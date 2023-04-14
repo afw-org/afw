@@ -1,0 +1,31 @@
+{
+    "brief": "Returns index of first match of regular expression",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Search <dataType> value for a regular expression and return index. If not found, -1 is returned.",
+    "functionId": "regexp_index_of",
+    "functionLabel": "regexp_index_of",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value to search.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "A regular expression to use for search.",
+            "name": "regexp"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_regexp_index_of",
+    "returns": {
+        "dataType": "integer",
+        "description": "Zero-based index of subString or -1 if not found."
+    }
+}

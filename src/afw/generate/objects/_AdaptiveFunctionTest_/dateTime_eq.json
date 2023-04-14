@@ -1,0 +1,75 @@
+{
+    "description": "Tests for eq<dateTime> function.",
+    "functionId": "eq<dateTime>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                },
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:15.5"
+                },
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:15.5"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00-05:00"
+                },
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00-05:00"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00Z"
+                },
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:01Z"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

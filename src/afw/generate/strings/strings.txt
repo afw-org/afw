@@ -1,0 +1,746 @@
+# See the 'COPYING' file in the project root for licensing information.
+#
+# Adaptive Framework Strings
+#
+# Copyright (c) 2010-2023 Clemson University
+#
+
+#
+# Strings that will be included in afw_s .h and .c.
+#
+# - Blank lines and lines that begin with # are ignored
+# - If a line does not contain an equal sign (=), the string name and
+#   associated value are the same.
+# - For lines that contains an equal sign (=), the name is the characters
+#   that preceded the equal sign and the value is everything after the equal
+#   sign up to the end of the line.  The value can contain valid c escape
+#   characters such as \n.  By convention, name should start with a_ to
+#   distinguish it from name where name and value are the same.
+#
+# Duplicate string definitions are ignored.  Avoid assigning the same name
+# with different values since all but one will be ignored.
+#
+
+afw
+afw_runtime
+
+a_empty_string=
+a_period=.
+a_comma=,
+a_dash=-
+a_semicolon=;
+a_colon=:
+a_slash=/
+a_backslash=\\
+a_dot=.
+a_dot_slash=./
+a_dot_dot_slash=../
+a_tab=\t
+a_double_dot=..
+a_asterisk=*
+a_double_asterisk=**
+a_qualification_operator=::
+a_bracketed_value=[value]
+a_open_parenthesis=(
+a_close_parenthesis=)
+a_open_brace={
+a_close_brace=}
+a_open_square_bracket=[
+a_close_square_bracket=]
+a_open_angle_bracket=<
+a_close_angle_bracket=>
+a_ampersand=&
+a_request_body=request body
+a_equal==
+a_exclamation=!
+a_vertical_bar=|
+a_Content_dash_Type=Content-Type
+a_tuple_operation_call=call
+a_tuple_operation_call_adaptive_function=callA
+a_tuple_operation_call_lambda_function=callL
+a_tuple_operation_expression_tuple_with_variables=exprT
+a_tuple_operation_lambda_function=lambda
+a_tuple_operation_list=list
+a_tuple_operation_object=obj
+a_tuple_operation_property_reference=prop
+a_tuple_operation_script=script
+a_tuple_operation_template=tmpl
+a_tuple_operation_variable_reference=var
+a_tuple_operation_expression=expr
+a_automatic_start=automatic start
+a_Core_afw_adaptor=Core afw adaptor
+a_in_catch=in catch
+a_in_finally=in finally
+a_meta_key=meta()
+a_newline_char=\n
+
+# May be able to remove at some point
+mapped
+
+
+a_decision_not_applicable=notApplicable
+a_decision_not_applicable_upper_camel=NotApplicable
+a_decision_not_applicable_brief=Not applicable
+a_decision_not_applicable_description=Decision is not applicable.
+
+# Authorization actions
+control
+create
+delete
+query
+modify
+read
+
+# Lock related
+
+a_lock_multithreaded_pool=multithreaded_pool
+a_lock_multithreaded_pool_brief=Multithreaded pool
+a_lock_multithreaded_pool_description=This lock is used internally by afw_pool.c when accessing multithreaded pools.
+
+a_lock_environment=environment:registry
+a_lock_environment_brief=Environment registry lock
+a_lock_environment_description=This lock is used internally by afw_environment.c when accessing environment registry memory.
+
+a_lock_adaptor_id_anchor=environment:adaptor_id_anchor
+a_lock_adaptor_id_anchor_brief=Adaptor id anchor lock
+a_lock_adaptor_id_anchor_description=This lock is used internally when accessing adaptor id anchor memory.
+
+a_lock_authorization_handler_id_anchor=environment:authorization_handler_id
+a_lock_authorization_handler_id_anchor_brief=Authorization handler id anchor lock
+a_lock_authorization_handler_id_anchor_description=This lock is used internally when accessing authorization handler id anchor memory.
+
+a_lock_log_list=environment:log_list
+a_lock_log_list_brief=Environment log list lock
+a_lock_log_list_description=This lock is used internally when accessing environment log list memory.
+
+a_lock_flags=environment:flags
+a_lock_flags_brief=Environment flags lock
+a_lock_flags_description=This lock is used internally when accessing environment flags memory.
+
+# Flag related
+
+a_flag_unspecified=unspecified
+a_flag_unspecified_brief=Never set
+a_flag_unspecified_description=This is flag index 0 and is never set.
+
+a_flag_debug=debug
+a_flag_debug_brief=Basic debug flag
+a_flag_debug_description=This triggers all basic debugging.
+
+a_flag_debug_detail=debug:detail
+a_flag_debug_detail_brief=Debug detail
+a_flag_debug_detail_description=This triggers all basic plus detail debugging.
+
+a_flag_debug_lock=debug:lock
+a_flag_debug_lock_brief=Debug lock
+a_flag_debug_lock_description=This triggers all lock debugging.
+
+a_flag_debug_pool=debug:pool
+a_flag_debug_pool_brief=Pool debug
+a_flag_debug_pool_description=This triggers basic pool debugging.
+
+a_flag_debug_pool_detail=debug:pool:detail
+a_flag_debug_pool_detail_brief=Detailed pool debug
+a_flag_debug_pool_detail_description=This triggers basic and detail pool debugging.
+
+a_flag_debug_function_active=debug:function_active
+a_flag_debug_function_active_brief=Print debug() if not detail calls
+a_flag_debug_function_active_description=This causes calls to the debug() adaptive function to print if the detail parameter is not true.  If off, debug() calls are ignored.
+
+a_flag_debug_function_active_detail=debug:function_active:detail
+a_flag_debug_function_active_detail_brief=Print all debug() calls
+a_flag_debug_function_active_detail_description=This causes all calls to the debug() adaptive function to print.  If off, debug() calls with true specified for detail parameter are ignored.
+
+a_flag_response_error=response:error
+a_flag_response_error_brief=Include backtrace, backtraceEvaluation, and contextual
+a_flag_response_error_description=Include backtrace, backtraceEvaluation, and contextual in error responses.
+
+a_flag_response_error_backtrace=response:error:backtrace
+a_flag_response_error_backtrace_brief=Include backtrace
+a_flag_response_error_backtrace_description=Include backtrace in error responses.
+
+a_flag_response_error_backtraceEvaluation=response:error:backtraceEvaluation
+a_flag_response_error_backtraceEvaluation_brief=Include evaluation backtrace
+a_flag_response_error_backtraceEvaluation_description=Include evaluation backtrace in error responses.
+
+a_flag_response_error_contextual=response:error:contextual
+a_flag_response_error_contextual_brief=Include contextual
+a_flag_response_error_contextual_description=Include contextual information in error responses.
+
+a_flag_response_error_hasAdditionalDetail=response:error:hasAdditionalDetail
+a_flag_response_error_hasAdditionalDetail_brief=Active if any other response:error flags are active
+a_flag_response_error_hasAdditionalDetail_description=This flag can be tested to determine if any other response:error flags are active.  This flag should not normally be directly set.
+
+a_flag_response_console=response:console
+a_flag_response_console_brief=The console stream will be sent to the request's response
+a_flag_response_console_description=Anything written to the console stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.
+
+a_flag_response_console_stream=response:console:stream
+a_flag_response_console_stream_brief=The console stream will be sent to a stream in the request's response
+a_flag_response_console_stream_description=Anything written to the console stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:console is on, the console stream is included as the value of the \"console\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.
+
+a_flag_response_stderr=response:stderr
+a_flag_response_stderr_brief=The stderr stream will be sent to the request's response
+a_flag_response_stderr_description=Anything written to the stderr stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stderr.
+
+a_flag_response_stderr_stream=response:stderr:stream
+a_flag_response_stderr_stream_brief=The stderr stream will be sent to a stream in the request's response
+a_flag_response_stderr_stream_description=Anything written to the stderr stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stderr is on, the stderr stream is included as the value of the \"stderr\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stderr.  This flag requires content-type application/x-afw.
+
+a_flag_response_stdout=response:stdout
+a_flag_response_stdout_brief=The stdout stream will be sent to the request's response
+a_flag_response_stdout_description=Anything written to the stdout stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.
+
+a_flag_response_stdout_stream=response:stdout:stream
+a_flag_response_stdout_stream_brief=The stdout stream will be sent to a stream in the request's response
+a_flag_response_stdout_stream_description=Anything written to the stdout stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stdout is on, the stdout stream is included as the value of the \"stdout\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.
+
+a_flag_trace=trace
+a_flag_trace_brief=Basic traces
+a_flag_trace_description=This produces all basic traces.
+
+a_flag_trace_detail=trace:detail
+a_flag_trace_detail_brief=All detail traces
+a_flag_trace_detail_description=This produces all basic plus additional detail traces.
+
+a_flag_trace_adaptor=trace:adaptor
+a_flag_trace_adaptor_brief=Basic trace for all adaptors
+a_flag_trace_adaptor_description=This produces basic traces for all adaptors.
+
+a_flag_trace_adaptor_detail=trace:adaptor:detail
+a_flag_trace_adaptor_detail_brief=Detail trace for all adaptors
+a_flag_trace_adaptor_detail_description=This produces all basic plus additional detail traces for all adaptors.
+
+a_flag_trace_authorizationHandler=trace:authorizationHandler
+a_flag_trace_authorizationHandler_brief=Basic trace for all authorizationHandler
+a_flag_trace_authorizationHandler_description=This produces basic traces for all authorizationHandler.
+
+a_flag_trace_authorizationHandler_detail=trace:authorizationHandler:detail
+a_flag_trace_authorizationHandler_detail_brief=Detail trace for all authorizationHandlers
+a_flag_trace_authorizationHandler_detail_description=This produces all basic plus additional detail traces for all authorizationHandlers.
+
+a_flag_trace_evaluation_detail=trace:evaluation:detail
+a_flag_trace_evaluation_detail_brief=Detail trace for evaluations
+a_flag_trace_evaluation_detail_description=This produces detail traces for adaptive value evaluations.
+
+a_flag_trace_request=trace:request
+a_flag_trace_request_brief=Basic trace for all requests
+a_flag_trace_request_description=This produces basic traces for all requests.
+
+a_flag_trace_request_detail=trace:request:detail
+a_flag_trace_request_detail_brief=Detail trace for all requests
+a_flag_trace_request_detail_description=This produces all basic plus additional detail traces for all requests.
+
+a_flag_trace_authorization=trace:authorization
+a_flag_trace_authorization_brief=Basic trace for authorization
+a_flag_trace_authorization_description=This produces basic traces for authorization.
+
+a_flag_trace_authorization_detail=trace:authorization:detail
+a_flag_trace_authorization_detail_brief=Detail trace for authorization
+a_flag_trace_authorization_detail_description=This produces all basic plus additional detail traces for authorization.
+
+a_flag_trace_authorization_check_bypass=trace:authorization:bypass
+a_flag_trace_authorization_check_bypass_brief=Basic trace for authorization check call bypasses
+a_flag_trace_authorization_check_bypass_description=This produces traces for authorization check call bypasses.
+
+a_flag_trace_authorization_check=trace:authorization:check
+a_flag_trace_authorization_check_brief=Basic trace for authorization check call
+a_flag_trace_authorization_check_description=This produces basic traces for authorization check call.
+
+a_flag_trace_authorization_check_detail=trace:authorization:check:detail
+a_flag_trace_authorization_check_detail_brief=Detail trace for authorization check call
+a_flag_trace_authorization_check_detail_description=This produces all basic plus additional detail traces for authorization check calls.
+
+a_flag_trace_authorization_decision=trace:authorization:decision
+a_flag_trace_authorization_decision_brief=Basic trace for authorization check call's decision
+a_flag_trace_authorization_decision_description=This produces basic traces for authorization check call's decision.
+
+a_flag_trace_authorization_decision_detail=trace:authorization:decision:detail
+a_flag_trace_authorization_decision_detail_brief=Detail trace for authorization check call's decision
+a_flag_trace_authorization_decision_detail_description=This produces all basic plus additional detail traces for authorization check call's decision.
+
+# Miscellaneous.
+Adaptive
+annotated
+fatal
+own
+S
+N
+BOOL
+NULL
+M
+B
+L
+SS
+NS
+BS
+size
+uint32
+metrics
+adaptor_metrics
+null_terminated_array_of_internal
+null_terminated_array_of_objects
+null_terminated_array_of_utf8_z_key_value_pair_objects
+null_terminated_array_of_pointers
+null_terminated_array_of_values
+internal
+mappedObjectId
+priority
+parameter
+parameter_number
+argument
+unknown
+basic
+flags
+compile_type
+interface
+octet
+queryString
+undefined
+a_undefined_as_string=<undefined>
+void
+adaptorTypeSpecific
+mapObject
+a_current_colon_colon_mapObject=current::mapObject
+mapBackObject
+a_current_colon_colon_mapBackObject=current::mapBackObject
+returnObject
+a_current_colon_colon_returnObject=current::returnObject
+queryCriteria
+useDefaultProcessing
+a_dash_s_test_script=--s test_script
+a_dash_dash_syntax_test_script=--syntax test_script
+parenthesized_expression
+relaxed_json
+a_compile_expect_error=Compile expect error
+a_evaluate_expect_error=Evaluate expect error
+a_compile_source_error=Compile source error
+a_evaluate_source_error=Evaluate source error
+a_other_error=Other error
+a_slash_afw=/afw
+
+# adaptor authorization
+actionId
+modifyEntries
+create
+delete
+query
+read
+update
+authorizationAdaptorCreate
+authorizationAdaptorDelete
+authorizationAdaptorQuery
+authorizationAdaptorRead
+authorizationAdaptorUpdate
+subject
+resource
+action
+environment
+
+# Scripting
+maluba
+break
+case
+catch
+continue
+const
+declare
+define
+do
+else
+finally
+for
+foreach
+function
+if
+in
+instanceof
+interface
+return
+then
+throw
+typeof
+try
+while
+in
+of
+console
+stderr
+stdout
+switch
+response_body
+raw_response_body
+
+
+# _AdaptiveSystemInfo_ related
+general
+os
+
+# object id for /afw/_AdaptiveObject_/initialEnvironmentVariables
+initialEnvironmentVariables
+
+# object id for /afw/_AdaptiveObject_/systemInfo
+systemInfo
+
+# application
+a_context_type_application_qualifier_definitions_path=/afw/_AdaptiveContextType_/application/qualifierDefinitions
+mode
+pid
+scopeNumber
+programName
+
+# query ops
+and
+or
+in
+out
+contains
+excludes
+match
+differ
+eq
+lt
+le
+lte
+gt
+ge
+gte
+ne
+
+
+# service related
+service
+service_startup
+service_status
+service_type
+disabled
+permanent
+manual
+immediate
+a_service_type_adaptor_title=Service type for adaptors.
+a_service_type_authorizationHandler_title=Service type for authorizationHandler.
+a_service_type_log_title=Service type for logs.
+stopping_adaptor_instances
+stopping_authorization_handler_instances
+Configuration
+
+a_application_json=application/json
+json
+afwjson
+a_application_yaml=application/x-yaml
+yaml
+afwyaml
+ubjson
+a_application_xml=application/xml
+xml
+a_star_slash_star=*/*
+
+GET
+PUT
+POST
+DELETE
+PATCH
+
+# variable qualifiers and property names
+current
+custom
+related
+
+# context types
+modelAddObject
+modelDeleteObject
+modelGetObject
+modelInitialObjectId
+modelModifyObject
+modelRetrieveObjects
+modelReplaceObject
+modelGetProperty
+modelSetProperty
+
+object
+propertyName
+mappedObject
+mappedPropertyName
+mappedValue
+application
+adaptor
+model
+objectTypeObject
+propertyTypeObject
+
+a_not_implemented=not implemented
+a_lambda_function=Lambda function.
+an_ellipsis=...
+expression
+expression_tuple
+evaluation
+script
+environment
+request
+afw_utf8_t
+afw_memory_t
+none
+adaptor_additional_metrics
+applicable_flags
+
+errors
+  
+ObjectType
+PropertyType
+DataType
+  
+meta
+like
+any
+
+id
+path
+objectType
+parentPaths
+a_meta_objectType=_meta_.objectType
+passed
+result
+expected
+
+# Core prefix for property names
+_adaptive
+_meta_
+
+# Core prefix for object types
+_Adaptive
+
+# Used in mapping.
+map
+ao
+var
+origin
+expressions
+
+# true and false string.
+true
+false
+
+# special number identifiers
+Infinity
+INF
+NaN
+
+# response properties
+status
+success
+warning
+error
+failure
+unavailable
+requestId
+resourceId
+
+# response codes
+200
+201
+400
+403
+404
+500
+  
+# error property names
+errorCode
+errorCodeId
+errorSource
+parserCursor
+function
+rvSourceId
+rv
+rvDecoded
+message
+backtrace
+
+# response reason
+OK
+Created
+
+# common execution context (xctx) names
+base
+request_thread
+request_session
+
+# journal entry property names.
+source
+beginTime
+endTime
+status
+intermediate
+propertyName
+value
+request
+response
+reissue
+consumed
+consumerId
+entryCursor
+entry
+limit
+option
+  
+# journal method name.
+a_journal_get_entry=journal::get_entry
+
+# publish property names
+peerId
+source
+actions
+publish
+
+# publish action property names
+method
+adaptorId
+objectType
+suggestedObjectId
+objectId
+object
+entries
+
+# method names
+retrieve_objects
+get_object
+add_object
+modify_object
+replace_object
+update_object
+delete_object
+
+# modify entry types
+assert_has_property
+set_property
+remove_property
+assert_value
+assert_has_value
+add_value
+remove_value
+
+# value inf ids
+variable
+function
+call
+reference_by_key
+template
+lambda
+
+# json primitive value
+jsonPrimitive
+object
+array
+number
+string
+boolean
+null
+true
+false
+  
+# qualifiers
+fn
+
+# Singleton keys.
+afw_request_handler_head
+
+# registry types, titles, and descriptions.
+singleton
+adaptor
+adaptor_id
+adaptor_type
+authorization_handler
+authorization_handler_id
+authorization_handler_type
+conf_type
+content_type
+data_type
+error_rv_decoder
+function
+log
+log_id
+log_type
+model_adaptor
+module_path
+policy_combining_algorithm
+registry_type
+request_handler
+request_handler_type
+rule_combining_algorithm
+runtime_custom
+runtime_object_map_inf
+runtime_value_accessor
+
+adaptor_id_anchor
+authorization_handler_id_anchor
+
+service
+
+# conf types
+application
+a_application_title=Adaptive Framework Application Configuration
+a_application_description=This configuration type provides the application object for this Adaptive Framework environment.  It can only be specified once.
+authorizationHandler
+a_authorizationHandler_title=Adaptive Framework Authorization Handler Configuration
+a_authorizationHandler_description=This configuration type adds an authorization handler for this Adaptive Framework environment.
+extension
+a_extension_title=Adaptive Framework Extension Configuration
+a_extension_description=This configuration type adds additional functionality this Adaptive Framework environment.
+adaptor
+a_adaptor_title=Adaptive Framework Adaptor Configuration
+a_adaptor_description=This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.
+log
+a_log_title=Adaptive Framework Log Configuration
+a_log_description=This configuration type adds a log and corresponding service to this Adaptive Framework environment.
+requestHandler
+a_requestHandler_title=Adaptive Framework Request Handler Configuration
+a_requestHandler_description=This configuration type adds a request handler to this Adaptive Framework environment.
+services
+a_services_title=Adaptive Framework Services Configuration
+a_services_description=This configuration type defines how services are handled in this Adaptive Framework environment.  It can only be specified once.
+ 
+# Extension ids and paths.
+afw_ldap_adaptor
+a_afw_ldap_adaptor_module_path_dll=libafwldap.dll
+a_afw_ldap_adaptor_module_path_so=libafwldap.so
+afw_sql_adaptor
+a_afw_sql_adaptor_module_path_dll=libafwsql.dll
+a_afw_sql_adaptor_module_path_so=libafwsql.so
+afw_bdb_adaptor
+a_afw_bdb_adaptor_module_path_dll=libafwbdb.dll
+a_afw_bdb_adaptor_module_path_so=libafwbdb.so
+afw_lmdb_adaptor
+a_afw_lmdb_adaptor_module_path_dll=libafwlmdb.dll
+a_afw_lmdb_adaptor_module_path_so=libafwlmdb.so
+afw_dynamo_db_adaptor
+a_afw_dynamo_db_adaptor_module_path_dll=libafwdynamodb.dll
+a_afw_dynamo_db_adaptor_module_path_so=libafwdynamodb.so
+afw_yaml
+a_afw_yaml_module_path_dll=libafwyaml.dll
+a_afw_yaml_module_path_so=libafwyaml.so
+afw_ubjson
+a_afw_ubjson_module_path_dll=libafwubjson.dll
+a_afw_ubjson_module_path_so=libafwubjson.so
+xacml
+a_afw_xacml_module_path_dll=libafwxacml.dll
+a_afw_xacml_module_path_so=libafwxamcl.so
+
+afw_components
+afw_components_extension_loaded
+ensure_afw_components_extension_loaded
+
+# Index property names
+key
+value
+objectType
+filter
+unique
+options
+test
+retroactive
+num_indexed
+num_processed
+message
+case_insensitive_string=case-insensitive-string
+case_sensitive_string=case-sensitive-string
+sort_reverse=sort-reverse
+numeric

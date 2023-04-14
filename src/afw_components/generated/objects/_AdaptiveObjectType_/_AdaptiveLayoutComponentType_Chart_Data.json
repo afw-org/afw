@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Data for Chart component",
+    "label": "Data",
+    "objectType": "_AdaptiveLayoutComponentType_Chart_Data",
+    "propertyTypes": {
+        "x": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "X-Axis Data point.",
+            "label": "X"
+        },
+        "y": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Y-Axis Data point.",
+            "label": "Y"
+        }
+    }
+}

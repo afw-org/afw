@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtObjectPath",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltObjectPath",
+    "category": "objectPath",
+    "dataTypeMethod": true,
+    "description": "Checks for objectPath arg1 is less that objectPath arg2 and return the boolean result.",
+    "functionId": "lt<objectPath>",
+    "functionLabel": "lt_objectPath",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "objectPath",
+            "name": "arg1"
+        },
+        {
+            "dataType": "objectPath",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

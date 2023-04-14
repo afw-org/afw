@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToDateTime",
+    "brief": "Converts string to dateTime",
+    "camelCaseFunctionLabel": "toDateTime",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to dateTime.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_dateTime",
+    "functionLabel": "to_dateTime",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "dateTime"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

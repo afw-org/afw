@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeHexBinary",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Checks for hexBinary arg1 is less than or equal to hexBinary arg2 and return the boolean result.",
+    "functionId": "le<hexBinary>",
+    "functionLabel": "le_hexBinary",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

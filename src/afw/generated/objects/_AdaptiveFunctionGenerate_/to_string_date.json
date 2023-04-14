@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringDate",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Converts date value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<date>",
+    "functionLabel": "to_string_date",
+    "parameters": [
+        {
+            "dataType": "date",
+            "description": "A date value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

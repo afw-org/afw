@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Functions</title>
+    <paragraph>
+        <literal>Adaptive Functions</literal> are special functions that are 
+        declared in a way that makes them visible externally, so that clients, 
+        expressions or adaptive scripts can invoke them. The core registered 
+        several hundred adaptive functions, but extensions may register 
+        additional ones. Every adaptive function is organized into categories:
+    </paragraph>
+    <function-categories-table />    
+</doc>

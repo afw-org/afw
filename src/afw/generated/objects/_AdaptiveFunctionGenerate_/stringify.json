@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwStringify",
+    "brief": "Evaluate and decompile a value",
+    "camelCaseFunctionLabel": "stringify",
+    "category": "compiler",
+    "description": "Evaluate and decompile an adaptive value to string. For most values this has the effect of producing a string containing json.",
+    "functionId": "stringify",
+    "functionLabel": "stringify",
+    "parameters": [
+        {
+            "description": "Value to stringify.",
+            "name": "value"
+        },
+        {
+            "description": "Optional replacer function.",
+            "name": "replacer",
+            "optional": true
+        },
+        {
+            "description": "Add whitespace for readability if present and not 0. This parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
+            "name": "whitespace",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "Evaluated and decompiled value."
+    }
+}

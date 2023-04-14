@@ -1,0 +1,4 @@
+{
+    "name": "afw_service_type",
+    "description": "Adaptive framework service type interface. Each instance is registered in the environment with type of \"service_type\" and id of the service type id."
+}

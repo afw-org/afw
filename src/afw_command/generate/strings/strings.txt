@@ -1,0 +1,41 @@
+# See the 'COPYING' file in the project root for licensing information.
+#
+# Adaptive Framework Strings
+#
+# Copyright (c) 2010-2023 Clemson University
+#
+
+#
+# Strings that will be included in afw_s .h and .c.
+#
+# - Blank lines and lines that begin with # are ignored
+# - If a line does not contain an equal sign (=), the string name and
+#   associated value are the same.
+# - For lines that contains an equal sign (=), the name is the characters
+#   that preceded the equal sign and the value is everything after the equal
+#   sign up to the end of the line.  The value can contain valid c escape
+#   characters such as \n.  By convention, name should start with a_ to
+#   distinguish it from name where name and value are the same.
+#
+# Duplicate string definitions are ignored.  Avoid assigning the same name
+# with different values since all but one will be ignored.
+#
+
+afw_command
+afw_command_local_mode
+afw_command_interactive
+afw_command_dash_x
+
+# Local mode directives
+a_local_directive_starts_with=++afw-local-
+a_local_mode_evaluate=++afw-local-mode-evaluate
+a_local_mode_evaluate_direct=++afw-local-mode-evaluate-direct
+a_local_mode_action=++afw-local-mode-action
+a_local_mode_action_direct=++afw-local-mode-action-direct
+a_local_mode_http_like=++afw-local-mode-http-like
+a_local_request_properties=++afw-local-multi-request-properties
+
+METHOD
+URI
+SERVER_PROTOCOL
+

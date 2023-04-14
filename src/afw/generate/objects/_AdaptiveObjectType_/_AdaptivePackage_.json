@@ -1,0 +1,87 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is essential information that is needed for this AFW package by afwdev and related development tools.",
+    "objectType": "_AdaptivePackage_",
+    "propertyTypes": {
+        "afwPackageId": {
+            "dataType": "string",
+            "description": "This is the AFW package id.",
+            "label": "AFW Package Id",
+            "required": false
+        },
+        "afwPackageLabel": {
+            "dataType": "string",
+            "description": "This is usually the AFW package id with dashes changed to underscores for use in places where dashes are not allowed.",
+            "label": "AFW Package Label",
+            "required": false
+        },
+        "brief": {
+            "dataType": "string",
+            "description": "This is a brief description of this repository.",
+            "label": "Brief",
+            "required": false
+        },
+        "bugReportEmail": {
+            "dataType": "string",
+            "description": "This is the email to which users should send bug reports. It's used in the bug-report parameter of AC_INIT in configure.ac.",
+            "label": "Bug Report Email",
+            "required": false
+        },
+        "compileOptions": {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptivePackageCompileOptions_",
+            "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
+            "label": "Compile Options",
+            "required": false
+        },
+        "description": {
+            "dataType": "string",
+            "description": "This describes this repository.",
+            "label": "Description",
+            "required": false
+        },
+        "homePageUrl": {
+            "dataType": "string",
+            "description": "This is the home page for the package/repository. It's used in the url parameter of AC_INIT in configure.ac.",
+            "label": "Home Page",
+            "required": false
+        },
+        "installPackageSubdir": {
+            "dataType": "string",
+            "description": "This is the name of the package as known to make. It's used in the package parameter of AC_INIT in configure.ac. This name is used as the subdirectory within the target's include and lib directories. For the repositories in afw-org, this is usually afw<MAJOR> where <MAJOR> is the same as in the version keyword.",
+            "label": "Make Package Name",
+            "required": true
+        },
+        "srcdirManifest": {
+            "dataType": "string",
+            "description": "This is the name of the property in the \"srcdirs\" property of the AFW extension, that when loaded at runtime, will register the repository's manifest.",
+            "label": "Manifest Srcsubdir",
+            "required": false
+        },
+        "srcdirs": {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptivePackageSrcdirs_",
+            "description": "This is information about subdirectories in this repository's src/ directory.",
+            "label": "Package Srcdir Info",
+            "required": false
+        },
+        "tarballName": {
+            "dataType": "string",
+            "description": "This is the name of the tarball produced by make dist. It's used in the tarname parameter of AC_INIT in configure.ac.\n\nThis is the full package name. It defaults to package-name with ‘GNU ’ stripped, lower-cased, and all characters other than alphanumerics and underscores are changed to ‘-’. ",
+            "label": "Tarball Name",
+            "required": false
+        },
+        "version": {
+            "dataType": "string",
+            "description": "This is the current version of the package. The form must be <MAJOR>.<MINOR>.<PATCH> as defined at http://semver.org.",
+            "label": "<MAJOR>.<MINOR>.<PATCH>",
+            "required": true
+        }
+    }
+}

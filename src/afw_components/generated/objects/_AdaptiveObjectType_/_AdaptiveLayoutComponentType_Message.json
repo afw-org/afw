@@ -1,0 +1,55 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Message component.",
+    "objectType": "_AdaptiveLayoutComponentType_Message",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "canDismiss": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Message can be dismissed.",
+            "label": "Can Dismiss"
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Optional components to be displayed for the Message component.",
+            "label": "Contains"
+        },
+        "isMultiline": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Message message is multilined.",
+            "label": "Is Multiline"
+        },
+        "message": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Optional message to be displayed for the Message component.",
+            "testDataParameter": "This is the message to be displayed.",
+            "label": "Message"
+        },
+        "status": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Status of message (error, info, warning).",
+            "label": "Status",
+            "possibleValues": [
+                "error",
+                "info",
+                "warning"
+            ]
+        }
+    }
+}

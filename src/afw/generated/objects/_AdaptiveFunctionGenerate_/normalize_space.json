@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalizeSpace",
+    "brief": "Trims whitespace from beginning and end",
+    "camelCaseFunctionLabel": "normalizeSpace",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Remove whitespace from the beginning and end of a <dataType> value.",
+    "functionId": "normalize_space",
+    "functionLabel": "normalize_space",
+    "parameters": [
+        {
+            "name": "string",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

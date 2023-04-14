@@ -1,0 +1,66 @@
+{
+    "description": "Tests for bag<yearMonthDuration_1_0> function.",
+    "functionId": "bag<yearMonthDuration_1_0>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "P3Y6M"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "P20M"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "P0Y20M"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "P0Y"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "-P60Y"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "-P60Y"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "-P60Y"
+                },
+                {
+                    "dataType": "yearMonthDuration_old",
+                    "value": "-P60Y"
+                }
+            ],
+            "description": "duplicates",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "yearMonthDuration_old",
+                "value": [
+                    "P3Y6M",
+                    "P20M",
+                    "P0Y20M",
+                    "P0Y",
+                    "-P60Y",
+                    "-P60Y",
+                    "-P60Y",
+                    "-P60Y"
+                ]
+            }
+        },
+        {
+            "description": "Empty",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "yearMonthDuration_old",
+                "value": []
+            }
+        }
+    ]
+}

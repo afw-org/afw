@@ -1,0 +1,75 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of \"_AdaptiveLayoutComponentType_\" followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
+    "objectIdPropertyName": "componentType",
+    "objectType": "_AdaptiveLayoutComponentType_",
+    "propertyTypes": {
+        "category": {
+            "allowQuery": true,
+            "brief": "The category for this layout component type",
+            "dataType": "string",
+            "description": "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+            "label": "Category",
+            "required": false
+        },
+        "componentType": {
+            "allowQuery": true,
+            "brief": "The Component Type id for this component type",
+            "dataType": "string",
+            "description": "Component type id is the object id for this Layout Component Type.",
+            "label": "Component Type",
+            "required": true
+        },
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description of this component type",
+            "dataType": "string",
+            "description": "Brief description of this component type.",
+            "label": "Brief",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this component type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this component type.",
+            "label": "Description",
+            "required": false
+        },
+        "implementationId": {
+            "brief": "Implementation id for this component type",
+            "dataType": "string",
+            "description": "Id associated with the implementation for this component type.",
+            "label": "Implementation Id",
+            "required": false
+        },
+        "implementationParameters": {
+            "allowQuery": false,
+            "brief": "Object passed to the implementation",
+            "dataType": "object",
+            "description": "This object is passed to the implementation.",
+            "label": "Implementation Parameters",
+            "required": false
+        },
+        "instanceObjectType": {
+            "allowQuery": true,
+            "brief": "Object type id of the instance parameters object",
+            "dataType": "string",
+            "description": "Object type id of the instance parameters object.",
+            "label": "Parameters Object Type",
+            "required": false
+        },
+        "label": {
+            "allowQuery": true,
+            "brief": "Label to be used for this component type",
+            "dataType": "string",
+            "description": "Label to be used for this component type.",
+            "label": "Label",
+            "required": false
+        }
+    }
+}

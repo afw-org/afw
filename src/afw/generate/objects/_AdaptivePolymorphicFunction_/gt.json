@@ -1,0 +1,67 @@
+{
+    "brief": "Checks for greater than",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks for <dataType> arg1 is greater than <dataType> arg2 and return the boolean result.",
+    "functionId": "gt",
+    "functionLabel": "gt",
+    "pure": true,
+    "op": ">",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "arg2",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "regexp",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_gt",
+    "polymorphicOverrides": {
+        "date": {
+            "description": "Checks for date arg1 is greater than date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
+        },
+        "dateTime": {
+            "description": "Checks for dateTime arg1 is greater than dateTime arg2 and return the boolean result.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."
+        },
+        "time": {
+            "description": "Checks for time arg1 is greater than time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
+        }
+    },
+    "returns": {
+        "dataType": "boolean"
+    }
+}

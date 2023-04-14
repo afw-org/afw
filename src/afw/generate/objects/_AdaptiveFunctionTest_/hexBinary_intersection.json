@@ -1,0 +1,64 @@
+{
+    "description": "Tests for intersection<hexBinary> function.",
+    "functionId": "intersection<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "FFB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "hexBinary",
+                "value": [
+                    "0FB7",
+                    "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

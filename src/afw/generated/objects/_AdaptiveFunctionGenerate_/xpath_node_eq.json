@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwXpathNodeEq",
+    "brief": "Checks for equal",
+    "camelCaseFunctionLabel": "xpathNodeEq",
+    "category": "xpathExpression",
+    "description": "Checks for xpathExpression arg1 is equal to xpathExpression arg2 and return the boolean result.",
+    "functionId": "xpath_node_eq",
+    "functionLabel": "xpath_node_eq",
+    "op": "==",
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "arg1"
+        },
+        {
+            "dataType": "xpathExpression",
+            "name": "arg2"
+        }
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_eq",
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

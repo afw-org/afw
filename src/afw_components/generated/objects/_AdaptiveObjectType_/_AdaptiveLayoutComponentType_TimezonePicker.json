@@ -1,0 +1,32 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the TimezonePicker component.",
+    "objectType": "_AdaptiveLayoutComponentType_TimezonePicker",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text label for this TimezonePicker component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text description for this TimezonePicker component.",
+            "testDataParameter": "This is the description.",
+            "label": "Description"
+        }
+    }
+}

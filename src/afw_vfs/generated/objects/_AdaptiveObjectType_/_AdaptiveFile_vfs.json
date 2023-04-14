@@ -1,0 +1,52 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/vfs_extension"
+    ],
+    "description": "This is the single object type of objects in a vfs adaptor.",
+    "objectType": "_AdaptiveFile_vfs",
+    "propertyTypes": {
+        "data": {
+            "brief": "Contents of file",
+            "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+            "label": "Data",
+            "defaultValue": "",
+            "required": false
+        },
+        "isDirectory": {
+            "allowWrite": false,
+            "brief": "Is directory",
+            "dataType": "boolean",
+            "description": "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+            "label": "Is Directory"
+        },
+        "timeAccessed": {
+            "brief": "Time last accessed",
+            "dataType": "dateTime",
+            "description": "This is the time the file was last accessed.",
+            "label": "Time Accessed",
+            "required": false
+        },
+        "timeCreated": {
+            "brief": "Time created",
+            "dataType": "dateTime",
+            "description": "This is the time the file was created.",
+            "label": "Time Created",
+            "required": false
+        },
+        "timeModified": {
+            "brief": "Time last modified",
+            "dataType": "dateTime",
+            "description": "This is the time the file was last modified.",
+            "label": "Time Modified",
+            "required": false
+        },
+        "vfsPath": {
+            "allowWrite": false,
+            "brief": "VFS path",
+            "dataType": "anyURI",
+            "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
+            "label": "VFS Path"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration object.",
+    "objectType": "_AdaptiveConf_",
+    "propertyTypes": {
+        "sourceLocation": {
+            "allowQuery": true,
+            "brief": "Contextual string added when this configuration object is processed",
+            "dataType": "string",
+            "description": "This is a contextual string added when this configuration object is processed.",
+            "label": "Source Location"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "The description of this configuration component",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "The description of this configuration component.",
+            "label": "Description"
+        },
+        "title": {
+            "allowQuery": true,
+            "brief": "The title for this configuration component",
+            "dataType": "string",
+            "description": "The title for this configuration component.",
+            "label": "Title"
+        },
+        "type": {
+            "allowQuery": true,
+            "brief": "Configuration type",
+            "dataType": "string",
+            "description": "Configuration type.",
+            "label": "Type",
+            "required": true
+        }
+    }
+}

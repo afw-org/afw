@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeHexBinary",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<hexBinary>",
+    "functionLabel": "bag_size_hexBinary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

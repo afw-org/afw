@@ -1,0 +1,133 @@
+{
+  "result": {
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+      "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive service.",
+    "objectIdPropertyName": "serviceId",
+    "objectType": "_AdaptiveService_",
+    "propertyTypes": {
+      "annotation": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveAnnotation_",
+        "description": "Annotation object",
+        "label": "Annotation"
+      },
+      "canRestart": {
+        "allowQuery": true,
+        "dataType": "boolean",
+        "description": "Can attempt to restart this service.",
+        "label": "Can Restart"
+      },
+      "canStart": {
+        "allowQuery": true,
+        "dataType": "boolean",
+        "description": "Can attempt to start this service.",
+        "label": "Can Start"
+      },
+      "canStop": {
+        "allowQuery": true,
+        "dataType": "boolean",
+        "description": "Can attempt to stop this service.",
+        "label": "Can Stop"
+      },
+      "confId": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "The \"id\" part of serviceId.  This is the value of appropriate conf id property based on the conf type.",
+        "label": "Conf Id"
+      },
+      "confPropertyObjectType": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Object type for \"conf\" property object.",
+        "label": "Conf Property Object Type"
+      },
+      "confSubtype": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "This is the value of appropriate conf subtype property based on the conf type.",
+        "label": "Conf Subtype"
+      },
+      "sourceLocation": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Related to where service was defined.",
+        "label": "Source Location"
+      },
+      "serviceId": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Service id.",
+        "label": "Service"
+      },
+      "serviceType": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "The \"type\" part of serviceId.",
+        "label": "Service Type"
+      },
+      "startTime": {
+        "allowQuery": true,
+        "dataType": "dateTime",
+        "description": "Start time.",
+        "label": "Start Time"
+      },
+      "startup": {
+        "allowQuery": true,
+        "dataType": "string",
+        "defaultValue": "manual",
+        "description": "Service startup condition.",
+        "label": "Startup"
+      },
+      "startupDescription": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Service startup condition description.",
+        "label": "Startup Description"
+      },
+      "status": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Service status.",
+        "label": "Status"
+      },
+      "statusDebug": {
+        "allowQuery": true,
+        "dataType": "string",
+        "dataTypeParameter": "text/plain",
+        "description": "This is statusMessage with additional debug information.",
+        "label": "Status Debug"
+      },
+      "statusDescription": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Service status description.",
+        "label": "Status Description"
+      },
+      "statusMessage": {
+        "allowQuery": true,
+        "dataType": "string",
+        "description": "Optional message associated with status.  In the case of status=error, this is the error message.",
+        "label": "Status Message"
+      },
+      "uriRelated": {
+        "allowQuery": true,
+        "dataType": "anyURI",
+        "description": "URI of related object.",
+        "label": "URI Related"
+      },
+      "uriServiceConf": {
+        "allowQuery": true,
+        "dataType": "anyURI",
+        "description": "URI of service conf object.",
+        "label": "URI Service Conf"
+      }
+    }
+  },
+  "status": "success"
+}

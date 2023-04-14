@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtInteger",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Checks for integer arg1 is less that integer arg2 and return the boolean result.",
+    "functionId": "lt<integer>",
+    "functionLabel": "lt_integer",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "arg1"
+        },
+        {
+            "dataType": "integer",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

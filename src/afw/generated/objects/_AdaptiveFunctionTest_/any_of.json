@@ -1,0 +1,157 @@
+{
+    "description": "Tests for any_of function.",
+    "functionId": "any_of",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is not it.",
+                        "This is it."
+                    ]
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is it.\" }\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is not it.",
+                        "This is it.",
+                        "Weve already found it..",
+                        "So, these shouldnt be checked"
+                    ]
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is it.\", \"Weve already found it..\", \"So, these shouldnt be checked\" }\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is not it.",
+                        "This is it."
+                    ]
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        { \"This is not it.\", \"This is it.\" }\n        \"This is it.\"\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is not it.",
+                        "This is not it either."
+                    ]
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is not it either.\" }\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is not it."
+                    ]
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\" }\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "function",
+                    "value": "eq<string>"
+                },
+                {
+                    "dataType": "string",
+                    "value": "This is it."
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "This is it."
+                    ]
+                }
+            ],
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is it.\" }\n    ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

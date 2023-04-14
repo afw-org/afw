@@ -1,0 +1,6 @@
+{
+  "brief": "Extension for Layout Components",
+  "extensionId": "afw_components",
+  "modulePath": "libafwcomponents",
+  "description": "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts."
+}

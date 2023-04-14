@@ -1,0 +1,4 @@
+{
+    "name": "afw_object_setter",
+    "description": "This is interface used to set properties and meta of an adaptive object.\n      See interface afw_object method get_object_setter for more information."
+}

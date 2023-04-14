@@ -1,0 +1,58 @@
+{
+    "description": "Tests for add_yearMonthDuration<date> function.",
+    "functionId": "add_yearMonthDuration<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "2004-04-12"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P2Y6M"
+                }
+            ],
+            "description": "One",
+            "result": {
+                "dataType": "date",
+                "value": "2006-10-12"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "2004-04-12"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "-P2Y6M"
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "dataType": "date",
+                "value": "2001-10-12"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "2004-04-12"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "-P0Y"
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "dataType": "date",
+                "value": "2004-04-12"
+            }
+        }
+    ]
+}

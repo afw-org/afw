@@ -1,0 +1,76 @@
+{
+    "description": "Tests for is_in<double> function.",
+    "functionId": "is_in<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "1.01E4"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "double",
+                    "value": [
+                        "4.0",
+                        "2345678.0",
+                        "23.0E35",
+                        "1.01E4"
+                    ]
+                }
+            ],
+            "description": "In bag",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "1.01E4"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "double",
+                    "value": [
+                        "4.0",
+                        "2345678.0",
+                        "23.0E35",
+                        "10100.0"
+                    ]
+                }
+            ],
+            "description": "In bag",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "1.01E4"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "double",
+                    "value": [
+                        "4.0",
+                        "2345678.0",
+                        "23.0E35",
+                        "1.01E5"
+                    ]
+                }
+            ],
+            "description": "Not in bag",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

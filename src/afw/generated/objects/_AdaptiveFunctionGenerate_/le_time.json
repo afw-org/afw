@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeTime",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Checks for time arg1 is less than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used.",
+    "functionId": "le<time>",
+    "functionLabel": "le_time",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "time",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

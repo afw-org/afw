@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwServiceStart",
+    "brief": "Start service",
+    "camelCaseFunctionLabel": "serviceStart",
+    "category": "administrative",
+    "description": "Start a service.",
+    "functionId": "service_start",
+    "functionLabel": "service_start",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The serviceId of the service to start",
+            "name": "serviceId"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveService_",
+        "description": "_AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be \"error\" and \"statusMessage\" contain an error message."
+    },
+    "sideEffects": [
+        "Service started"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeDate",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Checks for date arg1 is greater than or equal to date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "ge<date>",
+    "functionLabel": "ge_date",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "date",
+            "name": "arg1"
+        },
+        {
+            "dataType": "date",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

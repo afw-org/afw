@@ -1,0 +1,74 @@
+{
+    "description": "Tests for bag_size<integer> function.",
+    "functionId": "bag_size<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": []
+                }
+            ],
+            "description": "Integer bag size of 0.",
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "52.4",
+                        "-15.8"
+                    ]
+                }
+            ],
+            "description": "Integer bag size of 2.",
+            "result": {
+                "dataType": "integer",
+                "value": "2"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "200",
+                        "11",
+                        "-11.2",
+                        "96",
+                        "99",
+                        "-102",
+                        "-586.5",
+                        "986",
+                        "387",
+                        "512618",
+                        "-512618",
+                        "200",
+                        "11",
+                        "-11",
+                        "96",
+                        "99",
+                        "-102",
+                        "-586",
+                        "986",
+                        "-0.0",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Integer bag size of 21.",
+            "result": {
+                "dataType": "integer",
+                "value": "21"
+            }
+        }
+    ]
+}

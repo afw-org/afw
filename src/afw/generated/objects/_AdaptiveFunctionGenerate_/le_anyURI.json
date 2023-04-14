@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeAnyURI",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks for anyURI arg1 is less than or equal to anyURI arg2 and return the boolean result.",
+    "functionId": "le<anyURI>",
+    "functionLabel": "le_anyURI",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

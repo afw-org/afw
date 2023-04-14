@@ -1,0 +1,233 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive function.",
+    "objectType": "_AdaptiveFunction_",
+    "propertyTypes": {
+        "afwCamelCaseFunctionLabel": {
+            "allowQuery": true,
+            "brief": "The functionLabel prefixed with \"afw\" and converted to camel case",
+            "dataType": "string",
+            "description": "This is the functionLabel prefixed with \"afw\" and converted to camel case.",
+            "label": "Prefixed Camel Case",
+            "required": false
+        },
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description for this function",
+            "dataType": "string",
+            "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "camelCaseFunctionLabel": {
+            "allowQuery": true,
+            "brief": "The functionLabel converted to camel case.",
+            "dataType": "string",
+            "description": "This is the functionLabel converted to camel case.",
+            "label": "Camel Case",
+            "required": false
+        },
+        "category": {
+            "allowQuery": true,
+            "brief": "Function category",
+            "dataType": "string",
+            "description": "Function category.",
+            "label": "Category",
+            "required": true
+        },
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Method for this data type",
+            "dataType": "string",
+            "description": "If present, this is a method for this data type.",
+            "label": "Data Type",
+            "required": false
+        },
+        "dataTypeMethodNumber": {
+            "allowQuery": true,
+            "brief": "Internal, unique number assigned to the method name",
+            "dataType": "integer",
+            "description": "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+            "label": "Method Number",
+            "required": false
+        },
+        "deprecated": {
+            "allowQuery": true,
+            "brief": "This function is deprecated",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that the function is deprecated and may go away at some point.",
+            "label": "Deprecated"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this function",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the function's description, used for documentation purposes.",
+            "label": "Description",
+            "required": false
+        },
+        "errorsThrown": {
+            "allowQuery": true,
+            "brief": "Errors thrown",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
+            "description": "These are errors that can possibly be thrown by this function.",
+            "label": "Errors Thrown",
+            "runtime": {
+                "valueAccessor": "null_terminated_array_of_utf8_z_key_value_pair_objects"
+            }
+        },
+        "functionDeclaration": {
+            "allowQuery": true,
+            "brief": "Function's declaration",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the function's declaration with whitespace and brief comments.",
+            "label": "Function Declaration",
+            "required": false
+        },
+        "functionId": {
+            "allowQuery": true,
+            "brief": "The function's id",
+            "dataType": "string",
+            "description": "This is the function's id.",
+            "label": "Function",
+            "required": true
+        },
+        "functionLabel": {
+            "allowQuery": true,
+            "brief": "The function's label",
+            "dataType": "string",
+            "description": "This is the function's label.",
+            "label": "Function Label",
+            "required": true
+        },
+        "functionSignature": {
+            "allowQuery": true,
+            "brief": "Function's signature",
+            "dataType": "string",
+            "description": "This is the function's signature.",
+            "label": "Signature",
+            "required": false
+        },
+        "maximumNumberOfParameters": {
+            "allowQuery": true,
+            "brief": "Maximum number of parameters",
+            "dataType": "integer",
+            "description": "This is the maximum number of parameters or -1 if there is no maximum.",
+            "label": "Maximum Parameters",
+            "required": false
+        },
+        "numberOfRequiredParameters": {
+            "allowQuery": true,
+            "brief": "Number or required parameters",
+            "dataType": "integer",
+            "description": "This is the number of required parameters.",
+            "label": "Required Parameters",
+            "required": false
+        },
+        "op": {
+            "allowQuery": true,
+            "brief": "The function's operator",
+            "dataType": "string",
+            "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+            "label": "Op"
+        },
+        "parameters": {
+            "brief": "The function's parameters",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveFunctionParameter_",
+            "description": "These are the function's parameters.",
+            "label": "Parameters",
+            "runtime": {
+                "valueAccessor": "null_terminated_array_of_objects"
+            }
+        },
+        "polymorphic": {
+            "allowQuery": true,
+            "brief": "This function can be called polymorphically",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+            "label": "Polymorphic"
+        },
+        "polymorphicDataTypes": {
+            "allowQuery": true,
+            "brief": "This function will call the appropriate function when the first parameter is one of these data types",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "defaultValue": false,
+            "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+            "label": "Polymorphic Data Types",
+            "runtime": {
+                "valueAccessor": "null_terminated_array_of_internal"
+            }
+        },
+        "pure": {
+            "allowQuery": true,
+            "brief": "Given exactly the same parameter values, this function will always return the same result",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+            "label": "Pure"
+        },
+        "returns": {
+            "allowQuery": true,
+            "brief": "The return parameter",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveFunctionParameter_",
+            "description": "The return parameter.",
+            "label": "Returns",
+            "required": true
+        },
+        "scriptSupportNumber": {
+            "allowQuery": true,
+            "brief": "Special handling number",
+            "dataType": "integer",
+            "description": "If non-zero, this is an script support function and this is its internal special handling number. See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information.",
+            "label": "Script Support Number",
+            "required": false,
+            "runtime": {
+                "valueAccessor": "octet"
+            }
+        },
+        "sideEffects": {
+            "allowQuery": true,
+            "brief": "Side effects for this function.",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Any side effects that this function may produce as a result of execution.",
+            "label": "Side Effects",
+            "runtime": {
+                "valueAccessor": "null_terminated_array_of_internal"
+            }
+        },
+        "signatureOnly": {
+            "allowQuery": true,
+            "brief": "Signature only",
+            "dataType": "boolean",
+            "description": "This is a signature with an unimplemented execute function.",
+            "label": "Signature Only"
+        },
+        "untypedFunctionId": {
+            "allowQuery": true,
+            "brief": "The function's id without <dataType>",
+            "dataType": "string",
+            "description": "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+            "label": "Function",
+            "required": false
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "functionLabel"
+        },
+        "typedef": "afw_value_function_definition_t"
+    }
+}

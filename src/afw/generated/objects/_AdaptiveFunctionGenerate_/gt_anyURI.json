@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtAnyURI",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks for anyURI arg1 is greater than anyURI arg2 and return the boolean result.",
+    "functionId": "gt<anyURI>",
+    "functionLabel": "gt_anyURI",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "arg1"
+        },
+        {
+            "dataType": "anyURI",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

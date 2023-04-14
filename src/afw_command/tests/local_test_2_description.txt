@@ -1,0 +1,2 @@
+This tests afw --local using the ++afw-local-mode-evaluate directive with
+ALLOW: application/x-afw.

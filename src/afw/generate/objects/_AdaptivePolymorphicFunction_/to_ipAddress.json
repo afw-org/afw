@@ -1,0 +1,29 @@
+{
+    "brief": "Converts string to ipAddress",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to ipAddress.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_ipAddress",
+    "functionLabel": "to_ipAddress",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "returns": {
+        "dataType": "ipAddress"
+    }
+}

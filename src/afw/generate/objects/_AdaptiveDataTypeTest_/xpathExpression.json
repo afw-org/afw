@@ -1,0 +1,27 @@
+{
+    "implemented": false,
+    "dataType": "xpathExpression",
+    "tests": [
+        {            
+            "value": "."
+        },
+        {
+            "value": "self::node()"
+        },
+        {
+            "value": ".."
+        },
+        {
+            "value": "parent::node()"
+        },
+        {
+            "value": "/bookstore"
+        },
+        {
+            "value": "/bookstore/book[price>35.00]"
+        },
+        {
+            "value": "../title"
+        }
+    ]
+}

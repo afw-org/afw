@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwHexBinary",
+    "brief": "Convert to data type hexBinary",
+    "camelCaseFunctionLabel": "hexBinary",
+    "category": "hexBinary",
+    "description": "Converts value to data type hexBinary returning hexBinary result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "hexBinary",
+    "functionLabel": "hexBinary",
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "hexBinary",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

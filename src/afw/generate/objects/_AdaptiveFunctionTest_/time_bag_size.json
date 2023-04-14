@@ -1,0 +1,43 @@
+{
+    "description": "Tests for bag_size<time> function.",
+    "functionId": "bag_size<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:00",
+                        "13:20:30.5555",
+                        "13:20:00-05:00",
+                        "13:20:00Z",
+                        "00:00:00"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "integer",
+                "value": "5"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "00:00:00"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "integer",
+                "value": "1"
+            }
+        }
+    ]
+}

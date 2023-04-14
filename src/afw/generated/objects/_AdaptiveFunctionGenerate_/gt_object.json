@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtObject",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtObject",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Checks for object arg1 is greater than object arg2 and return the boolean result.",
+    "functionId": "gt<object>",
+    "functionLabel": "gt_object",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "object",
+            "name": "arg1"
+        },
+        {
+            "dataType": "object",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

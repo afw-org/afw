@@ -1,0 +1,59 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the SpinButton component.",
+    "objectType": "_AdaptiveLayoutComponentType_SpinButton",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the SpinButton component is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the SpinButton component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "max": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The maximum value for the SpinButton component.",
+            "testDataParameter": "20",
+            "label": "Minimum"
+        },
+        "min": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The minimum value for the SpinButton component.",
+            "testDataParameter": "5",
+            "label": "Minimum"
+        },
+        "step": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The incremental step value for the SpinButton component.",
+            "testDataParameter": "1",
+            "label": "Step"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The value for the SpinButton component.",
+            "testDataParameter": "10",
+            "label": "Value"
+        }
+    }
+}

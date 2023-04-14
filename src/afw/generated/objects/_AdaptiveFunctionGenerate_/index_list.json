@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIndexList",
+    "brief": "List property indexes",
+    "camelCaseFunctionLabel": "indexList",
+    "category": "indexes",
+    "description": "List property indexes",
+    "functionId": "index_list",
+    "functionLabel": "index_list",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "Id of adaptive object type indexes",
+            "name": "objectType",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "Object response from the index repair process"
+    }
+}

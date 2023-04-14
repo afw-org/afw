@@ -1,0 +1,208 @@
+{
+    "$defs": {
+        "_AdaptiveRequestProperties_": {
+            "additionalProperties": {
+                "description": "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server.",
+                "type": "string"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveRequestProperties_.propertyTypes"
+                }
+            ],
+            "description": "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server.",
+            "type": "object"
+        },
+        "_AdaptiveRequestProperties_.propertyTypes": {
+            "properties": {
+                "ACCEPT": {
+                    "description": "A list of the media types the client can accept.",
+                    "type": "string"
+                },
+                "AUTH_TYPE": {
+                    "description": "The authentication method used to validate a user. This is blank if the request did not require authentication.",
+                    "type": "string"
+                },
+                "CONTENT_LENGTH": {
+                    "description": "The length of the data (in bytes) passed to the CGI program via standard input.",
+                    "type": "string"
+                },
+                "CONTENT_TYPE": {
+                    "description": "The media type of the request body, such as \"application/x-www-form-urlencoded\".",
+                    "type": "string"
+                },
+                "DOCUMENT_ROOT": {
+                    "description": "The directory from which static documents are served.",
+                    "type": "string"
+                },
+                "FCGI_ROLE": {
+                    "description": "The role component sets the role the Web server expects the application to play. The currently-defined roles are:  RESPONDER, AUTHORIZER, FILTER.",
+                    "type": "string"
+                },
+                "GATEWAY_INTERFACE": {
+                    "description": "The revision of the Common Gateway Interface that the server uses.",
+                    "type": "string"
+                },
+                "HTTPS": {
+                    "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., \"ON\" or \"on\" when secure and blank or \"OFF\" when not).",
+                    "type": "string"
+                },
+                "HTTP_ACCEPT": {
+                    "description": "A list of the media types the client can accept.",
+                    "type": "string"
+                },
+                "HTTP_ACCEPT_CHARSET": {
+                    "description": "A list of the character sets the client can accept.",
+                    "type": "string"
+                },
+                "HTTP_ACCEPT_ENCODING": {
+                    "description": "A list of the encodings the client can accept.",
+                    "type": "string"
+                },
+                "HTTP_ACCEPT_LANGUAGE": {
+                    "description": "A list of the languages the client can accept.",
+                    "type": "string"
+                },
+                "HTTP_COOKIE": {
+                    "description": "A name-value pair previously set by the server.",
+                    "type": "string"
+                },
+                "HTTP_FROM": {
+                    "description": "The email address of the user making the request; most browsers do not pass this information, since it is considered an invasion of the user's privacy.",
+                    "type": "string"
+                },
+                "HTTP_HOST": {
+                    "description": "The hostname of the server from the requested URL (this corresponds to the HTTP 1.1 Host field).",
+                    "type": "string"
+                },
+                "HTTP_REFERER": {
+                    "description": "The URL of the document that directed the user to this CGI program (e.g., via a hyperlink or via a form).",
+                    "type": "string"
+                },
+                "HTTP_USER_AGENT": {
+                    "description": "The name and version of the client's browser.",
+                    "type": "string"
+                },
+                "PATH_INFO": {
+                    "description": "Extra path information passed to a CGI program.",
+                    "type": "string"
+                },
+                "PATH_TRANSLATED": {
+                    "description": "The translated version of the path given by the variable PATH_INFO.",
+                    "type": "string"
+                },
+                "QUERY_STRING": {
+                    "description": "The query information from requested URL (i.e., the data following \"?\").",
+                    "type": "string"
+                },
+                "REMOTE_ADDR": {
+                    "description": "The remote IP address of the client making the request; this could be the address of an HTTP proxy between the server and the user.",
+                    "type": "string"
+                },
+                "REMOTE_HOST": {
+                    "description": "The remote hostname of the client making the request; this could also be the name of an HTTP proxy between the server and the user.",
+                    "type": "string"
+                },
+                "REMOTE_IDENT": {
+                    "description": "The user making the request, as reported by their ident daemon. Only some Unix and IRC users are likely to have this running.",
+                    "type": "string"
+                },
+                "REMOTE_PORT": {
+                    "description": "The port number used by the client.",
+                    "type": "string"
+                },
+                "REMOTE_USER": {
+                    "description": "The user's login, authenticated by the web server.",
+                    "type": "string"
+                },
+                "REQUEST_METHOD": {
+                    "description": "The HTTP request method used for this request.",
+                    "type": "string"
+                },
+                "REQUEST_SCHEME": {
+                    "description": "The scheme of the request (usually \"http\" or \"https\").",
+                    "type": "string"
+                },
+                "REQUEST_URI": {
+                    "description": "The URI for this request relative to DOCUMENT_ROOT.",
+                    "type": "string"
+                },
+                "SCHEME": {
+                    "description": "The scheme of the request (usually \"http\" or \"https\").",
+                    "type": "string"
+                },
+                "SCRIPT_NAME": {
+                    "description": "The URL path (e.g., /cgi/program.cgi) of the script being executed.",
+                    "type": "string"
+                },
+                "SERVER_ADDR": {
+                    "description": "The IP address of the computer running the web server.",
+                    "type": "string"
+                },
+                "SERVER_ADMIN": {
+                    "description": "The email address for your server's webmaster.",
+                    "type": "string"
+                },
+                "SERVER_NAME": {
+                    "description": "The server's hostname or IP address.",
+                    "type": "string"
+                },
+                "SERVER_PORT": {
+                    "description": "The port number of the host on which the server is listening.",
+                    "type": "string"
+                },
+                "SERVER_PROTOCOL": {
+                    "description": "The name and revision of the request protocol, e.g., \"HTTP/1.1\".",
+                    "type": "string"
+                },
+                "SERVER_SIGNATURE": {
+                    "description": "The HTML string that may be embedded in the page to identify this host.\nFor example, <ADDRESS>/Apache/1.3.14 Server at www.zytrax.com Port 80</ADDRESS>",
+                    "type": "string"
+                },
+                "SERVER_SOFTWARE": {
+                    "description": "The name and version of the server software that is answering the client request.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_M_SERIAL": {
+                    "description": "The SSL client certificate serial number.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_M_VERSION": {
+                    "description": "The SSL client certificate version.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_S_DN": {
+                    "description": "The SSL client certificate subject DN field.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_S_DN_CN": {
+                    "description": "The SSL client certificate subject component of the DN field.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_VERIFY": {
+                    "description": "The SSL client certificate verification result. May be NONE, SUCCESS, GENEROUS or FAILED:reason.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_V_END": {
+                    "description": "Validity of client's certificate (end time).",
+                    "type": "string"
+                },
+                "SSL_CLIENT_V_REMAIN": {
+                    "description": "Number of days until client's certificate expires.",
+                    "type": "string"
+                },
+                "SSL_CLIENT_V_START": {
+                    "description": "Validity of client's certificate (start time).",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveRequestProperties_"
+        }
+    ]
+}

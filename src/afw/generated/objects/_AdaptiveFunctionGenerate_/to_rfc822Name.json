@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToRfc822Name",
+    "brief": "Converts string to rfc822Name",
+    "camelCaseFunctionLabel": "toRfc822Name",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to rfc822Name.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_rfc822Name",
+    "functionLabel": "to_rfc822Name",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "rfc822Name"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

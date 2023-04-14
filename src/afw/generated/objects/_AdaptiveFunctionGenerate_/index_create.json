@@ -1,0 +1,64 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIndexCreate",
+    "brief": "Create index definition",
+    "camelCaseFunctionLabel": "indexCreate",
+    "category": "indexes",
+    "description": "Create an index definition.",
+    "functionId": "index_create",
+    "functionLabel": "index_create",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "Name of the property index to be created.",
+            "name": "key"
+        },
+        {
+            "dataType": "string",
+            "description": "Expression to calculate the index value(s).",
+            "name": "value",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "Object Type(s) this index may apply to.",
+            "name": "objectType",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "Expression to determine if this index applies to a particular object.",
+            "name": "filter",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "Indexing options.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "Retroactively generate indexes for existing objects.",
+            "name": "retroactive",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "Test create (don't actually perform).",
+            "name": "test",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "Object response from the indexing process"
+    },
+    "sideEffects": [
+        "Index created"
+    ]
+}

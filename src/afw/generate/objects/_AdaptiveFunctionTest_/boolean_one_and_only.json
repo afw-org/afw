@@ -1,0 +1,55 @@
+{
+    "description": "Tests for one_and_only<boolean> function.",
+    "functionId": "one_and_only<boolean>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean one and only for bag:\n            { \"true\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true",
+                        "false",
+                        "true",
+                        "false",
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean one and only for bag:\n            { \"true\", \"false\", \"true\", \"false\", true\" }\n        ",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                }
+            ],
+            "description": "\n            Boolean one and only for bag:\n            { }\n        ",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

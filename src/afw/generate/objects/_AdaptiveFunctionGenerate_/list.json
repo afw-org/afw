@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type list",
+    "category": "list",
+    "description": "Converts 1 or more values in a list. If A value is a list, its individual values are included.\n\nIf the data types of all values in the resulting list are the same, the list will be a list of that data type. Otherwise, the resulting list will be untyped.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "list",
+    "functionLabel": "list",
+    "pure": true,
+    "parameters": [
+        {
+            "minArgs": 0,
+            "description": "Value to convert",
+            "name": "values"
+        }
+    ],
+    "returns": {
+        "dataType": "list",
+        "description": "Converted value"
+    }
+}

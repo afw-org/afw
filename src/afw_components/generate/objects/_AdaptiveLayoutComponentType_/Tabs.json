@@ -1,0 +1,9 @@
+{
+    "category": "navigation",
+    "componentType": "Tabs",
+    "brief": "A layout container that renders a series of tabs.",
+    "description": "This component displays a list of components, one at a time, by containing the content inside of their individual tabs. A tab has a clickable link, which when clicked, will switch the content to the desired component.",
+    "implementationId": "Tabs",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Tabs",
+    "label": "Tabs"
+}

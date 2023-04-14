@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPrintln",
+    "brief": "Print value followed by '\\n'",
+    "camelCaseFunctionLabel": "println",
+    "category": "stream",
+    "description": "Evaluate and convert 0 or more values to their string value, then write them to stdout. A newline character ('\\n') is written after the last value. An undefined value is represented by '<undefined>'.",
+    "functionId": "println",
+    "functionLabel": "println",
+    "parameters": [
+        {
+            "description": "Values to print.",
+            "minArgs": 0,
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Values written"
+    ]
+}

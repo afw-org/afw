@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddDayTimeDuration",
+    "brief": "Add duration",
+    "camelCaseFunctionLabel": "addDayTimeDuration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType> result.",
+    "functionId": "add_dayTimeDuration",
+    "functionLabel": "add_dayTimeDuration",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "dayTimeDuration",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "dateTime"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

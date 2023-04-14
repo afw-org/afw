@@ -1,0 +1,30 @@
+{
+    "$defs": {
+        "_AdaptiveContentType_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveContentType_.propertyTypes"
+                }
+            ],
+            "description": "There is one of these for each media type registered for a content type implementation.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveContentType_.propertyTypes": {
+            "properties": {
+                "mediaType": {
+                    "description": "Key of entry.",
+                    "title": "Media Type",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveContentType_"
+        }
+    ]
+}

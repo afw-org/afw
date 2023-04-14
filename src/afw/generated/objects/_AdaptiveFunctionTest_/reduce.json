@@ -1,0 +1,61 @@
+{
+    "description": "Tests for reduce function.",
+    "functionId": "reduce",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "add"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "2",
+                        "9",
+                        "5",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Test reduce function with integers.",
+            "result": {
+                "dataType": "integer",
+                "value": "20"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "concat"
+                },
+                {
+                    "dataType": "string",
+                    "value": "mmmmm"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "mmmmm",
+                        "zzzzz",
+                        "aaaaa",
+                        "nnnnn"
+                    ]
+                }
+            ],
+            "description": "Test reduce function with strings.",
+            "result": {
+                "dataType": "string",
+                "value": "mmmmmmmmmmzzzzzaaaaannnnn"
+            }
+        }
+    ]
+}

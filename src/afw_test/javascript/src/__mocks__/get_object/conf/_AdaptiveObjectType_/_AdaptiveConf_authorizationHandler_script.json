@@ -1,0 +1,138 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_authorizationHandler_script"
+        },
+        "propertyTypes": {
+            "allowDenyOverride": {
+                "allowQuery": true,
+                "brief": "Allow override of previous deny",
+                "dataType": "boolean",
+                "description": "Use caution when setting this parameter to true.  If this parameter is true, a decision of permit by this authorization handler will override a decision of deny by a previous authorization handler.",
+                "label": "Allow Deny Override",
+                "required": false
+            },
+            "allowPermitOverride": {
+                "allowQuery": true,
+                "brief": "Allow override of previous permit",
+                "dataType": "boolean",
+                "description": "If this parameter is true, a decision of deny by this authorization handler will override a decision of permit by a previous authorization handler.",
+                "label": "Allow Permit Override",
+                "required": false
+            },
+            "authorizationHandlerId": {
+                "allowQuery": true,
+                "brief": "Authorization handler id",
+                "dataType": "string",
+                "description": "Authorization handler id.",
+                "label": "Authorization Id"
+            },
+            "authorizationHandlerType": {
+                "allowQuery": true,
+                "brief": "Authorization handler type",
+                "dataType": "string",
+                "description": "Authorization handler type.",
+                "label": "Authorization Type",
+                "required": true
+            },
+            "priority": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "integer"
+                        },
+                        "maxValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "integer"
+                        },
+                        "minValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "integer"
+                        }
+                    }
+                },
+                "allowQuery": true,
+                "brief": "Authorization handler priority",
+                "dataType": "integer",
+                "defaultValue": 9999,
+                "description": "When there are multiple active authorization handlers, this priority determines order this handler will be checked.  Priority 1 is the highest and will be checked first.  If multiple handlers have the same priority the order will vary.",
+                "label": "Priority",
+                "maxValue": 9999,
+                "minValue": 1,
+                "required": false
+            },
+            "required": {
+                "allowQuery": true,
+                "brief": "This authorization handler is required",
+                "dataType": "boolean",
+                "description": "If true, this authorization handler must be running to make an authorization decision if not running in core mode and if initialAuthorizationCheck did not make a decision.",
+                "label": "Required",
+                "required": false
+            },
+            "type": {
+                "required": true,
+                "label": "Type",
+                "description": "Configuration type.",
+                "dataType": "string",
+                "brief": "Configuration type",
+                "allowQuery": true
+            },
+            "title": {
+                "label": "Title",
+                "description": "The title for this configuration component.",
+                "dataType": "string",
+                "brief": "The title for this configuration component",
+                "allowQuery": true
+            },
+            "sourceLocation": {
+                "label": "Source Location",
+                "description": "This is a contextual string added when this configuration object is processed.",
+                "dataType": "string",
+                "brief": "Contextual string added when this configuration object is processed",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "The description of this configuration component.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "The description of this configuration component",
+                "allowQuery": true
+            },
+            "qualifiedVariables": {
+                "label": "Qualified Variables",
+                "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler.  The qualifier can be an empty string for unqualified variables.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler.  These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.",
+                "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                "dataType": "object",
+                "brief": "Qualified variables associated with this authorization handler"
+            },
+            "authorizationCheck": {
+                "required": true,
+                "label": "Authorization Check",
+                "description": "This is hybrid is evaluated to determine whether to allow the requested access to the specified resourceId and/or object.",
+                "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+                "dataType": "hybrid",
+                "contextType": "authorizationCheck",
+                "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveConf_authorizationHandler_script",
+        "description": "Adaptive Framework configuration component for type=authorizationHandler authorizationHandlerType=script.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

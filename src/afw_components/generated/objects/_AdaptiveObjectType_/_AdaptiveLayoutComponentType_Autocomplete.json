@@ -1,0 +1,72 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Autocomplete component.",
+    "objectType": "_AdaptiveLayoutComponentType_Autocomplete",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "allowWrite": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Autocomplete component can be changed.",
+            "label": "Allow Write"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Autocomplete component is disabled.",
+            "label": "Disabled",
+            "defaultValue": false
+        },
+        "isLoading": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Autocomplete component is currently loading.",
+            "label": "Is Loading",
+            "defaultValue": false
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Autocomplete component.",
+            "testDataParameter": "This is a label",
+            "label": "Label"
+        },
+        "options": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Autocomplete_Option",
+            "description": "The available options for the Autocomplete component.",
+            "label": "Options"
+        },
+        "placeholder": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies the placeholder text displayed when no value is present.",
+            "testDataParameter": "This is a placeholder.",
+            "label": "Placeholder"
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Autocomplete component is required.",
+            "label": "Required"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_Autocomplete_Option",
+            "description": "The option value for the Autocomplete component.",
+            "label": "Value"
+        }
+    }
+}

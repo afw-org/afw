@@ -1,0 +1,20 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveServer_/current",
+            "objectId": "current",
+            "objectType": "_AdaptiveServer_"
+        },
+        "unhandledErrors": 0,
+        "threadCount": 25,
+        "startTime": "2020-09-04T16:38:14.151557Z",
+        "serverVersion": "0.7.7-dev",
+        "serverType": "afw_server_fcgi",
+        "requestCount": 1418,
+        "maxConcurrent": 6,
+        "concurrent": 1,
+        "afwVersion": "0.7.7-dev",
+        "afwCompiledVersion": "0.7.7-dev"
+    },
+    "status": "success"
+}

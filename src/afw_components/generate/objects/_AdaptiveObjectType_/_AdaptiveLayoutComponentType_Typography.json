@@ -1,0 +1,59 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Typography component.",
+    "objectType": "_AdaptiveLayoutComponentType_Typography",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "color": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The color of the text",
+            "description": "The color of the text. This may be a theme definition, or an actual color.",
+            "label": "Color",
+            "possibleValues": [
+                "default",
+                "error",
+                "inherit",
+                "primary",
+                "secondary",
+                "textPrimary",
+                "textSecondary"
+            ]
+        },
+        "size": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The size of the text",
+            "description": "The size of the text (1-11).",
+            "label": "Size",
+            "possibleValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" ]
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The text string to be displayed",
+            "description": "The actual text content to be rendered by this component.",
+            "label": "Text",
+            "required": true,
+            "testDataParameter": "This is the text to be displayed."
+        },
+        "tag": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The html tag to produce",
+            "description": "This allows you to explicitly set the underlying HTML tag in order to get the semantics correct.",
+            "label": "Tag",
+            "possibleValues": [ "h1", "h2", "h3", "h4", "h5", "h6", "body", "span", "div" ]
+        }
+    }
+}

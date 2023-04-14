@@ -1,0 +1,121 @@
+{
+    "description": "Tests for slice function.",
+    "functionId": "slice",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "2",
+                        "9",
+                        "5",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Test slice function with integers, no other parms.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "2",
+                    "9",
+                    "5",
+                    "0"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "2",
+                        "9",
+                        "5",
+                        "0"
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                }
+            ],
+            "description": "Test slice function with integers with startIndex and endIndex.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "9",
+                    "5"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "2",
+                        "9",
+                        "5",
+                        "0"
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-1"
+                }
+            ],
+            "description": "Test slice function with integers with negative startIndex and endIndex.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "9",
+                    "5"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "mmmmm",
+                        "zzzzz",
+                        "aaaaa",
+                        "nnnnn"
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "Test slice function with strings with just startIndex.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "string",
+                "value": [
+                    "aaaaa",
+                    "nnnnn"
+                ]
+            }
+        }
+    ]
+}

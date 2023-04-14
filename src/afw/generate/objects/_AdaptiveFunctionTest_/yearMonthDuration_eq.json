@@ -1,0 +1,58 @@
+{
+    "description": "Tests for eq<yearMonthDuration> function.",
+    "functionId": "eq<yearMonthDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P3Y6M"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P3Y6M"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "-P0Y"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P0Y"
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "-P1Y"
+                },
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P0Y"
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

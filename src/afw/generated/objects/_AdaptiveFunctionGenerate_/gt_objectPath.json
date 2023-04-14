@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtObjectPath",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtObjectPath",
+    "category": "objectPath",
+    "dataTypeMethod": true,
+    "description": "Checks for objectPath arg1 is greater than objectPath arg2 and return the boolean result.",
+    "functionId": "gt<objectPath>",
+    "functionLabel": "gt_objectPath",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "objectPath",
+            "name": "arg1"
+        },
+        {
+            "dataType": "objectPath",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

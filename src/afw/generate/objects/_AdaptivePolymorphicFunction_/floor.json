@@ -1,0 +1,22 @@
+{
+    "brief": "Round downwards to nearest integer",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine the largest integer that is smaller then or equal to the <dataType> value and return the <dataType> result.",
+    "functionId": "floor",
+    "functionLabel": "floor",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "number",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

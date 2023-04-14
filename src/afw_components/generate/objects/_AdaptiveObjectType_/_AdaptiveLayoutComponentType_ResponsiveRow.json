@@ -1,0 +1,22 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the ResponsiveRow component.",
+    "label": "Row",
+    "objectType": "_AdaptiveLayoutComponentType_ResponsiveRow",
+    "propertyTypes": {
+        "columns": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_ResponsiveCol",
+            "description": "The layout columns that are contained by this ResponsiveRow component.",
+            "label": "Columns",
+            "required": true
+        }
+    }
+}

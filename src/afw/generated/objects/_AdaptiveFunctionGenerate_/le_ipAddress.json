@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeIpAddress",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return the boolean result.",
+    "functionId": "le<ipAddress>",
+    "functionLabel": "le_ipAddress",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "ipAddress",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

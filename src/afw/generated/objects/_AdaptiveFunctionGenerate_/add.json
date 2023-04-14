@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAdd",
+    "brief": "Add",
+    "camelCaseFunctionLabel": "add",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Add 2 or more <dataType> values and return the <dataType> result.",
+    "functionId": "add",
+    "functionLabel": "add",
+    "op": "+",
+    "parameters": [
+        {
+            "minArgs": 2,
+            "name": "values",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer",
+        "string"
+    ],
+    "polymorphicOverrides": {
+        "string": {
+            "brief": "Add (concatenate) strings",
+            "description": "Add (concatenate) 2 or more string values and return the string result."
+        }
+    },
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

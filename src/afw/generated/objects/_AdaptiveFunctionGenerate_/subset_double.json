@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetDouble",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in double list1 are all in double list2.",
+    "functionId": "subset<double>",
+    "functionLabel": "subset_double",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwModelMapBackObjectSignature",
+    "brief": "Signature used for current:mapBackObject()",
+    "camelCaseFunctionLabel": "modelMapBackObjectSignature",
+    "category": "model",
+    "description": "This is the function signature for current:mapBackObject used by onGetObjects and onRetrieveObjects. Calling this directly will throw a \"Do not call directly\" error.",
+    "functionId": "model_mapBackObject_signature",
+    "functionLabel": "model_mapBackObject_signature",
+    "parameters": [
+        {
+            "brief": "The object to map back",
+            "dataType": "object",
+            "description": "This is the object to map back.",
+            "name": "mappedObject"
+        }
+    ],
+    "returns": {
+        "brief": "The mapped back object",
+        "dataType": "object",
+        "description": "This is the mappedObject mapped back from mapped adaptor object."
+    },
+    "signatureOnly": true
+}

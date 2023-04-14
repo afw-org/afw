@@ -1,0 +1,61 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Drawer component.",
+    "objectType": "_AdaptiveLayoutComponentType_Drawer",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "anchor": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "Side that this drawer is anchored to",
+            "description": "This property describes which side of the page, the drawer should be anchored to. It may be one of 'bottom', 'top', 'left' or 'right'.",
+            "label": "Anchor",
+            "defaultValue": "left",
+            "allowedValues": [
+                "bottom",
+                "top",
+                "left",
+                "right"
+            ]
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Drawer component is open.",
+            "label": "Open",
+            "required": true
+        },
+        "variant": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The variant to use",
+            "description": "This property describes whether the drawer should be anchored temporary, persistent or permanent. If temporary, the drawer will be dismissed when the user unblocks its focus. If persistent, the drawer will be displayed until the user manually closes it. If permanent, the drawer will always remain open.",
+            "label": "Variant",
+            "defaultValue": "temporary",
+            "allowedValues": [
+                "temporary",
+                "persistent",
+                "permanent"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_DrawerItem",
+            "brief": "Items inside of the Drawer",
+            "description": "This declares a list of items to be rendered inside the Drawer.",
+            "label": "Contains"
+        }
+    }
+}
+  

@@ -1,0 +1,127 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Object Form.",
+    "objectType": "_AdaptiveLayout_ObjectResponsive",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "breakpoints": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_Responsive_Breakpoints",
+            "description": "Defines the screen size breakpoints for this column definition",
+            "label": "Breakpoints"
+        },
+        "columns": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Sets the number of columns to split the object.",
+            "label": "Columns",
+            "defaultValue": 1
+        }, 
+        "embedded": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayout_ObjectResponsive_embedded",
+            "description": "Options to apply to embedded objects.",
+            "label": "Embedded"
+        },
+        "filterOptions": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayout_ObjectResponsive_filterOptions",
+            "description": "An object describing a particular set of filtering options, including the ability to recurse it to embedded objects.",
+            "label": "Filter Options"
+        },
+        "headerOptions": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Determines when headers should be applied to Object Forms and their embedded objects.",
+            "label": "Header Options",
+            "defaultValue": "embedded",
+            "possibleValues": [
+                "none",
+                "base",
+                "embedded",
+                "all"
+            ]
+        },
+        "isCollapsed": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Should embedded objects in collapsible layouts be collapsed by default.",
+            "label": "Is Collapsed",
+            "defaultValue": true
+        },
+        "nestingDepth": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Current nested depth from embedded objects.",
+            "label": "Nesting Depth",
+            "defaultValue": 0
+        },
+        "object": {
+            "allowWrite": true,
+            "dataType": "object",
+            "description": "The object to be displayed by the Object Form Layout component.",
+            "label": "Object"
+        },
+        "preferredComponents": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayout_ObjectResponsive_preferredComponent",
+            "description": "Sets preferences for components for Adaptive Properties.",
+            "label": "Preferred Components"
+        },
+        "readOnlyOrientation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "In readonly mode, labels and values should be stacked horizontal (row) or vertical (column).",
+            "defaultValue": "horizontal",
+            "allowedValues": [ "horizontal", "vertical" ],
+            "label": "Readonly Orientation"
+        },
+        "showLabels": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The properties should be displayed along with their labels instead of property names.",
+            "defaultValue": true,
+            "label": "Show Labels"
+        },
+        "showDescriptions": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The property descriptions should be displayed in editable mode.",
+            "defaultValue": true,
+            "label": "Show Descriptions"
+        },
+        "sortOptions": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayout_ObjectResponsive_sortOptions",
+            "description": "An object describing a particular set of sorting options, including the ability to recurse it to embedded objects.",
+            "label": "Sort Options"
+        },
+        "spacing": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Sets the spacing between rows.",
+            "label": "Spacing"
+        },
+        "showMeta": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "If true, the object's metadata should also be displayed.",
+            "label": "Show Meta"
+        }
+    }
+}

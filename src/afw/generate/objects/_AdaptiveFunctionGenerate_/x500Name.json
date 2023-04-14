@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type x500Name",
+    "category": "x500Name",
+    "description": "Converts value to data type x500Name returning x500Name result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "x500Name",
+    "functionLabel": "x500Name",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "x500Name",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

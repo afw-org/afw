@@ -1,0 +1,499 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/time",
+                "objectId": "time",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type time.\n\nThe \"<time>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "time",
+            "brief": "Data type time related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/indexes",
+                "objectId": "indexes",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Index related functions that act on adaptive objects.",
+            "category": "indexes",
+            "brief": "Index related functions that act on adaptive objects"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/expression",
+                "objectId": "expression",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type expression.\n\nThe \"<expression>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "expression",
+            "brief": "Data type expression related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/dayTimeDuration",
+                "objectId": "dayTimeDuration",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type dayTimeDuration.\n\nThe \"<dayTimeDuration>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "dayTimeDuration",
+            "brief": "Data type dayTimeDuration related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/rule_combining_algorithm",
+                "objectId": "rule_combining_algorithm",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Rule combining algorithms.",
+            "category": "rule_combining_algorithm",
+            "brief": "Rule combining algorithms"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/polymorphic",
+                "objectId": "polymorphic",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Functions that are used by more than one <dataType>.",
+            "category": "polymorphic",
+            "brief": "Polymorphic functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/ia5String",
+                "objectId": "ia5String",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type ia5String. \n\nThe \"<ia5String>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "ia5String",
+            "brief": "Data type ia5String related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/curl",
+                "objectId": "curl",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Functions from this category use the cURL (Client URL) API's to provide functions for interacting with remote URL data over a variety of protocols.",
+            "category": "curl",
+            "brief": "Functions derived from cURL library."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/rfc822Name",
+                "objectId": "rfc822Name",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type rfc822Name.\n\nThe \"<rfc822Name>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "rfc822Name",
+            "brief": "Data type rfc822Name related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/logical",
+                "objectId": "logical",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Logical Boolean functions.",
+            "category": "logical",
+            "brief": "Logical Boolean functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/journal",
+                "objectId": "journal",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Functions related to adaptive journal.",
+            "category": "journal",
+            "brief": "Functions related to adaptive journal"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/compiler",
+                "objectId": "compiler",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These are functions that compile, convert, decompile, and evaluated adaptive syntax.",
+            "category": "compiler",
+            "brief": "Adaptive compiler related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/double",
+                "objectId": "double",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type double.\n\nThe \"<double>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "double",
+            "brief": "Data type double related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/list",
+                "objectId": "list",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type list.\n\nThe \"<list>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "list",
+            "brief": "Data type list related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/date",
+                "objectId": "date",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type date.\n\nThe \"<date>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "date",
+            "brief": "Data type date related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/ipAddress",
+                "objectId": "ipAddress",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type ipAddress.\n\nThe \"<ipAddress>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "ipAddress",
+            "brief": "Data type ipAddress related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/lmdb",
+                "objectId": "lmdb",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB).",
+            "category": "lmdb",
+            "brief": "Lightning Memory-Mapped Database (LMDB) functions."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/random",
+                "objectId": "random",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Random functions.",
+            "category": "random",
+            "brief": "Random functions."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/smtp",
+                "objectId": "smtp",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "This category provides adaptive functions that allow the user to interact with SMTP (Simple Mail Transfer Protocol) in order to send eMail.",
+            "category": "smtp",
+            "brief": "SMTP Functions derived from cURL."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/hexBinary",
+                "objectId": "hexBinary",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type hexBinary.\n\nThe \"<hexBinary>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "hexBinary",
+            "brief": "Data type hexBinary related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/adaptor",
+                "objectId": "adaptor",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These functions access adaptive objects via an Adaptive Framework adaptor.",
+            "category": "adaptor",
+            "brief": "Adaptor related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/x500Name",
+                "objectId": "x500Name",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type x500Name.\n\nThe \"<x500Name>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "x500Name",
+            "brief": "Data type x500Name related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/model",
+                "objectId": "model",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Model related functions.",
+            "category": "model",
+            "brief": "Model related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/authorization",
+                "objectId": "authorization",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Authorization related functions.",
+            "category": "authorization",
+            "brief": "Authorization related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/password",
+                "objectId": "password",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type password.\n\nThe \"<password>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "password",
+            "brief": "Data type password related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/miscellaneous",
+                "objectId": "miscellaneous",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Miscellaneous functions.",
+            "category": "miscellaneous",
+            "brief": "Miscellaneous functions."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/script",
+                "objectId": "script",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These functions support adaptive scripts.",
+            "category": "script",
+            "brief": "Script functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/xpathExpression",
+                "objectId": "xpathExpression",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Functions on path expressions used to navigate in XML documents.",
+            "category": "xpathExpression",
+            "brief": "xpathExpression related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/object",
+                "objectId": "object",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type object.\n\nThe \"<object>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "object",
+            "brief": "Data type object related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/string",
+                "objectId": "string",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type string.\n\nThe \"<string>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "string",
+            "brief": "Data type string related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/anyURI",
+                "objectId": "anyURI",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type anyURI.\n\nThe \"<anyURI>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "anyURI",
+            "brief": "Data type anyURI related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/null",
+                "objectId": "null",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type null.\n\nThe \"<null>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "null",
+            "brief": "Data type null related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/value",
+                "objectId": "value",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These are function that work on all adaptive values and their associated meta.",
+            "category": "value",
+            "brief": "Adaptive value functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/yearMonthDuration",
+                "objectId": "yearMonthDuration",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type yearMonthDuration.\n\nThe \"<yearMonthDuration>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "yearMonthDuration",
+            "brief": "Data type yearMonthDuration related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/splunk",
+                "objectId": "splunk",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "This category provides adaptive functions for interacting with Splunk logging.",
+            "category": "splunk",
+            "brief": "Splunk functions."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/boolean",
+                "objectId": "boolean",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type boolean.\n\nThe \"<boolean>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "boolean",
+            "brief": "Data type boolean related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/http",
+                "objectId": "http",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These functions provide adaptive functions to that allow the user to access HTTP resources.",
+            "category": "http",
+            "brief": "HTTP Functions derived from cURL."
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/objectPath",
+                "objectId": "objectPath",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type objectPath.\n\nThe \"<objectPath>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "objectPath",
+            "brief": "Data type objectPath related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/objectId",
+                "objectId": "objectId",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type objectId.\n\nThe \"<objectId>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "objectId",
+            "brief": "Data type objectId related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/administrative",
+                "objectId": "administrative",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These are function used to administer the adaptive environment.",
+            "category": "administrative",
+            "brief": "Adaptive environment administrative functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/xpath",
+                "objectId": "xpath",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Functions on path expressions used to navigate in XML documents.",
+            "category": "xpath",
+            "brief": "xpath related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/dnsName",
+                "objectId": "dnsName",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type dnsName.\n\nThe \"<dnsName>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "dnsName",
+            "brief": "Data type dnsName related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/base64Binary",
+                "objectId": "base64Binary",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type base64Binary.\n\nThe \"<base64Binary>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "base64Binary",
+            "brief": "Data type base64Binary related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/policy_combining_algorithm",
+                "objectId": "policy_combining_algorithm",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Policy combining algorithms.",
+            "category": "policy_combining_algorithm",
+            "brief": "Policy combining algorithms"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/dateTime",
+                "objectId": "dateTime",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type dateTime.\n\nThe \"<dateTime>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "dateTime",
+            "brief": "Data type dateTime related functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/higher_order_list",
+                "objectId": "higher_order_list",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "Higher-order list functions.",
+            "category": "higher_order_list",
+            "brief": "Higher-order list functions"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveFunctionCategory_/integer",
+                "objectId": "integer",
+                "objectType": "_AdaptiveFunctionCategory_"
+            },
+            "description": "These function are related to data type integer.\n\nThe \"<integer>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
+            "dataTypeCategory": true,
+            "category": "integer",
+            "brief": "Data type integer related functions"
+        }
+    ],
+    "status": "success"
+}

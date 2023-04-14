@@ -1,0 +1,26 @@
+{
+    "brief": "Add duration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType> result.",
+    "functionId": "add_dayTimeDuration",
+    "functionLabel": "add_dayTimeDuration",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "dayTimeDuration",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "dateTime"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

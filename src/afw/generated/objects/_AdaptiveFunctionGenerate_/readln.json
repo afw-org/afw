@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReadln",
+    "brief": "Read from a UTF-8 text stream line",
+    "camelCaseFunctionLabel": "readln",
+    "category": "stream",
+    "description": "Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an error is thrown.",
+    "functionId": "readln",
+    "functionLabel": "readln",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number",
+            "name": "streamNumber"
+        }
+    ],
+    "returns": {
+        "brief": "The string read",
+        "dataType": "string",
+        "description": "The UTF-8 string read."
+    },
+    "sideEffects": [
+        "Stream modified"
+    ]
+}

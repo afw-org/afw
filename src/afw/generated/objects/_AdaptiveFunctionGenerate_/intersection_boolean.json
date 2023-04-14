@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionBoolean",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Returns a list of boolean with the values that are common to both list of boolean list1 and list2.",
+    "functionId": "intersection<boolean>",
+    "functionLabel": "intersection_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

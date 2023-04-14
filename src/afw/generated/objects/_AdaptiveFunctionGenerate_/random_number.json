@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRandomNumber",
+    "brief": "Generate a random number between specified values",
+    "camelCaseFunctionLabel": "randomNumber",
+    "category": "random",
+    "description": "This returns a random double between specified values",
+    "functionId": "random_number",
+    "functionLabel": "random_number",
+    "parameters": [
+        {
+            "dataType": "double",
+            "description": "Minimum double inclusive. The default is 0.0.",
+            "name": "min",
+            "optional": true
+        },
+        {
+            "dataType": "double",
+            "description": "Maximum double exclusive. The default is 1.0.",
+            "name": "max",
+            "optional": true
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "double"
+    }
+}

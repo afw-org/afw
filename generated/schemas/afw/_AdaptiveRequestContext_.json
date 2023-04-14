@@ -1,0 +1,32 @@
+{
+    "$defs": {
+        "_AdaptiveRequestContext_": {
+            "additionalProperties": {
+                "description": "Request subject."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveRequestContext_.propertyTypes"
+                }
+            ],
+            "description": "Request subject.",
+            "type": "object"
+        },
+        "_AdaptiveRequestContext_.propertyTypes": {
+            "properties": {
+                "subjectCategories": {
+                    "description": "The initiator of the request.",
+                    "title": "Subject",
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveRequestContext_"
+        }
+    ]
+}

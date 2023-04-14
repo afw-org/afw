@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDecodeToStringHexBinary",
+    "brief": "Decode hexBinary to string",
+    "camelCaseFunctionLabel": "decodeToStringHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Decode hexBinary value to string. An error is thrown if decoded value is not valid UTF-8.",
+    "functionId": "decode_to_string<hexBinary>",
+    "functionLabel": "decode_to_string_hexBinary",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "description": "The hexBinary value to decode.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The decoded string."
+    }
+}

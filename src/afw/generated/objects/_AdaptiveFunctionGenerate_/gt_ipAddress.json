@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtIpAddress",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Checks for ipAddress arg1 is greater than ipAddress arg2 and return the boolean result.",
+    "functionId": "gt<ipAddress>",
+    "functionLabel": "gt_ipAddress",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "ipAddress",
+            "name": "arg1"
+        },
+        {
+            "dataType": "ipAddress",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

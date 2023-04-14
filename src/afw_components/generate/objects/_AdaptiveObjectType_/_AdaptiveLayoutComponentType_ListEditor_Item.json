@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Component definition for a ListEditor Item.",
+    "label": "ListEditor Item",
+    "objectType": "_AdaptiveLayoutComponentType_ListEditor_Item",
+    "propertyTypes": {
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The primary text to display.",
+            "label": "Primary Text"
+        },
+        "secondary": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The secondary text to display.",
+            "label": "Secondary Text"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIndexOfString",
+    "brief": "Returns index of first occurrence",
+    "camelCaseFunctionLabel": "indexOfString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns the zero-based index into string value of subString. If subString is not found, -1 is returned.",
+    "functionId": "index_of<string>",
+    "functionLabel": "index_of_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value to search.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "Substring to search for.",
+            "name": "subString"
+        },
+        {
+            "dataType": "integer",
+            "description": "Optional start index for search if different than start of string.",
+            "name": "startIndex",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "Zero-based index of subString or -1 if not found."
+    },
+    "useExecuteFunction": "afw_function_execute_index_of"
+}

@@ -1,0 +1,9 @@
+{
+    "category": "navigation",
+    "componentType": "Nav",
+    "brief": "A navigational component that displays a list of links.",
+    "description": "This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel.",
+    "implementationId": "Nav",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Nav",
+    "label": "Nav"
+}

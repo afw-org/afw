@@ -1,0 +1,6 @@
+{
+  "extensionId": "afw_vfs",
+  "modulePath": "libafwvfs",
+  "description": "This extension provides an adaptor for accessing local files through a Virtual File System interface.",
+  "brief": "Extension for VFS (Virtual File System)"
+}

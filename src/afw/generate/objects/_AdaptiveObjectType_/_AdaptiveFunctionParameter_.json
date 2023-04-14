@@ -1,0 +1,90 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive function parameter meta.",
+    "objectType": "_AdaptiveFunctionParameter_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description of parameter",
+            "dataType": "string",
+            "description": "This is a predicate for the parameter with the first letter capitalized and without a trailing period.",
+            "label": "Brief"
+        },
+        "canBeUndefined": {
+            "allowQuery": true,
+            "brief": "This parameter can be undefined even if not optional",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Indicates that parameter can be undefined (NULL) even if not optional.",
+            "label": "Optional"
+        },
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Data type id for this parameter's value",
+            "dataType": "string",
+            "description": "This is the data type id for this parameter's value.",
+            "label": "Data Type",
+            "required": false
+        },
+        "dataTypeParameter": {
+            "allowQuery": true,
+            "brief": "The dataType-specific parameter",
+            "dataType": "string",
+            "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+            "label": "Data Type Parameter",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this parameter in more detail",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description of this parameter.",
+            "label": "Description"
+        },
+        "minArgs": {
+            "allowQuery": true,
+            "brief": "Minimum number of values that can be specified for this parameter",
+            "dataType": "integer",
+            "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
+            "label": "Min Args"
+        },
+        "name": {
+            "allowQuery": true,
+            "brief": "The name of this parameter",
+            "dataType": "string",
+            "description": "This is the name of this parameter.",
+            "label": "Name"
+        },
+        "optional": {
+            "allowQuery": true,
+            "brief": "This parameter is optional and can be undefined",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "This indicates that parameter is optional and can be undefined (NULL).",
+            "label": "Optional"
+        },
+        "polymorphicDataType": {
+            "allowQuery": true,
+            "brief": "The dataType for this parameter",
+            "dataType": "boolean",
+            "description": "The dataType for this parameter is <Type>.",
+            "label": "Polymorphic Data Type"
+        },
+        "polymorphicDataTypeParameter": {
+            "allowQuery": true,
+            "brief": "The dataTypeParameter for this parameter",
+            "dataType": "boolean",
+            "description": "The dataTypeParameter for this parameter is <Type>.",
+            "label": "Polymorphic Data Type Parameter"
+        }
+    },
+    "runtime": {
+        "indirect": false,
+        "labels": {},
+        "typedef": "afw_value_function_parameter_t"
+    }
+}

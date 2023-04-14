@@ -1,0 +1,4 @@
+generate/additional_javascript/
+-------------------------------
+
+@todo add document

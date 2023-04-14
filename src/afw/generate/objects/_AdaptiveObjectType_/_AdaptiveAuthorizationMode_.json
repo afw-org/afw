@@ -1,0 +1,38 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is meta for current::modeId qualified variable value.",
+    "objectIdPropertyName": "modeId",
+    "objectType": "_AdaptiveAuthorizationMode_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description of this authorization mode",
+            "dataType": "string",
+            "description": "This is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "modeId": {
+            "brief": "The modeId for this authorization mode",
+            "dataType": "string",
+            "description": "This is used to uniquely identify this particular authorization mode.",
+            "label": "Mode Id",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this authorization mode in detail",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description of this modeId value.",
+            "label": "Description",
+            "required": false
+        }
+    }
+}

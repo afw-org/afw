@@ -1,0 +1,103 @@
+{
+    "description": "Tests for set_equals<hexBinary> function.",
+    "functionId": "set_equals<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "0fb7",
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

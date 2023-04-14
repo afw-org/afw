@@ -1,0 +1,30 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveServiceConf_/log-syslog",
+            "objectId": "log-syslog",
+            "objectType": "_AdaptiveServiceConf_",
+            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/log-syslog\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_log_syslog\"},\"debug\":true,\"warning\":true,\"notice\":true,\"info\":true,\"err\":true,\"emerg\":true,\"crit\":true,\"alert\":true,\"description\":\"Logs messages to syslog.\",\"logId\":\"syslog\",\"logType\":\"syslog\",\"type\":\"log\"},\"serviceId\":\"log-syslog\",\"startup\":\"immediate\"}"
+        },
+        "conf": {
+            "_meta_": {
+                "objectType": "_AdaptiveConf_log_syslog"
+            },
+            "debug": true,
+            "warning": true,
+            "notice": true,
+            "info": true,
+            "err": true,
+            "emerg": true,
+            "crit": true,
+            "alert": true,
+            "description": "Logs messages to syslog.",
+            "logId": "syslog",
+            "logType": "syslog",
+            "type": "log"
+        },
+        "serviceId": "log-syslog",
+        "startup": "immediate"
+    },
+    "status": "success"
+}

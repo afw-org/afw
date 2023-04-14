@@ -1,0 +1,29 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "objectType": "_AdaptiveAction_",
+    "otherProperties": {
+        "description": "Function parameter."
+    },
+    "propertyTypes": {
+        "function": {
+            "brief": "Function name to call",
+            "dataType": "string",
+            "description": "This is the qualified or unqualified function name to call.",
+            "required": true
+        },
+        "_flags_": {
+            "brief": "List of flags to set for this function",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
+            "label": "Flags",
+            "required": false
+        }
+    }
+}

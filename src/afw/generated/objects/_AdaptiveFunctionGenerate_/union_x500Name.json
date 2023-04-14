@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionX500Name",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Returns a list of x500Name contains all of the unique values in two or more list of x500Name values.",
+    "functionId": "union<x500Name>",
+    "functionLabel": "union_x500Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "x500Name"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

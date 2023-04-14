@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringObjectId",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringObjectId",
+    "category": "objectId",
+    "dataTypeMethod": true,
+    "description": "Converts objectId value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<objectId>",
+    "functionLabel": "to_string_objectId",
+    "parameters": [
+        {
+            "dataType": "objectId",
+            "description": "A objectId value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

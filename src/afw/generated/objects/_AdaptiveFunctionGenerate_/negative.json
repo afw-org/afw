@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNegative",
+    "brief": "Negative of a number",
+    "camelCaseFunctionLabel": "negative",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return negative of <dataType> value.",
+    "functionId": "negative",
+    "functionLabel": "negative",
+    "op": "-",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

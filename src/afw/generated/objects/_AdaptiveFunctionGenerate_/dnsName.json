@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDnsName",
+    "brief": "Convert to data type dnsName",
+    "camelCaseFunctionLabel": "dnsName",
+    "category": "dnsName",
+    "description": "Converts value to data type dnsName returning dnsName result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "dnsName",
+    "functionLabel": "dnsName",
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dnsName",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

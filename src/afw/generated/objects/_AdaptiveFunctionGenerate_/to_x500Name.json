@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToX500Name",
+    "brief": "Converts string to x500Name",
+    "camelCaseFunctionLabel": "toX500Name",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to x500Name.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_x500Name",
+    "functionLabel": "to_x500Name",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "x500Name"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

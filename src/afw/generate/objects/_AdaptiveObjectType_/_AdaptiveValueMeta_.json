@@ -1,0 +1,215 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "The object type for an adaptive value's meta.",
+    "objectType": "_AdaptiveValueMeta_",
+    "propertyTypes": {
+        "additionalConstraints": {
+            "allowQuery": true,
+            "brief": "Additional constraint for the value",
+            "dataType": "hybrid",
+            "description": "Additional constraint for the value.",
+            "label": "Additional Constraints"
+        },
+        "allowQuery": {
+            "allowQuery": true,
+            "brief": "This value value be queried",
+            "dataType": "boolean",
+            "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+            "label": "Allow Query"
+        },
+        "allowWrite": {
+            "allowQuery": true,
+            "brief": "The value can be written",
+            "dataType": "boolean",
+            "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+            "label": "Allow Write"
+        },
+        "allowedValues": {
+            "allowQuery": true,
+            "brief": "A list of allowed values for this adaptive value",
+            "dataType": "list",
+            "description": "This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+            "label": "Allowed Values"
+        },
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description of this value",
+            "dataType": "string",
+            "description": "This is a predicate for this value, with the first letter capitalized and without a trailing period.",
+            "label": "Brief"
+        },
+        "collectionURIs": {
+            "allowQuery": true,
+            "brief": "The URIs of the collection that this value is a part of",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+            "label": "Collection URIs"
+        },
+        "contextType": {
+            "allowQuery": true,
+            "brief": "The context type used for the evaluation",
+            "dataType": "string",
+            "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+            "label": "Context Type"
+        },
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Data type of this value",
+            "dataType": "string",
+            "description": "Data type of this value.",
+            "label": "Data Type"
+        },
+        "dataTypeParameter": {
+            "allowQuery": true,
+            "brief": "The parameter for the dataType",
+            "dataType": "string",
+            "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+            "label": "Data Type Parameter"
+        },
+        "dataTypeParameterFormatted": {
+            "allowQuery": true,
+            "brief": "The same as dataTypeParameter will possible comments and whitespace",
+            "dataType": "string",
+            "description": "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+            "label": "Formatted Data Type Parameter"
+        },
+        "defaultValue": {
+            "allowQuery": true,
+            "brief": "This is the default value",
+            "description": "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+            "label": "Default Value"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this value",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "The description of this value.",
+            "label": "Description"
+        },
+        "hints": {
+            "allowQuery": true,
+            "brief": "Hints that can optionally be used by UI to render this value",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObject_",
+            "description": "Hints that can optionally be used by UI to render this value.",
+            "label": "Hints"
+        },
+        "label": {
+            "allowQuery": true,
+            "brief": "Label used to identify this value",
+            "dataType": "string",
+            "description": "Label used to identify this value.",
+            "label": "Label"
+        },
+        "maxLength": {
+            "allowQuery": true,
+            "brief": "The maximum string length for this value",
+            "dataType": "integer",
+            "description": "This is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+            "label": "Maximum Length"
+        },
+        "maxNormalLength": {
+            "allowQuery": true,
+            "brief": "The maximum normal string length for this value",
+            "dataType": "integer",
+            "description": "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+            "label": "Normal Maximum Length"
+        },
+        "maxValue": {
+            "allowQuery": true,
+            "brief": "The maximum for this value",
+            "description": "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "label": "Maximum Value"
+        },
+        "minLength": {
+            "allowQuery": true,
+            "brief": "The minimum string length for this value",
+            "dataType": "integer",
+            "description": "This is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+            "label": "Minimum Length"
+        },
+        "minValue": {
+            "allowQuery": true,
+            "brief": "The minimum for this value",
+            "description": "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "label": "Minimum Value"
+        },
+        "originURI": {
+            "allowQuery": true,
+            "brief": "The origin URI of this value meta",
+            "dataType": "anyURI",
+            "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+            "label": "Origin URI"
+        },
+        "possibleValues": {
+            "allowQuery": false,
+            "brief": "Possible values of this value",
+            "dataType": "list",
+            "description": "Possible values of this value. This can be the typed value or the string value.",
+            "label": "Possible Values"
+        },
+        "referenceURI": {
+            "allowQuery": true,
+            "brief": "URI of more reference information about this value meta",
+            "dataType": "anyURI",
+            "description": "URI of more reference information about this value meta.",
+            "label": "Reference URI"
+        },
+        "required": {
+            "allowQuery": true,
+            "brief": "A value is required",
+            "dataType": "boolean",
+            "description": "Indicates that value is required.",
+            "label": "Required",
+            "defaultValue": false
+        },
+        "runtime": {
+            "allowQuery": true,
+            "brief": "Runtime information for runtime values",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveRuntimeProperty_",
+            "description": "This is only valid for runtime object types. These are objects that are accessed with adaptorId afw. See afw_runtime.h for more information.",
+            "label": "Runtime"
+        },
+        "skeleton": {
+            "allowQuery": true,
+            "brief": "This is a skeleton example",
+            "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type hybrid value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+            "label": "Skeleton"
+        },
+        "tags": {
+            "brief": "List of keywords and terms associated with values with this meta",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+            "label": "Tags"
+        },
+        "testDataParameter": {
+            "allowQuery": true,
+            "brief": "Additional information about this value that can be used to produce test data",
+            "dataType": "string",
+            "description": "This contains additional information about values with this meta that is used to produce test data.",
+            "label": "Test Data Parameter"
+        },
+        "unique": {
+            "allowQuery": true,
+            "brief": "Value of property must be unique within object type",
+            "dataType": "boolean",
+            "description": "Value of property must be unique within object type.",
+            "label": "Unique"
+        },
+        "valueInfId": {
+            "allowQuery": true,
+            "allowWrite": false,
+            "brief": "This is a runtime property that is the implementation id of the value interface",
+            "dataType": "string",
+            "description": "This is a runtime property that is the implementation id of the value interface.",
+            "label": "valueInf"
+        }
+    }
+}

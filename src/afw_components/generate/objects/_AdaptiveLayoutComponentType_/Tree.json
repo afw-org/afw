@@ -1,0 +1,9 @@
+{
+    "category": "structured",
+    "componentType": "Tree",
+    "brief": "A component that renders data in a Tree structure.",
+    "description": "This component helps to organize content into a Tree structure, where nodes can be selected, expanded, or collapsed to allow the user to navigate more complex nested data or component structures.",
+    "implementationId": "Tree",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Tree",
+    "label": "Tree"
+}

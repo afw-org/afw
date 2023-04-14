@@ -1,0 +1,91 @@
+{
+    "description": "Tests for union<base64Binary> function.",
+    "functionId": "union<base64Binary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0F+40A=="
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0F+40A==",
+                        "0fa80f+9"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "base64Binary",
+                "value": [
+                    "0F+40A==",
+                    "0fa8",
+                    "0fa80f+9"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0F+40A=="
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0F+40A==",
+                        "0fa80f+9"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "base64Binary",
+                "value": [
+                    "0F+40A==",
+                    "0fa8",
+                    "0fa80f+9"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

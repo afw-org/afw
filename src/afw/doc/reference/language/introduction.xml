@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Introduction</title>
+    <paragraph>
+        There are many scenarios in which Adaptive Property values need to be 
+        computed. In order to define Log filters or generate strings to 
+        represent a property value, we created Templates that allowed the user 
+        to substitute variables. Eventually, we needed the ability to call 
+        adaptive functions to compute more complex values, and this lead to 
+        Expressions. Finally, we would use computed values to implement 
+        Adaptive Model <literal>on</literal> functions and Authorization logic.  
+        Using expressions for these situations was difficult to program, and as 
+        a result, a more procedural scripting language, or Adaptive Script, was 
+        created for this purpose.
+    </paragraph>
+    <paragraph>
+        Like Adaptive Expressions, Adaptive Script is intended to work well 
+        with objects and metadata and have a natural integration with data 
+        types and functions that are provided by core and extensions. You 
+        will find Adaptive Script has some similarities with popular 
+        scripting languages such as Javascript, Typescript and Python. This 
+        isn't an accident - we wanted to create a language that was 
+        approachable and provided users some familiarity with other languages 
+        that were popular at the time of its design.
+    </paragraph>
+    <paragraph>
+        In this reference, we will explore all of the language features of 
+        Adaptive Script, so you will understand both the similarities it 
+        has with other common languages, but also how they are different 
+        in order to avoid confusion.
+    </paragraph>
+    <paragraph>
+        This reference is a manual organization and description of the Syntax 
+        EBNF. If you are interested in the complete grammar definition, please 
+        see the complete <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>
+    </paragraph>    
+</doc>
+

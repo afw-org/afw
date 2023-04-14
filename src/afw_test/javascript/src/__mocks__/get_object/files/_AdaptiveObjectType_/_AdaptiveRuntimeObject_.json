@@ -1,0 +1,52 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/files/_AdaptiveObjectType_/_AdaptiveRuntimeObject_",
+            "objectId": "_AdaptiveRuntimeObject_",
+            "objectType": "_AdaptiveObjectType_"
+        },
+        "propertyTypes": {
+            "_meta_": {
+                "objectType": "_AdaptivePropertyTypes_"
+            },
+            "typedef": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "label": "Typedef",
+                "description": "The typedef of the struct for the runtime object.",
+                "dataType": "string",
+                "brief": "The typedef of the struct for the runtime object"
+            },
+            "labels": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "label": "Labels",
+                "description": "Labels.",
+                "dataTypeParameter": "_AdaptiveRuntimeLabels_",
+                "dataType": "object",
+                "brief": "Labels"
+            },
+            "indirect": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "label": "Indirect",
+                "description": "Indicates that the runtime struct is a pointer.",
+                "dataType": "boolean",
+                "brief": "The runtime struct is a pointer"
+            }
+        },
+        "objectType": "_AdaptiveRuntimeObject_",
+        "description": "This is the object type of the runtime property of _AdaptiveObjectType_.",
+        "collectionURIs": [
+            "/files/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false,
+        "allowDelete": false,
+        "allowChange": false,
+        "allowAdd": false
+    },
+    "status": "success"
+}

@@ -1,0 +1,210 @@
+{
+    "description": "Tests for eq<boolean> function.",
+    "functionId": "eq<boolean>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                }
+            ],
+            "description": "True equals False test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "False equals True test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "True equals True test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                }
+            ],
+            "description": "False equals False test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "1"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "1 equals True test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "1"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                }
+            ],
+            "description": "1 equals False test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "0"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "0 equals True test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "0"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                }
+            ],
+            "description": "0 equals False test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "0"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "0"
+                }
+            ],
+            "description": "0 equals 0 test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "0"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "1"
+                }
+            ],
+            "description": "0 equals 1 test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "1"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "1"
+                }
+            ],
+            "description": "1 equals 1 test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "invalidboolean"
+                }
+            ],
+            "description": "Invalid boolean test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

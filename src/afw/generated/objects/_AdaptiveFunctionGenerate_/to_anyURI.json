@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToAnyURI",
+    "brief": "Converts string to anyURI",
+    "camelCaseFunctionLabel": "toAnyURI",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to anyURI.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_anyURI",
+    "functionLabel": "to_anyURI",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "anyURI"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

@@ -1,0 +1,69 @@
+{
+    "description": "Tests for divide<integer> function.",
+    "functionId": "divide<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "200"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                }
+            ],
+            "description": "Divide 200 by 5",
+            "result": {
+                "dataType": "integer",
+                "value": "40"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "9223372036854775807"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "Divide 9223372036854775807 by 2",
+            "result": {
+                "dataType": "integer",
+                "value": "4611686018427387903"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "200"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                }
+            ],
+            "description": "Divide 200 by 0",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

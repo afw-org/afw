@@ -1,0 +1,30 @@
+{
+    "brief": "Open a response stream",
+    "category": "stream",
+    "description": "This will open a response text write-only stream that will be written to the http response.",
+    "functionId": "open_response",
+    "functionLabel": "open_response",
+    "parameters": [
+        {
+            "brief": "Stream id",
+            "dataType": "string",
+            "description": "This is the streamId that will be associated with this open response stream.",
+            "name": "streamId"
+        },
+        {
+            "brief": "Auto flush",
+            "dataType": "boolean",
+            "description": "If specified and true, this will automatically flush the stream's buffers after every write.",
+            "name": "autoFlush",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "streamNumber",
+        "dataType": "integer",
+        "description": "The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information."
+    },
+    "sideEffects": [
+        "Stream is opened"
+    ]
+}

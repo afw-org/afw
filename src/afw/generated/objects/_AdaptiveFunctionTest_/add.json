@@ -1,0 +1,32 @@
+{
+    "description": "Tests for polymorphic functions.",
+    "functionId": "add",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "6"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "ADD with integers",
+            "result": {
+                "dataType": "integer",
+                "value": "17"
+            }
+        }
+    ]
+}

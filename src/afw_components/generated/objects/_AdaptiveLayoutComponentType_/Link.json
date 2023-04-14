@@ -1,0 +1,9 @@
+{
+    "category": "navigation",
+    "componentType": "Link",
+    "brief": "A component that renders a url link.",
+    "description": "This component understands how to render a link with the appropriate framework style, and handles the React Routing, if the link references another component within this same application.",
+    "implementationId": "Link",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Link",
+    "label": "Link"
+}

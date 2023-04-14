@@ -1,0 +1,39 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReplaceString",
+    "brief": "Replace strings",
+    "camelCaseFunctionLabel": "replaceString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Replace string(s) in a string value.",
+    "functionId": "replace<string>",
+    "functionLabel": "replace_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The original string value.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "The string to replace.",
+            "name": "match"
+        },
+        {
+            "dataType": "string",
+            "description": "The replacement string.",
+            "name": "replacement"
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "A string value with the matched string(s) replaced."
+    },
+    "useExecuteFunction": "afw_function_execute_replace"
+}

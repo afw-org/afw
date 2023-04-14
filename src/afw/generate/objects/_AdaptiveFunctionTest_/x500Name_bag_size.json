@@ -1,0 +1,48 @@
+{
+    "description": "Tests for bag_size<x500Name> function.",
+    "functionId": "bag_size<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme",
+                        "cn=John Smith,ou=Finance1,o=Acme",
+                        "cn=John Smith,ou=Finance2,o=Acme",
+                        "cn=John Smith,ou=Finance4,o=Acme",
+                        "cn=John Smith,ou=Finance3,o=Acme",
+                        "cn=John Smith,ou=Finance5,o=Acme"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "integer",
+                "value": "6"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": []
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

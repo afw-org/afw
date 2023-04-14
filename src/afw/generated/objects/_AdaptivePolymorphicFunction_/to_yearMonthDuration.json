@@ -1,0 +1,29 @@
+{
+    "brief": "Converts string to yearMonthDuration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to yearMonthDuration.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_yearMonthDuration",
+    "functionLabel": "to_yearMonthDuration",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "returns": {
+        "dataType": "yearMonthDuration"
+    }
+}

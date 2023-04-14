@@ -1,0 +1,42 @@
+{
+    "brief": "Open a URI",
+    "category": "stream",
+    "description": "This will open a read or write stream for a URI.",
+    "functionId": "open_uri",
+    "functionLabel": "open_uri",
+    "parameters": [
+        {
+            "brief": "Stream id",
+            "dataType": "string",
+            "description": "This is the streamId that will be associated with this open URI stream.",
+            "name": "streamId"
+        },
+        {
+            "brief": "URI",
+            "dataType": "string",
+            "description": "This is the URI of the stream to open.",
+            "name": "uri"
+        },
+        {
+            "brief": "Mode",
+            "dataType": "string",
+            "description": "This is the access mode string. Values can be \"r\" for read or \"w\" for write.",
+            "name": "mode"
+        },
+        {
+            "brief": "Auto flush",
+            "dataType": "boolean",
+            "description": "If specified and true, this will automatically flush the stream's buffers after every write.",
+            "name": "autoFlush",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "streamNumber",
+        "dataType": "integer",
+        "description": "The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information."
+    },
+    "sideEffects": [
+        "Stream is opened"
+    ]
+}

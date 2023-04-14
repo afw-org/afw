@@ -1,0 +1,12 @@
+{
+    "brief": "A DNS name",
+    "cType": "afw_utf8_t",
+    "dataType": "dnsName",
+    "description": "Data type dnsName is Domain Name System (DNS) name.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "idn-hostname",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": false,
+    "scalar": true
+}

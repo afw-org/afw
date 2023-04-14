@@ -1,0 +1,39 @@
+{
+    "description": "Tests for one_and_only<time> function.",
+    "functionId": "one_and_only<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5555"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "time",
+                "value": "13:20:30.5555"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5555",
+                        "13:20:30.5555"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

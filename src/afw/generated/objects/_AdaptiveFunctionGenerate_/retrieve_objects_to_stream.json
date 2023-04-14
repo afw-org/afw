@@ -1,0 +1,55 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRetrieveObjectsToStream",
+    "brief": "Retrieve adaptive objects to a stream",
+    "camelCaseFunctionLabel": "retrieveObjectsToStream",
+    "category": "adaptor",
+    "description": "This function retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.\n\nEach object is written to the \"streamId\" stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "functionId": "retrieve_objects_to_stream",
+    "functionLabel": "retrieve_objects_to_stream",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number objects will be written to as they are retrieved.",
+            "name": "streamNumber"
+        },
+        {
+            "brief": "Id of adaptor",
+            "dataType": "string",
+            "description": "Id of adaptor containing objects to retrieve.",
+            "name": "adaptorId"
+        },
+        {
+            "brief": "Id of object type",
+            "dataType": "string",
+            "description": "Id of adaptive object type of objects to retrieve.",
+            "name": "objectType"
+        },
+        {
+            "brief": "Query criteria",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveQueryCriteria_",
+            "description": "This is the query criteria for objects to be retrieved. If not specified, all objects will be retrieved.",
+            "name": "queryCriteria",
+            "optional": true
+        },
+        {
+            "brief": "Object options",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

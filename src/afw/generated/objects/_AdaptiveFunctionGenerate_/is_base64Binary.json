@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsBase64Binary",
+    "brief": "Checks whether value is dataType base64Binary",
+    "camelCaseFunctionLabel": "isBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType base64Binary and return the boolean result.",
+    "functionId": "is<base64Binary>",
+    "functionLabel": "is_base64Binary",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

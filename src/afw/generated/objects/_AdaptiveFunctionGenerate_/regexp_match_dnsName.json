@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpMatchDnsName",
+    "brief": "Search for a match using a regular expression",
+    "camelCaseFunctionLabel": "regexpMatchDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Checks whether dnsName value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match<dnsName>",
+    "functionLabel": "regexp_match_dnsName",
+    "parameters": [
+        {
+            "dataType": "dnsName",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_match"
+}

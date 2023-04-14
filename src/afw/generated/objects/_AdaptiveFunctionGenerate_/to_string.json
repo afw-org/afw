@@ -1,0 +1,54 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToString",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toString",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string",
+    "functionLabel": "to_string",
+    "parameters": [
+        {
+            "description": "A <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

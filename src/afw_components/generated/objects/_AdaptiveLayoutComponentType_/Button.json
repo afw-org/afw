@@ -1,0 +1,9 @@
+{
+    "category": "inputs",
+    "componentType": "Button",
+    "brief": "Component to display a Button.",
+    "description": "This component encapsulates a wide range of Button features, including labels, icons and colors. The Button component may even allow for a dropdown of selected actions to perform when clicked.",
+    "implementationId": "Button",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Button",
+    "label": "Button"
+}

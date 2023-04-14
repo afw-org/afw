@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsString",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if string list1 and string list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<string>",
+    "functionLabel": "set_equals_string",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

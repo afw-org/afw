@@ -1,0 +1,15 @@
+{
+    "brief": "An regular expression",
+    "cType": "afw_utf8_t",
+    "compileType": "regexp",
+    "dataType": "regexp",
+    "dataTypeParameterType": "SourceParameter",
+    "description": "Data type regexp holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F.",
+    "directReturn": false,
+    "evaluated": true,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "regex",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

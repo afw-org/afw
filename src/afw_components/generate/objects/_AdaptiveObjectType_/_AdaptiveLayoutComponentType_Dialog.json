@@ -1,0 +1,82 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Dialog component.",
+    "objectType": "_AdaptiveLayoutComponentType_Dialog",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "title": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The title text to display at the top of the dialog box.",
+            "label": "Title"
+        },
+        "subText": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The content text to display inside the dialog box, directly under the Title.",
+            "label": "Subtext"
+        },
+        "isBlocking": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Determines if the Dialog should block dismissing until the user clicks a button.",
+            "label": "Is Blocking"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Dialog component is open.",
+            "label": "Open"
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponent_",
+            "description": "Any contents that needs to be rendered inside the Dialog.",
+            "label": "Contains"
+        },
+        "footer": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponent_",
+            "description": "Any contents that needs to be rendered inside the Dialog's footer area.",
+            "label": "Footer"
+        },
+        "showClose": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Should a close button be rendered, to allow the user to dismiss the Dialog.",
+            "label": "Show Close"
+        },
+        "fullScreen": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Should the Dialog be full screen?",
+            "label": "Full Screen"
+        },
+        "maxWidth": {
+            "allowWrite": true,
+            "dataType": "string",
+            "possibleValues": [
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "description": "The maximum width of the Dialog.",
+            "label": "Max Width"
+        }
+    }
+}

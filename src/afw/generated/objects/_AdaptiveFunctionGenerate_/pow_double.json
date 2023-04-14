@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPowDouble",
+    "brief": "Base raised to a power",
+    "camelCaseFunctionLabel": "powDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent.",
+    "functionId": "pow<double>",
+    "functionLabel": "pow_double",
+    "parameters": [
+        {
+            "brief": "Base value",
+            "dataType": "double",
+            "description": "Base value.",
+            "name": "base"
+        },
+        {
+            "brief": "Exponent value",
+            "dataType": "double",
+            "description": "Exponent value.",
+            "minArgs": 1,
+            "name": "exponent"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double",
+        "description": "Base raised to the power."
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "brief": "Reconcile adaptive object",
+    "category": "adaptor",
+    "description": "Reconcile an adaptive object.",
+    "functionId": "reconcile_object",
+    "functionLabel": "reconcile_object",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "An object that has been retrieved with object options reconcilable, and whose properties have been modified. A modify_object request will be produced reflecting the difference between the original object and this unmodified object.",
+            "name": "object"
+        },
+        {
+            "dataType": "boolean",
+            "description": "Produce the modify_object request but don't execute it. The returned journal enter will contain the modify_object request.",
+            "name": "checkOnly",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveJournalEntry_",
+        "description": "Resulting journal entry."
+    },
+    "sideEffects": [
+        "Object modified"
+    ]
+}

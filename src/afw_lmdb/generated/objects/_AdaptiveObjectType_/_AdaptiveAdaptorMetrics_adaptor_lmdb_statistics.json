@@ -1,0 +1,12 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/lmdb_extension"
+    ],
+    "description": "Information about each LMDB database. Uses the mdb_env_stat() routine.",
+    "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
+    "otherProperties": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
+    }
+}

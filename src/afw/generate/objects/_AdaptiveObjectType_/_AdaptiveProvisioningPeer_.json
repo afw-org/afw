@@ -1,0 +1,69 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A provisioning peer consumes and/or produces adaptive journal entries.",
+    "objectType": "_AdaptiveProvisioningPeer_",
+    "propertyTypes": {
+        "advanceCursor": {
+            "allowQuery": true,
+            "brief": "Internal cursor used by advance_cursor_for_consumer",
+            "dataType": "string",
+            "description": "This property set by get_entry() option advance_cursor_for_consumer. If set, get_entry() option next_for_consumer will removed it and use it as the cursor to begin looking for the next applicable entry. The intent of cursorNext is to be set by a background process/thread that examines journal entries from the cursorNext/cursorCurrent forward looking for a entry that passes the consumer filter. Once cursorNext is used by get_entry() next_for_consumer, the property is removed.",
+            "label": "Advance Cursor"
+        },
+        "consumeCursor": {
+            "allowQuery": true,
+            "brief": "The current cursor being consumed",
+            "dataType": "string",
+            "description": "This is the current cursor being consumed. This property only exists between a get_entry() option next_for_consumer and the corresponding mark_entry_consumed(). If this property exists, it should have exactly the same value as property cursorCurrent. Anything else is and error.",
+            "label": "Consume Cursor"
+        },
+        "consumeFilter": {
+            "allowQuery": true,
+            "brief": "Expression that determines if a journal entry is applicable to be consumed by this peer",
+            "dataType": "expression",
+            "defaultValue": "true",
+            "description": "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer.",
+            "label": "Consume Filter"
+        },
+        "consumeStartTime": {
+            "allowQuery": true,
+            "brief": "The time that get_entry() next_for_consumer began",
+            "dataType": "dateTime",
+            "description": "The time that get_entry() next_for_consumer began. This property will only exist if cursorBeingConsumed property exists.",
+            "label": "Consume Start Time"
+        },
+        "currentCursor": {
+            "allowQuery": true,
+            "brief": "The current cursor into the journal",
+            "dataType": "string",
+            "description": "This is the current cursor into the journal.",
+            "label": "Current Cursor"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of provisioning peer",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of provisioning peer.",
+            "label": "Description"
+        },
+        "lastContactTime": {
+            "allowQuery": true,
+            "brief": "The last time the peer was successfully contacted",
+            "dataType": "dateTime",
+            "description": "The last time the peer was successfully contacted.",
+            "label": "Last Contact Time"
+        },
+        "peerId": {
+            "allowQuery": true,
+            "brief": "Id used to identify this peer",
+            "dataType": "string",
+            "description": "Id used to identify this peer. This may also be referred to as the consumerId or producerId, depending on the perspective.",
+            "label": "Peer",
+            "required": true
+        }
+    }
+}

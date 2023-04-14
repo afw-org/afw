@@ -1,0 +1,28 @@
+{
+    "brief": "Add properties of one object to another",
+    "category": "object",
+    "description": "Add the properties of one object to another replacing existing properties by the same name.",
+    "functionId": "add_properties",
+    "functionLabel": "add_properties",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Target object. This object must not be immutable.",
+            "name": "target"
+        },
+        {
+            "minArgs": 1,
+            "dataType": "object",
+            "description": "Source object(s).",
+            "name": "source"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "The modified target object."
+    },
+    "sideEffects": [
+        "Target object is modified."
+    ]
+}

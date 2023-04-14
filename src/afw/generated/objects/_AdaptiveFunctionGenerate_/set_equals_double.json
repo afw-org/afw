@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsDouble",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if double list1 and double list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<double>",
+    "functionLabel": "set_equals_double",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

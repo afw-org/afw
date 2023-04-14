@@ -1,0 +1,13 @@
+{
+    "startup": "immediate",
+    "serviceId": "adaptor-vfs",
+    "conf": {
+            "adaptorId": "vfs",
+            "adaptorType": "vfs",
+            "type": "adaptor",
+            "description": "VFS for accessible files.",
+            "vfsMap": [
+                    "=/afw/vfs/"
+            ]
+    }
+}

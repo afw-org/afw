@@ -1,0 +1,55 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveApplication_/current",
+            "objectId": "current",
+            "objectType": "_AdaptiveApplication_"
+        },
+        "type": "application",
+        "confAdaptorId": "conf",
+        "applicationId": "AFWDev",
+        "sourceLocation": "/workspace/docker/dev/afw.conf entry 3",
+        "defaultFlags": [
+            "debug",
+            "trace",
+            "trace:authorization:decision"
+        ],
+        "extensions": [
+            "afw_yaml",
+            "afw_ldap",
+            "afw_lmdb",
+            "afw_curl",
+            "afw_splunk",
+            "afw_xml",
+            "afw_dbd",
+            "afw_sql",
+            "afw_authorization_policy",
+            "afw_xacml"
+        ],
+        "qualifiedVariables": {
+            "_meta_": {
+                "objectType": "_AdaptiveHybridPropertiesObjects_"
+            },
+            "environment": {
+                "_meta_": {
+                    "objectType": "_AdaptiveHybridProperties_"
+                },
+                "authType": "${variable_get(\"request::AUTH_TYPE\", \"\")}",
+                "remoteAddr": "${variable_get(\"request::REMOTE_ADDR\", \"\")}",
+                "sslClientVerify": "${variable_get(\"request::SSL_CLIENT_VERIFY\", \"NONE\")}"
+            },
+            "subject": {
+                "_meta_": {
+                    "objectType": "_AdaptiveHybridProperties_"
+                },                
+                "subjectId": "${variable_get(\"request::REMOTE_USER\", null)}"
+            }
+        },
+        "layoutsAdaptorId": "layouts",
+        "defaultModelAdaptorId": "models",
+        "defaultAdaptorId": "afw",
+        "description": "Adaptive Framework Dev Container.",
+        "title": "AFWDev"
+    },
+    "status": "success"
+}

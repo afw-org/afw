@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLengthString",
+    "brief": "Returns number of codepoints or entries in value",
+    "camelCaseFunctionLabel": "lengthString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "This is a polymorphic function where string can be any of the supported data types. Return the integer number of entries in datatype list or codepoints in others.",
+    "functionId": "length<string>",
+    "functionLabel": "length_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Returns the number of entries in a list or code points in others.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_length"
+}

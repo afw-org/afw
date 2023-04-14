@@ -1,0 +1,36 @@
+{
+    "$defs": {
+        "_AdaptiveAuthorizationHandlerType_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_.propertyTypes"
+                }
+            ],
+            "description": "A registry type authorization_handler_factory entry.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveAuthorizationHandlerType_.propertyTypes": {
+            "properties": {
+                "authorizationHandlerType": {
+                    "description": "Type of authorization handler.",
+                    "title": "Authorization Handler Type",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of authorization handler type.",
+                    "title": "Description",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_"
+        }
+    ]
+}

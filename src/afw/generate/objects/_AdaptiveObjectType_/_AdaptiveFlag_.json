@@ -1,0 +1,99 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive flag.",
+    "objectType": "_AdaptiveFlag_",
+    "propertyTypes": {
+        "applicableFlags": {
+            "allowQuery": true,
+            "brief": "All the applicable flags that are set when this flag is set",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "All the applicable flags that are set when this flag is set.",
+            "label": "Applicable Flags",
+            "runtime": {
+                "memberName": "flag_id",
+                "valueAccessor": "applicable_flags"
+            }
+        },
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief predicate about this flag.",
+            "dataType": "string",
+            "description": "Describes this flag briefly, starting with an uppercase letter and ending without a period.",
+            "label": "Brief",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "This is the description of this flag",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description of this flag, which may provide more detail for documentation.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "flagId": {
+            "allowQuery": true,
+            "brief": "This is the key for this flag in registry type flag.",
+            "dataType": "string",
+            "description": "This is the key for this flag in registry type flag and the objectId of its _AdaptiveFlag_ runtime object.",
+            "label": "Flag Id",
+            "runtime": {
+                "memberName": "flag_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "flagIndex": {
+            "allowQuery": true,
+            "brief": "Index assigned when flag id is registered",
+            "dataType": "integer",
+            "description": "Index assigned when flag id is registered.",
+            "label": "Index",
+            "runtime": {
+                "memberName": "flag_index",
+                "valueAccessor": "size"
+            }
+        },
+        "includedByFlags": {
+            "allowQuery": true,
+            "brief": "All of the flags that include this flag",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "All of the flags that include this flag. When setting flags in this list, this flag will also be set.",
+            "label": "Included By",
+            "runtime": {
+                "memberName": "included_by_value",
+                "valueAccessor": "value"
+            }
+        },
+        "includesFlags": {
+            "allowQuery": true,
+            "brief": "All other flags that this flag includes",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "All other flags that this flag includes. When setting this flat, all of the flags in this list will also be set",
+            "label": "Includes",
+            "runtime": {
+                "memberName": "includes_value",
+                "valueAccessor": "value"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "flag_id"
+        },
+        "typedef": "afw_flag_t"
+    }
+}

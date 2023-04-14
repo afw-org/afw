@@ -1,0 +1,282 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_log_syslog"
+        },
+        "propertyTypes": {
+            "alert": {
+                "allowQuery": true,
+                "brief": "Include alert priority",
+                "dataType": "boolean",
+                "description": "Include alert priority.",
+                "label": "Alert"
+            },
+            "crit": {
+                "allowQuery": true,
+                "brief": "Include crit priority",
+                "dataType": "boolean",
+                "description": "Include crit priority.",
+                "label": "Critical"
+            },
+            "custom": {
+                "allowQuery": true,
+                "brief": "Custom Variables available to log expressions",
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveHybridProperties_",
+                "description": "Qualifier custom:: variables available in log expressions.",
+                "label": "Custom"
+            },
+            "debug": {
+                "allowQuery": true,
+                "brief": "Include debug priority",
+                "dataType": "boolean",
+                "description": "Include debug priority.",
+                "label": "Debug"
+            },
+            "emerg": {
+                "allowQuery": true,
+                "brief": "Include emerg priority",
+                "dataType": "boolean",
+                "description": "Include emerg priority.",
+                "label": "Emergency"
+            },
+            "err": {
+                "allowQuery": true,
+                "brief": "Include err priority",
+                "dataType": "boolean",
+                "description": "Include err priority.",
+                "label": "Error"
+            },
+            "filter": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "allowQuery": true,
+                "brief": "Filter expression",
+                "dataType": "hybrid",
+                "dataTypeParameter": "boolean",
+                "defaultValue": true,
+                "description": "Filter expression used to determine whether to log a particular message.",
+                "label": "Filter"
+            },
+            "format": {
+                "allowQuery": true,
+                "brief": "Log format",
+                "dataType": "hybrid",
+                "dataTypeParameter": "string",
+                "description": "Log format.",
+                "label": "Format"
+            },
+            "info": {
+                "allowQuery": true,
+                "brief": "Include info priority",
+                "dataType": "boolean",
+                "description": "Include info priority.",
+                "label": "Informational"
+            },
+            "logId": {
+                "allowQuery": true,
+                "brief": "The id of this log",
+                "dataType": "string",
+                "description": "The id of this log.  This defaults to logType.",
+                "label": "Log",
+                "unique": true
+            },
+            "logType": {
+                "allowQuery": true,
+                "brief": "The type of this log",
+                "dataType": "string",
+                "description": "The type of this log.",
+                "label": "Log Type",
+                "required": true
+            },
+            "notice": {
+                "allowQuery": true,
+                "brief": "Include notice priority",
+                "dataType": "boolean",
+                "description": "Include notice priority.",
+                "label": "Notice"
+            },
+            "trace1": {
+                "allowQuery": true,
+                "brief": "Include trace1 priority",
+                "dataType": "boolean",
+                "description": "Include trace1 priority.",
+                "label": "Trace1"
+            },
+            "trace2": {
+                "allowQuery": true,
+                "brief": "Include trace2 priority",
+                "dataType": "boolean",
+                "description": "Include trace2 priority.",
+                "label": "Trace2"
+            },
+            "trace3": {
+                "allowQuery": true,
+                "brief": "Include trace3 priority",
+                "dataType": "boolean",
+                "description": "Include trace3 priority.",
+                "label": "Trace3"
+            },
+            "trace4": {
+                "allowQuery": true,
+                "brief": "Include trace4 priority",
+                "dataType": "boolean",
+                "description": "Include trace4 priority.",
+                "label": "Trace4"
+            },
+            "trace5": {
+                "allowQuery": true,
+                "brief": "Include trace5 priority",
+                "dataType": "boolean",
+                "description": "Include trace5 priority.",
+                "label": "Trace5"
+            },
+            "trace6": {
+                "allowQuery": true,
+                "brief": "Include trace6 priority",
+                "dataType": "boolean",
+                "description": "Include trace6 priority.",
+                "label": "Trace6"
+            },
+            "trace7": {
+                "allowQuery": true,
+                "brief": "Include trace7 priority",
+                "dataType": "boolean",
+                "description": "Include trace7 priority.",
+                "label": "Trace7"
+            },
+            "trace8": {
+                "allowQuery": true,
+                "brief": "Include trace8 priority",
+                "dataType": "boolean",
+                "description": "Include trace8 priority.",
+                "label": "Trace8"
+            },
+            "warning": {
+                "allowQuery": true,
+                "brief": "Include warning priority",
+                "dataType": "boolean",
+                "description": "Include warning priority.",
+                "label": "Warning"
+            },
+            "type": {
+                "required": true,
+                "label": "Type",
+                "description": "Configuration type.",
+                "dataType": "string",
+                "brief": "Configuration type",
+                "allowQuery": true
+            },
+            "title": {
+                "label": "Title",
+                "description": "The title for this configuration component.",
+                "dataType": "string",
+                "brief": "The title for this configuration component",
+                "allowQuery": true
+            },
+            "sourceLocation": {
+                "label": "Source Location",
+                "description": "This is a contextual string added when this configuration object is processed.",
+                "dataType": "string",
+                "brief": "Contextual string added when this configuration object is processed",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "The description of this configuration component.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "The description of this configuration component",
+                "allowQuery": true
+            },
+            "optionLogPid": {
+                "required": false,
+                "label": "Log PID",
+                "description": "Include PID with each message.",
+                "dataType": "boolean",
+                "brief": "Include PID with each message"
+            },
+            "optionLogPError": {
+                "required": false,
+                "label": "Standard Error",
+                "description": "Print to stderr as well.",
+                "dataType": "boolean",
+                "brief": "Print to stderr as well"
+            },
+            "optionLogODelay": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "required": false,
+                "label": "Delay Connection",
+                "description": "The converse of LOG_NDELAY; opening of the connection is delayed until syslog() is called. (This is the default, and need not be specified.)",
+                "defaultValue": true,
+                "dataType": "boolean",
+                "brief": "Delay opening the connection"
+            },
+            "optionLogNoWait": {
+                "required": false,
+                "label": "No Wait",
+                "description": "Don't wait for child processes that may have been created while logging the message. (The GNU C library does not create a child process, so this option has no effect on Linux.)",
+                "dataType": "boolean",
+                "brief": "Don't wait for child process"
+            },
+            "optionLogNoDelay": {
+                "required": false,
+                "label": "Connect Immediately",
+                "description": "Open the connection immediately (normally, the connection is opened when the first message is logged).",
+                "dataType": "boolean",
+                "brief": "Open the connection immediately"
+            },
+            "optionLogCons": {
+                "required": false,
+                "label": "Write to Console",
+                "description": "Write directly to system console if there is an error while sending to system logger.",
+                "dataType": "boolean",
+                "brief": "Write to Console on error"
+            },
+            "ident": {
+                "required": false,
+                "label": "Identifier",
+                "description": "The identifier is prepended to every message, and is typically set to the program name. If omitted, the program name is used.",
+                "dataType": "string",
+                "brief": "The syslog message identifier"
+            },
+            "facility": {
+                "required": false,
+                "label": "Facility",
+                "description": "The facility argument is used to specify what type of program is logging the message. This lets the configuration file specify that messages from different facilities will be handled differently.  Valid options are:  auth, authpriv, cron, daemon, ftp, kern, local0 through local7, lpr, mail, news, user, uucp.",
+                "dataType": "string",
+                "brief": "The syslog facility"
+            }
+        },
+        "objectType": "_AdaptiveConf_log_syslog",
+        "description": "Adaptive Framework configuration component for type=log logType=syslog.  This log type is only available on Linux.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

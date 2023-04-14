@@ -1,0 +1,8 @@
+generate/additional_includes/
+-----------------------------
+
+This directory contains .h files contains #includes that are added to the
+appropriate generated source files.
+
+Currently, there is only one, runtime_object_maps.h, which is added to
+generated *runtime_object_maps.c files.

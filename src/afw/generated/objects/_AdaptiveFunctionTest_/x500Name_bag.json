@@ -1,0 +1,54 @@
+{
+    "description": "Tests for bag<x500Name> function.",
+    "functionId": "bag<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                },
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                },
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                }
+            ],
+            "description": "None",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "x500Name",
+                "value": [
+                    "cn=John Smith,ou=Finance,o=Acme",
+                    "cn=John Smith,ou=Finance,o=Acme",
+                    "cn=John Smith,ou=Finance,o=Acme"
+                ]
+            }
+        },
+        {
+            "description": "None",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "x500Name",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "implemented": false,
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

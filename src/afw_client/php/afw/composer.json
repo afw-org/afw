@@ -1,0 +1,7 @@
+{
+    "name": "afw",
+    "description": "PHP Bindings for Adaptive Framework",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    }
+}

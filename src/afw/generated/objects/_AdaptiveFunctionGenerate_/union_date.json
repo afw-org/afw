@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionDate",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Returns a list of date contains all of the unique values in two or more list of date values.",
+    "functionId": "union<date>",
+    "functionLabel": "union_date",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "date",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

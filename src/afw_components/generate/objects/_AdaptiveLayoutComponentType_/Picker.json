@@ -1,0 +1,9 @@
+{
+    "category": "pickers",
+    "componentType": "Picker",
+    "brief": "A component that allows one or more items to be picked from a list.",
+    "description": "This component allows for zero or more items to be selected from a list. When an item is selected, it appears as a tag in the selection, which may also be later removed.",
+    "implementationId": "Picker",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Picker",
+    "label": "Picker"
+}

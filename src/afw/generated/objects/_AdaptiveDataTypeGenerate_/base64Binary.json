@@ -1,0 +1,12 @@
+{
+    "brief": "A binary value whose string value is base64 encoded",
+    "cType": "afw_memory_t",
+    "dataType": "base64Binary",
+    "dataTypeParameterType": "MediaType",
+    "description": "Data type base64Binary holds binary data. Its string value is base64 encoded.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.5",
+    "relationalCompares": true,
+    "scalar": true
+}

@@ -1,0 +1,23 @@
+{
+    "brief": "Extension for LDAP",
+    "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
+    "extensionId": "afw_ldap",
+    "modulePath": "libafwldap",
+    "providesObjects": [
+        "/afw/_AdaptiveCollection_/ldap_extension",
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_"
+    ],
+    "registers": [
+        "adaptor_type/ldap",
+        "error_rv_decoder/ldap"
+    ]
+}

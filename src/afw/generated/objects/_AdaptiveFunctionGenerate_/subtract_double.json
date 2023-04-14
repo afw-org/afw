@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubtractDouble",
+    "brief": "Subtract numbers",
+    "camelCaseFunctionLabel": "subtractDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Subtract double arg2 from double arg1 and return the double result.",
+    "functionId": "subtract<double>",
+    "functionLabel": "subtract_double",
+    "op": "-",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "arg1"
+        },
+        {
+            "dataType": "double",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

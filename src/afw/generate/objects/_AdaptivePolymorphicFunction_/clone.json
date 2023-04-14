@@ -1,0 +1,26 @@
+{
+    "brief": "Clone <dataType> value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Deep clone a <dataType> value.",
+    "functionId": "clone",
+    "functionLabel": "clone",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value to clone.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "list",
+        "object"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_clone",
+    "returns": {
+        "description": "The cloned <dataType> value.",
+        "polymorphicDataType": true
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "$defs": {
+        "_AdaptiveCollection_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveCollection_.propertyTypes"
+                }
+            ],
+            "description": "Describes a collection.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveCollection_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "Brief description of the collection",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of the collection.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "objectId": {
+                    "description": "Id of the collection.",
+                    "title": "Object",
+                    "type": "string"
+                },
+                "originURI": {
+                    "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+                    "format": "uri-reference",
+                    "title": "Origin URI",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "objectId"
+            ],
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveCollection_"
+        }
+    ]
+}

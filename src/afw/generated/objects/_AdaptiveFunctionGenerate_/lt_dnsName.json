@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtDnsName",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Checks for dnsName arg1 is less that dnsName arg2 and return the boolean result.",
+    "functionId": "lt<dnsName>",
+    "functionLabel": "lt_dnsName",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "dnsName",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dnsName",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

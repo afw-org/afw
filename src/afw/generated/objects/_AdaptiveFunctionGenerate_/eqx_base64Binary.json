@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxBase64Binary",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Determine if for base64Binary arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<base64Binary>",
+    "functionLabel": "eqx_base64Binary",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "base64Binary",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeBase64Binary",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<base64Binary>",
+    "functionLabel": "bag_size_base64Binary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "base64Binary",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

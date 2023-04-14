@@ -1,0 +1,36 @@
+{
+    "$defs": {
+        "_AdaptiveLogType_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveLogType_.propertyTypes"
+                }
+            ],
+            "description": "A registry type log_factory entry.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveLogType_.propertyTypes": {
+            "properties": {
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of log type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "logType": {
+                    "description": "Type of log.",
+                    "title": "Log Type",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveLogType_"
+        }
+    ]
+}

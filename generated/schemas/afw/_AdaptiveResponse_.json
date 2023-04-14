@@ -1,0 +1,236 @@
+{
+    "$defs": {
+        "_AdaptiveResponseAction_": {
+            "additionalProperties": {
+                "description": "The result of an action."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveResponseAction_.propertyTypes"
+                }
+            ],
+            "description": "The result of an action.",
+            "type": "object"
+        },
+        "_AdaptiveResponseAction_.propertyTypes": {
+            "properties": {
+                "console": {
+                    "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
+                    "title": "Console",
+                    "type": "string"
+                },
+                "result": {
+                    "description": "Result of action.",
+                    "title": "Result"
+                },
+                "stderr": {
+                    "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
+                    "title": "Stderr",
+                    "type": "string"
+                },
+                "stdout": {
+                    "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
+                    "title": "Stdout",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveResponseError_": {
+            "additionalProperties": {
+                "description": "The _AdaptiveObjectType_ for _AdaptiveResponseError_ objects."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveResponseError_.propertyTypes"
+                }
+            ],
+            "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
+            "title": "Error",
+            "type": "object"
+        },
+        "_AdaptiveResponseError_.propertyTypes": {
+            "properties": {
+                "actionNumber": {
+                    "description": "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error.",
+                    "title": "Action Index",
+                    "type": "integer"
+                },
+                "backtrace": {
+                    "contentMediaType": "text/plain",
+                    "description": "The backtrace from where the error occurred.",
+                    "title": "Backtrace",
+                    "type": "string"
+                },
+                "backtraceEvaluation": {
+                    "contentMediaType": "text/plain",
+                    "description": "The evaluation backtrace from where the error occurred.",
+                    "title": "Backtrace Expression",
+                    "type": "string"
+                },
+                "column": {
+                    "description": "The column in line of the error. This is only available if source contains line breaks.",
+                    "title": "Column",
+                    "type": "integer"
+                },
+                "errorCode": {
+                    "description": "The numeric error code.",
+                    "title": "Error Code",
+                    "type": "integer"
+                },
+                "errorCodeId": {
+                    "description": "The decoded error code.",
+                    "title": "Error Code Id",
+                    "type": "string"
+                },
+                "errorSource": {
+                    "description": "The internal source filename:line where the error occurred.",
+                    "title": "Error Source",
+                    "type": "string"
+                },
+                "line": {
+                    "description": "The line number in the adaptive value source of the error. This is only available if source contains line breaks.",
+                    "title": "Line",
+                    "type": "integer"
+                },
+                "message": {
+                    "description": "The error message.",
+                    "title": "Message",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The offset in the adaptive value source of the error.",
+                    "title": "Offset",
+                    "type": "integer"
+                },
+                "parserColumnNumber": {
+                    "description": "The column number where the error occurred.",
+                    "title": "Parser Column Number",
+                    "type": "integer"
+                },
+                "parserCursor": {
+                    "description": "The UTF-8 octet source cursor that the parser at the time the syntax error occurred. This can be used as an offset into parserSource if it is available.",
+                    "title": "Parser Cursor",
+                    "type": "integer"
+                },
+                "parserLineNumber": {
+                    "description": "The parser cursor's line number where the syntax error occurred.",
+                    "title": "Parser Line Number",
+                    "type": "integer"
+                },
+                "parserSource": {
+                    "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
+                    "title": "Parser Source",
+                    "type": "integer"
+                },
+                "recursiveError": {
+                    "description": "This is present if this error occurred while processing the original error's catch or finally.",
+                    "title": "Recursive Error",
+                    "type": "string"
+                },
+                "rv": {
+                    "description": "The return value.",
+                    "title": "Rv",
+                    "type": "string"
+                },
+                "rvDecoded": {
+                    "description": "The decoded rv.",
+                    "title": "Rv Decoded",
+                    "type": "string"
+                },
+                "rvSourceId": {
+                    "description": "The source id of rv.",
+                    "title": "Rv Source",
+                    "type": "string"
+                },
+                "sourceFile": {
+                    "description": "The c source file where the error was thrown.",
+                    "title": "Source File",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "This is the source location of the error. This is usually a reference to the adaptive value source location.",
+                    "title": "Source Location",
+                    "type": "string"
+                },
+                "xctxUUID": {
+                    "description": "This is the UUID of the execution context (xctx) when the error occurred. There is normally one xctx per request. This UUID is included by default in log message, which can be useful for finding messages related to a request.",
+                    "title": "XCTX UUID",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveResponse_": {
+            "additionalProperties": {},
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveResponse_.propertyTypes"
+                }
+            ],
+            "type": "object"
+        },
+        "_AdaptiveResponse_.propertyTypes": {
+            "properties": {
+                "actions": {
+                    "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+                    "items": {
+                        "$ref": "#/$defs/_AdaptiveResponseAction_",
+                        "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+                        "title": "List of _AdaptiveResponseAction_ objects",
+                        "type": "object"
+                    },
+                    "title": "Actions",
+                    "type": "array"
+                },
+                "console": {
+                    "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
+                    "title": "Console",
+                    "type": "string"
+                },
+                "error": {
+                    "$ref": "#/$defs/_AdaptiveResponseError_",
+                    "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
+                    "title": "Error",
+                    "type": "object"
+                },
+                "intermediate": {
+                    "description": "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
+                    "title": "Intermediate",
+                    "type": "boolean"
+                },
+                "result": {
+                    "description": "The result if this is a single action request or intermediate response when no error occurred. If the \"actions\" property is present, see that list of objects for results.",
+                    "title": "Result"
+                },
+                "resultDataType": {
+                    "description": "Data type of result.",
+                    "title": "Result Data Type",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Result status. If this value is \"error\", see property \"error\" for more detail. This property will not exist for intermediate response objects.",
+                    "title": "Status",
+                    "type": "string"
+                },
+                "stderr": {
+                    "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
+                    "title": "Stderr",
+                    "type": "string"
+                },
+                "stdout": {
+                    "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
+                    "title": "Stdout",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveResponse_"
+        }
+    ]
+}

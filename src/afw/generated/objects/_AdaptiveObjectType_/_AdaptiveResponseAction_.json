@@ -1,0 +1,37 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "objectType": "_AdaptiveResponseAction_",
+    "description": "The result of an action.",
+    "propertyTypes": {
+        "console": {
+            "brief": "Contains output written to console",
+            "dataType": "string",
+            "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
+            "label": "Console"
+        },
+        "result": {
+            "brief": "Result of action",
+            "description": "Result of action.",
+            "label": "Result"
+        },
+        "stderr": {
+            "brief": "Output written to stderr",
+            "dataType": "string",
+            "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
+            "label": "Stderr"
+        },
+        "stdout": {
+            "brief": "Output written to stdout",
+            "dataType": "string",
+            "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
+            "label": "Stdout"
+        }
+    },
+    "otherProperties": {}
+}

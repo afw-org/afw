@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfBoolean",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in boolean list1 is in boolean list2.",
+    "functionId": "at_least_one_member_of<boolean>",
+    "functionLabel": "at_least_one_member_of_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

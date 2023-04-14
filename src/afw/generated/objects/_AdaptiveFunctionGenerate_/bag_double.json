@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagDouble",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Takes any number of double values and returns a list of list.",
+    "functionId": "bag<double>",
+    "functionLabel": "bag_double",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "double"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

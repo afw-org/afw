@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtDnsName",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean result.",
+    "functionId": "gt<dnsName>",
+    "functionLabel": "gt_dnsName",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "dnsName",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dnsName",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

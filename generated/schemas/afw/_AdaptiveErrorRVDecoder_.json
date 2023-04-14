@@ -1,0 +1,30 @@
+{
+    "$defs": {
+        "_AdaptiveErrorRVDecoder_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveErrorRVDecoder_.propertyTypes"
+                }
+            ],
+            "description": "A registry type error_rv_decoder entry.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveErrorRVDecoder_.propertyTypes": {
+            "properties": {
+                "key": {
+                    "description": "Key of entry.",
+                    "title": "Key",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveErrorRVDecoder_"
+        }
+    ]
+}

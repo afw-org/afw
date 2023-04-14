@@ -1,0 +1,55 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Responsive component.",
+    "label": "Responsive",
+    "objectType": "_AdaptiveLayoutComponentType_Responsive",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "rows": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_ResponsiveRow",
+            "description": "The layout row components that are contained by this Responsive.",
+            "label": "Rows",
+            "required": true
+        },
+        "spacing": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Spacing between rows.",
+            "possibleValues": [8, 16, 24, 32, 40],
+            "label": "Spacing"
+        },
+        "justify": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Justify content.",
+            "possibleValues": ["flex-start", "center", "flex-end", "space-between", "space-around"],
+            "label": "Justify"
+        },
+        "alignContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Align content.",
+            "possibleValues": ["stretch", "center", "flex-start", "flex-end", "space-between", "space-around"],
+            "label": "Align Content"
+        },
+        "alignItems": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Align items.",
+            "possibleValues": ["flex-start", "center", "flex-end", "stretch", "baseline"],
+            "label": "Align Items"
+        }
+    }
+}

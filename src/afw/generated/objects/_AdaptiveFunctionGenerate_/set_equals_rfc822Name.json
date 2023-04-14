@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsRfc822Name",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<rfc822Name>",
+    "functionLabel": "set_equals_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

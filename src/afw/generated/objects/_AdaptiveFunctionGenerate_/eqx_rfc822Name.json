@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxRfc822Name",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Determine if for rfc822Name arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<rfc822Name>",
+    "functionLabel": "eqx_rfc822Name",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "rfc822Name",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

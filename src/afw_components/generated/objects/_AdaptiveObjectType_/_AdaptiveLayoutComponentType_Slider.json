@@ -1,0 +1,71 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Slider component.",
+    "objectType": "_AdaptiveLayoutComponentType_Slider",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Slider component is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Slider component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "max": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The maximum value for the Slider component.",
+            "testDataParameter": "100",
+            "label": "Minimum"
+        },
+        "min": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The minimum value for the Slider component.",
+            "testDataParameter": "0",
+            "label": "Minimum"
+        },
+        "showNumber": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates whether the value of the Slider should be visible.",
+            "label": "Show Number"
+        },
+        "step": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The incremental step value for the Slider component.",
+            "testDataParameter": "10",
+            "label": "Step"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The value for the Slider component.",
+            "testDataParameter": "50",
+            "label": "Value"
+        },
+        "vertical": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates whether the Slider component is vertical oriented.",
+            "label": "Vertical"
+        }
+    }
+}

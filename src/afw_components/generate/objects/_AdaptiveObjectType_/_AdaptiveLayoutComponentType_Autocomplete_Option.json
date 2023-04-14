@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Option for Autocomplete component",
+    "label": "Option",
+    "objectType": "_AdaptiveLayoutComponentType_Autocomplete_Option",
+    "propertyTypes": {
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The unique key assigned to the selected Autocomplete option.",
+            "label": "Key"
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Text to display in the Autocomplete List",
+            "label": "Text"
+        }
+    }
+}

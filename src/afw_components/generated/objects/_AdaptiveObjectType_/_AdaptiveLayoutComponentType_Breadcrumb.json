@@ -1,0 +1,27 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Breadcrumb component.",
+    "objectType": "_AdaptiveLayoutComponentType_Breadcrumb",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "items": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_BreadcrumbItem",
+            "required": true,
+            "brief": "Breadcrumb items",
+            "description": "Breadcrumb items",
+            "label": "Items"
+        }
+    }
+}

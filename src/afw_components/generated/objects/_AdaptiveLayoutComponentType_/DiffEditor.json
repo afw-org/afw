@@ -1,0 +1,9 @@
+{
+    "category": "editors",
+    "componentType": "DiffEditor",
+    "brief": "A component that compares two objects.",
+    "description": "This component displays the differences between two objects.",
+    "implementationId": "DiffEditor",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_DiffEditor",
+    "label": "Diff Editor"
+}

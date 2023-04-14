@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringDateTime",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Converts dateTime value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<dateTime>",
+    "functionLabel": "to_string_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "description": "A dateTime value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

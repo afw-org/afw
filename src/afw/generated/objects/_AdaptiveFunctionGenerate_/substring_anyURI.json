@@ -1,0 +1,36 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubstringAnyURI",
+    "brief": "Extract a substring",
+    "camelCaseFunctionLabel": "substringAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Returns the anyURI substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omitting endIndex to return up to end of anyURI.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "startIndex or endIndex is out of range"
+        }
+    ],
+    "functionId": "substring<anyURI>",
+    "functionLabel": "substring_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "string"
+        },
+        {
+            "dataType": "integer",
+            "name": "startIndex"
+        },
+        {
+            "dataType": "integer",
+            "name": "endIndex",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "anyURI"
+    },
+    "useExecuteFunction": "afw_function_execute_substring"
+}

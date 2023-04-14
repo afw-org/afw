@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsRfc822Name",
+    "brief": "Checks whether value is dataType rfc822Name",
+    "camelCaseFunctionLabel": "isRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType rfc822Name and return the boolean result.",
+    "functionId": "is<rfc822Name>",
+    "functionLabel": "is_rfc822Name",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

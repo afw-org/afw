@@ -1,0 +1,23 @@
+{
+    "brief": "Read from a UTF-8 text stream line",
+    "category": "stream",
+    "description": "Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an error is thrown.",
+    "functionId": "readln",
+    "functionLabel": "readln",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number",
+            "name": "streamNumber"
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "brief": "The string read",
+        "description": "The UTF-8 string read."
+    },
+    "sideEffects": [
+        "Stream modified"
+    ]
+}

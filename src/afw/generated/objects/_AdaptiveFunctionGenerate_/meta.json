@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMeta",
+    "brief": "Return the meta object about an adaptive value",
+    "camelCaseFunctionLabel": "meta",
+    "category": "value",
+    "description": "This function returns an object containing meta information for an adaptive value.",
+    "functionId": "meta",
+    "functionLabel": "meta",
+    "parameters": [
+        {
+            "description": "This is the adaptive value whose meta object is to be returned.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "object",
+        "description": "An object containing the meta information for the adaptive value. The objectType of this object is normally _AdaptiveValueMeta_ or one of its descendants."
+    }
+}

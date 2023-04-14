@@ -1,0 +1,60 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Toolbar component.",
+    "objectType": "_AdaptiveLayoutComponentType_Toolbar",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
+            "description": "A list of components to be contained by this Toolbar.",
+            "label": "Contains",
+            "required": true
+        },
+        "spacing": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The spacing between items in the Toolbar.",
+            "label": "Spacing",
+            "possibleValues": [ 0, 8, 16, 24, 32, 40 ]
+        },
+        "justify": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Defines the justify-content style property.",
+            "label": "Justify",
+            "possibleValues": [ "flex-start", "center", "flex-end", "space-between", "space-around", "space-evenly" ]
+        },
+        "alignContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Defines the align-content style property.",
+            "label": "Align Items",
+            "possibleValues": [ "stretch", "center", "flex-start", "flex-end", "space-between", "space-around" ]
+        },
+        "alignItems": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Defines the align-items style property.",
+            "label": "Align Items",
+            "possibleValues": [ "flex-start", "center", "flex-end", "stretch", "baseline" ]
+        },
+        "dense": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Toolbar should be condensed as much as possible.",
+            "label": "Dense"
+        }
+    }
+}

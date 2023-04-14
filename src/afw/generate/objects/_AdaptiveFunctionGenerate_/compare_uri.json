@@ -1,0 +1,36 @@
+{
+    "brief": "Compare URIs",
+    "category": "miscellaneous",
+    "description": "Compare two URIs.",
+    "functionId": "compare_uri",
+    "functionLabel": "compare_uri",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "First URI for compare. This URI can not contain an asterisk (\"*\")",
+            "name": "uri1"
+        },
+        {
+            "dataType": "string",
+            "description": "Second URI for compare. This URI can contain asterisk (\"*\") for substitution if isValuePath is true and currentPath2 is specified.",
+            "name": "uri2"
+        },
+        {
+            "dataType": "boolean",
+            "description": "The URIs are adaptive value paths. If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
+            "name": "isValuePath",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "If isValuePath is true, this is the current path that is used to resolve a relative path in the URIs. If isValuePath is not true, this parameter is ignored.",
+            "name": "currentPath",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "Result of comparison."
+    }
+}

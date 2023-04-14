@@ -1,0 +1,512 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "description": "Environment variables when environment was created.",
+                "allowChange": false,
+                "allowDelete": false,
+                "path": "/afw/_AdaptiveSystemInfo_/initialEnvironmentVariables",
+                "propertyTypes": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveMetaPropertyTypes_"
+                    },
+                    "_": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "VERBOSE_LOGGING": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "PATH": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "GIT_ASKPASS": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "PIPE_LOGGING": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "VSCODE_GIT_IPC_HANDLE": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "SHLVL": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "SHELL": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "TERM": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "VSCODE_GIT_ASKPASS_MAIN": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "VSCODE_IPC_HOOK_CLI": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "REMOTE_CONTAINERS_IPC": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "TERM_PROGRAM_VERSION": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "TERM_PROGRAM": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "VSCODE_GIT_ASKPASS_NODE": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "HOME": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "PWD": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "SSH_AUTH_SOCK": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "COLORTERM": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "REMOTE_CONTAINERS_SOCKETS": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "AMD_ENTRYPOINT": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "HOSTNAME": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    },
+                    "LANG": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "dataType": "string"
+                    }
+                },
+                "objectId": "initialEnvironmentVariables",
+                "objectType": "_AdaptiveSystemInfo_"
+            },
+            "_": "/workspace/src/afw_server_fcgi/.libs/afw_server_fcgi",
+            "VERBOSE_LOGGING": "true",
+            "PATH": "/root/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "GIT_ASKPASS": "/root/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/extensions/git/dist/askpass.sh",
+            "PIPE_LOGGING": "true",
+            "VSCODE_GIT_IPC_HANDLE": "/tmp/vscode-git-eb5acdd5c7.sock",
+            "SHLVL": "2",
+            "SHELL": "/bin/bash",
+            "TERM": "xterm-256color",
+            "VSCODE_GIT_ASKPASS_MAIN": "/root/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/extensions/git/dist/askpass-main.js",
+            "VSCODE_IPC_HOOK_CLI": "/tmp/vscode-ipc-00f4348f-d6eb-4cc6-8e7a-c8fd04049437.sock",
+            "REMOTE_CONTAINERS_IPC": "/tmp/vscode-remote-containers-ipc-c294fd47b1fd6398b9b9e94598e97c4c9bda6f96.sock",
+            "TERM_PROGRAM_VERSION": "1.48.2",
+            "TERM_PROGRAM": "vscode",
+            "VSCODE_GIT_ASKPASS_NODE": "/root/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/node",
+            "HOME": "/root",
+            "PWD": "/workspace",
+            "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+            "SSH_AUTH_SOCK": "/tmp/vscode-ssh-auth-c294fd47b1fd6398b9b9e94598e97c4c9bda6f96.sock",
+            "COLORTERM": "truecolor",
+            "REMOTE_CONTAINERS_SOCKETS": "[\"/tmp/vscode-ssh-auth-c294fd47b1fd6398b9b9e94598e97c4c9bda6f96.sock\"]",
+            "AMD_ENTRYPOINT": "vs/server/remoteExtensionHostProcess",
+            "HOSTNAME": "5905899de499",
+            "LANG": "en_US.UTF-8"
+        },
+        {
+            "_meta_": {
+                "description": "Resource Limits for the calling process.",
+                "allowChange": false,
+                "allowDelete": false,
+                "propertyTypes": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveMetaPropertyTypes_"
+                    },
+                    "cpu": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "CPU Time",
+                        "description": "The maximum amount of CPU time the process can use. If it runs for longer than this, it gets a signal: SIGXCPU. The value is measured in seconds.",
+                        "dataType": "integer"
+                    },
+                    "fsize": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "File Size",
+                        "description": "The maximum size of file the process can create. Trying to write a larger file causes a signal: SIGXFSZ.",
+                        "dataType": "integer"
+                    },
+                    "stack": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Stack Size",
+                        "description": "The maximum stack size for the process. If the process tries to extend its stack past this size, it gets a SIGSEGV signal",
+                        "dataType": "integer"
+                    },
+                    "core": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Core Size",
+                        "description": "The maximum size core file that this process can create. If the process terminates and would dump a core file larger than this, then no core file is created.  So setting this limit to zero prevents core files from ever being created.",
+                        "dataType": "integer"
+                    },
+                    "rss": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Physical Memory",
+                        "description": "The maximum amount of physical memory that this process should get. This parameter is a guide for the system's scheduler and memory allocator; the system may give the process more memory when there is a surplus.",
+                        "dataType": "integer"
+                    },
+                    "memlock": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Locked Physical Memory",
+                        "description": "The maximum amount of memory that can be locked into physical memory (so it will never be paged out).",
+                        "dataType": "integer"
+                    },
+                    "nproc": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Processes",
+                        "description": "The maximum number of processes that can be created with the same user ID.  If you have reached the limit for your user ID, fork will fail with EAGAIN.",
+                        "dataType": "integer"
+                    },
+                    "ofile": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Open Files",
+                        "description": "The maximum number of files that the process can open. If it tries to open more files than this, its open attempt fails with errno EMFILE.",
+                        "dataType": "integer"
+                    },
+                    "as": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Total Memory",
+                        "description": "The maximum size of total memory that this process should get. If the process tries to allocate more memory beyond this amount with, for example, brk, malloc, mmap or sbrk, the allocation function fails.",
+                        "dataType": "integer"
+                    }
+                },
+                "path": "/afw/_AdaptiveSystemInfo_/resourceLimits",
+                "objectId": "resourceLimits",
+                "objectType": "_AdaptiveSystemInfo_"
+            },
+            "as": -1,
+            "ofile": 1048576,
+            "nproc": -1,
+            "memlock": 83968000,
+            "rss": -1,
+            "core": 0,
+            "stack": 8388608,
+            "fsize": -1,
+            "cpu": -1
+        },
+        {
+            "_meta_": {
+                "description": "Resource usage statistics for the calling process, which is the sum of resources used by all threads in the process.",
+                "allowChange": false,
+                "allowDelete": false,
+                "propertyTypes": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveMetaPropertyTypes_"
+                    },
+                    "utime": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "User Time",
+                        "description": "Time spent executing user instructions.",
+                        "dataType": "dayTimeDuration"
+                    },
+                    "stime": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "System Time",
+                        "description": "Time spent in operating system code on behalf of this processes.",
+                        "dataType": "dayTimeDuration"
+                    },
+                    "maxrss": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Max Resident Size",
+                        "description": "The maximum resident set size used, in kilobytes. That is, the maximum number of kilobytes of physical memory that this process used simultaneously.",
+                        "dataType": "integer"
+                    },
+                    "ixrss": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Shared Memory Size",
+                        "description": "An integral value expressed in kilobytes times ticks of execution, which indicates the amount of memory used by text that was shared with other processes.",
+                        "dataType": "integer"
+                    },
+                    "idrss": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Unshared Data Size",
+                        "description": "An integral value expressed the same way, which is the amount of unshared memory used for data.",
+                        "dataType": "integer"
+                    },
+                    "isrss": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Unshared Stack Size",
+                        "description": "An integral value expressed the same way, which is the amount of unshared memory used for stack space.",
+                        "dataType": "integer"
+                    },
+                    "minflt": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Page Reclaims",
+                        "description": "The number of page faults which were serviced without requiring any I/O.",
+                        "dataType": "integer"
+                    },
+                    "majflt": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Page Faults",
+                        "description": "The number of page faults which were serviced by doing I/O.",
+                        "dataType": "integer"
+                    },
+                    "nswap": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Swaps",
+                        "description": "The number of times this processes was swapped entirely out of main memory.",
+                        "dataType": "integer"
+                    },
+                    "inblock": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Disk Reads",
+                        "description": "The number of times the file system had to read from the disk on behalf of this processes.",
+                        "dataType": "integer"
+                    },
+                    "oublock": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Disk Writes",
+                        "description": "The number of times the file system had to write to the disk on behalf of this processes.",
+                        "dataType": "integer"
+                    },
+                    "msgsnd": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Messages Sent",
+                        "description": "Number of IPC messages sent.",
+                        "dataType": "integer"
+                    },
+                    "msgrcv": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Messages Received",
+                        "description": "Number of IPC messages received.",
+                        "dataType": "integer"
+                    },
+                    "nsignals": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Signals Received",
+                        "description": "Number of signals received.",
+                        "dataType": "integer"
+                    },
+                    "nvcsw": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Voluntary Context Switches",
+                        "description": "The number of times this processes voluntarily invoked a context switch (usually to wait for some service).",
+                        "dataType": "integer"
+                    },
+                    "nivcsw": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Involuntary Context Switches",
+                        "description": "The number of times an involuntary context switch took place (because a time slice expired, or another process of higher priority was scheduled).",
+                        "dataType": "integer"
+                    }
+                },
+                "path": "/afw/_AdaptiveSystemInfo_/resourceUsage",
+                "objectId": "resourceUsage",
+                "objectType": "_AdaptiveSystemInfo_"
+            },
+            "nivcsw": 71366,
+            "nvcsw": 42531,
+            "nsignals": 0,
+            "msgrcv": 0,
+            "msgsnd": 0,
+            "oublock": 328,
+            "inblock": 704,
+            "nswap": 0,
+            "majflt": 3,
+            "minflt": 19483,
+            "isrss": 0,
+            "idrss": 0,
+            "ixrss": 0,
+            "maxrss": 285960,
+            "stime": "PT5.858456S",
+            "utime": "PT12.291515S"
+        },
+        {
+            "_meta_": {
+                "description": "General systems info.",
+                "allowChange": false,
+                "allowDelete": false,
+                "propertyTypes": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveMetaPropertyTypes_"
+                    },
+                    "sysname": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "System Name",
+                        "description": "This is the name of the operating system in use.",
+                        "dataType": "string"
+                    },
+                    "nodename": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Node Name",
+                        "description": "This is the host name of this particular computer. In the GNU C Library, the value is the same as that returned by gethostname.",
+                        "dataType": "string"
+                    },
+                    "release": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Release",
+                        "description": "This is the current release level of the operating system implementation.",
+                        "dataType": "string"
+                    },
+                    "version": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Version",
+                        "description": "This is the current version level within the release of the operating system.",
+                        "dataType": "string"
+                    },
+                    "machine": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Machine",
+                        "description": "This is a description of the type of hardware that is in use.",
+                        "dataType": "string"
+                    },
+                    "domainname": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyType_"
+                        },
+                        "label": "Domain Name",
+                        "description": "This is the NIS or YP domain name. It is the same value returned by getdomainname.",
+                        "dataType": "string"
+                    }
+                },
+                "path": "/afw/_AdaptiveSystemInfo_/general",
+                "objectId": "general",
+                "objectType": "_AdaptiveSystemInfo_"
+            },
+            "domainname": "(none)",
+            "machine": "x86_64",
+            "version": "#1 SMP Tue May 26 11:42:35 UTC 2020",
+            "release": "4.19.76-linuxkit",
+            "nodename": "5905899de499",
+            "sysname": "Linux"
+        }
+    ],
+    "status": "success"
+}
