@@ -1,0 +1,38 @@
+[
+  {
+    "test": ".*.js$",
+    "module": {
+      "type": "commonjs"
+    },
+    "jsc": {
+      "parser": {
+        "syntax": "ecmascript",
+        "dynamicImport": true,
+        "jsx": true
+      },
+      "transform": {
+          "react": {
+              "runtime": "automatic"
+          }
+      }
+    }
+  },
+  {
+    "test": ".*.ts$",
+    "module": {
+      "type": "commonjs"
+    },
+    "jsc": {
+      "parser": {
+        "syntax": "typescript",
+        "dynamicImport": true,
+        "tsx": true
+      },
+      "transform": {
+          "react": {
+              "runtime": "automatic"
+          }
+      }
+    }
+  }
+]

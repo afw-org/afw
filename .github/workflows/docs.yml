@@ -1,0 +1,58 @@
+name: Docs
+
+on:
+    workflow_dispatch:
+    workflow_call:
+
+jobs:
+
+    build:
+        name: Build docs
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - run: pip install -r python-requirements.txt
+
+            - name: Install Doxygen
+              run: sudo apt-get install -y doxygen
+
+            - name: Install rr.war
+              run: |
+                  wget -O /usr/local/bin/rr.war https://github.com/afw-org/rr/releases/download/v1.63/rr.war
+
+            - name: Build Docs
+              run: ./afwdev build --docs
+
+            - name: Upload doc artifact
+              uses: actions/upload-pages-artifact@v1
+              with:
+                path: build/doc
+
+    deploy:
+        name: Deploy docs
+        needs: build
+
+        permissions:
+            contents: write
+            id-token: write
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deploy to GitHub pages
+              id: deployment
+              uses: actions/deploy-pages@v2
+                

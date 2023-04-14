@@ -1,0 +1,401 @@
+name: Builds
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build_js:
+        name: Build Web Apps and Packages
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV 
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            # prevent from having to install node_modules every time
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Install Dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: npm ci --ignore-scripts
+
+            - name: Install Doxygen
+              run: sudo apt-get install -y doxygen
+
+            - name: Install rr.war
+              run: |
+                  wget -O /usr/local/bin/rr.war https://github.com/afw-org/rr/releases/download/v1.63/rr.war
+
+            - name: Build Docs
+              run: ./afwdev build --docs
+
+            - name: Build JS Apps and Packages
+              run: |
+                  ./afwdev build --js -j
+                  cd build/js/apps
+                  mv admin afw_app
+                  tar cvf admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar afw_app
+
+            - name: Upload Admin App
+              uses: actions/upload-artifact@v3
+              with:
+                  name: admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: build/js/apps/admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+
+    build_c_rockylinux:
+        name: Build RockyLinux C Libraries and Apps
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV                  
+
+            - name: Create Packages
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 --target build-stage-c -f docker/images/builder/Dockerfile.rockylinux -o type=local,dest=. .
+
+            - name: Upload amd64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.el8.x86_64.rpm
+                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
+
+            - name: Upload arm64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.el8.aarch64.rpm
+                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
+
+    build_c_opensuse:
+        name: Build OpenSUSE/Leap C Libraries and Apps
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV
+
+            - name: Login to ghcr.io
+              uses: docker/login-action@v2
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.repository_owner }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create Packages
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 --target build-stage-c -f docker/images/builder/Dockerfile.opensuse -o type=local,dest=. .
+                  
+            - name: Upload amd64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
+                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
+
+            - name: Upload arm64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
+                  path: linux_arm4/afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
+
+    build_c_alpine:
+        name: Build Alpine Linux C Libraries and Apps
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV
+
+            - name: Login to ghcr.io
+              uses: docker/login-action@v2
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.repository_owner }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create Packages
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 --target build-stage-c -f docker/images/builder/Dockerfile.alpine -o type=local,dest=. .                  
+
+            - name: Upload amd64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.x86_64.tar
+                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.x86_64.tar
+
+            - name: Upload arm64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.aarch64.tar
+                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.aarch64.tar
+
+    build_c_ubuntu:
+        name: Build Ubuntu Linux C Libraries and Apps
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV
+
+            - name: Create Packages
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 --target build-stage-c -f docker/images/builder/Dockerfile.ubuntu -o type=local,dest=. .                                    
+
+            - name: Upload amd64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}_x86_64.deb
+                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}_x86_64.deb
+
+            - name: Upload arm64 Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}_aarch64.deb
+                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}_aarch64.deb
+
+    build_docker_afwfcgi:
+        name: Build Docker Image afwfcgi
+        runs-on: ubuntu-latest
+        needs: build_c_alpine
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV              
+
+            - name: Build ghcr.io/afw-org/afwfcgi image
+              run: |
+                docker buildx create --use
+                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afwfcgi/Dockerfile.alpine .
+
+            - name: Export Docker Image
+              run: docker save --output afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+
+            - name: Upload afwfcgi Image Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: docker-afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+
+    build_docker_afw:
+        name: Build Docker Image afw
+        runs-on: ubuntu-latest
+        needs: [build_js, build_c_alpine]
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV                     
+
+            - name: Build ghcr.io/afw-org/afw image
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw/Dockerfile.alpine .
+
+            - name: Export Docker Image
+              run: docker save --output afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+
+            - name: Upload afw Image Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: docker-afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+
+    build_docker_afw_dev:
+      name: Build Docker Image afw-dev
+      runs-on: ubuntu-latest
+      needs: [build_js, build_c_alpine]
+
+      steps:
+          - uses: actions/checkout@v3
+            with:
+                set-safe-directory: true
+                persist-credentials: false
+
+          - uses: actions/setup-python@v3
+            with:
+                python-version: "3.7"
+
+          - name: Install Python Requirements
+            run: pip install -r python-requirements.txt
+
+          - name: Set env
+            run: |
+                git config --global --add safe.directory "*"
+                ./afwdev --version
+                echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                echo "RELEASE=0" >> $GITHUB_ENV
+          
+          - name: Build ghcr.io/afw-org/afw-dev image
+            run: |
+                docker buildx create --use
+                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw-dev/Dockerfile.alpine .
+
+          - name: Export Docker Image
+            run: docker save --output afw-dev-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+
+          - name: Upload afw-dev Image Artifact
+            uses: actions/upload-artifact@v3
+            with:
+                name: docker-afw-dev-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                path: afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+
+    build_docker_admin:
+        name: Build Docker Image afw-admin
+        runs-on: ubuntu-latest
+        needs: build_js
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.7"
+
+            - name: Install Python Requirements
+              run: pip install -r python-requirements.txt            
+
+            - name: Set env
+              run: |
+                  git config --global --add safe.directory "*"
+                  ./afwdev --version
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
+                  echo "RELEASE=0" >> $GITHUB_ENV
+            
+            - name: Build ghcr.io/afw-org/afw-admin image
+              run: |
+                  docker buildx create --use
+                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-admin:${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw-admin/Dockerfile .
+
+            - name: Export Docker Image
+              run: docker save --output afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw-admin:${{ env.VERSION }}-${{ env.RELEASE }}
+
+            - name: Upload Admin Image Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: docker-afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar

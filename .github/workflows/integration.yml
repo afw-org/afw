@@ -1,0 +1,621 @@
+name: Integration
+
+on:
+    pull_request:
+        branches: [main]
+
+    workflow_dispatch:
+
+jobs:
+    setup-node_modules:
+        name: Setup and cache the node_modules
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Install Dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: npm ci --ignore-scripts
+
+    # This job runs any linters to verify the code follows formatting rules
+    linters:
+        name: Run Linters
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Install Linter Dependencies
+              run: npm install -g eclint
+
+            # eclint is designed to verify the rules declared in .editorconfig are being used.
+            - name: Run eclint
+              run: npx eclint check
+
+    verify_generated:
+        name: Verify afwdev generate
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:ubuntu            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run Generate and git diff to detect any changes
+              run: |
+                  ./afwdev generate --srcdir-pattern "*"
+                  git diff --exit-code
+
+    validate:
+        name: Run afwdev validate against JSON objects
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:ubuntu                            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run afwdev validate
+              run: |
+                  ./afwdev --verbose validate
+
+    build_docs:
+        name: Build Documentation
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:ubuntu            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Build docs
+              run: |
+                  ./afwdev build --docs
+
+    # This job builds and tests the C apps on ubuntu
+    build_test_c_ubuntu:
+        name: Build and Test C on Ubuntu
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:ubuntu            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run Build Steps
+              run: |
+                  ./afwdev build --full
+
+            - name: Run Tests
+              run: |
+                  ldconfig 
+                  ./afwdev --debug test --errors --srcdir-pattern "*"
+
+            - name: Run Tests with Environment Mode Actions              
+              run: |                
+                  ldconfig 
+                  ./afwdev --debug test --env-mode actions --errors
+
+            - name: Run Core Tests with Valgrind              
+              run: |
+                  ldconfig          
+                  ./afwdev --debug test --env-mode valgrind --errors
+
+    # This job builds and tests the C apps on RockyLinux
+    build_test_c_rockylinux:
+        name: Build and Test C on RockyLinux
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:rockylinux            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run Build Steps
+              run: |
+                  ./afwdev build --full
+
+            - name: Run Tests
+              run: |
+                  ldconfig
+                  ./afwdev --debug test --errors --srcdir-pattern "*"
+
+            - name: Run Tests with Environment Mode Actions              
+              run: |
+                  ldconfig 
+                  ./afwdev --debug test --env-mode actions --errors
+
+            - name: Run Core Tests with Valgrind              
+              run: |
+                  ldconfig
+                  ./afwdev --debug test --env-mode valgrind --errors
+
+    # This job builds and tests the C apps on OpenSUSE
+    build_test_c_opensuse:
+        name: Build and Test C on OpenSUSE
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:opensuse            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run Build Steps
+              run: |
+                  ./afwdev build --full
+
+            # we need to skip afw_dev tests for now, since it requires compiler options
+            - name: Run Tests
+              run: |
+                  ldconfig 
+                  ./afwdev --debug test --errors --srcdir-pattern "*"
+
+            - name: Run Tests with Environment Mode Actions              
+              run: |
+                  ldconfig 
+                  ./afwdev --debug test --env-mode actions --errors
+
+            - name: Run Core Tests with Valgrind              
+              run: |
+                  ldconfig
+                  ./afwdev --debug test --env-mode valgrind --errors
+
+    # This job builds and tests the C apps on Alpine Linux
+    build_test_c_alpine:
+        name: Build and Test C on Alpine
+        runs-on: ubuntu-latest
+
+        # Use the Ubuntu afw-dev-base image for this
+        container:
+            image: ghcr.io/afw-org/afw-dev-base:alpine            
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Set safe directory inside docker
+              run: |
+                  git config --global --add safe.directory "*"
+
+            - name: Run Build Steps
+              run: |
+                  ./afwdev build --full
+
+            - name: Run Tests
+              run: |
+                  ./afwdev --debug test --errors --srcdir-pattern "*"
+
+            - name: Run Tests with Environment Mode Actions              
+              run: |             
+                  ./afwdev --debug test --env-mode actions --errors
+
+            - name: Run Tests with Valgrind
+              # disable valgrind tests for Alpine until it can fix issues with double types
+              if: ${{ false }}
+              run: |        
+                  ./afwdev --debug test --env-mode valgrind --errors
+
+    build_js:
+        name: Build Javascript Apps and Packages
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Eslint
+              run: npm run eslint
+
+            - name: Install pip modules
+              run: pip install -r python-requirements.txt
+
+            - name: Build
+              run: ./afwdev build --js -j
+
+    test_js_client:
+        name: Test JS Client
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Client Test dependencies
+              run: |
+                  npm run build-p:bindings
+                  npm run build-p:test
+                  npm run build-p:client
+
+            - name: Run Client Tests
+              run: npm run test:client
+
+    test_js_mui:
+        name: Test JS Material-UI
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: |
+                  npm run build-p:bindings
+                  npm run build-p:client
+                  npm run build-p:test
+                  npm run build-p:react
+
+            - name: Run MaterialUI Component Tests
+              run: npm run test:mui
+
+    test_js_admin_app:
+        name: Test JS Admin App (/Home, /App)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/App src/Home
+
+    test_js_admin_objects:
+        name: Test JS Admin App (/Objects)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Objects
+
+    test_js_admin_models:
+        name: Test JS Admin App (/Admin/Models)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Admin/Models
+
+    test_js_admin_services:
+        name: Test JS Admin App (/Admin/Services)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Admin/Services
+
+    test_js_admin_admin:
+        name: Test JS Admin App (/Admin)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Admin/Application src/Admin/Authorization src/Admin/Extensions src/Admin/Provisioning src/Admin/RequestHandlers src/Admin/Schema src/Admin/Server src/Admin/Status src/Admin/Versions
+
+    test_js_admin_tools:
+        name: Test JS Admin App (/Tools)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Tools
+
+    test_js_admin_documentation:
+        name: Test JS Admin App (/Documentation)
+        runs-on: ubuntu-latest
+        needs: setup-node_modules
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  set-safe-directory: true
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "15"
+
+            - name: Cache dependencies
+              id: cache
+              uses: actions/cache@v3
+              with:
+                  path: ./node_modules
+                  key: modules-${{ hashFiles('package-lock.json') }}
+
+            - name: Check node_modules
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: echo "Can't find cache!" && false
+
+            - name: Build Packages
+              run: npm run build-p:packages
+
+            - name: Run Administrative App Tests
+              run: |
+                  cd src/afw_app/admin
+                  npm run test -- src/Documentation

@@ -1,0 +1,112 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src/afw_app/admin",
+      "sourceMaps": true
+    },
+    {
+      "name": "Debug: afw current file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afw",
+      "args": [
+        "${file}"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Debug: afwfcgi",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afwfcgi",
+      "args": [
+        "-f",
+        "/afw/afw.conf",
+        "-p",
+        "/var/run/afw.sock",
+        "-n",
+        "5"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },    
+    {
+      "name": "Debug: valgrind afw",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afw",
+      "miDebuggerServerAddress": "| vgdb",
+      "cwd": "${workspaceRoot}",      
+      "externalConsole": true,      
+      "linux": {
+        "MIMode": "gdb"
+      },
+      "preLaunchTask": "Start:  valgrind afw gdb server"
+    },
+    {
+      "name": "Debug: valgrind afwfcgi",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afwfcgi",
+      "miDebuggerServerAddress": "| vgdb",
+      "cwd": "${workspaceRoot}",
+      "externalConsole": true,
+      "linux": {
+        "MIMode": "gdb"
+      },
+      "preLaunchTask": "Start:  valgrind afwfcgi gdb server"
+    },
+    {
+      "name": "Debug: afw command interactive",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afw",
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Debug: python current file",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
