@@ -9,6 +9,8 @@ RUN chmod +x /builder.sh && BUILD_TARGET=js /builder.sh
 
 FROM nginx:latest
 
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
 # builder images must already be created to grab artifacts
 COPY --from=build-stage /admin-app-*.tar /var/www/html/
 
