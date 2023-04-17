@@ -20,35 +20,23 @@
 #define __AFW_DATA_TYPE_DNSNAME_BINDING_H__
 
 
-/**
- * @file afw_data_type_dnsName_binding.h
- * @brief Adaptive data type dnsName header.
- */
-
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
 #include "afw_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api
- * @{
- *
- */
-
-/**
- * @addtogroup afw_c_api_data_types Adaptive data types
- *
- * @{
- */
-
-/**
- * @addtogroup afw_c_api_data_type_dnsName dnsName
+ * @defgroup afw_c_api_data_type_dnsName dnsName
+ * @ingroup afw_c_api_data_types
  *
  * Adaptive Data Type dnsName
  *
  * @{
  */
 
+/**
+ * @file afw_data_type_dnsName_binding.h
+ * @brief Adaptive data type dnsName header.
+ */
 
 AFW_BEGIN_DECLARES
 
@@ -427,12 +415,9 @@ afw_data_type_dnsName_direct;
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_dnsName_inf;
 
-/** @} */
-
-/** @} */
-/** @} */
-
 AFW_END_DECLARES
+
+/** @} */
 
 
 #endif /* __AFW_DATA_TYPE_DNSNAME_BINDING_H__ */

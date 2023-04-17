@@ -20,35 +20,23 @@
 #define __AFW_DATA_TYPE_FUNCTION_BINDING_H__
 
 
-/**
- * @file afw_data_type_function_binding.h
- * @brief Adaptive data type function header.
- */
-
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
 #include "afw_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api
- * @{
- *
- */
-
-/**
- * @addtogroup afw_c_api_data_types Adaptive data types
- *
- * @{
- */
-
-/**
- * @addtogroup afw_c_api_data_type_function function
+ * @defgroup afw_c_api_data_type_function function
+ * @ingroup afw_c_api_data_types
  *
  * Adaptive Data Type function
  *
  * @{
  */
 
+/**
+ * @file afw_data_type_function_binding.h
+ * @brief Adaptive data type function header.
+ */
 
 AFW_BEGIN_DECLARES
 
@@ -427,12 +415,9 @@ afw_data_type_function_direct;
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_function_inf;
 
-/** @} */
-
-/** @} */
-/** @} */
-
 AFW_END_DECLARES
+
+/** @} */
 
 
 #endif /* __AFW_DATA_TYPE_FUNCTION_BINDING_H__ */

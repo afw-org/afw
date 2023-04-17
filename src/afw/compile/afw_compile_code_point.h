@@ -10,11 +10,9 @@
 #define __AFW_CODE_POINT_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_code_point Unicode code point support
+/**
+ * @defgroup afw_code_point Unicode code point support
+ * @ingroup afw_c_api
  *
  * Unicode code point support.
  *
@@ -77,7 +75,6 @@ afw_compile_code_point_is_WhitespaceOrEOL(afw_code_point_t cp);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_CODE_POINT_H__ */

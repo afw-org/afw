@@ -10,15 +10,12 @@
 #define __AFW_ENDIAN_H__
 
 
-/** @addtogroup afw_c_api
-* @{
- */
-
-/** @addtogroup afw_endian Endian
-*
+/**
+ * @defgroup afw_endian Endian
+ * @ingroup afw_c_api
+ * 
  * Various defines and structs for endian support.
-*
-* @{
+ * @{
  */
 
 /**
@@ -577,7 +574,6 @@ afw_endian_native_to_little_int16(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_ENDIAN_H__ */

@@ -10,11 +10,8 @@
 #define __AFW_ASCII_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
 /** @addtogroup afw_ascii ASCII
+ * @ingroup afw_c_api
  * @{
  */
 
@@ -241,7 +238,6 @@ afw_ascii_encode_hex_digit(afw_octet_t octet);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_ASCII_H__ */

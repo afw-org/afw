@@ -10,12 +10,10 @@
 #define __AFW_ATOMIC_H__
 
 
-/** @addtogroup afw_c_api
-* @{
- */
-
-/** @addtogroup afw_atomic Atomic
-*
+/**
+ * @addtogroup afw_atomic Atomic
+ * @ingroup afw_c_api
+ *
  * Atomic functions
 *
 * @{
@@ -140,7 +138,6 @@ afw_atomic_integer_increment(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_ATOMIC_H__ */

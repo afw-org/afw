@@ -11,13 +11,8 @@
 
 
 /**
- * @addtogroup afw_c_api
- *
- * @{
- */
-
-/**
  * @defgroup afw_function Adaptive function support
+ * @ingroup afw_c_api
  *
  * Adaptive Framework runtime function support.
  * @{
@@ -448,7 +443,6 @@ afw_function_evaluate_parameter_with_type(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_FUNCTION_H__ */

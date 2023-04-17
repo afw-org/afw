@@ -10,11 +10,9 @@
 #define __AFW_COMPILE_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @defgroup afw_compile Compile AFW syntax
+/**
+ * @defgroup afw_compile Compile AFW syntax
+ * @ingroup afw_c_api
  *
  * Adaptive Framework Compile AFW syntax.
  * @{
@@ -411,7 +409,6 @@ afw_compile_source_location_of_value(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_COMPILE_H__ */

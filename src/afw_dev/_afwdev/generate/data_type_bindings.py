@@ -1263,38 +1263,26 @@ def generate_h(prefix, obj, id, generated_by, dir, filename, options):
     msg.info('Generating ' + filename)
     with nfc.open(dir+filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive data type ' + id + ' header.')
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'data_type_typedefs.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         if options['core']:
             fd.write('\n/**\n')
-            fd.write(' * @addtogroup afw_c_api\n')
-            fd.write(' * @{\n')
-            fd.write(' *\n')
-            fd.write(' */\n')
-            fd.write('\n')
-            fd.write('/**\n')
-            fd.write(' * @addtogroup afw_c_api_data_types Adaptive data types\n')
-            fd.write(' *\n')
-            fd.write(' * @{\n')
-            fd.write(' */\n')
-            fd.write('\n/**\n')
-            fd.write(' * @addtogroup afw_c_api_data_type_' + id + ' ' + id + '\n')
+            fd.write(' * @defgroup afw_c_api_data_type_' + id + ' ' + id + '\n')
+            fd.write(' * @ingroup afw_c_api_data_types\n')
             fd.write(' *\n')
             fd.write(' * Adaptive Data Type ' + id + '\n')
             fd.write(' *\n')
             fd.write(' * @{\n')
-            fd.write(' */\n\n')
+            fd.write(' */\n')
+        c.write_doxygen_file_section(fd, filename, 'Adaptive data type ' + id + ' header.')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
         write_h_section(fd, prefix, obj)
 
+        fd.write('\nAFW_END_DECLARES\n')
         if options['core']:
             fd.write('\n/** @} */\n')
-            fd.write('\n/** @} */\n')
-            fd.write('/** @} */\n')
-        fd.write('\nAFW_END_DECLARES\n')
         c.write_h_epilogue(fd, filename)
 
 

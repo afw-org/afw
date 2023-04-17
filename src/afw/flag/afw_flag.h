@@ -10,13 +10,12 @@
 #define __AFW_FLAG_H__
 
 
-/** @addtogroup afw_c_api
-*
-* @{
- */
-
-/** @addtogroup afw_flag Software Flag
-* @{
+/**
+ * @defgroup afw_flag Software Flag
+ * @ingroup afw_c_api
+ * 
+ * Software flags.
+ * @{
  */
 
 /**
@@ -230,7 +229,6 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_TRACE_H__ */

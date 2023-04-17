@@ -10,14 +10,11 @@
 #define __AFW_ENVIRONMENT_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_environment Environment
+/**
+ * @defgroup afw_environment Environment
+ * @ingroup afw_c_api
  *
  * Adaptive Framework Environment
- *
  * @{
  */
 
@@ -1899,7 +1896,6 @@ afw_environment_set_stdout_fd(FILE *fd, afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_ENVIRONMENT_H__ */

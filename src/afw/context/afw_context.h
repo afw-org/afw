@@ -10,11 +10,9 @@
 #define __AFW_CONTEXT_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_context Context
+/**
+ * @addtogroup afw_context Context
+ * @ingroup afw_c_api
  *
  * Adaptive Framework Context.
  *
@@ -282,7 +280,6 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_CONTEXT_H__ */

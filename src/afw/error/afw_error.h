@@ -10,16 +10,13 @@
 #define __AFW_ERROR_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_error Error
+/**
+ * @defgroup afw_error Error
+ * @ingroup afw_c_api
  *
  * Adaptive Framework error
  *
  * Typedef afw_error_code_t is defined in afw_common.h
- *
  * @{
  */
 
@@ -920,7 +917,5 @@ afw_error_to_utf8(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_ERROR_H__ */

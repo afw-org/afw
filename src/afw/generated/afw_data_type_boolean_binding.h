@@ -20,35 +20,23 @@
 #define __AFW_DATA_TYPE_BOOLEAN_BINDING_H__
 
 
-/**
- * @file afw_data_type_boolean_binding.h
- * @brief Adaptive data type boolean header.
- */
-
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
 #include "afw_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api
- * @{
- *
- */
-
-/**
- * @addtogroup afw_c_api_data_types Adaptive data types
- *
- * @{
- */
-
-/**
- * @addtogroup afw_c_api_data_type_boolean boolean
+ * @defgroup afw_c_api_data_type_boolean boolean
+ * @ingroup afw_c_api_data_types
  *
  * Adaptive Data Type boolean
  *
  * @{
  */
 
+/**
+ * @file afw_data_type_boolean_binding.h
+ * @brief Adaptive data type boolean header.
+ */
 
 AFW_BEGIN_DECLARES
 
@@ -440,12 +428,9 @@ afw_data_type_boolean_direct;
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_boolean_inf;
 
-/** @} */
-
-/** @} */
-/** @} */
-
 AFW_END_DECLARES
+
+/** @} */
 
 
 #endif /* __AFW_DATA_TYPE_BOOLEAN_BINDING_H__ */

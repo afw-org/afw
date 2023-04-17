@@ -20,35 +20,23 @@
 #define __AFW_DATA_TYPE_XPATHEXPRESSION_BINDING_H__
 
 
-/**
- * @file afw_data_type_xpathExpression_binding.h
- * @brief Adaptive data type xpathExpression header.
- */
-
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
 #include "afw_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api
- * @{
- *
- */
-
-/**
- * @addtogroup afw_c_api_data_types Adaptive data types
- *
- * @{
- */
-
-/**
- * @addtogroup afw_c_api_data_type_xpathExpression xpathExpression
+ * @defgroup afw_c_api_data_type_xpathExpression xpathExpression
+ * @ingroup afw_c_api_data_types
  *
  * Adaptive Data Type xpathExpression
  *
  * @{
  */
 
+/**
+ * @file afw_data_type_xpathExpression_binding.h
+ * @brief Adaptive data type xpathExpression header.
+ */
 
 AFW_BEGIN_DECLARES
 
@@ -427,12 +415,9 @@ afw_data_type_xpathExpression_direct;
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_xpathExpression_inf;
 
-/** @} */
-
-/** @} */
-/** @} */
-
 AFW_END_DECLARES
+
+/** @} */
 
 
 #endif /* __AFW_DATA_TYPE_XPATHEXPRESSION_BINDING_H__ */

@@ -10,15 +10,12 @@
 #define __AFW_DATA_TYPE_H__
 
 
-/** @addtogroup afw_c_api
-* @{
- */
-
-/** @addtogroup afw_data_type Data type
-*
+/**
+ * @addtogroup afw_data_type Data type
+ * @ingroup afw_c_api
+ * 
  * Common to all Adaptive Framework applications
-*
-* @{
+ * @{
  */
 
 
@@ -70,7 +67,6 @@ afw_data_type_object_create_clone_to_managed_object(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_DATA_TYPE_H__ */

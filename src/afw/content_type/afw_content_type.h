@@ -11,13 +11,8 @@
 
 
 /**
- * @addtogroup afw_c_api
- *
- * @{
- */
-
-/**
  * @defgroup afw_content_type Content type
+ * @ingroup afw_c_api
  * 
  * Provide afw_content_type interface common support.
  * @{
@@ -138,7 +133,6 @@ afw_content_type_application_afw_stream_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_CONTENT_TYPE_H__ */

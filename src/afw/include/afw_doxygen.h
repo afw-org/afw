@@ -25,6 +25,12 @@
  * @{
  */
 
+/**
+ * @defgroup afw_c_api_data_types Adaptive data types
+ * 
+ * Adaptive data types that are part of the core C API.
+ */
+
 /** @defgroup afw_interface Interfaces
  *
  * The Adaptive Framework Interfaces.

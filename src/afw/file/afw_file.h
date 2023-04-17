@@ -10,11 +10,9 @@
 #define __AFW_FILE_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_file File Adaptor
+/**
+ * @defgroup afw_file File Adaptor
+ * @ingroup afw_c_api
  *
  * Adaptive Framework adaptor for storing objects in file system.
  *
@@ -103,7 +101,6 @@ afw_file_delete(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_FILE_H__ */

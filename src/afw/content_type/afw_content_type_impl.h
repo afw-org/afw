@@ -10,12 +10,10 @@
 #define __AFW_CONTENT_TYPE_IMPL_H__
 
 
-/** @addtogroup afw_c_api_impl Interface
-* @{
- */
-
-/** @addtogroup afw_content_type_impl afw_content_type interfaces
-* @{
+/**
+ * @addtogroup afw_content_type_impl afw_content_type interfaces
+ * @ingroup afw_c_api_impl
+ * @{
  */
 
 /**
@@ -39,11 +37,8 @@ afw_content_type_impl_create_object_list_writer(
     const afw_memory_t * end_object_list,
     const afw_pool_t * p, afw_xctx_t *xctx);
 
-
-/** @} */
-/** @} */
-
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_CONTENT_TYPE_IMPL_H__ */
