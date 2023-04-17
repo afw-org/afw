@@ -11,7 +11,7 @@
 
 
 /**
- * @addtogroup afw_data_type Data type
+ * @defgroup afw_data_type Data type
  * @ingroup afw_c_api
  * 
  * Common to all Adaptive Framework applications

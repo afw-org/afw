@@ -11,7 +11,7 @@
 
 
 /**
- * @addtogroup afw_context Context
+ * @defgroup afw_context Context
  * @ingroup afw_c_api
  *
  * Adaptive Framework Context.

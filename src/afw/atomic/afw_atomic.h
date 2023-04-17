@@ -11,7 +11,7 @@
 
 
 /**
- * @addtogroup afw_atomic Atomic
+ * @defgroup afw_atomic Atomic
  * @ingroup afw_c_api
  *
  * Atomic functions

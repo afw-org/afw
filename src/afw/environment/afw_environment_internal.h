@@ -9,20 +9,24 @@
 #ifndef __AFW_ENVIRONMENT_INTERNAL_H__
 #define __AFW_ENVIRONMENT_INTERNAL_H__
 
+#include "afw_interface.h"
+#include "afw_environment.h"
+#include <apr_dso.h>
+
+/**
+ * @defgroup afw_environment_internal Environment
+ * @ingroup afw_c_internal
+ * 
+ * Internal environment API.
+ * @{
+ */
 
 /**
  * @file afw_environment.h
  * @brief Internal header for AFW environment.
  */
 
-#include "afw_interface.h"
-#include "afw_environment.h"
-#include <apr_dso.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+AFW_BEGIN_DECLARES
 
 /*
  * Environment structure.
@@ -88,8 +92,9 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_utf8_t *source_location,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
-#ifdef __cplusplus
-}
-#endif
+
+AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_ENVIRONMENT_INTERNAL_H__ */

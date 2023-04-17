@@ -10,13 +10,10 @@
 #define __AFW_DEBUG_H__
 
 
-/** @addtogroup afw_c_api
-*
-* @{
- */
-
-/** @addtogroup afw_debug Software Debug
-*
+/**
+ * @addtogroup afw_debug Software Debug
+ * @ingroup afw_c_api
+ *
  * These macros and functions assist writing debug message to the environment
  * log.  All debug message have associated runtime information (rti) that can
  * be used for prefixing messages as well as filtering.  The first parameter
@@ -24,11 +21,10 @@
  * is a instance, which is used to locate the implementation rti.  The
  * AFW_DEBUG_WRITE*() macros and afw_debug_write*() functions have rti as the
  * first parameter.
-*
+ *
  * All debug message are written to the environment log.  See afw_log.h for
  * more information.
-*
-* @{
+ * @{
  */
 
 /**
@@ -200,7 +196,6 @@ afw_debug_write_z(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_DEBUG_H__ */

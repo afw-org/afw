@@ -31,6 +31,15 @@
  * Adaptive data types that are part of the core C API.
  */
 
+/**
+ * @defgroup afw_c_api_data_types_internal Adaptive data types
+ * 
+ * Data Type Internal.
+ * 
+ * This API might change between releases and even between patches, so do not
+ * use outside of afw library source (libafw).
+ */
+
 /** @defgroup afw_interface Interfaces
  *
  * The Adaptive Framework Interfaces.

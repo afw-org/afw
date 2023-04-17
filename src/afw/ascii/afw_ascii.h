@@ -10,7 +10,7 @@
 #define __AFW_ASCII_H__
 
 
-/** @addtogroup afw_ascii ASCII
+/** @defgroup afw_ascii ASCII
  * @ingroup afw_c_api
  * @{
  */

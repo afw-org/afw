@@ -1292,36 +1292,20 @@ def generate_typedefs_h(prefix, data_type_list, id, generated_by, dir, filename,
         c.write_doxygen_file_section(fd, filename, 'Adaptive data type typedefs ' + id + ' header.')
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
-        if options['core']:
-            fd.write('\n/**\n')
-            fd.write(' * @addtogroup afw_c_api\n')
-            fd.write(' * @{\n')
-            fd.write(' *\n')
-            fd.write(' */\n')
-            fd.write('\n')
-            fd.write('/**\n')
-            fd.write(' * @addtogroup afw_c_api_data_types Adaptive data types\n')
-            fd.write(' *\n')
-            fd.write(' * @{\n')
-            fd.write(' */\n')
-            fd.write('\n/**\n')
-            fd.write(' * @addtogroup afw_c_api_data_type_' + id + ' ' + id + '\n')
-            fd.write(' *\n')
-            fd.write(' * Adaptive Data Type ' + id + '\n')
-            fd.write(' *\n')
-            fd.write(' * @{\n')
-            fd.write(' */\n\n')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
         for obj in data_type_list:
             id = obj['_meta_']['objectId']
+            if options['core']:
+                fd.write('\n/**\n')
+                fd.write(' * @addtogroup afw_c_api_data_type_' + id + '\n')
+                fd.write(' * @{\n')
+                fd.write(' */\n')
             filename = prefix + 'data_type_' + id + '_binding.h'
             write_typedefs_h_section(fd, prefix, obj)
+            if options['core']:
+                fd.write('\n/** @} */\n')
 
-        if options['core']:
-            fd.write('\n/** @} */\n')
-            fd.write('\n/** @} */\n')
-            fd.write('/** @} */\n')
         fd.write('\nAFW_END_DECLARES\n')
         c.write_h_epilogue(fd, filename)
 

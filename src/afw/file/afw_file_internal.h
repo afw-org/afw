@@ -10,6 +10,13 @@
 #define __AFW_FILE_INTERNAL_H__
 
 
+/**
+ * @defgroup afw_file_internal File
+ * @ingroup afw_c_internal
+ * 
+ * Internal file API.
+ * @{
+ */
 
 /**
  * @file afw_file_internal.h
@@ -47,5 +54,7 @@ struct afw_file_internal_adaptor_session_s {
 const afw_adaptor_journal_inf_t * afw_file_internal_get_journal_inf();
 
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_FILE_INTERNAL_H__ */

@@ -28,28 +28,12 @@
 #include "afw_minimal.h"
 #include "afw_declare_helpers.h"
 
-/**
- * @addtogroup afw_c_api
- * @{
- *
- */
-
-/**
- * @addtogroup afw_c_api_data_types Adaptive data types
- *
- * @{
- */
-
-/**
- * @addtogroup afw_c_api_data_type_yearMonthDuration yearMonthDuration
- *
- * Adaptive Data Type yearMonthDuration
- *
- * @{
- */
-
-
 AFW_BEGIN_DECLARES
+
+/**
+ * @addtogroup afw_c_api_data_type_any
+ * @{
+ */
 
 /** @brief Typedef for data type any internal. */
 typedef const afw_value_t * afw_data_type_any_internal_t;
@@ -64,6 +48,13 @@ typedef const afw_value_t * afw_data_type_any_return_t;
 typedef struct afw_value_any_s
     afw_value_any_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_anyURI
+ * @{
+ */
+
 /** @brief Typedef for data type anyURI internal. */
 typedef afw_utf8_t afw_data_type_anyURI_internal_t;
 
@@ -76,6 +67,13 @@ typedef const afw_utf8_t * afw_data_type_anyURI_return_t;
 /** @brief Typedef for data type anyURI evaluated value. */
 typedef struct afw_value_anyURI_s
     afw_value_anyURI_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_base64Binary
+ * @{
+ */
 
 /** @brief Typedef for data type base64Binary internal. */
 typedef afw_memory_t afw_data_type_base64Binary_internal_t;
@@ -90,6 +88,13 @@ typedef const afw_memory_t * afw_data_type_base64Binary_return_t;
 typedef struct afw_value_base64Binary_s
     afw_value_base64Binary_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_boolean
+ * @{
+ */
+
 /** @brief Typedef for data type boolean internal. */
 typedef afw_boolean_t afw_data_type_boolean_internal_t;
 
@@ -102,6 +107,13 @@ typedef afw_boolean_t afw_data_type_boolean_return_t;
 /** @brief Typedef for data type boolean evaluated value. */
 typedef struct afw_value_boolean_s
     afw_value_boolean_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_date
+ * @{
+ */
 
 /** @brief Typedef for data type date internal. */
 typedef afw_date_t afw_data_type_date_internal_t;
@@ -116,6 +128,13 @@ typedef const afw_date_t * afw_data_type_date_return_t;
 typedef struct afw_value_date_s
     afw_value_date_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_dateTime
+ * @{
+ */
+
 /** @brief Typedef for data type dateTime internal. */
 typedef afw_dateTime_t afw_data_type_dateTime_internal_t;
 
@@ -128,6 +147,13 @@ typedef const afw_dateTime_t * afw_data_type_dateTime_return_t;
 /** @brief Typedef for data type dateTime evaluated value. */
 typedef struct afw_value_dateTime_s
     afw_value_dateTime_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_dayTimeDuration
+ * @{
+ */
 
 /** @brief Typedef for data type dayTimeDuration internal. */
 typedef afw_dayTimeDuration_t afw_data_type_dayTimeDuration_internal_t;
@@ -142,6 +168,13 @@ typedef const afw_dayTimeDuration_t * afw_data_type_dayTimeDuration_return_t;
 typedef struct afw_value_dayTimeDuration_s
     afw_value_dayTimeDuration_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_dnsName
+ * @{
+ */
+
 /** @brief Typedef for data type dnsName internal. */
 typedef afw_utf8_t afw_data_type_dnsName_internal_t;
 
@@ -154,6 +187,13 @@ typedef const afw_utf8_t * afw_data_type_dnsName_return_t;
 /** @brief Typedef for data type dnsName evaluated value. */
 typedef struct afw_value_dnsName_s
     afw_value_dnsName_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_double
+ * @{
+ */
 
 /** @brief Typedef for data type double internal. */
 typedef double afw_data_type_double_internal_t;
@@ -168,6 +208,13 @@ typedef double afw_data_type_double_return_t;
 typedef struct afw_value_double_s
     afw_value_double_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_expression
+ * @{
+ */
+
 /** @brief Typedef for data type expression internal. */
 typedef afw_utf8_t afw_data_type_expression_internal_t;
 
@@ -180,6 +227,13 @@ typedef const afw_utf8_t * afw_data_type_expression_return_t;
 /** @brief Typedef for data type expression evaluated value. */
 typedef struct afw_value_expression_s
     afw_value_expression_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_function
+ * @{
+ */
 
 /** @brief Typedef for data type function internal. */
 typedef const afw_value_t * afw_data_type_function_internal_t;
@@ -194,6 +248,13 @@ typedef const afw_value_t * afw_data_type_function_return_t;
 typedef struct afw_value_function_s
     afw_value_function_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_hexBinary
+ * @{
+ */
+
 /** @brief Typedef for data type hexBinary internal. */
 typedef afw_memory_t afw_data_type_hexBinary_internal_t;
 
@@ -206,6 +267,13 @@ typedef const afw_memory_t * afw_data_type_hexBinary_return_t;
 /** @brief Typedef for data type hexBinary evaluated value. */
 typedef struct afw_value_hexBinary_s
     afw_value_hexBinary_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_hybrid
+ * @{
+ */
 
 /** @brief Typedef for data type hybrid internal. */
 typedef afw_utf8_t afw_data_type_hybrid_internal_t;
@@ -220,6 +288,13 @@ typedef const afw_utf8_t * afw_data_type_hybrid_return_t;
 typedef struct afw_value_hybrid_s
     afw_value_hybrid_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_ia5String
+ * @{
+ */
+
 /** @brief Typedef for data type ia5String internal. */
 typedef afw_utf8_t afw_data_type_ia5String_internal_t;
 
@@ -232,6 +307,13 @@ typedef const afw_utf8_t * afw_data_type_ia5String_return_t;
 /** @brief Typedef for data type ia5String evaluated value. */
 typedef struct afw_value_ia5String_s
     afw_value_ia5String_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_implied
+ * @{
+ */
 
 /** @brief Typedef for data type implied internal. */
 typedef const afw_value_t * afw_data_type_implied_internal_t;
@@ -246,6 +328,13 @@ typedef const afw_value_t * afw_data_type_implied_return_t;
 typedef struct afw_value_implied_s
     afw_value_implied_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_integer
+ * @{
+ */
+
 /** @brief Typedef for data type integer internal. */
 typedef afw_integer_t afw_data_type_integer_internal_t;
 
@@ -258,6 +347,13 @@ typedef afw_integer_t afw_data_type_integer_return_t;
 /** @brief Typedef for data type integer evaluated value. */
 typedef struct afw_value_integer_s
     afw_value_integer_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_ipAddress
+ * @{
+ */
 
 /** @brief Typedef for data type ipAddress internal. */
 typedef afw_utf8_t afw_data_type_ipAddress_internal_t;
@@ -272,6 +368,13 @@ typedef const afw_utf8_t * afw_data_type_ipAddress_return_t;
 typedef struct afw_value_ipAddress_s
     afw_value_ipAddress_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_list
+ * @{
+ */
+
 /** @brief Typedef for data type list internal. */
 typedef const afw_list_t * afw_data_type_list_internal_t;
 
@@ -284,6 +387,13 @@ typedef const afw_list_t * afw_data_type_list_return_t;
 /** @brief Typedef for data type list evaluated value. */
 typedef struct afw_value_list_s
     afw_value_list_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_null
+ * @{
+ */
 
 /** @brief Typedef for data type null internal. */
 typedef void * afw_data_type_null_internal_t;
@@ -298,6 +408,13 @@ typedef void * afw_data_type_null_return_t;
 typedef struct afw_value_null_s
     afw_value_null_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_object
+ * @{
+ */
+
 /** @brief Typedef for data type object internal. */
 typedef const afw_object_t * afw_data_type_object_internal_t;
 
@@ -310,6 +427,13 @@ typedef const afw_object_t * afw_data_type_object_return_t;
 /** @brief Typedef for data type object evaluated value. */
 typedef struct afw_value_object_s
     afw_value_object_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_objectId
+ * @{
+ */
 
 /** @brief Typedef for data type objectId internal. */
 typedef afw_utf8_t afw_data_type_objectId_internal_t;
@@ -324,6 +448,13 @@ typedef const afw_utf8_t * afw_data_type_objectId_return_t;
 typedef struct afw_value_objectId_s
     afw_value_objectId_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_objectPath
+ * @{
+ */
+
 /** @brief Typedef for data type objectPath internal. */
 typedef afw_utf8_t afw_data_type_objectPath_internal_t;
 
@@ -336,6 +467,13 @@ typedef const afw_utf8_t * afw_data_type_objectPath_return_t;
 /** @brief Typedef for data type objectPath evaluated value. */
 typedef struct afw_value_objectPath_s
     afw_value_objectPath_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_password
+ * @{
+ */
 
 /** @brief Typedef for data type password internal. */
 typedef afw_utf8_t afw_data_type_password_internal_t;
@@ -350,6 +488,13 @@ typedef const afw_utf8_t * afw_data_type_password_return_t;
 typedef struct afw_value_password_s
     afw_value_password_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_regexp
+ * @{
+ */
+
 /** @brief Typedef for data type regexp internal. */
 typedef afw_utf8_t afw_data_type_regexp_internal_t;
 
@@ -362,6 +507,13 @@ typedef const afw_utf8_t * afw_data_type_regexp_return_t;
 /** @brief Typedef for data type regexp evaluated value. */
 typedef struct afw_value_regexp_s
     afw_value_regexp_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_rfc822Name
+ * @{
+ */
 
 /** @brief Typedef for data type rfc822Name internal. */
 typedef afw_utf8_t afw_data_type_rfc822Name_internal_t;
@@ -376,6 +528,13 @@ typedef const afw_utf8_t * afw_data_type_rfc822Name_return_t;
 typedef struct afw_value_rfc822Name_s
     afw_value_rfc822Name_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_script
+ * @{
+ */
+
 /** @brief Typedef for data type script internal. */
 typedef afw_utf8_t afw_data_type_script_internal_t;
 
@@ -388,6 +547,13 @@ typedef const afw_utf8_t * afw_data_type_script_return_t;
 /** @brief Typedef for data type script evaluated value. */
 typedef struct afw_value_script_s
     afw_value_script_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_string
+ * @{
+ */
 
 /** @brief Typedef for data type string internal. */
 typedef afw_utf8_t afw_data_type_string_internal_t;
@@ -402,6 +568,13 @@ typedef const afw_utf8_t * afw_data_type_string_return_t;
 typedef struct afw_value_string_s
     afw_value_string_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_template
+ * @{
+ */
+
 /** @brief Typedef for data type template internal. */
 typedef afw_utf8_t afw_data_type_template_internal_t;
 
@@ -414,6 +587,13 @@ typedef const afw_utf8_t * afw_data_type_template_return_t;
 /** @brief Typedef for data type template evaluated value. */
 typedef struct afw_value_template_s
     afw_value_template_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_time
+ * @{
+ */
 
 /** @brief Typedef for data type time internal. */
 typedef afw_time_t afw_data_type_time_internal_t;
@@ -428,6 +608,13 @@ typedef const afw_time_t * afw_data_type_time_return_t;
 typedef struct afw_value_time_s
     afw_value_time_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_unevaluated
+ * @{
+ */
+
 /** @brief Typedef for data type unevaluated internal. */
 typedef const afw_value_t * afw_data_type_unevaluated_internal_t;
 
@@ -440,6 +627,13 @@ typedef const afw_value_t * afw_data_type_unevaluated_return_t;
 /** @brief Typedef for data type unevaluated evaluated value. */
 typedef struct afw_value_unevaluated_s
     afw_value_unevaluated_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_x500Name
+ * @{
+ */
 
 /** @brief Typedef for data type x500Name internal. */
 typedef afw_utf8_t afw_data_type_x500Name_internal_t;
@@ -454,6 +648,13 @@ typedef const afw_utf8_t * afw_data_type_x500Name_return_t;
 typedef struct afw_value_x500Name_s
     afw_value_x500Name_t;
 
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_xpathExpression
+ * @{
+ */
+
 /** @brief Typedef for data type xpathExpression internal. */
 typedef afw_utf8_t afw_data_type_xpathExpression_internal_t;
 
@@ -466,6 +667,13 @@ typedef const afw_utf8_t * afw_data_type_xpathExpression_return_t;
 /** @brief Typedef for data type xpathExpression evaluated value. */
 typedef struct afw_value_xpathExpression_s
     afw_value_xpathExpression_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_yearMonthDuration
+ * @{
+ */
 
 /** @brief Typedef for data type yearMonthDuration internal. */
 typedef afw_yearMonthDuration_t afw_data_type_yearMonthDuration_internal_t;
@@ -480,9 +688,6 @@ typedef const afw_yearMonthDuration_t * afw_data_type_yearMonthDuration_return_t
 typedef struct afw_value_yearMonthDuration_s
     afw_value_yearMonthDuration_t;
 
-/** @} */
-
-/** @} */
 /** @} */
 
 AFW_END_DECLARES
