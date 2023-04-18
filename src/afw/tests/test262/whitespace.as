@@ -249,11 +249,8 @@ if (x !== 0) {
 //? test: mongolian-vowel-separator
 //? description: mongolian-vowel-separator
 //? expect: error
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-// skip for now, because on CentOS 7 / Python, this somehow works when it should fail.
 
 // U+180E between "loc" and "foo"; UTF8(0x180E) = 0xE1 0xA0 0x8E
 loc᠎foo;

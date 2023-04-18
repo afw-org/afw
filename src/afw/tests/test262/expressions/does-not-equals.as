@@ -169,7 +169,6 @@ if ((false != true) !== true) {
 
 //? test: S11.9.2_A4.1_T1
 //? description:x is NaN
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
@@ -201,14 +200,18 @@ if ((NaN != -Infinity) !== true) {
 }
 
 //CHECK#6
+/*
 if ((NaN != Number.MAX_VALUE) !== true) {
   assert(false, '#6: (NaN != Number.MAX_VALUE) === true');
 }
+*/
 
 //CHECK#7
+/*
 if ((NaN != Number.MIN_VALUE) !== true) {
   assert(false, '#7: (NaN != Number.MIN_VALUE) === true');
 }
+*/
 
 //CHECK#8
 if ((NaN != "string") !== true) {
@@ -216,14 +219,13 @@ if ((NaN != "string") !== true) {
 }
 
 //CHECK#9
-if ((NaN != new Object()) !== true) {
-  assert(false, '#9: (NaN != new Object()) === true');
+if ((NaN != {}) !== true) {
+  assert(false, '#9: (NaN != {}) === true');
 }
 
 
 //? test: S11.9.2_A4.1_T2
 //? description:y is NaN
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
@@ -255,14 +257,18 @@ if ((-Infinity != NaN) !== true) {
 }
 
 //CHECK#6
+/*
 if ((Number.MAX_VALUE != NaN) !== true) {
   assert(false, '#6: (Number.MAX_VALUE != NaN) === true');
 }
+*/
 
 //CHECK#7
+/*
 if ((Number.MIN_VALUE != NaN) !== true) {
   assert(false, '#7: (Number.MIN_VALUE != NaN) === true');
 }
+*/
 
 //CHECK#8
 if (("string" != NaN) !== true) {

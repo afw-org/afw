@@ -54,6 +54,15 @@
                     "mappedPropertyName": "TestString1"
                 }
             }
+        },
+        "MyObjectType6": {
+            "propertyTypes": {
+                "TestOnPropertyList": {
+                    "dataType": "list",
+                    "onGetProperty": "#! afw\n\nloc l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
+                    "onSetProperty": "#! afw\n\n//loc x = current::value[0];\nreturn \"x\";"
+                }
+            }
         }
     }
 }

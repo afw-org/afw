@@ -33,7 +33,7 @@ loc catch = 1;
 
 
 //? test: ident-ref-continue
-//? description: Checking if execution of "contunue=1" fails
+//? description: Checking if execution of "continue=1" fails
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw

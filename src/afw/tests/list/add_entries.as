@@ -50,7 +50,6 @@ return 0;
 //? test: add_entries-1-null
 //? description: Add a null
 //? expect: 0
-//? skip: true
 //? source: ...
 
 loc l1 = [];
@@ -58,8 +57,6 @@ loc l1 = [];
 add_entries(l1, null);
 
 assert(length(l1) === 1, "l1 is " + string(length(l1)));
-
-// but this does not
 assert(l1[0] === null, "l1[0] is " + string(l1[0]));
 
 return 0;
