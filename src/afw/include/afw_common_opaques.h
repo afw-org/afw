@@ -10,11 +10,8 @@
 #define __AFW_COMMON_OPAQUES_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_common Common
+/**
+ * @addtogroup afw_common
  * @{
  */
 
@@ -1006,7 +1003,6 @@ typedef struct afw_value_variable_reference_s
 afw_value_variable_reference_t;
 
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_COMMON_OPAQUES_H__ */

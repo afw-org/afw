@@ -48,6 +48,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     compile/afw_compile.h
     compile/afw_compile_code_point.h
     compile/afw_compile_internal.h
+    components/afw_components.h
     content_type/afw_content_type.h
     content_type/afw_content_type_impl.h
     context/afw_context.h
@@ -142,13 +143,11 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     include/afw.h
     include/afw_common.h
     include/afw_common_opaques.h
-    include/afw_components.h
     include/afw_doxygen.h
     include/afw_interface_common.h
     include/afw_internal.h
     include/afw_minimal.h
     include/afw_os.h
-    include/afw_safe_cast.h
     json/afw_json.h
     json/afw_json_internal.h
     list/afw_list.h
@@ -183,6 +182,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     request/afw_request_impl.h
     runtime/afw_runtime.h
     runtime/afw_runtime_value_accessor.h
+    safe_cast/afw_safe_cast.h
     service/afw_service.h
     service/afw_service_internal.h
     stack/afw_stack.h
@@ -213,6 +213,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic
     ${CMAKE_CURRENT_SOURCE_DIR}/authorization
     ${CMAKE_CURRENT_SOURCE_DIR}/compile
+    ${CMAKE_CURRENT_SOURCE_DIR}/components
     ${CMAKE_CURRENT_SOURCE_DIR}/content_type
     ${CMAKE_CURRENT_SOURCE_DIR}/context
     ${CMAKE_CURRENT_SOURCE_DIR}/data_type
@@ -237,6 +238,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/query_criteria
     ${CMAKE_CURRENT_SOURCE_DIR}/request
     ${CMAKE_CURRENT_SOURCE_DIR}/runtime
+    ${CMAKE_CURRENT_SOURCE_DIR}/safe_cast
     ${CMAKE_CURRENT_SOURCE_DIR}/service
     ${CMAKE_CURRENT_SOURCE_DIR}/stack
     ${CMAKE_CURRENT_SOURCE_DIR}/stream

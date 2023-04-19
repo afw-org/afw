@@ -9,7 +9,14 @@
 #ifndef __AFW_LIST_INTERNAL_H__
 #define __AFW_LIST_INTERNAL_H__
 
-
+/**
+ * @defgroup afw_list_internal File
+ * @ingroup afw_c_internal
+ * 
+ * Internal list API.
+ * 
+ * @{
+ */
 
 /**
 *  \file afw_memory_internal.h
@@ -18,13 +25,10 @@
 
 #include "afw_interface.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
+AFW_END_DECLARES
 
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __AFW_LIST_INTERNAL_H__ */

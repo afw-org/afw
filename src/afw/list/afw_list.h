@@ -9,6 +9,13 @@
 #ifndef __AFW_LIST_H__
 #define __AFW_LIST_H__
 
+/**
+ * @defgroup afw_list List
+ * @ingroup afw_c_api
+ *
+ * List API.
+ * @{
+ */
 
 /**
  * @file afw_list.h
@@ -456,5 +463,6 @@ afw_list_set_value_by_index(
 
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_LIST_H__ */

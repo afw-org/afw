@@ -58,7 +58,8 @@ typedef struct afw_log_deprecated_internal_t {
 /** @fixme Need to add convert to log code page. */
 
 /* Create a log. */
-AFW_DEFINE(afw_log_deprecated_t *) afw_create_log(
+AFW_DEFINE(afw_log_deprecated_t *)
+afw_create_log_deprecated(
     apr_pool_t *temp_pool,
     apr_pool_t *module_pool,
     apr_file_t *log_file,
@@ -70,7 +71,7 @@ AFW_DEFINE(afw_log_deprecated_t *) afw_create_log(
     /* Create subpool for log. */
     if (apr_pool_create(&log_pool,module_pool) != APR_SUCCESS) {
         apr_file_printf(log_file,  AFW_MESSAGE_PREFIX
-            "apr_pool_create() failed in afw_create_log().");
+            "apr_pool_create() failed in afw_create_log_deprecated().");
         return NULL;
     };
 

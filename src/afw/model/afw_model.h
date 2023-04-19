@@ -9,15 +9,13 @@
 #ifndef __AFW_MODEL_H__
 #define __AFW_MODEL_H__
 
-
-/** @addtogroup afw_c_api
- * @{
- */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_model Model
+ * @defgroup afw_model Model
+ * @ingroup afw_c_api
  *
- * Adaptive Framework model support.
+ * Model API.
  *
  * @{
  */
@@ -26,8 +24,6 @@
  * @file afw_model.h
  * @brief Header file for Adaptive Framework model support
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -90,7 +86,6 @@ afw_model_get_object_type(const afw_model_t *model,
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_MODEL_H__ */

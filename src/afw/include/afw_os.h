@@ -10,11 +10,9 @@
 #define __AFW_OS_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_os OS specific
+/**
+ * @addtogroup afw_os OS specific
+ * @ingroup afw_c_api
  *
  * OS specific functions
  *
@@ -105,7 +103,6 @@ afw_os_backtrace(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OS_H__ */

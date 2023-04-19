@@ -10,11 +10,9 @@
 #define __AFW_MEMORY_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_memory Memory support
+/**
+ * @defgroup afw_memory Memory support
+ * @ingroup afw_c_api
  *
  * Adaptive framework memory support functions.
  *
@@ -219,10 +217,8 @@ afw_memory_writer_retrieve_and_release(
     const afw_memory_writer_t *writer, afw_xctx_t *xctx);
 
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_MEMORY_H__ */

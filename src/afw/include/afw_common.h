@@ -13,11 +13,9 @@
 #include "afw_doxygen.h"
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_common Common
+/**
+ * @defgroup afw_common Common
+ * @ingroup afw_c_api
  *
  * Common to all Adaptive Framework applications
  *
@@ -1793,7 +1791,6 @@ typedef void
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_COMMON_H__ */

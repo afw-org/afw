@@ -10,15 +10,8 @@
 #define __AFW_MODEL_LOCATION_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
 /**
- * @addtogroup afw_model Model
- *
- * Adaptive Framework model location.
- *
+ * @addtogroup afw_model
  * @{
  */
 
@@ -66,7 +59,6 @@ afw_model_location_get_model(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_MODEL_LOCATION_H__ */

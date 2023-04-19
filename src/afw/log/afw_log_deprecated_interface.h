@@ -10,6 +10,10 @@
 #define __AFWLOGINTERFACE_H__
 
 
+/**
+ * @addtogroup afw_log_deprecated
+ * @{
+ */
 
 /**
  * @file afw_log_deprecated.h
@@ -18,7 +22,7 @@
 
 #include "afw_minimal.h"
 
-/** Created by afw_create_log */
+/** Created by afw_create_log_deprecated */
 typedef struct afw_log_deprecated_t afw_log_deprecated_t;
 
 /** Trace Options. */
@@ -191,5 +195,6 @@ AFW_DEFINE_STATIC_INLINE(void) afw_log_deprecated_trace(
     va_end(args);
 }
 
+/** @} */
 
-#endif /* __AFWLOG_H__ */
+#endif /* __AFWLOGINTERFACE_H__ */

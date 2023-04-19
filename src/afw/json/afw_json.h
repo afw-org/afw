@@ -10,13 +10,12 @@
 #define __AFW_JSON_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_json JSON support
+/**
+ * @defgroup afw_json JSON support
+ * @ingroup afw_c_api
  *
  * Adaptive Framework JSON support
+ * 
  * @{
  */
 
@@ -203,7 +202,6 @@ afw_json_utf8_string_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_JSON_H__ */

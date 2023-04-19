@@ -10,14 +10,16 @@
 #define __AFW_LOG_H__
 
 
-/** @addtogroup afw_c_api
+/**
+ * @defgroup afw_log Log
+ * @ingroup afw_c_api
+ *
+ * Log API.
  * @{
  */
 
-
 /** @fixme In middle of implementation. */
 #define afw_log_release afw_log_destroy
-
 
 
 /** @addtogroup afw_log Log
@@ -314,7 +316,5 @@ afw_log_set_mask(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_LOG_H__ */

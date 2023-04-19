@@ -10,11 +10,9 @@
 #define __AFW_LIST_IMPL_H__
 
 
-/** @addtogroup afw_c_api_impl Interface
- * @{
- */
-
-/** @addtogroup afw_list_impl afw_list interfaces.
+/**
+ * @defgroup afw_list_impl afw_list interfaces
+ * @ingroup afw_c_api_impl
  * @{
  */
 
@@ -150,7 +148,5 @@ afw_list_external_impl_get_next_entry_meta(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_LIST_IMPL_H__ */

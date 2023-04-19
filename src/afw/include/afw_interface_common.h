@@ -9,7 +9,12 @@
 #ifndef __AFW_INTERFACE_COMMON_H__
 #define __AFW_INTERFACE_COMMON_H__
 
+#include "afw_common.h"
 
+/**
+ * @addtogroup afw_common
+ * @{
+ */
 
 /**
  * @file afw_interface_common.h
@@ -19,11 +24,7 @@
 *
  */
 
-#include "afw_common.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 /** @brief Interface Variable Run Time Information. */
 typedef struct afw_interface_rti_variable_s {
@@ -76,9 +77,8 @@ typedef struct afw_instance_s {
 } afw_instance_t;
 
 
+AFW_END_DECLARES
 
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __AFW_INTERFACE_COMMON_H__ */

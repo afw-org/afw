@@ -9,10 +9,19 @@
 #ifndef __AFW_COMPONENTS_H__
 #define __AFW_COMPONENTS_H__
 
+/**
+ * @defgroup afw_components Components
+ * @ingroup afw_c_api
+ *
+ * Adaptive application components
+ *
+ * @{
+ */
+
 
 /**
- *  \file afw_application.h
- *  \brief Functions for working with _AdaptiveAction_ objects.
+ *  \file afw_components.h
+ *  \brief .
  */
 
 #include "afw_interface.h"
@@ -24,5 +33,7 @@ struct afw_components_s {
 };
 
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_COMPONENTS_H__ */

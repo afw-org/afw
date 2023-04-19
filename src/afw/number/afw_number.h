@@ -10,11 +10,9 @@
 #define __AFW_NUMBER_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-/** @addtogroup afw_number Number
+/**
+ * @defgroup afw_number Number
+ * @ingroup afw_c_api
  *
  * Adaptive Framework number support.
  *
@@ -258,7 +256,6 @@ afw_number_bytes_needed_integer(afw_integer_t i);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_NUMBER_H__ */

@@ -9,6 +9,14 @@
 #ifndef __AFW_JSON_INTERNAL_H__
 #define __AFW_JSON_INTERNAL_H__
 
+/**
+ * @defgroup afw_json_internal JSON support
+ * @ingroup afw_c_internal
+ *
+ * Adaptive Framework JSON internal support
+ * 
+ * @{
+ */
 
 /**
  * @file afw_json_internal.h
@@ -30,5 +38,7 @@ void afw_json_internal_write_value(
     afw_xctx_t *xctx);
 
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_JSON_INTERNAL_H__ */

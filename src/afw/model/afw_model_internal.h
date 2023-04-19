@@ -9,15 +9,13 @@
 #ifndef __AFW_MODEL_INTERNAL_H__
 #define __AFW_MODEL_INTERNAL_H__
 
-
-/** @addtogroup afw_c_api
- * @{
- */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_model Model
+ * @defgroup afw_model_internal Model
+ * @ingroup afw_c_internal
  *
- * Adaptive Framework model internal header.
+ * Internal model API.
  *
  * @{
  */
@@ -28,8 +26,6 @@
  *
  * Nothing in this header should be accessed outside of core.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -604,7 +600,6 @@ afw_model_internal_context_current_runtime_ctx[];
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_MODEL_INTERNAL_H__ */

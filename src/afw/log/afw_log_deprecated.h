@@ -10,15 +10,13 @@
 #define __AFW_LOG_DEPRECATED_H__
 
 
-
-/** @addtogroup afw_c_api
-* @{
- */
-
-/** @addtogroup afw_log_deprecated Log (deprecated)
-*
+/**
+ * @defgroup afw_log_deprecated Log (deprecated)
+ * @ingroup afw_c_api
+ *
  * Adaptive Framework log.
-* @{
+ * 
+ * @{
  */
 
 /**
@@ -40,7 +38,8 @@ AFW_BEGIN_DECLARES
  * @param trace: Trace options.
  * @return afw_log_deprecated_t * or NULL if error.
  */
-AFW_DECLARE(afw_log_deprecated_t *) afw_create_log(
+AFW_DECLARE(afw_log_deprecated_t *)
+afw_create_log_deprecated(
     apr_pool_t *temp_pool,
     apr_pool_t *module_pool,
     apr_file_t *log_file,
@@ -49,7 +48,6 @@ AFW_DECLARE(afw_log_deprecated_t *) afw_create_log(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_LOG_DEPRECATED_H__ */

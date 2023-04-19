@@ -10,14 +10,11 @@
 #define __AFW_LOCK_H__
 
 
-/** @addtogroup afw_c_api
- * @{
- */
-
-
-/** @addtogroup afw_log Locks
+/**
+ * @defgroup afw_log Locks
+ * @ingroup afw_c_api
  *
- *  Adaptive Framework Locks.
+ *  Locks API.
  * @{
  */
 
@@ -419,12 +416,8 @@ AFW_FINALLY { \
 } \
 AFW_ENDTRY
 
-
-
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_LOCK_H__ */

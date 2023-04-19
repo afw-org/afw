@@ -9,12 +9,13 @@
 #ifndef __AFW_LOG_IMPL_H__
 #define __AFW_LOG_IMPL_H__
 
+#include "afw_minimal.h"
 
-/** @addtogroup afw_c_api_impl Interface
- * @{
- */
-
-/** @addtogroup afw_log_impl afw_log interface
+/**
+ * @defgroup afw_log_impl Log
+ * @ingroup afw_c_api_impl
+ *
+ * Interface log implementation helpers.
  * @{
  */
 
@@ -23,11 +24,7 @@
  * @brief  Helpers for log implementation development.
  */
 
-#include "afw_minimal.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /**
  * @brief Struct for afw_log_impl_t.
@@ -156,7 +153,6 @@ afw_log_impl_throw_property_required(
     afw_xctx_t *xctx);
 
 
-/** @} */
 /** @} */
 
 AFW_END_DECLARES

@@ -10,13 +10,10 @@
 #define __AFW_INTERNAL_H__
 
 
-/** @addtogroup afw_c_api
-* @{
- */
-
 /**
  * @file afw_internal.h
  * @brief Adaptive Framework Core Internal.
+ * @ingroup afw_c_internal
  *
  * This header includes all of the headers that are used internally by the
  * source of Adaptive Framework Core. This header should not be included by
@@ -46,7 +43,5 @@
 #include "afw_xctx_internal.h"
 #include "afw_service_internal.h"
 #include "afw_value_internal.h"
-
-/** @} */
 
 #endif /* __AFW_INTERNAL_H__ */

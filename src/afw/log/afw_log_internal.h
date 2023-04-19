@@ -9,18 +9,22 @@
 #ifndef __AFW_LOG_INTERNAL_H__
 #define __AFW_LOG_INTERNAL_H__
 
+#include "afw_interface.h"
 
+/**
+ * @defgroup afw_log_internal Log
+ * @ingroup afw_c_internal
+ *
+ * Internal log API.
+ * @{
+ */
 
 /**
  * @file afw_log_internal.h
  * @brief Header file for Adaptive Framework Request Handler Internals
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 /** @brief Internal create environment log. */
 extern const afw_log_t * afw_log_internal_create_environment_log(
@@ -50,8 +54,8 @@ void afw_log_internal_register_logType_context_type(
     afw_xctx_t *xctx);
 
 
-#ifdef __cplusplus
-}
-#endif
+AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_LOG_INTERNAL_H__ */
