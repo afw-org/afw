@@ -11,10 +11,10 @@
 
 
 /**
- * @defgroup afw_log Locks
+ * @defgroup afw_lock Locks
  * @ingroup afw_c_api_public
  *
- *  Locks API.
+ * Locks API.
  * @{
  */
 

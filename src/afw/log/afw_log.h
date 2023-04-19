@@ -9,20 +9,11 @@
 #ifndef __AFW_LOG_H__
 #define __AFW_LOG_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_log Log
  * @ingroup afw_c_api_public
- *
- * Log API.
- * @{
- */
-
-/** @fixme In middle of implementation. */
-#define afw_log_release afw_log_destroy
-
-
-/** @addtogroup afw_log Log
  *
  *  Adaptive Framework Log Support.
  *
@@ -61,7 +52,8 @@
  * @brief Adaptive Framework afw_log interface helpers header
  */
 
-#include "afw_interface.h"
+/** @fixme In middle of implementation. */
+#define afw_log_release afw_log_destroy
 
 AFW_BEGIN_DECLARES
 
