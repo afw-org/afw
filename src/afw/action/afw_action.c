@@ -9,9 +9,7 @@
 /**
  * @file afw_action.c
  * @brief Functions for working with _AdaptiveAction_ objects.
- * @ingroup afw_action_internal
- * @{
-*/
+ */
 
 #include "afw_internal.h"
 
@@ -420,4 +418,3 @@ afw_action_perform(
     return response;
 }
 
-/** @} */

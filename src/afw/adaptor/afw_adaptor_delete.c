@@ -9,8 +9,6 @@
 /**
  * @file afw_object_delete.c
  * @brief Adaptive Framework adaptor delete object.
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -83,5 +81,3 @@ afw_adaptor_delete_object(
     /* Action epilogue. */
     afw_adaptor_internal_journal_epilogue(session, journal_entry, true, xctx);
 }
-
-/** @} */

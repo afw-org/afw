@@ -9,8 +9,6 @@
 /**
  * @file afw_adaptor_context.c
  * @brief Adaptive framework adaptor context
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -27,4 +25,3 @@ afw_adaptor_context_prepare(
     AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 }
 
-/** @} */

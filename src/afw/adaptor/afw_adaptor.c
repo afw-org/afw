@@ -9,8 +9,6 @@
 /**
  * @file afw_adaptor.c
  * @brief Interface support and internal functions for afw_adaptor*
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -784,5 +782,3 @@ impl_afw_service_type_restart_cede_p (
     /* Count on already running. Start will restart if necessary. */
     impl_afw_service_type_start_cede_p(instance, properties, p, xctx);
 }
-
-/** @} */

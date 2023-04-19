@@ -9,8 +9,6 @@
 /**
  * @file afw_object_journal.c
  * @brief Adaptive Framework adaptor journal.
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -517,5 +515,3 @@ error_special_id:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Expecting special objectId in the form: %s", syntax_z);
 }
-
-/** @} */

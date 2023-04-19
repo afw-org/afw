@@ -9,8 +9,6 @@
 /**
  * @file afw_object_add.c
  * @brief Adaptive Framework adaptor add object.
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -115,5 +113,3 @@ afw_adaptor_retrieve_objects(
         adaptor_type_specific,
         p, xctx);
 }
-
-/** @} */

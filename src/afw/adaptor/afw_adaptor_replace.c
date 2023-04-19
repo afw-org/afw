@@ -9,8 +9,6 @@
 /**
  * @file afw_object_replace.c
  * @brief Adaptive Framework adaptor replace object.
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -87,5 +85,3 @@ afw_adaptor_replace_object(
     /* Action epilogue. */
     afw_adaptor_internal_journal_epilogue(session, journal_entry, true, xctx);
 }
-
-/** @} */

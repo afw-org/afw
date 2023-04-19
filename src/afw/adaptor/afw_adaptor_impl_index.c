@@ -9,8 +9,6 @@
 /**
  * @file afw_adaptor_impl_index.c
  * @brief Helpers for afw_adaptor implementation index development
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -1660,5 +1658,3 @@ AFW_DEFINE(void) afw_adaptor_impl_index_query(
     /* should never get here */
     callback(NULL, context, xctx);
 }
-
-/** @} */

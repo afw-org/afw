@@ -9,8 +9,6 @@
 /**
  * @file afw_adaptor_impl.c
  * @brief Helpers for afw_adaptor implementation development
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -1667,5 +1665,3 @@ impl_afw_adaptor_journal_mark_entry_consumed(
     afw_adaptor_journal_mark_entry_consumed(self->wrapped_journal,
         impl_request, consumer_id, entry_cursor, xctx);
 }
-
-/** @} */

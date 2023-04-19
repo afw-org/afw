@@ -9,8 +9,6 @@
 /**
  * @file afw_object_add.c
  * @brief Adaptive Framework adaptor add object.
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -115,4 +113,3 @@ afw_adaptor_add_object(
     return object_id;
 }
 
-/** @} */

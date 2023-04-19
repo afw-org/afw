@@ -9,8 +9,6 @@
 /**
  * @file afw_application.c
  * @brief Application functions.
- * @ingroup afw_application_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -439,5 +437,3 @@ afw_application_internal_application_conf_type_create_cede_p(
         AFW_UTF8_FMT_ARG(application_id));
 
 }
-
-/** @} */

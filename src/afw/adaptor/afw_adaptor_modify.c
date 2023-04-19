@@ -9,8 +9,6 @@
 /**
  * @file afw_object_modify.c
  * @brief Adaptive Framework adaptor modify object
- * @ingroup afw_adaptor_internal
- * @{
  */
 
 #include "afw_internal.h"
@@ -926,5 +924,3 @@ afw_adaptor_modify_using_update_object(
         adaptor_id, object_type_id, object_id,
         entries, journal_entry, adaptor_type_specific, xctx);
 }
-
-/** @} */
