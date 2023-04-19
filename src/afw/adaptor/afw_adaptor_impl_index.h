@@ -10,7 +10,7 @@
 #define __AFW_ADAPTOR_IMPL_INDEX_H__
 
 /**
- * @defgroup afw_adaptor_index_impl afw_adaptor_index interfaces
+ * @defgroup afw_adaptor_index_impl afw_adaptor_index
  * @ingroup afw_c_api_impl
  * @{
  */

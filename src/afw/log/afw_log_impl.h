@@ -12,7 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_log_impl Log
+ * @defgroup afw_log_impl afw_log
  * @ingroup afw_c_api_impl
  *
  * Interface log implementation helpers.

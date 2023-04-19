@@ -11,7 +11,7 @@
 
 
 /**
- * @defgroup afw_content_type_impl afw_content_type interfaces
+ * @defgroup afw_content_type_impl afw_content_type
  * @ingroup afw_c_api_impl
  * @{
  */

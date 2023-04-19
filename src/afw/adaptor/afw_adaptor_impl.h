@@ -11,7 +11,7 @@
 
 
 /**
- * @defgroup afw_adaptor_impl afw_adaptor interfaces
+ * @defgroup afw_adaptor_impl afw_adaptor
  * @ingroup afw_c_api_impl
  * @{
  */

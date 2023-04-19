@@ -10,11 +10,10 @@
 #define __AFW_OBJECT_IMPL_H__
 
 
-/** @addtogroup afw_c_api_impl Interface
- * @{
- */
-
-/** @addtogroup afw_object_impl afw_object interfaces.
+/**
+ * @defgroup afw_object_impl afw_object
+ * @ingroup afw_c_api_impl
+ * 
  * @{
  */
 
@@ -254,7 +253,5 @@ afw_object_impl_get_next_property_meta(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_OBJECT_IMPL_H__ */
