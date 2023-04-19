@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_file File Adaptor
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework adaptor for storing objects in file system.
  * 

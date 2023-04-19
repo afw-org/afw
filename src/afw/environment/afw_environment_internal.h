@@ -15,7 +15,7 @@
 
 /**
  * @defgroup afw_environment_internal Environment
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  * 
  * Internal environment API.
  * @{

@@ -13,7 +13,7 @@
 
 /**
  * @defgroup afw_model_internal Model
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  *
  * Internal model API.
  *

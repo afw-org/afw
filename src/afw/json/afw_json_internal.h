@@ -11,7 +11,7 @@
 
 /**
  * @defgroup afw_json_internal JSON support
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  *
  * Adaptive Framework JSON internal support
  * 

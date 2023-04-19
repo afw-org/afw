@@ -13,7 +13,7 @@
 /**
  * @file afw_internal.h
  * @brief Adaptive Framework Core Internal.
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  *
  * This header includes all of the headers that are used internally by the
  * source of Adaptive Framework Core. This header should not be included by

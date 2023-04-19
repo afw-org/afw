@@ -10,7 +10,7 @@
 #define __AFW_OBJECT_OPTIONS_H__
 
 
-/** @addtogroup afw_c_api
+/** @addtogroup afw_c_api_public
  * @{
  */
 

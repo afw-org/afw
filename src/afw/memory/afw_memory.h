@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_memory Memory support
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive framework memory support functions.
  *

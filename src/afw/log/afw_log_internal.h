@@ -13,7 +13,7 @@
 
 /**
  * @defgroup afw_log_internal Log
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  *
  * Internal log API.
  * @{

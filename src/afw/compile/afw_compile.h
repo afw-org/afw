@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_compile Compile AFW syntax
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework Compile AFW syntax.
  * @{

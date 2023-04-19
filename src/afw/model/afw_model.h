@@ -13,7 +13,7 @@
 
 /**
  * @defgroup afw_model Model
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Model API.
  *

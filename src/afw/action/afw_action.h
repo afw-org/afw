@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_action Action perform
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Provides action perform.
  * @{

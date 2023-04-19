@@ -24,7 +24,7 @@
 
 /**
  * @defgroup afw_adaptor Adaptor
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Provide afw_adaptor interface common support.
  * @{

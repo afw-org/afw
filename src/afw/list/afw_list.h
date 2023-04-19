@@ -11,7 +11,7 @@
 
 /**
  * @defgroup afw_list List
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * List API.
  * @{

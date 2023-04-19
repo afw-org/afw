@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_json JSON support
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework JSON support
  * 

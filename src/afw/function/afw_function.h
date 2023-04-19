@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_function Adaptive function support
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework runtime function support.
  * @{

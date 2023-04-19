@@ -19,7 +19,7 @@
  */
 
 /**
- * @defgroup afw_c_api C API
+ * @defgroup afw_c_api_public C API
  * 
  * Adaptive Framework Core C API.
  * @{
@@ -54,7 +54,7 @@
 /** @} */
 
 /**
- * @defgroup afw_c_internal C Internal
+ * @defgroup afw_c_api_internal C Internal
  * 
  * Adaptive Framework Internal C.
  * 
@@ -74,7 +74,7 @@
 
 /** @} */
 
-/** @addtogroup afw_c_api
+/** @addtogroup afw_c_api_public
 * @{
  */
 

@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_code_point Unicode code point support
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Unicode code point support.
  *

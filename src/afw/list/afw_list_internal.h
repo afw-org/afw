@@ -11,7 +11,7 @@
 
 /**
  * @defgroup afw_list_internal File
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  * 
  * Internal list API.
  * 

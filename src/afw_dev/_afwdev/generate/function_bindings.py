@@ -265,7 +265,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
 
         fd.write('\n/**\n')
-        fd.write(' * @addtogroup afw_c_api\n')
+        fd.write(' * @addtogroup afw_c_api_public\n')
         fd.write(' * @{\n')
         fd.write(' *\n')
         fd.write(' */\n')

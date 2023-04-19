@@ -15,7 +15,7 @@
 
 AFW_BEGIN_DECLARES
 
-/** @addtogroup afw_c_api
+/** @addtogroup afw_c_api_public
  * @{
  */
 

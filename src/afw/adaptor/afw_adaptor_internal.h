@@ -11,7 +11,7 @@
 
 /**
  * @defgroup afw_adaptor_internal Adaptor
- * @ingroup afw_c_internal
+ * @ingroup afw_c_api_internal
  *
  * Adaptor internal.
  * @{

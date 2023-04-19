@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_content_type Content type
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  * 
  * Provide afw_content_type interface common support.
  * @{

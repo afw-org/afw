@@ -15,7 +15,7 @@
 
 /**
  * @defgroup afw_common Common
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Common to all Adaptive Framework applications
  *

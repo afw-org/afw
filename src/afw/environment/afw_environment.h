@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_environment Environment
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework Environment
  * @{

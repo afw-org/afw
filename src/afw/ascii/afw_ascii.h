@@ -11,7 +11,7 @@
 
 
 /** @defgroup afw_ascii ASCII
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  * @{
  */
 

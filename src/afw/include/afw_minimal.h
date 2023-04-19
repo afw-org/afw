@@ -15,7 +15,7 @@
 /**
  * @file afw_minimal.h
  * @brief Adaptive Framework Minimal Header.
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * The main intent of this header is to be included in other afw_*.h headers.
  * 

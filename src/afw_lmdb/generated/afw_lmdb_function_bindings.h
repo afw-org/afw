@@ -28,7 +28,7 @@
 #include "afw_lmdb_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api
+ * @addtogroup afw_c_api_public
  * @{
  *
  */

@@ -12,7 +12,7 @@
 
 /**
  * @addtogroup afw_debug Software Debug
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * These macros and functions assist writing debug message to the environment
  * log.  All debug message have associated runtime information (rti) that can

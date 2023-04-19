@@ -11,7 +11,7 @@
 
 /**
  * @defgroup afw_components Components
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  * Adaptive application components
  *

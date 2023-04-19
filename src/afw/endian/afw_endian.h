@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_endian Endian
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  * 
  * Various defines and structs for endian support.
  * @{

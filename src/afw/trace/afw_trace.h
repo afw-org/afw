@@ -10,7 +10,7 @@
 #define __AFW_TRACE_H__
 
 
-/** @addtogroup afw_c_api
+/** @addtogroup afw_c_api_public
  *
  * @{
  */

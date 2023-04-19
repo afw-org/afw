@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_flag Software Flag
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  * 
  * Software flags.
  * @{

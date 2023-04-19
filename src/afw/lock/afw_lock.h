@@ -12,7 +12,7 @@
 
 /**
  * @defgroup afw_log Locks
- * @ingroup afw_c_api
+ * @ingroup afw_c_api_public
  *
  *  Locks API.
  * @{
