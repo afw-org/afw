@@ -147,7 +147,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     include/afw_interface_common.h
     include/afw_internal.h
     include/afw_minimal.h
-    include/afw_os.h
     json/afw_json.h
     json/afw_json_internal.h
     list/afw_list.h
@@ -173,6 +172,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     object/afw_object_type.h
     object/afw_object_view.h
     object/afw_object_view_internal.h
+    os/afw_os.h
     pool/afw_pool.h
     pool/afw_pool_internal.h
     query_criteria/afw_query_criteria.h
@@ -234,6 +234,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/model
     ${CMAKE_CURRENT_SOURCE_DIR}/number
     ${CMAKE_CURRENT_SOURCE_DIR}/object
+    ${CMAKE_CURRENT_SOURCE_DIR}/os
     ${CMAKE_CURRENT_SOURCE_DIR}/pool
     ${CMAKE_CURRENT_SOURCE_DIR}/query_criteria
     ${CMAKE_CURRENT_SOURCE_DIR}/request
