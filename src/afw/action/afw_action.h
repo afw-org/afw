@@ -11,13 +11,6 @@
 
 
 /**
- * @defgroup afw_action_internal Action perform
- * @ingroup afw_c_internal
- *
- * Action perform internal.
- */
-
-/**
  * @defgroup afw_action Action perform
  * @ingroup afw_c_api
  *

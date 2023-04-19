@@ -9,11 +9,14 @@
 #ifndef __AFW_ADAPTOR_INTERNAL_H__
 #define __AFW_ADAPTOR_INTERNAL_H__
 
-
 /**
- * @addtogroup afw_adaptor_internal
+ * @defgroup afw_adaptor_internal Adaptor
+ * @ingroup afw_c_internal
+ *
+ * Adaptor internal.
  * @{
  */
+
 
 /**
  * @file afw_adaptor_internal.h

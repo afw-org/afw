@@ -23,13 +23,6 @@
 #include "afw_adaptor_retrieve.h"
 
 /**
- * @defgroup afw_adaptor_internal Adaptor
- * @ingroup afw_c_internal
- *
- * Adaptor internal.
- */
-
-/**
  * @defgroup afw_adaptor Adaptor
  * @ingroup afw_c_api
  *

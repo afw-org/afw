@@ -15,6 +15,7 @@
  * @ingroup afw_c_internal
  * 
  * Internal file API.
+ * 
  * @{
  */
 

@@ -15,7 +15,7 @@
  * @ingroup afw_c_api
  *
  * Adaptive Framework adaptor for storing objects in file system.
- *
+ * 
  * @{
  */
 
