@@ -9,12 +9,11 @@
 #ifndef __AFW_UTF8_H__
 #define __AFW_UTF8_H__
 
+#include "afw_minimal.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_utf8 UTF-8 NFC string
+/**
+ * @defgroup afw_utf8 UTF-8 NFC string
+ * @ingroup afw_c_api_public
  *
  * All utf8 strings must be valid utf-8.
  *
@@ -27,8 +26,6 @@
  *
  * This is the header file for AFW String functions.
  */
-
-#include "afw_minimal.h"
 
 AFW_BEGIN_DECLARES
 
@@ -964,7 +961,6 @@ afw_utf8_writer_current_string(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_UTF8_H__ */

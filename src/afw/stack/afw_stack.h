@@ -9,15 +9,14 @@
 #ifndef __AFW_STACK_H__
 #define __AFW_STACK_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-
-/** @addtogroup afw_stack Stack
+/**
+ * @defgroup afw_stack Stack
+ * @ingroup afw_c_api_public
  *
- *  Adaptive Framework Stack.
+ * Adaptive Framework Stack.
+ * 
  * @{
  */
 
@@ -26,10 +25,7 @@
  * @brief Adaptive Framework stack support
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Create a stack for the specified typedef.
@@ -271,7 +267,5 @@ afw_stack_internal_set_evaluation_stack(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
-
 
 #endif /* __AFW_STACK_H__ */

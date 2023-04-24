@@ -9,12 +9,11 @@
 #ifndef __AFW_VERSION_H__
 #define __AFW_VERSION_H__
 
+#include "afw_common.h" 
 
-/** @addtogroup afw_c_api_public
-* @{
- */
-
-/** @addtogroup afw_version Version information
+/**
+ * @defgroup afw_version Version information
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework uses the semantic versioning scheme.  See
  * http://semver.org/.
@@ -32,10 +31,7 @@
  * @brief Adaptive Framework Version Information
  */
 
-#include "afw_common.h" 
-
 AFW_BEGIN_DECLARES
-
 
 /** Return AFW_VERSION_HEX. */
 AFW_DECLARE(unsigned int)
@@ -132,7 +128,6 @@ do { \
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_VERSION_H__ */

@@ -9,14 +9,16 @@
 #ifndef __AFW_YAML_H__
 #define __AFW_YAML_H__
 
+#include "afw_minimal.h"
+#include "generated/afw_yaml_generated.h"
 
-
-/** @addtogroup afw_included_extensions Included Extensions
-* @{
- */
-
-/** @addtogroup afw_yaml YAML content-type
-* @{
+/**
+ * @defgroup afw_yaml YAML content-type
+ * @ingroup afw_included_extensions
+ *
+ * Adaptive Framework YAML support
+ * 
+ * @{
  */
 
 /**
@@ -24,16 +26,7 @@
  * @brief Header file for Adaptive Framework YAML
  */
 
-#include "afw_minimal.h"
-#include "generated/afw_yaml_generated.h"
-
 AFW_BEGIN_DECLARES
-
-/** @addtogroup afw_yaml AFW YAML support
-*
- * Adaptive Framework YAML support
-* @{
- */
 
 /** yaml_parser rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_yaml_parser "yaml_parser"
@@ -125,7 +118,6 @@ const afw_object_t * afw_yaml_to_object(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_YAML_H__ */

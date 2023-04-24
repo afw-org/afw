@@ -6,18 +6,17 @@
  *
  */
 
-#ifndef __AFW_URI_OCTET_H
-#define __AFW_URI_OCTET_H
+#ifndef __AFW_URI_H__
+#define __AFW_URI_H__
 
-
-/**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_uri Uniform Resource Identifier (URI)
+ * @defgroup afw_uri Uniform Resource Identifier (URI)
+ * @ingroup afw_c_api_public
+ * 
+ * Uniform Resource Identifier (URI) support.
+ * 
  * @{
  */
 
@@ -25,8 +24,6 @@
  * @file afw_uri.h
  * @brief Header for Uniform Resource Identifier (URI) helpers.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -615,6 +612,5 @@ afw_uri_are_equivalent(
 AFW_END_DECLARES
 
 /** @} */
-/** @} */
 
-#endif /* __AFW_URI_OCTET_H */
+#endif /* __AFW_URI_H__ */

@@ -9,14 +9,14 @@
 #ifndef __AFW_VALUE_INTERNAL_H__
 #define __AFW_VALUE_INTERNAL_H__
 
+#include "afw_interface.h"
+#include "afw_object_internal.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_value Value
+/**
+ * @defgroup afw_value_internal Value
+ * @ingroup afw_c_api_internal
  *
- * Adaptive Framework Value
+ * Adaptive Framework Value internal API.
  * @{
  */
 
@@ -25,11 +25,7 @@
  * @brief Internal header for afw_value*.
  */
 
-#include "afw_interface.h"
-#include "afw_object_internal.h"
-
 AFW_BEGIN_DECLARES
-
 
 /* AFW_VALUE_SCRIPT_SUPPORT_NUMBER_NONE must be 0. */
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_NONE      0
@@ -702,7 +698,6 @@ afw_value_block_evaluate_while(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_VALUE_INTERNAL_H__ */

@@ -9,19 +9,11 @@
 #ifndef __AFW_WRITER_H__
 #define __AFW_WRITER_H__
 
-
-
 #include "afw_interface.h"
-
-
-/**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
 
 /**
  * @defgroup afw_writer Writer
+ * @ingroup afw_c_api_public
  *
  * Provide afw_writer interface common support.
  * @{
@@ -33,8 +25,6 @@
  */
 
 AFW_BEGIN_DECLARES
-
-
 
 /**
  * @brief Call afw_writer_write() with zero terminated string.
@@ -84,10 +74,8 @@ afw_writer_write_size(
     afw_xctx_t *xctx);
 
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_WRITER_H__ */

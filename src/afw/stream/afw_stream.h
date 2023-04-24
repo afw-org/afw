@@ -9,12 +9,11 @@
 #ifndef __AFW_STREAM_H__
 #define __AFW_STREAM_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_stream Stream
+/**
+ * @defgroup afw_stream Stream
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework Stream.
  *
@@ -26,10 +25,7 @@
  * @brief Adaptive Framework Stream Implementation Header.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /** @brief enum for common xctx streams */
 typedef enum {
@@ -299,7 +295,6 @@ afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_STREAM_H__ */

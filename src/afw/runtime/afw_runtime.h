@@ -9,17 +9,13 @@
 #ifndef __AFW_RUNTIME_H__
 #define __AFW_RUNTIME_H__
 
-
-
 #include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_runtime Runtime objects adaptor
+/**
+ * @defgroup afw_runtime Runtime objects
+ * @ingroup afw_c_api_public
  *
  * This is an Adaptive Framework read-only objects adaptor.
  *
@@ -773,7 +769,6 @@ afw_runtime_object_get_setter(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_RUNTIME_H__ */

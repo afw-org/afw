@@ -9,18 +9,14 @@
 #ifndef __AFW_REQUEST_H__
 #define __AFW_REQUEST_H__
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_request Request
- *    implementations
+ * @defgroup afw_request Request
+ * @ingroup afw_c_api_public
  *
  * Provide afw_request interface common support.
+ * 
  * @{
  */
 
@@ -29,11 +25,7 @@
  * @brief Header for interface afw_request* helpers.
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 /** @brief Request property name CONTENT_TYPE quoted string.
  *
@@ -291,10 +283,8 @@ afw_request_write_success_response(
     afw_xctx_t *xctx);
 
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_REQUEST_H__ */

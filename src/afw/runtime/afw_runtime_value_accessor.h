@@ -9,17 +9,13 @@
 #ifndef __AFW_RUNTIME_VALUE_ACCESSOR_H__
 #define __AFW_RUNTIME_VALUE_ACCESSOR_H__
 
-
-
 #include "afw_runtime.h"
 
 AFW_BEGIN_DECLARES
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_runtime_value_accessor Runtime value accessors
+/**
+ * @defgroup afw_runtime_value_accessor Runtime value accessors
+ * @ingroup afw_c_api_public
  *
  * This is an Adaptive Framework core runtime value accessors.
  *
@@ -34,7 +30,6 @@ AFW_BEGIN_DECLARES
  * accessors external to core should use the
  * afw_environment_get_runtime_value_accessor() function.
  */
-
 
 /**
  * @brief Register core runtime value accessors.
@@ -392,7 +387,6 @@ afw_runtime_value_accessor_value(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_RUNTIME_VALUE_ACCESSOR_H__ */

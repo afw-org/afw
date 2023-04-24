@@ -9,15 +9,14 @@
 #ifndef __AFW_REQUEST_IMPL_H__
 #define __AFW_REQUEST_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_request Implementation support for afw_request*
+ * @defgroup afw_request_handler_impl afw_request_handler
+ * @ingroup afw_c_api_impl
+ * 
+ * Helpers for afw_request_handler implementations.
+ * 
  * @{
  */
 
@@ -26,12 +25,7 @@
  * @brief Header for interface afw_request* implementation development.
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+AFW_BEGIN_DECLARES
 
 /**
  * @brief Trace request begin if requested.
@@ -47,7 +41,6 @@ afw_request_impl_trace_begin(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_REQUEST_IMPL_H__ */

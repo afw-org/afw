@@ -9,14 +9,23 @@
 #ifndef __AFW_SAFE_CAST_H__
 #define __AFW_SAFE_CAST_H__
 
+#include "afw_interface.h"
+#include <limits.h>
+
+
+/**
+ * @defgroup afw_safe_cast Safe cast
+ * @ingroup afw_c_api_public
+ *
+ * Safe cast between c types.
+ *
+ * @{
+ */
 
 /**
  * @file afw_safe_cast.h
  * @brief Safe cast functions
  */
-
-#include "afw_interface.h"
-#include <limits.h>
 
 AFW_BEGIN_DECLARES
 
@@ -173,8 +182,8 @@ afw_safe_cast_size_to_uint32(afw_size_t size, afw_xctx_t *xctx)
 }
 
 
-
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_SAFE_CAST_H__ */

@@ -9,15 +9,12 @@
 #ifndef __AFW_REQUEST_HANDLER_H__
 #define __AFW_REQUEST_HANDLER_H__
 
+#include "afw_interface.h"
+#include "afw_request.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_request_handler Request handler
+ * @defgroup afw_request_handler Request handler
+ * @ingroup afw_c_api_public
  *
  * Provide afw_request_handler interface common support.
  * @{
@@ -27,9 +24,6 @@
  * @file afw_request_handler.h
  * @brief Header file for Adaptive Framework Request Handler
  */
-
-#include "afw_interface.h"
-#include "afw_request.h"
 
 AFW_BEGIN_DECLARES
 
@@ -69,7 +63,6 @@ afw_request_handler_director_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_REQUEST_HANDLER_H__ */

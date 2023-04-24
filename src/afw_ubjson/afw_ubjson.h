@@ -9,13 +9,14 @@
 #ifndef __AFW_UBJSON_H__
 #define __AFW_UBJSON_H__
 
+#include "afw_minimal.h"
 
-
-/** @addtogroup afw_included_extensions Included Extensions
-* @{
- */
-
-/** @addtogroup afw_ubjson Universal Binary JSON content-type
+/**
+ * @defgroup afw_ubjson Universal Binary JSON content-type
+ * @ingroup  afw_included_extensions
+ * 
+ * Adaptive Framework UBJSON support.
+ * 
 * @{
  */
 
@@ -24,15 +25,7 @@
  * @brief Header file for Adaptive Framework UBJSON
  */
 
-#include "afw_minimal.h"
-
 AFW_BEGIN_DECLARES
-
-/** @addtogroup afw_ubjson AFW UBJSON support
-*
- * Adaptive Framework UBJSON support
-* @{
- */
 
 /** ubjson_marker rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_ubjson_marker "ubjson_marker"
@@ -178,7 +171,6 @@ afw_ubjson_to_object(
     
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_UBJSON_H__ */

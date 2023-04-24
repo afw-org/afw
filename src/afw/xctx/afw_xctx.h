@@ -9,12 +9,11 @@
 #ifndef __AFW_XCTX_H__
 #define __AFW_XCTX_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_xctx Execution context (xctx)
+/**
+ * @defgroup afw_xctx Execution context (xctx)
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework Execution Context (xctx).
  *
@@ -25,8 +24,6 @@
  * @file afw_xctx.h
  * @brief Adaptive Framework Execution Context (xctx) Implementation Header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -559,7 +556,6 @@ afw_xctx_qualifiers_object_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_XCTX_H__ */

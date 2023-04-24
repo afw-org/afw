@@ -9,18 +9,23 @@
 #ifndef __AFW_REQUEST_HANDLER_INTERNAL_H__
 #define __AFW_REQUEST_HANDLER_INTERNAL_H__
 
+#include "afw_interface.h"
 
+/**
+ * @defgroup afw_request_handler_internal Request handler
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal request handler API.
+ * 
+ * @{
+ */
 
 /**
  * @file afw_request_handler_internal.h
  * @brief Header file for Adaptive Framework Request Handler Internals
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 typedef struct afw_request_handler_adaptor_internal_self_s {
     afw_request_handler_t pub;
@@ -59,9 +64,8 @@ void afw_request_handler_internal_conf_type_create_cede_p(
     const afw_utf8_t *source_location,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
+AFW_END_DECLARES
 
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __AFW_REQUEST_HANDLER_INTERNAL_H__ */

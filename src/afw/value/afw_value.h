@@ -9,12 +9,11 @@
 #ifndef __AFW_VALUE_H__
 #define __AFW_VALUE_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_value Value
+/**
+ * @defgroup afw_value Value
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework Value
  * @{
@@ -44,11 +43,7 @@
  * 
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /** @brief Filled in by afw_value get_info method. */
 struct afw_value_info_s {
@@ -1584,10 +1579,8 @@ afw_value_decompile_value(
 AFW_DECLARE(void)
 afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_VALUE_H__ */

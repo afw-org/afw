@@ -9,13 +9,12 @@
 #ifndef __AFW_UUID_H__
 #define __AFW_UUID_H__
 
+#include "afw_minimal.h"
+#include "apr_uuid.h"
 
-
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_uuid UUID
+/**
+ * @defgroup afw_uuid UUID
+ * @ingroup afw_c_api_public
  *
  * UUID functions
  *
@@ -26,9 +25,6 @@
  * @file afw_uuid.h
  * @brief Adaptive Framework UUID header
  */
-
-#include "afw_minimal.h"
-#include "apr_uuid.h"
 
 AFW_BEGIN_DECLARES
 
@@ -128,7 +124,6 @@ afw_uuid_from_utf8(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_UUID_H__ */

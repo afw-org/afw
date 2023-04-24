@@ -9,12 +9,12 @@
 #ifndef __AFW_XCTX_INTERNAL_H__
 #define __AFW_XCTX_INTERNAL_H__
 
+#include "afw_interface.h"
+#include "afw_environment_internal.h"
 
-/** @addtogroup afw_c_api_public
- * @{
- */
-
-/** @addtogroup afw_xctx Execution Context (xctx) internal
+/**
+ * @defgroup afw_xctx_internal Execution Context (xctx)
+ * @ingroup afw_c_api_internal
  *
  * Adaptive Framework Execution Context (xctx) internal.
  *
@@ -26,12 +26,7 @@
  * @brief Adaptive Framework The execution context (xctx) Internal Header.
  */
 
-#include "afw_interface.h"
-#include "afw_environment_internal.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /* Self typedef for afw_xctx_qualifier implementation of afw_object. */
 typedef struct
@@ -82,7 +77,6 @@ afw_xctx_internal_create_thread_xctx(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_XCTX_INTERNAL_H__ */

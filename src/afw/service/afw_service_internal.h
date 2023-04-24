@@ -9,8 +9,16 @@
 #ifndef __AFW_SERVICE_INTERNAL_H__
 #define __AFW_SERVICE_INTERNAL_H__
 
-
 #include "afw_interface.h"
+
+/**
+ * @defgroup afw_service_internal Service
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal service API.
+ * 
+ * @{
+ */
 
 AFW_BEGIN_DECLARES
 
@@ -60,10 +68,8 @@ afw_service_internal_start_initial_services(
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_SERVICE_INTERNAL_H__ */

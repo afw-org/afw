@@ -9,22 +9,21 @@
 #ifndef __AFW_LMDB_H__
 #define __AFW_LMDB_H__
 
+#include "afw_minimal.h"
 
-/** @addtogroup afw_included_extensions Included Extensions
-* @{
- */
-
-/** @addtogroup afw_lmdb Lightning Memory-mapped Database Adaptor
-* @{
+/**
+ * @defgroup afw_lmdb Lightning Memory-mapped Database Adaptor
+ * @ingroup afw_included_extensions
+ * 
+ * LMDB adaptor.
+ * 
+ * @{
  */
 
 /**
  * @file afw_lmdb.h
  * @brief Adaptive Framework LMDB Adaptor
  */
-
-#include "afw_minimal.h"
-
 
 AFW_BEGIN_DECLARES
 
@@ -45,7 +44,6 @@ AFW_BEGIN_DECLARES
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_LMDB_H__ */

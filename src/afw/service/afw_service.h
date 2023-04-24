@@ -9,15 +9,15 @@
 #ifndef __AFW_SERVICE_H__
 #define __AFW_SERVICE_H__
 
+/** @fixme Can be afw_minimal.h instead if not part of it's #includes. Keep simple. */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_service Service support
+ * @defgroup afw_service Service support
+ * @ingroup afw_c_api_public
+ * 
+ * Adaptive service API.
+ * 
  * @{
  */
 
@@ -25,9 +25,6 @@
  * @file afw_service.h
  * @brief Adaptive Framework service support
  */
-
-/** @fixme Can be afw_minimal.h instead if not part of it's #includes. Keep simple. */
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -290,7 +287,6 @@ afw_service_restart(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_SERVICE_H__ */

@@ -9,13 +9,21 @@
 #ifndef __AFW_TIME_H__
 #define __AFW_TIME_H__
 
+#include "afw_interface.h"
+
+/**
+ * @defgroup afw_time Time
+ * @ingroup afw_c_api_public
+ *
+ * Time support.
+ * 
+ * @{
+ */
 
 /**
  * @file afw_time.h
  * @brief Header for Adaptive Framework Time Support. 
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -691,5 +699,6 @@ afw_dataType_generalized_time_set_internal(
 
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_TIME_H__ */

@@ -9,24 +9,21 @@
 #ifndef __AFW_THREAD_H__
 #define __AFW_THREAD_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
-* @{
- */
-
-/** @addtogroup afw_pool Pool
-*
- * Pool support
-*
-* @{
+/**
+ * @defgroup afw_thread Thread
+ * @ingroup afw_c_api_public
+ *
+ * Thread support.
+ *
+ * @{
  */
 
 /**
  * @file afw_pool.h
  * @brief Adaptive Framework memory pool support header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -161,7 +158,6 @@ AFW_ENDTRY; \
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_THREAD_H__ */
