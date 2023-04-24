@@ -9,20 +9,26 @@
 #ifndef __AFW_AUTHORIZATION_INTERNAL_H__
 #define __AFW_AUTHORIZATION_INTERNAL_H__
 
+#include "afw_interface.h"
+
+/**
+ * @defgroup afw_authorization_internal Authorization
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal authorization API.
+ * 
+ * @{
+ */
 
 /**
  * @file afw_authorization.h
  * @brief Adaptive Framework authorization.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
 
-
-
 /**
- * /brief Authorization handler id anchor.
+ * @brief Authorization handler id anchor.
  */
 struct afw_authorization_handler_id_s {
 
@@ -198,8 +204,8 @@ afw_authorization_handler_type_script_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
-
-
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_AUTHORIZATION_INTERNAL_H__ */

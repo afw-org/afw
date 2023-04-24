@@ -9,6 +9,7 @@
 #ifndef __AFW_ENDIAN_H__
 #define __AFW_ENDIAN_H__
 
+#include "afw_common.h"
 
 /**
  * @defgroup afw_endian Endian
@@ -22,8 +23,6 @@
  * @file afw_endian.h
  * @brief Adaptive Framework Endian Header.
  */
-
-#include "afw_common.h"
 
 AFW_BEGIN_DECLARES
 

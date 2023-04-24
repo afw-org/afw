@@ -9,6 +9,7 @@
 #ifndef __AFW_JSON_H__
 #define __AFW_JSON_H__
 
+#include "afw_minimal.h"
 
 /**
  * @defgroup afw_json JSON support
@@ -23,8 +24,6 @@
  * @file afw_json.h
  * @brief Header file for Adaptive Framework JSON
  */
-
-#include "afw_minimal.h"
 
 #ifdef __cplusplus
 extern "C" {

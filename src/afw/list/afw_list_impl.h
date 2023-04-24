@@ -9,6 +9,7 @@
 #ifndef __AFW_LIST_IMPL_H__
 #define __AFW_LIST_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_list_impl afw_list
@@ -20,8 +21,6 @@
  * @file afw_list_impl.h
  * @brief Helpers for list implementation development.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

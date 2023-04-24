@@ -9,13 +9,11 @@
 #ifndef __AFW_OBJECT_VIEW_H__
 #define __AFW_OBJECT_VIEW_H__
 
-
-/** @addtogroup afw_c_api_public
- * @{
- */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_object_view Object view
+ * @defgroup afw_object_view Object view
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework object view.
  *
@@ -27,11 +25,7 @@
  * @brief Header file for Adaptive Framework object view
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 /**
  * @brief Create an object view of an object in specified pool.
@@ -53,7 +47,6 @@ afw_object_view_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_VIEW_H__ */

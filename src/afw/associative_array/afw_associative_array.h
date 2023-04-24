@@ -9,16 +9,20 @@
 #ifndef __AFW_ASSOCIATIVE_ARRAY_H__
 #define __AFW_ASSOCIATIVE_ARRAY_H__
 
+#include "afw_interface.h"
+
+/**
+ * @addtogroup afw_array_template_internal
+ * @{
+ */
 
 /**
  * @file afw_associative_array.h
- * @brief Adaptive Framework implementation of associative array.
+ * @brief (deprecated) Adaptive Framework implementation of associative array.
  *
  * These functions will normally not be called directly.  See
  * afw_associative_array_template.h.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -71,5 +75,6 @@ afw_associative_array_set(
 
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_ASSOCIATIVE_ARRAY_H__ */

@@ -9,6 +9,7 @@
 #ifndef __AFW_ENVIRONMENT_H__
 #define __AFW_ENVIRONMENT_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_environment Environment
@@ -22,8 +23,6 @@
  * @file afw_environment.h
  * @brief Header for adaptive framework environment.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -1892,7 +1891,6 @@ afw_environment_set_stderr_fd(FILE *fd, afw_xctx_t *xctx);
  */
 AFW_DECLARE(void)
 afw_environment_set_stdout_fd(FILE *fd, afw_xctx_t *xctx);
-
 
 AFW_END_DECLARES
 

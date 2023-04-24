@@ -9,6 +9,7 @@
 #ifndef __AFW_LOCK_H__
 #define __AFW_LOCK_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_lock Locks
@@ -23,10 +24,7 @@
  * @brief Adaptive Framework locks
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**  @brief Lock type. */
 typedef enum {

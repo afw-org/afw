@@ -9,6 +9,7 @@
 #ifndef __AFW_OBJECT_IMPL_H__
 #define __AFW_OBJECT_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_object_impl afw_object
@@ -21,8 +22,6 @@
  * @file afw_object_impl.h
  * @brief Helpers for object implementation development.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

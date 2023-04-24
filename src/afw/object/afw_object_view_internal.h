@@ -9,19 +9,24 @@
 #ifndef __NEW_AFW_OBJECT_VIEW_INTERNAL_H__
 #define __NEW_AFW_OBJECT_VIEW_INTERNAL_H__
 
+#include "afw_interface.h"
+#include "afw_utf8.h"
 
+/**
+ * @defgroup afw_object_view_internal Object View
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal Object View API.
+ * 
+ * @{
+ */
 
 /**
  * @file afw_object_view_internal.h
  * @brief Internal header file for Adaptive Framework view adaptor
  */
 
-#include "afw_interface.h"
-#include "afw_utf8.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+AFW_BEGIN_DECLARES
 
 typedef struct afw_object_view_internal_view_s
     afw_object_view_internal_view_t;
@@ -158,9 +163,8 @@ struct afw_object_view_internal_view_s {
     apr_hash_t *path_values;
 };
 
+AFW_END_DECLARES
 
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __NEW_AFW_OBJECT_VIEW_INTERNAL_H__ */

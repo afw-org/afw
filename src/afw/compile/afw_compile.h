@@ -9,6 +9,7 @@
 #ifndef __AFW_COMPILE_H__
 #define __AFW_COMPILE_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_compile Compile AFW syntax
@@ -23,10 +24,7 @@
  * @brief Header file for Adaptive Framework Compile.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**  @brief Struc for afw_compile_type_info_t. */
 struct afw_compile_type_info_s {

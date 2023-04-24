@@ -9,6 +9,7 @@
 #ifndef __AFW_DATA_TYPE_H__
 #define __AFW_DATA_TYPE_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_data_type Data type
@@ -18,16 +19,12 @@
  * @{
  */
 
-
 /**
  * @file afw_data_type.h
  * @brief Header for Adaptive Framework data type.
  *
  * Also see afw_core_data_types.h.
  */
-
-#include "afw_interface.h"
-
 
 AFW_BEGIN_DECLARES
 

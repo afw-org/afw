@@ -9,17 +9,22 @@
 #ifndef __AFW_AUTHORIZATION_H__
 #define __AFW_AUTHORIZATION_H__
 
+#include "afw_interface.h"
+
+/**
+ * @defgroup afw_authorization Authorization
+ * @ingroup afw_c_api_public
+ *
+ * Adaptive Framework authorization support.
+ * @{
+ */
 
 /**
  * @file afw_authorization.h
  * @brief Adaptive Framework authorization.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /** @brief actionId value control. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
@@ -194,5 +199,7 @@ afw_authorization_handler_release(
 
 
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_AUTHORIZATION_H__ */

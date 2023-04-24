@@ -9,6 +9,7 @@
 #ifndef __AFW_CONTENT_TYPE_IMPL_H__
 #define __AFW_CONTENT_TYPE_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_content_type_impl afw_content_type
@@ -20,8 +21,6 @@
  * @file afw_content_type_impl.h
  * @brief Helpers for afw_content_type* implementation development
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

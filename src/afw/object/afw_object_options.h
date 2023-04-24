@@ -9,13 +9,11 @@
 #ifndef __AFW_OBJECT_OPTIONS_H__
 #define __AFW_OBJECT_OPTIONS_H__
 
-
-/** @addtogroup afw_c_api_public
- * @{
- */
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_object_options Object processing options
+ * @defgroup afw_object_options Object processing options
+ * @ingroup afw_c_api_public
  *
  * Adaptive Framework object processing options.
  *
@@ -27,12 +25,7 @@
  * @brief Header file for Adaptive Framework object processing options
  */
 
-#include "afw_interface.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+AFW_BEGIN_DECLARES
 
 /**
  * @brief Struct for object processing options.
@@ -383,7 +376,6 @@ afw_object_options_create(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_OPTIONS_H__ */

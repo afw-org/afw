@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_GET_H__
 #define __AFW_ADAPTOR_GET_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -20,10 +21,7 @@
  * @brief Adaptive Framework adaptor get object 
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Get and cache object.

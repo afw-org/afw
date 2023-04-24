@@ -9,9 +9,14 @@
 #ifndef __AFW_ASCII_H__
 #define __AFW_ASCII_H__
 
+#include "afw_minimal.h"
 
-/** @defgroup afw_ascii ASCII
+/**
+ * @defgroup afw_ascii ASCII
  * @ingroup afw_c_api_public
+ * 
+ * ASC-II
+ * 
  * @{
  */
 
@@ -21,8 +26,6 @@
  *
  * These also work for UNICODE codepoints, since ASCII is a subset.
  */
-
-#include "afw_minimal.h"
 
 AFW_BEGIN_DECLARES
 

@@ -9,6 +9,7 @@
 #ifndef __AFW_MODEL_LOCATION_H__
 #define __AFW_MODEL_LOCATION_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_model
@@ -19,8 +20,6 @@
  * @file afw_model_location.h
  * @brief Header file for Adaptive Framework model location.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

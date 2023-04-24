@@ -9,21 +9,25 @@
 #ifndef __AFW_OBJECT_INTERNAL_H__
 #define __AFW_OBJECT_INTERNAL_H__
 
-
-
-/**
- * @file afw_memory_internal.h
- * @brief Internal header file for Adaptive Framework Object
- */
-
 #include "afw_interface.h"
 #include <apr_ring.h>
 #include <apr_hash.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+ * @defgroup afw_object_internal Object
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal object API.
+ * 
+ * @{
+ */
 
+/**
+ * @file afw_object_internal.h
+ * @brief Internal header file for Adaptive Framework memory
+ */
+
+AFW_BEGIN_DECLARES
     
 typedef struct afw_object_internal_memory_object_s
     afw_object_internal_memory_object_t;
@@ -183,10 +187,8 @@ afw_object_aggregate_external_self_s {
     } iterator; 
 } afw_object_aggregate_external_self_t;
 
+AFW_END_DECLARES
 
-
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __AFW_OBJECT_INTERNAL_H__ */

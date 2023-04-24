@@ -9,34 +9,39 @@
 #ifndef __AFW_AUTHORIZATION_IMPL_H__
 #define __AFW_AUTHORIZATION_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
- *  \file afw_authorization_impl.h
- *  \brief Adaptive Framework authorization implementation support.
+ * @defgroup afw_authorization_handler_impl afw_authorization_helper
+ * @ingroup afw_c_api_impl
+ * 
+ * Helpers for afw_authorization_helper implementations.
+ * 
+ * @{
+ */
+
+/**
+ * @file afw_authorization_impl.h
+ * @brief Adaptive Framework authorization implementation support.
  *
  *  These are functions, macros, and structs for use by authorization handler
  *  implementation developers.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
 
-
-
-
 /**
- *  \brief Developers should call this in all create functions for a
+ * @brief Developers should call this in all create functions for a
  *      afw_authorization_handler.
- *  \param inf afw_authorization_handler_inf_t pointer for implementation.
- *  \param instance_size 0 or size greater than
+ * @param inf afw_authorization_handler_inf_t pointer for implementation.
+ * @param instance_size 0 or size greater than
  *      sizeof(afw_authorization_handler_t).
- *  \param properties config object.
- *  \param start is function to call to start authorization_handler.
- *  \param stop is function to call to stop authorization_handler.
- *  \param p to use as parent when creating authorization_handler pool.
- *  \param xctx of caller.
- *  \return instance of afw_authorization_handler_t, optionally with
+ * @param properties config object.
+ * @param start is function to call to start authorization_handler.
+ * @param stop is function to call to stop authorization_handler.
+ * @param p to use as parent when creating authorization_handler pool.
+ * @param xctx of caller.
+ * @return instance of afw_authorization_handler_t, optionally with
  *      extra memory based on instance_size parameter.
  *
  *  This function creates and initializes an afw_authorization_handler
@@ -72,9 +77,8 @@ afw_authorization_handler_impl_create_cede_p(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-
-
-
 AFW_END_DECLARES
+
+/** @} */
 
 #endif /* __AFW_AUTHORIZATION_IMPL_H__ */

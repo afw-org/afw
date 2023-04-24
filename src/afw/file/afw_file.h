@@ -9,6 +9,7 @@
 #ifndef __AFW_FILE_H__
 #define __AFW_FILE_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_file File Adaptor
@@ -23,8 +24,6 @@
  * @file afw_file.h
  * @brief Header file for Adaptive Framework file support
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

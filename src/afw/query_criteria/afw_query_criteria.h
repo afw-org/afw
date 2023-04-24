@@ -9,17 +9,16 @@
 #ifndef __AFW_AFW_QUERY_CRITERIA_H__
 #define __AFW_AFW_QUERY_CRITERIA_H__
 
+#include "afw_minimal.h"
 
-/** @addtogroup afw_c_api_public
-* @{
- */
-
-/** @addtogroup afw_query_criteria Query Criteria
-*
+/**
+ * @defgroup afw_query_criteria Query Criteria
+ * @ingroup afw_c_api_public
+ * 
  * All property_name parameters can use dotted notation to refer to properties
  * of embedded objects.
-*
-* @{
+ *
+ * @{
  */
 
 /**
@@ -29,10 +28,7 @@
  * This is the header file for AFW query criteria.
  */
 
-#include "afw_minimal.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Query string style
@@ -382,7 +378,6 @@ afw_query_criteria_to_query_string(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_AFW_QUERY_CRITERIA_H__ */

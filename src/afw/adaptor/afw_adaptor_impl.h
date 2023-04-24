@@ -9,10 +9,14 @@
 #ifndef __AFW_ADAPTOR_IMPL_H__
 #define __AFW_ADAPTOR_IMPL_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_adaptor_impl afw_adaptor
  * @ingroup afw_c_api_impl
+ * 
+ * Helpers for afw_adapor implementations.
+ * 
  * @{
  */
 
@@ -21,10 +25,7 @@
  * @brief  Helpers for adaptor implementation development.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Macro to begin an adaptor read lock section.

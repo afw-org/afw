@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_RETRIEVE_H__
 #define __AFW_ADAPTOR_RETRIEVE_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -20,11 +21,7 @@
  * @brief Adaptive Framework adaptor retrieve objects
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /**
  * @brief Retrieve objects.

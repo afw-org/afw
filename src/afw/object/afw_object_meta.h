@@ -9,15 +9,11 @@
 #ifndef __AFW_OBJECT_META_H
 #define __AFW_OBJECT_META_H
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @defgroup afw_object_meta Object meta
+ * @defgroup afw_object_meta object Meta
+ * @ingroup afw_c_api_public
  *
  * Provide afw_object interface common support.
  * @{
@@ -28,12 +24,7 @@
  * @brief afw_object Interface meta helpers.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
-
-
 
 /* Struct for meta object self. */
 struct afw_object_meta_object_s {
@@ -694,7 +685,6 @@ afw_object_meta_clone_and_set(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_META_H */

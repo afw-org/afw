@@ -9,6 +9,8 @@
 #ifndef __AFW_COMPONENTS_H__
 #define __AFW_COMPONENTS_H__
 
+#include "afw_interface.h"
+
 /**
  * @defgroup afw_components Components
  * @ingroup afw_c_api_public
@@ -18,13 +20,10 @@
  * @{
  */
 
-
 /**
  *  \file afw_components.h
  *  \brief .
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

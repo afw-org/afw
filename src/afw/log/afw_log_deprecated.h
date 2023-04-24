@@ -9,6 +9,8 @@
 #ifndef __AFW_LOG_DEPRECATED_H__
 #define __AFW_LOG_DEPRECATED_H__
 
+#include "afw_log_deprecated_interface.h"
+#include <apr_file_io.h>
 
 /**
  * @defgroup afw_log_deprecated Log (deprecated)
@@ -23,9 +25,6 @@
  * @file afw_log_deprecated.h
  * @brief Header file for afw_log_deprecated.c.
  */
-
-#include "afw_log_deprecated_interface.h"
-#include <apr_file_io.h>
 
 AFW_BEGIN_DECLARES
 

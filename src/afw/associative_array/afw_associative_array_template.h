@@ -9,10 +9,14 @@
 #ifndef __AFW_ASSOCIATIVE_ARRAY_TEMPLATE_H__
 #define __AFW_ASSOCIATIVE_ARRAY_TEMPLATE_H__
 
+/**
+ * @addtogroup afw_array_template_internal
+ * @{
+ */
 
 /**
  * @file afw_associative_array_template.h
- * @brief Adaptive Framework associative array templates
+ * @brief (deprecated) Adaptive Framework associative array templates
  *
  * This header is included by afw_common.h.  I can only include "templates".
  */
@@ -87,5 +91,7 @@ name##_set(const name##_t *instance, \
         (const afw_associative_array_t *)instance, \
         key, ( const void * )value,  xctx); \
 }\
+
+/** @} */
 
 #endif /* __AFW_ASSOCIATIVE_ARRAY_TEMPLATE_H__ */

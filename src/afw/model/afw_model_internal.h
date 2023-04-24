@@ -597,7 +597,6 @@ afw_model_internal_context_current_replace_object[];
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_runtime_ctx[];
 
-
 AFW_END_DECLARES
 
 /** @} */

@@ -19,12 +19,12 @@
  * @{
  */
 
+#include "afw_minimal.h"
+
 /**
  * @file afw_memory.h
  * @brief Header file for Adaptive Framework Memory
  */
-
-#include "afw_minimal.h"
 
 AFW_BEGIN_DECLARES
 

@@ -9,6 +9,7 @@
 #ifndef __AFW_FUNCTION_H__
 #define __AFW_FUNCTION_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_function Adaptive function support
@@ -22,8 +23,6 @@
  * @file afw_function.h
  * @brief Header file for Adaptive Framework Runtime Basic Function Support.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

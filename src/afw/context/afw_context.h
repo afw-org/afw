@@ -9,6 +9,7 @@
 #ifndef __AFW_CONTEXT_H__
 #define __AFW_CONTEXT_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_context Context
@@ -24,10 +25,7 @@
  * @brief Adaptive Framework Context.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /** @brief Struct used in afw_context_cb_variable_s. */
 struct afw_context_cb_variable_meta_s {

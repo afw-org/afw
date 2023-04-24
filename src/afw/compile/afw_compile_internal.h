@@ -9,16 +9,23 @@
 #ifndef __AFW_COMPILE_INTERNAL_H__
 #define __AFW_COMPILE_INTERNAL_H__
 
+#include "afw.h"
+
+/**
+ * @defgroup afw_compile_internal Compile
+ * @ingroup afw_c_api_internal
+ * 
+ * Internal compile API.
+ * 
+ * @{
+ */
 
 /**
  * @file afw_compile_internal.h
  * @brief Adaptive Framework Compiler Internal.
  */
 
-#include "afw.h"
-
 AFW_BEGIN_DECLARES
-
 typedef enum {
 
     /* Invalid token. */
@@ -1285,5 +1292,6 @@ afw_compile_lexical_parser_finish_and_release(
 
 AFW_END_DECLARES
 
+/** @} */
 
 #endif /* __AFW_COMPILE_INTERNAL_H__ */

@@ -9,6 +9,8 @@
 #ifndef __AFW_ADAPTOR_INTERNAL_H__
 #define __AFW_ADAPTOR_INTERNAL_H__
 
+#include "afw_interface.h"
+
 /**
  * @defgroup afw_adaptor_internal Adaptor
  * @ingroup afw_c_api_internal
@@ -17,13 +19,10 @@
  * @{
  */
 
-
 /**
  * @file afw_adaptor_internal.h
  * @brief Header for afw_adaptor internal functions.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

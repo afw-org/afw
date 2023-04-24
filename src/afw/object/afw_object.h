@@ -9,15 +9,11 @@
 #ifndef __AFW_OBJECT_H
 #define __AFW_OBJECT_H
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_object Object
+ * @defgroup afw_object Object
+ * @ingroup afw_c_api_public
  *
  * Provide afw_object interface common support and memory implementation.
  * @{
@@ -27,8 +23,6 @@
  * @file afw_object.h
  * @brief Header for interface afw_object helpers.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -1134,7 +1128,6 @@ afw_object_create_const_from_key_value_strings_z(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_H */

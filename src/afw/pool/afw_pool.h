@@ -9,24 +9,21 @@
 #ifndef __AFW_POOL_H__
 #define __AFW_POOL_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
-* @{
- */
-
-/** @addtogroup afw_pool Pool
-*
+/**
+ * @defgroup afw_pool Pool
+ * @ingroup afw_c_api_public
+ *
  * Pool support
-*
-* @{
+ *
+ * @{
  */
 
 /**
  * @file afw_pool.h
  * @brief Adaptive Framework memory pool support header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -227,7 +224,6 @@ afw_pool_create_multithreaded_debug(const afw_pool_t *parent,
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_POOL_H__ */

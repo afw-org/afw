@@ -9,6 +9,7 @@
 #ifndef __AFW_ATOMIC_H__
 #define __AFW_ATOMIC_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_atomic Atomic
@@ -24,10 +25,7 @@
  * @brief Adaptive Framework atomic operations
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Integer atomic compare and swap

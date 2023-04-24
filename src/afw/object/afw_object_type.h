@@ -9,15 +9,11 @@
 #ifndef __AFW_OBJECT_TYPE_H
 #define __AFW_OBJECT_TYPE_H
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_object_type Object type
+ * @defgroup afw_object_type Object type
+ * @ingroup afw_c_api_public
  *
  * Provide afw_object interface common support.
  * @{
@@ -27,8 +23,6 @@
  * @file afw_object_type.h
  * @brief Object type helpers.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -189,7 +183,6 @@ afw_object_type_property_normalize(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_TYPE_H */

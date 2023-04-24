@@ -9,15 +9,11 @@
 #ifndef __AFW_OBJECT_PATH_H
 #define __AFW_OBJECT_PATH_H
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_c_api_public
- *
- * @{
- */
-
-/**
- * @addtogroup afw_object_path Adaptive Object Path
+ * @defgroup afw_object_path Adaptive object path
+ * @ingroup afw_c_api_public
  *
  * Provide adaptive object path support.
  * @{
@@ -27,8 +23,6 @@
  * @file afw_object_path.h
  * @brief Header for Adaptive Object Path
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -284,7 +278,6 @@ afw_object_path_are_equivalent(
 
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_OBJECT_PATH_H */

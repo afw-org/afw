@@ -9,6 +9,7 @@
 #ifndef __AFW_CODE_POINT_H__
 #define __AFW_CODE_POINT_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_code_point Unicode code point support
@@ -23,8 +24,6 @@
  * @file afw_compile_code.h
  * @brief Adaptive Framework unicode code point support header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

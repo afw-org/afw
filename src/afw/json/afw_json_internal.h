@@ -9,6 +9,8 @@
 #ifndef __AFW_JSON_INTERNAL_H__
 #define __AFW_JSON_INTERNAL_H__
 
+#include "afw_interface.h"
+
 /**
  * @defgroup afw_json_internal JSON support
  * @ingroup afw_c_api_internal
@@ -23,8 +25,6 @@
  * @brief Adaptive Framework JSON Support Internal Header
  * @internal
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

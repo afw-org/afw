@@ -9,9 +9,10 @@
 #ifndef __AFW_DEBUG_H__
 #define __AFW_DEBUG_H__
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_debug Software Debug
+ * @defgroup afw_debug Software Debug
  * @ingroup afw_c_api_public
  *
  * These macros and functions assist writing debug message to the environment
@@ -31,8 +32,6 @@
  * @file afw_debug.h
  * @brief Adaptive Framework Software Debug Header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

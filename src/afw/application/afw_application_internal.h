@@ -9,6 +9,7 @@
 #ifndef __AFW_APPLICATION_INTERNAL_H__
 #define __AFW_APPLICATION_INTERNAL_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_application_internal Application
@@ -23,10 +24,7 @@
  * @brief Application internal header.
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Push application qualifiers on xctx's qualifier stack.

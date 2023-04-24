@@ -9,6 +9,8 @@
 #ifndef __AFW_NUMBER_H__
 #define __AFW_NUMBER_H__
 
+#include "afw_common.h"
+#include <float.h>
 
 /**
  * @defgroup afw_number Number
@@ -23,9 +25,6 @@
  * @file afw_number.h
  * @brief Adaptive Framework Number Header.
  */
-
-#include "afw_common.h"
-#include <float.h>
 
 AFW_BEGIN_DECLARES
 

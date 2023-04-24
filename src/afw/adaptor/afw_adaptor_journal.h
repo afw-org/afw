@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_JOURNAL_H__
 #define __AFW_ADAPTOR_JOURNAL_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -20,8 +21,6 @@
  * @file afw_adaptor_journal.h
  * @brief Adaptive Framework adaptor journal
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

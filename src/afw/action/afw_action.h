@@ -9,6 +9,7 @@
 #ifndef __AFW_ACTION_H__
 #define __AFW_ACTION_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_action Action perform
@@ -22,8 +23,6 @@
  * @file afw_action.h
  * @brief Functions for working with _AdaptiveAction_ objects.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

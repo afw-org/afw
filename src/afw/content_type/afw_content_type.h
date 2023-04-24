@@ -9,6 +9,7 @@
 #ifndef __AFW_CONTENT_TYPE_H__
 #define __AFW_CONTENT_TYPE_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_content_type Content type
@@ -23,10 +24,7 @@
  * @brief Header Adaptive Framework afw_content_type interface support
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /** @fixme Decide what to do in dynamo_db code. */
 AFW_DEFINE_STATIC_INLINE(afw_utf8_t *)

@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_DELETE_H__
 #define __AFW_ADAPTOR_DELETE_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -19,8 +20,6 @@
  * @file afw_adaptor_delete.h
  * @brief Adaptive Framework adaptor delete object 
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

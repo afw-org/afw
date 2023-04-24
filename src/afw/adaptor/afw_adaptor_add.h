@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_ADD_H__
 #define __AFW_ADAPTOR_ADD_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -20,11 +21,7 @@
  * @brief Adaptive Framework adaptor add object 
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
-
 
 /**
  * @brief Call adaptor to add object and remove from cache.

@@ -9,6 +9,7 @@
 #ifndef __AFW_FLAG_H__
 #define __AFW_FLAG_H__
 
+#include "afw_interface.h"
 
 /**
  * @defgroup afw_flag Software Flag
@@ -22,8 +23,6 @@
  * @file afw_flag.h
  * @brief Adaptive Framework Software Flag Header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

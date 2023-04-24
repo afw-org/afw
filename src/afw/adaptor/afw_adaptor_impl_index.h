@@ -9,6 +9,8 @@
 #ifndef __AFW_ADAPTOR_IMPL_INDEX_H__
 #define __AFW_ADAPTOR_IMPL_INDEX_H__
 
+#include "afw_interface.h"
+
 /**
  * @defgroup afw_adaptor_index_impl afw_adaptor_index
  * @ingroup afw_c_api_impl
@@ -19,8 +21,6 @@
  * @file afw_adaptor_impl_index.h
  * @brief  Helpers for afw_adaptor implementation index development
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

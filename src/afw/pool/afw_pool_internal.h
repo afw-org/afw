@@ -9,24 +9,21 @@
 #ifndef __AFW_POOL_INTERNAL_H__
 #define __AFW_POOL_INTERNAL_H__
 
+#include "afw_interface.h"
 
-/** @addtogroup afw_c_api_public
-* @{
- */
-
-/** @addtogroup afw_pool Pool
-*
- * Pool support
-*
-* @{
+/**
+ * @defgroup afw_pool_internal Pool
+ * @ingroup afw_c_api_internal
+ *
+ * Pool internal API
+ *
+ * @{
  */
 
 /**
  * @file afw_pool.h
  * @brief Adaptive Framework memory pool internal header.
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 
@@ -173,10 +170,8 @@ afw_pool_internal_create_thread_debug(
     afw_pool_internal_create_thread_debug(size, xctx, AFW__FILE_LINE__)
 #endif
 
-
 AFW_END_DECLARES
 
-/** @} */
 /** @} */
 
 #endif /* __AFW_POOL_INTERNAL_H__ */

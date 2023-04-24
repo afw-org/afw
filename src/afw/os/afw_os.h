@@ -9,9 +9,10 @@
 #ifndef __AFW_OS_H__
 #define __AFW_OS_H__
 
+#include "afw_interface.h"
 
 /**
- * @addtogroup afw_os OS specific
+ * @defgroup afw_os OS specific
  * @ingroup afw_c_api_public
  *
  * OS specific functions
@@ -23,8 +24,6 @@
  * @file afw_os.h
  * @brief Adaptive Framework OS Specific Header for unix-like systems 
  */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

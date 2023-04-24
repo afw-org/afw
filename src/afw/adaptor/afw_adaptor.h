@@ -9,8 +9,6 @@
 #ifndef __AFW_ADAPTOR_H__
 #define __AFW_ADAPTOR_H__
 
-
-
 #include "afw_interface.h"
 
 /* Headers that are part of the adaptor api. */

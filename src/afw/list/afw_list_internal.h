@@ -9,6 +9,8 @@
 #ifndef __AFW_LIST_INTERNAL_H__
 #define __AFW_LIST_INTERNAL_H__
 
+#include "afw_interface.h"
+
 /**
  * @defgroup afw_list_internal File
  * @ingroup afw_c_api_internal
@@ -22,8 +24,6 @@
 *  \file afw_memory_internal.h
 *  \brief Internal header file for Adaptive Framework List
 */
-
-#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

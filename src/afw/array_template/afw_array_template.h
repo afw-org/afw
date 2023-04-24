@@ -9,7 +9,16 @@
 #ifndef __AFW_ARRAY_TEMPLATE_H__
 #define __AFW_ARRAY_TEMPLATE_H__
 
+#include "afw_common.h"
 
+/**
+ * @defgroup afw_array_template_internal (deprecated) Array template
+ * @ingroup afw_c_api_internal
+ * 
+ * (deprecated) Array Template
+ * 
+ * @{
+ */
 
 /**
  * @file afw_array_template.h
@@ -20,13 +29,7 @@
  *      will be made when using apr's array support.
  */
 
-
-#include "afw_common.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+AFW_BEGIN_DECLARES
 
 /**
  * @brief Array template
@@ -185,9 +188,8 @@ AFW_ARRAY_TEMPLATE(afw_char_ptr_array,
 AFW_ARRAY_TEMPLATE(const_afw_char_ptr_array,
     const char *)
 
+AFW_END_DECLARES
 
-#ifdef __cplusplus
-}
-#endif
+/** @} */
 
 #endif /* __AFW_ARRAY_TEMPLATE_H__ */

@@ -9,6 +9,8 @@
 #ifndef __AFW_ERROR_H__
 #define __AFW_ERROR_H__
 
+#include "afw_interface.h"
+#include <stdio.h>
 
 /**
  * @defgroup afw_error Error
@@ -24,9 +26,6 @@
  * @file afw_error.h
  * @brief Adaptive Framework error handling header.
  */
-
-#include "afw_interface.h"
-#include <stdio.h>
 
 AFW_BEGIN_DECLARES
 

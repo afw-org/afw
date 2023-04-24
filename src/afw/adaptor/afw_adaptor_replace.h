@@ -9,6 +9,7 @@
 #ifndef __AFW_ADAPTOR_REPLACE_H__
 #define __AFW_ADAPTOR_REPLACE_H__
 
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_adaptor
@@ -20,10 +21,7 @@
  * @brief Adaptive Framework adaptor replace object 
  */
 
-#include "afw_interface.h"
-
 AFW_BEGIN_DECLARES
-
 
 /**
  * @brief Replace object and remove from cache.
