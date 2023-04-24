@@ -7,12 +7,11 @@
  */
 
 /**
- * @file afw_object_add.c
+ * @file afw_adaptor_add.c
  * @brief Adaptive Framework adaptor add object.
  */
 
 #include "afw_internal.h"
-
 
 
 /* Get object callback. */

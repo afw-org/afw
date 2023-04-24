@@ -8,7 +8,7 @@
 
 
 /**
- * @file afw_lmdb_adaptor_journal.c
+ * @file afw_lmdb_journal.c
  * @brief Implementation of afw_adaptor_journal interface for LMDB.
  */
 

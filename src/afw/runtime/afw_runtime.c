@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_runtime_adaptor.c
+ * @file afw_runtime.c
  * @brief Implementation of afw_adaptor_factory interface for afw_runtime.
  */
 

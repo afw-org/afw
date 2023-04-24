@@ -8,7 +8,7 @@
 
 
 /**
- * @file afw_environment_registry.c
+ * @file afw_environment_registry_object.c
  * @brief Implementation of afw_object interface for
  *    _AdaptiveEnvironmentRegistry_
  */

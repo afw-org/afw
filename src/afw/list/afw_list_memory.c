@@ -8,7 +8,7 @@
 
 
 /**
- * @file afw_memory_list.c
+ * @file afw_list_memory.c
  * @brief Implementation of afw_list interface for in-memory objects
  */
 

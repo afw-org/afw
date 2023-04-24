@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_object_modify.c
+ * @file afw_adaptor_modify.c
  * @brief Adaptive Framework adaptor modify object
  */
 

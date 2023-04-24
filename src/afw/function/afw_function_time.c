@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_value_function_time.c
+ * @file afw_function_time.c
  * @brief afw_function_execute_* functions for time.
  */
 

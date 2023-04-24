@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_object_replace.c
+ * @file afw_adaptor_replace.c
  * @brief Adaptive Framework adaptor replace object.
  */
 

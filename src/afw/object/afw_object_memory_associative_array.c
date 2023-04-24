@@ -8,7 +8,7 @@
 
 
 /**
- * @file afw_memory_object_associative_array.c
+ * @file afw_object_memory_associative_array.c
  * @brief Implementation of afw_object_associative_array interface in memory. 
  */
 

@@ -21,7 +21,7 @@
  */
 
 /**
-*  \file afw_memory_internal.h
+*  \file afw_list_internal.h
 *  \brief Internal header file for Adaptive Framework List
 */
 

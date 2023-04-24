@@ -21,7 +21,7 @@
  */
 
 /**
- * @file afw_compile_code.h
+ * @file afw_compile_code_point.h
  * @brief Adaptive Framework unicode code point support header.
  */
 

@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_compiler_lexical.c
+ * @file afw_compile_lexical.c
  * @brief Adaptive Framework Compiler Lexical Analyzer.
  */
 

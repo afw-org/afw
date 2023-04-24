@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_function_higher_order.c
+ * @file afw_function_higher_order_list.c
  * @brief afw_function_execute_* functions for higher_order_list.
  */
 

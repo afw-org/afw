@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_compile_code.c
+ * @file afw_compile_code_point.c
  * @brief Adaptive framework unicode code point support.
  */
 

@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_object_delete.c
+ * @file afw_adaptor_delete.c
  * @brief Adaptive Framework adaptor delete object.
  */
 

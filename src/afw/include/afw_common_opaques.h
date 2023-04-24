@@ -16,7 +16,7 @@
  */
 
 /**
- * @file afw_opaques.h
+ * @file afw_common_opaques.h
  * @brief Adaptive Framework Common Opaques Header.
  *
  * This header is included by afw_common.h.  It includes most of the Adaptive

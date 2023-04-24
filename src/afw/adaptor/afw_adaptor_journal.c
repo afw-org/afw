@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_object_journal.c
+ * @file afw_adaptor_journal.c
  * @brief Adaptive Framework adaptor journal.
  */
 

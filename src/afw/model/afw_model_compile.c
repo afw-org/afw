@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_model_compile.h
+ * @file afw_model_compile.c
  * @brief Adaptive Framework Model Compile
  */
 

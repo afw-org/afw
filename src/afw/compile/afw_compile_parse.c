@@ -7,7 +7,7 @@
  */
 
 /**
- * @file afw_compiler_parse.c
+ * @file afw_compile_parse.c
  * @brief Adaptive Framework Compiler Parser.
  */
 

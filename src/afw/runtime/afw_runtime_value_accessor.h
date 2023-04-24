@@ -23,7 +23,7 @@ AFW_BEGIN_DECLARES
  */
 
 /**
- * @file afw_runtime_value_accessors.h
+ * @file afw_runtime_value_accessor.h
  * @brief Core runtime value accessors.
  *
  * These are internal functions used by AFW core.  Access to
