@@ -12,7 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_meta object Meta
+ * @defgroup afw_object_meta Object meta
  * @ingroup afw_c_api_public
  *
  * Provide afw_object interface common support.

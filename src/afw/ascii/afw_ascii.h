@@ -12,7 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_ascii ASCII
+ * @defgroup afw_ascii ASC-II
  * @ingroup afw_c_api_public
  * 
  * ASC-II

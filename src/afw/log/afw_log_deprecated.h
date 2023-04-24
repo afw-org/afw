@@ -14,7 +14,7 @@
 
 /**
  * @defgroup afw_log_deprecated Log (deprecated)
- * @ingroup afw_c_api_public
+ * @ingroup afw_c_api_internal
  *
  * Adaptive Framework log.
  * 
