@@ -169,14 +169,14 @@ afw_object_path_make_property_name_expression(
  *
  * Generally, a path is of the form:
  *
- * /<adaptorId>/<objectType>/<objectId> 
+ * `/<adaptorId>/<objectType>/<objectId>` 
  *
- * where <adaptorId> is an adaptor id of the running instance, <objectType>
- * if the object type at path /<adaptorId>/_AdaptiveObjectType_/<objectType>,
+ * where `<adaptorId>` is an adaptor id of the running instance, `<objectType>`
+ * if the object type at path `/<adaptorId>/_AdaptiveObjectType_/<objectType>`,
  * and <objectId> is the entity object id <entityObjectId> followed by zero or
  * more period "." <propertyName>.
  *
- * <objectType> can also have an options part where the object type id is
+ * `<objectType>` can also have an options part where the object type id is
  * followed by a semicolon ";" and one or more <name> with optional
  * equal "=" <value> separated with an ampersand "&".  See
  * afw_object_options.h for more information on options.
@@ -186,13 +186,13 @@ afw_object_path_make_property_name_expression(
  *
  * If current_path is specified, the path parameter can include asterisks
  * that are replaced with corresponding parts of current_path. In this case,
- * <adaptorId>, <objectType>, <entityObjectId>, and <propertyName> can be an
+ * `<adaptorId>`, `<objectType>`, <entityObjectId>, and <propertyName> can be an
  * asterisk "*" to use the corresponding part from the current_path, plus
  * double asterisk "**" can be specified for the entire <objectId> to use the
  * entire <objectId> from the current path.  Also, <objectId> can be specified
- * alone without a preceding slash "/" when the <adaptorId> and <objectType>
+ * alone without a preceding slash "/" when the `<adaptorId>` and `<objectType>`
  * are the same as in the current path.  No substitution occurs in the
- * options part of <objectType>.
+ * options part of `<objectType>`.
  */
 AFW_DECLARE(const afw_object_path_parsed_t *)
 afw_object_path_parse(

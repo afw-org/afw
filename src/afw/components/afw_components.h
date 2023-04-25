@@ -22,7 +22,7 @@
 
 /**
  *  \file afw_components.h
- *  \brief .
+ *  \brief UI components.
  */
 
 AFW_BEGIN_DECLARES

@@ -295,7 +295,7 @@ afw_runtime_value_accessor_uint32(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for /afw/_AdaptiveAdaptorMetrics_/<adaptorId>.
+ * @brief Runtime value accessor for `/afw/_AdaptiveAdaptorMetrics_/<adaptorId>`.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer const afw_utf8_t *adaptor_id.
  * @param p is pool to use.
@@ -305,7 +305,7 @@ afw_runtime_value_accessor_uint32(
  * The data_type in prop must be object.
  *
  * Parameter internal is mapped afw_utf8_t *adaptor_id. The value will be the
- * result of getting the runtime /afw/_AdaptiveAdaptorMetrics_/<adaptorId>.
+ * result of getting the runtime `/afw/_AdaptiveAdaptorMetrics_/<adaptorId>`.
  */
 const afw_value_t *
 afw_runtime_value_accessor_adaptor_metrics(

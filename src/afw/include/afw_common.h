@@ -306,7 +306,7 @@ typedef int (*afw_utf8_octet_get_cb_t) (
 
 /**
  * @brief Tests integer to be safely held in a double.
- * @parameter integer to test.
+ * @param integer to test.
  * @return boolean result.
  */
 #define AFW_INTEGER_IS_SAFE_DOUBLE(integer) \
