@@ -44,7 +44,7 @@ AFW_BEGIN_DECLARES
  * 3. inf will be defined with a name of
  *    impl_afw_adaptor_impl_index_cursor_inf.
  *
- * Before including, #define the following symbols:
+ * Before including, define the following symbols:
  *
  * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *

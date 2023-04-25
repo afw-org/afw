@@ -60,7 +60,7 @@ struct afw_extension_s {
     unsigned int afw_compiled_version_hex;
 };
 
-/** @brief #define for interface afw_extension name. */
+/** @brief define for interface afw_extension name. */
 #define AFW_EXTENSION_INTERFACE_NAME \
 "afw_extension"
 
@@ -138,7 +138,7 @@ struct afw_adaptor_factory_s {
     const afw_utf8_t * description;
 };
 
-/** @brief #define for interface afw_adaptor_factory name. */
+/** @brief define for interface afw_adaptor_factory name. */
 #define AFW_ADAPTOR_FACTORY_INTERFACE_NAME \
 "afw_adaptor_factory"
 
@@ -206,7 +206,7 @@ struct afw_adaptor_s {
     const afw_adaptor_impl_t * impl;
 };
 
-/** @brief #define for interface afw_adaptor name. */
+/** @brief define for interface afw_adaptor name. */
 #define AFW_ADAPTOR_INTERFACE_NAME \
 "afw_adaptor"
 
@@ -303,7 +303,7 @@ struct afw_adaptor_object_type_cache_s {
     afw_boolean_t all_object_types_immutable;
 };
 
-/** @brief #define for interface afw_adaptor_object_type_cache name. */
+/** @brief define for interface afw_adaptor_object_type_cache name. */
 #define AFW_ADAPTOR_OBJECT_TYPE_CACHE_INTERFACE_NAME \
 "afw_adaptor_object_type_cache"
 
@@ -391,7 +391,7 @@ struct afw_adaptor_session_s {
     const afw_pool_t * p;
 };
 
-/** @brief #define for interface afw_adaptor_session name. */
+/** @brief define for interface afw_adaptor_session name. */
 #define AFW_ADAPTOR_SESSION_INTERFACE_NAME \
 "afw_adaptor_session"
 
@@ -872,7 +872,7 @@ struct afw_adaptor_transaction_s {
     const afw_adaptor_transaction_inf_t *inf;
 };
 
-/** @brief #define for interface afw_adaptor_transaction name. */
+/** @brief define for interface afw_adaptor_transaction name. */
 #define AFW_ADAPTOR_TRANSACTION_INTERFACE_NAME \
 "afw_adaptor_transaction"
 
@@ -943,7 +943,7 @@ struct afw_adaptor_impl_index_cursor_s {
     afw_boolean_t inner_join;
 };
 
-/** @brief #define for interface afw_adaptor_impl_index_cursor name. */
+/** @brief define for interface afw_adaptor_impl_index_cursor name. */
 #define AFW_ADAPTOR_IMPL_INDEX_CURSOR_INTERFACE_NAME \
 "afw_adaptor_impl_index_cursor"
 
@@ -1093,7 +1093,7 @@ struct afw_adaptor_key_value_s {
     const afw_adaptor_key_value_inf_t *inf;
 };
 
-/** @brief #define for interface afw_adaptor_key_value name. */
+/** @brief define for interface afw_adaptor_key_value name. */
 #define AFW_ADAPTOR_KEY_VALUE_INTERFACE_NAME \
 "afw_adaptor_key_value"
 
@@ -1258,7 +1258,7 @@ struct afw_adaptor_impl_index_s {
     const afw_object_t * indexDefinitions;
 };
 
-/** @brief #define for interface afw_adaptor_impl_index name. */
+/** @brief define for interface afw_adaptor_impl_index name. */
 #define AFW_ADAPTOR_IMPL_INDEX_INTERFACE_NAME \
 "afw_adaptor_impl_index"
 
@@ -1652,7 +1652,7 @@ struct afw_authorization_handler_factory_s {
     const afw_utf8_t * description;
 };
 
-/** @brief #define for interface afw_authorization_handler_factory name. */
+/** @brief define for interface afw_authorization_handler_factory name. */
 #define AFW_AUTHORIZATION_HANDLER_FACTORY_INTERFACE_NAME \
 "afw_authorization_handler_factory"
 
@@ -1725,7 +1725,7 @@ struct afw_authorization_handler_s {
     const afw_authorization_handler_impl_t * impl;
 };
 
-/** @brief #define for interface afw_authorization_handler name. */
+/** @brief define for interface afw_authorization_handler name. */
 #define AFW_AUTHORIZATION_HANDLER_INTERFACE_NAME \
 "afw_authorization_handler"
 
@@ -1812,7 +1812,7 @@ struct afw_content_type_s {
     const afw_utf8_t * media_types;
 };
 
-/** @brief #define for interface afw_content_type name. */
+/** @brief define for interface afw_content_type name. */
 #define AFW_CONTENT_TYPE_INTERFACE_NAME \
 "afw_content_type"
 
@@ -2011,7 +2011,7 @@ struct afw_content_type_object_list_writer_s {
     const afw_content_type_object_list_writer_inf_t *inf;
 };
 
-/** @brief #define for interface afw_content_type_object_list_writer name. */
+/** @brief define for interface afw_content_type_object_list_writer name. */
 #define AFW_CONTENT_TYPE_OBJECT_LIST_WRITER_INTERFACE_NAME \
 "afw_content_type_object_list_writer"
 
@@ -2107,7 +2107,7 @@ struct afw_data_type_s {
     afw_boolean_t scalar;
 };
 
-/** @brief #define for interface afw_data_type name. */
+/** @brief define for interface afw_data_type name. */
 #define AFW_DATA_TYPE_INTERFACE_NAME \
 "afw_data_type"
 
@@ -2360,7 +2360,7 @@ struct afw_list_setter_s {
     const afw_list_t * list;
 };
 
-/** @brief #define for interface afw_list_setter name. */
+/** @brief define for interface afw_list_setter name. */
 #define AFW_LIST_SETTER_INTERFACE_NAME \
 "afw_list_setter"
 
@@ -2650,7 +2650,7 @@ struct afw_list_s {
     const afw_list_inf_t *inf;
 };
 
-/** @brief #define for interface afw_list name. */
+/** @brief define for interface afw_list name. */
 #define AFW_LIST_INTERFACE_NAME \
 "afw_list"
 
@@ -2948,7 +2948,7 @@ struct afw_log_factory_s {
     const afw_utf8_t * description;
 };
 
-/** @brief #define for interface afw_log_factory name. */
+/** @brief define for interface afw_log_factory name. */
 #define AFW_LOG_FACTORY_INTERFACE_NAME \
 "afw_log_factory"
 
@@ -3011,7 +3011,7 @@ struct afw_log_s {
     const afw_log_impl_t * impl;
 };
 
-/** @brief #define for interface afw_log name. */
+/** @brief define for interface afw_log name. */
 #define AFW_LOG_INTERFACE_NAME \
 "afw_log"
 
@@ -3121,7 +3121,7 @@ struct afw_object_setter_s {
     const afw_object_t * object;
 };
 
-/** @brief #define for interface afw_object_setter name. */
+/** @brief define for interface afw_object_setter name. */
 #define AFW_OBJECT_SETTER_INTERFACE_NAME \
 "afw_object_setter"
 
@@ -3200,7 +3200,7 @@ struct afw_object_s {
     afw_object_meta_t meta;
 };
 
-/** @brief #define for interface afw_object name. */
+/** @brief define for interface afw_object name. */
 #define AFW_OBJECT_INTERFACE_NAME \
 "afw_object"
 
@@ -3468,7 +3468,7 @@ struct afw_server_s {
     AFW_ATOMIC afw_integer_t unhandled_errors;
 };
 
-/** @brief #define for interface afw_server name. */
+/** @brief define for interface afw_server name. */
 #define AFW_SERVER_INTERFACE_NAME \
 "afw_server"
 
@@ -3545,7 +3545,7 @@ struct afw_service_type_s {
     const afw_object_t * conf_type_object;
 };
 
-/** @brief #define for interface afw_service_type name. */
+/** @brief define for interface afw_service_type name. */
 #define AFW_SERVICE_TYPE_INTERFACE_NAME \
 "afw_service_type"
 
@@ -3689,7 +3689,7 @@ struct afw_object_associative_array_s {
     const afw_pool_t * p;
 };
 
-/** @brief #define for interface afw_object_associative_array name. */
+/** @brief define for interface afw_object_associative_array name. */
 #define AFW_OBJECT_ASSOCIATIVE_ARRAY_INTERFACE_NAME \
 "afw_object_associative_array"
 
@@ -3867,7 +3867,7 @@ struct afw_request_handler_factory_s {
     const afw_utf8_t * description;
 };
 
-/** @brief #define for interface afw_request_handler_factory name. */
+/** @brief define for interface afw_request_handler_factory name. */
 #define AFW_REQUEST_HANDLER_FACTORY_INTERFACE_NAME \
 "afw_request_handler_factory"
 
@@ -3923,7 +3923,7 @@ struct afw_request_handler_s {
     const afw_request_handler_inf_t *inf;
 };
 
-/** @brief #define for interface afw_request_handler name. */
+/** @brief define for interface afw_request_handler name. */
 #define AFW_REQUEST_HANDLER_INTERFACE_NAME \
 "afw_request_handler"
 
@@ -3995,7 +3995,7 @@ struct afw_connection_s {
     const afw_connection_inf_t *inf;
 };
 
-/** @brief #define for interface afw_connection name. */
+/** @brief define for interface afw_connection name. */
 #define AFW_CONNECTION_INTERFACE_NAME \
 "afw_connection"
 
@@ -4054,7 +4054,7 @@ struct afw_request_s {
     afw_boolean_t is_closed;
 };
 
-/** @brief #define for interface afw_request name. */
+/** @brief define for interface afw_request name. */
 #define AFW_REQUEST_INTERFACE_NAME \
 "afw_request"
 
@@ -4341,7 +4341,7 @@ struct afw_xctx_s {
     afw_boolean_t secure;
 };
 
-/** @brief #define for interface afw_xctx name. */
+/** @brief define for interface afw_xctx name. */
 #define AFW_XCTX_INTERFACE_NAME \
 "afw_xctx"
 
@@ -4392,7 +4392,7 @@ struct afw_stream_s {
     const afw_boolean_t is_standard;
 };
 
-/** @brief #define for interface afw_stream name. */
+/** @brief define for interface afw_stream name. */
 #define AFW_STREAM_INTERFACE_NAME \
 "afw_stream"
 
@@ -4519,7 +4519,7 @@ struct afw_pool_s {
     const afw_pool_inf_t *inf;
 };
 
-/** @brief #define for interface afw_pool name. */
+/** @brief define for interface afw_pool name. */
 #define AFW_POOL_INTERFACE_NAME \
 "afw_pool"
 
@@ -5010,7 +5010,7 @@ struct afw_adaptor_journal_s {
     const afw_adaptor_session_t * session;
 };
 
-/** @brief #define for interface afw_adaptor_journal name. */
+/** @brief define for interface afw_adaptor_journal name. */
 #define AFW_ADAPTOR_JOURNAL_INTERFACE_NAME \
 "afw_adaptor_journal"
 
@@ -5159,7 +5159,7 @@ struct afw_value_s {
     const afw_value_inf_t *inf;
 };
 
-/** @brief #define for interface afw_value name. */
+/** @brief define for interface afw_value name. */
 #define AFW_VALUE_INTERFACE_NAME \
 "afw_value"
 
@@ -5454,7 +5454,7 @@ struct afw_variable_handler_s {
     const afw_variable_handler_inf_t *inf;
 };
 
-/** @brief #define for interface afw_variable_handler name. */
+/** @brief define for interface afw_variable_handler name. */
 #define AFW_VARIABLE_HANDLER_INTERFACE_NAME \
 "afw_variable_handler"
 
@@ -5545,7 +5545,7 @@ struct afw_writer_s {
     const afw_utf8_t * tab;
 };
 
-/** @brief #define for interface afw_writer name. */
+/** @brief define for interface afw_writer name. */
 #define AFW_WRITER_INTERFACE_NAME \
 "afw_writer"
 

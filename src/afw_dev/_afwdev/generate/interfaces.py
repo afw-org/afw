@@ -59,7 +59,7 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('};\n')
 
             # define for name
-            fd.write('\n/** @brief #define for interface ' + interface_name + ' name. */\n')
+            fd.write('\n/** @brief define for interface ' + interface_name + ' name. */\n')
             fd.write('#define ' + interface_name.upper() + '_INTERFACE_NAME \\\n"' + interface_name + '"\n' )
 
             # method typedefs
@@ -242,7 +242,7 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
                 '3. inf will be defined with a name of impl_'  + interface_name +  '_inf.\n',
                 '   ')
             fd.write(' *\n')
-            fd.write(' * Before including, #define the following symbols:\n')
+            fd.write(' * Before including, define the following symbols:\n')
             fd.write(' *\n')
             fd.write(' * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.\n')
             fd.write(' *\n')

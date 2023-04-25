@@ -42,7 +42,7 @@ AFW_BEGIN_DECLARES
  * 2. rti will be defined with a name of impl_afw_object_associative_array_rti.
  * 3. inf will be defined with a name of impl_afw_object_associative_array_inf.
  *
- * Before including, #define the following symbols:
+ * Before including, define the following symbols:
  *
  * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
