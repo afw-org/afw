@@ -60,11 +60,7 @@ afw_function_definition_adaptor_objectCallback_signature;
 
 /**
  * @brief Adaptive Function adaptor_objectCallback_signature
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is the function signature for the objectCallback parameter in adaptor
  * functions. Calling this directly will throw a "Do not call directly" error.
@@ -102,11 +98,7 @@ afw_function_definition_add_object;
 
 /**
  * @brief Adaptive Function add_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add an adaptive object to an adaptor, specified by the adaptorId, with a
  * specified objectType. You may supply an optional objectId, if the underlying
@@ -167,11 +159,7 @@ afw_function_definition_add_object_with_uri;
 
 /**
  * @brief Adaptive Function add_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add an adaptive object with a given URI.
  *
@@ -226,11 +214,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
 
 /**
  * @brief Adaptive Function convert_AdaptiveQueryCriteria_to_query_string
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function converts an _AdaptiveQueryCriteria_ object to a query string.
  *
@@ -289,11 +273,7 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
 
 /**
  * @brief Adaptive Function convert_query_string_to_AdaptiveQueryCriteria
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function converts a query string to an _AdaptiveQueryCriteria_ object.
  *
@@ -335,11 +315,7 @@ afw_function_definition_delete_object;
 
 /**
  * @brief Adaptive Function delete_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Delete an adaptive object.
  *
@@ -393,11 +369,7 @@ afw_function_definition_delete_object_with_uri;
 
 /**
  * @brief Adaptive Function delete_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Delete an adaptive object with a given URI.
  *
@@ -446,11 +418,7 @@ afw_function_definition_get_object;
 
 /**
  * @brief Adaptive Function get_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get an adaptive object from the adaptor, specified by adaptorId, objectType
  * and objectId. Optional view options and adaptor-specific options may be
@@ -505,11 +473,7 @@ afw_function_definition_get_object_with_uri;
 
 /**
  * @brief Adaptive Function get_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get an object with a given URI.
  *
@@ -557,11 +521,7 @@ afw_function_definition_modify_object;
 
 /**
  * @brief Adaptive Function modify_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Modify an adaptive object.
  *
@@ -641,11 +601,7 @@ afw_function_definition_modify_object_with_uri;
 
 /**
  * @brief Adaptive Function modify_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Modify an adaptive object with a given URI.
  *
@@ -721,11 +677,7 @@ afw_function_definition_reconcile_object;
 
 /**
  * @brief Adaptive Function reconcile_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Reconcile an adaptive object.
  *
@@ -764,11 +716,7 @@ afw_function_definition_replace_object;
 
 /**
  * @brief Adaptive Function replace_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace an adaptive object.
  *
@@ -825,11 +773,7 @@ afw_function_definition_replace_object_with_uri;
 
 /**
  * @brief Adaptive Function replace_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace an adaptive object with a given URI.
  *
@@ -881,11 +825,7 @@ afw_function_definition_retrieve_objects;
 
 /**
  * @brief Adaptive Function retrieve_objects
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
@@ -946,11 +886,7 @@ afw_function_definition_retrieve_objects_to_callback;
 
 /**
  * @brief Adaptive Function retrieve_objects_to_callback
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
@@ -1026,11 +962,7 @@ afw_function_definition_retrieve_objects_to_response;
 
 /**
  * @brief Adaptive Function retrieve_objects_to_response
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
@@ -1097,11 +1029,7 @@ afw_function_definition_retrieve_objects_to_stream;
 
 /**
  * @brief Adaptive Function retrieve_objects_to_stream
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
@@ -1168,11 +1096,7 @@ afw_function_definition_retrieve_objects_with_uri;
 
 /**
  * @brief Adaptive Function retrieve_objects_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1226,11 +1150,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
 
 /**
  * @brief Adaptive Function retrieve_objects_with_uri_to_callback
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1298,11 +1218,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
 
 /**
  * @brief Adaptive Function retrieve_objects_with_uri_to_response
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1362,11 +1278,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
 
 /**
  * @brief Adaptive Function retrieve_objects_with_uri_to_stream
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1426,11 +1338,7 @@ afw_function_definition_update_object;
 
 /**
  * @brief Adaptive Function update_object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Update an adaptive object.
  *
@@ -1490,11 +1398,7 @@ afw_function_definition_update_object_with_uri;
 
 /**
  * @brief Adaptive Function update_object_with_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Update an adaptive object with a given URI.
  *
@@ -1559,11 +1463,7 @@ afw_function_definition_extension_load;
 
 /**
  * @brief Adaptive Function extension_load
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Load an extension by its extension id if it is not already loaded. Loading
  * an AFW package's manifest extension will register the manifest of all
@@ -1600,11 +1500,7 @@ afw_function_definition_extension_load_by_module_path;
 
 /**
  * @brief Adaptive Function extension_load_by_module_path
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Load an extension by its module path. Loading an AFW package's manifest
  * extension will register the manifest of all extensions in the package.
@@ -1638,11 +1534,7 @@ afw_function_definition_flag_get_active;
 
 /**
  * @brief Adaptive Function flag_get_active
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get a list of of the flagId of flags that are set in the current execution
  * context (xctx).
@@ -1673,11 +1565,7 @@ afw_function_definition_flag_get_active_defaults;
 
 /**
  * @brief Adaptive Function flag_get_active_defaults
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get a list of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
@@ -1708,11 +1596,7 @@ afw_function_definition_flag_get_defaults;
 
 /**
  * @brief Adaptive Function flag_get_defaults
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get the list of the flagId of flags that are used to determine the default
  * active flags when an execution context (xctx) is created. This list can
@@ -1745,11 +1629,7 @@ afw_function_definition_flag_modify_defaults;
 
 /**
  * @brief Adaptive Function flag_modify_defaults
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add or remove flags from the list of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -1792,11 +1672,7 @@ afw_function_definition_flag_replace_defaults;
 
 /**
  * @brief Adaptive Function flag_replace_defaults
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Completely replace the list of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -1836,11 +1712,7 @@ afw_function_definition_flag_set;
 
 /**
  * @brief Adaptive Function flag_set
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Set or unset one or more active xctx (request) flags.
  *
@@ -1875,11 +1747,7 @@ afw_function_definition_registry_key_check;
 
 /**
  * @brief Adaptive Function registry_key_check
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will check to see if a registry key exists for a specified registry
  * type and optionally load it's associated extension if needed.
@@ -1923,11 +1791,7 @@ afw_function_definition_service_get;
 
 /**
  * @brief Adaptive Function service_get
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get a service object.
  *
@@ -1961,11 +1825,7 @@ afw_function_definition_service_restart;
 
 /**
  * @brief Adaptive Function service_restart
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Restart a service.
  *
@@ -1999,11 +1859,7 @@ afw_function_definition_service_start;
 
 /**
  * @brief Adaptive Function service_start
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Start a service.
  *
@@ -2037,11 +1893,7 @@ afw_function_definition_service_stop;
 
 /**
  * @brief Adaptive Function service_stop
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Stop a service.
  *
@@ -2085,11 +1937,7 @@ afw_function_definition_anyURI;
 
 /**
  * @brief Adaptive Function anyURI
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type anyURI returning anyURI result.
  *
@@ -2125,11 +1973,7 @@ afw_function_definition_at_least_one_member_of_anyURI;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in anyURI list1 is in anyURI
  * list2.
@@ -2165,11 +2009,7 @@ afw_function_definition_bag_anyURI;
 
 /**
  * @brief Adaptive Function bag<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of anyURI values and returns a list of list.
  *
@@ -2201,11 +2041,7 @@ afw_function_definition_bag_size_anyURI;
 
 /**
  * @brief Adaptive Function bag_size<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -2237,11 +2073,7 @@ afw_function_definition_ends_with_anyURI;
 
 /**
  * @brief Adaptive Function ends_with<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether anyURI value ends with a anyURI and return the boolean
  * result.
@@ -2277,11 +2109,7 @@ afw_function_definition_eq_anyURI;
 
 /**
  * @brief Adaptive Function eq<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -2322,11 +2150,7 @@ afw_function_definition_eqx_anyURI;
 
 /**
  * @brief Adaptive Function eqx<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -2363,11 +2187,7 @@ afw_function_definition_ge_anyURI;
 
 /**
  * @brief Adaptive Function ge<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return
  * the boolean result.
@@ -2403,11 +2223,7 @@ afw_function_definition_gt_anyURI;
 
 /**
  * @brief Adaptive Function gt<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is greater than anyURI arg2 and return the boolean
  * result.
@@ -2443,11 +2259,7 @@ afw_function_definition_includes_anyURI;
 
 /**
  * @brief Adaptive Function includes<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether the anyURI value includes a string and return the boolean
  * result.
@@ -2487,11 +2299,7 @@ afw_function_definition_index_of_anyURI;
 
 /**
  * @brief Adaptive Function index_of<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into anyURI value of subString. If subString is
  * not found, -1 is returned.
@@ -2531,11 +2339,7 @@ afw_function_definition_intersection_anyURI;
 
 /**
  * @brief Adaptive Function intersection<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of anyURI with the values that are common to both list of
  * anyURI list1 and list2.
@@ -2571,11 +2375,7 @@ afw_function_definition_is_anyURI;
 
 /**
  * @brief Adaptive Function is<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType anyURI and return the boolean result.
  *
@@ -2607,11 +2407,7 @@ afw_function_definition_is_in_anyURI;
 
 /**
  * @brief Adaptive Function is_in<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether anyURI value is in list of anyURI list and returns the
  * boolean result.
@@ -2647,11 +2443,7 @@ afw_function_definition_last_index_of_anyURI;
 
 /**
  * @brief Adaptive Function last_index_of<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into anyURI value of the last occurrence of a
  * subString. If subString is not found, -1 is returned.
@@ -2691,11 +2483,7 @@ afw_function_definition_le_anyURI;
 
 /**
  * @brief Adaptive Function le<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is less than or equal to anyURI arg2 and return the
  * boolean result.
@@ -2731,11 +2519,7 @@ afw_function_definition_length_anyURI;
 
 /**
  * @brief Adaptive Function length<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a polymorphic function where anyURI can be any of the supported data
  * types. Return the integer number of entries in datatype list or codepoints
@@ -2770,11 +2554,7 @@ afw_function_definition_lt_anyURI;
 
 /**
  * @brief Adaptive Function lt<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is less that anyURI arg2 and return the boolean
  * result.
@@ -2810,11 +2590,7 @@ afw_function_definition_ne_anyURI;
 
 /**
  * @brief Adaptive Function ne<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -2855,11 +2631,7 @@ afw_function_definition_nex_anyURI;
 
 /**
  * @brief Adaptive Function nex<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -2896,11 +2668,7 @@ afw_function_definition_one_and_only_anyURI;
 
 /**
  * @brief Adaptive Function one_and_only<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of anyURI values that contains one value to a single
  * anyURI value.
@@ -2937,11 +2705,7 @@ afw_function_definition_regexp_index_of_anyURI;
 
 /**
  * @brief Adaptive Function regexp_index_of<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Search anyURI value for a regular expression and return index. If not found,
  * -1 is returned.
@@ -2977,11 +2741,7 @@ afw_function_definition_regexp_match_anyURI;
 
 /**
  * @brief Adaptive Function regexp_match<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether anyURI value matches the regular expression regexp and return
  * the boolean result.
@@ -3017,11 +2777,7 @@ afw_function_definition_regexp_replace_anyURI;
 
 /**
  * @brief Adaptive Function regexp_replace<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a anyURI value.
  *
@@ -3063,11 +2819,7 @@ afw_function_definition_repeat_anyURI;
 
 /**
  * @brief Adaptive Function repeat<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Repeat a anyURI value a specified number of times.
  *
@@ -3102,11 +2854,7 @@ afw_function_definition_replace_anyURI;
 
 /**
  * @brief Adaptive Function replace<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace string(s) in a anyURI value.
  *
@@ -3148,11 +2896,7 @@ afw_function_definition_set_equals_anyURI;
 
 /**
  * @brief Adaptive Function set_equals<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
  * other and return the boolean result.
@@ -3188,11 +2932,7 @@ afw_function_definition_split_anyURI;
 
 /**
  * @brief Adaptive Function split<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Split anyURI value into an list of strings using a separator.
  *
@@ -3233,11 +2973,7 @@ afw_function_definition_starts_with_anyURI;
 
 /**
  * @brief Adaptive Function starts_with<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether anyURI value starts with a subString and return the boolean
  * result.
@@ -3273,11 +3009,7 @@ afw_function_definition_subset_anyURI;
 
 /**
  * @brief Adaptive Function subset<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in anyURI list1 are all in anyURI
  * list2.
@@ -3313,11 +3045,7 @@ afw_function_definition_substring_anyURI;
 
 /**
  * @brief Adaptive Function substring<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the anyURI substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
@@ -3361,11 +3089,7 @@ afw_function_definition_to_string_anyURI;
 
 /**
  * @brief Adaptive Function to_string<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts anyURI value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -3398,11 +3122,7 @@ afw_function_definition_union_anyURI;
 
 /**
  * @brief Adaptive Function union<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of anyURI contains all of the unique values in two or more
  * list of anyURI values.
@@ -3437,11 +3157,7 @@ afw_function_definition_url_encode_anyURI;
 
 /**
  * @brief Adaptive Function url_encode<anyURI>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
  *
@@ -3484,11 +3200,7 @@ afw_function_definition_at_least_one_member_of_base64Binary;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in base64Binary list1 is in
  * base64Binary list2.
@@ -3524,11 +3236,7 @@ afw_function_definition_bag_base64Binary;
 
 /**
  * @brief Adaptive Function bag<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of base64Binary values and returns a list of list.
  *
@@ -3560,11 +3268,7 @@ afw_function_definition_bag_size_base64Binary;
 
 /**
  * @brief Adaptive Function bag_size<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -3596,11 +3300,7 @@ afw_function_definition_base64Binary;
 
 /**
  * @brief Adaptive Function base64Binary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type base64Binary returning base64Binary result.
  *
@@ -3636,11 +3336,7 @@ afw_function_definition_decode_to_string_base64Binary;
 
 /**
  * @brief Adaptive Function decode_to_string<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Decode base64Binary value to string. An error is thrown if decoded value is
  * not valid UTF-8.
@@ -3672,11 +3368,7 @@ afw_function_definition_eq_base64Binary;
 
 /**
  * @brief Adaptive Function eq<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "eqx" ("===")
@@ -3718,11 +3410,7 @@ afw_function_definition_eqx_base64Binary;
 
 /**
  * @brief Adaptive Function eqx<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use "eq" ("==") instead if you want
@@ -3759,11 +3447,7 @@ afw_function_definition_ge_base64Binary;
 
 /**
  * @brief Adaptive Function ge<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is greater than or equal to base64Binary arg2
  * and return the boolean result.
@@ -3799,11 +3483,7 @@ afw_function_definition_gt_base64Binary;
 
 /**
  * @brief Adaptive Function gt<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is greater than base64Binary arg2 and return
  * the boolean result.
@@ -3839,11 +3519,7 @@ afw_function_definition_intersection_base64Binary;
 
 /**
  * @brief Adaptive Function intersection<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of base64Binary with the values that are common to both list
  * of base64Binary list1 and list2.
@@ -3879,11 +3555,7 @@ afw_function_definition_is_base64Binary;
 
 /**
  * @brief Adaptive Function is<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType base64Binary and return the boolean result.
  *
@@ -3915,11 +3587,7 @@ afw_function_definition_is_in_base64Binary;
 
 /**
  * @brief Adaptive Function is_in<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether base64Binary value is in list of base64Binary list and
  * returns the boolean result.
@@ -3955,11 +3623,7 @@ afw_function_definition_le_base64Binary;
 
 /**
  * @brief Adaptive Function le<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is less than or equal to base64Binary arg2 and
  * return the boolean result.
@@ -3995,11 +3659,7 @@ afw_function_definition_lt_base64Binary;
 
 /**
  * @brief Adaptive Function lt<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is less that base64Binary arg2 and return the
  * boolean result.
@@ -4035,11 +3695,7 @@ afw_function_definition_ne_base64Binary;
 
 /**
  * @brief Adaptive Function ne<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is not equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -4081,11 +3737,7 @@ afw_function_definition_nex_base64Binary;
 
 /**
  * @brief Adaptive Function nex<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -4122,11 +3774,7 @@ afw_function_definition_one_and_only_base64Binary;
 
 /**
  * @brief Adaptive Function one_and_only<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of base64Binary values that contains one value to a
  * single base64Binary value.
@@ -4163,11 +3811,7 @@ afw_function_definition_set_equals_base64Binary;
 
 /**
  * @brief Adaptive Function set_equals<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if base64Binary list1 and base64Binary list2 are
  * subsets of each other and return the boolean result.
@@ -4203,11 +3847,7 @@ afw_function_definition_subset_base64Binary;
 
 /**
  * @brief Adaptive Function subset<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in base64Binary list1 are all in
  * base64Binary list2.
@@ -4243,11 +3883,7 @@ afw_function_definition_to_string_base64Binary;
 
 /**
  * @brief Adaptive Function to_string<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts base64Binary value to string. For list values, the to_string()
  * value for each entry is returned separated with commas.
@@ -4280,11 +3916,7 @@ afw_function_definition_union_base64Binary;
 
 /**
  * @brief Adaptive Function union<base64Binary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of base64Binary contains all of the unique values in two or
  * more list of base64Binary values.
@@ -4329,11 +3961,7 @@ afw_function_definition_at_least_one_member_of_boolean;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in boolean list1 is in boolean
  * list2.
@@ -4369,11 +3997,7 @@ afw_function_definition_bag_boolean;
 
 /**
  * @brief Adaptive Function bag<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of boolean values and returns a list of list.
  *
@@ -4405,11 +4029,7 @@ afw_function_definition_bag_size_boolean;
 
 /**
  * @brief Adaptive Function bag_size<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -4441,11 +4061,7 @@ afw_function_definition_boolean;
 
 /**
  * @brief Adaptive Function boolean
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type boolean returning boolean result.
  *
@@ -4481,11 +4097,7 @@ afw_function_definition_eq_boolean;
 
 /**
  * @brief Adaptive Function eq<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if boolean arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -4526,11 +4138,7 @@ afw_function_definition_eqx_boolean;
 
 /**
  * @brief Adaptive Function eqx<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -4567,11 +4175,7 @@ afw_function_definition_ge_boolean;
 
 /**
  * @brief Adaptive Function ge<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for boolean arg1 is greater than or equal to boolean arg2 and return
  * the boolean result.
@@ -4607,11 +4211,7 @@ afw_function_definition_gt_boolean;
 
 /**
  * @brief Adaptive Function gt<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for boolean arg1 is greater than boolean arg2 and return the boolean
  * result.
@@ -4647,11 +4247,7 @@ afw_function_definition_intersection_boolean;
 
 /**
  * @brief Adaptive Function intersection<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of boolean with the values that are common to both list of
  * boolean list1 and list2.
@@ -4687,11 +4283,7 @@ afw_function_definition_is_boolean;
 
 /**
  * @brief Adaptive Function is<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType boolean and return the boolean result.
  *
@@ -4723,11 +4315,7 @@ afw_function_definition_is_in_boolean;
 
 /**
  * @brief Adaptive Function is_in<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether boolean value is in list of boolean list and returns the
  * boolean result.
@@ -4763,11 +4351,7 @@ afw_function_definition_le_boolean;
 
 /**
  * @brief Adaptive Function le<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for boolean arg1 is less than or equal to boolean arg2 and return the
  * boolean result.
@@ -4803,11 +4387,7 @@ afw_function_definition_lt_boolean;
 
 /**
  * @brief Adaptive Function lt<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for boolean arg1 is less that boolean arg2 and return the boolean
  * result.
@@ -4843,11 +4423,7 @@ afw_function_definition_ne_boolean;
 
 /**
  * @brief Adaptive Function ne<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if boolean arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -4888,11 +4464,7 @@ afw_function_definition_nex_boolean;
 
 /**
  * @brief Adaptive Function nex<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -4929,11 +4501,7 @@ afw_function_definition_one_and_only_boolean;
 
 /**
  * @brief Adaptive Function one_and_only<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of boolean values that contains one value to a single
  * boolean value.
@@ -4970,11 +4538,7 @@ afw_function_definition_set_equals_boolean;
 
 /**
  * @brief Adaptive Function set_equals<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if boolean list1 and boolean list2 are subsets of each
  * other and return the boolean result.
@@ -5010,11 +4574,7 @@ afw_function_definition_subset_boolean;
 
 /**
  * @brief Adaptive Function subset<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in boolean list1 are all in
  * boolean list2.
@@ -5050,11 +4610,7 @@ afw_function_definition_to_string_boolean;
 
 /**
  * @brief Adaptive Function to_string<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts boolean value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -5087,11 +4643,7 @@ afw_function_definition_union_boolean;
 
 /**
  * @brief Adaptive Function union<boolean>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of boolean contains all of the unique values in two or more
  * list of boolean values.
@@ -5136,11 +4688,7 @@ afw_function_definition_assert;
 
 /**
  * @brief Adaptive Function assert
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Assert that a value is true. If not, an assertion_failed error is thrown.
  *
@@ -5176,11 +4724,7 @@ afw_function_definition_compile_expression_tuple;
 
 /**
  * @brief Adaptive Function compile_expression_tuple
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile a string containing adaptive expression tuple syntax and return
  * either an unevaluated expression tuple adaptive value or a string containing
@@ -5223,11 +4767,7 @@ afw_function_definition_compile_json;
 
 /**
  * @brief Adaptive Function compile_json
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile a string containing adaptive JSON syntax and return either an
  * unevaluated JSON adaptive value or a string containing the compiler listing.
@@ -5269,11 +4809,7 @@ afw_function_definition_compile_relaxed_json;
 
 /**
  * @brief Adaptive Function compile_relaxed_json
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile an adaptive relaxed JSON syntax string and return an adaptive value.
  *
@@ -5314,11 +4850,7 @@ afw_function_definition_convert_syntax_hybrid_to_expression;
 
 /**
  * @brief Adaptive Function convert_syntax_hybrid_to_expression
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Convert a string containing adaptive hybrid syntax, which can be an adaptive
  * template or adaptive expression tuple, to adaptive expression syntax.
@@ -5357,11 +4889,7 @@ afw_function_definition_decompile;
 
 /**
  * @brief Adaptive Function decompile
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Decompile an adaptive value to string.
  *
@@ -5399,11 +4927,7 @@ afw_function_definition_evaluate_expression_tuple;
 
 /**
  * @brief Adaptive Function evaluate_expression_tuple
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile a string containing adaptive expression tuple syntax and then
  * evaluate the result.
@@ -5444,11 +4968,7 @@ afw_function_definition_evaluate_value;
 
 /**
  * @brief Adaptive Function evaluate_value
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate an adaptive value.
  *
@@ -5488,11 +5008,7 @@ afw_function_definition_evaluate_with_retry;
 
 /**
  * @brief Adaptive Function evaluate_with_retry
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate a value and retry up to a limit if an exception occurs.
  *
@@ -5526,11 +5042,7 @@ afw_function_definition_qualifier;
 
 /**
  * @brief Adaptive Function qualifier
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function allows the active variables for a qualifier to be accessed as
  * the properties of an object.
@@ -5570,11 +5082,7 @@ afw_function_definition_qualifiers;
 
 /**
  * @brief Adaptive Function qualifiers
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function allows the active qualifiers to be accessed as properties of
  * an object. The value of each of these properties is an object whose
@@ -5612,11 +5120,7 @@ afw_function_definition_safe_evaluate;
 
 /**
  * @brief Adaptive Function safe_evaluate
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the evaluated adaptive value. If an exception occurs, return
  * evaluated error instead.
@@ -5652,11 +5156,7 @@ afw_function_definition_stringify;
 
 /**
  * @brief Adaptive Function stringify
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and decompile an adaptive value to string. For most values this has
  * the effect of producing a string containing json.
@@ -5698,11 +5198,7 @@ afw_function_definition_test_expression;
 
 /**
  * @brief Adaptive Function test_expression
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive expression and compare the results to an
  * expected value. Return object with the test's results.
@@ -5752,11 +5248,7 @@ afw_function_definition_test_expression_tuple;
 
 /**
  * @brief Adaptive Function test_expression_tuple
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive expression tuple and compare the results to
  * an expected value. Return object with the test's results.
@@ -5806,11 +5298,7 @@ afw_function_definition_test_hybrid;
 
 /**
  * @brief Adaptive Function test_hybrid
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate a string containing adaptive hybrid syntax which can be
  * an adaptive template or adaptive expression tuple and then compare the
@@ -5861,11 +5349,7 @@ afw_function_definition_test_script;
 
 /**
  * @brief Adaptive Function test_script
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive script and compare the results to an
  * expected value. Return object with the test's results.
@@ -5915,11 +5399,7 @@ afw_function_definition_test_script_runtime_support;
 
 /**
  * @brief Adaptive Function test_script_runtime_support
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a function called internally as the result of a test_script compile.
  * This function is not intended to be called directly.
@@ -5955,11 +5435,7 @@ afw_function_definition_test_template;
 
 /**
  * @brief Adaptive Function test_template
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive template and compare the results to an
  * expected value. Return object with the test's results.
@@ -6009,11 +5485,7 @@ afw_function_definition_test_value;
 
 /**
  * @brief Adaptive Function test_value
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate an adaptive value and compare it to an expected value. Return
  * object with the test's results.
@@ -6073,11 +5545,7 @@ afw_function_definition_add_dayTimeDuration_dateTime;
 
 /**
  * @brief Adaptive Function add_dayTimeDuration<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add dateTime arg1 to dayTimeDuration arg2 and return the dateTime result.
  *
@@ -6111,11 +5579,7 @@ afw_function_definition_add_yearMonthDuration_dateTime;
 
 /**
  * @brief Adaptive Function add_yearMonthDuration<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime result.
  *
@@ -6149,11 +5613,7 @@ afw_function_definition_at_least_one_member_of_dateTime;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in dateTime list1 is in dateTime
  * list2.
@@ -6189,11 +5649,7 @@ afw_function_definition_bag_dateTime;
 
 /**
  * @brief Adaptive Function bag<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of dateTime values and returns a list of list.
  *
@@ -6225,11 +5681,7 @@ afw_function_definition_bag_size_dateTime;
 
 /**
  * @brief Adaptive Function bag_size<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -6261,11 +5713,7 @@ afw_function_definition_dateTime;
 
 /**
  * @brief Adaptive Function dateTime
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type dateTime returning dateTime result.
  *
@@ -6301,11 +5749,7 @@ afw_function_definition_eq_dateTime;
 
 /**
  * @brief Adaptive Function eq<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -6346,11 +5790,7 @@ afw_function_definition_eqx_dateTime;
 
 /**
  * @brief Adaptive Function eqx<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -6387,11 +5827,7 @@ afw_function_definition_ge_dateTime;
 
 /**
  * @brief Adaptive Function ge<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is greater than or equal to dateTime arg2 and
  * return the boolean result.
@@ -6430,11 +5866,7 @@ afw_function_definition_gt_dateTime;
 
 /**
  * @brief Adaptive Function gt<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is greater than dateTime arg2 and return the
  * boolean result.
@@ -6473,11 +5905,7 @@ afw_function_definition_intersection_dateTime;
 
 /**
  * @brief Adaptive Function intersection<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of dateTime with the values that are common to both list of
  * dateTime list1 and list2.
@@ -6513,11 +5941,7 @@ afw_function_definition_is_dateTime;
 
 /**
  * @brief Adaptive Function is<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType dateTime and return the boolean result.
  *
@@ -6549,11 +5973,7 @@ afw_function_definition_is_in_dateTime;
 
 /**
  * @brief Adaptive Function is_in<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether dateTime value is in list of dateTime list and returns the
  * boolean result.
@@ -6589,11 +6009,7 @@ afw_function_definition_le_dateTime;
 
 /**
  * @brief Adaptive Function le<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is less than or equal to dateTime arg2 and return
  * the boolean result.
@@ -6632,11 +6048,7 @@ afw_function_definition_lt_dateTime;
 
 /**
  * @brief Adaptive Function lt<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is less that dateTime arg2 and return the boolean
  * result.
@@ -6675,11 +6087,7 @@ afw_function_definition_max_dateTime;
 
 /**
  * @brief Adaptive Function max<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the dateTime value that is greater than or equal to the others.
  * 
@@ -6715,11 +6123,7 @@ afw_function_definition_min_dateTime;
 
 /**
  * @brief Adaptive Function min<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the dateTime value that is less than or equal to the others.
  * 
@@ -6755,11 +6159,7 @@ afw_function_definition_ne_dateTime;
 
 /**
  * @brief Adaptive Function ne<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -6801,11 +6201,7 @@ afw_function_definition_nex_dateTime;
 
 /**
  * @brief Adaptive Function nex<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -6842,11 +6238,7 @@ afw_function_definition_one_and_only_dateTime;
 
 /**
  * @brief Adaptive Function one_and_only<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of dateTime values that contains one value to a single
  * dateTime value.
@@ -6883,11 +6275,7 @@ afw_function_definition_set_equals_dateTime;
 
 /**
  * @brief Adaptive Function set_equals<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if dateTime list1 and dateTime list2 are subsets of
  * each other and return the boolean result.
@@ -6923,11 +6311,7 @@ afw_function_definition_subset_dateTime;
 
 /**
  * @brief Adaptive Function subset<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in dateTime list1 are all in
  * dateTime list2.
@@ -6963,11 +6347,7 @@ afw_function_definition_subtract_dayTimeDuration_dateTime;
 
 /**
  * @brief Adaptive Function subtract_dayTimeDuration<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract dayTimeDuration arg2 from dateTime arg1 and return the dateTime
  * result.
@@ -7002,11 +6382,7 @@ afw_function_definition_subtract_yearMonthDuration_dateTime;
 
 /**
  * @brief Adaptive Function subtract_yearMonthDuration<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from dateTime arg1 and return the dateTime
  * result.
@@ -7041,11 +6417,7 @@ afw_function_definition_to_string_dateTime;
 
 /**
  * @brief Adaptive Function to_string<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts dateTime value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -7078,11 +6450,7 @@ afw_function_definition_union_dateTime;
 
 /**
  * @brief Adaptive Function union<dateTime>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of dateTime contains all of the unique values in two or more
  * list of dateTime values.
@@ -7127,11 +6495,7 @@ afw_function_definition_add_yearMonthDuration_date;
 
 /**
  * @brief Adaptive Function add_yearMonthDuration<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add date arg1 to yearMonthDuration arg2 and return the date result.
  *
@@ -7165,11 +6529,7 @@ afw_function_definition_at_least_one_member_of_date;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in date list1 is in date list2.
  *
@@ -7204,11 +6564,7 @@ afw_function_definition_bag_date;
 
 /**
  * @brief Adaptive Function bag<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of date values and returns a list of list.
  *
@@ -7240,11 +6596,7 @@ afw_function_definition_bag_size_date;
 
 /**
  * @brief Adaptive Function bag_size<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -7276,11 +6628,7 @@ afw_function_definition_date;
 
 /**
  * @brief Adaptive Function date
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type date returning date result.
  *
@@ -7316,11 +6664,7 @@ afw_function_definition_eq_date;
 
 /**
  * @brief Adaptive Function eq<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if date arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -7361,11 +6705,7 @@ afw_function_definition_eqx_date;
 
 /**
  * @brief Adaptive Function eqx<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for date arg1 is equal to the value and data type of arg2 then
  * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
@@ -7402,11 +6742,7 @@ afw_function_definition_ge_date;
 
 /**
  * @brief Adaptive Function ge<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for date arg1 is greater than or equal to date arg2 and return the
  * boolean result.
@@ -7445,11 +6781,7 @@ afw_function_definition_gt_date;
 
 /**
  * @brief Adaptive Function gt<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for date arg1 is greater than date arg2 and return the boolean
  * result.
@@ -7488,11 +6820,7 @@ afw_function_definition_intersection_date;
 
 /**
  * @brief Adaptive Function intersection<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of date with the values that are common to both list of date
  * list1 and list2.
@@ -7528,11 +6856,7 @@ afw_function_definition_is_date;
 
 /**
  * @brief Adaptive Function is<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType date and return the boolean result.
  *
@@ -7564,11 +6888,7 @@ afw_function_definition_is_in_date;
 
 /**
  * @brief Adaptive Function is_in<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether date value is in list of date list and returns the boolean
  * result.
@@ -7604,11 +6924,7 @@ afw_function_definition_le_date;
 
 /**
  * @brief Adaptive Function le<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for date arg1 is less than or equal to date arg2 and return the
  * boolean result.
@@ -7647,11 +6963,7 @@ afw_function_definition_lt_date;
 
 /**
  * @brief Adaptive Function lt<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for date arg1 is less that date arg2 and return the boolean result.
  * 
@@ -7689,11 +7001,7 @@ afw_function_definition_max_date;
 
 /**
  * @brief Adaptive Function max<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the date value that is greater than or equal to the others..
  * 
@@ -7729,11 +7037,7 @@ afw_function_definition_min_date;
 
 /**
  * @brief Adaptive Function min<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the date value that is less than or equal to the others..
  * 
@@ -7769,11 +7073,7 @@ afw_function_definition_ne_date;
 
 /**
  * @brief Adaptive Function ne<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if date arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -7814,11 +7114,7 @@ afw_function_definition_nex_date;
 
 /**
  * @brief Adaptive Function nex<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for date arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -7855,11 +7151,7 @@ afw_function_definition_one_and_only_date;
 
 /**
  * @brief Adaptive Function one_and_only<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of date values that contains one value to a single date
  * value.
@@ -7896,11 +7188,7 @@ afw_function_definition_set_equals_date;
 
 /**
  * @brief Adaptive Function set_equals<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if date list1 and date list2 are subsets of each other
  * and return the boolean result.
@@ -7936,11 +7224,7 @@ afw_function_definition_subset_date;
 
 /**
  * @brief Adaptive Function subset<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in date list1 are all in date
  * list2.
@@ -7976,11 +7260,7 @@ afw_function_definition_subtract_yearMonthDuration_date;
 
 /**
  * @brief Adaptive Function subtract_yearMonthDuration<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from date arg1 and return the date result.
  *
@@ -8014,11 +7294,7 @@ afw_function_definition_to_string_date;
 
 /**
  * @brief Adaptive Function to_string<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts date value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -8051,11 +7327,7 @@ afw_function_definition_union_date;
 
 /**
  * @brief Adaptive Function union<date>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of date contains all of the unique values in two or more list
  * of date values.
@@ -8100,11 +7372,7 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in dayTimeDuration list1 is in
  * dayTimeDuration list2.
@@ -8140,11 +7408,7 @@ afw_function_definition_bag_dayTimeDuration;
 
 /**
  * @brief Adaptive Function bag<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of dayTimeDuration values and returns a list of list.
  *
@@ -8176,11 +7440,7 @@ afw_function_definition_bag_size_dayTimeDuration;
 
 /**
  * @brief Adaptive Function bag_size<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -8212,11 +7472,7 @@ afw_function_definition_dayTimeDuration;
 
 /**
  * @brief Adaptive Function dayTimeDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type dayTimeDuration returning dayTimeDuration
  * result.
@@ -8253,11 +7509,7 @@ afw_function_definition_eq_dayTimeDuration;
 
 /**
  * @brief Adaptive Function eq<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "eqx" ("===")
@@ -8299,11 +7551,7 @@ afw_function_definition_eqx_dayTimeDuration;
 
 /**
  * @brief Adaptive Function eqx<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use "eq" ("==") instead if you want
@@ -8340,11 +7588,7 @@ afw_function_definition_ge_dayTimeDuration;
 
 /**
  * @brief Adaptive Function ge<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is greater than or equal to dayTimeDuration
  * arg2 and return the boolean result.
@@ -8380,11 +7624,7 @@ afw_function_definition_gt_dayTimeDuration;
 
 /**
  * @brief Adaptive Function gt<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is greater than dayTimeDuration arg2 and
  * return the boolean result.
@@ -8420,11 +7660,7 @@ afw_function_definition_intersection_dayTimeDuration;
 
 /**
  * @brief Adaptive Function intersection<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of dayTimeDuration with the values that are common to both
  * list of dayTimeDuration list1 and list2.
@@ -8460,11 +7696,7 @@ afw_function_definition_is_dayTimeDuration;
 
 /**
  * @brief Adaptive Function is<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType dayTimeDuration and return the boolean
  * result.
@@ -8497,11 +7729,7 @@ afw_function_definition_is_in_dayTimeDuration;
 
 /**
  * @brief Adaptive Function is_in<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether dayTimeDuration value is in list of dayTimeDuration list and
  * returns the boolean result.
@@ -8537,11 +7765,7 @@ afw_function_definition_le_dayTimeDuration;
 
 /**
  * @brief Adaptive Function le<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration
  * arg2 and return the boolean result.
@@ -8577,11 +7801,7 @@ afw_function_definition_lt_dayTimeDuration;
 
 /**
  * @brief Adaptive Function lt<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is less that dayTimeDuration arg2 and return
  * the boolean result.
@@ -8617,11 +7837,7 @@ afw_function_definition_ne_dayTimeDuration;
 
 /**
  * @brief Adaptive Function ne<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is not equal to the value of arg2
  * converted to the data type of arg1 then return the boolean result. Use "nex"
@@ -8663,11 +7879,7 @@ afw_function_definition_nex_dayTimeDuration;
 
 /**
  * @brief Adaptive Function nex<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is not equal to the value or data type
  * of arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -8704,11 +7916,7 @@ afw_function_definition_one_and_only_dayTimeDuration;
 
 /**
  * @brief Adaptive Function one_and_only<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of dayTimeDuration values that contains one value to a
  * single dayTimeDuration value.
@@ -8745,11 +7953,7 @@ afw_function_definition_set_equals_dayTimeDuration;
 
 /**
  * @brief Adaptive Function set_equals<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2 are
  * subsets of each other and return the boolean result.
@@ -8785,11 +7989,7 @@ afw_function_definition_subset_dayTimeDuration;
 
 /**
  * @brief Adaptive Function subset<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in dayTimeDuration list1 are all
  * in dayTimeDuration list2.
@@ -8825,11 +8025,7 @@ afw_function_definition_to_string_dayTimeDuration;
 
 /**
  * @brief Adaptive Function to_string<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts dayTimeDuration value to string. For list values, the to_string()
  * value for each entry is returned separated with commas.
@@ -8862,11 +8058,7 @@ afw_function_definition_union_dayTimeDuration;
 
 /**
  * @brief Adaptive Function union<dayTimeDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of dayTimeDuration contains all of the unique values in two
  * or more list of dayTimeDuration values.
@@ -8911,11 +8103,7 @@ afw_function_definition_bag_dnsName;
 
 /**
  * @brief Adaptive Function bag<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of dnsName values and returns a list of list.
  *
@@ -8947,11 +8135,7 @@ afw_function_definition_bag_size_dnsName;
 
 /**
  * @brief Adaptive Function bag_size<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -8983,11 +8167,7 @@ afw_function_definition_dnsName;
 
 /**
  * @brief Adaptive Function dnsName
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type dnsName returning dnsName result.
  *
@@ -9023,11 +8203,7 @@ afw_function_definition_eq_dnsName;
 
 /**
  * @brief Adaptive Function eq<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -9068,11 +8244,7 @@ afw_function_definition_eqx_dnsName;
 
 /**
  * @brief Adaptive Function eqx<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -9109,11 +8281,7 @@ afw_function_definition_ge_dnsName;
 
 /**
  * @brief Adaptive Function ge<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
  * the boolean result.
@@ -9149,11 +8317,7 @@ afw_function_definition_gt_dnsName;
 
 /**
  * @brief Adaptive Function gt<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
  * result.
@@ -9189,11 +8353,7 @@ afw_function_definition_is_dnsName;
 
 /**
  * @brief Adaptive Function is<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType dnsName and return the boolean result.
  *
@@ -9225,11 +8385,7 @@ afw_function_definition_is_in_dnsName;
 
 /**
  * @brief Adaptive Function is_in<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether dnsName value is in list of dnsName list and returns the
  * boolean result.
@@ -9265,11 +8421,7 @@ afw_function_definition_le_dnsName;
 
 /**
  * @brief Adaptive Function le<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is less than or equal to dnsName arg2 and return the
  * boolean result.
@@ -9305,11 +8457,7 @@ afw_function_definition_lt_dnsName;
 
 /**
  * @brief Adaptive Function lt<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
  * result.
@@ -9345,11 +8493,7 @@ afw_function_definition_ne_dnsName;
 
 /**
  * @brief Adaptive Function ne<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -9390,11 +8534,7 @@ afw_function_definition_nex_dnsName;
 
 /**
  * @brief Adaptive Function nex<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -9431,11 +8571,7 @@ afw_function_definition_one_and_only_dnsName;
 
 /**
  * @brief Adaptive Function one_and_only<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of dnsName values that contains one value to a single
  * dnsName value.
@@ -9472,11 +8608,7 @@ afw_function_definition_regexp_match_dnsName;
 
 /**
  * @brief Adaptive Function regexp_match<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether dnsName value matches the regular expression regexp and
  * return the boolean result.
@@ -9512,11 +8644,7 @@ afw_function_definition_to_string_dnsName;
 
 /**
  * @brief Adaptive Function to_string<dnsName>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts dnsName value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -9559,11 +8687,7 @@ afw_function_definition_abs_double;
 
 /**
  * @brief Adaptive Function abs<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compute the absolute value of the double value and return the double result.
  *
@@ -9594,11 +8718,7 @@ afw_function_definition_add_double;
 
 /**
  * @brief Adaptive Function add<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add 2 or more double values and return the double result.
  *
@@ -9631,11 +8751,7 @@ afw_function_definition_at_least_one_member_of_double;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in double list1 is in double
  * list2.
@@ -9671,11 +8787,7 @@ afw_function_definition_bag_double;
 
 /**
  * @brief Adaptive Function bag<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of double values and returns a list of list.
  *
@@ -9707,11 +8819,7 @@ afw_function_definition_bag_size_double;
 
 /**
  * @brief Adaptive Function bag_size<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -9743,11 +8851,7 @@ afw_function_definition_ceil_double;
 
 /**
  * @brief Adaptive Function ceil<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the smallest integer that is greater then or equal to the double
  * value and return the double result.
@@ -9779,11 +8883,7 @@ afw_function_definition_divide_double;
 
 /**
  * @brief Adaptive Function divide<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Divide double dividend by double divisor and return the double quotient.
  *
@@ -9817,11 +8917,7 @@ afw_function_definition_double;
 
 /**
  * @brief Adaptive Function double
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type double returning double result.
  *
@@ -9857,11 +8953,7 @@ afw_function_definition_eq_double;
 
 /**
  * @brief Adaptive Function eq<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if double arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -9902,11 +8994,7 @@ afw_function_definition_eqx_double;
 
 /**
  * @brief Adaptive Function eqx<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for double arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -9943,11 +9031,7 @@ afw_function_definition_floor_double;
 
 /**
  * @brief Adaptive Function floor<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the largest integer that is smaller then or equal to the double
  * value and return the double result.
@@ -9979,11 +9063,7 @@ afw_function_definition_ge_double;
 
 /**
  * @brief Adaptive Function ge<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for double arg1 is greater than or equal to double arg2 and return
  * the boolean result.
@@ -10019,11 +9099,7 @@ afw_function_definition_gt_double;
 
 /**
  * @brief Adaptive Function gt<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for double arg1 is greater than double arg2 and return the boolean
  * result.
@@ -10059,11 +9135,7 @@ afw_function_definition_intersection_double;
 
 /**
  * @brief Adaptive Function intersection<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of double with the values that are common to both list of
  * double list1 and list2.
@@ -10099,11 +9171,7 @@ afw_function_definition_is_NaN;
 
 /**
  * @brief Adaptive Function is_NaN
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks if the argument 'number' is not a number(NaN) and returns the boolean
  * result.
@@ -10135,11 +9203,7 @@ afw_function_definition_is_double;
 
 /**
  * @brief Adaptive Function is<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType double and return the boolean result.
  *
@@ -10171,11 +9235,7 @@ afw_function_definition_is_finite;
 
 /**
  * @brief Adaptive Function is_finite
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks if the argument 'number' is finite and returns the boolean result.
  *
@@ -10206,11 +9266,7 @@ afw_function_definition_is_in_double;
 
 /**
  * @brief Adaptive Function is_in<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether double value is in list of double list and returns the
  * boolean result.
@@ -10246,11 +9302,7 @@ afw_function_definition_le_double;
 
 /**
  * @brief Adaptive Function le<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for double arg1 is less than or equal to double arg2 and return the
  * boolean result.
@@ -10286,11 +9338,7 @@ afw_function_definition_lt_double;
 
 /**
  * @brief Adaptive Function lt<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for double arg1 is less that double arg2 and return the boolean
  * result.
@@ -10326,11 +9374,7 @@ afw_function_definition_max_double;
 
 /**
  * @brief Adaptive Function max<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the double value that is greater than or equal to the others.
  *
@@ -10363,11 +9407,7 @@ afw_function_definition_min_double;
 
 /**
  * @brief Adaptive Function min<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the double value that is less than or equal to the others.
  *
@@ -10400,11 +9440,7 @@ afw_function_definition_multiply_double;
 
 /**
  * @brief Adaptive Function multiply<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Multiply 2 or more double values and return the double result.
  *
@@ -10437,11 +9473,7 @@ afw_function_definition_ne_double;
 
 /**
  * @brief Adaptive Function ne<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if double arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -10482,11 +9514,7 @@ afw_function_definition_negative_double;
 
 /**
  * @brief Adaptive Function negative<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return negative of double value.
  *
@@ -10517,11 +9545,7 @@ afw_function_definition_nex_double;
 
 /**
  * @brief Adaptive Function nex<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for double arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -10558,11 +9582,7 @@ afw_function_definition_one_and_only_double;
 
 /**
  * @brief Adaptive Function one_and_only<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of double values that contains one value to a single
  * double value.
@@ -10599,11 +9619,7 @@ afw_function_definition_pow_double;
 
 /**
  * @brief Adaptive Function pow<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter
@@ -10640,11 +9656,7 @@ afw_function_definition_round_double;
 
 /**
  * @brief Adaptive Function round<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the integer closest to double value and return the double result.
  *
@@ -10675,11 +9687,7 @@ afw_function_definition_set_equals_double;
 
 /**
  * @brief Adaptive Function set_equals<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if double list1 and double list2 are subsets of each
  * other and return the boolean result.
@@ -10715,11 +9723,7 @@ afw_function_definition_subset_double;
 
 /**
  * @brief Adaptive Function subset<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in double list1 are all in double
  * list2.
@@ -10755,11 +9759,7 @@ afw_function_definition_subtract_double;
 
 /**
  * @brief Adaptive Function subtract<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract double arg2 from double arg1 and return the double result.
  *
@@ -10793,11 +9793,7 @@ afw_function_definition_to_integer_double;
 
 /**
  * @brief Adaptive Function to_integer<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Truncate double value to a whole number and returns integer result.
  *
@@ -10829,11 +9825,7 @@ afw_function_definition_to_string_double;
 
 /**
  * @brief Adaptive Function to_string<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts double value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -10866,11 +9858,7 @@ afw_function_definition_union_double;
 
 /**
  * @brief Adaptive Function union<double>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of double contains all of the unique values in two or more
  * list of double values.
@@ -10915,11 +9903,7 @@ afw_function_definition_bag_expression;
 
 /**
  * @brief Adaptive Function bag<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of expression values and returns a list of list.
  *
@@ -10951,11 +9935,7 @@ afw_function_definition_bag_size_expression;
 
 /**
  * @brief Adaptive Function bag_size<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -10987,11 +9967,7 @@ afw_function_definition_compile_expression;
 
 /**
  * @brief Adaptive Function compile<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile expression value and return either an unevaluated adaptive value or
  * a string containing the compiler listing.
@@ -11032,11 +10008,7 @@ afw_function_definition_eq_expression;
 
 /**
  * @brief Adaptive Function eq<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if expression arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -11077,11 +10049,7 @@ afw_function_definition_eqx_expression;
 
 /**
  * @brief Adaptive Function eqx<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for expression arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -11118,11 +10086,7 @@ afw_function_definition_evaluate_expression;
 
 /**
  * @brief Adaptive Function evaluate<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate expression value.
  *
@@ -11162,11 +10126,7 @@ afw_function_definition_expression;
 
 /**
  * @brief Adaptive Function expression
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type expression returning expression result.
  *
@@ -11202,11 +10162,7 @@ afw_function_definition_ge_expression;
 
 /**
  * @brief Adaptive Function ge<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for expression arg1 is greater than or equal to expression arg2 and
  * return the boolean result.
@@ -11242,11 +10198,7 @@ afw_function_definition_gt_expression;
 
 /**
  * @brief Adaptive Function gt<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for expression arg1 is greater than expression arg2 and return the
  * boolean result.
@@ -11282,11 +10234,7 @@ afw_function_definition_is_expression;
 
 /**
  * @brief Adaptive Function is<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType expression and return the boolean result.
  *
@@ -11318,11 +10266,7 @@ afw_function_definition_le_expression;
 
 /**
  * @brief Adaptive Function le<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for expression arg1 is less than or equal to expression arg2 and
  * return the boolean result.
@@ -11358,11 +10302,7 @@ afw_function_definition_lt_expression;
 
 /**
  * @brief Adaptive Function lt<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for expression arg1 is less that expression arg2 and return the
  * boolean result.
@@ -11398,11 +10338,7 @@ afw_function_definition_ne_expression;
 
 /**
  * @brief Adaptive Function ne<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if expression arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -11444,11 +10380,7 @@ afw_function_definition_nex_expression;
 
 /**
  * @brief Adaptive Function nex<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for expression arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -11485,11 +10417,7 @@ afw_function_definition_to_string_expression;
 
 /**
  * @brief Adaptive Function to_string<expression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts expression value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -11532,11 +10460,7 @@ afw_function_definition_bag_function;
 
 /**
  * @brief Adaptive Function bag<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of function values and returns a list of list.
  *
@@ -11568,11 +10492,7 @@ afw_function_definition_bag_size_function;
 
 /**
  * @brief Adaptive Function bag_size<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -11604,11 +10524,7 @@ afw_function_definition_eq_function;
 
 /**
  * @brief Adaptive Function eq<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if function arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -11649,11 +10565,7 @@ afw_function_definition_eqx_function;
 
 /**
  * @brief Adaptive Function eqx<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for function arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -11690,11 +10602,7 @@ afw_function_definition_function;
 
 /**
  * @brief Adaptive Function function
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type function returning function result.
  *
@@ -11730,11 +10638,7 @@ afw_function_definition_ge_function;
 
 /**
  * @brief Adaptive Function ge<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for function arg1 is greater than or equal to function arg2 and
  * return the boolean result.
@@ -11770,11 +10674,7 @@ afw_function_definition_gt_function;
 
 /**
  * @brief Adaptive Function gt<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for function arg1 is greater than function arg2 and return the
  * boolean result.
@@ -11810,11 +10710,7 @@ afw_function_definition_is_function;
 
 /**
  * @brief Adaptive Function is<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType function and return the boolean result.
  *
@@ -11846,11 +10742,7 @@ afw_function_definition_le_function;
 
 /**
  * @brief Adaptive Function le<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for function arg1 is less than or equal to function arg2 and return
  * the boolean result.
@@ -11886,11 +10778,7 @@ afw_function_definition_lt_function;
 
 /**
  * @brief Adaptive Function lt<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for function arg1 is less that function arg2 and return the boolean
  * result.
@@ -11926,11 +10814,7 @@ afw_function_definition_ne_function;
 
 /**
  * @brief Adaptive Function ne<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if function arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -11972,11 +10856,7 @@ afw_function_definition_nex_function;
 
 /**
  * @brief Adaptive Function nex<function>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for function arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -12023,11 +10903,7 @@ afw_function_definition_at_least_one_member_of_hexBinary;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in hexBinary list1 is in
  * hexBinary list2.
@@ -12063,11 +10939,7 @@ afw_function_definition_bag_hexBinary;
 
 /**
  * @brief Adaptive Function bag<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of hexBinary values and returns a list of list.
  *
@@ -12099,11 +10971,7 @@ afw_function_definition_bag_size_hexBinary;
 
 /**
  * @brief Adaptive Function bag_size<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -12135,11 +11003,7 @@ afw_function_definition_decode_to_string_hexBinary;
 
 /**
  * @brief Adaptive Function decode_to_string<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Decode hexBinary value to string. An error is thrown if decoded value is not
  * valid UTF-8.
@@ -12171,11 +11035,7 @@ afw_function_definition_eq_hexBinary;
 
 /**
  * @brief Adaptive Function eq<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -12216,11 +11076,7 @@ afw_function_definition_eqx_hexBinary;
 
 /**
  * @brief Adaptive Function eqx<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -12257,11 +11113,7 @@ afw_function_definition_ge_hexBinary;
 
 /**
  * @brief Adaptive Function ge<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is greater than or equal to hexBinary arg2 and
  * return the boolean result.
@@ -12297,11 +11149,7 @@ afw_function_definition_gt_hexBinary;
 
 /**
  * @brief Adaptive Function gt<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is greater than hexBinary arg2 and return the
  * boolean result.
@@ -12337,11 +11185,7 @@ afw_function_definition_hexBinary;
 
 /**
  * @brief Adaptive Function hexBinary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type hexBinary returning hexBinary result.
  *
@@ -12377,11 +11221,7 @@ afw_function_definition_intersection_hexBinary;
 
 /**
  * @brief Adaptive Function intersection<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of hexBinary with the values that are common to both list of
  * hexBinary list1 and list2.
@@ -12417,11 +11257,7 @@ afw_function_definition_is_hexBinary;
 
 /**
  * @brief Adaptive Function is<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType hexBinary and return the boolean result.
  *
@@ -12453,11 +11289,7 @@ afw_function_definition_is_in_hexBinary;
 
 /**
  * @brief Adaptive Function is_in<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether hexBinary value is in list of hexBinary list and returns the
  * boolean result.
@@ -12493,11 +11325,7 @@ afw_function_definition_le_hexBinary;
 
 /**
  * @brief Adaptive Function le<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is less than or equal to hexBinary arg2 and return
  * the boolean result.
@@ -12533,11 +11361,7 @@ afw_function_definition_lt_hexBinary;
 
 /**
  * @brief Adaptive Function lt<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is less that hexBinary arg2 and return the boolean
  * result.
@@ -12573,11 +11397,7 @@ afw_function_definition_ne_hexBinary;
 
 /**
  * @brief Adaptive Function ne<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -12619,11 +11439,7 @@ afw_function_definition_nex_hexBinary;
 
 /**
  * @brief Adaptive Function nex<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -12660,11 +11476,7 @@ afw_function_definition_one_and_only_hexBinary;
 
 /**
  * @brief Adaptive Function one_and_only<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of hexBinary values that contains one value to a single
  * hexBinary value.
@@ -12701,11 +11513,7 @@ afw_function_definition_set_equals_hexBinary;
 
 /**
  * @brief Adaptive Function set_equals<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of
  * each other and return the boolean result.
@@ -12741,11 +11549,7 @@ afw_function_definition_subset_hexBinary;
 
 /**
  * @brief Adaptive Function subset<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in hexBinary list1 are all in
  * hexBinary list2.
@@ -12781,11 +11585,7 @@ afw_function_definition_to_string_hexBinary;
 
 /**
  * @brief Adaptive Function to_string<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts hexBinary value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -12818,11 +11618,7 @@ afw_function_definition_union_hexBinary;
 
 /**
  * @brief Adaptive Function union<hexBinary>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of hexBinary contains all of the unique values in two or more
  * list of hexBinary values.
@@ -12867,11 +11663,7 @@ afw_function_definition_all_of;
 
 /**
  * @brief Adaptive Function all_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if all values in a list pass the predicate test.
  *
@@ -12910,11 +11702,7 @@ afw_function_definition_all_of_all;
 
 /**
  * @brief Adaptive Function all_of_all
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
  * of values from list1 and list2 returns true.
@@ -12954,11 +11742,7 @@ afw_function_definition_all_of_any;
 
 /**
  * @brief Adaptive Function all_of_any
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with all of
  * the combination of values from list1 and any of the values of list2 returns
@@ -12999,11 +11783,7 @@ afw_function_definition_any_of;
 
 /**
  * @brief Adaptive Function any_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if any value in a list pass the predicate test.
  *
@@ -13042,11 +11822,7 @@ afw_function_definition_any_of_all;
 
 /**
  * @brief Adaptive Function any_of_all
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
  * of values from list2 and any of the values of list1 returns true.
@@ -13086,11 +11862,7 @@ afw_function_definition_any_of_any;
 
 /**
  * @brief Adaptive Function any_of_any
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with any of
  * the combination of values from list1 and list2 returns true.
@@ -13130,11 +11902,7 @@ afw_function_definition_filter;
 
 /**
  * @brief Adaptive Function filter
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This produces a list containing only values from another list that pass a
  * predicate test.
@@ -13174,11 +11942,7 @@ afw_function_definition_find;
 
 /**
  * @brief Adaptive Function find
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * The predicate is called for each value in the first list in values until
  * true is returned, then that value is returned.
@@ -13217,11 +11981,7 @@ afw_function_definition_map;
 
 /**
  * @brief Adaptive Function map
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function creates a list of the results of calling functor with each
  * value of the first list in values
@@ -13259,11 +12019,7 @@ afw_function_definition_reduce;
 
 /**
  * @brief Adaptive Function reduce
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Reduce calls functor for each value in list with two parameters, accumulator
  * and value, and must return a value of any dataType. Parameter accumulator is
@@ -13309,11 +12065,7 @@ afw_function_definition_sort;
 
 /**
  * @brief Adaptive Function sort
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This produces a list with values sorted based on result of compareFunction.
  * The compareFunction is passed two values from the list and must return an
@@ -13362,11 +12114,7 @@ afw_function_definition_bag_hybrid;
 
 /**
  * @brief Adaptive Function bag<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of hybrid values and returns a list of list.
  *
@@ -13398,11 +12146,7 @@ afw_function_definition_bag_size_hybrid;
 
 /**
  * @brief Adaptive Function bag_size<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -13434,11 +12178,7 @@ afw_function_definition_compile_hybrid;
 
 /**
  * @brief Adaptive Function compile<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile hybrid value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -13479,11 +12219,7 @@ afw_function_definition_eq_hybrid;
 
 /**
  * @brief Adaptive Function eq<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -13524,11 +12260,7 @@ afw_function_definition_eqx_hybrid;
 
 /**
  * @brief Adaptive Function eqx<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -13565,11 +12297,7 @@ afw_function_definition_evaluate_hybrid;
 
 /**
  * @brief Adaptive Function evaluate<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate hybrid value.
  *
@@ -13609,11 +12337,7 @@ afw_function_definition_ge_hybrid;
 
 /**
  * @brief Adaptive Function ge<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return
  * the boolean result.
@@ -13649,11 +12373,7 @@ afw_function_definition_gt_hybrid;
 
 /**
  * @brief Adaptive Function gt<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is greater than hybrid arg2 and return the boolean
  * result.
@@ -13689,11 +12409,7 @@ afw_function_definition_hybrid;
 
 /**
  * @brief Adaptive Function hybrid
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type hybrid returning hybrid result.
  *
@@ -13729,11 +12445,7 @@ afw_function_definition_is_hybrid;
 
 /**
  * @brief Adaptive Function is<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType hybrid and return the boolean result.
  *
@@ -13765,11 +12477,7 @@ afw_function_definition_le_hybrid;
 
 /**
  * @brief Adaptive Function le<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is less than or equal to hybrid arg2 and return the
  * boolean result.
@@ -13805,11 +12513,7 @@ afw_function_definition_lt_hybrid;
 
 /**
  * @brief Adaptive Function lt<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is less that hybrid arg2 and return the boolean
  * result.
@@ -13845,11 +12549,7 @@ afw_function_definition_ne_hybrid;
 
 /**
  * @brief Adaptive Function ne<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -13890,11 +12590,7 @@ afw_function_definition_nex_hybrid;
 
 /**
  * @brief Adaptive Function nex<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -13931,11 +12627,7 @@ afw_function_definition_to_string_hybrid;
 
 /**
  * @brief Adaptive Function to_string<hybrid>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts hybrid value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -13978,11 +12670,7 @@ afw_function_definition_bag_ia5String;
 
 /**
  * @brief Adaptive Function bag<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of ia5String values and returns a list of list.
  *
@@ -14014,11 +12702,7 @@ afw_function_definition_bag_size_ia5String;
 
 /**
  * @brief Adaptive Function bag_size<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -14050,11 +12734,7 @@ afw_function_definition_eq_ia5String;
 
 /**
  * @brief Adaptive Function eq<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -14095,11 +12775,7 @@ afw_function_definition_eqx_ia5String;
 
 /**
  * @brief Adaptive Function eqx<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -14136,11 +12812,7 @@ afw_function_definition_ge_ia5String;
 
 /**
  * @brief Adaptive Function ge<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is greater than or equal to ia5String arg2 and
  * return the boolean result.
@@ -14176,11 +12848,7 @@ afw_function_definition_gt_ia5String;
 
 /**
  * @brief Adaptive Function gt<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is greater than ia5String arg2 and return the
  * boolean result.
@@ -14216,11 +12884,7 @@ afw_function_definition_ia5String;
 
 /**
  * @brief Adaptive Function ia5String
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type ia5String returning ia5String result.
  *
@@ -14256,11 +12920,7 @@ afw_function_definition_is_ia5String;
 
 /**
  * @brief Adaptive Function is<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType ia5String and return the boolean result.
  *
@@ -14292,11 +12952,7 @@ afw_function_definition_le_ia5String;
 
 /**
  * @brief Adaptive Function le<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is less than or equal to ia5String arg2 and return
  * the boolean result.
@@ -14332,11 +12988,7 @@ afw_function_definition_lt_ia5String;
 
 /**
  * @brief Adaptive Function lt<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is less that ia5String arg2 and return the boolean
  * result.
@@ -14372,11 +13024,7 @@ afw_function_definition_ne_ia5String;
 
 /**
  * @brief Adaptive Function ne<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -14418,11 +13066,7 @@ afw_function_definition_nex_ia5String;
 
 /**
  * @brief Adaptive Function nex<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -14459,11 +13103,7 @@ afw_function_definition_to_string_ia5String;
 
 /**
  * @brief Adaptive Function to_string<ia5String>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts ia5String value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -14506,11 +13146,7 @@ afw_function_definition_index_create;
 
 /**
  * @brief Adaptive Function index_create
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Create an index definition.
  *
@@ -14564,11 +13200,7 @@ afw_function_definition_index_list;
 
 /**
  * @brief Adaptive Function index_list
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * List property indexes
  *
@@ -14602,11 +13234,7 @@ afw_function_definition_index_remove;
 
 /**
  * @brief Adaptive Function index_remove
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Remove an index definition.
  *
@@ -14650,11 +13278,7 @@ afw_function_definition_abs_integer;
 
 /**
  * @brief Adaptive Function abs<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compute the absolute value of the integer value and return the integer
  * result.
@@ -14686,11 +13310,7 @@ afw_function_definition_add_integer;
 
 /**
  * @brief Adaptive Function add<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add 2 or more integer values and return the integer result.
  *
@@ -14723,11 +13343,7 @@ afw_function_definition_at_least_one_member_of_integer;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in integer list1 is in integer
  * list2.
@@ -14763,11 +13379,7 @@ afw_function_definition_bag_integer;
 
 /**
  * @brief Adaptive Function bag<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of integer values and returns a list of list.
  *
@@ -14799,11 +13411,7 @@ afw_function_definition_bag_size_integer;
 
 /**
  * @brief Adaptive Function bag_size<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -14835,11 +13443,7 @@ afw_function_definition_divide_integer;
 
 /**
  * @brief Adaptive Function divide<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Divide integer dividend by integer divisor and return the integer quotient.
  *
@@ -14873,11 +13477,7 @@ afw_function_definition_eq_integer;
 
 /**
  * @brief Adaptive Function eq<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if integer arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -14918,11 +13518,7 @@ afw_function_definition_eqx_integer;
 
 /**
  * @brief Adaptive Function eqx<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for integer arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -14959,11 +13555,7 @@ afw_function_definition_ge_integer;
 
 /**
  * @brief Adaptive Function ge<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for integer arg1 is greater than or equal to integer arg2 and return
  * the boolean result.
@@ -14999,11 +13591,7 @@ afw_function_definition_gt_integer;
 
 /**
  * @brief Adaptive Function gt<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for integer arg1 is greater than integer arg2 and return the boolean
  * result.
@@ -15039,11 +13627,7 @@ afw_function_definition_integer;
 
 /**
  * @brief Adaptive Function integer
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type integer returning integer result.
  *
@@ -15079,11 +13663,7 @@ afw_function_definition_intersection_integer;
 
 /**
  * @brief Adaptive Function intersection<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of integer with the values that are common to both list of
  * integer list1 and list2.
@@ -15119,11 +13699,7 @@ afw_function_definition_is_in_integer;
 
 /**
  * @brief Adaptive Function is_in<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether integer value is in list of integer list and returns the
  * boolean result.
@@ -15159,11 +13735,7 @@ afw_function_definition_is_integer;
 
 /**
  * @brief Adaptive Function is<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType integer and return the boolean result.
  *
@@ -15195,11 +13767,7 @@ afw_function_definition_le_integer;
 
 /**
  * @brief Adaptive Function le<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for integer arg1 is less than or equal to integer arg2 and return the
  * boolean result.
@@ -15235,11 +13803,7 @@ afw_function_definition_lt_integer;
 
 /**
  * @brief Adaptive Function lt<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for integer arg1 is less that integer arg2 and return the boolean
  * result.
@@ -15275,11 +13839,7 @@ afw_function_definition_max_integer;
 
 /**
  * @brief Adaptive Function max<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the integer value that is greater than or equal to the others.
  *
@@ -15312,11 +13872,7 @@ afw_function_definition_min_integer;
 
 /**
  * @brief Adaptive Function min<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the integer value that is less than or equal to the others.
  *
@@ -15349,11 +13905,7 @@ afw_function_definition_mod_integer;
 
 /**
  * @brief Adaptive Function mod<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Divide integer dividend by integer divisor and return the integer remainder.
  *
@@ -15387,11 +13939,7 @@ afw_function_definition_multiply_integer;
 
 /**
  * @brief Adaptive Function multiply<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Multiply 2 or more integer values and return the integer result.
  *
@@ -15424,11 +13972,7 @@ afw_function_definition_ne_integer;
 
 /**
  * @brief Adaptive Function ne<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if integer arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -15469,11 +14013,7 @@ afw_function_definition_negative_integer;
 
 /**
  * @brief Adaptive Function negative<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return negative of integer value.
  *
@@ -15504,11 +14044,7 @@ afw_function_definition_nex_integer;
 
 /**
  * @brief Adaptive Function nex<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for integer arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -15545,11 +14081,7 @@ afw_function_definition_one_and_only_integer;
 
 /**
  * @brief Adaptive Function one_and_only<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of integer values that contains one value to a single
  * integer value.
@@ -15586,11 +14118,7 @@ afw_function_definition_set_equals_integer;
 
 /**
  * @brief Adaptive Function set_equals<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if integer list1 and integer list2 are subsets of each
  * other and return the boolean result.
@@ -15626,11 +14154,7 @@ afw_function_definition_subset_integer;
 
 /**
  * @brief Adaptive Function subset<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in integer list1 are all in
  * integer list2.
@@ -15666,11 +14190,7 @@ afw_function_definition_subtract_integer;
 
 /**
  * @brief Adaptive Function subtract<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract integer arg2 from integer arg1 and return the integer result.
  *
@@ -15704,11 +14224,7 @@ afw_function_definition_to_double_integer;
 
 /**
  * @brief Adaptive Function to_double<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts integer value to double and returns double result.
  *
@@ -15744,11 +14260,7 @@ afw_function_definition_to_string_integer;
 
 /**
  * @brief Adaptive Function to_string<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts integer value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -15781,11 +14293,7 @@ afw_function_definition_union_integer;
 
 /**
  * @brief Adaptive Function union<integer>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of integer contains all of the unique values in two or more
  * list of integer values.
@@ -15830,11 +14338,7 @@ afw_function_definition_bag_ipAddress;
 
 /**
  * @brief Adaptive Function bag<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of ipAddress values and returns a list of list.
  *
@@ -15866,11 +14370,7 @@ afw_function_definition_bag_size_ipAddress;
 
 /**
  * @brief Adaptive Function bag_size<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -15902,11 +14402,7 @@ afw_function_definition_eq_ipAddress;
 
 /**
  * @brief Adaptive Function eq<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -15947,11 +14443,7 @@ afw_function_definition_eqx_ipAddress;
 
 /**
  * @brief Adaptive Function eqx<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -15988,11 +14480,7 @@ afw_function_definition_ge_ipAddress;
 
 /**
  * @brief Adaptive Function ge<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
  * return the boolean result.
@@ -16028,11 +14516,7 @@ afw_function_definition_gt_ipAddress;
 
 /**
  * @brief Adaptive Function gt<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
  * boolean result.
@@ -16068,11 +14552,7 @@ afw_function_definition_ipAddress;
 
 /**
  * @brief Adaptive Function ipAddress
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type ipAddress returning ipAddress result.
  *
@@ -16108,11 +14588,7 @@ afw_function_definition_is_in_ipAddress;
 
 /**
  * @brief Adaptive Function is_in<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether ipAddress value is in list of ipAddress list and returns the
  * boolean result.
@@ -16148,11 +14624,7 @@ afw_function_definition_is_ipAddress;
 
 /**
  * @brief Adaptive Function is<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType ipAddress and return the boolean result.
  *
@@ -16184,11 +14656,7 @@ afw_function_definition_le_ipAddress;
 
 /**
  * @brief Adaptive Function le<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return
  * the boolean result.
@@ -16224,11 +14692,7 @@ afw_function_definition_lt_ipAddress;
 
 /**
  * @brief Adaptive Function lt<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is less that ipAddress arg2 and return the boolean
  * result.
@@ -16264,11 +14728,7 @@ afw_function_definition_ne_ipAddress;
 
 /**
  * @brief Adaptive Function ne<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -16310,11 +14770,7 @@ afw_function_definition_nex_ipAddress;
 
 /**
  * @brief Adaptive Function nex<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -16351,11 +14807,7 @@ afw_function_definition_one_and_only_ipAddress;
 
 /**
  * @brief Adaptive Function one_and_only<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of ipAddress values that contains one value to a single
  * ipAddress value.
@@ -16392,11 +14844,7 @@ afw_function_definition_regexp_match_ipAddress;
 
 /**
  * @brief Adaptive Function regexp_match<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether ipAddress value matches the regular expression regexp and
  * return the boolean result.
@@ -16432,11 +14880,7 @@ afw_function_definition_to_string_ipAddress;
 
 /**
  * @brief Adaptive Function to_string<ipAddress>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts ipAddress value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -16479,11 +14923,7 @@ afw_function_definition_journal_advance_cursor_for_consumer;
 
 /**
  * @brief Adaptive Function journal_advance_cursor_for_consumer
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Update the advance cursor for a consumer referenced by the consumerId
  * parameter. The limit parameter specifies the maximum number of entries to
@@ -16542,11 +14982,7 @@ afw_function_definition_journal_get_by_cursor;
 
 /**
  * @brief Adaptive Function journal_get_by_cursor
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get journal entry specified by entry_cursor parameter.
  * 
@@ -16584,11 +15020,7 @@ afw_function_definition_journal_get_first;
 
 /**
  * @brief Adaptive Function journal_get_first
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get first journal entry.
  * 
@@ -16622,11 +15054,7 @@ afw_function_definition_journal_get_next_after_cursor;
 
 /**
  * @brief Adaptive Function journal_get_next_after_cursor
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get the next journal entry after the one specified by the entry_cursor
  * parameter.
@@ -16664,11 +15092,7 @@ afw_function_definition_journal_get_next_for_consumer;
 
 /**
  * @brief Adaptive Function journal_get_next_for_consumer
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id
  * parameter. The entry_cursor parameter is ignored. The limit parameter
@@ -16736,11 +15160,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
 
 /**
  * @brief Adaptive Function journal_get_next_for_consumer_after_cursor
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id
  * after the one specified by the entry_cursor parameter. The limit parameter
@@ -16798,11 +15218,7 @@ afw_function_definition_journal_mark_consumed;
 
 /**
  * @brief Adaptive Function journal_mark_consumed
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Mark a journal entry returned by get_next_for_consumer() as consumed.
  *
@@ -16850,11 +15266,7 @@ afw_function_definition_add_entries;
 
 /**
  * @brief Adaptive Function add_entries
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add the entries of one or more lists to another.
  *
@@ -16889,11 +15301,7 @@ afw_function_definition_bag_list;
 
 /**
  * @brief Adaptive Function bag<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of list values and returns a list of list.
  *
@@ -16925,11 +15333,7 @@ afw_function_definition_bag_size_list;
 
 /**
  * @brief Adaptive Function bag_size<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -16961,11 +15365,7 @@ afw_function_definition_clone_list;
 
 /**
  * @brief Adaptive Function clone<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Deep clone a list value.
  *
@@ -16997,11 +15397,7 @@ afw_function_definition_eq_list;
 
 /**
  * @brief Adaptive Function eq<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if list arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -17042,11 +15438,7 @@ afw_function_definition_eqx_list;
 
 /**
  * @brief Adaptive Function eqx<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for list arg1 is equal to the value and data type of arg2 then
  * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
@@ -17083,11 +15475,7 @@ afw_function_definition_ge_list;
 
 /**
  * @brief Adaptive Function ge<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for list arg1 is greater than or equal to list arg2 and return the
  * boolean result.
@@ -17123,11 +15511,7 @@ afw_function_definition_gt_list;
 
 /**
  * @brief Adaptive Function gt<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for list arg1 is greater than list arg2 and return the boolean
  * result.
@@ -17163,11 +15547,7 @@ afw_function_definition_includes_list;
 
 /**
  * @brief Adaptive Function includes<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether or not a list contains any value.
  *
@@ -17205,11 +15585,7 @@ afw_function_definition_is_list;
 
 /**
  * @brief Adaptive Function is<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType list and return the boolean result.
  *
@@ -17241,11 +15617,7 @@ afw_function_definition_join;
 
 /**
  * @brief Adaptive Function join
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Concatenate the string values of the elements of a list with a separator.
  *
@@ -17280,11 +15652,7 @@ afw_function_definition_le_list;
 
 /**
  * @brief Adaptive Function le<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for list arg1 is less than or equal to list arg2 and return the
  * boolean result.
@@ -17320,11 +15688,7 @@ afw_function_definition_length_list;
 
 /**
  * @brief Adaptive Function length<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a polymorphic function where list can be any of the supported data
  * types. Return the integer number of entries in datatype list or codepoints
@@ -17359,11 +15723,7 @@ afw_function_definition_list;
 
 /**
  * @brief Adaptive Function list
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts 1 or more values in a list. If A value is a list, its individual
  * values are included.
@@ -17403,11 +15763,7 @@ afw_function_definition_lt_list;
 
 /**
  * @brief Adaptive Function lt<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for list arg1 is less that list arg2 and return the boolean result.
  *
@@ -17442,11 +15798,7 @@ afw_function_definition_ne_list;
 
 /**
  * @brief Adaptive Function ne<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if list arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -17487,11 +15839,7 @@ afw_function_definition_nex_list;
 
 /**
  * @brief Adaptive Function nex<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for list arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -17528,11 +15876,7 @@ afw_function_definition_reverse;
 
 /**
  * @brief Adaptive Function reverse
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Reverse the order of the elements in a list. If the list is typed, the
  * resulting list will be the same type.
@@ -17564,11 +15908,7 @@ afw_function_definition_slice;
 
 /**
  * @brief Adaptive Function slice
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function extracts a consecutive slice of values from a list.
  *
@@ -17612,11 +15952,7 @@ afw_function_definition_to_string_list;
 
 /**
  * @brief Adaptive Function to_string<list>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts list value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -17659,11 +15995,7 @@ afw_function_definition_and;
 
 /**
  * @brief Adaptive Function and
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluates 0 or more boolean conditions returning boolean true if there are
  * no conditions and boolean false if any condition evaluate to false. All
@@ -17696,11 +16028,7 @@ afw_function_definition_n_of;
 
 /**
  * @brief Adaptive Function n_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * integer n specifies the number of boolean conditions that follow that must
  * evaluate to true for boolean true to be returned. If n is 0, true is
@@ -17741,11 +16069,7 @@ afw_function_definition_not;
 
 /**
  * @brief Adaptive Function not
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluates boolean condition returning boolean true if condition evaluates to
  * false and false if condition evaluates to true.
@@ -17777,11 +16101,7 @@ afw_function_definition_or;
 
 /**
  * @brief Adaptive Function or
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluates 0 or more boolean conditions returning boolean false if there are
  * no conditions and boolean true if any condition evaluate to true. All
@@ -17824,11 +16144,7 @@ afw_function_definition_annotate;
 
 /**
  * @brief Adaptive Function annotate
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Create an annotated value.
  *
@@ -17863,11 +16179,7 @@ afw_function_definition_compare_uri;
 
 /**
  * @brief Adaptive Function compare_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compare two URIs.
  *
@@ -17915,11 +16227,7 @@ afw_function_definition_debug;
 
 /**
  * @brief Adaptive Function debug
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Conditionally, based on the detail parameter, write a value as a string to
  * the debug file descriptor (usually stderr).
@@ -17958,11 +16266,7 @@ afw_function_definition_execution_start_time_local;
 
 /**
  * @brief Adaptive Function execution_start_time_local
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return local dateTime when the execution context was created. This will
  * usually be the start of request time.
@@ -17992,11 +16296,7 @@ afw_function_definition_execution_start_time_utc;
 
 /**
  * @brief Adaptive Function execution_start_time_utc
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return UTC dateTime when the execution context was created. This will
  * usually be the start of request time.
@@ -18026,11 +16326,7 @@ afw_function_definition_generate_uuid;
 
 /**
  * @brief Adaptive Function generate_uuid
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Generate a UUID.
  *
@@ -18059,11 +16355,7 @@ afw_function_definition_is_defined;
 
 /**
  * @brief Adaptive Function is_defined
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Test value returning boolean True if it is not undefined.
  *
@@ -18094,11 +16386,7 @@ afw_function_definition_is_nullish;
 
 /**
  * @brief Adaptive Function is_nullish
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Test value returning boolean True if it is null or undefined.
  *
@@ -18129,11 +16417,7 @@ afw_function_definition_log;
 
 /**
  * @brief Adaptive Function log
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and convert value to String and log it.
  *
@@ -18164,11 +16448,7 @@ afw_function_definition_now_local;
 
 /**
  * @brief Adaptive Function now_local
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return current local dateTime.
  *
@@ -18197,11 +16477,7 @@ afw_function_definition_now_utc;
 
 /**
  * @brief Adaptive Function now_utc
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return current UTC dateTime.
  *
@@ -18230,11 +16506,7 @@ afw_function_definition_nullish_coalescing;
 
 /**
  * @brief Adaptive Function nullish_coalescing
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the first value of values that is not null or undefined leaving the
  * remaining values unevaluated.
@@ -18268,11 +16540,7 @@ afw_function_definition_optional_chaining;
 
 /**
  * @brief Adaptive Function optional_chaining
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns undefined if arg1 is null or undefined without evaluating arg2, but
  * otherwise returns evaluated value of arg2.
@@ -18308,11 +16576,7 @@ afw_function_definition_parse_uri;
 
 /**
  * @brief Adaptive Function parse_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Parse a URI.
  *
@@ -18354,11 +16618,7 @@ afw_function_definition_perform;
 
 /**
  * @brief Adaptive Function perform
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Perform actions right away.
  *
@@ -18390,11 +16650,7 @@ afw_function_definition_trace;
 
 /**
  * @brief Adaptive Function trace
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Write a value to a trace log.
  *
@@ -18436,11 +16692,7 @@ afw_function_definition_variable_exists;
 
 /**
  * @brief Adaptive Function variable_exists
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the true if the named variable exists.
  *
@@ -18472,11 +16724,7 @@ afw_function_definition_variable_get;
 
 /**
  * @brief Adaptive Function variable_get
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the value of a variable. If variable is not available, return a
  * default or null value.
@@ -18513,11 +16761,7 @@ afw_function_definition_variable_is_not_null;
 
 /**
  * @brief Adaptive Function variable_is_not_null
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the true if the named variable exists and is not null.
  *
@@ -18559,11 +16803,7 @@ afw_function_definition_model_default_add_object_action;
 
 /**
  * @brief Adaptive Function model_default_add_object_action
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onAdd parameter is not specified on the associated
@@ -18624,11 +16864,7 @@ afw_function_definition_model_default_delete_object_action;
 
 /**
  * @brief Adaptive Function model_default_delete_object_action
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onDeleteObject parameter is not specified on the associated
@@ -18684,11 +16920,7 @@ afw_function_definition_model_default_modify_object_action;
 
 /**
  * @brief Adaptive Function model_default_modify_object_action
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onModifyObject parameter is not specified on the associated
@@ -18773,11 +17005,7 @@ afw_function_definition_model_default_replace_object_action;
 
 /**
  * @brief Adaptive Function model_default_replace_object_action
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onReplaceObject parameter is not specified on the associated
@@ -18838,11 +17066,7 @@ afw_function_definition_model_mapBackObject_signature;
 
 /**
  * @brief Adaptive Function model_mapBackObject_signature
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is the function signature for current:mapBackObject used by
  * onGetObjects and onRetrieveObjects. Calling this directly will throw a "Do
@@ -18875,11 +17099,7 @@ afw_function_definition_model_mapObject_signature;
 
 /**
  * @brief Adaptive Function model_mapObject_signature
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is the function signature for current:mapObject used by onAddObject.
  * onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
@@ -18912,11 +17132,7 @@ afw_function_definition_model_returnObject_signature;
 
 /**
  * @brief Adaptive Function model_returnObject_signature
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is the function signature for current:returnObject used by onGetObjects
  * and onRetrieveObjects. Calling this directly will throw a "Do not call
@@ -18966,11 +17182,7 @@ afw_function_definition_bag_null;
 
 /**
  * @brief Adaptive Function bag<null>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of null values and returns a list of list.
  *
@@ -19002,11 +17214,7 @@ afw_function_definition_bag_size_null;
 
 /**
  * @brief Adaptive Function bag_size<null>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -19038,11 +17246,7 @@ afw_function_definition_is_null;
 
 /**
  * @brief Adaptive Function is<null>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType null and return the boolean result.
  *
@@ -19074,11 +17278,7 @@ afw_function_definition_null;
 
 /**
  * @brief Adaptive Function null
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type null returning null result.
  *
@@ -19114,11 +17314,7 @@ afw_function_definition_to_string_null;
 
 /**
  * @brief Adaptive Function to_string<null>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts null value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -19161,11 +17357,7 @@ afw_function_definition_bag_objectId;
 
 /**
  * @brief Adaptive Function bag<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of objectId values and returns a list of list.
  *
@@ -19197,11 +17389,7 @@ afw_function_definition_bag_size_objectId;
 
 /**
  * @brief Adaptive Function bag_size<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -19233,11 +17421,7 @@ afw_function_definition_eq_objectId;
 
 /**
  * @brief Adaptive Function eq<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if objectId arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -19278,11 +17462,7 @@ afw_function_definition_eqx_objectId;
 
 /**
  * @brief Adaptive Function eqx<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -19319,11 +17499,7 @@ afw_function_definition_ge_objectId;
 
 /**
  * @brief Adaptive Function ge<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectId arg1 is greater than or equal to objectId arg2 and
  * return the boolean result.
@@ -19359,11 +17535,7 @@ afw_function_definition_gt_objectId;
 
 /**
  * @brief Adaptive Function gt<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectId arg1 is greater than objectId arg2 and return the
  * boolean result.
@@ -19399,11 +17571,7 @@ afw_function_definition_is_objectId;
 
 /**
  * @brief Adaptive Function is<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType objectId and return the boolean result.
  *
@@ -19435,11 +17603,7 @@ afw_function_definition_le_objectId;
 
 /**
  * @brief Adaptive Function le<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectId arg1 is less than or equal to objectId arg2 and return
  * the boolean result.
@@ -19475,11 +17639,7 @@ afw_function_definition_lt_objectId;
 
 /**
  * @brief Adaptive Function lt<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectId arg1 is less that objectId arg2 and return the boolean
  * result.
@@ -19515,11 +17675,7 @@ afw_function_definition_ne_objectId;
 
 /**
  * @brief Adaptive Function ne<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if objectId arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -19561,11 +17717,7 @@ afw_function_definition_nex_objectId;
 
 /**
  * @brief Adaptive Function nex<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -19602,11 +17754,7 @@ afw_function_definition_objectId;
 
 /**
  * @brief Adaptive Function objectId
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type objectId returning objectId result.
  *
@@ -19642,11 +17790,7 @@ afw_function_definition_to_string_objectId;
 
 /**
  * @brief Adaptive Function to_string<objectId>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts objectId value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -19689,11 +17833,7 @@ afw_function_definition_bag_objectPath;
 
 /**
  * @brief Adaptive Function bag<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of objectPath values and returns a list of list.
  *
@@ -19725,11 +17865,7 @@ afw_function_definition_bag_size_objectPath;
 
 /**
  * @brief Adaptive Function bag_size<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -19761,11 +17897,7 @@ afw_function_definition_eq_objectPath;
 
 /**
  * @brief Adaptive Function eq<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -19806,11 +17938,7 @@ afw_function_definition_eqx_objectPath;
 
 /**
  * @brief Adaptive Function eqx<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -19847,11 +17975,7 @@ afw_function_definition_ge_objectPath;
 
 /**
  * @brief Adaptive Function ge<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is greater than or equal to objectPath arg2 and
  * return the boolean result.
@@ -19887,11 +18011,7 @@ afw_function_definition_gt_objectPath;
 
 /**
  * @brief Adaptive Function gt<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is greater than objectPath arg2 and return the
  * boolean result.
@@ -19927,11 +18047,7 @@ afw_function_definition_is_objectPath;
 
 /**
  * @brief Adaptive Function is<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType objectPath and return the boolean result.
  *
@@ -19963,11 +18079,7 @@ afw_function_definition_le_objectPath;
 
 /**
  * @brief Adaptive Function le<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is less than or equal to objectPath arg2 and
  * return the boolean result.
@@ -20003,11 +18115,7 @@ afw_function_definition_lt_objectPath;
 
 /**
  * @brief Adaptive Function lt<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is less that objectPath arg2 and return the
  * boolean result.
@@ -20043,11 +18151,7 @@ afw_function_definition_ne_objectPath;
 
 /**
  * @brief Adaptive Function ne<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -20089,11 +18193,7 @@ afw_function_definition_nex_objectPath;
 
 /**
  * @brief Adaptive Function nex<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -20130,11 +18230,7 @@ afw_function_definition_objectPath;
 
 /**
  * @brief Adaptive Function objectPath
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type objectPath returning objectPath result.
  *
@@ -20170,11 +18266,7 @@ afw_function_definition_to_string_objectPath;
 
 /**
  * @brief Adaptive Function to_string<objectPath>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts objectPath value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -20217,11 +18309,7 @@ afw_function_definition_add_properties;
 
 /**
  * @brief Adaptive Function add_properties
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add the properties of one object to another replacing existing properties by
  * the same name.
@@ -20257,11 +18345,7 @@ afw_function_definition_apply_object_options;
 
 /**
  * @brief Adaptive Function apply_object_options
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will return an object with the specified object options applied.
  *
@@ -20297,11 +18381,7 @@ afw_function_definition_bag_object;
 
 /**
  * @brief Adaptive Function bag<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of object values and returns a list of list.
  *
@@ -20333,11 +18413,7 @@ afw_function_definition_bag_size_object;
 
 /**
  * @brief Adaptive Function bag_size<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -20369,11 +18445,7 @@ afw_function_definition_clone_object;
 
 /**
  * @brief Adaptive Function clone<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Deep clone a object value.
  *
@@ -20405,11 +18477,7 @@ afw_function_definition_eq_object;
 
 /**
  * @brief Adaptive Function eq<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if object arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -20450,11 +18518,7 @@ afw_function_definition_eqx_object;
 
 /**
  * @brief Adaptive Function eqx<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for object arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -20491,11 +18555,7 @@ afw_function_definition_ge_object;
 
 /**
  * @brief Adaptive Function ge<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for object arg1 is greater than or equal to object arg2 and return
  * the boolean result.
@@ -20531,11 +18591,7 @@ afw_function_definition_gt_object;
 
 /**
  * @brief Adaptive Function gt<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for object arg1 is greater than object arg2 and return the boolean
  * result.
@@ -20571,11 +18627,7 @@ afw_function_definition_is_object;
 
 /**
  * @brief Adaptive Function is<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType object and return the boolean result.
  *
@@ -20607,11 +18659,7 @@ afw_function_definition_le_object;
 
 /**
  * @brief Adaptive Function le<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for object arg1 is less than or equal to object arg2 and return the
  * boolean result.
@@ -20647,11 +18695,7 @@ afw_function_definition_local_object_meta_set_ids;
 
 /**
  * @brief Adaptive Function local_object_meta_set_ids
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is used to set the ids in a local mutable object. The ids are used to
  * construct a local path.
@@ -20692,11 +18736,7 @@ afw_function_definition_lt_object;
 
 /**
  * @brief Adaptive Function lt<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for object arg1 is less that object arg2 and return the boolean
  * result.
@@ -20732,11 +18772,7 @@ afw_function_definition_ne_object;
 
 /**
  * @brief Adaptive Function ne<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if object arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -20777,11 +18813,7 @@ afw_function_definition_nex_object;
 
 /**
  * @brief Adaptive Function nex<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for object arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -20818,11 +18850,7 @@ afw_function_definition_object;
 
 /**
  * @brief Adaptive Function object
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type object returning object result.
  *
@@ -20858,11 +18886,7 @@ afw_function_definition_property_exists;
 
 /**
  * @brief Adaptive Function property_exists
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return true if the named property exists in an object.
  *
@@ -20896,11 +18920,7 @@ afw_function_definition_property_get;
 
 /**
  * @brief Adaptive Function property_get
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the value of a property of an object. If property is not available,
  * return a default or null value.
@@ -20939,11 +18959,7 @@ afw_function_definition_property_is_not_null;
 
 /**
  * @brief Adaptive Function property_is_not_null
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return true if the named property exists in an object and is not null.
  *
@@ -20977,11 +18993,7 @@ afw_function_definition_to_string_object;
 
 /**
  * @brief Adaptive Function to_string<object>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts object value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -21024,11 +19036,7 @@ afw_function_definition_bag_password;
 
 /**
  * @brief Adaptive Function bag<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of password values and returns a list of list.
  *
@@ -21060,11 +19068,7 @@ afw_function_definition_bag_size_password;
 
 /**
  * @brief Adaptive Function bag_size<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -21096,11 +19100,7 @@ afw_function_definition_eq_password;
 
 /**
  * @brief Adaptive Function eq<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if password arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -21141,11 +19141,7 @@ afw_function_definition_eqx_password;
 
 /**
  * @brief Adaptive Function eqx<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for password arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -21182,11 +19178,7 @@ afw_function_definition_ge_password;
 
 /**
  * @brief Adaptive Function ge<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for password arg1 is greater than or equal to password arg2 and
  * return the boolean result.
@@ -21222,11 +19214,7 @@ afw_function_definition_gt_password;
 
 /**
  * @brief Adaptive Function gt<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for password arg1 is greater than password arg2 and return the
  * boolean result.
@@ -21262,11 +19250,7 @@ afw_function_definition_is_password;
 
 /**
  * @brief Adaptive Function is<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType password and return the boolean result.
  *
@@ -21298,11 +19282,7 @@ afw_function_definition_le_password;
 
 /**
  * @brief Adaptive Function le<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for password arg1 is less than or equal to password arg2 and return
  * the boolean result.
@@ -21338,11 +19318,7 @@ afw_function_definition_lt_password;
 
 /**
  * @brief Adaptive Function lt<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for password arg1 is less that password arg2 and return the boolean
  * result.
@@ -21378,11 +19354,7 @@ afw_function_definition_ne_password;
 
 /**
  * @brief Adaptive Function ne<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if password arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -21424,11 +19396,7 @@ afw_function_definition_nex_password;
 
 /**
  * @brief Adaptive Function nex<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for password arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -21465,11 +19433,7 @@ afw_function_definition_password;
 
 /**
  * @brief Adaptive Function password
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type password returning password result.
  *
@@ -21505,11 +19469,7 @@ afw_function_definition_to_string_password;
 
 /**
  * @brief Adaptive Function to_string<password>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts password value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -21552,11 +19512,7 @@ afw_function_definition_abs;
 
 /**
  * @brief Adaptive Function abs
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compute the absolute value of the <dataType> value and return the <dataType>
  * result.
@@ -21593,11 +19549,7 @@ afw_function_definition_add;
 
 /**
  * @brief Adaptive Function add
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add 2 or more <dataType> values and return the <dataType> result.
  *
@@ -21635,11 +19587,7 @@ afw_function_definition_add_dayTimeDuration;
 
 /**
  * @brief Adaptive Function add_dayTimeDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType>
  * result.
@@ -21679,11 +19627,7 @@ afw_function_definition_add_yearMonthDuration;
 
 /**
  * @brief Adaptive Function add_yearMonthDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType>
  * result.
@@ -21723,11 +19667,7 @@ afw_function_definition_at_least_one_member_of;
 
 /**
  * @brief Adaptive Function at_least_one_member_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in <dataType> list1 is in
  * <dataType> list2.
@@ -21768,11 +19708,7 @@ afw_function_definition_bag;
 
 /**
  * @brief Adaptive Function bag
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of <dataType> values and returns a list of list.
  *
@@ -21812,11 +19748,7 @@ afw_function_definition_bag_size;
 
 /**
  * @brief Adaptive Function bag_size
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -21856,11 +19788,7 @@ afw_function_definition_ceil;
 
 /**
  * @brief Adaptive Function ceil
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the smallest integer that is greater then or equal to the
  * <dataType> value and return the <dataType> result.
@@ -21897,11 +19825,7 @@ afw_function_definition_clone;
 
 /**
  * @brief Adaptive Function clone
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Deep clone a <dataType> value.
  *
@@ -21937,11 +19861,7 @@ afw_function_definition_compile;
 
 /**
  * @brief Adaptive Function compile
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile <dataType> value and return either an unevaluated adaptive value or
  * a string containing the compiler listing.
@@ -21987,11 +19907,7 @@ afw_function_definition_decode_to_string;
 
 /**
  * @brief Adaptive Function decode_to_string
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Decode <dataType> value to string. An error is thrown if decoded value is
  * not valid UTF-8.
@@ -22028,11 +19944,7 @@ afw_function_definition_divide;
 
 /**
  * @brief Adaptive Function divide
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
  * quotient.
@@ -22072,11 +19984,7 @@ afw_function_definition_encode_as_base64Binary;
 
 /**
  * @brief Adaptive Function encode_as_base64Binary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
  * value with an internal value of the value passed.
@@ -22113,11 +20021,7 @@ afw_function_definition_encode_as_hexBinary;
 
 /**
  * @brief Adaptive Function encode_as_hexBinary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value
  * with an internal value of the value passed.
@@ -22154,11 +20058,7 @@ afw_function_definition_ends_with;
 
 /**
  * @brief Adaptive Function ends_with
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether <dataType> value ends with a <dataType> and return the
  * boolean result.
@@ -22198,11 +20098,7 @@ afw_function_definition_eq;
 
 /**
  * @brief Adaptive Function eq
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if <dataType> arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -22251,11 +20147,7 @@ afw_function_definition_eq_ignore_case;
 
 /**
  * @brief Adaptive Function eq_ignore_case
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and
  * return the boolean result.
@@ -22295,11 +20187,7 @@ afw_function_definition_eqx;
 
 /**
  * @brief Adaptive Function eqx
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for <dataType> arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -22344,11 +20232,7 @@ afw_function_definition_evaluate;
 
 /**
  * @brief Adaptive Function evaluate
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate <dataType> value.
  *
@@ -22393,11 +20277,7 @@ afw_function_definition_floor;
 
 /**
  * @brief Adaptive Function floor
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the largest integer that is smaller then or equal to the
  * <dataType> value and return the <dataType> result.
@@ -22434,11 +20314,7 @@ afw_function_definition_ge;
 
 /**
  * @brief Adaptive Function ge
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for <dataType> arg1 is greater than or equal to <dataType> arg2 and
  * return the boolean result.
@@ -22482,11 +20358,7 @@ afw_function_definition_gt;
 
 /**
  * @brief Adaptive Function gt
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
  * boolean result.
@@ -22530,11 +20402,7 @@ afw_function_definition_in_range;
 
 /**
  * @brief Adaptive Function in_range
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks if <dataType> is between startTime and endTime, inclusive. Regardless
  * of endTime value, it is always considered to be equal to, but less than 24
@@ -22581,11 +20449,7 @@ afw_function_definition_includes;
 
 /**
  * @brief Adaptive Function includes
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether the <dataType> value includes a string and return the boolean
  * result.
@@ -22629,11 +20493,7 @@ afw_function_definition_index_of;
 
 /**
  * @brief Adaptive Function index_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into <dataType> value of subString. If
  * subString is not found, -1 is returned.
@@ -22677,11 +20537,7 @@ afw_function_definition_intersection;
 
 /**
  * @brief Adaptive Function intersection
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of <dataType> with the values that are common to both list of
  * <dataType> list1 and list2.
@@ -22722,11 +20578,7 @@ afw_function_definition_is;
 
 /**
  * @brief Adaptive Function is
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType <dataType> and return the boolean result.
  *
@@ -22766,11 +20618,7 @@ afw_function_definition_is_in;
 
 /**
  * @brief Adaptive Function is_in
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether <dataType> value is in list of <dataType> list and returns
  * the boolean result.
@@ -22812,11 +20660,7 @@ afw_function_definition_last_index_of;
 
 /**
  * @brief Adaptive Function last_index_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into <dataType> value of the last occurrence of
  * a subString. If subString is not found, -1 is returned.
@@ -22860,11 +20704,7 @@ afw_function_definition_le;
 
 /**
  * @brief Adaptive Function le
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
  * return the boolean result.
@@ -22908,11 +20748,7 @@ afw_function_definition_length;
 
 /**
  * @brief Adaptive Function length
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a polymorphic function where <dataType> can be any of the supported
  * data types. Return the integer number of entries in datatype list or
@@ -22951,11 +20787,7 @@ afw_function_definition_lt;
 
 /**
  * @brief Adaptive Function lt
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for <dataType> arg1 is less that <dataType> arg2 and return the
  * boolean result.
@@ -22999,11 +20831,7 @@ afw_function_definition_match;
 
 /**
  * @brief Adaptive Function match
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_<dataType>.
@@ -23043,11 +20871,7 @@ afw_function_definition_max;
 
 /**
  * @brief Adaptive Function max
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the <dataType> value that is greater than or equal to the others.
  *
@@ -23084,11 +20908,7 @@ afw_function_definition_min;
 
 /**
  * @brief Adaptive Function min
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the <dataType> value that is less than or equal to the others.
  *
@@ -23125,11 +20945,7 @@ afw_function_definition_mod;
 
 /**
  * @brief Adaptive Function mod
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
  * remainder.
@@ -23169,11 +20985,7 @@ afw_function_definition_multiply;
 
 /**
  * @brief Adaptive Function multiply
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Multiply 2 or more <dataType> values and return the <dataType> result.
  *
@@ -23211,11 +21023,7 @@ afw_function_definition_ne;
 
 /**
  * @brief Adaptive Function ne
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if <dataType> arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -23265,11 +21073,7 @@ afw_function_definition_negative;
 
 /**
  * @brief Adaptive Function negative
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return negative of <dataType> value.
  *
@@ -23305,11 +21109,7 @@ afw_function_definition_nex;
 
 /**
  * @brief Adaptive Function nex
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for <dataType> arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -23354,11 +21154,7 @@ afw_function_definition_normalize_space;
 
 /**
  * @brief Adaptive Function normalize_space
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Remove whitespace from the beginning and end of a <dataType> value.
  *
@@ -23394,11 +21190,7 @@ afw_function_definition_normalize_to_lower_case;
 
 /**
  * @brief Adaptive Function normalize_to_lower_case
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Normalize <dataType> value to lower case and returns <dataType> result.
  *
@@ -23434,11 +21226,7 @@ afw_function_definition_one_and_only;
 
 /**
  * @brief Adaptive Function one_and_only
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of <dataType> values that contains one value to a
  * single <dataType> value.
@@ -23481,11 +21269,7 @@ afw_function_definition_pow;
 
 /**
  * @brief Adaptive Function pow
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter
@@ -23527,11 +21311,7 @@ afw_function_definition_regexp_index_of;
 
 /**
  * @brief Adaptive Function regexp_index_of
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Search <dataType> value for a regular expression and return index. If not
  * found, -1 is returned.
@@ -23571,11 +21351,7 @@ afw_function_definition_regexp_match;
 
 /**
  * @brief Adaptive Function regexp_match
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether <dataType> value matches the regular expression regexp and
  * return the boolean result.
@@ -23615,11 +21391,7 @@ afw_function_definition_regexp_replace;
 
 /**
  * @brief Adaptive Function regexp_replace
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a <dataType> value.
  *
@@ -23665,11 +21437,7 @@ afw_function_definition_repeat;
 
 /**
  * @brief Adaptive Function repeat
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Repeat a <dataType> value a specified number of times.
  *
@@ -23708,11 +21476,7 @@ afw_function_definition_replace;
 
 /**
  * @brief Adaptive Function replace
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace string(s) in a <dataType> value.
  *
@@ -23758,11 +21522,7 @@ afw_function_definition_round;
 
 /**
  * @brief Adaptive Function round
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine the integer closest to <dataType> value and return the <dataType>
  * result.
@@ -23799,11 +21559,7 @@ afw_function_definition_set_equals;
 
 /**
  * @brief Adaptive Function set_equals
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of
  * each other and return the boolean result.
@@ -23844,11 +21600,7 @@ afw_function_definition_split;
 
 /**
  * @brief Adaptive Function split
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Split <dataType> value into an list of strings using a separator.
  *
@@ -23893,11 +21645,7 @@ afw_function_definition_starts_with;
 
 /**
  * @brief Adaptive Function starts_with
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether <dataType> value starts with a subString and return the
  * boolean result.
@@ -23937,11 +21685,7 @@ afw_function_definition_subset;
 
 /**
  * @brief Adaptive Function subset
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in <dataType> list1 are all in
  * <dataType> list2.
@@ -23982,11 +21726,7 @@ afw_function_definition_substring;
 
 /**
  * @brief Adaptive Function substring
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the <dataType> substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
@@ -24034,11 +21774,7 @@ afw_function_definition_subtract;
 
 /**
  * @brief Adaptive Function subtract
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType>
  * result.
@@ -24078,11 +21814,7 @@ afw_function_definition_subtract_dayTimeDuration;
 
 /**
  * @brief Adaptive Function subtract_dayTimeDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract dayTimeDuration arg2 from <dataType> arg1 and return the <dataType>
  * result.
@@ -24122,11 +21854,7 @@ afw_function_definition_subtract_yearMonthDuration;
 
 /**
  * @brief Adaptive Function subtract_yearMonthDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
  * <dataType> result.
@@ -24166,11 +21894,7 @@ afw_function_definition_to_anyURI;
 
 /**
  * @brief Adaptive Function to_anyURI
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to anyURI.
  *
@@ -24210,11 +21934,7 @@ afw_function_definition_to_boolean;
 
 /**
  * @brief Adaptive Function to_boolean
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to boolean.
  *
@@ -24254,11 +21974,7 @@ afw_function_definition_to_date;
 
 /**
  * @brief Adaptive Function to_date
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to date.
  *
@@ -24298,11 +22014,7 @@ afw_function_definition_to_dateTime;
 
 /**
  * @brief Adaptive Function to_dateTime
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to dateTime.
  *
@@ -24342,11 +22054,7 @@ afw_function_definition_to_dayTimeDuration;
 
 /**
  * @brief Adaptive Function to_dayTimeDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to dayTimeDuration.
  *
@@ -24386,11 +22094,7 @@ afw_function_definition_to_dnsName;
 
 /**
  * @brief Adaptive Function to_dnsName
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to dnsName.
  *
@@ -24430,11 +22134,7 @@ afw_function_definition_to_double;
 
 /**
  * @brief Adaptive Function to_double
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to double and returns double result.
  *
@@ -24474,11 +22174,7 @@ afw_function_definition_to_integer;
 
 /**
  * @brief Adaptive Function to_integer
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Truncate <dataType> value to a whole number and returns integer result.
  *
@@ -24514,11 +22210,7 @@ afw_function_definition_to_ipAddress;
 
 /**
  * @brief Adaptive Function to_ipAddress
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to ipAddress.
  *
@@ -24558,11 +22250,7 @@ afw_function_definition_to_rfc822Name;
 
 /**
  * @brief Adaptive Function to_rfc822Name
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to rfc822Name.
  *
@@ -24602,11 +22290,7 @@ afw_function_definition_to_string;
 
 /**
  * @brief Adaptive Function to_string
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -24646,11 +22330,7 @@ afw_function_definition_to_time;
 
 /**
  * @brief Adaptive Function to_time
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to time.
  *
@@ -24690,11 +22370,7 @@ afw_function_definition_to_x500Name;
 
 /**
  * @brief Adaptive Function to_x500Name
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to x500Name.
  *
@@ -24734,11 +22410,7 @@ afw_function_definition_to_yearMonthDuration;
 
 /**
  * @brief Adaptive Function to_yearMonthDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts <dataType> value to yearMonthDuration.
  *
@@ -24778,11 +22450,7 @@ afw_function_definition_union;
 
 /**
  * @brief Adaptive Function union
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of <dataType> contains all of the unique values in two or
  * more list of <dataType> values.
@@ -24822,11 +22490,7 @@ afw_function_definition_url_encode;
 
 /**
  * @brief Adaptive Function url_encode
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
  *
@@ -24873,11 +22537,7 @@ afw_function_definition_random_base64Binary;
 
 /**
  * @brief Adaptive Function random_base64Binary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType base64Binary.
  *
@@ -24908,11 +22568,7 @@ afw_function_definition_random_digits;
 
 /**
  * @brief Adaptive Function random_digits
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Generate a string containing a specified number of random decimal digits.
  *
@@ -24943,11 +22599,7 @@ afw_function_definition_random_hexBinary;
 
 /**
  * @brief Adaptive Function random_hexBinary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType hexBinary.
  *
@@ -24978,11 +22630,7 @@ afw_function_definition_random_integer;
 
 /**
  * @brief Adaptive Function random_integer
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns a random integer between specified values inclusive.
  *
@@ -25016,11 +22664,7 @@ afw_function_definition_random_number;
 
 /**
  * @brief Adaptive Function random_number
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns a random double between specified values
  *
@@ -25064,11 +22708,7 @@ afw_function_definition_compile_regexp;
 
 /**
  * @brief Adaptive Function compile<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile regexp value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -25109,11 +22749,7 @@ afw_function_definition_eq_regexp;
 
 /**
  * @brief Adaptive Function eq<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if regexp arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -25154,11 +22790,7 @@ afw_function_definition_eqx_regexp;
 
 /**
  * @brief Adaptive Function eqx<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -25195,11 +22827,7 @@ afw_function_definition_ge_regexp;
 
 /**
  * @brief Adaptive Function ge<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for regexp arg1 is greater than or equal to regexp arg2 and return
  * the boolean result.
@@ -25235,11 +22863,7 @@ afw_function_definition_gt_regexp;
 
 /**
  * @brief Adaptive Function gt<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for regexp arg1 is greater than regexp arg2 and return the boolean
  * result.
@@ -25275,11 +22899,7 @@ afw_function_definition_le_regexp;
 
 /**
  * @brief Adaptive Function le<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for regexp arg1 is less than or equal to regexp arg2 and return the
  * boolean result.
@@ -25315,11 +22935,7 @@ afw_function_definition_lt_regexp;
 
 /**
  * @brief Adaptive Function lt<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for regexp arg1 is less that regexp arg2 and return the boolean
  * result.
@@ -25355,11 +22971,7 @@ afw_function_definition_ne_regexp;
 
 /**
  * @brief Adaptive Function ne<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if regexp arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -25400,11 +23012,7 @@ afw_function_definition_nex_regexp;
 
 /**
  * @brief Adaptive Function nex<regexp>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -25441,11 +23049,7 @@ afw_function_definition_regexp;
 
 /**
  * @brief Adaptive Function regexp
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type regexp returning regexp result.
  *
@@ -25491,11 +23095,7 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in rfc822Name list1 is in
  * rfc822Name list2.
@@ -25531,11 +23131,7 @@ afw_function_definition_bag_rfc822Name;
 
 /**
  * @brief Adaptive Function bag<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of rfc822Name values and returns a list of list.
  *
@@ -25567,11 +23163,7 @@ afw_function_definition_bag_size_rfc822Name;
 
 /**
  * @brief Adaptive Function bag_size<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -25603,11 +23195,7 @@ afw_function_definition_eq_rfc822Name;
 
 /**
  * @brief Adaptive Function eq<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -25648,11 +23236,7 @@ afw_function_definition_eqx_rfc822Name;
 
 /**
  * @brief Adaptive Function eqx<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -25689,11 +23273,7 @@ afw_function_definition_ge_rfc822Name;
 
 /**
  * @brief Adaptive Function ge<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
  * return the boolean result.
@@ -25729,11 +23309,7 @@ afw_function_definition_gt_rfc822Name;
 
 /**
  * @brief Adaptive Function gt<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
  * boolean result.
@@ -25769,11 +23345,7 @@ afw_function_definition_intersection_rfc822Name;
 
 /**
  * @brief Adaptive Function intersection<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of rfc822Name with the values that are common to both list of
  * rfc822Name list1 and list2.
@@ -25809,11 +23381,7 @@ afw_function_definition_is_in_rfc822Name;
 
 /**
  * @brief Adaptive Function is_in<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether rfc822Name value is in list of rfc822Name list and returns
  * the boolean result.
@@ -25849,11 +23417,7 @@ afw_function_definition_is_rfc822Name;
 
 /**
  * @brief Adaptive Function is<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType rfc822Name and return the boolean result.
  *
@@ -25885,11 +23449,7 @@ afw_function_definition_le_rfc822Name;
 
 /**
  * @brief Adaptive Function le<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
  * return the boolean result.
@@ -25925,11 +23485,7 @@ afw_function_definition_lt_rfc822Name;
 
 /**
  * @brief Adaptive Function lt<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
  * boolean result.
@@ -25965,11 +23521,7 @@ afw_function_definition_match_rfc822Name;
 
 /**
  * @brief Adaptive Function match<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_rfc822Name.
@@ -26004,11 +23556,7 @@ afw_function_definition_ne_rfc822Name;
 
 /**
  * @brief Adaptive Function ne<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -26050,11 +23598,7 @@ afw_function_definition_nex_rfc822Name;
 
 /**
  * @brief Adaptive Function nex<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -26091,11 +23635,7 @@ afw_function_definition_one_and_only_rfc822Name;
 
 /**
  * @brief Adaptive Function one_and_only<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of rfc822Name values that contains one value to a
  * single rfc822Name value.
@@ -26132,11 +23672,7 @@ afw_function_definition_regexp_match_rfc822Name;
 
 /**
  * @brief Adaptive Function regexp_match<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether rfc822Name value matches the regular expression regexp and
  * return the boolean result.
@@ -26172,11 +23708,7 @@ afw_function_definition_rfc822Name;
 
 /**
  * @brief Adaptive Function rfc822Name
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type rfc822Name returning rfc822Name result.
  *
@@ -26212,11 +23744,7 @@ afw_function_definition_set_equals_rfc822Name;
 
 /**
  * @brief Adaptive Function set_equals<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of
  * each other and return the boolean result.
@@ -26252,11 +23780,7 @@ afw_function_definition_subset_rfc822Name;
 
 /**
  * @brief Adaptive Function subset<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in rfc822Name list1 are all in
  * rfc822Name list2.
@@ -26292,11 +23816,7 @@ afw_function_definition_to_string_rfc822Name;
 
 /**
  * @brief Adaptive Function to_string<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts rfc822Name value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -26329,11 +23849,7 @@ afw_function_definition_union_rfc822Name;
 
 /**
  * @brief Adaptive Function union<rfc822Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of rfc822Name contains all of the unique values in two or
  * more list of rfc822Name values.
@@ -26378,11 +23894,7 @@ afw_function_definition_assign;
 
 /**
  * @brief Adaptive Function assign
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Assign a value to the innermost structured block definition of a variable.
  * If the variable is not defined, the variable is defined in the innermost
@@ -26419,11 +23931,7 @@ afw_function_definition_bag_script;
 
 /**
  * @brief Adaptive Function bag<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of script values and returns a list of list.
  *
@@ -26455,11 +23963,7 @@ afw_function_definition_bag_size_script;
 
 /**
  * @brief Adaptive Function bag_size<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -26491,11 +23995,7 @@ afw_function_definition_break;
 
 /**
  * @brief Adaptive Function break
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a special function that can be called to break out of the body of a
  * loop. If called outside of a loop body, an error is thrown.
@@ -26530,11 +24030,7 @@ afw_function_definition_compile_script;
 
 /**
  * @brief Adaptive Function compile<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile script value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -26575,11 +24071,7 @@ afw_function_definition_const;
 
 /**
  * @brief Adaptive Function const
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Define one or more statically scoped constants local to the current script
  * block with a permanent value. These constants can be accessed from the
@@ -26619,11 +24111,7 @@ afw_function_definition_continue;
 
 /**
  * @brief Adaptive Function continue
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a special function that can be called in the body of a loop function
  * to test the condition and, if true, start evaluating the body again. If
@@ -26654,11 +24142,7 @@ afw_function_definition_do_while;
 
 /**
  * @brief Adaptive Function do_while
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -26700,11 +24184,7 @@ afw_function_definition_eq_script;
 
 /**
  * @brief Adaptive Function eq<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if script arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -26745,11 +24225,7 @@ afw_function_definition_eqx_script;
 
 /**
  * @brief Adaptive Function eqx<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for script arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -26786,11 +24262,7 @@ afw_function_definition_evaluate_script;
 
 /**
  * @brief Adaptive Function evaluate<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate script value.
  *
@@ -26830,11 +24302,7 @@ afw_function_definition_for;
 
 /**
  * @brief Adaptive Function for
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -26886,11 +24354,7 @@ afw_function_definition_foreach;
 
 /**
  * @brief Adaptive Function foreach
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -26936,11 +24400,7 @@ afw_function_definition_ge_script;
 
 /**
  * @brief Adaptive Function ge<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for script arg1 is greater than or equal to script arg2 and return
  * the boolean result.
@@ -26976,11 +24436,7 @@ afw_function_definition_gt_script;
 
 /**
  * @brief Adaptive Function gt<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for script arg1 is greater than script arg2 and return the boolean
  * result.
@@ -27016,11 +24472,7 @@ afw_function_definition_if;
 
 /**
  * @brief Adaptive Function if
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate one of two different values depending on test condition.
  *
@@ -27063,11 +24515,7 @@ afw_function_definition_is_script;
 
 /**
  * @brief Adaptive Function is<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType script and return the boolean result.
  *
@@ -27099,11 +24547,7 @@ afw_function_definition_le_script;
 
 /**
  * @brief Adaptive Function le<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for script arg1 is less than or equal to script arg2 and return the
  * boolean result.
@@ -27139,11 +24583,7 @@ afw_function_definition_loc;
 
 /**
  * @brief Adaptive Function loc
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Declare one or more statically scoped variable locations local to the
  * current script block and optionally assign them an initial value. These
@@ -27186,11 +24626,7 @@ afw_function_definition_lt_script;
 
 /**
  * @brief Adaptive Function lt<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for script arg1 is less that script arg2 and return the boolean
  * result.
@@ -27226,11 +24662,7 @@ afw_function_definition_ne_script;
 
 /**
  * @brief Adaptive Function ne<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if script arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -27271,11 +24703,7 @@ afw_function_definition_nex_script;
 
 /**
  * @brief Adaptive Function nex<script>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for script arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -27312,11 +24740,7 @@ afw_function_definition_return;
 
 /**
  * @brief Adaptive Function return
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return from the outermost structured block. If the expression of a lambda
  * function is a block function, this will effectively return from the lambda
@@ -27352,11 +24776,7 @@ afw_function_definition_script;
 
 /**
  * @brief Adaptive Function script
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type script returning script result.
  *
@@ -27392,11 +24812,7 @@ afw_function_definition_while;
 
 /**
  * @brief Adaptive Function while
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -27450,11 +24866,7 @@ afw_function_definition_close;
 
 /**
  * @brief Adaptive Function close
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will close an open stream
  *
@@ -27485,11 +24897,7 @@ afw_function_definition_flush;
 
 /**
  * @brief Adaptive Function flush
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Write the content of the stream's buffers to its destination.
  *
@@ -27520,11 +24928,7 @@ afw_function_definition_get_stream_error;
 
 /**
  * @brief Adaptive Function get_stream_error
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Get the most recent stream error.
  *
@@ -27553,11 +24957,7 @@ afw_function_definition_open_file;
 
 /**
  * @brief Adaptive Function open_file
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will open a file stream.
  *
@@ -27617,11 +25017,7 @@ afw_function_definition_open_response;
 
 /**
  * @brief Adaptive Function open_response
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will open a response text write-only stream that will be written to the
  * http response.
@@ -27659,11 +25055,7 @@ afw_function_definition_open_uri;
 
 /**
  * @brief Adaptive Function open_uri
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will open a read or write stream for a URI.
  *
@@ -27707,11 +25099,7 @@ afw_function_definition_print;
 
 /**
  * @brief Adaptive Function print
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stdout. An undefined value is represented by '<undefined>'.
@@ -27743,11 +25131,7 @@ afw_function_definition_println;
 
 /**
  * @brief Adaptive Function println
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
@@ -27780,11 +25164,7 @@ afw_function_definition_read;
 
 /**
  * @brief Adaptive Function read
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
  * contain valid UTF-8 or an error is thrown.
@@ -27820,11 +25200,7 @@ afw_function_definition_read_to_base64Binary;
 
 /**
  * @brief Adaptive Function read_to_base64Binary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a base64Binary value.
@@ -27860,11 +25236,7 @@ afw_function_definition_read_to_hexBinary;
 
 /**
  * @brief Adaptive Function read_to_hexBinary
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a hexBinary value.
@@ -27900,11 +25272,7 @@ afw_function_definition_readln;
 
 /**
  * @brief Adaptive Function readln
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
  * error is thrown.
@@ -27936,11 +25304,7 @@ afw_function_definition_stream;
 
 /**
  * @brief Adaptive Function stream
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This will return the streamNumber for a streamId. This function useful to
  * obtain the number of the automatically opened standard streams "console",
@@ -27974,11 +25338,7 @@ afw_function_definition_write;
 
 /**
  * @brief Adaptive Function write
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stream. An value with an undefined value is represented by '<undefined>'.
@@ -28013,11 +25373,7 @@ afw_function_definition_write_internal;
 
 /**
  * @brief Adaptive Function write_internal
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Write a value's internal memory. This is especially useful for writing data
  * type base64Binary and hexBinary.
@@ -28052,11 +25408,7 @@ afw_function_definition_writeln;
 
 /**
  * @brief Adaptive Function writeln
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stream. A newline character ('\n') is written after the last value. An
@@ -28102,11 +25454,7 @@ afw_function_definition_add_string;
 
 /**
  * @brief Adaptive Function add<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Add (concatenate) 2 or more string values and return the string result.
  *
@@ -28139,11 +25487,7 @@ afw_function_definition_at_least_one_member_of_string;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in string list1 is in string
  * list2.
@@ -28179,11 +25523,7 @@ afw_function_definition_bag_size_string;
 
 /**
  * @brief Adaptive Function bag_size<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -28215,11 +25555,7 @@ afw_function_definition_bag_string;
 
 /**
  * @brief Adaptive Function bag<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of string values and returns a list of list.
  *
@@ -28251,11 +25587,7 @@ afw_function_definition_concat;
 
 /**
  * @brief Adaptive Function concat
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
@@ -28293,11 +25625,7 @@ afw_function_definition_encode_as_base64Binary_string;
 
 /**
  * @brief Adaptive Function encode_as_base64Binary<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
  * value with an internal value of the value passed.
@@ -28330,11 +25658,7 @@ afw_function_definition_encode_as_hexBinary_string;
 
 /**
  * @brief Adaptive Function encode_as_hexBinary<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value
  * with an internal value of the value passed.
@@ -28367,11 +25691,7 @@ afw_function_definition_ends_with_string;
 
 /**
  * @brief Adaptive Function ends_with<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether string value ends with a string and return the boolean
  * result.
@@ -28407,11 +25727,7 @@ afw_function_definition_eq_ignore_case_string;
 
 /**
  * @brief Adaptive Function eq_ignore_case<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for string arg1 is equal to string arg2 ignoring case and return the
  * boolean result.
@@ -28446,11 +25762,7 @@ afw_function_definition_eq_string;
 
 /**
  * @brief Adaptive Function eq<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if string arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -28491,11 +25803,7 @@ afw_function_definition_eqx_string;
 
 /**
  * @brief Adaptive Function eqx<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for string arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -28532,11 +25840,7 @@ afw_function_definition_ge_string;
 
 /**
  * @brief Adaptive Function ge<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for string arg1 is greater than or equal to string arg2 and return
  * the boolean result.
@@ -28572,11 +25876,7 @@ afw_function_definition_gt_string;
 
 /**
  * @brief Adaptive Function gt<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for string arg1 is greater than string arg2 and return the boolean
  * result.
@@ -28612,11 +25912,7 @@ afw_function_definition_includes_string;
 
 /**
  * @brief Adaptive Function includes<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether the string value includes a string and return the boolean
  * result.
@@ -28656,11 +25952,7 @@ afw_function_definition_index_of_string;
 
 /**
  * @brief Adaptive Function index_of<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into string value of subString. If subString is
  * not found, -1 is returned.
@@ -28700,11 +25992,7 @@ afw_function_definition_intersection_string;
 
 /**
  * @brief Adaptive Function intersection<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of string with the values that are common to both list of
  * string list1 and list2.
@@ -28740,11 +26028,7 @@ afw_function_definition_is_in_string;
 
 /**
  * @brief Adaptive Function is_in<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether string value is in list of string list and returns the
  * boolean result.
@@ -28780,11 +26064,7 @@ afw_function_definition_is_string;
 
 /**
  * @brief Adaptive Function is<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType string and return the boolean result.
  *
@@ -28816,11 +26096,7 @@ afw_function_definition_last_index_of_string;
 
 /**
  * @brief Adaptive Function last_index_of<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the zero-based index into string value of the last occurrence of a
  * subString. If subString is not found, -1 is returned.
@@ -28860,11 +26136,7 @@ afw_function_definition_le_string;
 
 /**
  * @brief Adaptive Function le<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for string arg1 is less than or equal to string arg2 and return the
  * boolean result.
@@ -28900,11 +26172,7 @@ afw_function_definition_length_string;
 
 /**
  * @brief Adaptive Function length<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This is a polymorphic function where string can be any of the supported data
  * types. Return the integer number of entries in datatype list or codepoints
@@ -28939,11 +26207,7 @@ afw_function_definition_lt_string;
 
 /**
  * @brief Adaptive Function lt<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for string arg1 is less that string arg2 and return the boolean
  * result.
@@ -28979,11 +26243,7 @@ afw_function_definition_max_string;
 
 /**
  * @brief Adaptive Function max<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the string value that is greater than or equal to the others.
  *
@@ -29016,11 +26276,7 @@ afw_function_definition_min_string;
 
 /**
  * @brief Adaptive Function min<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the string value that is less than or equal to the others.
  *
@@ -29053,11 +26309,7 @@ afw_function_definition_ne_string;
 
 /**
  * @brief Adaptive Function ne<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if string arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -29098,11 +26350,7 @@ afw_function_definition_nex_string;
 
 /**
  * @brief Adaptive Function nex<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for string arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -29139,11 +26387,7 @@ afw_function_definition_normalize_space_string;
 
 /**
  * @brief Adaptive Function normalize_space<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Remove whitespace from the beginning and end of a string value.
  *
@@ -29174,11 +26418,7 @@ afw_function_definition_normalize_to_lower_case_string;
 
 /**
  * @brief Adaptive Function normalize_to_lower_case<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Normalize string value to lower case and returns string result.
  *
@@ -29209,11 +26449,7 @@ afw_function_definition_one_and_only_string;
 
 /**
  * @brief Adaptive Function one_and_only<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of string values that contains one value to a single
  * string value.
@@ -29250,11 +26486,7 @@ afw_function_definition_regexp_index_of_string;
 
 /**
  * @brief Adaptive Function regexp_index_of<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Search string value for a regular expression and return index. If not found,
  * -1 is returned.
@@ -29290,11 +26522,7 @@ afw_function_definition_regexp_match_string;
 
 /**
  * @brief Adaptive Function regexp_match<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether string value matches the regular expression regexp and return
  * the boolean result.
@@ -29330,11 +26558,7 @@ afw_function_definition_regexp_replace_string;
 
 /**
  * @brief Adaptive Function regexp_replace<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a string value.
  *
@@ -29376,11 +26600,7 @@ afw_function_definition_repeat_string;
 
 /**
  * @brief Adaptive Function repeat<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Repeat a string value a specified number of times.
  *
@@ -29415,11 +26635,7 @@ afw_function_definition_replace_string;
 
 /**
  * @brief Adaptive Function replace<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Replace string(s) in a string value.
  *
@@ -29461,11 +26677,7 @@ afw_function_definition_set_equals_string;
 
 /**
  * @brief Adaptive Function set_equals<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if string list1 and string list2 are subsets of each
  * other and return the boolean result.
@@ -29501,11 +26713,7 @@ afw_function_definition_split_string;
 
 /**
  * @brief Adaptive Function split<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Split string value into an list of strings using a separator.
  *
@@ -29546,11 +26754,7 @@ afw_function_definition_starts_with_string;
 
 /**
  * @brief Adaptive Function starts_with<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether string value starts with a subString and return the boolean
  * result.
@@ -29586,11 +26790,7 @@ afw_function_definition_string;
 
 /**
  * @brief Adaptive Function string
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
@@ -29628,11 +26828,7 @@ afw_function_definition_subset_string;
 
 /**
  * @brief Adaptive Function subset<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in string list1 are all in string
  * list2.
@@ -29668,11 +26864,7 @@ afw_function_definition_substring_string;
 
 /**
  * @brief Adaptive Function substring<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
@@ -29716,11 +26908,7 @@ afw_function_definition_to_anyURI_string;
 
 /**
  * @brief Adaptive Function to_anyURI<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to anyURI.
  *
@@ -29756,11 +26944,7 @@ afw_function_definition_to_boolean_string;
 
 /**
  * @brief Adaptive Function to_boolean<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to boolean.
  *
@@ -29796,11 +26980,7 @@ afw_function_definition_to_dateTime_string;
 
 /**
  * @brief Adaptive Function to_dateTime<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to dateTime.
  *
@@ -29836,11 +27016,7 @@ afw_function_definition_to_date_string;
 
 /**
  * @brief Adaptive Function to_date<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to date.
  *
@@ -29876,11 +27052,7 @@ afw_function_definition_to_dayTimeDuration_string;
 
 /**
  * @brief Adaptive Function to_dayTimeDuration<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to dayTimeDuration.
  *
@@ -29916,11 +27088,7 @@ afw_function_definition_to_dnsName_string;
 
 /**
  * @brief Adaptive Function to_dnsName<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to dnsName.
  *
@@ -29956,11 +27124,7 @@ afw_function_definition_to_double_string;
 
 /**
  * @brief Adaptive Function to_double<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to double and returns double result.
  *
@@ -29996,11 +27160,7 @@ afw_function_definition_to_integer_string;
 
 /**
  * @brief Adaptive Function to_integer<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Truncate string value to a whole number and returns integer result.
  *
@@ -30032,11 +27192,7 @@ afw_function_definition_to_ipAddress_string;
 
 /**
  * @brief Adaptive Function to_ipAddress<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to ipAddress.
  *
@@ -30072,11 +27228,7 @@ afw_function_definition_to_rfc822Name_string;
 
 /**
  * @brief Adaptive Function to_rfc822Name<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to rfc822Name.
  *
@@ -30112,11 +27264,7 @@ afw_function_definition_to_string_string;
 
 /**
  * @brief Adaptive Function to_string<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -30149,11 +27297,7 @@ afw_function_definition_to_time_string;
 
 /**
  * @brief Adaptive Function to_time<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to time.
  *
@@ -30189,11 +27333,7 @@ afw_function_definition_to_x500Name_string;
 
 /**
  * @brief Adaptive Function to_x500Name<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to x500Name.
  *
@@ -30229,11 +27369,7 @@ afw_function_definition_to_yearMonthDuration_string;
 
 /**
  * @brief Adaptive Function to_yearMonthDuration<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts string value to yearMonthDuration.
  *
@@ -30269,11 +27405,7 @@ afw_function_definition_union_string;
 
 /**
  * @brief Adaptive Function union<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of string contains all of the unique values in two or more
  * list of string values.
@@ -30308,11 +27440,7 @@ afw_function_definition_url_decode;
 
 /**
  * @brief Adaptive Function url_decode
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * URL decode a value or bag of values.
  *
@@ -30343,11 +27471,7 @@ afw_function_definition_url_encode_string;
 
 /**
  * @brief Adaptive Function url_encode<string>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
  *
@@ -30390,11 +27514,7 @@ afw_function_definition_bag_size_template;
 
 /**
  * @brief Adaptive Function bag_size<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -30426,11 +27546,7 @@ afw_function_definition_bag_template;
 
 /**
  * @brief Adaptive Function bag<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of template values and returns a list of list.
  *
@@ -30462,11 +27578,7 @@ afw_function_definition_compile_template;
 
 /**
  * @brief Adaptive Function compile<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile template value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -30507,11 +27619,7 @@ afw_function_definition_eq_template;
 
 /**
  * @brief Adaptive Function eq<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if template arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -30552,11 +27660,7 @@ afw_function_definition_eqx_template;
 
 /**
  * @brief Adaptive Function eqx<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for template arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -30593,11 +27697,7 @@ afw_function_definition_evaluate_template;
 
 /**
  * @brief Adaptive Function evaluate<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate template value.
  *
@@ -30637,11 +27737,7 @@ afw_function_definition_ge_template;
 
 /**
  * @brief Adaptive Function ge<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for template arg1 is greater than or equal to template arg2 and
  * return the boolean result.
@@ -30677,11 +27773,7 @@ afw_function_definition_gt_template;
 
 /**
  * @brief Adaptive Function gt<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for template arg1 is greater than template arg2 and return the
  * boolean result.
@@ -30717,11 +27809,7 @@ afw_function_definition_is_template;
 
 /**
  * @brief Adaptive Function is<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType template and return the boolean result.
  *
@@ -30753,11 +27841,7 @@ afw_function_definition_le_template;
 
 /**
  * @brief Adaptive Function le<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for template arg1 is less than or equal to template arg2 and return
  * the boolean result.
@@ -30793,11 +27877,7 @@ afw_function_definition_lt_template;
 
 /**
  * @brief Adaptive Function lt<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for template arg1 is less that template arg2 and return the boolean
  * result.
@@ -30833,11 +27913,7 @@ afw_function_definition_ne_template;
 
 /**
  * @brief Adaptive Function ne<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if template arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -30879,11 +27955,7 @@ afw_function_definition_nex_template;
 
 /**
  * @brief Adaptive Function nex<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for template arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -30920,11 +27992,7 @@ afw_function_definition_template;
 
 /**
  * @brief Adaptive Function template
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type template returning template result.
  *
@@ -30960,11 +28028,7 @@ afw_function_definition_to_string_template;
 
 /**
  * @brief Adaptive Function to_string<template>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts template value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -31007,11 +28071,7 @@ afw_function_definition_at_least_one_member_of_time;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in time list1 is in time list2.
  *
@@ -31046,11 +28106,7 @@ afw_function_definition_bag_size_time;
 
 /**
  * @brief Adaptive Function bag_size<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -31082,11 +28138,7 @@ afw_function_definition_bag_time;
 
 /**
  * @brief Adaptive Function bag<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of time values and returns a list of list.
  *
@@ -31118,11 +28170,7 @@ afw_function_definition_eq_time;
 
 /**
  * @brief Adaptive Function eq<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if time arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
@@ -31163,11 +28211,7 @@ afw_function_definition_eqx_time;
 
 /**
  * @brief Adaptive Function eqx<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for time arg1 is equal to the value and data type of arg2 then
  * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
@@ -31204,11 +28248,7 @@ afw_function_definition_ge_time;
 
 /**
  * @brief Adaptive Function ge<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for time arg1 is greater than or equal to time arg2 and return the
  * boolean result.
@@ -31247,11 +28287,7 @@ afw_function_definition_gt_time;
 
 /**
  * @brief Adaptive Function gt<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for time arg1 is greater than time arg2 and return the boolean
  * result.
@@ -31290,11 +28326,7 @@ afw_function_definition_in_range_time;
 
 /**
  * @brief Adaptive Function in_range<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
  * endTime value, it is always considered to be equal to, but less than 24
@@ -31335,11 +28367,7 @@ afw_function_definition_intersection_time;
 
 /**
  * @brief Adaptive Function intersection<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of time with the values that are common to both list of time
  * list1 and list2.
@@ -31375,11 +28403,7 @@ afw_function_definition_is_in_time;
 
 /**
  * @brief Adaptive Function is_in<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether time value is in list of time list and returns the boolean
  * result.
@@ -31415,11 +28439,7 @@ afw_function_definition_is_time;
 
 /**
  * @brief Adaptive Function is<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType time and return the boolean result.
  *
@@ -31451,11 +28471,7 @@ afw_function_definition_le_time;
 
 /**
  * @brief Adaptive Function le<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for time arg1 is less than or equal to time arg2 and return the
  * boolean result.
@@ -31494,11 +28510,7 @@ afw_function_definition_lt_time;
 
 /**
  * @brief Adaptive Function lt<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
@@ -31536,11 +28548,7 @@ afw_function_definition_max_time;
 
 /**
  * @brief Adaptive Function max<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the time value that is greater than or equal to the others.
  * 
@@ -31576,11 +28584,7 @@ afw_function_definition_min_time;
 
 /**
  * @brief Adaptive Function min<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Return the time value that is less than or equal to the others.
  * 
@@ -31616,11 +28620,7 @@ afw_function_definition_ne_time;
 
 /**
  * @brief Adaptive Function ne<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if time arg1 is not equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
@@ -31661,11 +28661,7 @@ afw_function_definition_nex_time;
 
 /**
  * @brief Adaptive Function nex<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for time arg1 is not equal to the value or data type of arg2
  * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
@@ -31702,11 +28698,7 @@ afw_function_definition_one_and_only_time;
 
 /**
  * @brief Adaptive Function one_and_only<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of time values that contains one value to a single time
  * value.
@@ -31743,11 +28735,7 @@ afw_function_definition_set_equals_time;
 
 /**
  * @brief Adaptive Function set_equals<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if time list1 and time list2 are subsets of each other
  * and return the boolean result.
@@ -31783,11 +28771,7 @@ afw_function_definition_subset_time;
 
 /**
  * @brief Adaptive Function subset<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in time list1 are all in time
  * list2.
@@ -31823,11 +28807,7 @@ afw_function_definition_time;
 
 /**
  * @brief Adaptive Function time
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type time returning time result.
  *
@@ -31863,11 +28843,7 @@ afw_function_definition_to_string_time;
 
 /**
  * @brief Adaptive Function to_string<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts time value to string. For list values, the to_string() value for
  * each entry is returned separated with commas.
@@ -31900,11 +28876,7 @@ afw_function_definition_union_time;
 
 /**
  * @brief Adaptive Function union<time>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of time contains all of the unique values in two or more list
  * of time values.
@@ -31949,11 +28921,7 @@ afw_function_definition_is_unevaluated;
 
 /**
  * @brief Adaptive Function is<unevaluated>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType unevaluated and return the boolean result.
  *
@@ -31995,11 +28963,7 @@ afw_function_definition_meta;
 
 /**
  * @brief Adaptive Function meta
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns an object containing meta information for an adaptive
  * value.
@@ -32034,11 +28998,7 @@ afw_function_definition_metas;
 
 /**
  * @brief Adaptive Function metas
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This function returns a list of the result of calling meta() for each value
  * in a list or object adaptive value.
@@ -32081,11 +29041,7 @@ afw_function_definition_at_least_one_member_of_x500Name;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in x500Name list1 is in x500Name
  * list2.
@@ -32121,11 +29077,7 @@ afw_function_definition_bag_size_x500Name;
 
 /**
  * @brief Adaptive Function bag_size<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -32157,11 +29109,7 @@ afw_function_definition_bag_x500Name;
 
 /**
  * @brief Adaptive Function bag<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of x500Name values and returns a list of list.
  *
@@ -32193,11 +29141,7 @@ afw_function_definition_eq_x500Name;
 
 /**
  * @brief Adaptive Function eq<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
@@ -32238,11 +29182,7 @@ afw_function_definition_eqx_x500Name;
 
 /**
  * @brief Adaptive Function eqx<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is equal to the value and data type of arg2
  * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
@@ -32279,11 +29219,7 @@ afw_function_definition_ge_x500Name;
 
 /**
  * @brief Adaptive Function ge<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
  * return the boolean result.
@@ -32319,11 +29255,7 @@ afw_function_definition_gt_x500Name;
 
 /**
  * @brief Adaptive Function gt<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is greater than x500Name arg2 and return the
  * boolean result.
@@ -32359,11 +29291,7 @@ afw_function_definition_intersection_x500Name;
 
 /**
  * @brief Adaptive Function intersection<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of x500Name with the values that are common to both list of
  * x500Name list1 and list2.
@@ -32399,11 +29327,7 @@ afw_function_definition_is_in_x500Name;
 
 /**
  * @brief Adaptive Function is_in<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether x500Name value is in list of x500Name list and returns the
  * boolean result.
@@ -32439,11 +29363,7 @@ afw_function_definition_is_x500Name;
 
 /**
  * @brief Adaptive Function is<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType x500Name and return the boolean result.
  *
@@ -32475,11 +29395,7 @@ afw_function_definition_le_x500Name;
 
 /**
  * @brief Adaptive Function le<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
  * the boolean result.
@@ -32515,11 +29431,7 @@ afw_function_definition_lt_x500Name;
 
 /**
  * @brief Adaptive Function lt<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
  * result.
@@ -32555,11 +29467,7 @@ afw_function_definition_match_x500Name;
 
 /**
  * @brief Adaptive Function match<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_x500Name.
@@ -32594,11 +29502,7 @@ afw_function_definition_ne_x500Name;
 
 /**
  * @brief Adaptive Function ne<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "nex" ("!==")
@@ -32640,11 +29544,7 @@ afw_function_definition_nex_x500Name;
 
 /**
  * @brief Adaptive Function nex<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -32681,11 +29581,7 @@ afw_function_definition_one_and_only_x500Name;
 
 /**
  * @brief Adaptive Function one_and_only<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of x500Name values that contains one value to a single
  * x500Name value.
@@ -32722,11 +29618,7 @@ afw_function_definition_regexp_match_x500Name;
 
 /**
  * @brief Adaptive Function regexp_match<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether x500Name value matches the regular expression regexp and
  * return the boolean result.
@@ -32762,11 +29654,7 @@ afw_function_definition_set_equals_x500Name;
 
 /**
  * @brief Adaptive Function set_equals<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if x500Name list1 and x500Name list2 are subsets of
  * each other and return the boolean result.
@@ -32802,11 +29690,7 @@ afw_function_definition_subset_x500Name;
 
 /**
  * @brief Adaptive Function subset<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in x500Name list1 are all in
  * x500Name list2.
@@ -32842,11 +29726,7 @@ afw_function_definition_to_string_x500Name;
 
 /**
  * @brief Adaptive Function to_string<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts x500Name value to string. For list values, the to_string() value
  * for each entry is returned separated with commas.
@@ -32879,11 +29759,7 @@ afw_function_definition_union_x500Name;
 
 /**
  * @brief Adaptive Function union<x500Name>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of x500Name contains all of the unique values in two or more
  * list of x500Name values.
@@ -32918,11 +29794,7 @@ afw_function_definition_x500Name;
 
 /**
  * @brief Adaptive Function x500Name
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type x500Name returning x500Name result.
  *
@@ -32968,11 +29840,7 @@ afw_function_definition_bag_size_xpathExpression;
 
 /**
  * @brief Adaptive Function bag_size<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -33004,11 +29872,7 @@ afw_function_definition_bag_xpathExpression;
 
 /**
  * @brief Adaptive Function bag<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of xpathExpression values and returns a list of list.
  *
@@ -33040,11 +29904,7 @@ afw_function_definition_compile_xpathExpression;
 
 /**
  * @brief Adaptive Function compile<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile xpathExpression value and return either an unevaluated adaptive
  * value or a string containing the compiler listing.
@@ -33085,11 +29945,7 @@ afw_function_definition_eq_xpathExpression;
 
 /**
  * @brief Adaptive Function eq<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "eqx" ("===")
@@ -33131,11 +29987,7 @@ afw_function_definition_eqx_xpathExpression;
 
 /**
  * @brief Adaptive Function eqx<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use "eq" ("==") instead if you want
@@ -33172,11 +30024,7 @@ afw_function_definition_evaluate_xpathExpression;
 
 /**
  * @brief Adaptive Function evaluate<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Compile and evaluate xpathExpression value.
  *
@@ -33216,11 +30064,7 @@ afw_function_definition_ge_xpathExpression;
 
 /**
  * @brief Adaptive Function ge<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is greater than or equal to xpathExpression
  * arg2 and return the boolean result.
@@ -33256,11 +30100,7 @@ afw_function_definition_gt_xpathExpression;
 
 /**
  * @brief Adaptive Function gt<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is greater than xpathExpression arg2 and
  * return the boolean result.
@@ -33296,11 +30136,7 @@ afw_function_definition_is_xpathExpression;
 
 /**
  * @brief Adaptive Function is<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType xpathExpression and return the boolean
  * result.
@@ -33333,11 +30169,7 @@ afw_function_definition_le_xpathExpression;
 
 /**
  * @brief Adaptive Function le<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is less than or equal to xpathExpression
  * arg2 and return the boolean result.
@@ -33373,11 +30205,7 @@ afw_function_definition_lt_xpathExpression;
 
 /**
  * @brief Adaptive Function lt<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is less that xpathExpression arg2 and return
  * the boolean result.
@@ -33413,11 +30241,7 @@ afw_function_definition_ne_xpathExpression;
 
 /**
  * @brief Adaptive Function ne<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is not equal to the value of arg2
  * converted to the data type of arg1 then return the boolean result. Use "nex"
@@ -33459,11 +30283,7 @@ afw_function_definition_nex_xpathExpression;
 
 /**
  * @brief Adaptive Function nex<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is not equal to the value or data type
  * of arg2 then return the boolean result. Use "ne" ("!=") instead if you want
@@ -33500,11 +30320,7 @@ afw_function_definition_to_string_xpathExpression;
 
 /**
  * @brief Adaptive Function to_string<xpathExpression>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts xpathExpression value to string. For list values, the to_string()
  * value for each entry is returned separated with commas.
@@ -33537,11 +30353,7 @@ afw_function_definition_xpathExpression;
 
 /**
  * @brief Adaptive Function xpathExpression
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type xpathExpression returning xpathExpression
  * result.
@@ -33578,11 +30390,7 @@ afw_function_definition_xpath_node_count;
 
 /**
  * @brief Adaptive Function xpath_node_count
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * The number of nodes in a node-set.
  *
@@ -33613,11 +30421,7 @@ afw_function_definition_xpath_node_eq;
 
 /**
  * @brief Adaptive Function xpath_node_eq
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is equal to xpathExpression arg2 and return
  * the boolean result.
@@ -33652,11 +30456,7 @@ afw_function_definition_xpath_node_match;
 
 /**
  * @brief Adaptive Function xpath_node_match
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns true if any of the nodes matched by nodeset1 are equal to any of the
  * nodes matched by nodeset2 or their corresponding children.
@@ -33701,11 +30501,7 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
 
 /**
  * @brief Adaptive Function at_least_one_member_of<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in yearMonthDuration list1 is in
  * yearMonthDuration list2.
@@ -33741,11 +30537,7 @@ afw_function_definition_bag_size_yearMonthDuration;
 
 /**
  * @brief Adaptive Function bag_size<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
  *
@@ -33777,11 +30569,7 @@ afw_function_definition_bag_yearMonthDuration;
 
 /**
  * @brief Adaptive Function bag<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Takes any number of yearMonthDuration values and returns a list of list.
  *
@@ -33813,11 +30601,7 @@ afw_function_definition_eq_yearMonthDuration;
 
 /**
  * @brief Adaptive Function eq<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use "eqx" ("===")
@@ -33859,11 +30643,7 @@ afw_function_definition_eqx_yearMonthDuration;
 
 /**
  * @brief Adaptive Function eqx<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is equal to the value and data type
  * of arg2 then return the boolean result. Use "eq" ("==") instead if you want
@@ -33900,11 +30680,7 @@ afw_function_definition_ge_yearMonthDuration;
 
 /**
  * @brief Adaptive Function ge<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is greater than or equal to
  * yearMonthDuration arg2 and return the boolean result.
@@ -33940,11 +30716,7 @@ afw_function_definition_gt_yearMonthDuration;
 
 /**
  * @brief Adaptive Function gt<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is greater than yearMonthDuration arg2 and
  * return the boolean result.
@@ -33980,11 +30752,7 @@ afw_function_definition_intersection_yearMonthDuration;
 
 /**
  * @brief Adaptive Function intersection<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of yearMonthDuration with the values that are common to both
  * list of yearMonthDuration list1 and list2.
@@ -34020,11 +30788,7 @@ afw_function_definition_is_in_yearMonthDuration;
 
 /**
  * @brief Adaptive Function is_in<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether yearMonthDuration value is in list of yearMonthDuration list
  * and returns the boolean result.
@@ -34060,11 +30824,7 @@ afw_function_definition_is_yearMonthDuration;
 
 /**
  * @brief Adaptive Function is<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks whether value is dataType yearMonthDuration and return the boolean
  * result.
@@ -34097,11 +30857,7 @@ afw_function_definition_le_yearMonthDuration;
 
 /**
  * @brief Adaptive Function le<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is less than or equal to yearMonthDuration
  * arg2 and return the boolean result.
@@ -34137,11 +30893,7 @@ afw_function_definition_lt_yearMonthDuration;
 
 /**
  * @brief Adaptive Function lt<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is less that yearMonthDuration arg2 and
  * return the boolean result.
@@ -34177,11 +30929,7 @@ afw_function_definition_ne_yearMonthDuration;
 
 /**
  * @brief Adaptive Function ne<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is not equal to the value of arg2
  * converted to the data type of arg1 then return the boolean result. Use "nex"
@@ -34223,11 +30971,7 @@ afw_function_definition_nex_yearMonthDuration;
 
 /**
  * @brief Adaptive Function nex<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is not equal to the value or data
  * type of arg2 then return the boolean result. Use "ne" ("!=") instead if you
@@ -34264,11 +31008,7 @@ afw_function_definition_one_and_only_yearMonthDuration;
 
 /**
  * @brief Adaptive Function one_and_only<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * This converts a list of yearMonthDuration values that contains one value to
  * a single yearMonthDuration value.
@@ -34305,11 +31045,7 @@ afw_function_definition_set_equals_yearMonthDuration;
 
 /**
  * @brief Adaptive Function set_equals<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2
  * are subsets of each other and return the boolean result.
@@ -34345,11 +31081,7 @@ afw_function_definition_subset_yearMonthDuration;
 
 /**
  * @brief Adaptive Function subset<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in yearMonthDuration list1 are all
  * in yearMonthDuration list2.
@@ -34385,11 +31117,7 @@ afw_function_definition_to_string_yearMonthDuration;
 
 /**
  * @brief Adaptive Function to_string<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts yearMonthDuration value to string. For list values, the to_string()
  * value for each entry is returned separated with commas.
@@ -34422,11 +31150,7 @@ afw_function_definition_union_yearMonthDuration;
 
 /**
  * @brief Adaptive Function union<yearMonthDuration>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Returns a list of yearMonthDuration contains all of the unique values in two
  * or more list of yearMonthDuration values.
@@ -34461,11 +31185,7 @@ afw_function_definition_yearMonthDuration;
 
 /**
  * @brief Adaptive Function yearMonthDuration
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Converts value to data type yearMonthDuration returning yearMonthDuration
  * result.

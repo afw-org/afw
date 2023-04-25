@@ -29,13 +29,13 @@
 #include "afw_ubjson_declare_helpers.h"
 
 
-/** @brief #define for quoted string default */
+/** @brief define for quoted string default */
 #define AFW_UBJSON_Q_default "default"
 
 /** @brief afw_utf8_t for string default */
 AFW_UBJSON_DECLARE_CONST_DATA(afw_utf8_t) afw_ubjson_s_default;
 
-/** @brief #define for quoted string indirect */
+/** @brief define for quoted string indirect */
 #define AFW_UBJSON_Q_indirect "indirect"
 
 /** @brief afw_utf8_t for string indirect */

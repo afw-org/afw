@@ -327,11 +327,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
             fd.write('\n/**\n')
             fd.write(' * @brief Adaptive Function ' + obj['functionId'] + '\n')
-            fd.write(' * @param function struct for this function.\n')
-            fd.write(' * @param argc number of values in argv.\n')
-            fd.write(' * @param argv list of values.\n')
-            fd.write(' * @param p to use for result.\n')
-            fd.write(' * @param xctx of caller.\n')
+            fd.write(' * @param x function execute parameter.\n')
             function_comment(fd, obj)
             if obj.get('useExecuteFunction') is None:
                 fd.write(' */\n')

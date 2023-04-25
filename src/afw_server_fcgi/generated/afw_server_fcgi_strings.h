@@ -29,139 +29,139 @@
 #include "afw_server_fcgi_declare_helpers.h"
 
 
-/** @brief #define for quoted string _AdaptiveCollection_ */
+/** @brief define for quoted string _AdaptiveCollection_ */
 #define AFW_SERVER_FCGI_Q__AdaptiveCollection_ "_AdaptiveCollection_"
 
 /** @brief afw_utf8_t for string _AdaptiveCollection_ */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s__AdaptiveCollection_;
 
-/** @brief #define for quoted string _AdaptiveServer_ */
+/** @brief define for quoted string _AdaptiveServer_ */
 #define AFW_SERVER_FCGI_Q__AdaptiveServer_ "_AdaptiveServer_"
 
 /** @brief afw_utf8_t for string _AdaptiveServer_ */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s__AdaptiveServer_;
 
-/** @brief #define for quoted string a_flag_trace_server */
+/** @brief define for quoted string a_flag_trace_server */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server "trace:server"
 
 /** @brief afw_utf8_t for string a_flag_trace_server */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server;
 
-/** @brief #define for quoted string a_flag_trace_server_brief */
+/** @brief define for quoted string a_flag_trace_server_brief */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_brief "Server related flags"
 
 /** @brief afw_utf8_t for string a_flag_trace_server_brief */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_brief;
 
-/** @brief #define for quoted string a_flag_trace_server_description */
+/** @brief define for quoted string a_flag_trace_server_description */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_description "This includes all trace:server related flags."
 
 /** @brief afw_utf8_t for string a_flag_trace_server_description */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_description;
 
-/** @brief #define for quoted string a_flag_trace_server_request */
+/** @brief define for quoted string a_flag_trace_server_request */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request "trace:server:request"
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request;
 
-/** @brief #define for quoted string a_flag_trace_server_request_brief */
+/** @brief define for quoted string a_flag_trace_server_request_brief */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_brief "Trace server request"
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request_brief */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_brief;
 
-/** @brief #define for quoted string a_flag_trace_server_request_description */
+/** @brief define for quoted string a_flag_trace_server_request_description */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description "This includes all trace:server:request related flags."
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request_description */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_description;
 
-/** @brief #define for quoted string a_flag_trace_server_request_process */
+/** @brief define for quoted string a_flag_trace_server_request_process */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process "trace:server:request:process"
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request_process */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process;
 
-/** @brief #define for quoted string a_flag_trace_server_request_process_brief */
+/** @brief define for quoted string a_flag_trace_server_request_process_brief */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief "Trace process request begin and end"
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request_process_brief */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process_brief;
 
-/** @brief #define for quoted string a_flag_trace_server_request_process_description */
+/** @brief define for quoted string a_flag_trace_server_request_process_description */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_description "This traces the begin and end of processing for requests."
 
 /** @brief afw_utf8_t for string a_flag_trace_server_request_process_description */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process_description;
 
-/** @brief #define for quoted string afw_server_fcgi */
+/** @brief define for quoted string afw_server_fcgi */
 #define AFW_SERVER_FCGI_Q_afw_server_fcgi "afw_server_fcgi"
 
 /** @brief afw_utf8_t for string afw_server_fcgi */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_afw_server_fcgi;
 
-/** @brief #define for quoted string concurrent */
+/** @brief define for quoted string concurrent */
 #define AFW_SERVER_FCGI_Q_concurrent "concurrent"
 
 /** @brief afw_utf8_t for string concurrent */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_concurrent;
 
-/** @brief #define for quoted string default */
+/** @brief define for quoted string default */
 #define AFW_SERVER_FCGI_Q_default "default"
 
 /** @brief afw_utf8_t for string default */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_default;
 
-/** @brief #define for quoted string description */
+/** @brief define for quoted string description */
 #define AFW_SERVER_FCGI_Q_description "description"
 
 /** @brief afw_utf8_t for string description */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_description;
 
-/** @brief #define for quoted string indirect */
+/** @brief define for quoted string indirect */
 #define AFW_SERVER_FCGI_Q_indirect "indirect"
 
 /** @brief afw_utf8_t for string indirect */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_indirect;
 
-/** @brief #define for quoted string integer */
+/** @brief define for quoted string integer */
 #define AFW_SERVER_FCGI_Q_integer "integer"
 
 /** @brief afw_utf8_t for string integer */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_integer;
 
-/** @brief #define for quoted string max_concurrent */
+/** @brief define for quoted string max_concurrent */
 #define AFW_SERVER_FCGI_Q_max_concurrent "max_concurrent"
 
 /** @brief afw_utf8_t for string max_concurrent */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_max_concurrent;
 
-/** @brief #define for quoted string objectId */
+/** @brief define for quoted string objectId */
 #define AFW_SERVER_FCGI_Q_objectId "objectId"
 
 /** @brief afw_utf8_t for string objectId */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_objectId;
 
-/** @brief #define for quoted string request_count */
+/** @brief define for quoted string request_count */
 #define AFW_SERVER_FCGI_Q_request_count "request_count"
 
 /** @brief afw_utf8_t for string request_count */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_request_count;
 
-/** @brief #define for quoted string single */
+/** @brief define for quoted string single */
 #define AFW_SERVER_FCGI_Q_single "single"
 
 /** @brief afw_utf8_t for string single */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_single;
 
-/** @brief #define for quoted string thread_count */
+/** @brief define for quoted string thread_count */
 #define AFW_SERVER_FCGI_Q_thread_count "thread_count"
 
 /** @brief afw_utf8_t for string thread_count */
 AFW_SERVER_FCGI_DECLARE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_thread_count;
 
-/** @brief #define for quoted string uint32 */
+/** @brief define for quoted string uint32 */
 #define AFW_SERVER_FCGI_Q_uint32 "uint32"
 
 /** @brief afw_utf8_t for string uint32 */

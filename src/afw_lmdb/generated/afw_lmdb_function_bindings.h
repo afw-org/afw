@@ -56,11 +56,7 @@ afw_lmdb_function_bindings_get();
 
 /**
  * @brief Adaptive Function reader_check
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Check for stale entries in the reader lock table.
  *
@@ -87,11 +83,7 @@ afw_lmdb_function_execute_reader_check(
 
 /**
  * @brief Adaptive Function reader_list
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv list of values.
- * @param p to use for result.
- * @param xctx of caller.
+ * @param x function execute parameter.
  *
  * Dump the entries in the reader lock table.
  *

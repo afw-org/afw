@@ -22,7 +22,7 @@ def generate_h(generated_by, prefix, strings, generated_dir_path):
 
         for name, value in sorted(strings.items()):
 
-            fd.write('\n/** @brief #define for quoted string ' + name + ' */\n')
+            fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
             fd.write('#define ' + prefix.upper() + 'Q_' + name + ' "' + value + '"\n')
 
             fd.write('\n/** @brief afw_utf8_t for string ' + name + ' */\n')
