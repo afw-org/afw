@@ -62,7 +62,7 @@ afw_function_execute_add_string(
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * '<undefined>'.
+ * `<undefined>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -217,7 +217,7 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * '<undefined>'.
+ * `<undefined>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

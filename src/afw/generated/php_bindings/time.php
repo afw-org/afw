@@ -154,7 +154,7 @@ class time
      * the boolean result.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $arg1
@@ -183,7 +183,7 @@ class time
      * result.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $arg1
@@ -314,7 +314,7 @@ class time
      * boolean result.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $arg1
@@ -343,7 +343,7 @@ class time
      * result.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $arg1
@@ -371,7 +371,7 @@ class time
      * Return the time value that is greater than or equal to the others.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $values
@@ -397,7 +397,7 @@ class time
      * Return the time value that is less than or equal to the others.
      * 
      * It is illegal to compare a time that includes a time-zone value with
-     * one that does not. In such cases, the in_range<time> function should
+     * one that does not. In such cases, the `in_range<time>` function should
      * be used.
      *
      * @param time $values

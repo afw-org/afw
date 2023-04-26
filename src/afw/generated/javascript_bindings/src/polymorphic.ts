@@ -12,8 +12,8 @@ interface IAnyObject {
 }
 
 /**
- * Compute the absolute value of the <dataType> value and return the
- * <dataType> result.
+ * Compute the absolute value of the `<dataType>` value and return the
+ * `<dataType>` result.
  * 
  * @param {} value -
  * 
@@ -30,7 +30,7 @@ export function afwAbs(client : any, value : any) : any {
 }
 
 /**
- * Add 2 or more <dataType> values and return the <dataType> result.
+ * Add 2 or more `<dataType>` values and return the `<dataType>` result.
  * 
  * @param {} values -
  * 
@@ -47,7 +47,7 @@ export function afwAdd(client : any, values : any) : any {
 }
 
 /**
- * Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType>
+ * Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
  * result.
  * 
  * @param {} arg1 -
@@ -68,8 +68,8 @@ export function afwAddDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType>
- * result.
+ * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
+ * `<dataType>` result.
  * 
  * @param {} arg1 -
  * 
@@ -89,8 +89,8 @@ export function afwAddYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
 }
 
 /**
- * Returns boolean true if at least one value in <dataType> list1 is in
- * <dataType> list2.
+ * Returns boolean true if at least one value in `<dataType>` list1 is in
+ * `<dataType>` list2.
  * 
  * @param {list} list1 - The first list.
  * 
@@ -110,7 +110,7 @@ export function afwAtLeastOneMemberOf(client : any, list1 : any[], list2 : any[]
 }
 
 /**
- * Takes any number of <dataType> values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns a list of list.
  * 
  * @param {list} values -
  * 
@@ -147,7 +147,7 @@ export function afwBagSize(client : any, value : any[]) : any {
 
 /**
  * Determine the smallest integer that is greater then or equal to the
- * <dataType> value and return the <dataType> result.
+ * `<dataType>` value and return the `<dataType>` result.
  * 
  * @param {} value -
  * 
@@ -164,11 +164,11 @@ export function afwCeil(client : any, value : any) : any {
 }
 
 /**
- * Deep clone a <dataType> value.
+ * Deep clone a `<dataType>` value.
  * 
- * @param {} value - The <dataType> value to clone.
+ * @param {} value - The `<dataType>` value to clone.
  * 
- * @returns {} The cloned <dataType> value.
+ * @returns {} The cloned `<dataType>` value.
  */
 export function afwClone(client : any, value : any) : any {
 
@@ -181,10 +181,10 @@ export function afwClone(client : any, value : any) : any {
 }
 
 /**
- * Compile <dataType> value and return either an unevaluated adaptive value
+ * Compile `<dataType>` value and return either an unevaluated adaptive value
  * or a string containing the compiler listing.
  * 
- * @param {} source - <dataType> string to compile
+ * @param {} source - `<dataType>` string to compile
  * 
  * @param {} listing - If specified, a compiler listing is produced instead
  *     of an unevaluated expression value.
@@ -210,10 +210,10 @@ export function afwCompile(client : any, source : any, listing? : any) : any {
 }
 
 /**
- * Decode <dataType> value to string. An error is thrown if decoded value is
- * not valid UTF-8.
+ * Decode `<dataType>` value to string. An error is thrown if decoded value
+ * is not valid UTF-8.
  * 
- * @param {} value - The <dataType> value to decode.
+ * @param {} value - The `<dataType>` value to decode.
  * 
  * @returns {string} The decoded string.
  */
@@ -228,8 +228,8 @@ export function afwDecodeToString(client : any, value : any) : any {
 }
 
 /**
- * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
- * quotient.
+ * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+ * `<dataType>` quotient.
  * 
  * @param {} dividend -
  * 
@@ -252,7 +252,7 @@ export function afwDivide(client : any, dividend : any, divisor : any) : any {
  * Encode a value as a base64Binary. The effect is to create a base64Binary
  * value with an internal value of the value passed.
  * 
- * @param {} value - The <dataType> value to encode.
+ * @param {} value - The `<dataType>` value to encode.
  * 
  * @returns {base64Binary} A base64Binary value.
  */
@@ -270,7 +270,7 @@ export function afwEncodeAsBase64Binary(client : any, value : any) : any {
  * Encode a value as a hexBinary. The effect is to create a hexBinary value
  * with an internal value of the value passed.
  * 
- * @param {} value - The <dataType> value to encode.
+ * @param {} value - The `<dataType>` value to encode.
  * 
  * @returns {hexBinary} A hexBinary value.
  */
@@ -285,7 +285,7 @@ export function afwEncodeAsHexBinary(client : any, value : any) : any {
 }
 
 /**
- * Checks whether <dataType> value ends with a <dataType> and return the
+ * Checks whether `<dataType>` value ends with a `<dataType>` and return the
  * boolean result.
  * 
  * @param {} value -
@@ -306,7 +306,7 @@ export function afwEndsWith(client : any, value : any, subString : string) : any
 }
 
 /**
- * Determine if <dataType> arg1 is equal to the value of arg2 converted to
+ * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use "eqx" ("===")
  * instead if you want false to be returned if arg1 and arg2's data type
  * don't match.
@@ -329,8 +329,8 @@ export function afwEq(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and
- * return the boolean result.
+ * Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case
+ * and return the boolean result.
  * 
  * @param {} arg1 -
  * 
@@ -350,7 +350,7 @@ export function afwEqIgnoreCase(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for <dataType> arg1 is equal to the value and data type of
+ * Determine if for `<dataType>` arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use "eq" ("==") instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  * 
@@ -372,9 +372,9 @@ export function afwEqx(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Compile and evaluate <dataType> value.
+ * Compile and evaluate `<dataType>` value.
  * 
- * @param {} source - <dataType> string to compile and evaluate
+ * @param {} source - `<dataType>` string to compile and evaluate
  * 
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
@@ -400,7 +400,7 @@ export function afwEvaluate(client : any, source : any, additionalUntrustedQuali
 
 /**
  * Determine the largest integer that is smaller then or equal to the
- * <dataType> value and return the <dataType> result.
+ * `<dataType>` value and return the `<dataType>` result.
  * 
  * @param {} number -
  * 
@@ -417,8 +417,8 @@ export function afwFloor(client : any, number : any) : any {
 }
 
 /**
- * Checks for <dataType> arg1 is greater than or equal to <dataType> arg2 and
- * return the boolean result.
+ * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
+ * and return the boolean result.
  * 
  * @param {} arg1 -
  * 
@@ -438,8 +438,8 @@ export function afwGe(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
- * boolean result.
+ * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
+ * the boolean result.
  * 
  * @param {} arg1 -
  * 
@@ -459,12 +459,12 @@ export function afwGt(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks if <dataType> is between startTime and endTime, inclusive.
+ * Checks if `<dataType>` is between startTime and endTime, inclusive.
  * Regardless of endTime value, it is always considered to be equal to, but
- * less than 24 hours greater than startTime. If no <dataType> zone is
- * specified for <dataType>, the default <dataType> zone is used. If no
- * <dataType> zone is specified for startTime or endTime, the <dataType> zone
- * of <dataType> is used.
+ * less than 24 hours greater than startTime. If no `<dataType>` zone is
+ * specified for `<dataType>,` the default `<dataType>` zone is used. If no
+ * `<dataType>` zone is specified for startTime or endTime, the `<dataType>`
+ * zone of `<dataType>` is used.
  * 
  * @param {} time -
  * 
@@ -487,10 +487,10 @@ export function afwInRange(client : any, time : any, startTime : any, endTime : 
 }
 
 /**
- * Checks whether the <dataType> value includes a string and return the
+ * Checks whether the `<dataType>` value includes a string and return the
  * boolean result.
  * 
- * @param {} searchString - The <dataType> to search.
+ * @param {} searchString - The `<dataType>` to search.
  * 
  * @param {string} subString - Substring to find.
  * 
@@ -515,10 +515,10 @@ export function afwIncludes(client : any, searchString : any, subString : string
 }
 
 /**
- * Returns the zero-based index into <dataType> value of subString. If
+ * Returns the zero-based index into `<dataType>` value of subString. If
  * subString is not found, -1 is returned.
  * 
- * @param {} value - The <dataType> value to search.
+ * @param {} value - The `<dataType>` value to search.
  * 
  * @param {string} subString - Substring to search for.
  * 
@@ -542,8 +542,8 @@ export function afwIndexOf(client : any, value : any, subString : string, startI
 }
 
 /**
- * Returns a list of <dataType> with the values that are common to both list
- * of <dataType> list1 and list2.
+ * Returns a list of `<dataType>` with the values that are common to both
+ * list of `<dataType>` list1 and list2.
  * 
  * @param {list} list1 - The first list.
  * 
@@ -563,7 +563,8 @@ export function afwIntersection(client : any, list1 : any[], list2 : any[]) : an
 }
 
 /**
- * Checks whether value is dataType <dataType> and return the boolean result.
+ * Checks whether value is dataType `<dataType>` and return the boolean
+ * result.
  * 
  * @param {} value - Value to check
  * 
@@ -580,8 +581,8 @@ export function afwIs(client : any, value : any) : any {
 }
 
 /**
- * Checks whether <dataType> value is in list of <dataType> list and returns
- * the boolean result.
+ * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * returns the boolean result.
  * 
  * @param {} value -
  * 
@@ -601,10 +602,10 @@ export function afwIsIn(client : any, value : any, list : any[]) : any {
 }
 
 /**
- * Returns the zero-based index into <dataType> value of the last occurrence
- * of a subString. If subString is not found, -1 is returned.
+ * Returns the zero-based index into `<dataType>` value of the last
+ * occurrence of a subString. If subString is not found, -1 is returned.
  * 
- * @param {} value - The <dataType> value to search.
+ * @param {} value - The `<dataType>` value to search.
  * 
  * @param {string} subString - Substring to search for.
  * 
@@ -628,8 +629,8 @@ export function afwLastIndexOf(client : any, value : any, subString : string, st
 }
 
 /**
- * Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
- * return the boolean result.
+ * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
+ * and return the boolean result.
  * 
  * @param {} arg1 -
  * 
@@ -649,7 +650,7 @@ export function afwLe(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This is a polymorphic function where <dataType> can be any of the
+ * This is a polymorphic function where `<dataType>` can be any of the
  * supported data types. Return the integer number of entries in datatype
  * list or codepoints in others.
  * 
@@ -669,7 +670,7 @@ export function afwLength(client : any, value : any) : any {
 }
 
 /**
- * Checks for <dataType> arg1 is less that <dataType> arg2 and return the
+ * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
  * boolean result.
  * 
  * @param {} arg1 -
@@ -691,7 +692,7 @@ export function afwLt(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_<dataType>.
+ * compared using `equal_<dataType>`.
  * 
  * @param {} arg1 -
  * 
@@ -711,7 +712,7 @@ export function afwMatch(client : any, arg1 : any, arg2 : string) : any {
 }
 
 /**
- * Return the <dataType> value that is greater than or equal to the others.
+ * Return the `<dataType>` value that is greater than or equal to the others.
  * 
  * @param {} values -
  * 
@@ -728,7 +729,7 @@ export function afwMax(client : any, values : any) : any {
 }
 
 /**
- * Return the <dataType> value that is less than or equal to the others.
+ * Return the `<dataType>` value that is less than or equal to the others.
  * 
  * @param {} values -
  * 
@@ -745,8 +746,8 @@ export function afwMin(client : any, values : any) : any {
 }
 
 /**
- * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
- * remainder.
+ * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+ * `<dataType>` remainder.
  * 
  * @param {} dividend -
  * 
@@ -766,7 +767,7 @@ export function afwMod(client : any, dividend : any, divisor : any) : any {
 }
 
 /**
- * Multiply 2 or more <dataType> values and return the <dataType> result.
+ * Multiply 2 or more `<dataType>` values and return the `<dataType>` result.
  * 
  * @param {} values -
  * 
@@ -783,7 +784,7 @@ export function afwMultiply(client : any, values : any) : any {
 }
 
 /**
- * Determine if <dataType> arg1 is not equal to the value of arg2 converted
+ * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
@@ -806,7 +807,7 @@ export function afwNe(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Return negative of <dataType> value.
+ * Return negative of `<dataType>` value.
  * 
  * @param {} value -
  * 
@@ -823,9 +824,9 @@ export function afwNegative(client : any, value : any) : any {
 }
 
 /**
- * Determine if for <dataType> arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for `<dataType>` arg1 is not equal to the value or data type
+ * of arg2 then return the boolean result. Use "ne" ("!=") instead if you
+ * want arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {} arg1 -
  * 
@@ -845,7 +846,7 @@ export function afwNex(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Remove whitespace from the beginning and end of a <dataType> value.
+ * Remove whitespace from the beginning and end of a `<dataType>` value.
  * 
  * @param {} string -
  * 
@@ -862,7 +863,8 @@ export function afwNormalizeSpace(client : any, string : any) : any {
 }
 
 /**
- * Normalize <dataType> value to lower case and returns <dataType> result.
+ * Normalize `<dataType>` value to lower case and returns `<dataType>`
+ * result.
  * 
  * @param {} string -
  * 
@@ -879,8 +881,8 @@ export function afwNormalizeToLowerCase(client : any, string : any) : any {
 }
 
 /**
- * This converts a list of <dataType> values that contains one value to a
- * single <dataType> value.
+ * This converts a list of `<dataType>` values that contains one value to a
+ * single `<dataType>` value.
  * 
  * @param {list} list -
  * 
@@ -919,10 +921,10 @@ export function afwPow(client : any, base : any, exponent : any) : any {
 }
 
 /**
- * Search <dataType> value for a regular expression and return index. If not
- * found, -1 is returned.
+ * Search `<dataType>` value for a regular expression and return index. If
+ * not found, -1 is returned.
  * 
- * @param {} value - The <dataType> value to search.
+ * @param {} value - The `<dataType>` value to search.
  * 
  * @param {string} regexp - A regular expression to use for search.
  * 
@@ -940,8 +942,8 @@ export function afwRegexpIndexOf(client : any, value : any, regexp : string) : a
 }
 
 /**
- * Checks whether <dataType> value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether `<dataType>` value matches the regular expression regexp
+ * and return the boolean result.
  * 
  * @param {} value -
  * 
@@ -961,9 +963,9 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
 }
 
 /**
- * Replace matched values for a regular expression in a <dataType> value.
+ * Replace matched values for a regular expression in a `<dataType>` value.
  * 
- * @param {} value - The original <dataType> value.
+ * @param {} value - The original `<dataType>` value.
  * 
  * @param {string} regexp - A regular expression to use for search.
  * 
@@ -972,7 +974,7 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A <dataType> value with the matched string(s) replaced.
+ * @returns {} A `<dataType>` value with the matched string(s) replaced.
  */
 export function afwRegexpReplace(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
 
@@ -990,13 +992,13 @@ export function afwRegexpReplace(client : any, value : any, regexp : string, rep
 }
 
 /**
- * Repeat a <dataType> value a specified number of times.
+ * Repeat a `<dataType>` value a specified number of times.
  * 
- * @param {} value - The <dataType> value to repeat.
+ * @param {} value - The `<dataType>` value to repeat.
  * 
  * @param {integer} times - The number of times to repeat the value.
  * 
- * @returns {} The repeated <dataType> value.
+ * @returns {} The repeated `<dataType>` value.
  */
 export function afwRepeat(client : any, value : any, times : number) : any {
 
@@ -1010,9 +1012,9 @@ export function afwRepeat(client : any, value : any, times : number) : any {
 }
 
 /**
- * Replace string(s) in a <dataType> value.
+ * Replace string(s) in a `<dataType>` value.
  * 
- * @param {} value - The original <dataType> value.
+ * @param {} value - The original `<dataType>` value.
  * 
  * @param {string} match - The string to replace.
  * 
@@ -1021,7 +1023,7 @@ export function afwRepeat(client : any, value : any, times : number) : any {
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A <dataType> value with the matched string(s) replaced.
+ * @returns {} A `<dataType>` value with the matched string(s) replaced.
  */
 export function afwReplace(client : any, value : any, match : string, replacement : string, limit? : number) : any {
 
@@ -1039,8 +1041,8 @@ export function afwReplace(client : any, value : any, match : string, replacemen
 }
 
 /**
- * Determine the integer closest to <dataType> value and return the
- * <dataType> result.
+ * Determine the integer closest to `<dataType>` value and return the
+ * `<dataType>` result.
  * 
  * @param {} number -
  * 
@@ -1057,8 +1059,8 @@ export function afwRound(client : any, number : any) : any {
 }
 
 /**
- * Returns boolean true if <dataType> list1 and <dataType> list2 are subsets
- * of each other and return the boolean result.
+ * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * subsets of each other and return the boolean result.
  * 
  * @param {list} list1 -
  * 
@@ -1078,9 +1080,9 @@ export function afwSetEquals(client : any, list1 : any[], list2 : any[]) : any {
 }
 
 /**
- * Split <dataType> value into an list of strings using a separator.
+ * Split `<dataType>` value into an list of strings using a separator.
  * 
- * @param {} value - The <dataType> value to split.
+ * @param {} value - The `<dataType>` value to split.
  * 
  * @param {string} separator - The separator to use. If this is an empty
  *     string or separator is not specified, the value is split between
@@ -1108,7 +1110,7 @@ export function afwSplit(client : any, value : any, separator? : string, limit? 
 }
 
 /**
- * Checks whether <dataType> value starts with a subString and return the
+ * Checks whether `<dataType>` value starts with a subString and return the
  * boolean result.
  * 
  * @param {} value -
@@ -1129,8 +1131,8 @@ export function afwStartsWith(client : any, value : any, subString : string) : a
 }
 
 /**
- * Returns boolean true if the unique values in <dataType> list1 are all in
- * <dataType> list2.
+ * Returns boolean true if the unique values in `<dataType>` list1 are all in
+ * `<dataType>` list2.
  * 
  * @param {list} list1 - The first list.
  * 
@@ -1150,9 +1152,10 @@ export function afwSubset(client : any, list1 : any[], list2 : any[]) : any {
 }
 
 /**
- * Returns the <dataType> substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of <dataType>.
+ * Returns the `<dataType>` substring of value beginning at zero-based
+ * position integer startIndex and ending at the position before integer
+ * endIndex. Specify -1 or omitting endIndex to return up to end of
+ * `<dataType>`.
  * 
  * @param {} string -
  * 
@@ -1177,8 +1180,8 @@ export function afwSubstring(client : any, string : any, startIndex : number, en
 }
 
 /**
- * Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType>
- * result.
+ * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  * 
  * @param {} arg1 -
  * 
@@ -1198,8 +1201,8 @@ export function afwSubtract(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Subtract dayTimeDuration arg2 from <dataType> arg1 and return the
- * <dataType> result.
+ * Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  * 
  * @param {} arg1 -
  * 
@@ -1219,8 +1222,8 @@ export function afwSubtractDayTimeDuration(client : any, arg1 : any, arg2 : any)
 }
 
 /**
- * Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
- * <dataType> result.
+ * Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  * 
  * @param {} arg1 -
  * 
@@ -1240,7 +1243,7 @@ export function afwSubtractYearMonthDuration(client : any, arg1 : any, arg2 : an
 }
 
 /**
- * Converts <dataType> value to anyURI.
+ * Converts `<dataType>` value to anyURI.
  * 
  * @param {} value -
  * 
@@ -1257,7 +1260,7 @@ export function afwToAnyURI(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to boolean.
+ * Converts `<dataType>` value to boolean.
  * 
  * @param {} value -
  * 
@@ -1274,7 +1277,7 @@ export function afwToBoolean(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to date.
+ * Converts `<dataType>` value to date.
  * 
  * @param {} value -
  * 
@@ -1291,7 +1294,7 @@ export function afwToDate(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to dateTime.
+ * Converts `<dataType>` value to dateTime.
  * 
  * @param {} value -
  * 
@@ -1308,7 +1311,7 @@ export function afwToDateTime(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to dayTimeDuration.
+ * Converts `<dataType>` value to dayTimeDuration.
  * 
  * @param {} value -
  * 
@@ -1325,7 +1328,7 @@ export function afwToDayTimeDuration(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to dnsName.
+ * Converts `<dataType>` value to dnsName.
  * 
  * @param {} value -
  * 
@@ -1342,7 +1345,7 @@ export function afwToDnsName(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to double and returns double result.
+ * Converts `<dataType>` value to double and returns double result.
  * 
  * @param {} value -
  * 
@@ -1359,7 +1362,7 @@ export function afwToDouble(client : any, value : any) : any {
 }
 
 /**
- * Truncate <dataType> value to a whole number and returns integer result.
+ * Truncate `<dataType>` value to a whole number and returns integer result.
  * 
  * @param {} value -
  * 
@@ -1376,7 +1379,7 @@ export function afwToInteger(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to ipAddress.
+ * Converts `<dataType>` value to ipAddress.
  * 
  * @param {} value -
  * 
@@ -1393,7 +1396,7 @@ export function afwToIpAddress(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to rfc822Name.
+ * Converts `<dataType>` value to rfc822Name.
  * 
  * @param {} value -
  * 
@@ -1410,10 +1413,10 @@ export function afwToRfc822Name(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to string. For list values, the to_string()
+ * Converts `<dataType>` value to string. For list values, the to_string()
  * value for each entry is returned separated with commas.
  * 
- * @param {} value - A <dataType> value.
+ * @param {} value - A `<dataType>` value.
  * 
  * @returns {string} The string representation of the value.
  */
@@ -1428,7 +1431,7 @@ export function afwToString(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to time.
+ * Converts `<dataType>` value to time.
  * 
  * @param {} value -
  * 
@@ -1445,7 +1448,7 @@ export function afwToTime(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to x500Name.
+ * Converts `<dataType>` value to x500Name.
  * 
  * @param {} value -
  * 
@@ -1462,7 +1465,7 @@ export function afwToX500Name(client : any, value : any) : any {
 }
 
 /**
- * Converts <dataType> value to yearMonthDuration.
+ * Converts `<dataType>` value to yearMonthDuration.
  * 
  * @param {} value -
  * 
@@ -1479,8 +1482,8 @@ export function afwToYearMonthDuration(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of <dataType> contains all of the unique values in two or
- * more list of <dataType> values.
+ * Returns a list of `<dataType>` contains all of the unique values in two or
+ * more list of `<dataType>` values.
  * 
  * @param {list} lists - Two or more lists.
  * 

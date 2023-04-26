@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
-import json
 import os
+import re
 from _afwdev.common import msg, nfc
 
 def get_generated_by(generated_by):
@@ -86,6 +86,24 @@ def write_h_epilogue(fd, filename):
     fd.write(get_h_epilogue(filename))
 
 def write_wrapped(fd, max, prefix, s, continue_indent='', last_char='', trim=False):
+
+    # The s passed to this function is often the text from properties like
+    # "description" that contains "plain/text".
+    #
+    # Doxygen considers strings enclosed in angle brackets to be links. This
+    # attempts put grave symbols around series of characters that contain angle
+    # bracket enclosed substrings. This may need to be adjusted over time but
+    # worked correctly when originally added.
+    # 
+    # Enclose strings that contain substrings enclosed with angle brackets in
+    # grave symbols. If previously enclosed in single quotes, just enclose in
+    # grave symbols. Don't put graves around the open/close parentheses.
+    pattern = r"[^ (]*<[^ ]*>[^\n.) ]*"
+    replacement = r"`\g<0>`"
+    s = re.sub(pattern, replacement, s)
+    s = re.sub("`'", "`", s)
+    s = re.sub("'`", "`", s)
+
     end_of_line = -1
     s_len = len(s)
     use_len = max - len(prefix) - len(last_char) - 1

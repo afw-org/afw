@@ -175,7 +175,8 @@ def ge_time(session, arg1, arg2):
     boolean result.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 
@@ -211,7 +212,8 @@ def gt_time(session, arg1, arg2):
     result.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 
@@ -381,7 +383,8 @@ def le_time(session, arg1, arg2):
     boolean result.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 
@@ -417,7 +420,8 @@ def lt_time(session, arg1, arg2):
     result.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 
@@ -452,7 +456,8 @@ def max_time(session, values):
     Return the time value that is greater than or equal to the others.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 
@@ -484,7 +489,8 @@ def min_time(session, values):
     Return the time value that is less than or equal to the others.
     
     It is illegal to compare a time that includes a time-zone value with one
-    that does not. In such cases, the in_range<time> function should be used.
+    that does not. In such cases, the `in_range<time>` function should be
+    used.
 
     Parameters:
 

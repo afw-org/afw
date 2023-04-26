@@ -26,8 +26,8 @@ class polymorphic
     /**
      * abs()
      *
-     * Compute the absolute value of the <dataType> value and return the
-     * <dataType> result.
+     * Compute the absolute value of the `<dataType>` value and return the
+     * `<dataType>` result.
      *
      * @param  $value
      *
@@ -49,7 +49,7 @@ class polymorphic
     /**
      * add()
      *
-     * Add 2 or more <dataType> values and return the <dataType> result.
+     * Add 2 or more `<dataType>` values and return the `<dataType>` result.
      *
      * @param  $values
      *
@@ -71,8 +71,8 @@ class polymorphic
     /**
      * add_dayTimeDuration()
      *
-     * Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType>
-     * result.
+     * Add `<dataType>` arg1 to dayTimeDuration arg2 and return the
+     * `<dataType>` result.
      *
      * @param  $arg1
      * @param dayTimeDuration $arg2
@@ -96,8 +96,8 @@ class polymorphic
     /**
      * add_yearMonthDuration()
      *
-     * Add <dataType> arg1 to yearMonthDuration arg2 and return the
-     * <dataType> result.
+     * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
+     * `<dataType>` result.
      *
      * @param  $arg1
      * @param yearMonthDuration $arg2
@@ -121,8 +121,8 @@ class polymorphic
     /**
      * at_least_one_member_of()
      *
-     * Returns boolean true if at least one value in <dataType> list1 is in
-     * <dataType> list2.
+     * Returns boolean true if at least one value in `<dataType>` list1 is in
+     * `<dataType>` list2.
      *
      * @param list $list1 The first list.
      * @param list $list2 The second list.
@@ -146,7 +146,7 @@ class polymorphic
     /**
      * bag()
      *
-     * Takes any number of <dataType> values and returns a list of list.
+     * Takes any number of `<dataType>` values and returns a list of list.
      *
      * @param list $values
      *
@@ -193,7 +193,7 @@ class polymorphic
      * ceil()
      *
      * Determine the smallest integer that is greater then or equal to the
-     * <dataType> value and return the <dataType> result.
+     * `<dataType>` value and return the `<dataType>` result.
      *
      * @param  $value
      *
@@ -215,11 +215,11 @@ class polymorphic
     /**
      * clone()
      *
-     * Deep clone a <dataType> value.
+     * Deep clone a `<dataType>` value.
      *
-     * @param  $value The <dataType> value to clone.
+     * @param  $value The `<dataType>` value to clone.
      *
-     * @return  The cloned <dataType> value.
+     * @return  The cloned `<dataType>` value.
      */
     public function clone(, $value)
     {
@@ -237,10 +237,10 @@ class polymorphic
     /**
      * compile()
      *
-     * Compile <dataType> value and return either an unevaluated adaptive
+     * Compile `<dataType>` value and return either an unevaluated adaptive
      * value or a string containing the compiler listing.
      *
-     * @param  $source <dataType> string to compile
+     * @param  $source `<dataType>` string to compile
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated expression value.
      *                  
@@ -271,10 +271,10 @@ class polymorphic
     /**
      * decode_to_string()
      *
-     * Decode <dataType> value to string. An error is thrown if decoded value
-     * is not valid UTF-8.
+     * Decode `<dataType>` value to string. An error is thrown if decoded
+     * value is not valid UTF-8.
      *
-     * @param  $value The <dataType> value to decode.
+     * @param  $value The `<dataType>` value to decode.
      *
      * @return string The decoded string.
      */
@@ -294,8 +294,8 @@ class polymorphic
     /**
      * divide()
      *
-     * Divide <dataType> dividend by <dataType> divisor and return the
-     * <dataType> quotient.
+     * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+     * `<dataType>` quotient.
      *
      * @param  $dividend
      * @param  $divisor
@@ -322,7 +322,7 @@ class polymorphic
      * Encode a value as a base64Binary. The effect is to create a
      * base64Binary value with an internal value of the value passed.
      *
-     * @param  $value The <dataType> value to encode.
+     * @param  $value The `<dataType>` value to encode.
      *
      * @return base64Binary A base64Binary value.
      */
@@ -345,7 +345,7 @@ class polymorphic
      * Encode a value as a hexBinary. The effect is to create a hexBinary
      * value with an internal value of the value passed.
      *
-     * @param  $value The <dataType> value to encode.
+     * @param  $value The `<dataType>` value to encode.
      *
      * @return hexBinary A hexBinary value.
      */
@@ -365,8 +365,8 @@ class polymorphic
     /**
      * ends_with()
      *
-     * Checks whether <dataType> value ends with a <dataType> and return the
-     * boolean result.
+     * Checks whether `<dataType>` value ends with a `<dataType>` and return
+     * the boolean result.
      *
      * @param  $value
      * @param string $subString
@@ -390,7 +390,7 @@ class polymorphic
     /**
      * eq()
      *
-     * Determine if <dataType> arg1 is equal to the value of arg2 converted
+     * Determine if `<dataType>` arg1 is equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use "eqx"
      * ("===") instead if you want false to be returned if arg1 and arg2's
      * data type don't match.
@@ -417,8 +417,8 @@ class polymorphic
     /**
      * eq_ignore_case()
      *
-     * Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case
-     * and return the boolean result.
+     * Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring
+     * case and return the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -442,7 +442,7 @@ class polymorphic
     /**
      * eqx()
      *
-     * Determine if for <dataType> arg1 is equal to the value and data type
+     * Determine if for `<dataType>` arg1 is equal to the value and data type
      * of arg2 then return the boolean result. Use "eq" ("==") instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
@@ -468,9 +468,9 @@ class polymorphic
     /**
      * evaluate()
      *
-     * Compile and evaluate <dataType> value.
+     * Compile and evaluate `<dataType>` value.
      *
-     * @param  $source <dataType> string to compile and evaluate
+     * @param  $source `<dataType>` string to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -519,7 +519,7 @@ class polymorphic
      * floor()
      *
      * Determine the largest integer that is smaller then or equal to the
-     * <dataType> value and return the <dataType> result.
+     * `<dataType>` value and return the `<dataType>` result.
      *
      * @param  $number
      *
@@ -541,8 +541,8 @@ class polymorphic
     /**
      * ge()
      *
-     * Checks for <dataType> arg1 is greater than or equal to <dataType> arg2
-     * and return the boolean result.
+     * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`
+     * arg2 and return the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -566,8 +566,8 @@ class polymorphic
     /**
      * gt()
      *
-     * Checks for <dataType> arg1 is greater than <dataType> arg2 and return
-     * the boolean result.
+     * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and
+     * return the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -591,12 +591,12 @@ class polymorphic
     /**
      * in_range()
      *
-     * Checks if <dataType> is between startTime and endTime, inclusive.
+     * Checks if `<dataType>` is between startTime and endTime, inclusive.
      * Regardless of endTime value, it is always considered to be equal to,
-     * but less than 24 hours greater than startTime. If no <dataType> zone
-     * is specified for <dataType>, the default <dataType> zone is used. If
-     * no <dataType> zone is specified for startTime or endTime, the
-     * <dataType> zone of <dataType> is used.
+     * but less than 24 hours greater than startTime. If no `<dataType>` zone
+     * is specified for `<dataType>,` the default `<dataType>` zone is used.
+     * If no `<dataType>` zone is specified for startTime or endTime, the
+     * `<dataType>` zone of `<dataType>` is used.
      *
      * @param  $time
      * @param  $startTime
@@ -622,10 +622,10 @@ class polymorphic
     /**
      * includes()
      *
-     * Checks whether the <dataType> value includes a string and return the
+     * Checks whether the `<dataType>` value includes a string and return the
      * boolean result.
      *
-     * @param  $searchString The <dataType> to search.
+     * @param  $searchString The `<dataType>` to search.
      * @param string $subString Substring to find.
      * @param integer $position Zero-based position in the search string to
      *                          start search.
@@ -653,10 +653,10 @@ class polymorphic
     /**
      * index_of()
      *
-     * Returns the zero-based index into <dataType> value of subString. If
+     * Returns the zero-based index into `<dataType>` value of subString. If
      * subString is not found, -1 is returned.
      *
-     * @param  $value The <dataType> value to search.
+     * @param  $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
      * @param integer $startIndex Optional start index for search if
      *                            different than start of string.
@@ -683,8 +683,8 @@ class polymorphic
     /**
      * intersection()
      *
-     * Returns a list of <dataType> with the values that are common to both
-     * list of <dataType> list1 and list2.
+     * Returns a list of `<dataType>` with the values that are common to both
+     * list of `<dataType>` list1 and list2.
      *
      * @param list $list1 The first list.
      * @param list $list2 The second list.
@@ -708,7 +708,7 @@ class polymorphic
     /**
      * is()
      *
-     * Checks whether value is dataType <dataType> and return the boolean
+     * Checks whether value is dataType `<dataType>` and return the boolean
      * result.
      *
      * @param  $value Value to check
@@ -731,7 +731,7 @@ class polymorphic
     /**
      * is_in()
      *
-     * Checks whether <dataType> value is in list of <dataType> list and
+     * Checks whether `<dataType>` value is in list of `<dataType>` list and
      * returns the boolean result.
      *
      * @param  $value
@@ -756,10 +756,10 @@ class polymorphic
     /**
      * last_index_of()
      *
-     * Returns the zero-based index into <dataType> value of the last
+     * Returns the zero-based index into `<dataType>` value of the last
      * occurrence of a subString. If subString is not found, -1 is returned.
      *
-     * @param  $value The <dataType> value to search.
+     * @param  $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
      * @param integer $startIndex Optional start index for search if
      *                            different than start of string.
@@ -786,8 +786,8 @@ class polymorphic
     /**
      * le()
      *
-     * Checks for <dataType> arg1 is less than or equal to <dataType> arg2
-     * and return the boolean result.
+     * Checks for `<dataType>` arg1 is less than or equal to `<dataType>`
+     * arg2 and return the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -811,7 +811,7 @@ class polymorphic
     /**
      * length()
      *
-     * This is a polymorphic function where <dataType> can be any of the
+     * This is a polymorphic function where `<dataType>` can be any of the
      * supported data types. Return the integer number of entries in datatype
      * list or codepoints in others.
      *
@@ -836,8 +836,8 @@ class polymorphic
     /**
      * lt()
      *
-     * Checks for <dataType> arg1 is less that <dataType> arg2 and return the
-     * boolean result.
+     * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return
+     * the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -862,7 +862,7 @@ class polymorphic
      * match()
      *
      * Returns true if arg1 matches some terminal sequence of RDNs from arg2
-     * when compared using equal_<dataType>.
+     * when compared using `equal_<dataType>`.
      *
      * @param  $arg1
      * @param string $arg2
@@ -886,7 +886,7 @@ class polymorphic
     /**
      * max()
      *
-     * Return the <dataType> value that is greater than or equal to the
+     * Return the `<dataType>` value that is greater than or equal to the
      * others.
      *
      * @param  $values
@@ -909,7 +909,8 @@ class polymorphic
     /**
      * min()
      *
-     * Return the <dataType> value that is less than or equal to the others.
+     * Return the `<dataType>` value that is less than or equal to the
+     * others.
      *
      * @param  $values
      *
@@ -931,8 +932,8 @@ class polymorphic
     /**
      * mod()
      *
-     * Divide <dataType> dividend by <dataType> divisor and return the
-     * <dataType> remainder.
+     * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+     * `<dataType>` remainder.
      *
      * @param  $dividend
      * @param  $divisor
@@ -956,7 +957,8 @@ class polymorphic
     /**
      * multiply()
      *
-     * Multiply 2 or more <dataType> values and return the <dataType> result.
+     * Multiply 2 or more `<dataType>` values and return the `<dataType>`
+     * result.
      *
      * @param  $values
      *
@@ -978,7 +980,7 @@ class polymorphic
     /**
      * ne()
      *
-     * Determine if <dataType> arg1 is not equal to the value of arg2
+     * Determine if `<dataType>` arg1 is not equal to the value of arg2
      * converted to the data type of arg1 then return the boolean result. Use
      * "nex" ("!==") instead if you want true to be returned if arg1 and
      * arg2's data type don't match.
@@ -1005,7 +1007,7 @@ class polymorphic
     /**
      * negative()
      *
-     * Return negative of <dataType> value.
+     * Return negative of `<dataType>` value.
      *
      * @param  $value
      *
@@ -1027,7 +1029,7 @@ class polymorphic
     /**
      * nex()
      *
-     * Determine if for <dataType> arg1 is not equal to the value or data
+     * Determine if for `<dataType>` arg1 is not equal to the value or data
      * type of arg2 then return the boolean result. Use "ne" ("!=") instead
      * if you want arg2 to be converted to the data type of arg1 before
      * comparison.
@@ -1054,7 +1056,7 @@ class polymorphic
     /**
      * normalize_space()
      *
-     * Remove whitespace from the beginning and end of a <dataType> value.
+     * Remove whitespace from the beginning and end of a `<dataType>` value.
      *
      * @param  $string
      *
@@ -1076,7 +1078,7 @@ class polymorphic
     /**
      * normalize_to_lower_case()
      *
-     * Normalize <dataType> value to lower case and returns <dataType>
+     * Normalize `<dataType>` value to lower case and returns `<dataType>`
      * result.
      *
      * @param  $string
@@ -1099,8 +1101,8 @@ class polymorphic
     /**
      * one_and_only()
      *
-     * This converts a list of <dataType> values that contains one value to a
-     * single <dataType> value.
+     * This converts a list of `<dataType>` values that contains one value to
+     * a single `<dataType>` value.
      *
      * @param list $list
      *
@@ -1148,10 +1150,10 @@ class polymorphic
     /**
      * regexp_index_of()
      *
-     * Search <dataType> value for a regular expression and return index. If
-     * not found, -1 is returned.
+     * Search `<dataType>` value for a regular expression and return index.
+     * If not found, -1 is returned.
      *
-     * @param  $value The <dataType> value to search.
+     * @param  $value The `<dataType>` value to search.
      * @param string $regexp A regular expression to use for search.
      *
      * @return integer Zero-based index of subString or -1 if not found.
@@ -1173,8 +1175,8 @@ class polymorphic
     /**
      * regexp_match()
      *
-     * Checks whether <dataType> value matches the regular expression regexp
-     * and return the boolean result.
+     * Checks whether `<dataType>` value matches the regular expression
+     * regexp and return the boolean result.
      *
      * @param  $value
      * @param string $regexp
@@ -1198,16 +1200,17 @@ class polymorphic
     /**
      * regexp_replace()
      *
-     * Replace matched values for a regular expression in a <dataType> value.
+     * Replace matched values for a regular expression in a `<dataType>`
+     * value.
      *
-     * @param  $value The original <dataType> value.
+     * @param  $value The original `<dataType>` value.
      * @param string $regexp A regular expression to use for search.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The
      *                       default is 1. Specify -1 to replace all
      *                       occurrences.
      *
-     * @return  A <dataType> value with the matched string(s) replaced.
+     * @return  A `<dataType>` value with the matched string(s) replaced.
      */
     public function regexp_replace(, $value, $regexp, $replacement, $limit = null)
     {
@@ -1230,12 +1233,12 @@ class polymorphic
     /**
      * repeat()
      *
-     * Repeat a <dataType> value a specified number of times.
+     * Repeat a `<dataType>` value a specified number of times.
      *
-     * @param  $value The <dataType> value to repeat.
+     * @param  $value The `<dataType>` value to repeat.
      * @param integer $times The number of times to repeat the value.
      *
-     * @return  The repeated <dataType> value.
+     * @return  The repeated `<dataType>` value.
      */
     public function repeat(, $value, $times)
     {
@@ -1254,16 +1257,16 @@ class polymorphic
     /**
      * replace()
      *
-     * Replace string(s) in a <dataType> value.
+     * Replace string(s) in a `<dataType>` value.
      *
-     * @param  $value The original <dataType> value.
+     * @param  $value The original `<dataType>` value.
      * @param string $match The string to replace.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The
      *                       default is 1. Specify -1 to replace all
      *                       occurrences.
      *
-     * @return  A <dataType> value with the matched string(s) replaced.
+     * @return  A `<dataType>` value with the matched string(s) replaced.
      */
     public function replace(, $value, $match, $replacement, $limit = null)
     {
@@ -1286,8 +1289,8 @@ class polymorphic
     /**
      * round()
      *
-     * Determine the integer closest to <dataType> value and return the
-     * <dataType> result.
+     * Determine the integer closest to `<dataType>` value and return the
+     * `<dataType>` result.
      *
      * @param  $number
      *
@@ -1309,7 +1312,7 @@ class polymorphic
     /**
      * set_equals()
      *
-     * Returns boolean true if <dataType> list1 and <dataType> list2 are
+     * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
      * subsets of each other and return the boolean result.
      *
      * @param list $list1
@@ -1334,9 +1337,9 @@ class polymorphic
     /**
      * split()
      *
-     * Split <dataType> value into an list of strings using a separator.
+     * Split `<dataType>` value into an list of strings using a separator.
      *
-     * @param  $value The <dataType> value to split.
+     * @param  $value The `<dataType>` value to split.
      * @param string $separator The separator to use. If this is an empty
      *                          string or separator is not specified, the
      *                          value is split between characters.
@@ -1367,8 +1370,8 @@ class polymorphic
     /**
      * starts_with()
      *
-     * Checks whether <dataType> value starts with a subString and return the
-     * boolean result.
+     * Checks whether `<dataType>` value starts with a subString and return
+     * the boolean result.
      *
      * @param  $value
      * @param string $subString
@@ -1392,8 +1395,8 @@ class polymorphic
     /**
      * subset()
      *
-     * Returns boolean true if the unique values in <dataType> list1 are all
-     * in <dataType> list2.
+     * Returns boolean true if the unique values in `<dataType>` list1 are
+     * all in `<dataType>` list2.
      *
      * @param list $list1 The first list.
      * @param list $list2 The second list.
@@ -1417,10 +1420,10 @@ class polymorphic
     /**
      * substring()
      *
-     * Returns the <dataType> substring of value beginning at zero-based
+     * Returns the `<dataType>` substring of value beginning at zero-based
      * position integer startIndex and ending at the position before integer
      * endIndex. Specify -1 or omitting endIndex to return up to end of
-     * <dataType>.
+     * `<dataType>`.
      *
      * @param  $string
      * @param integer $startIndex
@@ -1448,8 +1451,8 @@ class polymorphic
     /**
      * subtract()
      *
-     * Subtract <dataType> arg2 from <dataType> arg1 and return the
-     * <dataType> result.
+     * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
+     * `<dataType>` result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -1473,8 +1476,8 @@ class polymorphic
     /**
      * subtract_dayTimeDuration()
      *
-     * Subtract dayTimeDuration arg2 from <dataType> arg1 and return the
-     * <dataType> result.
+     * Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
+     * `<dataType>` result.
      *
      * @param  $arg1
      * @param dayTimeDuration $arg2
@@ -1498,8 +1501,8 @@ class polymorphic
     /**
      * subtract_yearMonthDuration()
      *
-     * Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
-     * <dataType> result.
+     * Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
+     * `<dataType>` result.
      *
      * @param  $arg1
      * @param yearMonthDuration $arg2
@@ -1523,7 +1526,7 @@ class polymorphic
     /**
      * to_anyURI()
      *
-     * Converts <dataType> value to anyURI.
+     * Converts `<dataType>` value to anyURI.
      *
      * @param  $value
      *
@@ -1545,7 +1548,7 @@ class polymorphic
     /**
      * to_boolean()
      *
-     * Converts <dataType> value to boolean.
+     * Converts `<dataType>` value to boolean.
      *
      * @param  $value
      *
@@ -1567,7 +1570,7 @@ class polymorphic
     /**
      * to_date()
      *
-     * Converts <dataType> value to date.
+     * Converts `<dataType>` value to date.
      *
      * @param  $value
      *
@@ -1589,7 +1592,7 @@ class polymorphic
     /**
      * to_dateTime()
      *
-     * Converts <dataType> value to dateTime.
+     * Converts `<dataType>` value to dateTime.
      *
      * @param  $value
      *
@@ -1611,7 +1614,7 @@ class polymorphic
     /**
      * to_dayTimeDuration()
      *
-     * Converts <dataType> value to dayTimeDuration.
+     * Converts `<dataType>` value to dayTimeDuration.
      *
      * @param  $value
      *
@@ -1633,7 +1636,7 @@ class polymorphic
     /**
      * to_dnsName()
      *
-     * Converts <dataType> value to dnsName.
+     * Converts `<dataType>` value to dnsName.
      *
      * @param  $value
      *
@@ -1655,7 +1658,7 @@ class polymorphic
     /**
      * to_double()
      *
-     * Converts <dataType> value to double and returns double result.
+     * Converts `<dataType>` value to double and returns double result.
      *
      * @param  $value
      *
@@ -1677,7 +1680,7 @@ class polymorphic
     /**
      * to_integer()
      *
-     * Truncate <dataType> value to a whole number and returns integer
+     * Truncate `<dataType>` value to a whole number and returns integer
      * result.
      *
      * @param  $value
@@ -1700,7 +1703,7 @@ class polymorphic
     /**
      * to_ipAddress()
      *
-     * Converts <dataType> value to ipAddress.
+     * Converts `<dataType>` value to ipAddress.
      *
      * @param  $value
      *
@@ -1722,7 +1725,7 @@ class polymorphic
     /**
      * to_rfc822Name()
      *
-     * Converts <dataType> value to rfc822Name.
+     * Converts `<dataType>` value to rfc822Name.
      *
      * @param  $value
      *
@@ -1744,10 +1747,10 @@ class polymorphic
     /**
      * to_string()
      *
-     * Converts <dataType> value to string. For list values, the to_string()
-     * value for each entry is returned separated with commas.
+     * Converts `<dataType>` value to string. For list values, the
+     * to_string() value for each entry is returned separated with commas.
      *
-     * @param  $value A <dataType> value.
+     * @param  $value A `<dataType>` value.
      *
      * @return string The string representation of the value.
      */
@@ -1767,7 +1770,7 @@ class polymorphic
     /**
      * to_time()
      *
-     * Converts <dataType> value to time.
+     * Converts `<dataType>` value to time.
      *
      * @param  $value
      *
@@ -1789,7 +1792,7 @@ class polymorphic
     /**
      * to_x500Name()
      *
-     * Converts <dataType> value to x500Name.
+     * Converts `<dataType>` value to x500Name.
      *
      * @param  $value
      *
@@ -1811,7 +1814,7 @@ class polymorphic
     /**
      * to_yearMonthDuration()
      *
-     * Converts <dataType> value to yearMonthDuration.
+     * Converts `<dataType>` value to yearMonthDuration.
      *
      * @param  $value
      *
@@ -1833,8 +1836,8 @@ class polymorphic
     /**
      * union()
      *
-     * Returns a list of <dataType> contains all of the unique values in two
-     * or more list of <dataType> values.
+     * Returns a list of `<dataType>` contains all of the unique values in
+     * two or more list of `<dataType>` values.
      *
      * @param list $lists Two or more lists.
      *

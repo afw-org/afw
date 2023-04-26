@@ -122,7 +122,7 @@ class string
      *
      * Convert two or more values of any data type to string and return the
      * concatenated result. A value with an undefined value is represented by
-     * '<undefined>'.
+     * `<undefined>`.
      *
      * @param  $values Value to convert
      *
@@ -968,7 +968,7 @@ class string
      *
      * Convert one or more values of any data type to string and return the
      * concatenated result. A value with an undefined value is represented by
-     * '<undefined>'.
+     * `<undefined>`.
      *
      * @param  $values Value to convert
      *

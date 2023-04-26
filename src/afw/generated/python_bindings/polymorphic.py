@@ -9,8 +9,8 @@ def abs(session, value):
     '''
     Absolute value
 
-    Compute the absolute value of the <dataType> value and return the
-    <dataType> result.
+    Compute the absolute value of the `<dataType>` value and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -39,7 +39,7 @@ def add(session, values):
     '''
     Add
 
-    Add 2 or more <dataType> values and return the <dataType> result.
+    Add 2 or more `<dataType>` values and return the `<dataType>` result.
 
     Parameters:
 
@@ -68,7 +68,7 @@ def add_dayTimeDuration(session, arg1, arg2):
     '''
     Add duration
 
-    Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType>
+    Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
     result.
 
     Parameters:
@@ -101,8 +101,8 @@ def add_yearMonthDuration(session, arg1, arg2):
     '''
     Add duration
 
-    Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType>
-    result.
+    Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -134,8 +134,8 @@ def at_least_one_member_of(session, list1, list2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in <dataType> list1 is in
-    <dataType> list2.
+    Returns boolean true if at least one value in `<dataType>` list1 is in
+    `<dataType>` list2.
 
     Parameters:
 
@@ -167,7 +167,7 @@ def bag(session, values=None):
     '''
     Makes a list from values
 
-    Takes any number of <dataType> values and returns a list of list.
+    Takes any number of `<dataType>` values and returns a list of list.
 
     Parameters:
 
@@ -228,7 +228,7 @@ def ceil(session, value):
     Round upward to nearest integer
 
     Determine the smallest integer that is greater then or equal to the
-    <dataType> value and return the <dataType> result.
+    `<dataType>` value and return the `<dataType>` result.
 
     Parameters:
 
@@ -257,11 +257,11 @@ def clone(session, value):
     '''
     Clone <dataType> value
 
-    Deep clone a <dataType> value.
+    Deep clone a `<dataType>` value.
 
     Parameters:
 
-        value (): The <dataType> value to clone.
+        value (): The `<dataType>` value to clone.
 
     Returns:
     None: The cloned <dataType> value.
@@ -286,12 +286,12 @@ def compile(session, source, listing=None):
     '''
     Compile <dataType> value
 
-    Compile <dataType> value and return either an unevaluated adaptive value
-    or a string containing the compiler listing.
+    Compile `<dataType>` value and return either an unevaluated adaptive
+    value or a string containing the compiler listing.
 
     Parameters:
 
-        source (): <dataType> string to compile
+        source (): `<dataType>` string to compile
 
         listing (): If specified, a compiler listing is produced instead of
         an unevaluated expression value.
@@ -327,12 +327,12 @@ def decode_to_string(session, value):
     '''
     Decode <dataType> to string
 
-    Decode <dataType> value to string. An error is thrown if decoded value is
-    not valid UTF-8.
+    Decode `<dataType>` value to string. An error is thrown if decoded value
+    is not valid UTF-8.
 
     Parameters:
 
-        value (): The <dataType> value to decode.
+        value (): The `<dataType>` value to decode.
 
     Returns:
     string: The decoded string.
@@ -357,8 +357,8 @@ def divide(session, dividend, divisor):
     '''
     Divide numbers
 
-    Divide <dataType> dividend by <dataType> divisor and return the
-    <dataType> quotient.
+    Divide `<dataType>` dividend by `<dataType>` divisor and return the
+    `<dataType>` quotient.
 
     Parameters:
 
@@ -395,7 +395,7 @@ def encode_as_base64Binary(session, value):
 
     Parameters:
 
-        value (): The <dataType> value to encode.
+        value (): The `<dataType>` value to encode.
 
     Returns:
     base64Binary: A base64Binary value.
@@ -425,7 +425,7 @@ def encode_as_hexBinary(session, value):
 
     Parameters:
 
-        value (): The <dataType> value to encode.
+        value (): The `<dataType>` value to encode.
 
     Returns:
     hexBinary: A hexBinary value.
@@ -450,7 +450,7 @@ def ends_with(session, value, subString):
     '''
     Checks whether value ends with a string
 
-    Checks whether <dataType> value ends with a <dataType> and return the
+    Checks whether `<dataType>` value ends with a `<dataType>` and return the
     boolean result.
 
     Parameters:
@@ -483,7 +483,7 @@ def eq(session, arg1, arg2):
     '''
     Checks for equal
 
-    Determine if <dataType> arg1 is equal to the value of arg2 converted to
+    Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use "eqx" ("===")
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
@@ -518,8 +518,8 @@ def eq_ignore_case(session, arg1, arg2):
     '''
     Checks for equal ignoring case
 
-    Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and
-    return the boolean result.
+    Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case
+    and return the boolean result.
 
     Parameters:
 
@@ -551,7 +551,7 @@ def eqx(session, arg1, arg2):
     '''
     Checks for equal and type
 
-    Determine if for <dataType> arg1 is equal to the value and data type of
+    Determine if for `<dataType>` arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use "eq" ("==") instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
@@ -585,11 +585,11 @@ def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
     '''
     Evaluate <dataType> value
 
-    Compile and evaluate <dataType> value.
+    Compile and evaluate `<dataType>` value.
 
     Parameters:
 
-        source (): <dataType> string to compile and evaluate
+        source (): `<dataType>` string to compile and evaluate
 
         additionalUntrustedQualifiedVariables (object): This parameter
         supplies additional qualified variables that can be accessed during
@@ -626,7 +626,7 @@ def floor(session, number):
     Round downwards to nearest integer
 
     Determine the largest integer that is smaller then or equal to the
-    <dataType> value and return the <dataType> result.
+    `<dataType>` value and return the `<dataType>` result.
 
     Parameters:
 
@@ -655,8 +655,8 @@ def ge(session, arg1, arg2):
     '''
     Checks for greater than or equal
 
-    Checks for <dataType> arg1 is greater than or equal to <dataType> arg2
-    and return the boolean result.
+    Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`
+    arg2 and return the boolean result.
 
     Parameters:
 
@@ -688,8 +688,8 @@ def gt(session, arg1, arg2):
     '''
     Checks for greater than
 
-    Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
-    boolean result.
+    Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
+    the boolean result.
 
     Parameters:
 
@@ -721,12 +721,12 @@ def in_range(session, time, startTime, endTime):
     '''
     Checks if time in range
 
-    Checks if <dataType> is between startTime and endTime, inclusive.
+    Checks if `<dataType>` is between startTime and endTime, inclusive.
     Regardless of endTime value, it is always considered to be equal to, but
-    less than 24 hours greater than startTime. If no <dataType> zone is
-    specified for <dataType>, the default <dataType> zone is used. If no
-    <dataType> zone is specified for startTime or endTime, the <dataType>
-    zone of <dataType> is used.
+    less than 24 hours greater than startTime. If no `<dataType>` zone is
+    specified for `<dataType>,` the default `<dataType>` zone is used. If no
+    `<dataType>` zone is specified for startTime or endTime, the `<dataType>`
+    zone of `<dataType>` is used.
 
     Parameters:
 
@@ -761,12 +761,12 @@ def includes(session, searchString, subString, position=None):
     '''
     Checks whether the <dataType> value includes a string
 
-    Checks whether the <dataType> value includes a string and return the
+    Checks whether the `<dataType>` value includes a string and return the
     boolean result.
 
     Parameters:
 
-        searchString (): The <dataType> to search.
+        searchString (): The `<dataType>` to search.
 
         subString (string): Substring to find.
 
@@ -800,12 +800,12 @@ def index_of(session, value, subString, startIndex=None):
     '''
     Returns index of first occurrence
 
-    Returns the zero-based index into <dataType> value of subString. If
+    Returns the zero-based index into `<dataType>` value of subString. If
     subString is not found, -1 is returned.
 
     Parameters:
 
-        value (): The <dataType> value to search.
+        value (): The `<dataType>` value to search.
 
         subString (string): Substring to search for.
 
@@ -839,8 +839,8 @@ def intersection(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of <dataType> with the values that are common to both list
-    of <dataType> list1 and list2.
+    Returns a list of `<dataType>` with the values that are common to both
+    list of `<dataType>` list1 and list2.
 
     Parameters:
 
@@ -872,7 +872,7 @@ def is_(session, value):
     '''
     Checks whether value is dataType <dataType>
 
-    Checks whether value is dataType <dataType> and return the boolean
+    Checks whether value is dataType `<dataType>` and return the boolean
     result.
 
     Parameters:
@@ -902,8 +902,8 @@ def is_in(session, value, list):
     '''
     Checks whether a value is in a list
 
-    Checks whether <dataType> value is in list of <dataType> list and returns
-    the boolean result.
+    Checks whether `<dataType>` value is in list of `<dataType>` list and
+    returns the boolean result.
 
     Parameters:
 
@@ -935,12 +935,12 @@ def last_index_of(session, value, subString, startIndex=None):
     '''
     Returns index of last occurrence
 
-    Returns the zero-based index into <dataType> value of the last occurrence
-    of a subString. If subString is not found, -1 is returned.
+    Returns the zero-based index into `<dataType>` value of the last
+    occurrence of a subString. If subString is not found, -1 is returned.
 
     Parameters:
 
-        value (): The <dataType> value to search.
+        value (): The `<dataType>` value to search.
 
         subString (string): Substring to search for.
 
@@ -974,8 +974,8 @@ def le(session, arg1, arg2):
     '''
     Checks for less than or equal
 
-    Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
-    return the boolean result.
+    Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
+    and return the boolean result.
 
     Parameters:
 
@@ -1007,7 +1007,7 @@ def length(session, value):
     '''
     Returns number of codepoints or entries in value
 
-    This is a polymorphic function where <dataType> can be any of the
+    This is a polymorphic function where `<dataType>` can be any of the
     supported data types. Return the integer number of entries in datatype
     list or codepoints in others.
 
@@ -1039,8 +1039,8 @@ def lt(session, arg1, arg2):
     '''
     Checks for less than
 
-    Checks for <dataType> arg1 is less that <dataType> arg2 and return the
-    boolean result.
+    Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return
+    the boolean result.
 
     Parameters:
 
@@ -1073,7 +1073,7 @@ def match(session, arg1, arg2):
     Checks if x500Name matches
 
     Returns true if arg1 matches some terminal sequence of RDNs from arg2
-    when compared using equal_<dataType>.
+    when compared using `equal_<dataType>`.
 
     Parameters:
 
@@ -1105,7 +1105,8 @@ def max(session, values):
     '''
     Maximum value
 
-    Return the <dataType> value that is greater than or equal to the others.
+    Return the `<dataType>` value that is greater than or equal to the
+    others.
 
     Parameters:
 
@@ -1134,7 +1135,7 @@ def min(session, values):
     '''
     Minimum value
 
-    Return the <dataType> value that is less than or equal to the others.
+    Return the `<dataType>` value that is less than or equal to the others.
 
     Parameters:
 
@@ -1163,8 +1164,8 @@ def mod(session, dividend, divisor):
     '''
     Remainder of dividing numbers
 
-    Divide <dataType> dividend by <dataType> divisor and return the
-    <dataType> remainder.
+    Divide `<dataType>` dividend by `<dataType>` divisor and return the
+    `<dataType>` remainder.
 
     Parameters:
 
@@ -1196,7 +1197,8 @@ def multiply(session, values):
     '''
     Multiply numbers
 
-    Multiply 2 or more <dataType> values and return the <dataType> result.
+    Multiply 2 or more `<dataType>` values and return the `<dataType>`
+    result.
 
     Parameters:
 
@@ -1225,10 +1227,10 @@ def ne(session, arg1, arg2):
     '''
     Checks for not equal
 
-    Determine if <dataType> arg1 is not equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use "nex"
-    ("!==") instead if you want true to be returned if arg1 and arg2's data
-    type don't match.
+    Determine if `<dataType>` arg1 is not equal to the value of arg2
+    converted to the data type of arg1 then return the boolean result. Use
+    "nex" ("!==") instead if you want true to be returned if arg1 and arg2's
+    data type don't match.
 
     Parameters:
 
@@ -1260,7 +1262,7 @@ def negative(session, value):
     '''
     Negative of a number
 
-    Return negative of <dataType> value.
+    Return negative of `<dataType>` value.
 
     Parameters:
 
@@ -1289,7 +1291,7 @@ def nex(session, arg1, arg2):
     '''
     Checks for not equal value or type
 
-    Determine if for <dataType> arg1 is not equal to the value or data type
+    Determine if for `<dataType>` arg1 is not equal to the value or data type
     of arg2 then return the boolean result. Use "ne" ("!=") instead if you
     want arg2 to be converted to the data type of arg1 before comparison.
 
@@ -1323,7 +1325,7 @@ def normalize_space(session, string):
     '''
     Trims whitespace from beginning and end
 
-    Remove whitespace from the beginning and end of a <dataType> value.
+    Remove whitespace from the beginning and end of a `<dataType>` value.
 
     Parameters:
 
@@ -1352,7 +1354,8 @@ def normalize_to_lower_case(session, string):
     '''
     Converts to lower case
 
-    Normalize <dataType> value to lower case and returns <dataType> result.
+    Normalize `<dataType>` value to lower case and returns `<dataType>`
+    result.
 
     Parameters:
 
@@ -1381,8 +1384,8 @@ def one_and_only(session, list):
     '''
     Converts a one value list to a <dataType> value
 
-    This converts a list of <dataType> values that contains one value to a
-    single <dataType> value.
+    This converts a list of `<dataType>` values that contains one value to a
+    single `<dataType>` value.
 
     Parameters:
 
@@ -1445,12 +1448,12 @@ def regexp_index_of(session, value, regexp):
     '''
     Returns index of first match of regular expression
 
-    Search <dataType> value for a regular expression and return index. If not
-    found, -1 is returned.
+    Search `<dataType>` value for a regular expression and return index. If
+    not found, -1 is returned.
 
     Parameters:
 
-        value (): The <dataType> value to search.
+        value (): The `<dataType>` value to search.
 
         regexp (string): A regular expression to use for search.
 
@@ -1478,8 +1481,8 @@ def regexp_match(session, value, regexp):
     '''
     Search for a match using a regular expression
 
-    Checks whether <dataType> value matches the regular expression regexp and
-    return the boolean result.
+    Checks whether `<dataType>` value matches the regular expression regexp
+    and return the boolean result.
 
     Parameters:
 
@@ -1511,11 +1514,11 @@ def regexp_replace(session, value, regexp, replacement, limit=None):
     '''
     Replace strings matching a regular expression
 
-    Replace matched values for a regular expression in a <dataType> value.
+    Replace matched values for a regular expression in a `<dataType>` value.
 
     Parameters:
 
-        value (): The original <dataType> value.
+        value (): The original `<dataType>` value.
 
         regexp (string): A regular expression to use for search.
 
@@ -1552,11 +1555,11 @@ def repeat(session, value, times):
     '''
     Returns a repeated value
 
-    Repeat a <dataType> value a specified number of times.
+    Repeat a `<dataType>` value a specified number of times.
 
     Parameters:
 
-        value (): The <dataType> value to repeat.
+        value (): The `<dataType>` value to repeat.
 
         times (integer): The number of times to repeat the value.
 
@@ -1584,11 +1587,11 @@ def replace(session, value, match, replacement, limit=None):
     '''
     Replace strings
 
-    Replace string(s) in a <dataType> value.
+    Replace string(s) in a `<dataType>` value.
 
     Parameters:
 
-        value (): The original <dataType> value.
+        value (): The original `<dataType>` value.
 
         match (string): The string to replace.
 
@@ -1625,8 +1628,8 @@ def round(session, number):
     '''
     Round to nearest integer
 
-    Determine the integer closest to <dataType> value and return the
-    <dataType> result.
+    Determine the integer closest to `<dataType>` value and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -1655,8 +1658,8 @@ def set_equals(session, list1, list2):
     '''
     Checks whether two lists are subsets of each other
 
-    Returns boolean true if <dataType> list1 and <dataType> list2 are subsets
-    of each other and return the boolean result.
+    Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+    subsets of each other and return the boolean result.
 
     Parameters:
 
@@ -1688,11 +1691,11 @@ def split(session, value, separator=None, limit=None):
     '''
     Split at a separator
 
-    Split <dataType> value into an list of strings using a separator.
+    Split `<dataType>` value into an list of strings using a separator.
 
     Parameters:
 
-        value (): The <dataType> value to split.
+        value (): The `<dataType>` value to split.
 
         separator (string): The separator to use. If this is an empty string
         or separator is not specified, the value is split between characters.
@@ -1729,7 +1732,7 @@ def starts_with(session, value, subString):
     '''
     Checks whether value starts with a string
 
-    Checks whether <dataType> value starts with a subString and return the
+    Checks whether `<dataType>` value starts with a subString and return the
     boolean result.
 
     Parameters:
@@ -1762,8 +1765,8 @@ def subset(session, list1, list2):
     '''
     Determines if the first list is a subset of second list
 
-    Returns boolean true if the unique values in <dataType> list1 are all in
-    <dataType> list2.
+    Returns boolean true if the unique values in `<dataType>` list1 are all
+    in `<dataType>` list2.
 
     Parameters:
 
@@ -1795,10 +1798,10 @@ def substring(session, string, startIndex, endIndex=None):
     '''
     Extract a substring
 
-    Returns the <dataType> substring of value beginning at zero-based
+    Returns the `<dataType>` substring of value beginning at zero-based
     position integer startIndex and ending at the position before integer
     endIndex. Specify -1 or omitting endIndex to return up to end of
-    <dataType>.
+    `<dataType>`.
 
     Parameters:
 
@@ -1835,8 +1838,8 @@ def subtract(session, arg1, arg2):
     '''
     Subtract numbers
 
-    Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType>
-    result.
+    Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -1868,8 +1871,8 @@ def subtract_dayTimeDuration(session, arg1, arg2):
     '''
     Subtract numbers
 
-    Subtract dayTimeDuration arg2 from <dataType> arg1 and return the
-    <dataType> result.
+    Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -1901,8 +1904,8 @@ def subtract_yearMonthDuration(session, arg1, arg2):
     '''
     Subtract numbers
 
-    Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
-    <dataType> result.
+    Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
+    `<dataType>` result.
 
     Parameters:
 
@@ -1934,7 +1937,7 @@ def to_anyURI(session, value):
     '''
     Converts string to anyURI
 
-    Converts <dataType> value to anyURI.
+    Converts `<dataType>` value to anyURI.
 
     Parameters:
 
@@ -1963,7 +1966,7 @@ def to_boolean(session, value):
     '''
     Converts string to boolean
 
-    Converts <dataType> value to boolean.
+    Converts `<dataType>` value to boolean.
 
     Parameters:
 
@@ -1992,7 +1995,7 @@ def to_date(session, value):
     '''
     Converts string to date
 
-    Converts <dataType> value to date.
+    Converts `<dataType>` value to date.
 
     Parameters:
 
@@ -2021,7 +2024,7 @@ def to_dateTime(session, value):
     '''
     Converts string to dateTime
 
-    Converts <dataType> value to dateTime.
+    Converts `<dataType>` value to dateTime.
 
     Parameters:
 
@@ -2050,7 +2053,7 @@ def to_dayTimeDuration(session, value):
     '''
     Converts string to dayTimeDuration
 
-    Converts <dataType> value to dayTimeDuration.
+    Converts `<dataType>` value to dayTimeDuration.
 
     Parameters:
 
@@ -2079,7 +2082,7 @@ def to_dnsName(session, value):
     '''
     Converts string to dnsName
 
-    Converts <dataType> value to dnsName.
+    Converts `<dataType>` value to dnsName.
 
     Parameters:
 
@@ -2108,7 +2111,7 @@ def to_double(session, value):
     '''
     Converts to double
 
-    Converts <dataType> value to double and returns double result.
+    Converts `<dataType>` value to double and returns double result.
 
     Parameters:
 
@@ -2137,7 +2140,7 @@ def to_integer(session, value):
     '''
     Converts to integer
 
-    Truncate <dataType> value to a whole number and returns integer result.
+    Truncate `<dataType>` value to a whole number and returns integer result.
 
     Parameters:
 
@@ -2166,7 +2169,7 @@ def to_ipAddress(session, value):
     '''
     Converts string to ipAddress
 
-    Converts <dataType> value to ipAddress.
+    Converts `<dataType>` value to ipAddress.
 
     Parameters:
 
@@ -2195,7 +2198,7 @@ def to_rfc822Name(session, value):
     '''
     Converts string to rfc822Name
 
-    Converts <dataType> value to rfc822Name.
+    Converts `<dataType>` value to rfc822Name.
 
     Parameters:
 
@@ -2224,12 +2227,12 @@ def to_string(session, value):
     '''
     Converts value to string
 
-    Converts <dataType> value to string. For list values, the to_string()
+    Converts `<dataType>` value to string. For list values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:
 
-        value (): A <dataType> value.
+        value (): A `<dataType>` value.
 
     Returns:
     string: The string representation of the value.
@@ -2254,7 +2257,7 @@ def to_time(session, value):
     '''
     Converts string to time
 
-    Converts <dataType> value to time.
+    Converts `<dataType>` value to time.
 
     Parameters:
 
@@ -2283,7 +2286,7 @@ def to_x500Name(session, value):
     '''
     Converts string to x500Name
 
-    Converts <dataType> value to x500Name.
+    Converts `<dataType>` value to x500Name.
 
     Parameters:
 
@@ -2312,7 +2315,7 @@ def to_yearMonthDuration(session, value):
     '''
     Converts string to yearMonthDuration
 
-    Converts <dataType> value to yearMonthDuration.
+    Converts `<dataType>` value to yearMonthDuration.
 
     Parameters:
 
@@ -2341,8 +2344,8 @@ def union(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of <dataType> contains all of the unique values in two or
-    more list of <dataType> values.
+    Returns a list of `<dataType>` contains all of the unique values in two
+    or more list of `<dataType>` values.
 
     Parameters:
 

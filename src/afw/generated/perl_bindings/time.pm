@@ -109,7 +109,7 @@ Checks for time arg1 is greater than or equal to time arg2 and return the
 boolean result.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Checks for greater than or equal
 
 =head4 Parameters
@@ -125,7 +125,7 @@ Checks for greater than or equal
 Checks for time arg1 is greater than time arg2 and return the boolean result.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Checks for greater than
 
 =head4 Parameters
@@ -203,7 +203,7 @@ Checks for time arg1 is less than or equal to time arg2 and return the
 boolean result.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Checks for less than or equal
 
 =head4 Parameters
@@ -219,7 +219,7 @@ Checks for less than or equal
 Checks for time arg1 is less that time arg2 and return the boolean result.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Checks for less than
 
 =head4 Parameters
@@ -235,7 +235,7 @@ Checks for less than
 Return the time value that is greater than or equal to the others.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Maximum value
 
 =head4 Parameters
@@ -248,7 +248,7 @@ Maximum value
 Return the time value that is less than or equal to the others.
 
 It is illegal to compare a time that includes a time-zone value with one that
-does not. In such cases, the in_range<time> function should be used.
+does not. In such cases, the `in_range<time>` function should be used.
 Minimum value
 
 =head4 Parameters

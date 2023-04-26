@@ -15564,7 +15564,7 @@ afw_function_definition_includes_list;
  *
  * Parameters:
  *
- *   list - (<Type>) The list to search.
+ *   list - (`<Type>`) The list to search.
  *
  *   searchElement - (any dataType) Element to find.
  *
@@ -16246,7 +16246,7 @@ afw_function_definition_debug;
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written. An undefined value is represented
- *       by '<undefined>'.
+ *       by `<undefined>`.
  *
  *   detail - (optional boolean) If true, the string will only written if the
  *       debug:function_active:detail flag is on. If false or not specified,
@@ -16669,7 +16669,7 @@ afw_function_definition_trace;
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written the trace log. An undefined value is
- *       represented by '<undefined>'.
+ *       represented by `<undefined>`.
  *
  *   filter - (optional boolean) If this optional filter is false, nothing will
  *       be written to the trace log. The default is true.
@@ -19514,8 +19514,8 @@ afw_function_definition_abs;
  * @brief Adaptive Function abs
  * @param x function execute parameter.
  *
- * Compute the absolute value of the <dataType> value and return the <dataType>
- * result.
+ * Compute the absolute value of the `<dataType>` value and return the
+ * `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19532,11 +19532,11 @@ afw_function_definition_abs;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19551,7 +19551,7 @@ afw_function_definition_add;
  * @brief Adaptive Function add
  * @param x function execute parameter.
  *
- * Add 2 or more <dataType> values and return the <dataType> result.
+ * Add 2 or more `<dataType>` values and return the `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19570,11 +19570,11 @@ afw_function_definition_add;
  *
  * Parameters:
  *
- *   values - (2 or more <Type>)
+ *   values - (2 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19589,7 +19589,7 @@ afw_function_definition_add_dayTimeDuration;
  * @brief Adaptive Function add_dayTimeDuration
  * @param x function execute parameter.
  *
- * Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType>
+ * Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
  * result.
  *
  * This function is pure, so it will always return the same result
@@ -19608,13 +19608,13 @@ afw_function_definition_add_dayTimeDuration;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (dayTimeDuration)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19629,7 +19629,7 @@ afw_function_definition_add_yearMonthDuration;
  * @brief Adaptive Function add_yearMonthDuration
  * @param x function execute parameter.
  *
- * Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType>
+ * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the `<dataType>`
  * result.
  *
  * This function is pure, so it will always return the same result
@@ -19648,13 +19648,13 @@ afw_function_definition_add_yearMonthDuration;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (yearMonthDuration)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19669,8 +19669,8 @@ afw_function_definition_at_least_one_member_of;
  * @brief Adaptive Function at_least_one_member_of
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in <dataType> list1 is in
- * <dataType> list2.
+ * Returns boolean true if at least one value in `<dataType>` list1 is in
+ * `<dataType>` list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19689,9 +19689,9 @@ afw_function_definition_at_least_one_member_of;
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
@@ -19710,7 +19710,7 @@ afw_function_definition_bag;
  * @brief Adaptive Function bag
  * @param x function execute parameter.
  *
- * Takes any number of <dataType> values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns a list of list.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19731,11 +19731,11 @@ afw_function_definition_bag;
  *
  * Parameters:
  *
- *   values - (0 or more list <Type>)
+ *   values - (0 or more list `<Type>`)
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19771,7 +19771,7 @@ afw_function_definition_bag_size;
  *
  * Parameters:
  *
- *   value - (list <Type>)
+ *   value - (list `<Type>`)
  *
  * Returns:
  *
@@ -19791,7 +19791,7 @@ afw_function_definition_ceil;
  * @param x function execute parameter.
  *
  * Determine the smallest integer that is greater then or equal to the
- * <dataType> value and return the <dataType> result.
+ * `<dataType>` value and return the `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19808,11 +19808,11 @@ afw_function_definition_ceil;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19827,7 +19827,7 @@ afw_function_definition_clone;
  * @brief Adaptive Function clone
  * @param x function execute parameter.
  *
- * Deep clone a <dataType> value.
+ * Deep clone a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19844,11 +19844,11 @@ afw_function_definition_clone;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to clone.
+ *   value - (`<Type>`) The `<dataType>` value to clone.
  *
  * Returns:
  *
- *   (<Type>) The cloned <dataType> value.
+ *   (`<Type>`) The cloned `<dataType>` value.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19863,8 +19863,8 @@ afw_function_definition_compile;
  * @brief Adaptive Function compile
  * @param x function execute parameter.
  *
- * Compile <dataType> value and return either an unevaluated adaptive value or
- * a string containing the compiler listing.
+ * Compile `<dataType>` value and return either an unevaluated adaptive value
+ * or a string containing the compiler listing.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19882,7 +19882,7 @@ afw_function_definition_compile;
  *
  * Parameters:
  *
- *   source - (<Type>) <dataType> string to compile.
+ *   source - (`<Type>`) `<dataType>` string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
@@ -19909,7 +19909,7 @@ afw_function_definition_decode_to_string;
  * @brief Adaptive Function decode_to_string
  * @param x function execute parameter.
  *
- * Decode <dataType> value to string. An error is thrown if decoded value is
+ * Decode `<dataType>` value to string. An error is thrown if decoded value is
  * not valid UTF-8.
  *
  * This function is pure, so it will always return the same result
@@ -19927,7 +19927,7 @@ afw_function_definition_decode_to_string;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to decode.
+ *   value - (`<Type>`) The `<dataType>` value to decode.
  *
  * Returns:
  *
@@ -19946,8 +19946,8 @@ afw_function_definition_divide;
  * @brief Adaptive Function divide
  * @param x function execute parameter.
  *
- * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
- * quotient.
+ * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+ * `<dataType>` quotient.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19965,13 +19965,13 @@ afw_function_definition_divide;
  *
  * Parameters:
  *
- *   dividend - (<Type>)
+ *   dividend - (`<Type>`)
  *
- *   divisor - (<Type>)
+ *   divisor - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20004,7 +20004,7 @@ afw_function_definition_encode_as_base64Binary;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to encode.
+ *   value - (`<Type>`) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -20041,7 +20041,7 @@ afw_function_definition_encode_as_hexBinary;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to encode.
+ *   value - (`<Type>`) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -20060,7 +20060,7 @@ afw_function_definition_ends_with;
  * @brief Adaptive Function ends_with
  * @param x function execute parameter.
  *
- * Checks whether <dataType> value ends with a <dataType> and return the
+ * Checks whether `<dataType>` value ends with a `<dataType>` and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -20079,7 +20079,7 @@ afw_function_definition_ends_with;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   subString - (string)
  *
@@ -20100,9 +20100,10 @@ afw_function_definition_eq;
  * @brief Adaptive Function eq
  * @param x function execute parameter.
  *
- * Determine if <dataType> arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
+ * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20124,7 +20125,7 @@ afw_function_definition_eq;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -20149,7 +20150,7 @@ afw_function_definition_eq_ignore_case;
  * @brief Adaptive Function eq_ignore_case
  * @param x function execute parameter.
  *
- * Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and
+ * Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case and
  * return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -20168,9 +20169,9 @@ afw_function_definition_eq_ignore_case;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -20189,9 +20190,9 @@ afw_function_definition_eqx;
  * @brief Adaptive Function eqx
  * @param x function execute parameter.
  *
- * Determine if for <dataType> arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for `<dataType>` arg1 is equal to the value and data type of
+ * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20213,7 +20214,7 @@ afw_function_definition_eqx;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -20234,7 +20235,7 @@ afw_function_definition_evaluate;
  * @brief Adaptive Function evaluate
  * @param x function execute parameter.
  *
- * Compile and evaluate <dataType> value.
+ * Compile and evaluate `<dataType>` value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -20252,7 +20253,7 @@ afw_function_definition_evaluate;
  *
  * Parameters:
  *
- *   source - (<Type>) <dataType> string to compile and evaluate.
+ *   source - (`<Type>`) `<dataType>` string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -20280,7 +20281,7 @@ afw_function_definition_floor;
  * @param x function execute parameter.
  *
  * Determine the largest integer that is smaller then or equal to the
- * <dataType> value and return the <dataType> result.
+ * `<dataType>` value and return the `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20297,11 +20298,11 @@ afw_function_definition_floor;
  *
  * Parameters:
  *
- *   number - (<Type>)
+ *   number - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20316,8 +20317,8 @@ afw_function_definition_ge;
  * @brief Adaptive Function ge
  * @param x function execute parameter.
  *
- * Checks for <dataType> arg1 is greater than or equal to <dataType> arg2 and
- * return the boolean result.
+ * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20339,9 +20340,9 @@ afw_function_definition_ge;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -20360,8 +20361,8 @@ afw_function_definition_gt;
  * @brief Adaptive Function gt
  * @param x function execute parameter.
  *
- * Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
- * boolean result.
+ * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20383,9 +20384,9 @@ afw_function_definition_gt;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -20404,12 +20405,12 @@ afw_function_definition_in_range;
  * @brief Adaptive Function in_range
  * @param x function execute parameter.
  *
- * Checks if <dataType> is between startTime and endTime, inclusive. Regardless
- * of endTime value, it is always considered to be equal to, but less than 24
- * hours greater than startTime. If no <dataType> zone is specified for
- * <dataType>, the default <dataType> zone is used. If no <dataType> zone is
- * specified for startTime or endTime, the <dataType> zone of <dataType> is
- * used.
+ * Checks if `<dataType>` is between startTime and endTime, inclusive.
+ * Regardless of endTime value, it is always considered to be equal to, but
+ * less than 24 hours greater than startTime. If no `<dataType>` zone is
+ * specified for `<dataType>,` the default `<dataType>` zone is used. If no
+ * `<dataType>` zone is specified for startTime or endTime, the `<dataType>`
+ * zone of `<dataType>` is used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20428,11 +20429,11 @@ afw_function_definition_in_range;
  *
  * Parameters:
  *
- *   time - (<Type>)
+ *   time - (`<Type>`)
  *
- *   startTime - (<Type>)
+ *   startTime - (`<Type>`)
  *
- *   endTime - (<Type>)
+ *   endTime - (`<Type>`)
  *
  * Returns:
  *
@@ -20451,8 +20452,8 @@ afw_function_definition_includes;
  * @brief Adaptive Function includes
  * @param x function execute parameter.
  *
- * Checks whether the <dataType> value includes a string and return the boolean
- * result.
+ * Checks whether the `<dataType>` value includes a string and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20471,7 +20472,7 @@ afw_function_definition_includes;
  *
  * Parameters:
  *
- *   searchString - (<Type>) The <dataType> to search.
+ *   searchString - (`<Type>`) The `<dataType>` to search.
  *
  *   subString - (string) Substring to find.
  *
@@ -20495,7 +20496,7 @@ afw_function_definition_index_of;
  * @brief Adaptive Function index_of
  * @param x function execute parameter.
  *
- * Returns the zero-based index into <dataType> value of subString. If
+ * Returns the zero-based index into `<dataType>` value of subString. If
  * subString is not found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
@@ -20515,7 +20516,7 @@ afw_function_definition_index_of;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -20539,8 +20540,8 @@ afw_function_definition_intersection;
  * @brief Adaptive Function intersection
  * @param x function execute parameter.
  *
- * Returns a list of <dataType> with the values that are common to both list of
- * <dataType> list1 and list2.
+ * Returns a list of `<dataType>` with the values that are common to both list
+ * of `<dataType>` list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20559,13 +20560,13 @@ afw_function_definition_intersection;
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20580,7 +20581,7 @@ afw_function_definition_is;
  * @brief Adaptive Function is
  * @param x function execute parameter.
  *
- * Checks whether value is dataType <dataType> and return the boolean result.
+ * Checks whether value is dataType `<dataType>` and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20620,8 +20621,8 @@ afw_function_definition_is_in;
  * @brief Adaptive Function is_in
  * @param x function execute parameter.
  *
- * Checks whether <dataType> value is in list of <dataType> list and returns
- * the boolean result.
+ * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20641,9 +20642,9 @@ afw_function_definition_is_in;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
- *   list - (list <Type>)
+ *   list - (list `<Type>`)
  *
  * Returns:
  *
@@ -20662,8 +20663,8 @@ afw_function_definition_last_index_of;
  * @brief Adaptive Function last_index_of
  * @param x function execute parameter.
  *
- * Returns the zero-based index into <dataType> value of the last occurrence of
- * a subString. If subString is not found, -1 is returned.
+ * Returns the zero-based index into `<dataType>` value of the last occurrence
+ * of a subString. If subString is not found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20682,7 +20683,7 @@ afw_function_definition_last_index_of;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -20706,7 +20707,7 @@ afw_function_definition_le;
  * @brief Adaptive Function le
  * @param x function execute parameter.
  *
- * Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
+ * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
  * return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -20729,7 +20730,7 @@ afw_function_definition_le;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -20750,9 +20751,9 @@ afw_function_definition_length;
  * @brief Adaptive Function length
  * @param x function execute parameter.
  *
- * This is a polymorphic function where <dataType> can be any of the supported
- * data types. Return the integer number of entries in datatype list or
- * codepoints in others.
+ * This is a polymorphic function where `<dataType>` can be any of the
+ * supported data types. Return the integer number of entries in datatype list
+ * or codepoints in others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20769,8 +20770,8 @@ afw_function_definition_length;
  *
  * Parameters:
  *
- *   value - (<Type>) Returns the number of entries in a list or code points in
- *       others.
+ *   value - (`<Type>`) Returns the number of entries in a list or code points
+ *       in others.
  *
  * Returns:
  *
@@ -20789,7 +20790,7 @@ afw_function_definition_lt;
  * @brief Adaptive Function lt
  * @param x function execute parameter.
  *
- * Checks for <dataType> arg1 is less that <dataType> arg2 and return the
+ * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -20812,9 +20813,9 @@ afw_function_definition_lt;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -20834,7 +20835,7 @@ afw_function_definition_match;
  * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_<dataType>.
+ * compared using `equal_<dataType>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20852,7 +20853,7 @@ afw_function_definition_match;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (string)
  *
@@ -20873,7 +20874,7 @@ afw_function_definition_max;
  * @brief Adaptive Function max
  * @param x function execute parameter.
  *
- * Return the <dataType> value that is greater than or equal to the others.
+ * Return the `<dataType>` value that is greater than or equal to the others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20891,11 +20892,11 @@ afw_function_definition_max;
  *
  * Parameters:
  *
- *   values - (1 or more <Type>)
+ *   values - (1 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20910,7 +20911,7 @@ afw_function_definition_min;
  * @brief Adaptive Function min
  * @param x function execute parameter.
  *
- * Return the <dataType> value that is less than or equal to the others.
+ * Return the `<dataType>` value that is less than or equal to the others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20928,11 +20929,11 @@ afw_function_definition_min;
  *
  * Parameters:
  *
- *   values - (1 or more <Type>)
+ *   values - (1 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20947,8 +20948,8 @@ afw_function_definition_mod;
  * @brief Adaptive Function mod
  * @param x function execute parameter.
  *
- * Divide <dataType> dividend by <dataType> divisor and return the <dataType>
- * remainder.
+ * Divide `<dataType>` dividend by `<dataType>` divisor and return the
+ * `<dataType>` remainder.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20966,13 +20967,13 @@ afw_function_definition_mod;
  *
  * Parameters:
  *
- *   dividend - (<Type>)
+ *   dividend - (`<Type>`)
  *
- *   divisor - (<Type>)
+ *   divisor - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20987,7 +20988,7 @@ afw_function_definition_multiply;
  * @brief Adaptive Function multiply
  * @param x function execute parameter.
  *
- * Multiply 2 or more <dataType> values and return the <dataType> result.
+ * Multiply 2 or more `<dataType>` values and return the `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21006,11 +21007,11 @@ afw_function_definition_multiply;
  *
  * Parameters:
  *
- *   values - (2 or more <Type>)
+ *   values - (2 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21025,8 +21026,8 @@ afw_function_definition_ne;
  * @brief Adaptive Function ne
  * @param x function execute parameter.
  *
- * Determine if <dataType> arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
+ * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -21050,7 +21051,7 @@ afw_function_definition_ne;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -21075,7 +21076,7 @@ afw_function_definition_negative;
  * @brief Adaptive Function negative
  * @param x function execute parameter.
  *
- * Return negative of <dataType> value.
+ * Return negative of `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21092,11 +21093,11 @@ afw_function_definition_negative;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21111,7 +21112,7 @@ afw_function_definition_nex;
  * @brief Adaptive Function nex
  * @param x function execute parameter.
  *
- * Determine if for <dataType> arg1 is not equal to the value or data type of
+ * Determine if for `<dataType>` arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
@@ -21135,7 +21136,7 @@ afw_function_definition_nex;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -21156,7 +21157,7 @@ afw_function_definition_normalize_space;
  * @brief Adaptive Function normalize_space
  * @param x function execute parameter.
  *
- * Remove whitespace from the beginning and end of a <dataType> value.
+ * Remove whitespace from the beginning and end of a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21173,11 +21174,11 @@ afw_function_definition_normalize_space;
  *
  * Parameters:
  *
- *   string - (<Type>)
+ *   string - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21192,7 +21193,7 @@ afw_function_definition_normalize_to_lower_case;
  * @brief Adaptive Function normalize_to_lower_case
  * @param x function execute parameter.
  *
- * Normalize <dataType> value to lower case and returns <dataType> result.
+ * Normalize `<dataType>` value to lower case and returns `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21209,11 +21210,11 @@ afw_function_definition_normalize_to_lower_case;
  *
  * Parameters:
  *
- *   string - (<Type>)
+ *   string - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21228,8 +21229,8 @@ afw_function_definition_one_and_only;
  * @brief Adaptive Function one_and_only
  * @param x function execute parameter.
  *
- * This converts a list of <dataType> values that contains one value to a
- * single <dataType> value.
+ * This converts a list of `<dataType>` values that contains one value to a
+ * single `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21252,7 +21253,7 @@ afw_function_definition_one_and_only;
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Errors thrown:
  *
@@ -21292,13 +21293,13 @@ afw_function_definition_pow;
  *
  * Parameters:
  *
- *   base - (<Type>) Base value.
+ *   base - (`<Type>`) Base value.
  *
- *   exponent - (1 or more <Type>) Exponent value.
+ *   exponent - (1 or more `<Type>`) Exponent value.
  *
  * Returns:
  *
- *   (<Type>) Base raised to the power.
+ *   (`<Type>`) Base raised to the power.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21313,7 +21314,7 @@ afw_function_definition_regexp_index_of;
  * @brief Adaptive Function regexp_index_of
  * @param x function execute parameter.
  *
- * Search <dataType> value for a regular expression and return index. If not
+ * Search `<dataType>` value for a regular expression and return index. If not
  * found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
@@ -21332,7 +21333,7 @@ afw_function_definition_regexp_index_of;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -21353,7 +21354,7 @@ afw_function_definition_regexp_match;
  * @brief Adaptive Function regexp_match
  * @param x function execute parameter.
  *
- * Checks whether <dataType> value matches the regular expression regexp and
+ * Checks whether `<dataType>` value matches the regular expression regexp and
  * return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -21372,7 +21373,7 @@ afw_function_definition_regexp_match;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   regexp - (string)
  *
@@ -21393,7 +21394,7 @@ afw_function_definition_regexp_replace;
  * @brief Adaptive Function regexp_replace
  * @param x function execute parameter.
  *
- * Replace matched values for a regular expression in a <dataType> value.
+ * Replace matched values for a regular expression in a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21413,7 +21414,7 @@ afw_function_definition_regexp_replace;
  *
  * Parameters:
  *
- *   value - (<Type>) The original <dataType> value.
+ *   value - (`<Type>`) The original `<dataType>` value.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -21424,7 +21425,7 @@ afw_function_definition_regexp_replace;
  *
  * Returns:
  *
- *   (<Type>) A <dataType> value with the matched string(s) replaced.
+ *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21439,7 +21440,7 @@ afw_function_definition_repeat;
  * @brief Adaptive Function repeat
  * @param x function execute parameter.
  *
- * Repeat a <dataType> value a specified number of times.
+ * Repeat a `<dataType>` value a specified number of times.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21457,13 +21458,13 @@ afw_function_definition_repeat;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to repeat.
+ *   value - (`<Type>`) The `<dataType>` value to repeat.
  *
  *   times - (integer) The number of times to repeat the value.
  *
  * Returns:
  *
- *   (<Type>) The repeated <dataType> value.
+ *   (`<Type>`) The repeated `<dataType>` value.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21478,7 +21479,7 @@ afw_function_definition_replace;
  * @brief Adaptive Function replace
  * @param x function execute parameter.
  *
- * Replace string(s) in a <dataType> value.
+ * Replace string(s) in a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21498,7 +21499,7 @@ afw_function_definition_replace;
  *
  * Parameters:
  *
- *   value - (<Type>) The original <dataType> value.
+ *   value - (`<Type>`) The original `<dataType>` value.
  *
  *   match - (string) The string to replace.
  *
@@ -21509,7 +21510,7 @@ afw_function_definition_replace;
  *
  * Returns:
  *
- *   (<Type>) A <dataType> value with the matched string(s) replaced.
+ *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21524,8 +21525,8 @@ afw_function_definition_round;
  * @brief Adaptive Function round
  * @param x function execute parameter.
  *
- * Determine the integer closest to <dataType> value and return the <dataType>
- * result.
+ * Determine the integer closest to `<dataType>` value and return the
+ * `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21542,11 +21543,11 @@ afw_function_definition_round;
  *
  * Parameters:
  *
- *   number - (<Type>)
+ *   number - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21561,8 +21562,8 @@ afw_function_definition_set_equals;
  * @brief Adaptive Function set_equals
  * @param x function execute parameter.
  *
- * Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21581,9 +21582,9 @@ afw_function_definition_set_equals;
  *
  * Parameters:
  *
- *   list1 - (list <Type>)
+ *   list1 - (list `<Type>`)
  *
- *   list2 - (list <Type>)
+ *   list2 - (list `<Type>`)
  *
  * Returns:
  *
@@ -21602,7 +21603,7 @@ afw_function_definition_split;
  * @brief Adaptive Function split
  * @param x function execute parameter.
  *
- * Split <dataType> value into an list of strings using a separator.
+ * Split `<dataType>` value into an list of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21621,7 +21622,7 @@ afw_function_definition_split;
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to split.
+ *   value - (`<Type>`) The `<dataType>` value to split.
  *
  *   separator - (optional string) The separator to use. If this is an empty
  *       string or separator is not specified, the value is split between
@@ -21647,7 +21648,7 @@ afw_function_definition_starts_with;
  * @brief Adaptive Function starts_with
  * @param x function execute parameter.
  *
- * Checks whether <dataType> value starts with a subString and return the
+ * Checks whether `<dataType>` value starts with a subString and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -21666,7 +21667,7 @@ afw_function_definition_starts_with;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   subString - (string)
  *
@@ -21687,8 +21688,8 @@ afw_function_definition_subset;
  * @brief Adaptive Function subset
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in <dataType> list1 are all in
- * <dataType> list2.
+ * Returns boolean true if the unique values in `<dataType>` list1 are all in
+ * `<dataType>` list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21707,9 +21708,9 @@ afw_function_definition_subset;
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
@@ -21728,9 +21729,9 @@ afw_function_definition_substring;
  * @brief Adaptive Function substring
  * @param x function execute parameter.
  *
- * Returns the <dataType> substring of value beginning at zero-based position
+ * Returns the `<dataType>` substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of <dataType>.
+ * Specify -1 or omitting endIndex to return up to end of `<dataType>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21749,7 +21750,7 @@ afw_function_definition_substring;
  *
  * Parameters:
  *
- *   string - (<Type>)
+ *   string - (`<Type>`)
  *
  *   startIndex - (integer)
  *
@@ -21757,7 +21758,7 @@ afw_function_definition_substring;
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Errors thrown:
  *
@@ -21776,8 +21777,8 @@ afw_function_definition_subtract;
  * @brief Adaptive Function subtract
  * @param x function execute parameter.
  *
- * Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType>
- * result.
+ * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21795,13 +21796,13 @@ afw_function_definition_subtract;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21816,8 +21817,8 @@ afw_function_definition_subtract_dayTimeDuration;
  * @brief Adaptive Function subtract_dayTimeDuration
  * @param x function execute parameter.
  *
- * Subtract dayTimeDuration arg2 from <dataType> arg1 and return the <dataType>
- * result.
+ * Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21835,13 +21836,13 @@ afw_function_definition_subtract_dayTimeDuration;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (dayTimeDuration)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21856,8 +21857,8 @@ afw_function_definition_subtract_yearMonthDuration;
  * @brief Adaptive Function subtract_yearMonthDuration
  * @param x function execute parameter.
  *
- * Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
- * <dataType> result.
+ * Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
+ * `<dataType>` result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21875,13 +21876,13 @@ afw_function_definition_subtract_yearMonthDuration;
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (yearMonthDuration)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21896,7 +21897,7 @@ afw_function_definition_to_anyURI;
  * @brief Adaptive Function to_anyURI
  * @param x function execute parameter.
  *
- * Converts <dataType> value to anyURI.
+ * Converts `<dataType>` value to anyURI.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21913,7 +21914,7 @@ afw_function_definition_to_anyURI;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -21936,7 +21937,7 @@ afw_function_definition_to_boolean;
  * @brief Adaptive Function to_boolean
  * @param x function execute parameter.
  *
- * Converts <dataType> value to boolean.
+ * Converts `<dataType>` value to boolean.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21953,7 +21954,7 @@ afw_function_definition_to_boolean;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -21976,7 +21977,7 @@ afw_function_definition_to_date;
  * @brief Adaptive Function to_date
  * @param x function execute parameter.
  *
- * Converts <dataType> value to date.
+ * Converts `<dataType>` value to date.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21993,7 +21994,7 @@ afw_function_definition_to_date;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22016,7 +22017,7 @@ afw_function_definition_to_dateTime;
  * @brief Adaptive Function to_dateTime
  * @param x function execute parameter.
  *
- * Converts <dataType> value to dateTime.
+ * Converts `<dataType>` value to dateTime.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22033,7 +22034,7 @@ afw_function_definition_to_dateTime;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22056,7 +22057,7 @@ afw_function_definition_to_dayTimeDuration;
  * @brief Adaptive Function to_dayTimeDuration
  * @param x function execute parameter.
  *
- * Converts <dataType> value to dayTimeDuration.
+ * Converts `<dataType>` value to dayTimeDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22073,7 +22074,7 @@ afw_function_definition_to_dayTimeDuration;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22096,7 +22097,7 @@ afw_function_definition_to_dnsName;
  * @brief Adaptive Function to_dnsName
  * @param x function execute parameter.
  *
- * Converts <dataType> value to dnsName.
+ * Converts `<dataType>` value to dnsName.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22113,7 +22114,7 @@ afw_function_definition_to_dnsName;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22136,7 +22137,7 @@ afw_function_definition_to_double;
  * @brief Adaptive Function to_double
  * @param x function execute parameter.
  *
- * Converts <dataType> value to double and returns double result.
+ * Converts `<dataType>` value to double and returns double result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22153,7 +22154,7 @@ afw_function_definition_to_double;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22176,7 +22177,7 @@ afw_function_definition_to_integer;
  * @brief Adaptive Function to_integer
  * @param x function execute parameter.
  *
- * Truncate <dataType> value to a whole number and returns integer result.
+ * Truncate `<dataType>` value to a whole number and returns integer result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22193,7 +22194,7 @@ afw_function_definition_to_integer;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22212,7 +22213,7 @@ afw_function_definition_to_ipAddress;
  * @brief Adaptive Function to_ipAddress
  * @param x function execute parameter.
  *
- * Converts <dataType> value to ipAddress.
+ * Converts `<dataType>` value to ipAddress.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22229,7 +22230,7 @@ afw_function_definition_to_ipAddress;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22252,7 +22253,7 @@ afw_function_definition_to_rfc822Name;
  * @brief Adaptive Function to_rfc822Name
  * @param x function execute parameter.
  *
- * Converts <dataType> value to rfc822Name.
+ * Converts `<dataType>` value to rfc822Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22269,7 +22270,7 @@ afw_function_definition_to_rfc822Name;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22292,8 +22293,8 @@ afw_function_definition_to_string;
  * @brief Adaptive Function to_string
  * @param x function execute parameter.
  *
- * Converts <dataType> value to string. For list values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts `<dataType>` value to string. For list values, the to_string()
+ * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22313,7 +22314,7 @@ afw_function_definition_to_string;
  *
  * Parameters:
  *
- *   value - (<Type>) A <dataType> value.
+ *   value - (`<Type>`) A `<dataType>` value.
  *
  * Returns:
  *
@@ -22332,7 +22333,7 @@ afw_function_definition_to_time;
  * @brief Adaptive Function to_time
  * @param x function execute parameter.
  *
- * Converts <dataType> value to time.
+ * Converts `<dataType>` value to time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22349,7 +22350,7 @@ afw_function_definition_to_time;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22372,7 +22373,7 @@ afw_function_definition_to_x500Name;
  * @brief Adaptive Function to_x500Name
  * @param x function execute parameter.
  *
- * Converts <dataType> value to x500Name.
+ * Converts `<dataType>` value to x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22389,7 +22390,7 @@ afw_function_definition_to_x500Name;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22412,7 +22413,7 @@ afw_function_definition_to_yearMonthDuration;
  * @brief Adaptive Function to_yearMonthDuration
  * @param x function execute parameter.
  *
- * Converts <dataType> value to yearMonthDuration.
+ * Converts `<dataType>` value to yearMonthDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22429,7 +22430,7 @@ afw_function_definition_to_yearMonthDuration;
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  * Returns:
  *
@@ -22452,8 +22453,8 @@ afw_function_definition_union;
  * @brief Adaptive Function union
  * @param x function execute parameter.
  *
- * Returns a list of <dataType> contains all of the unique values in two or
- * more list of <dataType> values.
+ * Returns a list of `<dataType>` contains all of the unique values in two or
+ * more list of `<dataType>` values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22473,11 +22474,11 @@ afw_function_definition_union;
  *
  * Parameters:
  *
- *   lists - (2 or more list <Type>) Two or more lists.
+ *   lists - (2 or more list `<Type>`) Two or more lists.
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22509,8 +22510,8 @@ afw_function_definition_url_encode;
  *
  * Parameters:
  *
- *   unencoded - (<Type>) URL encode a single value. See the url_encode method
- *       for the data type of more details.
+ *   unencoded - (`<Type>`) URL encode a single value. See the url_encode
+ *       method for the data type of more details.
  *
  * Returns:
  *
@@ -25102,7 +25103,7 @@ afw_function_definition_print;
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
- * to stdout. An undefined value is represented by '<undefined>'.
+ * to stdout. An undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25135,7 +25136,7 @@ afw_function_definition_println;
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
- * undefined value is represented by '<undefined>'.
+ * undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25341,7 +25342,7 @@ afw_function_definition_write;
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
- * to stream. An value with an undefined value is represented by '<undefined>'.
+ * to stream. An value with an undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25412,7 +25413,7 @@ afw_function_definition_writeln;
  *
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stream. A newline character ('\n') is written after the last value. An
- * undefined value is represented by '<undefined>'.
+ * undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25591,7 +25592,7 @@ afw_function_definition_concat;
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * '<undefined>'.
+ * `<undefined>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26794,7 +26795,7 @@ afw_function_definition_string;
  *
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * '<undefined>'.
+ * `<undefined>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28254,7 +28255,7 @@ afw_function_definition_ge_time;
  * boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28293,7 +28294,7 @@ afw_function_definition_gt_time;
  * result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28477,7 +28478,7 @@ afw_function_definition_le_time;
  * boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28515,7 +28516,7 @@ afw_function_definition_lt_time;
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28553,7 +28554,7 @@ afw_function_definition_max_time;
  * Return the time value that is greater than or equal to the others.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28589,7 +28590,7 @@ afw_function_definition_min_time;
  * Return the time value that is less than or equal to the others.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the in_range<time> function should be used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

@@ -106,8 +106,8 @@ impl_add_nondups_to_list(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if at least one value in <dataType> list1 is in
- * <dataType> list2.
+ * Returns boolean true if at least one value in `<dataType>` list1 is in
+ * `<dataType>` list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -126,9 +126,9 @@ impl_add_nondups_to_list(
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
@@ -168,7 +168,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * See afw_function_bindings.h for more information.
  *
- * Takes any number of <dataType> values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns a list of list.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -189,11 +189,11 @@ afw_function_execute_at_least_one_member_of(
  *
  * Parameters:
  *
- *   values - (0 or more list <Type>)
+ *   values - (0 or more list `<Type>`)
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  */
 const afw_value_t *
 afw_function_execute_bag(
@@ -248,7 +248,7 @@ afw_function_execute_bag(
  *
  * Parameters:
  *
- *   value - (list <Type>)
+ *   value - (list `<Type>`)
  *
  * Returns:
  *
@@ -277,7 +277,7 @@ afw_function_execute_bag_size(
  *
  * See afw_function_bindings.h for more information.
  *
- * Deep clone a <dataType> value.
+ * Deep clone a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -294,11 +294,11 @@ afw_function_execute_bag_size(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to clone.
+ *   value - (`<Type>`) The `<dataType>` value to clone.
  *
  * Returns:
  *
- *   (<Type>) The cloned <dataType> value.
+ *   (`<Type>`) The cloned `<dataType>` value.
  */
 const afw_value_t *
 afw_function_execute_clone(
@@ -379,7 +379,7 @@ afw_function_execute_compile(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether <dataType> value ends with a <dataType> and return the
+ * Checks whether `<dataType>` value ends with a `<dataType>` and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -398,7 +398,7 @@ afw_function_execute_compile(
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   subString - (string)
  *
@@ -442,9 +442,10 @@ afw_function_execute_ends_with(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if <dataType> arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
+ * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -466,7 +467,7 @@ afw_function_execute_ends_with(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -535,9 +536,9 @@ afw_function_execute_eq(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if for <dataType> arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for `<dataType>` arg1 is equal to the value and data type of
+ * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -559,7 +560,7 @@ afw_function_execute_eq(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -626,8 +627,8 @@ afw_function_execute_eqx(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks for <dataType> arg1 is greater than or equal to <dataType> arg2 and
- * return the boolean result.
+ * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -649,9 +650,9 @@ afw_function_execute_eqx(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -705,8 +706,8 @@ afw_function_execute_ge(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
- * boolean result.
+ * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -728,9 +729,9 @@ afw_function_execute_ge(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -783,8 +784,8 @@ afw_function_execute_gt(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether the <dataType> value includes a string and return the boolean
- * result.
+ * Checks whether the `<dataType>` value includes a string and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -803,7 +804,7 @@ afw_function_execute_gt(
  *
  * Parameters:
  *
- *   searchString - (<Type>) The <dataType> to search.
+ *   searchString - (`<Type>`) The `<dataType>` to search.
  *
  *   subString - (string) Substring to find.
  *
@@ -869,7 +870,7 @@ afw_function_execute_includes(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns the zero-based index into <dataType> value of subString. If
+ * Returns the zero-based index into `<dataType>` value of subString. If
  * subString is not found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
@@ -889,7 +890,7 @@ afw_function_execute_includes(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -968,8 +969,8 @@ return_result:
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns a list of <dataType> with the values that are common to both list of
- * <dataType> list1 and list2.
+ * Returns a list of `<dataType>` with the values that are common to both list
+ * of `<dataType>` list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -988,13 +989,13 @@ return_result:
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  */
 const afw_value_t *
 afw_function_execute_intersection(
@@ -1045,8 +1046,8 @@ afw_function_execute_intersection(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether <dataType> value is in list of <dataType> list and returns
- * the boolean result.
+ * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1066,9 +1067,9 @@ afw_function_execute_intersection(
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
- *   list - (list <Type>)
+ *   list - (list `<Type>`)
  *
  * Returns:
  *
@@ -1107,7 +1108,7 @@ afw_function_execute_is_in(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
+ * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
  * return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -1130,7 +1131,7 @@ afw_function_execute_is_in(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -1185,9 +1186,9 @@ afw_function_execute_le(
  *
  * See afw_function_bindings.h for more information.
  *
- * This is a polymorphic function where <dataType> can be any of the supported
- * data types. Return the integer number of entries in datatype list or
- * codepoints in others.
+ * This is a polymorphic function where `<dataType>` can be any of the
+ * supported data types. Return the integer number of entries in datatype list
+ * or codepoints in others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1204,8 +1205,8 @@ afw_function_execute_le(
  *
  * Parameters:
  *
- *   value - (<Type>) Returns the number of entries in a list or code points in
- *       others.
+ *   value - (`<Type>`) Returns the number of entries in a list or code points
+ *       in others.
  *
  * Returns:
  *
@@ -1250,7 +1251,7 @@ afw_function_execute_length(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks for <dataType> arg1 is less that <dataType> arg2 and return the
+ * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -1273,9 +1274,9 @@ afw_function_execute_length(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
- *   arg2 - (<Type>)
+ *   arg2 - (`<Type>`)
  *
  * Returns:
  *
@@ -1328,7 +1329,7 @@ afw_function_execute_lt(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the <dataType> value that is greater than or equal to the others.
+ * Return the `<dataType>` value that is greater than or equal to the others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1346,11 +1347,11 @@ afw_function_execute_lt(
  *
  * Parameters:
  *
- *   values - (1 or more <Type>)
+ *   values - (1 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  */
 const afw_value_t *
 afw_function_execute_max(
@@ -1387,7 +1388,7 @@ afw_function_execute_max(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the <dataType> value that is less than or equal to the others.
+ * Return the `<dataType>` value that is less than or equal to the others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1405,11 +1406,11 @@ afw_function_execute_max(
  *
  * Parameters:
  *
- *   values - (1 or more <Type>)
+ *   values - (1 or more `<Type>`)
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  */
 const afw_value_t *
 afw_function_execute_min(
@@ -1446,8 +1447,8 @@ afw_function_execute_min(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if <dataType> arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
+ * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -1471,7 +1472,7 @@ afw_function_execute_min(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -1542,7 +1543,7 @@ afw_function_execute_ne(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if for <dataType> arg1 is not equal to the value or data type of
+ * Determine if for `<dataType>` arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
@@ -1566,7 +1567,7 @@ afw_function_execute_ne(
  *
  * Parameters:
  *
- *   arg1 - (<Type>)
+ *   arg1 - (`<Type>`)
  *
  *   arg2 - (any dataType)
  *
@@ -1633,8 +1634,8 @@ afw_function_execute_nex(
  *
  * See afw_function_bindings.h for more information.
  *
- * This converts a list of <dataType> values that contains one value to a
- * single <dataType> value.
+ * This converts a list of `<dataType>` values that contains one value to a
+ * single `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1657,7 +1658,7 @@ afw_function_execute_nex(
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Errors thrown:
  *
@@ -1694,7 +1695,7 @@ afw_function_execute_one_and_only(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether <dataType> value matches the regular expression regexp and
+ * Checks whether `<dataType>` value matches the regular expression regexp and
  * return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -1713,7 +1714,7 @@ afw_function_execute_one_and_only(
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   regexp - (string)
  *
@@ -1769,7 +1770,7 @@ afw_function_execute_regexp_match(
  *
  * See afw_function_bindings.h for more information.
  *
- * Repeat a <dataType> value a specified number of times.
+ * Repeat a `<dataType>` value a specified number of times.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1787,13 +1788,13 @@ afw_function_execute_regexp_match(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to repeat.
+ *   value - (`<Type>`) The `<dataType>` value to repeat.
  *
  *   times - (integer) The number of times to repeat the value.
  *
  * Returns:
  *
- *   (<Type>) The repeated <dataType> value.
+ *   (`<Type>`) The repeated `<dataType>` value.
  */
 const afw_value_t *
 afw_function_execute_repeat(
@@ -1841,7 +1842,7 @@ afw_function_execute_repeat(
  *
  * See afw_function_bindings.h for more information.
  *
- * Replace string(s) in a <dataType> value.
+ * Replace string(s) in a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1861,7 +1862,7 @@ afw_function_execute_repeat(
  *
  * Parameters:
  *
- *   value - (<Type>) The original <dataType> value.
+ *   value - (`<Type>`) The original `<dataType>` value.
  *
  *   match - (string) The string to replace.
  *
@@ -1872,7 +1873,7 @@ afw_function_execute_repeat(
  *
  * Returns:
  *
- *   (<Type>) A <dataType> value with the matched string(s) replaced.
+ *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
  */
 const afw_value_t *
 afw_function_execute_replace(
@@ -1978,8 +1979,8 @@ afw_function_execute_replace(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1998,9 +1999,9 @@ afw_function_execute_replace(
  *
  * Parameters:
  *
- *   list1 - (list <Type>)
+ *   list1 - (list `<Type>`)
  *
- *   list2 - (list <Type>)
+ *   list2 - (list `<Type>`)
  *
  * Returns:
  *
@@ -2040,7 +2041,7 @@ afw_function_execute_set_equals(
  *
  * See afw_function_bindings.h for more information.
  *
- * Split <dataType> value into an list of strings using a separator.
+ * Split `<dataType>` value into an list of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2059,7 +2060,7 @@ afw_function_execute_set_equals(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to split.
+ *   value - (`<Type>`) The `<dataType>` value to split.
  *
  *   separator - (optional string) The separator to use. If this is an empty
  *       string or separator is not specified, the value is split between
@@ -2157,7 +2158,7 @@ afw_function_execute_split(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether <dataType> value starts with a subString and return the
+ * Checks whether `<dataType>` value starts with a subString and return the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -2176,7 +2177,7 @@ afw_function_execute_split(
  *
  * Parameters:
  *
- *   value - (<Type>)
+ *   value - (`<Type>`)
  *
  *   subString - (string)
  *
@@ -2219,8 +2220,8 @@ afw_function_execute_starts_with(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if the unique values in <dataType> list1 are all in
- * <dataType> list2.
+ * Returns boolean true if the unique values in `<dataType>` list1 are all in
+ * `<dataType>` list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2239,9 +2240,9 @@ afw_function_execute_starts_with(
  *
  * Parameters:
  *
- *   list1 - (list <Type>) The first list.
+ *   list1 - (list `<Type>`) The first list.
  *
- *   list2 - (list <Type>) The second list.
+ *   list2 - (list `<Type>`) The second list.
  *
  * Returns:
  *
@@ -2280,9 +2281,9 @@ afw_function_execute_subset(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns the <dataType> substring of value beginning at zero-based position
+ * Returns the `<dataType>` substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of <dataType>.
+ * Specify -1 or omitting endIndex to return up to end of `<dataType>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2301,7 +2302,7 @@ afw_function_execute_subset(
  *
  * Parameters:
  *
- *   string - (<Type>)
+ *   string - (`<Type>`)
  *
  *   startIndex - (integer)
  *
@@ -2309,7 +2310,7 @@ afw_function_execute_subset(
  *
  * Returns:
  *
- *   (<Type>)
+ *   (`<Type>`)
  *
  * Errors thrown:
  *
@@ -2395,8 +2396,8 @@ afw_function_execute_substring(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns a list of <dataType> contains all of the unique values in two or
- * more list of <dataType> values.
+ * Returns a list of `<dataType>` contains all of the unique values in two or
+ * more list of `<dataType>` values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2416,11 +2417,11 @@ afw_function_execute_substring(
  *
  * Parameters:
  *
- *   lists - (2 or more list <Type>) Two or more lists.
+ *   lists - (2 or more list `<Type>`) Two or more lists.
  *
  * Returns:
  *
- *   (list <Type>)
+ *   (list `<Type>`)
  */
 const afw_value_t *
 afw_function_execute_union(
@@ -2466,8 +2467,8 @@ afw_function_execute_union(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns the zero-based index into <dataType> value of the last occurrence of
- * a subString. If subString is not found, -1 is returned.
+ * Returns the zero-based index into `<dataType>` value of the last occurrence
+ * of a subString. If subString is not found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2486,7 +2487,7 @@ afw_function_execute_union(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -2565,7 +2566,7 @@ return_result:
  *
  * See afw_function_bindings.h for more information.
  *
- * Search <dataType> value for a regular expression and return index. If not
+ * Search `<dataType>` value for a regular expression and return index. If not
  * found, -1 is returned.
  *
  * This function is pure, so it will always return the same result
@@ -2584,7 +2585,7 @@ return_result:
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to search.
+ *   value - (`<Type>`) The `<dataType>` value to search.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -2609,7 +2610,7 @@ afw_function_execute_regexp_index_of(
  *
  * See afw_function_bindings.h for more information.
  *
- * Replace matched values for a regular expression in a <dataType> value.
+ * Replace matched values for a regular expression in a `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2629,7 +2630,7 @@ afw_function_execute_regexp_index_of(
  *
  * Parameters:
  *
- *   value - (<Type>) The original <dataType> value.
+ *   value - (`<Type>`) The original `<dataType>` value.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -2640,7 +2641,7 @@ afw_function_execute_regexp_index_of(
  *
  * Returns:
  *
- *   (<Type>) A <dataType> value with the matched string(s) replaced.
+ *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
  */
 const afw_value_t *
 afw_function_execute_regexp_replace(
@@ -2676,8 +2677,8 @@ afw_function_execute_regexp_replace(
  *
  * Parameters:
  *
- *   unencoded - (<Type>) URL encode a single value. See the url_encode method
- *       for the data type of more details.
+ *   unencoded - (`<Type>`) URL encode a single value. See the url_encode
+ *       method for the data type of more details.
  *
  * Returns:
  *
@@ -2726,7 +2727,7 @@ afw_function_execute_url_encode(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to encode.
+ *   value - (`<Type>`) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -2776,7 +2777,7 @@ afw_function_execute_encode_as_base64Binary(
  *
  * Parameters:
  *
- *   value - (<Type>) The <dataType> value to encode.
+ *   value - (`<Type>`) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -2808,7 +2809,7 @@ afw_function_execute_encode_as_hexBinary(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether value is dataType <dataType> and return the boolean result.
+ * Checks whether value is dataType `<dataType>` and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

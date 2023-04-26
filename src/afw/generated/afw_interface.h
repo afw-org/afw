@@ -44,7 +44,7 @@ AFW_BEGIN_DECLARES
  * Interface returned from afw_extension_initialize() of an
  * Adaptive Framework environment extension module. Additional
  * information about an extension is found in object
- * /afw/_AdaptiveManifest_/<extension_id>.
+ * `/afw/_AdaptiveManifest_/<extension_id>`.
  * 
  *
  * @{
@@ -3612,7 +3612,7 @@ struct afw_service_type_inf_s {
  *     to insure          the appropriate id and subtype property is present
  *     for the          type. Other than that, these properties need to be
  *     validated using         
- *     /afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>.
+ *     `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
  * @param p Pool to cede to start.
  * @param xctx This is the caller's xctx.
  */
@@ -3653,7 +3653,7 @@ struct afw_service_type_inf_s {
  *     to insure          the appropriate id and subtype property is present
  *     for the          type. Other than that, these properties need to be
  *     validated using         
- *     /afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>.
+ *     `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
  * @param p Pool to cede to start.
  * @param xctx This is the caller's xctx.
  */

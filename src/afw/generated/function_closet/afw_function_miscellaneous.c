@@ -132,7 +132,7 @@ afw_function_execute_compare_uri(
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written. An undefined value is represented
- *       by '<undefined>'.
+ *       by `<undefined>`.
  *
  *   detail - (optional boolean) If true, the string will only written if the
  *       debug:function_active:detail flag is on. If false or not specified,
@@ -620,7 +620,7 @@ afw_function_execute_perform(
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written the trace log. An undefined value is
- *       represented by '<undefined>'.
+ *       represented by `<undefined>`.
  *
  *   filter - (optional boolean) If this optional filter is false, nothing will
  *       be written to the trace log. The default is true.

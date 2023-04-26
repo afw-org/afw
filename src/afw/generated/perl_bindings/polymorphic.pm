@@ -91,8 +91,8 @@ The following functions are exported by default
 
 =head3 abs
 
-Compute the absolute value of the <dataType> value and return the <dataType>
-result.
+Compute the absolute value of the `<dataType>` value and return the
+`<dataType>` result.
 Absolute value
 
 =head4 Parameters
@@ -102,7 +102,7 @@ Absolute value
 
 =head3 add
 
-Add 2 or more <dataType> values and return the <dataType> result.
+Add 2 or more `<dataType>` values and return the `<dataType>` result.
 Add
 
 =head4 Parameters
@@ -112,7 +112,8 @@ Add
 
 =head3 add_dayTimeDuration
 
-Add <dataType> arg1 to dayTimeDuration arg2 and return the <dataType> result.
+Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
+result.
 Add duration
 
 =head4 Parameters
@@ -125,7 +126,7 @@ Add duration
 
 =head3 add_yearMonthDuration
 
-Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType>
+Add `<dataType>` arg1 to yearMonthDuration arg2 and return the `<dataType>`
 result.
 Add duration
 
@@ -139,8 +140,8 @@ Add duration
 
 =head3 at_least_one_member_of
 
-Returns boolean true if at least one value in <dataType> list1 is in
-<dataType> list2.
+Returns boolean true if at least one value in `<dataType>` list1 is in
+`<dataType>` list2.
 Checks for at least one value in common
 
 =head4 Parameters
@@ -155,7 +156,7 @@ The second list.
 
 =head3 bag
 
-Takes any number of <dataType> values and returns a list of list.
+Takes any number of `<dataType>` values and returns a list of list.
 Makes a list from values
 
 =head4 Parameters
@@ -176,7 +177,7 @@ Returns the number of values in a bag
 =head3 ceil
 
 Determine the smallest integer that is greater then or equal to the
-<dataType> value and return the <dataType> result.
+`<dataType>` value and return the `<dataType>` result.
 Round upward to nearest integer
 
 =head4 Parameters
@@ -186,26 +187,26 @@ Round upward to nearest integer
 
 =head3 clone
 
-Deep clone a <dataType> value.
+Deep clone a `<dataType>` value.
 Clone <dataType> value
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to clone.
+The `<dataType>` value to clone.
 
 =head3 compile
 
-Compile <dataType> value and return either an unevaluated adaptive value or a
-string containing the compiler listing.
+Compile `<dataType>` value and return either an unevaluated adaptive value or
+a string containing the compiler listing.
 Compile <dataType> value
 
 =head4 Parameters
 
     $source
 
-<dataType> string to compile
+`<dataType>` string to compile
 
     $listing
 
@@ -218,20 +219,20 @@ string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 decode_to_string
 
-Decode <dataType> value to string. An error is thrown if decoded value is not
-valid UTF-8.
+Decode `<dataType>` value to string. An error is thrown if decoded value is
+not valid UTF-8.
 Decode <dataType> to string
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to decode.
+The `<dataType>` value to decode.
 
 =head3 divide
 
-Divide <dataType> dividend by <dataType> divisor and return the <dataType>
-quotient.
+Divide `<dataType>` dividend by `<dataType>` divisor and return the
+`<dataType>` quotient.
 Divide numbers
 
 =head4 Parameters
@@ -252,7 +253,7 @@ Encode to a base64Binary value
 
     $value
 
-The <dataType> value to encode.
+The `<dataType>` value to encode.
 
 =head3 encode_as_hexBinary
 
@@ -264,12 +265,12 @@ Encode to a hexBinary value
 
     $value
 
-The <dataType> value to encode.
+The `<dataType>` value to encode.
 
 =head3 ends_with
 
-Checks whether <dataType> value ends with a <dataType> and return the boolean
-result.
+Checks whether `<dataType>` value ends with a `<dataType>` and return the
+boolean result.
 Checks whether value ends with a string
 
 =head4 Parameters
@@ -282,7 +283,7 @@ Checks whether value ends with a string
 
 =head3 eq
 
-Determine if <dataType> arg1 is equal to the value of arg2 converted to the
+Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
 data type of arg1 then return the boolean result. Use "eqx" ("===") instead
 if you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
@@ -297,7 +298,7 @@ Checks for equal
 
 =head3 eq_ignore_case
 
-Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and
+Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case and
 return the boolean result.
 Checks for equal ignoring case
 
@@ -311,9 +312,9 @@ Checks for equal ignoring case
 
 =head3 eqx
 
-Determine if for <dataType> arg1 is equal to the value and data type of arg2
-then return the boolean result. Use "eq" ("==") instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+Determine if for `<dataType>` arg1 is equal to the value and data type of
+arg2 then return the boolean result. Use "eq" ("==") instead if you want arg2
+to be converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -326,14 +327,14 @@ Checks for equal and type
 
 =head3 evaluate
 
-Compile and evaluate <dataType> value.
+Compile and evaluate `<dataType>` value.
 Evaluate <dataType> value
 
 =head4 Parameters
 
     $source
 
-<dataType> string to compile and evaluate
+`<dataType>` string to compile and evaluate
 
     $additionalUntrustedQualifiedVariables
 
@@ -345,8 +346,8 @@ should not be used for anything running in production.
 
 =head3 floor
 
-Determine the largest integer that is smaller then or equal to the <dataType>
-value and return the <dataType> result.
+Determine the largest integer that is smaller then or equal to the
+`<dataType>` value and return the `<dataType>` result.
 Round downwards to nearest integer
 
 =head4 Parameters
@@ -356,8 +357,8 @@ Round downwards to nearest integer
 
 =head3 ge
 
-Checks for <dataType> arg1 is greater than or equal to <dataType> arg2 and
-return the boolean result.
+Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
+and return the boolean result.
 Checks for greater than or equal
 
 =head4 Parameters
@@ -370,7 +371,7 @@ Checks for greater than or equal
 
 =head3 gt
 
-Checks for <dataType> arg1 is greater than <dataType> arg2 and return the
+Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return the
 boolean result.
 Checks for greater than
 
@@ -384,12 +385,12 @@ Checks for greater than
 
 =head3 in_range
 
-Checks if <dataType> is between startTime and endTime, inclusive. Regardless
-of endTime value, it is always considered to be equal to, but less than 24
-hours greater than startTime. If no <dataType> zone is specified for
-<dataType>, the default <dataType> zone is used. If no <dataType> zone is
-specified for startTime or endTime, the <dataType> zone of <dataType> is
-used.
+Checks if `<dataType>` is between startTime and endTime, inclusive.
+Regardless of endTime value, it is always considered to be equal to, but less
+than 24 hours greater than startTime. If no `<dataType>` zone is specified
+for `<dataType>,` the default `<dataType>` zone is used. If no `<dataType>`
+zone is specified for startTime or endTime, the `<dataType>` zone of
+`<dataType>` is used.
 Checks if time in range
 
 =head4 Parameters
@@ -405,15 +406,15 @@ Checks if time in range
 
 =head3 includes
 
-Checks whether the <dataType> value includes a string and return the boolean
-result.
+Checks whether the `<dataType>` value includes a string and return the
+boolean result.
 Checks whether the <dataType> value includes a string
 
 =head4 Parameters
 
     $searchString
 
-The <dataType> to search.
+The `<dataType>` to search.
 
     $subString
 
@@ -425,15 +426,15 @@ Zero-based position in the search string to start search.
 
 =head3 index_of
 
-Returns the zero-based index into <dataType> value of subString. If subString
-is not found, -1 is returned.
+Returns the zero-based index into `<dataType>` value of subString. If
+subString is not found, -1 is returned.
 Returns index of first occurrence
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to search.
+The `<dataType>` value to search.
 
     $subString
 
@@ -445,8 +446,8 @@ Optional start index for search if different than start of string.
 
 =head3 intersection
 
-Returns a list of <dataType> with the values that are common to both list of
-<dataType> list1 and list2.
+Returns a list of `<dataType>` with the values that are common to both list
+of `<dataType>` list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
@@ -461,7 +462,7 @@ The second list.
 
 =head3 is
 
-Checks whether value is dataType <dataType> and return the boolean result.
+Checks whether value is dataType `<dataType>` and return the boolean result.
 Checks whether value is dataType <dataType>
 
 =head4 Parameters
@@ -472,8 +473,8 @@ Value to check
 
 =head3 is_in
 
-Checks whether <dataType> value is in list of <dataType> list and returns the
-boolean result.
+Checks whether `<dataType>` value is in list of `<dataType>` list and returns
+the boolean result.
 Checks whether a value is in a list
 
 =head4 Parameters
@@ -486,15 +487,15 @@ Checks whether a value is in a list
 
 =head3 last_index_of
 
-Returns the zero-based index into <dataType> value of the last occurrence of
-a subString. If subString is not found, -1 is returned.
+Returns the zero-based index into `<dataType>` value of the last occurrence
+of a subString. If subString is not found, -1 is returned.
 Returns index of last occurrence
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to search.
+The `<dataType>` value to search.
 
     $subString
 
@@ -506,7 +507,7 @@ Optional start index for search if different than start of string.
 
 =head3 le
 
-Checks for <dataType> arg1 is less than or equal to <dataType> arg2 and
+Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
 return the boolean result.
 Checks for less than or equal
 
@@ -520,7 +521,7 @@ Checks for less than or equal
 
 =head3 length
 
-This is a polymorphic function where <dataType> can be any of the supported
+This is a polymorphic function where `<dataType>` can be any of the supported
 data types. Return the integer number of entries in datatype list or
 codepoints in others.
 Returns number of codepoints or entries in value
@@ -533,7 +534,7 @@ Returns the number of entries in a list or code points in others.
 
 =head3 lt
 
-Checks for <dataType> arg1 is less that <dataType> arg2 and return the
+Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
 boolean result.
 Checks for less than
 
@@ -548,7 +549,7 @@ Checks for less than
 =head3 match
 
 Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-compared using equal_<dataType>.
+compared using `equal_<dataType>`.
 Checks if x500Name matches
 
 =head4 Parameters
@@ -561,7 +562,7 @@ Checks if x500Name matches
 
 =head3 max
 
-Return the <dataType> value that is greater than or equal to the others.
+Return the `<dataType>` value that is greater than or equal to the others.
 Maximum value
 
 =head4 Parameters
@@ -571,7 +572,7 @@ Maximum value
 
 =head3 min
 
-Return the <dataType> value that is less than or equal to the others.
+Return the `<dataType>` value that is less than or equal to the others.
 Minimum value
 
 =head4 Parameters
@@ -581,8 +582,8 @@ Minimum value
 
 =head3 mod
 
-Divide <dataType> dividend by <dataType> divisor and return the <dataType>
-remainder.
+Divide `<dataType>` dividend by `<dataType>` divisor and return the
+`<dataType>` remainder.
 Remainder of dividing numbers
 
 =head4 Parameters
@@ -595,7 +596,7 @@ Remainder of dividing numbers
 
 =head3 multiply
 
-Multiply 2 or more <dataType> values and return the <dataType> result.
+Multiply 2 or more `<dataType>` values and return the `<dataType>` result.
 Multiply numbers
 
 =head4 Parameters
@@ -605,7 +606,7 @@ Multiply numbers
 
 =head3 ne
 
-Determine if <dataType> arg1 is not equal to the value of arg2 converted to
+Determine if `<dataType>` arg1 is not equal to the value of arg2 converted to
 the data type of arg1 then return the boolean result. Use "nex" ("!==")
 instead if you want true to be returned if arg1 and arg2's data type don't
 match.
@@ -621,7 +622,7 @@ Checks for not equal
 
 =head3 negative
 
-Return negative of <dataType> value.
+Return negative of `<dataType>` value.
 Negative of a number
 
 =head4 Parameters
@@ -631,7 +632,7 @@ Negative of a number
 
 =head3 nex
 
-Determine if for <dataType> arg1 is not equal to the value or data type of
+Determine if for `<dataType>` arg1 is not equal to the value or data type of
 arg2 then return the boolean result. Use "ne" ("!=") instead if you want arg2
 to be converted to the data type of arg1 before comparison.
 Checks for not equal value or type
@@ -646,7 +647,7 @@ Checks for not equal value or type
 
 =head3 normalize_space
 
-Remove whitespace from the beginning and end of a <dataType> value.
+Remove whitespace from the beginning and end of a `<dataType>` value.
 Trims whitespace from beginning and end
 
 =head4 Parameters
@@ -656,7 +657,7 @@ Trims whitespace from beginning and end
 
 =head3 normalize_to_lower_case
 
-Normalize <dataType> value to lower case and returns <dataType> result.
+Normalize `<dataType>` value to lower case and returns `<dataType>` result.
 Converts to lower case
 
 =head4 Parameters
@@ -666,8 +667,8 @@ Converts to lower case
 
 =head3 one_and_only
 
-This converts a list of <dataType> values that contains one value to a single
-<dataType> value.
+This converts a list of `<dataType>` values that contains one value to a
+single `<dataType>` value.
 Converts a one value list to a <dataType> value
 
 =head4 Parameters
@@ -693,7 +694,7 @@ Exponent value.
 
 =head3 regexp_index_of
 
-Search <dataType> value for a regular expression and return index. If not
+Search `<dataType>` value for a regular expression and return index. If not
 found, -1 is returned.
 Returns index of first match of regular expression
 
@@ -701,7 +702,7 @@ Returns index of first match of regular expression
 
     $value
 
-The <dataType> value to search.
+The `<dataType>` value to search.
 
     $regexp
 
@@ -709,7 +710,7 @@ A regular expression to use for search.
 
 =head3 regexp_match
 
-Checks whether <dataType> value matches the regular expression regexp and
+Checks whether `<dataType>` value matches the regular expression regexp and
 return the boolean result.
 Search for a match using a regular expression
 
@@ -723,14 +724,14 @@ Search for a match using a regular expression
 
 =head3 regexp_replace
 
-Replace matched values for a regular expression in a <dataType> value.
+Replace matched values for a regular expression in a `<dataType>` value.
 Replace strings matching a regular expression
 
 =head4 Parameters
 
     $value
 
-The original <dataType> value.
+The original `<dataType>` value.
 
     $regexp
 
@@ -747,14 +748,14 @@ all occurrences.
 
 =head3 repeat
 
-Repeat a <dataType> value a specified number of times.
+Repeat a `<dataType>` value a specified number of times.
 Returns a repeated value
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to repeat.
+The `<dataType>` value to repeat.
 
     $times
 
@@ -762,14 +763,14 @@ The number of times to repeat the value.
 
 =head3 replace
 
-Replace string(s) in a <dataType> value.
+Replace string(s) in a `<dataType>` value.
 Replace strings
 
 =head4 Parameters
 
     $value
 
-The original <dataType> value.
+The original `<dataType>` value.
 
     $match
 
@@ -786,8 +787,8 @@ all occurrences.
 
 =head3 round
 
-Determine the integer closest to <dataType> value and return the <dataType>
-result.
+Determine the integer closest to `<dataType>` value and return the
+`<dataType>` result.
 Round to nearest integer
 
 =head4 Parameters
@@ -797,8 +798,8 @@ Round to nearest integer
 
 =head3 set_equals
 
-Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of
-each other and return the boolean result.
+Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are subsets
+of each other and return the boolean result.
 Checks whether two lists are subsets of each other
 
 =head4 Parameters
@@ -811,14 +812,14 @@ Checks whether two lists are subsets of each other
 
 =head3 split
 
-Split <dataType> value into an list of strings using a separator.
+Split `<dataType>` value into an list of strings using a separator.
 Split at a separator
 
 =head4 Parameters
 
     $value
 
-The <dataType> value to split.
+The `<dataType>` value to split.
 
     $separator
 
@@ -831,7 +832,7 @@ This is the maximum number of splits. Any remaining part of value is ignored.
 
 =head3 starts_with
 
-Checks whether <dataType> value starts with a subString and return the
+Checks whether `<dataType>` value starts with a subString and return the
 boolean result.
 Checks whether value starts with a string
 
@@ -845,8 +846,8 @@ Checks whether value starts with a string
 
 =head3 subset
 
-Returns boolean true if the unique values in <dataType> list1 are all in
-<dataType> list2.
+Returns boolean true if the unique values in `<dataType>` list1 are all in
+`<dataType>` list2.
 Determines if the first list is a subset of second list
 
 =head4 Parameters
@@ -861,9 +862,9 @@ The second list.
 
 =head3 substring
 
-Returns the <dataType> substring of value beginning at zero-based position
+Returns the `<dataType>` substring of value beginning at zero-based position
 integer startIndex and ending at the position before integer endIndex.
-Specify -1 or omitting endIndex to return up to end of <dataType>.
+Specify -1 or omitting endIndex to return up to end of `<dataType>`.
 Extract a substring
 
 =head4 Parameters
@@ -879,7 +880,7 @@ Extract a substring
 
 =head3 subtract
 
-Subtract <dataType> arg2 from <dataType> arg1 and return the <dataType>
+Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the `<dataType>`
 result.
 Subtract numbers
 
@@ -893,8 +894,8 @@ Subtract numbers
 
 =head3 subtract_dayTimeDuration
 
-Subtract dayTimeDuration arg2 from <dataType> arg1 and return the <dataType>
-result.
+Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
+`<dataType>` result.
 Subtract numbers
 
 =head4 Parameters
@@ -907,8 +908,8 @@ Subtract numbers
 
 =head3 subtract_yearMonthDuration
 
-Subtract yearMonthDuration arg2 from <dataType> arg1 and return the
-<dataType> result.
+Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
+`<dataType>` result.
 Subtract numbers
 
 =head4 Parameters
@@ -921,7 +922,7 @@ Subtract numbers
 
 =head3 to_anyURI
 
-Converts <dataType> value to anyURI.
+Converts `<dataType>` value to anyURI.
 Converts string to anyURI
 
 =head4 Parameters
@@ -931,7 +932,7 @@ Converts string to anyURI
 
 =head3 to_boolean
 
-Converts <dataType> value to boolean.
+Converts `<dataType>` value to boolean.
 Converts string to boolean
 
 =head4 Parameters
@@ -941,7 +942,7 @@ Converts string to boolean
 
 =head3 to_date
 
-Converts <dataType> value to date.
+Converts `<dataType>` value to date.
 Converts string to date
 
 =head4 Parameters
@@ -951,7 +952,7 @@ Converts string to date
 
 =head3 to_dateTime
 
-Converts <dataType> value to dateTime.
+Converts `<dataType>` value to dateTime.
 Converts string to dateTime
 
 =head4 Parameters
@@ -961,7 +962,7 @@ Converts string to dateTime
 
 =head3 to_dayTimeDuration
 
-Converts <dataType> value to dayTimeDuration.
+Converts `<dataType>` value to dayTimeDuration.
 Converts string to dayTimeDuration
 
 =head4 Parameters
@@ -971,7 +972,7 @@ Converts string to dayTimeDuration
 
 =head3 to_dnsName
 
-Converts <dataType> value to dnsName.
+Converts `<dataType>` value to dnsName.
 Converts string to dnsName
 
 =head4 Parameters
@@ -981,7 +982,7 @@ Converts string to dnsName
 
 =head3 to_double
 
-Converts <dataType> value to double and returns double result.
+Converts `<dataType>` value to double and returns double result.
 Converts to double
 
 =head4 Parameters
@@ -991,7 +992,7 @@ Converts to double
 
 =head3 to_integer
 
-Truncate <dataType> value to a whole number and returns integer result.
+Truncate `<dataType>` value to a whole number and returns integer result.
 Converts to integer
 
 =head4 Parameters
@@ -1001,7 +1002,7 @@ Converts to integer
 
 =head3 to_ipAddress
 
-Converts <dataType> value to ipAddress.
+Converts `<dataType>` value to ipAddress.
 Converts string to ipAddress
 
 =head4 Parameters
@@ -1011,7 +1012,7 @@ Converts string to ipAddress
 
 =head3 to_rfc822Name
 
-Converts <dataType> value to rfc822Name.
+Converts `<dataType>` value to rfc822Name.
 Converts string to rfc822Name
 
 =head4 Parameters
@@ -1021,7 +1022,7 @@ Converts string to rfc822Name
 
 =head3 to_string
 
-Converts <dataType> value to string. For list values, the to_string() value
+Converts `<dataType>` value to string. For list values, the to_string() value
 for each entry is returned separated with commas.
 Converts value to string
 
@@ -1029,11 +1030,11 @@ Converts value to string
 
     $value
 
-A <dataType> value.
+A `<dataType>` value.
 
 =head3 to_time
 
-Converts <dataType> value to time.
+Converts `<dataType>` value to time.
 Converts string to time
 
 =head4 Parameters
@@ -1043,7 +1044,7 @@ Converts string to time
 
 =head3 to_x500Name
 
-Converts <dataType> value to x500Name.
+Converts `<dataType>` value to x500Name.
 Converts string to x500Name
 
 =head4 Parameters
@@ -1053,7 +1054,7 @@ Converts string to x500Name
 
 =head3 to_yearMonthDuration
 
-Converts <dataType> value to yearMonthDuration.
+Converts `<dataType>` value to yearMonthDuration.
 Converts string to yearMonthDuration
 
 =head4 Parameters
@@ -1063,8 +1064,8 @@ Converts string to yearMonthDuration
 
 =head3 union
 
-Returns a list of <dataType> contains all of the unique values in two or more
-list of <dataType> values.
+Returns a list of `<dataType>` contains all of the unique values in two or
+more list of `<dataType>` values.
 Returns union of two or more string lists
 
 =head4 Parameters

@@ -99,7 +99,7 @@ class miscellaneous
      *
      * @param  $value This is the value that will be converted to its string
      *                representation and written. An undefined value is
-     *                represented by '<undefined>'.
+     *                represented by `<undefined>`.
      * @param boolean $detail If true, the string will only written if the
      *                        debug:function_active:detail flag is on. If
      *                        false or not specified, the string will only
@@ -409,7 +409,7 @@ class miscellaneous
      *
      * @param  $value This is the value that will be converted to its string
      *                representation and written the trace log. An undefined
-     *                value is represented by '<undefined>'.
+     *                value is represented by `<undefined>`.
      * @param boolean $filter If this optional filter is false, nothing will
      *                        be written to the trace log. The default is
      *                        true.

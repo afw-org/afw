@@ -122,7 +122,7 @@ Makes a list from values
 
 Convert two or more values of any data type to string and return the
 concatenated result. A value with an undefined value is represented by
-'<undefined>'.
+`<undefined>`.
 Convert two or more values to string and concatenate
 
 =head4 Parameters
@@ -608,7 +608,7 @@ Checks whether value starts with a string
 
 Convert one or more values of any data type to string and return the
 concatenated result. A value with an undefined value is represented by
-'<undefined>'.
+`<undefined>`.
 Convert one or more values to string and concatenate
 
 =head4 Parameters

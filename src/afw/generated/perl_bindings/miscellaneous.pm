@@ -88,7 +88,7 @@ Conditionally write a debug value
     $value
 
 This is the value that will be converted to its string representation and
-written. An undefined value is represented by '<undefined>'.
+written. An undefined value is represented by `<undefined>`.
 
     $detail
 
@@ -234,7 +234,7 @@ Write a value to the a trace log
     $value
 
 This is the value that will be converted to its string representation and
-written the trace log. An undefined value is represented by '<undefined>'.
+written the trace log. An undefined value is represented by `<undefined>`.
 
     $filter
 

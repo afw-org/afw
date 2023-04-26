@@ -167,7 +167,7 @@ export function afwOpenUri(client : any, streamId : string, uri : string, mode :
 
 /**
  * Evaluate and convert 0 or more values to its string value, then write them
- * to stdout. An undefined value is represented by '<undefined>'.
+ * to stdout. An undefined value is represented by `<undefined>`.
  * 
  * @param {} values - Values to print.
  * 
@@ -186,7 +186,7 @@ export function afwPrint(client : any, values : any) : any {
 /**
  * Evaluate and convert 0 or more values to their string value, then write
  * them to stdout. A newline character ('\n') is written after the last
- * value. An undefined value is represented by '<undefined>'.
+ * value. An undefined value is represented by `<undefined>`.
  * 
  * @param {} value - Values to print.
  * 
@@ -309,7 +309,7 @@ export function afwStream(client : any, streamId : string) : any {
 /**
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stream. An value with an undefined value is represented by
- * '<undefined>'.
+ * `<undefined>`.
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to write.
  * 
@@ -352,7 +352,7 @@ export function afwWriteInternal(client : any, streamNumber : number, value : an
 /**
  * Evaluate and convert 0 or more values to its string value, then write them
  * to stream. A newline character ('\n') is written after the last value. An
- * undefined value is represented by '<undefined>'.
+ * undefined value is represented by `<undefined>`.
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to write.
  * 
