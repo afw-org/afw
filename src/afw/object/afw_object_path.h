@@ -36,7 +36,7 @@ struct afw_object_path_property_name_entry_s {
 /**
  * @brief Typedef for parsed object path.
  * 
- * /<adaptor_id>/<object_type_id>[;own]/[<object_id>][.<property_name>]*
+ * `/<adaptor_id>/<object_type_id>[;own]/[<object_id>][.<property_name>]*`
  *
  */
 struct afw_object_path_parsed_s {
@@ -50,19 +50,19 @@ struct afw_object_path_parsed_s {
     /* @brief Entity part of normalized path. */
     afw_utf8_t entity_path;
 
-    /* @brief <adaptor_id> */
+    /* @brief `<adaptor_id>` */
     afw_utf8_t adaptor_id;
 
-    /* @brief <object_type_id> */
+    /* @brief `<object_type_id>` */
     afw_utf8_t object_type_id;
 
-    /* @brief <object_id> */
+    /* @brief `<object_id>` */
     afw_utf8_t entity_object_id;
 
-    /* @brief <object_id> plus any dotted property names. NOT URI DECODED. */
+    /* @brief `<object_id>` plus any dotted property names. NOT URI DECODED. */
     afw_utf8_t undecoded_object_id;
 
-    /* @brief List of <property_name> if uri has dotted property names. */
+    /* @brief List of `<property_name>` if uri has dotted property names. */
     const afw_object_path_property_name_entry_t *first_property_name;
 
     /* @brief Options object or NULL. See afw_object_options.h. */
@@ -173,12 +173,12 @@ afw_object_path_make_property_name_expression(
  *
  * where `<adaptorId>` is an adaptor id of the running instance, `<objectType>`
  * if the object type at path `/<adaptorId>/_AdaptiveObjectType_/<objectType>`,
- * and <objectId> is the entity object id <entityObjectId> followed by zero or
- * more period "." <propertyName>.
+ * and `<objectId>` is the entity object id `<entityObjectId>` followed by zero
+ * or more period "." `<propertyName>`.
  *
  * `<objectType>` can also have an options part where the object type id is
- * followed by a semicolon ";" and one or more <name> with optional
- * equal "=" <value> separated with an ampersand "&".  See
+ * followed by a semicolon ";" and one or more `<name>` with optional
+ * equal "=" `<value>` separated with an ampersand "&".  See
  * afw_object_options.h for more information on options.
  *
  * Local paths can be data type anyURI values.  See data type anyURI for more
@@ -186,10 +186,10 @@ afw_object_path_make_property_name_expression(
  *
  * If current_path is specified, the path parameter can include asterisks
  * that are replaced with corresponding parts of current_path. In this case,
- * `<adaptorId>`, `<objectType>`, <entityObjectId>, and <propertyName> can be an
- * asterisk "*" to use the corresponding part from the current_path, plus
- * double asterisk "**" can be specified for the entire <objectId> to use the
- * entire <objectId> from the current path.  Also, <objectId> can be specified
+ * `<adaptorId>`, `<objectType>`, `<entityObjectId>`, and `<propertyName>` can
+ * be an asterisk "*" to use the corresponding part from the current_path, plus
+ * double asterisk "**" can be specified for the entire `<objectId>` to use the
+ * entire `<objectId>` from the current path.  Also, <objectId> can be specified
  * alone without a preceding slash "/" when the `<adaptorId>` and `<objectType>`
  * are the same as in the current path.  No substitution occurs in the
  * options part of `<objectType>`.

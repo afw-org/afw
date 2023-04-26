@@ -273,8 +273,8 @@ struct afw_adaptor_impl_request_s {
  * A new pool is created in the callings xctx's pool for use by the adaptor.
  *
  * This function validates and normalizes the adaptor properties based on
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_<adaptorType>, where
- * <adaptorType> is the value of the adaptorType property.
+ * `/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_<adaptorType>`, where
+ * `<adaptorType>` is the value of the adaptorType property.
  *
  * All properties from /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor are
  * processed.

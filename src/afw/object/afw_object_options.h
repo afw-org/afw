@@ -88,8 +88,8 @@ struct afw_object_options_s {
  *
  * This option is ignored unless composite option is also set.
  *
- * The inheritedFrom property in meta properties.<propertyName> where
- * <propertyName> is the associated property name will be set.
+ * The inheritedFrom property in meta `properties.<propertyName>` where
+ * `<propertyName>` is the associated property name will be set.
  */
 #define AFW_OBJECT_OPTION_inheritedFrom          (1 << 5)
 

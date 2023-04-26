@@ -111,7 +111,8 @@ AFW_BEGIN_DECLARES
         true,                                                                   \
         "contextType",                                                          \
         "_AdaptiveContextType_",                                                \
-        "The context type object.  /afw/_AdaptiveContextType_/<context_type_id>"\
+        "The context type object.  "                                            \
+        "`/afw/_AdaptiveContextType_/<context_type_id>`"                        \
         " runtime object will be set to this object as well.")                  \
                                                                                 \
     XX(data_type,                                                               \
@@ -597,7 +598,7 @@ afw_environment_configure_with_object_list(
  *
  * If properties is not specified, one is created.  The extensionId and
  * modulePath properties are set.  The path of the properties object is
- * set to /afw/_AdaptiveExtension_/<extension_id> and set as a run time
+ * set to `/afw/_AdaptiveExtension_/<extension_id>` and set as a run time
  * object.
  */
 AFW_DECLARE(const afw_extension_t *)
@@ -841,8 +842,8 @@ afw_environment_get_singleton(
  * @param adaptor_factory instance to register.
  * @param xctx of caller.
  *
- * This also registers flag trace:adaptor_type:<adaptor_type> where
- * <adaptor_type> is the supplied adaptor_type.
+ * This also registers flag `trace:adaptor_type:<adaptor_type>` where
+ * `<adaptor_type>` is the supplied adaptor_type.
  */
 AFW_DEFINE(void)
 afw_environment_register_adaptor_type(
@@ -915,8 +916,8 @@ afw_environment_get_adaptor_id(
  * @param xctx of caller.
  *
  * This also registers flag
- * trace:authorization_handler_type:<authorization_handler_type> where
- * <authorization_handler_type> is the supplied authorization_handler_type.
+ * `trace:authorization_handler_type:<authorization_handler_type>` where
+ * `<authorization_handler_type>` is the supplied authorization_handler_type.
  */
 AFW_DEFINE(void)
 afw_environment_register_authorization_handler_type(
@@ -1011,7 +1012,7 @@ afw_environment_get_authorization_handler_id(
  * is "adaptor_type".
  * 
  * If related_object_type_id is not NULL, the uri of the related object
- * will be /afw/<related_object_type_id>/<id_property_name value>
+ * will be `/afw/<related_object_type_id>/<id_property_name` value>
  */
 AFW_DECLARE(void)
 afw_environment_create_and_register_conf_type(
@@ -1064,25 +1065,25 @@ const afw_utf8_t *type,
  *
  * The object type used is:
  *
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_<type>[_<subtype>]
+ * `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>[_<subtype>]`
  *
  * Where:
  *
- * <type> is the value of properties.type
+ * `<type>` is the value of properties.type
  *
- * [_<subtype>] is present if conf_type has a subtype_property_name, in which
- *     case, <subtype> will be the value of the subtype_property_name in
+ * `[_<subtype>]` is present if conf_type has a subtype_property_name, in which
+ *     case, `<subtype>` will be the value of the subtype_property_name in
  *     properties.
  *
  * The returned object will be an entity with a path of:
  *
- * /afw/<object type>/<id>
+ * `/afw/<object type>/<id>`
  *
  * Where:
  *
  *  <object type> is object type described above.
  *
- *  <id> is the value of the id_property_name for the conf_type from
+ *  `<id>` is the value of the id_property_name for the conf_type from
  *      properties.
  *
  *

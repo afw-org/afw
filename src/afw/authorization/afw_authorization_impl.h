@@ -56,11 +56,13 @@ AFW_BEGIN_DECLARES
  *
  *  This function validates and normalizes the authorization_handler
  *  properties based on
- *  /afw/_AdaptiveObjectType_/ ... _AdaptiveConf_authorization_handler_<type>,
- *  where <type> is the value of the authorization_handlerType property.
+ *  `/afw/_AdaptiveObjectType_/` ...
+ *  `_AdaptiveConf_authorization_handler_<type>`,
+ *  where `<type>` is the value of the authorization_handlerType property.
  *
  *  All properties from
- *  /afw/_AdaptiveObjectType_/_AdaptiveConf_authorization_handler are processed.
+ *  `/afw/_AdaptiveObjectType_/_AdaptiveConf_authorization_handler` are
+ *  processed.
  *
  *  Some additional properties are processed if they pass validation.
  *  Properties isModelLocation and isPolicyLocation cause the appropriate core

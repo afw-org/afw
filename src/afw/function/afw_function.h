@@ -70,7 +70,7 @@ struct afw_function_execute_s {
      */
     const afw_value_function_definition_t *function;
 
-    /** @brief This is the <dataType> for data type functions or NULL. */
+    /** @brief This is the `<dataType>` for data type functions or NULL. */
     const afw_data_type_t *data_type;
 
     /** @brief This is the evaluated first parameter if data type function. */  
@@ -246,10 +246,10 @@ if (!(A_VALUE) || !afw_utf8_equal( \
 
 /**
  * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const afw_value_<A_TYPE>_t * variable name for result.
+ * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
  * @param n is the 1 based parameter number in of argv to evaluate.
  * @param A_TYPE is the unquoted dataType.
- * @return the value casted to afw_value_<A_TYPE>_t * or NULL (undefined).
+ * @return the value casted to `afw_value_<A_TYPE>_t` * or NULL (undefined).
  *
  * This is used when implementing the body of an adaptive function.  Like all
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
@@ -299,7 +299,7 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
 
 /**
  * @brief Evaluate an arg that is a required condition
- * @param A_RESULT is a const afw_value_<A_TYPE>_t * variable name for result.
+ * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
  * @param n is the 1 based parameter number in of argv to evaluate.
  *
  * This is used when implementing the body of an adaptive function.  Like all
@@ -317,7 +317,7 @@ A_RESULT = (const afw_value_boolean_t *) \
 
 /**
  * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const afw_value_<A_TYPE>_t * variable name for result.
+ * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
  * @param n is the 1 based parameter number in of argv to evaluate.
  * @param A_TYPE is the unquoted dataType.
  *

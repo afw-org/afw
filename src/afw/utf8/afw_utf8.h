@@ -54,7 +54,7 @@ typedef const afw_utf8_t *
  * The path parameter is only used if the string being converted is an object
  * entity.
  *
- * The path must be of the form /<adaptor id>/<object type>/<id>.  This path
+ * The path must be of the form `/<adaptor id>/<object type>/<id>`.  This path
  * is parsed to provide return values for the object's
  * afw_object_meta_get_object_id(), afw_object_meta_get_path(), and
  * afw_object_get_object_type() methods.

@@ -79,13 +79,13 @@ struct afw_log_impl_s {
  *              problems with the log. It will default to log_type, but
  *              must be unique.
  *
- *    priority   This is a string containing a <priority> from the table
+ *    priority   This is a string containing a `<priority>` from the table
  *               below.  This priority and higher that will be logged in
  *               this log.  This parameter can also have a value of "none"
- *               if all logging is to be controlled by <priority> properties.
+ *               if all logging is to be controlled by `<priority>` properties.
  *               The default is notice.
  *
- *    <priority> Any <priority> can be set to true or false, overriding what
+ *    `<priority>` Any `<priority>` can be set to true or false, overriding what
  *               is set or defaulted to by the priority property.
  *
  *    filter     expression -- future --
@@ -93,13 +93,14 @@ struct afw_log_impl_s {
  *    format     expression -- future ---
  *
  *    debug      expression -- future --- Note: maybe filter will do, but this
- *               might do priority="none",debug=true.  Maybe any of the <priority>
- *               can be true/false or a filter expression???
+ *               might do priority="none",debug=true.  Maybe any of the
+ *               `<priority>` can be true/false or a filter expression???
  *
- * <priority> in table below are listed highest priority to lowest.  <priority>
- * trace1-8 are not available in many log configurations, such as syslog.
+ * `<priority>` in table below are listed highest priority to lowest.
+ * `<priority>` trace1-8 are not available in many log configurations, such as
+ * syslog.
  *
- *  <priority>    | Description
+ *  `<priority>`  | Description
  *  ---------- | -----------
  *  emerg      | System unusable
  *  alert      | Immediate action required

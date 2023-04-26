@@ -623,7 +623,7 @@ AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
  * @param A_STRING a (const afw_utf8_t *) string or undefined.
  *
  * The argument for %" AFW_UTF8_FMT " is an int length (not size_t) followed by
- * a comma and const char *.  If NULL, <undefined> is supplied.
+ * a comma and const char *.  If NULL, `<undefined>` is supplied.
  */
 #define AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(A_STRING) \
     (A_STRING) ? (int)(A_STRING)->len : 0, \

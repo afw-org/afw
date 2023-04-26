@@ -111,7 +111,7 @@ struct afw_value_function_definition_s {
     /** @brief Function id of function. */
     afw_utf8_t functionId;
 
-    /** @brief Function id without <dataType>.
+    /** @brief Function id without `<dataType>`.
      * 
      *  This is only different from functionId if polymorphic.
      */
@@ -1024,9 +1024,9 @@ afw_value_as_utf8(
  * 
  * Convert value to a utf8 string that is of the form:
  * 
- * <datatype>("<string>")
+ * `<datatype>("<string>")`
  *
- * Where <datatype> is the data type of value and <string> is the
+ * Where `<datatype>` is the data type of value and `<string>` is the
  * quoted string representation of the value.
  *
  * For list values the result if "list(" followed by comma separated
