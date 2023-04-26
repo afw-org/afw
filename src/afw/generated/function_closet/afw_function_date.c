@@ -29,10 +29,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function add_yearMonthDuration<date>(
  *       arg1: date,
  *       arg2: yearMonthDuration
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -68,10 +70,12 @@ afw_function_execute_add_yearMonthDuration_date(
  *
  * Declaration:
  *
+ * ```
  *   function subtract_yearMonthDuration<date>(
  *       arg1: date,
  *       arg2: yearMonthDuration
  *   ): date;
+ * ```
  *
  * Parameters:
  *

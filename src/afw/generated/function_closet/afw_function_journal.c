@@ -48,11 +48,13 @@
  *
  * Declaration:
  *
+ * ```
  *   function journal_advance_cursor_for_consumer(
  *       adaptorId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -97,10 +99,12 @@ afw_function_execute_journal_advance_cursor_for_consumer(
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_by_cursor(
  *       adaptorId: string,
  *       cursor: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -139,9 +143,11 @@ afw_function_execute_journal_get_by_cursor(
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_first(
  *       adaptorId: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -179,10 +185,12 @@ afw_function_execute_journal_get_first(
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_after_cursor(
  *       adaptorId: string,
  *       cursor: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -246,11 +254,13 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_for_consumer(
  *       adaptorId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -306,12 +316,14 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_for_consumer_after_cursor(
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -354,11 +366,13 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * Declaration:
  *
+ * ```
  *   function journal_mark_consumed(
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *

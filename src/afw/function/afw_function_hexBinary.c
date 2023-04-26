@@ -30,9 +30,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function decode_to_string<hexBinary>(
  *       value: hexBinary
  *   ): string;
+ * ```
  *
  * Parameters:
  *

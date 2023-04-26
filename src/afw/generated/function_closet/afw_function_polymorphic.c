@@ -28,23 +28,25 @@
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -72,7 +74,7 @@ afw_function_execute_at_least_one_member_of(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -82,17 +84,19 @@ afw_function_execute_at_least_one_member_of(
  *
  * Declaration:
  *
+ * ```
  *   function bag <dataType>(
  *       ...values: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   values - (0 or more list `<Type>`)
+ *   values - (0 or more list ``<Type>``)
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  */
 const afw_value_t *
 afw_function_execute_bag(
@@ -116,7 +120,7 @@ afw_function_execute_bag(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -126,13 +130,15 @@ afw_function_execute_bag(
  *
  * Declaration:
  *
+ * ```
  *   function bag_size <dataType>(
  *       value: list
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (list `<Type>`)
+ *   value - (list ``<Type>``)
  *
  * Returns:
  *
@@ -160,23 +166,25 @@ afw_function_execute_bag_size(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   list, object.
  *
  * Declaration:
  *
+ * ```
  *   function clone <dataType>(
  *       value: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to clone.
+ *   value - (``<Type>``) The `<dataType>` value to clone.
  *
  * Returns:
  *
- *   (`<Type>`) The cloned `<dataType>` value.
+ *   (``<Type>``) The cloned `<dataType>` value.
  */
 const afw_value_t *
 afw_function_execute_clone(
@@ -201,19 +209,21 @@ afw_function_execute_clone(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_base64Binary <dataType>(
  *       value: dataType
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to encode.
+ *   value - (``<Type>``) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -242,19 +252,21 @@ afw_function_execute_encode_as_base64Binary(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_hexBinary <dataType>(
  *       value: dataType
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to encode.
+ *   value - (``<Type>``) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -283,20 +295,22 @@ afw_function_execute_encode_as_hexBinary(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function ends_with <dataType>(
  *       value: dataType,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   subString - (string)
  *
@@ -329,7 +343,7 @@ afw_function_execute_ends_with(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -339,14 +353,16 @@ afw_function_execute_ends_with(
  *
  * Declaration:
  *
+ * ```
  *   function eq <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -382,7 +398,7 @@ afw_function_execute_eq(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -392,14 +408,16 @@ afw_function_execute_eq(
  *
  * Declaration:
  *
+ * ```
  *   function eqx <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -430,7 +448,7 @@ afw_function_execute_eqx(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -440,16 +458,18 @@ afw_function_execute_eqx(
  *
  * Declaration:
  *
+ * ```
  *   function ge <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -478,7 +498,7 @@ afw_function_execute_ge(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -488,16 +508,18 @@ afw_function_execute_ge(
  *
  * Declaration:
  *
+ * ```
  *   function gt <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -526,21 +548,23 @@ afw_function_execute_gt(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, list, string.
  *
  * Declaration:
  *
+ * ```
  *   function includes <dataType>(
  *       searchString: dataType,
  *       subString: string,
  *       position?: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   searchString - (`<Type>`) The `<dataType>` to search.
+ *   searchString - (``<Type>``) The `<dataType>` to search.
  *
  *   subString - (string) Substring to find.
  *
@@ -574,21 +598,23 @@ afw_function_execute_includes(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function index_of <dataType>(
  *       value: dataType,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -622,27 +648,29 @@ afw_function_execute_index_of(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function intersection <dataType>(
  *       list1: list,
  *       list2: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  */
 const afw_value_t *
 afw_function_execute_intersection(
@@ -666,7 +694,7 @@ afw_function_execute_intersection(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -676,9 +704,11 @@ afw_function_execute_intersection(
  *
  * Declaration:
  *
+ * ```
  *   function is <dataType>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -711,7 +741,7 @@ afw_function_execute_is(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
@@ -719,16 +749,18 @@ afw_function_execute_is(
  *
  * Declaration:
  *
+ * ```
  *   function is_in <dataType>(
  *       value: dataType,
  *       list: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
- *   list - (list `<Type>`)
+ *   list - (list ``<Type>``)
  *
  * Returns:
  *
@@ -757,21 +789,23 @@ afw_function_execute_is_in(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function last_index_of <dataType>(
  *       value: dataType,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -805,7 +839,7 @@ afw_function_execute_last_index_of(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -815,14 +849,16 @@ afw_function_execute_last_index_of(
  *
  * Declaration:
  *
+ * ```
  *   function le <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -854,20 +890,22 @@ afw_function_execute_le(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, list, string.
  *
  * Declaration:
  *
+ * ```
  *   function length <dataType>(
  *       value: dataType
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) Returns the number of entries in a list or code points
- *       in others.
+ *   value - (``<Type>``) Returns the number of entries in a list or code
+ *       points in others.
  *
  * Returns:
  *
@@ -896,7 +934,7 @@ afw_function_execute_length(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -906,16 +944,18 @@ afw_function_execute_length(
  *
  * Declaration:
  *
+ * ```
  *   function lt <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -943,24 +983,26 @@ afw_function_execute_lt(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime, double, integer, string, time.
  *
  * Declaration:
  *
+ * ```
  *   function max <dataType>(
  *       values_1: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (1 or more `<Type>`)
+ *   values - (1 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  */
 const afw_value_t *
 afw_function_execute_max(
@@ -984,24 +1026,26 @@ afw_function_execute_max(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime, double, integer, string, time.
  *
  * Declaration:
  *
+ * ```
  *   function min <dataType>(
  *       values_1: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (1 or more `<Type>`)
+ *   values - (1 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  */
 const afw_value_t *
 afw_function_execute_min(
@@ -1028,7 +1072,7 @@ afw_function_execute_min(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -1038,14 +1082,16 @@ afw_function_execute_min(
  *
  * Declaration:
  *
+ * ```
  *   function ne <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -1081,7 +1127,7 @@ afw_function_execute_ne(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -1091,14 +1137,16 @@ afw_function_execute_ne(
  *
  * Declaration:
  *
+ * ```
  *   function nex <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -1129,7 +1177,7 @@ afw_function_execute_nex(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
@@ -1137,9 +1185,11 @@ afw_function_execute_nex(
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only <dataType>(
  *       list: (list list)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
@@ -1147,7 +1197,7 @@ afw_function_execute_nex(
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Errors thrown:
  *
@@ -1176,20 +1226,22 @@ afw_function_execute_one_and_only(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
  *       regexp: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -1220,20 +1272,22 @@ afw_function_execute_regexp_index_of(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, dnsName, ipAddress, rfc822Name, string, x500Name.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   regexp - (string)
  *
@@ -1263,22 +1317,24 @@ afw_function_execute_regexp_match(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The original `<dataType>` value.
+ *   value - (``<Type>``) The original `<dataType>` value.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -1289,7 +1345,7 @@ afw_function_execute_regexp_match(
  *
  * Returns:
  *
- *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
+ *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
  */
 const afw_value_t *
 afw_function_execute_regexp_replace(
@@ -1313,26 +1369,28 @@ afw_function_execute_regexp_replace(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function repeat <dataType>(
  *       value: dataType,
  *       times: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to repeat.
+ *   value - (``<Type>``) The `<dataType>` value to repeat.
  *
  *   times - (integer) The number of times to repeat the value.
  *
  * Returns:
  *
- *   (`<Type>`) The repeated `<dataType>` value.
+ *   (``<Type>``) The repeated `<dataType>` value.
  */
 const afw_value_t *
 afw_function_execute_repeat(
@@ -1356,22 +1414,24 @@ afw_function_execute_repeat(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function replace <dataType>(
  *       value: dataType,
  *       match: string,
  *       replacement: string,
  *       limit?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The original `<dataType>` value.
+ *   value - (``<Type>``) The original `<dataType>` value.
  *
  *   match - (string) The string to replace.
  *
@@ -1382,7 +1442,7 @@ afw_function_execute_repeat(
  *
  * Returns:
  *
- *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
+ *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
  */
 const afw_value_t *
 afw_function_execute_replace(
@@ -1407,23 +1467,25 @@ afw_function_execute_replace(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function set_equals <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`)
+ *   list1 - (list ``<Type>``)
  *
- *   list2 - (list `<Type>`)
+ *   list2 - (list ``<Type>``)
  *
  * Returns:
  *
@@ -1451,21 +1513,23 @@ afw_function_execute_set_equals(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function split <dataType>(
  *       value: dataType,
  *       separator?: string,
  *       limit?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to split.
+ *   value - (``<Type>``) The `<dataType>` value to split.
  *
  *   separator - (optional string) The separator to use. If this is an empty
  *       string or separator is not specified, the value is split between
@@ -1501,20 +1565,22 @@ afw_function_execute_split(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function starts_with <dataType>(
  *       value: dataType,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   subString - (string)
  *
@@ -1545,23 +1611,25 @@ afw_function_execute_starts_with(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function subset <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -1591,21 +1659,23 @@ afw_function_execute_subset(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function substring <dataType>(
  *       string: dataType,
  *       startIndex: integer,
  *       endIndex?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   string - (`<Type>`)
+ *   string - (``<Type>``)
  *
  *   startIndex - (integer)
  *
@@ -1613,7 +1683,7 @@ afw_function_execute_subset(
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Errors thrown:
  *
@@ -1642,26 +1712,28 @@ afw_function_execute_substring(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function union <dataType>(
  *       lists_1: list,
  *       lists_2: list,
  *       ...lists_rest: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list `<Type>`) Two or more lists.
+ *   lists - (2 or more list ``<Type>``) Two or more lists.
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  */
 const afw_value_t *
 afw_function_execute_union(
@@ -1685,19 +1757,21 @@ afw_function_execute_union(
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string, anyURI.
  *
  * Declaration:
  *
+ * ```
  *   function url_encode <dataType>(
  *       unencoded: dataType
  *   ): string;
+ * ```
  *
  * Parameters:
  *
- *   unencoded - (`<Type>`) URL encode a single value. See the url_encode
+ *   unencoded - (``<Type>``) URL encode a single value. See the url_encode
  *       method for the data type of more details.
  *
  * Returns:

@@ -29,10 +29,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function annotate(
  *       annotation: (object _AdaptiveAnnotation_),
  *       value: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -69,12 +71,14 @@ afw_function_execute_annotate(
  *
  * Declaration:
  *
+ * ```
  *   function compare_uri(
  *       uri1: string,
  *       uri2: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -123,10 +127,12 @@ afw_function_execute_compare_uri(
  *
  * Declaration:
  *
+ * ```
  *   function debug(
  *       value: any,
  *       detail?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -167,9 +173,11 @@ afw_function_execute_debug(
  *
  * Declaration:
  *
+ * ```
  *   function execution_start_time_local(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -202,9 +210,11 @@ afw_function_execute_execution_start_time_local(
  *
  * Declaration:
  *
+ * ```
  *   function execution_start_time_utc(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -236,9 +246,11 @@ afw_function_execute_execution_start_time_utc(
  *
  * Declaration:
  *
+ * ```
  *   function generate_uuid(
  *   
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -270,9 +282,11 @@ afw_function_execute_generate_uuid(
  *
  * Declaration:
  *
+ * ```
  *   function is_defined(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -306,9 +320,11 @@ afw_function_execute_is_defined(
  *
  * Declaration:
  *
+ * ```
  *   function is_nullish(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -342,9 +358,11 @@ afw_function_execute_is_nullish(
  *
  * Declaration:
  *
+ * ```
  *   function log(
  *       value: any
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -378,9 +396,11 @@ afw_function_execute_log(
  *
  * Declaration:
  *
+ * ```
  *   function now_local(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -412,9 +432,11 @@ afw_function_execute_now_local(
  *
  * Declaration:
  *
+ * ```
  *   function now_utc(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -447,11 +469,13 @@ afw_function_execute_now_utc(
  *
  * Declaration:
  *
+ * ```
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
  *       ...values_rest: (list of any)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -486,10 +510,12 @@ afw_function_execute_nullish_coalescing(
  *
  * Declaration:
  *
+ * ```
  *   function optional_chaining(
  *       arg1: any,
  *       arg2: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -526,11 +552,13 @@ afw_function_execute_optional_chaining(
  *
  * Declaration:
  *
+ * ```
  *   function parse_uri(
  *       uri: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
  *   ): (object _AdaptiveParsedURI_);
+ * ```
  *
  * Parameters:
  *
@@ -573,9 +601,11 @@ afw_function_execute_parse_uri(
  *
  * Declaration:
  *
+ * ```
  *   function perform(
  *       request: (object _AdaptiveActions_)
  *   ): (object _AdaptiveResponse_);
+ * ```
  *
  * Parameters:
  *
@@ -610,11 +640,13 @@ afw_function_execute_perform(
  *
  * Declaration:
  *
+ * ```
  *   function trace(
  *       value: any,
  *       filter?: boolean,
  *       number?: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -657,9 +689,11 @@ afw_function_execute_trace(
  *
  * Declaration:
  *
+ * ```
  *   function variable_exists(
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -695,10 +729,12 @@ afw_function_execute_variable_exists(
  *
  * Declaration:
  *
+ * ```
  *   function variable_get(
  *       name: string,
  *       defaultValue?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -736,9 +772,11 @@ afw_function_execute_variable_get(
  *
  * Declaration:
  *
+ * ```
  *   function variable_is_not_null(
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

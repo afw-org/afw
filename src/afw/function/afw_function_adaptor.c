@@ -183,6 +183,7 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
  *
  * Declaration:
  *
+ * ```
  *   function add_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -191,6 +192,7 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -289,12 +291,14 @@ afw_function_execute_add_object(
  *
  * Declaration:
  *
+ * ```
  *   function add_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -396,12 +400,14 @@ afw_function_execute_add_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
  *       queryCriteria: (object _AdaptiveQueryCriteria_),
  *       adaptorId?: string,
  *       objectType?: string,
  *       style?: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -515,11 +521,13 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
  *
  * Declaration:
  *
+ * ```
  *   function convert_query_string_to_AdaptiveQueryCriteria(
  *       queryString: string,
  *       adaptorId?: string,
  *       objectType?: string
  *   ): (object _AdaptiveQueryCriteria_);
+ * ```
  *
  * Parameters:
  *
@@ -603,6 +611,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *
  * Declaration:
  *
+ * ```
  *   function delete_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -610,6 +619,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -695,11 +705,13 @@ afw_function_execute_delete_object(
  *
  * Declaration:
  *
+ * ```
  *   function delete_object_with_uri(
  *       uri: anyURI,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -797,6 +809,7 @@ afw_function_execute_delete_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function get_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -804,6 +817,7 @@ afw_function_execute_delete_object_with_uri(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -891,11 +905,13 @@ afw_function_execute_get_object(
  *
  * Declaration:
  *
+ * ```
  *   function get_object_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -989,6 +1005,7 @@ afw_function_execute_get_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function modify_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -997,6 +1014,7 @@ afw_function_execute_get_object_with_uri(
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1104,12 +1122,14 @@ afw_function_execute_modify_object(
  *
  * Declaration:
  *
+ * ```
  *   function modify_object_with_uri(
  *       uri: anyURI,
  *       entries: list,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1225,10 +1245,12 @@ afw_function_execute_modify_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function reconcile_object(
  *       object: object,
  *       checkOnly?: boolean
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1322,6 +1344,7 @@ afw_function_execute_reconcile_object(
  *
  * Declaration:
  *
+ * ```
  *   function replace_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -1330,6 +1353,7 @@ afw_function_execute_reconcile_object(
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1419,12 +1443,14 @@ afw_function_execute_replace_object(
  *
  * Declaration:
  *
+ * ```
  *   function replace_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1527,6 +1553,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects(
  *       adaptorId: string,
  *       objectType: string,
@@ -1534,6 +1561,7 @@ afw_function_execute_replace_object_with_uri(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -1644,6 +1672,7 @@ afw_function_execute_retrieve_objects(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_callback(
  *       objectCallback: (function (object: object, userData: any): boolean),
  *       userData: any,
@@ -1653,6 +1682,7 @@ afw_function_execute_retrieve_objects(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1781,6 +1811,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_response(
  *       adaptorId: string,
  *       objectType: string,
@@ -1788,6 +1819,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1908,6 +1940,7 @@ afw_function_execute_retrieve_objects_to_response(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_stream(
  *       streamNumber: integer,
  *       adaptorId: string,
@@ -1916,6 +1949,7 @@ afw_function_execute_retrieve_objects_to_response(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -2064,11 +2098,13 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -2182,6 +2218,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_callback(
  *       objectCallback: (function (object: object, userData: any): boolean),
  *       userData: any,
@@ -2189,6 +2226,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -2320,11 +2358,13 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -2452,12 +2492,14 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_stream(
  *       streamNumber: integer,
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -2578,6 +2620,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *
  * Declaration:
  *
+ * ```
  *   function update_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -2586,6 +2629,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -2679,12 +2723,14 @@ afw_function_execute_update_object(
  *
  * Declaration:
  *
+ * ```
  *   function update_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -2784,10 +2830,12 @@ afw_function_execute_update_object_with_uri(
  *
  * Declaration:
  *
+ * ```
  *   function adaptor_objectCallback_signature(
  *       object: object,
  *       userData?: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

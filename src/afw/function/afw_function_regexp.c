@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function compile<regexp>(
  *       source: regexp,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *

@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function match<x500Name>(
  *       arg1: x500Name,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

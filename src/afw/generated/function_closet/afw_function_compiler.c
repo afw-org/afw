@@ -29,10 +29,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function assert(
  *       assertion: boolean,
  *       reason?: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -72,10 +74,12 @@ afw_function_execute_assert(
  *
  * Declaration:
  *
+ * ```
  *   function compile_expression_tuple(
  *       expression_tuple: list,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -119,10 +123,12 @@ afw_function_execute_compile_expression_tuple(
  *
  * Declaration:
  *
+ * ```
  *   function compile_json(
  *       json: string,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -165,10 +171,12 @@ afw_function_execute_compile_json(
  *
  * Declaration:
  *
+ * ```
  *   function compile_relaxed_json(
  *       json: string,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -212,10 +220,12 @@ afw_function_execute_compile_relaxed_json(
  *
  * Declaration:
  *
+ * ```
  *   function convert_syntax_hybrid_to_expression(
  *       hybrid: string,
  *       whitespace?: any
  *   ): expression;
+ * ```
  *
  * Parameters:
  *
@@ -255,10 +265,12 @@ afw_function_execute_convert_syntax_hybrid_to_expression(
  *
  * Declaration:
  *
+ * ```
  *   function decompile(
  *       value: any,
  *       whitespace?: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -299,10 +311,12 @@ afw_function_execute_decompile(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_expression_tuple(
  *       expression_tuple: string,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -344,10 +358,12 @@ afw_function_execute_evaluate_expression_tuple(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_value(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -389,10 +405,12 @@ afw_function_execute_evaluate_value(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_with_retry(
  *       value: any,
  *       limit: integer
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -429,10 +447,12 @@ afw_function_execute_evaluate_with_retry(
  *
  * Declaration:
  *
+ * ```
  *   function qualifier(
  *       qualifier: string,
  *       forTesting?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -475,9 +495,11 @@ afw_function_execute_qualifier(
  *
  * Declaration:
  *
+ * ```
  *   function qualifiers(
  *       forTesting?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -517,10 +539,12 @@ afw_function_execute_qualifiers(
  *
  * Declaration:
  *
+ * ```
  *   function safe_evaluate(
  *       value: any,
  *       error: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -558,11 +582,13 @@ afw_function_execute_safe_evaluate(
  *
  * Declaration:
  *
+ * ```
  *   function stringify(
  *       value: any,
  *       replacer?: any,
  *       whitespace?: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -605,6 +631,7 @@ afw_function_execute_stringify(
  *
  * Declaration:
  *
+ * ```
  *   function test_expression(
  *       id: string,
  *       description: string,
@@ -612,6 +639,7 @@ afw_function_execute_stringify(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -660,6 +688,7 @@ afw_function_execute_test_expression(
  *
  * Declaration:
  *
+ * ```
  *   function test_expression_tuple(
  *       id: string,
  *       description: string,
@@ -667,6 +696,7 @@ afw_function_execute_test_expression(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -716,6 +746,7 @@ afw_function_execute_test_expression_tuple(
  *
  * Declaration:
  *
+ * ```
  *   function test_hybrid(
  *       id: string,
  *       description: string,
@@ -723,6 +754,7 @@ afw_function_execute_test_expression_tuple(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -771,6 +803,7 @@ afw_function_execute_test_hybrid(
  *
  * Declaration:
  *
+ * ```
  *   function test_script(
  *       id: string,
  *       description: string,
@@ -778,6 +811,7 @@ afw_function_execute_test_hybrid(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -826,9 +860,11 @@ afw_function_execute_test_script(
  *
  * Declaration:
  *
+ * ```
  *   function test_script_runtime_support(
  *       testScriptObject: (object _AdaptiveTestScriptResult_)
  *   ): (object _AdaptiveTestScriptResult_);
+ * ```
  *
  * Parameters:
  *
@@ -867,6 +903,7 @@ afw_function_execute_test_script_runtime_support(
  *
  * Declaration:
  *
+ * ```
  *   function test_template(
  *       id: string,
  *       description: string,
@@ -874,6 +911,7 @@ afw_function_execute_test_script_runtime_support(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -922,6 +960,7 @@ afw_function_execute_test_template(
  *
  * Declaration:
  *
+ * ```
  *   function test_value(
  *       id: string,
  *       description: string,
@@ -929,6 +968,7 @@ afw_function_execute_test_template(
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *

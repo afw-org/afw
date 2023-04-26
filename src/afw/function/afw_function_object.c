@@ -30,11 +30,13 @@
  *
  * Declaration:
  *
+ * ```
  *   function add_properties(
  *       target: object,
  *       source_1: object,
  *       ...source_rest: (list of object)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -91,10 +93,12 @@ afw_function_execute_add_properties(
  *
  * Declaration:
  *
+ * ```
  *   function apply_object_options(
  *       object: object,
  *       options?: (object _AdaptiveObjectOptions_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -146,12 +150,14 @@ afw_function_execute_apply_object_options(
  *
  * Declaration:
  *
+ * ```
  *   function local_object_meta_set_ids(
  *       object: object,
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -204,10 +210,12 @@ afw_function_execute_local_object_meta_set_ids(
  *
  * Declaration:
  *
+ * ```
  *   function property_exists(
  *       object: object,
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -252,11 +260,13 @@ afw_function_execute_property_exists(
  *
  * Declaration:
  *
+ * ```
  *   function property_get(
  *       object: object,
  *       name: string,
  *       defaultValue?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -313,10 +323,12 @@ afw_function_execute_property_get(
  *
  * Declaration:
  *
+ * ```
  *   function property_is_not_null(
  *       object: object,
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

@@ -29,10 +29,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function add_dayTimeDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: dayTimeDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -68,10 +70,12 @@ afw_function_execute_add_dayTimeDuration_dateTime(
  *
  * Declaration:
  *
+ * ```
  *   function add_yearMonthDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: yearMonthDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -108,10 +112,12 @@ afw_function_execute_add_yearMonthDuration_dateTime(
  *
  * Declaration:
  *
+ * ```
  *   function subtract_dayTimeDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: dayTimeDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -148,10 +154,12 @@ afw_function_execute_subtract_dayTimeDuration_dateTime(
  *
  * Declaration:
  *
+ * ```
  *   function subtract_yearMonthDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: yearMonthDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *

@@ -30,9 +30,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_active(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -81,9 +83,11 @@ afw_function_execute_flag_get_active(
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_active_defaults(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -134,9 +138,11 @@ afw_function_execute_flag_get_active_defaults(
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_defaults(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -198,10 +204,12 @@ afw_function_execute_flag_get_defaults(
  *
  * Declaration:
  *
+ * ```
  *   function flag_modify_defaults(
  *       flagId: (list string),
  *       add?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -284,9 +292,11 @@ afw_function_execute_flag_modify_defaults(
  *
  * Declaration:
  *
+ * ```
  *   function flag_replace_defaults(
  *       flagId: (list string)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -326,10 +336,12 @@ afw_function_execute_flag_replace_defaults(
  *
  * Declaration:
  *
+ * ```
  *   function flag_set(
  *       flagId: (list string),
  *       setTo?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -406,9 +418,11 @@ afw_function_execute_flag_set(
  *
  * Declaration:
  *
+ * ```
  *   function extension_load(
  *       extension_id: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -462,9 +476,11 @@ afw_function_execute_extension_load(
  *
  * Declaration:
  *
+ * ```
  *   function extension_load_by_module_path(
  *       module_path: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -513,11 +529,13 @@ afw_function_execute_extension_load_by_module_path(
  *
  * Declaration:
  *
+ * ```
  *   function registry_key_check(
  *       registryType: string,
  *       key: string,
  *       loadExtension?: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -599,9 +617,11 @@ afw_function_execute_registry_key_check(
  *
  * Declaration:
  *
+ * ```
  *   function service_get(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -648,9 +668,11 @@ afw_function_execute_service_get(
  *
  * Declaration:
  *
+ * ```
  *   function service_restart(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -699,9 +721,11 @@ afw_function_execute_service_restart(
  *
  * Declaration:
  *
+ * ```
  *   function service_start(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -750,9 +774,11 @@ afw_function_execute_service_start(
  *
  * Declaration:
  *
+ * ```
  *   function service_stop(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *

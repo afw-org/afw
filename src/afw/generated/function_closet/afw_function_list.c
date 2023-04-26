@@ -29,11 +29,13 @@
  *
  * Declaration:
  *
+ * ```
  *   function add_entries(
  *       target: list,
  *       source_1: list,
  *       ...source_rest: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -69,10 +71,12 @@ afw_function_execute_add_entries(
  *
  * Declaration:
  *
+ * ```
  *   function join(
  *       value: list,
  *       separator?: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -114,9 +118,11 @@ afw_function_execute_join(
  *
  * Declaration:
  *
+ * ```
  *   function list(
  *       ...values: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -155,9 +161,11 @@ afw_function_execute_list(
  *
  * Declaration:
  *
+ * ```
  *   function reverse(
  *       list: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -191,11 +199,13 @@ afw_function_execute_reverse(
  *
  * Declaration:
  *
+ * ```
  *   function slice(
  *       list: list,
  *       startIndex?: integer,
  *       endIndex?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *

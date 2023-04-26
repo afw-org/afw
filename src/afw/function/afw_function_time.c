@@ -33,11 +33,13 @@
  *
  * Declaration:
  *
+ * ```
  *   function in_range<time>(
  *       time: time,
  *       startTime: time,
  *       endTime: time
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

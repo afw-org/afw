@@ -30,9 +30,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function abs<integer>(
  *       value: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -66,11 +68,13 @@ afw_function_execute_abs_integer(
  *
  * Declaration:
  *
+ * ```
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -104,10 +108,12 @@ afw_function_execute_add_integer(
  *
  * Declaration:
  *
+ * ```
  *   function divide<integer>(
  *       dividend: integer,
  *       divisor: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -143,10 +149,12 @@ afw_function_execute_divide_integer(
  *
  * Declaration:
  *
+ * ```
  *   function mod<integer>(
  *       dividend: integer,
  *       divisor: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -182,11 +190,13 @@ afw_function_execute_mod_integer(
  *
  * Declaration:
  *
+ * ```
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -220,9 +230,11 @@ afw_function_execute_multiply_integer(
  *
  * Declaration:
  *
+ * ```
  *   function negative<integer>(
  *       value: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -256,10 +268,12 @@ afw_function_execute_negative_integer(
  *
  * Declaration:
  *
+ * ```
  *   function subtract<integer>(
  *       arg1: integer,
  *       arg2: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *

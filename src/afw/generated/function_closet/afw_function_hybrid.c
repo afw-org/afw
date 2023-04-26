@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function compile<hybrid>(
  *       source: hybrid,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -75,10 +77,12 @@ afw_function_execute_compile_hybrid(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<hybrid>(
  *       source: hybrid,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *

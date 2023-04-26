@@ -116,14 +116,14 @@ def function_arg(fd, arg):
         line += 'optional '
     line += ' or '.join(types)
     if arg.get('polymorphicDataType', False) == True:
-        line += '<Type>'
+        line += '`<Type>`'
     else:
         if arg.get('dataType') is not None:
             line += arg.get('dataType')
         else:
             line += 'any dataType'
     if arg.get('polymorphicDataTypeParameter', False) == True:
-        line += ' <Type>'
+        line += ' `<Type>`'
     elif arg.get('dataTypeParameter') is not None:
         line += ' ' + arg.get('dataTypeParameter')
     line +=  ')'
@@ -174,14 +174,14 @@ def function_comment(fd, obj):
 
     if obj.get('polymorphic', False) != False:
         fd.write(' *\n')
-        fd.write(' * Supported <dataType>:\n')
+        fd.write(' * Supported `<dataType>`:\n')
         fd.write(' *\n')
         c.write_wrapped(fd, 80, ' *   ', ', '.join(obj.get('polymorphicDataTypes')) + '.')
      
     # function declaration
     fd.write(' *\n')
     fd.write(' * Declaration:\n')
-    fd.write(' *\n')
+    fd.write(' *\n * ```\n')
     fd.write(' *   function ')
     fd.write(obj['functionId'])
     if obj.get('polymorphic', False):
@@ -209,7 +209,7 @@ def function_comment(fd, obj):
             fd.write(': ' + make_Type(p))
     fd.write('\n *   ): ')
     fd.write(make_Type(obj.get('returns')))
-    fd.write(';\n')
+    fd.write(';\n * ```\n')
 
     fd.write(' *\n')
     fd.write(' * Parameters:\n')
@@ -326,7 +326,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('afw_function_definition_' + obj['functionLabel'] + ';\n')
 
             fd.write('\n/**\n')
-            fd.write(' * @brief Adaptive Function ' + obj['functionId'] + '\n')
+            fd.write(' * @brief Adaptive Function `' + obj['functionId'] + '`\n')
             fd.write(' * @param x function execute parameter.\n')
             function_comment(fd, obj)
             if obj.get('useExecuteFunction') is None:
@@ -563,7 +563,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # functionSignature
             functionSignature = ""
             if obj.get('polymorphic', False):
-                functionSignature += "<dataType>"
+                functionSignature += "`<dataType>`"
             functionSignature += '('
             sep = ''
             for p in obj.get('parameters'):
@@ -596,7 +596,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 functionDeclaration += '/* ' + obj.get('brief') + ' */\n'
             functionDeclaration += "function " + obj.get('functionId') + ' '
             if obj.get('polymorphic', False):
-                functionDeclaration += "<dataType>"
+                functionDeclaration += "`<dataType>`"
  
             # functionDeclaration: Calculate max len of "name: Type" part of parameter
             maxLen = 0

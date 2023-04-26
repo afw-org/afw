@@ -33,9 +33,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function abs<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -79,11 +81,13 @@ afw_function_execute_abs_double(
  *
  * Declaration:
  *
+ * ```
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -127,9 +131,11 @@ afw_function_execute_add_double(
  *
  * Declaration:
  *
+ * ```
  *   function ceil<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -166,10 +172,12 @@ afw_function_execute_ceil_double(
  *
  * Declaration:
  *
+ * ```
  *   function divide<double>(
  *       dividend: double,
  *       divisor: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -211,9 +219,11 @@ afw_function_execute_divide_double(
  *
  * Declaration:
  *
+ * ```
  *   function is_finite(
  *       number: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -253,9 +263,11 @@ afw_function_execute_is_finite(
  *
  * Declaration:
  *
+ * ```
  *   function floor<double>(
  *       number: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -292,11 +304,13 @@ afw_function_execute_floor_double(
  *
  * Declaration:
  *
+ * ```
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -340,9 +354,11 @@ afw_function_execute_multiply_double(
  *
  * Declaration:
  *
+ * ```
  *   function is_NaN(
  *       number: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -383,11 +399,13 @@ afw_function_execute_is_NaN(
  *
  * Declaration:
  *
+ * ```
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
  *       ...exponent_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -452,9 +470,11 @@ afw_function_execute_pow_double(
  *
  * Declaration:
  *
+ * ```
  *   function round<double>(
  *       number: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -492,10 +512,12 @@ afw_function_execute_round_double(
  *
  * Declaration:
  *
+ * ```
  *   function subtract<double>(
  *       arg1: double,
  *       arg2: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -577,9 +599,11 @@ afw_function_execute_to_integer_double(
  *
  * Declaration:
  *
+ * ```
  *   function negative<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *

@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function compile<xpathExpression>(
  *       source: xpathExpression,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -75,10 +77,12 @@ afw_function_execute_compile_xpathExpression(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -120,9 +124,11 @@ afw_function_execute_evaluate_xpathExpression(
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_count(
  *       nodeset: xpathExpression
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -157,10 +163,12 @@ afw_function_execute_xpath_node_count(
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_eq(
  *       arg1: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -197,10 +205,12 @@ afw_function_execute_xpath_node_eq(
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_match(
  *       nodeset2: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

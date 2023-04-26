@@ -29,9 +29,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function random_base64Binary(
  *       numberOfOctets: integer
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -83,9 +85,11 @@ afw_function_execute_random_base64Binary(
  *
  * Declaration:
  *
+ * ```
  *   function random_digits(
  *       numberOfDigits: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -146,9 +150,11 @@ afw_function_execute_random_digits(
  *
  * Declaration:
  *
+ * ```
  *   function random_hexBinary(
  *       numberOfOctets: integer
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -200,10 +206,12 @@ afw_function_execute_random_hexBinary(
  *
  * Declaration:
  *
+ * ```
  *   function random_integer(
  *       min: integer,
  *       max: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -266,10 +274,12 @@ afw_function_execute_random_integer(
  *
  * Declaration:
  *
+ * ```
  *   function random_number(
  *       min?: double,
  *       max?: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *

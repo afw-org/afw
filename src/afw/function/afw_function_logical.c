@@ -31,9 +31,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function and(
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -81,10 +83,12 @@ afw_function_execute_and(
  *
  * Declaration:
  *
+ * ```
  *   function n_of(
  *       n: integer,
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -144,9 +148,11 @@ afw_function_execute_n_of(
  *
  * Declaration:
  *
+ * ```
  *   function not(
  *       condition: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -187,9 +193,11 @@ afw_function_execute_not(
  *
  * Declaration:
  *
+ * ```
  *   function or(
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

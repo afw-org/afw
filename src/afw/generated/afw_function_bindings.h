@@ -59,7 +59,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_adaptor_objectCallback_signature;
 
 /**
- * @brief Adaptive Function adaptor_objectCallback_signature
+ * @brief Adaptive Function `adaptor_objectCallback_signature`
  * @param x function execute parameter.
  *
  * This is the function signature for the objectCallback parameter in adaptor
@@ -70,10 +70,12 @@ afw_function_definition_adaptor_objectCallback_signature;
  *
  * Declaration:
  *
+ * ```
  *   function adaptor_objectCallback_signature(
  *       object: object,
  *       userData?: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -97,7 +99,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_object;
 
 /**
- * @brief Adaptive Function add_object
+ * @brief Adaptive Function `add_object`
  * @param x function execute parameter.
  *
  * Add an adaptive object to an adaptor, specified by the adaptorId, with a
@@ -109,6 +111,7 @@ afw_function_definition_add_object;
  *
  * Declaration:
  *
+ * ```
  *   function add_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -117,6 +120,7 @@ afw_function_definition_add_object;
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -158,7 +162,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_object_with_uri;
 
 /**
- * @brief Adaptive Function add_object_with_uri
+ * @brief Adaptive Function `add_object_with_uri`
  * @param x function execute parameter.
  *
  * Add an adaptive object with a given URI.
@@ -168,12 +172,14 @@ afw_function_definition_add_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function add_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -213,7 +219,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
 
 /**
- * @brief Adaptive Function convert_AdaptiveQueryCriteria_to_query_string
+ * @brief Adaptive Function `convert_AdaptiveQueryCriteria_to_query_string`
  * @param x function execute parameter.
  *
  * This function converts an _AdaptiveQueryCriteria_ object to a query string.
@@ -223,12 +229,14 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *
  * Declaration:
  *
+ * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
  *       queryCriteria: (object _AdaptiveQueryCriteria_),
  *       adaptorId?: string,
  *       objectType?: string,
  *       style?: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -272,7 +280,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
 
 /**
- * @brief Adaptive Function convert_query_string_to_AdaptiveQueryCriteria
+ * @brief Adaptive Function `convert_query_string_to_AdaptiveQueryCriteria`
  * @param x function execute parameter.
  *
  * This function converts a query string to an _AdaptiveQueryCriteria_ object.
@@ -282,11 +290,13 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
  *
  * Declaration:
  *
+ * ```
  *   function convert_query_string_to_AdaptiveQueryCriteria(
  *       queryString: string,
  *       adaptorId?: string,
  *       objectType?: string
  *   ): (object _AdaptiveQueryCriteria_);
+ * ```
  *
  * Parameters:
  *
@@ -314,7 +324,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_delete_object;
 
 /**
- * @brief Adaptive Function delete_object
+ * @brief Adaptive Function `delete_object`
  * @param x function execute parameter.
  *
  * Delete an adaptive object.
@@ -324,6 +334,7 @@ afw_function_definition_delete_object;
  *
  * Declaration:
  *
+ * ```
  *   function delete_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -331,6 +342,7 @@ afw_function_definition_delete_object;
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -368,7 +380,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_delete_object_with_uri;
 
 /**
- * @brief Adaptive Function delete_object_with_uri
+ * @brief Adaptive Function `delete_object_with_uri`
  * @param x function execute parameter.
  *
  * Delete an adaptive object with a given URI.
@@ -378,11 +390,13 @@ afw_function_definition_delete_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function delete_object_with_uri(
  *       uri: anyURI,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -417,7 +431,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_get_object;
 
 /**
- * @brief Adaptive Function get_object
+ * @brief Adaptive Function `get_object`
  * @param x function execute parameter.
  *
  * Get an adaptive object from the adaptor, specified by adaptorId, objectType
@@ -429,6 +443,7 @@ afw_function_definition_get_object;
  *
  * Declaration:
  *
+ * ```
  *   function get_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -436,6 +451,7 @@ afw_function_definition_get_object;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -472,7 +488,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_get_object_with_uri;
 
 /**
- * @brief Adaptive Function get_object_with_uri
+ * @brief Adaptive Function `get_object_with_uri`
  * @param x function execute parameter.
  *
  * Get an object with a given URI.
@@ -482,11 +498,13 @@ afw_function_definition_get_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function get_object_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -520,7 +538,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_modify_object;
 
 /**
- * @brief Adaptive Function modify_object
+ * @brief Adaptive Function `modify_object`
  * @param x function execute parameter.
  *
  * Modify an adaptive object.
@@ -530,6 +548,7 @@ afw_function_definition_modify_object;
  *
  * Declaration:
  *
+ * ```
  *   function modify_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -538,6 +557,7 @@ afw_function_definition_modify_object;
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -600,7 +620,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_modify_object_with_uri;
 
 /**
- * @brief Adaptive Function modify_object_with_uri
+ * @brief Adaptive Function `modify_object_with_uri`
  * @param x function execute parameter.
  *
  * Modify an adaptive object with a given URI.
@@ -610,12 +630,14 @@ afw_function_definition_modify_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function modify_object_with_uri(
  *       uri: anyURI,
  *       entries: list,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -676,7 +698,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reconcile_object;
 
 /**
- * @brief Adaptive Function reconcile_object
+ * @brief Adaptive Function `reconcile_object`
  * @param x function execute parameter.
  *
  * Reconcile an adaptive object.
@@ -686,10 +708,12 @@ afw_function_definition_reconcile_object;
  *
  * Declaration:
  *
+ * ```
  *   function reconcile_object(
  *       object: object,
  *       checkOnly?: boolean
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -715,7 +739,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_object;
 
 /**
- * @brief Adaptive Function replace_object
+ * @brief Adaptive Function `replace_object`
  * @param x function execute parameter.
  *
  * Replace an adaptive object.
@@ -725,6 +749,7 @@ afw_function_definition_replace_object;
  *
  * Declaration:
  *
+ * ```
  *   function replace_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -733,6 +758,7 @@ afw_function_definition_replace_object;
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -772,7 +798,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_object_with_uri;
 
 /**
- * @brief Adaptive Function replace_object_with_uri
+ * @brief Adaptive Function `replace_object_with_uri`
  * @param x function execute parameter.
  *
  * Replace an adaptive object with a given URI.
@@ -782,12 +808,14 @@ afw_function_definition_replace_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function replace_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -824,7 +852,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects;
 
 /**
- * @brief Adaptive Function retrieve_objects
+ * @brief Adaptive Function `retrieve_objects`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
@@ -840,6 +868,7 @@ afw_function_definition_retrieve_objects;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects(
  *       adaptorId: string,
  *       objectType: string,
@@ -847,6 +876,7 @@ afw_function_definition_retrieve_objects;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -885,7 +915,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_callback;
 
 /**
- * @brief Adaptive Function retrieve_objects_to_callback
+ * @brief Adaptive Function `retrieve_objects_to_callback`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
@@ -903,6 +933,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_callback(
  *       objectCallback: (function (object: object, userData: any): boolean),
  *       userData: any,
@@ -912,6 +943,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -961,7 +993,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_response;
 
 /**
- * @brief Adaptive Function retrieve_objects_to_response
+ * @brief Adaptive Function `retrieve_objects_to_response`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
@@ -983,6 +1015,7 @@ afw_function_definition_retrieve_objects_to_response;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_response(
  *       adaptorId: string,
  *       objectType: string,
@@ -990,6 +1023,7 @@ afw_function_definition_retrieve_objects_to_response;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1028,7 +1062,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_stream;
 
 /**
- * @brief Adaptive Function retrieve_objects_to_stream
+ * @brief Adaptive Function `retrieve_objects_to_stream`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects from an adaptor, specified by
@@ -1046,6 +1080,7 @@ afw_function_definition_retrieve_objects_to_stream;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_to_stream(
  *       streamNumber: integer,
  *       adaptorId: string,
@@ -1054,6 +1089,7 @@ afw_function_definition_retrieve_objects_to_stream;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1095,7 +1131,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri;
 
 /**
- * @brief Adaptive Function retrieve_objects_with_uri
+ * @brief Adaptive Function `retrieve_objects_with_uri`
  * @param x function execute parameter.
  *
  * Retrieve adaptive objects with a given URI.
@@ -1110,11 +1146,13 @@ afw_function_definition_retrieve_objects_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -1149,7 +1187,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_callback;
 
 /**
- * @brief Adaptive Function retrieve_objects_with_uri_to_callback
+ * @brief Adaptive Function `retrieve_objects_with_uri_to_callback`
  * @param x function execute parameter.
  *
  * Retrieve adaptive objects with a given URI.
@@ -1166,6 +1204,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_callback(
  *       objectCallback: (function (object: object, userData: any): boolean),
  *       userData: any,
@@ -1173,6 +1212,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1217,7 +1257,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_response;
 
 /**
- * @brief Adaptive Function retrieve_objects_with_uri_to_response
+ * @brief Adaptive Function `retrieve_objects_with_uri_to_response`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects with a given URI.
@@ -1238,11 +1278,13 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1277,7 +1319,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_stream;
 
 /**
- * @brief Adaptive Function retrieve_objects_with_uri_to_stream
+ * @brief Adaptive Function `retrieve_objects_with_uri_to_stream`
  * @param x function execute parameter.
  *
  * This function retrieves adaptive objects with a given URI.
@@ -1294,12 +1336,14 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *
  * Declaration:
  *
+ * ```
  *   function retrieve_objects_with_uri_to_stream(
  *       streamNumber: integer,
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1337,7 +1381,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_update_object;
 
 /**
- * @brief Adaptive Function update_object
+ * @brief Adaptive Function `update_object`
  * @param x function execute parameter.
  *
  * Update an adaptive object.
@@ -1347,6 +1391,7 @@ afw_function_definition_update_object;
  *
  * Declaration:
  *
+ * ```
  *   function update_object(
  *       adaptorId: string,
  *       objectType: string,
@@ -1355,6 +1400,7 @@ afw_function_definition_update_object;
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1397,7 +1443,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_update_object_with_uri;
 
 /**
- * @brief Adaptive Function update_object_with_uri
+ * @brief Adaptive Function `update_object_with_uri`
  * @param x function execute parameter.
  *
  * Update an adaptive object with a given URI.
@@ -1407,12 +1453,14 @@ afw_function_definition_update_object_with_uri;
  *
  * Declaration:
  *
+ * ```
  *   function update_object_with_uri(
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
+ * ```
  *
  * Parameters:
  *
@@ -1462,7 +1510,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_extension_load;
 
 /**
- * @brief Adaptive Function extension_load
+ * @brief Adaptive Function `extension_load`
  * @param x function execute parameter.
  *
  * Load an extension by its extension id if it is not already loaded. Loading
@@ -1474,9 +1522,11 @@ afw_function_definition_extension_load;
  *
  * Declaration:
  *
+ * ```
  *   function extension_load(
  *       extension_id: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -1499,7 +1549,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_extension_load_by_module_path;
 
 /**
- * @brief Adaptive Function extension_load_by_module_path
+ * @brief Adaptive Function `extension_load_by_module_path`
  * @param x function execute parameter.
  *
  * Load an extension by its module path. Loading an AFW package's manifest
@@ -1510,9 +1560,11 @@ afw_function_definition_extension_load_by_module_path;
  *
  * Declaration:
  *
+ * ```
  *   function extension_load_by_module_path(
  *       module_path: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -1533,7 +1585,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_get_active;
 
 /**
- * @brief Adaptive Function flag_get_active
+ * @brief Adaptive Function `flag_get_active`
  * @param x function execute parameter.
  *
  * Get a list of of the flagId of flags that are set in the current execution
@@ -1544,9 +1596,11 @@ afw_function_definition_flag_get_active;
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_active(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -1564,7 +1618,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_get_active_defaults;
 
 /**
- * @brief Adaptive Function flag_get_active_defaults
+ * @brief Adaptive Function `flag_get_active_defaults`
  * @param x function execute parameter.
  *
  * Get a list of the flagId of flags that are set by default when a new
@@ -1575,9 +1629,11 @@ afw_function_definition_flag_get_active_defaults;
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_active_defaults(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -1595,7 +1651,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_get_defaults;
 
 /**
- * @brief Adaptive Function flag_get_defaults
+ * @brief Adaptive Function `flag_get_defaults`
  * @param x function execute parameter.
  *
  * Get the list of the flagId of flags that are used to determine the default
@@ -1608,9 +1664,11 @@ afw_function_definition_flag_get_defaults;
  *
  * Declaration:
  *
+ * ```
  *   function flag_get_defaults(
  *   
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -1628,7 +1686,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_modify_defaults;
 
 /**
- * @brief Adaptive Function flag_modify_defaults
+ * @brief Adaptive Function `flag_modify_defaults`
  * @param x function execute parameter.
  *
  * Add or remove flags from the list of the flagId of flags that are used to
@@ -1646,10 +1704,12 @@ afw_function_definition_flag_modify_defaults;
  *
  * Declaration:
  *
+ * ```
  *   function flag_modify_defaults(
  *       flagId: (list string),
  *       add?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1671,7 +1731,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_replace_defaults;
 
 /**
- * @brief Adaptive Function flag_replace_defaults
+ * @brief Adaptive Function `flag_replace_defaults`
  * @param x function execute parameter.
  *
  * Completely replace the list of the flagId of flags that are used to
@@ -1689,9 +1749,11 @@ afw_function_definition_flag_replace_defaults;
  *
  * Declaration:
  *
+ * ```
  *   function flag_replace_defaults(
  *       flagId: (list string)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1711,7 +1773,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flag_set;
 
 /**
- * @brief Adaptive Function flag_set
+ * @brief Adaptive Function `flag_set`
  * @param x function execute parameter.
  *
  * Set or unset one or more active xctx (request) flags.
@@ -1721,10 +1783,12 @@ afw_function_definition_flag_set;
  *
  * Declaration:
  *
+ * ```
  *   function flag_set(
  *       flagId: (list string),
  *       setTo?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -1746,7 +1810,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_registry_key_check;
 
 /**
- * @brief Adaptive Function registry_key_check
+ * @brief Adaptive Function `registry_key_check`
  * @param x function execute parameter.
  *
  * This will check to see if a registry key exists for a specified registry
@@ -1757,11 +1821,13 @@ afw_function_definition_registry_key_check;
  *
  * Declaration:
  *
+ * ```
  *   function registry_key_check(
  *       registryType: string,
  *       key: string,
  *       loadExtension?: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -1790,7 +1856,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_service_get;
 
 /**
- * @brief Adaptive Function service_get
+ * @brief Adaptive Function `service_get`
  * @param x function execute parameter.
  *
  * Get a service object.
@@ -1800,9 +1866,11 @@ afw_function_definition_service_get;
  *
  * Declaration:
  *
+ * ```
  *   function service_get(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -1824,7 +1892,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_service_restart;
 
 /**
- * @brief Adaptive Function service_restart
+ * @brief Adaptive Function `service_restart`
  * @param x function execute parameter.
  *
  * Restart a service.
@@ -1834,9 +1902,11 @@ afw_function_definition_service_restart;
  *
  * Declaration:
  *
+ * ```
  *   function service_restart(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -1858,7 +1928,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_service_start;
 
 /**
- * @brief Adaptive Function service_start
+ * @brief Adaptive Function `service_start`
  * @param x function execute parameter.
  *
  * Start a service.
@@ -1868,9 +1938,11 @@ afw_function_definition_service_start;
  *
  * Declaration:
  *
+ * ```
  *   function service_start(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -1892,7 +1964,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_service_stop;
 
 /**
- * @brief Adaptive Function service_stop
+ * @brief Adaptive Function `service_stop`
  * @param x function execute parameter.
  *
  * Stop a service.
@@ -1902,9 +1974,11 @@ afw_function_definition_service_stop;
  *
  * Declaration:
  *
+ * ```
  *   function service_stop(
  *       serviceId: string
  *   ): (object _AdaptiveService_);
+ * ```
  *
  * Parameters:
  *
@@ -1936,7 +2010,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_anyURI;
 
 /**
- * @brief Adaptive Function anyURI
+ * @brief Adaptive Function `anyURI`
  * @param x function execute parameter.
  *
  * Converts value to data type anyURI returning anyURI result.
@@ -1946,9 +2020,11 @@ afw_function_definition_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function anyURI(
  *       value: any
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -1972,7 +2048,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_anyURI;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<anyURI>
+ * @brief Adaptive Function `at_least_one_member_of<anyURI>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in anyURI list1 is in anyURI
@@ -1983,10 +2059,12 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<anyURI>(
  *       list1: (list anyURI),
  *       list2: (list anyURI)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2008,7 +2086,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_anyURI;
 
 /**
- * @brief Adaptive Function bag<anyURI>
+ * @brief Adaptive Function `bag<anyURI>`
  * @param x function execute parameter.
  *
  * Takes any number of anyURI values and returns a list of list.
@@ -2018,9 +2096,11 @@ afw_function_definition_bag_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function bag<anyURI>(
  *       ...values: (list of (list anyURI))
  *   ): (list anyURI);
+ * ```
  *
  * Parameters:
  *
@@ -2040,7 +2120,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_anyURI;
 
 /**
- * @brief Adaptive Function bag_size<anyURI>
+ * @brief Adaptive Function `bag_size<anyURI>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -2050,9 +2130,11 @@ afw_function_definition_bag_size_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<anyURI>(
  *       value: (list anyURI)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -2072,7 +2154,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ends_with_anyURI;
 
 /**
- * @brief Adaptive Function ends_with<anyURI>
+ * @brief Adaptive Function `ends_with<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether anyURI value ends with a anyURI and return the boolean
@@ -2083,10 +2165,12 @@ afw_function_definition_ends_with_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function ends_with<anyURI>(
  *       value: anyURI,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2108,7 +2192,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_anyURI;
 
 /**
- * @brief Adaptive Function eq<anyURI>
+ * @brief Adaptive Function `eq<anyURI>`
  * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is equal to the value of arg2 converted to the data
@@ -2120,10 +2204,12 @@ afw_function_definition_eq_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function eq<anyURI>(
  *       arg1: anyURI,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2149,7 +2235,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_anyURI;
 
 /**
- * @brief Adaptive Function eqx<anyURI>
+ * @brief Adaptive Function `eqx<anyURI>`
  * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is equal to the value and data type of arg2
@@ -2161,10 +2247,12 @@ afw_function_definition_eqx_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<anyURI>(
  *       arg1: anyURI,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2186,7 +2274,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_anyURI;
 
 /**
- * @brief Adaptive Function ge<anyURI>
+ * @brief Adaptive Function `ge<anyURI>`
  * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return
@@ -2197,10 +2285,12 @@ afw_function_definition_ge_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function ge<anyURI>(
  *       arg1: anyURI,
  *       arg2: anyURI
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2222,7 +2312,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_anyURI;
 
 /**
- * @brief Adaptive Function gt<anyURI>
+ * @brief Adaptive Function `gt<anyURI>`
  * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is greater than anyURI arg2 and return the boolean
@@ -2233,10 +2323,12 @@ afw_function_definition_gt_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function gt<anyURI>(
  *       arg1: anyURI,
  *       arg2: anyURI
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2258,7 +2350,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_includes_anyURI;
 
 /**
- * @brief Adaptive Function includes<anyURI>
+ * @brief Adaptive Function `includes<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether the anyURI value includes a string and return the boolean
@@ -2269,11 +2361,13 @@ afw_function_definition_includes_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function includes<anyURI>(
  *       searchString: anyURI,
  *       subString: string,
  *       position?: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2298,7 +2392,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_of_anyURI;
 
 /**
- * @brief Adaptive Function index_of<anyURI>
+ * @brief Adaptive Function `index_of<anyURI>`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into anyURI value of subString. If subString is
@@ -2309,11 +2403,13 @@ afw_function_definition_index_of_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function index_of<anyURI>(
  *       value: anyURI,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -2338,7 +2434,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_anyURI;
 
 /**
- * @brief Adaptive Function intersection<anyURI>
+ * @brief Adaptive Function `intersection<anyURI>`
  * @param x function execute parameter.
  *
  * Returns a list of anyURI with the values that are common to both list of
@@ -2349,10 +2445,12 @@ afw_function_definition_intersection_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<anyURI>(
  *       list1: (list anyURI),
  *       list2: (list anyURI)
  *   ): (list anyURI);
+ * ```
  *
  * Parameters:
  *
@@ -2374,7 +2472,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_anyURI;
 
 /**
- * @brief Adaptive Function is<anyURI>
+ * @brief Adaptive Function `is<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType anyURI and return the boolean result.
@@ -2384,9 +2482,11 @@ afw_function_definition_is_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function is<anyURI>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2406,7 +2506,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_anyURI;
 
 /**
- * @brief Adaptive Function is_in<anyURI>
+ * @brief Adaptive Function `is_in<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether anyURI value is in list of anyURI list and returns the
@@ -2417,10 +2517,12 @@ afw_function_definition_is_in_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<anyURI>(
  *       value: anyURI,
  *       list: (list anyURI)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2442,7 +2544,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_last_index_of_anyURI;
 
 /**
- * @brief Adaptive Function last_index_of<anyURI>
+ * @brief Adaptive Function `last_index_of<anyURI>`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into anyURI value of the last occurrence of a
@@ -2453,11 +2555,13 @@ afw_function_definition_last_index_of_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function last_index_of<anyURI>(
  *       value: anyURI,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -2482,7 +2586,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_anyURI;
 
 /**
- * @brief Adaptive Function le<anyURI>
+ * @brief Adaptive Function `le<anyURI>`
  * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is less than or equal to anyURI arg2 and return the
@@ -2493,10 +2597,12 @@ afw_function_definition_le_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function le<anyURI>(
  *       arg1: anyURI,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2518,7 +2624,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_length_anyURI;
 
 /**
- * @brief Adaptive Function length<anyURI>
+ * @brief Adaptive Function `length<anyURI>`
  * @param x function execute parameter.
  *
  * This is a polymorphic function where anyURI can be any of the supported data
@@ -2530,9 +2636,11 @@ afw_function_definition_length_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function length<anyURI>(
  *       value: anyURI
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -2553,7 +2661,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_anyURI;
 
 /**
- * @brief Adaptive Function lt<anyURI>
+ * @brief Adaptive Function `lt<anyURI>`
  * @param x function execute parameter.
  *
  * Checks for anyURI arg1 is less that anyURI arg2 and return the boolean
@@ -2564,10 +2672,12 @@ afw_function_definition_lt_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function lt<anyURI>(
  *       arg1: anyURI,
  *       arg2: anyURI
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2589,7 +2699,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_anyURI;
 
 /**
- * @brief Adaptive Function ne<anyURI>
+ * @brief Adaptive Function `ne<anyURI>`
  * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is not equal to the value of arg2 converted to the
@@ -2601,10 +2711,12 @@ afw_function_definition_ne_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function ne<anyURI>(
  *       arg1: anyURI,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2630,7 +2742,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_anyURI;
 
 /**
- * @brief Adaptive Function nex<anyURI>
+ * @brief Adaptive Function `nex<anyURI>`
  * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is not equal to the value or data type of arg2
@@ -2642,10 +2754,12 @@ afw_function_definition_nex_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function nex<anyURI>(
  *       arg1: anyURI,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2667,7 +2781,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_anyURI;
 
 /**
- * @brief Adaptive Function one_and_only<anyURI>
+ * @brief Adaptive Function `one_and_only<anyURI>`
  * @param x function execute parameter.
  *
  * This converts a list of anyURI values that contains one value to a single
@@ -2678,9 +2792,11 @@ afw_function_definition_one_and_only_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<anyURI>(
  *       list: (list list)
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -2704,7 +2820,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_index_of_anyURI;
 
 /**
- * @brief Adaptive Function regexp_index_of<anyURI>
+ * @brief Adaptive Function `regexp_index_of<anyURI>`
  * @param x function execute parameter.
  *
  * Search anyURI value for a regular expression and return index. If not found,
@@ -2715,10 +2831,12 @@ afw_function_definition_regexp_index_of_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_index_of<anyURI>(
  *       value: anyURI,
  *       regexp: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -2740,7 +2858,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_anyURI;
 
 /**
- * @brief Adaptive Function regexp_match<anyURI>
+ * @brief Adaptive Function `regexp_match<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether anyURI value matches the regular expression regexp and return
@@ -2751,10 +2869,12 @@ afw_function_definition_regexp_match_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<anyURI>(
  *       value: anyURI,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2776,7 +2896,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_replace_anyURI;
 
 /**
- * @brief Adaptive Function regexp_replace<anyURI>
+ * @brief Adaptive Function `regexp_replace<anyURI>`
  * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a anyURI value.
@@ -2786,12 +2906,14 @@ afw_function_definition_regexp_replace_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_replace<anyURI>(
  *       value: anyURI,
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -2818,7 +2940,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_repeat_anyURI;
 
 /**
- * @brief Adaptive Function repeat<anyURI>
+ * @brief Adaptive Function `repeat<anyURI>`
  * @param x function execute parameter.
  *
  * Repeat a anyURI value a specified number of times.
@@ -2828,10 +2950,12 @@ afw_function_definition_repeat_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function repeat<anyURI>(
  *       value: anyURI,
  *       times: integer
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -2853,7 +2977,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_anyURI;
 
 /**
- * @brief Adaptive Function replace<anyURI>
+ * @brief Adaptive Function `replace<anyURI>`
  * @param x function execute parameter.
  *
  * Replace string(s) in a anyURI value.
@@ -2863,12 +2987,14 @@ afw_function_definition_replace_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function replace<anyURI>(
  *       value: anyURI,
  *       match: string,
  *       replacement: string,
  *       limit?: integer
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -2895,7 +3021,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_anyURI;
 
 /**
- * @brief Adaptive Function set_equals<anyURI>
+ * @brief Adaptive Function `set_equals<anyURI>`
  * @param x function execute parameter.
  *
  * Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
@@ -2906,10 +3032,12 @@ afw_function_definition_set_equals_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<anyURI>(
  *       list1: (list anyURI),
  *       list2: (list anyURI)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -2931,7 +3059,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_split_anyURI;
 
 /**
- * @brief Adaptive Function split<anyURI>
+ * @brief Adaptive Function `split<anyURI>`
  * @param x function execute parameter.
  *
  * Split anyURI value into an list of strings using a separator.
@@ -2941,11 +3069,13 @@ afw_function_definition_split_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function split<anyURI>(
  *       value: anyURI,
  *       separator?: string,
  *       limit?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -2972,7 +3102,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_starts_with_anyURI;
 
 /**
- * @brief Adaptive Function starts_with<anyURI>
+ * @brief Adaptive Function `starts_with<anyURI>`
  * @param x function execute parameter.
  *
  * Checks whether anyURI value starts with a subString and return the boolean
@@ -2983,10 +3113,12 @@ afw_function_definition_starts_with_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function starts_with<anyURI>(
  *       value: anyURI,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3008,7 +3140,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_anyURI;
 
 /**
- * @brief Adaptive Function subset<anyURI>
+ * @brief Adaptive Function `subset<anyURI>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in anyURI list1 are all in anyURI
@@ -3019,10 +3151,12 @@ afw_function_definition_subset_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function subset<anyURI>(
  *       list1: (list anyURI),
  *       list2: (list anyURI)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3044,7 +3178,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_substring_anyURI;
 
 /**
- * @brief Adaptive Function substring<anyURI>
+ * @brief Adaptive Function `substring<anyURI>`
  * @param x function execute parameter.
  *
  * Returns the anyURI substring of value beginning at zero-based position
@@ -3056,11 +3190,13 @@ afw_function_definition_substring_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function substring<anyURI>(
  *       string: anyURI,
  *       startIndex: integer,
  *       endIndex?: integer
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -3088,7 +3224,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_anyURI;
 
 /**
- * @brief Adaptive Function to_string<anyURI>
+ * @brief Adaptive Function `to_string<anyURI>`
  * @param x function execute parameter.
  *
  * Converts anyURI value to string. For list values, the to_string() value for
@@ -3099,9 +3235,11 @@ afw_function_definition_to_string_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<anyURI>(
  *       value: anyURI
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -3121,7 +3259,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_anyURI;
 
 /**
- * @brief Adaptive Function union<anyURI>
+ * @brief Adaptive Function `union<anyURI>`
  * @param x function execute parameter.
  *
  * Returns a list of anyURI contains all of the unique values in two or more
@@ -3132,11 +3270,13 @@ afw_function_definition_union_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function union<anyURI>(
  *       lists_1: (list anyURI),
  *       lists_2: (list anyURI),
  *       ...lists_rest: (list of (list anyURI))
  *   ): (list anyURI);
+ * ```
  *
  * Parameters:
  *
@@ -3156,7 +3296,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_url_encode_anyURI;
 
 /**
- * @brief Adaptive Function url_encode<anyURI>
+ * @brief Adaptive Function `url_encode<anyURI>`
  * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
@@ -3166,9 +3306,11 @@ afw_function_definition_url_encode_anyURI;
  *
  * Declaration:
  *
+ * ```
  *   function url_encode<anyURI>(
  *       unencoded: anyURI
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -3199,7 +3341,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_base64Binary;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<base64Binary>
+ * @brief Adaptive Function `at_least_one_member_of<base64Binary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in base64Binary list1 is in
@@ -3210,10 +3352,12 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<base64Binary>(
  *       list1: (list base64Binary),
  *       list2: (list base64Binary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3235,7 +3379,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_base64Binary;
 
 /**
- * @brief Adaptive Function bag<base64Binary>
+ * @brief Adaptive Function `bag<base64Binary>`
  * @param x function execute parameter.
  *
  * Takes any number of base64Binary values and returns a list of list.
@@ -3245,9 +3389,11 @@ afw_function_definition_bag_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function bag<base64Binary>(
  *       ...values: (list of (list base64Binary))
  *   ): (list base64Binary);
+ * ```
  *
  * Parameters:
  *
@@ -3267,7 +3413,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_base64Binary;
 
 /**
- * @brief Adaptive Function bag_size<base64Binary>
+ * @brief Adaptive Function `bag_size<base64Binary>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -3277,9 +3423,11 @@ afw_function_definition_bag_size_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<base64Binary>(
  *       value: (list base64Binary)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -3299,7 +3447,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_base64Binary;
 
 /**
- * @brief Adaptive Function base64Binary
+ * @brief Adaptive Function `base64Binary`
  * @param x function execute parameter.
  *
  * Converts value to data type base64Binary returning base64Binary result.
@@ -3309,9 +3457,11 @@ afw_function_definition_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function base64Binary(
  *       value: any
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -3335,7 +3485,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decode_to_string_base64Binary;
 
 /**
- * @brief Adaptive Function decode_to_string<base64Binary>
+ * @brief Adaptive Function `decode_to_string<base64Binary>`
  * @param x function execute parameter.
  *
  * Decode base64Binary value to string. An error is thrown if decoded value is
@@ -3346,9 +3496,11 @@ afw_function_definition_decode_to_string_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function decode_to_string<base64Binary>(
  *       value: base64Binary
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -3367,7 +3519,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_base64Binary;
 
 /**
- * @brief Adaptive Function eq<base64Binary>
+ * @brief Adaptive Function `eq<base64Binary>`
  * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is equal to the value of arg2 converted to
@@ -3380,10 +3532,12 @@ afw_function_definition_eq_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function eq<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3409,7 +3563,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_base64Binary;
 
 /**
- * @brief Adaptive Function eqx<base64Binary>
+ * @brief Adaptive Function `eqx<base64Binary>`
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is equal to the value and data type of
@@ -3421,10 +3575,12 @@ afw_function_definition_eqx_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3446,7 +3602,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_base64Binary;
 
 /**
- * @brief Adaptive Function ge<base64Binary>
+ * @brief Adaptive Function `ge<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is greater than or equal to base64Binary arg2
@@ -3457,10 +3613,12 @@ afw_function_definition_ge_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function ge<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: base64Binary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3482,7 +3640,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_base64Binary;
 
 /**
- * @brief Adaptive Function gt<base64Binary>
+ * @brief Adaptive Function `gt<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is greater than base64Binary arg2 and return
@@ -3493,10 +3651,12 @@ afw_function_definition_gt_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function gt<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: base64Binary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3518,7 +3678,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_base64Binary;
 
 /**
- * @brief Adaptive Function intersection<base64Binary>
+ * @brief Adaptive Function `intersection<base64Binary>`
  * @param x function execute parameter.
  *
  * Returns a list of base64Binary with the values that are common to both list
@@ -3529,10 +3689,12 @@ afw_function_definition_intersection_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<base64Binary>(
  *       list1: (list base64Binary),
  *       list2: (list base64Binary)
  *   ): (list base64Binary);
+ * ```
  *
  * Parameters:
  *
@@ -3554,7 +3716,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_base64Binary;
 
 /**
- * @brief Adaptive Function is<base64Binary>
+ * @brief Adaptive Function `is<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType base64Binary and return the boolean result.
@@ -3564,9 +3726,11 @@ afw_function_definition_is_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function is<base64Binary>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3586,7 +3750,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_base64Binary;
 
 /**
- * @brief Adaptive Function is_in<base64Binary>
+ * @brief Adaptive Function `is_in<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks whether base64Binary value is in list of base64Binary list and
@@ -3597,10 +3761,12 @@ afw_function_definition_is_in_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<base64Binary>(
  *       value: base64Binary,
  *       list: (list base64Binary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3622,7 +3788,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_base64Binary;
 
 /**
- * @brief Adaptive Function le<base64Binary>
+ * @brief Adaptive Function `le<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is less than or equal to base64Binary arg2 and
@@ -3633,10 +3799,12 @@ afw_function_definition_le_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function le<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3658,7 +3826,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_base64Binary;
 
 /**
- * @brief Adaptive Function lt<base64Binary>
+ * @brief Adaptive Function `lt<base64Binary>`
  * @param x function execute parameter.
  *
  * Checks for base64Binary arg1 is less that base64Binary arg2 and return the
@@ -3669,10 +3837,12 @@ afw_function_definition_lt_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function lt<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: base64Binary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3694,7 +3864,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_base64Binary;
 
 /**
- * @brief Adaptive Function ne<base64Binary>
+ * @brief Adaptive Function `ne<base64Binary>`
  * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is not equal to the value of arg2 converted
@@ -3707,10 +3877,12 @@ afw_function_definition_ne_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function ne<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3736,7 +3908,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_base64Binary;
 
 /**
- * @brief Adaptive Function nex<base64Binary>
+ * @brief Adaptive Function `nex<base64Binary>`
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is not equal to the value or data type of
@@ -3748,10 +3920,12 @@ afw_function_definition_nex_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function nex<base64Binary>(
  *       arg1: base64Binary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3773,7 +3947,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_base64Binary;
 
 /**
- * @brief Adaptive Function one_and_only<base64Binary>
+ * @brief Adaptive Function `one_and_only<base64Binary>`
  * @param x function execute parameter.
  *
  * This converts a list of base64Binary values that contains one value to a
@@ -3784,9 +3958,11 @@ afw_function_definition_one_and_only_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<base64Binary>(
  *       list: (list list)
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -3810,7 +3986,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_base64Binary;
 
 /**
- * @brief Adaptive Function set_equals<base64Binary>
+ * @brief Adaptive Function `set_equals<base64Binary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if base64Binary list1 and base64Binary list2 are
@@ -3821,10 +3997,12 @@ afw_function_definition_set_equals_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<base64Binary>(
  *       list1: (list base64Binary),
  *       list2: (list base64Binary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3846,7 +4024,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_base64Binary;
 
 /**
- * @brief Adaptive Function subset<base64Binary>
+ * @brief Adaptive Function `subset<base64Binary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in base64Binary list1 are all in
@@ -3857,10 +4035,12 @@ afw_function_definition_subset_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function subset<base64Binary>(
  *       list1: (list base64Binary),
  *       list2: (list base64Binary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3882,7 +4062,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_base64Binary;
 
 /**
- * @brief Adaptive Function to_string<base64Binary>
+ * @brief Adaptive Function `to_string<base64Binary>`
  * @param x function execute parameter.
  *
  * Converts base64Binary value to string. For list values, the to_string()
@@ -3893,9 +4073,11 @@ afw_function_definition_to_string_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<base64Binary>(
  *       value: base64Binary
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -3915,7 +4097,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_base64Binary;
 
 /**
- * @brief Adaptive Function union<base64Binary>
+ * @brief Adaptive Function `union<base64Binary>`
  * @param x function execute parameter.
  *
  * Returns a list of base64Binary contains all of the unique values in two or
@@ -3926,11 +4108,13 @@ afw_function_definition_union_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function union<base64Binary>(
  *       lists_1: (list base64Binary),
  *       lists_2: (list base64Binary),
  *       ...lists_rest: (list of (list base64Binary))
  *   ): (list base64Binary);
+ * ```
  *
  * Parameters:
  *
@@ -3960,7 +4144,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_boolean;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<boolean>
+ * @brief Adaptive Function `at_least_one_member_of<boolean>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in boolean list1 is in boolean
@@ -3971,10 +4155,12 @@ afw_function_definition_at_least_one_member_of_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<boolean>(
  *       list1: (list boolean),
  *       list2: (list boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -3996,7 +4182,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_boolean;
 
 /**
- * @brief Adaptive Function bag<boolean>
+ * @brief Adaptive Function `bag<boolean>`
  * @param x function execute parameter.
  *
  * Takes any number of boolean values and returns a list of list.
@@ -4006,9 +4192,11 @@ afw_function_definition_bag_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function bag<boolean>(
  *       ...values: (list of (list boolean))
  *   ): (list boolean);
+ * ```
  *
  * Parameters:
  *
@@ -4028,7 +4216,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_boolean;
 
 /**
- * @brief Adaptive Function bag_size<boolean>
+ * @brief Adaptive Function `bag_size<boolean>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -4038,9 +4226,11 @@ afw_function_definition_bag_size_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<boolean>(
  *       value: (list boolean)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -4060,7 +4250,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_boolean;
 
 /**
- * @brief Adaptive Function boolean
+ * @brief Adaptive Function `boolean`
  * @param x function execute parameter.
  *
  * Converts value to data type boolean returning boolean result.
@@ -4070,9 +4260,11 @@ afw_function_definition_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function boolean(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4096,7 +4288,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_boolean;
 
 /**
- * @brief Adaptive Function eq<boolean>
+ * @brief Adaptive Function `eq<boolean>`
  * @param x function execute parameter.
  *
  * Determine if boolean arg1 is equal to the value of arg2 converted to the
@@ -4108,10 +4300,12 @@ afw_function_definition_eq_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function eq<boolean>(
  *       arg1: boolean,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4137,7 +4331,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_boolean;
 
 /**
- * @brief Adaptive Function eqx<boolean>
+ * @brief Adaptive Function `eqx<boolean>`
  * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is equal to the value and data type of arg2
@@ -4149,10 +4343,12 @@ afw_function_definition_eqx_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<boolean>(
  *       arg1: boolean,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4174,7 +4370,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_boolean;
 
 /**
- * @brief Adaptive Function ge<boolean>
+ * @brief Adaptive Function `ge<boolean>`
  * @param x function execute parameter.
  *
  * Checks for boolean arg1 is greater than or equal to boolean arg2 and return
@@ -4185,10 +4381,12 @@ afw_function_definition_ge_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function ge<boolean>(
  *       arg1: boolean,
  *       arg2: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4210,7 +4408,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_boolean;
 
 /**
- * @brief Adaptive Function gt<boolean>
+ * @brief Adaptive Function `gt<boolean>`
  * @param x function execute parameter.
  *
  * Checks for boolean arg1 is greater than boolean arg2 and return the boolean
@@ -4221,10 +4419,12 @@ afw_function_definition_gt_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function gt<boolean>(
  *       arg1: boolean,
  *       arg2: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4246,7 +4446,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_boolean;
 
 /**
- * @brief Adaptive Function intersection<boolean>
+ * @brief Adaptive Function `intersection<boolean>`
  * @param x function execute parameter.
  *
  * Returns a list of boolean with the values that are common to both list of
@@ -4257,10 +4457,12 @@ afw_function_definition_intersection_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<boolean>(
  *       list1: (list boolean),
  *       list2: (list boolean)
  *   ): (list boolean);
+ * ```
  *
  * Parameters:
  *
@@ -4282,7 +4484,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_boolean;
 
 /**
- * @brief Adaptive Function is<boolean>
+ * @brief Adaptive Function `is<boolean>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType boolean and return the boolean result.
@@ -4292,9 +4494,11 @@ afw_function_definition_is_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function is<boolean>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4314,7 +4518,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_boolean;
 
 /**
- * @brief Adaptive Function is_in<boolean>
+ * @brief Adaptive Function `is_in<boolean>`
  * @param x function execute parameter.
  *
  * Checks whether boolean value is in list of boolean list and returns the
@@ -4325,10 +4529,12 @@ afw_function_definition_is_in_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<boolean>(
  *       value: boolean,
  *       list: (list boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4350,7 +4556,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_boolean;
 
 /**
- * @brief Adaptive Function le<boolean>
+ * @brief Adaptive Function `le<boolean>`
  * @param x function execute parameter.
  *
  * Checks for boolean arg1 is less than or equal to boolean arg2 and return the
@@ -4361,10 +4567,12 @@ afw_function_definition_le_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function le<boolean>(
  *       arg1: boolean,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4386,7 +4594,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_boolean;
 
 /**
- * @brief Adaptive Function lt<boolean>
+ * @brief Adaptive Function `lt<boolean>`
  * @param x function execute parameter.
  *
  * Checks for boolean arg1 is less that boolean arg2 and return the boolean
@@ -4397,10 +4605,12 @@ afw_function_definition_lt_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function lt<boolean>(
  *       arg1: boolean,
  *       arg2: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4422,7 +4632,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_boolean;
 
 /**
- * @brief Adaptive Function ne<boolean>
+ * @brief Adaptive Function `ne<boolean>`
  * @param x function execute parameter.
  *
  * Determine if boolean arg1 is not equal to the value of arg2 converted to the
@@ -4434,10 +4644,12 @@ afw_function_definition_ne_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function ne<boolean>(
  *       arg1: boolean,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4463,7 +4675,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_boolean;
 
 /**
- * @brief Adaptive Function nex<boolean>
+ * @brief Adaptive Function `nex<boolean>`
  * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is not equal to the value or data type of arg2
@@ -4475,10 +4687,12 @@ afw_function_definition_nex_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function nex<boolean>(
  *       arg1: boolean,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4500,7 +4714,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_boolean;
 
 /**
- * @brief Adaptive Function one_and_only<boolean>
+ * @brief Adaptive Function `one_and_only<boolean>`
  * @param x function execute parameter.
  *
  * This converts a list of boolean values that contains one value to a single
@@ -4511,9 +4725,11 @@ afw_function_definition_one_and_only_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<boolean>(
  *       list: (list list)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4537,7 +4753,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_boolean;
 
 /**
- * @brief Adaptive Function set_equals<boolean>
+ * @brief Adaptive Function `set_equals<boolean>`
  * @param x function execute parameter.
  *
  * Returns boolean true if boolean list1 and boolean list2 are subsets of each
@@ -4548,10 +4764,12 @@ afw_function_definition_set_equals_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<boolean>(
  *       list1: (list boolean),
  *       list2: (list boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4573,7 +4791,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_boolean;
 
 /**
- * @brief Adaptive Function subset<boolean>
+ * @brief Adaptive Function `subset<boolean>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in boolean list1 are all in
@@ -4584,10 +4802,12 @@ afw_function_definition_subset_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function subset<boolean>(
  *       list1: (list boolean),
  *       list2: (list boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -4609,7 +4829,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_boolean;
 
 /**
- * @brief Adaptive Function to_string<boolean>
+ * @brief Adaptive Function `to_string<boolean>`
  * @param x function execute parameter.
  *
  * Converts boolean value to string. For list values, the to_string() value for
@@ -4620,9 +4840,11 @@ afw_function_definition_to_string_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<boolean>(
  *       value: boolean
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -4642,7 +4864,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_boolean;
 
 /**
- * @brief Adaptive Function union<boolean>
+ * @brief Adaptive Function `union<boolean>`
  * @param x function execute parameter.
  *
  * Returns a list of boolean contains all of the unique values in two or more
@@ -4653,11 +4875,13 @@ afw_function_definition_union_boolean;
  *
  * Declaration:
  *
+ * ```
  *   function union<boolean>(
  *       lists_1: (list boolean),
  *       lists_2: (list boolean),
  *       ...lists_rest: (list of (list boolean))
  *   ): (list boolean);
+ * ```
  *
  * Parameters:
  *
@@ -4687,7 +4911,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_assert;
 
 /**
- * @brief Adaptive Function assert
+ * @brief Adaptive Function `assert`
  * @param x function execute parameter.
  *
  * Assert that a value is true. If not, an assertion_failed error is thrown.
@@ -4697,10 +4921,12 @@ afw_function_definition_assert;
  *
  * Declaration:
  *
+ * ```
  *   function assert(
  *       assertion: boolean,
  *       reason?: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -4723,7 +4949,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_expression_tuple;
 
 /**
- * @brief Adaptive Function compile_expression_tuple
+ * @brief Adaptive Function `compile_expression_tuple`
  * @param x function execute parameter.
  *
  * Compile a string containing adaptive expression tuple syntax and return
@@ -4735,10 +4961,12 @@ afw_function_definition_compile_expression_tuple;
  *
  * Declaration:
  *
+ * ```
  *   function compile_expression_tuple(
  *       expression_tuple: list,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -4766,7 +4994,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_json;
 
 /**
- * @brief Adaptive Function compile_json
+ * @brief Adaptive Function `compile_json`
  * @param x function execute parameter.
  *
  * Compile a string containing adaptive JSON syntax and return either an
@@ -4777,10 +5005,12 @@ afw_function_definition_compile_json;
  *
  * Declaration:
  *
+ * ```
  *   function compile_json(
  *       json: string,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -4808,7 +5038,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_relaxed_json;
 
 /**
- * @brief Adaptive Function compile_relaxed_json
+ * @brief Adaptive Function `compile_relaxed_json`
  * @param x function execute parameter.
  *
  * Compile an adaptive relaxed JSON syntax string and return an adaptive value.
@@ -4818,10 +5048,12 @@ afw_function_definition_compile_relaxed_json;
  *
  * Declaration:
  *
+ * ```
  *   function compile_relaxed_json(
  *       json: string,
  *       listing?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -4849,7 +5081,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_convert_syntax_hybrid_to_expression;
 
 /**
- * @brief Adaptive Function convert_syntax_hybrid_to_expression
+ * @brief Adaptive Function `convert_syntax_hybrid_to_expression`
  * @param x function execute parameter.
  *
  * Convert a string containing adaptive hybrid syntax, which can be an adaptive
@@ -4860,10 +5092,12 @@ afw_function_definition_convert_syntax_hybrid_to_expression;
  *
  * Declaration:
  *
+ * ```
  *   function convert_syntax_hybrid_to_expression(
  *       hybrid: string,
  *       whitespace?: any
  *   ): expression;
+ * ```
  *
  * Parameters:
  *
@@ -4888,7 +5122,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decompile;
 
 /**
- * @brief Adaptive Function decompile
+ * @brief Adaptive Function `decompile`
  * @param x function execute parameter.
  *
  * Decompile an adaptive value to string.
@@ -4898,10 +5132,12 @@ afw_function_definition_decompile;
  *
  * Declaration:
  *
+ * ```
  *   function decompile(
  *       value: any,
  *       whitespace?: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -4926,7 +5162,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_expression_tuple;
 
 /**
- * @brief Adaptive Function evaluate_expression_tuple
+ * @brief Adaptive Function `evaluate_expression_tuple`
  * @param x function execute parameter.
  *
  * Compile a string containing adaptive expression tuple syntax and then
@@ -4937,10 +5173,12 @@ afw_function_definition_evaluate_expression_tuple;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_expression_tuple(
  *       expression_tuple: string,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -4967,7 +5205,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_value;
 
 /**
- * @brief Adaptive Function evaluate_value
+ * @brief Adaptive Function `evaluate_value`
  * @param x function execute parameter.
  *
  * Evaluate an adaptive value.
@@ -4977,10 +5215,12 @@ afw_function_definition_evaluate_value;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_value(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -5007,7 +5247,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_with_retry;
 
 /**
- * @brief Adaptive Function evaluate_with_retry
+ * @brief Adaptive Function `evaluate_with_retry`
  * @param x function execute parameter.
  *
  * Evaluate a value and retry up to a limit if an exception occurs.
@@ -5017,10 +5257,12 @@ afw_function_definition_evaluate_with_retry;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate_with_retry(
  *       value: any,
  *       limit: integer
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -5041,7 +5283,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_qualifier;
 
 /**
- * @brief Adaptive Function qualifier
+ * @brief Adaptive Function `qualifier`
  * @param x function execute parameter.
  *
  * This function allows the active variables for a qualifier to be accessed as
@@ -5052,10 +5294,12 @@ afw_function_definition_qualifier;
  *
  * Declaration:
  *
+ * ```
  *   function qualifier(
  *       qualifier: string,
  *       forTesting?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5081,7 +5325,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_qualifiers;
 
 /**
- * @brief Adaptive Function qualifiers
+ * @brief Adaptive Function `qualifiers`
  * @param x function execute parameter.
  *
  * This function allows the active qualifiers to be accessed as properties of
@@ -5093,9 +5337,11 @@ afw_function_definition_qualifiers;
  *
  * Declaration:
  *
+ * ```
  *   function qualifiers(
  *       forTesting?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5119,7 +5365,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_safe_evaluate;
 
 /**
- * @brief Adaptive Function safe_evaluate
+ * @brief Adaptive Function `safe_evaluate`
  * @param x function execute parameter.
  *
  * Return the evaluated adaptive value. If an exception occurs, return
@@ -5130,10 +5376,12 @@ afw_function_definition_safe_evaluate;
  *
  * Declaration:
  *
+ * ```
  *   function safe_evaluate(
  *       value: any,
  *       error: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -5155,7 +5403,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_stringify;
 
 /**
- * @brief Adaptive Function stringify
+ * @brief Adaptive Function `stringify`
  * @param x function execute parameter.
  *
  * Evaluate and decompile an adaptive value to string. For most values this has
@@ -5166,11 +5414,13 @@ afw_function_definition_stringify;
  *
  * Declaration:
  *
+ * ```
  *   function stringify(
  *       value: any,
  *       replacer?: any,
  *       whitespace?: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -5197,7 +5447,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_expression;
 
 /**
- * @brief Adaptive Function test_expression
+ * @brief Adaptive Function `test_expression`
  * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive expression and compare the results to an
@@ -5208,6 +5458,7 @@ afw_function_definition_test_expression;
  *
  * Declaration:
  *
+ * ```
  *   function test_expression(
  *       id: string,
  *       description: string,
@@ -5215,6 +5466,7 @@ afw_function_definition_test_expression;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5247,7 +5499,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_expression_tuple;
 
 /**
- * @brief Adaptive Function test_expression_tuple
+ * @brief Adaptive Function `test_expression_tuple`
  * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive expression tuple and compare the results to
@@ -5258,6 +5510,7 @@ afw_function_definition_test_expression_tuple;
  *
  * Declaration:
  *
+ * ```
  *   function test_expression_tuple(
  *       id: string,
  *       description: string,
@@ -5265,6 +5518,7 @@ afw_function_definition_test_expression_tuple;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5297,7 +5551,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_hybrid;
 
 /**
- * @brief Adaptive Function test_hybrid
+ * @brief Adaptive Function `test_hybrid`
  * @param x function execute parameter.
  *
  * Compile and evaluate a string containing adaptive hybrid syntax which can be
@@ -5309,6 +5563,7 @@ afw_function_definition_test_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function test_hybrid(
  *       id: string,
  *       description: string,
@@ -5316,6 +5571,7 @@ afw_function_definition_test_hybrid;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5348,7 +5604,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_script;
 
 /**
- * @brief Adaptive Function test_script
+ * @brief Adaptive Function `test_script`
  * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive script and compare the results to an
@@ -5359,6 +5615,7 @@ afw_function_definition_test_script;
  *
  * Declaration:
  *
+ * ```
  *   function test_script(
  *       id: string,
  *       description: string,
@@ -5366,6 +5623,7 @@ afw_function_definition_test_script;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5398,7 +5656,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_script_runtime_support;
 
 /**
- * @brief Adaptive Function test_script_runtime_support
+ * @brief Adaptive Function `test_script_runtime_support`
  * @param x function execute parameter.
  *
  * This is a function called internally as the result of a test_script compile.
@@ -5409,9 +5667,11 @@ afw_function_definition_test_script_runtime_support;
  *
  * Declaration:
  *
+ * ```
  *   function test_script_runtime_support(
  *       testScriptObject: (object _AdaptiveTestScriptResult_)
  *   ): (object _AdaptiveTestScriptResult_);
+ * ```
  *
  * Parameters:
  *
@@ -5434,7 +5694,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_template;
 
 /**
- * @brief Adaptive Function test_template
+ * @brief Adaptive Function `test_template`
  * @param x function execute parameter.
  *
  * Compile and evaluate an adaptive template and compare the results to an
@@ -5445,6 +5705,7 @@ afw_function_definition_test_template;
  *
  * Declaration:
  *
+ * ```
  *   function test_template(
  *       id: string,
  *       description: string,
@@ -5452,6 +5713,7 @@ afw_function_definition_test_template;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5484,7 +5746,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_test_value;
 
 /**
- * @brief Adaptive Function test_value
+ * @brief Adaptive Function `test_value`
  * @param x function execute parameter.
  *
  * Evaluate an adaptive value and compare it to an expected value. Return
@@ -5495,6 +5757,7 @@ afw_function_definition_test_value;
  *
  * Declaration:
  *
+ * ```
  *   function test_value(
  *       id: string,
  *       description: string,
@@ -5502,6 +5765,7 @@ afw_function_definition_test_value;
  *       expected: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -5544,7 +5808,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_dayTimeDuration_dateTime;
 
 /**
- * @brief Adaptive Function add_dayTimeDuration<dateTime>
+ * @brief Adaptive Function `add_dayTimeDuration<dateTime>`
  * @param x function execute parameter.
  *
  * Add dateTime arg1 to dayTimeDuration arg2 and return the dateTime result.
@@ -5554,10 +5818,12 @@ afw_function_definition_add_dayTimeDuration_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function add_dayTimeDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: dayTimeDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -5578,7 +5844,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_yearMonthDuration_dateTime;
 
 /**
- * @brief Adaptive Function add_yearMonthDuration<dateTime>
+ * @brief Adaptive Function `add_yearMonthDuration<dateTime>`
  * @param x function execute parameter.
  *
  * Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime result.
@@ -5588,10 +5854,12 @@ afw_function_definition_add_yearMonthDuration_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function add_yearMonthDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: yearMonthDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -5612,7 +5880,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_dateTime;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<dateTime>
+ * @brief Adaptive Function `at_least_one_member_of<dateTime>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in dateTime list1 is in dateTime
@@ -5623,10 +5891,12 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<dateTime>(
  *       list1: (list dateTime),
  *       list2: (list dateTime)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5648,7 +5918,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_dateTime;
 
 /**
- * @brief Adaptive Function bag<dateTime>
+ * @brief Adaptive Function `bag<dateTime>`
  * @param x function execute parameter.
  *
  * Takes any number of dateTime values and returns a list of list.
@@ -5658,9 +5928,11 @@ afw_function_definition_bag_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function bag<dateTime>(
  *       ...values: (list of (list dateTime))
  *   ): (list dateTime);
+ * ```
  *
  * Parameters:
  *
@@ -5680,7 +5952,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_dateTime;
 
 /**
- * @brief Adaptive Function bag_size<dateTime>
+ * @brief Adaptive Function `bag_size<dateTime>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -5690,9 +5962,11 @@ afw_function_definition_bag_size_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<dateTime>(
  *       value: (list dateTime)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -5712,7 +5986,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_dateTime;
 
 /**
- * @brief Adaptive Function dateTime
+ * @brief Adaptive Function `dateTime`
  * @param x function execute parameter.
  *
  * Converts value to data type dateTime returning dateTime result.
@@ -5722,9 +5996,11 @@ afw_function_definition_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function dateTime(
  *       value: any
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -5748,7 +6024,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_dateTime;
 
 /**
- * @brief Adaptive Function eq<dateTime>
+ * @brief Adaptive Function `eq<dateTime>`
  * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is equal to the value of arg2 converted to the
@@ -5760,10 +6036,12 @@ afw_function_definition_eq_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function eq<dateTime>(
  *       arg1: dateTime,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5789,7 +6067,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_dateTime;
 
 /**
- * @brief Adaptive Function eqx<dateTime>
+ * @brief Adaptive Function `eqx<dateTime>`
  * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is equal to the value and data type of arg2
@@ -5801,10 +6079,12 @@ afw_function_definition_eqx_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<dateTime>(
  *       arg1: dateTime,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5826,7 +6106,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_dateTime;
 
 /**
- * @brief Adaptive Function ge<dateTime>
+ * @brief Adaptive Function `ge<dateTime>`
  * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is greater than or equal to dateTime arg2 and
@@ -5840,10 +6120,12 @@ afw_function_definition_ge_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function ge<dateTime>(
  *       arg1: dateTime,
  *       arg2: dateTime
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5865,7 +6147,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_dateTime;
 
 /**
- * @brief Adaptive Function gt<dateTime>
+ * @brief Adaptive Function `gt<dateTime>`
  * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is greater than dateTime arg2 and return the
@@ -5879,10 +6161,12 @@ afw_function_definition_gt_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function gt<dateTime>(
  *       arg1: dateTime,
  *       arg2: dateTime
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5904,7 +6188,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_dateTime;
 
 /**
- * @brief Adaptive Function intersection<dateTime>
+ * @brief Adaptive Function `intersection<dateTime>`
  * @param x function execute parameter.
  *
  * Returns a list of dateTime with the values that are common to both list of
@@ -5915,10 +6199,12 @@ afw_function_definition_intersection_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<dateTime>(
  *       list1: (list dateTime),
  *       list2: (list dateTime)
  *   ): (list dateTime);
+ * ```
  *
  * Parameters:
  *
@@ -5940,7 +6226,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_dateTime;
 
 /**
- * @brief Adaptive Function is<dateTime>
+ * @brief Adaptive Function `is<dateTime>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType dateTime and return the boolean result.
@@ -5950,9 +6236,11 @@ afw_function_definition_is_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function is<dateTime>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -5972,7 +6260,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_dateTime;
 
 /**
- * @brief Adaptive Function is_in<dateTime>
+ * @brief Adaptive Function `is_in<dateTime>`
  * @param x function execute parameter.
  *
  * Checks whether dateTime value is in list of dateTime list and returns the
@@ -5983,10 +6271,12 @@ afw_function_definition_is_in_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<dateTime>(
  *       value: dateTime,
  *       list: (list dateTime)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6008,7 +6298,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_dateTime;
 
 /**
- * @brief Adaptive Function le<dateTime>
+ * @brief Adaptive Function `le<dateTime>`
  * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is less than or equal to dateTime arg2 and return
@@ -6022,10 +6312,12 @@ afw_function_definition_le_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function le<dateTime>(
  *       arg1: dateTime,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6047,7 +6339,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_dateTime;
 
 /**
- * @brief Adaptive Function lt<dateTime>
+ * @brief Adaptive Function `lt<dateTime>`
  * @param x function execute parameter.
  *
  * Checks for dateTime arg1 is less that dateTime arg2 and return the boolean
@@ -6061,10 +6353,12 @@ afw_function_definition_lt_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function lt<dateTime>(
  *       arg1: dateTime,
  *       arg2: dateTime
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6086,7 +6380,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_dateTime;
 
 /**
- * @brief Adaptive Function max<dateTime>
+ * @brief Adaptive Function `max<dateTime>`
  * @param x function execute parameter.
  *
  * Return the dateTime value that is greater than or equal to the others.
@@ -6099,10 +6393,12 @@ afw_function_definition_max_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function max<dateTime>(
  *       values_1: dateTime,
  *       ...values_rest: (list of dateTime)
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -6122,7 +6418,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_dateTime;
 
 /**
- * @brief Adaptive Function min<dateTime>
+ * @brief Adaptive Function `min<dateTime>`
  * @param x function execute parameter.
  *
  * Return the dateTime value that is less than or equal to the others.
@@ -6135,10 +6431,12 @@ afw_function_definition_min_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function min<dateTime>(
  *       values_1: dateTime,
  *       ...values_rest: (list of dateTime)
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -6158,7 +6456,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_dateTime;
 
 /**
- * @brief Adaptive Function ne<dateTime>
+ * @brief Adaptive Function `ne<dateTime>`
  * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is not equal to the value of arg2 converted to
@@ -6171,10 +6469,12 @@ afw_function_definition_ne_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function ne<dateTime>(
  *       arg1: dateTime,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6200,7 +6500,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_dateTime;
 
 /**
- * @brief Adaptive Function nex<dateTime>
+ * @brief Adaptive Function `nex<dateTime>`
  * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is not equal to the value or data type of
@@ -6212,10 +6512,12 @@ afw_function_definition_nex_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function nex<dateTime>(
  *       arg1: dateTime,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6237,7 +6539,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_dateTime;
 
 /**
- * @brief Adaptive Function one_and_only<dateTime>
+ * @brief Adaptive Function `one_and_only<dateTime>`
  * @param x function execute parameter.
  *
  * This converts a list of dateTime values that contains one value to a single
@@ -6248,9 +6550,11 @@ afw_function_definition_one_and_only_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<dateTime>(
  *       list: (list list)
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -6274,7 +6578,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_dateTime;
 
 /**
- * @brief Adaptive Function set_equals<dateTime>
+ * @brief Adaptive Function `set_equals<dateTime>`
  * @param x function execute parameter.
  *
  * Returns boolean true if dateTime list1 and dateTime list2 are subsets of
@@ -6285,10 +6589,12 @@ afw_function_definition_set_equals_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<dateTime>(
  *       list1: (list dateTime),
  *       list2: (list dateTime)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6310,7 +6616,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_dateTime;
 
 /**
- * @brief Adaptive Function subset<dateTime>
+ * @brief Adaptive Function `subset<dateTime>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in dateTime list1 are all in
@@ -6321,10 +6627,12 @@ afw_function_definition_subset_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function subset<dateTime>(
  *       list1: (list dateTime),
  *       list2: (list dateTime)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6346,7 +6654,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_dayTimeDuration_dateTime;
 
 /**
- * @brief Adaptive Function subtract_dayTimeDuration<dateTime>
+ * @brief Adaptive Function `subtract_dayTimeDuration<dateTime>`
  * @param x function execute parameter.
  *
  * Subtract dayTimeDuration arg2 from dateTime arg1 and return the dateTime
@@ -6357,10 +6665,12 @@ afw_function_definition_subtract_dayTimeDuration_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function subtract_dayTimeDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: dayTimeDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -6381,7 +6691,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_yearMonthDuration_dateTime;
 
 /**
- * @brief Adaptive Function subtract_yearMonthDuration<dateTime>
+ * @brief Adaptive Function `subtract_yearMonthDuration<dateTime>`
  * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from dateTime arg1 and return the dateTime
@@ -6392,10 +6702,12 @@ afw_function_definition_subtract_yearMonthDuration_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function subtract_yearMonthDuration<dateTime>(
  *       arg1: dateTime,
  *       arg2: yearMonthDuration
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -6416,7 +6728,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_dateTime;
 
 /**
- * @brief Adaptive Function to_string<dateTime>
+ * @brief Adaptive Function `to_string<dateTime>`
  * @param x function execute parameter.
  *
  * Converts dateTime value to string. For list values, the to_string() value
@@ -6427,9 +6739,11 @@ afw_function_definition_to_string_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<dateTime>(
  *       value: dateTime
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -6449,7 +6763,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_dateTime;
 
 /**
- * @brief Adaptive Function union<dateTime>
+ * @brief Adaptive Function `union<dateTime>`
  * @param x function execute parameter.
  *
  * Returns a list of dateTime contains all of the unique values in two or more
@@ -6460,11 +6774,13 @@ afw_function_definition_union_dateTime;
  *
  * Declaration:
  *
+ * ```
  *   function union<dateTime>(
  *       lists_1: (list dateTime),
  *       lists_2: (list dateTime),
  *       ...lists_rest: (list of (list dateTime))
  *   ): (list dateTime);
+ * ```
  *
  * Parameters:
  *
@@ -6494,7 +6810,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_yearMonthDuration_date;
 
 /**
- * @brief Adaptive Function add_yearMonthDuration<date>
+ * @brief Adaptive Function `add_yearMonthDuration<date>`
  * @param x function execute parameter.
  *
  * Add date arg1 to yearMonthDuration arg2 and return the date result.
@@ -6504,10 +6820,12 @@ afw_function_definition_add_yearMonthDuration_date;
  *
  * Declaration:
  *
+ * ```
  *   function add_yearMonthDuration<date>(
  *       arg1: date,
  *       arg2: yearMonthDuration
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -6528,7 +6846,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_date;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<date>
+ * @brief Adaptive Function `at_least_one_member_of<date>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in date list1 is in date list2.
@@ -6538,10 +6856,12 @@ afw_function_definition_at_least_one_member_of_date;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<date>(
  *       list1: (list date),
  *       list2: (list date)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6563,7 +6883,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_date;
 
 /**
- * @brief Adaptive Function bag<date>
+ * @brief Adaptive Function `bag<date>`
  * @param x function execute parameter.
  *
  * Takes any number of date values and returns a list of list.
@@ -6573,9 +6893,11 @@ afw_function_definition_bag_date;
  *
  * Declaration:
  *
+ * ```
  *   function bag<date>(
  *       ...values: (list of (list date))
  *   ): (list date);
+ * ```
  *
  * Parameters:
  *
@@ -6595,7 +6917,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_date;
 
 /**
- * @brief Adaptive Function bag_size<date>
+ * @brief Adaptive Function `bag_size<date>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -6605,9 +6927,11 @@ afw_function_definition_bag_size_date;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<date>(
  *       value: (list date)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -6627,7 +6951,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_date;
 
 /**
- * @brief Adaptive Function date
+ * @brief Adaptive Function `date`
  * @param x function execute parameter.
  *
  * Converts value to data type date returning date result.
@@ -6637,9 +6961,11 @@ afw_function_definition_date;
  *
  * Declaration:
  *
+ * ```
  *   function date(
  *       value: any
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -6663,7 +6989,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_date;
 
 /**
- * @brief Adaptive Function eq<date>
+ * @brief Adaptive Function `eq<date>`
  * @param x function execute parameter.
  *
  * Determine if date arg1 is equal to the value of arg2 converted to the data
@@ -6675,10 +7001,12 @@ afw_function_definition_eq_date;
  *
  * Declaration:
  *
+ * ```
  *   function eq<date>(
  *       arg1: date,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6704,7 +7032,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_date;
 
 /**
- * @brief Adaptive Function eqx<date>
+ * @brief Adaptive Function `eqx<date>`
  * @param x function execute parameter.
  *
  * Determine if for date arg1 is equal to the value and data type of arg2 then
@@ -6716,10 +7044,12 @@ afw_function_definition_eqx_date;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<date>(
  *       arg1: date,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6741,7 +7071,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_date;
 
 /**
- * @brief Adaptive Function ge<date>
+ * @brief Adaptive Function `ge<date>`
  * @param x function execute parameter.
  *
  * Checks for date arg1 is greater than or equal to date arg2 and return the
@@ -6755,10 +7085,12 @@ afw_function_definition_ge_date;
  *
  * Declaration:
  *
+ * ```
  *   function ge<date>(
  *       arg1: date,
  *       arg2: date
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6780,7 +7112,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_date;
 
 /**
- * @brief Adaptive Function gt<date>
+ * @brief Adaptive Function `gt<date>`
  * @param x function execute parameter.
  *
  * Checks for date arg1 is greater than date arg2 and return the boolean
@@ -6794,10 +7126,12 @@ afw_function_definition_gt_date;
  *
  * Declaration:
  *
+ * ```
  *   function gt<date>(
  *       arg1: date,
  *       arg2: date
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6819,7 +7153,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_date;
 
 /**
- * @brief Adaptive Function intersection<date>
+ * @brief Adaptive Function `intersection<date>`
  * @param x function execute parameter.
  *
  * Returns a list of date with the values that are common to both list of date
@@ -6830,10 +7164,12 @@ afw_function_definition_intersection_date;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<date>(
  *       list1: (list date),
  *       list2: (list date)
  *   ): (list date);
+ * ```
  *
  * Parameters:
  *
@@ -6855,7 +7191,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_date;
 
 /**
- * @brief Adaptive Function is<date>
+ * @brief Adaptive Function `is<date>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType date and return the boolean result.
@@ -6865,9 +7201,11 @@ afw_function_definition_is_date;
  *
  * Declaration:
  *
+ * ```
  *   function is<date>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6887,7 +7225,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_date;
 
 /**
- * @brief Adaptive Function is_in<date>
+ * @brief Adaptive Function `is_in<date>`
  * @param x function execute parameter.
  *
  * Checks whether date value is in list of date list and returns the boolean
@@ -6898,10 +7236,12 @@ afw_function_definition_is_in_date;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<date>(
  *       value: date,
  *       list: (list date)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6923,7 +7263,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_date;
 
 /**
- * @brief Adaptive Function le<date>
+ * @brief Adaptive Function `le<date>`
  * @param x function execute parameter.
  *
  * Checks for date arg1 is less than or equal to date arg2 and return the
@@ -6937,10 +7277,12 @@ afw_function_definition_le_date;
  *
  * Declaration:
  *
+ * ```
  *   function le<date>(
  *       arg1: date,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -6962,7 +7304,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_date;
 
 /**
- * @brief Adaptive Function lt<date>
+ * @brief Adaptive Function `lt<date>`
  * @param x function execute parameter.
  *
  * Checks for date arg1 is less that date arg2 and return the boolean result.
@@ -6975,10 +7317,12 @@ afw_function_definition_lt_date;
  *
  * Declaration:
  *
+ * ```
  *   function lt<date>(
  *       arg1: date,
  *       arg2: date
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7000,7 +7344,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_date;
 
 /**
- * @brief Adaptive Function max<date>
+ * @brief Adaptive Function `max<date>`
  * @param x function execute parameter.
  *
  * Return the date value that is greater than or equal to the others..
@@ -7013,10 +7357,12 @@ afw_function_definition_max_date;
  *
  * Declaration:
  *
+ * ```
  *   function max<date>(
  *       values_1: date,
  *       ...values_rest: (list of date)
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -7036,7 +7382,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_date;
 
 /**
- * @brief Adaptive Function min<date>
+ * @brief Adaptive Function `min<date>`
  * @param x function execute parameter.
  *
  * Return the date value that is less than or equal to the others..
@@ -7049,10 +7395,12 @@ afw_function_definition_min_date;
  *
  * Declaration:
  *
+ * ```
  *   function min<date>(
  *       values_1: date,
  *       ...values_rest: (list of date)
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -7072,7 +7420,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_date;
 
 /**
- * @brief Adaptive Function ne<date>
+ * @brief Adaptive Function `ne<date>`
  * @param x function execute parameter.
  *
  * Determine if date arg1 is not equal to the value of arg2 converted to the
@@ -7084,10 +7432,12 @@ afw_function_definition_ne_date;
  *
  * Declaration:
  *
+ * ```
  *   function ne<date>(
  *       arg1: date,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7113,7 +7463,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_date;
 
 /**
- * @brief Adaptive Function nex<date>
+ * @brief Adaptive Function `nex<date>`
  * @param x function execute parameter.
  *
  * Determine if for date arg1 is not equal to the value or data type of arg2
@@ -7125,10 +7475,12 @@ afw_function_definition_nex_date;
  *
  * Declaration:
  *
+ * ```
  *   function nex<date>(
  *       arg1: date,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7150,7 +7502,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_date;
 
 /**
- * @brief Adaptive Function one_and_only<date>
+ * @brief Adaptive Function `one_and_only<date>`
  * @param x function execute parameter.
  *
  * This converts a list of date values that contains one value to a single date
@@ -7161,9 +7513,11 @@ afw_function_definition_one_and_only_date;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<date>(
  *       list: (list list)
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -7187,7 +7541,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_date;
 
 /**
- * @brief Adaptive Function set_equals<date>
+ * @brief Adaptive Function `set_equals<date>`
  * @param x function execute parameter.
  *
  * Returns boolean true if date list1 and date list2 are subsets of each other
@@ -7198,10 +7552,12 @@ afw_function_definition_set_equals_date;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<date>(
  *       list1: (list date),
  *       list2: (list date)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7223,7 +7579,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_date;
 
 /**
- * @brief Adaptive Function subset<date>
+ * @brief Adaptive Function `subset<date>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in date list1 are all in date
@@ -7234,10 +7590,12 @@ afw_function_definition_subset_date;
  *
  * Declaration:
  *
+ * ```
  *   function subset<date>(
  *       list1: (list date),
  *       list2: (list date)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7259,7 +7617,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_yearMonthDuration_date;
 
 /**
- * @brief Adaptive Function subtract_yearMonthDuration<date>
+ * @brief Adaptive Function `subtract_yearMonthDuration<date>`
  * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from date arg1 and return the date result.
@@ -7269,10 +7627,12 @@ afw_function_definition_subtract_yearMonthDuration_date;
  *
  * Declaration:
  *
+ * ```
  *   function subtract_yearMonthDuration<date>(
  *       arg1: date,
  *       arg2: yearMonthDuration
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -7293,7 +7653,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_date;
 
 /**
- * @brief Adaptive Function to_string<date>
+ * @brief Adaptive Function `to_string<date>`
  * @param x function execute parameter.
  *
  * Converts date value to string. For list values, the to_string() value for
@@ -7304,9 +7664,11 @@ afw_function_definition_to_string_date;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<date>(
  *       value: date
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -7326,7 +7688,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_date;
 
 /**
- * @brief Adaptive Function union<date>
+ * @brief Adaptive Function `union<date>`
  * @param x function execute parameter.
  *
  * Returns a list of date contains all of the unique values in two or more list
@@ -7337,11 +7699,13 @@ afw_function_definition_union_date;
  *
  * Declaration:
  *
+ * ```
  *   function union<date>(
  *       lists_1: (list date),
  *       lists_2: (list date),
  *       ...lists_rest: (list of (list date))
  *   ): (list date);
+ * ```
  *
  * Parameters:
  *
@@ -7371,7 +7735,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_dayTimeDuration;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<dayTimeDuration>
+ * @brief Adaptive Function `at_least_one_member_of<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in dayTimeDuration list1 is in
@@ -7382,10 +7746,12 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<dayTimeDuration>(
  *       list1: (list dayTimeDuration),
  *       list2: (list dayTimeDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7407,7 +7773,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_dayTimeDuration;
 
 /**
- * @brief Adaptive Function bag<dayTimeDuration>
+ * @brief Adaptive Function `bag<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Takes any number of dayTimeDuration values and returns a list of list.
@@ -7417,9 +7783,11 @@ afw_function_definition_bag_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function bag<dayTimeDuration>(
  *       ...values: (list of (list dayTimeDuration))
  *   ): (list dayTimeDuration);
+ * ```
  *
  * Parameters:
  *
@@ -7439,7 +7807,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_dayTimeDuration;
 
 /**
- * @brief Adaptive Function bag_size<dayTimeDuration>
+ * @brief Adaptive Function `bag_size<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -7449,9 +7817,11 @@ afw_function_definition_bag_size_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<dayTimeDuration>(
  *       value: (list dayTimeDuration)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -7471,7 +7841,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_dayTimeDuration;
 
 /**
- * @brief Adaptive Function dayTimeDuration
+ * @brief Adaptive Function `dayTimeDuration`
  * @param x function execute parameter.
  *
  * Converts value to data type dayTimeDuration returning dayTimeDuration
@@ -7482,9 +7852,11 @@ afw_function_definition_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function dayTimeDuration(
  *       value: any
  *   ): dayTimeDuration;
+ * ```
  *
  * Parameters:
  *
@@ -7508,7 +7880,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_dayTimeDuration;
 
 /**
- * @brief Adaptive Function eq<dayTimeDuration>
+ * @brief Adaptive Function `eq<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is equal to the value of arg2 converted to
@@ -7521,10 +7893,12 @@ afw_function_definition_eq_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function eq<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7550,7 +7924,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_dayTimeDuration;
 
 /**
- * @brief Adaptive Function eqx<dayTimeDuration>
+ * @brief Adaptive Function `eqx<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is equal to the value and data type of
@@ -7562,10 +7936,12 @@ afw_function_definition_eqx_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7587,7 +7963,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_dayTimeDuration;
 
 /**
- * @brief Adaptive Function ge<dayTimeDuration>
+ * @brief Adaptive Function `ge<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is greater than or equal to dayTimeDuration
@@ -7598,10 +7974,12 @@ afw_function_definition_ge_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function ge<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: dayTimeDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7623,7 +8001,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_dayTimeDuration;
 
 /**
- * @brief Adaptive Function gt<dayTimeDuration>
+ * @brief Adaptive Function `gt<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is greater than dayTimeDuration arg2 and
@@ -7634,10 +8012,12 @@ afw_function_definition_gt_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function gt<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: dayTimeDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7659,7 +8039,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_dayTimeDuration;
 
 /**
- * @brief Adaptive Function intersection<dayTimeDuration>
+ * @brief Adaptive Function `intersection<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Returns a list of dayTimeDuration with the values that are common to both
@@ -7670,10 +8050,12 @@ afw_function_definition_intersection_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<dayTimeDuration>(
  *       list1: (list dayTimeDuration),
  *       list2: (list dayTimeDuration)
  *   ): (list dayTimeDuration);
+ * ```
  *
  * Parameters:
  *
@@ -7695,7 +8077,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_dayTimeDuration;
 
 /**
- * @brief Adaptive Function is<dayTimeDuration>
+ * @brief Adaptive Function `is<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType dayTimeDuration and return the boolean
@@ -7706,9 +8088,11 @@ afw_function_definition_is_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function is<dayTimeDuration>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7728,7 +8112,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_dayTimeDuration;
 
 /**
- * @brief Adaptive Function is_in<dayTimeDuration>
+ * @brief Adaptive Function `is_in<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks whether dayTimeDuration value is in list of dayTimeDuration list and
@@ -7739,10 +8123,12 @@ afw_function_definition_is_in_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<dayTimeDuration>(
  *       value: dayTimeDuration,
  *       list: (list dayTimeDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7764,7 +8150,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_dayTimeDuration;
 
 /**
- * @brief Adaptive Function le<dayTimeDuration>
+ * @brief Adaptive Function `le<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration
@@ -7775,10 +8161,12 @@ afw_function_definition_le_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function le<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7800,7 +8188,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_dayTimeDuration;
 
 /**
- * @brief Adaptive Function lt<dayTimeDuration>
+ * @brief Adaptive Function `lt<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Checks for dayTimeDuration arg1 is less that dayTimeDuration arg2 and return
@@ -7811,10 +8199,12 @@ afw_function_definition_lt_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function lt<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: dayTimeDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7836,7 +8226,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_dayTimeDuration;
 
 /**
- * @brief Adaptive Function ne<dayTimeDuration>
+ * @brief Adaptive Function `ne<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is not equal to the value of arg2
@@ -7849,10 +8239,12 @@ afw_function_definition_ne_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function ne<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7878,7 +8270,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_dayTimeDuration;
 
 /**
- * @brief Adaptive Function nex<dayTimeDuration>
+ * @brief Adaptive Function `nex<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is not equal to the value or data type
@@ -7890,10 +8282,12 @@ afw_function_definition_nex_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function nex<dayTimeDuration>(
  *       arg1: dayTimeDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7915,7 +8309,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_dayTimeDuration;
 
 /**
- * @brief Adaptive Function one_and_only<dayTimeDuration>
+ * @brief Adaptive Function `one_and_only<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * This converts a list of dayTimeDuration values that contains one value to a
@@ -7926,9 +8320,11 @@ afw_function_definition_one_and_only_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<dayTimeDuration>(
  *       list: (list list)
  *   ): dayTimeDuration;
+ * ```
  *
  * Parameters:
  *
@@ -7952,7 +8348,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_dayTimeDuration;
 
 /**
- * @brief Adaptive Function set_equals<dayTimeDuration>
+ * @brief Adaptive Function `set_equals<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2 are
@@ -7963,10 +8359,12 @@ afw_function_definition_set_equals_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<dayTimeDuration>(
  *       list1: (list dayTimeDuration),
  *       list2: (list dayTimeDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -7988,7 +8386,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_dayTimeDuration;
 
 /**
- * @brief Adaptive Function subset<dayTimeDuration>
+ * @brief Adaptive Function `subset<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in dayTimeDuration list1 are all
@@ -7999,10 +8397,12 @@ afw_function_definition_subset_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function subset<dayTimeDuration>(
  *       list1: (list dayTimeDuration),
  *       list2: (list dayTimeDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8024,7 +8424,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_dayTimeDuration;
 
 /**
- * @brief Adaptive Function to_string<dayTimeDuration>
+ * @brief Adaptive Function `to_string<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Converts dayTimeDuration value to string. For list values, the to_string()
@@ -8035,9 +8435,11 @@ afw_function_definition_to_string_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<dayTimeDuration>(
  *       value: dayTimeDuration
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -8057,7 +8459,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_dayTimeDuration;
 
 /**
- * @brief Adaptive Function union<dayTimeDuration>
+ * @brief Adaptive Function `union<dayTimeDuration>`
  * @param x function execute parameter.
  *
  * Returns a list of dayTimeDuration contains all of the unique values in two
@@ -8068,11 +8470,13 @@ afw_function_definition_union_dayTimeDuration;
  *
  * Declaration:
  *
+ * ```
  *   function union<dayTimeDuration>(
  *       lists_1: (list dayTimeDuration),
  *       lists_2: (list dayTimeDuration),
  *       ...lists_rest: (list of (list dayTimeDuration))
  *   ): (list dayTimeDuration);
+ * ```
  *
  * Parameters:
  *
@@ -8102,7 +8506,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_dnsName;
 
 /**
- * @brief Adaptive Function bag<dnsName>
+ * @brief Adaptive Function `bag<dnsName>`
  * @param x function execute parameter.
  *
  * Takes any number of dnsName values and returns a list of list.
@@ -8112,9 +8516,11 @@ afw_function_definition_bag_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function bag<dnsName>(
  *       ...values: (list of (list dnsName))
  *   ): (list dnsName);
+ * ```
  *
  * Parameters:
  *
@@ -8134,7 +8540,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_dnsName;
 
 /**
- * @brief Adaptive Function bag_size<dnsName>
+ * @brief Adaptive Function `bag_size<dnsName>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -8144,9 +8550,11 @@ afw_function_definition_bag_size_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<dnsName>(
  *       value: (list dnsName)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -8166,7 +8574,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_dnsName;
 
 /**
- * @brief Adaptive Function dnsName
+ * @brief Adaptive Function `dnsName`
  * @param x function execute parameter.
  *
  * Converts value to data type dnsName returning dnsName result.
@@ -8176,9 +8584,11 @@ afw_function_definition_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function dnsName(
  *       value: any
  *   ): dnsName;
+ * ```
  *
  * Parameters:
  *
@@ -8202,7 +8612,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_dnsName;
 
 /**
- * @brief Adaptive Function eq<dnsName>
+ * @brief Adaptive Function `eq<dnsName>`
  * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is equal to the value of arg2 converted to the
@@ -8214,10 +8624,12 @@ afw_function_definition_eq_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function eq<dnsName>(
  *       arg1: dnsName,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8243,7 +8655,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_dnsName;
 
 /**
- * @brief Adaptive Function eqx<dnsName>
+ * @brief Adaptive Function `eqx<dnsName>`
  * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is equal to the value and data type of arg2
@@ -8255,10 +8667,12 @@ afw_function_definition_eqx_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<dnsName>(
  *       arg1: dnsName,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8280,7 +8694,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_dnsName;
 
 /**
- * @brief Adaptive Function ge<dnsName>
+ * @brief Adaptive Function `ge<dnsName>`
  * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
@@ -8291,10 +8705,12 @@ afw_function_definition_ge_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function ge<dnsName>(
  *       arg1: dnsName,
  *       arg2: dnsName
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8316,7 +8732,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_dnsName;
 
 /**
- * @brief Adaptive Function gt<dnsName>
+ * @brief Adaptive Function `gt<dnsName>`
  * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
@@ -8327,10 +8743,12 @@ afw_function_definition_gt_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function gt<dnsName>(
  *       arg1: dnsName,
  *       arg2: dnsName
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8352,7 +8770,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_dnsName;
 
 /**
- * @brief Adaptive Function is<dnsName>
+ * @brief Adaptive Function `is<dnsName>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType dnsName and return the boolean result.
@@ -8362,9 +8780,11 @@ afw_function_definition_is_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function is<dnsName>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8384,7 +8804,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_dnsName;
 
 /**
- * @brief Adaptive Function is_in<dnsName>
+ * @brief Adaptive Function `is_in<dnsName>`
  * @param x function execute parameter.
  *
  * Checks whether dnsName value is in list of dnsName list and returns the
@@ -8395,10 +8815,12 @@ afw_function_definition_is_in_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<dnsName>(
  *       value: dnsName,
  *       list: (list dnsName)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8420,7 +8842,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_dnsName;
 
 /**
- * @brief Adaptive Function le<dnsName>
+ * @brief Adaptive Function `le<dnsName>`
  * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is less than or equal to dnsName arg2 and return the
@@ -8431,10 +8853,12 @@ afw_function_definition_le_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function le<dnsName>(
  *       arg1: dnsName,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8456,7 +8880,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_dnsName;
 
 /**
- * @brief Adaptive Function lt<dnsName>
+ * @brief Adaptive Function `lt<dnsName>`
  * @param x function execute parameter.
  *
  * Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
@@ -8467,10 +8891,12 @@ afw_function_definition_lt_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function lt<dnsName>(
  *       arg1: dnsName,
  *       arg2: dnsName
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8492,7 +8918,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_dnsName;
 
 /**
- * @brief Adaptive Function ne<dnsName>
+ * @brief Adaptive Function `ne<dnsName>`
  * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is not equal to the value of arg2 converted to the
@@ -8504,10 +8930,12 @@ afw_function_definition_ne_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function ne<dnsName>(
  *       arg1: dnsName,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8533,7 +8961,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_dnsName;
 
 /**
- * @brief Adaptive Function nex<dnsName>
+ * @brief Adaptive Function `nex<dnsName>`
  * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is not equal to the value or data type of arg2
@@ -8545,10 +8973,12 @@ afw_function_definition_nex_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function nex<dnsName>(
  *       arg1: dnsName,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8570,7 +9000,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_dnsName;
 
 /**
- * @brief Adaptive Function one_and_only<dnsName>
+ * @brief Adaptive Function `one_and_only<dnsName>`
  * @param x function execute parameter.
  *
  * This converts a list of dnsName values that contains one value to a single
@@ -8581,9 +9011,11 @@ afw_function_definition_one_and_only_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<dnsName>(
  *       list: (list list)
  *   ): dnsName;
+ * ```
  *
  * Parameters:
  *
@@ -8607,7 +9039,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_dnsName;
 
 /**
- * @brief Adaptive Function regexp_match<dnsName>
+ * @brief Adaptive Function `regexp_match<dnsName>`
  * @param x function execute parameter.
  *
  * Checks whether dnsName value matches the regular expression regexp and
@@ -8618,10 +9050,12 @@ afw_function_definition_regexp_match_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<dnsName>(
  *       value: dnsName,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8643,7 +9077,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_dnsName;
 
 /**
- * @brief Adaptive Function to_string<dnsName>
+ * @brief Adaptive Function `to_string<dnsName>`
  * @param x function execute parameter.
  *
  * Converts dnsName value to string. For list values, the to_string() value for
@@ -8654,9 +9088,11 @@ afw_function_definition_to_string_dnsName;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<dnsName>(
  *       value: dnsName
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -8686,7 +9122,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_abs_double;
 
 /**
- * @brief Adaptive Function abs<double>
+ * @brief Adaptive Function `abs<double>`
  * @param x function execute parameter.
  *
  * Compute the absolute value of the double value and return the double result.
@@ -8696,9 +9132,11 @@ afw_function_definition_abs_double;
  *
  * Declaration:
  *
+ * ```
  *   function abs<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -8717,7 +9155,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_double;
 
 /**
- * @brief Adaptive Function add<double>
+ * @brief Adaptive Function `add<double>`
  * @param x function execute parameter.
  *
  * Add 2 or more double values and return the double result.
@@ -8727,11 +9165,13 @@ afw_function_definition_add_double;
  *
  * Declaration:
  *
+ * ```
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -8750,7 +9190,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_double;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<double>
+ * @brief Adaptive Function `at_least_one_member_of<double>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in double list1 is in double
@@ -8761,10 +9201,12 @@ afw_function_definition_at_least_one_member_of_double;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<double>(
  *       list1: (list double),
  *       list2: (list double)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8786,7 +9228,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_double;
 
 /**
- * @brief Adaptive Function bag<double>
+ * @brief Adaptive Function `bag<double>`
  * @param x function execute parameter.
  *
  * Takes any number of double values and returns a list of list.
@@ -8796,9 +9238,11 @@ afw_function_definition_bag_double;
  *
  * Declaration:
  *
+ * ```
  *   function bag<double>(
  *       ...values: (list of (list double))
  *   ): (list double);
+ * ```
  *
  * Parameters:
  *
@@ -8818,7 +9262,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_double;
 
 /**
- * @brief Adaptive Function bag_size<double>
+ * @brief Adaptive Function `bag_size<double>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -8828,9 +9272,11 @@ afw_function_definition_bag_size_double;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<double>(
  *       value: (list double)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -8850,7 +9296,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ceil_double;
 
 /**
- * @brief Adaptive Function ceil<double>
+ * @brief Adaptive Function `ceil<double>`
  * @param x function execute parameter.
  *
  * Determine the smallest integer that is greater then or equal to the double
@@ -8861,9 +9307,11 @@ afw_function_definition_ceil_double;
  *
  * Declaration:
  *
+ * ```
  *   function ceil<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -8882,7 +9330,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_divide_double;
 
 /**
- * @brief Adaptive Function divide<double>
+ * @brief Adaptive Function `divide<double>`
  * @param x function execute parameter.
  *
  * Divide double dividend by double divisor and return the double quotient.
@@ -8892,10 +9340,12 @@ afw_function_definition_divide_double;
  *
  * Declaration:
  *
+ * ```
  *   function divide<double>(
  *       dividend: double,
  *       divisor: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -8916,7 +9366,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_double;
 
 /**
- * @brief Adaptive Function double
+ * @brief Adaptive Function `double`
  * @param x function execute parameter.
  *
  * Converts value to data type double returning double result.
@@ -8926,9 +9376,11 @@ afw_function_definition_double;
  *
  * Declaration:
  *
+ * ```
  *   function double(
  *       value: any
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -8952,7 +9404,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_double;
 
 /**
- * @brief Adaptive Function eq<double>
+ * @brief Adaptive Function `eq<double>`
  * @param x function execute parameter.
  *
  * Determine if double arg1 is equal to the value of arg2 converted to the data
@@ -8964,10 +9416,12 @@ afw_function_definition_eq_double;
  *
  * Declaration:
  *
+ * ```
  *   function eq<double>(
  *       arg1: double,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -8993,7 +9447,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_double;
 
 /**
- * @brief Adaptive Function eqx<double>
+ * @brief Adaptive Function `eqx<double>`
  * @param x function execute parameter.
  *
  * Determine if for double arg1 is equal to the value and data type of arg2
@@ -9005,10 +9459,12 @@ afw_function_definition_eqx_double;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<double>(
  *       arg1: double,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9030,7 +9486,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_floor_double;
 
 /**
- * @brief Adaptive Function floor<double>
+ * @brief Adaptive Function `floor<double>`
  * @param x function execute parameter.
  *
  * Determine the largest integer that is smaller then or equal to the double
@@ -9041,9 +9497,11 @@ afw_function_definition_floor_double;
  *
  * Declaration:
  *
+ * ```
  *   function floor<double>(
  *       number: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9062,7 +9520,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_double;
 
 /**
- * @brief Adaptive Function ge<double>
+ * @brief Adaptive Function `ge<double>`
  * @param x function execute parameter.
  *
  * Checks for double arg1 is greater than or equal to double arg2 and return
@@ -9073,10 +9531,12 @@ afw_function_definition_ge_double;
  *
  * Declaration:
  *
+ * ```
  *   function ge<double>(
  *       arg1: double,
  *       arg2: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9098,7 +9558,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_double;
 
 /**
- * @brief Adaptive Function gt<double>
+ * @brief Adaptive Function `gt<double>`
  * @param x function execute parameter.
  *
  * Checks for double arg1 is greater than double arg2 and return the boolean
@@ -9109,10 +9569,12 @@ afw_function_definition_gt_double;
  *
  * Declaration:
  *
+ * ```
  *   function gt<double>(
  *       arg1: double,
  *       arg2: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9134,7 +9596,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_double;
 
 /**
- * @brief Adaptive Function intersection<double>
+ * @brief Adaptive Function `intersection<double>`
  * @param x function execute parameter.
  *
  * Returns a list of double with the values that are common to both list of
@@ -9145,10 +9607,12 @@ afw_function_definition_intersection_double;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<double>(
  *       list1: (list double),
  *       list2: (list double)
  *   ): (list double);
+ * ```
  *
  * Parameters:
  *
@@ -9170,7 +9634,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_NaN;
 
 /**
- * @brief Adaptive Function is_NaN
+ * @brief Adaptive Function `is_NaN`
  * @param x function execute parameter.
  *
  * Checks if the argument 'number' is not a number(NaN) and returns the boolean
@@ -9181,9 +9645,11 @@ afw_function_definition_is_NaN;
  *
  * Declaration:
  *
+ * ```
  *   function is_NaN(
  *       number: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9202,7 +9668,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_double;
 
 /**
- * @brief Adaptive Function is<double>
+ * @brief Adaptive Function `is<double>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType double and return the boolean result.
@@ -9212,9 +9678,11 @@ afw_function_definition_is_double;
  *
  * Declaration:
  *
+ * ```
  *   function is<double>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9234,7 +9702,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_finite;
 
 /**
- * @brief Adaptive Function is_finite
+ * @brief Adaptive Function `is_finite`
  * @param x function execute parameter.
  *
  * Checks if the argument 'number' is finite and returns the boolean result.
@@ -9244,9 +9712,11 @@ afw_function_definition_is_finite;
  *
  * Declaration:
  *
+ * ```
  *   function is_finite(
  *       number: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9265,7 +9735,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_double;
 
 /**
- * @brief Adaptive Function is_in<double>
+ * @brief Adaptive Function `is_in<double>`
  * @param x function execute parameter.
  *
  * Checks whether double value is in list of double list and returns the
@@ -9276,10 +9746,12 @@ afw_function_definition_is_in_double;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<double>(
  *       value: double,
  *       list: (list double)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9301,7 +9773,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_double;
 
 /**
- * @brief Adaptive Function le<double>
+ * @brief Adaptive Function `le<double>`
  * @param x function execute parameter.
  *
  * Checks for double arg1 is less than or equal to double arg2 and return the
@@ -9312,10 +9784,12 @@ afw_function_definition_le_double;
  *
  * Declaration:
  *
+ * ```
  *   function le<double>(
  *       arg1: double,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9337,7 +9811,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_double;
 
 /**
- * @brief Adaptive Function lt<double>
+ * @brief Adaptive Function `lt<double>`
  * @param x function execute parameter.
  *
  * Checks for double arg1 is less that double arg2 and return the boolean
@@ -9348,10 +9822,12 @@ afw_function_definition_lt_double;
  *
  * Declaration:
  *
+ * ```
  *   function lt<double>(
  *       arg1: double,
  *       arg2: double
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9373,7 +9849,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_double;
 
 /**
- * @brief Adaptive Function max<double>
+ * @brief Adaptive Function `max<double>`
  * @param x function execute parameter.
  *
  * Return the double value that is greater than or equal to the others.
@@ -9383,10 +9859,12 @@ afw_function_definition_max_double;
  *
  * Declaration:
  *
+ * ```
  *   function max<double>(
  *       values_1: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9406,7 +9884,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_double;
 
 /**
- * @brief Adaptive Function min<double>
+ * @brief Adaptive Function `min<double>`
  * @param x function execute parameter.
  *
  * Return the double value that is less than or equal to the others.
@@ -9416,10 +9894,12 @@ afw_function_definition_min_double;
  *
  * Declaration:
  *
+ * ```
  *   function min<double>(
  *       values_1: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9439,7 +9919,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_multiply_double;
 
 /**
- * @brief Adaptive Function multiply<double>
+ * @brief Adaptive Function `multiply<double>`
  * @param x function execute parameter.
  *
  * Multiply 2 or more double values and return the double result.
@@ -9449,11 +9929,13 @@ afw_function_definition_multiply_double;
  *
  * Declaration:
  *
+ * ```
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
  *       ...values_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9472,7 +9954,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_double;
 
 /**
- * @brief Adaptive Function ne<double>
+ * @brief Adaptive Function `ne<double>`
  * @param x function execute parameter.
  *
  * Determine if double arg1 is not equal to the value of arg2 converted to the
@@ -9484,10 +9966,12 @@ afw_function_definition_ne_double;
  *
  * Declaration:
  *
+ * ```
  *   function ne<double>(
  *       arg1: double,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9513,7 +9997,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_negative_double;
 
 /**
- * @brief Adaptive Function negative<double>
+ * @brief Adaptive Function `negative<double>`
  * @param x function execute parameter.
  *
  * Return negative of double value.
@@ -9523,9 +10007,11 @@ afw_function_definition_negative_double;
  *
  * Declaration:
  *
+ * ```
  *   function negative<double>(
  *       value: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9544,7 +10030,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_double;
 
 /**
- * @brief Adaptive Function nex<double>
+ * @brief Adaptive Function `nex<double>`
  * @param x function execute parameter.
  *
  * Determine if for double arg1 is not equal to the value or data type of arg2
@@ -9556,10 +10042,12 @@ afw_function_definition_nex_double;
  *
  * Declaration:
  *
+ * ```
  *   function nex<double>(
  *       arg1: double,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9581,7 +10069,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_double;
 
 /**
- * @brief Adaptive Function one_and_only<double>
+ * @brief Adaptive Function `one_and_only<double>`
  * @param x function execute parameter.
  *
  * This converts a list of double values that contains one value to a single
@@ -9592,9 +10080,11 @@ afw_function_definition_one_and_only_double;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<double>(
  *       list: (list list)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9618,7 +10108,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_pow_double;
 
 /**
- * @brief Adaptive Function pow<double>
+ * @brief Adaptive Function `pow<double>`
  * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
@@ -9630,11 +10120,13 @@ afw_function_definition_pow_double;
  *
  * Declaration:
  *
+ * ```
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
  *       ...exponent_rest: (list of double)
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9655,7 +10147,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_round_double;
 
 /**
- * @brief Adaptive Function round<double>
+ * @brief Adaptive Function `round<double>`
  * @param x function execute parameter.
  *
  * Determine the integer closest to double value and return the double result.
@@ -9665,9 +10157,11 @@ afw_function_definition_round_double;
  *
  * Declaration:
  *
+ * ```
  *   function round<double>(
  *       number: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9686,7 +10180,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_double;
 
 /**
- * @brief Adaptive Function set_equals<double>
+ * @brief Adaptive Function `set_equals<double>`
  * @param x function execute parameter.
  *
  * Returns boolean true if double list1 and double list2 are subsets of each
@@ -9697,10 +10191,12 @@ afw_function_definition_set_equals_double;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<double>(
  *       list1: (list double),
  *       list2: (list double)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9722,7 +10218,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_double;
 
 /**
- * @brief Adaptive Function subset<double>
+ * @brief Adaptive Function `subset<double>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in double list1 are all in double
@@ -9733,10 +10229,12 @@ afw_function_definition_subset_double;
  *
  * Declaration:
  *
+ * ```
  *   function subset<double>(
  *       list1: (list double),
  *       list2: (list double)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -9758,7 +10256,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_double;
 
 /**
- * @brief Adaptive Function subtract<double>
+ * @brief Adaptive Function `subtract<double>`
  * @param x function execute parameter.
  *
  * Subtract double arg2 from double arg1 and return the double result.
@@ -9768,10 +10266,12 @@ afw_function_definition_subtract_double;
  *
  * Declaration:
  *
+ * ```
  *   function subtract<double>(
  *       arg1: double,
  *       arg2: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -9792,7 +10292,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_integer_double;
 
 /**
- * @brief Adaptive Function to_integer<double>
+ * @brief Adaptive Function `to_integer<double>`
  * @param x function execute parameter.
  *
  * Truncate double value to a whole number and returns integer result.
@@ -9802,9 +10302,11 @@ afw_function_definition_to_integer_double;
  *
  * Declaration:
  *
+ * ```
  *   function to_integer<double>(
  *       value: double
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -9824,7 +10326,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_double;
 
 /**
- * @brief Adaptive Function to_string<double>
+ * @brief Adaptive Function `to_string<double>`
  * @param x function execute parameter.
  *
  * Converts double value to string. For list values, the to_string() value for
@@ -9835,9 +10337,11 @@ afw_function_definition_to_string_double;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<double>(
  *       value: double
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -9857,7 +10361,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_double;
 
 /**
- * @brief Adaptive Function union<double>
+ * @brief Adaptive Function `union<double>`
  * @param x function execute parameter.
  *
  * Returns a list of double contains all of the unique values in two or more
@@ -9868,11 +10372,13 @@ afw_function_definition_union_double;
  *
  * Declaration:
  *
+ * ```
  *   function union<double>(
  *       lists_1: (list double),
  *       lists_2: (list double),
  *       ...lists_rest: (list of (list double))
  *   ): (list double);
+ * ```
  *
  * Parameters:
  *
@@ -9902,7 +10408,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_expression;
 
 /**
- * @brief Adaptive Function bag<expression>
+ * @brief Adaptive Function `bag<expression>`
  * @param x function execute parameter.
  *
  * Takes any number of expression values and returns a list of list.
@@ -9912,9 +10418,11 @@ afw_function_definition_bag_expression;
  *
  * Declaration:
  *
+ * ```
  *   function bag<expression>(
  *       ...values: (list of (list expression))
  *   ): (list expression);
+ * ```
  *
  * Parameters:
  *
@@ -9934,7 +10442,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_expression;
 
 /**
- * @brief Adaptive Function bag_size<expression>
+ * @brief Adaptive Function `bag_size<expression>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -9944,9 +10452,11 @@ afw_function_definition_bag_size_expression;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<expression>(
  *       value: (list expression)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -9966,7 +10476,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_expression;
 
 /**
- * @brief Adaptive Function compile<expression>
+ * @brief Adaptive Function `compile<expression>`
  * @param x function execute parameter.
  *
  * Compile expression value and return either an unevaluated adaptive value or
@@ -9977,10 +10487,12 @@ afw_function_definition_compile_expression;
  *
  * Declaration:
  *
+ * ```
  *   function compile<expression>(
  *       source: expression,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -10007,7 +10519,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_expression;
 
 /**
- * @brief Adaptive Function eq<expression>
+ * @brief Adaptive Function `eq<expression>`
  * @param x function execute parameter.
  *
  * Determine if expression arg1 is equal to the value of arg2 converted to the
@@ -10019,10 +10531,12 @@ afw_function_definition_eq_expression;
  *
  * Declaration:
  *
+ * ```
  *   function eq<expression>(
  *       arg1: expression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10048,7 +10562,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_expression;
 
 /**
- * @brief Adaptive Function eqx<expression>
+ * @brief Adaptive Function `eqx<expression>`
  * @param x function execute parameter.
  *
  * Determine if for expression arg1 is equal to the value and data type of arg2
@@ -10060,10 +10574,12 @@ afw_function_definition_eqx_expression;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<expression>(
  *       arg1: expression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10085,7 +10601,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_expression;
 
 /**
- * @brief Adaptive Function evaluate<expression>
+ * @brief Adaptive Function `evaluate<expression>`
  * @param x function execute parameter.
  *
  * Compile and evaluate expression value.
@@ -10095,10 +10611,12 @@ afw_function_definition_evaluate_expression;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<expression>(
  *       source: expression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -10125,7 +10643,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_expression;
 
 /**
- * @brief Adaptive Function expression
+ * @brief Adaptive Function `expression`
  * @param x function execute parameter.
  *
  * Converts value to data type expression returning expression result.
@@ -10135,9 +10653,11 @@ afw_function_definition_expression;
  *
  * Declaration:
  *
+ * ```
  *   function expression(
  *       value: any
  *   ): expression;
+ * ```
  *
  * Parameters:
  *
@@ -10161,7 +10681,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_expression;
 
 /**
- * @brief Adaptive Function ge<expression>
+ * @brief Adaptive Function `ge<expression>`
  * @param x function execute parameter.
  *
  * Checks for expression arg1 is greater than or equal to expression arg2 and
@@ -10172,10 +10692,12 @@ afw_function_definition_ge_expression;
  *
  * Declaration:
  *
+ * ```
  *   function ge<expression>(
  *       arg1: expression,
  *       arg2: expression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10197,7 +10719,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_expression;
 
 /**
- * @brief Adaptive Function gt<expression>
+ * @brief Adaptive Function `gt<expression>`
  * @param x function execute parameter.
  *
  * Checks for expression arg1 is greater than expression arg2 and return the
@@ -10208,10 +10730,12 @@ afw_function_definition_gt_expression;
  *
  * Declaration:
  *
+ * ```
  *   function gt<expression>(
  *       arg1: expression,
  *       arg2: expression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10233,7 +10757,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_expression;
 
 /**
- * @brief Adaptive Function is<expression>
+ * @brief Adaptive Function `is<expression>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType expression and return the boolean result.
@@ -10243,9 +10767,11 @@ afw_function_definition_is_expression;
  *
  * Declaration:
  *
+ * ```
  *   function is<expression>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10265,7 +10791,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_expression;
 
 /**
- * @brief Adaptive Function le<expression>
+ * @brief Adaptive Function `le<expression>`
  * @param x function execute parameter.
  *
  * Checks for expression arg1 is less than or equal to expression arg2 and
@@ -10276,10 +10802,12 @@ afw_function_definition_le_expression;
  *
  * Declaration:
  *
+ * ```
  *   function le<expression>(
  *       arg1: expression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10301,7 +10829,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_expression;
 
 /**
- * @brief Adaptive Function lt<expression>
+ * @brief Adaptive Function `lt<expression>`
  * @param x function execute parameter.
  *
  * Checks for expression arg1 is less that expression arg2 and return the
@@ -10312,10 +10840,12 @@ afw_function_definition_lt_expression;
  *
  * Declaration:
  *
+ * ```
  *   function lt<expression>(
  *       arg1: expression,
  *       arg2: expression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10337,7 +10867,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_expression;
 
 /**
- * @brief Adaptive Function ne<expression>
+ * @brief Adaptive Function `ne<expression>`
  * @param x function execute parameter.
  *
  * Determine if expression arg1 is not equal to the value of arg2 converted to
@@ -10350,10 +10880,12 @@ afw_function_definition_ne_expression;
  *
  * Declaration:
  *
+ * ```
  *   function ne<expression>(
  *       arg1: expression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10379,7 +10911,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_expression;
 
 /**
- * @brief Adaptive Function nex<expression>
+ * @brief Adaptive Function `nex<expression>`
  * @param x function execute parameter.
  *
  * Determine if for expression arg1 is not equal to the value or data type of
@@ -10391,10 +10923,12 @@ afw_function_definition_nex_expression;
  *
  * Declaration:
  *
+ * ```
  *   function nex<expression>(
  *       arg1: expression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10416,7 +10950,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_expression;
 
 /**
- * @brief Adaptive Function to_string<expression>
+ * @brief Adaptive Function `to_string<expression>`
  * @param x function execute parameter.
  *
  * Converts expression value to string. For list values, the to_string() value
@@ -10427,9 +10961,11 @@ afw_function_definition_to_string_expression;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<expression>(
  *       value: expression
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -10459,7 +10995,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_function;
 
 /**
- * @brief Adaptive Function bag<function>
+ * @brief Adaptive Function `bag<function>`
  * @param x function execute parameter.
  *
  * Takes any number of function values and returns a list of list.
@@ -10469,9 +11005,11 @@ afw_function_definition_bag_function;
  *
  * Declaration:
  *
+ * ```
  *   function bag<function>(
  *       ...values: (list of (list function))
  *   ): (list function);
+ * ```
  *
  * Parameters:
  *
@@ -10491,7 +11029,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_function;
 
 /**
- * @brief Adaptive Function bag_size<function>
+ * @brief Adaptive Function `bag_size<function>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -10501,9 +11039,11 @@ afw_function_definition_bag_size_function;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<function>(
  *       value: (list function)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -10523,7 +11063,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_function;
 
 /**
- * @brief Adaptive Function eq<function>
+ * @brief Adaptive Function `eq<function>`
  * @param x function execute parameter.
  *
  * Determine if function arg1 is equal to the value of arg2 converted to the
@@ -10535,10 +11075,12 @@ afw_function_definition_eq_function;
  *
  * Declaration:
  *
+ * ```
  *   function eq<function>(
  *       arg1: function,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10564,7 +11106,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_function;
 
 /**
- * @brief Adaptive Function eqx<function>
+ * @brief Adaptive Function `eqx<function>`
  * @param x function execute parameter.
  *
  * Determine if for function arg1 is equal to the value and data type of arg2
@@ -10576,10 +11118,12 @@ afw_function_definition_eqx_function;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<function>(
  *       arg1: function,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10601,7 +11145,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_function;
 
 /**
- * @brief Adaptive Function function
+ * @brief Adaptive Function `function`
  * @param x function execute parameter.
  *
  * Converts value to data type function returning function result.
@@ -10611,9 +11155,11 @@ afw_function_definition_function;
  *
  * Declaration:
  *
+ * ```
  *   function function(
  *       value: any
  *   ): function;
+ * ```
  *
  * Parameters:
  *
@@ -10637,7 +11183,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_function;
 
 /**
- * @brief Adaptive Function ge<function>
+ * @brief Adaptive Function `ge<function>`
  * @param x function execute parameter.
  *
  * Checks for function arg1 is greater than or equal to function arg2 and
@@ -10648,10 +11194,12 @@ afw_function_definition_ge_function;
  *
  * Declaration:
  *
+ * ```
  *   function ge<function>(
  *       arg1: function,
  *       arg2: function
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10673,7 +11221,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_function;
 
 /**
- * @brief Adaptive Function gt<function>
+ * @brief Adaptive Function `gt<function>`
  * @param x function execute parameter.
  *
  * Checks for function arg1 is greater than function arg2 and return the
@@ -10684,10 +11232,12 @@ afw_function_definition_gt_function;
  *
  * Declaration:
  *
+ * ```
  *   function gt<function>(
  *       arg1: function,
  *       arg2: function
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10709,7 +11259,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_function;
 
 /**
- * @brief Adaptive Function is<function>
+ * @brief Adaptive Function `is<function>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType function and return the boolean result.
@@ -10719,9 +11269,11 @@ afw_function_definition_is_function;
  *
  * Declaration:
  *
+ * ```
  *   function is<function>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10741,7 +11293,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_function;
 
 /**
- * @brief Adaptive Function le<function>
+ * @brief Adaptive Function `le<function>`
  * @param x function execute parameter.
  *
  * Checks for function arg1 is less than or equal to function arg2 and return
@@ -10752,10 +11304,12 @@ afw_function_definition_le_function;
  *
  * Declaration:
  *
+ * ```
  *   function le<function>(
  *       arg1: function,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10777,7 +11331,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_function;
 
 /**
- * @brief Adaptive Function lt<function>
+ * @brief Adaptive Function `lt<function>`
  * @param x function execute parameter.
  *
  * Checks for function arg1 is less that function arg2 and return the boolean
@@ -10788,10 +11342,12 @@ afw_function_definition_lt_function;
  *
  * Declaration:
  *
+ * ```
  *   function lt<function>(
  *       arg1: function,
  *       arg2: function
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10813,7 +11369,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_function;
 
 /**
- * @brief Adaptive Function ne<function>
+ * @brief Adaptive Function `ne<function>`
  * @param x function execute parameter.
  *
  * Determine if function arg1 is not equal to the value of arg2 converted to
@@ -10826,10 +11382,12 @@ afw_function_definition_ne_function;
  *
  * Declaration:
  *
+ * ```
  *   function ne<function>(
  *       arg1: function,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10855,7 +11413,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_function;
 
 /**
- * @brief Adaptive Function nex<function>
+ * @brief Adaptive Function `nex<function>`
  * @param x function execute parameter.
  *
  * Determine if for function arg1 is not equal to the value or data type of
@@ -10867,10 +11425,12 @@ afw_function_definition_nex_function;
  *
  * Declaration:
  *
+ * ```
  *   function nex<function>(
  *       arg1: function,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10902,7 +11462,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_hexBinary;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<hexBinary>
+ * @brief Adaptive Function `at_least_one_member_of<hexBinary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in hexBinary list1 is in
@@ -10913,10 +11473,12 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<hexBinary>(
  *       list1: (list hexBinary),
  *       list2: (list hexBinary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -10938,7 +11500,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_hexBinary;
 
 /**
- * @brief Adaptive Function bag<hexBinary>
+ * @brief Adaptive Function `bag<hexBinary>`
  * @param x function execute parameter.
  *
  * Takes any number of hexBinary values and returns a list of list.
@@ -10948,9 +11510,11 @@ afw_function_definition_bag_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function bag<hexBinary>(
  *       ...values: (list of (list hexBinary))
  *   ): (list hexBinary);
+ * ```
  *
  * Parameters:
  *
@@ -10970,7 +11534,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_hexBinary;
 
 /**
- * @brief Adaptive Function bag_size<hexBinary>
+ * @brief Adaptive Function `bag_size<hexBinary>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -10980,9 +11544,11 @@ afw_function_definition_bag_size_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<hexBinary>(
  *       value: (list hexBinary)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -11002,7 +11568,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decode_to_string_hexBinary;
 
 /**
- * @brief Adaptive Function decode_to_string<hexBinary>
+ * @brief Adaptive Function `decode_to_string<hexBinary>`
  * @param x function execute parameter.
  *
  * Decode hexBinary value to string. An error is thrown if decoded value is not
@@ -11013,9 +11579,11 @@ afw_function_definition_decode_to_string_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function decode_to_string<hexBinary>(
  *       value: hexBinary
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -11034,7 +11602,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_hexBinary;
 
 /**
- * @brief Adaptive Function eq<hexBinary>
+ * @brief Adaptive Function `eq<hexBinary>`
  * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is equal to the value of arg2 converted to the
@@ -11046,10 +11614,12 @@ afw_function_definition_eq_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function eq<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11075,7 +11645,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_hexBinary;
 
 /**
- * @brief Adaptive Function eqx<hexBinary>
+ * @brief Adaptive Function `eqx<hexBinary>`
  * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is equal to the value and data type of arg2
@@ -11087,10 +11657,12 @@ afw_function_definition_eqx_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11112,7 +11684,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_hexBinary;
 
 /**
- * @brief Adaptive Function ge<hexBinary>
+ * @brief Adaptive Function `ge<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is greater than or equal to hexBinary arg2 and
@@ -11123,10 +11695,12 @@ afw_function_definition_ge_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function ge<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: hexBinary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11148,7 +11722,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_hexBinary;
 
 /**
- * @brief Adaptive Function gt<hexBinary>
+ * @brief Adaptive Function `gt<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is greater than hexBinary arg2 and return the
@@ -11159,10 +11733,12 @@ afw_function_definition_gt_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function gt<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: hexBinary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11184,7 +11760,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_hexBinary;
 
 /**
- * @brief Adaptive Function hexBinary
+ * @brief Adaptive Function `hexBinary`
  * @param x function execute parameter.
  *
  * Converts value to data type hexBinary returning hexBinary result.
@@ -11194,9 +11770,11 @@ afw_function_definition_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function hexBinary(
  *       value: any
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -11220,7 +11798,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_hexBinary;
 
 /**
- * @brief Adaptive Function intersection<hexBinary>
+ * @brief Adaptive Function `intersection<hexBinary>`
  * @param x function execute parameter.
  *
  * Returns a list of hexBinary with the values that are common to both list of
@@ -11231,10 +11809,12 @@ afw_function_definition_intersection_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<hexBinary>(
  *       list1: (list hexBinary),
  *       list2: (list hexBinary)
  *   ): (list hexBinary);
+ * ```
  *
  * Parameters:
  *
@@ -11256,7 +11836,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_hexBinary;
 
 /**
- * @brief Adaptive Function is<hexBinary>
+ * @brief Adaptive Function `is<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType hexBinary and return the boolean result.
@@ -11266,9 +11846,11 @@ afw_function_definition_is_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function is<hexBinary>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11288,7 +11870,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_hexBinary;
 
 /**
- * @brief Adaptive Function is_in<hexBinary>
+ * @brief Adaptive Function `is_in<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks whether hexBinary value is in list of hexBinary list and returns the
@@ -11299,10 +11881,12 @@ afw_function_definition_is_in_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<hexBinary>(
  *       value: hexBinary,
  *       list: (list hexBinary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11324,7 +11908,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_hexBinary;
 
 /**
- * @brief Adaptive Function le<hexBinary>
+ * @brief Adaptive Function `le<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is less than or equal to hexBinary arg2 and return
@@ -11335,10 +11919,12 @@ afw_function_definition_le_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function le<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11360,7 +11946,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_hexBinary;
 
 /**
- * @brief Adaptive Function lt<hexBinary>
+ * @brief Adaptive Function `lt<hexBinary>`
  * @param x function execute parameter.
  *
  * Checks for hexBinary arg1 is less that hexBinary arg2 and return the boolean
@@ -11371,10 +11957,12 @@ afw_function_definition_lt_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function lt<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: hexBinary
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11396,7 +11984,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_hexBinary;
 
 /**
- * @brief Adaptive Function ne<hexBinary>
+ * @brief Adaptive Function `ne<hexBinary>`
  * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is not equal to the value of arg2 converted to
@@ -11409,10 +11997,12 @@ afw_function_definition_ne_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function ne<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11438,7 +12028,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_hexBinary;
 
 /**
- * @brief Adaptive Function nex<hexBinary>
+ * @brief Adaptive Function `nex<hexBinary>`
  * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is not equal to the value or data type of
@@ -11450,10 +12040,12 @@ afw_function_definition_nex_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function nex<hexBinary>(
  *       arg1: hexBinary,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11475,7 +12067,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_hexBinary;
 
 /**
- * @brief Adaptive Function one_and_only<hexBinary>
+ * @brief Adaptive Function `one_and_only<hexBinary>`
  * @param x function execute parameter.
  *
  * This converts a list of hexBinary values that contains one value to a single
@@ -11486,9 +12078,11 @@ afw_function_definition_one_and_only_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<hexBinary>(
  *       list: (list list)
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -11512,7 +12106,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_hexBinary;
 
 /**
- * @brief Adaptive Function set_equals<hexBinary>
+ * @brief Adaptive Function `set_equals<hexBinary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of
@@ -11523,10 +12117,12 @@ afw_function_definition_set_equals_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<hexBinary>(
  *       list1: (list hexBinary),
  *       list2: (list hexBinary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11548,7 +12144,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_hexBinary;
 
 /**
- * @brief Adaptive Function subset<hexBinary>
+ * @brief Adaptive Function `subset<hexBinary>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in hexBinary list1 are all in
@@ -11559,10 +12155,12 @@ afw_function_definition_subset_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function subset<hexBinary>(
  *       list1: (list hexBinary),
  *       list2: (list hexBinary)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11584,7 +12182,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_hexBinary;
 
 /**
- * @brief Adaptive Function to_string<hexBinary>
+ * @brief Adaptive Function `to_string<hexBinary>`
  * @param x function execute parameter.
  *
  * Converts hexBinary value to string. For list values, the to_string() value
@@ -11595,9 +12193,11 @@ afw_function_definition_to_string_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<hexBinary>(
  *       value: hexBinary
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -11617,7 +12217,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_hexBinary;
 
 /**
- * @brief Adaptive Function union<hexBinary>
+ * @brief Adaptive Function `union<hexBinary>`
  * @param x function execute parameter.
  *
  * Returns a list of hexBinary contains all of the unique values in two or more
@@ -11628,11 +12228,13 @@ afw_function_definition_union_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function union<hexBinary>(
  *       lists_1: (list hexBinary),
  *       lists_2: (list hexBinary),
  *       ...lists_rest: (list of (list hexBinary))
  *   ): (list hexBinary);
+ * ```
  *
  * Parameters:
  *
@@ -11662,7 +12264,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of;
 
 /**
- * @brief Adaptive Function all_of
+ * @brief Adaptive Function `all_of`
  * @param x function execute parameter.
  *
  * Returns true if all values in a list pass the predicate test.
@@ -11672,11 +12274,13 @@ afw_function_definition_all_of;
  *
  * Declaration:
  *
+ * ```
  *   function all_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11701,7 +12305,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of_all;
 
 /**
- * @brief Adaptive Function all_of_all
+ * @brief Adaptive Function `all_of_all`
  * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
@@ -11712,11 +12316,13 @@ afw_function_definition_all_of_all;
  *
  * Declaration:
  *
+ * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11741,7 +12347,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of_any;
 
 /**
- * @brief Adaptive Function all_of_any
+ * @brief Adaptive Function `all_of_any`
  * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with all of
@@ -11753,11 +12359,13 @@ afw_function_definition_all_of_any;
  *
  * Declaration:
  *
+ * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11782,7 +12390,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of;
 
 /**
- * @brief Adaptive Function any_of
+ * @brief Adaptive Function `any_of`
  * @param x function execute parameter.
  *
  * Returns true if any value in a list pass the predicate test.
@@ -11792,11 +12400,13 @@ afw_function_definition_any_of;
  *
  * Declaration:
  *
+ * ```
  *   function any_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11821,7 +12431,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of_all;
 
 /**
- * @brief Adaptive Function any_of_all
+ * @brief Adaptive Function `any_of_all`
  * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
@@ -11832,11 +12442,13 @@ afw_function_definition_any_of_all;
  *
  * Declaration:
  *
+ * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11861,7 +12473,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of_any;
 
 /**
- * @brief Adaptive Function any_of_any
+ * @brief Adaptive Function `any_of_any`
  * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with any of
@@ -11872,11 +12484,13 @@ afw_function_definition_any_of_any;
  *
  * Declaration:
  *
+ * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -11901,7 +12515,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_filter;
 
 /**
- * @brief Adaptive Function filter
+ * @brief Adaptive Function `filter`
  * @param x function execute parameter.
  *
  * This produces a list containing only values from another list that pass a
@@ -11912,11 +12526,13 @@ afw_function_definition_filter;
  *
  * Declaration:
  *
+ * ```
  *   function filter(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -11941,7 +12557,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_find;
 
 /**
- * @brief Adaptive Function find
+ * @brief Adaptive Function `find`
  * @param x function execute parameter.
  *
  * The predicate is called for each value in the first list in values until
@@ -11952,11 +12568,13 @@ afw_function_definition_find;
  *
  * Declaration:
  *
+ * ```
  *   function find(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -11980,7 +12598,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_map;
 
 /**
- * @brief Adaptive Function map
+ * @brief Adaptive Function `map`
  * @param x function execute parameter.
  *
  * This function creates a list of the results of calling functor with each
@@ -11991,11 +12609,13 @@ afw_function_definition_map;
  *
  * Declaration:
  *
+ * ```
  *   function map(
  *       functor: (function (... values: any): any),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -12018,7 +12638,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reduce;
 
 /**
- * @brief Adaptive Function reduce
+ * @brief Adaptive Function `reduce`
  * @param x function execute parameter.
  *
  * Reduce calls functor for each value in list with two parameters, accumulator
@@ -12032,11 +12652,13 @@ afw_function_definition_reduce;
  *
  * Declaration:
  *
+ * ```
  *   function reduce(
  *       functor: (function (accumulator: any, value: any): any),
  *       accumulator: any,
  *       list: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -12064,7 +12686,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_sort;
 
 /**
- * @brief Adaptive Function sort
+ * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
  * This produces a list with values sorted based on result of compareFunction.
@@ -12078,10 +12700,12 @@ afw_function_definition_sort;
  *
  * Declaration:
  *
+ * ```
  *   function sort(
  *       compareFunction: (function (value1: any, value2: any): integer),
  *       list: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -12113,7 +12737,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_hybrid;
 
 /**
- * @brief Adaptive Function bag<hybrid>
+ * @brief Adaptive Function `bag<hybrid>`
  * @param x function execute parameter.
  *
  * Takes any number of hybrid values and returns a list of list.
@@ -12123,9 +12747,11 @@ afw_function_definition_bag_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function bag<hybrid>(
  *       ...values: (list of (list hybrid))
  *   ): (list hybrid);
+ * ```
  *
  * Parameters:
  *
@@ -12145,7 +12771,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_hybrid;
 
 /**
- * @brief Adaptive Function bag_size<hybrid>
+ * @brief Adaptive Function `bag_size<hybrid>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -12155,9 +12781,11 @@ afw_function_definition_bag_size_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<hybrid>(
  *       value: (list hybrid)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -12177,7 +12805,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_hybrid;
 
 /**
- * @brief Adaptive Function compile<hybrid>
+ * @brief Adaptive Function `compile<hybrid>`
  * @param x function execute parameter.
  *
  * Compile hybrid value and return either an unevaluated adaptive value or a
@@ -12188,10 +12816,12 @@ afw_function_definition_compile_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function compile<hybrid>(
  *       source: hybrid,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -12218,7 +12848,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_hybrid;
 
 /**
- * @brief Adaptive Function eq<hybrid>
+ * @brief Adaptive Function `eq<hybrid>`
  * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is equal to the value of arg2 converted to the data
@@ -12230,10 +12860,12 @@ afw_function_definition_eq_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function eq<hybrid>(
  *       arg1: hybrid,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12259,7 +12891,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_hybrid;
 
 /**
- * @brief Adaptive Function eqx<hybrid>
+ * @brief Adaptive Function `eqx<hybrid>`
  * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is equal to the value and data type of arg2
@@ -12271,10 +12903,12 @@ afw_function_definition_eqx_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<hybrid>(
  *       arg1: hybrid,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12296,7 +12930,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_hybrid;
 
 /**
- * @brief Adaptive Function evaluate<hybrid>
+ * @brief Adaptive Function `evaluate<hybrid>`
  * @param x function execute parameter.
  *
  * Compile and evaluate hybrid value.
@@ -12306,10 +12940,12 @@ afw_function_definition_evaluate_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<hybrid>(
  *       source: hybrid,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -12336,7 +12972,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_hybrid;
 
 /**
- * @brief Adaptive Function ge<hybrid>
+ * @brief Adaptive Function `ge<hybrid>`
  * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return
@@ -12347,10 +12983,12 @@ afw_function_definition_ge_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function ge<hybrid>(
  *       arg1: hybrid,
  *       arg2: hybrid
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12372,7 +13010,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_hybrid;
 
 /**
- * @brief Adaptive Function gt<hybrid>
+ * @brief Adaptive Function `gt<hybrid>`
  * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is greater than hybrid arg2 and return the boolean
@@ -12383,10 +13021,12 @@ afw_function_definition_gt_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function gt<hybrid>(
  *       arg1: hybrid,
  *       arg2: hybrid
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12408,7 +13048,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_hybrid;
 
 /**
- * @brief Adaptive Function hybrid
+ * @brief Adaptive Function `hybrid`
  * @param x function execute parameter.
  *
  * Converts value to data type hybrid returning hybrid result.
@@ -12418,9 +13058,11 @@ afw_function_definition_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function hybrid(
  *       value: any
  *   ): hybrid;
+ * ```
  *
  * Parameters:
  *
@@ -12444,7 +13086,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_hybrid;
 
 /**
- * @brief Adaptive Function is<hybrid>
+ * @brief Adaptive Function `is<hybrid>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType hybrid and return the boolean result.
@@ -12454,9 +13096,11 @@ afw_function_definition_is_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function is<hybrid>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12476,7 +13120,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_hybrid;
 
 /**
- * @brief Adaptive Function le<hybrid>
+ * @brief Adaptive Function `le<hybrid>`
  * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is less than or equal to hybrid arg2 and return the
@@ -12487,10 +13131,12 @@ afw_function_definition_le_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function le<hybrid>(
  *       arg1: hybrid,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12512,7 +13158,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_hybrid;
 
 /**
- * @brief Adaptive Function lt<hybrid>
+ * @brief Adaptive Function `lt<hybrid>`
  * @param x function execute parameter.
  *
  * Checks for hybrid arg1 is less that hybrid arg2 and return the boolean
@@ -12523,10 +13169,12 @@ afw_function_definition_lt_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function lt<hybrid>(
  *       arg1: hybrid,
  *       arg2: hybrid
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12548,7 +13196,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_hybrid;
 
 /**
- * @brief Adaptive Function ne<hybrid>
+ * @brief Adaptive Function `ne<hybrid>`
  * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is not equal to the value of arg2 converted to the
@@ -12560,10 +13208,12 @@ afw_function_definition_ne_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function ne<hybrid>(
  *       arg1: hybrid,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12589,7 +13239,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_hybrid;
 
 /**
- * @brief Adaptive Function nex<hybrid>
+ * @brief Adaptive Function `nex<hybrid>`
  * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is not equal to the value or data type of arg2
@@ -12601,10 +13251,12 @@ afw_function_definition_nex_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function nex<hybrid>(
  *       arg1: hybrid,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12626,7 +13278,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_hybrid;
 
 /**
- * @brief Adaptive Function to_string<hybrid>
+ * @brief Adaptive Function `to_string<hybrid>`
  * @param x function execute parameter.
  *
  * Converts hybrid value to string. For list values, the to_string() value for
@@ -12637,9 +13289,11 @@ afw_function_definition_to_string_hybrid;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<hybrid>(
  *       value: hybrid
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -12669,7 +13323,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_ia5String;
 
 /**
- * @brief Adaptive Function bag<ia5String>
+ * @brief Adaptive Function `bag<ia5String>`
  * @param x function execute parameter.
  *
  * Takes any number of ia5String values and returns a list of list.
@@ -12679,9 +13333,11 @@ afw_function_definition_bag_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function bag<ia5String>(
  *       ...values: (list of (list ia5String))
  *   ): (list ia5String);
+ * ```
  *
  * Parameters:
  *
@@ -12701,7 +13357,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_ia5String;
 
 /**
- * @brief Adaptive Function bag_size<ia5String>
+ * @brief Adaptive Function `bag_size<ia5String>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -12711,9 +13367,11 @@ afw_function_definition_bag_size_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<ia5String>(
  *       value: (list ia5String)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -12733,7 +13391,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_ia5String;
 
 /**
- * @brief Adaptive Function eq<ia5String>
+ * @brief Adaptive Function `eq<ia5String>`
  * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is equal to the value of arg2 converted to the
@@ -12745,10 +13403,12 @@ afw_function_definition_eq_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function eq<ia5String>(
  *       arg1: ia5String,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12774,7 +13434,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_ia5String;
 
 /**
- * @brief Adaptive Function eqx<ia5String>
+ * @brief Adaptive Function `eqx<ia5String>`
  * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is equal to the value and data type of arg2
@@ -12786,10 +13446,12 @@ afw_function_definition_eqx_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<ia5String>(
  *       arg1: ia5String,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12811,7 +13473,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_ia5String;
 
 /**
- * @brief Adaptive Function ge<ia5String>
+ * @brief Adaptive Function `ge<ia5String>`
  * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is greater than or equal to ia5String arg2 and
@@ -12822,10 +13484,12 @@ afw_function_definition_ge_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function ge<ia5String>(
  *       arg1: ia5String,
  *       arg2: ia5String
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12847,7 +13511,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_ia5String;
 
 /**
- * @brief Adaptive Function gt<ia5String>
+ * @brief Adaptive Function `gt<ia5String>`
  * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is greater than ia5String arg2 and return the
@@ -12858,10 +13522,12 @@ afw_function_definition_gt_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function gt<ia5String>(
  *       arg1: ia5String,
  *       arg2: ia5String
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12883,7 +13549,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ia5String;
 
 /**
- * @brief Adaptive Function ia5String
+ * @brief Adaptive Function `ia5String`
  * @param x function execute parameter.
  *
  * Converts value to data type ia5String returning ia5String result.
@@ -12893,9 +13559,11 @@ afw_function_definition_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function ia5String(
  *       value: any
  *   ): ia5String;
+ * ```
  *
  * Parameters:
  *
@@ -12919,7 +13587,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_ia5String;
 
 /**
- * @brief Adaptive Function is<ia5String>
+ * @brief Adaptive Function `is<ia5String>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType ia5String and return the boolean result.
@@ -12929,9 +13597,11 @@ afw_function_definition_is_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function is<ia5String>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12951,7 +13621,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_ia5String;
 
 /**
- * @brief Adaptive Function le<ia5String>
+ * @brief Adaptive Function `le<ia5String>`
  * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is less than or equal to ia5String arg2 and return
@@ -12962,10 +13632,12 @@ afw_function_definition_le_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function le<ia5String>(
  *       arg1: ia5String,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -12987,7 +13659,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_ia5String;
 
 /**
- * @brief Adaptive Function lt<ia5String>
+ * @brief Adaptive Function `lt<ia5String>`
  * @param x function execute parameter.
  *
  * Checks for ia5String arg1 is less that ia5String arg2 and return the boolean
@@ -12998,10 +13670,12 @@ afw_function_definition_lt_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function lt<ia5String>(
  *       arg1: ia5String,
  *       arg2: ia5String
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13023,7 +13697,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_ia5String;
 
 /**
- * @brief Adaptive Function ne<ia5String>
+ * @brief Adaptive Function `ne<ia5String>`
  * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is not equal to the value of arg2 converted to
@@ -13036,10 +13710,12 @@ afw_function_definition_ne_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function ne<ia5String>(
  *       arg1: ia5String,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13065,7 +13741,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_ia5String;
 
 /**
- * @brief Adaptive Function nex<ia5String>
+ * @brief Adaptive Function `nex<ia5String>`
  * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is not equal to the value or data type of
@@ -13077,10 +13753,12 @@ afw_function_definition_nex_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function nex<ia5String>(
  *       arg1: ia5String,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13102,7 +13780,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_ia5String;
 
 /**
- * @brief Adaptive Function to_string<ia5String>
+ * @brief Adaptive Function `to_string<ia5String>`
  * @param x function execute parameter.
  *
  * Converts ia5String value to string. For list values, the to_string() value
@@ -13113,9 +13791,11 @@ afw_function_definition_to_string_ia5String;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<ia5String>(
  *       value: ia5String
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -13145,7 +13825,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_create;
 
 /**
- * @brief Adaptive Function index_create
+ * @brief Adaptive Function `index_create`
  * @param x function execute parameter.
  *
  * Create an index definition.
@@ -13155,6 +13835,7 @@ afw_function_definition_index_create;
  *
  * Declaration:
  *
+ * ```
  *   function index_create(
  *       adaptorId: string,
  *       key: string,
@@ -13165,6 +13846,7 @@ afw_function_definition_index_create;
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -13199,7 +13881,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_list;
 
 /**
- * @brief Adaptive Function index_list
+ * @brief Adaptive Function `index_list`
  * @param x function execute parameter.
  *
  * List property indexes
@@ -13209,10 +13891,12 @@ afw_function_definition_index_list;
  *
  * Declaration:
  *
+ * ```
  *   function index_list(
  *       adaptorId: string,
  *       objectType?: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -13233,7 +13917,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_remove;
 
 /**
- * @brief Adaptive Function index_remove
+ * @brief Adaptive Function `index_remove`
  * @param x function execute parameter.
  *
  * Remove an index definition.
@@ -13243,10 +13927,12 @@ afw_function_definition_index_remove;
  *
  * Declaration:
  *
+ * ```
  *   function index_remove(
  *       adaptorId: string,
  *       key: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -13277,7 +13963,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_abs_integer;
 
 /**
- * @brief Adaptive Function abs<integer>
+ * @brief Adaptive Function `abs<integer>`
  * @param x function execute parameter.
  *
  * Compute the absolute value of the integer value and return the integer
@@ -13288,9 +13974,11 @@ afw_function_definition_abs_integer;
  *
  * Declaration:
  *
+ * ```
  *   function abs<integer>(
  *       value: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13309,7 +13997,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_integer;
 
 /**
- * @brief Adaptive Function add<integer>
+ * @brief Adaptive Function `add<integer>`
  * @param x function execute parameter.
  *
  * Add 2 or more integer values and return the integer result.
@@ -13319,11 +14007,13 @@ afw_function_definition_add_integer;
  *
  * Declaration:
  *
+ * ```
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13342,7 +14032,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_integer;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<integer>
+ * @brief Adaptive Function `at_least_one_member_of<integer>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in integer list1 is in integer
@@ -13353,10 +14043,12 @@ afw_function_definition_at_least_one_member_of_integer;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<integer>(
  *       list1: (list integer),
  *       list2: (list integer)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13378,7 +14070,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_integer;
 
 /**
- * @brief Adaptive Function bag<integer>
+ * @brief Adaptive Function `bag<integer>`
  * @param x function execute parameter.
  *
  * Takes any number of integer values and returns a list of list.
@@ -13388,9 +14080,11 @@ afw_function_definition_bag_integer;
  *
  * Declaration:
  *
+ * ```
  *   function bag<integer>(
  *       ...values: (list of (list integer))
  *   ): (list integer);
+ * ```
  *
  * Parameters:
  *
@@ -13410,7 +14104,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_integer;
 
 /**
- * @brief Adaptive Function bag_size<integer>
+ * @brief Adaptive Function `bag_size<integer>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -13420,9 +14114,11 @@ afw_function_definition_bag_size_integer;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<integer>(
  *       value: (list integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13442,7 +14138,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_divide_integer;
 
 /**
- * @brief Adaptive Function divide<integer>
+ * @brief Adaptive Function `divide<integer>`
  * @param x function execute parameter.
  *
  * Divide integer dividend by integer divisor and return the integer quotient.
@@ -13452,10 +14148,12 @@ afw_function_definition_divide_integer;
  *
  * Declaration:
  *
+ * ```
  *   function divide<integer>(
  *       dividend: integer,
  *       divisor: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13476,7 +14174,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_integer;
 
 /**
- * @brief Adaptive Function eq<integer>
+ * @brief Adaptive Function `eq<integer>`
  * @param x function execute parameter.
  *
  * Determine if integer arg1 is equal to the value of arg2 converted to the
@@ -13488,10 +14186,12 @@ afw_function_definition_eq_integer;
  *
  * Declaration:
  *
+ * ```
  *   function eq<integer>(
  *       arg1: integer,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13517,7 +14217,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_integer;
 
 /**
- * @brief Adaptive Function eqx<integer>
+ * @brief Adaptive Function `eqx<integer>`
  * @param x function execute parameter.
  *
  * Determine if for integer arg1 is equal to the value and data type of arg2
@@ -13529,10 +14229,12 @@ afw_function_definition_eqx_integer;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<integer>(
  *       arg1: integer,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13554,7 +14256,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_integer;
 
 /**
- * @brief Adaptive Function ge<integer>
+ * @brief Adaptive Function `ge<integer>`
  * @param x function execute parameter.
  *
  * Checks for integer arg1 is greater than or equal to integer arg2 and return
@@ -13565,10 +14267,12 @@ afw_function_definition_ge_integer;
  *
  * Declaration:
  *
+ * ```
  *   function ge<integer>(
  *       arg1: integer,
  *       arg2: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13590,7 +14294,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_integer;
 
 /**
- * @brief Adaptive Function gt<integer>
+ * @brief Adaptive Function `gt<integer>`
  * @param x function execute parameter.
  *
  * Checks for integer arg1 is greater than integer arg2 and return the boolean
@@ -13601,10 +14305,12 @@ afw_function_definition_gt_integer;
  *
  * Declaration:
  *
+ * ```
  *   function gt<integer>(
  *       arg1: integer,
  *       arg2: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13626,7 +14332,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_integer;
 
 /**
- * @brief Adaptive Function integer
+ * @brief Adaptive Function `integer`
  * @param x function execute parameter.
  *
  * Converts value to data type integer returning integer result.
@@ -13636,9 +14342,11 @@ afw_function_definition_integer;
  *
  * Declaration:
  *
+ * ```
  *   function integer(
  *       value: any
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13662,7 +14370,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_integer;
 
 /**
- * @brief Adaptive Function intersection<integer>
+ * @brief Adaptive Function `intersection<integer>`
  * @param x function execute parameter.
  *
  * Returns a list of integer with the values that are common to both list of
@@ -13673,10 +14381,12 @@ afw_function_definition_intersection_integer;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<integer>(
  *       list1: (list integer),
  *       list2: (list integer)
  *   ): (list integer);
+ * ```
  *
  * Parameters:
  *
@@ -13698,7 +14408,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_integer;
 
 /**
- * @brief Adaptive Function is_in<integer>
+ * @brief Adaptive Function `is_in<integer>`
  * @param x function execute parameter.
  *
  * Checks whether integer value is in list of integer list and returns the
@@ -13709,10 +14419,12 @@ afw_function_definition_is_in_integer;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<integer>(
  *       value: integer,
  *       list: (list integer)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13734,7 +14446,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_integer;
 
 /**
- * @brief Adaptive Function is<integer>
+ * @brief Adaptive Function `is<integer>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType integer and return the boolean result.
@@ -13744,9 +14456,11 @@ afw_function_definition_is_integer;
  *
  * Declaration:
  *
+ * ```
  *   function is<integer>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13766,7 +14480,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_integer;
 
 /**
- * @brief Adaptive Function le<integer>
+ * @brief Adaptive Function `le<integer>`
  * @param x function execute parameter.
  *
  * Checks for integer arg1 is less than or equal to integer arg2 and return the
@@ -13777,10 +14491,12 @@ afw_function_definition_le_integer;
  *
  * Declaration:
  *
+ * ```
  *   function le<integer>(
  *       arg1: integer,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13802,7 +14518,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_integer;
 
 /**
- * @brief Adaptive Function lt<integer>
+ * @brief Adaptive Function `lt<integer>`
  * @param x function execute parameter.
  *
  * Checks for integer arg1 is less that integer arg2 and return the boolean
@@ -13813,10 +14529,12 @@ afw_function_definition_lt_integer;
  *
  * Declaration:
  *
+ * ```
  *   function lt<integer>(
  *       arg1: integer,
  *       arg2: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -13838,7 +14556,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_integer;
 
 /**
- * @brief Adaptive Function max<integer>
+ * @brief Adaptive Function `max<integer>`
  * @param x function execute parameter.
  *
  * Return the integer value that is greater than or equal to the others.
@@ -13848,10 +14566,12 @@ afw_function_definition_max_integer;
  *
  * Declaration:
  *
+ * ```
  *   function max<integer>(
  *       values_1: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13871,7 +14591,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_integer;
 
 /**
- * @brief Adaptive Function min<integer>
+ * @brief Adaptive Function `min<integer>`
  * @param x function execute parameter.
  *
  * Return the integer value that is less than or equal to the others.
@@ -13881,10 +14601,12 @@ afw_function_definition_min_integer;
  *
  * Declaration:
  *
+ * ```
  *   function min<integer>(
  *       values_1: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13904,7 +14626,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_mod_integer;
 
 /**
- * @brief Adaptive Function mod<integer>
+ * @brief Adaptive Function `mod<integer>`
  * @param x function execute parameter.
  *
  * Divide integer dividend by integer divisor and return the integer remainder.
@@ -13914,10 +14636,12 @@ afw_function_definition_mod_integer;
  *
  * Declaration:
  *
+ * ```
  *   function mod<integer>(
  *       dividend: integer,
  *       divisor: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13938,7 +14662,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_multiply_integer;
 
 /**
- * @brief Adaptive Function multiply<integer>
+ * @brief Adaptive Function `multiply<integer>`
  * @param x function execute parameter.
  *
  * Multiply 2 or more integer values and return the integer result.
@@ -13948,11 +14672,13 @@ afw_function_definition_multiply_integer;
  *
  * Declaration:
  *
+ * ```
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
  *       ...values_rest: (list of integer)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -13971,7 +14697,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_integer;
 
 /**
- * @brief Adaptive Function ne<integer>
+ * @brief Adaptive Function `ne<integer>`
  * @param x function execute parameter.
  *
  * Determine if integer arg1 is not equal to the value of arg2 converted to the
@@ -13983,10 +14709,12 @@ afw_function_definition_ne_integer;
  *
  * Declaration:
  *
+ * ```
  *   function ne<integer>(
  *       arg1: integer,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14012,7 +14740,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_negative_integer;
 
 /**
- * @brief Adaptive Function negative<integer>
+ * @brief Adaptive Function `negative<integer>`
  * @param x function execute parameter.
  *
  * Return negative of integer value.
@@ -14022,9 +14750,11 @@ afw_function_definition_negative_integer;
  *
  * Declaration:
  *
+ * ```
  *   function negative<integer>(
  *       value: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -14043,7 +14773,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_integer;
 
 /**
- * @brief Adaptive Function nex<integer>
+ * @brief Adaptive Function `nex<integer>`
  * @param x function execute parameter.
  *
  * Determine if for integer arg1 is not equal to the value or data type of arg2
@@ -14055,10 +14785,12 @@ afw_function_definition_nex_integer;
  *
  * Declaration:
  *
+ * ```
  *   function nex<integer>(
  *       arg1: integer,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14080,7 +14812,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_integer;
 
 /**
- * @brief Adaptive Function one_and_only<integer>
+ * @brief Adaptive Function `one_and_only<integer>`
  * @param x function execute parameter.
  *
  * This converts a list of integer values that contains one value to a single
@@ -14091,9 +14823,11 @@ afw_function_definition_one_and_only_integer;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<integer>(
  *       list: (list list)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -14117,7 +14851,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_integer;
 
 /**
- * @brief Adaptive Function set_equals<integer>
+ * @brief Adaptive Function `set_equals<integer>`
  * @param x function execute parameter.
  *
  * Returns boolean true if integer list1 and integer list2 are subsets of each
@@ -14128,10 +14862,12 @@ afw_function_definition_set_equals_integer;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<integer>(
  *       list1: (list integer),
  *       list2: (list integer)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14153,7 +14889,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_integer;
 
 /**
- * @brief Adaptive Function subset<integer>
+ * @brief Adaptive Function `subset<integer>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in integer list1 are all in
@@ -14164,10 +14900,12 @@ afw_function_definition_subset_integer;
  *
  * Declaration:
  *
+ * ```
  *   function subset<integer>(
  *       list1: (list integer),
  *       list2: (list integer)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14189,7 +14927,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_integer;
 
 /**
- * @brief Adaptive Function subtract<integer>
+ * @brief Adaptive Function `subtract<integer>`
  * @param x function execute parameter.
  *
  * Subtract integer arg2 from integer arg1 and return the integer result.
@@ -14199,10 +14937,12 @@ afw_function_definition_subtract_integer;
  *
  * Declaration:
  *
+ * ```
  *   function subtract<integer>(
  *       arg1: integer,
  *       arg2: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -14223,7 +14963,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_double_integer;
 
 /**
- * @brief Adaptive Function to_double<integer>
+ * @brief Adaptive Function `to_double<integer>`
  * @param x function execute parameter.
  *
  * Converts integer value to double and returns double result.
@@ -14233,9 +14973,11 @@ afw_function_definition_to_double_integer;
  *
  * Declaration:
  *
+ * ```
  *   function to_double<integer>(
  *       value: integer
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -14259,7 +15001,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_integer;
 
 /**
- * @brief Adaptive Function to_string<integer>
+ * @brief Adaptive Function `to_string<integer>`
  * @param x function execute parameter.
  *
  * Converts integer value to string. For list values, the to_string() value for
@@ -14270,9 +15012,11 @@ afw_function_definition_to_string_integer;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<integer>(
  *       value: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -14292,7 +15036,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_integer;
 
 /**
- * @brief Adaptive Function union<integer>
+ * @brief Adaptive Function `union<integer>`
  * @param x function execute parameter.
  *
  * Returns a list of integer contains all of the unique values in two or more
@@ -14303,11 +15047,13 @@ afw_function_definition_union_integer;
  *
  * Declaration:
  *
+ * ```
  *   function union<integer>(
  *       lists_1: (list integer),
  *       lists_2: (list integer),
  *       ...lists_rest: (list of (list integer))
  *   ): (list integer);
+ * ```
  *
  * Parameters:
  *
@@ -14337,7 +15083,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_ipAddress;
 
 /**
- * @brief Adaptive Function bag<ipAddress>
+ * @brief Adaptive Function `bag<ipAddress>`
  * @param x function execute parameter.
  *
  * Takes any number of ipAddress values and returns a list of list.
@@ -14347,9 +15093,11 @@ afw_function_definition_bag_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function bag<ipAddress>(
  *       ...values: (list of (list ipAddress))
  *   ): (list ipAddress);
+ * ```
  *
  * Parameters:
  *
@@ -14369,7 +15117,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_ipAddress;
 
 /**
- * @brief Adaptive Function bag_size<ipAddress>
+ * @brief Adaptive Function `bag_size<ipAddress>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -14379,9 +15127,11 @@ afw_function_definition_bag_size_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<ipAddress>(
  *       value: (list ipAddress)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -14401,7 +15151,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_ipAddress;
 
 /**
- * @brief Adaptive Function eq<ipAddress>
+ * @brief Adaptive Function `eq<ipAddress>`
  * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is equal to the value of arg2 converted to the
@@ -14413,10 +15163,12 @@ afw_function_definition_eq_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function eq<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14442,7 +15194,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_ipAddress;
 
 /**
- * @brief Adaptive Function eqx<ipAddress>
+ * @brief Adaptive Function `eqx<ipAddress>`
  * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is equal to the value and data type of arg2
@@ -14454,10 +15206,12 @@ afw_function_definition_eqx_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14479,7 +15233,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_ipAddress;
 
 /**
- * @brief Adaptive Function ge<ipAddress>
+ * @brief Adaptive Function `ge<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
@@ -14490,10 +15244,12 @@ afw_function_definition_ge_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function ge<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: ipAddress
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14515,7 +15271,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_ipAddress;
 
 /**
- * @brief Adaptive Function gt<ipAddress>
+ * @brief Adaptive Function `gt<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
@@ -14526,10 +15282,12 @@ afw_function_definition_gt_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function gt<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: ipAddress
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14551,7 +15309,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ipAddress;
 
 /**
- * @brief Adaptive Function ipAddress
+ * @brief Adaptive Function `ipAddress`
  * @param x function execute parameter.
  *
  * Converts value to data type ipAddress returning ipAddress result.
@@ -14561,9 +15319,11 @@ afw_function_definition_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function ipAddress(
  *       value: any
  *   ): ipAddress;
+ * ```
  *
  * Parameters:
  *
@@ -14587,7 +15347,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_ipAddress;
 
 /**
- * @brief Adaptive Function is_in<ipAddress>
+ * @brief Adaptive Function `is_in<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks whether ipAddress value is in list of ipAddress list and returns the
@@ -14598,10 +15358,12 @@ afw_function_definition_is_in_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<ipAddress>(
  *       value: ipAddress,
  *       list: (list ipAddress)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14623,7 +15385,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_ipAddress;
 
 /**
- * @brief Adaptive Function is<ipAddress>
+ * @brief Adaptive Function `is<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType ipAddress and return the boolean result.
@@ -14633,9 +15395,11 @@ afw_function_definition_is_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function is<ipAddress>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14655,7 +15419,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_ipAddress;
 
 /**
- * @brief Adaptive Function le<ipAddress>
+ * @brief Adaptive Function `le<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return
@@ -14666,10 +15430,12 @@ afw_function_definition_le_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function le<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14691,7 +15457,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_ipAddress;
 
 /**
- * @brief Adaptive Function lt<ipAddress>
+ * @brief Adaptive Function `lt<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks for ipAddress arg1 is less that ipAddress arg2 and return the boolean
@@ -14702,10 +15468,12 @@ afw_function_definition_lt_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function lt<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: ipAddress
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14727,7 +15495,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_ipAddress;
 
 /**
- * @brief Adaptive Function ne<ipAddress>
+ * @brief Adaptive Function `ne<ipAddress>`
  * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is not equal to the value of arg2 converted to
@@ -14740,10 +15508,12 @@ afw_function_definition_ne_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function ne<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14769,7 +15539,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_ipAddress;
 
 /**
- * @brief Adaptive Function nex<ipAddress>
+ * @brief Adaptive Function `nex<ipAddress>`
  * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is not equal to the value or data type of
@@ -14781,10 +15551,12 @@ afw_function_definition_nex_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function nex<ipAddress>(
  *       arg1: ipAddress,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14806,7 +15578,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_ipAddress;
 
 /**
- * @brief Adaptive Function one_and_only<ipAddress>
+ * @brief Adaptive Function `one_and_only<ipAddress>`
  * @param x function execute parameter.
  *
  * This converts a list of ipAddress values that contains one value to a single
@@ -14817,9 +15589,11 @@ afw_function_definition_one_and_only_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<ipAddress>(
  *       list: (list list)
  *   ): ipAddress;
+ * ```
  *
  * Parameters:
  *
@@ -14843,7 +15617,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_ipAddress;
 
 /**
- * @brief Adaptive Function regexp_match<ipAddress>
+ * @brief Adaptive Function `regexp_match<ipAddress>`
  * @param x function execute parameter.
  *
  * Checks whether ipAddress value matches the regular expression regexp and
@@ -14854,10 +15628,12 @@ afw_function_definition_regexp_match_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<ipAddress>(
  *       value: ipAddress,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -14879,7 +15655,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_ipAddress;
 
 /**
- * @brief Adaptive Function to_string<ipAddress>
+ * @brief Adaptive Function `to_string<ipAddress>`
  * @param x function execute parameter.
  *
  * Converts ipAddress value to string. For list values, the to_string() value
@@ -14890,9 +15666,11 @@ afw_function_definition_to_string_ipAddress;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<ipAddress>(
  *       value: ipAddress
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -14922,7 +15700,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_advance_cursor_for_consumer;
 
 /**
- * @brief Adaptive Function journal_advance_cursor_for_consumer
+ * @brief Adaptive Function `journal_advance_cursor_for_consumer`
  * @param x function execute parameter.
  *
  * Update the advance cursor for a consumer referenced by the consumerId
@@ -14951,11 +15729,13 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  *
  * Declaration:
  *
+ * ```
  *   function journal_advance_cursor_for_consumer(
  *       adaptorId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -14981,7 +15761,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_get_by_cursor;
 
 /**
- * @brief Adaptive Function journal_get_by_cursor
+ * @brief Adaptive Function `journal_get_by_cursor`
  * @param x function execute parameter.
  *
  * Get journal entry specified by entry_cursor parameter.
@@ -14995,10 +15775,12 @@ afw_function_definition_journal_get_by_cursor;
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_by_cursor(
  *       adaptorId: string,
  *       cursor: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -15019,7 +15801,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_get_first;
 
 /**
- * @brief Adaptive Function journal_get_first
+ * @brief Adaptive Function `journal_get_first`
  * @param x function execute parameter.
  *
  * Get first journal entry.
@@ -15032,9 +15814,11 @@ afw_function_definition_journal_get_first;
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_first(
  *       adaptorId: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -15053,7 +15837,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_get_next_after_cursor;
 
 /**
- * @brief Adaptive Function journal_get_next_after_cursor
+ * @brief Adaptive Function `journal_get_next_after_cursor`
  * @param x function execute parameter.
  *
  * Get the next journal entry after the one specified by the entry_cursor
@@ -15067,10 +15851,12 @@ afw_function_definition_journal_get_next_after_cursor;
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_after_cursor(
  *       adaptorId: string,
  *       cursor: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -15091,7 +15877,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_get_next_for_consumer;
 
 /**
- * @brief Adaptive Function journal_get_next_for_consumer
+ * @brief Adaptive Function `journal_get_next_for_consumer`
  * @param x function execute parameter.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id
@@ -15129,11 +15915,13 @@ afw_function_definition_journal_get_next_for_consumer;
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_for_consumer(
  *       adaptorId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -15159,7 +15947,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_get_next_for_consumer_after_cursor;
 
 /**
- * @brief Adaptive Function journal_get_next_for_consumer_after_cursor
+ * @brief Adaptive Function `journal_get_next_for_consumer_after_cursor`
  * @param x function execute parameter.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id
@@ -15184,12 +15972,14 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  *
  * Declaration:
  *
+ * ```
  *   function journal_get_next_for_consumer_after_cursor(
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string,
  *       limit?: integer
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -15217,7 +16007,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_journal_mark_consumed;
 
 /**
- * @brief Adaptive Function journal_mark_consumed
+ * @brief Adaptive Function `journal_mark_consumed`
  * @param x function execute parameter.
  *
  * Mark a journal entry returned by get_next_for_consumer() as consumed.
@@ -15227,11 +16017,13 @@ afw_function_definition_journal_mark_consumed;
  *
  * Declaration:
  *
+ * ```
  *   function journal_mark_consumed(
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -15265,7 +16057,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_entries;
 
 /**
- * @brief Adaptive Function add_entries
+ * @brief Adaptive Function `add_entries`
  * @param x function execute parameter.
  *
  * Add the entries of one or more lists to another.
@@ -15275,11 +16067,13 @@ afw_function_definition_add_entries;
  *
  * Declaration:
  *
+ * ```
  *   function add_entries(
  *       target: list,
  *       source_1: list,
  *       ...source_rest: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -15300,7 +16094,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_list;
 
 /**
- * @brief Adaptive Function bag<list>
+ * @brief Adaptive Function `bag<list>`
  * @param x function execute parameter.
  *
  * Takes any number of list values and returns a list of list.
@@ -15310,9 +16104,11 @@ afw_function_definition_bag_list;
  *
  * Declaration:
  *
+ * ```
  *   function bag<list>(
  *       ...values: (list of (list list))
  *   ): (list list);
+ * ```
  *
  * Parameters:
  *
@@ -15332,7 +16128,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_list;
 
 /**
- * @brief Adaptive Function bag_size<list>
+ * @brief Adaptive Function `bag_size<list>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -15342,9 +16138,11 @@ afw_function_definition_bag_size_list;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<list>(
  *       value: (list list)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -15364,7 +16162,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_clone_list;
 
 /**
- * @brief Adaptive Function clone<list>
+ * @brief Adaptive Function `clone<list>`
  * @param x function execute parameter.
  *
  * Deep clone a list value.
@@ -15374,9 +16172,11 @@ afw_function_definition_clone_list;
  *
  * Declaration:
  *
+ * ```
  *   function clone<list>(
  *       value: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -15396,7 +16196,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_list;
 
 /**
- * @brief Adaptive Function eq<list>
+ * @brief Adaptive Function `eq<list>`
  * @param x function execute parameter.
  *
  * Determine if list arg1 is equal to the value of arg2 converted to the data
@@ -15408,10 +16208,12 @@ afw_function_definition_eq_list;
  *
  * Declaration:
  *
+ * ```
  *   function eq<list>(
  *       arg1: list,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15437,7 +16239,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_list;
 
 /**
- * @brief Adaptive Function eqx<list>
+ * @brief Adaptive Function `eqx<list>`
  * @param x function execute parameter.
  *
  * Determine if for list arg1 is equal to the value and data type of arg2 then
@@ -15449,10 +16251,12 @@ afw_function_definition_eqx_list;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<list>(
  *       arg1: list,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15474,7 +16278,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_list;
 
 /**
- * @brief Adaptive Function ge<list>
+ * @brief Adaptive Function `ge<list>`
  * @param x function execute parameter.
  *
  * Checks for list arg1 is greater than or equal to list arg2 and return the
@@ -15485,10 +16289,12 @@ afw_function_definition_ge_list;
  *
  * Declaration:
  *
+ * ```
  *   function ge<list>(
  *       arg1: list,
  *       arg2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15510,7 +16316,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_list;
 
 /**
- * @brief Adaptive Function gt<list>
+ * @brief Adaptive Function `gt<list>`
  * @param x function execute parameter.
  *
  * Checks for list arg1 is greater than list arg2 and return the boolean
@@ -15521,10 +16327,12 @@ afw_function_definition_gt_list;
  *
  * Declaration:
  *
+ * ```
  *   function gt<list>(
  *       arg1: list,
  *       arg2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15546,7 +16354,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_includes_list;
 
 /**
- * @brief Adaptive Function includes<list>
+ * @brief Adaptive Function `includes<list>`
  * @param x function execute parameter.
  *
  * Checks whether or not a list contains any value.
@@ -15556,15 +16364,17 @@ afw_function_definition_includes_list;
  *
  * Declaration:
  *
+ * ```
  *   function includes<list>(
  *       list: list,
  *       searchElement: any,
  *       fromIndex?: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list - (`<Type>`) The list to search.
+ *   list - (``<Type>``) The list to search.
  *
  *   searchElement - (any dataType) Element to find.
  *
@@ -15584,7 +16394,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_list;
 
 /**
- * @brief Adaptive Function is<list>
+ * @brief Adaptive Function `is<list>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType list and return the boolean result.
@@ -15594,9 +16404,11 @@ afw_function_definition_is_list;
  *
  * Declaration:
  *
+ * ```
  *   function is<list>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15616,7 +16428,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_join;
 
 /**
- * @brief Adaptive Function join
+ * @brief Adaptive Function `join`
  * @param x function execute parameter.
  *
  * Concatenate the string values of the elements of a list with a separator.
@@ -15626,10 +16438,12 @@ afw_function_definition_join;
  *
  * Declaration:
  *
+ * ```
  *   function join(
  *       value: list,
  *       separator?: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -15651,7 +16465,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_list;
 
 /**
- * @brief Adaptive Function le<list>
+ * @brief Adaptive Function `le<list>`
  * @param x function execute parameter.
  *
  * Checks for list arg1 is less than or equal to list arg2 and return the
@@ -15662,10 +16476,12 @@ afw_function_definition_le_list;
  *
  * Declaration:
  *
+ * ```
  *   function le<list>(
  *       arg1: list,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15687,7 +16503,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_length_list;
 
 /**
- * @brief Adaptive Function length<list>
+ * @brief Adaptive Function `length<list>`
  * @param x function execute parameter.
  *
  * This is a polymorphic function where list can be any of the supported data
@@ -15699,9 +16515,11 @@ afw_function_definition_length_list;
  *
  * Declaration:
  *
+ * ```
  *   function length<list>(
  *       value: list
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -15722,7 +16540,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_list;
 
 /**
- * @brief Adaptive Function list
+ * @brief Adaptive Function `list`
  * @param x function execute parameter.
  *
  * Converts 1 or more values in a list. If A value is a list, its individual
@@ -15737,9 +16555,11 @@ afw_function_definition_list;
  *
  * Declaration:
  *
+ * ```
  *   function list(
  *       ...values: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -15762,7 +16582,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_list;
 
 /**
- * @brief Adaptive Function lt<list>
+ * @brief Adaptive Function `lt<list>`
  * @param x function execute parameter.
  *
  * Checks for list arg1 is less that list arg2 and return the boolean result.
@@ -15772,10 +16592,12 @@ afw_function_definition_lt_list;
  *
  * Declaration:
  *
+ * ```
  *   function lt<list>(
  *       arg1: list,
  *       arg2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15797,7 +16619,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_list;
 
 /**
- * @brief Adaptive Function ne<list>
+ * @brief Adaptive Function `ne<list>`
  * @param x function execute parameter.
  *
  * Determine if list arg1 is not equal to the value of arg2 converted to the
@@ -15809,10 +16631,12 @@ afw_function_definition_ne_list;
  *
  * Declaration:
  *
+ * ```
  *   function ne<list>(
  *       arg1: list,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15838,7 +16662,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_list;
 
 /**
- * @brief Adaptive Function nex<list>
+ * @brief Adaptive Function `nex<list>`
  * @param x function execute parameter.
  *
  * Determine if for list arg1 is not equal to the value or data type of arg2
@@ -15850,10 +16674,12 @@ afw_function_definition_nex_list;
  *
  * Declaration:
  *
+ * ```
  *   function nex<list>(
  *       arg1: list,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -15875,7 +16701,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reverse;
 
 /**
- * @brief Adaptive Function reverse
+ * @brief Adaptive Function `reverse`
  * @param x function execute parameter.
  *
  * Reverse the order of the elements in a list. If the list is typed, the
@@ -15886,9 +16712,11 @@ afw_function_definition_reverse;
  *
  * Declaration:
  *
+ * ```
  *   function reverse(
  *       list: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -15907,7 +16735,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_slice;
 
 /**
- * @brief Adaptive Function slice
+ * @brief Adaptive Function `slice`
  * @param x function execute parameter.
  *
  * This function extracts a consecutive slice of values from a list.
@@ -15917,11 +16745,13 @@ afw_function_definition_slice;
  *
  * Declaration:
  *
+ * ```
  *   function slice(
  *       list: list,
  *       startIndex?: integer,
  *       endIndex?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -15951,7 +16781,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_list;
 
 /**
- * @brief Adaptive Function to_string<list>
+ * @brief Adaptive Function `to_string<list>`
  * @param x function execute parameter.
  *
  * Converts list value to string. For list values, the to_string() value for
@@ -15962,9 +16792,11 @@ afw_function_definition_to_string_list;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<list>(
  *       value: list
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -15994,7 +16826,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_and;
 
 /**
- * @brief Adaptive Function and
+ * @brief Adaptive Function `and`
  * @param x function execute parameter.
  *
  * Evaluates 0 or more boolean conditions returning boolean true if there are
@@ -16006,9 +16838,11 @@ afw_function_definition_and;
  *
  * Declaration:
  *
+ * ```
  *   function and(
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16027,7 +16861,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_n_of;
 
 /**
- * @brief Adaptive Function n_of
+ * @brief Adaptive Function `n_of`
  * @param x function execute parameter.
  *
  * integer n specifies the number of boolean conditions that follow that must
@@ -16040,10 +16874,12 @@ afw_function_definition_n_of;
  *
  * Declaration:
  *
+ * ```
  *   function n_of(
  *       n: integer,
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16068,7 +16904,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_not;
 
 /**
- * @brief Adaptive Function not
+ * @brief Adaptive Function `not`
  * @param x function execute parameter.
  *
  * Evaluates boolean condition returning boolean true if condition evaluates to
@@ -16079,9 +16915,11 @@ afw_function_definition_not;
  *
  * Declaration:
  *
+ * ```
  *   function not(
  *       condition: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16100,7 +16938,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_or;
 
 /**
- * @brief Adaptive Function or
+ * @brief Adaptive Function `or`
  * @param x function execute parameter.
  *
  * Evaluates 0 or more boolean conditions returning boolean false if there are
@@ -16112,9 +16950,11 @@ afw_function_definition_or;
  *
  * Declaration:
  *
+ * ```
  *   function or(
  *       ...conditions: (list of boolean)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16143,7 +16983,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_annotate;
 
 /**
- * @brief Adaptive Function annotate
+ * @brief Adaptive Function `annotate`
  * @param x function execute parameter.
  *
  * Create an annotated value.
@@ -16153,10 +16993,12 @@ afw_function_definition_annotate;
  *
  * Declaration:
  *
+ * ```
  *   function annotate(
  *       annotation: (object _AdaptiveAnnotation_),
  *       value: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -16178,7 +17020,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compare_uri;
 
 /**
- * @brief Adaptive Function compare_uri
+ * @brief Adaptive Function `compare_uri`
  * @param x function execute parameter.
  *
  * Compare two URIs.
@@ -16188,12 +17030,14 @@ afw_function_definition_compare_uri;
  *
  * Declaration:
  *
+ * ```
  *   function compare_uri(
  *       uri1: string,
  *       uri2: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16226,7 +17070,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_debug;
 
 /**
- * @brief Adaptive Function debug
+ * @brief Adaptive Function `debug`
  * @param x function execute parameter.
  *
  * Conditionally, based on the detail parameter, write a value as a string to
@@ -16237,10 +17081,12 @@ afw_function_definition_debug;
  *
  * Declaration:
  *
+ * ```
  *   function debug(
  *       value: any,
  *       detail?: boolean
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -16265,7 +17111,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_execution_start_time_local;
 
 /**
- * @brief Adaptive Function execution_start_time_local
+ * @brief Adaptive Function `execution_start_time_local`
  * @param x function execute parameter.
  *
  * Return local dateTime when the execution context was created. This will
@@ -16276,9 +17122,11 @@ afw_function_definition_execution_start_time_local;
  *
  * Declaration:
  *
+ * ```
  *   function execution_start_time_local(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -16295,7 +17143,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_execution_start_time_utc;
 
 /**
- * @brief Adaptive Function execution_start_time_utc
+ * @brief Adaptive Function `execution_start_time_utc`
  * @param x function execute parameter.
  *
  * Return UTC dateTime when the execution context was created. This will
@@ -16306,9 +17154,11 @@ afw_function_definition_execution_start_time_utc;
  *
  * Declaration:
  *
+ * ```
  *   function execution_start_time_utc(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -16325,7 +17175,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_generate_uuid;
 
 /**
- * @brief Adaptive Function generate_uuid
+ * @brief Adaptive Function `generate_uuid`
  * @param x function execute parameter.
  *
  * Generate a UUID.
@@ -16335,9 +17185,11 @@ afw_function_definition_generate_uuid;
  *
  * Declaration:
  *
+ * ```
  *   function generate_uuid(
  *   
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -16354,7 +17206,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_defined;
 
 /**
- * @brief Adaptive Function is_defined
+ * @brief Adaptive Function `is_defined`
  * @param x function execute parameter.
  *
  * Test value returning boolean True if it is not undefined.
@@ -16364,9 +17216,11 @@ afw_function_definition_is_defined;
  *
  * Declaration:
  *
+ * ```
  *   function is_defined(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16385,7 +17239,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_nullish;
 
 /**
- * @brief Adaptive Function is_nullish
+ * @brief Adaptive Function `is_nullish`
  * @param x function execute parameter.
  *
  * Test value returning boolean True if it is null or undefined.
@@ -16395,9 +17249,11 @@ afw_function_definition_is_nullish;
  *
  * Declaration:
  *
+ * ```
  *   function is_nullish(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16416,7 +17272,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_log;
 
 /**
- * @brief Adaptive Function log
+ * @brief Adaptive Function `log`
  * @param x function execute parameter.
  *
  * Evaluate and convert value to String and log it.
@@ -16426,9 +17282,11 @@ afw_function_definition_log;
  *
  * Declaration:
  *
+ * ```
  *   function log(
  *       value: any
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -16447,7 +17305,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_now_local;
 
 /**
- * @brief Adaptive Function now_local
+ * @brief Adaptive Function `now_local`
  * @param x function execute parameter.
  *
  * Return current local dateTime.
@@ -16457,9 +17315,11 @@ afw_function_definition_now_local;
  *
  * Declaration:
  *
+ * ```
  *   function now_local(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -16476,7 +17336,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_now_utc;
 
 /**
- * @brief Adaptive Function now_utc
+ * @brief Adaptive Function `now_utc`
  * @param x function execute parameter.
  *
  * Return current UTC dateTime.
@@ -16486,9 +17346,11 @@ afw_function_definition_now_utc;
  *
  * Declaration:
  *
+ * ```
  *   function now_utc(
  *   
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -16505,7 +17367,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nullish_coalescing;
 
 /**
- * @brief Adaptive Function nullish_coalescing
+ * @brief Adaptive Function `nullish_coalescing`
  * @param x function execute parameter.
  *
  * Returns the first value of values that is not null or undefined leaving the
@@ -16516,11 +17378,13 @@ afw_function_definition_nullish_coalescing;
  *
  * Declaration:
  *
+ * ```
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
  *       ...values_rest: (list of any)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -16539,7 +17403,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_optional_chaining;
 
 /**
- * @brief Adaptive Function optional_chaining
+ * @brief Adaptive Function `optional_chaining`
  * @param x function execute parameter.
  *
  * Returns undefined if arg1 is null or undefined without evaluating arg2, but
@@ -16550,10 +17414,12 @@ afw_function_definition_optional_chaining;
  *
  * Declaration:
  *
+ * ```
  *   function optional_chaining(
  *       arg1: any,
  *       arg2: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -16575,7 +17441,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_parse_uri;
 
 /**
- * @brief Adaptive Function parse_uri
+ * @brief Adaptive Function `parse_uri`
  * @param x function execute parameter.
  *
  * Parse a URI.
@@ -16585,11 +17451,13 @@ afw_function_definition_parse_uri;
  *
  * Declaration:
  *
+ * ```
  *   function parse_uri(
  *       uri: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
  *   ): (object _AdaptiveParsedURI_);
+ * ```
  *
  * Parameters:
  *
@@ -16617,7 +17485,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_perform;
 
 /**
- * @brief Adaptive Function perform
+ * @brief Adaptive Function `perform`
  * @param x function execute parameter.
  *
  * Perform actions right away.
@@ -16627,9 +17495,11 @@ afw_function_definition_perform;
  *
  * Declaration:
  *
+ * ```
  *   function perform(
  *       request: (object _AdaptiveActions_)
  *   ): (object _AdaptiveResponse_);
+ * ```
  *
  * Parameters:
  *
@@ -16649,7 +17519,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_trace;
 
 /**
- * @brief Adaptive Function trace
+ * @brief Adaptive Function `trace`
  * @param x function execute parameter.
  *
  * Write a value to a trace log.
@@ -16659,11 +17529,13 @@ afw_function_definition_trace;
  *
  * Declaration:
  *
+ * ```
  *   function trace(
  *       value: any,
  *       filter?: boolean,
  *       number?: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -16691,7 +17563,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_variable_exists;
 
 /**
- * @brief Adaptive Function variable_exists
+ * @brief Adaptive Function `variable_exists`
  * @param x function execute parameter.
  *
  * Return the true if the named variable exists.
@@ -16701,9 +17573,11 @@ afw_function_definition_variable_exists;
  *
  * Declaration:
  *
+ * ```
  *   function variable_exists(
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16723,7 +17597,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_variable_get;
 
 /**
- * @brief Adaptive Function variable_get
+ * @brief Adaptive Function `variable_get`
  * @param x function execute parameter.
  *
  * Return the value of a variable. If variable is not available, return a
@@ -16734,10 +17608,12 @@ afw_function_definition_variable_get;
  *
  * Declaration:
  *
+ * ```
  *   function variable_get(
  *       name: string,
  *       defaultValue?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -16760,7 +17636,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_variable_is_not_null;
 
 /**
- * @brief Adaptive Function variable_is_not_null
+ * @brief Adaptive Function `variable_is_not_null`
  * @param x function execute parameter.
  *
  * Return the true if the named variable exists and is not null.
@@ -16770,9 +17646,11 @@ afw_function_definition_variable_is_not_null;
  *
  * Declaration:
  *
+ * ```
  *   function variable_is_not_null(
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -16802,7 +17680,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_default_add_object_action;
 
 /**
- * @brief Adaptive Function model_default_add_object_action
+ * @brief Adaptive Function `model_default_add_object_action`
  * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
@@ -16817,6 +17695,7 @@ afw_function_definition_model_default_add_object_action;
  *
  * Declaration:
  *
+ * ```
  *   function model_default_add_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -16825,6 +17704,7 @@ afw_function_definition_model_default_add_object_action;
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -16863,7 +17743,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_default_delete_object_action;
 
 /**
- * @brief Adaptive Function model_default_delete_object_action
+ * @brief Adaptive Function `model_default_delete_object_action`
  * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
@@ -16878,6 +17758,7 @@ afw_function_definition_model_default_delete_object_action;
  *
  * Declaration:
  *
+ * ```
  *   function model_default_delete_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -16885,6 +17766,7 @@ afw_function_definition_model_default_delete_object_action;
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -16919,7 +17801,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_default_modify_object_action;
 
 /**
- * @brief Adaptive Function model_default_modify_object_action
+ * @brief Adaptive Function `model_default_modify_object_action`
  * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
@@ -16934,6 +17816,7 @@ afw_function_definition_model_default_modify_object_action;
  *
  * Declaration:
  *
+ * ```
  *   function model_default_modify_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -16942,6 +17825,7 @@ afw_function_definition_model_default_modify_object_action;
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -17004,7 +17888,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_default_replace_object_action;
 
 /**
- * @brief Adaptive Function model_default_replace_object_action
+ * @brief Adaptive Function `model_default_replace_object_action`
  * @param x function execute parameter.
  *
  * This function returns a _AdaptiveAction_ object for the default action
@@ -17019,6 +17903,7 @@ afw_function_definition_model_default_replace_object_action;
  *
  * Declaration:
  *
+ * ```
  *   function model_default_replace_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -17027,6 +17912,7 @@ afw_function_definition_model_default_replace_object_action;
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -17065,7 +17951,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_mapBackObject_signature;
 
 /**
- * @brief Adaptive Function model_mapBackObject_signature
+ * @brief Adaptive Function `model_mapBackObject_signature`
  * @param x function execute parameter.
  *
  * This is the function signature for current:mapBackObject used by
@@ -17077,9 +17963,11 @@ afw_function_definition_model_mapBackObject_signature;
  *
  * Declaration:
  *
+ * ```
  *   function model_mapBackObject_signature(
  *       mappedObject: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -17098,7 +17986,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_mapObject_signature;
 
 /**
- * @brief Adaptive Function model_mapObject_signature
+ * @brief Adaptive Function `model_mapObject_signature`
  * @param x function execute parameter.
  *
  * This is the function signature for current:mapObject used by onAddObject.
@@ -17110,9 +17998,11 @@ afw_function_definition_model_mapObject_signature;
  *
  * Declaration:
  *
+ * ```
  *   function model_mapObject_signature(
  *       object: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -17131,7 +18021,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_model_returnObject_signature;
 
 /**
- * @brief Adaptive Function model_returnObject_signature
+ * @brief Adaptive Function `model_returnObject_signature`
  * @param x function execute parameter.
  *
  * This is the function signature for current:returnObject used by onGetObjects
@@ -17143,10 +18033,12 @@ afw_function_definition_model_returnObject_signature;
  *
  * Declaration:
  *
+ * ```
  *   function model_returnObject_signature(
  *       object: object,
  *       userData?: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17181,7 +18073,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_null;
 
 /**
- * @brief Adaptive Function bag<null>
+ * @brief Adaptive Function `bag<null>`
  * @param x function execute parameter.
  *
  * Takes any number of null values and returns a list of list.
@@ -17191,9 +18083,11 @@ afw_function_definition_bag_null;
  *
  * Declaration:
  *
+ * ```
  *   function bag<null>(
  *       ...values: (list of (list null))
  *   ): (list null);
+ * ```
  *
  * Parameters:
  *
@@ -17213,7 +18107,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_null;
 
 /**
- * @brief Adaptive Function bag_size<null>
+ * @brief Adaptive Function `bag_size<null>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -17223,9 +18117,11 @@ afw_function_definition_bag_size_null;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<null>(
  *       value: (list null)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -17245,7 +18141,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_null;
 
 /**
- * @brief Adaptive Function is<null>
+ * @brief Adaptive Function `is<null>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType null and return the boolean result.
@@ -17255,9 +18151,11 @@ afw_function_definition_is_null;
  *
  * Declaration:
  *
+ * ```
  *   function is<null>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17277,7 +18175,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_null;
 
 /**
- * @brief Adaptive Function null
+ * @brief Adaptive Function `null`
  * @param x function execute parameter.
  *
  * Converts value to data type null returning null result.
@@ -17287,9 +18185,11 @@ afw_function_definition_null;
  *
  * Declaration:
  *
+ * ```
  *   function null(
  *       value: any
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -17313,7 +18213,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_null;
 
 /**
- * @brief Adaptive Function to_string<null>
+ * @brief Adaptive Function `to_string<null>`
  * @param x function execute parameter.
  *
  * Converts null value to string. For list values, the to_string() value for
@@ -17324,9 +18224,11 @@ afw_function_definition_to_string_null;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<null>(
  *       value: null
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -17356,7 +18258,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_objectId;
 
 /**
- * @brief Adaptive Function bag<objectId>
+ * @brief Adaptive Function `bag<objectId>`
  * @param x function execute parameter.
  *
  * Takes any number of objectId values and returns a list of list.
@@ -17366,9 +18268,11 @@ afw_function_definition_bag_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function bag<objectId>(
  *       ...values: (list of (list objectId))
  *   ): (list objectId);
+ * ```
  *
  * Parameters:
  *
@@ -17388,7 +18292,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_objectId;
 
 /**
- * @brief Adaptive Function bag_size<objectId>
+ * @brief Adaptive Function `bag_size<objectId>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -17398,9 +18302,11 @@ afw_function_definition_bag_size_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<objectId>(
  *       value: (list objectId)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -17420,7 +18326,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_objectId;
 
 /**
- * @brief Adaptive Function eq<objectId>
+ * @brief Adaptive Function `eq<objectId>`
  * @param x function execute parameter.
  *
  * Determine if objectId arg1 is equal to the value of arg2 converted to the
@@ -17432,10 +18338,12 @@ afw_function_definition_eq_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function eq<objectId>(
  *       arg1: objectId,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17461,7 +18369,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_objectId;
 
 /**
- * @brief Adaptive Function eqx<objectId>
+ * @brief Adaptive Function `eqx<objectId>`
  * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is equal to the value and data type of arg2
@@ -17473,10 +18381,12 @@ afw_function_definition_eqx_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<objectId>(
  *       arg1: objectId,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17498,7 +18408,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_objectId;
 
 /**
- * @brief Adaptive Function ge<objectId>
+ * @brief Adaptive Function `ge<objectId>`
  * @param x function execute parameter.
  *
  * Checks for objectId arg1 is greater than or equal to objectId arg2 and
@@ -17509,10 +18419,12 @@ afw_function_definition_ge_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function ge<objectId>(
  *       arg1: objectId,
  *       arg2: objectId
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17534,7 +18446,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_objectId;
 
 /**
- * @brief Adaptive Function gt<objectId>
+ * @brief Adaptive Function `gt<objectId>`
  * @param x function execute parameter.
  *
  * Checks for objectId arg1 is greater than objectId arg2 and return the
@@ -17545,10 +18457,12 @@ afw_function_definition_gt_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function gt<objectId>(
  *       arg1: objectId,
  *       arg2: objectId
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17570,7 +18484,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_objectId;
 
 /**
- * @brief Adaptive Function is<objectId>
+ * @brief Adaptive Function `is<objectId>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType objectId and return the boolean result.
@@ -17580,9 +18494,11 @@ afw_function_definition_is_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function is<objectId>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17602,7 +18518,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_objectId;
 
 /**
- * @brief Adaptive Function le<objectId>
+ * @brief Adaptive Function `le<objectId>`
  * @param x function execute parameter.
  *
  * Checks for objectId arg1 is less than or equal to objectId arg2 and return
@@ -17613,10 +18529,12 @@ afw_function_definition_le_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function le<objectId>(
  *       arg1: objectId,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17638,7 +18556,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_objectId;
 
 /**
- * @brief Adaptive Function lt<objectId>
+ * @brief Adaptive Function `lt<objectId>`
  * @param x function execute parameter.
  *
  * Checks for objectId arg1 is less that objectId arg2 and return the boolean
@@ -17649,10 +18567,12 @@ afw_function_definition_lt_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function lt<objectId>(
  *       arg1: objectId,
  *       arg2: objectId
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17674,7 +18594,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_objectId;
 
 /**
- * @brief Adaptive Function ne<objectId>
+ * @brief Adaptive Function `ne<objectId>`
  * @param x function execute parameter.
  *
  * Determine if objectId arg1 is not equal to the value of arg2 converted to
@@ -17687,10 +18607,12 @@ afw_function_definition_ne_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function ne<objectId>(
  *       arg1: objectId,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17716,7 +18638,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_objectId;
 
 /**
- * @brief Adaptive Function nex<objectId>
+ * @brief Adaptive Function `nex<objectId>`
  * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is not equal to the value or data type of
@@ -17728,10 +18650,12 @@ afw_function_definition_nex_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function nex<objectId>(
  *       arg1: objectId,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17753,7 +18677,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_objectId;
 
 /**
- * @brief Adaptive Function objectId
+ * @brief Adaptive Function `objectId`
  * @param x function execute parameter.
  *
  * Converts value to data type objectId returning objectId result.
@@ -17763,9 +18687,11 @@ afw_function_definition_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function objectId(
  *       value: any
  *   ): objectId;
+ * ```
  *
  * Parameters:
  *
@@ -17789,7 +18715,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_objectId;
 
 /**
- * @brief Adaptive Function to_string<objectId>
+ * @brief Adaptive Function `to_string<objectId>`
  * @param x function execute parameter.
  *
  * Converts objectId value to string. For list values, the to_string() value
@@ -17800,9 +18726,11 @@ afw_function_definition_to_string_objectId;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<objectId>(
  *       value: objectId
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -17832,7 +18760,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_objectPath;
 
 /**
- * @brief Adaptive Function bag<objectPath>
+ * @brief Adaptive Function `bag<objectPath>`
  * @param x function execute parameter.
  *
  * Takes any number of objectPath values and returns a list of list.
@@ -17842,9 +18770,11 @@ afw_function_definition_bag_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function bag<objectPath>(
  *       ...values: (list of (list objectPath))
  *   ): (list objectPath);
+ * ```
  *
  * Parameters:
  *
@@ -17864,7 +18794,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_objectPath;
 
 /**
- * @brief Adaptive Function bag_size<objectPath>
+ * @brief Adaptive Function `bag_size<objectPath>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -17874,9 +18804,11 @@ afw_function_definition_bag_size_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<objectPath>(
  *       value: (list objectPath)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -17896,7 +18828,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_objectPath;
 
 /**
- * @brief Adaptive Function eq<objectPath>
+ * @brief Adaptive Function `eq<objectPath>`
  * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is equal to the value of arg2 converted to the
@@ -17908,10 +18840,12 @@ afw_function_definition_eq_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function eq<objectPath>(
  *       arg1: objectPath,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17937,7 +18871,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_objectPath;
 
 /**
- * @brief Adaptive Function eqx<objectPath>
+ * @brief Adaptive Function `eqx<objectPath>`
  * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is equal to the value and data type of arg2
@@ -17949,10 +18883,12 @@ afw_function_definition_eqx_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<objectPath>(
  *       arg1: objectPath,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -17974,7 +18910,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_objectPath;
 
 /**
- * @brief Adaptive Function ge<objectPath>
+ * @brief Adaptive Function `ge<objectPath>`
  * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is greater than or equal to objectPath arg2 and
@@ -17985,10 +18921,12 @@ afw_function_definition_ge_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function ge<objectPath>(
  *       arg1: objectPath,
  *       arg2: objectPath
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18010,7 +18948,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_objectPath;
 
 /**
- * @brief Adaptive Function gt<objectPath>
+ * @brief Adaptive Function `gt<objectPath>`
  * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is greater than objectPath arg2 and return the
@@ -18021,10 +18959,12 @@ afw_function_definition_gt_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function gt<objectPath>(
  *       arg1: objectPath,
  *       arg2: objectPath
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18046,7 +18986,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_objectPath;
 
 /**
- * @brief Adaptive Function is<objectPath>
+ * @brief Adaptive Function `is<objectPath>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType objectPath and return the boolean result.
@@ -18056,9 +18996,11 @@ afw_function_definition_is_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function is<objectPath>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18078,7 +19020,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_objectPath;
 
 /**
- * @brief Adaptive Function le<objectPath>
+ * @brief Adaptive Function `le<objectPath>`
  * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is less than or equal to objectPath arg2 and
@@ -18089,10 +19031,12 @@ afw_function_definition_le_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function le<objectPath>(
  *       arg1: objectPath,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18114,7 +19058,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_objectPath;
 
 /**
- * @brief Adaptive Function lt<objectPath>
+ * @brief Adaptive Function `lt<objectPath>`
  * @param x function execute parameter.
  *
  * Checks for objectPath arg1 is less that objectPath arg2 and return the
@@ -18125,10 +19069,12 @@ afw_function_definition_lt_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function lt<objectPath>(
  *       arg1: objectPath,
  *       arg2: objectPath
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18150,7 +19096,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_objectPath;
 
 /**
- * @brief Adaptive Function ne<objectPath>
+ * @brief Adaptive Function `ne<objectPath>`
  * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is not equal to the value of arg2 converted to
@@ -18163,10 +19109,12 @@ afw_function_definition_ne_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function ne<objectPath>(
  *       arg1: objectPath,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18192,7 +19140,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_objectPath;
 
 /**
- * @brief Adaptive Function nex<objectPath>
+ * @brief Adaptive Function `nex<objectPath>`
  * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is not equal to the value or data type of
@@ -18204,10 +19152,12 @@ afw_function_definition_nex_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function nex<objectPath>(
  *       arg1: objectPath,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18229,7 +19179,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_objectPath;
 
 /**
- * @brief Adaptive Function objectPath
+ * @brief Adaptive Function `objectPath`
  * @param x function execute parameter.
  *
  * Converts value to data type objectPath returning objectPath result.
@@ -18239,9 +19189,11 @@ afw_function_definition_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function objectPath(
  *       value: any
  *   ): objectPath;
+ * ```
  *
  * Parameters:
  *
@@ -18265,7 +19217,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_objectPath;
 
 /**
- * @brief Adaptive Function to_string<objectPath>
+ * @brief Adaptive Function `to_string<objectPath>`
  * @param x function execute parameter.
  *
  * Converts objectPath value to string. For list values, the to_string() value
@@ -18276,9 +19228,11 @@ afw_function_definition_to_string_objectPath;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<objectPath>(
  *       value: objectPath
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -18308,7 +19262,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_properties;
 
 /**
- * @brief Adaptive Function add_properties
+ * @brief Adaptive Function `add_properties`
  * @param x function execute parameter.
  *
  * Add the properties of one object to another replacing existing properties by
@@ -18319,11 +19273,13 @@ afw_function_definition_add_properties;
  *
  * Declaration:
  *
+ * ```
  *   function add_properties(
  *       target: object,
  *       source_1: object,
  *       ...source_rest: (list of object)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -18344,7 +19300,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_apply_object_options;
 
 /**
- * @brief Adaptive Function apply_object_options
+ * @brief Adaptive Function `apply_object_options`
  * @param x function execute parameter.
  *
  * This will return an object with the specified object options applied.
@@ -18354,10 +19310,12 @@ afw_function_definition_apply_object_options;
  *
  * Declaration:
  *
+ * ```
  *   function apply_object_options(
  *       object: object,
  *       options?: (object _AdaptiveObjectOptions_)
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -18380,7 +19338,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_object;
 
 /**
- * @brief Adaptive Function bag<object>
+ * @brief Adaptive Function `bag<object>`
  * @param x function execute parameter.
  *
  * Takes any number of object values and returns a list of list.
@@ -18390,9 +19348,11 @@ afw_function_definition_bag_object;
  *
  * Declaration:
  *
+ * ```
  *   function bag<object>(
  *       ...values: (list of (list object))
  *   ): (list object);
+ * ```
  *
  * Parameters:
  *
@@ -18412,7 +19372,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_object;
 
 /**
- * @brief Adaptive Function bag_size<object>
+ * @brief Adaptive Function `bag_size<object>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -18422,9 +19382,11 @@ afw_function_definition_bag_size_object;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<object>(
  *       value: (list object)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -18444,7 +19406,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_clone_object;
 
 /**
- * @brief Adaptive Function clone<object>
+ * @brief Adaptive Function `clone<object>`
  * @param x function execute parameter.
  *
  * Deep clone a object value.
@@ -18454,9 +19416,11 @@ afw_function_definition_clone_object;
  *
  * Declaration:
  *
+ * ```
  *   function clone<object>(
  *       value: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -18476,7 +19440,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_object;
 
 /**
- * @brief Adaptive Function eq<object>
+ * @brief Adaptive Function `eq<object>`
  * @param x function execute parameter.
  *
  * Determine if object arg1 is equal to the value of arg2 converted to the data
@@ -18488,10 +19452,12 @@ afw_function_definition_eq_object;
  *
  * Declaration:
  *
+ * ```
  *   function eq<object>(
  *       arg1: object,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18517,7 +19483,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_object;
 
 /**
- * @brief Adaptive Function eqx<object>
+ * @brief Adaptive Function `eqx<object>`
  * @param x function execute parameter.
  *
  * Determine if for object arg1 is equal to the value and data type of arg2
@@ -18529,10 +19495,12 @@ afw_function_definition_eqx_object;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<object>(
  *       arg1: object,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18554,7 +19522,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_object;
 
 /**
- * @brief Adaptive Function ge<object>
+ * @brief Adaptive Function `ge<object>`
  * @param x function execute parameter.
  *
  * Checks for object arg1 is greater than or equal to object arg2 and return
@@ -18565,10 +19533,12 @@ afw_function_definition_ge_object;
  *
  * Declaration:
  *
+ * ```
  *   function ge<object>(
  *       arg1: object,
  *       arg2: object
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18590,7 +19560,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_object;
 
 /**
- * @brief Adaptive Function gt<object>
+ * @brief Adaptive Function `gt<object>`
  * @param x function execute parameter.
  *
  * Checks for object arg1 is greater than object arg2 and return the boolean
@@ -18601,10 +19571,12 @@ afw_function_definition_gt_object;
  *
  * Declaration:
  *
+ * ```
  *   function gt<object>(
  *       arg1: object,
  *       arg2: object
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18626,7 +19598,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_object;
 
 /**
- * @brief Adaptive Function is<object>
+ * @brief Adaptive Function `is<object>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType object and return the boolean result.
@@ -18636,9 +19608,11 @@ afw_function_definition_is_object;
  *
  * Declaration:
  *
+ * ```
  *   function is<object>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18658,7 +19632,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_object;
 
 /**
- * @brief Adaptive Function le<object>
+ * @brief Adaptive Function `le<object>`
  * @param x function execute parameter.
  *
  * Checks for object arg1 is less than or equal to object arg2 and return the
@@ -18669,10 +19643,12 @@ afw_function_definition_le_object;
  *
  * Declaration:
  *
+ * ```
  *   function le<object>(
  *       arg1: object,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18694,7 +19670,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_local_object_meta_set_ids;
 
 /**
- * @brief Adaptive Function local_object_meta_set_ids
+ * @brief Adaptive Function `local_object_meta_set_ids`
  * @param x function execute parameter.
  *
  * This is used to set the ids in a local mutable object. The ids are used to
@@ -18705,12 +19681,14 @@ afw_function_definition_local_object_meta_set_ids;
  *
  * Declaration:
  *
+ * ```
  *   function local_object_meta_set_ids(
  *       object: object,
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -18735,7 +19713,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_object;
 
 /**
- * @brief Adaptive Function lt<object>
+ * @brief Adaptive Function `lt<object>`
  * @param x function execute parameter.
  *
  * Checks for object arg1 is less that object arg2 and return the boolean
@@ -18746,10 +19724,12 @@ afw_function_definition_lt_object;
  *
  * Declaration:
  *
+ * ```
  *   function lt<object>(
  *       arg1: object,
  *       arg2: object
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18771,7 +19751,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_object;
 
 /**
- * @brief Adaptive Function ne<object>
+ * @brief Adaptive Function `ne<object>`
  * @param x function execute parameter.
  *
  * Determine if object arg1 is not equal to the value of arg2 converted to the
@@ -18783,10 +19763,12 @@ afw_function_definition_ne_object;
  *
  * Declaration:
  *
+ * ```
  *   function ne<object>(
  *       arg1: object,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18812,7 +19794,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_object;
 
 /**
- * @brief Adaptive Function nex<object>
+ * @brief Adaptive Function `nex<object>`
  * @param x function execute parameter.
  *
  * Determine if for object arg1 is not equal to the value or data type of arg2
@@ -18824,10 +19806,12 @@ afw_function_definition_nex_object;
  *
  * Declaration:
  *
+ * ```
  *   function nex<object>(
  *       arg1: object,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18849,7 +19833,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_object;
 
 /**
- * @brief Adaptive Function object
+ * @brief Adaptive Function `object`
  * @param x function execute parameter.
  *
  * Converts value to data type object returning object result.
@@ -18859,9 +19843,11 @@ afw_function_definition_object;
  *
  * Declaration:
  *
+ * ```
  *   function object(
  *       value: any
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -18885,7 +19871,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_property_exists;
 
 /**
- * @brief Adaptive Function property_exists
+ * @brief Adaptive Function `property_exists`
  * @param x function execute parameter.
  *
  * Return true if the named property exists in an object.
@@ -18895,10 +19881,12 @@ afw_function_definition_property_exists;
  *
  * Declaration:
  *
+ * ```
  *   function property_exists(
  *       object: object,
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18919,7 +19907,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_property_get;
 
 /**
- * @brief Adaptive Function property_get
+ * @brief Adaptive Function `property_get`
  * @param x function execute parameter.
  *
  * Return the value of a property of an object. If property is not available,
@@ -18930,11 +19918,13 @@ afw_function_definition_property_get;
  *
  * Declaration:
  *
+ * ```
  *   function property_get(
  *       object: object,
  *       name: string,
  *       defaultValue?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -18958,7 +19948,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_property_is_not_null;
 
 /**
- * @brief Adaptive Function property_is_not_null
+ * @brief Adaptive Function `property_is_not_null`
  * @param x function execute parameter.
  *
  * Return true if the named property exists in an object and is not null.
@@ -18968,10 +19958,12 @@ afw_function_definition_property_is_not_null;
  *
  * Declaration:
  *
+ * ```
  *   function property_is_not_null(
  *       object: object,
  *       name: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -18992,7 +19984,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_object;
 
 /**
- * @brief Adaptive Function to_string<object>
+ * @brief Adaptive Function `to_string<object>`
  * @param x function execute parameter.
  *
  * Converts object value to string. For list values, the to_string() value for
@@ -19003,9 +19995,11 @@ afw_function_definition_to_string_object;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<object>(
  *       value: object
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -19035,7 +20029,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_password;
 
 /**
- * @brief Adaptive Function bag<password>
+ * @brief Adaptive Function `bag<password>`
  * @param x function execute parameter.
  *
  * Takes any number of password values and returns a list of list.
@@ -19045,9 +20039,11 @@ afw_function_definition_bag_password;
  *
  * Declaration:
  *
+ * ```
  *   function bag<password>(
  *       ...values: (list of (list password))
  *   ): (list password);
+ * ```
  *
  * Parameters:
  *
@@ -19067,7 +20063,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_password;
 
 /**
- * @brief Adaptive Function bag_size<password>
+ * @brief Adaptive Function `bag_size<password>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -19077,9 +20073,11 @@ afw_function_definition_bag_size_password;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<password>(
  *       value: (list password)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -19099,7 +20097,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_password;
 
 /**
- * @brief Adaptive Function eq<password>
+ * @brief Adaptive Function `eq<password>`
  * @param x function execute parameter.
  *
  * Determine if password arg1 is equal to the value of arg2 converted to the
@@ -19111,10 +20109,12 @@ afw_function_definition_eq_password;
  *
  * Declaration:
  *
+ * ```
  *   function eq<password>(
  *       arg1: password,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19140,7 +20140,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_password;
 
 /**
- * @brief Adaptive Function eqx<password>
+ * @brief Adaptive Function `eqx<password>`
  * @param x function execute parameter.
  *
  * Determine if for password arg1 is equal to the value and data type of arg2
@@ -19152,10 +20152,12 @@ afw_function_definition_eqx_password;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<password>(
  *       arg1: password,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19177,7 +20179,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_password;
 
 /**
- * @brief Adaptive Function ge<password>
+ * @brief Adaptive Function `ge<password>`
  * @param x function execute parameter.
  *
  * Checks for password arg1 is greater than or equal to password arg2 and
@@ -19188,10 +20190,12 @@ afw_function_definition_ge_password;
  *
  * Declaration:
  *
+ * ```
  *   function ge<password>(
  *       arg1: password,
  *       arg2: password
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19213,7 +20217,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_password;
 
 /**
- * @brief Adaptive Function gt<password>
+ * @brief Adaptive Function `gt<password>`
  * @param x function execute parameter.
  *
  * Checks for password arg1 is greater than password arg2 and return the
@@ -19224,10 +20228,12 @@ afw_function_definition_gt_password;
  *
  * Declaration:
  *
+ * ```
  *   function gt<password>(
  *       arg1: password,
  *       arg2: password
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19249,7 +20255,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_password;
 
 /**
- * @brief Adaptive Function is<password>
+ * @brief Adaptive Function `is<password>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType password and return the boolean result.
@@ -19259,9 +20265,11 @@ afw_function_definition_is_password;
  *
  * Declaration:
  *
+ * ```
  *   function is<password>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19281,7 +20289,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_password;
 
 /**
- * @brief Adaptive Function le<password>
+ * @brief Adaptive Function `le<password>`
  * @param x function execute parameter.
  *
  * Checks for password arg1 is less than or equal to password arg2 and return
@@ -19292,10 +20300,12 @@ afw_function_definition_le_password;
  *
  * Declaration:
  *
+ * ```
  *   function le<password>(
  *       arg1: password,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19317,7 +20327,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_password;
 
 /**
- * @brief Adaptive Function lt<password>
+ * @brief Adaptive Function `lt<password>`
  * @param x function execute parameter.
  *
  * Checks for password arg1 is less that password arg2 and return the boolean
@@ -19328,10 +20338,12 @@ afw_function_definition_lt_password;
  *
  * Declaration:
  *
+ * ```
  *   function lt<password>(
  *       arg1: password,
  *       arg2: password
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19353,7 +20365,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_password;
 
 /**
- * @brief Adaptive Function ne<password>
+ * @brief Adaptive Function `ne<password>`
  * @param x function execute parameter.
  *
  * Determine if password arg1 is not equal to the value of arg2 converted to
@@ -19366,10 +20378,12 @@ afw_function_definition_ne_password;
  *
  * Declaration:
  *
+ * ```
  *   function ne<password>(
  *       arg1: password,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19395,7 +20409,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_password;
 
 /**
- * @brief Adaptive Function nex<password>
+ * @brief Adaptive Function `nex<password>`
  * @param x function execute parameter.
  *
  * Determine if for password arg1 is not equal to the value or data type of
@@ -19407,10 +20421,12 @@ afw_function_definition_nex_password;
  *
  * Declaration:
  *
+ * ```
  *   function nex<password>(
  *       arg1: password,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -19432,7 +20448,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_password;
 
 /**
- * @brief Adaptive Function password
+ * @brief Adaptive Function `password`
  * @param x function execute parameter.
  *
  * Converts value to data type password returning password result.
@@ -19442,9 +20458,11 @@ afw_function_definition_password;
  *
  * Declaration:
  *
+ * ```
  *   function password(
  *       value: any
  *   ): password;
+ * ```
  *
  * Parameters:
  *
@@ -19468,7 +20486,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_password;
 
 /**
- * @brief Adaptive Function to_string<password>
+ * @brief Adaptive Function `to_string<password>`
  * @param x function execute parameter.
  *
  * Converts password value to string. For list values, the to_string() value
@@ -19479,9 +20497,11 @@ afw_function_definition_to_string_password;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<password>(
  *       value: password
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -19511,7 +20531,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_abs;
 
 /**
- * @brief Adaptive Function abs
+ * @brief Adaptive Function `abs`
  * @param x function execute parameter.
  *
  * Compute the absolute value of the `<dataType>` value and return the
@@ -19520,23 +20540,25 @@ afw_function_definition_abs;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer.
  *
  * Declaration:
  *
+ * ```
  *   function abs <dataType>(
  *       value: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19548,7 +20570,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add;
 
 /**
- * @brief Adaptive Function add
+ * @brief Adaptive Function `add`
  * @param x function execute parameter.
  *
  * Add 2 or more `<dataType>` values and return the `<dataType>` result.
@@ -19556,25 +20578,27 @@ afw_function_definition_add;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer, string.
  *
  * Declaration:
  *
+ * ```
  *   function add <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (2 or more `<Type>`)
+ *   values - (2 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19586,7 +20610,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_dayTimeDuration;
 
 /**
- * @brief Adaptive Function add_dayTimeDuration
+ * @brief Adaptive Function `add_dayTimeDuration`
  * @param x function execute parameter.
  *
  * Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
@@ -19595,26 +20619,28 @@ afw_function_definition_add_dayTimeDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   dateTime.
  *
  * Declaration:
  *
+ * ```
  *   function add_dayTimeDuration <dataType>(
  *       arg1: dataType,
  *       arg2: dayTimeDuration
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (dayTimeDuration)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19626,7 +20652,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_yearMonthDuration;
 
 /**
- * @brief Adaptive Function add_yearMonthDuration
+ * @brief Adaptive Function `add_yearMonthDuration`
  * @param x function execute parameter.
  *
  * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the `<dataType>`
@@ -19635,26 +20661,28 @@ afw_function_definition_add_yearMonthDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime.
  *
  * Declaration:
  *
+ * ```
  *   function add_yearMonthDuration <dataType>(
  *       arg1: dataType,
  *       arg2: yearMonthDuration
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (yearMonthDuration)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19666,7 +20694,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of;
 
 /**
- * @brief Adaptive Function at_least_one_member_of
+ * @brief Adaptive Function `at_least_one_member_of`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in `<dataType>` list1 is in
@@ -19675,23 +20703,25 @@ afw_function_definition_at_least_one_member_of;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -19707,7 +20737,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag;
 
 /**
- * @brief Adaptive Function bag
+ * @brief Adaptive Function `bag`
  * @param x function execute parameter.
  *
  * Takes any number of `<dataType>` values and returns a list of list.
@@ -19715,7 +20745,7 @@ afw_function_definition_bag;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -19725,17 +20755,19 @@ afw_function_definition_bag;
  *
  * Declaration:
  *
+ * ```
  *   function bag <dataType>(
  *       ...values: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   values - (0 or more list `<Type>`)
+ *   values - (0 or more list ``<Type>``)
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19747,7 +20779,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size;
 
 /**
- * @brief Adaptive Function bag_size
+ * @brief Adaptive Function `bag_size`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -19755,7 +20787,7 @@ afw_function_definition_bag_size;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -19765,13 +20797,15 @@ afw_function_definition_bag_size;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size <dataType>(
  *       value: list
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (list `<Type>`)
+ *   value - (list ``<Type>``)
  *
  * Returns:
  *
@@ -19787,7 +20821,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ceil;
 
 /**
- * @brief Adaptive Function ceil
+ * @brief Adaptive Function `ceil`
  * @param x function execute parameter.
  *
  * Determine the smallest integer that is greater then or equal to the
@@ -19796,23 +20830,25 @@ afw_function_definition_ceil;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double.
  *
  * Declaration:
  *
+ * ```
  *   function ceil <dataType>(
  *       value: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19824,7 +20860,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_clone;
 
 /**
- * @brief Adaptive Function clone
+ * @brief Adaptive Function `clone`
  * @param x function execute parameter.
  *
  * Deep clone a `<dataType>` value.
@@ -19832,23 +20868,25 @@ afw_function_definition_clone;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   list, object.
  *
  * Declaration:
  *
+ * ```
  *   function clone <dataType>(
  *       value: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to clone.
+ *   value - (``<Type>``) The `<dataType>` value to clone.
  *
  * Returns:
  *
- *   (`<Type>`) The cloned `<dataType>` value.
+ *   (``<Type>``) The cloned `<dataType>` value.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19860,7 +20898,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile;
 
 /**
- * @brief Adaptive Function compile
+ * @brief Adaptive Function `compile`
  * @param x function execute parameter.
  *
  * Compile `<dataType>` value and return either an unevaluated adaptive value
@@ -19869,20 +20907,22 @@ afw_function_definition_compile;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   expression, hybrid, regexp, script, template, xpathExpression.
  *
  * Declaration:
  *
+ * ```
  *   function compile <dataType>(
  *       source: dataType,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
- *   source - (`<Type>`) `<dataType>` string to compile.
+ *   source - (``<Type>``) `<dataType>` string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
@@ -19906,7 +20946,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decode_to_string;
 
 /**
- * @brief Adaptive Function decode_to_string
+ * @brief Adaptive Function `decode_to_string`
  * @param x function execute parameter.
  *
  * Decode `<dataType>` value to string. An error is thrown if decoded value is
@@ -19915,19 +20955,21 @@ afw_function_definition_decode_to_string;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   base64Binary, hexBinary.
  *
  * Declaration:
  *
+ * ```
  *   function decode_to_string <dataType>(
  *       value: dataType
  *   ): string;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to decode.
+ *   value - (``<Type>``) The `<dataType>` value to decode.
  *
  * Returns:
  *
@@ -19943,7 +20985,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_divide;
 
 /**
- * @brief Adaptive Function divide
+ * @brief Adaptive Function `divide`
  * @param x function execute parameter.
  *
  * Divide `<dataType>` dividend by `<dataType>` divisor and return the
@@ -19952,26 +20994,28 @@ afw_function_definition_divide;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer.
  *
  * Declaration:
  *
+ * ```
  *   function divide <dataType>(
  *       dividend: dataType,
  *       divisor: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   dividend - (`<Type>`)
+ *   dividend - (``<Type>``)
  *
- *   divisor - (`<Type>`)
+ *   divisor - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -19983,7 +21027,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_encode_as_base64Binary;
 
 /**
- * @brief Adaptive Function encode_as_base64Binary
+ * @brief Adaptive Function `encode_as_base64Binary`
  * @param x function execute parameter.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
@@ -19992,19 +21036,21 @@ afw_function_definition_encode_as_base64Binary;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_base64Binary <dataType>(
  *       value: dataType
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to encode.
+ *   value - (``<Type>``) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -20020,7 +21066,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_encode_as_hexBinary;
 
 /**
- * @brief Adaptive Function encode_as_hexBinary
+ * @brief Adaptive Function `encode_as_hexBinary`
  * @param x function execute parameter.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value
@@ -20029,19 +21075,21 @@ afw_function_definition_encode_as_hexBinary;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_hexBinary <dataType>(
  *       value: dataType
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to encode.
+ *   value - (``<Type>``) The `<dataType>` value to encode.
  *
  * Returns:
  *
@@ -20057,7 +21105,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ends_with;
 
 /**
- * @brief Adaptive Function ends_with
+ * @brief Adaptive Function `ends_with`
  * @param x function execute parameter.
  *
  * Checks whether `<dataType>` value ends with a `<dataType>` and return the
@@ -20066,20 +21114,22 @@ afw_function_definition_ends_with;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function ends_with <dataType>(
  *       value: dataType,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   subString - (string)
  *
@@ -20097,7 +21147,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq;
 
 /**
- * @brief Adaptive Function eq
+ * @brief Adaptive Function `eq`
  * @param x function execute parameter.
  *
  * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
@@ -20108,7 +21158,7 @@ afw_function_definition_eq;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20118,14 +21168,16 @@ afw_function_definition_eq;
  *
  * Declaration:
  *
+ * ```
  *   function eq <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -20147,7 +21199,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_ignore_case;
 
 /**
- * @brief Adaptive Function eq_ignore_case
+ * @brief Adaptive Function `eq_ignore_case`
  * @param x function execute parameter.
  *
  * Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case and
@@ -20156,22 +21208,24 @@ afw_function_definition_eq_ignore_case;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function eq_ignore_case <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -20187,7 +21241,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx;
 
 /**
- * @brief Adaptive Function eqx
+ * @brief Adaptive Function `eqx`
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
@@ -20197,7 +21251,7 @@ afw_function_definition_eqx;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20207,14 +21261,16 @@ afw_function_definition_eqx;
  *
  * Declaration:
  *
+ * ```
  *   function eqx <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -20232,7 +21288,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate;
 
 /**
- * @brief Adaptive Function evaluate
+ * @brief Adaptive Function `evaluate`
  * @param x function execute parameter.
  *
  * Compile and evaluate `<dataType>` value.
@@ -20240,20 +21296,22 @@ afw_function_definition_evaluate;
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   expression, hybrid, script, template, xpathExpression.
  *
  * Declaration:
  *
+ * ```
  *   function evaluate <dataType>(
  *       source: dataType,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
- *   source - (`<Type>`) `<dataType>` string to compile and evaluate.
+ *   source - (``<Type>``) `<dataType>` string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -20277,7 +21335,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_floor;
 
 /**
- * @brief Adaptive Function floor
+ * @brief Adaptive Function `floor`
  * @param x function execute parameter.
  *
  * Determine the largest integer that is smaller then or equal to the
@@ -20286,23 +21344,25 @@ afw_function_definition_floor;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double.
  *
  * Declaration:
  *
+ * ```
  *   function floor <dataType>(
  *       number: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   number - (`<Type>`)
+ *   number - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20314,7 +21374,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge;
 
 /**
- * @brief Adaptive Function ge
+ * @brief Adaptive Function `ge`
  * @param x function execute parameter.
  *
  * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
@@ -20323,7 +21383,7 @@ afw_function_definition_ge;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20333,16 +21393,18 @@ afw_function_definition_ge;
  *
  * Declaration:
  *
+ * ```
  *   function ge <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -20358,7 +21420,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt;
 
 /**
- * @brief Adaptive Function gt
+ * @brief Adaptive Function `gt`
  * @param x function execute parameter.
  *
  * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
@@ -20367,7 +21429,7 @@ afw_function_definition_gt;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20377,16 +21439,18 @@ afw_function_definition_gt;
  *
  * Declaration:
  *
+ * ```
  *   function gt <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -20402,7 +21466,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_in_range;
 
 /**
- * @brief Adaptive Function in_range
+ * @brief Adaptive Function `in_range`
  * @param x function execute parameter.
  *
  * Checks if `<dataType>` is between startTime and endTime, inclusive.
@@ -20415,25 +21479,27 @@ afw_function_definition_in_range;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   time.
  *
  * Declaration:
  *
+ * ```
  *   function in_range <dataType>(
  *       time: dataType,
  *       startTime: dataType,
  *       endTime: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   time - (`<Type>`)
+ *   time - (``<Type>``)
  *
- *   startTime - (`<Type>`)
+ *   startTime - (``<Type>``)
  *
- *   endTime - (`<Type>`)
+ *   endTime - (``<Type>``)
  *
  * Returns:
  *
@@ -20449,7 +21515,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_includes;
 
 /**
- * @brief Adaptive Function includes
+ * @brief Adaptive Function `includes`
  * @param x function execute parameter.
  *
  * Checks whether the `<dataType>` value includes a string and return the
@@ -20458,21 +21524,23 @@ afw_function_definition_includes;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, list, string.
  *
  * Declaration:
  *
+ * ```
  *   function includes <dataType>(
  *       searchString: dataType,
  *       subString: string,
  *       position?: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   searchString - (`<Type>`) The `<dataType>` to search.
+ *   searchString - (``<Type>``) The `<dataType>` to search.
  *
  *   subString - (string) Substring to find.
  *
@@ -20493,7 +21561,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_of;
 
 /**
- * @brief Adaptive Function index_of
+ * @brief Adaptive Function `index_of`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into `<dataType>` value of subString. If
@@ -20502,21 +21570,23 @@ afw_function_definition_index_of;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function index_of <dataType>(
  *       value: dataType,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -20537,7 +21607,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection;
 
 /**
- * @brief Adaptive Function intersection
+ * @brief Adaptive Function `intersection`
  * @param x function execute parameter.
  *
  * Returns a list of `<dataType>` with the values that are common to both list
@@ -20546,27 +21616,29 @@ afw_function_definition_intersection;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function intersection <dataType>(
  *       list1: list,
  *       list2: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20578,7 +21650,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is;
 
 /**
- * @brief Adaptive Function is
+ * @brief Adaptive Function `is`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType `<dataType>` and return the boolean result.
@@ -20586,7 +21658,7 @@ afw_function_definition_is;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20596,9 +21668,11 @@ afw_function_definition_is;
  *
  * Declaration:
  *
+ * ```
  *   function is <dataType>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -20618,7 +21692,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in;
 
 /**
- * @brief Adaptive Function is_in
+ * @brief Adaptive Function `is_in`
  * @param x function execute parameter.
  *
  * Checks whether `<dataType>` value is in list of `<dataType>` list and
@@ -20627,7 +21701,7 @@ afw_function_definition_is_in;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
@@ -20635,16 +21709,18 @@ afw_function_definition_is_in;
  *
  * Declaration:
  *
+ * ```
  *   function is_in <dataType>(
  *       value: dataType,
  *       list: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
- *   list - (list `<Type>`)
+ *   list - (list ``<Type>``)
  *
  * Returns:
  *
@@ -20660,7 +21736,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_last_index_of;
 
 /**
- * @brief Adaptive Function last_index_of
+ * @brief Adaptive Function `last_index_of`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into `<dataType>` value of the last occurrence
@@ -20669,21 +21745,23 @@ afw_function_definition_last_index_of;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function last_index_of <dataType>(
  *       value: dataType,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   subString - (string) Substring to search for.
  *
@@ -20704,7 +21782,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le;
 
 /**
- * @brief Adaptive Function le
+ * @brief Adaptive Function `le`
  * @param x function execute parameter.
  *
  * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
@@ -20713,7 +21791,7 @@ afw_function_definition_le;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20723,14 +21801,16 @@ afw_function_definition_le;
  *
  * Declaration:
  *
+ * ```
  *   function le <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -20748,7 +21828,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_length;
 
 /**
- * @brief Adaptive Function length
+ * @brief Adaptive Function `length`
  * @param x function execute parameter.
  *
  * This is a polymorphic function where `<dataType>` can be any of the
@@ -20758,20 +21838,22 @@ afw_function_definition_length;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, list, string.
  *
  * Declaration:
  *
+ * ```
  *   function length <dataType>(
  *       value: dataType
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) Returns the number of entries in a list or code points
- *       in others.
+ *   value - (``<Type>``) Returns the number of entries in a list or code
+ *       points in others.
  *
  * Returns:
  *
@@ -20787,7 +21869,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt;
 
 /**
- * @brief Adaptive Function lt
+ * @brief Adaptive Function `lt`
  * @param x function execute parameter.
  *
  * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
@@ -20796,7 +21878,7 @@ afw_function_definition_lt;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -20806,16 +21888,18 @@ afw_function_definition_lt;
  *
  * Declaration:
  *
+ * ```
  *   function lt <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
@@ -20831,7 +21915,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_match;
 
 /**
- * @brief Adaptive Function match
+ * @brief Adaptive Function `match`
  * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
@@ -20840,20 +21924,22 @@ afw_function_definition_match;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   rfc822Name, x500Name.
  *
  * Declaration:
  *
+ * ```
  *   function match <dataType>(
  *       arg1: dataType,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (string)
  *
@@ -20871,7 +21957,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max;
 
 /**
- * @brief Adaptive Function max
+ * @brief Adaptive Function `max`
  * @param x function execute parameter.
  *
  * Return the `<dataType>` value that is greater than or equal to the others.
@@ -20879,24 +21965,26 @@ afw_function_definition_max;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime, double, integer, string, time.
  *
  * Declaration:
  *
+ * ```
  *   function max <dataType>(
  *       values_1: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (1 or more `<Type>`)
+ *   values - (1 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20908,7 +21996,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min;
 
 /**
- * @brief Adaptive Function min
+ * @brief Adaptive Function `min`
  * @param x function execute parameter.
  *
  * Return the `<dataType>` value that is less than or equal to the others.
@@ -20916,24 +22004,26 @@ afw_function_definition_min;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime, double, integer, string, time.
  *
  * Declaration:
  *
+ * ```
  *   function min <dataType>(
  *       values_1: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (1 or more `<Type>`)
+ *   values - (1 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20945,7 +22035,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_mod;
 
 /**
- * @brief Adaptive Function mod
+ * @brief Adaptive Function `mod`
  * @param x function execute parameter.
  *
  * Divide `<dataType>` dividend by `<dataType>` divisor and return the
@@ -20954,26 +22044,28 @@ afw_function_definition_mod;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   integer.
  *
  * Declaration:
  *
+ * ```
  *   function mod <dataType>(
  *       dividend: dataType,
  *       divisor: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   dividend - (`<Type>`)
+ *   dividend - (``<Type>``)
  *
- *   divisor - (`<Type>`)
+ *   divisor - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20985,7 +22077,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_multiply;
 
 /**
- * @brief Adaptive Function multiply
+ * @brief Adaptive Function `multiply`
  * @param x function execute parameter.
  *
  * Multiply 2 or more `<dataType>` values and return the `<dataType>` result.
@@ -20993,25 +22085,27 @@ afw_function_definition_multiply;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer.
  *
  * Declaration:
  *
+ * ```
  *   function multiply <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
  *       ...values_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   values - (2 or more `<Type>`)
+ *   values - (2 or more ``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21023,7 +22117,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne;
 
 /**
- * @brief Adaptive Function ne
+ * @brief Adaptive Function `ne`
  * @param x function execute parameter.
  *
  * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
@@ -21034,7 +22128,7 @@ afw_function_definition_ne;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -21044,14 +22138,16 @@ afw_function_definition_ne;
  *
  * Declaration:
  *
+ * ```
  *   function ne <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -21073,7 +22169,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_negative;
 
 /**
- * @brief Adaptive Function negative
+ * @brief Adaptive Function `negative`
  * @param x function execute parameter.
  *
  * Return negative of `<dataType>` value.
@@ -21081,23 +22177,25 @@ afw_function_definition_negative;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer.
  *
  * Declaration:
  *
+ * ```
  *   function negative <dataType>(
  *       value: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21109,7 +22207,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex;
 
 /**
- * @brief Adaptive Function nex
+ * @brief Adaptive Function `nex`
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
@@ -21119,7 +22217,7 @@ afw_function_definition_nex;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
@@ -21129,14 +22227,16 @@ afw_function_definition_nex;
  *
  * Declaration:
  *
+ * ```
  *   function nex <dataType>(
  *       arg1: dataType,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (any dataType)
  *
@@ -21154,7 +22254,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_normalize_space;
 
 /**
- * @brief Adaptive Function normalize_space
+ * @brief Adaptive Function `normalize_space`
  * @param x function execute parameter.
  *
  * Remove whitespace from the beginning and end of a `<dataType>` value.
@@ -21162,23 +22262,25 @@ afw_function_definition_normalize_space;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function normalize_space <dataType>(
  *       string: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   string - (`<Type>`)
+ *   string - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21190,7 +22292,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_normalize_to_lower_case;
 
 /**
- * @brief Adaptive Function normalize_to_lower_case
+ * @brief Adaptive Function `normalize_to_lower_case`
  * @param x function execute parameter.
  *
  * Normalize `<dataType>` value to lower case and returns `<dataType>` result.
@@ -21198,23 +22300,25 @@ afw_function_definition_normalize_to_lower_case;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function normalize_to_lower_case <dataType>(
  *       string: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   string - (`<Type>`)
+ *   string - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21226,7 +22330,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only;
 
 /**
- * @brief Adaptive Function one_and_only
+ * @brief Adaptive Function `one_and_only`
  * @param x function execute parameter.
  *
  * This converts a list of `<dataType>` values that contains one value to a
@@ -21235,7 +22339,7 @@ afw_function_definition_one_and_only;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, hexBinary, integer, ipAddress, rfc822Name, string, time, x500Name,
@@ -21243,9 +22347,11 @@ afw_function_definition_one_and_only;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only <dataType>(
  *       list: (list list)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
@@ -21253,7 +22359,7 @@ afw_function_definition_one_and_only;
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Errors thrown:
  *
@@ -21269,7 +22375,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_pow;
 
 /**
- * @brief Adaptive Function pow
+ * @brief Adaptive Function `pow`
  * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
@@ -21279,27 +22385,29 @@ afw_function_definition_pow;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double.
  *
  * Declaration:
  *
+ * ```
  *   function pow <dataType>(
  *       base: dataType,
  *       exponent_1: dataType,
  *       ...exponent_rest: (list of dataType)
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   base - (`<Type>`) Base value.
+ *   base - (``<Type>``) Base value.
  *
- *   exponent - (1 or more `<Type>`) Exponent value.
+ *   exponent - (1 or more ``<Type>``) Exponent value.
  *
  * Returns:
  *
- *   (`<Type>`) Base raised to the power.
+ *   (``<Type>``) Base raised to the power.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21311,7 +22419,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_index_of;
 
 /**
- * @brief Adaptive Function regexp_index_of
+ * @brief Adaptive Function `regexp_index_of`
  * @param x function execute parameter.
  *
  * Search `<dataType>` value for a regular expression and return index. If not
@@ -21320,20 +22428,22 @@ afw_function_definition_regexp_index_of;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
  *       regexp: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to search.
+ *   value - (``<Type>``) The `<dataType>` value to search.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -21351,7 +22461,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match;
 
 /**
- * @brief Adaptive Function regexp_match
+ * @brief Adaptive Function `regexp_match`
  * @param x function execute parameter.
  *
  * Checks whether `<dataType>` value matches the regular expression regexp and
@@ -21360,20 +22470,22 @@ afw_function_definition_regexp_match;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, dnsName, ipAddress, rfc822Name, string, x500Name.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   regexp - (string)
  *
@@ -21391,7 +22503,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_replace;
 
 /**
- * @brief Adaptive Function regexp_replace
+ * @brief Adaptive Function `regexp_replace`
  * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a `<dataType>` value.
@@ -21399,22 +22511,24 @@ afw_function_definition_regexp_replace;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The original `<dataType>` value.
+ *   value - (``<Type>``) The original `<dataType>` value.
  *
  *   regexp - (string) A regular expression to use for search.
  *
@@ -21425,7 +22539,7 @@ afw_function_definition_regexp_replace;
  *
  * Returns:
  *
- *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
+ *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21437,7 +22551,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_repeat;
 
 /**
- * @brief Adaptive Function repeat
+ * @brief Adaptive Function `repeat`
  * @param x function execute parameter.
  *
  * Repeat a `<dataType>` value a specified number of times.
@@ -21445,26 +22559,28 @@ afw_function_definition_repeat;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function repeat <dataType>(
  *       value: dataType,
  *       times: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to repeat.
+ *   value - (``<Type>``) The `<dataType>` value to repeat.
  *
  *   times - (integer) The number of times to repeat the value.
  *
  * Returns:
  *
- *   (`<Type>`) The repeated `<dataType>` value.
+ *   (``<Type>``) The repeated `<dataType>` value.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21476,7 +22592,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace;
 
 /**
- * @brief Adaptive Function replace
+ * @brief Adaptive Function `replace`
  * @param x function execute parameter.
  *
  * Replace string(s) in a `<dataType>` value.
@@ -21484,22 +22600,24 @@ afw_function_definition_replace;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function replace <dataType>(
  *       value: dataType,
  *       match: string,
  *       replacement: string,
  *       limit?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The original `<dataType>` value.
+ *   value - (``<Type>``) The original `<dataType>` value.
  *
  *   match - (string) The string to replace.
  *
@@ -21510,7 +22628,7 @@ afw_function_definition_replace;
  *
  * Returns:
  *
- *   (`<Type>`) A `<dataType>` value with the matched string(s) replaced.
+ *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21522,7 +22640,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_round;
 
 /**
- * @brief Adaptive Function round
+ * @brief Adaptive Function `round`
  * @param x function execute parameter.
  *
  * Determine the integer closest to `<dataType>` value and return the
@@ -21531,23 +22649,25 @@ afw_function_definition_round;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double.
  *
  * Declaration:
  *
+ * ```
  *   function round <dataType>(
  *       number: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   number - (`<Type>`)
+ *   number - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21559,7 +22679,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals;
 
 /**
- * @brief Adaptive Function set_equals
+ * @brief Adaptive Function `set_equals`
  * @param x function execute parameter.
  *
  * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
@@ -21568,23 +22688,25 @@ afw_function_definition_set_equals;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function set_equals <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`)
+ *   list1 - (list ``<Type>``)
  *
- *   list2 - (list `<Type>`)
+ *   list2 - (list ``<Type>``)
  *
  * Returns:
  *
@@ -21600,7 +22722,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_split;
 
 /**
- * @brief Adaptive Function split
+ * @brief Adaptive Function `split`
  * @param x function execute parameter.
  *
  * Split `<dataType>` value into an list of strings using a separator.
@@ -21608,21 +22730,23 @@ afw_function_definition_split;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function split <dataType>(
  *       value: dataType,
  *       separator?: string,
  *       limit?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) The `<dataType>` value to split.
+ *   value - (``<Type>``) The `<dataType>` value to split.
  *
  *   separator - (optional string) The separator to use. If this is an empty
  *       string or separator is not specified, the value is split between
@@ -21645,7 +22769,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_starts_with;
 
 /**
- * @brief Adaptive Function starts_with
+ * @brief Adaptive Function `starts_with`
  * @param x function execute parameter.
  *
  * Checks whether `<dataType>` value starts with a subString and return the
@@ -21654,20 +22778,22 @@ afw_function_definition_starts_with;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function starts_with <dataType>(
  *       value: dataType,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  *   subString - (string)
  *
@@ -21685,7 +22811,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset;
 
 /**
- * @brief Adaptive Function subset
+ * @brief Adaptive Function `subset`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in `<dataType>` list1 are all in
@@ -21694,23 +22820,25 @@ afw_function_definition_subset;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function subset <dataType>(
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   list1 - (list `<Type>`) The first list.
+ *   list1 - (list ``<Type>``) The first list.
  *
- *   list2 - (list `<Type>`) The second list.
+ *   list2 - (list ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -21726,7 +22854,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_substring;
 
 /**
- * @brief Adaptive Function substring
+ * @brief Adaptive Function `substring`
  * @param x function execute parameter.
  *
  * Returns the `<dataType>` substring of value beginning at zero-based position
@@ -21736,21 +22864,23 @@ afw_function_definition_substring;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, string.
  *
  * Declaration:
  *
+ * ```
  *   function substring <dataType>(
  *       string: dataType,
  *       startIndex: integer,
  *       endIndex?: integer
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   string - (`<Type>`)
+ *   string - (``<Type>``)
  *
  *   startIndex - (integer)
  *
@@ -21758,7 +22888,7 @@ afw_function_definition_substring;
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Errors thrown:
  *
@@ -21774,7 +22904,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract;
 
 /**
- * @brief Adaptive Function subtract
+ * @brief Adaptive Function `subtract`
  * @param x function execute parameter.
  *
  * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
@@ -21783,26 +22913,28 @@ afw_function_definition_subtract;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, integer.
  *
  * Declaration:
  *
+ * ```
  *   function subtract <dataType>(
  *       arg1: dataType,
  *       arg2: dataType
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
- *   arg2 - (`<Type>`)
+ *   arg2 - (``<Type>``)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21814,7 +22946,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_dayTimeDuration;
 
 /**
- * @brief Adaptive Function subtract_dayTimeDuration
+ * @brief Adaptive Function `subtract_dayTimeDuration`
  * @param x function execute parameter.
  *
  * Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
@@ -21823,26 +22955,28 @@ afw_function_definition_subtract_dayTimeDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   dateTime.
  *
  * Declaration:
  *
+ * ```
  *   function subtract_dayTimeDuration <dataType>(
  *       arg1: dataType,
  *       arg2: dayTimeDuration
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (dayTimeDuration)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21854,7 +22988,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subtract_yearMonthDuration;
 
 /**
- * @brief Adaptive Function subtract_yearMonthDuration
+ * @brief Adaptive Function `subtract_yearMonthDuration`
  * @param x function execute parameter.
  *
  * Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
@@ -21863,26 +22997,28 @@ afw_function_definition_subtract_yearMonthDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   date, dateTime.
  *
  * Declaration:
  *
+ * ```
  *   function subtract_yearMonthDuration <dataType>(
  *       arg1: dataType,
  *       arg2: yearMonthDuration
  *   ): dataType;
+ * ```
  *
  * Parameters:
  *
- *   arg1 - (`<Type>`)
+ *   arg1 - (``<Type>``)
  *
  *   arg2 - (yearMonthDuration)
  *
  * Returns:
  *
- *   (`<Type>`)
+ *   (``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21894,7 +23030,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_anyURI;
 
 /**
- * @brief Adaptive Function to_anyURI
+ * @brief Adaptive Function `to_anyURI`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to anyURI.
@@ -21902,19 +23038,21 @@ afw_function_definition_to_anyURI;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_anyURI <dataType>(
  *       value: dataType
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -21934,7 +23072,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_boolean;
 
 /**
- * @brief Adaptive Function to_boolean
+ * @brief Adaptive Function `to_boolean`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to boolean.
@@ -21942,19 +23080,21 @@ afw_function_definition_to_boolean;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_boolean <dataType>(
  *       value: dataType
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -21974,7 +23114,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_date;
 
 /**
- * @brief Adaptive Function to_date
+ * @brief Adaptive Function `to_date`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to date.
@@ -21982,19 +23122,21 @@ afw_function_definition_to_date;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_date <dataType>(
  *       value: dataType
  *   ): date;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22014,7 +23156,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dateTime;
 
 /**
- * @brief Adaptive Function to_dateTime
+ * @brief Adaptive Function `to_dateTime`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to dateTime.
@@ -22022,19 +23164,21 @@ afw_function_definition_to_dateTime;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_dateTime <dataType>(
  *       value: dataType
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22054,7 +23198,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dayTimeDuration;
 
 /**
- * @brief Adaptive Function to_dayTimeDuration
+ * @brief Adaptive Function `to_dayTimeDuration`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to dayTimeDuration.
@@ -22062,19 +23206,21 @@ afw_function_definition_to_dayTimeDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_dayTimeDuration <dataType>(
  *       value: dataType
  *   ): dayTimeDuration;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22094,7 +23240,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dnsName;
 
 /**
- * @brief Adaptive Function to_dnsName
+ * @brief Adaptive Function `to_dnsName`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to dnsName.
@@ -22102,19 +23248,21 @@ afw_function_definition_to_dnsName;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_dnsName <dataType>(
  *       value: dataType
  *   ): dnsName;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22134,7 +23282,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_double;
 
 /**
- * @brief Adaptive Function to_double
+ * @brief Adaptive Function `to_double`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to double and returns double result.
@@ -22142,19 +23290,21 @@ afw_function_definition_to_double;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   integer, string.
  *
  * Declaration:
  *
+ * ```
  *   function to_double <dataType>(
  *       value: dataType
  *   ): double;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22174,7 +23324,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_integer;
 
 /**
- * @brief Adaptive Function to_integer
+ * @brief Adaptive Function `to_integer`
  * @param x function execute parameter.
  *
  * Truncate `<dataType>` value to a whole number and returns integer result.
@@ -22182,19 +23332,21 @@ afw_function_definition_to_integer;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   double, string.
  *
  * Declaration:
  *
+ * ```
  *   function to_integer <dataType>(
  *       value: dataType
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22210,7 +23362,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_ipAddress;
 
 /**
- * @brief Adaptive Function to_ipAddress
+ * @brief Adaptive Function `to_ipAddress`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to ipAddress.
@@ -22218,19 +23370,21 @@ afw_function_definition_to_ipAddress;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_ipAddress <dataType>(
  *       value: dataType
  *   ): ipAddress;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22250,7 +23404,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_rfc822Name;
 
 /**
- * @brief Adaptive Function to_rfc822Name
+ * @brief Adaptive Function `to_rfc822Name`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to rfc822Name.
@@ -22258,19 +23412,21 @@ afw_function_definition_to_rfc822Name;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_rfc822Name <dataType>(
  *       value: dataType
  *   ): rfc822Name;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22290,7 +23446,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string;
 
 /**
- * @brief Adaptive Function to_string
+ * @brief Adaptive Function `to_string`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to string. For list values, the to_string()
@@ -22299,7 +23455,7 @@ afw_function_definition_to_string;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, hexBinary, hybrid, ia5String, integer, ipAddress,
@@ -22308,13 +23464,15 @@ afw_function_definition_to_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_string <dataType>(
  *       value: dataType
  *   ): string;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`) A `<dataType>` value.
+ *   value - (``<Type>``) A `<dataType>` value.
  *
  * Returns:
  *
@@ -22330,7 +23488,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_time;
 
 /**
- * @brief Adaptive Function to_time
+ * @brief Adaptive Function `to_time`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to time.
@@ -22338,19 +23496,21 @@ afw_function_definition_to_time;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_time <dataType>(
  *       value: dataType
  *   ): time;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22370,7 +23530,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_x500Name;
 
 /**
- * @brief Adaptive Function to_x500Name
+ * @brief Adaptive Function `to_x500Name`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to x500Name.
@@ -22378,19 +23538,21 @@ afw_function_definition_to_x500Name;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_x500Name <dataType>(
  *       value: dataType
  *   ): x500Name;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22410,7 +23572,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_yearMonthDuration;
 
 /**
- * @brief Adaptive Function to_yearMonthDuration
+ * @brief Adaptive Function `to_yearMonthDuration`
  * @param x function execute parameter.
  *
  * Converts `<dataType>` value to yearMonthDuration.
@@ -22418,19 +23580,21 @@ afw_function_definition_to_yearMonthDuration;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string.
  *
  * Declaration:
  *
+ * ```
  *   function to_yearMonthDuration <dataType>(
  *       value: dataType
  *   ): yearMonthDuration;
+ * ```
  *
  * Parameters:
  *
- *   value - (`<Type>`)
+ *   value - (``<Type>``)
  *
  * Returns:
  *
@@ -22450,7 +23614,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union;
 
 /**
- * @brief Adaptive Function union
+ * @brief Adaptive Function `union`
  * @param x function execute parameter.
  *
  * Returns a list of `<dataType>` contains all of the unique values in two or
@@ -22459,26 +23623,28 @@ afw_function_definition_union;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, double,
  *   hexBinary, integer, rfc822Name, string, time, x500Name, yearMonthDuration.
  *
  * Declaration:
  *
+ * ```
  *   function union <dataType>(
  *       lists_1: list,
  *       lists_2: list,
  *       ...lists_rest: (list of list)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list `<Type>`) Two or more lists.
+ *   lists - (2 or more list ``<Type>``) Two or more lists.
  *
  * Returns:
  *
- *   (list `<Type>`)
+ *   (list ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22490,7 +23656,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_url_encode;
 
 /**
- * @brief Adaptive Function url_encode
+ * @brief Adaptive Function `url_encode`
  * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
@@ -22498,19 +23664,21 @@ afw_function_definition_url_encode;
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
- * Supported <dataType>:
+ * Supported `<dataType>`:
  *
  *   string, anyURI.
  *
  * Declaration:
  *
+ * ```
  *   function url_encode <dataType>(
  *       unencoded: dataType
  *   ): string;
+ * ```
  *
  * Parameters:
  *
- *   unencoded - (`<Type>`) URL encode a single value. See the url_encode
+ *   unencoded - (``<Type>``) URL encode a single value. See the url_encode
  *       method for the data type of more details.
  *
  * Returns:
@@ -22537,7 +23705,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_random_base64Binary;
 
 /**
- * @brief Adaptive Function random_base64Binary
+ * @brief Adaptive Function `random_base64Binary`
  * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType base64Binary.
@@ -22547,9 +23715,11 @@ afw_function_definition_random_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function random_base64Binary(
  *       numberOfOctets: integer
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -22568,7 +23738,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_random_digits;
 
 /**
- * @brief Adaptive Function random_digits
+ * @brief Adaptive Function `random_digits`
  * @param x function execute parameter.
  *
  * Generate a string containing a specified number of random decimal digits.
@@ -22578,9 +23748,11 @@ afw_function_definition_random_digits;
  *
  * Declaration:
  *
+ * ```
  *   function random_digits(
  *       numberOfDigits: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -22599,7 +23771,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_random_hexBinary;
 
 /**
- * @brief Adaptive Function random_hexBinary
+ * @brief Adaptive Function `random_hexBinary`
  * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType hexBinary.
@@ -22609,9 +23781,11 @@ afw_function_definition_random_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function random_hexBinary(
  *       numberOfOctets: integer
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -22630,7 +23804,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_random_integer;
 
 /**
- * @brief Adaptive Function random_integer
+ * @brief Adaptive Function `random_integer`
  * @param x function execute parameter.
  *
  * This returns a random integer between specified values inclusive.
@@ -22640,10 +23814,12 @@ afw_function_definition_random_integer;
  *
  * Declaration:
  *
+ * ```
  *   function random_integer(
  *       min: integer,
  *       max: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -22664,7 +23840,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_random_number;
 
 /**
- * @brief Adaptive Function random_number
+ * @brief Adaptive Function `random_number`
  * @param x function execute parameter.
  *
  * This returns a random double between specified values
@@ -22674,10 +23850,12 @@ afw_function_definition_random_number;
  *
  * Declaration:
  *
+ * ```
  *   function random_number(
  *       min?: double,
  *       max?: double
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -22708,7 +23886,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_regexp;
 
 /**
- * @brief Adaptive Function compile<regexp>
+ * @brief Adaptive Function `compile<regexp>`
  * @param x function execute parameter.
  *
  * Compile regexp value and return either an unevaluated adaptive value or a
@@ -22719,10 +23897,12 @@ afw_function_definition_compile_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function compile<regexp>(
  *       source: regexp,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -22749,7 +23929,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_regexp;
 
 /**
- * @brief Adaptive Function eq<regexp>
+ * @brief Adaptive Function `eq<regexp>`
  * @param x function execute parameter.
  *
  * Determine if regexp arg1 is equal to the value of arg2 converted to the data
@@ -22761,10 +23941,12 @@ afw_function_definition_eq_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function eq<regexp>(
  *       arg1: regexp,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22790,7 +23972,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_regexp;
 
 /**
- * @brief Adaptive Function eqx<regexp>
+ * @brief Adaptive Function `eqx<regexp>`
  * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is equal to the value and data type of arg2
@@ -22802,10 +23984,12 @@ afw_function_definition_eqx_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<regexp>(
  *       arg1: regexp,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22827,7 +24011,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_regexp;
 
 /**
- * @brief Adaptive Function ge<regexp>
+ * @brief Adaptive Function `ge<regexp>`
  * @param x function execute parameter.
  *
  * Checks for regexp arg1 is greater than or equal to regexp arg2 and return
@@ -22838,10 +24022,12 @@ afw_function_definition_ge_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function ge<regexp>(
  *       arg1: regexp,
  *       arg2: regexp
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22863,7 +24049,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_regexp;
 
 /**
- * @brief Adaptive Function gt<regexp>
+ * @brief Adaptive Function `gt<regexp>`
  * @param x function execute parameter.
  *
  * Checks for regexp arg1 is greater than regexp arg2 and return the boolean
@@ -22874,10 +24060,12 @@ afw_function_definition_gt_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function gt<regexp>(
  *       arg1: regexp,
  *       arg2: regexp
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22899,7 +24087,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_regexp;
 
 /**
- * @brief Adaptive Function le<regexp>
+ * @brief Adaptive Function `le<regexp>`
  * @param x function execute parameter.
  *
  * Checks for regexp arg1 is less than or equal to regexp arg2 and return the
@@ -22910,10 +24098,12 @@ afw_function_definition_le_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function le<regexp>(
  *       arg1: regexp,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22935,7 +24125,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_regexp;
 
 /**
- * @brief Adaptive Function lt<regexp>
+ * @brief Adaptive Function `lt<regexp>`
  * @param x function execute parameter.
  *
  * Checks for regexp arg1 is less that regexp arg2 and return the boolean
@@ -22946,10 +24136,12 @@ afw_function_definition_lt_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function lt<regexp>(
  *       arg1: regexp,
  *       arg2: regexp
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -22971,7 +24163,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_regexp;
 
 /**
- * @brief Adaptive Function ne<regexp>
+ * @brief Adaptive Function `ne<regexp>`
  * @param x function execute parameter.
  *
  * Determine if regexp arg1 is not equal to the value of arg2 converted to the
@@ -22983,10 +24175,12 @@ afw_function_definition_ne_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function ne<regexp>(
  *       arg1: regexp,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23012,7 +24206,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_regexp;
 
 /**
- * @brief Adaptive Function nex<regexp>
+ * @brief Adaptive Function `nex<regexp>`
  * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is not equal to the value or data type of arg2
@@ -23024,10 +24218,12 @@ afw_function_definition_nex_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function nex<regexp>(
  *       arg1: regexp,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23049,7 +24245,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp;
 
 /**
- * @brief Adaptive Function regexp
+ * @brief Adaptive Function `regexp`
  * @param x function execute parameter.
  *
  * Converts value to data type regexp returning regexp result.
@@ -23059,9 +24255,11 @@ afw_function_definition_regexp;
  *
  * Declaration:
  *
+ * ```
  *   function regexp(
  *       value: any
  *   ): regexp;
+ * ```
  *
  * Parameters:
  *
@@ -23095,7 +24293,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_rfc822Name;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<rfc822Name>
+ * @brief Adaptive Function `at_least_one_member_of<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in rfc822Name list1 is in
@@ -23106,10 +24304,12 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<rfc822Name>(
  *       list1: (list rfc822Name),
  *       list2: (list rfc822Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23131,7 +24331,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_rfc822Name;
 
 /**
- * @brief Adaptive Function bag<rfc822Name>
+ * @brief Adaptive Function `bag<rfc822Name>`
  * @param x function execute parameter.
  *
  * Takes any number of rfc822Name values and returns a list of list.
@@ -23141,9 +24341,11 @@ afw_function_definition_bag_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function bag<rfc822Name>(
  *       ...values: (list of (list rfc822Name))
  *   ): (list rfc822Name);
+ * ```
  *
  * Parameters:
  *
@@ -23163,7 +24365,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_rfc822Name;
 
 /**
- * @brief Adaptive Function bag_size<rfc822Name>
+ * @brief Adaptive Function `bag_size<rfc822Name>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -23173,9 +24375,11 @@ afw_function_definition_bag_size_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<rfc822Name>(
  *       value: (list rfc822Name)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -23195,7 +24399,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_rfc822Name;
 
 /**
- * @brief Adaptive Function eq<rfc822Name>
+ * @brief Adaptive Function `eq<rfc822Name>`
  * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
@@ -23207,10 +24411,12 @@ afw_function_definition_eq_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function eq<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23236,7 +24442,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_rfc822Name;
 
 /**
- * @brief Adaptive Function eqx<rfc822Name>
+ * @brief Adaptive Function `eqx<rfc822Name>`
  * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is equal to the value and data type of arg2
@@ -23248,10 +24454,12 @@ afw_function_definition_eqx_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23273,7 +24481,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_rfc822Name;
 
 /**
- * @brief Adaptive Function ge<rfc822Name>
+ * @brief Adaptive Function `ge<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
@@ -23284,10 +24492,12 @@ afw_function_definition_ge_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function ge<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: rfc822Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23309,7 +24519,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_rfc822Name;
 
 /**
- * @brief Adaptive Function gt<rfc822Name>
+ * @brief Adaptive Function `gt<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
@@ -23320,10 +24530,12 @@ afw_function_definition_gt_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function gt<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: rfc822Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23345,7 +24557,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_rfc822Name;
 
 /**
- * @brief Adaptive Function intersection<rfc822Name>
+ * @brief Adaptive Function `intersection<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns a list of rfc822Name with the values that are common to both list of
@@ -23356,10 +24568,12 @@ afw_function_definition_intersection_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<rfc822Name>(
  *       list1: (list rfc822Name),
  *       list2: (list rfc822Name)
  *   ): (list rfc822Name);
+ * ```
  *
  * Parameters:
  *
@@ -23381,7 +24595,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_rfc822Name;
 
 /**
- * @brief Adaptive Function is_in<rfc822Name>
+ * @brief Adaptive Function `is_in<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks whether rfc822Name value is in list of rfc822Name list and returns
@@ -23392,10 +24606,12 @@ afw_function_definition_is_in_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<rfc822Name>(
  *       value: rfc822Name,
  *       list: (list rfc822Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23417,7 +24633,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_rfc822Name;
 
 /**
- * @brief Adaptive Function is<rfc822Name>
+ * @brief Adaptive Function `is<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType rfc822Name and return the boolean result.
@@ -23427,9 +24643,11 @@ afw_function_definition_is_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function is<rfc822Name>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23449,7 +24667,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_rfc822Name;
 
 /**
- * @brief Adaptive Function le<rfc822Name>
+ * @brief Adaptive Function `le<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
@@ -23460,10 +24678,12 @@ afw_function_definition_le_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function le<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23485,7 +24705,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_rfc822Name;
 
 /**
- * @brief Adaptive Function lt<rfc822Name>
+ * @brief Adaptive Function `lt<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
@@ -23496,10 +24716,12 @@ afw_function_definition_lt_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function lt<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: rfc822Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23521,7 +24743,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_match_rfc822Name;
 
 /**
- * @brief Adaptive Function match<rfc822Name>
+ * @brief Adaptive Function `match<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
@@ -23532,10 +24754,12 @@ afw_function_definition_match_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function match<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23556,7 +24780,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_rfc822Name;
 
 /**
- * @brief Adaptive Function ne<rfc822Name>
+ * @brief Adaptive Function `ne<rfc822Name>`
  * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is not equal to the value of arg2 converted to
@@ -23569,10 +24793,12 @@ afw_function_definition_ne_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function ne<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23598,7 +24824,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_rfc822Name;
 
 /**
- * @brief Adaptive Function nex<rfc822Name>
+ * @brief Adaptive Function `nex<rfc822Name>`
  * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is not equal to the value or data type of
@@ -23610,10 +24836,12 @@ afw_function_definition_nex_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function nex<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23635,7 +24863,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_rfc822Name;
 
 /**
- * @brief Adaptive Function one_and_only<rfc822Name>
+ * @brief Adaptive Function `one_and_only<rfc822Name>`
  * @param x function execute parameter.
  *
  * This converts a list of rfc822Name values that contains one value to a
@@ -23646,9 +24874,11 @@ afw_function_definition_one_and_only_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<rfc822Name>(
  *       list: (list list)
  *   ): rfc822Name;
+ * ```
  *
  * Parameters:
  *
@@ -23672,7 +24902,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_rfc822Name;
 
 /**
- * @brief Adaptive Function regexp_match<rfc822Name>
+ * @brief Adaptive Function `regexp_match<rfc822Name>`
  * @param x function execute parameter.
  *
  * Checks whether rfc822Name value matches the regular expression regexp and
@@ -23683,10 +24913,12 @@ afw_function_definition_regexp_match_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<rfc822Name>(
  *       value: rfc822Name,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23708,7 +24940,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_rfc822Name;
 
 /**
- * @brief Adaptive Function rfc822Name
+ * @brief Adaptive Function `rfc822Name`
  * @param x function execute parameter.
  *
  * Converts value to data type rfc822Name returning rfc822Name result.
@@ -23718,9 +24950,11 @@ afw_function_definition_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function rfc822Name(
  *       value: any
  *   ): rfc822Name;
+ * ```
  *
  * Parameters:
  *
@@ -23744,7 +24978,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_rfc822Name;
 
 /**
- * @brief Adaptive Function set_equals<rfc822Name>
+ * @brief Adaptive Function `set_equals<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of
@@ -23755,10 +24989,12 @@ afw_function_definition_set_equals_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<rfc822Name>(
  *       list1: (list rfc822Name),
  *       list2: (list rfc822Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23780,7 +25016,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_rfc822Name;
 
 /**
- * @brief Adaptive Function subset<rfc822Name>
+ * @brief Adaptive Function `subset<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in rfc822Name list1 are all in
@@ -23791,10 +25027,12 @@ afw_function_definition_subset_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function subset<rfc822Name>(
  *       list1: (list rfc822Name),
  *       list2: (list rfc822Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -23816,7 +25054,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_rfc822Name;
 
 /**
- * @brief Adaptive Function to_string<rfc822Name>
+ * @brief Adaptive Function `to_string<rfc822Name>`
  * @param x function execute parameter.
  *
  * Converts rfc822Name value to string. For list values, the to_string() value
@@ -23827,9 +25065,11 @@ afw_function_definition_to_string_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<rfc822Name>(
  *       value: rfc822Name
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -23849,7 +25089,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_rfc822Name;
 
 /**
- * @brief Adaptive Function union<rfc822Name>
+ * @brief Adaptive Function `union<rfc822Name>`
  * @param x function execute parameter.
  *
  * Returns a list of rfc822Name contains all of the unique values in two or
@@ -23860,11 +25100,13 @@ afw_function_definition_union_rfc822Name;
  *
  * Declaration:
  *
+ * ```
  *   function union<rfc822Name>(
  *       lists_1: (list rfc822Name),
  *       lists_2: (list rfc822Name),
  *       ...lists_rest: (list of (list rfc822Name))
  *   ): (list rfc822Name);
+ * ```
  *
  * Parameters:
  *
@@ -23894,7 +25136,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_assign;
 
 /**
- * @brief Adaptive Function assign
+ * @brief Adaptive Function `assign`
  * @param x function execute parameter.
  *
  * Assign a value to the innermost structured block definition of a variable.
@@ -23907,10 +25149,12 @@ afw_function_definition_assign;
  *
  * Declaration:
  *
+ * ```
  *   function assign(
  *       name: string,
  *       value: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -23931,7 +25175,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_script;
 
 /**
- * @brief Adaptive Function bag<script>
+ * @brief Adaptive Function `bag<script>`
  * @param x function execute parameter.
  *
  * Takes any number of script values and returns a list of list.
@@ -23941,9 +25185,11 @@ afw_function_definition_bag_script;
  *
  * Declaration:
  *
+ * ```
  *   function bag<script>(
  *       ...values: (list of (list script))
  *   ): (list script);
+ * ```
  *
  * Parameters:
  *
@@ -23963,7 +25209,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_script;
 
 /**
- * @brief Adaptive Function bag_size<script>
+ * @brief Adaptive Function `bag_size<script>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -23973,9 +25219,11 @@ afw_function_definition_bag_size_script;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<script>(
  *       value: (list script)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -23995,7 +25243,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_break;
 
 /**
- * @brief Adaptive Function break
+ * @brief Adaptive Function `break`
  * @param x function execute parameter.
  *
  * This is a special function that can be called to break out of the body of a
@@ -24006,9 +25254,11 @@ afw_function_definition_break;
  *
  * Declaration:
  *
+ * ```
  *   function break(
  *       value?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24030,7 +25280,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_script;
 
 /**
- * @brief Adaptive Function compile<script>
+ * @brief Adaptive Function `compile<script>`
  * @param x function execute parameter.
  *
  * Compile script value and return either an unevaluated adaptive value or a
@@ -24041,10 +25291,12 @@ afw_function_definition_compile_script;
  *
  * Declaration:
  *
+ * ```
  *   function compile<script>(
  *       source: script,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -24071,7 +25323,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_const;
 
 /**
- * @brief Adaptive Function const
+ * @brief Adaptive Function `const`
  * @param x function execute parameter.
  *
  * Define one or more statically scoped constants local to the current script
@@ -24083,11 +25335,13 @@ afw_function_definition_const;
  *
  * Declaration:
  *
+ * ```
  *   function const(
  *       name: (list string),
  *       value: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24111,7 +25365,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_continue;
 
 /**
- * @brief Adaptive Function continue
+ * @brief Adaptive Function `continue`
  * @param x function execute parameter.
  *
  * This is a special function that can be called in the body of a loop function
@@ -24123,9 +25377,11 @@ afw_function_definition_continue;
  *
  * Declaration:
  *
+ * ```
  *   function continue(
  *   
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24142,7 +25398,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_do_while;
 
 /**
- * @brief Adaptive Function do_while
+ * @brief Adaptive Function `do_while`
  * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
@@ -24155,10 +25411,12 @@ afw_function_definition_do_while;
  *
  * Declaration:
  *
+ * ```
  *   function do_while(
  *       condition: boolean,
  *       body: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24184,7 +25442,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_script;
 
 /**
- * @brief Adaptive Function eq<script>
+ * @brief Adaptive Function `eq<script>`
  * @param x function execute parameter.
  *
  * Determine if script arg1 is equal to the value of arg2 converted to the data
@@ -24196,10 +25454,12 @@ afw_function_definition_eq_script;
  *
  * Declaration:
  *
+ * ```
  *   function eq<script>(
  *       arg1: script,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24225,7 +25485,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_script;
 
 /**
- * @brief Adaptive Function eqx<script>
+ * @brief Adaptive Function `eqx<script>`
  * @param x function execute parameter.
  *
  * Determine if for script arg1 is equal to the value and data type of arg2
@@ -24237,10 +25497,12 @@ afw_function_definition_eqx_script;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<script>(
  *       arg1: script,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24262,7 +25524,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_script;
 
 /**
- * @brief Adaptive Function evaluate<script>
+ * @brief Adaptive Function `evaluate<script>`
  * @param x function execute parameter.
  *
  * Compile and evaluate script value.
@@ -24272,10 +25534,12 @@ afw_function_definition_evaluate_script;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -24302,7 +25566,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_for;
 
 /**
- * @brief Adaptive Function for
+ * @brief Adaptive Function `for`
  * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
@@ -24315,12 +25579,14 @@ afw_function_definition_for;
  *
  * Declaration:
  *
+ * ```
  *   function for(
  *       initial?: list,
  *       condition?: boolean,
  *       increment?: list,
  *       body?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24354,7 +25620,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_foreach;
 
 /**
- * @brief Adaptive Function foreach
+ * @brief Adaptive Function `foreach`
  * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
@@ -24369,11 +25635,13 @@ afw_function_definition_foreach;
  *
  * Declaration:
  *
+ * ```
  *   function foreach(
  *       name: (list string),
  *       value: any,
  *       body?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24400,7 +25668,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_script;
 
 /**
- * @brief Adaptive Function ge<script>
+ * @brief Adaptive Function `ge<script>`
  * @param x function execute parameter.
  *
  * Checks for script arg1 is greater than or equal to script arg2 and return
@@ -24411,10 +25679,12 @@ afw_function_definition_ge_script;
  *
  * Declaration:
  *
+ * ```
  *   function ge<script>(
  *       arg1: script,
  *       arg2: script
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24436,7 +25706,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_script;
 
 /**
- * @brief Adaptive Function gt<script>
+ * @brief Adaptive Function `gt<script>`
  * @param x function execute parameter.
  *
  * Checks for script arg1 is greater than script arg2 and return the boolean
@@ -24447,10 +25717,12 @@ afw_function_definition_gt_script;
  *
  * Declaration:
  *
+ * ```
  *   function gt<script>(
  *       arg1: script,
  *       arg2: script
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24472,7 +25744,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_if;
 
 /**
- * @brief Adaptive Function if
+ * @brief Adaptive Function `if`
  * @param x function execute parameter.
  *
  * Evaluate one of two different values depending on test condition.
@@ -24482,11 +25754,13 @@ afw_function_definition_if;
  *
  * Declaration:
  *
+ * ```
  *   function if(
  *       condition: boolean,
  *       then: list,
  *       else?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24515,7 +25789,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_script;
 
 /**
- * @brief Adaptive Function is<script>
+ * @brief Adaptive Function `is<script>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType script and return the boolean result.
@@ -24525,9 +25799,11 @@ afw_function_definition_is_script;
  *
  * Declaration:
  *
+ * ```
  *   function is<script>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24547,7 +25823,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_script;
 
 /**
- * @brief Adaptive Function le<script>
+ * @brief Adaptive Function `le<script>`
  * @param x function execute parameter.
  *
  * Checks for script arg1 is less than or equal to script arg2 and return the
@@ -24558,10 +25834,12 @@ afw_function_definition_le_script;
  *
  * Declaration:
  *
+ * ```
  *   function le<script>(
  *       arg1: script,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24583,7 +25861,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_loc;
 
 /**
- * @brief Adaptive Function loc
+ * @brief Adaptive Function `loc`
  * @param x function execute parameter.
  *
  * Declare one or more statically scoped variable locations local to the
@@ -24596,11 +25874,13 @@ afw_function_definition_loc;
  *
  * Declaration:
  *
+ * ```
  *   function loc(
  *       name: (list string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24626,7 +25906,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_script;
 
 /**
- * @brief Adaptive Function lt<script>
+ * @brief Adaptive Function `lt<script>`
  * @param x function execute parameter.
  *
  * Checks for script arg1 is less that script arg2 and return the boolean
@@ -24637,10 +25917,12 @@ afw_function_definition_lt_script;
  *
  * Declaration:
  *
+ * ```
  *   function lt<script>(
  *       arg1: script,
  *       arg2: script
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24662,7 +25944,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_script;
 
 /**
- * @brief Adaptive Function ne<script>
+ * @brief Adaptive Function `ne<script>`
  * @param x function execute parameter.
  *
  * Determine if script arg1 is not equal to the value of arg2 converted to the
@@ -24674,10 +25956,12 @@ afw_function_definition_ne_script;
  *
  * Declaration:
  *
+ * ```
  *   function ne<script>(
  *       arg1: script,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24703,7 +25987,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_script;
 
 /**
- * @brief Adaptive Function nex<script>
+ * @brief Adaptive Function `nex<script>`
  * @param x function execute parameter.
  *
  * Determine if for script arg1 is not equal to the value or data type of arg2
@@ -24715,10 +25999,12 @@ afw_function_definition_nex_script;
  *
  * Declaration:
  *
+ * ```
  *   function nex<script>(
  *       arg1: script,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -24740,7 +26026,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_return;
 
 /**
- * @brief Adaptive Function return
+ * @brief Adaptive Function `return`
  * @param x function execute parameter.
  *
  * Return from the outermost structured block. If the expression of a lambda
@@ -24752,9 +26038,11 @@ afw_function_definition_return;
  *
  * Declaration:
  *
+ * ```
  *   function return(
  *       value?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24776,7 +26064,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_script;
 
 /**
- * @brief Adaptive Function script
+ * @brief Adaptive Function `script`
  * @param x function execute parameter.
  *
  * Converts value to data type script returning script result.
@@ -24786,9 +26074,11 @@ afw_function_definition_script;
  *
  * Declaration:
  *
+ * ```
  *   function script(
  *       value: any
  *   ): script;
+ * ```
  *
  * Parameters:
  *
@@ -24812,7 +26102,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_while;
 
 /**
- * @brief Adaptive Function while
+ * @brief Adaptive Function `while`
  * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
@@ -24827,10 +26117,12 @@ afw_function_definition_while;
  *
  * Declaration:
  *
+ * ```
  *   function while(
  *       condition: boolean,
  *       body: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -24866,7 +26158,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_close;
 
 /**
- * @brief Adaptive Function close
+ * @brief Adaptive Function `close`
  * @param x function execute parameter.
  *
  * This will close an open stream
@@ -24876,9 +26168,11 @@ afw_function_definition_close;
  *
  * Declaration:
  *
+ * ```
  *   function close(
  *       streamNumber: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -24897,7 +26191,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_flush;
 
 /**
- * @brief Adaptive Function flush
+ * @brief Adaptive Function `flush`
  * @param x function execute parameter.
  *
  * Write the content of the stream's buffers to its destination.
@@ -24907,9 +26201,11 @@ afw_function_definition_flush;
  *
  * Declaration:
  *
+ * ```
  *   function flush(
  *       streamNumber: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -24928,7 +26224,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_get_stream_error;
 
 /**
- * @brief Adaptive Function get_stream_error
+ * @brief Adaptive Function `get_stream_error`
  * @param x function execute parameter.
  *
  * Get the most recent stream error.
@@ -24938,9 +26234,11 @@ afw_function_definition_get_stream_error;
  *
  * Declaration:
  *
+ * ```
  *   function get_stream_error(
  *   
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -24957,7 +26255,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_open_file;
 
 /**
- * @brief Adaptive Function open_file
+ * @brief Adaptive Function `open_file`
  * @param x function execute parameter.
  *
  * This will open a file stream.
@@ -24967,12 +26265,14 @@ afw_function_definition_open_file;
  *
  * Declaration:
  *
+ * ```
  *   function open_file(
  *       streamId: string,
  *       path: string,
  *       mode: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25017,7 +26317,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_open_response;
 
 /**
- * @brief Adaptive Function open_response
+ * @brief Adaptive Function `open_response`
  * @param x function execute parameter.
  *
  * This will open a response text write-only stream that will be written to the
@@ -25028,10 +26328,12 @@ afw_function_definition_open_response;
  *
  * Declaration:
  *
+ * ```
  *   function open_response(
  *       streamId: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25055,7 +26357,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_open_uri;
 
 /**
- * @brief Adaptive Function open_uri
+ * @brief Adaptive Function `open_uri`
  * @param x function execute parameter.
  *
  * This will open a read or write stream for a URI.
@@ -25065,12 +26367,14 @@ afw_function_definition_open_uri;
  *
  * Declaration:
  *
+ * ```
  *   function open_uri(
  *       streamId: string,
  *       uri: string,
  *       mode: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25099,7 +26403,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_print;
 
 /**
- * @brief Adaptive Function print
+ * @brief Adaptive Function `print`
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
@@ -25110,9 +26414,11 @@ afw_function_definition_print;
  *
  * Declaration:
  *
+ * ```
  *   function print(
  *       ...values: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -25131,7 +26437,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_println;
 
 /**
- * @brief Adaptive Function println
+ * @brief Adaptive Function `println`
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to their string value, then write them
@@ -25143,9 +26449,11 @@ afw_function_definition_println;
  *
  * Declaration:
  *
+ * ```
  *   function println(
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -25164,7 +26472,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_read;
 
 /**
- * @brief Adaptive Function read
+ * @brief Adaptive Function `read`
  * @param x function execute parameter.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
@@ -25175,10 +26483,12 @@ afw_function_definition_read;
  *
  * Declaration:
  *
+ * ```
  *   function read(
  *       streamNumber: integer,
  *       n: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -25200,7 +26510,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_read_to_base64Binary;
 
 /**
- * @brief Adaptive Function read_to_base64Binary
+ * @brief Adaptive Function `read_to_base64Binary`
  * @param x function execute parameter.
  *
  * Read a stream up to a specified number of octets. The result will be the
@@ -25211,10 +26521,12 @@ afw_function_definition_read_to_base64Binary;
  *
  * Declaration:
  *
+ * ```
  *   function read_to_base64Binary(
  *       streamNumber: integer,
  *       n: any
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -25236,7 +26548,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_read_to_hexBinary;
 
 /**
- * @brief Adaptive Function read_to_hexBinary
+ * @brief Adaptive Function `read_to_hexBinary`
  * @param x function execute parameter.
  *
  * Read a stream up to a specified number of octets. The result will be the
@@ -25247,10 +26559,12 @@ afw_function_definition_read_to_hexBinary;
  *
  * Declaration:
  *
+ * ```
  *   function read_to_hexBinary(
  *       streamNumber: integer,
  *       n: any
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -25272,7 +26586,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_readln;
 
 /**
- * @brief Adaptive Function readln
+ * @brief Adaptive Function `readln`
  * @param x function execute parameter.
  *
  * Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
@@ -25283,9 +26597,11 @@ afw_function_definition_readln;
  *
  * Declaration:
  *
+ * ```
  *   function readln(
  *       streamNumber: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -25304,7 +26620,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_stream;
 
 /**
- * @brief Adaptive Function stream
+ * @brief Adaptive Function `stream`
  * @param x function execute parameter.
  *
  * This will return the streamNumber for a streamId. This function useful to
@@ -25316,9 +26632,11 @@ afw_function_definition_stream;
  *
  * Declaration:
  *
+ * ```
  *   function stream(
  *       streamId: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25338,7 +26656,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_write;
 
 /**
- * @brief Adaptive Function write
+ * @brief Adaptive Function `write`
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
@@ -25349,10 +26667,12 @@ afw_function_definition_write;
  *
  * Declaration:
  *
+ * ```
  *   function write(
  *       streamNumber: integer,
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -25373,7 +26693,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_write_internal;
 
 /**
- * @brief Adaptive Function write_internal
+ * @brief Adaptive Function `write_internal`
  * @param x function execute parameter.
  *
  * Write a value's internal memory. This is especially useful for writing data
@@ -25384,10 +26704,12 @@ afw_function_definition_write_internal;
  *
  * Declaration:
  *
+ * ```
  *   function write_internal(
  *       streamNumber: integer,
  *       value: any
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -25408,7 +26730,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_writeln;
 
 /**
- * @brief Adaptive Function writeln
+ * @brief Adaptive Function `writeln`
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them
@@ -25420,10 +26742,12 @@ afw_function_definition_writeln;
  *
  * Declaration:
  *
+ * ```
  *   function writeln(
  *       streamNumber: integer,
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -25454,7 +26778,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_string;
 
 /**
- * @brief Adaptive Function add<string>
+ * @brief Adaptive Function `add<string>`
  * @param x function execute parameter.
  *
  * Add (concatenate) 2 or more string values and return the string result.
@@ -25464,11 +26788,13 @@ afw_function_definition_add_string;
  *
  * Declaration:
  *
+ * ```
  *   function add<string>(
  *       values_1: string,
  *       values_2: string,
  *       ...values_rest: (list of string)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -25487,7 +26813,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_string;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<string>
+ * @brief Adaptive Function `at_least_one_member_of<string>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in string list1 is in string
@@ -25498,10 +26824,12 @@ afw_function_definition_at_least_one_member_of_string;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<string>(
  *       list1: (list string),
  *       list2: (list string)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25523,7 +26851,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_string;
 
 /**
- * @brief Adaptive Function bag_size<string>
+ * @brief Adaptive Function `bag_size<string>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -25533,9 +26861,11 @@ afw_function_definition_bag_size_string;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<string>(
  *       value: (list string)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25555,7 +26885,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_string;
 
 /**
- * @brief Adaptive Function bag<string>
+ * @brief Adaptive Function `bag<string>`
  * @param x function execute parameter.
  *
  * Takes any number of string values and returns a list of list.
@@ -25565,9 +26895,11 @@ afw_function_definition_bag_string;
  *
  * Declaration:
  *
+ * ```
  *   function bag<string>(
  *       ...values: (list of (list string))
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -25587,7 +26919,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_concat;
 
 /**
- * @brief Adaptive Function concat
+ * @brief Adaptive Function `concat`
  * @param x function execute parameter.
  *
  * Convert two or more values of any data type to string and return the
@@ -25599,10 +26931,12 @@ afw_function_definition_concat;
  *
  * Declaration:
  *
+ * ```
  *   function concat(
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -25625,7 +26959,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_encode_as_base64Binary_string;
 
 /**
- * @brief Adaptive Function encode_as_base64Binary<string>
+ * @brief Adaptive Function `encode_as_base64Binary<string>`
  * @param x function execute parameter.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
@@ -25636,9 +26970,11 @@ afw_function_definition_encode_as_base64Binary_string;
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_base64Binary<string>(
  *       value: string
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -25658,7 +26994,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_encode_as_hexBinary_string;
 
 /**
- * @brief Adaptive Function encode_as_hexBinary<string>
+ * @brief Adaptive Function `encode_as_hexBinary<string>`
  * @param x function execute parameter.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value
@@ -25669,9 +27005,11 @@ afw_function_definition_encode_as_hexBinary_string;
  *
  * Declaration:
  *
+ * ```
  *   function encode_as_hexBinary<string>(
  *       value: string
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -25691,7 +27029,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ends_with_string;
 
 /**
- * @brief Adaptive Function ends_with<string>
+ * @brief Adaptive Function `ends_with<string>`
  * @param x function execute parameter.
  *
  * Checks whether string value ends with a string and return the boolean
@@ -25702,10 +27040,12 @@ afw_function_definition_ends_with_string;
  *
  * Declaration:
  *
+ * ```
  *   function ends_with<string>(
  *       value: string,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25727,7 +27067,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_ignore_case_string;
 
 /**
- * @brief Adaptive Function eq_ignore_case<string>
+ * @brief Adaptive Function `eq_ignore_case<string>`
  * @param x function execute parameter.
  *
  * Checks for string arg1 is equal to string arg2 ignoring case and return the
@@ -25738,10 +27078,12 @@ afw_function_definition_eq_ignore_case_string;
  *
  * Declaration:
  *
+ * ```
  *   function eq_ignore_case<string>(
  *       arg1: string,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25762,7 +27104,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_string;
 
 /**
- * @brief Adaptive Function eq<string>
+ * @brief Adaptive Function `eq<string>`
  * @param x function execute parameter.
  *
  * Determine if string arg1 is equal to the value of arg2 converted to the data
@@ -25774,10 +27116,12 @@ afw_function_definition_eq_string;
  *
  * Declaration:
  *
+ * ```
  *   function eq<string>(
  *       arg1: string,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25803,7 +27147,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_string;
 
 /**
- * @brief Adaptive Function eqx<string>
+ * @brief Adaptive Function `eqx<string>`
  * @param x function execute parameter.
  *
  * Determine if for string arg1 is equal to the value and data type of arg2
@@ -25815,10 +27159,12 @@ afw_function_definition_eqx_string;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<string>(
  *       arg1: string,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25840,7 +27186,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_string;
 
 /**
- * @brief Adaptive Function ge<string>
+ * @brief Adaptive Function `ge<string>`
  * @param x function execute parameter.
  *
  * Checks for string arg1 is greater than or equal to string arg2 and return
@@ -25851,10 +27197,12 @@ afw_function_definition_ge_string;
  *
  * Declaration:
  *
+ * ```
  *   function ge<string>(
  *       arg1: string,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25876,7 +27224,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_string;
 
 /**
- * @brief Adaptive Function gt<string>
+ * @brief Adaptive Function `gt<string>`
  * @param x function execute parameter.
  *
  * Checks for string arg1 is greater than string arg2 and return the boolean
@@ -25887,10 +27235,12 @@ afw_function_definition_gt_string;
  *
  * Declaration:
  *
+ * ```
  *   function gt<string>(
  *       arg1: string,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25912,7 +27262,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_includes_string;
 
 /**
- * @brief Adaptive Function includes<string>
+ * @brief Adaptive Function `includes<string>`
  * @param x function execute parameter.
  *
  * Checks whether the string value includes a string and return the boolean
@@ -25923,11 +27273,13 @@ afw_function_definition_includes_string;
  *
  * Declaration:
  *
+ * ```
  *   function includes<string>(
  *       searchString: string,
  *       subString: string,
  *       position?: integer
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -25952,7 +27304,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_index_of_string;
 
 /**
- * @brief Adaptive Function index_of<string>
+ * @brief Adaptive Function `index_of<string>`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into string value of subString. If subString is
@@ -25963,11 +27315,13 @@ afw_function_definition_index_of_string;
  *
  * Declaration:
  *
+ * ```
  *   function index_of<string>(
  *       value: string,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -25992,7 +27346,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_string;
 
 /**
- * @brief Adaptive Function intersection<string>
+ * @brief Adaptive Function `intersection<string>`
  * @param x function execute parameter.
  *
  * Returns a list of string with the values that are common to both list of
@@ -26003,10 +27357,12 @@ afw_function_definition_intersection_string;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<string>(
  *       list1: (list string),
  *       list2: (list string)
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -26028,7 +27384,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_string;
 
 /**
- * @brief Adaptive Function is_in<string>
+ * @brief Adaptive Function `is_in<string>`
  * @param x function execute parameter.
  *
  * Checks whether string value is in list of string list and returns the
@@ -26039,10 +27395,12 @@ afw_function_definition_is_in_string;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<string>(
  *       value: string,
  *       list: (list string)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26064,7 +27422,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_string;
 
 /**
- * @brief Adaptive Function is<string>
+ * @brief Adaptive Function `is<string>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType string and return the boolean result.
@@ -26074,9 +27432,11 @@ afw_function_definition_is_string;
  *
  * Declaration:
  *
+ * ```
  *   function is<string>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26096,7 +27456,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_last_index_of_string;
 
 /**
- * @brief Adaptive Function last_index_of<string>
+ * @brief Adaptive Function `last_index_of<string>`
  * @param x function execute parameter.
  *
  * Returns the zero-based index into string value of the last occurrence of a
@@ -26107,11 +27467,13 @@ afw_function_definition_last_index_of_string;
  *
  * Declaration:
  *
+ * ```
  *   function last_index_of<string>(
  *       value: string,
  *       subString: string,
  *       startIndex?: integer
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -26136,7 +27498,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_string;
 
 /**
- * @brief Adaptive Function le<string>
+ * @brief Adaptive Function `le<string>`
  * @param x function execute parameter.
  *
  * Checks for string arg1 is less than or equal to string arg2 and return the
@@ -26147,10 +27509,12 @@ afw_function_definition_le_string;
  *
  * Declaration:
  *
+ * ```
  *   function le<string>(
  *       arg1: string,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26172,7 +27536,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_length_string;
 
 /**
- * @brief Adaptive Function length<string>
+ * @brief Adaptive Function `length<string>`
  * @param x function execute parameter.
  *
  * This is a polymorphic function where string can be any of the supported data
@@ -26184,9 +27548,11 @@ afw_function_definition_length_string;
  *
  * Declaration:
  *
+ * ```
  *   function length<string>(
  *       value: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -26207,7 +27573,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_string;
 
 /**
- * @brief Adaptive Function lt<string>
+ * @brief Adaptive Function `lt<string>`
  * @param x function execute parameter.
  *
  * Checks for string arg1 is less that string arg2 and return the boolean
@@ -26218,10 +27584,12 @@ afw_function_definition_lt_string;
  *
  * Declaration:
  *
+ * ```
  *   function lt<string>(
  *       arg1: string,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26243,7 +27611,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_string;
 
 /**
- * @brief Adaptive Function max<string>
+ * @brief Adaptive Function `max<string>`
  * @param x function execute parameter.
  *
  * Return the string value that is greater than or equal to the others.
@@ -26253,10 +27621,12 @@ afw_function_definition_max_string;
  *
  * Declaration:
  *
+ * ```
  *   function max<string>(
  *       values_1: string,
  *       ...values_rest: (list of string)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26276,7 +27646,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_string;
 
 /**
- * @brief Adaptive Function min<string>
+ * @brief Adaptive Function `min<string>`
  * @param x function execute parameter.
  *
  * Return the string value that is less than or equal to the others.
@@ -26286,10 +27656,12 @@ afw_function_definition_min_string;
  *
  * Declaration:
  *
+ * ```
  *   function min<string>(
  *       values_1: string,
  *       ...values_rest: (list of string)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26309,7 +27681,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_string;
 
 /**
- * @brief Adaptive Function ne<string>
+ * @brief Adaptive Function `ne<string>`
  * @param x function execute parameter.
  *
  * Determine if string arg1 is not equal to the value of arg2 converted to the
@@ -26321,10 +27693,12 @@ afw_function_definition_ne_string;
  *
  * Declaration:
  *
+ * ```
  *   function ne<string>(
  *       arg1: string,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26350,7 +27724,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_string;
 
 /**
- * @brief Adaptive Function nex<string>
+ * @brief Adaptive Function `nex<string>`
  * @param x function execute parameter.
  *
  * Determine if for string arg1 is not equal to the value or data type of arg2
@@ -26362,10 +27736,12 @@ afw_function_definition_nex_string;
  *
  * Declaration:
  *
+ * ```
  *   function nex<string>(
  *       arg1: string,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26387,7 +27763,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_normalize_space_string;
 
 /**
- * @brief Adaptive Function normalize_space<string>
+ * @brief Adaptive Function `normalize_space<string>`
  * @param x function execute parameter.
  *
  * Remove whitespace from the beginning and end of a string value.
@@ -26397,9 +27773,11 @@ afw_function_definition_normalize_space_string;
  *
  * Declaration:
  *
+ * ```
  *   function normalize_space<string>(
  *       string: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26418,7 +27796,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_normalize_to_lower_case_string;
 
 /**
- * @brief Adaptive Function normalize_to_lower_case<string>
+ * @brief Adaptive Function `normalize_to_lower_case<string>`
  * @param x function execute parameter.
  *
  * Normalize string value to lower case and returns string result.
@@ -26428,9 +27806,11 @@ afw_function_definition_normalize_to_lower_case_string;
  *
  * Declaration:
  *
+ * ```
  *   function normalize_to_lower_case<string>(
  *       string: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26449,7 +27829,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_string;
 
 /**
- * @brief Adaptive Function one_and_only<string>
+ * @brief Adaptive Function `one_and_only<string>`
  * @param x function execute parameter.
  *
  * This converts a list of string values that contains one value to a single
@@ -26460,9 +27840,11 @@ afw_function_definition_one_and_only_string;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<string>(
  *       list: (list list)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26486,7 +27868,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_index_of_string;
 
 /**
- * @brief Adaptive Function regexp_index_of<string>
+ * @brief Adaptive Function `regexp_index_of<string>`
  * @param x function execute parameter.
  *
  * Search string value for a regular expression and return index. If not found,
@@ -26497,10 +27879,12 @@ afw_function_definition_regexp_index_of_string;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_index_of<string>(
  *       value: string,
  *       regexp: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -26522,7 +27906,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_string;
 
 /**
- * @brief Adaptive Function regexp_match<string>
+ * @brief Adaptive Function `regexp_match<string>`
  * @param x function execute parameter.
  *
  * Checks whether string value matches the regular expression regexp and return
@@ -26533,10 +27917,12 @@ afw_function_definition_regexp_match_string;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<string>(
  *       value: string,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26558,7 +27944,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_replace_string;
 
 /**
- * @brief Adaptive Function regexp_replace<string>
+ * @brief Adaptive Function `regexp_replace<string>`
  * @param x function execute parameter.
  *
  * Replace matched values for a regular expression in a string value.
@@ -26568,12 +27954,14 @@ afw_function_definition_regexp_replace_string;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_replace<string>(
  *       value: string,
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26600,7 +27988,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_repeat_string;
 
 /**
- * @brief Adaptive Function repeat<string>
+ * @brief Adaptive Function `repeat<string>`
  * @param x function execute parameter.
  *
  * Repeat a string value a specified number of times.
@@ -26610,10 +27998,12 @@ afw_function_definition_repeat_string;
  *
  * Declaration:
  *
+ * ```
  *   function repeat<string>(
  *       value: string,
  *       times: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26635,7 +28025,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_string;
 
 /**
- * @brief Adaptive Function replace<string>
+ * @brief Adaptive Function `replace<string>`
  * @param x function execute parameter.
  *
  * Replace string(s) in a string value.
@@ -26645,12 +28035,14 @@ afw_function_definition_replace_string;
  *
  * Declaration:
  *
+ * ```
  *   function replace<string>(
  *       value: string,
  *       match: string,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26677,7 +28069,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_string;
 
 /**
- * @brief Adaptive Function set_equals<string>
+ * @brief Adaptive Function `set_equals<string>`
  * @param x function execute parameter.
  *
  * Returns boolean true if string list1 and string list2 are subsets of each
@@ -26688,10 +28080,12 @@ afw_function_definition_set_equals_string;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<string>(
  *       list1: (list string),
  *       list2: (list string)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26713,7 +28107,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_split_string;
 
 /**
- * @brief Adaptive Function split<string>
+ * @brief Adaptive Function `split<string>`
  * @param x function execute parameter.
  *
  * Split string value into an list of strings using a separator.
@@ -26723,11 +28117,13 @@ afw_function_definition_split_string;
  *
  * Declaration:
  *
+ * ```
  *   function split<string>(
  *       value: string,
  *       separator?: string,
  *       limit?: integer
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -26754,7 +28150,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_starts_with_string;
 
 /**
- * @brief Adaptive Function starts_with<string>
+ * @brief Adaptive Function `starts_with<string>`
  * @param x function execute parameter.
  *
  * Checks whether string value starts with a subString and return the boolean
@@ -26765,10 +28161,12 @@ afw_function_definition_starts_with_string;
  *
  * Declaration:
  *
+ * ```
  *   function starts_with<string>(
  *       value: string,
  *       subString: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26790,7 +28188,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_string;
 
 /**
- * @brief Adaptive Function string
+ * @brief Adaptive Function `string`
  * @param x function execute parameter.
  *
  * Convert one or more values of any data type to string and return the
@@ -26802,10 +28200,12 @@ afw_function_definition_string;
  *
  * Declaration:
  *
+ * ```
  *   function string(
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26828,7 +28228,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_string;
 
 /**
- * @brief Adaptive Function subset<string>
+ * @brief Adaptive Function `subset<string>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in string list1 are all in string
@@ -26839,10 +28239,12 @@ afw_function_definition_subset_string;
  *
  * Declaration:
  *
+ * ```
  *   function subset<string>(
  *       list1: (list string),
  *       list2: (list string)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26864,7 +28266,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_substring_string;
 
 /**
- * @brief Adaptive Function substring<string>
+ * @brief Adaptive Function `substring<string>`
  * @param x function execute parameter.
  *
  * Returns the string substring of value beginning at zero-based position
@@ -26876,11 +28278,13 @@ afw_function_definition_substring_string;
  *
  * Declaration:
  *
+ * ```
  *   function substring<string>(
  *       string: string,
  *       startIndex: integer,
  *       endIndex?: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -26908,7 +28312,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_anyURI_string;
 
 /**
- * @brief Adaptive Function to_anyURI<string>
+ * @brief Adaptive Function `to_anyURI<string>`
  * @param x function execute parameter.
  *
  * Converts string value to anyURI.
@@ -26918,9 +28322,11 @@ afw_function_definition_to_anyURI_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_anyURI<string>(
  *       value: string
  *   ): anyURI;
+ * ```
  *
  * Parameters:
  *
@@ -26944,7 +28350,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_boolean_string;
 
 /**
- * @brief Adaptive Function to_boolean<string>
+ * @brief Adaptive Function `to_boolean<string>`
  * @param x function execute parameter.
  *
  * Converts string value to boolean.
@@ -26954,9 +28360,11 @@ afw_function_definition_to_boolean_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_boolean<string>(
  *       value: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -26980,7 +28388,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dateTime_string;
 
 /**
- * @brief Adaptive Function to_dateTime<string>
+ * @brief Adaptive Function `to_dateTime<string>`
  * @param x function execute parameter.
  *
  * Converts string value to dateTime.
@@ -26990,9 +28398,11 @@ afw_function_definition_to_dateTime_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_dateTime<string>(
  *       value: string
  *   ): dateTime;
+ * ```
  *
  * Parameters:
  *
@@ -27016,7 +28426,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_date_string;
 
 /**
- * @brief Adaptive Function to_date<string>
+ * @brief Adaptive Function `to_date<string>`
  * @param x function execute parameter.
  *
  * Converts string value to date.
@@ -27026,9 +28436,11 @@ afw_function_definition_to_date_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_date<string>(
  *       value: string
  *   ): date;
+ * ```
  *
  * Parameters:
  *
@@ -27052,7 +28464,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dayTimeDuration_string;
 
 /**
- * @brief Adaptive Function to_dayTimeDuration<string>
+ * @brief Adaptive Function `to_dayTimeDuration<string>`
  * @param x function execute parameter.
  *
  * Converts string value to dayTimeDuration.
@@ -27062,9 +28474,11 @@ afw_function_definition_to_dayTimeDuration_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_dayTimeDuration<string>(
  *       value: string
  *   ): dayTimeDuration;
+ * ```
  *
  * Parameters:
  *
@@ -27088,7 +28502,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_dnsName_string;
 
 /**
- * @brief Adaptive Function to_dnsName<string>
+ * @brief Adaptive Function `to_dnsName<string>`
  * @param x function execute parameter.
  *
  * Converts string value to dnsName.
@@ -27098,9 +28512,11 @@ afw_function_definition_to_dnsName_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_dnsName<string>(
  *       value: string
  *   ): dnsName;
+ * ```
  *
  * Parameters:
  *
@@ -27124,7 +28540,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_double_string;
 
 /**
- * @brief Adaptive Function to_double<string>
+ * @brief Adaptive Function `to_double<string>`
  * @param x function execute parameter.
  *
  * Converts string value to double and returns double result.
@@ -27134,9 +28550,11 @@ afw_function_definition_to_double_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_double<string>(
  *       value: string
  *   ): double;
+ * ```
  *
  * Parameters:
  *
@@ -27160,7 +28578,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_integer_string;
 
 /**
- * @brief Adaptive Function to_integer<string>
+ * @brief Adaptive Function `to_integer<string>`
  * @param x function execute parameter.
  *
  * Truncate string value to a whole number and returns integer result.
@@ -27170,9 +28588,11 @@ afw_function_definition_to_integer_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_integer<string>(
  *       value: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -27192,7 +28612,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_ipAddress_string;
 
 /**
- * @brief Adaptive Function to_ipAddress<string>
+ * @brief Adaptive Function `to_ipAddress<string>`
  * @param x function execute parameter.
  *
  * Converts string value to ipAddress.
@@ -27202,9 +28622,11 @@ afw_function_definition_to_ipAddress_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_ipAddress<string>(
  *       value: string
  *   ): ipAddress;
+ * ```
  *
  * Parameters:
  *
@@ -27228,7 +28650,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_rfc822Name_string;
 
 /**
- * @brief Adaptive Function to_rfc822Name<string>
+ * @brief Adaptive Function `to_rfc822Name<string>`
  * @param x function execute parameter.
  *
  * Converts string value to rfc822Name.
@@ -27238,9 +28660,11 @@ afw_function_definition_to_rfc822Name_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_rfc822Name<string>(
  *       value: string
  *   ): rfc822Name;
+ * ```
  *
  * Parameters:
  *
@@ -27264,7 +28688,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_string;
 
 /**
- * @brief Adaptive Function to_string<string>
+ * @brief Adaptive Function `to_string<string>`
  * @param x function execute parameter.
  *
  * Converts string value to string. For list values, the to_string() value for
@@ -27275,9 +28699,11 @@ afw_function_definition_to_string_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<string>(
  *       value: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -27297,7 +28723,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_time_string;
 
 /**
- * @brief Adaptive Function to_time<string>
+ * @brief Adaptive Function `to_time<string>`
  * @param x function execute parameter.
  *
  * Converts string value to time.
@@ -27307,9 +28733,11 @@ afw_function_definition_to_time_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_time<string>(
  *       value: string
  *   ): time;
+ * ```
  *
  * Parameters:
  *
@@ -27333,7 +28761,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_x500Name_string;
 
 /**
- * @brief Adaptive Function to_x500Name<string>
+ * @brief Adaptive Function `to_x500Name<string>`
  * @param x function execute parameter.
  *
  * Converts string value to x500Name.
@@ -27343,9 +28771,11 @@ afw_function_definition_to_x500Name_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_x500Name<string>(
  *       value: string
  *   ): x500Name;
+ * ```
  *
  * Parameters:
  *
@@ -27369,7 +28799,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_yearMonthDuration_string;
 
 /**
- * @brief Adaptive Function to_yearMonthDuration<string>
+ * @brief Adaptive Function `to_yearMonthDuration<string>`
  * @param x function execute parameter.
  *
  * Converts string value to yearMonthDuration.
@@ -27379,9 +28809,11 @@ afw_function_definition_to_yearMonthDuration_string;
  *
  * Declaration:
  *
+ * ```
  *   function to_yearMonthDuration<string>(
  *       value: string
  *   ): yearMonthDuration;
+ * ```
  *
  * Parameters:
  *
@@ -27405,7 +28837,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_string;
 
 /**
- * @brief Adaptive Function union<string>
+ * @brief Adaptive Function `union<string>`
  * @param x function execute parameter.
  *
  * Returns a list of string contains all of the unique values in two or more
@@ -27416,11 +28848,13 @@ afw_function_definition_union_string;
  *
  * Declaration:
  *
+ * ```
  *   function union<string>(
  *       lists_1: (list string),
  *       lists_2: (list string),
  *       ...lists_rest: (list of (list string))
  *   ): (list string);
+ * ```
  *
  * Parameters:
  *
@@ -27440,7 +28874,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_url_decode;
 
 /**
- * @brief Adaptive Function url_decode
+ * @brief Adaptive Function `url_decode`
  * @param x function execute parameter.
  *
  * URL decode a value or bag of values.
@@ -27450,9 +28884,11 @@ afw_function_definition_url_decode;
  *
  * Declaration:
  *
+ * ```
  *   function url_decode(
  *       encoded: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -27471,7 +28907,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_url_encode_string;
 
 /**
- * @brief Adaptive Function url_encode<string>
+ * @brief Adaptive Function `url_encode<string>`
  * @param x function execute parameter.
  *
  * URL encode a value or bag of values.
@@ -27481,9 +28917,11 @@ afw_function_definition_url_encode_string;
  *
  * Declaration:
  *
+ * ```
  *   function url_encode<string>(
  *       unencoded: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -27514,7 +28952,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_template;
 
 /**
- * @brief Adaptive Function bag_size<template>
+ * @brief Adaptive Function `bag_size<template>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -27524,9 +28962,11 @@ afw_function_definition_bag_size_template;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<template>(
  *       value: (list template)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -27546,7 +28986,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_template;
 
 /**
- * @brief Adaptive Function bag<template>
+ * @brief Adaptive Function `bag<template>`
  * @param x function execute parameter.
  *
  * Takes any number of template values and returns a list of list.
@@ -27556,9 +28996,11 @@ afw_function_definition_bag_template;
  *
  * Declaration:
  *
+ * ```
  *   function bag<template>(
  *       ...values: (list of (list template))
  *   ): (list template);
+ * ```
  *
  * Parameters:
  *
@@ -27578,7 +29020,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_template;
 
 /**
- * @brief Adaptive Function compile<template>
+ * @brief Adaptive Function `compile<template>`
  * @param x function execute parameter.
  *
  * Compile template value and return either an unevaluated adaptive value or a
@@ -27589,10 +29031,12 @@ afw_function_definition_compile_template;
  *
  * Declaration:
  *
+ * ```
  *   function compile<template>(
  *       source: template,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -27619,7 +29063,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_template;
 
 /**
- * @brief Adaptive Function eq<template>
+ * @brief Adaptive Function `eq<template>`
  * @param x function execute parameter.
  *
  * Determine if template arg1 is equal to the value of arg2 converted to the
@@ -27631,10 +29075,12 @@ afw_function_definition_eq_template;
  *
  * Declaration:
  *
+ * ```
  *   function eq<template>(
  *       arg1: template,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27660,7 +29106,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_template;
 
 /**
- * @brief Adaptive Function eqx<template>
+ * @brief Adaptive Function `eqx<template>`
  * @param x function execute parameter.
  *
  * Determine if for template arg1 is equal to the value and data type of arg2
@@ -27672,10 +29118,12 @@ afw_function_definition_eqx_template;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<template>(
  *       arg1: template,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27697,7 +29145,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_template;
 
 /**
- * @brief Adaptive Function evaluate<template>
+ * @brief Adaptive Function `evaluate<template>`
  * @param x function execute parameter.
  *
  * Compile and evaluate template value.
@@ -27707,10 +29155,12 @@ afw_function_definition_evaluate_template;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -27737,7 +29187,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_template;
 
 /**
- * @brief Adaptive Function ge<template>
+ * @brief Adaptive Function `ge<template>`
  * @param x function execute parameter.
  *
  * Checks for template arg1 is greater than or equal to template arg2 and
@@ -27748,10 +29198,12 @@ afw_function_definition_ge_template;
  *
  * Declaration:
  *
+ * ```
  *   function ge<template>(
  *       arg1: template,
  *       arg2: template
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27773,7 +29225,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_template;
 
 /**
- * @brief Adaptive Function gt<template>
+ * @brief Adaptive Function `gt<template>`
  * @param x function execute parameter.
  *
  * Checks for template arg1 is greater than template arg2 and return the
@@ -27784,10 +29236,12 @@ afw_function_definition_gt_template;
  *
  * Declaration:
  *
+ * ```
  *   function gt<template>(
  *       arg1: template,
  *       arg2: template
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27809,7 +29263,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_template;
 
 /**
- * @brief Adaptive Function is<template>
+ * @brief Adaptive Function `is<template>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType template and return the boolean result.
@@ -27819,9 +29273,11 @@ afw_function_definition_is_template;
  *
  * Declaration:
  *
+ * ```
  *   function is<template>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27841,7 +29297,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_template;
 
 /**
- * @brief Adaptive Function le<template>
+ * @brief Adaptive Function `le<template>`
  * @param x function execute parameter.
  *
  * Checks for template arg1 is less than or equal to template arg2 and return
@@ -27852,10 +29308,12 @@ afw_function_definition_le_template;
  *
  * Declaration:
  *
+ * ```
  *   function le<template>(
  *       arg1: template,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27877,7 +29335,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_template;
 
 /**
- * @brief Adaptive Function lt<template>
+ * @brief Adaptive Function `lt<template>`
  * @param x function execute parameter.
  *
  * Checks for template arg1 is less that template arg2 and return the boolean
@@ -27888,10 +29346,12 @@ afw_function_definition_lt_template;
  *
  * Declaration:
  *
+ * ```
  *   function lt<template>(
  *       arg1: template,
  *       arg2: template
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27913,7 +29373,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_template;
 
 /**
- * @brief Adaptive Function ne<template>
+ * @brief Adaptive Function `ne<template>`
  * @param x function execute parameter.
  *
  * Determine if template arg1 is not equal to the value of arg2 converted to
@@ -27926,10 +29386,12 @@ afw_function_definition_ne_template;
  *
  * Declaration:
  *
+ * ```
  *   function ne<template>(
  *       arg1: template,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27955,7 +29417,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_template;
 
 /**
- * @brief Adaptive Function nex<template>
+ * @brief Adaptive Function `nex<template>`
  * @param x function execute parameter.
  *
  * Determine if for template arg1 is not equal to the value or data type of
@@ -27967,10 +29429,12 @@ afw_function_definition_nex_template;
  *
  * Declaration:
  *
+ * ```
  *   function nex<template>(
  *       arg1: template,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -27992,7 +29456,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_template;
 
 /**
- * @brief Adaptive Function template
+ * @brief Adaptive Function `template`
  * @param x function execute parameter.
  *
  * Converts value to data type template returning template result.
@@ -28002,9 +29466,11 @@ afw_function_definition_template;
  *
  * Declaration:
  *
+ * ```
  *   function template(
  *       value: any
  *   ): template;
+ * ```
  *
  * Parameters:
  *
@@ -28028,7 +29494,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_template;
 
 /**
- * @brief Adaptive Function to_string<template>
+ * @brief Adaptive Function `to_string<template>`
  * @param x function execute parameter.
  *
  * Converts template value to string. For list values, the to_string() value
@@ -28039,9 +29505,11 @@ afw_function_definition_to_string_template;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<template>(
  *       value: template
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -28071,7 +29539,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_time;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<time>
+ * @brief Adaptive Function `at_least_one_member_of<time>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in time list1 is in time list2.
@@ -28081,10 +29549,12 @@ afw_function_definition_at_least_one_member_of_time;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<time>(
  *       list1: (list time),
  *       list2: (list time)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28106,7 +29576,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_time;
 
 /**
- * @brief Adaptive Function bag_size<time>
+ * @brief Adaptive Function `bag_size<time>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -28116,9 +29586,11 @@ afw_function_definition_bag_size_time;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<time>(
  *       value: (list time)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -28138,7 +29610,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_time;
 
 /**
- * @brief Adaptive Function bag<time>
+ * @brief Adaptive Function `bag<time>`
  * @param x function execute parameter.
  *
  * Takes any number of time values and returns a list of list.
@@ -28148,9 +29620,11 @@ afw_function_definition_bag_time;
  *
  * Declaration:
  *
+ * ```
  *   function bag<time>(
  *       ...values: (list of (list time))
  *   ): (list time);
+ * ```
  *
  * Parameters:
  *
@@ -28170,7 +29644,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_time;
 
 /**
- * @brief Adaptive Function eq<time>
+ * @brief Adaptive Function `eq<time>`
  * @param x function execute parameter.
  *
  * Determine if time arg1 is equal to the value of arg2 converted to the data
@@ -28182,10 +29656,12 @@ afw_function_definition_eq_time;
  *
  * Declaration:
  *
+ * ```
  *   function eq<time>(
  *       arg1: time,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28211,7 +29687,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_time;
 
 /**
- * @brief Adaptive Function eqx<time>
+ * @brief Adaptive Function `eqx<time>`
  * @param x function execute parameter.
  *
  * Determine if for time arg1 is equal to the value and data type of arg2 then
@@ -28223,10 +29699,12 @@ afw_function_definition_eqx_time;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<time>(
  *       arg1: time,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28248,7 +29726,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_time;
 
 /**
- * @brief Adaptive Function ge<time>
+ * @brief Adaptive Function `ge<time>`
  * @param x function execute parameter.
  *
  * Checks for time arg1 is greater than or equal to time arg2 and return the
@@ -28262,10 +29740,12 @@ afw_function_definition_ge_time;
  *
  * Declaration:
  *
+ * ```
  *   function ge<time>(
  *       arg1: time,
  *       arg2: time
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28287,7 +29767,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_time;
 
 /**
- * @brief Adaptive Function gt<time>
+ * @brief Adaptive Function `gt<time>`
  * @param x function execute parameter.
  *
  * Checks for time arg1 is greater than time arg2 and return the boolean
@@ -28301,10 +29781,12 @@ afw_function_definition_gt_time;
  *
  * Declaration:
  *
+ * ```
  *   function gt<time>(
  *       arg1: time,
  *       arg2: time
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28326,7 +29808,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_in_range_time;
 
 /**
- * @brief Adaptive Function in_range<time>
+ * @brief Adaptive Function `in_range<time>`
  * @param x function execute parameter.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
@@ -28340,11 +29822,13 @@ afw_function_definition_in_range_time;
  *
  * Declaration:
  *
+ * ```
  *   function in_range<time>(
  *       time: time,
  *       startTime: time,
  *       endTime: time
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28367,7 +29851,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_time;
 
 /**
- * @brief Adaptive Function intersection<time>
+ * @brief Adaptive Function `intersection<time>`
  * @param x function execute parameter.
  *
  * Returns a list of time with the values that are common to both list of time
@@ -28378,10 +29862,12 @@ afw_function_definition_intersection_time;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<time>(
  *       list1: (list time),
  *       list2: (list time)
  *   ): (list time);
+ * ```
  *
  * Parameters:
  *
@@ -28403,7 +29889,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_time;
 
 /**
- * @brief Adaptive Function is_in<time>
+ * @brief Adaptive Function `is_in<time>`
  * @param x function execute parameter.
  *
  * Checks whether time value is in list of time list and returns the boolean
@@ -28414,10 +29900,12 @@ afw_function_definition_is_in_time;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<time>(
  *       value: time,
  *       list: (list time)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28439,7 +29927,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_time;
 
 /**
- * @brief Adaptive Function is<time>
+ * @brief Adaptive Function `is<time>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType time and return the boolean result.
@@ -28449,9 +29937,11 @@ afw_function_definition_is_time;
  *
  * Declaration:
  *
+ * ```
  *   function is<time>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28471,7 +29961,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_time;
 
 /**
- * @brief Adaptive Function le<time>
+ * @brief Adaptive Function `le<time>`
  * @param x function execute parameter.
  *
  * Checks for time arg1 is less than or equal to time arg2 and return the
@@ -28485,10 +29975,12 @@ afw_function_definition_le_time;
  *
  * Declaration:
  *
+ * ```
  *   function le<time>(
  *       arg1: time,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28510,7 +30002,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_time;
 
 /**
- * @brief Adaptive Function lt<time>
+ * @brief Adaptive Function `lt<time>`
  * @param x function execute parameter.
  *
  * Checks for time arg1 is less that time arg2 and return the boolean result.
@@ -28523,10 +30015,12 @@ afw_function_definition_lt_time;
  *
  * Declaration:
  *
+ * ```
  *   function lt<time>(
  *       arg1: time,
  *       arg2: time
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28548,7 +30042,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_max_time;
 
 /**
- * @brief Adaptive Function max<time>
+ * @brief Adaptive Function `max<time>`
  * @param x function execute parameter.
  *
  * Return the time value that is greater than or equal to the others.
@@ -28561,10 +30055,12 @@ afw_function_definition_max_time;
  *
  * Declaration:
  *
+ * ```
  *   function max<time>(
  *       values_1: time,
  *       ...values_rest: (list of time)
  *   ): time;
+ * ```
  *
  * Parameters:
  *
@@ -28584,7 +30080,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_min_time;
 
 /**
- * @brief Adaptive Function min<time>
+ * @brief Adaptive Function `min<time>`
  * @param x function execute parameter.
  *
  * Return the time value that is less than or equal to the others.
@@ -28597,10 +30093,12 @@ afw_function_definition_min_time;
  *
  * Declaration:
  *
+ * ```
  *   function min<time>(
  *       values_1: time,
  *       ...values_rest: (list of time)
  *   ): time;
+ * ```
  *
  * Parameters:
  *
@@ -28620,7 +30118,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_time;
 
 /**
- * @brief Adaptive Function ne<time>
+ * @brief Adaptive Function `ne<time>`
  * @param x function execute parameter.
  *
  * Determine if time arg1 is not equal to the value of arg2 converted to the
@@ -28632,10 +30130,12 @@ afw_function_definition_ne_time;
  *
  * Declaration:
  *
+ * ```
  *   function ne<time>(
  *       arg1: time,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28661,7 +30161,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_time;
 
 /**
- * @brief Adaptive Function nex<time>
+ * @brief Adaptive Function `nex<time>`
  * @param x function execute parameter.
  *
  * Determine if for time arg1 is not equal to the value or data type of arg2
@@ -28673,10 +30173,12 @@ afw_function_definition_nex_time;
  *
  * Declaration:
  *
+ * ```
  *   function nex<time>(
  *       arg1: time,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28698,7 +30200,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_time;
 
 /**
- * @brief Adaptive Function one_and_only<time>
+ * @brief Adaptive Function `one_and_only<time>`
  * @param x function execute parameter.
  *
  * This converts a list of time values that contains one value to a single time
@@ -28709,9 +30211,11 @@ afw_function_definition_one_and_only_time;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<time>(
  *       list: (list list)
  *   ): time;
+ * ```
  *
  * Parameters:
  *
@@ -28735,7 +30239,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_time;
 
 /**
- * @brief Adaptive Function set_equals<time>
+ * @brief Adaptive Function `set_equals<time>`
  * @param x function execute parameter.
  *
  * Returns boolean true if time list1 and time list2 are subsets of each other
@@ -28746,10 +30250,12 @@ afw_function_definition_set_equals_time;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<time>(
  *       list1: (list time),
  *       list2: (list time)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28771,7 +30277,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_time;
 
 /**
- * @brief Adaptive Function subset<time>
+ * @brief Adaptive Function `subset<time>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in time list1 are all in time
@@ -28782,10 +30288,12 @@ afw_function_definition_subset_time;
  *
  * Declaration:
  *
+ * ```
  *   function subset<time>(
  *       list1: (list time),
  *       list2: (list time)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28807,7 +30315,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_time;
 
 /**
- * @brief Adaptive Function time
+ * @brief Adaptive Function `time`
  * @param x function execute parameter.
  *
  * Converts value to data type time returning time result.
@@ -28817,9 +30325,11 @@ afw_function_definition_time;
  *
  * Declaration:
  *
+ * ```
  *   function time(
  *       value: any
  *   ): time;
+ * ```
  *
  * Parameters:
  *
@@ -28843,7 +30353,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_time;
 
 /**
- * @brief Adaptive Function to_string<time>
+ * @brief Adaptive Function `to_string<time>`
  * @param x function execute parameter.
  *
  * Converts time value to string. For list values, the to_string() value for
@@ -28854,9 +30364,11 @@ afw_function_definition_to_string_time;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<time>(
  *       value: time
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -28876,7 +30388,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_time;
 
 /**
- * @brief Adaptive Function union<time>
+ * @brief Adaptive Function `union<time>`
  * @param x function execute parameter.
  *
  * Returns a list of time contains all of the unique values in two or more list
@@ -28887,11 +30399,13 @@ afw_function_definition_union_time;
  *
  * Declaration:
  *
+ * ```
  *   function union<time>(
  *       lists_1: (list time),
  *       lists_2: (list time),
  *       ...lists_rest: (list of (list time))
  *   ): (list time);
+ * ```
  *
  * Parameters:
  *
@@ -28921,7 +30435,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_unevaluated;
 
 /**
- * @brief Adaptive Function is<unevaluated>
+ * @brief Adaptive Function `is<unevaluated>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType unevaluated and return the boolean result.
@@ -28931,9 +30445,11 @@ afw_function_definition_is_unevaluated;
  *
  * Declaration:
  *
+ * ```
  *   function is<unevaluated>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -28963,7 +30479,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_meta;
 
 /**
- * @brief Adaptive Function meta
+ * @brief Adaptive Function `meta`
  * @param x function execute parameter.
  *
  * This function returns an object containing meta information for an adaptive
@@ -28974,9 +30490,11 @@ afw_function_definition_meta;
  *
  * Declaration:
  *
+ * ```
  *   function meta(
  *       value: any
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -28998,7 +30516,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_metas;
 
 /**
- * @brief Adaptive Function metas
+ * @brief Adaptive Function `metas`
  * @param x function execute parameter.
  *
  * This function returns a list of the result of calling meta() for each value
@@ -29009,9 +30527,11 @@ afw_function_definition_metas;
  *
  * Declaration:
  *
+ * ```
  *   function metas(
  *       value: any
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -29041,7 +30561,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_x500Name;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<x500Name>
+ * @brief Adaptive Function `at_least_one_member_of<x500Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in x500Name list1 is in x500Name
@@ -29052,10 +30572,12 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<x500Name>(
  *       list1: (list x500Name),
  *       list2: (list x500Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29077,7 +30599,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_x500Name;
 
 /**
- * @brief Adaptive Function bag_size<x500Name>
+ * @brief Adaptive Function `bag_size<x500Name>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -29087,9 +30609,11 @@ afw_function_definition_bag_size_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<x500Name>(
  *       value: (list x500Name)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -29109,7 +30633,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_x500Name;
 
 /**
- * @brief Adaptive Function bag<x500Name>
+ * @brief Adaptive Function `bag<x500Name>`
  * @param x function execute parameter.
  *
  * Takes any number of x500Name values and returns a list of list.
@@ -29119,9 +30643,11 @@ afw_function_definition_bag_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function bag<x500Name>(
  *       ...values: (list of (list x500Name))
  *   ): (list x500Name);
+ * ```
  *
  * Parameters:
  *
@@ -29141,7 +30667,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_x500Name;
 
 /**
- * @brief Adaptive Function eq<x500Name>
+ * @brief Adaptive Function `eq<x500Name>`
  * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is equal to the value of arg2 converted to the
@@ -29153,10 +30679,12 @@ afw_function_definition_eq_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function eq<x500Name>(
  *       arg1: x500Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29182,7 +30710,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_x500Name;
 
 /**
- * @brief Adaptive Function eqx<x500Name>
+ * @brief Adaptive Function `eqx<x500Name>`
  * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is equal to the value and data type of arg2
@@ -29194,10 +30722,12 @@ afw_function_definition_eqx_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<x500Name>(
  *       arg1: x500Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29219,7 +30749,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_x500Name;
 
 /**
- * @brief Adaptive Function ge<x500Name>
+ * @brief Adaptive Function `ge<x500Name>`
  * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
@@ -29230,10 +30760,12 @@ afw_function_definition_ge_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function ge<x500Name>(
  *       arg1: x500Name,
  *       arg2: x500Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29255,7 +30787,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_x500Name;
 
 /**
- * @brief Adaptive Function gt<x500Name>
+ * @brief Adaptive Function `gt<x500Name>`
  * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is greater than x500Name arg2 and return the
@@ -29266,10 +30798,12 @@ afw_function_definition_gt_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function gt<x500Name>(
  *       arg1: x500Name,
  *       arg2: x500Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29291,7 +30825,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_x500Name;
 
 /**
- * @brief Adaptive Function intersection<x500Name>
+ * @brief Adaptive Function `intersection<x500Name>`
  * @param x function execute parameter.
  *
  * Returns a list of x500Name with the values that are common to both list of
@@ -29302,10 +30836,12 @@ afw_function_definition_intersection_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<x500Name>(
  *       list1: (list x500Name),
  *       list2: (list x500Name)
  *   ): (list x500Name);
+ * ```
  *
  * Parameters:
  *
@@ -29327,7 +30863,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_x500Name;
 
 /**
- * @brief Adaptive Function is_in<x500Name>
+ * @brief Adaptive Function `is_in<x500Name>`
  * @param x function execute parameter.
  *
  * Checks whether x500Name value is in list of x500Name list and returns the
@@ -29338,10 +30874,12 @@ afw_function_definition_is_in_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<x500Name>(
  *       value: x500Name,
  *       list: (list x500Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29363,7 +30901,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_x500Name;
 
 /**
- * @brief Adaptive Function is<x500Name>
+ * @brief Adaptive Function `is<x500Name>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType x500Name and return the boolean result.
@@ -29373,9 +30911,11 @@ afw_function_definition_is_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function is<x500Name>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29395,7 +30935,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_x500Name;
 
 /**
- * @brief Adaptive Function le<x500Name>
+ * @brief Adaptive Function `le<x500Name>`
  * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
@@ -29406,10 +30946,12 @@ afw_function_definition_le_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function le<x500Name>(
  *       arg1: x500Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29431,7 +30973,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_x500Name;
 
 /**
- * @brief Adaptive Function lt<x500Name>
+ * @brief Adaptive Function `lt<x500Name>`
  * @param x function execute parameter.
  *
  * Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
@@ -29442,10 +30984,12 @@ afw_function_definition_lt_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function lt<x500Name>(
  *       arg1: x500Name,
  *       arg2: x500Name
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29467,7 +31011,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_match_x500Name;
 
 /**
- * @brief Adaptive Function match<x500Name>
+ * @brief Adaptive Function `match<x500Name>`
  * @param x function execute parameter.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
@@ -29478,10 +31022,12 @@ afw_function_definition_match_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function match<x500Name>(
  *       arg1: x500Name,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29502,7 +31048,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_x500Name;
 
 /**
- * @brief Adaptive Function ne<x500Name>
+ * @brief Adaptive Function `ne<x500Name>`
  * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is not equal to the value of arg2 converted to
@@ -29515,10 +31061,12 @@ afw_function_definition_ne_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function ne<x500Name>(
  *       arg1: x500Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29544,7 +31092,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_x500Name;
 
 /**
- * @brief Adaptive Function nex<x500Name>
+ * @brief Adaptive Function `nex<x500Name>`
  * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is not equal to the value or data type of
@@ -29556,10 +31104,12 @@ afw_function_definition_nex_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function nex<x500Name>(
  *       arg1: x500Name,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29581,7 +31131,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_x500Name;
 
 /**
- * @brief Adaptive Function one_and_only<x500Name>
+ * @brief Adaptive Function `one_and_only<x500Name>`
  * @param x function execute parameter.
  *
  * This converts a list of x500Name values that contains one value to a single
@@ -29592,9 +31142,11 @@ afw_function_definition_one_and_only_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<x500Name>(
  *       list: (list list)
  *   ): x500Name;
+ * ```
  *
  * Parameters:
  *
@@ -29618,7 +31170,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_regexp_match_x500Name;
 
 /**
- * @brief Adaptive Function regexp_match<x500Name>
+ * @brief Adaptive Function `regexp_match<x500Name>`
  * @param x function execute parameter.
  *
  * Checks whether x500Name value matches the regular expression regexp and
@@ -29629,10 +31181,12 @@ afw_function_definition_regexp_match_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function regexp_match<x500Name>(
  *       value: x500Name,
  *       regexp: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29654,7 +31208,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_x500Name;
 
 /**
- * @brief Adaptive Function set_equals<x500Name>
+ * @brief Adaptive Function `set_equals<x500Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if x500Name list1 and x500Name list2 are subsets of
@@ -29665,10 +31219,12 @@ afw_function_definition_set_equals_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<x500Name>(
  *       list1: (list x500Name),
  *       list2: (list x500Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29690,7 +31246,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_x500Name;
 
 /**
- * @brief Adaptive Function subset<x500Name>
+ * @brief Adaptive Function `subset<x500Name>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in x500Name list1 are all in
@@ -29701,10 +31257,12 @@ afw_function_definition_subset_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function subset<x500Name>(
  *       list1: (list x500Name),
  *       list2: (list x500Name)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29726,7 +31284,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_x500Name;
 
 /**
- * @brief Adaptive Function to_string<x500Name>
+ * @brief Adaptive Function `to_string<x500Name>`
  * @param x function execute parameter.
  *
  * Converts x500Name value to string. For list values, the to_string() value
@@ -29737,9 +31295,11 @@ afw_function_definition_to_string_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<x500Name>(
  *       value: x500Name
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -29759,7 +31319,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_x500Name;
 
 /**
- * @brief Adaptive Function union<x500Name>
+ * @brief Adaptive Function `union<x500Name>`
  * @param x function execute parameter.
  *
  * Returns a list of x500Name contains all of the unique values in two or more
@@ -29770,11 +31330,13 @@ afw_function_definition_union_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function union<x500Name>(
  *       lists_1: (list x500Name),
  *       lists_2: (list x500Name),
  *       ...lists_rest: (list of (list x500Name))
  *   ): (list x500Name);
+ * ```
  *
  * Parameters:
  *
@@ -29794,7 +31356,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_x500Name;
 
 /**
- * @brief Adaptive Function x500Name
+ * @brief Adaptive Function `x500Name`
  * @param x function execute parameter.
  *
  * Converts value to data type x500Name returning x500Name result.
@@ -29804,9 +31366,11 @@ afw_function_definition_x500Name;
  *
  * Declaration:
  *
+ * ```
  *   function x500Name(
  *       value: any
  *   ): x500Name;
+ * ```
  *
  * Parameters:
  *
@@ -29840,7 +31404,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_xpathExpression;
 
 /**
- * @brief Adaptive Function bag_size<xpathExpression>
+ * @brief Adaptive Function `bag_size<xpathExpression>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -29850,9 +31414,11 @@ afw_function_definition_bag_size_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<xpathExpression>(
  *       value: (list xpathExpression)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -29872,7 +31438,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_xpathExpression;
 
 /**
- * @brief Adaptive Function bag<xpathExpression>
+ * @brief Adaptive Function `bag<xpathExpression>`
  * @param x function execute parameter.
  *
  * Takes any number of xpathExpression values and returns a list of list.
@@ -29882,9 +31448,11 @@ afw_function_definition_bag_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function bag<xpathExpression>(
  *       ...values: (list of (list xpathExpression))
  *   ): (list xpathExpression);
+ * ```
  *
  * Parameters:
  *
@@ -29904,7 +31472,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_xpathExpression;
 
 /**
- * @brief Adaptive Function compile<xpathExpression>
+ * @brief Adaptive Function `compile<xpathExpression>`
  * @param x function execute parameter.
  *
  * Compile xpathExpression value and return either an unevaluated adaptive
@@ -29915,10 +31483,12 @@ afw_function_definition_compile_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function compile<xpathExpression>(
  *       source: xpathExpression,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -29945,7 +31515,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_xpathExpression;
 
 /**
- * @brief Adaptive Function eq<xpathExpression>
+ * @brief Adaptive Function `eq<xpathExpression>`
  * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is equal to the value of arg2 converted to
@@ -29958,10 +31528,12 @@ afw_function_definition_eq_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function eq<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -29987,7 +31559,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_xpathExpression;
 
 /**
- * @brief Adaptive Function eqx<xpathExpression>
+ * @brief Adaptive Function `eqx<xpathExpression>`
  * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is equal to the value and data type of
@@ -29999,10 +31571,12 @@ afw_function_definition_eqx_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30024,7 +31598,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate_xpathExpression;
 
 /**
- * @brief Adaptive Function evaluate<xpathExpression>
+ * @brief Adaptive Function `evaluate<xpathExpression>`
  * @param x function execute parameter.
  *
  * Compile and evaluate xpathExpression value.
@@ -30034,10 +31608,12 @@ afw_function_definition_evaluate_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -30064,7 +31640,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_xpathExpression;
 
 /**
- * @brief Adaptive Function ge<xpathExpression>
+ * @brief Adaptive Function `ge<xpathExpression>`
  * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is greater than or equal to xpathExpression
@@ -30075,10 +31651,12 @@ afw_function_definition_ge_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function ge<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30100,7 +31678,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_xpathExpression;
 
 /**
- * @brief Adaptive Function gt<xpathExpression>
+ * @brief Adaptive Function `gt<xpathExpression>`
  * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is greater than xpathExpression arg2 and
@@ -30111,10 +31689,12 @@ afw_function_definition_gt_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function gt<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30136,7 +31716,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_xpathExpression;
 
 /**
- * @brief Adaptive Function is<xpathExpression>
+ * @brief Adaptive Function `is<xpathExpression>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType xpathExpression and return the boolean
@@ -30147,9 +31727,11 @@ afw_function_definition_is_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function is<xpathExpression>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30169,7 +31751,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_xpathExpression;
 
 /**
- * @brief Adaptive Function le<xpathExpression>
+ * @brief Adaptive Function `le<xpathExpression>`
  * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is less than or equal to xpathExpression
@@ -30180,10 +31762,12 @@ afw_function_definition_le_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function le<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30205,7 +31789,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_xpathExpression;
 
 /**
- * @brief Adaptive Function lt<xpathExpression>
+ * @brief Adaptive Function `lt<xpathExpression>`
  * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is less that xpathExpression arg2 and return
@@ -30216,10 +31800,12 @@ afw_function_definition_lt_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function lt<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30241,7 +31827,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_xpathExpression;
 
 /**
- * @brief Adaptive Function ne<xpathExpression>
+ * @brief Adaptive Function `ne<xpathExpression>`
  * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is not equal to the value of arg2
@@ -30254,10 +31840,12 @@ afw_function_definition_ne_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function ne<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30283,7 +31871,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_xpathExpression;
 
 /**
- * @brief Adaptive Function nex<xpathExpression>
+ * @brief Adaptive Function `nex<xpathExpression>`
  * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is not equal to the value or data type
@@ -30295,10 +31883,12 @@ afw_function_definition_nex_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function nex<xpathExpression>(
  *       arg1: xpathExpression,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30320,7 +31910,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_xpathExpression;
 
 /**
- * @brief Adaptive Function to_string<xpathExpression>
+ * @brief Adaptive Function `to_string<xpathExpression>`
  * @param x function execute parameter.
  *
  * Converts xpathExpression value to string. For list values, the to_string()
@@ -30331,9 +31921,11 @@ afw_function_definition_to_string_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<xpathExpression>(
  *       value: xpathExpression
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -30353,7 +31945,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_xpathExpression;
 
 /**
- * @brief Adaptive Function xpathExpression
+ * @brief Adaptive Function `xpathExpression`
  * @param x function execute parameter.
  *
  * Converts value to data type xpathExpression returning xpathExpression
@@ -30364,9 +31956,11 @@ afw_function_definition_xpathExpression;
  *
  * Declaration:
  *
+ * ```
  *   function xpathExpression(
  *       value: any
  *   ): xpathExpression;
+ * ```
  *
  * Parameters:
  *
@@ -30390,7 +31984,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_xpath_node_count;
 
 /**
- * @brief Adaptive Function xpath_node_count
+ * @brief Adaptive Function `xpath_node_count`
  * @param x function execute parameter.
  *
  * The number of nodes in a node-set.
@@ -30400,9 +31994,11 @@ afw_function_definition_xpath_node_count;
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_count(
  *       nodeset: xpathExpression
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -30421,7 +32017,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_xpath_node_eq;
 
 /**
- * @brief Adaptive Function xpath_node_eq
+ * @brief Adaptive Function `xpath_node_eq`
  * @param x function execute parameter.
  *
  * Checks for xpathExpression arg1 is equal to xpathExpression arg2 and return
@@ -30432,10 +32028,12 @@ afw_function_definition_xpath_node_eq;
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_eq(
  *       arg1: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30456,7 +32054,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_xpath_node_match;
 
 /**
- * @brief Adaptive Function xpath_node_match
+ * @brief Adaptive Function `xpath_node_match`
  * @param x function execute parameter.
  *
  * Returns true if any of the nodes matched by nodeset1 are equal to any of the
@@ -30467,10 +32065,12 @@ afw_function_definition_xpath_node_match;
  *
  * Declaration:
  *
+ * ```
  *   function xpath_node_match(
  *       nodeset2: xpathExpression,
  *       arg2: xpathExpression
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30501,7 +32101,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_at_least_one_member_of_yearMonthDuration;
 
 /**
- * @brief Adaptive Function at_least_one_member_of<yearMonthDuration>
+ * @brief Adaptive Function `at_least_one_member_of<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if at least one value in yearMonthDuration list1 is in
@@ -30512,10 +32112,12 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function at_least_one_member_of<yearMonthDuration>(
  *       list1: (list yearMonthDuration),
  *       list2: (list yearMonthDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30537,7 +32139,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_size_yearMonthDuration;
 
 /**
- * @brief Adaptive Function bag_size<yearMonthDuration>
+ * @brief Adaptive Function `bag_size<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * This returns the integer number of values in list.
@@ -30547,9 +32149,11 @@ afw_function_definition_bag_size_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function bag_size<yearMonthDuration>(
  *       value: (list yearMonthDuration)
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -30569,7 +32173,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_yearMonthDuration;
 
 /**
- * @brief Adaptive Function bag<yearMonthDuration>
+ * @brief Adaptive Function `bag<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Takes any number of yearMonthDuration values and returns a list of list.
@@ -30579,9 +32183,11 @@ afw_function_definition_bag_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function bag<yearMonthDuration>(
  *       ...values: (list of (list yearMonthDuration))
  *   ): (list yearMonthDuration);
+ * ```
  *
  * Parameters:
  *
@@ -30601,7 +32207,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_yearMonthDuration;
 
 /**
- * @brief Adaptive Function eq<yearMonthDuration>
+ * @brief Adaptive Function `eq<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is equal to the value of arg2 converted
@@ -30614,10 +32220,12 @@ afw_function_definition_eq_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function eq<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30643,7 +32251,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eqx_yearMonthDuration;
 
 /**
- * @brief Adaptive Function eqx<yearMonthDuration>
+ * @brief Adaptive Function `eqx<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is equal to the value and data type
@@ -30655,10 +32263,12 @@ afw_function_definition_eqx_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function eqx<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30680,7 +32290,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_yearMonthDuration;
 
 /**
- * @brief Adaptive Function ge<yearMonthDuration>
+ * @brief Adaptive Function `ge<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is greater than or equal to
@@ -30691,10 +32301,12 @@ afw_function_definition_ge_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function ge<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: yearMonthDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30716,7 +32328,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_gt_yearMonthDuration;
 
 /**
- * @brief Adaptive Function gt<yearMonthDuration>
+ * @brief Adaptive Function `gt<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is greater than yearMonthDuration arg2 and
@@ -30727,10 +32339,12 @@ afw_function_definition_gt_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function gt<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: yearMonthDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30752,7 +32366,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_intersection_yearMonthDuration;
 
 /**
- * @brief Adaptive Function intersection<yearMonthDuration>
+ * @brief Adaptive Function `intersection<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Returns a list of yearMonthDuration with the values that are common to both
@@ -30763,10 +32377,12 @@ afw_function_definition_intersection_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function intersection<yearMonthDuration>(
  *       list1: (list yearMonthDuration),
  *       list2: (list yearMonthDuration)
  *   ): (list yearMonthDuration);
+ * ```
  *
  * Parameters:
  *
@@ -30788,7 +32404,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_in_yearMonthDuration;
 
 /**
- * @brief Adaptive Function is_in<yearMonthDuration>
+ * @brief Adaptive Function `is_in<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks whether yearMonthDuration value is in list of yearMonthDuration list
@@ -30799,10 +32415,12 @@ afw_function_definition_is_in_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function is_in<yearMonthDuration>(
  *       value: yearMonthDuration,
  *       list: (list yearMonthDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30824,7 +32442,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_yearMonthDuration;
 
 /**
- * @brief Adaptive Function is<yearMonthDuration>
+ * @brief Adaptive Function `is<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks whether value is dataType yearMonthDuration and return the boolean
@@ -30835,9 +32453,11 @@ afw_function_definition_is_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function is<yearMonthDuration>(
  *       value: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30857,7 +32477,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_le_yearMonthDuration;
 
 /**
- * @brief Adaptive Function le<yearMonthDuration>
+ * @brief Adaptive Function `le<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is less than or equal to yearMonthDuration
@@ -30868,10 +32488,12 @@ afw_function_definition_le_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function le<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30893,7 +32515,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_lt_yearMonthDuration;
 
 /**
- * @brief Adaptive Function lt<yearMonthDuration>
+ * @brief Adaptive Function `lt<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Checks for yearMonthDuration arg1 is less that yearMonthDuration arg2 and
@@ -30904,10 +32526,12 @@ afw_function_definition_lt_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function lt<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: yearMonthDuration
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30929,7 +32553,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ne_yearMonthDuration;
 
 /**
- * @brief Adaptive Function ne<yearMonthDuration>
+ * @brief Adaptive Function `ne<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is not equal to the value of arg2
@@ -30942,10 +32566,12 @@ afw_function_definition_ne_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function ne<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -30971,7 +32597,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_nex_yearMonthDuration;
 
 /**
- * @brief Adaptive Function nex<yearMonthDuration>
+ * @brief Adaptive Function `nex<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is not equal to the value or data
@@ -30983,10 +32609,12 @@ afw_function_definition_nex_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function nex<yearMonthDuration>(
  *       arg1: yearMonthDuration,
  *       arg2: any
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -31008,7 +32636,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_one_and_only_yearMonthDuration;
 
 /**
- * @brief Adaptive Function one_and_only<yearMonthDuration>
+ * @brief Adaptive Function `one_and_only<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * This converts a list of yearMonthDuration values that contains one value to
@@ -31019,9 +32647,11 @@ afw_function_definition_one_and_only_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function one_and_only<yearMonthDuration>(
  *       list: (list list)
  *   ): yearMonthDuration;
+ * ```
  *
  * Parameters:
  *
@@ -31045,7 +32675,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_set_equals_yearMonthDuration;
 
 /**
- * @brief Adaptive Function set_equals<yearMonthDuration>
+ * @brief Adaptive Function `set_equals<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2
@@ -31056,10 +32686,12 @@ afw_function_definition_set_equals_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function set_equals<yearMonthDuration>(
  *       list1: (list yearMonthDuration),
  *       list2: (list yearMonthDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -31081,7 +32713,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_subset_yearMonthDuration;
 
 /**
- * @brief Adaptive Function subset<yearMonthDuration>
+ * @brief Adaptive Function `subset<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Returns boolean true if the unique values in yearMonthDuration list1 are all
@@ -31092,10 +32724,12 @@ afw_function_definition_subset_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function subset<yearMonthDuration>(
  *       list1: (list yearMonthDuration),
  *       list2: (list yearMonthDuration)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -31117,7 +32751,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_yearMonthDuration;
 
 /**
- * @brief Adaptive Function to_string<yearMonthDuration>
+ * @brief Adaptive Function `to_string<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Converts yearMonthDuration value to string. For list values, the to_string()
@@ -31128,9 +32762,11 @@ afw_function_definition_to_string_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function to_string<yearMonthDuration>(
  *       value: yearMonthDuration
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -31150,7 +32786,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_union_yearMonthDuration;
 
 /**
- * @brief Adaptive Function union<yearMonthDuration>
+ * @brief Adaptive Function `union<yearMonthDuration>`
  * @param x function execute parameter.
  *
  * Returns a list of yearMonthDuration contains all of the unique values in two
@@ -31161,11 +32797,13 @@ afw_function_definition_union_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function union<yearMonthDuration>(
  *       lists_1: (list yearMonthDuration),
  *       lists_2: (list yearMonthDuration),
  *       ...lists_rest: (list of (list yearMonthDuration))
  *   ): (list yearMonthDuration);
+ * ```
  *
  * Parameters:
  *
@@ -31185,7 +32823,7 @@ AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_yearMonthDuration;
 
 /**
- * @brief Adaptive Function yearMonthDuration
+ * @brief Adaptive Function `yearMonthDuration`
  * @param x function execute parameter.
  *
  * Converts value to data type yearMonthDuration returning yearMonthDuration
@@ -31196,9 +32834,11 @@ afw_function_definition_yearMonthDuration;
  *
  * Declaration:
  *
+ * ```
  *   function yearMonthDuration(
  *       value: any
  *   ): yearMonthDuration;
+ * ```
  *
  * Parameters:
  *

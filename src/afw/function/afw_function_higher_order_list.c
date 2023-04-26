@@ -278,11 +278,13 @@ impl_bag_of_bag(
  *
  * Declaration:
  *
+ * ```
  *   function all_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -322,11 +324,13 @@ afw_function_execute_all_of(
  *
  * Declaration:
  *
+ * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -366,11 +370,13 @@ afw_function_execute_all_of_all(
  *
  * Declaration:
  *
+ * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -409,11 +415,13 @@ afw_function_execute_all_of_any(
  *
  * Declaration:
  *
+ * ```
  *   function any_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -453,11 +461,13 @@ afw_function_execute_any_of(
  *
  * Declaration:
  *
+ * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -497,11 +507,13 @@ afw_function_execute_any_of_all(
  *
  * Declaration:
  *
+ * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
  *       list1: list,
  *       list2: list
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -560,11 +572,13 @@ impl_filter_cb(impl_call_over_list_cb_e_t *e)
  *
  * Declaration:
  *
+ * ```
  *   function filter(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -629,11 +643,13 @@ impl_find_cb(impl_call_over_list_cb_e_t *e)
  *
  * Declaration:
  *
+ * ```
  *   function find(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -699,11 +715,13 @@ impl_map_cb(impl_call_over_list_cb_e_t *e)
  *
  * Declaration:
  *
+ * ```
  *   function map(
  *       functor: (function (... values: any): any),
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): list;
+ * ```
  *
  * Parameters:
  *
@@ -762,11 +780,13 @@ afw_function_execute_map(
  *
  * Declaration:
  *
+ * ```
  *   function reduce(
  *       functor: (function (accumulator: any, value: any): any),
  *       accumulator: any,
  *       list: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -908,10 +928,12 @@ impl_quick_sort(
  *
  * Declaration:
  *
+ * ```
  *   function sort(
  *       compareFunction: (function (value1: any, value2: any): integer),
  *       list: list
  *   ): list;
+ * ```
  *
  * Parameters:
  *

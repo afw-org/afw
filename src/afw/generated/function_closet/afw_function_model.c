@@ -34,6 +34,7 @@
  *
  * Declaration:
  *
+ * ```
  *   function model_default_add_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -42,6 +43,7 @@
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -100,6 +102,7 @@ afw_function_execute_model_default_add_object_action(
  *
  * Declaration:
  *
+ * ```
  *   function model_default_delete_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -107,6 +110,7 @@ afw_function_execute_model_default_add_object_action(
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -161,6 +165,7 @@ afw_function_execute_model_default_delete_object_action(
  *
  * Declaration:
  *
+ * ```
  *   function model_default_modify_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -169,6 +174,7 @@ afw_function_execute_model_default_delete_object_action(
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -251,6 +257,7 @@ afw_function_execute_model_default_modify_object_action(
  *
  * Declaration:
  *
+ * ```
  *   function model_default_replace_object_action(
  *       adaptorId: string,
  *       objectType: string,
@@ -259,6 +266,7 @@ afw_function_execute_model_default_modify_object_action(
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
+ * ```
  *
  * Parameters:
  *
@@ -314,9 +322,11 @@ afw_function_execute_model_default_replace_object_action(
  *
  * Declaration:
  *
+ * ```
  *   function model_mapBackObject_signature(
  *       mappedObject: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -352,9 +362,11 @@ afw_function_execute_model_mapBackObject_signature(
  *
  * Declaration:
  *
+ * ```
  *   function model_mapObject_signature(
  *       object: object
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -390,10 +402,12 @@ afw_function_execute_model_mapObject_signature(
  *
  * Declaration:
  *
+ * ```
  *   function model_returnObject_signature(
  *       object: object,
  *       userData?: boolean
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

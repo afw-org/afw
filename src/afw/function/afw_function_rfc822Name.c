@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function match<rfc822Name>(
  *       arg1: rfc822Name,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *

@@ -55,7 +55,7 @@ afw_lmdb_function_bindings_get();
  */
 
 /**
- * @brief Adaptive Function reader_check
+ * @brief Adaptive Function `reader_check`
  * @param x function execute parameter.
  *
  * Check for stale entries in the reader lock table.
@@ -65,9 +65,11 @@ afw_lmdb_function_bindings_get();
  *
  * Declaration:
  *
+ * ```
  *   function reader_check(
  *       adaptorId: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -82,7 +84,7 @@ afw_lmdb_function_execute_reader_check(
     afw_function_execute_t *x);
 
 /**
- * @brief Adaptive Function reader_list
+ * @brief Adaptive Function `reader_list`
  * @param x function execute parameter.
  *
  * Dump the entries in the reader lock table.
@@ -92,9 +94,11 @@ afw_lmdb_function_execute_reader_check(
  *
  * Declaration:
  *
+ * ```
  *   function reader_list(
  *       adaptorId: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *

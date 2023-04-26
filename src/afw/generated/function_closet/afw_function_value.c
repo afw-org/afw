@@ -30,9 +30,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function meta(
  *       value: any
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -70,9 +72,11 @@ afw_function_execute_meta(
  *
  * Declaration:
  *
+ * ```
  *   function metas(
  *       value: any
  *   ): object;
+ * ```
  *
  * Parameters:
  *

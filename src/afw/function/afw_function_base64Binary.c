@@ -30,9 +30,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function decode_to_string<base64Binary>(
  *       value: base64Binary
  *   ): string;
+ * ```
  *
  * Parameters:
  *

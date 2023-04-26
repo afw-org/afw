@@ -29,9 +29,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function close(
  *       streamNumber: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -65,9 +67,11 @@ afw_function_execute_close(
  *
  * Declaration:
  *
+ * ```
  *   function flush(
  *       streamNumber: integer
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -101,9 +105,11 @@ afw_function_execute_flush(
  *
  * Declaration:
  *
+ * ```
  *   function get_stream_error(
  *   
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -135,12 +141,14 @@ afw_function_execute_get_stream_error(
  *
  * Declaration:
  *
+ * ```
  *   function open_file(
  *       streamId: string,
  *       path: string,
  *       mode: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -201,10 +209,12 @@ afw_function_execute_open_file(
  *
  * Declaration:
  *
+ * ```
  *   function open_response(
  *       streamId: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -243,12 +253,14 @@ afw_function_execute_open_response(
  *
  * Declaration:
  *
+ * ```
  *   function open_uri(
  *       streamId: string,
  *       uri: string,
  *       mode: string,
  *       autoFlush?: boolean
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -293,9 +305,11 @@ afw_function_execute_open_uri(
  *
  * Declaration:
  *
+ * ```
  *   function print(
  *       ...values: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -331,9 +345,11 @@ afw_function_execute_print(
  *
  * Declaration:
  *
+ * ```
  *   function println(
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -368,10 +384,12 @@ afw_function_execute_println(
  *
  * Declaration:
  *
+ * ```
  *   function read(
  *       streamNumber: integer,
  *       n: any
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -409,10 +427,12 @@ afw_function_execute_read(
  *
  * Declaration:
  *
+ * ```
  *   function read_to_base64Binary(
  *       streamNumber: integer,
  *       n: any
  *   ): base64Binary;
+ * ```
  *
  * Parameters:
  *
@@ -450,10 +470,12 @@ afw_function_execute_read_to_base64Binary(
  *
  * Declaration:
  *
+ * ```
  *   function read_to_hexBinary(
  *       streamNumber: integer,
  *       n: any
  *   ): hexBinary;
+ * ```
  *
  * Parameters:
  *
@@ -491,9 +513,11 @@ afw_function_execute_read_to_hexBinary(
  *
  * Declaration:
  *
+ * ```
  *   function readln(
  *       streamNumber: integer
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -529,9 +553,11 @@ afw_function_execute_readln(
  *
  * Declaration:
  *
+ * ```
  *   function stream(
  *       streamId: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -567,10 +593,12 @@ afw_function_execute_stream(
  *
  * Declaration:
  *
+ * ```
  *   function write(
  *       streamNumber: integer,
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -607,10 +635,12 @@ afw_function_execute_write(
  *
  * Declaration:
  *
+ * ```
  *   function write_internal(
  *       streamNumber: integer,
  *       value: any
  *   ): null;
+ * ```
  *
  * Parameters:
  *
@@ -648,10 +678,12 @@ afw_function_execute_write_internal(
  *
  * Declaration:
  *
+ * ```
  *   function writeln(
  *       streamNumber: integer,
  *       ...value: (list of any)
  *   ): null;
+ * ```
  *
  * Parameters:
  *

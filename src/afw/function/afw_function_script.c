@@ -32,10 +32,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function assign(
  *       name: string,
  *       value: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -72,9 +74,11 @@ afw_function_execute_assign(
  *
  * Declaration:
  *
+ * ```
  *   function break(
  *       value?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -112,10 +116,12 @@ afw_function_execute_break(
  *
  * Declaration:
  *
+ * ```
  *   function compile<script>(
  *       source: script,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -177,11 +183,13 @@ afw_function_execute_compile_script(
  *
  * Declaration:
  *
+ * ```
  *   function const(
  *       name: (list string),
  *       value: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -222,9 +230,11 @@ afw_function_execute_const(
  *
  * Declaration:
  *
+ * ```
  *   function continue(
  *   
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -259,10 +269,12 @@ afw_function_execute_continue(
  *
  * Declaration:
  *
+ * ```
  *   function do_while(
  *       condition: boolean,
  *       body: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -309,10 +321,12 @@ afw_function_execute_do_while(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -375,12 +389,14 @@ afw_function_execute_evaluate_script(
  *
  * Declaration:
  *
+ * ```
  *   function for(
  *       initial?: list,
  *       condition?: boolean,
  *       increment?: list,
  *       body?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -440,11 +456,13 @@ afw_function_execute_for(
  *
  * Declaration:
  *
+ * ```
  *   function foreach(
  *       name: (list string),
  *       value: any,
  *       body?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -492,11 +510,13 @@ afw_function_execute_foreach(
  *
  * Declaration:
  *
+ * ```
  *   function if(
  *       condition: boolean,
  *       then: list,
  *       else?: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -549,11 +569,13 @@ afw_function_execute_if(
  *
  * Declaration:
  *
+ * ```
  *   function loc(
  *       name: (list string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -596,9 +618,11 @@ afw_function_execute_loc(
  *
  * Declaration:
  *
+ * ```
  *   function return(
  *       value?: any
  *   ): any;
+ * ```
  *
  * Parameters:
  *
@@ -640,10 +664,12 @@ afw_function_execute_return(
  *
  * Declaration:
  *
+ * ```
  *   function while(
  *       condition: boolean,
  *       body: list
  *   ): any;
+ * ```
  *
  * Parameters:
  *

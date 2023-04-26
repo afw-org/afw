@@ -29,11 +29,13 @@
  *
  * Declaration:
  *
+ * ```
  *   function add<string>(
  *       values_1: string,
  *       values_2: string,
  *       ...values_rest: (list of string)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -69,10 +71,12 @@ afw_function_execute_add_string(
  *
  * Declaration:
  *
+ * ```
  *   function concat(
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -111,10 +115,12 @@ afw_function_execute_concat(
  *
  * Declaration:
  *
+ * ```
  *   function eq_ignore_case<string>(
  *       arg1: string,
  *       arg2: string
  *   ): boolean;
+ * ```
  *
  * Parameters:
  *
@@ -150,9 +156,11 @@ afw_function_execute_eq_ignore_case_string(
  *
  * Declaration:
  *
+ * ```
  *   function normalize_space<string>(
  *       string: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -186,9 +194,11 @@ afw_function_execute_normalize_space_string(
  *
  * Declaration:
  *
+ * ```
  *   function normalize_to_lower_case<string>(
  *       string: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -224,10 +234,12 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * Declaration:
  *
+ * ```
  *   function string(
  *       values_1: any,
  *       ...values_rest: (list of any)
  *   ): string;
+ * ```
  *
  * Parameters:
  *
@@ -265,9 +277,11 @@ afw_function_execute_string(
  *
  * Declaration:
  *
+ * ```
  *   function url_decode(
  *       encoded: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *

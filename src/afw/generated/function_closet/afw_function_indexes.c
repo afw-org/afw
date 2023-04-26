@@ -29,6 +29,7 @@
  *
  * Declaration:
  *
+ * ```
  *   function index_create(
  *       adaptorId: string,
  *       key: string,
@@ -39,6 +40,7 @@
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -88,10 +90,12 @@ afw_function_execute_index_create(
  *
  * Declaration:
  *
+ * ```
  *   function index_list(
  *       adaptorId: string,
  *       objectType?: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *
@@ -127,10 +131,12 @@ afw_function_execute_index_list(
  *
  * Declaration:
  *
+ * ```
  *   function index_remove(
  *       adaptorId: string,
  *       key: string
  *   ): object;
+ * ```
  *
  * Parameters:
  *

@@ -29,9 +29,11 @@
  *
  * Declaration:
  *
+ * ```
  *   function reader_check(
  *       adaptorId: string
  *   ): integer;
+ * ```
  *
  * Parameters:
  *
@@ -65,9 +67,11 @@ afw_lmdb_function_execute_reader_check(
  *
  * Declaration:
  *
+ * ```
  *   function reader_list(
  *       adaptorId: string
  *   ): string;
+ * ```
  *
  * Parameters:
  *

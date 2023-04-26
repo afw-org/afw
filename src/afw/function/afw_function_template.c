@@ -30,10 +30,12 @@
  *
  * Declaration:
  *
+ * ```
  *   function compile<template>(
  *       source: template,
  *       listing?: any
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
@@ -93,10 +95,12 @@ afw_function_execute_compile_template(
  *
  * Declaration:
  *
+ * ```
  *   function evaluate<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): unevaluated;
+ * ```
  *
  * Parameters:
  *
