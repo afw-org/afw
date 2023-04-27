@@ -33,7 +33,7 @@ AFW_BEGIN_DECLARES
  * @param response is existing response object or if NULL, new one is created.
  * @param p used for result.
  * @param xctx of caller.
- * @param _AdaptiveResponse_ object.
+ * @return _AdaptiveResponse_ object.
  *
  * Request object can have a "function" parameter for a single function call
  * or an "actions" parameter with a list for objects for mutiple function

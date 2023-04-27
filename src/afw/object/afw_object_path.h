@@ -128,7 +128,7 @@ afw_object_path_make(
 
 /**
  * @brief Construct the path for an embedded object.
- * @param embedded_object.
+ * @param embedded_object object.
  * @param p Pool return value will be placed in.
  * @param xctx of caller
  * @return path or NULL.
@@ -189,10 +189,10 @@ afw_object_path_make_property_name_expression(
  * `<adaptorId>`, `<objectType>`, `<entityObjectId>`, and `<propertyName>` can
  * be an asterisk "*" to use the corresponding part from the current_path, plus
  * double asterisk "**" can be specified for the entire `<objectId>` to use the
- * entire `<objectId>` from the current path.  Also, <objectId> can be specified
- * alone without a preceding slash "/" when the `<adaptorId>` and `<objectType>`
- * are the same as in the current path.  No substitution occurs in the
- * options part of `<objectType>`.
+ * entire `<objectId>` from the current path.  Also, `<objectId>` can be
+ * specified alone without a preceding slash "/" when the `<adaptorId>` and
+ * `<objectType>`are the same as in the current path.  No substitution occurs in
+ * the options part of `<objectType>`.
  */
 AFW_DECLARE(const afw_object_path_parsed_t *)
 afw_object_path_parse(
@@ -246,8 +246,8 @@ afw_object_path_parsed_to_object(
 
 /**
  * @brief Determine if two parsed paths are equivalent.
- * @param path1 parsed path.
- * @param path2 parsed path.
+ * @param parsed1 parsed path.
+ * @param parsed2 parsed path.
  * @param xctx of caller
  * @return boolean result of equivalent test.
  */

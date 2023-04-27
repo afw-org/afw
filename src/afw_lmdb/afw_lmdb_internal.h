@@ -160,20 +160,32 @@ afw_lmdb_adaptor_session_t *
 
 /**
  * @brief Internal create a LMDB adaptor journal.
- * @param adaptor Internal instance of adaptor session.
+ * @param session Internal instance of adaptor session.
  * @param xctx of caller.
- * @return New instance of LMDB adaptor session.
+ * @return New instance of LMDB adaptor journal.
  */
 afw_lmdb_journal_t *
     afw_lmdb_journal_create(
-    afw_lmdb_adaptor_session_t * session,
+    afw_lmdb_adaptor_session_t *session,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Internal create a LMDB adaptor key/value.
+ * @param session Internal instance of adaptor session.
+ * @param xctx of caller.
+ * @return New instance of LMDB key/value.
+ */
 afw_lmdb_key_value_t * 
     afw_lmdb_key_value_create(
     afw_lmdb_adaptor_session_t *session,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Internal create a LMDB adaptor transaction.
+ * @param session Internal instance of adaptor session.
+ * @param xctx of caller.
+ * @return New instance of LMDB adaptor transaction.
+ */
 afw_lmdb_transaction_t *
     afw_lmdb_transaction_create(
     afw_lmdb_adaptor_session_t *session,

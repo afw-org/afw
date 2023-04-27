@@ -19,7 +19,7 @@ followed by a newline (character: \n, Unicode: U+000A, ASCII: 10, hex: 0x0a).
 This length is the number of octets in the Unicode UTF-8 encoded string that
 follows. The last chunk of a segment must be "0\n".
 
-The final segment written to the input stream must be 4\nexit0\n.
+The final segment written to the input stream must be "4\nexit0\n".
 
 Example:
 
@@ -144,8 +144,8 @@ other headers are ignored. "CONTENT_TYPE" and "ACCEPT" default to
 Content length is determined by the size of the input request body, not the
 "CONTENT_LENGTH" header.
 
-Header lines end with a line feed (\n or 0x0A) or a carriage return line feed
-(\r\n or 0x0D0x0A).
+Header lines end with a line feed ('\n' or 0x0A) or a carriage return line feed
+('\r\n' or 0x0D0x0A).
 
 The response output also looks similar to an HTTP response.
 

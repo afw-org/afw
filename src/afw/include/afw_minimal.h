@@ -21,10 +21,10 @@
  * 
  * DONT PUT ANYTHING HERE THAT CAN NOT BE INCLUDED IN ALL AFW PROJECTS.
  * 
- * The headers included here only #include afw_interface.h from AFW to avoid
+ * The headers included here only `#include` afw_interface.h from AFW to avoid
  * dependency issues.
  *
- * Other afw_*.h headers should #include afw_interface.h or afw_minimal.h.
+ * Other afw_*.h headers should `#include` afw_interface.h or afw_minimal.h.
  */
 #include "afw_version.h"
 #include "afw_interface.h"

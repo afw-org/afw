@@ -18,12 +18,9 @@
  * @ingroup afw_c_api_public
  *
  * This header includes all of the headers that are part of the API used to
- * access the #defines, functions and macros of Adaptive Framework Core
+ * access the `#define`s, functions and macros of Adaptive Framework Core
  * (libafw).
  */
-
-#include "afw_minimal.h"
-
 
 #include "afw_action.h"
 #include "afw_adaptor.h"

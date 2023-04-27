@@ -26,9 +26,9 @@
  * @file afw_common.h
  * @brief Adaptive Framework Common Header.
  * 
- * This header contains #includes for common headers that do not have other
+ * This header contains `#include`s for common headers that do not have other
  * Adaptive Framework dependencies, typedefs required by afw_interface.h,
- * as well as other #defines and typedefs that are common to all Adaptive
+ * as well as other `#define`s and typedefs that are common to all Adaptive
  * Framework applications.
  *
  * This header is included by afw_interface.h, afw_minimal.h, and afw.h, there
@@ -42,8 +42,8 @@
  * afw_common_opaques.h    | Contains common opaque typedefs. Included by afw_common.h.
  * afw_interface.h         | Generated AFW interface header.  Can be included in all headers other than opaque only ones.
  * afw_interface_opaques.h | Generated AFW interface opaques.  Included by afw_common.h.
- * afw_minimal.h           | Contains #includes for some core headers that only #include afw_interface.h.  Can be included in headers that are not included by afw_minimal.h.
- * afw.h                   | Contains #includes for most core headers and will generally be included in all Adaptive Framework .c files.  
+ * afw_minimal.h           | Contains `#include`s for some core headers that only `#include` afw_interface.h.  Can be included in headers that are not included by afw_minimal.h.
+ * afw.h                   | Contains `#include`s for most core headers and will generally be included in all Adaptive Framework .c files.  
  */
 
 /* For pool debugging use  -D AFW_POOL_DEBUG */
@@ -247,6 +247,7 @@ typedef afw_code_point_t (*afw_code_point_get_cb_t) (
 
 /**
  * @brief Get an utf-8 octet (8 bits).
+ * @param octet cursor.
  * @param data from provider of callback.
  * @param xctx of caller to callback
  * @return -1 if end of file, otherwise 0.
@@ -401,8 +402,7 @@ typedef _Bool afw_boolean_t;
 
 /**
  * @brief Compile Type Map.
- * @param name of registry type
- * @param description of this compile type
+ * @param XX macro
  *
  * There must be and afw_s_ with each name in map.
  */
@@ -709,7 +709,7 @@ typedef struct afw_key_z_string_z_s {
 
 /**
  * @brief Define a struct for a stack with the specified entry type.
- * @param name of struct.
+ * @param struct_name of struct.
  * @param entry_type typedef name.
  *
  * The member variables must correspond to afw_stack_s, but with the specified
@@ -1181,7 +1181,7 @@ typedef afw_boolean_t
 
 /** 
  * @brief Typedef for value callback.
- * @param void pointer or NULL.
+ * @param value void pointer or NULL.
  * @param context supplied with callback
  * @param xctx of caller
  * @return true if the callback function requests that it not be called again.
@@ -1258,7 +1258,9 @@ typedef const afw_value_t *
  * @param function Evaluated argv[0] and if polymorphic, specific instance.
  * @param argc The number of function parameters (does not include argv[0]).
  * @param argv The function to call argv[0] followed by function parameters.
- *  @return (const afw_value_t *) value
+ * @param p to use.
+ * @param xctx execution context.
+ * @return (const afw_value_t *) value
  */
 typedef const afw_value_t *
 (*afw_function_thunk_execute_t) (
@@ -1272,7 +1274,7 @@ typedef const afw_value_t *
 
 /**
  * @brief Typedef for function arg check functions.
- * @param function Evaluated argv[0] and if polymorphic, specific instance.
+ * @param x The function execute struct.
  * @param argc The number of function parameters (does not include argv[0]).
  * @param argv The function to call argv[0] followed by function parameters.
  * @param p The memory pool allocated by the expression compiler.

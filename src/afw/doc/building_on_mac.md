@@ -22,7 +22,7 @@ This build process relies on CLang for MacOS, provided by XCode, along with Home
 
 ## Download and Build apr and apr-util
 
-Homebrew will allow you to install apr and apr-util, but without ldap support, as far as I can tell.  In order to build apr-util with LDAP support, you need to pass --with-ldap to the configure.  However, this is not enough.  The openldap API's for MacOS expects LDAP_SET_REBIND_PROC_THREE to be defined in order to call the right function.  From what I've encountered, the default configure script won't define this constant, even if you tell it, so the only recourse was to modify apr_ldap_rebind.c and #define it.  Somewhere out the apache community may offer a better solution.
+Homebrew will allow you to install apr and apr-util, but without ldap support, as far as I can tell.  In order to build apr-util with LDAP support, you need to pass --with-ldap to the configure.  However, this is not enough.  The openldap API's for MacOS expects LDAP_SET_REBIND_PROC_THREE to be defined in order to call the right function.  From what I've encountered, the default configure script won't define this constant, even if you tell it, so the only recourse was to modify apr_ldap_rebind.c and `#define` it.  Somewhere out the apache community may offer a better solution.
 
 ## Setup paths for pkg-config
 

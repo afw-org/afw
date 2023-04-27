@@ -85,7 +85,7 @@ struct afw_adaptor_id_anchor_s {
  * @param adaptor for which the request is being made.
  * @param p used for result.
  * @param xctx of caller.
- * @param _AdaptiveAuthorizationResult_ object.
+ * @return _AdaptiveAuthorizationResult_ object.
  *
  * This is called internally by afw_adaptor_* functions, so it is not
  * usually necessary to call this externally.
@@ -119,8 +119,8 @@ afw_adaptor_get_reference(const afw_utf8_t *adaptor_id, afw_xctx_t *xctx);
 /**
  * @brief Parse query criteria object appropriate for an adaptor.
  * @param query_criteria is an _AdaptiveQueryCriteria_ object.
- * @param adaptor_id.
- * @param object_type_id.
+ * @param adaptor_id of adaptor.
+ * @param object_type_id of object.
  * @param journal_entry is a memory object where journal entry properties will
  *    be added.
  * @param p to use for result.
@@ -142,8 +142,8 @@ afw_adaptor_query_criteria_parse_object(
 /**
  * @brief Parse URL encoded RQL query string appropriate for an adaptor.
  * @param url_encoded_rql_string URL encoded query string.
- * @param adaptor_id.
- * @param object_type_id.
+ * @param adaptor_id of adaptor.
+ * @param object_type_id of object.
  * @param journal_entry is a memory object where journal entry properties will
  *    be added.
  * @param p to use for result.
@@ -164,7 +164,7 @@ afw_adaptor_query_criteria_parse_url_encoded_rql_string(
 
 /**
  * @brief Release an adaptor accessed by afw_adaptor_get_reference().
- * @param adaptor_id Adaptor id.
+ * @param adaptor to release.
  * @param xctx of caller.
  * @return adaptor.
  *
@@ -233,7 +233,7 @@ afw_adaptor_session_get_cached(
 
 /**
  * @brief Release an adaptor session created by afw_adaptor_session_create().
- * @param adaptor_id Adaptor id.
+ * @param session to release.
  * @param xctx of caller.
  * @return Adaptor session.
  *

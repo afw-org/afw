@@ -65,7 +65,7 @@ struct afw_adaptor_modify_entry_s {
  * @param adaptor_id of adaptor used to patch object.
  * @param object_type_id of object to modify.
  * @param object_id of object to modify.
- * @param entries.
+ * @param entries for parameters to modify.
  * @param journal_entry is a memory object where journal entry properties will
  *    be added.
  * @param adaptor_type_specific parameter or NULL.

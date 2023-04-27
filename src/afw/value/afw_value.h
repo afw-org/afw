@@ -189,7 +189,7 @@ struct afw_value_function_definition_s {
     /** @brief Data type member number. */
     afw_integer_t dataTypeMethodNumber;
 
-    /** @brief See AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* #defines. */
+    /** @brief See AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* `#define`s. */
     afw_octet_t scriptSupportNumber;
 
     /** @brief True if this is a polymorphic function. */
@@ -331,7 +331,7 @@ afw_value_null;
 
 
 
-/** @brief Adaptive value containing '<undefined>' string. */
+/** @brief Adaptive value containing `<undefined>` string. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_undefined_as_string;
 

@@ -86,27 +86,31 @@ struct afw_server_fcgi_internal_request_s {
 
 /**
  * @brief Create an FCGI afw_server.
- * @param error See afw_error_t for more information.
+ * @param path to FCGI server. Default ":9345".
+ * @param thread_count number of threads.
+ * @param xctx execution context.
  * @return Pointer to interface pointer of new server.
  */
-const afw_server_t * afw_server_fcgi_internal_create(
+const afw_server_t *
+afw_server_fcgi_internal_create(
     const char *path, afw_integer_t thread_count, afw_xctx_t *xctx);
 
 /**
  * Create an internal fcgi request.
  */
 afw_server_fcgi_internal_request_t *
-    afw_server_fcgi_internal_create_request(
-        afw_server_fcgi_internal_t *server,
-        FCGX_Request *fcgx_request,
-        afw_xctx_t *xctx);
+afw_server_fcgi_internal_create_request(
+    afw_server_fcgi_internal_t *server,
+    FCGX_Request *fcgx_request,
+    afw_xctx_t *xctx);
 
 /**
  * Create an internal fcgi request.
  */
-const afw_object_t * afw_server_fcgi_internal_create_properties_object(
-        afw_server_fcgi_internal_request_t *request,
-        afw_xctx_t *xctx);
+const afw_object_t *
+afw_server_fcgi_internal_create_properties_object(
+    afw_server_fcgi_internal_request_t *request,
+    afw_xctx_t *xctx);
 
 
 #ifdef __cplusplus

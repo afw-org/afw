@@ -247,7 +247,7 @@ if (!(A_VALUE) || !afw_utf8_equal( \
 /**
  * @brief Evaluate an arg for a particular data type
  * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param n is the 1 based parameter number in of argv to evaluate.
+ * @param A_N is the 1 based parameter number in of argv to evaluate.
  * @param A_TYPE is the unquoted dataType.
  * @return the value casted to `afw_value_<A_TYPE>_t` * or NULL (undefined).
  *
@@ -300,7 +300,7 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
 /**
  * @brief Evaluate an arg that is a required condition
  * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param n is the 1 based parameter number in of argv to evaluate.
+ * @param A_N is the 1 based parameter number in of argv to evaluate.
  *
  * This is used when implementing the body of an adaptive function.  Like all
  * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
@@ -318,7 +318,7 @@ A_RESULT = (const afw_value_boolean_t *) \
 /**
  * @brief Evaluate an arg for a particular data type
  * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param n is the 1 based parameter number in of argv to evaluate.
+ * @param A_N is the 1 based parameter number in of argv to evaluate.
  * @param A_TYPE is the unquoted dataType.
  *
  * This is used when implementing the body of an adaptive function.  Like all
