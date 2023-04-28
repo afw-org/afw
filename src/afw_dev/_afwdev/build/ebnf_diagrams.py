@@ -13,8 +13,8 @@ def build(options):
     options['srcdir_path'] = options['afw_package_dir_path'] + 'src/afw/'
 
     syntax_ebnf = options['srcdir_path'] + '/generated/ebnf/syntax.ebnf'    
-    syntax_output_dir_html = options['doc_output_dir'] + 'afw/html/reference/language/ebnf/syntax/'
-    syntax_output_dir_xml = options['doc_output_dir'] + 'afw/xml/reference/language/ebnf/syntax/'
+    syntax_output_dir_html = options['build_directory_docs'] + 'afw/html/reference/language/ebnf/syntax/'
+    syntax_output_dir_xml = options['build_directory_docs'] + 'afw/xml/reference/language/ebnf/syntax/'
 
     if not os.path.exists(syntax_ebnf):
         msg.error('syntax EBNF file not found: {}'.format(syntax_ebnf))

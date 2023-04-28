@@ -35,7 +35,7 @@ jobs:
             - name: Upload doc artifact
               uses: actions/upload-pages-artifact@v1
               with:
-                path: build/doc
+                path: build/docs
 
     deploy:
         name: Deploy docs

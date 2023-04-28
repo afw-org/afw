@@ -80,7 +80,7 @@ def generate_data_types(options, docsHtml, generate_sidenav):
 
     srcdir = options.get('srcdir')
     data_types_dir = options.get('data_types_dir')  
-    doc_output_dir = options.get('doc_output_dir')
+    doc_output_dir = options.get('build_directory_docs')
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
 
     docs_data_types_dir = os.path.join(html_output_dir, 'reference', 'data_types')
@@ -231,7 +231,7 @@ def generate_object_types(options, docsHtml, generate_sidenav):
 
     srcdir = options.get('srcdir')
     object_types_dir = options.get('object_types_dir') 
-    doc_output_dir = options.get('doc_output_dir')
+    doc_output_dir = options.get('build_directory_docs')
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
 
     docs_object_types_dir = os.path.join(html_output_dir, 'reference', 'object_types')
@@ -310,7 +310,7 @@ def generate_functions(options, docsHtml, generate_sidenav):
 
     srcdir = options.get('srcdir')
     functions_dir = options.get('functions_dir')   
-    doc_output_dir = options.get('doc_output_dir')
+    doc_output_dir = options.get('build_directory_docs')
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
 
     docs_functions_dir = os.path.join(html_output_dir, 'reference', 'functions')
@@ -362,7 +362,7 @@ def generate_function_categories(options, docsHtml, generate_sidenav):
     srcdir = options.get('srcdir')
     func_cats_dir = options.get('func_cats_dir')
     functions_dir = options.get('functions_dir')  
-    doc_output_dir = options.get('doc_output_dir')
+    doc_output_dir = options.get('build_directory_docs')
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
 
     docs_func_cats_dir = os.path.join(html_output_dir, 'reference', 'functions')

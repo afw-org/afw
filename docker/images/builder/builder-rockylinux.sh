@@ -60,7 +60,7 @@ then
     cd /src && \
     ./afwdev build --docs && \
     ./afwdev build --js -j && \
-    mv build/doc build/js/apps/admin && \
+    mv build/docs build/js/apps/admin && \
     cd build/js/apps && \
     mv admin afw_app && \
     tar cf admin-app-${RPM_VERSION}-${RPM_RELEASE}.tar afw_app

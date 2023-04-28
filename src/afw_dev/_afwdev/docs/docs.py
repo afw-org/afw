@@ -566,7 +566,7 @@ def generate_html_doc(docsHtml, options, label, href, doc_label):
     index_html = ""  
     srcdir = options.get('srcdir')
     src_doc_dir = options.get('src_doc_dir')   
-    doc_output_dir = options.get('doc_output_dir') 
+    doc_output_dir = options.get('build_directory_docs') 
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
 
     version = options.get('srcdir_info').get('version')   
@@ -676,8 +676,7 @@ def generate_html_docs(options, docsHtml):
 
     srcdir = options.get('srcdir')
     src_doc_dir = options.get('src_doc_dir')
-    doc_output_dir = options.get('doc_output_dir')      
-    version = options.get('srcdir_info').get('version')
+    doc_output_dir = options.get('build_directory_docs')      
 
     html_output_dir = os.path.join(doc_output_dir, srcdir, 'html')
     doc_root = "../../../.."      
@@ -754,10 +753,11 @@ def generate_html_docs(options, docsHtml):
    
 
 # removes the folder specified by path, except for any files or folders
-# lsited in the ignore list
-def rmtree(path, ignore = []):
+# listed in the ignore list
+def rmtree(options, path, ignore = []):
 
-    current_path = os.getcwd() + '/build/doc'
+    build_directory_docs = options['build_directory_docs']
+
     if os.path.exists(path):
         # walk the path and remove all files and folders except those
         # listed in the ignore list
@@ -765,15 +765,15 @@ def rmtree(path, ignore = []):
             for name in files:
                 skip = False
                 for ign in ignore:
-                    if os.path.join(current_path, ign) in os.path.join(root, name):
+                    if os.path.join(build_directory_docs, ign) in os.path.join(root, name):
                         skip = True                
                 if not skip:                                    
                     os.remove(os.path.join(root, name))                                  
             for name in dirs:
                 skip = False
                 for ign in ignore:
-                    if os.path.join(current_path, ign) in os.path.join(root, name) or \
-                        os.path.join(root, name) in os.path.join(current_path, ign):
+                    if os.path.join(build_directory_docs, ign) in os.path.join(root, name) or \
+                        os.path.join(root, name) in os.path.join(build_directory_docs, ign):
                         skip = True
                 if not skip:             
                     os.rmdir(os.path.join(root, name))
@@ -799,8 +799,6 @@ def copytree(src, dst, symlinks=False, ignore=None):
 def run(options):    
 
     srcdir = options.get('srcdir')
-    options['doc_output_dir'] = options['afw_package_dir_path'] + 'build/doc/'
-
     objects_dir = options['srcdir_path'] + 'generate/objects/'
     interfaces_dir = options['srcdir_path'] + 'generate/interfaces/'
     generated_dir = options['srcdir_path'] + 'generated/'
@@ -827,12 +825,12 @@ def run(options):
 
     src_doc_dir = options.get('src_doc_dir')
     doc_dir = options.get('doc_dir')
-    doc_output_dir = options.get('doc_output_dir')
+    doc_output_dir = options.get('build_directory_docs')
 
     doxygen_output_dir = doc_output_dir + '/doxygen'
     docsHtml = DocsHtml(options)       
 
-    # check if 'doc' directory exists
+    # check if 'docs' directory exists
     if not os.path.exists(src_doc_dir):        
         return
     
@@ -844,14 +842,11 @@ def run(options):
     # reset global variables
     sidenav_content = {}
     nav_groups = ''
-
     
     doc_output_srcdir = os.path.join(doc_output_dir, srcdir)
-    # delete everything under the doc_output_srcdir, except html/reference/language/ebnf
-    rmtree(doc_output_srcdir, ['afw/html/reference/language/ebnf'])
-    
-    # first remove old documentation                                    
-    #shutil.rmtree(os.path.join(doc_output_dir, srcdir), ignore_errors=True)
+
+    # delete everything under the doc_output_srcdir, except ebnf
+    rmtree(options, doc_output_srcdir, ['afw/html/reference/language/ebnf'])    
 
     # the 'afw' srcdir may do some special processing for now
     if options['is_core_afw_package']:        
@@ -891,7 +886,7 @@ def run(options):
     msg.highlighted_info("    Building HTML resources")
     generate_html_docs(options, docsHtml)
 
-    # anything in the 'doc' directory should also be copied over
+    # anything in the 'docs' directory should also be copied over
     # to the output directory
     copytree(doc_dir, doc_output_dir)
 
