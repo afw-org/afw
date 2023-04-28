@@ -139,7 +139,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @brief Count the number of properties in an object.
- * @param instance of object.
+ * @param object instance.
  * @param xctx of caller.
  * @return number of properties.
  */
@@ -155,8 +155,8 @@ afw_object_property_count(
  * @param xctx of caller.
  * @return boolean result.
  */
-#define afw_object_is_immutable(object, xctx) \
-(afw_object_get_setter(object, xctx) == NULL)
+#define afw_object_is_immutable(instance, xctx) \
+(afw_object_get_setter(instance, xctx) == NULL)
 
 
 
@@ -435,8 +435,8 @@ afw_object_parse_entity_path_from_path(afw_utf8_t *entity_path,
 
 /**
  * @brief Get entity for object.
- * @param entity is place to set entity.
  * @param object to find entity for.
+ * @param xctx of caller.
  * @return entity.
  */
 AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
@@ -723,7 +723,7 @@ afw_object_memory_associative_array_create(
 
 /**
  * @brief Create an empty entity object with options.
- * @param options as defined by AFW_OBJECT_MEMORY_OPTION_* #defines.
+ * @param options as defined by AFW_OBJECT_MEMORY_OPTION_* defines.
  * @param p to use based on options.
  * @param xctx of caller.
  * @return instance of new object.
@@ -799,7 +799,7 @@ struct afw_object_properties_callback_entry_s {
  * @brief Create a mutable composite of unmutable objects.
  * @param data to pass as first parameter to callbacks.
  * @param count is number of callbacks.
- * @param callback array.
+ * @param callbacks array.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return instance of new object.
@@ -899,42 +899,6 @@ afw_object_create_properties_callback(
 #define afw_object_create(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_unmanaged, p, xctx)
-
-
-/**
- * @brief Create an empty managed object in memory in specified pool that
- *    clones values set in the object to the object's pool.
- * @param p to use for the object.
- * @param xctx of caller.
- * @return instance of new object.
- *
- * This type of object is useful when values set to properties in the object
- * may have a shorter lifetime than the object.  When methods of the object
- * such as set_property() is called, the value will be cloned to the object's
- * pool.
- */
-#define afw_object_create_clone_on_set(p, xctx) \
-    afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_clone_on_set, p, xctx)
-
-
-
-/**
- * @brief Create an empty managed object in memory that cedes the specified
- *    pool and clones values set in the object to that pool.
- * @param p to use for the object.
- * @param xctx of caller.
- * @return instance of new object.
- *
- * This type of object is useful when values set to properties in the object
- * may have a shorter lifetime than the object.  When methods of the object
- * such as set_property() is called, the value will be cloned to the object's
- * pool.
- */
-#define afw_object_create_ceed_and_clone_on_set(p, xctx) \
-    afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_cede_p_and_clone_on_set, p, xctx)
-
 
 
 /**
