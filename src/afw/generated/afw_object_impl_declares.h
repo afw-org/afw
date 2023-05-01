@@ -111,6 +111,34 @@ impl_afw_object_add_reference(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_object_get_count
+/* Declare method get_count */
+AFW_DECLARE_STATIC(afw_size_t)
+impl_afw_object_get_count(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_object_get_entry
+/* Declare method get_entry */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_object_get_entry(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_object_get_entry_meta
+/* Declare method get_entry_meta */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_object_get_entry_meta(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_object_get_meta
 /* Declare method get_meta */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -202,6 +230,9 @@ impl_afw_object_inf = {
     },
     impl_afw_object_release,
     impl_afw_object_add_reference,
+    impl_afw_object_get_count,
+    impl_afw_object_get_entry,
+    impl_afw_object_get_entry_meta,
     impl_afw_object_get_meta,
     impl_afw_object_get_property,
     impl_afw_object_get_property_meta,

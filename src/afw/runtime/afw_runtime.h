@@ -647,6 +647,9 @@ inf_ = {                                                                        
     },                                                                          \
     afw_runtime_object_release,                                                 \
     afw_runtime_object_add_reference,                                           \
+    afw_runtime_object_get_count,                                           \
+    afw_runtime_object_get_entry,                                           \
+    afw_runtime_object_get_entry_meta,                                           \
     afw_runtime_object_get_meta,                                                \
     afw_runtime_object_get_property,                                            \
     afw_runtime_object_get_property_meta,                                       \
@@ -675,6 +678,39 @@ afw_runtime_object_add_reference(
     const afw_object_t * instance,
     afw_xctx_t *xctx);
 
+
+
+/**
+ * @brief Method get_count for runtime object.
+ */
+afw_size_t
+afw_runtime_object_get_count(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
+
+
+/**
+ * @brief Method get_entry for runtime object.
+ */
+const afw_value_t *
+afw_runtime_object_get_entry(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+
+
+/**
+ * @brief Method entry_meta for runtime object.
+ */
+const afw_value_t *
+afw_runtime_object_get_entry_meta(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
 
 
 

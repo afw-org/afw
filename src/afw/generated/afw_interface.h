@@ -3216,6 +3216,28 @@ typedef void
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_get_count() */
+typedef afw_size_t
+(*afw_object_get_count_t)(
+    const afw_object_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_object_get_entry() */
+typedef const afw_value_t *
+(*afw_object_get_entry_t)(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_object_get_entry_meta() */
+typedef const afw_value_t *
+(*afw_object_get_entry_meta_t)(
+    const afw_object_t * instance,
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
 /** @sa afw_object_get_meta() */
 typedef const afw_value_t *
 (*afw_object_get_meta_t)(
@@ -3273,6 +3295,9 @@ struct afw_object_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_release_t release;
     afw_object_add_reference_t add_reference;
+    afw_object_get_count_t get_count;
+    afw_object_get_entry_t get_entry;
+    afw_object_get_entry_meta_t get_entry_meta;
     afw_object_get_meta_t get_meta;
     afw_object_get_property_t get_property;
     afw_object_get_property_meta_t get_property_meta;
@@ -3307,6 +3332,60 @@ struct afw_object_inf_s {
 ) \
 (instance)->inf->add_reference( \
     (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method get_count of interface afw_object
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
+ */
+#define afw_object_get_count( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->get_count( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method get_entry of interface afw_object
+ * @param instance Pointer to this object instance.
+ * @param index Zero-based index of list entry to return.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ */
+#define afw_object_get_entry( \
+    instance, \
+    index, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_entry( \
+    (instance), \
+    (index), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method get_entry_meta of interface afw_object
+ * @param instance Pointer to this object instance.
+ * @param index Zero-based index of list entry to return.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ */
+#define afw_object_get_entry_meta( \
+    instance, \
+    index, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_entry_meta( \
+    (instance), \
+    (index), \
+    (p), \
     (xctx) \
 )
 

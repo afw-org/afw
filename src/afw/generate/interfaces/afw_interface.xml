@@ -3596,6 +3596,104 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
+    <method name="get_count">
+
+      <description>
+        Return the number of entries/properties in object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Number of entries/properties in the object.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_entry">
+
+      <description>
+        Get value of list entry by index.
+
+        For some lists, methods get_internal_by_index() is more efficient.
+        If the list implementation stores only the internal part of a value,
+        this function will create an adaptive value in the specified pool to return.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>
+          Pointer to this object instance.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based index of list entry to return.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The value at the specified index or NULL if out of range.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="get_entry_meta">
+
+      <description>
+        Get the meta object of list entry by index.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>
+          Pointer to this object instance.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based index of list entry to return.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The object value to access the meta of the entry or NULL if index is out of range.
+        </description>
+      </return>
+    </method>
+
+
     <method name="get_meta">
 
       <description>
