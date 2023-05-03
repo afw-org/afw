@@ -17,8 +17,10 @@
 # Note: If a parent directory is ignored, it is not possible to re-include
 # the subdirectory.
 #
+# Note: Some excludes have to be added later on in this file, because git 
+# will process them by order and the last match will win.
+#
 !src/afw/compile/
-!src/afw_dev/_afwdev/build/
 
 #
 # If you build within the source tree, you will need to ignore the executables
@@ -157,6 +159,9 @@ bld/
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use
 # it for MSBuild targets
 !packages/*/build/
+
+# Enable the "build/" folder inside afw_dev.
+!src/afw_dev/_afwdev/build/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
