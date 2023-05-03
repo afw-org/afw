@@ -57,43 +57,4 @@ def run():
         "test": "subcommand-generate-option-srcdir-pattern"
     })
 
-    #
-    # Test the srcdir-option option for the 'docs' subcommand
-    #
-
-    # execute afwdev docs command for everything without the srcdir-pattern option
-    result = subprocess.run(["afwdev", "docs" ],  
-        cwd=test_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    # append the response
-    response["tests"].append({
-        "description": "'afwdev docs' without the srcdir-pattern option",
-        "passed": result.returncode == 0,
-        "test": "subcommand-docs-option-srcdir-pattern"
-    })
-
-    # execute afwdev docs command for everything using "\*" as the srcdir-pattern
-    result = subprocess.run(["afwdev", "docs", "--srcdir-pattern", "\*" ],  
-        cwd=test_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    # append the response
-    response["tests"].append({
-        "description": "'afwdev docs --srcdir-pattern \*' in " + test_dir,
-        "passed": result.returncode == 0,
-        "test": "subcommand-docs-option-srcdir-pattern"
-    })
-
-    # execute afwdev docs command for a subset of things using the extension 
-    # name as the srcdir-pattern
-    result = subprocess.run(["afwdev", "docs", "--srcdir-pattern", extension ],  
-        cwd=test_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    # append the response
-    response["tests"].append({
-        "description": "'afwdev docs --srcdir-pattern " + extension + 
-            "' in " + test_dir,
-        "passed": result.returncode == 0,
-        "test": "subcommand-docs-option-srcdir-pattern"
-    })
-
     return response

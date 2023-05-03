@@ -9,7 +9,7 @@ from glob import glob
 
 from _afwdev.common import msg, package, resources
 from _afwdev.build import js, cmake, docker
-from _afwdev.docs import docs
+from _afwdev.build.docs import docs
 
 # Build the afw package
 # @todo add support of other build types

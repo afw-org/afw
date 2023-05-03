@@ -7,7 +7,6 @@ import fnmatch
 import zipfile
 import shlex
 import subprocess
-from _afwdev.docs import docs
 from _afwdev.test import test, common
 from _afwdev.build import build, ebnf_diagrams
 from _afwdev.common import msg, package
@@ -545,17 +544,6 @@ under. The --all selects all of those contexts.
 }
 
 
-# subcommand docs
-_info_docs = {
-    "subcommand": "docs",
-    "help": "Generate documentation",
-    "description": "This will generate documentation for one more more source directories.",
-    "thing": "docs",
-    "args": [
-        _info_srcdir_pattern,
-    ]
-}
-
 # subcommand ebnf
 _info_ebnf = {
     "subcommand": "ebnf",
@@ -983,7 +971,6 @@ _subcommand_infos = [
     _info_add_log_type,
     _info_afwdev_parser_info,
     _info_build,
-    _info_docs,
     _info_ebnf,
     _info_for,
     _info_generate,
@@ -1290,26 +1277,6 @@ def _subcommand_build(args, options):
 
     build.run(options)
     msg.success('Build successful')
-
-
-#
-#  Subcommand docs
-#
-def _subcommand_docs(args, options):
-    
-    options['srcdir_pattern'] = options.get('srcdir_pattern', '\\*').replace('\\','')
-    options['subcommand'] = "docs"                
-
-    for srcdir in package.get_afw_package(options)['srcdirs']:
-
-        if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):            
-            continue
-        
-        package.set_options_from_existing_package_srcdir(options, srcdir, set_all=True)                      
-
-        docs.run(options)
-
-    msg.success('Docs build successful')
 
 
 #
