@@ -81,42 +81,35 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef __AFW_AUTHORIZATION_IMPL_H__</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFW_AUTHORIZATION_IMPL_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<a class="code" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="afw__authorization__impl_8h.html#a6b8f3b533ca78fec2a72676c2e59b11f">afw_authorization_handler_impl_create_cede_p</a>(</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__authorization__handler__inf__s.html">afw_authorization_handler_inf_t</a> *inf,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> instance_size,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *properties,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;AFW_END_DECLARES</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_AUTHORIZATION_IMPL_H__ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aafw__authorization__impl_8h_html_a6b8f3b533ca78fec2a72676c2e59b11f"><div class="ttname"><a href="afw__authorization__impl_8h.html#a6b8f3b533ca78fec2a72676c2e59b11f">afw_authorization_handler_impl_create_cede_p</a></div><div class="ttdeci">afw_authorization_handler_t * afw_authorization_handler_impl_create_cede_p(const afw_authorization_handler_inf_t *inf, afw_size_t instance_size, const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Developers should call this in all create functions for a afw_authorization_handler.</div><div class="ttdef"><b>Definition:</b> <a href="afw__authorization__impl_8c_source.html#l00107">afw_authorization_impl.c:107</a></div></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<a class="code" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="group__afw__authorization__handler__impl.html#ga6b8f3b533ca78fec2a72676c2e59b11f">afw_authorization_handler_impl_create_cede_p</a>(</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__authorization__handler__inf__s.html">afw_authorization_handler_inf_t</a> *inf,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> instance_size,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *properties,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;AFW_END_DECLARES</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_AUTHORIZATION_IMPL_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_ab5b5f226d95b87a930ca1128be6bdcfe"><div class="ttname"><a href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a></div><div class="ttdeci">#define AFW_DECLARE(type)</div><div class="ttdoc">Declare a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00141">afw_declare_helpers.h:141</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
-<div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
+<div class="ttc" id="agroup__afw__authorization__handler__impl_html_ga6b8f3b533ca78fec2a72676c2e59b11f"><div class="ttname"><a href="group__afw__authorization__handler__impl.html#ga6b8f3b533ca78fec2a72676c2e59b11f">afw_authorization_handler_impl_create_cede_p</a></div><div class="ttdeci">afw_authorization_handler_t * afw_authorization_handler_impl_create_cede_p(const afw_authorization_handler_inf_t *inf, afw_size_t instance_size, const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Developers should call this in all create functions for a afw_authorization_handler.</div><div class="ttdef"><b>Definition:</b> <a href="afw__authorization__impl_8c_source.html#l00107">afw_authorization_impl.c:107</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00151">afw_common.h:151</a></div></div>
 <div class="ttc" id="astructafw__authorization__handler__inf__s_html"><div class="ttname"><a href="structafw__authorization__handler__inf__s.html">afw_authorization_handler_inf_s</a></div><div class="ttdoc">Interface afw_authorization_handler_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l01749">afw_interface.h:1749</a></div></div>
 <div class="ttc" id="astructafw__authorization__handler__s_html"><div class="ttname"><a href="structafw__authorization__handler__s.html">afw_authorization_handler_s</a></div><div class="ttdoc">Interface afw_authorization_handler public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l01708">afw_interface.h:1708</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
-<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04597">afw_interface.h:4597</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04391">afw_interface.h:4391</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:12 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:29 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

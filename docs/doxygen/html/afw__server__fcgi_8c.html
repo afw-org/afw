@@ -143,12 +143,14 @@ Functions</h2></td></tr>
 <p>Create an FCGI afw_server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">error</td><td>See afw_error_t for more information. </td></tr>
+    <tr><td class="paramname">path</td><td>to FCGI server. Default ":9345". </td></tr>
+    <tr><td class="paramname">thread_count</td><td>number of threads. </td></tr>
+    <tr><td class="paramname">xctx</td><td>execution context. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new server. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000413">Todo:</a></b></dt><dd>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm);</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000520">Todo:</a></b></dt><dd>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm);</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__server__fcgi_8c_source.html#l00055">55</a> of file <a class="el" href="afw__server__fcgi_8c_source.html">afw_server_fcgi.c</a>.</p>
 
@@ -157,7 +159,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

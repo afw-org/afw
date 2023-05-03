@@ -74,8 +74,7 @@ afw command –local input and output segments</h1>
 <p>Anything written to stderr is not structured and is not written as segments.</p>
 <p>Each segment consists of one or more chunks, each beginning with a length followed by a newline (character: <br  />
 , Unicode: U+000A, ASCII: 10, hex: 0x0a). This length is the number of octets in the Unicode UTF-8 encoded string that follows. The last chunk of a segment must be "0\n".</p>
-<p>The final segment written to the input stream must be 4\nexit0<br  />
-.</p>
+<p>The final segment written to the input stream must be "4\nexit0\n".</p>
 <p>Example:</p>
 <div class="fragment"><div class="line">14\n&quot;Hello World!&quot;0\n</div>
 </div><!-- fragment --><p>which produces the same "Hello World!" result as:</p>
@@ -92,7 +91,7 @@ afw –local directives</h1>
 <h3><a class="anchor" id="autotoc_md57"></a>
 ++afw-local-mode-action and ++afw-local-mode-action-direct</h3>
 <p>Directive <code>++afw-local-mode-action</code> and <code>++afw-local-mode-action-direct</code> indicates that the request contains an _AdaptiveAction_ object in the current <code>CONTENT-TYPE</code>.</p>
-<p>For <code>++afw-local-mode-action-direct</code>, this object is passed directly to <code><a class="el" href="afw__action_8c.html#a7eb0f23136342f509fccb4326f10fd2f" title="Perform actions(s) specified in AdaptiveActions object.">afw_action_perform()</a></code> without going through normal server request process. If you need accept content type <code>application/x-afw</code> or other request processing to occur, use <code>++afw-local-mode-action</code> which issues a POST /afw to an HTTP-like local server implementation.</p>
+<p>For <code>++afw-local-mode-action-direct</code>, this object is passed directly to <code><a class="el" href="group__afw__action.html#ga116f761a7280223b359bc6ae81ffe5fb" title="Perform actions(s) specified in AdaptiveActions object.">afw_action_perform()</a></code> without going through normal server request process. If you need accept content type <code>application/x-afw</code> or other request processing to occur, use <code>++afw-local-mode-action</code> which issues a POST /afw to an HTTP-like local server implementation.</p>
 <p>This directive can be optionally followed immediately by a colon (':') and an object in relaxed JSON syntax that has optional property "accept".</p>
 <p>These properties are set in the request properties object.</p>
 <table class="markdownTable">
@@ -111,7 +110,7 @@ afw –local directives</h1>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md58"></a>
 ++afw-local-mode-evaluate and ++afw-local-mode-evaluate-direct</h3>
 <p>Directive <code>++afw-local-mode-evaluate</code> and <code>++afw-local-mode-evaluate-direct</code> indicates that an _AdaptiveAction_ object is created with the execute function for the associated syntax as the "function" property and a "source" property with the body of the request.</p>
-<p>For <code>++afw-local-mode-evaluate-direct</code>, this object is passed directly to <code><a class="el" href="afw__action_8c.html#a7eb0f23136342f509fccb4326f10fd2f" title="Perform actions(s) specified in AdaptiveActions object.">afw_action_perform()</a></code> without going through normal server request process. If you need accept content type <code>application/x-afw</code> or other request processing to occur, use <code>++afw-local-mode-evaluate</code> which issues a POST /afw to an HTTP-like local server implementation.</p>
+<p>For <code>++afw-local-mode-evaluate-direct</code>, this object is passed directly to <code><a class="el" href="group__afw__action.html#ga116f761a7280223b359bc6ae81ffe5fb" title="Perform actions(s) specified in AdaptiveActions object.">afw_action_perform()</a></code> without going through normal server request process. If you need accept content type <code>application/x-afw</code> or other request processing to occur, use <code>++afw-local-mode-evaluate</code> which issues a POST /afw to an HTTP-like local server implementation.</p>
 <p>This directive can be optionally followed immediately by a colon (':') and an object in relaxed JSON syntax that has optional properties "syntax" and "accept".</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,9 +134,9 @@ afw –local directives</h1>
 <p>All headers are available as request properties.</p>
 <p>Headers "CONTENT_TYPE", "ACCEPT" and "QUERY_STRING" are used if specified. The other headers are ignored. "CONTENT_TYPE" and "ACCEPT" default to "application/json".</p>
 <p>Content length is determined by the size of the input request body, not the "CONTENT_LENGTH" header.</p>
-<p>Header lines end with a line feed (<br  />
- or 0x0A) or a carriage return line feed (\r<br  />
- or 0x0D0x0A).</p>
+<p>Header lines end with a line feed ('<br  />
+' or 0x0A) or a carriage return line feed ('\r<br  />
+' or 0x0D0x0A).</p>
 <p>The response output also looks similar to an HTTP response.</p>
 <p>Example:</p>
 <div class="fragment"><div class="line">GET /afw/_AdaptiveDataType_/string HTTP1.1</div>
@@ -179,7 +178,7 @@ afw –local directives</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

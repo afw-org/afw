@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Common support for afw_adaptor interface implementations</title>
+<title>Adaptive Framework: Adaptor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Common support for afw_adaptor interface implementations<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Adaptor<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -155,7 +155,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga74d97784e04e12c88571e2cf8f7cee67"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor.html#ga74d97784e04e12c88571e2cf8f7cee67">afw_adaptor_session_get_cached</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *adaptor_id, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> begin_transaction, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga74d97784e04e12c88571e2cf8f7cee67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get/create an active cached session for adaptor_id.  <a href="group__afw__adaptor.html#ga74d97784e04e12c88571e2cf8f7cee67">More...</a><br /></td></tr>
 <tr class="separator:ga74d97784e04e12c88571e2cf8f7cee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga11699b627742cb79df3ce86e4d08f6e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor.html#ga11699b627742cb79df3ce86e4d08f6e9">afw_adaptor_session_release</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:ga11699b627742cb79df3ce86e4d08f6e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor.html#ga11699b627742cb79df3ce86e4d08f6e9">afw_adaptor_session_release</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga11699b627742cb79df3ce86e4d08f6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release an adaptor session created by <a class="el" href="group__afw__adaptor.html#ga579c85fa8e64ecfbaa4d78ee7344482e" title="Create an adaptor session.">afw_adaptor_session_create()</a>.  <a href="group__afw__adaptor.html#ga11699b627742cb79df3ce86e4d08f6e9">More...</a><br /></td></tr>
 <tr class="separator:ga11699b627742cb79df3ce86e4d08f6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5a383c669f8817c2b474d2d54531f06a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor.html#ga5a383c669f8817c2b474d2d54531f06a">afw_adaptor_add_object</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *adaptor_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *suggested_object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *adaptor_type_specific, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga2f78b16a606acfad0a5656a6ce9916df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Journal - mark entry consumed by consumer.  <a href="group__afw__adaptor.html#ga2f78b16a606acfad0a5656a6ce9916df">More...</a><br /></td></tr>
 <tr class="separator:ga2f78b16a606acfad0a5656a6ce9916df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2b878eb3f4feb134af74258cd15f24c3"><td class="memItemLeft" align="right" valign="top"><a id="ga2b878eb3f4feb134af74258cd15f24c3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_entry_consume</b> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *update_object, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_entry_consume</b> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *update_object, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:ga2b878eb3f4feb134af74258cd15f24c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8e44110aa22ae38b971f41084def06ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor.html#ga8e44110aa22ae38b971f41084def06ee">afw_adaptor_modify_object</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *adaptor_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__list__s.html">afw_list_t</a> *entries, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *adaptor_type_specific, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga8e44110aa22ae38b971f41084def06ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify object and remove from cache.  <a href="group__afw__adaptor.html#ga8e44110aa22ae38b971f41084def06ee">More...</a><br /></td></tr>
@@ -260,7 +260,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <p>Adaptor session modify type map. </p>
 <p>XX(name, true/false if tuple has value) </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__modify_8h_source.html#l00041">41</a> of file <a class="el" href="afw__adaptor__modify_8h_source.html">afw_adaptor_modify.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__modify_8h_source.html#l00031">31</a> of file <a class="el" href="afw__adaptor__modify_8h_source.html">afw_adaptor_modify.h</a>.</p>
 
 </div>
 </div>
@@ -327,7 +327,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
     <tr><td class="paramname">adaptor_id</td><td>of adaptor used to add object. </td></tr>
     <tr><td class="paramname">object_type_id</td><td>of object to add. </td></tr>
     <tr><td class="paramname">suggested_object_id</td><td>or NULL. The adaptor has the option to use this id or generate one. </td></tr>
-    <tr><td class="paramname">object</td><td>to add. The <a class="el" href="group__afw__object.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the object are used to identify the existing object to add. </td></tr>
+    <tr><td class="paramname">object</td><td>to add. The <a class="el" href="group__afw__object__meta.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the object are used to identify the existing object to add. </td></tr>
     <tr><td class="paramname">journal_entry</td><td>is a memory object where journal entry properties will be added. </td></tr>
     <tr><td class="paramname">adaptor_type_specific</td><td>parameter or NULL. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -379,10 +379,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
     <tr><td class="paramname">adaptor</td><td>for which the request is being made. </td></tr>
     <tr><td class="paramname">p</td><td>used for result. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">&lt;em&gt;AdaptiveAuthorizationResult&lt;/em&gt;</td><td>object.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><em>AdaptiveAuthorizationResult</em> object.</dd></dl>
 <p>This is called internally by afw_adaptor_* functions, so it is not usually necessary to call this externally. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__context_8c_source.html#l00020">20</a> of file <a class="el" href="afw__adaptor__context_8c_source.html">afw_adaptor_context.c</a>.</p>
@@ -454,7 +454,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 <p>Delete an existing adaptive object via adaptor. The object will not actually be deleted until method commit() is called. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__delete_8c_source.html#l00020">20</a> of file <a class="el" href="afw__adaptor__delete_8c_source.html">afw_adaptor_delete.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__delete_8c_source.html#l00019">19</a> of file <a class="el" href="afw__adaptor__delete_8c_source.html">afw_adaptor_delete.c</a>.</p>
 
 </div>
 </div>
@@ -545,7 +545,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <p>If object is already in cache, return it. If not, get object via adaptor and add it to cache.</p>
 <p>If criteria-&gt;own is false, all of the uncached ancestors of retrieved objects will be retrieved and placed in cache. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__get_8c_source.html#l00046">46</a> of file <a class="el" href="afw__adaptor__get_8c_source.html">afw_adaptor_get.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__get_8c_source.html#l00045">45</a> of file <a class="el" href="afw__adaptor__get_8c_source.html">afw_adaptor_get.c</a>.</p>
 
 </div>
 </div>
@@ -600,7 +600,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the instance of the object in store session. NULL is returned if object is not found.</dd></dl>
 <p>Retrieve a read-only copy of an adaptive object via adaptor. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__get_8c_source.html#l00132">132</a> of file <a class="el" href="afw__adaptor__get_8c_source.html">afw_adaptor_get.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__get_8c_source.html#l00131">131</a> of file <a class="el" href="afw__adaptor__get_8c_source.html">afw_adaptor_get.c</a>.</p>
 
 </div>
 </div>
@@ -1545,7 +1545,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
     <tr><td class="paramname">adaptor_id</td><td>of adaptor used to patch object. </td></tr>
     <tr><td class="paramname">object_type_id</td><td>of object to modify. </td></tr>
     <tr><td class="paramname">object_id</td><td>of object to modify. </td></tr>
-    <tr><td class="paramname">entries.</td><td></td></tr>
+    <tr><td class="paramname">entries</td><td>for parameters to modify. </td></tr>
     <tr><td class="paramname">journal_entry</td><td>is a memory object where journal entry properties will be added. </td></tr>
     <tr><td class="paramname">adaptor_type_specific</td><td>parameter or NULL. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -1630,7 +1630,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 <p>Update an existing adaptive object via adaptor. Existing properties will be removed if they are not present if the updated object.</p>
-<p>The values of properties in the update object will completely replace the values of properties in the existing object. The <a class="el" href="group__afw__object.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the update object are used to identify the existing object to update.</p>
+<p>The values of properties in the update object will completely replace the values of properties in the existing object. The <a class="el" href="group__afw__object__meta.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the update object are used to identify the existing object to update.</p>
 <p>This function calls an adaptor modify method after converting the update object to a modify request. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000062">Todo:</a></b></dt><dd>FIXME: move this out of update</dd></dl>
 <p>Journal entry.</p>
@@ -1694,8 +1694,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">query_criteria</td><td>is an <em>AdaptiveQueryCriteria</em> object. </td></tr>
-    <tr><td class="paramname">adaptor_id.</td><td></td></tr>
-    <tr><td class="paramname">object_type_id.</td><td></td></tr>
+    <tr><td class="paramname">adaptor_id</td><td>of adaptor. </td></tr>
+    <tr><td class="paramname">object_type_id</td><td>of object. </td></tr>
     <tr><td class="paramname">journal_entry</td><td>is a memory object where journal entry properties will be added. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -1763,8 +1763,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">url_encoded_rql_string</td><td>URL encoded query string. </td></tr>
-    <tr><td class="paramname">adaptor_id.</td><td></td></tr>
-    <tr><td class="paramname">object_type_id.</td><td></td></tr>
+    <tr><td class="paramname">adaptor_id</td><td>of adaptor. </td></tr>
+    <tr><td class="paramname">object_type_id</td><td>of object. </td></tr>
     <tr><td class="paramname">journal_entry</td><td>is a memory object where journal entry properties will be added. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -1807,7 +1807,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <p>Release an adaptor accessed by <a class="el" href="group__afw__adaptor.html#gabf62092b1a9b30ce7a823e7c8c8559fb" title="Get an adaptor and make sure it is started.">afw_adaptor_get_reference()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adaptor_id</td><td>Adaptor id. </td></tr>
+    <tr><td class="paramname">adaptor</td><td>to release. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
@@ -1881,7 +1881,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
     <tr><td class="paramname">adaptor_id</td><td>Id of adaptor used to patch object. </td></tr>
     <tr><td class="paramname">object_type_id</td><td>of object to update. </td></tr>
     <tr><td class="paramname">object_id</td><td>of object to update. </td></tr>
-    <tr><td class="paramname">replacement_object</td><td>Replace an existing object. The values of properties in this updated object will completely replace the values of properties in the existing object. The <a class="el" href="group__afw__object.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the update object are used to identify the existing object to update. </td></tr>
+    <tr><td class="paramname">replacement_object</td><td>Replace an existing object. The values of properties in this updated object will completely replace the values of properties in the existing object. The <a class="el" href="group__afw__object__meta.html#gafc0a7d8f88cd7e7fab503850fbfa754c" title="Get entity object&#39;s object id.">afw_object_meta_get_object_id()</a> and afw_object_type_get_object_type() methods of the update object are used to identify the existing object to update. </td></tr>
     <tr><td class="paramname">journal_entry</td><td>is a memory object where journal entry properties will be added. </td></tr>
     <tr><td class="paramname">adaptor_type_specific</td><td>parameter or NULL. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -2153,7 +2153,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 <p>Release an adaptor session created by <a class="el" href="group__afw__adaptor.html#ga579c85fa8e64ecfbaa4d78ee7344482e" title="Create an adaptor session.">afw_adaptor_session_create()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adaptor_id</td><td>Adaptor id. </td></tr>
+    <tr><td class="paramname">session</td><td>to release. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
@@ -2169,7 +2169,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_journal_e
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

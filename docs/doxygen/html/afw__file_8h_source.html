@@ -81,58 +81,57 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef __AFW_FILE_H__</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFW_FILE_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">afw_file_mode_e</a> {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    afw_file_mode_read,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    afw_file_mode_write,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    afw_file_mode_write_new,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    afw_file_mode_write_existing</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">   39</a></span>&#160;} <a class="code" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">afw_file_mode_t</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__adaptor__factory__s.html">afw_adaptor_factory_t</a> *)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<a class="code" href="group__afw__file.html#gaf6e8b2e379b15734274e58e97a4b83cb">afw_file_adaptor_factory_get</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__adaptor__s.html">afw_adaptor_t</a> *)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<a class="code" href="group__afw__file.html#ga641f001b523b3e86a9cf22b01468eb5c">afw_file_adaptor_create_cede_p</a>(</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *properties,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__memory__s.html">afw_memory_t</a> *)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<a class="code" href="group__afw__file.html#ga37a39f8a2d52a485c21c0127dc24d68f">afw_file_to_memory</a>(</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    apr_size_t file_size,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="group__afw__file.html#ga2550b3ade2259798b9421d190ca3a70b">afw_file_from_memory</a>(</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__memory__s.html">afw_memory_t</a> * from_memory,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">afw_file_mode_t</a> mode,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="group__afw__file.html#gab16e6f312a1cd5a181643150cd3e7b5f">   99</a></span>&#160;<a class="code" href="group__afw__file.html#gab16e6f312a1cd5a181643150cd3e7b5f">afw_file_delete</a>(</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    const <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">   31</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">afw_file_mode_e</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    afw_file_mode_read,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    afw_file_mode_write,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    afw_file_mode_write_new,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    afw_file_mode_write_existing</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">   36</a></span>&#160;} <a class="code" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">afw_file_mode_t</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__adaptor__factory__s.html">afw_adaptor_factory_t</a> *)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="group__afw__file.html#gaf6e8b2e379b15734274e58e97a4b83cb">afw_file_adaptor_factory_get</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__adaptor__s.html">afw_adaptor_t</a> *)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="group__afw__file.html#ga641f001b523b3e86a9cf22b01468eb5c">afw_file_adaptor_create_cede_p</a>(</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *properties,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keyword">const</span> <a class="code" href="structafw__memory__s.html">afw_memory_t</a> *)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="group__afw__file.html#ga37a39f8a2d52a485c21c0127dc24d68f">afw_file_to_memory</a>(</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    apr_size_t file_size,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="group__afw__file.html#ga2550b3ade2259798b9421d190ca3a70b">afw_file_from_memory</a>(</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__memory__s.html">afw_memory_t</a> * from_memory,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="group__afw__file.html#gac4a7f5d266cf3afe821395d3debdfd9d">afw_file_mode_t</a> mode,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group__afw__file.html#gab16e6f312a1cd5a181643150cd3e7b5f">   96</a></span>&#160;<a class="code" href="group__afw__file.html#gab16e6f312a1cd5a181643150cd3e7b5f">afw_file_delete</a>(</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    const <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> * file_path,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;AFW_END_DECLARES</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;AFW_END_DECLARES</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_FILE_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_FILE_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_ab5b5f226d95b87a930ca1128be6bdcfe"><div class="ttname"><a href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a></div><div class="ttdeci">#define AFW_DECLARE(type)</div><div class="ttdoc">Declare a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00141">afw_declare_helpers.h:141</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
-<div class="ttc" id="agroup__afw__file_html_ga07f59e34c15f6a81c8ed336273ba74be"><div class="ttname"><a href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">afw_file_mode_e</a></div><div class="ttdeci">afw_file_mode_e</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8h_source.html#l00034">afw_file.h:34</a></div></div>
+<div class="ttc" id="agroup__afw__file_html_ga07f59e34c15f6a81c8ed336273ba74be"><div class="ttname"><a href="group__afw__file.html#ga07f59e34c15f6a81c8ed336273ba74be">afw_file_mode_e</a></div><div class="ttdeci">afw_file_mode_e</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8h_source.html#l00031">afw_file.h:31</a></div></div>
 <div class="ttc" id="agroup__afw__file_html_ga2550b3ade2259798b9421d190ca3a70b"><div class="ttname"><a href="group__afw__file.html#ga2550b3ade2259798b9421d190ca3a70b">afw_file_from_memory</a></div><div class="ttdeci">void afw_file_from_memory(const afw_utf8_t *file_path, const afw_memory_t *from_memory, afw_file_mode_t mode, afw_xctx_t *xctx)</div><div class="ttdoc">Write a file from a memory.</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8c_source.html#l00104">afw_file.c:104</a></div></div>
 <div class="ttc" id="agroup__afw__file_html_ga37a39f8a2d52a485c21c0127dc24d68f"><div class="ttname"><a href="group__afw__file.html#ga37a39f8a2d52a485c21c0127dc24d68f">afw_file_to_memory</a></div><div class="ttdeci">const afw_memory_t * afw_file_to_memory(const afw_utf8_t *file_path, apr_size_t file_size, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Read a file into a memory in a specifed pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8c_source.html#l00040">afw_file.c:40</a></div></div>
 <div class="ttc" id="agroup__afw__file_html_ga641f001b523b3e86a9cf22b01468eb5c"><div class="ttname"><a href="group__afw__file.html#ga641f001b523b3e86a9cf22b01468eb5c">afw_file_adaptor_create_cede_p</a></div><div class="ttdeci">const afw_adaptor_t * afw_file_adaptor_create_cede_p(const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create a file adaptor.</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8c_source.html#l00253">afw_file.c:253</a></div></div>
@@ -141,15 +140,15 @@ $(function() {
 <div class="ttc" id="agroup__afw__file_html_gaf6e8b2e379b15734274e58e97a4b83cb"><div class="ttname"><a href="group__afw__file.html#gaf6e8b2e379b15734274e58e97a4b83cb">afw_file_adaptor_factory_get</a></div><div class="ttdeci">const afw_adaptor_factory_t * afw_file_adaptor_factory_get()</div><div class="ttdoc">Get the factory for file adaptor.</div><div class="ttdef"><b>Definition:</b> <a href="afw__file_8c_source.html#l00229">afw_file.c:229</a></div></div>
 <div class="ttc" id="astructafw__adaptor__factory__s_html"><div class="ttname"><a href="structafw__adaptor__factory__s.html">afw_adaptor_factory_s</a></div><div class="ttdoc">Interface afw_adaptor_factory public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l00135">afw_interface.h:135</a></div></div>
 <div class="ttc" id="astructafw__adaptor__s_html"><div class="ttname"><a href="structafw__adaptor__s.html">afw_adaptor_s</a></div><div class="ttdoc">Interface afw_adaptor public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l00194">afw_interface.h:194</a></div></div>
-<div class="ttc" id="astructafw__memory__s_html"><div class="ttname"><a href="structafw__memory__s.html">afw_memory_s</a></div><div class="ttdoc">Struct for memory pointer and size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00504">afw_common.h:504</a></div></div>
+<div class="ttc" id="astructafw__memory__s_html"><div class="ttname"><a href="structafw__memory__s.html">afw_memory_s</a></div><div class="ttdoc">Struct for memory pointer and size.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00505">afw_common.h:505</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
-<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04597">afw_interface.h:4597</a></div></div>
+<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00545">afw_common.h:545</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04391">afw_interface.h:4391</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:31 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

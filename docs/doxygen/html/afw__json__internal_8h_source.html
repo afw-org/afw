@@ -81,34 +81,33 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef __AFW_JSON_INTERNAL_H__</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFW_JSON_INTERNAL_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">/* Convert a value to json and write it. */</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> afw_json_internal_write_value(</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *value,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__options__s.html">afw_object_options_t</a> *options,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> * context,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a> callback,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;AFW_END_DECLARES</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_JSON_INTERNAL_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/* Convert a value to json and write it. */</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span> afw_json_internal_write_value(</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *value,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__options__s.html">afw_object_options_t</a> *options,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> * context,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a> callback,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;AFW_END_DECLARES</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_JSON_INTERNAL_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
-<div class="ttc" id="agroup__afw__common_html_gaf6384d57e6cf107c279b72404c65a305"><div class="ttname"><a href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a></div><div class="ttdeci">afw_size_t(* afw_write_cb_t)(void *context, const void *buffer, afw_size_t size, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Typedef for write callback function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l01224">afw_common.h:1225</a></div></div>
-<div class="ttc" id="astructafw__object__options__s_html"><div class="ttname"><a href="structafw__object__options__s.html">afw_object_options_s</a></div><div class="ttdoc">Struct for object processing options.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__options_8h_source.html#l00043">afw_object_options.h:43</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
-<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gaf6384d57e6cf107c279b72404c65a305"><div class="ttname"><a href="group__afw__common.html#gaf6384d57e6cf107c279b72404c65a305">afw_write_cb_t</a></div><div class="ttdeci">afw_size_t(* afw_write_cb_t)(void *context, const void *buffer, afw_size_t size, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Typedef for write callback function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l01225">afw_common.h:1226</a></div></div>
+<div class="ttc" id="astructafw__object__options__s_html"><div class="ttname"><a href="structafw__object__options__s.html">afw_object_options_s</a></div><div class="ttdoc">Struct for object processing options.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__options_8h_source.html#l00036">afw_object_options.h:36</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04597">afw_interface.h:4597</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05237">afw_interface.h:5237</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04391">afw_interface.h:4391</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:31 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

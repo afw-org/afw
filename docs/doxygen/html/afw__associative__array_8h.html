@@ -71,11 +71,11 @@ $(function() {
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_associative_array.h File Reference</div>  </div>
+<div class="title">afw_associative_array.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__internal.html">C Internal</a> &raquo; <a class="el" href="group__afw__array__template__internal.html">(deprecated) Array template</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Adaptive Framework implementation of associative array.  
+<p>(deprecated) Adaptive Framework implementation of associative array.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="afw__interface_8h_source.html">afw_interface.h</a>&quot;</code><br />
 </div>
@@ -88,49 +88,49 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memItemLeft" align="right" valign="top"><a id="a0a0e7155f4f8df32ce34ae00e35a72dc"></a>
+<tr class="memitem:ga0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memItemLeft" align="right" valign="top">
 typedef struct <a class="el" href="structafw__associative__array__s.html">afw_associative_array_s</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_t</b></td></tr>
-<tr class="separator:a0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3644be5b12261f9b77363a8a71e8603a"><td class="memItemLeft" align="right" valign="top"><a id="a3644be5b12261f9b77363a8a71e8603a"></a>
+<tr class="separator:ga0a0e7155f4f8df32ce34ae00e35a72dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3644be5b12261f9b77363a8a71e8603a"><td class="memItemLeft" align="right" valign="top">
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference_value_cb</b>) (const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a3644be5b12261f9b77363a8a71e8603a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fbe3336e93a0c5231e946324d6608ce"><td class="memItemLeft" align="right" valign="top"><a id="a9fbe3336e93a0c5231e946324d6608ce"></a>
+<tr class="separator:ga3644be5b12261f9b77363a8a71e8603a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9fbe3336e93a0c5231e946324d6608ce"><td class="memItemLeft" align="right" valign="top">
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release_value_cb</b>) (const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a9fbe3336e93a0c5231e946324d6608ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ga9fbe3336e93a0c5231e946324d6608ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a509df34835b5eb164168b787d675ab1a"><td class="memItemLeft" align="right" valign="top"><a id="a509df34835b5eb164168b787d675ab1a"></a>
+<tr class="memitem:ga509df34835b5eb164168b787d675ab1a"><td class="memItemLeft" align="right" valign="top">
 const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_create</b> (afw_associative_array_add_reference_value_cb add_reference_value, afw_associative_array_release_value_cb release_value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a509df34835b5eb164168b787d675ab1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e3015a22789303b7562b02eb6c03c1e"><td class="memItemLeft" align="right" valign="top"><a id="a0e3015a22789303b7562b02eb6c03c1e"></a>
+<tr class="separator:ga509df34835b5eb164168b787d675ab1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e3015a22789303b7562b02eb6c03c1e"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_release</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a0e3015a22789303b7562b02eb6c03c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b2aeba2c68b054199b0ae16df65adde"><td class="memItemLeft" align="right" valign="top"><a id="a9b2aeba2c68b054199b0ae16df65adde"></a>
+<tr class="separator:ga0e3015a22789303b7562b02eb6c03c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b2aeba2c68b054199b0ae16df65adde"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_add_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a9b2aeba2c68b054199b0ae16df65adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1b27da0f11363523977b24f6a0926d6"><td class="memItemLeft" align="right" valign="top"><a id="ac1b27da0f11363523977b24f6a0926d6"></a>
+<tr class="separator:ga9b2aeba2c68b054199b0ae16df65adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1b27da0f11363523977b24f6a0926d6"><td class="memItemLeft" align="right" valign="top">
 const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:ac1b27da0f11363523977b24f6a0926d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af97546c588358918852d6f7ec3e6e4b5"><td class="memItemLeft" align="right" valign="top"><a id="af97546c588358918852d6f7ec3e6e4b5"></a>
+<tr class="separator:gac1b27da0f11363523977b24f6a0926d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf97546c588358918852d6f7ec3e6e4b5"><td class="memItemLeft" align="right" valign="top">
 const void *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_get_reference</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:af97546c588358918852d6f7ec3e6e4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memItemLeft" align="right" valign="top"><a id="a82d29fd9efdc8b1c7cc9aa090c11d707"></a>
+<tr class="separator:gaf97546c588358918852d6f7ec3e6e4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_for_each</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, void *context, <a class="el" href="group__afw__common.html#ga7187d1d635fd54d296ca5af7d6f080b4">afw_value_cb_t</a> callback, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc4d879efcb930c2de99f7e3e196af53"><td class="memItemLeft" align="right" valign="top"><a id="afc4d879efcb930c2de99f7e3e196af53"></a>
+<tr class="separator:ga82d29fd9efdc8b1c7cc9aa090c11d707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc4d879efcb930c2de99f7e3e196af53"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_associative_array_set</b> (const <a class="el" href="structafw__associative__array__s.html">afw_associative_array_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *key, const void *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:afc4d879efcb930c2de99f7e3e196af53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:gafc4d879efcb930c2de99f7e3e196af53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Adaptive Framework implementation of associative array. </p>
-<p>These functions will normally not be called directly. See <a class="el" href="afw__associative__array__template_8h.html" title="Adaptive Framework associative array templates.">afw_associative_array_template.h</a>. </p>
+<div class="textblock"><p>(deprecated) Adaptive Framework implementation of associative array. </p>
+<p>These functions will normally not be called directly. See <a class="el" href="afw__associative__array__template_8h.html" title="(deprecated) Adaptive Framework associative array templates">afw_associative_array_template.h</a>. </p>
 
 <p class="definition">Definition in file <a class="el" href="afw__associative__array_8h_source.html">afw_associative_array.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

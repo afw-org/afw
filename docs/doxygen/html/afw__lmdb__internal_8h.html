@@ -113,7 +113,7 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a96118b04eae65a6da5a3f7b9577617cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">AFW_LMDB_BEGIN_TRANSACTION</a>(adaptor,  <a class="el" href="classsession.html">session</a>,  flags,  exclusive,  xctx)</td></tr>
+<tr class="memitem:a96118b04eae65a6da5a3f7b9577617cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">AFW_LMDB_BEGIN_TRANSACTION</a>(adaptor,  session,  flags,  exclusive,  xctx)</td></tr>
 <tr class="memdesc:a96118b04eae65a6da5a3f7b9577617cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin an LMDB transaction.  <a href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">More...</a><br /></td></tr>
 <tr class="separator:a96118b04eae65a6da5a3f7b9577617cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe89207555b0a6b27e9f783f4bc8bb18"><td class="memItemLeft" align="right" valign="top"><a id="abe89207555b0a6b27e9f783f4bc8bb18"></a>
@@ -176,14 +176,14 @@ Functions</h2></td></tr>
 <tr class="memitem:ac8803bdfb08a73159d241e87dee2068f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#ac8803bdfb08a73159d241e87dee2068f">afw_lmdb_adaptor_session_create</a> (<a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ac8803bdfb08a73159d241e87dee2068f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor session.  <a href="afw__lmdb__internal_8h.html#ac8803bdfb08a73159d241e87dee2068f">More...</a><br /></td></tr>
 <tr class="separator:ac8803bdfb08a73159d241e87dee2068f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b8193226d7c39f3bd491d862d9e4b23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__journal__s.html">afw_lmdb_journal_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a9b8193226d7c39f3bd491d862d9e4b23">afw_lmdb_journal_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:a9b8193226d7c39f3bd491d862d9e4b23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__journal__s.html">afw_lmdb_journal_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a9b8193226d7c39f3bd491d862d9e4b23">afw_lmdb_journal_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:a9b8193226d7c39f3bd491d862d9e4b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor journal.  <a href="afw__lmdb__internal_8h.html#a9b8193226d7c39f3bd491d862d9e4b23">More...</a><br /></td></tr>
 <tr class="separator:a9b8193226d7c39f3bd491d862d9e4b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa22bcda09a5e17750717937f3752a833"><td class="memItemLeft" align="right" valign="top"><a id="aa22bcda09a5e17750717937f3752a833"></a>
-<a class="el" href="structafw__lmdb__key__value__s.html">afw_lmdb_key_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_key_value_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:aa22bcda09a5e17750717937f3752a833"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__key__value__s.html">afw_lmdb_key_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#aa22bcda09a5e17750717937f3752a833">afw_lmdb_key_value_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:aa22bcda09a5e17750717937f3752a833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor key/value.  <a href="afw__lmdb__internal_8h.html#aa22bcda09a5e17750717937f3752a833">More...</a><br /></td></tr>
 <tr class="separator:aa22bcda09a5e17750717937f3752a833"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="memItemLeft" align="right" valign="top"><a id="a4f80082f9d77790feecacb2dbcfe5a5d"></a>
-<a class="el" href="structafw__lmdb__transaction__s.html">afw_lmdb_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_transaction_create</b> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__lmdb__transaction__s.html">afw_lmdb_transaction_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lmdb__internal_8h.html#a4f80082f9d77790feecacb2dbcfe5a5d">afw_lmdb_transaction_create</a> (<a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal create a LMDB adaptor transaction.  <a href="afw__lmdb__internal_8h.html#a4f80082f9d77790feecacb2dbcfe5a5d">More...</a><br /></td></tr>
 <tr class="separator:a4f80082f9d77790feecacb2dbcfe5a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6732e816143a7ef1d85fd612dfbc3b0b"><td class="memItemLeft" align="right" valign="top"><a id="a6732e816143a7ef1d85fd612dfbc3b0b"></a>
 <a class="el" href="group__afw__common.html#gab893c7e1e9c5152c526835d520b98b90">afw_rc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_cleanup_free_result</b> (void *data)</td></tr>
@@ -204,25 +204,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_clo
 MDB_dbi&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_database</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *database, unsigned int flags, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:aeaf025b1abdee6aa6152d7726f4fc8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91e04e0accbc65b47282c72738cb59b6"><td class="memItemLeft" align="right" valign="top"><a id="a91e04e0accbc65b47282c72738cb59b6"></a>
-MDB_cursor *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_cursor</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+MDB_cursor *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_cursor</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, MDB_dbi dbi, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a91e04e0accbc65b47282c72738cb59b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64961c2571bf08b206ae690e4ecbdaf7"><td class="memItemLeft" align="right" valign="top"><a id="a64961c2571bf08b206ae690e4ecbdaf7"></a>
-<a class="el" href="structafw__lmdb__txn__t.html">afw_lmdb_txn_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, unsigned int flags, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> exclusive, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<a class="el" href="structafw__lmdb__txn__t.html">afw_lmdb_txn_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_open_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, unsigned int flags, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> exclusive, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a64961c2571bf08b206ae690e4ecbdaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f126959943d90e6824ba69195ba9998"><td class="memItemLeft" align="right" valign="top"><a id="a5f126959943d90e6824ba69195ba9998"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_commit_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_commit_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a5f126959943d90e6824ba69195ba9998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0606cfd70e104a947e69032f377db65"><td class="memItemLeft" align="right" valign="top"><a id="ac0606cfd70e104a947e69032f377db65"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_abort_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_abort_transaction</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:ac0606cfd70e104a947e69032f377db65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b21769a778db459cb2b8807a69f1fe7"><td class="memItemLeft" align="right" valign="top"><a id="a4b21769a778db459cb2b8807a69f1fe7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_object</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a4b21769a778db459cb2b8807a69f1fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ea8510945f8bdb73a59db1d69f46826"><td class="memItemLeft" align="right" valign="top"><a id="a3ea8510945f8bdb73a59db1d69f46826"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_index_property</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, MDB_txn *txn, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *value, const afw_uuid_t *uuid, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a3ea8510945f8bdb73a59db1d69f46826"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec6cb49b7a3284ee294ce19fe1a95bdd"><td class="memItemLeft" align="right" valign="top"><a id="aec6cb49b7a3284ee294ce19fe1a95bdd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_index</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_delete_index</b> (const <a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *session, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:aec6cb49b7a3284ee294ce19fe1a95bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c8c540b6747eb8837c342c6a6a33589"><td class="memItemLeft" align="right" valign="top"><a id="a9c8c540b6747eb8837c342c6a6a33589"></a>
 <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_is_property_indexed</b> (const <a class="el" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> *adaptor, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -296,7 +296,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 </div><!-- fragment -->
 <p>Abort a transaction. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00408">408</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00420">420</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
 
 </div>
 </div>
@@ -316,7 +316,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="classsession.html">session</a>, </td>
+          <td class="paramname">session, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -347,12 +347,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">    MDB_txn * this_txn = NULL; \</div>
 <div class="line">    bool this_txnHandled = <span class="keyword">false</span>; \</div>
 <div class="line">    const <a class="code" href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_t</a> * this_adaptor = adaptor; \</div>
-<div class="line">    const <a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> * this_session = <a class="code" href="classsession.html">session</a>; \</div>
+<div class="line">    const <a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> * this_session = session; \</div>
 <div class="line">    afw_xctx_t * this_xctx = xctx; \</div>
 <div class="line">    int this_rc; \</div>
 <div class="line">    AFW_TRY { \</div>
-<div class="line">        if (<a class="code" href="classsession.html">session</a> &amp;&amp; <a class="code" href="classsession.html">session</a>-&gt;transaction) { \</div>
-<div class="line">            ((<a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *)<a class="code" href="classsession.html">session</a>)-&gt;currTxn = <a class="code" href="classsession.html">session</a>-&gt;transaction-&gt;txn; \</div>
+<div class="line">        if (session &amp;&amp; session-&gt;transaction) { \</div>
+<div class="line">            ((<a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *)session)-&gt;currTxn = session-&gt;transaction-&gt;txn; \</div>
 <div class="line">        } <span class="keywordflow">else</span> { \</div>
 <div class="line">            if (exclusive) { \</div>
 <div class="line">                apr_thread_rwlock_wrlock(adaptor-&gt;dbLock); \</div>
@@ -365,19 +365,18 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \</div>
 <div class="line">                    <span class="stringliteral">&quot;Unable to begin transaction.&quot;</span>, this_xctx); \</div>
 <div class="line">            } \</div>
-<div class="line">            if (<a class="code" href="classsession.html">session</a>) \</div>
-<div class="line">                ((<a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *)<a class="code" href="classsession.html">session</a>)-&gt;currTxn = this_txn; \</div>
+<div class="line">            if (session) \</div>
+<div class="line">                ((<a class="code" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *)session)-&gt;currTxn = this_txn; \</div>
 <div class="line">        } \</div>
 <div class="line">        do {</div>
-<div class="ttc" id="aclasssession_html"><div class="ttname"><a href="classsession.html">session</a></div><div class="ttdef"><b>Definition:</b> <a href="session_8php_source.html#l00006">session.php:6</a></div></div>
 <div class="ttc" id="astructafw__lmdb__adaptor__s_html"><div class="ttname"><a href="structafw__lmdb__adaptor__s.html">afw_lmdb_adaptor_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lmdb__internal_8h_source.html#l00047">afw_lmdb_internal.h:47</a></div></div>
 <div class="ttc" id="astructafw__lmdb__adaptor__session__s_html"><div class="ttname"><a href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lmdb__internal_8h_source.html#l00082">afw_lmdb_internal.h:82</a></div></div>
 </div><!-- fragment -->
 <p>Begin an LMDB transaction. </p>
 <p>All LMDB operations <em>must</em> be wrapped inside a LMDB transaction, even when the transaction interface is not requested explicitly by the user.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000407">Todo:</a></b></dt><dd>FIXME: LMDB transactions may also be nested (second param). However, I don't believe LMDB allows for write transactions to be nested under read transactions, so this macro needs to contain logic to handle both scenarios. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000514">Todo:</a></b></dt><dd>FIXME: LMDB transactions may also be nested (second param). However, I don't believe LMDB allows for write transactions to be nested under read transactions, so this macro needs to contain logic to handle both scenarios. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00351">351</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00363">363</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +407,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 </div><!-- fragment -->
 <p>Commit a transaction. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00393">393</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00405">405</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
 
 </div>
 </div>
@@ -439,11 +438,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <div class="line">    } \</div>
 <div class="line">    AFW_ENDTRY; \</div>
 <div class="line">} <span class="keywordflow">while</span>(0)</div>
-<div class="ttc" id="agroup__afw__error_html_ga09be8438b41e77dd92a388cd3bc8073e"><div class="ttname"><a href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a></div><div class="ttdeci">#define AFW_FINALLY</div><div class="ttdoc">Always executed regardless of error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00706">afw_error.h:706</a></div></div>
+<div class="ttc" id="agroup__afw__error_html_ga09be8438b41e77dd92a388cd3bc8073e"><div class="ttname"><a href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a></div><div class="ttdeci">#define AFW_FINALLY</div><div class="ttdoc">Always executed regardless of error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00702">afw_error.h:702</a></div></div>
 </div><!-- fragment -->
 <p>End an LMDB transaction. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00423">423</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8h_source.html#l00435">435</a> of file <a class="el" href="afw__lmdb__internal_8h_source.html">afw_lmdb_internal.h</a>.</p>
 
 </div>
 </div>
@@ -564,21 +563,101 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lmdb_internal_read
 <p>Internal create a LMDB adaptor journal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adaptor</td><td>Internal instance of adaptor session. </td></tr>
+    <tr><td class="paramname">session</td><td>Internal instance of adaptor session. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>New instance of LMDB adaptor session. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>New instance of LMDB adaptor journal. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__lmdb__journal_8c_source.html#l00027">27</a> of file <a class="el" href="afw__lmdb__journal_8c_source.html">afw_lmdb_journal.c</a>.</p>
+
+</div>
+</div>
+<a id="aa22bcda09a5e17750717937f3752a833"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22bcda09a5e17750717937f3752a833">&#9670;&nbsp;</a></span>afw_lmdb_key_value_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structafw__lmdb__key__value__s.html">afw_lmdb_key_value_t</a>* afw_lmdb_key_value_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *&#160;</td>
+          <td class="paramname"><em>session</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Internal create a LMDB adaptor key/value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>Internal instance of adaptor session. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>New instance of LMDB key/value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8c_source.html#l00617">617</a> of file <a class="el" href="afw__lmdb__internal_8c_source.html">afw_lmdb_internal.c</a>.</p>
+
+</div>
+</div>
+<a id="a4f80082f9d77790feecacb2dbcfe5a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f80082f9d77790feecacb2dbcfe5a5d">&#9670;&nbsp;</a></span>afw_lmdb_transaction_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structafw__lmdb__transaction__s.html">afw_lmdb_transaction_t</a>* afw_lmdb_transaction_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structafw__lmdb__adaptor__session__s.html">afw_lmdb_adaptor_session_t</a> *&#160;</td>
+          <td class="paramname"><em>session</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Internal create a LMDB adaptor transaction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>Internal instance of adaptor session. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>New instance of LMDB adaptor transaction. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__internal_8c_source.html#l01257">1257</a> of file <a class="el" href="afw__lmdb__internal_8c_source.html">afw_lmdb_internal.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

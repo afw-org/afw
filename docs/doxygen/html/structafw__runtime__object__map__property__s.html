@@ -65,7 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">afw_runtime_object_map_property_s Struct Reference<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__runtime.html">Runtime objects adaptor</a></div></div>  </div>
+<div class="title">afw_runtime_object_map_property_s Struct Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__runtime.html">Runtime objects</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -117,7 +117,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <div class="textblock"><p>Struct for runtime object map property. </p>
 <p>Members dataType and accessor will be resolved when registered if NULL. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00103">103</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00099">99</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a787c989bbc68385af1e4378a48c3a98d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a787c989bbc68385af1e4378a48c3a98d">&#9670;&nbsp;</a></span></h2>
@@ -164,7 +164,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Accessor function or NULL. </p>
 <p>If accessor_name is not zero length and this is NULL, it will be resolved by <a class="el" href="group__afw__environment.html#ga80b843bd5dafea91577bc8e0d58e2c5b" title="Get the interface associated with a runtime object map.">afw_environment_get_runtime_value_accessor()</a> at register time. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00164">164</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00160">160</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Name of registered runtime value accessor function. </p>
 <p>If this is zero length, the default accessor is used. If offset is -1 (onGetValueCFunctionName was specified), this will always be NULL. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00155">155</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00151">151</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
 </div>
 </div>
@@ -202,7 +202,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Offset of bag value count afw_size_t for bag values or -1. </p>
 <p>Can be -1 for bag values as well if values are pointers and list of pointers in NULL terminated. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00120">120</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00116">116</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </div><div class="memdoc">
 <p>This is the dataTypeParameter. If dataType is list, 'object ' is stripped off since that can be determined by data_type_parameter_data_type. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00138">138</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00134">134</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
 </div>
 </div>
@@ -238,7 +238,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Offset of internal property value in internal object struct. </p>
 <p>If onGetValueCFunctionName is specified, this will be -1. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00112">112</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00108">108</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +248,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:18 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

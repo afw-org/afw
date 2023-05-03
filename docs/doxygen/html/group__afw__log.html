@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Locks</title>
+<title>Adaptive Framework: Log</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,51 +67,27 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Locks<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Log<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:afw__lock_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__lock_8h.html">afw_lock.h</a></td></tr>
-<tr class="memdesc:afw__lock_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Framework locks. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afw__log_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__log_8h.html">afw_log.h</a></td></tr>
 <tr class="memdesc:afw__log_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Framework afw_log interface helpers header. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__lock__s.html">afw_lock_s</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__lock__rw__s.html">afw_lock_rw_s</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structafw__log__priority__id__map__entry__s.html">afw_log_priority_id_map_entry_s</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga414c25137f36f0908a063aceb6d521fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga414c25137f36f0908a063aceb6d521fc">AFW_LOCK_BEGIN</a>(instance)</td></tr>
-<tr class="memdesc:ga414c25137f36f0908a063aceb6d521fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin a lock section.  <a href="group__afw__log.html#ga414c25137f36f0908a063aceb6d521fc">More...</a><br /></td></tr>
-<tr class="separator:ga414c25137f36f0908a063aceb6d521fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab251c19bc606585c0b5c2e8f00b1f277"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gab251c19bc606585c0b5c2e8f00b1f277">AFW_LOCK_END</a></td></tr>
-<tr class="memdesc:gab251c19bc606585c0b5c2e8f00b1f277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end a lock section.  <a href="group__afw__log.html#gab251c19bc606585c0b5c2e8f00b1f277">More...</a><br /></td></tr>
-<tr class="separator:gab251c19bc606585c0b5c2e8f00b1f277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad0e1f16b4831c2fa5a6c66f6437db2bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">AFW_LOCK_READ_BEGIN</a>(instance)</td></tr>
-<tr class="memdesc:gad0e1f16b4831c2fa5a6c66f6437db2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin a read lock section for pool.  <a href="group__afw__log.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">More...</a><br /></td></tr>
-<tr class="separator:gad0e1f16b4831c2fa5a6c66f6437db2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8964e87f4cda36d9a1fade3e98010624"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga8964e87f4cda36d9a1fade3e98010624">AFW_LOCK_READ_END</a></td></tr>
-<tr class="memdesc:ga8964e87f4cda36d9a1fade3e98010624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end a read lock section for pool.  <a href="group__afw__log.html#ga8964e87f4cda36d9a1fade3e98010624">More...</a><br /></td></tr>
-<tr class="separator:ga8964e87f4cda36d9a1fade3e98010624"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac0ea6fe8dc902e166409862cba9d000e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gac0ea6fe8dc902e166409862cba9d000e">AFW_LOCK_WRITE_BEGIN</a>(instance)</td></tr>
-<tr class="memdesc:gac0ea6fe8dc902e166409862cba9d000e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin a write lock section.  <a href="group__afw__log.html#gac0ea6fe8dc902e166409862cba9d000e">More...</a><br /></td></tr>
-<tr class="separator:gac0ea6fe8dc902e166409862cba9d000e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac2ee56bb8a8edb5b1cdd8f107b70719d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">AFW_LOCK_WRITE_END</a></td></tr>
-<tr class="memdesc:gac2ee56bb8a8edb5b1cdd8f107b70719d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end a write lock section.  <a href="group__afw__log.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">More...</a><br /></td></tr>
-<tr class="separator:gac2ee56bb8a8edb5b1cdd8f107b70719d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f8de8378589a5f1d7d4798b2cc8387b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga9f8de8378589a5f1d7d4798b2cc8387b">afw_log_release</a>&#160;&#160;&#160;<a class="el" href="group__afw__log__interface.html#ga887f7b74e8e48b65d39e298d9fc10819">afw_log_destroy</a></td></tr>
+<tr class="separator:ga9f8de8378589a5f1d7d4798b2cc8387b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3de54d35117972e2b2e529a595e36662"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga3de54d35117972e2b2e529a595e36662">AFW_LOG</a>(priority,  message,  xctx)</td></tr>
 <tr class="memdesc:ga3de54d35117972e2b2e529a595e36662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an afw_utf8_t message to environment's log.  <a href="group__afw__log.html#ga3de54d35117972e2b2e529a595e36662">More...</a><br /></td></tr>
 <tr class="separator:ga3de54d35117972e2b2e529a595e36662"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,73 +106,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gabfebd00830ff3abee15c1e6a33d1ccb3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structafw__log__priority__id__map__entry__s.html">afw_log_priority_id_map_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gabfebd00830ff3abee15c1e6a33d1ccb3">afw_log_priority_id_map_entry_t</a></td></tr>
 <tr class="separator:gabfebd00830ff3abee15c1e6a33d1ccb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:gaee5fb5bd856c070a090ff5f33f3df595"><td class="memItemLeft" align="right" valign="top"><a id="gaee5fb5bd856c070a090ff5f33f3df595"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gaee5fb5bd856c070a090ff5f33f3df595">afw_lock_type_t</a> { <br />
-&#160;&#160;<b>afw_lock_type_global_mutex</b>
-, <b>afw_lock_type_process_mutex</b>
-, <b>afw_lock_type_thread_mutex</b>
-, <b>afw_lock_type_thread_recursive_mutex</b>
-, <br />
-&#160;&#160;<b>afw_lock_type_thread_read_write</b>
-<br />
- }</td></tr>
-<tr class="memdesc:gaee5fb5bd856c070a090ff5f33f3df595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock type. <br /></td></tr>
-<tr class="separator:gaee5fb5bd856c070a090ff5f33f3df595"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaec0c6a61b884aa9aa3e139a095829af5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gaec0c6a61b884aa9aa3e139a095829af5">afw_lock_create</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *lock_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *brief, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *description, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> insure_recursive_lock, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:gaec0c6a61b884aa9aa3e139a095829af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a lock that will last for life of pool.  <a href="group__afw__log.html#gaec0c6a61b884aa9aa3e139a095829af5">More...</a><br /></td></tr>
-<tr class="separator:gaec0c6a61b884aa9aa3e139a095829af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5a1973c6704034bb14f5e9c7503dc5f5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga5a1973c6704034bb14f5e9c7503dc5f5">afw_lock_create_and_register</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *lock_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *brief, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *description, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> insure_recursive_lock, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga5a1973c6704034bb14f5e9c7503dc5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a lock and register in environment.  <a href="group__afw__log.html#ga5a1973c6704034bb14f5e9c7503dc5f5">More...</a><br /></td></tr>
-<tr class="separator:ga5a1973c6704034bb14f5e9c7503dc5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga47a62e858428290f5f1c44d19e983ddf"><td class="memItemLeft" align="right" valign="top"><a id="ga47a62e858428290f5f1c44d19e983ddf"></a>
-const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_lock_create_environment_lock</b> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *lock_id, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:ga47a62e858428290f5f1c44d19e983ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9c9d369e2e5a69f3c8c6c15ca74a8b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga9c9d369e2e5a69f3c8c6c15ca74a8b65">afw_lock_obtain</a> (const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga9c9d369e2e5a69f3c8c6c15ca74a8b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain lock.  <a href="group__afw__log.html#ga9c9d369e2e5a69f3c8c6c15ca74a8b65">More...</a><br /></td></tr>
-<tr class="separator:ga9c9d369e2e5a69f3c8c6c15ca74a8b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae92df9b31b6ea8ad2cc95d9ad0239439"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gae92df9b31b6ea8ad2cc95d9ad0239439">afw_lock_obtain_debug</a> (const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:gae92df9b31b6ea8ad2cc95d9ad0239439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of obtain lock.  <a href="group__afw__log.html#gae92df9b31b6ea8ad2cc95d9ad0239439">More...</a><br /></td></tr>
-<tr class="separator:gae92df9b31b6ea8ad2cc95d9ad0239439"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga48379623a977bafd3d509781bd415b4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga48379623a977bafd3d509781bd415b4a">afw_lock_release</a> (const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga48379623a977bafd3d509781bd415b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release lock.  <a href="group__afw__log.html#ga48379623a977bafd3d509781bd415b4a">More...</a><br /></td></tr>
-<tr class="separator:ga48379623a977bafd3d509781bd415b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga72846b30f9c50eb95452f73d1eabe60a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga72846b30f9c50eb95452f73d1eabe60a">afw_lock_release_debug</a> (const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:ga72846b30f9c50eb95452f73d1eabe60a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of release lock.  <a href="group__afw__log.html#ga72846b30f9c50eb95452f73d1eabe60a">More...</a><br /></td></tr>
-<tr class="separator:ga72846b30f9c50eb95452f73d1eabe60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8c2f2de3835c05932b82386f53dd2f17"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga8c2f2de3835c05932b82386f53dd2f17">afw_lock_create_rw</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *lock_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *brief, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *description, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga8c2f2de3835c05932b82386f53dd2f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a read/write lock that will last for life of pool.  <a href="group__afw__log.html#ga8c2f2de3835c05932b82386f53dd2f17">More...</a><br /></td></tr>
-<tr class="separator:ga8c2f2de3835c05932b82386f53dd2f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga313bb46a9845baec6009eab609a0ab28"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga313bb46a9845baec6009eab609a0ab28">afw_lock_create_rw_and_register</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *lock_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *brief, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *description, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga313bb46a9845baec6009eab609a0ab28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a read/write lock and register in environment.  <a href="group__afw__log.html#ga313bb46a9845baec6009eab609a0ab28">More...</a><br /></td></tr>
-<tr class="separator:ga313bb46a9845baec6009eab609a0ab28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabac2e03fea01b187229db0b8a25d16d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gabac2e03fea01b187229db0b8a25d16d0">afw_lock_read_obtain</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:gabac2e03fea01b187229db0b8a25d16d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain read lock.  <a href="group__afw__log.html#gabac2e03fea01b187229db0b8a25d16d0">More...</a><br /></td></tr>
-<tr class="separator:gabac2e03fea01b187229db0b8a25d16d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9196d9d2877f84ff3de5776b76d035c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga9196d9d2877f84ff3de5776b76d035c7">afw_lock_read_obtain_debug</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:ga9196d9d2877f84ff3de5776b76d035c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of obtain read lock.  <a href="group__afw__log.html#ga9196d9d2877f84ff3de5776b76d035c7">More...</a><br /></td></tr>
-<tr class="separator:ga9196d9d2877f84ff3de5776b76d035c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga769ab0711ca9e75159cd4d8dbd29fa54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga769ab0711ca9e75159cd4d8dbd29fa54">afw_lock_read_release</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga769ab0711ca9e75159cd4d8dbd29fa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release read lock.  <a href="group__afw__log.html#ga769ab0711ca9e75159cd4d8dbd29fa54">More...</a><br /></td></tr>
-<tr class="separator:ga769ab0711ca9e75159cd4d8dbd29fa54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac5b24a0286b781697ba82b22b16f8ed6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gac5b24a0286b781697ba82b22b16f8ed6">afw_lock_read_release_debug</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:gac5b24a0286b781697ba82b22b16f8ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of release read lock.  <a href="group__afw__log.html#gac5b24a0286b781697ba82b22b16f8ed6">More...</a><br /></td></tr>
-<tr class="separator:gac5b24a0286b781697ba82b22b16f8ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8a3f88dcf6f8beaa5aa912fd72348010"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga8a3f88dcf6f8beaa5aa912fd72348010">afw_lock_write_obtain</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga8a3f88dcf6f8beaa5aa912fd72348010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain write lock.  <a href="group__afw__log.html#ga8a3f88dcf6f8beaa5aa912fd72348010">More...</a><br /></td></tr>
-<tr class="separator:ga8a3f88dcf6f8beaa5aa912fd72348010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga11db21d610787539577a9df958094db8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga11db21d610787539577a9df958094db8">afw_lock_write_obtain_debug</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:ga11db21d610787539577a9df958094db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of obtain write lock.  <a href="group__afw__log.html#ga11db21d610787539577a9df958094db8">More...</a><br /></td></tr>
-<tr class="separator:ga11db21d610787539577a9df958094db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8694428f281998267548036ac50300f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga8694428f281998267548036ac50300f6">afw_lock_write_release</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga8694428f281998267548036ac50300f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release write lock.  <a href="group__afw__log.html#ga8694428f281998267548036ac50300f6">More...</a><br /></td></tr>
-<tr class="separator:ga8694428f281998267548036ac50300f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab30fa2f2fc7ec90540bba12e77632de7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#gab30fa2f2fc7ec90540bba12e77632de7">afw_lock_write_release_debug</a> (const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *source_z)</td></tr>
-<tr class="memdesc:gab30fa2f2fc7ec90540bba12e77632de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug version of release write lock.  <a href="group__afw__log.html#gab30fa2f2fc7ec90540bba12e77632de7">More...</a><br /></td></tr>
-<tr class="separator:gab30fa2f2fc7ec90540bba12e77632de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8e9aa91b1ad1f660a90209afca0dcd62"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__afw__log.html#gabfebd00830ff3abee15c1e6a33d1ccb3">afw_log_priority_id_map_entry_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga8e9aa91b1ad1f660a90209afca0dcd62">afw_log_get_priority_id_map</a> ()</td></tr>
 <tr class="separator:ga8e9aa91b1ad1f660a90209afca0dcd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6e7734be91f32db4df4e93c5289e83c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gae106573d9765e938905369f32d52322a">afw_log_priority_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__log.html#ga6e7734be91f32db4df4e93c5289e83c3">afw_log_priority_id_to_priority</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *priority_id)</td></tr>
@@ -240,7 +151,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 <tr class="separator:ga307df0c9e1e1b8319c27e5e34ad2dcda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Adaptive Framework Locks.</p>
 <p>Adaptive Framework Log Support.</p>
 <p>Log priorities are defined in enum afw_log_priority_t in <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>. The AFW_LOG macros accept the last part of the enum value name as the priority parameter.</p>
 <p>Log priority trace1-8 are not logged, but instead goes to stderr or the configured trace destination.</p>
@@ -283,180 +193,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 <td class="markdownTableBodyNone">trace8   </td><td class="markdownTableBodyNone">Trace level 8 message   </td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga414c25137f36f0908a063aceb6d521fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga414c25137f36f0908a063aceb6d521fc">&#9670;&nbsp;</a></span>AFW_LOCK_BEGIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_BEGIN</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">instance</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structafw__lock__s.html">afw_lock_t</a> *this_LOCK = instance; \</div>
-<div class="line">afw_lock_obtain(this_LOCK, xctx); \</div>
-<div class="line">AFW_TRY</div>
-<div class="ttc" id="astructafw__lock__s_html"><div class="ttname"><a href="structafw__lock__s.html">afw_lock_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lock_8h_source.html#l00048">afw_lock.h:48</a></div></div>
-</div><!-- fragment -->
-<p>Macro to begin a lock section. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>lock.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The variable name of the current xctx must be named xctx.</p>
-<p>Usage:</p>
-<p><a class="el" href="group__afw__log.html#ga414c25137f36f0908a063aceb6d521fc" title="Macro to begin a lock section.">AFW_LOCK_BEGIN(instance)</a> { ... code } <a class="el" href="group__afw__log.html#gab251c19bc606585c0b5c2e8f00b1f277" title="Macro to end a lock section.">AFW_LOCK_END(instance)</a>; </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00196">196</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
-<a id="gab251c19bc606585c0b5c2e8f00b1f277"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab251c19bc606585c0b5c2e8f00b1f277">&#9670;&nbsp;</a></span>AFW_LOCK_END</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_END</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a> { \</div>
-<div class="line">    afw_lock_release(this_LOCK, xctx); \</div>
-<div class="line">} \</div>
-<div class="line">AFW_ENDTRY</div>
-<div class="ttc" id="agroup__afw__error_html_ga09be8438b41e77dd92a388cd3bc8073e"><div class="ttname"><a href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a></div><div class="ttdeci">#define AFW_FINALLY</div><div class="ttdoc">Always executed regardless of error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00706">afw_error.h:706</a></div></div>
-</div><!-- fragment -->
-<p>Macro to end a lock section. </p>
-<p>See AFW_LOCK_BEGIN for usage. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00207">207</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
-<a id="gad0e1f16b4831c2fa5a6c66f6437db2bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad0e1f16b4831c2fa5a6c66f6437db2bf">&#9670;&nbsp;</a></span>AFW_LOCK_READ_BEGIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_READ_BEGIN</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">instance</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structafw__lock__rw__s.html">afw_lock_rw_t</a> *this_LOCK = instance; \</div>
-<div class="line">    afw_lock_read_obtain(this_LOCK, xctx); \</div>
-<div class="line">AFW_TRY</div>
-<div class="ttc" id="astructafw__lock__rw__s_html"><div class="ttname"><a href="structafw__lock__rw__s.html">afw_lock_rw_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__lock_8h_source.html#l00074">afw_lock.h:74</a></div></div>
-</div><!-- fragment -->
-<p>Macro to begin a read lock section for pool. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The variable name of the current xctx must be named xctx.</p>
-<p>Usage:</p>
-<p><a class="el" href="group__afw__log.html#gad0e1f16b4831c2fa5a6c66f6437db2bf" title="Macro to begin a read lock section for pool.">AFW_LOCK_READ_BEGIN(instance, xctx)</a> { ... code that uses pool } AFW_LOCK_READ_END; </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00314">314</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
-<a id="ga8964e87f4cda36d9a1fade3e98010624"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8964e87f4cda36d9a1fade3e98010624">&#9670;&nbsp;</a></span>AFW_LOCK_READ_END</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_READ_END</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a> { \</div>
-<div class="line">    afw_lock_read_release(this_LOCK, xctx); \</div>
-<div class="line">} \</div>
-<div class="line">AFW_ENDTRY</div>
-</div><!-- fragment -->
-<p>Macro to end a read lock section for pool. </p>
-<p>See AFW_LOCK_READ_BEGIN for usage. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00325">325</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
-<a id="gac0ea6fe8dc902e166409862cba9d000e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac0ea6fe8dc902e166409862cba9d000e">&#9670;&nbsp;</a></span>AFW_LOCK_WRITE_BEGIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_WRITE_BEGIN</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">instance</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structafw__lock__rw__s.html">afw_lock_rw_t</a> *this_LOCK = instance; \</div>
-<div class="line">    afw_lock_write_obtain(this_LOCK, xctx); \</div>
-<div class="line">AFW_TRY</div>
-</div><!-- fragment -->
-<p>Macro to begin a write lock section. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The variable name of the current xctx must be named xctx.</p>
-<p>Usage:</p>
-<p><a class="el" href="group__afw__log.html#gac0ea6fe8dc902e166409862cba9d000e" title="Macro to begin a write lock section.">AFW_LOCK_WRITE_BEGIN(instance, xctx)</a> { ... code that uses pool } AFW_LOCK_WRITE_END; </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00405">405</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
-<a id="gac2ee56bb8a8edb5b1cdd8f107b70719d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac2ee56bb8a8edb5b1cdd8f107b70719d">&#9670;&nbsp;</a></span>AFW_LOCK_WRITE_END</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_LOCK_WRITE_END</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="group__afw__error.html#ga09be8438b41e77dd92a388cd3bc8073e">AFW_FINALLY</a> { \</div>
-<div class="line">    afw_lock_write_release(this_LOCK, xctx); \</div>
-<div class="line">} \</div>
-<div class="line">AFW_ENDTRY</div>
-</div><!-- fragment -->
-<p>Macro to end a write lock section. </p>
-<p>See AFW_LOCK_WRITE_BEGIN for usage. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8h_source.html#l00416">416</a> of file <a class="el" href="afw__lock_8h_source.html">afw_lock.h</a>.</p>
-
-</div>
-</div>
 <a id="ga3de54d35117972e2b2e529a595e36662"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3de54d35117972e2b2e529a595e36662">&#9670;&nbsp;</a></span>AFW_LOG</h2>
 
@@ -490,7 +226,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__log__interface.html#gaefb3bf30ae057de74c3edd5aaf91a4b3">afw_log_write</a>(xctx-&gt;env-&gt;log, afw_log_priority_ ## priority, \</div>
 <div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message, xctx)</div>
-<div class="ttc" id="agroup__afw__common_html_gaef2aeddb18b2cfc6672e2b32c4404f0c"><div class="ttname"><a href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a></div><div class="ttdeci">#define AFW__FILE_LINE__</div><div class="ttdoc">file:line</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00147">afw_common.h:147</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gaef2aeddb18b2cfc6672e2b32c4404f0c"><div class="ttname"><a href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a></div><div class="ttdeci">#define AFW__FILE_LINE__</div><div class="ttdoc">file:line</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00148">afw_common.h:148</a></div></div>
 <div class="ttc" id="agroup__afw__log__interface_html_gaefb3bf30ae057de74c3edd5aaf91a4b3"><div class="ttname"><a href="group__afw__log__interface.html#gaefb3bf30ae057de74c3edd5aaf91a4b3">afw_log_write</a></div><div class="ttdeci">#define afw_log_write(instance, priority, source_z, message, xctx)</div><div class="ttdoc">Call method write of interface afw_log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03087">afw_interface.h:3087</a></div></div>
 </div><!-- fragment -->
 <p>Log an afw_utf8_t message to environment's log. </p>
@@ -503,7 +239,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00164">164</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00158">158</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -546,7 +282,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__log.html#ga0acac0f6fc692744dce815e7f16a1b08">afw_log_write_fz</a>(xctx-&gt;env-&gt;log, afw_log_priority_ ## priority, \</div>
 <div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, xctx, format_z, __VA_ARGS__)</div>
-<div class="ttc" id="agroup__afw__log_html_ga0acac0f6fc692744dce815e7f16a1b08"><div class="ttname"><a href="group__afw__log.html#ga0acac0f6fc692744dce815e7f16a1b08">afw_log_write_fz</a></div><div class="ttdeci">void afw_log_write_fz(const afw_log_t *instance, afw_log_priority_t priority, const afw_utf8_z_t *source_z, afw_xctx_t *xctx, const afw_utf8_z_t *format_z,...)</div><div class="ttdoc">Log an message using a printf style format and parameters.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8h_source.html#l00255">afw_log.h:255</a></div></div>
+<div class="ttc" id="agroup__afw__log_html_ga0acac0f6fc692744dce815e7f16a1b08"><div class="ttname"><a href="group__afw__log.html#ga0acac0f6fc692744dce815e7f16a1b08">afw_log_write_fz</a></div><div class="ttdeci">void afw_log_write_fz(const afw_log_t *instance, afw_log_priority_t priority, const afw_utf8_z_t *source_z, afw_xctx_t *xctx, const afw_utf8_z_t *format_z,...)</div><div class="ttdoc">Log an message using a printf style format and parameters.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8h_source.html#l00249">afw_log.h:249</a></div></div>
 </div><!-- fragment -->
 <p>Log an message to environment's log using a printf style format and parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -559,7 +295,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00198">198</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00192">192</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+
+</div>
+</div>
+<a id="ga9f8de8378589a5f1d7d4798b2cc8387b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9f8de8378589a5f1d7d4798b2cc8387b">&#9670;&nbsp;</a></span>afw_log_release</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define afw_log_release&#160;&#160;&#160;<a class="el" href="group__afw__log__interface.html#ga887f7b74e8e48b65d39e298d9fc10819">afw_log_destroy</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000219">Todo:</a></b></dt><dd>FIXME: In middle of implementation. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00056">56</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -615,7 +368,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00186">186</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00180">180</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -652,7 +405,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__log.html#ga4eb0acdaea19acad39589ce1b4960f94">afw_log_write_z</a>(xctx-&gt;env-&gt;log, afw_log_priority_ ## priority, \</div>
 <div class="line">        <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>, message_z, xctx)</div>
-<div class="ttc" id="agroup__afw__log_html_ga4eb0acdaea19acad39589ce1b4960f94"><div class="ttname"><a href="group__afw__log.html#ga4eb0acdaea19acad39589ce1b4960f94">afw_log_write_z</a></div><div class="ttdeci">void afw_log_write_z(const afw_log_t *instance, afw_log_priority_t priority, const afw_utf8_z_t *source_z, const afw_utf8_z_t *message_z, afw_xctx_t *xctx)</div><div class="ttdoc">Log an afw_utf8_z_t message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8h_source.html#l00212">afw_log.h:212</a></div></div>
+<div class="ttc" id="agroup__afw__log_html_ga4eb0acdaea19acad39589ce1b4960f94"><div class="ttname"><a href="group__afw__log.html#ga4eb0acdaea19acad39589ce1b4960f94">afw_log_write_z</a></div><div class="ttdeci">void afw_log_write_z(const afw_log_t *instance, afw_log_priority_t priority, const afw_utf8_z_t *source_z, const afw_utf8_z_t *message_z, afw_xctx_t *xctx)</div><div class="ttdoc">Log an afw_utf8_z_t message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8h_source.html#l00206">afw_log.h:206</a></div></div>
 </div><!-- fragment -->
 <p>Log an afw_utf8_z_t message to environment's log. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -664,7 +417,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00174">174</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00168">168</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -685,758 +438,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaec0c6a61b884aa9aa3e139a095829af5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaec0c6a61b884aa9aa3e139a095829af5">&#9670;&nbsp;</a></span>afw_lock_create()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a>* afw_lock_create </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>lock_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>brief</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>description</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td>
-          <td class="paramname"><em>insure_recursive_lock</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a lock that will last for life of pool. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lock_id</td><td></td></tr>
-    <tr><td class="paramname">insure_recursive_lock</td><td>true insures this is a recursive lock. If false the lock will be recursive only if it's the platform default. </td></tr>
-    <tr><td class="paramname">p</td><td>for lock. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00092">92</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga5a1973c6704034bb14f5e9c7503dc5f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5a1973c6704034bb14f5e9c7503dc5f5">&#9670;&nbsp;</a></span>afw_lock_create_and_register()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a>* afw_lock_create_and_register </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>lock_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>brief</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>description</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td>
-          <td class="paramname"><em>insure_recursive_lock</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a lock and register in environment. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lock_id</td><td>is required </td></tr>
-    <tr><td class="paramname">insure_recursive_lock</td><td>true insures this is a recursive lock. If false the lock will be recursive only if it's the platform default. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00073">73</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga8c2f2de3835c05932b82386f53dd2f17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8c2f2de3835c05932b82386f53dd2f17">&#9670;&nbsp;</a></span>afw_lock_create_rw()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a>* afw_lock_create_rw </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>lock_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>brief</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>description</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a read/write lock that will last for life of pool. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lock_id</td><td></td></tr>
-    <tr><td class="paramname">p</td><td>for lock. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00192">192</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga313bb46a9845baec6009eab609a0ab28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga313bb46a9845baec6009eab609a0ab28">&#9670;&nbsp;</a></span>afw_lock_create_rw_and_register()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a>* afw_lock_create_rw_and_register </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>lock_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>brief</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>description</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a read/write lock and register in environment. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lock_id</td><td></td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00175">175</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga9c9d369e2e5a69f3c8c6c15ca74a8b65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9c9d369e2e5a69f3c8c6c15ca74a8b65">&#9670;&nbsp;</a></span>afw_lock_obtain()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_obtain </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Obtain lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Call <a class="el" href="group__afw__log.html#ga48379623a977bafd3d509781bd415b4a" title="Release lock.">afw_lock_release()</a> to release the lock. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00254">254</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="gae92df9b31b6ea8ad2cc95d9ad0239439"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae92df9b31b6ea8ad2cc95d9ad0239439">&#9670;&nbsp;</a></span>afw_lock_obtain_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_obtain_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of obtain lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_read() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00273">273</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="gabac2e03fea01b187229db0b8a25d16d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabac2e03fea01b187229db0b8a25d16d0">&#9670;&nbsp;</a></span>afw_lock_read_obtain()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_read_obtain </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Obtain read lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Call afw_lock_unlock_read() to release the lock. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00328">328</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga9196d9d2877f84ff3de5776b76d035c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9196d9d2877f84ff3de5776b76d035c7">&#9670;&nbsp;</a></span>afw_lock_read_obtain_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_read_obtain_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of obtain read lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_read() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00347">347</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga769ab0711ca9e75159cd4d8dbd29fa54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga769ab0711ca9e75159cd4d8dbd29fa54">&#9670;&nbsp;</a></span>afw_lock_read_release()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_read_release </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Release read lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00366">366</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="gac5b24a0286b781697ba82b22b16f8ed6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac5b24a0286b781697ba82b22b16f8ed6">&#9670;&nbsp;</a></span>afw_lock_read_release_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_read_release_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of release read lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_unlock_read() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00385">385</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga48379623a977bafd3d509781bd415b4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga48379623a977bafd3d509781bd415b4a">&#9670;&nbsp;</a></span>afw_lock_release()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_release </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Release lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00291">291</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga72846b30f9c50eb95452f73d1eabe60a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga72846b30f9c50eb95452f73d1eabe60a">&#9670;&nbsp;</a></span>afw_lock_release_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_release_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gab3ed45f70573bc88775c83d4167a8f3e">afw_lock_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of release lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_unlock_read() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00310">310</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga8a3f88dcf6f8beaa5aa912fd72348010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8a3f88dcf6f8beaa5aa912fd72348010">&#9670;&nbsp;</a></span>afw_lock_write_obtain()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_write_obtain </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Obtain write lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Call afw_lock_unlock_write() to release the lock. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00403">403</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga11db21d610787539577a9df958094db8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga11db21d610787539577a9df958094db8">&#9670;&nbsp;</a></span>afw_lock_write_obtain_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_write_obtain_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of obtain write lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_write() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00422">422</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="ga8694428f281998267548036ac50300f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8694428f281998267548036ac50300f6">&#9670;&nbsp;</a></span>afw_lock_write_release()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_write_release </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Release write lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>afw_lock_unlock_write() must be called from the thread that has the pool locked for write. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00438">438</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
-<a id="gab30fa2f2fc7ec90540bba12e77632de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab30fa2f2fc7ec90540bba12e77632de7">&#9670;&nbsp;</a></span>afw_lock_write_release_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_lock_write_release_debug </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gad7708c1d9222ca828c8386007dd8de15">afw_lock_rw_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *&#160;</td>
-          <td class="paramname"><em>source_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Debug version of release write lock. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of read write lock or NULL to ignore. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-    <tr><td class="paramname">source_z</td><td><a href="file:line">file:line</a> where function called. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>afw_lock_unlock_write() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__lock_8c_source.html#l00457">457</a> of file <a class="el" href="afw__lock_8c_source.html">afw_lock.c</a>.</p>
-
-</div>
-</div>
 <a id="ga4e70189a320b43908342377563c7ee30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga4e70189a320b43908342377563c7ee30">&#9670;&nbsp;</a></span>afw_log_add_to_environment()</h2>
 
@@ -1471,8 +472,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000207">Todo:</a></b></dt><dd>FIXME: Need to use a "log anchor" with id in it. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000208">Todo:</a></b></dt><dd>FIXME: runtime object might be accessing on another thread. afw_log_destroy(e-&gt;log, xctx);</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000212">Todo:</a></b></dt><dd>FIXME: Need to use a "log anchor" with id in it. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000213">Todo:</a></b></dt><dd>FIXME: runtime object might be accessing on another thread. afw_log_destroy(e-&gt;log, xctx);</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__log_8c_source.html#l00290">290</a> of file <a class="el" href="afw__log_8c_source.html">afw_log.c</a>.</p>
 
@@ -1585,7 +586,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00130">130</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00124">124</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -1614,7 +615,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>priority_mask. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00105">105</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00099">99</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -1690,7 +691,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00144">144</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00138">138</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -1741,7 +742,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>priority_mask. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00117">117</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00111">111</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -1808,7 +809,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00255">255</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00249">249</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
@@ -1935,14 +936,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_log_set_mask</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00212">212</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__log_8h_source.html#l00206">206</a> of file <a class="el" href="afw__log_8h_source.html">afw_log.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

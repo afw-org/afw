@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Common support for afw_content_type interface implementations</title>
+<title>Adaptive Framework: Content type</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">Common support for afw_content_type interface implementations<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Content type<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -138,7 +138,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result of test. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00111">111</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00104">104</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
 
 </div>
 </div>
@@ -186,9 +186,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__content__type.html#ga1e5aaf93f34204ab74d224f715a21e1c">afw_content_type_value_to_raw</a>(instance, \</div>
-<div class="line">        <a class="code" href="group__afw__core__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a>(<span class="keywordtype">object</span>, p, xctx), options, p, xctx)</div>
+<div class="line">        <a class="code" href="group__afw__c__api__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a>(<span class="keywordtype">object</span>, p, xctx), options, p, xctx)</div>
+<div class="ttc" id="agroup__afw__c__api__data__type__object_html_gaa2a9bd355eee4bd6d8cab45b02d86ac1"><div class="ttname"><a href="group__afw__c__api__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a></div><div class="ttdeci">afw_value_create_object(const afw_object_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create function for unmanaged data type object value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00267">afw_data_type_object_binding.c:267</a></div></div>
 <div class="ttc" id="agroup__afw__content__type_html_ga1e5aaf93f34204ab74d224f715a21e1c"><div class="ttname"><a href="group__afw__content__type.html#ga1e5aaf93f34204ab74d224f715a21e1c">afw_content_type_value_to_raw</a></div><div class="ttdeci">const afw_memory_t * afw_content_type_value_to_raw(const afw_content_type_t *instance, const afw_value_t *value, const afw_object_options_t *options, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Convert value to the raw in specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__content__type_8c_source.html#l00047">afw_content_type.c:47</a></div></div>
-<div class="ttc" id="agroup__afw__core__data__type__object_html_gaa2a9bd355eee4bd6d8cab45b02d86ac1"><div class="ttname"><a href="group__afw__core__data__type__object.html#gaa2a9bd355eee4bd6d8cab45b02d86ac1">afw_value_create_object</a></div><div class="ttdeci">afw_value_create_object(const afw_object_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create function for unmanaged data type object value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__object__binding_8c_source.html#l00267">afw_data_type_object_binding.c:267</a></div></div>
 </div><!-- fragment -->
 <p>Convert object to the raw in specified pool. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -203,7 +203,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>converted raw encoded memory. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00101">101</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00094">94</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
 
 </div>
 </div>
@@ -419,7 +419,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000075">Todo:</a></b></dt><dd>FIXME: Decide what to do in dynamo_db code. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00049">49</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00042">42</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
 
 </div>
 </div>
@@ -462,14 +462,14 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000074">Todo:</a></b></dt><dd>FIXME: Decide what to do in dynamo_db code. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00038">38</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__content__type_8h_source.html#l00031">31</a> of file <a class="el" href="afw__content__type_8h_source.html">afw_content_type.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

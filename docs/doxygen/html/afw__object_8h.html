@@ -72,7 +72,7 @@ $(function() {
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_object.h File Reference<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__object.html">Common support for afw_object interface implementations</a></div></div>  </div>
+<div class="title">afw_object.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__object.html">Object</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -229,9 +229,9 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga400d5d54a4587cba5921441222e64f5a">AFW_OBJECT_IS_CORE_TYPE_ID</a>(ID)&#160;&#160;&#160;    <a class="el" href="group__afw__utf8.html#gadc2de09185a81a01be3df032aca2460f">afw_utf8_starts_with</a>((ID), &amp;afw_s__Adaptive)</td></tr>
 <tr class="memdesc:ga400d5d54a4587cba5921441222e64f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core type ids starting with _Adaptive. <br /></td></tr>
 <tr class="separator:ga400d5d54a4587cba5921441222e64f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0703bfad50b71e369763c6375e56a659"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga0703bfad50b71e369763c6375e56a659">afw_object_is_immutable</a>(object,  xctx)&#160;&#160;&#160;(<a class="el" href="group__afw__object__interface.html#gafcb3c5a140e48ea3ebe73ef891dda6d3">afw_object_get_setter</a>(object, xctx) == NULL)</td></tr>
-<tr class="memdesc:ga0703bfad50b71e369763c6375e56a659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if object is immutable.  <a href="group__afw__object.html#ga0703bfad50b71e369763c6375e56a659">More...</a><br /></td></tr>
-<tr class="separator:ga0703bfad50b71e369763c6375e56a659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c9e04a7578bdb363d279cf11394dcc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga4c9e04a7578bdb363d279cf11394dcc8">afw_object_is_immutable</a>(instance,  xctx)&#160;&#160;&#160;(<a class="el" href="group__afw__object__interface.html#gafcb3c5a140e48ea3ebe73ef891dda6d3">afw_object_get_setter</a>(instance, xctx) == NULL)</td></tr>
+<tr class="memdesc:ga4c9e04a7578bdb363d279cf11394dcc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if object is immutable.  <a href="group__afw__object.html#ga4c9e04a7578bdb363d279cf11394dcc8">More...</a><br /></td></tr>
+<tr class="separator:ga4c9e04a7578bdb363d279cf11394dcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7e7cf41d9c90ec9be98353de9ccdffc2"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_OBJECT_IMPL_ERROR_OBJECT_NOT_ENTITY</b>&#160;&#160;&#160;<a class="el" href="group__afw__error.html#gae3ef33256454849b39a6e9710f519c8b">AFW_THROW_ERROR_Z</a>(general, &quot;Object is not an entity&quot;, xctx)</td></tr>
 <tr class="separator:ga7e7cf41d9c90ec9be98353de9ccdffc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -280,12 +280,6 @@ Macros</h2></td></tr>
 <tr class="memitem:ga632736d9fd1da49c5aa9774a414411e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga632736d9fd1da49c5aa9774a414411e1">afw_object_create</a>(p,  xctx)</td></tr>
 <tr class="memdesc:ga632736d9fd1da49c5aa9774a414411e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an empty unmanaged object in memory.  <a href="group__afw__object.html#ga632736d9fd1da49c5aa9774a414411e1">More...</a><br /></td></tr>
 <tr class="separator:ga632736d9fd1da49c5aa9774a414411e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac195af94f162de8e885695177e16bbd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#gac195af94f162de8e885695177e16bbd6">afw_object_create_clone_on_set</a>(p,  xctx)</td></tr>
-<tr class="memdesc:gac195af94f162de8e885695177e16bbd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an empty entity object in its own pool and clone values on set.  <a href="group__afw__object.html#gac195af94f162de8e885695177e16bbd6">More...</a><br /></td></tr>
-<tr class="separator:gac195af94f162de8e885695177e16bbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafa1c7dd4e7a7fcaedc391372b0f87e08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#gafa1c7dd4e7a7fcaedc391372b0f87e08">afw_object_create_ceed_and_clone_on_set</a>(p,  xctx)</td></tr>
-<tr class="memdesc:gafa1c7dd4e7a7fcaedc391372b0f87e08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an empty managed object in memory that cedes the specified pool and clones values set in the object to that pool.  <a href="group__afw__object.html#gafa1c7dd4e7a7fcaedc391372b0f87e08">More...</a><br /></td></tr>
-<tr class="separator:gafa1c7dd4e7a7fcaedc391372b0f87e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga52f9b854d3a8f05cd252bbf2bf06c444"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga52f9b854d3a8f05cd252bbf2bf06c444">AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED</a>(result,  embedding_object,  property_name,  always_create_unmanaged,  cede_p,  entity_p,  xctx)</td></tr>
 <tr class="memdesc:ga52f9b854d3a8f05cd252bbf2bf06c444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro to create a new entity or embedded object.  <a href="group__afw__object.html#ga52f9b854d3a8f05cd252bbf2bf06c444">More...</a><br /></td></tr>
 <tr class="separator:ga52f9b854d3a8f05cd252bbf2bf06c444"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -408,7 +402,7 @@ Functions</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

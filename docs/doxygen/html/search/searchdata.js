@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "@abcdefghijlmnopqrstuvwxy",
-  1: "adfhilprsw",
+  0: "(@abcdefghijlmnopqrstuvwxy",
+  1: "afis",
   2: "anw",
   3: "aip",
   4: "abcdefghijlmnopqrstuvwxy",
@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "a",
   7: "a",
   8: "ai",
-  9: "abcdefhijlmnopqrstuvxy",
+  9: "(abcdefhijlmnopqrstuvwxy",
   10: "@abcdeghilmnprst"
 };
 

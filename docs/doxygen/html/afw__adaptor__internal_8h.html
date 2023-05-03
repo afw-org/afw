@@ -72,7 +72,7 @@ $(function() {
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_adaptor_internal.h File Reference</div>  </div>
+<div class="title">afw_adaptor_internal.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__internal.html">C Internal</a> &raquo; <a class="el" href="group__afw__adaptor__internal.html">Adaptor</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -98,220 +98,48 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ad236b41742e653159b51435813edcd61"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_ADAPTOR_SCOPE_INTERNAL</b>(xctx)</td></tr>
-<tr class="separator:ad236b41742e653159b51435813edcd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad236b41742e653159b51435813edcd61"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_ADAPTOR_SCOPE_INTERNAL</b>(xctx)</td></tr>
+<tr class="separator:gad236b41742e653159b51435813edcd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a747e6123833339ee6ac57f7573a70ced"><td class="memItemLeft" align="right" valign="top"><a id="a747e6123833339ee6ac57f7573a70ced"></a>
-typedef struct <a class="el" href="structafw__adaptor__internal__transaction__s.html">afw_adaptor_internal_transaction_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__adaptor__internal_8h.html#a747e6123833339ee6ac57f7573a70ced">afw_adaptor_internal_transaction_t</a></td></tr>
-<tr class="memdesc:a747e6123833339ee6ac57f7573a70ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptor id and associated transaction. <br /></td></tr>
-<tr class="separator:a747e6123833339ee6ac57f7573a70ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga747e6123833339ee6ac57f7573a70ced"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structafw__adaptor__internal__transaction__s.html">afw_adaptor_internal_transaction_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__internal.html#ga747e6123833339ee6ac57f7573a70ced">afw_adaptor_internal_transaction_t</a></td></tr>
+<tr class="memdesc:ga747e6123833339ee6ac57f7573a70ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptor id and associated transaction. <br /></td></tr>
+<tr class="separator:ga747e6123833339ee6ac57f7573a70ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a811ed623a26efd00bb1c99621cc9e0e6"><td class="memItemLeft" align="right" valign="top"><a id="a811ed623a26efd00bb1c99621cc9e0e6"></a>
+<tr class="memitem:ga811ed623a26efd00bb1c99621cc9e0e6"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="group__afw__common.html#gaae4009da55d7c713321d70d70c7a71a8">afw_adaptor_internal_cache_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_get_cache</b> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a811ed623a26efd00bb1c99621cc9e0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271bda69c4d0e4561325b03f154f20cd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__adaptor__internal_8h.html#a271bda69c4d0e4561325b03f154f20cd">afw_adaptor_internal_journal_get_entry</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a271bda69c4d0e4561325b03f154f20cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18802b0ee96941080f0a7f16e311ae26"><td class="memItemLeft" align="right" valign="top"><a id="a18802b0ee96941080f0a7f16e311ae26"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_journal_prologue</b> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a18802b0ee96941080f0a7f16e311ae26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a950739d7ebfb1ce3b90b8e5130ff85c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__adaptor__internal_8h.html#a950739d7ebfb1ce3b90b8e5130ff85c0">afw_adaptor_internal_journal_epilogue</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> modification, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:a950739d7ebfb1ce3b90b8e5130ff85c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a5ac3a2e9979b2e45710fdaad4eaf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__adaptor__internal_8h.html#af6a5ac3a2e9979b2e45710fdaad4eaf8">afw_adaptor_internal_process_object_from_adaptor</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> **adapted_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> **view, <a class="el" href="structafw__adaptor__internal__object__cb__context__t.html">afw_adaptor_internal_object_cb_context_t</a> *ctx, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:af6a5ac3a2e9979b2e45710fdaad4eaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad40930ef7268a9aa80ff383090bb2186"><td class="memItemLeft" align="right" valign="top"><a id="ad40930ef7268a9aa80ff383090bb2186"></a>
+<tr class="separator:ga811ed623a26efd00bb1c99621cc9e0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga271bda69c4d0e4561325b03f154f20cd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__internal.html#ga271bda69c4d0e4561325b03f154f20cd">afw_adaptor_internal_journal_get_entry</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga271bda69c4d0e4561325b03f154f20cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18802b0ee96941080f0a7f16e311ae26"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_journal_prologue</b> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga18802b0ee96941080f0a7f16e311ae26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga950739d7ebfb1ce3b90b8e5130ff85c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__internal.html#ga950739d7ebfb1ce3b90b8e5130ff85c0">afw_adaptor_internal_journal_epilogue</a> (const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *journal_entry, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> modification, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:ga950739d7ebfb1ce3b90b8e5130ff85c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6a5ac3a2e9979b2e45710fdaad4eaf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__internal.html#gaf6a5ac3a2e9979b2e45710fdaad4eaf8">afw_adaptor_internal_process_object_from_adaptor</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> **adapted_object, const <a class="el" href="structafw__object__s.html">afw_object_t</a> **view, <a class="el" href="structafw__adaptor__internal__object__cb__context__t.html">afw_adaptor_internal_object_cb_context_t</a> *ctx, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="separator:gaf6a5ac3a2e9979b2e45710fdaad4eaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad40930ef7268a9aa80ff383090bb2186"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_register_service_type</b> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:ad40930ef7268a9aa80ff383090bb2186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63795afd712abae28330d4fba5eb1fa"><td class="memItemLeft" align="right" valign="top"><a id="af63795afd712abae28330d4fba5eb1fa"></a>
+<tr class="separator:gad40930ef7268a9aa80ff383090bb2186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf63795afd712abae28330d4fba5eb1fa"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_register_afw_adaptor</b> (<a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:af63795afd712abae28330d4fba5eb1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa43cf5e1bc4681d8ac1930a167b99bd5"><td class="memItemLeft" align="right" valign="top"><a id="aa43cf5e1bc4681d8ac1930a167b99bd5"></a>
+<tr class="separator:gaf63795afd712abae28330d4fba5eb1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa43cf5e1bc4681d8ac1930a167b99bd5"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_adaptor_internal_conf_type_create_cede_p</b> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *type, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *entry, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:aa43cf5e1bc4681d8ac1930a167b99bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:gaa43cf5e1bc4681d8ac1930a167b99bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header for afw_adaptor internal functions. </p>
 
 <p class="definition">Definition in file <a class="el" href="afw__adaptor__internal_8h_source.html">afw_adaptor_internal.h</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ad236b41742e653159b51435813edcd61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad236b41742e653159b51435813edcd61">&#9670;&nbsp;</a></span>AFW_ADAPTOR_SCOPE_INTERNAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AFW_ADAPTOR_SCOPE_INTERNAL</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">xctx</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    ((xctx)-&gt;adaptor_xctx_internal \</div>
-<div class="line">    ? (xctx)-&gt;adaptor_xctx_internal \</div>
-<div class="line">    : ((xctx)-&gt;adaptor_xctx_internal = \</div>
-<div class="line">        <a class="code" href="group__afw__xctx.html#gae7466e3ac6a5b84fc472a75d90cec271">afw_xctx_calloc_type</a>(<a class="code" href="structafw__adaptor__xctx__internal__s.html">afw_adaptor_xctx_internal_t</a>, xctx)))</div>
-<div class="ttc" id="agroup__afw__xctx_html_gae7466e3ac6a5b84fc472a75d90cec271"><div class="ttname"><a href="group__afw__xctx.html#gae7466e3ac6a5b84fc472a75d90cec271">afw_xctx_calloc_type</a></div><div class="ttdeci">#define afw_xctx_calloc_type(type, xctx)</div><div class="ttdoc">Macro to allocate cleared memory to hold type in xctx's pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__xctx_8h_source.html#l00202">afw_xctx.h:202</a></div></div>
-<div class="ttc" id="astructafw__adaptor__xctx__internal__s_html"><div class="ttname"><a href="structafw__adaptor__xctx__internal__s.html">afw_adaptor_xctx_internal_s</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__adaptor__internal_8h_source.html#l00025">afw_adaptor_internal.h:25</a></div></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__internal_8h_source.html#l00029">29</a> of file <a class="el" href="afw__adaptor__internal_8h_source.html">afw_adaptor_internal.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a950739d7ebfb1ce3b90b8e5130ff85c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a950739d7ebfb1ce3b90b8e5130ff85c0">&#9670;&nbsp;</a></span>afw_adaptor_internal_journal_epilogue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_adaptor_internal_journal_epilogue </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *&#160;</td>
-          <td class="paramname"><em>session</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
-          <td class="paramname"><em>journal_entry</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td>
-          <td class="paramname"><em>modification</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000050">Todo:</a></b></dt><dd>FIXME: Might want to record failures too???? </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__journal_8c_source.html#l00032">32</a> of file <a class="el" href="afw__adaptor__journal_8c_source.html">afw_adaptor_journal.c</a>.</p>
-
-</div>
-</div>
-<a id="a271bda69c4d0e4561325b03f154f20cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a271bda69c4d0e4561325b03f154f20cd">&#9670;&nbsp;</a></span>afw_adaptor_internal_journal_get_entry()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structafw__object__s.html">afw_object_t</a>* afw_adaptor_internal_journal_get_entry </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *&#160;</td>
-          <td class="paramname"><em>session</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>object_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
-          <td class="paramname"><em>journal_entry</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000058">Todo:</a></b></dt><dd>FIXME: Should this be configurable and where? By adaptor? </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000059">Todo:</a></b></dt><dd>FIXME: Should this be error? </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000060">Todo:</a></b></dt><dd>FIXME: Might want to url_decode consumer_id and entry_cursor. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__journal_8c_source.html#l00346">346</a> of file <a class="el" href="afw__adaptor__journal_8c_source.html">afw_adaptor_journal.c</a>.</p>
-
-</div>
-</div>
-<a id="af6a5ac3a2e9979b2e45710fdaad4eaf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6a5ac3a2e9979b2e45710fdaad4eaf8">&#9670;&nbsp;</a></span>afw_adaptor_internal_process_object_from_adaptor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_adaptor_internal_process_object_from_adaptor </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> **&#160;</td>
-          <td class="paramname"><em>adapted_object</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> **&#160;</td>
-          <td class="paramname"><em>view</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__adaptor__internal__object__cb__context__t.html">afw_adaptor_internal_object_cb_context_t</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
-          <td class="paramname"><em>object</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>FIXME: Do assess control here that might add meta and remove properties. Might be in view??? </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>FIXME: Need to add releases at correct place by caller. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__adaptor_8c_source.html#l00625">625</a> of file <a class="el" href="afw__adaptor_8c_source.html">afw_adaptor.c</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

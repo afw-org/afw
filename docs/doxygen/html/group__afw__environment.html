@@ -70,7 +70,7 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Environment<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Environment<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -396,7 +396,7 @@ Functions</h2></td></tr>
 <div class="line">    xctx = <a class="code" href="group__afw__environment.html#ga598587a374b55970b79cbd2062c173fb">afw_environment_create</a>(AFW_VERSION_HEX, argc, argv, \</div>
 <div class="line">        environment_create_error)</div>
 <div class="ttc" id="agroup__afw__environment_html_ga598587a374b55970b79cbd2062c173fb"><div class="ttname"><a href="group__afw__environment.html#ga598587a374b55970b79cbd2062c173fb">afw_environment_create</a></div><div class="ttdeci">afw_xctx_t * afw_environment_create(unsigned int version, int argc, const char *const *argv, const afw_error_t **environment_create_error)</div><div class="ttdoc">Create the Adaptive Framework core environment and return base xctx.</div><div class="ttdef"><b>Definition:</b> <a href="afw__environment_8c_source.html#l00222">afw_environment.c:222</a></div></div>
-<div class="ttc" id="agroup__afw__version_html_gaa77916c61075dc8a6a39e4a0d64585c1"><div class="ttname"><a href="group__afw__version.html#gaa77916c61075dc8a6a39e4a0d64585c1">AFW_VERSION_ABORT_IF_NOT_COMPATIBLE</a></div><div class="ttdeci">#define AFW_VERSION_ABORT_IF_NOT_COMPATIBLE(id_z)</div><div class="ttdoc">Abort if AFW core is not compatible with the version compiled against.</div><div class="ttdef"><b>Definition:</b> <a href="afw__version_8h_source.html#l00123">afw_version.h:123</a></div></div>
+<div class="ttc" id="agroup__afw__version_html_gaa77916c61075dc8a6a39e4a0d64585c1"><div class="ttname"><a href="group__afw__version.html#gaa77916c61075dc8a6a39e4a0d64585c1">AFW_VERSION_ABORT_IF_NOT_COMPATIBLE</a></div><div class="ttdeci">#define AFW_VERSION_ABORT_IF_NOT_COMPATIBLE(id_z)</div><div class="ttdoc">Abort if AFW core is not compatible with the version compiled against.</div><div class="ttdef"><b>Definition:</b> <a href="afw__version_8h_source.html#l00119">afw_version.h:119</a></div></div>
 </div><!-- fragment -->
 <p>Call <a class="el" href="group__afw__environment.html#ga598587a374b55970b79cbd2062c173fb" title="Create the Adaptive Framework core environment and return base xctx.">afw_environment_create()</a> supplying version compiled with. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -412,7 +412,7 @@ Functions</h2></td></tr>
 <p>This macro calls <a class="el" href="group__afw__version.html#gaa77916c61075dc8a6a39e4a0d64585c1" title="Abort if AFW core is not compatible with the version compiled against.">AFW_VERSION_ABORT_IF_NOT_COMPATIBLE()</a> to check for compatibility. If you want to handle this situation differently, use AFW_VERSION_CHECK before <a class="el" href="group__afw__environment.html#ga72c8483378db290024eb62448acf7f76" title="Call afw_environment_create() supplying version compiled with.">AFW_ENVIRONMENT_CREATE()</a>. <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00522">522</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00519">519</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -448,7 +448,7 @@ Functions</h2></td></tr>
 <p>Macro to put in each afw_extension implementation. </p>
 <p>Put this after #include "afw_extension_impl_declares.h" in an implementation of the afw_extension interface. It provides the symbol used by <a class="el" href="group__afw__environment.html#ga4f8d259b0540ce1fad22a818fbf90bfb" title="Load and initialize environment extension.">afw_environment_load_extension()</a> to determine the extensions id and version information. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00280">280</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00277">277</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +512,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01284">1284</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01281">1281</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +548,7 @@ Functions</h2></td></tr>
 <p>The register_additional function must be defined as a static function in <a class="el" href="afw__environment_8c.html" title="Adaptive framework environment.">afw_environment.c</a>. If register_additional is NULL, a afw_environment_registry_entry_t is created and a runtime object of the specified object_type_id is set.</p>
 <p>These are just the core registry type. Other types can be created by calling <a class="el" href="group__afw__environment.html#ga244c94f5a3a70c9200564ded662e6aa5" title="Create a new registry type.">afw_environment_create_registry_type()</a> in an extension. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00052">52</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00048">48</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +576,7 @@ Functions</h2></td></tr>
 </dl>
 <p>A function of this type can be specified on <a class="el" href="group__afw__environment.html#ga244c94f5a3a70c9200564ded662e6aa5" title="Create a new registry type.">afw_environment_create_registry_type()</a> as auto_register parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00324">324</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00321">321</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -605,7 +605,7 @@ Functions</h2></td></tr>
 </dl>
 <p>The p should be a multithreaded pool whose control is ceded to the thing being created. For example, for type=adaptor, the adaptor should destroy this pool when the adaptor's use count goes to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00308">308</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00305">305</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -632,7 +632,7 @@ Functions</h2></td></tr>
 </dl>
 <p>IMPORTANT Implementation of this function must not do anything that might throw an error or change xctx-&gt;error or a recursive error producing a stack overflow will occur. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00442">442</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00439">439</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -664,7 +664,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if the callback function requests that it not be called again.</dd></dl>
 <p>The purpose of returning true from a callback function is to short circuit the foreach when the callback has determined that it is "complete". Unless the callback has a special purpose like this, it should always return false so that it will continue to called until the end. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00632">632</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00629">629</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -691,7 +691,7 @@ Functions</h2></td></tr>
 </dl>
 <p>A function of this type can be specified on <a class="el" href="group__afw__environment.html#ga244c94f5a3a70c9200564ded662e6aa5" title="Create a new registry type.">afw_environment_create_registry_type()</a> as register_additional parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00340">340</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00337">337</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -960,7 +960,7 @@ Functions</h2></td></tr>
 </dl>
 <p>For adaptor, id_property_name is "adaptorId' and subtype_property_name
 is "adaptor_type".</p>
-<p>If related_object_type_id is not NULL, the uri of the related object will be /afw/&lt;related_object_type_id&gt;/&lt;id_property_name value&gt; </p>
+<p>If related_object_type_id is not NULL, the uri of the related object will be <code>/afw/&lt;related_object_type_id&gt;/&lt;id_property_name</code> value&gt; </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l00867">867</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -1051,7 +1051,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number associated with registry type.</dd></dl>
 <p>Create a new registry type and return its number. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000090">Todo:</a></b></dt><dd>FIXME: Need to lock/protect this update. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000092">Todo:</a></b></dt><dd>FIXME: Need to lock/protect this update. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l00451">451</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -1153,7 +1153,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated adaptor id anchor or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00903">903</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00900">900</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1193,7 +1193,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00865">865</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00862">862</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1233,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated authorization handler id anchor or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00983">983</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00980">980</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1273,7 +1273,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00941">941</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00938">938</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1313,7 +1313,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated afw_environment_conf_type_t or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01043">1043</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01040">1040</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1353,7 +1353,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to associated afw_content_type_t struct or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01140">1140</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01137">1137</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1393,7 +1393,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>context_type_object. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01180">1180</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01177">1177</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1433,7 +1433,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01225">1225</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01222">1222</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1473,7 +1473,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Decoder function or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01264">1264</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01261">1261</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1513,7 +1513,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01298">1298</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01295">1295</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1553,7 +1553,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01345">1345</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01342">1342</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1593,7 +1593,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated lock or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01411">1411</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01408">1408</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1633,7 +1633,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01492">1492</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01489">1489</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1673,7 +1673,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01450">1450</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01447">1447</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1713,7 +1713,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated struct or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01533">1533</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01530">1530</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1801,7 +1801,7 @@ is "adaptor_type".</p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to afw_environment_registry_type_t.</dd></dl>
 <p>Gets the registry type number assigned to a registry type name. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00790">790</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00787">787</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1930,7 +1930,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01575">1575</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01572">1572</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -1970,7 +1970,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated struct or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01617">1617</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01614">1614</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2010,7 +2010,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated afw_runtime_custom_t pointer or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01657">1657</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01654">1654</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2050,7 +2050,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated interface pointer or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01697">1697</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01694">1694</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2090,7 +2090,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01735">1735</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01732">1732</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2130,7 +2130,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01774">1774</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01771">1771</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2170,7 +2170,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>associated instance or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01815">1815</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01812">1812</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2210,7 +2210,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to singleton value or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00832">832</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00829">829</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2250,7 +2250,7 @@ is "adaptor_type".</p>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Associated interface pointer or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01856">1856</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01853">1853</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2308,7 +2308,7 @@ is "adaptor_type".</p>
 <p>If module_path is NULL and there is not a "modulePath" property in properties, the extension path must be registered for the extension_id.</p>
 <p>After the DSO is loaded, the environment extension initialize method is called.</p>
 <p>Extensions are normally loaded by <a class="el" href="group__afw__environment.html#gae3f4e4be884bac3380dc0a07c3860851" title="Configure environment with list of configuration entries.">afw_environment_configure_with_object_list()</a>.</p>
-<p>If properties is not specified, one is created. The extensionId and modulePath properties are set. The path of the properties object is set to /afw/_AdaptiveExtension_/&lt;extension_id&gt; and set as a run time object. </p>
+<p>If properties is not specified, one is created. The extensionId and modulePath properties are set. The path of the properties object is set to <code>/afw/_AdaptiveExtension_/&lt;extension_id&gt;</code> and set as a run time object. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l00922">922</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -2353,15 +2353,15 @@ is "adaptor_type".</p>
 <p>The p of properties is used for the result.</p>
 <p>The "type" parameter in properties is used to call <a class="el" href="group__afw__environment.html#ga3649bb01c021dbf6898d6d5b10b26ea0" title="Get the conf_type associated with type.">afw_environment_get_conf_type()</a> to get the conf_type.</p>
 <p>The object type used is:</p>
-<p>/afw/_AdaptiveObjectType_/_AdaptiveConf_&lt;type&gt;[_&lt;subtype&gt;]</p>
+<p><code>/afw/_AdaptiveObjectType_/_AdaptiveConf_&lt;type&gt;[_&lt;subtype&gt;]</code></p>
 <p>Where:</p>
-<p>&lt;type&gt; is the value of properties.type</p>
-<p>[_&lt;subtype&gt;] is present if conf_type has a subtype_property_name, in which case, &lt;subtype&gt; will be the value of the subtype_property_name in properties.</p>
+<p><code>&lt;type&gt;</code> is the value of properties.type</p>
+<p><code>[_&lt;subtype&gt;]</code> is present if conf_type has a subtype_property_name, in which case, <code>&lt;subtype&gt;</code> will be the value of the subtype_property_name in properties.</p>
 <p>The returned object will be an entity with a path of:</p>
-<p>/afw/&lt;object type&gt;/&lt;id&gt;</p>
+<p><code>/afw/&lt;object type&gt;/&lt;id&gt;</code></p>
 <p>Where:</p>
 <p>&lt;object type&gt; is object type described above.</p>
-<p>&lt;id&gt; is the value of the id_property_name for the conf_type from properties.</p>
+<p><code>&lt;id&gt;</code> is the value of the id_property_name for the conf_type from properties.</p>
 <p>Several properties in the properties parameter object may be changed plus return in the result:</p>
 <p>1) If sourceLocation is not already set in properties, one will be set in the properties that includes the available type, subtype, and id.</p>
 <p>2) If a type expects an id but it is not provided, it will be set to the subtype in properties.</p>
@@ -2413,7 +2413,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00883">883</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00880">880</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2458,7 +2458,7 @@ is "adaptor_type".</p>
   </table>
   </dd>
 </dl>
-<p>This also registers flag trace:adaptor_type:&lt;adaptor_type&gt; where &lt;adaptor_type&gt; is the supplied adaptor_type. </p>
+<p>This also registers flag <code>trace:adaptor_type:&lt;adaptor_type&gt;</code> where <code>&lt;adaptor_type&gt;</code> is the supplied adaptor_type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l01577">1577</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -2506,7 +2506,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00961">961</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00958">958</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2551,7 +2551,7 @@ is "adaptor_type".</p>
   </table>
   </dd>
 </dl>
-<p>This also registers flag trace:authorization_handler_type:&lt;authorization_handler_type&gt; where &lt;authorization_handler_type&gt; is the supplied authorization_handler_type. </p>
+<p>This also registers flag <code>trace:authorization_handler_type:&lt;authorization_handler_type&gt;</code> where <code>&lt;authorization_handler_type&gt;</code> is the supplied authorization_handler_type. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l01636">1636</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -2599,7 +2599,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01119">1119</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01116">1116</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2645,7 +2645,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01158">1158</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01155">1155</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2776,7 +2776,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01243">1243</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01240">1240</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2822,8 +2822,8 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 <p>If function-&gt;inf is NULL, a copy of the function will be created with with inf and data_type supplied. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000092">Todo:</a></b></dt><dd>resolve parameters. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000093">Todo:</a></b></dt><dd>FIXME: Add support for extensions to add data type methods. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000094">Todo:</a></b></dt><dd>resolve parameters. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000095">Todo:</a></b></dt><dd>FIXME: Add support for extensions to add data type methods. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l01295">1295</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -2910,7 +2910,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01391">1391</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01388">1388</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -2957,7 +2957,7 @@ is "adaptor_type".</p>
 </dl>
 <p>If you want this log to be called for all environment log requests, call <a class="el" href="group__afw__log.html#ga4e70189a320b43908342377563c7ee30" title="Add a log to the list of logs called by environment log.">afw_log_add_to_environment()</a> instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01471">1471</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01468">1468</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3003,7 +3003,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01429">1429</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01426">1426</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3049,7 +3049,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01511">1511</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01508">1508</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3095,7 +3095,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01553">1553</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01550">1550</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3141,7 +3141,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01595">1595</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01592">1592</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3187,7 +3187,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01637">1637</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01634">1634</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3233,7 +3233,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01677">1677</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01674">1674</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3279,7 +3279,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01715">1715</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01712">1712</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3325,7 +3325,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01754">1754</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01751">1751</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3371,7 +3371,7 @@ is "adaptor_type".</p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01793">1793</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01790">1790</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3418,7 +3418,7 @@ is "adaptor_type".</p>
 </dl>
 <p>Singletons are useful for associating a name with a major struct or object that needs to be accessed across an AFW application. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00812">812</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l00809">809</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3465,7 +3465,7 @@ is "adaptor_type".</p>
 </dl>
 <p>value_inf_id should be the same as inf-&gt;rti-&gt;implementation_id </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01836">1836</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__environment_8h_source.html#l01833">1833</a> of file <a class="el" href="afw__environment_8h_source.html">afw_environment.h</a>.</p>
 
 </div>
 </div>
@@ -3733,7 +3733,7 @@ is "adaptor_type".</p>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000091">Todo:</a></b></dt><dd>FIXME: Small leak if deleting key and then adding again. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000093">Todo:</a></b></dt><dd>FIXME: Small leak if deleting key and then adding again. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l00574">574</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -3762,7 +3762,9 @@ is "adaptor_type".</p>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000089">Todo:</a></b></dt><dd>FIXME: Causing exception because some things not cleaned up properly \fixmeafw_pool_destroy(xctx-&gt;env-&gt;p, xctx); \fixmeapr_terminate(); </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000089">Todo:</a></b></dt><dd>FIXME: Causing exception because some things not cleaned up properly </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000090">Todo:</a></b></dt><dd>FIXME: afw_pool_destroy(xctx-&gt;env-&gt;p, xctx); </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000091">Todo:</a></b></dt><dd>FIXME: apr_terminate(); </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__environment_8c_source.html#l00442">442</a> of file <a class="el" href="afw__environment_8c_source.html">afw_environment.c</a>.</p>
 
@@ -3891,7 +3893,7 @@ is "adaptor_type".</p>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

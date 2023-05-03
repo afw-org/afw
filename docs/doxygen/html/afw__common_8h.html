@@ -73,13 +73,14 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_common.h File Reference<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__common.html">Common</a></div></div>  </div>
+<div class="title">afw_common.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__common.html">Common</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Adaptive Framework Common Header.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;apr_general.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="afw__doxygen_8h_source.html">afw_doxygen.h</a>&quot;</code><br />
+<code>#include &lt;apr_general.h&gt;</code><br />
 <code>#include &lt;apr_tables.h&gt;</code><br />
 <code>#include &lt;apr_strings.h&gt;</code><br />
 <code>#include &lt;apr_time.h&gt;</code><br />
@@ -99,7 +100,7 @@ $(function() {
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;inttypes.h&gt;</code><br />
-<code>#include &quot;afw_common_opaques.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="afw__interface__opaques_8h_source.html">afw_interface_opaques.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="afw__declare__helpers_8h_source.html">afw_declare_helpers.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="afw__associative__array__template_8h_source.html">afw_associative_array_template.h</a>&quot;</code><br />
@@ -242,7 +243,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga8437fe829f26f887057ed53da53b100c"><td class="mdescLeft">&#160;</td><td class="mdescRight">smallest afw_integer_t value that a double can hold. <br /></td></tr>
 <tr class="separator:ga8437fe829f26f887057ed53da53b100c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac7abb14adbbcfafec359cbac620343d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#gac7abb14adbbcfafec359cbac620343d8">AFW_INTEGER_IS_SAFE_DOUBLE</a>(integer)</td></tr>
-<tr class="memdesc:gac7abb14adbbcfafec359cbac620343d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests integer to be safely held in a double. @parameter integer to test.  <a href="group__afw__common.html#gac7abb14adbbcfafec359cbac620343d8">More...</a><br /></td></tr>
+<tr class="memdesc:gac7abb14adbbcfafec359cbac620343d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests integer to be safely held in a double.  <a href="group__afw__common.html#gac7abb14adbbcfafec359cbac620343d8">More...</a><br /></td></tr>
 <tr class="separator:gac7abb14adbbcfafec359cbac620343d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4696e562681c680da397c0cd1bac19a8"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga4696e562681c680da397c0cd1bac19a8">AFW_INTEGER_FMT</a>&#160;&#160;&#160;APR_INT64_T_FMT</td></tr>
@@ -561,7 +562,7 @@ typedef const <a class="el" href="structafw__value__s.html">afw_value_t</a> *(*&
 <tr class="memdesc:ga7b6292efd2100cb7e7ff235dd9bdeded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for service status enum.  <a href="group__afw__common.html#ga7b6292efd2100cb7e7ff235dd9bdeded">More...</a><br /></td></tr>
 <tr class="separator:ga7b6292efd2100cb7e7ff235dd9bdeded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga29d3dd1df68f32ce228618f414a7425b"><td class="memItemLeft" align="right" valign="top">
-typedef void *(<a class="el" href="group__afw__pool.html#ga553a439d96e400f35b8b0781fc6125c6">AFW_THREAD_FUNCTION</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga29d3dd1df68f32ce228618f414a7425b">afw_thread_function_t</a>) (const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *thread, void *arg)</td></tr>
+typedef void *(<a class="el" href="group__afw__thread.html#ga553a439d96e400f35b8b0781fc6125c6">AFW_THREAD_FUNCTION</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__common.html#ga29d3dd1df68f32ce228618f414a7425b">afw_thread_function_t</a>) (const <a class="el" href="group__afw__common.html#gafa9968786e5f8ebc37bada5fc3b82048">afw_thread_t</a> *thread, void *arg)</td></tr>
 <tr class="memdesc:ga29d3dd1df68f32ce228618f414a7425b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for thread start function. <br /></td></tr>
 <tr class="separator:ga29d3dd1df68f32ce228618f414a7425b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac2dd196c68c25ef6688acd4508d871ce"><td class="memItemLeft" align="right" valign="top">
@@ -695,7 +696,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Adaptive Framework Common Header. </p>
-<p>This header contains #includes for common headers that do not have other Adaptive Framework dependencies, typedefs required by <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>, as well as other #defines and typedefs that are common to all Adaptive Framework applications.</p>
+<p>This header contains <code>#include</code>s for common headers that do not have other Adaptive Framework dependencies, typedefs required by <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>, as well as other <code>#define</code>s and typedefs that are common to all Adaptive Framework applications.</p>
 <p>This header is included by <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>, <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>, and <a class="el" href="afw_8h.html" title="Adaptive Framework Core API.">afw.h</a>, there is no need to include it directly.</p>
 <p>The major Adaptive Framework headers are arranged as follows:</p>
 <table class="markdownTable">
@@ -704,22 +705,22 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a>   </td><td class="markdownTableBodyNone">This header. Included by <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>, <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>, and <a class="el" href="afw_8h.html" title="Adaptive Framework Core API.">afw.h</a>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="afw__common__opaques_8h_source.html">afw_common_opaques.h</a>   </td><td class="markdownTableBodyNone">Contains common opaque typedefs. Included by <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a>.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="afw__common__opaques_8h.html" title="Adaptive Framework Common Opaques Header.">afw_common_opaques.h</a>   </td><td class="markdownTableBodyNone">Contains common opaque typedefs. Included by <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>   </td><td class="markdownTableBodyNone">Generated AFW interface header. Can be included in all headers other than opaque only ones.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="afw__interface__opaques_8h.html" title="Interface afw_interface opaque typedefs.">afw_interface_opaques.h</a>   </td><td class="markdownTableBodyNone">Generated AFW interface opaques. Included by <a class="el" href="afw__common_8h.html" title="Adaptive Framework Common Header.">afw_common.h</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>   </td><td class="markdownTableBodyNone">Contains #includes for some core headers that only #include <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>. Can be included in headers that are not included by <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>   </td><td class="markdownTableBodyNone">Contains <code>#include</code>s for some core headers that only <code>#include</code> <a class="el" href="afw__interface_8h.html" title="Interfaceafw_interface header.">afw_interface.h</a>. Can be included in headers that are not included by <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="afw_8h.html" title="Adaptive Framework Core API.">afw.h</a>   </td><td class="markdownTableBodyNone">Contains #includes for most core headers and will generally be included in all Adaptive Framework .c files.   </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="afw_8h.html" title="Adaptive Framework Core API.">afw.h</a>   </td><td class="markdownTableBodyNone">Contains <code>#include</code>s for most core headers and will generally be included in all Adaptive Framework .c files.   </td></tr>
 </table>
 
 <p class="definition">Definition in file <a class="el" href="afw__common_8h_source.html">afw_common.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

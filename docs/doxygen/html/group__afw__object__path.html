@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Adaptive Object Path</title>
+<title>Adaptive Framework: Adaptive object path</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,7 +67,7 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Adaptive Object Path<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Adaptive object path<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -276,7 +276,7 @@ Functions</h2></td></tr>
 <p>Construct the path for an embedded object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">embedded_object.</td><td></td></tr>
+    <tr><td class="paramname">embedded_object</td><td>object. </td></tr>
     <tr><td class="paramname">p</td><td>Pool return value will be placed in. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller </td></tr>
   </table>
@@ -331,7 +331,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to object path. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000272">Todo:</a></b></dt><dd>FIXME: Improve to generate ['name'] when needed. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000310">Todo:</a></b></dt><dd>FIXME: Improve to generate ['name'] when needed. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__path_8c_source.html#l01001">1001</a> of file <a class="el" href="afw__object__path_8c_source.html">afw_object_path.c</a>.</p>
 
@@ -395,12 +395,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Parsed path or NULL if path is invalid.</dd></dl>
 <p>Parse an local path.</p>
 <p>Generally, a path is of the form:</p>
-<p>/&lt;adaptorId&gt;/&lt;objectType&gt;/&lt;objectId&gt;</p>
-<p>where &lt;adaptorId&gt; is an adaptor id of the running instance, &lt;objectType&gt; if the object type at path /&lt;adaptorId&gt;/_AdaptiveObjectType_/&lt;objectType&gt;, and &lt;objectId&gt; is the entity object id &lt;entityObjectId&gt; followed by zero or more period "." &lt;propertyName&gt;.</p>
-<p>&lt;objectType&gt; can also have an options part where the object type id is followed by a semicolon ";" and one or more &lt;name&gt; with optional equal "=" </p>
-<p>separated with an ampersand "&amp;". See <a class="el" href="afw__object__options_8h.html" title="Header file for Adaptive Framework object processing options.">afw_object_options.h</a> for more information on options.</p>
+<p><code>/&lt;adaptorId&gt;/&lt;objectType&gt;/&lt;objectId&gt;</code></p>
+<p>where <code>&lt;adaptorId&gt;</code> is an adaptor id of the running instance, <code>&lt;objectType&gt;</code> if the object type at path <code>/&lt;adaptorId&gt;/_AdaptiveObjectType_/&lt;objectType&gt;</code>, and <code>&lt;objectId&gt;</code> is the entity object id <code>&lt;entityObjectId&gt;</code> followed by zero or more period "." <code>&lt;propertyName&gt;</code>.</p>
+<p><code>&lt;objectType&gt;</code> can also have an options part where the object type id is followed by a semicolon ";" and one or more <code>&lt;name&gt;</code> with optional equal "=" <code>&lt;value&gt;</code> separated with an ampersand "&amp;". See <a class="el" href="afw__object__options_8h.html" title="Header file for Adaptive Framework object processing options.">afw_object_options.h</a> for more information on options.</p>
 <p>Local paths can be data type anyURI values. See data type anyURI for more information.</p>
-<p>If current_path is specified, the path parameter can include asterisks that are replaced with corresponding parts of current_path. In this case, &lt;adaptorId&gt;, &lt;objectType&gt;, &lt;entityObjectId&gt;, and &lt;propertyName&gt; can be an asterisk "*" to use the corresponding part from the current_path, plus double asterisk "**" can be specified for the entire &lt;objectId&gt; to use the entire &lt;objectId&gt; from the current path. Also, &lt;objectId&gt; can be specified alone without a preceding slash "/" when the &lt;adaptorId&gt; and &lt;objectType&gt; are the same as in the current path. No substitution occurs in the options part of &lt;objectType&gt;. </p>
+<p>If current_path is specified, the path parameter can include asterisks that are replaced with corresponding parts of current_path. In this case, <code>&lt;adaptorId&gt;</code>, <code>&lt;objectType&gt;</code>, <code>&lt;entityObjectId&gt;</code>, and <code>&lt;propertyName&gt;</code> can be an asterisk "*" to use the corresponding part from the current_path, plus double asterisk "**" can be specified for the entire <code>&lt;objectId&gt;</code> to use the entire <code>&lt;objectId&gt;</code> from the current path. Also, <code>&lt;objectId&gt;</code> can be specified alone without a preceding slash "/" when the <code>&lt;adaptorId&gt;</code> and <code>&lt;objectType&gt;</code>are the same as in the current path. No substitution occurs in the options part of <code>&lt;objectType&gt;</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__path_8c_source.html#l00655">655</a> of file <a class="el" href="afw__object__path_8c_source.html">afw_object_path.c</a>.</p>
 
@@ -510,8 +509,8 @@ Functions</h2></td></tr>
 <p>Determine if two parsed paths are equivalent. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path1</td><td>parsed path. </td></tr>
-    <tr><td class="paramname">path2</td><td>parsed path. </td></tr>
+    <tr><td class="paramname">parsed1</td><td>parsed path. </td></tr>
+    <tr><td class="paramname">parsed2</td><td>parsed path. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller </td></tr>
   </table>
   </dd>
@@ -619,7 +618,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

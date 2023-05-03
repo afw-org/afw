@@ -81,51 +81,46 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef __AFW_LOG_INTERNAL_H__</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFW_LOG_INTERNAL_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="structafw__log__s.html">afw_log_t</a> * <a class="code" href="afw__log__internal_8h.html#aa9abce541d88712bef1fd5e23a78e13a">afw_log_internal_create_environment_log</a>(</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;afw_log_internal_register_service_type(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="afw__log__internal_8h.html#a8bb165c6d6c00182c1924a04cca7cc52">afw_log_internal_conf_type_create_cede_p</a>(</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *type,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *entry,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *source_location,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="afw__log__internal_8h.html#afc1f5676586ac238ecda6afb45e89297">afw_log_internal_register_logType_context_type</a>(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *log_type_id,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="structafw__log__s.html">afw_log_t</a> * <a class="code" href="group__afw__log__internal.html#gaa9abce541d88712bef1fd5e23a78e13a">afw_log_internal_create_environment_log</a>(</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;afw_log_internal_register_service_type(<a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__afw__log__internal.html#ga8bb165c6d6c00182c1924a04cca7cc52">afw_log_internal_conf_type_create_cede_p</a>(</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *type,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__object__s.html">afw_object_t</a> *entry,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *source_location,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__afw__log__internal.html#gafc1f5676586ac238ecda6afb45e89297">afw_log_internal_register_logType_context_type</a>(</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__utf8__s.html">afw_utf8_t</a> *log_type_id,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_LOG_INTERNAL_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;AFW_END_DECLARES</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_LOG_INTERNAL_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
-<div class="ttc" id="aafw__log__internal_8h_html_a8bb165c6d6c00182c1924a04cca7cc52"><div class="ttname"><a href="afw__log__internal_8h.html#a8bb165c6d6c00182c1924a04cca7cc52">afw_log_internal_conf_type_create_cede_p</a></div><div class="ttdeci">void afw_log_internal_conf_type_create_cede_p(const afw_utf8_t *type, const afw_object_t *entry, const afw_utf8_t *source_location, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Configuration handler for entry type &quot;log&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00391">afw_log.c:391</a></div></div>
-<div class="ttc" id="aafw__log__internal_8h_html_aa9abce541d88712bef1fd5e23a78e13a"><div class="ttname"><a href="afw__log__internal_8h.html#aa9abce541d88712bef1fd5e23a78e13a">afw_log_internal_create_environment_log</a></div><div class="ttdeci">const afw_log_t * afw_log_internal_create_environment_log(afw_xctx_t *xctx)</div><div class="ttdoc">Internal create environment log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00224">afw_log.c:224</a></div></div>
-<div class="ttc" id="aafw__log__internal_8h_html_afc1f5676586ac238ecda6afb45e89297"><div class="ttname"><a href="afw__log__internal_8h.html#afc1f5676586ac238ecda6afb45e89297">afw_log_internal_register_logType_context_type</a></div><div class="ttdeci">void afw_log_internal_register_logType_context_type(const afw_utf8_t *log_type_id, afw_xctx_t *xctx)</div><div class="ttdoc">Register logType context type.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00161">afw_log.c:161</a></div></div>
+<div class="ttc" id="agroup__afw__log__internal_html_ga8bb165c6d6c00182c1924a04cca7cc52"><div class="ttname"><a href="group__afw__log__internal.html#ga8bb165c6d6c00182c1924a04cca7cc52">afw_log_internal_conf_type_create_cede_p</a></div><div class="ttdeci">void afw_log_internal_conf_type_create_cede_p(const afw_utf8_t *type, const afw_object_t *entry, const afw_utf8_t *source_location, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Configuration handler for entry type &quot;log&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00391">afw_log.c:391</a></div></div>
+<div class="ttc" id="agroup__afw__log__internal_html_gaa9abce541d88712bef1fd5e23a78e13a"><div class="ttname"><a href="group__afw__log__internal.html#gaa9abce541d88712bef1fd5e23a78e13a">afw_log_internal_create_environment_log</a></div><div class="ttdeci">const afw_log_t * afw_log_internal_create_environment_log(afw_xctx_t *xctx)</div><div class="ttdoc">Internal create environment log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00224">afw_log.c:224</a></div></div>
+<div class="ttc" id="agroup__afw__log__internal_html_gafc1f5676586ac238ecda6afb45e89297"><div class="ttname"><a href="group__afw__log__internal.html#gafc1f5676586ac238ecda6afb45e89297">afw_log_internal_register_logType_context_type</a></div><div class="ttdeci">void afw_log_internal_register_logType_context_type(const afw_utf8_t *log_type_id, afw_xctx_t *xctx)</div><div class="ttdoc">Register logType context type.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log_8c_source.html#l00161">afw_log.c:161</a></div></div>
 <div class="ttc" id="astructafw__log__s_html"><div class="ttname"><a href="structafw__log__s.html">afw_log_s</a></div><div class="ttdoc">Interface afw_log public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03004">afw_interface.h:3004</a></div></div>
 <div class="ttc" id="astructafw__object__s_html"><div class="ttname"><a href="structafw__object__s.html">afw_object_s</a></div><div class="ttdoc">Interface afw_object public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03197">afw_interface.h:3197</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
-<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
-<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04597">afw_interface.h:4597</a></div></div>
+<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00545">afw_common.h:545</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04391">afw_interface.h:4391</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

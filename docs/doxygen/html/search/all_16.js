@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['afw_5fos_2ec_9001',['afw_os.c',['../win_2afw__os_8c.html',1,'']]],
-  ['afw_5fos_5flog_2ec_9002',['afw_os_log.c',['../win_2afw__os__log_8c.html',1,'']]],
-  ['wa_9003',['wa',['../structafw__xctx__qualifier__stack__entry__s.html#ac5a914c243c05890d22b34307994564c',1,'afw_xctx_qualifier_stack_entry_s']]],
-  ['watcheventhandler_9004',['WatchEventHandler',['../classwatch_1_1_watch_event_handler.html',1,'watch']]],
-  ['wrapped_5finf_9005',['wrapped_inf',['../structafw__adaptor__impl__s.html#ac46328599cc5e4379b1083cd5f767eb8',1,'afw_adaptor_impl_s']]],
-  ['wrapped_5fjournal_9006',['wrapped_journal',['../structafw__adaptor__impl__session__s.html#acddf2a21fedfaf21fc59c122a52f1b46',1,'afw_adaptor_impl_session_s']]],
-  ['wrapped_5fsession_9007',['wrapped_session',['../structafw__adaptor__impl__session__s.html#a41b60d9c21f9516c6221e3c5829032ea',1,'afw_adaptor_impl_session_s']]]
+  ['value_9070',['Value',['../group__afw__value.html',1,'(Global Namespace)'],['../group__afw__value__internal.html',1,'(Global Namespace)']]],
+  ['value_9071',['value',['../structafw__adaptor__modify__entry__s.html#a931990b80a2591dfc1abb0ae949dc5dc',1,'afw_adaptor_modify_entry_s::value()'],['../structafw__runtime__unresolved__property__s.html#a5235d65d7d43b20af8390f8c5f9405a7',1,'afw_runtime_unresolved_property_s::value()']]],
+  ['value_20functions_9072',['value functions',['../group__afw__functions__value.html',1,'']]],
+  ['value_5fmeta_5fobject_9073',['value_meta_object',['../structafw__value__type__s.html#a484635f50fe684d53b514bee8c050f50',1,'afw_value_type_s']]],
+  ['value_5foffset_9074',['value_offset',['../structafw__compile__internal__value__contextual__s.html#a9c78edead83dd2a3df44b0d7c2934724',1,'afw_compile_internal_value_contextual_s']]],
+  ['value_5fsize_9075',['value_size',['../structafw__compile__internal__value__contextual__s.html#a730348d628686da989f654c35db1fba6',1,'afw_compile_internal_value_contextual_s']]],
+  ['version_20information_9076',['Version information',['../group__afw__version.html',1,'']]]
 ];

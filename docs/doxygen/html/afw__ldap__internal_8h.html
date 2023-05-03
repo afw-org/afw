@@ -147,7 +147,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_cle
 void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_cleanup_ldap_memfree</b> (void *data, void *data2, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a75829eb9dd7661b0588803615aea5a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f2a0bf3b938bbe5a46766c23a5530c"><td class="memItemLeft" align="right" valign="top"><a id="aa5f2a0bf3b938bbe5a46766c23a5530c"></a>
-LDAPMessage *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_search_s</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *dn, int ldap_scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *filter, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+LDAPMessage *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_search_s</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *session, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *dn, int ldap_scope, const <a class="el" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *filter, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:aa5f2a0bf3b938bbe5a46766c23a5530c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a741d0e071d76de2f4d2e1301bd5376dd"><td class="memItemLeft" align="right" valign="top"><a id="a741d0e071d76de2f4d2e1301bd5376dd"></a>
 const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_get_object_id</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, LDAPMessage *e, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> check_base, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -162,7 +162,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_ses
 const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_create_object_from_entry</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *self, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_type_id, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *object_id, LDAPMessage *e, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a1eefc2c3935d37d99b1f979329c37161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8286eff424ae5eb70873410eba8516fc"><td class="memItemLeft" align="right" valign="top"><a id="a8286eff424ae5eb70873410eba8516fc"></a>
-const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_expression_from_query_criteria</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, const <a class="el" href="group__afw__common.html#ga33d98a8855b567379c7797921467b216">afw_query_criteria_filter_entry_t</a> *entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_expression_from_query_criteria</b> (<a class="el" href="structafw__ldap__internal__adaptor__session__s.html">afw_ldap_internal_adaptor_session_t</a> *session, const <a class="el" href="group__afw__common.html#ga33d98a8855b567379c7797921467b216">afw_query_criteria_filter_entry_t</a> *entry, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a8286eff424ae5eb70873410eba8516fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b1c2fd8175b6332bf7697df6546dfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__ldap__internal_8h.html#a39b1c2fd8175b6332bf7697df6546dfc">afw_ldap_internal_syntax_handler_assign</a> (<a class="el" href="structafw__ldap__metadata__s.html">afw_ldap_metadata_t</a> *metadata, <a class="el" href="structafw__ldap__metadata__attribute__type__s.html">afw_ldap_metadata_attribute_type_t</a> *attribute_type, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a39b1c2fd8175b6332bf7697df6546dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,7 +224,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>New instance of LDAP adaptor. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000382">Todo:</a></b></dt><dd>FIXME: add parameter. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000489">Todo:</a></b></dt><dd>FIXME: add parameter. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__ldap__adaptor_8c_source.html#l00027">27</a> of file <a class="el" href="afw__ldap__adaptor_8c_source.html">afw_ldap_adaptor.c</a>.</p>
 
@@ -301,7 +301,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_a
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000391">Todo:</a></b></dt><dd>FIXME: Add support for normal LDAP, probably using oid lookup. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000498">Todo:</a></b></dt><dd>FIXME: Add support for normal LDAP, probably using oid lookup. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__ldap__syntax__handler_8c_source.html#l01292">1292</a> of file <a class="el" href="afw__ldap__syntax__handler_8c_source.html">afw_ldap_syntax_handler.c</a>.</p>
 
@@ -310,7 +310,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_ldap_internal_a
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

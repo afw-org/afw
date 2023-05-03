@@ -117,7 +117,7 @@ Functions</h2></td></tr>
 <tr class="separator:ac4d525bcf3b09ee49d12d74e467ec386"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9c828b079eea23710b7124282a974e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__server__fcgi__internal__request__s.html">afw_server_fcgi_internal_request_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__server__fcgi__internal_8h.html#a8e9c828b079eea23710b7124282a974e">afw_server_fcgi_internal_create_request</a> (<a class="el" href="structafw__server__fcgi__internal__s.html">afw_server_fcgi_internal_t</a> *server, FCGX_Request *fcgx_request, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a8e9c828b079eea23710b7124282a974e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ab3e76c88fc371b4c69e1643f83c530"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__server__fcgi__internal_8h.html#a5ab3e76c88fc371b4c69e1643f83c530">afw_server_fcgi_internal_create_properties_object</a> (<a class="el" href="structafw__server__fcgi__internal__request__s.html">afw_server_fcgi_internal_request_t</a> *<a class="el" href="classrequest.html">request</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:a5ab3e76c88fc371b4c69e1643f83c530"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__server__fcgi__internal_8h.html#a5ab3e76c88fc371b4c69e1643f83c530">afw_server_fcgi_internal_create_properties_object</a> (<a class="el" href="structafw__server__fcgi__internal__request__s.html">afw_server_fcgi_internal_request_t</a> *request, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:a5ab3e76c88fc371b4c69e1643f83c530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -178,12 +178,14 @@ Functions</h2></td></tr>
 <p>Create an FCGI afw_server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">error</td><td>See afw_error_t for more information. </td></tr>
+    <tr><td class="paramname">path</td><td>to FCGI server. Default ":9345". </td></tr>
+    <tr><td class="paramname">thread_count</td><td>number of threads. </td></tr>
+    <tr><td class="paramname">xctx</td><td>execution context. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new server. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000413">Todo:</a></b></dt><dd>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm);</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000520">Todo:</a></b></dt><dd>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm);</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__server__fcgi_8c_source.html#l00055">55</a> of file <a class="el" href="afw__server__fcgi_8c_source.html">afw_server_fcgi.c</a>.</p>
 
@@ -260,7 +262,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

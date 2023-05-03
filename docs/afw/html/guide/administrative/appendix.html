@@ -154,6 +154,13 @@ http {
             root /var/www/html/afw_app/;
             try_files /$1 /index.html =404;
         }
+        location = /doc {
+            return 301 $scheme://$http_host/doc/index.html;
+        }
+        location ~ /doc/(.+) {            
+            root /var/www/html/afw_app/doc;
+            try_files /$1 /$1/index.html =404;
+        }
         location / {
             fastcgi_pass unix:/var/run/afw.sock;
 

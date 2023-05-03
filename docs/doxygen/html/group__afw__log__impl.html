@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: afw_log interface</title>
+<title>Adaptive Framework: afw_log</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,7 +67,7 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_log interface<div class="ingroups"><a class="el" href="group__afw__impl.html">Interface Implementation Helpers</a></div></div>  </div>
+<div class="title">afw_log<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__impl.html">Interface implementation support</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -96,6 +96,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga72e689ea6008ee2b8824857170726c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Interface log implementation helpers. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga6ccf50aba3ed8e936919cb954dceeeaf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6ccf50aba3ed8e936919cb954dceeeaf">&#9670;&nbsp;</a></span>afw_log_impl_create_cede_p()</h2>
@@ -157,15 +158,15 @@ Functions</h2></td></tr>
 <p>A new pool is created in the environment's pool for use by the log.</p>
 <p>Properties from config that are processed:</p>
 <p>log_id This is the log's id and can be used to reference this log, for example, to change its logging priority or report on on problems with the log. It will default to log_type, but must be unique.</p>
-<p>priority This is a string containing a &lt;priority&gt; from the table below. This priority and higher that will be logged in this log. This parameter can also have a value of "none" if all logging is to be controlled by &lt;priority&gt; properties. The default is notice.</p>
-<p>&lt;priority&gt; Any &lt;priority&gt; can be set to true or false, overriding what is set or defaulted to by the priority property.</p>
+<p>priority This is a string containing a <code>&lt;priority&gt;</code> from the table below. This priority and higher that will be logged in this log. This parameter can also have a value of "none" if all logging is to be controlled by <code>&lt;priority&gt;</code> properties. The default is notice.</p>
+<p><code>&lt;priority&gt;</code> Any <code>&lt;priority&gt;</code> can be set to true or false, overriding what is set or defaulted to by the priority property.</p>
 <p>filter expression &ndash; future &ndash;</p>
 <p>format expression &ndash; future &mdash;</p>
-<p>debug expression &ndash; future &mdash; Note: maybe filter will do, but this might do priority="none",debug=true. Maybe any of the &lt;priority&gt; can be true/false or a filter expression???</p>
-<p>&lt;priority&gt; in table below are listed highest priority to lowest. &lt;priority&gt; trace1-8 are not available in many log configurations, such as syslog.</p>
+<p>debug expression &ndash; future &mdash; Note: maybe filter will do, but this might do priority="none",debug=true. Maybe any of the <code>&lt;priority&gt;</code> can be true/false or a filter expression???</p>
+<p><code>&lt;priority&gt;</code> in table below are listed highest priority to lowest. <code>&lt;priority&gt;</code> trace1-8 are not available in many log configurations, such as syslog.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">&lt;priority&gt;   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<th class="markdownTableHeadNone"><code>&lt;priority&gt;</code>   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">emerg   </td><td class="markdownTableBodyNone">System unusable    </td></tr>
 <tr class="markdownTableRowEven">
@@ -299,7 +300,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

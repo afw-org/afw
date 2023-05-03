@@ -65,17 +65,17 @@ $(function() {
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">lmdb functions<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__core__functions.html">Adaptive functions</a></div></div>  </div>
+<div class="title">lmdb functions<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__functions.html">Adaptive functions</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gaa4d29c785575d0b2bf0406bef40e994d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__functions__lmdb.html#gaa4d29c785575d0b2bf0406bef40e994d">afw_lmdb_function_execute_reader_check</a> (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x)</td></tr>
-<tr class="memdesc:gaa4d29c785575d0b2bf0406bef40e994d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Function reader_check.  <a href="group__afw__functions__lmdb.html#gaa4d29c785575d0b2bf0406bef40e994d">More...</a><br /></td></tr>
+<tr class="memdesc:gaa4d29c785575d0b2bf0406bef40e994d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Function <code>reader_check</code>  <a href="group__afw__functions__lmdb.html#gaa4d29c785575d0b2bf0406bef40e994d">More...</a><br /></td></tr>
 <tr class="separator:gaa4d29c785575d0b2bf0406bef40e994d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga250c2d8fce0fe9464c620261c10d9c16"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__functions__lmdb.html#ga250c2d8fce0fe9464c620261c10d9c16">afw_lmdb_function_execute_reader_list</a> (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x)</td></tr>
-<tr class="memdesc:ga250c2d8fce0fe9464c620261c10d9c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Function reader_list.  <a href="group__afw__functions__lmdb.html#ga250c2d8fce0fe9464c620261c10d9c16">More...</a><br /></td></tr>
+<tr class="memdesc:ga250c2d8fce0fe9464c620261c10d9c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive Function <code>reader_list</code>  <a href="group__afw__functions__lmdb.html#ga250c2d8fce0fe9464c620261c10d9c16">More...</a><br /></td></tr>
 <tr class="separator:ga250c2d8fce0fe9464c620261c10d9c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -97,27 +97,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adaptive Function reader_check. </p>
+<p>Adaptive Function <code>reader_check</code> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">function</td><td>struct for this function. </td></tr>
-    <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
-    <tr><td class="paramname">argv</td><td>list of values. </td></tr>
-    <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
+    <tr><td class="paramname">x</td><td>function execute parameter.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Check for stale entries in the reader lock table.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
-<p>function reader_check( adaptorId: string ): integer;</p>
-<p>Parameters:</p>
+<div class="fragment"><div class="line"><span class="keyword">function</span> reader_check(</div>
+<div class="line">    adaptorId: <span class="keywordtype">string</span></div>
+<div class="line">): integer;</div>
+</div><!-- fragment --><p>Parameters:</p>
 <p>adaptorId - (string) Adaptor Id.</p>
 <p>Returns:</p>
 <p>(integer) Number of stale slots that were cleared. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__function__lmdb_8c_source.html#l00046">46</a> of file <a class="el" href="afw__lmdb__function__lmdb_8c_source.html">afw_lmdb_function_lmdb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__function__lmdb_8c_source.html#l00048">48</a> of file <a class="el" href="afw__lmdb__function__lmdb_8c_source.html">afw_lmdb_function_lmdb.c</a>.</p>
 
 </div>
 </div>
@@ -137,34 +135,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adaptive Function reader_list. </p>
+<p>Adaptive Function <code>reader_list</code> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">function</td><td>struct for this function. </td></tr>
-    <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
-    <tr><td class="paramname">argv</td><td>list of values. </td></tr>
-    <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
+    <tr><td class="paramname">x</td><td>function execute parameter.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Dump the entries in the reader lock table.</p>
 <p>This function is not pure, so it may return a different result given exactly the same parameters.</p>
 <p>Declaration:</p>
-<p>function reader_list( adaptorId: string ): string;</p>
-<p>Parameters:</p>
+<div class="fragment"><div class="line"><span class="keyword">function</span> reader_list(</div>
+<div class="line">    adaptorId: <span class="keywordtype">string</span></div>
+<div class="line">): string;</div>
+</div><!-- fragment --><p>Parameters:</p>
 <p>adaptorId - (string) Adaptor Id.</p>
 <p>Returns:</p>
 <p>(string) Reader entries. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__lmdb__function__lmdb_8c_source.html#l00097">97</a> of file <a class="el" href="afw__lmdb__function__lmdb_8c_source.html">afw_lmdb_function_lmdb.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__lmdb__function__lmdb_8c_source.html#l00101">101</a> of file <a class="el" href="afw__lmdb__function__lmdb_8c_source.html">afw_lmdb_function_lmdb.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

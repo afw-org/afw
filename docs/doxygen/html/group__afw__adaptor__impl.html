@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: afw_adaptor interfaces</title>
+<title>Adaptive Framework: afw_adaptor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">afw_adaptor interfaces<div class="ingroups"><a class="el" href="group__afw__impl.html">Interface Implementation Helpers</a></div></div>  </div>
+<div class="title">afw_adaptor<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__impl.html">Interface implementation support</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -97,16 +97,16 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gaa17618befd6d272940d4019c65d93e1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e">AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN</a>(adaptor)&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">AFW_LOCK_READ_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td></tr>
+<tr class="memitem:gaa17618befd6d272940d4019c65d93e1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e">AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN</a>(adaptor)&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">AFW_LOCK_READ_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td></tr>
 <tr class="memdesc:gaa17618befd6d272940d4019c65d93e1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin an adaptor read lock section.  <a href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e">More...</a><br /></td></tr>
 <tr class="separator:gaa17618befd6d272940d4019c65d93e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga74b2744ac999c3000da6457a7b60e411"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga74b2744ac999c3000da6457a7b60e411">AFW_ADAPTOR_IMPL_LOCK_READ_END</a>&#160;&#160;&#160;<a class="el" href="group__afw__log.html#ga8964e87f4cda36d9a1fade3e98010624">AFW_LOCK_READ_END</a></td></tr>
+<tr class="memitem:ga74b2744ac999c3000da6457a7b60e411"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga74b2744ac999c3000da6457a7b60e411">AFW_ADAPTOR_IMPL_LOCK_READ_END</a>&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#ga8964e87f4cda36d9a1fade3e98010624">AFW_LOCK_READ_END</a></td></tr>
 <tr class="memdesc:ga74b2744ac999c3000da6457a7b60e411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end an adaptor read lock section.  <a href="group__afw__adaptor__impl.html#ga74b2744ac999c3000da6457a7b60e411">More...</a><br /></td></tr>
 <tr class="separator:ga74b2744ac999c3000da6457a7b60e411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac68545bf138577c8b1a2903efb346873"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873">AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN</a>(adaptor)&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gac0ea6fe8dc902e166409862cba9d000e">AFW_LOCK_WRITE_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td></tr>
+<tr class="memitem:gac68545bf138577c8b1a2903efb346873"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873">AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN</a>(adaptor)&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gac0ea6fe8dc902e166409862cba9d000e">AFW_LOCK_WRITE_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td></tr>
 <tr class="memdesc:gac68545bf138577c8b1a2903efb346873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to begin an adaptor write lock section.  <a href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873">More...</a><br /></td></tr>
 <tr class="separator:gac68545bf138577c8b1a2903efb346873"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b">AFW_ADAPTOR_IMPL_LOCK_WRITE_END</a>&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">AFW_LOCK_WRITE_END</a></td></tr>
+<tr class="memitem:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b">AFW_ADAPTOR_IMPL_LOCK_WRITE_END</a>&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">AFW_LOCK_WRITE_END</a></td></tr>
 <tr class="memdesc:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to end an adaptor write lock section.  <a href="group__afw__adaptor__impl.html#ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b">More...</a><br /></td></tr>
 <tr class="separator:ga07ce39ae4b5082bd8c6b6e5dcd5bdb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac14f46cfce16b79ea6a4afc3b8748cd1"><td class="memItemLeft" align="right" valign="top"><a id="gac14f46cfce16b79ea6a4afc3b8748cd1"></a>
@@ -125,7 +125,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga799074e2d83c6aa095c459dfef8e7449"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449">afw_adaptor_impl_create_cede_p</a> (const <a class="el" href="structafw__adaptor__inf__s.html">afw_adaptor_inf_t</a> *inf, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> instance_size, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *properties, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga799074e2d83c6aa095c459dfef8e7449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Developers should call this in all create functions for afw_adaptor.  <a href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449">More...</a><br /></td></tr>
 <tr class="separator:ga799074e2d83c6aa095c459dfef8e7449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fab8498a269d0bf1f174d591dc1741b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b">afw_adaptor_impl_object_type_cache_initialize</a> (<a class="el" href="structafw__adaptor__object__type__cache__s.html">afw_adaptor_object_type_cache_t</a> *object_type_cache, const <a class="el" href="structafw__adaptor__object__type__cache__inf__s.html">afw_adaptor_object_type_cache_inf_t</a> *inf, const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *<a class="el" href="classsession.html">session</a>, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> all_object_types_immutable, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:ga5fab8498a269d0bf1f174d591dc1741b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b">afw_adaptor_impl_object_type_cache_initialize</a> (<a class="el" href="structafw__adaptor__object__type__cache__s.html">afw_adaptor_object_type_cache_t</a> *object_type_cache, const <a class="el" href="structafw__adaptor__object__type__cache__inf__s.html">afw_adaptor_object_type_cache_inf_t</a> *inf, const <a class="el" href="structafw__adaptor__session__s.html">afw_adaptor_session_t</a> *session, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> all_object_types_immutable, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga5fab8498a269d0bf1f174d591dc1741b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize object type cache instance.  <a href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b">More...</a><br /></td></tr>
 <tr class="separator:ga5fab8498a269d0bf1f174d591dc1741b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad63198696017e4e211ec406857429424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__adaptor__impl.html#gad63198696017e4e211ec406857429424">afw_adaptor_impl_set_object_types_fully_loaded</a> (const <a class="el" href="structafw__adaptor__s.html">afw_adaptor_t</a> *adaptor, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -160,6 +160,7 @@ Variables</h2></td></tr>
 <tr class="separator:ga9494b08d5bc4ae0cdecf753eabc07ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Helpers for afw_adapor implementations. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="gaa17618befd6d272940d4019c65d93e1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa17618befd6d272940d4019c65d93e1e">&#9670;&nbsp;</a></span>AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN</h2>
@@ -172,7 +173,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">adaptor</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">AFW_LOCK_READ_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gad0e1f16b4831c2fa5a6c66f6437db2bf">AFW_LOCK_READ_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -188,7 +189,7 @@ Variables</h2></td></tr>
 <p>Usage:</p>
 <p><a class="el" href="group__afw__adaptor__impl.html#gaa17618befd6d272940d4019c65d93e1e" title="Macro to begin an adaptor read lock section.">AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN(adaptor, xctx)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_READ_END; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00044">44</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00043">43</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +200,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AFW_ADAPTOR_IMPL_LOCK_READ_END&#160;&#160;&#160;<a class="el" href="group__afw__log.html#ga8964e87f4cda36d9a1fade3e98010624">AFW_LOCK_READ_END</a></td>
+          <td class="memname">#define AFW_ADAPTOR_IMPL_LOCK_READ_END&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#ga8964e87f4cda36d9a1fade3e98010624">AFW_LOCK_READ_END</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -207,7 +208,7 @@ Variables</h2></td></tr>
 <p>Macro to end an adaptor read lock section. </p>
 <p>See AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN for usage. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00053">53</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00052">52</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -222,7 +223,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">adaptor</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gac0ea6fe8dc902e166409862cba9d000e">AFW_LOCK_WRITE_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gac0ea6fe8dc902e166409862cba9d000e">AFW_LOCK_WRITE_BEGIN</a>((adaptor)-&gt;impl-&gt;adaptor_lock_rw)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -238,7 +239,7 @@ Variables</h2></td></tr>
 <p>Usage:</p>
 <p><a class="el" href="group__afw__adaptor__impl.html#gac68545bf138577c8b1a2903efb346873" title="Macro to begin an adaptor write lock section.">AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN(adaptor, xctx)</a> { ... a very small amount of code that doesn't call anything that might lock this again. } AFW_ADAPTOR_IMPL_LOCK_WRITE_END; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00070">70</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00069">69</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +250,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AFW_ADAPTOR_IMPL_LOCK_WRITE_END&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">AFW_LOCK_WRITE_END</a></td>
+          <td class="memname">#define AFW_ADAPTOR_IMPL_LOCK_WRITE_END&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gac2ee56bb8a8edb5b1cdd8f107b70719d">AFW_LOCK_WRITE_END</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -257,7 +258,7 @@ Variables</h2></td></tr>
 <p>Macro to end an adaptor write lock section. </p>
 <p>See AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN for usage. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00079">79</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00078">78</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -376,7 +377,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>instance of afw_adaptor_t that optionally with extra memory based on instance_size parameter.</dd></dl>
 <p>This function creates and initializes an afw_adaptor instance. After calling this function, the caller should do additional adaptor type specific processing. The instance_size parameter can be specified to get a larger instance size than sizeof(afw_adaptor_t) for adaptor type specific use.</p>
 <p>A new pool is created in the callings xctx's pool for use by the adaptor.</p>
-<p>This function validates and normalizes the adaptor properties based on /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_&lt;adaptorType&gt;, where &lt;adaptorType&gt; is the value of the adaptorType property.</p>
+<p>This function validates and normalizes the adaptor properties based on <code>/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_&lt;adaptorType&gt;</code>, where <code>&lt;adaptorType&gt;</code> is the value of the adaptorType property.</p>
 <p>All properties from /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor are processed.</p>
 <p>Some additional properties are processed if they pass validation. Properties isModelLocation and isPolicyLocation cause the appropriate core object types to be supported.</p>
 <p>If this adaptorId is the layout adaptorId, the appropriate core object types are supported.</p>
@@ -811,14 +812,14 @@ Variables</h2></td></tr>
 <p>inf for an implementation of afw_adaptor_object_type_cache. </p>
 <p>This is the inf for an implementation of afw_adaptor_object_type_cache that provided life of the adaptor cache support for object types. The address of this can be passed as the inf parameter of <a class="el" href="group__afw__adaptor__impl.html#ga5fab8498a269d0bf1f174d591dc1741b" title="Initialize object type cache instance.">afw_adaptor_impl_object_type_cache_initialize()</a> if this meets the needs of the adaptor implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00335">335</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00334">334</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

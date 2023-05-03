@@ -69,7 +69,7 @@ $(function() {
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Error<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Error<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -276,7 +276,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Catch a particular error that occurs in a AFW_TRY block. </p>
 <p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH block will be handle by the previous try; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00672">672</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00668">668</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Catch an unhandled error that occurs in a AFW_TRY block. </p>
 <p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_CATCH_UNHANDLED block will be handle by the previous try; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00688">688</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00684">684</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -333,7 +333,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown after this AFW_ENDTRY block will be handle by the previous try;</p>
 <p>Always follow AFW_ENDTRY with a semicolon. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00731">731</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00727">727</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -360,9 +360,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">        (<span class="keywordtype">char</span> *)&amp;((__ERROR_)-&gt;code) \</div>
 <div class="line">    ) \</div>
 <div class="line">);</div>
-</div><!-- fragment --><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000097">Todo:</a></b></dt><dd>FIXME: AFW_MARK_UNHANDLED doesn't restore evaluation_stack. </dd></dl>
+</div><!-- fragment --><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000102">Todo:</a></b></dt><dd>FIXME: AFW_MARK_UNHANDLED doesn't restore evaluation_stack. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00142">142</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00138">138</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -398,7 +398,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">    if ((from)-&gt;rv_decoded_z == &amp;(from)-&gt;decode_rv_wa[0]) { \</div>
 <div class="line">        (to)-&gt;rv_decoded_z = &amp;(to)-&gt;decode_rv_wa[0]; \</div>
 <div class="line">    }</div>
-<div class="ttc" id="astructafw__error__s_html"><div class="ttname"><a href="structafw__error__s.html">afw_error_s</a></div><div class="ttdoc">Adaptive Framework Error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00069">afw_error.h:69</a></div></div>
+<div class="ttc" id="astructafw__error__s_html"><div class="ttname"><a href="structafw__error__s.html">afw_error_s</a></div><div class="ttdoc">Adaptive Framework Error.</div><div class="ttdef"><b>Definition:</b> <a href="afw__error_8h_source.html#l00065">afw_error.h:65</a></div></div>
 </div><!-- fragment -->
 <p>Copy an error struct. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -410,7 +410,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>The from error struct is copied to to and the to-&gt;message_z and to-&gt;rv_decoded_z is adjusted if they point to the corresponding wa in from. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00543">543</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00539">539</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -431,7 +431,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    footprint.z = _footprint_; \</div>
 <div class="line">    footprint.source_z = <a class="code" href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a>;</div>
-<div class="ttc" id="agroup__afw__common_html_gaef2aeddb18b2cfc6672e2b32c4404f0c"><div class="ttname"><a href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a></div><div class="ttdeci">#define AFW__FILE_LINE__</div><div class="ttdoc">file:line</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00147">afw_common.h:147</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gaef2aeddb18b2cfc6672e2b32c4404f0c"><div class="ttname"><a href="group__afw__common.html#gaef2aeddb18b2cfc6672e2b32c4404f0c">AFW__FILE_LINE__</a></div><div class="ttdeci">#define AFW__FILE_LINE__</div><div class="ttdoc">file:line</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00148">afw_common.h:148</a></div></div>
 </div><!-- fragment -->
 <p>Set error footprint. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -444,7 +444,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Variable with the specific name footprint of type afw_error_footprint_t must already be defined.</p>
 <p>afw_error_footprint_t footprint; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00175">175</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00171">171</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <b>Value:</b><div class="fragment"><div class="line">    (__TRY_).prev = NULL;\</div>
 <div class="line">    if ((setjmp((__TRY_).throw_jmp_buf)) != 0)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00529">529</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00525">525</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </p>
 <p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00212">212</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00208">208</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -508,7 +508,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>APR rv source id. </p>
 <p>Registered in <a class="el" href="afw__environment__register__core_8c.html" title="Register core environment.">afw_environment_register_core.c</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00044">44</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00040">40</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -527,7 +527,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>ICU rv source id. </p>
 <p>Registered in <a class="el" href="afw__environment__register__core_8c.html" title="Register core environment.">afw_environment_register_core.c</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00051">51</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00047">47</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -557,7 +557,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <dl class="section return"><dt>Returns</dt><dd>pointer past last '/' or '\'.</dd></dl>
 <p>Some compilers return the full path name for <b>FILE</b>, but we normally just want to display the part of path after last slash. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00883">883</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00879">879</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +576,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Access the thrown error. See AFW_TRY. </p>
 <p>This should only be called in the body of AFW_CATCH and AFW_CATCH_UNHANDLED. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00558">558</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00554">554</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -607,7 +607,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>The body of AFW_FINALLY is executed after the body of the AFW_TRY and bodies of AFW_CATCH* macros, regardless of whether an error has occurred.</p>
 <p>The xctx's current_try is set to its value before entering the AFW_TRY block, so errors thrown in this AFW_FINALLY block will be handle by the previous try; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00706">706</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00702">702</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -629,7 +629,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>The AFW_ENDTRY will rethrow the error.</p>
 <p>Always follow with a semicolon (AFW_MARK_UNHANDLED;). </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00754">754</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00750">750</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +651,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Macro used to test if error-&gt;code is afw_error_code_none.</p>
 <p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00204">204</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00200">200</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -673,7 +673,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>Macro used to throw an error. The error should already be set using macro AFW_SET_ERROR().</p>
 <p>Always follow with a semicolon ( <a class="el" href="group__afw__error.html#ga51268c26074993b0c3fe26c57f565cb2">AFW_THROW(xctx)</a>; ). </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00275">275</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00271">271</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -733,7 +733,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00432">432</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00428">428</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -808,7 +808,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00453">453</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00449">449</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -882,7 +882,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00490">490</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00486">486</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -950,7 +950,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00412">412</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00408">408</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +1010,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00472">472</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00468">468</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +1062,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00392">392</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00388">388</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1121,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00323">323</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00319">319</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1195,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00342">342</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00338">338</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1268,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00375">375</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00371">371</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +1335,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00305">305</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00301">301</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1394,7 +1394,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00359">359</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00355">355</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1446,7 +1446,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </dl>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00287">287</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00283">283</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1473,7 +1473,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><!-- fragment --><p>Macro used to set memory error in xctx and throw it.</p>
 <p>Always follow with a semicolon; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00503">503</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00499">499</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1538,7 +1538,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><!-- fragment --><p>Macro used to set error and return.</p>
 <p>This macro should normally only be used when an xctx is not available. AFW_THROW related macros should be used instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00186">186</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00182">182</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -1578,7 +1578,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <div class="line">        } \</div>
 <div class="line">        else { \</div>
 <div class="line">            do</div>
-<div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00373">afw_common.h:373</a></div></div>
 </div><!-- fragment -->
 <p>Begin an AFW TRY block. </p>
 <p>The variable name of the current xctx must be named xctx.</p>
@@ -1609,7 +1609,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 <p>}</p>
 <p>AFW_ENDTRY; (Required) End of TRY block. The xctx's current_try will be set to its value before entering the TRY block. If error is unhandled, it will be rethrown. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00638">638</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__error_8h_source.html#l00634">634</a> of file <a class="el" href="afw__error_8h_source.html">afw_error.h</a>.</p>
 
 </div>
 </div>
@@ -2049,7 +2049,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>error as a string. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000095">Todo:</a></b></dt><dd>FIXME: "%.0" AFW_SIZE_T_FMT should cause 0 not to be printed, but it does. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000100">Todo:</a></b></dt><dd>FIXME: "%.0" AFW_SIZE_T_FMT should cause 0 not to be printed, but it does. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l00547">547</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
 
@@ -2097,7 +2097,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
   </dd>
 </dl>
 <p>This function leaves xctx-&gt;error unchanged if it is successful. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000096">Todo:</a></b></dt><dd>FIXME: </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000101">Todo:</a></b></dt><dd>FIXME: </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__error_8c_source.html#l00639">639</a> of file <a class="el" href="afw__error_8c_source.html">afw_error.c</a>.</p>
 
@@ -2106,7 +2106,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>afw_error_set_vz</b> 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

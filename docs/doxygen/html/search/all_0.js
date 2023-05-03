@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_40afw_2freact_2dmaterial_2dui_0',['@afw/react-material-ui',['../md_src_afw_components_react_material__r_e_a_d_m_e.html',1,'']]]
+  ['_28deprecated_29_20array_20template_0',['(deprecated) Array template',['../group__afw__array__template__internal.html',1,'']]]
 ];

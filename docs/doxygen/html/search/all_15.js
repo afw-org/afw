@@ -1,10 +1,15 @@
 var searchData=
 [
-  ['value_8994',['Value',['../group__afw__value.html',1,'']]],
-  ['value_8995',['value',['../structafw__adaptor__modify__entry__s.html#a931990b80a2591dfc1abb0ae949dc5dc',1,'afw_adaptor_modify_entry_s::value()'],['../structafw__runtime__unresolved__property__s.html#a5235d65d7d43b20af8390f8c5f9405a7',1,'afw_runtime_unresolved_property_s::value()']]],
-  ['value_20functions_8996',['value functions',['../group__afw__functions__value.html',1,'']]],
-  ['value_5fmeta_5fobject_8997',['value_meta_object',['../structafw__value__type__s.html#a484635f50fe684d53b514bee8c050f50',1,'afw_value_type_s']]],
-  ['value_5foffset_8998',['value_offset',['../structafw__compile__internal__value__contextual__s.html#a9c78edead83dd2a3df44b0d7c2934724',1,'afw_compile_internal_value_contextual_s']]],
-  ['value_5fsize_8999',['value_size',['../structafw__compile__internal__value__contextual__s.html#a730348d628686da989f654c35db1fba6',1,'afw_compile_internal_value_contextual_s']]],
-  ['version_20information_9000',['Version information',['../group__afw__version.html',1,'']]]
+  ['unary_5fnot_5foperator_5ffunction_9058',['unary_not_operator_function',['../structafw__function__environment__s.html#a44c6787a4c5de285f52c48b379577da5',1,'afw_function_environment_s']]],
+  ['unevaluated_9059',['unevaluated',['../group__afw__c__api__data__type__unevaluated.html',1,'']]],
+  ['unevaluated_20functions_9060',['unevaluated functions',['../group__afw__functions__unevaluated.html',1,'']]],
+  ['unicode_20code_20point_20support_9061',['Unicode code point support',['../group__afw__code__point.html',1,'']]],
+  ['uniform_20resource_20identifier_20_28uri_29_9062',['Uniform Resource Identifier (URI)',['../group__afw__uri.html',1,'']]],
+  ['unique_9063',['unique',['../structafw__model__internal__property__type__s.html#a8e4fb5a7f5ae04ac00a33ee08ed68bc6',1,'afw_model_internal_property_type_s']]],
+  ['universal_20binary_20json_20content_2dtype_9064',['Universal Binary JSON content-type',['../group__afw__ubjson.html',1,'']]],
+  ['untypedfunctionid_9065',['untypedFunctionId',['../structafw__value__function__definition__s.html#a29361a757d4dbd69b1f15adea4bfb7c7',1,'afw_value_function_definition_s']]],
+  ['update_5fobject_5fcount_9066',['update_object_count',['../structafw__adaptor__impl__s.html#a76cddfbe563a4088b373f9cc69555a82',1,'afw_adaptor_impl_s']]],
+  ['uri_5fparsed_9067',['uri_parsed',['../structafw__object__view__internal__view__s.html#a6b90758486c11c14a5453fd532896d58',1,'afw_object_view_internal_view_s']]],
+  ['utf_2d8_20nfc_20string_9068',['UTF-8 NFC string',['../group__afw__utf8.html',1,'']]],
+  ['uuid_9069',['UUID',['../group__afw__uuid.html',1,'']]]
 ];

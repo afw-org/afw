@@ -65,11 +65,11 @@ $(function() {
   <div class="summary">
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">unevaluated functions<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__core__functions.html">Adaptive functions</a></div></div>  </div>
+<div class="title">unevaluated functions<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__functions.html">Adaptive functions</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Adaptive Function union&lt;time&gt;  
+<p>Adaptive Function <code>union&lt;time&gt;</code>  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -80,22 +80,22 @@ Variables</h2></td></tr>
 <tr class="separator:ga28f5cbbe244c1dded3db5799dfb19f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Adaptive Function union&lt;time&gt; </p>
+<p>Adaptive Function <code>union&lt;time&gt;</code> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">function</td><td>struct for this function. </td></tr>
-    <tr><td class="paramname">argc</td><td>number of values in argv. </td></tr>
-    <tr><td class="paramname">argv</td><td>list of values. </td></tr>
-    <tr><td class="paramname">p</td><td>to use for result. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
+    <tr><td class="paramname">x</td><td>function execute parameter.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Returns a list of time contains all of the unique values in two or more list of time values.</p>
 <p>This function is pure, so it will always return the same result given exactly the same parameters and has no side effects.</p>
 <p>Declaration:</p>
-<p>function union&lt;time&gt;( lists_1: (list time), lists_2: (list time), ...lists_rest: (list of (list time)) ): (list time);</p>
-<p>Parameters:</p>
+<div class="fragment"><div class="line"><span class="keyword">function</span> union&lt;time&gt;(</div>
+<div class="line">    lists_1: (list time),</div>
+<div class="line">    lists_2: (list time),</div>
+<div class="line">    ...lists_rest: (list of (list time))</div>
+<div class="line">): (list time);</div>
+</div><!-- fragment --><p>Parameters:</p>
 <p>lists - (2 or more list time) Two or more lists.</p>
 <p>Returns:</p>
 <p>(list time)</p>
@@ -105,7 +105,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Common support for adaptive function implementations</title>
+<title>Adaptive Framework: Adaptive function support</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Common support for adaptive function implementations<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Adaptive function support<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -176,7 +176,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>This will return NULL if A_N is greater than x-&gt;argc.</p>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00165">165</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00159">159</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -210,7 +210,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00178">178</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00172">172</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00212">212</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00206">206</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -278,7 +278,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00195">195</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00189">189</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -305,8 +305,8 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <div class="line">        <span class="stringliteral">&quot;Value&#39;s data type not supported for this function&quot;</span>, x-&gt;xctx); \</div>
 <div class="line">}</div>
 <div class="ttc" id="agroup__afw__utf8_html_ga552f0dde7698dbc98c347188081e68ad"><div class="ttname"><a href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a></div><div class="ttdeci">afw_boolean_t afw_utf8_equal(const afw_utf8_t *s1, const afw_utf8_t *s2)</div><div class="ttdoc">Check to see if a string equals another string.</div></div>
-<div class="ttc" id="agroup__afw__value__interface_html_ga355792d70d105c24f0f88e87acedb6b4"><div class="ttname"><a href="group__afw__value__interface.html#ga355792d70d105c24f0f88e87acedb6b4">afw_value_get_data_type</a></div><div class="ttdeci">#define afw_value_get_data_type(instance, xctx)</div><div class="ttdoc">Call method get_data_type of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05311">afw_interface.h:5311</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="agroup__afw__value__interface_html_ga355792d70d105c24f0f88e87acedb6b4"><div class="ttname"><a href="group__afw__value__interface.html#ga355792d70d105c24f0f88e87acedb6b4">afw_value_get_data_type</a></div><div class="ttdeci">#define afw_value_get_data_type(instance, xctx)</div><div class="ttdoc">Call method get_data_type of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05390">afw_interface.h:5390</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05237">afw_interface.h:5237</a></div></div>
 </div><!-- fragment -->
 <p>Assert that a value is at data type with cType of afw_utf8_t. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -317,7 +317,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00229">229</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00223">223</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -359,17 +359,17 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Evaluate an arg for a particular data type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A_RESULT</td><td>is a const afw_value_&lt;A_TYPE&gt;_t * variable name for result. </td></tr>
-    <tr><td class="paramname">n</td><td>is the 1 based parameter number in of argv to evaluate. </td></tr>
+    <tr><td class="paramname">A_RESULT</td><td>is a const <code>afw_value_&lt;A_TYPE&gt;_t</code> * variable name for result. </td></tr>
+    <tr><td class="paramname">A_N</td><td>is the 1 based parameter number in of argv to evaluate. </td></tr>
     <tr><td class="paramname">A_TYPE</td><td>is the unquoted dataType. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the value casted to afw_value_&lt;A_TYPE&gt;_t * or NULL (undefined).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the value casted to <code>afw_value_&lt;A_TYPE&gt;_t</code> * or NULL (undefined).</dd></dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer.</p>
 <p>It is up to the implementation to check if A_RESULT is NULL and the correct data type. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00267">267</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00261">261</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +410,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer.</p>
 <p>It is up to the implementation to check if A_RESULT is NULL and the correct data type. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00285">285</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00279">279</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -441,24 +441,24 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">A_RESULT = (<span class="keyword">const</span> <a class="code" href="structafw__value__boolean__s.html">afw_value_boolean_t</a> *) \</div>
 <div class="line">    <a class="code" href="group__afw__function.html#ga095a73a95ae5eca4ff12ea997d8ad12a">afw_function_evaluate_required_parameter</a>(x, A_N, NULL); \</div>
-<div class="line">    if (!<a class="code" href="group__afw__core__data__type__boolean.html#ga36d615a13d70eeae54f64a96e09ae9b3">afw_value_is_boolean</a>(A_RESULT)) \</div>
+<div class="line">    if (!<a class="code" href="group__afw__c__api__data__type__boolean.html#ga36d615a13d70eeae54f64a96e09ae9b3">afw_value_is_boolean</a>(A_RESULT)) \</div>
 <div class="line">        AFW_THROW_ERROR_FZ(arg_error, xctx, \</div>
 <div class="line">            <span class="stringliteral">&quot;Condition must be boolean (parameter %d)&quot;</span>, (A_N))</div>
-<div class="ttc" id="agroup__afw__core__data__type__boolean_html_ga36d615a13d70eeae54f64a96e09ae9b3"><div class="ttname"><a href="group__afw__core__data__type__boolean.html#ga36d615a13d70eeae54f64a96e09ae9b3">afw_value_is_boolean</a></div><div class="ttdeci">#define afw_value_is_boolean(A_VALUE)</div><div class="ttdoc">Macro to determine if value is evaluated boolean.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__boolean__binding_8h_source.html#l00115">afw_data_type_boolean_binding.h:115</a></div></div>
+<div class="ttc" id="agroup__afw__c__api__data__type__boolean_html_ga36d615a13d70eeae54f64a96e09ae9b3"><div class="ttname"><a href="group__afw__c__api__data__type__boolean.html#ga36d615a13d70eeae54f64a96e09ae9b3">afw_value_is_boolean</a></div><div class="ttdeci">#define afw_value_is_boolean(A_VALUE)</div><div class="ttdoc">Macro to determine if value is evaluated boolean.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__boolean__binding_8h_source.html#l00103">afw_data_type_boolean_binding.h:103</a></div></div>
 <div class="ttc" id="agroup__afw__function_html_ga095a73a95ae5eca4ff12ea997d8ad12a"><div class="ttname"><a href="group__afw__function.html#ga095a73a95ae5eca4ff12ea997d8ad12a">afw_function_evaluate_required_parameter</a></div><div class="ttdeci">afw_function_evaluate_required_parameter(afw_function_execute_t *x, afw_size_t parameter_number, const afw_data_type_t *data_type)</div><div class="ttdoc">Evaluate an required parameter and convert if necessary.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8c_source.html#l00213">afw_function.c:213</a></div></div>
-<div class="ttc" id="astructafw__value__boolean__s_html"><div class="ttname"><a href="structafw__value__boolean__s.html">afw_value_boolean_s</a></div><div class="ttdoc">struct for data type boolean values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__boolean__binding_8h_source.html#l00157">afw_data_type_boolean_binding.h:157</a></div></div>
+<div class="ttc" id="astructafw__value__boolean__s_html"><div class="ttname"><a href="structafw__value__boolean__s.html">afw_value_boolean_s</a></div><div class="ttdoc">struct for data type boolean values.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type__boolean__binding_8h_source.html#l00145">afw_data_type_boolean_binding.h:145</a></div></div>
 </div><!-- fragment -->
 <p>Evaluate an arg that is a required condition. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A_RESULT</td><td>is a const afw_value_&lt;A_TYPE&gt;_t * variable name for result. </td></tr>
-    <tr><td class="paramname">n</td><td>is the 1 based parameter number in of argv to evaluate.</td></tr>
+    <tr><td class="paramname">A_RESULT</td><td>is a const <code>afw_value_&lt;A_TYPE&gt;_t</code> * variable name for result. </td></tr>
+    <tr><td class="paramname">A_N</td><td>is the 1 based parameter number in of argv to evaluate.</td></tr>
   </table>
   </dd>
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00315">315</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00309">309</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -499,15 +499,15 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Evaluate an arg for a particular data type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A_RESULT</td><td>is a const afw_value_&lt;A_TYPE&gt;_t * variable name for result. </td></tr>
-    <tr><td class="paramname">n</td><td>is the 1 based parameter number in of argv to evaluate. </td></tr>
+    <tr><td class="paramname">A_RESULT</td><td>is a const <code>afw_value_&lt;A_TYPE&gt;_t</code> * variable name for result. </td></tr>
+    <tr><td class="paramname">A_N</td><td>is the 1 based parameter number in of argv to evaluate. </td></tr>
     <tr><td class="paramname">A_TYPE</td><td>is the unquoted dataType.</td></tr>
   </table>
   </dd>
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00334">334</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00328">328</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +548,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer.</p>
 <p>A undefined error is thrown if result is NULL. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00301">301</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00295">295</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -569,7 +569,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>The reason this is NULL:</p>
 <p>AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING is NULL so it can be used in extensions. The generated *_function_bindings.c source contains a direct reference to the execute function name so if this was a direct reference to a function, there would be linkage problems on some operating systems. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00050">50</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00044">44</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -598,7 +598,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00248">248</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00242">242</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -620,7 +620,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 <p>Source location of a value. </p>
 <p>This is used when implementing the body of an adaptive function. Like all of the AFW_FUNCTION_* macros, "x" must be the name of the function execute struct pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00347">347</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__function_8h_source.html#l00341">341</a> of file <a class="el" href="afw__function_8h_source.html">afw_function.h</a>.</p>
 
 </div>
 </div>
@@ -732,7 +732,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value or undefined if there is an error.</dd></dl>
 <p>This is called for script function parameters so is different from others for now. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000104">Todo:</a></b></dt><dd>FIXME: add support for dataTypeParameter. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000109">Todo:</a></b></dt><dd>FIXME: add support for dataTypeParameter. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__function_8c_source.html#l00243">243</a> of file <a class="el" href="afw__function_8c_source.html">afw_function.c</a>.</p>
 
@@ -790,7 +790,7 @@ const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -81,134 +81,132 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef __AFW_STACK_H__</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFW_STACK_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gae8d6cd7c5daa2df4d3e8d1090e18eba7">   44</a></span>&#160;<span class="preprocessor">#define afw_stack_create(typedef_name, \</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">    initial_count, maximum_count, create_subpool_pool, p, xctx) \</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">(typedef_name *)afw_stack_create_impl( \</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    sizeof(*(((typedef_name *)0))-&gt;first), \</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">    initial_count, maximum_count, create_subpool_pool, p, xctx);</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<a class="code" href="structafw__stack__s.html">afw_stack_t</a> *)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="group__afw__stack.html#gab20b7160ba710a956317d8b742dbe2be">afw_stack_create_impl</a>(</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> entry_size,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> initial_count,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> maximum_count,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> create_subpool_pool,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gaaa0d297737d2c0cbac8330c2658d1bd3">   79</a></span>&#160;<span class="preprocessor">#define afw_stack_release(instance, xctx) \</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">afw_stack_release_impl( &amp;((instance)-&gt;pub), xctx)</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="group__afw__stack.html#gab20e466cb108b9dc695a90656ae247ad">afw_stack_release_impl</a>(</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> *instance,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga8ab5de68a121a15c3131cbb42df267b7">  104</a></span>&#160;<span class="preprocessor">#define afw_stack_copy(instance, count, ptr, p, xctx) \</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">afw_stack_copy_impl( &amp;((instance)-&gt;pub), count, ptr, p, xctx)</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<a class="code" href="group__afw__stack.html#ga6ebc5bd206d96ad35618cd12db36d505">afw_stack_copy_impl</a>(</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> *instance,</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> *count,</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> ***ptr,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga1de12a34fbc2854108aa1969be7afc27">  135</a></span>&#160;<span class="preprocessor">#define afw_stack_copy_and_release(instance, count, ptr, p, xctx) \</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">afw_stack_copy(instance, (count), (const void ***)(ptr), (p), (xctx)); \</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">afw_stack_release(instance, (xctx))</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<a class="code" href="group__afw__stack.html#gac949679c52bdf510cb61037cf2ad23c6">afw_stack_extend_impl</a>(</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> * instance,</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga989d368a878b7bfa182e565a3ddae4e4">  161</a></span>&#160;<span class="preprocessor">#define afw_stack_is_empty(instance) \</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">    ((instance)-&gt;top &lt; (instance)-&gt;first)</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga3a07916d8b72d5dd34041bd9b4e849bc">  172</a></span>&#160;<span class="preprocessor">#define afw_stack_pop(instance, xctx) \</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &lt; ((instance)-&gt;first)) { \</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;stack underflow&quot;</span>, xctx); \</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    } \</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    ((instance)-&gt;top)--;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  </div>
-<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga474e1332252e89e9385c43c75c57085d">  185</a></span>&#160;<span class="preprocessor">#define afw_stack_count(instance, xctx) \</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">    ((instance)-&gt;top + 1 - (instance)-&gt;first))</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gaffa4d926aaedc95df3c610f0feff6c57">  199</a></span>&#160;<span class="preprocessor">#define afw_stack_push(instance, xctx) \</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">    ((instance)-&gt;top)++; \</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &gt;= ((instance)-&gt;end)) { \</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">        afw_stack_extend_impl(&amp;((instance)-&gt;pub), xctx); \</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">    } \</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">    *((instance)-&gt;top)</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga98e8184279532c802f059aafdbc79359">  217</a></span>&#160;<span class="preprocessor">#define afw_stack_push_direct(instance, xctx) \</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">    ((instance)-&gt;top)++; \</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &gt;= ((instance)-&gt;end)) { \</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">        afw_stack_extend_impl(&amp;((instance)-&gt;pub), xctx); \</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">    }</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gac1a1ec4fa24115bc5302fdf70868520e">  234</a></span>&#160;<span class="preprocessor">#define afw_stack_push_and_get_entry(instance, entry, xctx) \</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">    afw_stack_push_direct(instance, xctx); \</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">    entry = (instance)-&gt;top</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga2945db55aa2cd5e61472d22bfd3a72f2">  247</a></span>&#160;<span class="preprocessor">#define afw_stack_set_empty(instance) \</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">    (instance)-&gt;top = ((instance)-&gt;first) - 1</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<a class="code" href="group__afw__stack.html#ga3119c0bbe4f52ba6fd8a08a586b3ac29">afw_stack_internal_set_qualifier_stack</a>(</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;afw_stack_internal_set_evaluation_stack(</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;AFW_END_DECLARES</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_STACK_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__interface_8h.html">afw_interface.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gae8d6cd7c5daa2df4d3e8d1090e18eba7">   40</a></span>&#160;<span class="preprocessor">#define afw_stack_create(typedef_name, \</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">    initial_count, maximum_count, create_subpool_pool, p, xctx) \</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">(typedef_name *)afw_stack_create_impl( \</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">    sizeof(*(((typedef_name *)0))-&gt;first), \</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">    initial_count, maximum_count, create_subpool_pool, p, xctx);</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<a class="code" href="structafw__stack__s.html">afw_stack_t</a> *)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<a class="code" href="group__afw__stack.html#gab20b7160ba710a956317d8b742dbe2be">afw_stack_create_impl</a>(</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> entry_size,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> initial_count,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> maximum_count,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> create_subpool_pool,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gaaa0d297737d2c0cbac8330c2658d1bd3">   75</a></span>&#160;<span class="preprocessor">#define afw_stack_release(instance, xctx) \</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">afw_stack_release_impl( &amp;((instance)-&gt;pub), xctx)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="group__afw__stack.html#gab20e466cb108b9dc695a90656ae247ad">afw_stack_release_impl</a>(</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> *instance,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga8ab5de68a121a15c3131cbb42df267b7">  100</a></span>&#160;<span class="preprocessor">#define afw_stack_copy(instance, count, ptr, p, xctx) \</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">afw_stack_copy_impl( &amp;((instance)-&gt;pub), count, ptr, p, xctx)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="group__afw__stack.html#ga6ebc5bd206d96ad35618cd12db36d505">afw_stack_copy_impl</a>(</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> *instance,</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> *count,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">void</span> ***ptr,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__pool__s.html">afw_pool_t</a> *p,</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga1de12a34fbc2854108aa1969be7afc27">  131</a></span>&#160;<span class="preprocessor">#define afw_stack_copy_and_release(instance, count, ptr, p, xctx) \</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">afw_stack_copy(instance, (count), (const void ***)(ptr), (p), (xctx)); \</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">afw_stack_release(instance, (xctx))</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<a class="code" href="group__afw__stack.html#gac949679c52bdf510cb61037cf2ad23c6">afw_stack_extend_impl</a>(</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="structafw__stack__s.html">afw_stack_t</a> * instance,</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga989d368a878b7bfa182e565a3ddae4e4">  157</a></span>&#160;<span class="preprocessor">#define afw_stack_is_empty(instance) \</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">    ((instance)-&gt;top &lt; (instance)-&gt;first)</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga3a07916d8b72d5dd34041bd9b4e849bc">  168</a></span>&#160;<span class="preprocessor">#define afw_stack_pop(instance, xctx) \</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &lt; ((instance)-&gt;first)) { \</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">        AFW_THROW_ERROR_Z(general, &quot;stack underflow&quot;</span>, xctx); \</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    } \</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    ((instance)-&gt;top)--;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga474e1332252e89e9385c43c75c57085d">  181</a></span>&#160;<span class="preprocessor">#define afw_stack_count(instance, xctx) \</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">    ((instance)-&gt;top + 1 - (instance)-&gt;first))</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gaffa4d926aaedc95df3c610f0feff6c57">  195</a></span>&#160;<span class="preprocessor">#define afw_stack_push(instance, xctx) \</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">    ((instance)-&gt;top)++; \</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &gt;= ((instance)-&gt;end)) { \</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">        afw_stack_extend_impl(&amp;((instance)-&gt;pub), xctx); \</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">    } \</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">    *((instance)-&gt;top)</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga98e8184279532c802f059aafdbc79359">  213</a></span>&#160;<span class="preprocessor">#define afw_stack_push_direct(instance, xctx) \</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">    ((instance)-&gt;top)++; \</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">    if ((instance)-&gt;top &gt;= ((instance)-&gt;end)) { \</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">        afw_stack_extend_impl(&amp;((instance)-&gt;pub), xctx); \</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="group__afw__stack.html#gac1a1ec4fa24115bc5302fdf70868520e">  230</a></span>&#160;<span class="preprocessor">#define afw_stack_push_and_get_entry(instance, entry, xctx) \</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">    afw_stack_push_direct(instance, xctx); \</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">    entry = (instance)-&gt;top</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="group__afw__stack.html#ga2945db55aa2cd5e61472d22bfd3a72f2">  243</a></span>&#160;<span class="preprocessor">#define afw_stack_set_empty(instance) \</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">    (instance)-&gt;top = ((instance)-&gt;first) - 1</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<a class="code" href="group__afw__stack.html#ga3119c0bbe4f52ba6fd8a08a586b3ac29">afw_stack_internal_set_qualifier_stack</a>(</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<a class="code" href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;afw_stack_internal_set_evaluation_stack(</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    </div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;AFW_END_DECLARES</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFW_STACK_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a28778bbad95b4bb0c7b0023cc75c8bdf"><div class="ttname"><a href="afw__declare__helpers_8h.html#a28778bbad95b4bb0c7b0023cc75c8bdf">AFW_DEFINE_INTERNAL</a></div><div class="ttdeci">#define AFW_DEFINE_INTERNAL(type)</div><div class="ttdoc">Define an internal function for /src/afw/ source*.c files.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00122">afw_declare_helpers.h:122</a></div></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_a620e48a7ca05fce10cb547d23c7a04a4"><div class="ttname"><a href="afw__declare__helpers_8h.html#a620e48a7ca05fce10cb547d23c7a04a4">AFW_BEGIN_DECLARES</a></div><div class="ttdeci">#define AFW_BEGIN_DECLARES</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00040">afw_declare_helpers.h:40</a></div></div>
 <div class="ttc" id="aafw__declare__helpers_8h_html_ab5b5f226d95b87a930ca1128be6bdcfe"><div class="ttname"><a href="afw__declare__helpers_8h.html#ab5b5f226d95b87a930ca1128be6bdcfe">AFW_DECLARE</a></div><div class="ttdeci">#define AFW_DECLARE(type)</div><div class="ttdoc">Declare a public afw function.</div><div class="ttdef"><b>Definition:</b> <a href="afw__declare__helpers_8h_source.html#l00141">afw_declare_helpers.h:141</a></div></div>
 <div class="ttc" id="aafw__interface_8h_html"><div class="ttname"><a href="afw__interface_8h.html">afw_interface.h</a></div><div class="ttdoc">Interfaceafw_interface header.</div></div>
-<div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00371">afw_common.h:371</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00150">afw_common.h:150</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga54967bd7180a4c18b5b3bed720c9c1f7"><div class="ttname"><a href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a></div><div class="ttdeci">_Bool afw_boolean_t</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00373">afw_common.h:373</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gab55186af3197840e46bf41d88d0eb83b"><div class="ttname"><a href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a></div><div class="ttdeci">apr_size_t afw_size_t</div><div class="ttdoc">size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00151">afw_common.h:151</a></div></div>
 <div class="ttc" id="agroup__afw__stack_html_ga3119c0bbe4f52ba6fd8a08a586b3ac29"><div class="ttname"><a href="group__afw__stack.html#ga3119c0bbe4f52ba6fd8a08a586b3ac29">afw_stack_internal_set_qualifier_stack</a></div><div class="ttdeci">afw_stack_internal_set_qualifier_stack(afw_xctx_t *xctx)</div><div class="ttdef"><b>Definition:</b> <a href="afw__stack_8c_source.html#l00031">afw_stack.c:31</a></div></div>
 <div class="ttc" id="agroup__afw__stack_html_ga6ebc5bd206d96ad35618cd12db36d505"><div class="ttname"><a href="group__afw__stack.html#ga6ebc5bd206d96ad35618cd12db36d505">afw_stack_copy_impl</a></div><div class="ttdeci">void afw_stack_copy_impl(afw_stack_t *instance, afw_size_t *count, const void ***ptr, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Copy stack implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stack_8c_source.html#l00148">afw_stack.c:148</a></div></div>
 <div class="ttc" id="agroup__afw__stack_html_gab20b7160ba710a956317d8b742dbe2be"><div class="ttname"><a href="group__afw__stack.html#gab20b7160ba710a956317d8b742dbe2be">afw_stack_create_impl</a></div><div class="ttdeci">afw_stack_t * afw_stack_create_impl(afw_size_t entry_size, afw_size_t initial_count, afw_size_t maximum_count, afw_boolean_t create_subpool_pool, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create a stack implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stack_8c_source.html#l00099">afw_stack.c:99</a></div></div>
 <div class="ttc" id="agroup__afw__stack_html_gab20e466cb108b9dc695a90656ae247ad"><div class="ttname"><a href="group__afw__stack.html#gab20e466cb108b9dc695a90656ae247ad">afw_stack_release_impl</a></div><div class="ttdeci">void afw_stack_release_impl(afw_stack_t *instance, afw_xctx_t *xctx)</div><div class="ttdoc">Release stack implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stack_8c_source.html#l00131">afw_stack.c:131</a></div></div>
 <div class="ttc" id="agroup__afw__stack_html_gac949679c52bdf510cb61037cf2ad23c6"><div class="ttname"><a href="group__afw__stack.html#gac949679c52bdf510cb61037cf2ad23c6">afw_stack_extend_impl</a></div><div class="ttdeci">void afw_stack_extend_impl(afw_stack_t *instance, afw_xctx_t *xctx)</div><div class="ttdoc">Extend stack implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__stack_8c_source.html#l00176">afw_stack.c:176</a></div></div>
-<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04518">afw_interface.h:4518</a></div></div>
-<div class="ttc" id="astructafw__stack__s_html"><div class="ttname"><a href="structafw__stack__s.html">afw_stack_s</a></div><div class="ttdoc">Struct for afw_stack_t typedef.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00668">afw_common.h:668</a></div></div>
-<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04312">afw_interface.h:4312</a></div></div>
+<div class="ttc" id="astructafw__pool__s_html"><div class="ttname"><a href="structafw__pool__s.html">afw_pool_s</a></div><div class="ttdoc">Interface afw_pool public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04597">afw_interface.h:4597</a></div></div>
+<div class="ttc" id="astructafw__stack__s_html"><div class="ttname"><a href="structafw__stack__s.html">afw_stack_s</a></div><div class="ttdoc">Struct for afw_stack_t typedef.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00669">afw_common.h:669</a></div></div>
+<div class="ttc" id="astructafw__xctx__s_html"><div class="ttname"><a href="structafw__xctx__s.html">afw_xctx_s</a></div><div class="ttdoc">Interface afw_xctx public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l04391">afw_interface.h:4391</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -70,7 +70,7 @@ $(function() {
 <div class="title">afw_log_deprecated_interface.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// See the &#39;COPYING&#39; file in the project root for licensing information.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga999dc56dcc8be84e462c840b2dfb046c">    1</a></span>&#160;<span class="comment">// See the &#39;COPYING&#39; file in the project root for licensing information.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Adaptive Framework - Log Interface Header</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
@@ -82,139 +82,150 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define __AFWLOGINTERFACE_H__</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__minimal_8h.html">afw_minimal.h</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__trace__options__t.html">   25</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">   27</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">debug</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <a class="code" href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">typedef</span> void (*afw_log_deprecated_release_t)(</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">typedef</span> void (*afw_log_deprecated_message_v_t)(</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    va_list args</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">typedef</span> void (*afw_log_deprecated_error_v_t)(</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    va_list args);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">typedef</span> void (*afw_log_deprecated_trace_v_t)(</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    va_list args);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__inf__t.html">   61</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    afw_log_deprecated_release_t release;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    afw_log_deprecated_message_v_t log_message;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    afw_log_deprecated_error_v_t   log_error;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    afw_log_deprecated_trace_v_t   log_trace;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <a class="code" href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__t.html">   69</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a> *inf;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a> topt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_release_log(<a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    log-&gt;inf-&gt;release(log);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_message_v(</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    va_list args)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    log-&gt;inf-&gt;log_message(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_message(</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    ...)</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    va_list args;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    va_start(args, fmt);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    log-&gt;inf-&gt;log_message(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    va_end(args);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_error_v(</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    va_list args)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;{</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    log-&gt;inf-&gt;log_error(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_error(</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    ...)</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;{</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    va_list args;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    va_start(args, fmt);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    log-&gt;inf-&gt;log_error(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    va_end(args);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;}</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_trace_v(</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    va_list args)</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;{</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    log-&gt;inf-&gt;log_trace(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) afw_log_deprecated_trace(</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    apr_pool_t *temp_pool,</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    ...)</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;{</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    va_list args;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    va_start(args, fmt);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    log-&gt;inf-&gt;log_trace(log, temp_pool, prefix, fmt, args);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    va_end(args);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFWLOG_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="afw__minimal_8h.html">afw_minimal.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__trace__options__t.html">   29</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">   31</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">debug</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga80cc8080f3d699688c50c717eb47eebf">   32</a></span>&#160;} <a class="code" href="group__afw__log__deprecated.html#ga80cc8080f3d699688c50c717eb47eebf">afw_log_deprecated_trace_options_t</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga866e2dfbc3d31933bb333661189b98d7">   35</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__afw__log__deprecated.html#ga866e2dfbc3d31933bb333661189b98d7">afw_log_deprecated_release_t</a>)(</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga811d65ae5e33f8c97680aef127443be5">   40</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__afw__log__deprecated.html#ga811d65ae5e33f8c97680aef127443be5">afw_log_deprecated_message_v_t</a>)(</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    va_list args</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga23bd63cd4214ca7f95987053cc9f5bbd">   49</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__afw__log__deprecated.html#ga23bd63cd4214ca7f95987053cc9f5bbd">afw_log_deprecated_error_v_t</a>)(</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    va_list args);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga95b7fbe927dd499ac888270d34ab6538">   57</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__afw__log__deprecated.html#ga95b7fbe927dd499ac888270d34ab6538">afw_log_deprecated_trace_v_t</a>)(</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    va_list args);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__inf__t.html">   65</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a> {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="group__afw__log__deprecated.html#ga866e2dfbc3d31933bb333661189b98d7">afw_log_deprecated_release_t</a> release;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__afw__log__deprecated.html#ga811d65ae5e33f8c97680aef127443be5">afw_log_deprecated_message_v_t</a> log_message;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="group__afw__log__deprecated.html#ga23bd63cd4214ca7f95987053cc9f5bbd">afw_log_deprecated_error_v_t</a>   log_error;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__afw__log__deprecated.html#ga95b7fbe927dd499ac888270d34ab6538">afw_log_deprecated_trace_v_t</a>   log_trace;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#gad93c9d435337edf806d6ce425258b9fd">   70</a></span>&#160;} <a class="code" href="group__afw__log__deprecated.html#gad93c9d435337edf806d6ce425258b9fd">afw_log_deprecated_inf_t</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structafw__log__deprecated__t.html">   73</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a> *inf;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a> topt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga376888c66a613ec4487e7367411088d3">   82</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#ga376888c66a613ec4487e7367411088d3">afw_release_log</a>(<a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    log-&gt;inf-&gt;release(log);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga11fcd35b0f0c12593e5d3cabde25aa7f">   94</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#ga11fcd35b0f0c12593e5d3cabde25aa7f">afw_log_deprecated_message_v</a>(</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    va_list args)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    log-&gt;inf-&gt;log_message(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#gae7d253875a66a7f0f47bdbbe25bce7fa">  111</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#gae7d253875a66a7f0f47bdbbe25bce7fa">afw_log_deprecated_message</a>(</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    ...)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    va_list args;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    va_start(args, fmt);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    log-&gt;inf-&gt;log_message(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    va_end(args);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga6b1cfd1501a0ce4bdd98e8f457ab39a7">  131</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#ga6b1cfd1501a0ce4bdd98e8f457ab39a7">afw_log_deprecated_error_v</a>(</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    va_list args)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;{</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    log-&gt;inf-&gt;log_error(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga7946a99a1d42bb43e036307d8824e8aa">  148</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#ga7946a99a1d42bb43e036307d8824e8aa">afw_log_deprecated_error</a>(</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    ...)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    va_list args;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    va_start(args, fmt);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    log-&gt;inf-&gt;log_error(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    va_end(args);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#gad113bea413f60c9b7d455bf4c66e9599">  168</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#gad113bea413f60c9b7d455bf4c66e9599">afw_log_deprecated_trace_v</a>(</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    va_list args)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    log-&gt;inf-&gt;log_trace(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="group__afw__log__deprecated.html#ga08cfe2a8086c99e4790338c103e11501">  185</a></span>&#160;AFW_DEFINE_STATIC_INLINE(<span class="keywordtype">void</span>) <a class="code" href="group__afw__log__deprecated.html#ga08cfe2a8086c99e4790338c103e11501">afw_log_deprecated_trace</a>(</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a> *log,</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    apr_pool_t *temp_pool,</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *prefix,</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">const</span> <a class="code" href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a> *fmt,</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    ...)</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;{</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    va_list args;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    va_start(args, fmt);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    log-&gt;inf-&gt;log_trace(log, temp_pool, prefix, fmt, args);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    va_end(args);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __AFWLOGINTERFACE_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aafw__minimal_8h_html"><div class="ttname"><a href="afw__minimal_8h.html">afw_minimal.h</a></div><div class="ttdoc">Adaptive Framework Minimal Header.</div></div>
-<div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00522">afw_common.h:522</a></div></div>
-<div class="ttc" id="astructafw__log__deprecated__inf__t_html"><div class="ttname"><a href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a></div><div class="ttdoc">afw_log_deprecated_t interface.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00061">afw_log_deprecated_interface.h:61</a></div></div>
-<div class="ttc" id="astructafw__log__deprecated__t_html"><div class="ttname"><a href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a></div><div class="ttdoc">Public afw_log_deprecated_t object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00069">afw_log_deprecated_interface.h:69</a></div></div>
-<div class="ttc" id="astructafw__log__deprecated__trace__options__t_html"><div class="ttname"><a href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00025">afw_log_deprecated_interface.h:25</a></div></div>
-<div class="ttc" id="astructafw__log__deprecated__trace__options__t_html_ac3e1795766a80ec63b157951b4b9a7d4"><div class="ttname"><a href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">afw_log_deprecated_trace_options_t::debug</a></div><div class="ttdeci">int debug</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00027">afw_log_deprecated_interface.h:27</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga9475c257219897def2828518dc3d42e9"><div class="ttname"><a href="group__afw__common.html#ga9475c257219897def2828518dc3d42e9">afw_utf8_z_t</a></div><div class="ttdeci">afw_utf8_octet_t afw_utf8_z_t</div><div class="ttdoc">NFC normalized UTF-8 null terminated string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00523">afw_common.h:523</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga08cfe2a8086c99e4790338c103e11501"><div class="ttname"><a href="group__afw__log__deprecated.html#ga08cfe2a8086c99e4790338c103e11501">afw_log_deprecated_trace</a></div><div class="ttdeci">void afw_log_deprecated_trace(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt,...)</div><div class="ttdoc">Issue a trace message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00185">afw_log_deprecated_interface.h:185</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga11fcd35b0f0c12593e5d3cabde25aa7f"><div class="ttname"><a href="group__afw__log__deprecated.html#ga11fcd35b0f0c12593e5d3cabde25aa7f">afw_log_deprecated_message_v</a></div><div class="ttdeci">void afw_log_deprecated_message_v(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdoc">Issue a message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00094">afw_log_deprecated_interface.h:94</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga23bd63cd4214ca7f95987053cc9f5bbd"><div class="ttname"><a href="group__afw__log__deprecated.html#ga23bd63cd4214ca7f95987053cc9f5bbd">afw_log_deprecated_error_v_t</a></div><div class="ttdeci">void(* afw_log_deprecated_error_v_t)(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00049">afw_log_deprecated_interface.h:49</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga376888c66a613ec4487e7367411088d3"><div class="ttname"><a href="group__afw__log__deprecated.html#ga376888c66a613ec4487e7367411088d3">afw_release_log</a></div><div class="ttdeci">void afw_release_log(afw_log_deprecated_t *log)</div><div class="ttdoc">Release a log.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00082">afw_log_deprecated_interface.h:82</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga6b1cfd1501a0ce4bdd98e8f457ab39a7"><div class="ttname"><a href="group__afw__log__deprecated.html#ga6b1cfd1501a0ce4bdd98e8f457ab39a7">afw_log_deprecated_error_v</a></div><div class="ttdeci">void afw_log_deprecated_error_v(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdoc">Issue an error message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00131">afw_log_deprecated_interface.h:131</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga7946a99a1d42bb43e036307d8824e8aa"><div class="ttname"><a href="group__afw__log__deprecated.html#ga7946a99a1d42bb43e036307d8824e8aa">afw_log_deprecated_error</a></div><div class="ttdeci">void afw_log_deprecated_error(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt,...)</div><div class="ttdoc">Issue an error message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00148">afw_log_deprecated_interface.h:148</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga80cc8080f3d699688c50c717eb47eebf"><div class="ttname"><a href="group__afw__log__deprecated.html#ga80cc8080f3d699688c50c717eb47eebf">afw_log_deprecated_trace_options_t</a></div><div class="ttdeci">struct afw_log_deprecated_trace_options_t afw_log_deprecated_trace_options_t</div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga811d65ae5e33f8c97680aef127443be5"><div class="ttname"><a href="group__afw__log__deprecated.html#ga811d65ae5e33f8c97680aef127443be5">afw_log_deprecated_message_v_t</a></div><div class="ttdeci">void(* afw_log_deprecated_message_v_t)(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00040">afw_log_deprecated_interface.h:40</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga866e2dfbc3d31933bb333661189b98d7"><div class="ttname"><a href="group__afw__log__deprecated.html#ga866e2dfbc3d31933bb333661189b98d7">afw_log_deprecated_release_t</a></div><div class="ttdeci">void(* afw_log_deprecated_release_t)(afw_log_deprecated_t *log)</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00035">afw_log_deprecated_interface.h:35</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_ga95b7fbe927dd499ac888270d34ab6538"><div class="ttname"><a href="group__afw__log__deprecated.html#ga95b7fbe927dd499ac888270d34ab6538">afw_log_deprecated_trace_v_t</a></div><div class="ttdeci">void(* afw_log_deprecated_trace_v_t)(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00057">afw_log_deprecated_interface.h:57</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_gad113bea413f60c9b7d455bf4c66e9599"><div class="ttname"><a href="group__afw__log__deprecated.html#gad113bea413f60c9b7d455bf4c66e9599">afw_log_deprecated_trace_v</a></div><div class="ttdeci">void afw_log_deprecated_trace_v(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt, va_list args)</div><div class="ttdoc">Issue a trace message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00168">afw_log_deprecated_interface.h:168</a></div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_gad93c9d435337edf806d6ce425258b9fd"><div class="ttname"><a href="group__afw__log__deprecated.html#gad93c9d435337edf806d6ce425258b9fd">afw_log_deprecated_inf_t</a></div><div class="ttdeci">struct afw_log_deprecated_inf_t afw_log_deprecated_inf_t</div><div class="ttdoc">afw_log_deprecated_t interface.</div></div>
+<div class="ttc" id="agroup__afw__log__deprecated_html_gae7d253875a66a7f0f47bdbbe25bce7fa"><div class="ttname"><a href="group__afw__log__deprecated.html#gae7d253875a66a7f0f47bdbbe25bce7fa">afw_log_deprecated_message</a></div><div class="ttdeci">void afw_log_deprecated_message(afw_log_deprecated_t *log, apr_pool_t *temp_pool, const afw_utf8_z_t *prefix, const afw_utf8_z_t *fmt,...)</div><div class="ttdoc">Issue a message.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00111">afw_log_deprecated_interface.h:111</a></div></div>
+<div class="ttc" id="astructafw__log__deprecated__inf__t_html"><div class="ttname"><a href="structafw__log__deprecated__inf__t.html">afw_log_deprecated_inf_t</a></div><div class="ttdoc">afw_log_deprecated_t interface.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00065">afw_log_deprecated_interface.h:65</a></div></div>
+<div class="ttc" id="astructafw__log__deprecated__t_html"><div class="ttname"><a href="structafw__log__deprecated__t.html">afw_log_deprecated_t</a></div><div class="ttdoc">Public afw_log_deprecated_t object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00073">afw_log_deprecated_interface.h:73</a></div></div>
+<div class="ttc" id="astructafw__log__deprecated__trace__options__t_html"><div class="ttname"><a href="structafw__log__deprecated__trace__options__t.html">afw_log_deprecated_trace_options_t</a></div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00029">afw_log_deprecated_interface.h:29</a></div></div>
+<div class="ttc" id="astructafw__log__deprecated__trace__options__t_html_ac3e1795766a80ec63b157951b4b9a7d4"><div class="ttname"><a href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">afw_log_deprecated_trace_options_t::debug</a></div><div class="ttdeci">int debug</div><div class="ttdef"><b>Definition:</b> <a href="afw__log__deprecated__interface_8h_source.html#l00031">afw_log_deprecated_interface.h:31</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

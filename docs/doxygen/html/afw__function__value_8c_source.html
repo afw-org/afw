@@ -97,90 +97,94 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * Declaration:</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> *   function meta(</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> *       value: any</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> *   ): object;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * Parameters:</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * ```</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> *   function meta(</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> *       value: any</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> *   ): object;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * ```</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> *   value - (any dataType) This is the adaptive value whose meta object is to</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> *       be returned.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * Returns:</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * Parameters:</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *   value - (any dataType) This is the adaptive value whose meta object is to</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *       be returned.</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> *   (object) An object containing the meta information for the adaptive value.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> *       The objectType of this object is normally _AdaptiveValueMeta_ or one</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> *       of its descendants.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">   49</a></span>&#160;<a class="code" href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">afw_function_execute_meta</a>(</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structafw__function__execute__s.html">afw_function_execute_t</a> *x)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    result = <a class="code" href="group__afw__value__interface.html#ga03a411c95354bcdd11d2695e277efda4">afw_value_get_evaluated_meta</a>(x-&gt;<a class="code" href="structafw__function__execute__s.html#a00d8045422b03429c15c0996bd9b03ad">argv</a>[1], x-&gt;<a class="code" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">p</a>, x-&gt;<a class="code" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">xctx</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * Returns:</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> *   (object) An object containing the meta information for the adaptive value.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> *       The objectType of this object is normally _AdaptiveValueMeta_ or one</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> *       of its descendants.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">   51</a></span>&#160;<a class="code" href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">afw_function_execute_meta</a>(</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="structafw__function__execute__s.html">afw_function_execute_t</a> *x)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    result = <a class="code" href="group__afw__value__interface.html#ga03a411c95354bcdd11d2695e277efda4">afw_value_get_evaluated_meta</a>(x-&gt;<a class="code" href="structafw__function__execute__s.html#a00d8045422b03429c15c0996bd9b03ad">argv</a>[1], x-&gt;<a class="code" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">p</a>, x-&gt;<a class="code" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">xctx</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * Adaptive function: metas</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * afw_function_execute_metas</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * Adaptive function: metas</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> * See afw_function_bindings.h for more information.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> * afw_function_execute_metas</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> * This function returns a list of the result of calling meta() for each value</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"> * in a list or object adaptive value.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"> * This function is pure, so it will always return the same result</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> * given exactly the same parameters and has no side effects.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * Declaration:</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> * See afw_function_bindings.h for more information.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"> * This function returns a list of the result of calling meta() for each value</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"> * in a list or object adaptive value.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> * This function is pure, so it will always return the same result</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * given exactly the same parameters and has no side effects.</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> *   function metas(</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> *       value: any</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> *   ): object;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * Parameters:</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> *   value - (any dataType) This is an adaptive list or object.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * Declaration:</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> * ```</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> *   function metas(</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> *       value: any</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> *   ): object;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> * ```</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> * Returns:</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> * Parameters:</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *   (object) An list containing the result of calling meta() of each value in</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> *       list or object adaptive value.</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">   90</a></span>&#160;<a class="code" href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">afw_function_execute_metas</a>(</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="structafw__function__execute__s.html">afw_function_execute_t</a> *x)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *value;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="group__afw__function.html#ga8d71eb74f7d2528791ec8871da6ce987">AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER</a>(value, 1);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    result = <a class="code" href="group__afw__value__interface.html#ga39288211603613d3831f3a9f0335db8a">afw_value_get_evaluated_metas</a>(value, x-&gt;<a class="code" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">p</a>, x-&gt;<a class="code" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">xctx</a>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *   value - (any dataType) This is an adaptive list or object.</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> * Returns:</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> *   (object) An list containing the result of calling meta() of each value in</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"> *       list or object adaptive value.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">   94</a></span>&#160;<a class="code" href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">afw_function_execute_metas</a>(</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="structafw__function__execute__s.html">afw_function_execute_t</a> *x)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *result;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">const</span> <a class="code" href="structafw__value__s.html">afw_value_t</a> *value;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="group__afw__function.html#ga8d71eb74f7d2528791ec8871da6ce987">AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER</a>(value, 1);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    result = <a class="code" href="group__afw__value__interface.html#ga39288211603613d3831f3a9f0335db8a">afw_value_get_evaluated_metas</a>(value, x-&gt;<a class="code" href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">p</a>, x-&gt;<a class="code" href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">xctx</a>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="ttc" id="aafw__internal_8h_html"><div class="ttname"><a href="afw__internal_8h.html">afw_internal.h</a></div><div class="ttdoc">Adaptive Framework Core Internal.</div></div>
-<div class="ttc" id="agroup__afw__function_html_ga8d71eb74f7d2528791ec8871da6ce987"><div class="ttname"><a href="group__afw__function.html#ga8d71eb74f7d2528791ec8871da6ce987">AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER</a></div><div class="ttdeci">#define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(A_RESULT, A_N)</div><div class="ttdoc">Evaluate an required parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00301">afw_function.h:301</a></div></div>
-<div class="ttc" id="agroup__afw__functions__value_html_ga7967ab3847d78b9721f9f353358aa8db"><div class="ttname"><a href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">afw_function_execute_metas</a></div><div class="ttdeci">const afw_value_t * afw_function_execute_metas(afw_function_execute_t *x)</div><div class="ttdoc">Adaptive Function metas.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function__value_8c_source.html#l00090">afw_function_value.c:90</a></div></div>
-<div class="ttc" id="agroup__afw__functions__value_html_ga79dc516b6f8f878774ec21a4d375c77b"><div class="ttname"><a href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">afw_function_execute_meta</a></div><div class="ttdeci">const afw_value_t * afw_function_execute_meta(afw_function_execute_t *x)</div><div class="ttdoc">Adaptive Function meta.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function__value_8c_source.html#l00049">afw_function_value.c:49</a></div></div>
-<div class="ttc" id="agroup__afw__value__interface_html_ga03a411c95354bcdd11d2695e277efda4"><div class="ttname"><a href="group__afw__value__interface.html#ga03a411c95354bcdd11d2695e277efda4">afw_value_get_evaluated_meta</a></div><div class="ttdeci">#define afw_value_get_evaluated_meta(instance, p, xctx)</div><div class="ttdoc">Call method get_evaluated_meta of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05356">afw_interface.h:5356</a></div></div>
-<div class="ttc" id="agroup__afw__value__interface_html_ga39288211603613d3831f3a9f0335db8a"><div class="ttname"><a href="group__afw__value__interface.html#ga39288211603613d3831f3a9f0335db8a">afw_value_get_evaluated_metas</a></div><div class="ttdeci">#define afw_value_get_evaluated_metas(instance, p, xctx)</div><div class="ttdoc">Call method get_evaluated_metas of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05375">afw_interface.h:5375</a></div></div>
-<div class="ttc" id="astructafw__function__execute__s_html"><div class="ttname"><a href="structafw__function__execute__s.html">afw_function_execute_s</a></div><div class="ttdoc">Function execute parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00059">afw_function.h:59</a></div></div>
-<div class="ttc" id="astructafw__function__execute__s_html_a00d8045422b03429c15c0996bd9b03ad"><div class="ttname"><a href="structafw__function__execute__s.html#a00d8045422b03429c15c0996bd9b03ad">afw_function_execute_s::argv</a></div><div class="ttdeci">const afw_value_t *const  * argv</div><div class="ttdoc">This is the function parameters.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00092">afw_function.h:92</a></div></div>
-<div class="ttc" id="astructafw__function__execute__s_html_a29f583ea5c94df1a961404bf16a5714d"><div class="ttname"><a href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">afw_function_execute_s::xctx</a></div><div class="ttdeci">afw_xctx_t * xctx</div><div class="ttdoc">The execution context (xctx) of caller.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00068">afw_function.h:68</a></div></div>
-<div class="ttc" id="astructafw__function__execute__s_html_a75fe9a094eff81d1e4fd229db64d0c71"><div class="ttname"><a href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">afw_function_execute_s::p</a></div><div class="ttdeci">const afw_pool_t * p</div><div class="ttdoc">Pool for result.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00065">afw_function.h:65</a></div></div>
-<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05158">afw_interface.h:5158</a></div></div>
+<div class="ttc" id="agroup__afw__function_html_ga8d71eb74f7d2528791ec8871da6ce987"><div class="ttname"><a href="group__afw__function.html#ga8d71eb74f7d2528791ec8871da6ce987">AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER</a></div><div class="ttdeci">#define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(A_RESULT, A_N)</div><div class="ttdoc">Evaluate an required parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00295">afw_function.h:295</a></div></div>
+<div class="ttc" id="agroup__afw__functions__value_html_ga7967ab3847d78b9721f9f353358aa8db"><div class="ttname"><a href="group__afw__functions__value.html#ga7967ab3847d78b9721f9f353358aa8db">afw_function_execute_metas</a></div><div class="ttdeci">const afw_value_t * afw_function_execute_metas(afw_function_execute_t *x)</div><div class="ttdoc">Adaptive Function metas</div><div class="ttdef"><b>Definition:</b> <a href="afw__function__value_8c_source.html#l00094">afw_function_value.c:94</a></div></div>
+<div class="ttc" id="agroup__afw__functions__value_html_ga79dc516b6f8f878774ec21a4d375c77b"><div class="ttname"><a href="group__afw__functions__value.html#ga79dc516b6f8f878774ec21a4d375c77b">afw_function_execute_meta</a></div><div class="ttdeci">const afw_value_t * afw_function_execute_meta(afw_function_execute_t *x)</div><div class="ttdoc">Adaptive Function meta</div><div class="ttdef"><b>Definition:</b> <a href="afw__function__value_8c_source.html#l00051">afw_function_value.c:51</a></div></div>
+<div class="ttc" id="agroup__afw__value__interface_html_ga03a411c95354bcdd11d2695e277efda4"><div class="ttname"><a href="group__afw__value__interface.html#ga03a411c95354bcdd11d2695e277efda4">afw_value_get_evaluated_meta</a></div><div class="ttdeci">#define afw_value_get_evaluated_meta(instance, p, xctx)</div><div class="ttdoc">Call method get_evaluated_meta of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05435">afw_interface.h:5435</a></div></div>
+<div class="ttc" id="agroup__afw__value__interface_html_ga39288211603613d3831f3a9f0335db8a"><div class="ttname"><a href="group__afw__value__interface.html#ga39288211603613d3831f3a9f0335db8a">afw_value_get_evaluated_metas</a></div><div class="ttdeci">#define afw_value_get_evaluated_metas(instance, p, xctx)</div><div class="ttdoc">Call method get_evaluated_metas of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05454">afw_interface.h:5454</a></div></div>
+<div class="ttc" id="astructafw__function__execute__s_html"><div class="ttname"><a href="structafw__function__execute__s.html">afw_function_execute_s</a></div><div class="ttdoc">Function execute parameter.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00053">afw_function.h:53</a></div></div>
+<div class="ttc" id="astructafw__function__execute__s_html_a00d8045422b03429c15c0996bd9b03ad"><div class="ttname"><a href="structafw__function__execute__s.html#a00d8045422b03429c15c0996bd9b03ad">afw_function_execute_s::argv</a></div><div class="ttdeci">const afw_value_t *const  * argv</div><div class="ttdoc">This is the function parameters.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00086">afw_function.h:86</a></div></div>
+<div class="ttc" id="astructafw__function__execute__s_html_a29f583ea5c94df1a961404bf16a5714d"><div class="ttname"><a href="structafw__function__execute__s.html#a29f583ea5c94df1a961404bf16a5714d">afw_function_execute_s::xctx</a></div><div class="ttdeci">afw_xctx_t * xctx</div><div class="ttdoc">The execution context (xctx) of caller.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00062">afw_function.h:62</a></div></div>
+<div class="ttc" id="astructafw__function__execute__s_html_a75fe9a094eff81d1e4fd229db64d0c71"><div class="ttname"><a href="structafw__function__execute__s.html#a75fe9a094eff81d1e4fd229db64d0c71">afw_function_execute_s::p</a></div><div class="ttdeci">const afw_pool_t * p</div><div class="ttdoc">Pool for result.</div><div class="ttdef"><b>Definition:</b> <a href="afw__function_8h_source.html#l00059">afw_function.h:59</a></div></div>
+<div class="ttc" id="astructafw__value__s_html"><div class="ttname"><a href="structafw__value__s.html">afw_value_s</a></div><div class="ttdoc">Interface afw_value public struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05237">afw_interface.h:5237</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:15 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:31 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

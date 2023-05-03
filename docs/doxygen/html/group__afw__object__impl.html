@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: afw_object interfaces.</title>
+<title>Adaptive Framework: afw_object</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_object interfaces.<div class="ingroups"><a class="el" href="group__afw__impl.html">Interface Implementation Helpers</a></div></div>  </div>
+<div class="title">afw_object<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__impl.html">Interface implementation support</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 <div class="line">    } \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="afw__object__impl_8h_source.html#l00062">62</a> of file <a class="el" href="afw__object__impl_8h_source.html">afw_object_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object__impl_8h_source.html#l00060">60</a> of file <a class="el" href="afw__object__impl_8h_source.html">afw_object_impl.h</a>.</p>
 
 </div>
 </div>
@@ -261,7 +261,7 @@ Functions</h2></td></tr>
 <p>Use the following implementation of impl_afw_object_get_next_property_meta() to access <a class="el" href="group__afw__object__impl.html#gaf3873bf1c263b56615b49ae301d68932" title="A general impl of method get_next_property_meta for interface afw_object.">afw_object_impl_internal_get_next_property_meta()</a>:</p>
 <p>const afw_value_t * impl_afw_object_get_next_property_meta( const afw_object_t *instance, const afw_iterator_t **iterator, const afw_utf8_t **property_name, afw_xctx_t *xctx) { return afw_object_impl_get_next_property_meta( instance, iterator, property_name, p, xctx); } </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00422">422</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00474">474</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
 
 </div>
 </div>
@@ -359,7 +359,7 @@ Functions</h2></td></tr>
 <p>Use the following implementation of impl_afw_object_get_property_meta() to access <a class="el" href="group__afw__object__impl.html#ga87609d55ddde7c3b3f76364327abf4b5" title="A general impl of method get_property_meta for interface afw_object.">afw_object_impl_internal_get_property_meta()</a>:</p>
 <p>const afw_value_t * impl_afw_object_get_property_meta( const afw_object_t * instance, const afw_utf8_t * property_name, afw_xctx_t *xctx) { return afw_object_impl_get_property_meta( instance, property_name, p, xctx); } </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00405">405</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00457">457</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
 
 </div>
 </div>
@@ -471,7 +471,7 @@ Functions</h2></td></tr>
 <p>To use in implementation, add the following lines after the #includes in the implementation source:</p>
 <p>#define impl_afw_object_get_next_property_meta \ afw_object_impl_internal_get_next_property_meta </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00478">478</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00530">530</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
 
 </div>
 </div>
@@ -527,14 +527,14 @@ Functions</h2></td></tr>
 <p>To use in implementation, add the following lines after the #includes in the implementation source:</p>
 <p>#define impl_afw_object_get_property_meta \ afw_object_impl_internal_get_property_meta </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00439">439</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object__impl__property__meta_8c_source.html#l00491">491</a> of file <a class="el" href="afw__object__impl__property__meta_8c_source.html">afw_object_impl_property_meta.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

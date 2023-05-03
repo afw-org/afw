@@ -65,7 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">afw_adaptor_impl_s Struct Reference<div class="ingroups"><a class="el" href="group__afw__impl.html">Interface Implementation Helpers</a> &raquo; <a class="el" href="group__afw__adaptor__impl.html">afw_adaptor interfaces</a></div></div>  </div>
+<div class="title">afw_adaptor_impl_s Struct Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__c__api__impl.html">Interface implementation support</a> &raquo; <a class="el" href="group__afw__adaptor__impl.html">afw_adaptor</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -168,7 +168,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="textblock"><p>Internal struct used by common adaptor code for all adaptors. </p>
 <p>Reads and updates to this struct MUST be done using read and write locks of adaptor-&gt;p of the appropriate adaptor. For instance, object_types is accessed by model_adaptor-&gt;impl-&gt;object_types, so the lock should be on model_adaptor-&gt;p. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00100">100</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00099">99</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ac7b9fae2e03473ef224208402cf14bee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac7b9fae2e03473ef224208402cf14bee">&#9670;&nbsp;</a></span>all_object_types_immutable</h2>
@@ -185,7 +185,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Object types last for lifetime of adaptor. </p>
 <p>The object_types member is fully loaded with object types. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00208">208</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00207">207</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +204,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Adaptor level authorization. </p>
 <p>Evaluated when an authorization decision is needed at the adaptor level. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00158">158</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00157">157</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -223,7 +223,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Authorization handler id. </p>
 <p>This is the id of the authorization handler that controls access to this adaptor. If NULL, there is no access control. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00126">126</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00125">125</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Journal adaptor id (FIXME Going away) </p>
 <p>Adaptor that will be used to record journal entries for every modification to this store. This can be the this adaptor or any other adaptor that supports a journal. See supports_journal below. If NULL, no journaling is performed </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00136">136</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00135">135</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -261,7 +261,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Object types fully loaded. </p>
 <p>If true, object_types_ht holds all the object types for life of adaptor. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00215">215</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8h_source.html#l00214">214</a> of file <a class="el" href="afw__adaptor__impl_8h_source.html">afw_adaptor_impl.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +271,7 @@ apr_hash_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

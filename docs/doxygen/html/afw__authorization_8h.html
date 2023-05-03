@@ -70,7 +70,7 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">afw_authorization.h File Reference</div>  </div>
+<div class="title">afw_authorization.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__authorization.html">Authorization</a> &#124; <a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__internal.html">C Internal</a> &raquo; <a class="el" href="group__afw__authorization__internal.html">Authorization</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -82,433 +82,81 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7fa17e3cb7738dfe8ac0dfb537afb397"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a7fa17e3cb7738dfe8ac0dfb537afb397">afw_authorization_check</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> enforce, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *request_id_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id_value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:a7fa17e3cb7738dfe8ac0dfb537afb397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform authorization check.  <a href="afw__authorization_8h.html#a7fa17e3cb7738dfe8ac0dfb537afb397">More...</a><br /></td></tr>
-<tr class="separator:a7fa17e3cb7738dfe8ac0dfb537afb397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3709d59d377e7035e0ffb2ea9a9fc165"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a3709d59d377e7035e0ffb2ea9a9fc165">afw_authorization_handler_get_reference</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *authorization_handler_id, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:a3709d59d377e7035e0ffb2ea9a9fc165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get reference to authorization handler.  <a href="afw__authorization_8h.html#a3709d59d377e7035e0ffb2ea9a9fc165">More...</a><br /></td></tr>
-<tr class="separator:a3709d59d377e7035e0ffb2ea9a9fc165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a08020db4fb333a8fcce20ee8e0653c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a2a08020db4fb333a8fcce20ee8e0653c">afw_authorization_handler_release</a> (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:a2a08020db4fb333a8fcce20ee8e0653c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release reference to authorization handler.  <a href="afw__authorization_8h.html#a2a08020db4fb333a8fcce20ee8e0653c">More...</a><br /></td></tr>
-<tr class="separator:a2a08020db4fb333a8fcce20ee8e0653c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7fa17e3cb7738dfe8ac0dfb537afb397"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga7fa17e3cb7738dfe8ac0dfb537afb397">afw_authorization_check</a> (<a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> enforce, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *request_id_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *resource_id_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *object_value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *action_id_value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga7fa17e3cb7738dfe8ac0dfb537afb397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform authorization check.  <a href="group__afw__authorization.html#ga7fa17e3cb7738dfe8ac0dfb537afb397">More...</a><br /></td></tr>
+<tr class="separator:ga7fa17e3cb7738dfe8ac0dfb537afb397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3709d59d377e7035e0ffb2ea9a9fc165"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga3709d59d377e7035e0ffb2ea9a9fc165">afw_authorization_handler_get_reference</a> (const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *authorization_handler_id, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga3709d59d377e7035e0ffb2ea9a9fc165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get reference to authorization handler.  <a href="group__afw__authorization.html#ga3709d59d377e7035e0ffb2ea9a9fc165">More...</a><br /></td></tr>
+<tr class="separator:ga3709d59d377e7035e0ffb2ea9a9fc165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a08020db4fb333a8fcce20ee8e0653c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga2a08020db4fb333a8fcce20ee8e0653c">afw_authorization_handler_release</a> (const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga2a08020db4fb333a8fcce20ee8e0653c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release reference to authorization handler.  <a href="group__afw__authorization.html#ga2a08020db4fb333a8fcce20ee8e0653c">More...</a><br /></td></tr>
+<tr class="separator:ga2a08020db4fb333a8fcce20ee8e0653c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a9415db1c92c8593b9b4a83d91258a7f8"><td class="memItemLeft" align="right" valign="top"><a id="a9415db1c92c8593b9b4a83d91258a7f8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a9415db1c92c8593b9b4a83d91258a7f8">afw_authorization_action_id_control</a></td></tr>
-<tr class="memdesc:a9415db1c92c8593b9b4a83d91258a7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value control. <br /></td></tr>
-<tr class="separator:a9415db1c92c8593b9b4a83d91258a7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2632b644086a18b7b4d5025a93ed4cfb"><td class="memItemLeft" align="right" valign="top"><a id="a2632b644086a18b7b4d5025a93ed4cfb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a2632b644086a18b7b4d5025a93ed4cfb">afw_authorization_action_id_create</a></td></tr>
-<tr class="memdesc:a2632b644086a18b7b4d5025a93ed4cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value create. <br /></td></tr>
-<tr class="separator:a2632b644086a18b7b4d5025a93ed4cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac84b961724c345b4de6858df8672ef98"><td class="memItemLeft" align="right" valign="top"><a id="ac84b961724c345b4de6858df8672ef98"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#ac84b961724c345b4de6858df8672ef98">afw_authorization_action_id_delete</a></td></tr>
-<tr class="memdesc:ac84b961724c345b4de6858df8672ef98"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value delete. <br /></td></tr>
-<tr class="separator:ac84b961724c345b4de6858df8672ef98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77cd4a5cfb92e86c256695549a934566"><td class="memItemLeft" align="right" valign="top"><a id="a77cd4a5cfb92e86c256695549a934566"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a77cd4a5cfb92e86c256695549a934566">afw_authorization_action_id_modify</a></td></tr>
-<tr class="memdesc:a77cd4a5cfb92e86c256695549a934566"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value modify. <br /></td></tr>
-<tr class="separator:a77cd4a5cfb92e86c256695549a934566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="memItemLeft" align="right" valign="top"><a id="a6051849b9c0a30b93ee2bf7ba7b8e3d9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a6051849b9c0a30b93ee2bf7ba7b8e3d9">afw_authorization_action_id_query</a></td></tr>
-<tr class="memdesc:a6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value retrieve. <br /></td></tr>
-<tr class="separator:a6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fea31f75678f1a1eeff363bbc8273ae"><td class="memItemLeft" align="right" valign="top"><a id="a0fea31f75678f1a1eeff363bbc8273ae"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a0fea31f75678f1a1eeff363bbc8273ae">afw_authorization_action_id_read</a></td></tr>
-<tr class="memdesc:a0fea31f75678f1a1eeff363bbc8273ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value read. <br /></td></tr>
-<tr class="separator:a0fea31f75678f1a1eeff363bbc8273ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a346b278bf7217561f88a6b6c8601b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a9a346b278bf7217561f88a6b6c8601b5">afw_authorization_decision_id_deny_value</a></td></tr>
-<tr class="memdesc:a9a346b278bf7217561f88a6b6c8601b5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value deny.  <a href="afw__authorization_8h.html#a9a346b278bf7217561f88a6b6c8601b5">More...</a><br /></td></tr>
-<tr class="separator:a9a346b278bf7217561f88a6b6c8601b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbfd286d8525e871347a27ea4c4db31b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#acbfd286d8525e871347a27ea4c4db31b">afw_authorization_decision_id_indeterminate_value</a></td></tr>
-<tr class="memdesc:acbfd286d8525e871347a27ea4c4db31b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminate.  <a href="afw__authorization_8h.html#acbfd286d8525e871347a27ea4c4db31b">More...</a><br /></td></tr>
-<tr class="separator:acbfd286d8525e871347a27ea4c4db31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a6f2f56b7a2f3012b1252f7d8d2df6b50">afw_authorization_decision_id_indeterminateD_value</a></td></tr>
-<tr class="memdesc:a6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateD.  <a href="afw__authorization_8h.html#a6f2f56b7a2f3012b1252f7d8d2df6b50">More...</a><br /></td></tr>
-<tr class="separator:a6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5336e5b6a10dc8ea3abd545499f2e50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#af5336e5b6a10dc8ea3abd545499f2e50">afw_authorization_decision_id_indeterminateDP_value</a></td></tr>
-<tr class="memdesc:af5336e5b6a10dc8ea3abd545499f2e50"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateDP.  <a href="afw__authorization_8h.html#af5336e5b6a10dc8ea3abd545499f2e50">More...</a><br /></td></tr>
-<tr class="separator:af5336e5b6a10dc8ea3abd545499f2e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1f18b350b3c99755247eb0dfe9e9a29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#aa1f18b350b3c99755247eb0dfe9e9a29">afw_authorization_decision_id_indeterminateP_value</a></td></tr>
-<tr class="memdesc:aa1f18b350b3c99755247eb0dfe9e9a29"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateP.  <a href="afw__authorization_8h.html#aa1f18b350b3c99755247eb0dfe9e9a29">More...</a><br /></td></tr>
-<tr class="separator:aa1f18b350b3c99755247eb0dfe9e9a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bfe7ba17b41c43bf090a5c0577d0c78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a2bfe7ba17b41c43bf090a5c0577d0c78">afw_authorization_decision_id_notApplicable_value</a></td></tr>
-<tr class="memdesc:a2bfe7ba17b41c43bf090a5c0577d0c78"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value notApplicable.  <a href="afw__authorization_8h.html#a2bfe7ba17b41c43bf090a5c0577d0c78">More...</a><br /></td></tr>
-<tr class="separator:a2bfe7ba17b41c43bf090a5c0577d0c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a4112f41874fd79c16ba22f0bfb80ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a4a4112f41874fd79c16ba22f0bfb80ba">afw_authorization_decision_id_permit_value</a></td></tr>
-<tr class="memdesc:a4a4112f41874fd79c16ba22f0bfb80ba"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value permit.  <a href="afw__authorization_8h.html#a4a4112f41874fd79c16ba22f0bfb80ba">More...</a><br /></td></tr>
-<tr class="separator:a4a4112f41874fd79c16ba22f0bfb80ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96bcf9d7f2e0eb4cc23132698895b38b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#a96bcf9d7f2e0eb4cc23132698895b38b">afw_authorization_mode_id_core_value</a></td></tr>
-<tr class="memdesc:a96bcf9d7f2e0eb4cc23132698895b38b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> core.  <a href="afw__authorization_8h.html#a96bcf9d7f2e0eb4cc23132698895b38b">More...</a><br /></td></tr>
-<tr class="separator:a96bcf9d7f2e0eb4cc23132698895b38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac922e2c204c986380ef5ceee9ef92a18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#ac922e2c204c986380ef5ceee9ef92a18">afw_authorization_mode_id_intermediate_value</a></td></tr>
-<tr class="memdesc:ac922e2c204c986380ef5ceee9ef92a18"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> intermediate.  <a href="afw__authorization_8h.html#ac922e2c204c986380ef5ceee9ef92a18">More...</a><br /></td></tr>
-<tr class="separator:ac922e2c204c986380ef5ceee9ef92a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2f545b035f693c94807cd5213fa60e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__authorization_8h.html#ae2f545b035f693c94807cd5213fa60e3">afw_authorization_mode_id_user_value</a></td></tr>
-<tr class="memdesc:ae2f545b035f693c94807cd5213fa60e3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> user.  <a href="afw__authorization_8h.html#ae2f545b035f693c94807cd5213fa60e3">More...</a><br /></td></tr>
-<tr class="separator:ae2f545b035f693c94807cd5213fa60e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9415db1c92c8593b9b4a83d91258a7f8"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga9415db1c92c8593b9b4a83d91258a7f8">afw_authorization_action_id_control</a></td></tr>
+<tr class="memdesc:ga9415db1c92c8593b9b4a83d91258a7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value control. <br /></td></tr>
+<tr class="separator:ga9415db1c92c8593b9b4a83d91258a7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2632b644086a18b7b4d5025a93ed4cfb"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga2632b644086a18b7b4d5025a93ed4cfb">afw_authorization_action_id_create</a></td></tr>
+<tr class="memdesc:ga2632b644086a18b7b4d5025a93ed4cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value create. <br /></td></tr>
+<tr class="separator:ga2632b644086a18b7b4d5025a93ed4cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac84b961724c345b4de6858df8672ef98"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gac84b961724c345b4de6858df8672ef98">afw_authorization_action_id_delete</a></td></tr>
+<tr class="memdesc:gac84b961724c345b4de6858df8672ef98"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value delete. <br /></td></tr>
+<tr class="separator:gac84b961724c345b4de6858df8672ef98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77cd4a5cfb92e86c256695549a934566"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga77cd4a5cfb92e86c256695549a934566">afw_authorization_action_id_modify</a></td></tr>
+<tr class="memdesc:ga77cd4a5cfb92e86c256695549a934566"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value modify. <br /></td></tr>
+<tr class="separator:ga77cd4a5cfb92e86c256695549a934566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga6051849b9c0a30b93ee2bf7ba7b8e3d9">afw_authorization_action_id_query</a></td></tr>
+<tr class="memdesc:ga6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value retrieve. <br /></td></tr>
+<tr class="separator:ga6051849b9c0a30b93ee2bf7ba7b8e3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0fea31f75678f1a1eeff363bbc8273ae"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga0fea31f75678f1a1eeff363bbc8273ae">afw_authorization_action_id_read</a></td></tr>
+<tr class="memdesc:ga0fea31f75678f1a1eeff363bbc8273ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">actionId value read. <br /></td></tr>
+<tr class="separator:ga0fea31f75678f1a1eeff363bbc8273ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a346b278bf7217561f88a6b6c8601b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga9a346b278bf7217561f88a6b6c8601b5">afw_authorization_decision_id_deny_value</a></td></tr>
+<tr class="memdesc:ga9a346b278bf7217561f88a6b6c8601b5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value deny.  <a href="group__afw__authorization.html#ga9a346b278bf7217561f88a6b6c8601b5">More...</a><br /></td></tr>
+<tr class="separator:ga9a346b278bf7217561f88a6b6c8601b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbfd286d8525e871347a27ea4c4db31b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gacbfd286d8525e871347a27ea4c4db31b">afw_authorization_decision_id_indeterminate_value</a></td></tr>
+<tr class="memdesc:gacbfd286d8525e871347a27ea4c4db31b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminate.  <a href="group__afw__authorization.html#gacbfd286d8525e871347a27ea4c4db31b">More...</a><br /></td></tr>
+<tr class="separator:gacbfd286d8525e871347a27ea4c4db31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga6f2f56b7a2f3012b1252f7d8d2df6b50">afw_authorization_decision_id_indeterminateD_value</a></td></tr>
+<tr class="memdesc:ga6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateD.  <a href="group__afw__authorization.html#ga6f2f56b7a2f3012b1252f7d8d2df6b50">More...</a><br /></td></tr>
+<tr class="separator:ga6f2f56b7a2f3012b1252f7d8d2df6b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5336e5b6a10dc8ea3abd545499f2e50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gaf5336e5b6a10dc8ea3abd545499f2e50">afw_authorization_decision_id_indeterminateDP_value</a></td></tr>
+<tr class="memdesc:gaf5336e5b6a10dc8ea3abd545499f2e50"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateDP.  <a href="group__afw__authorization.html#gaf5336e5b6a10dc8ea3abd545499f2e50">More...</a><br /></td></tr>
+<tr class="separator:gaf5336e5b6a10dc8ea3abd545499f2e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1f18b350b3c99755247eb0dfe9e9a29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gaa1f18b350b3c99755247eb0dfe9e9a29">afw_authorization_decision_id_indeterminateP_value</a></td></tr>
+<tr class="memdesc:gaa1f18b350b3c99755247eb0dfe9e9a29"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateP.  <a href="group__afw__authorization.html#gaa1f18b350b3c99755247eb0dfe9e9a29">More...</a><br /></td></tr>
+<tr class="separator:gaa1f18b350b3c99755247eb0dfe9e9a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bfe7ba17b41c43bf090a5c0577d0c78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga2bfe7ba17b41c43bf090a5c0577d0c78">afw_authorization_decision_id_notApplicable_value</a></td></tr>
+<tr class="memdesc:ga2bfe7ba17b41c43bf090a5c0577d0c78"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value notApplicable.  <a href="group__afw__authorization.html#ga2bfe7ba17b41c43bf090a5c0577d0c78">More...</a><br /></td></tr>
+<tr class="separator:ga2bfe7ba17b41c43bf090a5c0577d0c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a4112f41874fd79c16ba22f0bfb80ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga4a4112f41874fd79c16ba22f0bfb80ba">afw_authorization_decision_id_permit_value</a></td></tr>
+<tr class="memdesc:ga4a4112f41874fd79c16ba22f0bfb80ba"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationResult</em> decisionId value permit.  <a href="group__afw__authorization.html#ga4a4112f41874fd79c16ba22f0bfb80ba">More...</a><br /></td></tr>
+<tr class="separator:ga4a4112f41874fd79c16ba22f0bfb80ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga96bcf9d7f2e0eb4cc23132698895b38b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#ga96bcf9d7f2e0eb4cc23132698895b38b">afw_authorization_mode_id_core_value</a></td></tr>
+<tr class="memdesc:ga96bcf9d7f2e0eb4cc23132698895b38b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> core.  <a href="group__afw__authorization.html#ga96bcf9d7f2e0eb4cc23132698895b38b">More...</a><br /></td></tr>
+<tr class="separator:ga96bcf9d7f2e0eb4cc23132698895b38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac922e2c204c986380ef5ceee9ef92a18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gac922e2c204c986380ef5ceee9ef92a18">afw_authorization_mode_id_intermediate_value</a></td></tr>
+<tr class="memdesc:gac922e2c204c986380ef5ceee9ef92a18"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> intermediate.  <a href="group__afw__authorization.html#gac922e2c204c986380ef5ceee9ef92a18">More...</a><br /></td></tr>
+<tr class="separator:gac922e2c204c986380ef5ceee9ef92a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2f545b035f693c94807cd5213fa60e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__authorization.html#gae2f545b035f693c94807cd5213fa60e3">afw_authorization_mode_id_user_value</a></td></tr>
+<tr class="memdesc:gae2f545b035f693c94807cd5213fa60e3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>AdaptiveAuthorizationMode</em> user.  <a href="group__afw__authorization.html#gae2f545b035f693c94807cd5213fa60e3">More...</a><br /></td></tr>
+<tr class="separator:gae2f545b035f693c94807cd5213fa60e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Adaptive Framework authorization. </p>
 
 <p class="definition">Definition in file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a7fa17e3cb7738dfe8ac0dfb537afb397"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fa17e3cb7738dfe8ac0dfb537afb397">&#9670;&nbsp;</a></span>afw_authorization_check()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_authorization_check </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a>&#160;</td>
-          <td class="paramname"><em>enforce</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
-          <td class="paramname"><em>request_id_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
-          <td class="paramname"><em>resource_id_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
-          <td class="paramname"><em>object_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
-          <td class="paramname"><em>action_id_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Perform authorization check. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">enforce</td><td>true causes an error to be thrown if result is not permit. </td></tr>
-    <tr><td class="paramname">request_id_value</td><td>or NULL to automatically create one. </td></tr>
-    <tr><td class="paramname">resource_id_value</td><td>string value is uri of the resource being checked. </td></tr>
-    <tr><td class="paramname">object_value</td><td>object value is the resource's object or NULL if not appropriate. </td></tr>
-    <tr><td class="paramname">action_id_value</td><td>string value of action. </td></tr>
-    <tr><td class="paramname">p</td><td>used for result. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Authorization result.</dd></dl>
-<p>The xctx qualifiers used by authorization checking should be set before this call. The context qualifiers should be prepared before this call. For example, see <a class="el" href="group__afw__adaptor.html#ga5b5a71bc53ba99f1d8b8a98ec473bdaf" title="Prepare expression evaluation context for adaptor::.">afw_adaptor_context_prepare()</a> and <a class="el" href="group__afw__service.html#ga7f31926097f03e42ad806b9c76f46981" title="Prepare expression evaluation context for service::.">afw_service_context_prepare()</a>.</p>
-<p>This function also handles obligations.</p>
-<p>Application authorization parameters are use to make the decision. The authorization result will only have a decision of permit or deny since indeterminate and not_applicable are resolved based on these parameters. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000063">Todo:</a></b></dt><dd>FIXME: What to do about indeterminate? </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8c_source.html#l00410">410</a> of file <a class="el" href="afw__authorization_8c_source.html">afw_authorization.c</a>.</p>
-
-</div>
-</div>
-<a id="a3709d59d377e7035e0ffb2ea9a9fc165"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3709d59d377e7035e0ffb2ea9a9fc165">&#9670;&nbsp;</a></span>afw_authorization_handler_get_reference()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a>* afw_authorization_handler_get_reference </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
-          <td class="paramname"><em>authorization_handler_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get reference to authorization handler. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">authorization_handler_id</td><td>of handler to get. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>authorization handler or NULL if not one with the specified id.</dd></dl>
-<p>If necessary, this will start the authorization handler.</p>
-<p><a class="el" href="afw__authorization_8h.html#a2a08020db4fb333a8fcce20ee8e0653c" title="Release reference to authorization handler.">afw_authorization_handler_release()</a> should be called when finished with the authorization handler. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8c_source.html#l01111">1111</a> of file <a class="el" href="afw__authorization_8c_source.html">afw_authorization.c</a>.</p>
-
-</div>
-</div>
-<a id="a2a08020db4fb333a8fcce20ee8e0653c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a08020db4fb333a8fcce20ee8e0653c">&#9670;&nbsp;</a></span>afw_authorization_handler_release()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_authorization_handler_release </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__authorization__handler__s.html">afw_authorization_handler_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Release reference to authorization handler. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>of authorization handler. </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8c_source.html#l01140">1140</a> of file <a class="el" href="afw__authorization_8c_source.html">afw_authorization.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a9a346b278bf7217561f88a6b6c8601b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a346b278bf7217561f88a6b6c8601b5">&#9670;&nbsp;</a></span>afw_authorization_decision_id_deny_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_deny_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value deny. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/deny for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00056">56</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="acbfd286d8525e871347a27ea4c4db31b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbfd286d8525e871347a27ea4c4db31b">&#9670;&nbsp;</a></span>afw_authorization_decision_id_indeterminate_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_indeterminate_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value indeterminate. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/indeterminate for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00064">64</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="a6f2f56b7a2f3012b1252f7d8d2df6b50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f2f56b7a2f3012b1252f7d8d2df6b50">&#9670;&nbsp;</a></span>afw_authorization_decision_id_indeterminateD_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_indeterminateD_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateD. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/indeterminateD for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00072">72</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="af5336e5b6a10dc8ea3abd545499f2e50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5336e5b6a10dc8ea3abd545499f2e50">&#9670;&nbsp;</a></span>afw_authorization_decision_id_indeterminateDP_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_indeterminateDP_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateDP. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/indeterminateDP for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00080">80</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="aa1f18b350b3c99755247eb0dfe9e9a29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1f18b350b3c99755247eb0dfe9e9a29">&#9670;&nbsp;</a></span>afw_authorization_decision_id_indeterminateP_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_indeterminateP_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value indeterminateP. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/indeterminateP for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00088">88</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="a2bfe7ba17b41c43bf090a5c0577d0c78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2bfe7ba17b41c43bf090a5c0577d0c78">&#9670;&nbsp;</a></span>afw_authorization_decision_id_notApplicable_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_notApplicable_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value notApplicable. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/notApplicable for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00096">96</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="a4a4112f41874fd79c16ba22f0bfb80ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a4112f41874fd79c16ba22f0bfb80ba">&#9670;&nbsp;</a></span>afw_authorization_decision_id_permit_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_decision_id_permit_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationResult</em> decisionId value permit. </p>
-<p>/afw/_AdaptiveAuthorizationDecision_/permit for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00104">104</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="a96bcf9d7f2e0eb4cc23132698895b38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96bcf9d7f2e0eb4cc23132698895b38b">&#9670;&nbsp;</a></span>afw_authorization_mode_id_core_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_mode_id_core_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationMode</em> core. </p>
-<p>/afw/_AdaptiveAuthorizationMode_/core for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00113">113</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="ac922e2c204c986380ef5ceee9ef92a18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac922e2c204c986380ef5ceee9ef92a18">&#9670;&nbsp;</a></span>afw_authorization_mode_id_intermediate_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_mode_id_intermediate_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationMode</em> intermediate. </p>
-<p>/afw/_AdaptiveAuthorizationMode_/intermediate for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00121">121</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-<a id="ae2f545b035f693c94807cd5213fa60e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2f545b035f693c94807cd5213fa60e3">&#9670;&nbsp;</a></span>afw_authorization_mode_id_user_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">afw_authorization_mode_id_user_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><em>AdaptiveAuthorizationMode</em> user. </p>
-<p>/afw/_AdaptiveAuthorizationMode_/user for more information. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__authorization_8h_source.html#l00129">129</a> of file <a class="el" href="afw__authorization_8h_source.html">afw_authorization.h</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:16 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

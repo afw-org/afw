@@ -73,14 +73,14 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_value_internal.h File Reference<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a> &raquo; <a class="el" href="group__afw__value.html">Value</a></div></div>  </div>
+<div class="title">afw_value_internal.h File Reference<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__internal.html">C Internal</a> &raquo; <a class="el" href="group__afw__value__internal.html">Value</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Internal header for afw_value*.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="afw__interface_8h_source.html">afw_interface.h</a>&quot;</code><br />
-<code>#include &quot;afw_object_internal.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="afw__object__internal_8h_source.html">afw_object_internal.h</a>&quot;</code><br />
 </div>
 <p><a href="afw__value__internal_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -265,7 +265,7 @@ Functions</h2></td></tr>
 <tr class="memitem:gae597793eb6d9e33c9e27383617bbd772"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>afw_value_meta_values_list_for_list_create</b> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:gae597793eb6d9e33c9e27383617bbd772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee14f2a27119cbe7f53381afeeb0565f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#gaee14f2a27119cbe7f53381afeeb0565f">afw_value_compiler_listing_to_string_instance</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="group__afw__common.html#gab4b6ed46abcdac67ce843de20917f64a">afw_value_compiler_listing_t</a> *parent, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *tab, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:gaee14f2a27119cbe7f53381afeeb0565f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value__internal.html#gaee14f2a27119cbe7f53381afeeb0565f">afw_value_compiler_listing_to_string_instance</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, <a class="el" href="group__afw__common.html#gab4b6ed46abcdac67ce843de20917f64a">afw_value_compiler_listing_t</a> *parent, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *tab, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:gaee14f2a27119cbe7f53381afeeb0565f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga13b6bf9a1e9811a2dadd8341c772c3b8"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>afw_value_compiler_listing_for_child</b> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *instance, const <a class="el" href="structafw__writer__s.html">afw_writer_t</a> *writer, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -282,7 +282,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6151ccbea67aeeb75dbf404891bedd56"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>afw_value_compiler_listing_value</b> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *instance, const <a class="el" href="structafw__writer__s.html">afw_writer_t</a> *writer, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:ga6151ccbea67aeeb75dbf404891bedd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga462a523b79525ae1bc51c62bdce11fa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga462a523b79525ae1bc51c62bdce11fa0">afw_value_block_evaluate_statement</a> (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, afw_value_block_statement_type_t *type, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_return, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_loop, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *block, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memitem:ga462a523b79525ae1bc51c62bdce11fa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value__internal.html#ga462a523b79525ae1bc51c62bdce11fa0">afw_value_block_evaluate_statement</a> (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, afw_value_block_statement_type_t *type, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> allow_return, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_loop, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *block, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:ga462a523b79525ae1bc51c62bdce11fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga94fc0cc627a6c2e0f00330dd42acb638"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>afw_value_block_evaluate_block</b> (<a class="el" href="group__afw__common.html#gadb43fc93a747a00701b8b72205b3e2c9">afw_function_execute_t</a> *x, afw_value_block_statement_type_t *type, const <a class="el" href="group__afw__common.html#ga918fc3a48f5864bf58c2792942210c26">afw_value_block_t</a> *self, <a class="el" href="group__afw__common.html#ga54967bd7180a4c18b5b3bed720c9c1f7">afw_boolean_t</a> is_loop, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
@@ -310,7 +310,7 @@ Functions</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

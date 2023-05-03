@@ -67,7 +67,7 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">afw_adaptor<div class="ingroups"><a class="el" href="group__afw__interface.html">Interfaces</a> &raquo; <a class="el" href="group__afw__adaptor__interface.html">afw_adaptor</a></div></div>  </div>
+<div class="title">afw_adaptor<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a> &raquo; <a class="el" href="group__afw__interface.html">Interfaces</a> &raquo; <a class="el" href="group__afw__adaptor__interface.html">afw_adaptor</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -111,7 +111,7 @@ Functions</h2></td></tr>
 <li>rti will be defined with a name of impl_afw_adaptor_rti.</li>
 <li>inf will be defined with a name of impl_afw_adaptor_inf.</li>
 </ol>
-<p>Before including, #define the following symbols:</p>
+<p>Before including, define the following symbols:</p>
 <ul>
 <li>AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.</li>
 <li>AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.</li>
@@ -226,12 +226,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>FIXME: Add common prologue code. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>FIXME: Add common epilogue code. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000225">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000394">Todo:</a></b></dt><dd>FIXME: Jeremy</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000230">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000501">Todo:</a></b></dt><dd>FIXME: Jeremy</dd></dl>
 <p>You need to call this here with the name of an object type defined in afw_lmdb/object/_AdaptiveObjectType_/</p>
 <p>afw_object_meta_set_object_type_id(metrics, &amp;afw_lmdb_s_????, xctx);</p>
-<p>This object type can have the object type for all of the embedded objects &ndash; version, statistics, and information. These should also be defined in afw_lmdb/object/_AdaptiveObjectType_/. You should also use <a class="el" href="group__afw__object.html#ga86c50d8a20e12c77463fd521ae86d813" title="Set object&#39;s object type id.">afw_object_meta_set_object_type_id()</a> to set the object type of these embedded objects.</p>
-<p>Use <a class="el" href="group__afw__object.html#gafee4eb8b66151154bba77a39ae7909d4" title="Create an empty embedded object in a memory object.">afw_object_create_embedded()</a> instead of <a class="el" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3" title="Create an empty entity object in its own pool.">afw_object_create_managed()</a> for the embedded ones. This creates the object and sets the property in the embedding object. So the <a class="el" href="group__afw__core__data__type__object.html#ga5d30094b46095c6bc944f5efa05574c9" title="Set property function for data type object values.">afw_object_set_property_as_object()</a> for each at the end can be removed.</p>
+<p>This object type can have the object type for all of the embedded objects &ndash; version, statistics, and information. These should also be defined in afw_lmdb/object/_AdaptiveObjectType_/. You should also use <a class="el" href="group__afw__object__meta.html#ga86c50d8a20e12c77463fd521ae86d813" title="Set object&#39;s object type id.">afw_object_meta_set_object_type_id()</a> to set the object type of these embedded objects.</p>
+<p>Use <a class="el" href="group__afw__object.html#gafee4eb8b66151154bba77a39ae7909d4" title="Create an empty embedded object in a memory object.">afw_object_create_embedded()</a> instead of <a class="el" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3" title="Create an empty entity object in its own pool.">afw_object_create_managed()</a> for the embedded ones. This creates the object and sets the property in the embedding object. So the <a class="el" href="group__afw__c__api__data__type__object.html#ga5d30094b46095c6bc944f5efa05574c9" title="Set property function for data type object values.">afw_object_set_property_as_object()</a> for each at the end can be removed.</p>
 <p>When this is done and you access /afw/_AdaptiveAdaptor_/... the "metrics.additional" property should have meta.</p>
 
 <p class="definition">Definition at line <a class="el" href="afw__adaptor__impl_8c_source.html#l00764">764</a> of file <a class="el" href="afw__adaptor__impl_8c_source.html">afw_adaptor_impl.c</a>.</p>
@@ -241,7 +241,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

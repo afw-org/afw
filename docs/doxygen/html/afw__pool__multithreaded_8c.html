@@ -87,10 +87,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AFW_IMPLEMENTATION_ID</b>&#160;&#160;&#160;&quot;afw_pool_multithreaded&quot;</td></tr>
 <tr class="separator:a6c899fd56a69f396f0b044bd49d6c7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0716929ce7a4a661c52df1ea406efe0"><td class="memItemLeft" align="right" valign="top"><a id="ad0716929ce7a4a661c52df1ea406efe0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>IMPL_MULTITHREADED_LOCK_BEGIN</b>(xctx)&#160;&#160;&#160;<a class="el" href="group__afw__log.html#ga414c25137f36f0908a063aceb6d521fc">AFW_LOCK_BEGIN</a>((xctx)-&gt;env-&gt;multithreaded_pool_lock)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IMPL_MULTITHREADED_LOCK_BEGIN</b>(xctx)&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#ga414c25137f36f0908a063aceb6d521fc">AFW_LOCK_BEGIN</a>((xctx)-&gt;env-&gt;multithreaded_pool_lock)</td></tr>
 <tr class="separator:ad0716929ce7a4a661c52df1ea406efe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf5a786a5c6b927b14c69aa1f9bc84a4"><td class="memItemLeft" align="right" valign="top"><a id="adf5a786a5c6b927b14c69aa1f9bc84a4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>IMPL_MULTITHREADED_LOCK_END</b>&#160;&#160;&#160;<a class="el" href="group__afw__log.html#gab251c19bc606585c0b5c2e8f00b1f277">AFW_LOCK_END</a>;</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IMPL_MULTITHREADED_LOCK_END</b>&#160;&#160;&#160;<a class="el" href="group__afw__lock.html#gab251c19bc606585c0b5c2e8f00b1f277">AFW_LOCK_END</a>;</td></tr>
 <tr class="separator:adf5a786a5c6b927b14c69aa1f9bc84a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93460fbf8c5570ec2123ee2959e2a66e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__pool__multithreaded_8c.html#a93460fbf8c5570ec2123ee2959e2a66e">IMPL_DEBUG_LEVEL_detail</a>&#160;&#160;&#160;flag_index_debug_pool_detail</td></tr>
 <tr class="separator:a93460fbf8c5570ec2123ee2959e2a66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,7 +178,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_pool_deregis
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000284">Todo:</a></b></dt><dd>FIXME: If pool is multithread, use a lock when changing memory. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000328">Todo:</a></b></dt><dd>FIXME: If pool is multithread, use a lock when changing memory. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__pool__multithreaded_8c_source.html#l00036">36</a> of file <a class="el" href="afw__pool__multithreaded_8c_source.html">afw_pool_multithreaded.c</a>.</p>
 
@@ -240,13 +240,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_pool_deregis
 <div class="line">            ); \</div>
 <div class="line">    } \</div>
 <div class="line">} <span class="keywordflow">while</span> (0) \</div>
-<div class="ttc" id="agroup__afw__common_html_ga4696e562681c680da397c0cd1bac19a8"><div class="ttname"><a href="group__afw__common.html#ga4696e562681c680da397c0cd1bac19a8">AFW_INTEGER_FMT</a></div><div class="ttdeci">#define AFW_INTEGER_FMT</div><div class="ttdoc">Format string specifier used for afw_integer_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00324">afw_common.h:324</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_ga733207318d50393d3e3111421f521b7f"><div class="ttname"><a href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a></div><div class="ttdeci">#define AFW_UTF8_FMT</div><div class="ttdoc">Format string specifier used for afw_utf8_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00587">afw_common.h:587</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_gadce5f4fbd744c35fc70adece36a6e118"><div class="ttname"><a href="group__afw__common.html#gadce5f4fbd744c35fc70adece36a6e118">AFW_SIZE_T_FMT</a></div><div class="ttdeci">#define AFW_SIZE_T_FMT</div><div class="ttdoc">Format string specifier used for afw_size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00339">afw_common.h:339</a></div></div>
-<div class="ttc" id="agroup__afw__common_html_gaf758b90e3fadf75b6264795b4f8a1e57"><div class="ttname"><a href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></div><div class="ttdeci">apr_int64_t afw_integer_t</div><div class="ttdoc">typedef for big signed int.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00319">afw_common.h:319</a></div></div>
-<div class="ttc" id="agroup__afw__flag_html_ga3c358b246a778e60925bfe0058072cb2"><div class="ttname"><a href="group__afw__flag.html#ga3c358b246a778e60925bfe0058072cb2">afw_flag_is_active</a></div><div class="ttdeci">#define afw_flag_is_active(flag_index, xctx)</div><div class="ttdoc">Determine if flag for flag index is set in xctx.</div><div class="ttdef"><b>Definition:</b> <a href="afw__flag_8h_source.html#l00086">afw_flag.h:86</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga4696e562681c680da397c0cd1bac19a8"><div class="ttname"><a href="group__afw__common.html#ga4696e562681c680da397c0cd1bac19a8">AFW_INTEGER_FMT</a></div><div class="ttdeci">#define AFW_INTEGER_FMT</div><div class="ttdoc">Format string specifier used for afw_integer_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00326">afw_common.h:326</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_ga733207318d50393d3e3111421f521b7f"><div class="ttname"><a href="group__afw__common.html#ga733207318d50393d3e3111421f521b7f">AFW_UTF8_FMT</a></div><div class="ttdeci">#define AFW_UTF8_FMT</div><div class="ttdoc">Format string specifier used for afw_utf8_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00588">afw_common.h:588</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gadce5f4fbd744c35fc70adece36a6e118"><div class="ttname"><a href="group__afw__common.html#gadce5f4fbd744c35fc70adece36a6e118">AFW_SIZE_T_FMT</a></div><div class="ttdeci">#define AFW_SIZE_T_FMT</div><div class="ttdoc">Format string specifier used for afw_size_t.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00341">afw_common.h:341</a></div></div>
+<div class="ttc" id="agroup__afw__common_html_gaf758b90e3fadf75b6264795b4f8a1e57"><div class="ttname"><a href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a></div><div class="ttdeci">apr_int64_t afw_integer_t</div><div class="ttdoc">typedef for big signed int.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00321">afw_common.h:321</a></div></div>
+<div class="ttc" id="agroup__afw__flag_html_ga3c358b246a778e60925bfe0058072cb2"><div class="ttname"><a href="group__afw__flag.html#ga3c358b246a778e60925bfe0058072cb2">afw_flag_is_active</a></div><div class="ttdeci">#define afw_flag_is_active(flag_index, xctx)</div><div class="ttdoc">Determine if flag for flag index is set in xctx.</div><div class="ttdef"><b>Definition:</b> <a href="afw__flag_8h_source.html#l00084">afw_flag.h:84</a></div></div>
 <div class="ttc" id="agroup__afw__os_html_ga64f69aa11a6004823e9dc8988e52fb98"><div class="ttname"><a href="group__afw__os.html#ga64f69aa11a6004823e9dc8988e52fb98">afw_os_backtrace</a></div><div class="ttdeci">const afw_utf8_t * afw_os_backtrace(afw_error_code_t code, int max_backtrace, afw_xctx_t *xctx)</div><div class="ttdoc">Provide a backtrace if possible.</div><div class="ttdef"><b>Definition:</b> <a href="nix_2afw__os_8c_source.html#l00729">nix/afw_os.c:729</a></div></div>
-<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00544">afw_common.h:544</a></div></div>
+<div class="ttc" id="astructafw__utf8__s_html"><div class="ttname"><a href="structafw__utf8__s.html">afw_utf8_s</a></div><div class="ttdoc">NFC normalized UTF-8 string.</div><div class="ttdef"><b>Definition:</b> <a href="afw__common_8h_source.html#l00545">afw_common.h:545</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="afw__pool__multithreaded_8c_source.html#l00066">66</a> of file <a class="el" href="afw__pool__multithreaded_8c_source.html">afw_pool_multithreaded.c</a>.</p>
 
@@ -309,7 +309,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>impl_afw_pool_deregis
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

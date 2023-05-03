@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adaptive Framework: Common support for afw_request interface</title>
+<title>Adaptive Framework: Request</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Common support for afw_request interface<div class="ingroups"><a class="el" href="group__afw__core.html">Core</a></div></div>  </div>
+<div class="title">Request<div class="ingroups"><a class="el" href="group__package__afw.html">Adaptive Framework Base Package.</a> &raquo; <a class="el" href="group__afw__c__api__public.html">C API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -77,9 +77,6 @@ $(function() {
 Files</h2></td></tr>
 <tr class="memitem:afw__request_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__request_8h.html">afw_request.h</a></td></tr>
 <tr class="memdesc:afw__request_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header for interface afw_request* helpers. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afw__request__impl_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="afw__request__impl_8h.html">afw_request_impl.h</a></td></tr>
-<tr class="memdesc:afw__request__impl_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header for interface afw_request* implementation development. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -187,7 +184,7 @@ Functions</h2></td></tr>
 const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>afw_request_prepare_response_content_type</b> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:ga62310177027b6959155a028d639e7844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff003bbfe2985510e41b17c93e760f67"><td class="memItemLeft" align="right" valign="top"><a id="gaff003bbfe2985510e41b17c93e760f67"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>afw_request_response_body_raw_writer_create</b> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *<a class="el" href="classrequest.html">request</a>, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>afw_request_response_body_raw_writer_create</b> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *request, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="separator:gaff003bbfe2985510e41b17c93e760f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89b94298e6dcaed395af447df8515511"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__request.html#ga89b94298e6dcaed395af447df8515511">afw_request_write_value_to_response_body</a> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *instance, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="group__afw__common.html#ga6c1953c84e1c3fabc2639c3f913e9236">afw_object_options_t</a> *options, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga89b94298e6dcaed395af447df8515511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to response body.  <a href="group__afw__request.html#ga89b94298e6dcaed395af447df8515511">More...</a><br /></td></tr>
@@ -198,12 +195,8 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <tr class="memitem:gaec1c89e666498edea7888c8e6aea2dd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__request.html#gaec1c89e666498edea7888c8e6aea2dd1">afw_request_write_success_response</a> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *instance, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *response, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:gaec1c89e666498edea7888c8e6aea2dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write simple success to response body.  <a href="group__afw__request.html#gaec1c89e666498edea7888c8e6aea2dd1">More...</a><br /></td></tr>
 <tr class="separator:gaec1c89e666498edea7888c8e6aea2dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e7d2358f49403fff501217066f683d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__request.html#ga6e7d2358f49403fff501217066f683d3">afw_request_impl_trace_begin</a> (const <a class="el" href="structafw__request__s.html">afw_request_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga6e7d2358f49403fff501217066f683d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trace request begin if requested.  <a href="group__afw__request.html#ga6e7d2358f49403fff501217066f683d3">More...</a><br /></td></tr>
-<tr class="separator:ga6e7d2358f49403fff501217066f683d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>implementations</p>
 <p>Provide afw_request interface common support. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga4b6b7c0669b69d17222a1d12b16e988d"></a>
@@ -219,7 +212,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method DELETE quoted string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00155">155</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00147">147</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -236,7 +229,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method PATCH quoted string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00149">149</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00141">141</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +246,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method POST quoted string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00137">137</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00129">129</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +263,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method PUT quoted string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00143">143</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00135">135</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -289,7 +282,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name CONTENT_LENGTH quoted string. </p>
 <p>The content length of the request, if available. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00054">54</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00046">46</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +301,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name CONTENT_TYPE quoted string. </p>
 <p>The content type of the request. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00042">42</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00034">34</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -327,7 +320,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name PATH_INFO quoted string. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00077">77</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00069">69</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +339,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name QUERY_STRING quoted string. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00091">91</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00083">83</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +358,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name REQUEST_METHOD quoted string. </p>
 <p>The http method of the request. Usually, "GET", "POST", "PUT", "PATCH", or "DELETE". </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00106">106</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00098">98</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -384,7 +377,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name REQUEST_URI quoted string. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00121">121</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00113">113</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +394,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method DELETE afw_utf8_t. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00158">158</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00150">150</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +411,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method PATCH afw_utf8_t. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00152">152</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00144">144</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +428,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method POST afw_utf8_t. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00140">140</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00132">132</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -452,7 +445,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request method PUT afw_utf8_t. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00146">146</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00138">138</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -471,7 +464,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name CONTENT_LENGTH afw_utf8_t. </p>
 <p>The content length of the request, if available. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00060">60</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00052">52</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +483,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name CONTENT_TYPE afw_utf8_t. </p>
 <p>The content type of the request. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00048">48</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00040">40</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +502,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name PATH_INFO afw_utf8_t. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00084">84</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00076">76</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -528,7 +521,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name QUERY_STRING afw_utf8_t. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00098">98</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00090">90</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +540,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request accept header REQUEST_METHOD afw_utf8_t. </p>
 <p>The http method of the request. Usually, "GET", "POST", "PUT", "PATCH", or "DELETE". </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00114">114</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00106">106</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +559,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 <p>Request property name REQUEST_URI afw_utf8_t. </p>
 <p>The query string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00128">128</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00120">120</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +593,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><div class="memdoc">
 <p>Request state enum. This CAN be used by implementations of afw_request. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00162">162</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__request_8h_source.html#l00154">154</a> of file <a class="el" href="afw__request_8h_source.html">afw_request.h</a>.</p>
 
 </div>
 </div>
@@ -647,7 +640,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string containing request body. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000300">Todo:</a></b></dt><dd>FIXME: Put in support of chunked encoding. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000344">Todo:</a></b></dt><dd>FIXME: Put in support of chunked encoding. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__request_8c_source.html#l00120">120</a> of file <a class="el" href="afw__request_8c_source.html">afw_request.c</a>.</p>
 
@@ -696,49 +689,9 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value</dd></dl>
 <p>The request body is parsed based on content-type header. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000301">Todo:</a></b></dt><dd>FIXME: should decode content type parameter (stuff after ;). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000345">Todo:</a></b></dt><dd>FIXME: should decode content type parameter (stuff after ;). </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__request_8c_source.html#l00149">149</a> of file <a class="el" href="afw__request_8c_source.html">afw_request.c</a>.</p>
-
-</div>
-</div>
-<a id="ga6e7d2358f49403fff501217066f683d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6e7d2358f49403fff501217066f683d3">&#9670;&nbsp;</a></span>afw_request_impl_trace_begin()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void afw_request_impl_trace_begin </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__request__s.html">afw_request_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Trace request begin if requested. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">request</td><td>instance </td></tr>
-    <tr><td class="paramname">xctx</td><td>of caller.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>trace:request and trace:request:detail. </p>
-
-<p class="definition">Definition at line <a class="el" href="afw__request__impl_8c_source.html#l00021">21</a> of file <a class="el" href="afw__request__impl_8c_source.html">afw_request_impl.c</a>.</p>
 
 </div>
 </div>
@@ -899,7 +852,7 @@ const <a class="el" href="structafw__content__type__s.html">afw_content_type_t</
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 8 2023 19:30:17 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
