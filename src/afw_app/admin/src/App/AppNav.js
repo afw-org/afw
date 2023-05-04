@@ -400,7 +400,7 @@ const AppNav = (props) => {
                                 },
                                 {
                                     label: "Full Docs",
-                                    url: "/doc",
+                                    url: "/docs",
                                     external: true,
                                 }
                             ]
