@@ -80,11 +80,11 @@ def get_test_environment(path, testEnvironments, testGroupConfig, test_working_d
         }
 
     # set the output working directory
-    testEnv['cwd'] = test_working_directory + "/" + relpath
-
-    # FIXME this may still have issues, due to test groups often being
-    # nested within other test groups. We either need to flatten them out
-    # or process them in a different order.
+    # Note: The relpath gets "flattened" by subbing '/' for '.'
+    #       this is because the test runner will create a directory
+    #       for each test group, and we want to make sure that the
+    #       directory names do not overlap.
+    testEnv['cwd'] = test_working_directory + "/" + relpath.replace("/", ".")
 
     # check if we've created a directory for this testEnv yet    
     if testEnv and not os.path.isdir(testEnv['cwd']):

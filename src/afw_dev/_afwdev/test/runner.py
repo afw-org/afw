@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import multiprocessing
+import random
 from functools import partial
 
 from _afwdev.common import msg, nfc
