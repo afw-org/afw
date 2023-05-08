@@ -30,11 +30,6 @@ AFW_BEGIN_DECLARES
 AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 
 
-AFW_DECLARE(afw_size_t)
-afw_list_count(const afw_list_t *list, afw_xctx_t *xctx);
-
-
-
 /**
  * @brief Create an list in memory with options.
  * @param options

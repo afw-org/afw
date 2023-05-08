@@ -1254,7 +1254,7 @@ afw_function_execute_length(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(single, 1);
 
     if (afw_value_is_list(single)) {
-        offset = afw_list_count(
+        offset = afw_list_get_count(
             ((const afw_value_list_t *)single)->internal, x->xctx);
         length = afw_safe_cast_size_to_integer(offset, x->xctx);
     }

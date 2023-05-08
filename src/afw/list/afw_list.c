@@ -38,22 +38,6 @@ afw_list_of_utf8_get_next(
 }
 
 
-AFW_DEFINE(afw_size_t)
-afw_list_count(const afw_list_t *list, afw_xctx_t *xctx)
-
-{
-    afw_size_t count;
-    const afw_iterator_t *iterator;
-    const void *internal;
-
-    for (count = 0, iterator = NULL;
-        afw_list_get_next_internal(list, &iterator,
-            NULL, &internal, xctx);
-        count++);
-
-    return count;
-}
-
 
 /* Set an list to immutable if it is not already. */
 AFW_DEFINE(void)

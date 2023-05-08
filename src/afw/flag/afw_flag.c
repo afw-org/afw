@@ -836,7 +836,7 @@ afw_flag_set_default_flag_ids(
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
         p = afw_pool_create(xctx->env->p, xctx);
-        count = afw_list_count(default_flag_ids, xctx);
+        count = afw_list_get_count(default_flag_ids, xctx);
         ids = afw_pool_malloc(p, (count + 1) * sizeof(afw_utf8_t *), xctx);
         ids[count] = NULL;
 

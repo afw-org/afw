@@ -60,7 +60,7 @@ afw_vfs_adaptor_internal_create_cede_p(
         adaptor->properties, &afw_vfs_s_vfsMap, xctx);
     count = 0;
     if (vfs_map) {
-        count = afw_list_count(vfs_map, xctx);
+        count = afw_list_get_count(vfs_map, xctx);
     }
     if (count == 0) {
         AFW_THROW_ERROR_Z(general,
@@ -167,7 +167,7 @@ afw_vfs_adaptor_internal_create_cede_p(
         &afw_vfs_s_markExecutable, xctx);
     count = 0;
     if (x_list) {
-        count = afw_list_count(x_list, xctx);
+        count = afw_list_get_count(x_list, xctx);
     }
     if (count != 0) {
         mark_executable = afw_pool_calloc(p,
