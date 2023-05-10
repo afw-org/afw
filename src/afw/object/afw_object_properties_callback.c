@@ -100,42 +100,6 @@ impl_afw_object_get_count(
 }
 
 /*
- * Implementation of method get_entry for interface afw_object.
- */
-const afw_value_t *
-impl_afw_object_get_entry(
-    const afw_object_t * instance,
-    afw_integer_t index,
-    const afw_pool_t * p,
-    afw_xctx_t * xctx)
-{
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
- * Implementation of method get_entry_meta for interface afw_object.
- */
-const afw_value_t *
-impl_afw_object_get_entry_meta(
-    const afw_object_t * instance,
-    afw_integer_t index,
-    const afw_pool_t * p,
-    afw_xctx_t * xctx)
-{
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
  * Implementation of method get_property for interface afw_object.
  */
 const afw_value_t *

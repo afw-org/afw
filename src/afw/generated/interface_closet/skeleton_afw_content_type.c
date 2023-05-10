@@ -129,7 +129,7 @@ impl_afw_content_type_create_object_list_writer(
 //    <afwdev {prefixed_interface_name}>_self_t *self =
 //        (<afwdev {prefixed_interface_name}>_self_t *)instance;
 
-      
+        
 /* Raw begin object list used by object_list_writer. */
 /** @todo Replace "[\n" with appropriate value or remove here and use NULL in call. */
 static const afw_memory_t
