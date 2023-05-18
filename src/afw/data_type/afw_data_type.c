@@ -1059,9 +1059,8 @@ impl_afw_data_type_null_compare_internal(
     const void * value2,
     afw_xctx_t *xctx)
 {
-    /* Null is equal or >.  Should always be equal. */
-    if (value1 == value2) return 0;
-    return 1;
+    /* Null has no value so comparing two nulls is always true. */
+    return 0;
 }
 
 
