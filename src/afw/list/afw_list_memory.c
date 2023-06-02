@@ -286,13 +286,12 @@ impl_afw_list_get_next_value(
         ep = (afw_memory_internal_list_entry_t *)*iterator;
         ep = APR_RING_NEXT(ep, link);
     }
-    *iterator = (afw_iterator_t *)ep;
-
 
     /* If sentinel, return !found. */
     if (ep == APR_RING_SENTINEL(self->ring,
         afw_memory_internal_list_entry_s, link))
     {
+        *iterator = NULL;
         return NULL;
     }
 

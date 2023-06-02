@@ -37,13 +37,12 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_list_expression(
     const afw_compile_value_contextual_t *contextual,
-    const afw_list_t * internal,
+    const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_list_expression_t *self;
 
-    self = afw_pool_calloc(p, sizeof(afw_value_list_expression_t),
-        xctx);
+    self = afw_pool_calloc(p, sizeof(afw_value_list_expression_t), xctx);
     self->inf = &afw_value_list_expression_inf;
     self->contextual = contextual;
     self->internal = internal;
@@ -59,24 +58,13 @@ impl_afw_value_optional_evaluate(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *in;
-    const afw_list_t *out;
-    const afw_iterator_t *iterator;
-    const afw_value_t *v;
+    const afw_value_list_expression_t *self =
+        (const afw_value_list_expression_t *)instance;
+    const afw_value_t *result;
 
-    in = ((const afw_value_list_expression_t *)instance)->internal;
-    out = afw_list_create_generic(p, xctx);
+    result = afw_value_evaluate(self->internal, p, xctx);
 
-    for (iterator = NULL;;) {
-        v = afw_list_get_next_value(in, &iterator, p, xctx);
-        if (!v) {
-            break;
-        }
-        v = afw_value_evaluate(v, p, xctx);
-        afw_list_add_value(out, v, xctx);
-    }
-
-    return afw_value_create_list(out, p, xctx);
+    return result;
 }
 
 /*
@@ -122,9 +110,20 @@ impl_afw_value_produce_compiler_listing(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_data_type_value_compiler_listing(
-        afw_data_type_list,
-        writer, instance, xctx);
+    const afw_value_list_expression_t *self =
+        (const afw_value_list_expression_t *)instance;
+
+    afw_value_compiler_listing_begin_value(writer, instance,
+        self->contextual, xctx);
+    afw_writer_write_z(writer, ": [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+
+    afw_value_compiler_listing_value(self->internal, writer, xctx);
+
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 }
 
 /*
@@ -136,11 +135,12 @@ impl_afw_value_decompile(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_data_type_write_as_expression(
-        afw_data_type_list,
-        writer,
-        (const void *) & (((const afw_value_evaluated_t *)instance)->internal),
-        xctx);
+    const afw_value_list_expression_t *self =
+        (const afw_value_list_expression_t *)instance;
+
+    afw_writer_write_z(writer, "list_expression(", xctx);
+    afw_value_decompile_value(self->internal, writer, xctx);
+    afw_writer_write_z(writer, ")", xctx);
 }
 
 /*

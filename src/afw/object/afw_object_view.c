@@ -281,8 +281,9 @@ impl_make_value(
             original_entry_value = afw_list_get_next_value(
                 ((afw_value_list_t *)original_value)->internal,
                 &iterator, p, xctx);
-            if (!original_entry_value) break;
-
+            if (!original_entry_value) {
+                break;
+            }
             value = impl_make_value(self, origin, property_name,
                 original_entry_value, xctx);
             afw_list_add_value(list, value, xctx);

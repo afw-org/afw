@@ -53,13 +53,14 @@ afw_compile_parse_List(
     afw_boolean_t allow_enhanced_literals)
 {
     const afw_list_t *list;
-    const afw_value_t *v;
+    const afw_value_t *entry;
+    const afw_value_t *value;
     const afw_value_t *result;
     afw_compile_args_t *args;
     const afw_value_t **argv;
     afw_size_t argc;
     afw_size_t start_offset;
-    afw_boolean_t is_list_expression;
+    const afw_iterator_t *iterator;
 
     /* Return NULL if next token is not '['. */
     afw_compile_save_cursor(start_offset);
@@ -68,9 +69,6 @@ afw_compile_parse_List(
         afw_compile_reuse_token();
         return NULL;
     }
-
-    args = NULL;
-    is_list_expression = false;
 
     /* Create result list. */
     list = NULL;
@@ -92,76 +90,66 @@ afw_compile_parse_List(
                         "'...' is not allowed as json list entry");
                 }
 
-                /*
-                 * If this is first spread, start making args for
-                 * add_entries().
-                 */
-                if (!args) {
-                    args = afw_compile_args_create(parser);
-                    afw_compile_args_add_value(args,
-                        (const afw_value_t *)&afw_function_definition_add_entries);
-                    if (!list) {
-                        list = afw_list_create_generic(parser->p, parser->xctx);
-                        v = afw_value_create_list(list, parser->p, parser->xctx);
-                        afw_compile_args_add_value(args, v);
-                    }
-                    if (is_list_expression) {
-                        result = afw_value_create_list_expression(
-                            afw_compile_create_contextual_to_cursor(start_offset),
-                            list,
-                            parser->p, parser->xctx);
-                    }
-                    else {
-                        result = afw_value_create_list(list, parser->p, parser->xctx);
-                    }
-                    afw_compile_args_add_value(args, result);
-                }
-
-                /* Add spread list expression to args. */
-                v = afw_compile_parse_Expression(parser);
-                afw_compile_args_add_value(args, v);
-
-                /* A new list will be started if needed. */
-                list = NULL;
-                is_list_expression = false;
+                /* Entry is list expression. */
+                entry = afw_value_create_list_expression(
+                    afw_compile_create_contextual_to_cursor(start_offset),
+                    afw_compile_parse_Expression(parser),
+                    parser->p, parser->xctx);
             }
 
             /* Not spread operator. */
             else {
                 afw_compile_reuse_token();
 
-                /* If a spread has occurred and no list yet, make one. */
-                if (args && !list) {
-                    list = afw_list_create_generic(
-                        parser->p, parser->xctx);
-                    v = afw_value_create_list(list, parser->p, parser->xctx);
-                    afw_compile_args_add_value(args, v);
+                /* Next should be a value. */
+                if (allow_expression) {
+                    entry = afw_compile_parse_Expression(parser);
                 }
+                else if (allow_enhanced_literals) {
+                    entry = afw_compile_parse_Literal(parser,
+                        NULL, true, false);
+                }
+                else {
+                    entry = afw_compile_parse_Json(parser);
+                }
+            }
 
-                /* If no list yet, make one. */
+            /*
+             * If not already building list constructor and this is not an
+             * evaluated value, start building its args.
+             */
+            if (!args && !afw_value_is_defined_and_evaluated(entry)) {
+                args = afw_compile_args_create(parser);
+                afw_compile_args_add_value(args,
+                    (const afw_value_t *)&afw_function_definition_list);
+
+                /* Add previous list entries as args for constructor. */
+                if (list) {
+                    for (iterator = NULL;;) {
+                        value = afw_list_get_next_value(list, &iterator,
+                            parser->p, parser->xctx);
+                        if (!value) {
+                            break;
+                        }
+                        afw_compile_args_add_value(args, value);
+                    }
+                }
+                list = NULL;
+            }
+
+            /* If building constructor, add entry as arg. */
+            if (args) {
+                afw_compile_args_add_value(args, entry);               
+            }
+
+            /* If all values so far are evaluated, add entry to list. */
+            else {
                 if (!list) {
                     list = afw_list_create_generic(parser->p, parser->xctx);
                 }
 
-                /* Next should be a value. */
-                if (allow_expression) {
-                    v = afw_compile_parse_Expression(parser);
-                }
-                else if (allow_enhanced_literals) {
-                    v = afw_compile_parse_Literal(parser,
-                        NULL, true, false);
-                }
-                else {
-                    v = afw_compile_parse_Json(parser);
-                }
-
-                /* If not a defined evaluated value, make list expression. */
-                if (!afw_value_is_defined_and_evaluated(v)) {
-                    is_list_expression = true;
-                }
-
                 /* Add value to list. */
-                afw_list_add_value(list, v, parser->xctx);
+                afw_list_add_value(list, entry, parser->xctx);
             }
 
             /*
@@ -205,14 +193,7 @@ afw_compile_parse_List(
         result = afw_value_create_list(list, parser->p, parser->xctx);
     }
 
-    /* Else if list expression, result is list expression value. */
-    else if (is_list_expression) {
-        result = afw_value_create_list_expression(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            list, parser->p, parser->xctx);
-    }
-
-    /* Else result is list value. */
+    /* Else result is an evaluated list value. */
     else {
         result = afw_value_create_list(list, parser->p, parser->xctx);
     }

@@ -327,7 +327,7 @@ struct afw_value_internal_compiled_value_s {
 /** @brief struct for list expression value. */
 struct afw_value_list_expression_s {
     const afw_value_inf_t *inf;
-    const afw_list_t *internal;
+    const afw_value_t *internal;
     const afw_compile_value_contextual_t *contextual;
 };
 

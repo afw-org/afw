@@ -633,6 +633,32 @@ afw_value_is_fully_evaluated(
 
 
 /**
+ * @brief Macro to determine if value is a list expression.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_list_expression(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_list_expression_inf \
+)
+
+
+
+/**
+ * @brief Macro to determine if value is an object expression.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_object_expression(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_object_expression_inf \
+)
+
+
+
+/**
  * @brief Macro to determine if value is lambda definition.
  * @param A_VALUE to test.
  * @return boolean result.
@@ -1303,7 +1329,7 @@ afw_value_script_function_definition_create(
 /**
  * @brief Create function for list expression value.
  * @param contextual information for lambda.
- * @param internal list.
+ * @param internal value that will evaluate to a list or NULL.
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
@@ -1311,7 +1337,7 @@ afw_value_script_function_definition_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_list_expression(
     const afw_compile_value_contextual_t *contextual,
-    const afw_list_t *internal,
+    const afw_value_t *internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 

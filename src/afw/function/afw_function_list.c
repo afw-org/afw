@@ -64,7 +64,9 @@ afw_function_execute_add_entries(
         for (iterator = NULL;;) {
             value = afw_list_get_next_value(
                 source->internal, &iterator, x->p, x->xctx);
-            if (!value) break;
+            if (!value) {
+                break;
+            }            
             afw_list_add_value(target->internal, value, x->xctx);
         }
     }
@@ -117,12 +119,32 @@ afw_function_execute_list(
 {
     afw_size_t n;
     const afw_list_t *list;
+    const afw_list_t *l;
+    const afw_value_t * const * arg;
+    const afw_value_t *entry;
     const afw_value_t *value;
+    const afw_iterator_t *iterator;
 
     list = afw_list_create_generic(x->p, x->xctx);
-    for (n = 1; n <= x->argc; n++) {
-        value = afw_value_evaluate(x->argv[n], x->p, x->xctx);
-        afw_list_add_value(list, value, x->xctx);
+    for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
+        if (afw_value_is_list_expression(*arg)) {
+            value = afw_value_evaluate(*arg, x->p, x->xctx);
+            if (value) {
+                l = afw_value_as_list(value, x->xctx);
+                for (iterator = NULL;;) {
+                    entry = afw_list_get_next_value(l, &iterator,
+                        x->p, x->xctx);
+                    if (!entry) {
+                        break;
+                    }
+                    afw_list_add_value(list, entry, x->xctx);
+                }
+            }
+        }
+        else {
+            entry = afw_value_evaluate(*arg, x->p, x->xctx);
+            afw_list_add_value(list, entry, x->xctx);
+        }
     }
 
     return afw_value_create_list(list, x->p, x->xctx);

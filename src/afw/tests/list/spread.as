@@ -65,7 +65,6 @@ return 0;
 
 //? test: spread-foreach
 //? description: Spread inside a foreach loop
-//? skip: true
 //? expect: 0
 //? source: ...
 
