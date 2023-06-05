@@ -77,3 +77,18 @@ foreach const i of l1 {
 }
 
 return 0;
+
+//? test: spread-foreach-error
+//? description: Spread inside a foreach loop with error
+//? expect: error:Typesafe error: expecting list but encountered integer
+//? source: ...
+
+const l1 = [1, 2, 3];
+const l2 = [];
+
+// causes infinite loop
+foreach const i of l1 {
+    l2 = [...l2, i, ...i];
+}
+
+return 0;

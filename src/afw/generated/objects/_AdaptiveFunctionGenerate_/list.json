@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwList",
-    "brief": "Convert to data type list",
+    "brief": "Construct a list with 0 or more elements",
     "camelCaseFunctionLabel": "list",
     "category": "list",
-    "description": "Converts 1 or more values in a list. If A value is a list, its individual values are included.\n\nIf the data types of all values in the resulting list are the same, the list will be a list of that data type. Otherwise, the resulting list will be untyped.",
+    "description": "Construct a list with 0 or more elements.",
     "errorsThrown": [
         {
             "error": "cast_error",
@@ -14,7 +14,7 @@
     "functionLabel": "list",
     "parameters": [
         {
-            "description": "Value to convert",
+            "description": "A value can refer to any adaptable value belonging to any data type or a list expression. In the case of a list expression, indicated by \"...\" followed by an expression that results in a list, every element within that list is included in the newly created list.",
             "minArgs": 0,
             "name": "values"
         }
@@ -22,6 +22,6 @@
     "pure": true,
     "returns": {
         "dataType": "list",
-        "description": "Converted value"
+        "description": "The constructed list."
     }
 }

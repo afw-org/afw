@@ -429,21 +429,19 @@ def length_list(session, value):
 
 def list(session, values):
     '''
-    Convert to data type list
+    Construct a list with 0 or more elements
 
-    Converts 1 or more values in a list. If A value is a list, its individual
-    values are included.
-    
-    If the data types of all values in the resulting list are the same, the
-    list will be a list of that data type. Otherwise, the resulting list will
-    be untyped.
+    Construct a list with 0 or more elements.
 
     Parameters:
 
-        values (): Value to convert
+        values (): A value can refer to any adaptable value belonging to any
+        data type or a list expression. In the case of a list expression,
+        indicated by "..." followed by an expression that results in a list,
+        every element within that list is included in the newly created list.
 
     Returns:
-    list: Converted value
+    list: The constructed list.
     '''
 
     request = session.Request()

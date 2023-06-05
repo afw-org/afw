@@ -83,12 +83,7 @@ afw_function_execute_add_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Converts 1 or more values in a list. If A value is a list, its individual
- * values are included.
- * 
- * If the data types of all values in the resulting list are the same, the list
- * will be a list of that data type. Otherwise, the resulting list will be
- * untyped.
+ * Construct a list with 0 or more elements.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -103,11 +98,15 @@ afw_function_execute_add_entries(
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) Value to convert.
+ *   values - (0 or more any dataType) A value can refer to any adaptable value
+ *       belonging to any data type or a list expression. In the case of a list
+ *       expression, indicated by "..." followed by an expression that results
+ *       in a list, every element within that list is included in the newly
+ *       created list.
  *
  * Returns:
  *
- *   (list) Converted value.
+ *   (list) The constructed list.
  *
  * Errors thrown:
  *
@@ -125,8 +124,12 @@ afw_function_execute_list(
     const afw_value_t *value;
     const afw_iterator_t *iterator;
 
+    /* Construct a new list with elements passed as arguments. */
     list = afw_list_create_generic(x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
+        afw_xctx_evaluation_stack_push_parameter_number(n, x->xctx);
+
+        /* If list expression, add each element of list. */
         if (afw_value_is_list_expression(*arg)) {
             value = afw_value_evaluate(*arg, x->p, x->xctx);
             if (value) {
@@ -137,16 +140,22 @@ afw_function_execute_list(
                     if (!entry) {
                         break;
                     }
+                    entry = afw_value_evaluate(entry, x->p, x->xctx);
                     afw_list_add_value(list, entry, x->xctx);
                 }
             }
         }
+
+        /* If not a list expression, add evaluated argument as element. */
         else {
             entry = afw_value_evaluate(*arg, x->p, x->xctx);
             afw_list_add_value(list, entry, x->xctx);
         }
+
+        afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
     }
 
+    /* Return constructed list. */
     return afw_value_create_list(list, x->p, x->xctx);
 }
 

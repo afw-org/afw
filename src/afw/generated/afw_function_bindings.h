@@ -16543,12 +16543,7 @@ afw_function_definition_list;
  * @brief Adaptive Function `list`
  * @param x function execute parameter.
  *
- * Converts 1 or more values in a list. If A value is a list, its individual
- * values are included.
- * 
- * If the data types of all values in the resulting list are the same, the list
- * will be a list of that data type. Otherwise, the resulting list will be
- * untyped.
+ * Construct a list with 0 or more elements.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16563,11 +16558,15 @@ afw_function_definition_list;
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) Value to convert.
+ *   values - (0 or more any dataType) A value can refer to any adaptable value
+ *       belonging to any data type or a list expression. In the case of a list
+ *       expression, indicated by "..." followed by an expression that results
+ *       in a list, every element within that list is included in the newly
+ *       created list.
  *
  * Returns:
  *
- *   (list) Converted value.
+ *   (list) The constructed list.
  *
  * Errors thrown:
  *
