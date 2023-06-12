@@ -31,6 +31,9 @@ static void
 impl_print_result(afw_command_self_t *self, const char *format, ...);
 
 static void
+impl_print_result_value(afw_command_self_t *self, const afw_value_t *value);
+
+static void
 impl_print_error(afw_command_self_t *self, 
     const afw_error_t *error, afw_xctx_t *xctx);
 
@@ -213,8 +216,6 @@ impl_evaluate(
 {
     const afw_value_t *value;
     const afw_value_t *evaluated_value;
-    const afw_utf8_t *string;
-    const afw_memory_t *raw;
     afw_xctx_t *xctx;
     afw_boolean_t error_occurred;
     afw_boolean_t keep_going;
@@ -305,12 +306,7 @@ impl_evaluate(
                             "Adaptive script run from shell must return "
                             "null or an integer between 0 and 255 but returned "
                             "this instead:\n");
-                        string = afw_value_as_casted_utf8(evaluated_value,
-                            xctx->p, xctx);
-                        if (string) {
-                            fprintf(xctx->env->stderr_fd,
-                                "%" AFW_UTF8_FMT "\n", AFW_UTF8_FMT_ARG(string));                        
-                        }
+                        impl_print_result_value(self, evaluated_value);
                     }
                     else {
                         *exit_code = (int)
@@ -321,36 +317,8 @@ impl_evaluate(
             }
 
             /* If not requesting exit code, print result. */
-            else {
-                
-                /* JSON does not support undefined values. */
-                if (afw_value_is_undefined(evaluated_value)) {
-                    impl_print_result(self,
-                        "%" AFW_UTF8_FMT,
-                        AFW_UTF8_FMT_ARG(&afw_s_a_undefined_as_string));
-                }
-
-                /* If value is defined and evaluated, use output content type.*/ 
-                else if (afw_value_is_defined_and_evaluated(evaluated_value)) {
-                    raw = afw_content_type_value_to_raw(
-                        self->content_type_out,
-                        evaluated_value,
-                        &afw_object_options_whitespace,
-                        xctx->p, xctx);
-                    if (raw) {
-                        impl_print_result(self, "%.*s",
-                            (int)(raw)->size, (const char *)(raw)->ptr);
-                    }
-                }
-
-                /* If defined but not evaluated, return decompiled value. */
-                else {
-                    string = afw_value_decompile_to_string(evaluated_value, NULL,
-                        xctx->p, xctx);
-                    impl_print_result(self,
-                        "<unevaluated> %" AFW_UTF8_FMT,
-                        AFW_UTF8_FMT_ARG(string));
-                }
+            else {               
+                impl_print_result_value(self, evaluated_value);
             }
         }
     }
@@ -636,6 +604,49 @@ impl_print_result(afw_command_self_t *self, const char *format, ...)
     rv = fflush(self->fd_output);
     if (rv < 0) exit(EXIT_FAILURE);
 }
+
+
+
+/* Print result value. */
+void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
+{
+    const afw_memory_t *raw;
+    const afw_utf8_t *string;
+
+    /* JSON does not support undefined values. */
+    if (afw_value_is_undefined(value))
+    {
+        impl_print_result(self,
+            "%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&afw_s_a_undefined_as_string));
+    }
+
+    /* If value is defined and evaluated, use output content type.*/
+    else if (afw_value_is_defined_and_evaluated(value))
+    {
+        raw = afw_content_type_value_to_raw(
+            self->content_type_out,
+            value,
+            &afw_object_options_whitespace,
+            self->xctx->p, self->xctx);
+        if (raw)
+        {
+            impl_print_result(self, "%.*s",
+                (int)(raw)->size, (const char *)(raw)->ptr);
+        }
+    }
+
+    /* If defined but not evaluated, return decompiled value. */
+    else
+    {
+        string = afw_value_decompile_to_string(value, NULL,
+                                               self->xctx->p, self->xctx);
+        impl_print_result(self,
+            "<unevaluated> %" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(string));
+    }
+}
+
 
 void
 impl_print_error(afw_command_self_t *self, 
