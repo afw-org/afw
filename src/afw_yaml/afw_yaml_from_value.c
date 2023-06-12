@@ -37,6 +37,14 @@ static void put_yaml_string(
     from_value_wa_t *wa,
     const afw_utf8_t *string);
 
+static void convert_string_to_literal_style_yaml(
+    from_value_wa_t *wa,
+    const afw_utf8_t *string);
+
+static void convert_string_to_yaml(
+    from_value_wa_t *wa,
+    const afw_value_t *value);
+
 static void convert_number_to_yaml(
     from_value_wa_t *wa,
     double d);
@@ -153,15 +161,97 @@ void put_yaml_string(
     }
 }
 
-void put_quoted_to_yaml(
-    from_value_wa_t *wa,
-    const afw_utf8_t *s)
-{
 
-    impl_putc(wa, '"');
-    /** @fixme Need to encode?*/
-    impl_write(wa, s->s, s->len);
-    impl_putc(wa, '"');
+/*
+ * This write a string using the literal block scalar style as described in
+ * Chapter 8 at https://yaml.org/spec/1.2.2/#rule-c-indentation-indicator.
+ */
+void convert_string_to_literal_style_yaml(
+    from_value_wa_t *wa,
+    const afw_utf8_t *string)
+{
+    unsigned char c;
+    afw_size_t len;
+    const afw_utf8_octet_t *s;
+
+    s = string->s;
+    len = string->len;
+
+    /* Indicate literal style. */
+    impl_putc(wa, '|');
+
+    /* If first char is space, add indentation indicator. */
+    if (*s == ' ') {
+        impl_printf(wa, "%d", wa->indent);
+    }
+
+    /* If string ends with a newline, use KEEP chomping indicator. */
+    if (s[len - 1] == '\n') {
+        impl_putc(wa, '+');
+    }
+
+    /* If string does not ends with a newline, use STRIP chomping indicator. */
+    else {
+        impl_putc(wa, '-');
+    }
+
+    /* Put newline and indentation. */
+    put_ws(wa);
+
+    /* Write string. */
+    while (len > 0) {
+        c = *s;
+
+        /* If \n, line break and add indent. */
+        if (c == '\n') {
+            put_ws(wa);
+        }
+
+        /*
+         * If not new line, just write character asis.
+         */
+        else {
+            impl_putc(wa, c);
+        }
+
+        /* Increment. */
+        len--;
+        s++;
+    }    
+}
+
+
+
+/*
+ * If the string has newlines, use the literal style. If not, just use JSON's
+ * representation.
+ */
+void convert_string_to_yaml(
+    from_value_wa_t *wa,
+    const afw_value_t *value)
+{
+    const afw_utf8_t *string;
+    const afw_utf8_octet_t *c, *end;
+
+    string = afw_value_as_utf8(value, wa->xctx->p, wa->xctx);
+    if (!string) {
+        AFW_THROW_ERROR_Z(general, "Error converting string.", wa->xctx);
+    }
+
+    /* If string contains a newline, write as literal style. */
+    if (string->len > 0) {
+        for (c = string->s, end = c + string->len; c < end; c++)
+        {
+            if (*c == '\n') {
+                convert_string_to_literal_style_yaml(wa, string);
+                return;
+            }
+        }
+    }
+
+    /* If there are no newlines, just write as JSON quoted string. */
+    string = afw_json_utf8_string_create(string, wa->p, wa->xctx);
+    impl_write(wa, string->s, string->len);
 }
 
 /*
@@ -305,7 +395,6 @@ void convert_value_to_yaml(
     from_value_wa_t *wa,
     const afw_value_t *value)
 {
-    const afw_utf8_t *string;
     const afw_data_type_t *value_data_type;
     afw_value_info_t info;
 
@@ -355,11 +444,7 @@ void convert_value_to_yaml(
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
             &AFW_JSON_S_PRIMITIVE_STRING))
         {
-            string = afw_value_as_utf8(value, wa->xctx->p, wa->xctx);
-            if (!string) {
-                AFW_THROW_ERROR_Z(general, "Error converting string.", wa->xctx);
-            }
-            put_quoted_to_yaml(wa, string);
+            convert_string_to_yaml(wa, value);
         }
 
         /* Primitive json type is number. */

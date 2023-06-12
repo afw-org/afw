@@ -71,6 +71,7 @@ extern void afw_yaml_internal_write_value(
     afw_write_cb_t callback,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
+
 /**
  * @brief Get the content type instance for FIXME.
  *
