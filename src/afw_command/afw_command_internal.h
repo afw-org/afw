@@ -66,11 +66,18 @@ typedef struct afw_command_self_s {
     };
 
     union {
+        afw_utf8_t type_out;
+        const afw_utf8_z_t *type_out_z;
+    };
+
+    union {
         afw_utf8_t local_mode_out;
         const afw_utf8_z_t *local_mode_z;
     };
 
     const afw_content_type_t *content_type_in;
+
+    const afw_content_type_t *content_type_out;
 
     const afw_memory_t *in_content;
 

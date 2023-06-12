@@ -44,6 +44,7 @@ impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx);
 /* Command line options. */
 static const apr_getopt_option_t opts[] = {
     /* long-option, short-option, has-arg flag, description. */
+    { "allow", 'a', TRUE, "Content type used to output adaptive values." },
     { "check", 'k', FALSE, "Parse but don't evaluate." },
     { "conf", 'f', TRUE, "Configuration file." },
     { "expression", 'x', TRUE, "The first string to evaluate." },
@@ -213,6 +214,7 @@ impl_evaluate(
     const afw_value_t *value;
     const afw_value_t *evaluated_value;
     const afw_utf8_t *string;
+    const afw_memory_t *raw;
     afw_xctx_t *xctx;
     afw_boolean_t error_occurred;
     afw_boolean_t keep_going;
@@ -328,12 +330,17 @@ impl_evaluate(
                         AFW_UTF8_FMT_ARG(&afw_s_a_undefined_as_string));
                 }
 
-                /* If value is defined and evaluated, represent as JSON. */ 
+                /* If value is defined and evaluated, use output content type.*/ 
                 else if (afw_value_is_defined_and_evaluated(evaluated_value)) {
-                    string = afw_json_from_value(evaluated_value,
+                    raw = afw_content_type_value_to_raw(
+                        self->content_type_out,
+                        evaluated_value,
                         &afw_object_options_whitespace,
                         xctx->p, xctx);
-                    impl_print_result(self, "%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(string));
+                    if (raw) {
+                        impl_print_result(self, "%.*s",
+                            (int)(raw)->size, (const char *)(raw)->ptr);
+                    }
                 }
 
                 /* If defined but not evaluated, return decompiled value. */
@@ -427,6 +434,11 @@ process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv
     {
         self->index_first_non_option = os->ind;
         switch (option_ch) {
+
+        case 'a':
+            self->type_out_z = option_arg;
+            self->type_out.len = strlen(self->type_out_z);
+            break;
 
         case 'f':
             self->conf_z = option_arg;
@@ -551,11 +563,17 @@ process_args(afw_command_self_t *self, int argc, const char * const *argv,
         return rv;
     }
 
-    /* Default type to a relaxed json syntax. */
+    /* Default input type to a relaxed json syntax. */
     if (!self->type_in_z) {
         self->type_in.s = "json";
     }
     self->type_in.len = strlen(self->type_in.s);
+
+    /* Default output type to json syntax. */
+    if (!self->type_out_z) {
+        self->type_out.s = "json";
+    }
+    self->type_out.len = strlen(self->type_out.s);
 
     /* Can have no more than 1 positional. */
     if (argc > self->index_first_non_option + 1) {
@@ -711,6 +729,13 @@ main(int argc, const char * const *argv) {
             afw_environment_configure_with_object_list(
                 ((const afw_value_list_t *)conf)->internal,
                 &self->conf, xctx);
+        }
+
+        /* Get output content type. */
+        self->content_type_out = afw_environment_get_content_type(
+            &self->type_out, xctx);
+        if (!self->content_type_out) {
+            AFW_THROW_ERROR_Z(general, "Invalid --allow content-type.", xctx);
         }
 
         /* If expression specified, evaluate it. */
