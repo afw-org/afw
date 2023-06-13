@@ -257,11 +257,10 @@ afw_file_adaptor_create_cede_p(
     afw_file_internal_adaptor_t *self;
     afw_adaptor_t *adaptor;
     const afw_utf8_t *content_type;
-    const char *c;
-    const char *last;
-    afw_utf8_octet_t *n;
-    const afw_utf8_octet_t *new_root;
-    afw_size_t len;
+    const afw_utf8_t *root;
+    const char *root_z;
+    char *full_root_z;
+    apr_status_t rv;
     afw_boolean_t b;
 
     /* Create adaptor and process common properties.  */
@@ -290,45 +289,33 @@ afw_file_adaptor_create_cede_p(
         self->filename_suffix = &afw_s_a_empty_string;
     }
 
-    /* Get root from parameters. */
-    self->root = afw_object_old_get_property_as_utf8(properties,
+    /* Get root from parameters and make it full path. */
+    root = afw_object_old_get_property_as_utf8(properties,
         &afw_s_root, p, xctx);
-    if (!self->root) {
+    if (!root) {
         AFW_THROW_ERROR_Z(general,
             "root parameter required for adaptor_type file", xctx);
     }
-
-    /* If root is not "", all '\'s change to '/' with a trailing '/' */
-    if (self->root->len != 0) {
-        len = self->root->len;
-        n = afw_pool_calloc(p, len + 1, xctx);
-        new_root = n;
-        for (c = self->root->s, last = c + len - 1;; c++, n++) {
-            *n = *c;
-            if (*n == '\\') *n = '/';
-            if (c == last) {
-                if (*n != '/') {
-                    n++;
-                    len++;
-                    *n = '/';
-                }
-                break;
-            }
-        }
-        self->root = afw_utf8_create(new_root, len, p, xctx);
+    root_z = afw_utf8_to_utf8_z(root, p, xctx);
+    rv = apr_filepath_merge(
+        &full_root_z, NULL, root_z,
+        APR_FILEPATH_TRUENAME,
+        afw_pool_get_apr_pool(p));
+    if (rv != APR_SUCCESS) {
+        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
+            "Unresolvable root %s", root_z);
     }
+    self->root = afw_utf8_create_copy(full_root_z, AFW_UTF8_Z_LEN, p, xctx);
 
     /* Make path for journal directory. */
     self->journal_dir_path_z = afw_utf8_z_printf(p, xctx,
         "%" AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/",
         AFW_UTF8_FMT_ARG(self->root));
 
-
     /* Make path to journal lock file. */
     self->journal_lock_file_path_z = afw_utf8_z_printf(p, xctx,
         "%" AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock",
         AFW_UTF8_FMT_ARG(self->root));
-
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
