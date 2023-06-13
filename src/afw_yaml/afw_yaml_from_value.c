@@ -45,6 +45,10 @@ static void convert_string_to_yaml(
     from_value_wa_t *wa,
     const afw_value_t *value);
 
+static void convert_integer_to_yaml(
+    from_value_wa_t *wa,
+    afw_integer_t i);
+
 static void convert_number_to_yaml(
     from_value_wa_t *wa,
     double d);
@@ -254,6 +258,17 @@ void convert_string_to_yaml(
     impl_write(wa, string->s, string->len);
 }
 
+
+/*
+ * Convert integer.
+ */
+void convert_integer_to_yaml(
+    from_value_wa_t *wa,
+    afw_integer_t i)
+{
+    impl_printf(wa, "%" AFW_INTEGER_FMT, i);
+}
+
 /*
  * Since JSON numbers are a valid subset of YAML numbers, we'll just use
  * JSON's representation.
@@ -451,8 +466,19 @@ void convert_value_to_yaml(
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
             &AFW_JSON_S_PRIMITIVE_NUMBER))
         {
-            convert_number_to_yaml(wa,
-                ((const afw_value_double_t *)value)->internal);
+            if (afw_value_is_integer(value)) {
+                convert_integer_to_yaml(wa,
+                    ((const afw_value_integer_t *)value)->internal);
+            }
+            else if (afw_value_is_double(value)) {
+                convert_number_to_yaml(wa,
+                    ((const afw_value_double_t *)value)->internal);
+            }
+            else {
+                AFW_THROW_ERROR_Z(general,
+                    "jsonPrimitive number not supported for this data type",
+                    wa->xctx);
+            }
         }
 
         /* Primitive json type is boolean. */
