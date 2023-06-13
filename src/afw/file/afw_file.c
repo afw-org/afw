@@ -260,6 +260,7 @@ afw_file_adaptor_create_cede_p(
     const afw_utf8_t *root;
     const char *root_z;
     char *full_root_z;
+    size_t len;
     apr_status_t rv;
     afw_boolean_t b;
 
@@ -305,7 +306,13 @@ afw_file_adaptor_create_cede_p(
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "Unresolvable root %s", root_z);
     }
-    self->root = afw_utf8_create_copy(full_root_z, AFW_UTF8_Z_LEN, p, xctx);
+    len = strlen(full_root_z);
+    if (len > 0 && full_root_z[len - 1] != '/') {
+         self->root = afw_utf8_printf(p, xctx, "%s/", full_root_z);
+    }
+    else {
+        self->root = afw_utf8_create_copy(full_root_z, AFW_UTF8_Z_LEN, p, xctx);
+    }
 
     /* Make path for journal directory. */
     self->journal_dir_path_z = afw_utf8_z_printf(p, xctx,
