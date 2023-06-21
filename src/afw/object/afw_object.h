@@ -474,6 +474,55 @@ afw_object_resolve_instance(
 };
 
 
+
+/**
+ * @brief Compile a property value using specified compile type.
+ * @param instance of object.
+ * @param property_name of property.
+ * @param source_location to associate with compiled value or NULL (path used).
+ * @param compile_type (set afw_compile_type_t)
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return result of compiling the property value.
+ * 
+ * A slash ('/') followed by the property name will be appended to the source
+ * location when calling compile.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_object_get_property_compile_as(
+    const afw_object_t *instance,
+    const afw_utf8_t *property_name,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Compile and evaluate a property value using specified compile type.
+ * @param instance of object.
+ * @param property_name of property.
+ * @param source_location to associate with compiled value or NULL (path used).
+ * @param compile_type (set afw_compile_type_t)
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return result of compiling and evaluating the property value.
+ * 
+ * A slash ('/') followed by the property name will be appended to the source
+ * location when calling compile.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_object_get_property_compile_and_evaluate_as(
+    const afw_object_t *instance,
+    const afw_utf8_t *property_name,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
 /**
  * @brief Get the value of an object's own property or embedded property.
  * @param instance of object.

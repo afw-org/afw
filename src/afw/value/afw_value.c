@@ -99,6 +99,46 @@ afw_value_compile(
 }
 
 
+/* Compile a value using specified compile type. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_compile_as(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *evaluated;
+    const afw_value_t *compiled_value;
+    const afw_data_type_t *data_type;
+    const afw_utf8_t *source;
+
+    /* Compile type must match passed or be string*/
+    evaluated = afw_value_evaluate(value, p, xctx);
+    data_type = afw_value_get_data_type(evaluated, xctx);
+    if (!afw_data_type_is_string(data_type)) {
+        if (!data_type || data_type->compile_type != compile_type )
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Value data type does not match compile_type", xctx);
+        }
+    }
+
+    /* All data types with a compile type must have afw_utf8_t source. */
+    source = &((const afw_value_string_t *)evaluated)->internal;
+
+    /* Compile source. */
+    compiled_value = afw_compile_to_value_with_callback(
+        source, NULL, NULL,
+        source_location, compile_type,
+        afw_compile_residual_check_to_full, \
+        NULL, NULL, p, xctx);
+
+    return compiled_value;
+}
+
+
+
 
 /* Compile and evaluate a value. */
 AFW_DEFINE(const afw_value_t *)
@@ -112,6 +152,28 @@ afw_value_compile_and_evaluate(
     const afw_value_t *result;
 
     compiled_value = afw_value_compile(value, source_location, p, xctx);
+    result = afw_value_evaluate(compiled_value, p, xctx);
+
+    return result;
+}
+
+
+
+
+/* Compile and evaluate a value using specified compile type. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_compile_and_evaluate_as(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *compiled_value;
+    const afw_value_t *result;
+
+    compiled_value = afw_value_compile_as(value, source_location, compile_type,
+        p, xctx);
     result = afw_value_evaluate(compiled_value, p, xctx);
 
     return result;

@@ -900,7 +900,7 @@ if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
 
 /**
  * @brief Compile a value.
- * @param value
+ * @param value must be a type that can be compiled
  * @param source_location to associate with compiled value or NULL.
  * @param p to use for result.
  * @param xctx of caller.
@@ -916,9 +916,29 @@ afw_value_compile(
 
 
 /**
+ * @brief Compile a value using specified compile type.
+ * @param value can be type appropriate for compile_type or string.
+ * @param source_location to associate with compiled value or NULL.
+ * @param compile_type (set afw_compile_type_t)
+ * @param p to use for result.
+ * @param xctx of caller.
+ * @return result of compiling the value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_compile_as(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Compile and evaluate a value.
- * @param value
+ * @param value must be a type that can be compiled
  * @param source_location to associate with compiled string or NULL.
+ * @param compile_type.
  * @param p to use for result.
  * @param xctx of caller.
  * @return result of compiling and evaluating the value.
@@ -927,6 +947,25 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_compile_and_evaluate(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Compile and evaluate a value using specified compile type.
+ * @param value can be type appropriate for compile_type or string.
+ * @param source_location to associate with compiled string or NULL.
+ * @param compile_type.
+ * @param p to use for result.
+ * @param xctx of caller.
+ * @return result of compiling and evaluating the value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_compile_and_evaluate_as(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

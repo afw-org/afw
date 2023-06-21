@@ -16591,7 +16591,7 @@ impl_166_property_brief = {
 static const afw_value_string_t
 impl_166_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("string")
+    AFW_UTF8_LITERAL("hybrid")
 };
 
 static const afw_runtime_property_t
@@ -16603,7 +16603,7 @@ impl_166_property_dataType = {
 static const afw_value_string_t
 impl_166_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.")
+    AFW_UTF8_LITERAL("When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis hybrid value is evaluated at the time the adaptor is started.")
 };
 
 static const afw_runtime_property_t

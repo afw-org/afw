@@ -62,7 +62,7 @@ afw_object_set_property(
 
 
 /* Set a date property from parts. */
-AFW_DECLARE(void)
+AFW_DEFINE(void)
 afw_object_set_property_as_date_from_parts(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
@@ -87,7 +87,7 @@ afw_object_set_property_as_date_from_parts(
 
 
 /* Set a dateTime property from parts. */
-AFW_DECLARE(void)
+AFW_DEFINE(void)
 afw_object_set_property_as_dateTime_from_parts(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
@@ -207,6 +207,66 @@ afw_object_set_property_as_string_from_utf8_z(
         property_name, (const afw_value_t *)string,
         xctx);
 }
+
+
+
+/* Compile a property value using specified compile type. */
+AFW_DEFINE(const afw_value_t *)
+afw_object_get_property_compile_as(
+    const afw_object_t *instance,
+    const afw_utf8_t *property_name,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *use_source_location;
+    const afw_value_t *result;
+    const afw_value_t *value;
+
+    if (!source_location) {
+        use_source_location = afw_object_meta_get_path(instance, xctx);
+        if (!use_source_location) {
+            use_source_location = &afw_s_a_empty_string;
+        }
+    }
+    else {
+        use_source_location = source_location;
+    }
+    use_source_location = afw_utf8_printf(p, xctx,
+        "%" AFW_UTF8_FMT "/" "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT_ARG(use_source_location), AFW_UTF8_FMT_ARG(property_name));
+
+    value = afw_object_get_property(instance, property_name, xctx);
+
+    result = afw_value_compile_as(value,
+        use_source_location, compile_type, p, xctx);
+
+    return result;
+}
+
+
+
+/* Compile and evaluate a property value using specified compile type. */
+AFW_DEFINE(const afw_value_t *)
+afw_object_get_property_compile_and_evaluate_as(
+    const afw_object_t *instance,
+    const afw_utf8_t *property_name,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *compiled_value;
+    const afw_value_t *result;
+
+    compiled_value = afw_object_get_property_compile_as(
+        instance, property_name, source_location, compile_type, p, xctx);
+    result = afw_value_evaluate(compiled_value, p, xctx);
+
+    return result;
+}
+
 
 
 /* Get a property in an object's lineage. */

@@ -37,6 +37,22 @@ typedef enum afw_file_mode_e {
 
 
 /**
+ * @brief Return full file path.
+ * @param path is a full or relative path.
+ * @param p to use for adaptor resources.
+ * @param xctx of caller.
+ * @return full path.
+ * 
+ * The current working directory will be prepended if path is a relative path.
+ * 
+ */
+
+AFW_DECLARE(const afw_utf8_t *)
+afw_file_insure_full_path(const afw_utf8_t *path,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+/**
  * @brief Get the factory for file adaptor.
  * @return factory singleton instance.
  */

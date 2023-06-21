@@ -35,8 +35,39 @@ static const afw_adaptor_factory_t impl_adaptor_factory =
 };
 
 
+/* Return full file path. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_file_insure_full_path(const afw_utf8_t *path,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t *full_path;
+    const char *path_z;
+    char *full_path_z;
+    size_t len;
+    apr_status_t rv;
+    
+    path_z = afw_utf8_to_utf8_z(path, p, xctx);
+    rv = apr_filepath_merge(
+        &full_path_z, NULL, path_z,
+        APR_FILEPATH_TRUENAME,
+        afw_pool_get_apr_pool(p));
+    if (rv != APR_SUCCESS) {
+        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
+            "Unresolvable path %s", path_z);
+    }
+    len = strlen(full_path_z);
+    if (len > 0 && full_path_z[len - 1] != '/') {
+        full_path = afw_utf8_printf(p, xctx, "%s/", full_path_z);
+    }
+    else {
+        full_path = afw_utf8_create_copy(full_path_z, AFW_UTF8_Z_LEN, p, xctx);
+    }
+    return full_path;  
+}
+
+
 /* Read a file into memory in a specifed pool. */
-AFW_DECLARE(const afw_memory_t *)
+AFW_DEFINE(const afw_memory_t *)
 afw_file_to_memory(
     const afw_utf8_t * file_path,
     apr_size_t file_size,
@@ -101,7 +132,8 @@ afw_file_to_memory(
 
 
 /* Write a file from memory. */
-AFW_DECLARE(void) afw_file_from_memory(
+AFW_DEFINE(void)
+afw_file_from_memory(
     const afw_utf8_t * file_path,
     const afw_memory_t * from_memory,
     afw_file_mode_t mode,
@@ -257,11 +289,7 @@ afw_file_adaptor_create_cede_p(
     afw_file_internal_adaptor_t *self;
     afw_adaptor_t *adaptor;
     const afw_utf8_t *content_type;
-    const afw_utf8_t *root;
-    const char *root_z;
-    char *full_root_z;
-    size_t len;
-    apr_status_t rv;
+    const afw_value_t *value;
     afw_boolean_t b;
 
     /* Create adaptor and process common properties.  */
@@ -291,28 +319,16 @@ afw_file_adaptor_create_cede_p(
     }
 
     /* Get root from parameters and make it full path. */
-    root = afw_object_old_get_property_as_utf8(properties,
-        &afw_s_root, p, xctx);
-    if (!root) {
-        AFW_THROW_ERROR_Z(general,
-            "root parameter required for adaptor_type file", xctx);
+    value = afw_object_get_property_compile_and_evaluate_as(
+        properties,  &afw_s_root, adaptor->source_location,
+        afw_compile_type_hybrid, p, xctx);
+    if (!afw_value_is_string(value)) {
+        afw_adaptor_impl_throw_property_invalid(adaptor,
+            &afw_s_root, xctx);
     }
-    root_z = afw_utf8_to_utf8_z(root, p, xctx);
-    rv = apr_filepath_merge(
-        &full_root_z, NULL, root_z,
-        APR_FILEPATH_TRUENAME,
-        afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "Unresolvable root %s", root_z);
-    }
-    len = strlen(full_root_z);
-    if (len > 0 && full_root_z[len - 1] != '/') {
-         self->root = afw_utf8_printf(p, xctx, "%s/", full_root_z);
-    }
-    else {
-        self->root = afw_utf8_create_copy(full_root_z, AFW_UTF8_Z_LEN, p, xctx);
-    }
+    self->root = afw_file_insure_full_path(
+        &((afw_value_string_t *)value)->internal,
+        p, xctx);
 
     /* Make path for journal directory. */
     self->journal_dir_path_z = afw_utf8_z_printf(p, xctx,
