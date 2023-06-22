@@ -1,0 +1,27 @@
+{
+    "$defs": {
+        "_AdaptiveEnvironmentVariables_": {
+            "additionalProperties": {
+                "description": "Environment variables of process.",
+                "type": "string"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveEnvironmentVariables_.propertyTypes"
+                }
+            ],
+            "description": "Environment variables of process.",
+            "type": "object"
+        },
+        "_AdaptiveEnvironmentVariables_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveEnvironmentVariables_"
+        }
+    ]
+}

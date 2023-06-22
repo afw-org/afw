@@ -573,6 +573,25 @@ afw_environment_configure_with_object_list(
     afw_xctx_t *xctx);
 
 
+
+/**
+ * @brief Create a readonly object for accessing environment variables.
+ * @param preload_variables should be true if using threads or false otherwise.
+ * @param xctx of caller.
+ * @return object instance.
+ * 
+ * If not using threads, preload_variables false is better since the property
+ * associated with each environment variable is only create if accessed. If
+ * threads are being using, make sure preload_variables is true because the
+ * object is not threadsafe otherwise. 
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_environment_create_environment_variables_object(
+    afw_boolean_t preload_variables,
+    afw_xctx_t *xctx);
+
+
+
 /**
  * @brief Load and initialize environment extension.
  * @param extension_id id of extension or NULL.

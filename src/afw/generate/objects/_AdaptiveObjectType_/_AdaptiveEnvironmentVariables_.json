@@ -1,0 +1,11 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Environment variables of process.",
+    "objectType": "_AdaptiveEnvironmentVariables_",
+    "otherProperties": {
+        "dataType": "string"
+    }
+}

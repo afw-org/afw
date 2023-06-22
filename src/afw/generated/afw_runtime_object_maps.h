@@ -261,6 +261,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveEnvironmentRegistry_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveEnvironmentVariables_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveEnvironmentVariables_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveErrorRVDecoder_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

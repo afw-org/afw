@@ -731,6 +731,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentRegistryType_;
 /** @brief afw_utf8_t for string _AdaptiveEnvironmentRegistry_ */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentRegistry_;
 
+/** @brief define for quoted string _AdaptiveEnvironmentVariables_ */
+#define AFW_Q__AdaptiveEnvironmentVariables_ "_AdaptiveEnvironmentVariables_"
+
+/** @brief afw_utf8_t for string _AdaptiveEnvironmentVariables_ */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentVariables_;
+
 /** @brief define for quoted string _AdaptiveErrorRVDecoder_ */
 #define AFW_Q__AdaptiveErrorRVDecoder_ "_AdaptiveErrorRVDecoder_"
 

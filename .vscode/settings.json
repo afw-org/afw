@@ -409,6 +409,12 @@
                 "/src/*/generate*/objects/_AdaptiveAuthorizationDecision_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveAuthorizationDecision_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveEnvironmentVariables_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveEnvironmentVariables_.json"
         }
     ],
     "python.analysis.extraPaths": [

@@ -46,6 +46,9 @@ struct afw_server_fcgi_internal_s {
     /* Server request director. */
     const afw_request_handler_t * director;
 
+    /* Object used to access server environment variables. */
+    const afw_object_t *environment_variables_object;
+
     /* Trace flag index for request process. */
     afw_size_t flag_index_trace_process;
 

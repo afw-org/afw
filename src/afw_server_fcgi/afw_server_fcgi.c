@@ -92,6 +92,13 @@ afw_server_fcgi_internal_create(const char *path,
     /* Use afw version. */
     self->pub.server_version = &impl_compiled_afw_version;
 
+    /* Set object used to access environment variables. */
+    self->environment_variables_object =
+        afw_environment_create_environment_variables_object(true, xctx);
+    afw_runtime_xctx_set_object(self->environment_variables_object,
+        true, xctx);
+    afw_xctx_push_qualifier_object(&afw_s_environment,
+        self->environment_variables_object, true, xctx->p, xctx);        
 
     /* Open socket. */
     self->sock = FCGX_OpenSocket(path, 500);

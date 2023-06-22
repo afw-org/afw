@@ -229,6 +229,12 @@ impl_evaluate(
         *exit_code = 0;
     }
     AFW_TRY {
+       
+        /* Set environment object and qualifier in new xctx. */
+        afw_runtime_xctx_set_object(self->environment_variables_object,
+            true, xctx);
+        afw_xctx_push_qualifier_object(&afw_s_environment,
+            self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If input is not NULL, insure it is NFC normalized utf-8. */
         if (input) {
@@ -712,6 +718,14 @@ main(int argc, const char * const *argv) {
         if (self->help_option || rv != EXIT_SUCCESS) {
             break;
         }
+
+        /* Create and set environment object and qualifier. */
+        self->environment_variables_object =
+            afw_environment_create_environment_variables_object(false, xctx);
+        afw_runtime_xctx_set_object(self->environment_variables_object,
+            true, xctx);
+        afw_xctx_push_qualifier_object(&afw_s_environment,
+            self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If extension specified, load it. */
         if (self->extension.len > 0) {

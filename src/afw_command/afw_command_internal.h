@@ -36,6 +36,7 @@ AFW_BEGIN_DECLARES
  */
 typedef struct afw_command_self_s {
     afw_xctx_t *xctx;
+    const afw_object_t *environment_variables_object;
     int index_first_non_option;
 
     const afw_utf8_t *source_location;

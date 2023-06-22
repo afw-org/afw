@@ -186,7 +186,7 @@ afw_lock_release_debug(const afw_lock_t *instance,
  * AFW_LOCK_BEGIN(instance) {
  *    ... code
  * }
- * AFW_LOCK_END(instance);
+ * AFW_LOCK_END;
  */
 #define AFW_LOCK_BEGIN(instance) \
 const afw_lock_t *this_LOCK = instance; \

@@ -376,6 +376,9 @@ AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistryType_");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentRegistry_ =
 AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistry_");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentVariables_ =
+AFW_UTF8_LITERAL("_AdaptiveEnvironmentVariables_");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveErrorRVDecoder_ =
 AFW_UTF8_LITERAL("_AdaptiveErrorRVDecoder_");
 

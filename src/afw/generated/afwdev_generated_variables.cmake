@@ -295,6 +295,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     environment/afw_environment_configuration.c
     environment/afw_environment_register_core.c
     environment/afw_environment_registry_object.c
+    environment/afw_environment_variables_object.c
     error/afw_error.c
     file/afw_file.c
     file/afw_file_journal.c
