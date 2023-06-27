@@ -153,6 +153,7 @@ class DocsHtml:
     # create a <td> element
     def table_col(self, col, **kwargs):
 
+        # FIXME: the white-space: pre-line needs to come from kwargs
         return self.html_templates.get("table_row_col.html") % {
             "col": col,
             "attrs": "style='white-space: pre-line;'"

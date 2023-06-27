@@ -879,6 +879,11 @@ def run(options):
     with nfc.open(afw_js, 'w') as fp:
         fp.write(js)
 
+    # touch an empty .nojekyll file
+    nojekyll = os.path.join(doc_output_dir, ".nojekyll")
+    with nfc.open(nojekyll, 'w') as fp:
+        fp.write("")
+
     # index all documentation into a navigation tree
     generate_nav_links(options)
 
