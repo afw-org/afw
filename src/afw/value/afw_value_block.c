@@ -909,7 +909,18 @@ afw_value_block_evaluate_statement(
 
             statement = NULL;
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-                AFW_FUNCTION_EVALUATE_PARAMETER(statement, 2);
+                /*
+                 * If assigning an evaluated (literal) list or object, clone it
+                 * in case it is modified. Otherwise, evaluate it.
+                 */
+                if (afw_value_is_object(x->argv[2]) ||
+                    afw_value_is_list(x->argv[2]))
+                {
+                    statement = afw_value_clone(x->argv[2], p, xctx);
+                }
+                else {
+                    AFW_FUNCTION_EVALUATE_PARAMETER(statement, 2);
+                }
             }
 
             impl_assign(modified_x.argv[1], statement,

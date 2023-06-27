@@ -103,7 +103,7 @@ afw_value_permanent_base64Binary_inf;
 #define afw_value_is_base64Binary(A_VALUE) \
 ( \
     (A_VALUE) && \
-    (A_VALUE)->inf->fully_evaluated_data_type == afw_data_type_base64Binary\
+    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_base64Binary\
 )
 
 /**

@@ -32,8 +32,8 @@ return result.error.message;
 
 
 //? test: function_return_fully_evaluated
-//? description: Make sure function result is fully evaluated
-//? expect: "Function %s returned a value that is not fully evaluated. (%s)"
+//? description: Make sure function result is evaluated
+//? expect: "Function %s returned a value that is not evaluated. (%s)"
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

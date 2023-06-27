@@ -123,7 +123,7 @@ def write_h_section(fd, prefix, obj):
     fd.write('#define afw_value_is_' + id + '(A_VALUE) \\\n')
     fd.write('( \\\n')
     fd.write('    (A_VALUE) && \\\n')
-    fd.write('    (A_VALUE)->inf->fully_evaluated_data_type == afw_data_type_' + id + '\\\n')
+    fd.write('    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_' + id + '\\\n')
     fd.write(')\n')
 
     fd.write('\n/**\n')
@@ -541,7 +541,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('\n/* Inf specific is always data type. */\n')
     fd.write('#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_' + id + '_direct\n')
 
-    fd.write('\n/* Define inf variables for data_type and fully_evaluated_data_type. */\n')
+    fd.write('\n/* Define inf variables for data_type and is_evaluated_of_data_type. */\n')
     fd.write('#define AFW_IMPLEMENTATION_INF_VARIABLES \\\n')
     fd.write('    (const void *)&afw_data_type_' + id + '_direct, \\\n')
     fd.write('    (const void *)&afw_data_type_' + id + '_direct\n')

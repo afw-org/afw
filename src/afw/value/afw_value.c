@@ -283,29 +283,25 @@ afw_value_clone(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_evaluated_t *evaluated;
-    const afw_value_t *result;
-    const afw_data_type_t *data_type;
 
-    data_type = afw_value_get_data_type(value, xctx);
+    /* If value is NULL, return NULL. */
+    if (!value) {
+        return value;
+    }
 
-    /* Evaluated value clone. */
-    if (afw_value_is_defined_and_evaluated(value)) {
-        evaluated = afw_value_evaluated_allocate(data_type, p, xctx);
-        result = (const afw_value_t *)evaluated;
-        afw_data_type_clone_internal(data_type,
+    /* If value is evaluated, clone it. */
+    if (value->inf->is_evaluated_of_data_type) {
+        evaluated = afw_value_evaluated_allocate(
+            value->inf->is_evaluated_of_data_type, p, xctx);
+        afw_data_type_clone_internal(value->inf->is_evaluated_of_data_type,
             (void *)&evaluated->internal,
             (const void *)&((const afw_value_evaluated_t *)value)->internal,
             p, xctx);
+        return (const afw_value_t *)evaluated;
     }
 
-    /* Other values not supported. */
-    else {
-        AFW_THROW_ERROR_Z(general,
-            "Can only clone an evaluated value", xctx);
-    }
-
-    /* Return result. */
-    return result;
+    /* If value is not evaluated, evaluate it. */
+    return afw_value_evaluate(value, p, xctx);
 }
 
 
@@ -864,15 +860,15 @@ afw_value_equal(const afw_value_t *value1, const afw_value_t *value2,
         result = false;
     }
 
-    else if (value1->inf->fully_evaluated_data_type)
+    else if (value1->inf->is_evaluated_of_data_type)
     {
-        if (value1->inf->fully_evaluated_data_type ==
-            value2->inf->fully_evaluated_data_type)
+        if (value1->inf->is_evaluated_of_data_type ==
+            value2->inf->is_evaluated_of_data_type)
         {
             i1 = (const char *)&((const afw_value_evaluated_t *)value1)->internal;
             i2 = (const char *)&((const afw_value_evaluated_t *)value2)->internal;
             result = afw_data_type_compare_internal(
-                value1->inf->fully_evaluated_data_type, i1, i2, xctx) == 0;
+                value1->inf->is_evaluated_of_data_type, i1, i2, xctx) == 0;
         }
         else
         {

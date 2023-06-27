@@ -428,7 +428,7 @@ afw_value_compiler_listing_to_string_instance(
     /* If value is not a compiled value, just produce decompile. */
     if (afw_value_is_undefined_or_evaluated(value)) {
         afw_writer_write_z(writer,
-            "#  Adaptive Value is fully evaluated at compile time", xctx);
+            "#  Adaptive Value is evaluated at compile time", xctx);
         afw_writer_write_eol(writer, xctx);
         afw_writer_write_z(writer, "#", xctx);
         afw_writer_write_eol(writer, xctx);

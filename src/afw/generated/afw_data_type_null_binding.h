@@ -103,7 +103,7 @@ afw_value_permanent_null_inf;
 #define afw_value_is_null(A_VALUE) \
 ( \
     (A_VALUE) && \
-    (A_VALUE)->inf->fully_evaluated_data_type == afw_data_type_null\
+    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_null\
 )
 
 /**

@@ -422,7 +422,7 @@ afw_value_undecorated_inf_is(
 #define afw_value_is_nullish(A_VALUE) \
 ( \
     (!A_VALUE) || \
-    (A_VALUE)->inf->fully_evaluated_data_type == afw_data_type_null \
+    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_null \
 )
 
 
@@ -481,7 +481,7 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 #define afw_value_is_defined_and_evaluated(A_VALUE) \
 ( \
     (A_VALUE) && \
-    (A_VALUE)->inf->fully_evaluated_data_type \
+    (A_VALUE)->inf->is_evaluated_of_data_type \
 )
 
 
@@ -494,7 +494,7 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 #define afw_value_is_undefined_or_evaluated(A_VALUE) \
 ( \
     (!A_VALUE) || \
-    (A_VALUE)->inf->fully_evaluated_data_type \
+    (A_VALUE)->inf->is_evaluated_of_data_type \
 )
 
 
@@ -758,8 +758,8 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 /** @brief Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE. */
 #define AFW_VALUE_IS_DATA_TYPE(A_VALUE,A_DATA_TYPE) \
 ( \
-    (A_VALUE) && (A_VALUE)->inf->fully_evaluated_data_type && \
-    (A_VALUE)->inf->fully_evaluated_data_type == afw_data_type_ ## A_DATA_TYPE \
+    (A_VALUE) && (A_VALUE)->inf->is_evaluated_of_data_type && \
+    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_ ## A_DATA_TYPE \
 )
 
 
@@ -1110,7 +1110,7 @@ afw_value_as_casted_utf8(
  * @param xctx of caller.
  * @return cloned value.
  *
- * Only evaluated values are supported.
+ * Non-evaluated values will be evaluated as part of clone.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone(

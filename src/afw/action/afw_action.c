@@ -154,7 +154,7 @@ impl_call_function(
             afw_value_get_info(result, &info, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Function %" AFW_UTF8_FMT
-                " returned a value that is not fully evaluated. ("
+                " returned a value that is not evaluated. ("
                 "%" AFW_UTF8_FMT " %" AFW_UTF8_FMT ")",
                 AFW_UTF8_FMT_ARG(&function->functionId),
                 AFW_UTF8_FMT_ARG(info.value_inf_id),

@@ -69,7 +69,7 @@ impl_afw_value_permanent_get_reference(
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_x500Name_direct
 
-/* Define inf variables for data_type and fully_evaluated_data_type. */
+/* Define inf variables for data_type and is_evaluated_of_data_type. */
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_x500Name_direct, \
     (const void *)&afw_data_type_x500Name_direct

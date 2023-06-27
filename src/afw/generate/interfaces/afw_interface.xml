@@ -5670,10 +5670,10 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </inf_variable>
 
-    <inf_variable name="fully_evaluated_data_type" type="const afw_data_type_t *">
+    <inf_variable name="is_evaluated_of_data_type" type="const afw_data_type_t *">
       <description>
-        This is the data type of the value if it's already fully evaluation. If the value
-        is not fully evaluated, this value will be NULL.
+        This is the data type of the value if it's already evaluated. If the value
+        is not evaluated, this value will be NULL.
       </description>
     </inf_variable>
 

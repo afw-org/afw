@@ -5273,7 +5273,7 @@ struct afw_value_inf_s {
     afw_value_decompile_t decompile;
     afw_value_get_info_t get_info;
     const afw_data_type_t * data_type;
-    const afw_data_type_t * fully_evaluated_data_type;
+    const afw_data_type_t * is_evaluated_of_data_type;
 };
 
 /**
