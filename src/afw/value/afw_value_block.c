@@ -48,7 +48,7 @@
 
 
 
-static void
+static const afw_value_t *
 impl_assign(
     const afw_value_t *target,
     const afw_value_t *value,
@@ -294,8 +294,12 @@ impl_assignment_target(
 }
 
 
-
-static void
+/*
+ * Call this without value being evaluated so that the need for a clone can
+ * be determined. Evaluated objects and lists need to be cloned so they can
+ * potentially be modified. If needed, value will be evaluated.
+ */
+static const afw_value_t *
 impl_assign(
     const afw_value_t *target,
     const afw_value_t *value,
@@ -304,6 +308,14 @@ impl_assign(
     afw_xctx_t *xctx)
 {
     const afw_value_assignment_target_t *at;
+
+    if (afw_value_is_object(value) || afw_value_is_list(value))
+    {
+        value = afw_value_clone(value, p, xctx);
+    }
+    else {
+        value = afw_value_evaluate(value, p, xctx);
+    }
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
@@ -317,6 +329,8 @@ impl_assign(
     }
 
     impl_assign_value(target, value, assignment_type, p, xctx);
+
+    return value;
 }
 
 
@@ -786,12 +800,9 @@ afw_value_block_evaluate_statement(
             modified_x.function = &afw_function_definition_assign;
  
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-            AFW_FUNCTION_EVALUATE_PARAMETER(statement, 2);
-
-            impl_assign(modified_x.argv[1], statement,
+            result = impl_assign(modified_x.argv[1], AFW_FUNCTION_ARGV(2),
                 afw_compile_assignment_type_assign_only,
                 p, xctx);
-            result = statement;
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -821,14 +832,12 @@ afw_value_block_evaluate_statement(
             modified_x.function = &afw_function_definition_const;
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
-            AFW_FUNCTION_EVALUATE_PARAMETER(statement, 2);
 
             /** @fixme process type. */
 
-            impl_assign(modified_x.argv[1], statement,
+            result = impl_assign(modified_x.argv[1], AFW_FUNCTION_ARGV(2),
                 afw_compile_assignment_type_const,
                 p, xctx);
-            result = statement;
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -907,26 +916,9 @@ afw_value_block_evaluate_statement(
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
-            statement = NULL;
-            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-                /*
-                 * If assigning an evaluated (literal) list or object, clone it
-                 * in case it is modified. Otherwise, evaluate it.
-                 */
-                if (afw_value_is_object(x->argv[2]) ||
-                    afw_value_is_list(x->argv[2]))
-                {
-                    statement = afw_value_clone(x->argv[2], p, xctx);
-                }
-                else {
-                    AFW_FUNCTION_EVALUATE_PARAMETER(statement, 2);
-                }
-            }
-
-            impl_assign(modified_x.argv[1], statement,
+            result = impl_assign(modified_x.argv[1], AFW_FUNCTION_ARGV(2),
                 afw_compile_assignment_type_loc,
                 p, xctx);
-            result = statement;
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
