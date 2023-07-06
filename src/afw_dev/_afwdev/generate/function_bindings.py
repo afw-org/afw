@@ -834,7 +834,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         fd.write('    afw_function_execute_t *x)\n')
                         fd.write('{\n')
                         fd.write('    /** @todo Add code. */\n')
-                        fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+                        fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);\n')
                         fd.write('}\n')
 
 
@@ -881,6 +881,6 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     fd.write('    afw_function_execute_t *x)\n')
                     fd.write('{\n')
                     fd.write('    /** @todo Add code. */\n')
-                    fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+                    fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);\n')
                     fd.write('}\n')
 

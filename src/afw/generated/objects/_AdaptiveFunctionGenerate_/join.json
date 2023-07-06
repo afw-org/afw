@@ -10,7 +10,7 @@
     "parameters": [
         {
             "dataType": "list",
-            "description": "A list of values of any data type.",
+            "description": "A list of values (statements) of any data type.",
             "name": "value"
         },
         {

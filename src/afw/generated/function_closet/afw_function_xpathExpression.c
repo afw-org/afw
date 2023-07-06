@@ -58,7 +58,7 @@ afw_function_execute_compile_xpathExpression(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -105,7 +105,7 @@ afw_function_execute_evaluate_xpathExpression(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -143,7 +143,7 @@ afw_function_execute_xpath_node_count(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -185,7 +185,7 @@ afw_function_execute_xpath_node_eq(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -227,5 +227,5 @@ afw_function_execute_xpath_node_match(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }

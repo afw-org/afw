@@ -274,7 +274,7 @@ class list
      * Concatenate the string values of the elements of a list with a
      * separator.
      *
-     * @param list $value A list of values of any data type.
+     * @param list $value A list of values (statements) of any data type.
      * @param string $separator The separator to use. If not specified, a
      *                          comma (,) is used.
      *

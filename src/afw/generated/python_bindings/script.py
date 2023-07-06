@@ -12,7 +12,7 @@ def assign(session, name, value):
     Assign a value to the innermost structured block definition of a
     variable. If the variable is not defined, the variable is defined in the
     innermost structured block. An error is thrown if not called from a list
-    of values in a structured function.
+    of values (statements) in a structured function.
 
     Parameters:
 
@@ -246,23 +246,23 @@ def continue_(session):
 
 def do_while(session, condition, body):
     '''
-    Evaluate a list of values at least once while a condition is true
+    Evaluate a list of values (statements) at least once while a condition is true
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values at least once while a
-    condition is true. See the related functions "break", "continue", and
-    "return".
+    This function will evaluate a list of values (statements) at least once
+    while a condition is true. See the related functions "break", "continue",
+    "return" and "throw".
 
     Parameters:
 
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (list): This is a list of values that are evaluated for each
-        iteration of the loop. Each value in body is evaluated in order until
-        the end of the list or until a "break", "continue" or "return"
-        function is encountered.
+        body (list): This is a list of values (statements) that are evaluated
+        for each iteration of the loop. Each value in body is evaluated in
+        order until the end of the list or until a "break", "continue",
+        "return" or "throw" function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if the body is empty.
@@ -395,7 +395,7 @@ def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None)
 
 def for_(session, initial=None, condition=None, increment=None, body=None):
     '''
-    Evaluate a list of values while a condition is true with a list of initial and increment values
+    Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
     
@@ -404,20 +404,21 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     Parameters:
 
-        initial (list): This is a list of values to evaluate before the loop
-        starts. The values will normally be a call to the "assign" function.
+        initial (list): This is a list of values (statements) to evaluate
+        before the loop starts. The values will normally be a call to the
+        "assign" function.
 
         condition (boolean): While this condition is true, the loop will
         continue.
 
-        increment (list): This is a list of values to evaluate after each
-        iteration of the loop. The values will normally be a call to the
-        "assign" function.
+        increment (list): This is a list of values (statements) to evaluate
+        after each iteration of the loop. The values will normally be a call
+        to the "assign" function.
 
-        body (list): This is a list of values that are evaluated for each
-        iteration of the loop. Each value in body is evaluated in order until
-        the end of the list or until a "break", "continue" or "return"
-        function is encountered.
+        body (list): This is a list of values (statements) that are evaluated
+        for each iteration of the loop. Each value in body is evaluated in
+        order until the end of the list or until a "break", "continue",
+        "return" or "throw" function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -451,14 +452,14 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
 def foreach(session, name, value, body=None):
     '''
-    Evaluate a list of values while a condition is true with a list of initial and increment values
+    Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values while a condition is true
-    with initial and increment values. The condition is tested at the
-    beginning of the loop. If the condition is false for the first iteration,
-    the loop returns a null value.
+    This function will evaluate a list of values (statements) while a
+    condition is true with initial and increment values. The condition is
+    tested at the beginning of the loop. If the condition is false for the
+    first iteration, the loop returns a null value.
 
     Parameters:
 
@@ -466,10 +467,10 @@ def foreach(session, name, value, body=None):
 
         value (): Any list, object or single value.
 
-        body (list): This is a list of values that are evaluated for each
-        iteration of the loop. Each value in body is evaluated in order until
-        the end of the list or until a "break", "continue" or "return"
-        function is encountered.
+        body (list): This is a list of values (statements) that are evaluated
+        for each iteration of the loop. Each value in body is evaluated in
+        order until the end of the list or until a "break", "continue",
+        "return" or "throw" function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -876,26 +877,89 @@ def script(session, value):
 
     return response['actions'][0]['result']
 
-def while_(session, condition, body):
+def try_(session, body, _finally=None, catch=None, error=None):
     '''
-    Evaluate a list of values while a condition is true
+    Evaluate a list of values (statements) as a try block with optional catch and finally statements
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values while a condition is true.
-    The condition is tested at the beginning of the loop. If the condition is
-    false for the first iteration, the loop returns a null value. See the
-    related functions "break", "continue", and "return".
+    This function will evaluate the body statements. If an error is thrown
+    and there is an optional catch, the error will be "caught" and the
+    associated statements will be evaluated. The optional finally statements
+    are always evaluated after the body and catch statements. See the related
+    functions "break", "continue", "return" and "throw".
+
+    Parameters:
+
+        body (list): This is a list of values (statements) that are
+        evaluated. Each value in body is evaluated in order until the end of
+        the list or until a "break", "continue", "return" or "throw" function
+        is encountered.
+
+        finally (list): This is a list of values (statements) that are
+        evaluated after the try and catch statements even if an error occurs.
+        Each value in body is evaluated in order until the end of the list or
+        until a "break", "continue", "return" or "throw" function is
+        encountered.
+
+        catch (list): This is a list of values (statements) that are
+        evaluated when an error is thrown while evaluating the body. Each
+        value in body is evaluated in order until the end of the list or
+        until a "break", "continue", "return" or "throw" function is
+        encountered.
+
+        error (object): The error object thrown. This is only available in
+        the catch block.
+
+    Returns:
+    None: The last value evaluated in body.
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "try",
+        "body": body
+    }
+
+    if _finally != None:
+        action['finally'] = _finally
+
+    if catch != None:
+        action['catch'] = catch
+
+    if error != None:
+        action['error'] = error
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def while_(session, condition, body):
+    '''
+    Evaluate a list of values (statements) while a condition is true
+
+    This creates a new structured block with a new nested variable scope.
+    
+    This function will evaluate a list of values (statements) while a
+    condition is true. The condition is tested at the beginning of the loop.
+    If the condition is false for the first iteration, the loop returns a
+    null value. See the related functions "break", "continue", "return" and
+    "throw".
 
     Parameters:
 
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (list): This is a list of values that are evaluated for each
-        iteration of the loop. Each value in body is evaluated in order until
-        the end of the list or until a "break", "continue" or "return"
-        function is encountered.
+        body (list): This is a list of values (statements) that are evaluated
+        for each iteration of the loop. Each value in body is evaluated in
+        order until the end of the list or until a "break", "continue",
+        "return" or "throw" function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.

@@ -1,7 +1,7 @@
 {
     "brief": "Assign a value to a defined variable",
     "category": "script",
-    "description": "Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from a list of values in a structured function.",
+    "description": "Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from a list of values (statements) in a structured function.",
     "functionId": "assign",
     "functionLabel": "assign",
     "parameters": [

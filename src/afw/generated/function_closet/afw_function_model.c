@@ -78,7 +78,7 @@ afw_function_execute_model_default_add_object_action(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -141,7 +141,7 @@ afw_function_execute_model_default_delete_object_action(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -233,7 +233,7 @@ afw_function_execute_model_default_modify_object_action(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -301,7 +301,7 @@ afw_function_execute_model_default_replace_object_action(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -341,7 +341,7 @@ afw_function_execute_model_mapBackObject_signature(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -381,7 +381,7 @@ afw_function_execute_model_mapObject_signature(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -428,5 +428,5 @@ afw_function_execute_model_returnObject_signature(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }

@@ -1,0 +1,37 @@
+{
+    "brief": "Evaluate a list of values (statements) as a try block with optional catch and finally statements",
+    "category": "script",
+    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be \"caught\" and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions \"break\", \"continue\", \"return\" and \"throw\".",
+    "functionId": "try",
+    "functionLabel": "try",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "This is a list of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
+            "name": "body"
+        },
+        {
+            "dataType": "list",
+            "description": "This is a list of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
+            "name": "finally",
+            "optional": true
+        },
+        {
+            "dataType": "list",
+            "description": "This is a list of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
+            "name": "catch",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "The error object thrown. This is only available in the catch block.",
+            "name": "error",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "description": "The last value evaluated in body."
+    },
+    "scriptSupport": true
+}

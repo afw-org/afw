@@ -52,7 +52,7 @@ afw_function_execute_annotate(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -107,7 +107,7 @@ afw_function_execute_compare_uri(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -153,7 +153,7 @@ afw_function_execute_debug(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -190,7 +190,7 @@ afw_function_execute_execution_start_time_local(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -227,7 +227,7 @@ afw_function_execute_execution_start_time_utc(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -263,7 +263,7 @@ afw_function_execute_generate_uuid(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -301,7 +301,7 @@ afw_function_execute_is_defined(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -339,7 +339,7 @@ afw_function_execute_is_nullish(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -377,7 +377,7 @@ afw_function_execute_log(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -413,7 +413,7 @@ afw_function_execute_now_local(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -449,7 +449,7 @@ afw_function_execute_now_utc(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -490,7 +490,7 @@ afw_function_execute_nullish_coalescing(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -533,7 +533,7 @@ afw_function_execute_optional_chaining(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -582,7 +582,7 @@ afw_function_execute_parse_uri(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -621,7 +621,7 @@ afw_function_execute_perform(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -670,7 +670,7 @@ afw_function_execute_trace(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -709,7 +709,7 @@ afw_function_execute_variable_exists(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -753,7 +753,7 @@ afw_function_execute_variable_get(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -792,5 +792,5 @@ afw_function_execute_variable_is_not_null(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }

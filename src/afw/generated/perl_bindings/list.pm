@@ -177,7 +177,7 @@ Join the string values of list elements
 
     $value
 
-A list of values of any data type.
+A list of values (statements) of any data type.
 
     $separator
 

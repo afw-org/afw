@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwDoWhile",
-    "brief": "Evaluate a list of values at least once while a condition is true",
+    "brief": "Evaluate a list of values (statements) at least once while a condition is true",
     "camelCaseFunctionLabel": "doWhile",
     "category": "script",
-    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values at least once while a condition is true. See the related functions \"break\", \"continue\", and \"return\".",
+    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) at least once while a condition is true. See the related functions \"break\", \"continue\", \"return\" and \"throw\".",
     "functionId": "do_while",
     "functionLabel": "do_while",
     "parameters": [
@@ -14,7 +14,7 @@
         },
         {
             "dataType": "list",
-            "description": "This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered.",
+            "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
             "name": "body"
         }
     ],

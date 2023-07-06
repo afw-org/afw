@@ -1,7 +1,7 @@
 {
-    "brief": "Evaluate a list of values while a condition is true",
+    "brief": "Evaluate a list of values (statements) while a condition is true",
     "category": "script",
-    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions \"break\", \"continue\", and \"return\".",
+    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions \"break\", \"continue\", \"return\" and \"throw\".",
     "functionId": "while",
     "functionLabel": "while",
     "pure": true,
@@ -13,7 +13,7 @@
         },
         {
             "dataType": "list",
-            "description": "This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered.",
+            "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
             "name": "body"
         }
     ],

@@ -335,7 +335,7 @@ def join(session, value, separator=None):
 
     Parameters:
 
-        value (list): A list of values of any data type.
+        value (list): A list of values (statements) of any data type.
 
         separator (string): The separator to use. If not specified, a comma
         (,) is used.

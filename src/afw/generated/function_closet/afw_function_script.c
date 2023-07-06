@@ -24,8 +24,8 @@
  *
  * Assign a value to the innermost structured block definition of a variable.
  * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from a list of values in
- * a structured function.
+ * structured block. An error is thrown if not called from a list of values
+ * (statements) in a structured function.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -54,7 +54,7 @@ afw_function_execute_assign(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -96,7 +96,7 @@ afw_function_execute_break(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -144,7 +144,7 @@ afw_function_execute_compile_script(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -191,7 +191,7 @@ afw_function_execute_const(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -229,7 +229,7 @@ afw_function_execute_continue(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -243,8 +243,9 @@ afw_function_execute_continue(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values at least once while a condition
- * is true. See the related functions "break", "continue", and "return".
+ * This function will evaluate a list of values (statements) at least once
+ * while a condition is true. See the related functions "break", "continue",
+ * "return" and "throw".
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -263,10 +264,10 @@ afw_function_execute_continue(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values that are evaluated for each
- *       iteration of the loop. Each value in body is evaluated in order until
- *       the end of the list or until a "break", "continue" or "return"
- *       function is encountered.
+ *   body - (list) This is a list of values (statements) that are evaluated for
+ *       each iteration of the loop. Each value in body is evaluated in order
+ *       until the end of the list or until a "break", "continue", "return" or
+ *       "throw" function is encountered.
  *
  * Returns:
  *
@@ -278,7 +279,7 @@ afw_function_execute_do_while(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -325,7 +326,7 @@ afw_function_execute_evaluate_script(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -358,21 +359,21 @@ afw_function_execute_evaluate_script(
  *
  * Parameters:
  *
- *   initial - (optional list) This is a list of values to evaluate before the
- *       loop starts. The values will normally be a call to the "assign"
- *       function.
+ *   initial - (optional list) This is a list of values (statements) to
+ *       evaluate before the loop starts. The values will normally be a call to
+ *       the "assign" function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
- *   increment - (optional list) This is a list of values to evaluate after
- *       each iteration of the loop. The values will normally be a call to the
- *       "assign" function.
+ *   increment - (optional list) This is a list of values (statements) to
+ *       evaluate after each iteration of the loop. The values will normally be
+ *       a call to the "assign" function.
  *
- *   body - (optional list) This is a list of values that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a "break", "continue" or "return"
- *       function is encountered.
+ *   body - (optional list) This is a list of values (statements) that are
+ *       evaluated for each iteration of the loop. Each value in body is
+ *       evaluated in order until the end of the list or until a "break",
+ *       "continue", "return" or "throw" function is encountered.
  *
  * Returns:
  *
@@ -384,7 +385,7 @@ afw_function_execute_for(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -398,10 +399,10 @@ afw_function_execute_for(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values while a condition is true with
- * initial and increment values. The condition is tested at the beginning of
- * the loop. If the condition is false for the first iteration, the loop
- * returns a null value.
+ * This function will evaluate a list of values (statements) while a condition
+ * is true with initial and increment values. The condition is tested at the
+ * beginning of the loop. If the condition is false for the first iteration,
+ * the loop returns a null value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -422,10 +423,10 @@ afw_function_execute_for(
  *
  *   value - (any dataType) Any list, object or single value.
  *
- *   body - (optional list) This is a list of values that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a "break", "continue" or "return"
- *       function is encountered.
+ *   body - (optional list) This is a list of values (statements) that are
+ *       evaluated for each iteration of the loop. Each value in body is
+ *       evaluated in order until the end of the list or until a "break",
+ *       "continue", "return" or "throw" function is encountered.
  *
  * Returns:
  *
@@ -437,7 +438,7 @@ afw_function_execute_foreach(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -487,7 +488,7 @@ afw_function_execute_if(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -537,7 +538,7 @@ afw_function_execute_loc(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -580,7 +581,71 @@ afw_function_execute_return(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: try
+ *
+ * afw_function_execute_try
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function will evaluate the body statements. If an error is thrown and
+ * there is an optional catch, the error will be "caught" and the associated
+ * statements will be evaluated. The optional finally statements are always
+ * evaluated after the body and catch statements. See the related functions
+ * "break", "continue", "return" and "throw".
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function try(
+ *       body: list,
+ *       finally?: list,
+ *       catch?: list,
+ *       error?: object
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   body - (list) This is a list of values (statements) that are evaluated.
+ *       Each value in body is evaluated in order until the end of the list or
+ *       until a "break", "continue", "return" or "throw" function is
+ *       encountered.
+ *
+ *   finally - (optional list) This is a list of values (statements) that are
+ *       evaluated after the try and catch statements even if an error occurs.
+ *       Each value in body is evaluated in order until the end of the list or
+ *       until a "break", "continue", "return" or "throw" function is
+ *       encountered.
+ *
+ *   catch - (optional list) This is a list of values (statements) that are
+ *       evaluated when an error is thrown while evaluating the body. Each
+ *       value in body is evaluated in order until the end of the list or until
+ *       a "break", "continue", "return" or "throw" function is encountered.
+ *
+ *   error - (optional object) The error object thrown. This is only available
+ *       in the catch block.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body.
+ */
+const afw_value_t *
+afw_function_execute_try(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -594,10 +659,10 @@ afw_function_execute_return(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values while a condition is true. The
- * condition is tested at the beginning of the loop. If the condition is false
- * for the first iteration, the loop returns a null value. See the related
- * functions "break", "continue", and "return".
+ * This function will evaluate a list of values (statements) while a condition
+ * is true. The condition is tested at the beginning of the loop. If the
+ * condition is false for the first iteration, the loop returns a null value.
+ * See the related functions "break", "continue", "return" and "throw".
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -616,10 +681,10 @@ afw_function_execute_return(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values that are evaluated for each
- *       iteration of the loop. Each value in body is evaluated in order until
- *       the end of the list or until a "break", "continue" or "return"
- *       function is encountered.
+ *   body - (list) This is a list of values (statements) that are evaluated for
+ *       each iteration of the loop. Each value in body is evaluated in order
+ *       until the end of the list or until a "break", "continue", "return" or
+ *       "throw" function is encountered.
  *
  * Returns:
  *
@@ -631,5 +696,5 @@ afw_function_execute_while(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }

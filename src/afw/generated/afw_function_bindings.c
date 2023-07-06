@@ -57737,7 +57737,7 @@ impl_join_parameter_1 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list of values of any data type."),
+    AFW_UTF8_LITERAL("A list of values (statements) of any data type."),
     -1,
     false,
     false,
@@ -88027,7 +88027,7 @@ afw_function_definition_assign = {
     AFW_UTF8_LITERAL("assign"),
     AFW_UTF8_LITERAL("afwAssign"),
     AFW_UTF8_LITERAL("Assign a value to a defined variable"),
-    AFW_UTF8_LITERAL("Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from a list of values in a structured function."),
+    AFW_UTF8_LITERAL("Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from a list of values (statements) in a structured function."),
     AFW_UTF8_LITERAL("(name: string, value: any): any"),
     AFW_UTF8_LITERAL("/* Assign a value to a defined variable */\nfunction assign (\n    name: string,\n    value: any\n): any;\n"),
     AFW_UTF8_LITERAL(""),
@@ -88894,7 +88894,7 @@ impl_do_while_parameter_2 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
     -1,
     false,
     false,
@@ -88919,10 +88919,10 @@ afw_function_definition_do_while = {
     AFW_UTF8_LITERAL("do_while"),
     AFW_UTF8_LITERAL("doWhile"),
     AFW_UTF8_LITERAL("afwDoWhile"),
-    AFW_UTF8_LITERAL("Evaluate a list of values at least once while a condition is true"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values at least once while a condition is true. See the related functions \"break\", \"continue\", and \"return\"."),
+    AFW_UTF8_LITERAL("Evaluate a list of values (statements) at least once while a condition is true"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) at least once while a condition is true. See the related functions \"break\", \"continue\", \"return\" and \"throw\"."),
     AFW_UTF8_LITERAL("(condition: boolean, body: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: list\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: list\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_do_while,
     NULL,
@@ -89448,7 +89448,7 @@ impl_for_parameter_1 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("initial"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values to evaluate before the loop starts. The values will normally be a call to the \"assign\" function."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) to evaluate before the loop starts. The values will normally be a call to the \"assign\" function."),
     -1,
     true,
     false,
@@ -89500,7 +89500,7 @@ impl_for_parameter_3 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("increment"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values to evaluate after each iteration of the loop. The values will normally be a call to the \"assign\" function."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) to evaluate after each iteration of the loop. The values will normally be a call to the \"assign\" function."),
     -1,
     true,
     false,
@@ -89526,7 +89526,7 @@ impl_for_parameter_4 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
     -1,
     true,
     false,
@@ -89553,10 +89553,10 @@ afw_function_definition_for = {
     AFW_UTF8_LITERAL("for"),
     AFW_UTF8_LITERAL("for"),
     AFW_UTF8_LITERAL("afwFor"),
-    AFW_UTF8_LITERAL("Evaluate a list of values while a condition is true with a list of initial and increment values"),
+    AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true with a list of initial and increment values"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value."),
     AFW_UTF8_LITERAL("(initial?: list, condition?: boolean, increment?: list, body?: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values while a condition is true with a list of initial and increment values */\nfunction for (\n    initial?: list,\n    condition?: boolean,\n    increment?: list,\n    body?: list\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction for (\n    initial?: list,\n    condition?: boolean,\n    increment?: list,\n    body?: list\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_for,
     NULL,
@@ -89697,7 +89697,7 @@ impl_foreach_parameter_3 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
     -1,
     true,
     false,
@@ -89723,10 +89723,10 @@ afw_function_definition_foreach = {
     AFW_UTF8_LITERAL("foreach"),
     AFW_UTF8_LITERAL("foreach"),
     AFW_UTF8_LITERAL("afwForeach"),
-    AFW_UTF8_LITERAL("Evaluate a list of values while a condition is true with a list of initial and increment values"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
+    AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true with a list of initial and increment values"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
     AFW_UTF8_LITERAL("(name: (list string), value: any, body?: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values while a condition is true with a list of initial and increment values */\nfunction foreach (\n    name: (list string),\n    value: any,\n    body?: list\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction foreach (\n    name: (list string),\n    value: any,\n    body?: list\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_foreach,
     NULL,
@@ -91311,6 +91311,203 @@ afw_function_definition_script = {
     false
 };
 
+/* ---------- try ---------- */
+
+static const afw_utf8_t
+impl_object_path__try =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/try");
+
+static const afw_runtime_object_indirect_t
+impl_object__try = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_try,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__try
+        }
+    },
+    (void *)&afw_function_definition_try
+};
+
+static const afw_value_function_parameter_t
+impl_try_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_list_direct,
+    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_list_direct,
+    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("finally"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_list_direct,
+    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("catch"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_4 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("error"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The error object thrown. This is only available in the catch block."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_try_parameters[] = {
+    &impl_try_parameter_1,
+    &impl_try_parameter_2,
+    &impl_try_parameter_3,
+    &impl_try_parameter_4,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_try = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__try,
+    AFW_UTF8_LITERAL("script"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("afwTry"),
+    AFW_UTF8_LITERAL("Evaluate a list of values (statements) as a try block with optional catch and finally statements"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be \"caught\" and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions \"break\", \"continue\", \"return\" and \"throw\"."),
+    AFW_UTF8_LITERAL("(body: list, finally?: list, catch?: list, error?: object): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: list,\n    finally?: list,\n    catch?: list,\n    error?: object\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_try,
+    NULL,
+    1,
+    4,
+    &impl_try_parameters[0],
+    4,
+    &impl_try_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
 /* ---------- while ---------- */
 
 static const afw_utf8_t
@@ -91403,7 +91600,7 @@ impl_while_parameter_2 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is a list of values that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\" or \"return\" function is encountered."),
+    AFW_UTF8_LITERAL("This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered."),
     -1,
     false,
     false,
@@ -91428,10 +91625,10 @@ afw_function_definition_while = {
     AFW_UTF8_LITERAL("while"),
     AFW_UTF8_LITERAL("while"),
     AFW_UTF8_LITERAL("afwWhile"),
-    AFW_UTF8_LITERAL("Evaluate a list of values while a condition is true"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions \"break\", \"continue\", and \"return\"."),
+    AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions \"break\", \"continue\", \"return\" and \"throw\"."),
     AFW_UTF8_LITERAL("(condition: boolean, body: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values while a condition is true */\nfunction while (\n    condition: boolean,\n    body: list\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: list\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_while,
     NULL,
@@ -115681,6 +115878,7 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_script,
     &afw_function_definition_return,
     &afw_function_definition_script,
+    &afw_function_definition_try,
     &afw_function_definition_while,
     &afw_function_definition_close,
     &afw_function_definition_flush,

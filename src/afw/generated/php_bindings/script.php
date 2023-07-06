@@ -29,7 +29,7 @@ class script
      * Assign a value to the innermost structured block definition of a
      * variable. If the variable is not defined, the variable is defined in
      * the innermost structured block. An error is thrown if not called from
-     * a list of values in a structured function.
+     * a list of values (statements) in a structured function.
      *
      * @param string $name Variable name
      * @param  $value This is the value to assign to the variable.
@@ -217,18 +217,18 @@ class script
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values at least once while a
-     * condition is true. See the related functions "break", "continue", and
-     * "return".
+     * This function will evaluate a list of values (statements) at least
+     * once while a condition is true. See the related functions "break",
+     * "continue", "return" and "throw".
      *
      * @param boolean $condition While this condition is true, the loop will
      *                           continue. This is evaluated in the loop's
      *                           scope.
-     * @param list $body This is a list of values that are evaluated for each
-     *                   iteration of the loop. Each value in body is
-     *                   evaluated in order until the end of the list or
-     *                   until a "break", "continue" or "return" function is
-     *                   encountered.
+     * @param list $body This is a list of values (statements) that are
+     *                   evaluated for each iteration of the loop. Each value
+     *                   in body is evaluated in order until the end of the
+     *                   list or until a "break", "continue", "return" or
+     *                   "throw" function is encountered.
      *
      * @return  The last value evaluated in body or null if the body is
      *          empty.
@@ -358,19 +358,20 @@ class script
      * This function loops while condition is true. If the condition is false
      * for the first iteration, the loop returns a null value.
      *
-     * @param list $initial This is a list of values to evaluate before the
-     *                      loop starts. The values will normally be a call
-     *                      to the "assign" function.
+     * @param list $initial This is a list of values (statements) to evaluate
+     *                      before the loop starts. The values will normally
+     *                      be a call to the "assign" function.
      * @param boolean $condition While this condition is true, the loop will
      *                           continue.
-     * @param list $increment This is a list of values to evaluate after each
-     *                        iteration of the loop. The values will normally
-     *                        be a call to the "assign" function.
-     * @param list $body This is a list of values that are evaluated for each
-     *                   iteration of the loop. Each value in body is
-     *                   evaluated in order until the end of the list or
-     *                   until a "break", "continue" or "return" function is
-     *                   encountered.
+     * @param list $increment This is a list of values (statements) to
+     *                        evaluate after each iteration of the loop. The
+     *                        values will normally be a call to the "assign"
+     *                        function.
+     * @param list $body This is a list of values (statements) that are
+     *                   evaluated for each iteration of the loop. Each value
+     *                   in body is evaluated in order until the end of the
+     *                   list or until a "break", "continue", "return" or
+     *                   "throw" function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
@@ -404,18 +405,18 @@ class script
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values while a condition is true
-     * with initial and increment values. The condition is tested at the
-     * beginning of the loop. If the condition is false for the first
-     * iteration, the loop returns a null value.
+     * This function will evaluate a list of values (statements) while a
+     * condition is true with initial and increment values. The condition is
+     * tested at the beginning of the loop. If the condition is false for the
+     * first iteration, the loop returns a null value.
      *
      * @param list $name Variable name(s).
      * @param  $value Any list, object or single value.
-     * @param list $body This is a list of values that are evaluated for each
-     *                   iteration of the loop. Each value in body is
-     *                   evaluated in order until the end of the list or
-     *                   until a "break", "continue" or "return" function is
-     *                   encountered.
+     * @param list $body This is a list of values (statements) that are
+     *                   evaluated for each iteration of the loop. Each value
+     *                   in body is evaluated in order until the end of the
+     *                   list or until a "break", "continue", "return" or
+     *                   "throw" function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
@@ -737,23 +738,79 @@ class script
     }
 
     /**
+     * try()
+     *
+     * This creates a new structured block with a new nested variable scope.
+     * 
+     * This function will evaluate the body statements. If an error is thrown
+     * and there is an optional catch, the error will be "caught" and the
+     * associated statements will be evaluated. The optional finally
+     * statements are always evaluated after the body and catch statements.
+     * See the related functions "break", "continue", "return" and "throw".
+     *
+     * @param list $body This is a list of values (statements) that are
+     *                   evaluated. Each value in body is evaluated in order
+     *                   until the end of the list or until a "break",
+     *                   "continue", "return" or "throw" function is
+     *                   encountered.
+     * @param list $finally This is a list of values (statements) that are
+     *                      evaluated after the try and catch statements even
+     *                      if an error occurs. Each value in body is
+     *                      evaluated in order until the end of the list or
+     *                      until a "break", "continue", "return" or "throw"
+     *                      function is encountered.
+     * @param list $catch This is a list of values (statements) that are
+     *                    evaluated when an error is thrown while evaluating
+     *                    the body. Each value in body is evaluated in order
+     *                    until the end of the list or until a "break",
+     *                    "continue", "return" or "throw" function is
+     *                    encountered.
+     * @param object $error The error object thrown. This is only available
+     *                      in the catch block.
+     *
+     * @return  The last value evaluated in body.
+     */
+    public function try(, $body, $finally = null, $catch = null, $error = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "try");
+
+        /* pass along required parameters to the request payload */
+        $request->set("body", $body);
+
+        /* pass along any optional parameters to the request payload */
+        if ($finally != null)
+            $request->set('finally', $finally);
+
+        if ($catch != null)
+            $request->set('catch', $catch);
+
+        if ($error != null)
+            $request->set('error', $error);
+
+        return $request->get_result();
+    }
+
+    /**
      * while()
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values while a condition is
-     * true. The condition is tested at the beginning of the loop. If the
-     * condition is false for the first iteration, the loop returns a null
-     * value. See the related functions "break", "continue", and "return".
+     * This function will evaluate a list of values (statements) while a
+     * condition is true. The condition is tested at the beginning of the
+     * loop. If the condition is false for the first iteration, the loop
+     * returns a null value. See the related functions "break", "continue",
+     * "return" and "throw".
      *
      * @param boolean $condition While this condition is true, the loop will
      *                           continue. This is evaluated in the loop's
      *                           scope.
-     * @param list $body This is a list of values that are evaluated for each
-     *                   iteration of the loop. Each value in body is
-     *                   evaluated in order until the end of the list or
-     *                   until a "break", "continue" or "return" function is
-     *                   encountered.
+     * @param list $body This is a list of values (statements) that are
+     *                   evaluated for each iteration of the loop. Each value
+     *                   in body is evaluated in order until the end of the
+     *                   list or until a "break", "continue", "return" or
+     *                   "throw" function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.

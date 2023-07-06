@@ -52,7 +52,7 @@ afw_function_execute_add_entries(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -80,7 +80,7 @@ afw_function_execute_add_entries(
  *
  * Parameters:
  *
- *   value - (list) A list of values of any data type.
+ *   value - (list) A list of values (statements) of any data type.
  *
  *   separator - (optional string) The separator to use. If not specified, a
  *       comma (,) is used.
@@ -94,7 +94,7 @@ afw_function_execute_join(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -140,7 +140,7 @@ afw_function_execute_list(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -179,7 +179,7 @@ afw_function_execute_reverse(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 
 
@@ -230,5 +230,5 @@ afw_function_execute_slice(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
