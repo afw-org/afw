@@ -956,6 +956,89 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ * Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+ * 
+ * Finally ::= 'finally' Statement
+ *
+ * TryStatement ::= 'try' Statement ( Catch | Finally | ( Catch Finally ) )
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_TryStatement(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_value_block_t *block;
+    afw_size_t start_offset;
+
+    block = NULL;
+    afw_compile_save_cursor(start_offset);
+
+    argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
+    argv[0] = (const afw_value_t *)&afw_function_definition_try;
+
+    /* Body */
+    argv[1] = afw_compile_parse_Statement(parser, NULL);
+
+    /* Catch */
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(&afw_s_catch)) {
+        afw_compile_get_token();
+        if (!afw_compile_token_is(open_parenthesis)) {
+            afw_compile_reuse_token();
+        }
+        else {
+            block = afw_compile_parse_link_new_value_block(
+                parser, start_offset);
+            afw_compile_get_token();
+            if (!afw_compile_token_is_unqualified_identifier()) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting identifier");
+            }
+            argv[4] = (const afw_value_t *)
+                afw_compile_parse_variable_reference_create(parser,
+                    afw_compile_create_contextual_to_cursor(start_offset),
+                    afw_compile_assignment_type_loc,
+                    parser->token->identifier_name);
+            afw_compile_get_token();
+            if (!afw_compile_token_is(close_parenthesis)) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
+            }
+        }
+        argv[3] = afw_compile_parse_Statement(parser, NULL);
+    }
+    else {
+        afw_compile_reuse_token();
+    }
+
+    /* Finally */
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(&afw_s_finally)) {
+        argv[2] = afw_compile_parse_Statement(parser, NULL);
+    }
+    else {
+        afw_compile_reuse_token();
+    }
+
+    /* Create the try function call. */
+    result = afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        4, argv, parser->p, parser->xctx);
+
+    /* If there is a catch with variable, create a block. */
+    if (block) {
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
+        argv[0] = result;
+        afw_value_block_finalize(block, 1, argv, parser->xctx);
+        result = (const afw_value_t *)block;
+    }
+
+    return result;
+}
+
+
+
+/*ebnf>>>
+ *
  * WhileStatement ::= 'while' '(' Expression ')' Statement
  *
  *<<<ebnf*/
@@ -1096,6 +1179,11 @@ afw_compile_parse_Statement(
             &afw_s_return))
         {
             result = impl_parse_ReturnStatement(parser);
+        }
+        else if (afw_utf8_equal(parser->token->identifier_name,
+            &afw_s_try))
+        {
+            result = impl_parse_TryStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_while))

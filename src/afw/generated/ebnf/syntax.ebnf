@@ -601,6 +601,14 @@ ReturnStatement ::= 'return' Expression? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
+Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+
+Finally ::= 'finally' Statement
+
+TryStatement ::= 'try' Statement ( Catch | Finally | ( Catch Finally ) )
+
+/* From afw_compile_parse_script.c                                            */
+
 WhileStatement ::= 'while' '(' Expression ')' Statement
 
 /* From afw_compile_parse_script.c                                            */

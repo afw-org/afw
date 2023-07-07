@@ -709,6 +709,54 @@ afw_value_block_evaluate_if(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_value_block_evaluate_try(
+    afw_function_execute_t *x,
+    afw_value_block_statement_type_t *type,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    IMPL_TEMP_FIX(try);
+    const afw_value_t *result;
+    const afw_object_t *error_object;
+    const afw_value_t *error_value;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
+
+    AFW_TRY {
+       result = afw_value_block_evaluate_statement(x, type,
+            true, true, argv[1], p, xctx);
+    }
+
+    AFW_CATCH_UNHANDLED {
+        if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
+            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+                error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
+                error_value = afw_value_create_object(error_object, p, xctx);
+                impl_assign_value(argv[4], error_value,
+                    afw_compile_assignment_type_loc, p, xctx);            
+            }
+            result = afw_value_block_evaluate_statement(x, type,
+                true, true, argv[3], p, xctx);
+        }
+    }
+
+    AFW_FINALLY {
+        if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
+            result = afw_value_block_evaluate_statement(x, type,
+                true, true, argv[2], p, xctx);
+        }
+    }
+
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_while(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,
@@ -938,6 +986,19 @@ afw_value_block_evaluate_statement(
                 result = afw_function_evaluate_parameter(&modified_x, 1,
                         NULL);
             }
+            break;
+
+        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY:
+            afw_xctx_evaluation_stack_push_value(statement, xctx);
+            saved_contextual = xctx->error->contextual;
+            xctx->error->contextual = call->args.contextual;
+
+            result = afw_value_block_evaluate_try(x, type,
+                call->args.argc, call->args.argv,
+                p, xctx);
+
+            afw_xctx_evaluation_stack_pop_value(xctx);
+            xctx->error->contextual = saved_contextual;
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE:

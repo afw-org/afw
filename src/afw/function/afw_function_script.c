@@ -704,8 +704,14 @@ const afw_value_t *
 afw_function_execute_try(
     afw_function_execute_t *x)
 {
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *result;
+    afw_value_block_statement_type_t type;
+
+    /* Can be called outside of a block, but usually part of a block value. */
+    result = afw_value_block_evaluate_try(x,
+        &type, x->argc, x->argv, x->p, x->xctx);
+
+    return result;
 }
 
 
