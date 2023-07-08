@@ -645,6 +645,57 @@ afw_function_execute_return(
 }
 
 
+/*
+ * Adaptive function: throw
+ *
+ * afw_function_execute_throw
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * This throws an error that can be caught by a try/catch block. An error
+ * object of object type _AdaptiveResponseError_ will be available in the catch
+ * block. Its "errorCodeId" property will be set to "throw". The other
+ * properties set based on the parameters specified and where this function is
+ * called.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function throw(
+ *       message: string,
+ *       additional?: any
+ *   ): null;
+ * ```
+ *
+ * Parameters:
+ *
+ *   message - (string) This is the message that will be included in the
+ *       _AdaptiveResponseError_ error object available in the catch block.
+ *
+ *   additional - (optional any dataType) Optional additional information that
+ *       will be available as a "additional" property in the error object.
+ *
+ * Returns:
+ *
+ *   (null)
+ */
+const afw_value_t *
+afw_function_execute_throw(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *result;
+    afw_value_block_statement_type_t type;
+
+    result = afw_value_block_evaluate_throw(x,
+        &type, x->argc, x->argv, x->p, x->xctx);
+
+    return result;
+}
+
+
 
 /*
  * Adaptive function: try
@@ -671,7 +722,7 @@ afw_function_execute_return(
  *       body: list,
  *       finally?: list,
  *       catch?: list,
- *       error?: object
+ *       error?: (object _AdaptiveObjectType_)
  *   ): any;
  * ```
  *
@@ -693,8 +744,9 @@ afw_function_execute_return(
  *       value in body is evaluated in order until the end of the list or until
  *       a "break", "continue", "return" or "throw" function is encountered.
  *
- *   error - (optional object) The error object thrown. This is only available
- *       in the catch block.
+ *   error - (optional object _AdaptiveObjectType_) The error object thrown.
+ *       This is only available in the catch block. See adaptive object type
+ *       _AdaptiveObjectType_ for details.
  *
  * Returns:
  *

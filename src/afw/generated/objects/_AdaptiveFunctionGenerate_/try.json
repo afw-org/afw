@@ -26,7 +26,8 @@
         },
         {
             "dataType": "object",
-            "description": "The error object thrown. This is only available in the catch block.",
+            "dataTypeParameter": "_AdaptiveObjectType_",
+            "description": "The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details.",
             "name": "error",
             "optional": true
         }

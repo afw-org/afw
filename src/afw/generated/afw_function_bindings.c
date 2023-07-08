@@ -91311,6 +91311,149 @@ afw_function_definition_script = {
     false
 };
 
+/* ---------- throw ---------- */
+
+static const afw_utf8_t
+impl_object_path__throw =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/throw");
+
+static const afw_runtime_object_indirect_t
+impl_object__throw = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_throw,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__throw
+        }
+    },
+    (void *)&afw_function_definition_throw
+};
+
+static const afw_value_function_parameter_t
+impl_throw_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_null_direct,
+    AFW_UTF8_LITERAL("null"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_throw_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("message"),
+    AFW_UTF8_LITERAL("Error message"),
+    AFW_UTF8_LITERAL("This is the message that will be included in the _AdaptiveResponseError_ error object available in the catch block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_throw_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("additional"),
+    AFW_UTF8_LITERAL("Optional additional information"),
+    AFW_UTF8_LITERAL("Optional additional information that will be available as a \"additional\" property in the error object."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_throw_parameters[] = {
+    &impl_throw_parameter_1,
+    &impl_throw_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_throw = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__throw,
+    AFW_UTF8_LITERAL("script"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("afwThrow"),
+    AFW_UTF8_LITERAL("Throws an error"),
+    AFW_UTF8_LITERAL("This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveResponseError_ will be available in the catch block. Its \"errorCodeId\" property will be set to \"throw\". The other properties set based on the parameters specified and where this function is called."),
+    AFW_UTF8_LITERAL("(message: string, additional?: any): null"),
+    AFW_UTF8_LITERAL("/* Throws an error */\nfunction throw (\n    message: string  /* Error message */,\n    additional?: any /* Optional additional information */\n): null;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_throw,
+    NULL,
+    1,
+    2,
+    &impl_throw_parameters[0],
+    2,
+    &impl_throw_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
 /* ---------- try ---------- */
 
 static const afw_utf8_t
@@ -91452,10 +91595,10 @@ impl_try_parameter_4 = {
     },
     &afw_data_type_object_direct,
     AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_"),
     AFW_UTF8_LITERAL("error"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The error object thrown. This is only available in the catch block."),
+    AFW_UTF8_LITERAL("The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details."),
     -1,
     true,
     false,
@@ -91484,8 +91627,8 @@ afw_function_definition_try = {
     AFW_UTF8_LITERAL("afwTry"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) as a try block with optional catch and finally statements"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be \"caught\" and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions \"break\", \"continue\", \"return\" and \"throw\"."),
-    AFW_UTF8_LITERAL("(body: list, finally?: list, catch?: list, error?: object): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: list,\n    finally?: list,\n    catch?: list,\n    error?: object\n): any;\n"),
+    AFW_UTF8_LITERAL("(body: list, finally?: list, catch?: list, error?: (object _AdaptiveObjectType_)): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: list,\n    finally?: list,\n    catch?: list,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_try,
     NULL,
@@ -115878,6 +116021,7 @@ impl_function_bindings[] = {
     &afw_function_definition_nex_script,
     &afw_function_definition_return,
     &afw_function_definition_script,
+    &afw_function_definition_throw,
     &afw_function_definition_try,
     &afw_function_definition_while,
     &afw_function_definition_close,

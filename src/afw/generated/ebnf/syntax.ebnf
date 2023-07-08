@@ -600,6 +600,13 @@ LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
 ReturnStatement ::= 'return' Expression? ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* The first expresion is the message and is required. The second optional    */
+/* expression is any value for the "additional" property in the error         */
+/* object.                                                                    */
+
+ThrowStatement ::= 'throw' Expression  Expression?
+
+/* From afw_compile_parse_script.c                                            */
 
 Catch ::= 'catch' ( '(' Identifier ')' )? Statement
 

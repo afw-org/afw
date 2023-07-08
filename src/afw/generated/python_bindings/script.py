@@ -877,6 +877,46 @@ def script(session, value):
 
     return response['actions'][0]['result']
 
+def throw(session, message, additional=None):
+    '''
+    Throws an error
+
+    This throws an error that can be caught by a try/catch block. An error
+    object of object type _AdaptiveResponseError_ will be available in the
+    catch block. Its "errorCodeId" property will be set to "throw". The other
+    properties set based on the parameters specified and where this function
+    is called.
+
+    Parameters:
+
+        message (string): This is the message that will be included in the
+        _AdaptiveResponseError_ error object available in the catch block.
+
+        additional (): Optional additional information that will be available
+        as a "additional" property in the error object.
+
+    Returns:
+    null: 
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "throw",
+        "message": message
+    }
+
+    if additional != None:
+        action['additional'] = additional
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def try_(session, body, _finally=None, catch=None, error=None):
     '''
     Evaluate a list of values (statements) as a try block with optional catch and finally statements
@@ -909,7 +949,8 @@ def try_(session, body, _finally=None, catch=None, error=None):
         encountered.
 
         error (object): The error object thrown. This is only available in
-        the catch block.
+        the catch block. See adaptive object type _AdaptiveObjectType_ for
+        details.
 
     Returns:
     None: The last value evaluated in body.

@@ -875,6 +875,14 @@ afw_error_add_to_object(
             p, xctx);
     }
 
+    /* Additional. */
+    if (error->additional) {
+        afw_object_set_property(object,
+            &afw_s_additional,
+            error->additional,
+            xctx);
+    }
+
     /* Contextual. */
     if (afw_flag_is_active(
         xctx->env->flag_index_response_error_contextual, xctx))

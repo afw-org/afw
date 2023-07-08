@@ -954,6 +954,51 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 }
 
 
+
+/*ebnf>>>
+ *
+ *# The first expresion is the message and is required. The second optional
+ *# expression is any value for the "additional" property in the error
+ *# object.
+ * ThrowStatement ::= 'throw' Expression  Expression?
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_ThrowStatement(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+    afw_size_t argc;
+    const afw_value_t **argv;
+    afw_size_t start_offset;
+
+    afw_compile_save_cursor(start_offset);
+
+    argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv[0] = (const afw_value_t *)&afw_function_definition_throw;
+    argc = 1;
+
+    /* Message */
+    argv[1] = afw_compile_parse_Expression(parser);
+
+    /* Optional additional */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(semicolon)) {
+        afw_compile_reuse_token();
+        argv[2] = afw_compile_parse_Expression(parser);
+        argc = 2;
+        AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    }
+ 
+    /* Create the throw function call. */
+    result = afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc, argv, parser->p, parser->xctx);
+
+    return result;
+}
+
+
+
 /*ebnf>>>
  *
  * Catch ::= 'catch' ( '(' Identifier ')' )? Statement
@@ -970,6 +1015,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     const afw_value_block_t *block;
     afw_size_t start_offset;
+    afw_size_t argc;
 
     block = NULL;
     afw_compile_save_cursor(start_offset);
@@ -979,15 +1025,18 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 
     /* Body */
     argv[1] = afw_compile_parse_Statement(parser, NULL);
+    argc = 1;
 
     /* Catch */
     afw_compile_get_token();
     if (afw_compile_token_is_name(&afw_s_catch)) {
+        argc = 3;
         afw_compile_get_token();
         if (!afw_compile_token_is(open_parenthesis)) {
             afw_compile_reuse_token();
         }
         else {
+            argc = 4;
             block = afw_compile_parse_link_new_value_block(
                 parser, start_offset);
             afw_compile_get_token();
@@ -1013,16 +1062,25 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     /* Finally */
     afw_compile_get_token();
     if (afw_compile_token_is_name(&afw_s_finally)) {
+        if (argc == 1) {
+            argc = 2;
+        }
+
         argv[2] = afw_compile_parse_Statement(parser, NULL);
     }
     else {
         afw_compile_reuse_token();
     }
 
+    /* If neither catch or finally, it's an error. */
+    if (argc == 1) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting 'catch' or 'finally'");
+    }
+
     /* Create the try function call. */
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        4, argv, parser->p, parser->xctx);
+        argc, argv, parser->p, parser->xctx);
 
     /* If there is a catch with variable, create a block. */
     if (block) {
@@ -1179,6 +1237,11 @@ afw_compile_parse_Statement(
             &afw_s_return))
         {
             result = impl_parse_ReturnStatement(parser);
+        }
+        else if (afw_utf8_equal(parser->token->identifier_name,
+            &afw_s_throw))
+        {
+            result = impl_parse_ThrowStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_try))

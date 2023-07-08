@@ -709,6 +709,34 @@ afw_value_block_evaluate_if(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_value_block_evaluate_throw(
+    afw_function_execute_t *x,
+    afw_value_block_statement_type_t *type,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    IMPL_TEMP_FIX(throw);
+    const afw_value_string_t *message;
+    const afw_value_t *additional;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(2);
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(message, 1, string);
+    AFW_FUNCTION_EVALUATE_PARAMETER(additional, 2);
+
+    xctx->error->additional = additional;
+
+    AFW_THROW_ERROR_FZ(throw, xctx, "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT_ARG(&message->internal));
+
+    return afw_value_null;
+}
+
+
+AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_try(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,
@@ -1015,6 +1043,19 @@ afw_value_block_evaluate_statement(
                 result = afw_function_evaluate_parameter(&modified_x, 1,
                         NULL);
             }
+            break;
+
+        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW:
+            afw_xctx_evaluation_stack_push_value(statement, xctx);
+            saved_contextual = xctx->error->contextual;
+            xctx->error->contextual = call->args.contextual;
+
+            result = afw_value_block_evaluate_throw(x, type,
+                call->args.argc, call->args.argv,
+                p, xctx);
+
+            afw_xctx_evaluation_stack_pop_value(xctx);
+            xctx->error->contextual = saved_contextual;
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY:

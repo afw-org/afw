@@ -56,6 +56,10 @@
                     "title": "Action Index",
                     "type": "integer"
                 },
+                "additional": {
+                    "description": "Optional additional information supplied on the throw.",
+                    "title": "Additional"
+                },
                 "backtrace": {
                     "contentMediaType": "text/plain",
                     "description": "The backtrace from where the error occurred.",

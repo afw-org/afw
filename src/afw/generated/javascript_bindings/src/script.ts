@@ -597,6 +597,34 @@ export function afwScript(client : any, value : any) : any {
 }
 
 /**
+ * This throws an error that can be caught by a try/catch block. An error
+ * object of object type _AdaptiveResponseError_ will be available in the
+ * catch block. Its "errorCodeId" property will be set to "throw". The other
+ * properties set based on the parameters specified and where this function
+ * is called.
+ * 
+ * @param {string} message - This is the message that will be included in the
+ *     _AdaptiveResponseError_ error object available in the catch block.
+ * 
+ * @param {} additional - Optional additional information that will be
+ *     available as a "additional" property in the error object.
+ * 
+ * @returns {null}
+ */
+export function afwThrow(client : any, message : string, additional? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "throw";
+    _action["message"] = message;
+
+    if (additional !== undefined)
+        _action["additional"] = additional;
+
+    return client.perform(_action);
+}
+
+/**
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate the body statements. If an error is thrown and
@@ -622,7 +650,8 @@ export function afwScript(client : any, value : any) : any {
  *     a "break", "continue", "return" or "throw" function is encountered.
  * 
  * @param {object} error - The error object thrown. This is only available in
- *     the catch block.
+ *     the catch block. See adaptive object type _AdaptiveObjectType_ for
+ *     details.
  * 
  * @returns {} The last value evaluated in body.
  */

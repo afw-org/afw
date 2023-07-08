@@ -895,6 +895,7 @@ typedef struct afw_object_meta_s {
  */
 #define AFW_ERROR_CODE_MAP(XX)                                                  \
     XX(none,                   true,  200, "OK"                                )\
+    XX(throw,                  true,  400, "Statement throw encountered"       )\
     XX(general,                true,  500, "General Error"                     )\
     XX(bad_request,            true,  400, "Bad Request"                       )\
     XX(query_too_complex,      true,  400, "Query Too Complex"                 )\

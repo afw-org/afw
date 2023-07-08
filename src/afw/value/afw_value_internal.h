@@ -39,8 +39,9 @@ AFW_BEGIN_DECLARES
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF        8
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LOC       9
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN    10
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY       11
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE     12
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW     11
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY       12
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE     13
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
@@ -683,6 +684,15 @@ afw_value_block_evaluate_if(
     afw_size_t argc,
     const afw_value_t * const * argv,
     afw_boolean_t is_loop,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_value_block_evaluate_throw(
+    afw_function_execute_t *x,
+    afw_value_block_statement_type_t *type,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

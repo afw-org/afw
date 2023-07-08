@@ -29,6 +29,7 @@ our @EXPORT_OK = qw(
     nex_script 
     return 
     script 
+    throw 
     try 
     while 
 );
@@ -443,6 +444,26 @@ Convert to data type script
 
 Value to convert
 
+=head3 throw
+
+This throws an error that can be caught by a try/catch block. An error object
+of object type _AdaptiveResponseError_ will be available in the catch block.
+Its "errorCodeId" property will be set to "throw". The other properties set
+based on the parameters specified and where this function is called.
+Throws an error
+
+=head4 Parameters
+
+    $message
+
+This is the message that will be included in the _AdaptiveResponseError_
+error object available in the catch block.
+
+    $additional
+
+Optional additional information that will be available as a "additional"
+property in the error object.
+
 =head3 try
 
 This creates a new structured block with a new nested variable scope.
@@ -478,7 +499,8 @@ function is encountered.
 
     $error
 
-The error object thrown. This is only available in the catch block.
+The error object thrown. This is only available in the catch block. See
+adaptive object type _AdaptiveObjectType_ for details.
 
 =head3 while
 
@@ -816,6 +838,20 @@ sub script {
 
     $request->set("function" => "script");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub throw {
+    my ($message, $additional) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "throw");
+    $request->set("message", $message);
+
+    if (defined $additional)
+        $request->set("additional", $additional);
 
     return $request->getResult();
 }

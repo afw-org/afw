@@ -79,6 +79,9 @@ struct afw_error_s {
     /** @brief Message */
     const afw_utf8_z_t *message_z;
 
+    /** @brief Additional optional error information set before throw. */
+    const afw_value_t *additional;
+
     /** @brief Contextual information or NULL. */
     const afw_compile_value_contextual_t *contextual;
 
