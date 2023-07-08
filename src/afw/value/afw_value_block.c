@@ -719,15 +719,19 @@ afw_value_block_evaluate_try(
 {
     IMPL_TEMP_FIX(try);
     const afw_value_t *result;
+    const afw_value_t *this_result;
     const afw_object_t *error_object;
     const afw_value_t *error_value;
+    afw_value_block_statement_type_t use_type;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
+
     AFW_TRY {
-       result = afw_value_block_evaluate_statement(x, type,
+        result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[1], p, xctx);
+        use_type = *type;
     }
 
     AFW_CATCH_UNHANDLED {
@@ -735,23 +739,43 @@ afw_value_block_evaluate_try(
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
                 error_value = afw_value_create_object(error_object, p, xctx);
+                /// @fixme Assignment type is not correct when frames used
                 impl_assign_value(argv[4], error_value,
                     afw_compile_assignment_type_loc, p, xctx);            
             }
-            result = afw_value_block_evaluate_statement(x, type,
+            this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[3], p, xctx);
+            if (*type == afw_value_block_statement_type_break)
+            {
+                use_type = afw_value_block_statement_type_break;
+            }
+            else if (*type == afw_value_block_statement_type_return)
+            {
+                use_type = afw_value_block_statement_type_return;
+                result = this_result;
+            }
         }
     }
 
     AFW_FINALLY {
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
-            result = afw_value_block_evaluate_statement(x, type,
+            this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[2], p, xctx);
+            if (*type == afw_value_block_statement_type_break)
+            {
+                use_type = afw_value_block_statement_type_break;
+            }
+            else if (*type == afw_value_block_statement_type_return)
+            {
+                use_type = afw_value_block_statement_type_return;
+                result = this_result;
+            }
         }
     }
 
     AFW_ENDTRY;
 
+    *type = use_type;
     return result;
 }
 
