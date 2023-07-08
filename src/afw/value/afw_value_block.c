@@ -757,6 +757,9 @@ afw_value_block_evaluate_try(
                 result = this_result;
             }
         }
+        else {
+            AFW_MARK_UNHANDLED;
+        }
     }
 
     AFW_FINALLY {
