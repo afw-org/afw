@@ -728,6 +728,7 @@ afw_value_block_evaluate_try(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
     result = afw_value_null;
+    use_type = *type;
 
     AFW_TRY {
         result = afw_value_block_evaluate_statement(x, type,
