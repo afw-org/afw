@@ -605,3 +605,132 @@ for (count = 1; count < 10; count += 1) {
 }
 
 return count;
+
+//?
+//? test: Try-28
+//? description: try inside of a loop in a catch block
+//? expect: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_outer_entered = false;
+loc finally_outer_entered = false;
+loc catch_inner_entered = false;
+loc finally_inner_entered = false;
+
+try {
+    loc x = 1;
+    x = 1 / 0;
+}
+catch {
+    catch_outer_entered = true;
+    while (true) {
+        try {
+            while (true) {
+                throw "Inner throw";
+                break;
+            }
+        }
+        catch (e) {
+            catch_inner_entered = true;
+        }
+        finally {
+            finally_inner_entered = true;
+        }
+        break;
+    }
+}
+finally {
+    finally_outer_entered = true;
+}
+
+return catch_outer_entered && finally_outer_entered && 
+       catch_inner_entered && finally_inner_entered;
+
+//?
+//? test: Try-29
+//? description: try inside of a loop in a catch block with rethrow
+//? expect: error:Inner throw
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_outer_entered = false;
+loc finally_outer_entered = false;
+loc catch_inner_entered = false;
+loc finally_inner_entered = false;
+
+try {
+    loc x = 1;
+    x = 1 / 0;
+}
+catch {
+    catch_outer_entered = true;
+    while (true) {
+        try {
+            while (true) {
+                throw "Inner throw";
+                break;
+            }
+        }
+        catch (e) {
+            catch_inner_entered = true;
+            rethrow;
+        }
+        finally {
+            finally_inner_entered = true;
+        }
+        break;
+    }
+}
+finally {
+    finally_outer_entered = true;
+}
+
+return catch_outer_entered && finally_outer_entered && 
+       catch_inner_entered && finally_inner_entered;
+
+//?
+//? test: Try-30
+//? description: catch and rethrow since not throw statement
+//? expect: error:Integer divide by zero error
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_entered = false;
+
+try {
+    loc x = 1;
+    x = 1 / 0;
+}
+catch (e) {
+    /* Only handle if thrown by throw statement. */
+    if (e.errorCodeId != 'throw') {
+        rethrow;
+    }
+    catch_entered = true;
+}
+
+return catch_entered;
+
+
+//?
+//? test: Try-31
+//? description: catch and don't rethrow since throw statement
+//? expect: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_entered = false;
+
+try {
+    throw "Throw it all away!";
+}
+catch (e) {
+    /* Only handle if thrown by throw statement. */
+    if (e.errorCodeId != 'throw') {
+        rethrow;
+    }
+    catch_entered = true;
+}
+
+return catch_entered;
