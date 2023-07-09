@@ -538,3 +538,70 @@ for (count = 1; count < 10; count += 1) {
 }
 
 return count;
+
+//?
+//? test: Try-25
+//? description: continue in body
+//? expect: 10
+//? source: ...
+#!/usr/bin/env afw
+
+loc count;
+
+for (count = 1; count < 10; count += 1) {
+    try {
+        continue;
+    }
+    catch {
+        break;
+    }
+    break; // Should not get here
+}
+
+return count;
+
+//?
+//? test: Try-26
+//? description: continue in catch
+//? expect: 10
+//? source: ...
+#!/usr/bin/env afw
+
+loc count;
+
+for (count = 1; count < 10; count += 1) {
+    try {
+        loc x = 1 / 0;
+    }
+    catch {
+        continue;
+    }
+    break; // Should not get here
+}
+
+return count;
+
+//?
+//? test: Try-27
+//? description: continue in finally
+//? expect: 10
+//? source: ...
+#!/usr/bin/env afw
+
+loc count;
+
+for (count = 1; count < 10; count += 1) {
+    try {
+        loc x = 1 / 0;
+        break; // Finally continue overrides
+    }
+    catch {
+        break; // Finally continue overrides
+    }
+    finally {
+        continue;
+    }
+    break; // Should not get here
+}
+
+return count;

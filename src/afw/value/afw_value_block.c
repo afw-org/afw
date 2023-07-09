@@ -775,9 +775,10 @@ afw_value_block_evaluate_try(
             }
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[3], p, xctx);
-            if (*type == afw_value_block_statement_type_break)
+            if (*type == afw_value_block_statement_type_break ||
+                *type == afw_value_block_statement_type_continue)
             {
-                use_type = afw_value_block_statement_type_break;
+                use_type = *type;
             }
             else if (*type == afw_value_block_statement_type_return)
             {
@@ -794,9 +795,10 @@ afw_value_block_evaluate_try(
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[2], p, xctx);
-            if (*type == afw_value_block_statement_type_break)
+            if (*type == afw_value_block_statement_type_break ||
+                *type == afw_value_block_statement_type_continue)
             {
-                use_type = afw_value_block_statement_type_break;
+                use_type = *type;
             }
             else if (*type == afw_value_block_statement_type_return)
             {
