@@ -544,6 +544,43 @@ afw_function_execute_loc(
 
 
 /*
+ * Adaptive function: rethrow
+ *
+ * afw_function_execute_rethrow
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * This is a special function that can be called to rethrow an error inside of
+ * a catch block. If called outside of a catch body, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function rethrow(
+ *   
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (any dataType) This function rethrows the current error in a catch block.
+ */
+const afw_value_t *
+afw_function_execute_rethrow(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: return
  *
  * afw_function_execute_return

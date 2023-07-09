@@ -812,6 +812,33 @@ def nex_script(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def rethrow(session):
+    '''
+    rethrow error from inside case block
+
+    This is a special function that can be called to rethrow an error inside
+    of a catch block. If called outside of a catch body, an error is thrown.
+
+    Parameters:
+
+    Returns:
+    None: This function rethrows the current error in a catch block.
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "rethrow"
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def return_(session, value=None):
     '''
     Return from the outermost structured block

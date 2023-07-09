@@ -5464,6 +5464,9 @@ AFW_UTF8_LITERAL("result");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_resultDataType =
 AFW_UTF8_LITERAL("resultDataType");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rethrow =
+AFW_UTF8_LITERAL("rethrow");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieveObjectsCount =
 AFW_UTF8_LITERAL("retrieveObjectsCount");
 

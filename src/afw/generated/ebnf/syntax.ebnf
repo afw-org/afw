@@ -595,9 +595,21 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
 
 /* From afw_compile_parse_script.c                                            */
+
+RethrowStatement ::= 'rethrow' ';'
+
+/* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */
 
 ReturnStatement ::= 'return' Expression? ';'
+
+/* From afw_compile_parse_script.c                                            */
+
+SwitchStatement ::= 'switch' ParenthesizedExpression
+    '{'
+        ( 'case' Expression ':' Statement )*
+        ( 'default' ':' Statement )?
+    '}'
 
 /* From afw_compile_parse_script.c                                            */
 /* The first expresion is the message and is required. The second optional    */
@@ -624,7 +636,8 @@ WhileStatement ::= 'while' '(' Expression ')' Statement
 EvaluationThatCompilesToCallValue ::= Evaluation
 
 CallStatement ::= EvaluationThatCompilesToCallValue
-/* BreakStatement and ContinueStatement can only be in a loop                 */
+/* BreakStatement and ContinueStatement can only be in a loop.                */
+/* RethrowStatement can only be in a catch block.                             */
 
 Block ::= '{' Statement* '}'
 
@@ -644,7 +657,9 @@ Statement ::=
    IfStatement |
    InterfaceStatement |
    LocStatement |
+   RethrowStatement |
    ReturnStatement |
+   SwitchStatement |
    TypeStatement |
    WhileStatement
 

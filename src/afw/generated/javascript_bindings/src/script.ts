@@ -556,6 +556,21 @@ export function afwNexScript(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
+ * This is a special function that can be called to rethrow an error inside
+ * of a catch block. If called outside of a catch body, an error is thrown.
+ * 
+ * @returns {} This function rethrows the current error in a catch block.
+ */
+export function afwRethrow(client : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "rethrow";
+
+    return client.perform(_action);
+}
+
+/**
  * Return from the outermost structured block. If the expression of a lambda
  * function is a block function, this will effectively return from the lambda
  * function. If called outside of a structured block, an error is thrown.

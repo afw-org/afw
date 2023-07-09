@@ -26021,6 +26021,38 @@ afw_function_definition_nex_script;
  * __________
  */
 
+/** @brief Function definition rethrow */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_rethrow;
+
+/**
+ * @brief Adaptive Function `rethrow`
+ * @param x function execute parameter.
+ *
+ * This is a special function that can be called to rethrow an error inside of
+ * a catch block. If called outside of a catch body, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function rethrow(
+ *   
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (any dataType) This function rethrows the current error in a catch block.
+ */
+const afw_value_t *
+afw_function_execute_rethrow(
+    afw_function_execute_t *x);
+
 /** @brief Function definition return */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_return;

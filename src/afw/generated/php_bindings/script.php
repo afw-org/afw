@@ -686,6 +686,28 @@ class script
     }
 
     /**
+     * rethrow()
+     *
+     * This is a special function that can be called to rethrow an error
+     * inside of a catch block. If called outside of a catch body, an error
+     * is thrown.
+     *
+     *
+     * @return  This function rethrows the current error in a catch block.
+     */
+    public function rethrow()
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "rethrow");
+
+        /* pass along required parameters to the request payload */
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * return()
      *
      * Return from the outermost structured block. If the expression of a

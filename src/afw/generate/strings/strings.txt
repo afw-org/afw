@@ -356,7 +356,9 @@ if
 in
 instanceof
 interface
+rethrow
 return
+switch
 then
 throw
 typeof

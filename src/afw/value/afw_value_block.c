@@ -554,6 +554,7 @@ afw_value_block_evaluate_for(
                 result = afw_value_block_evaluate_statement(x, type,
                     true, true, body, p, xctx);
                 if (*type == afw_value_block_statement_type_break ||
+                    *type == afw_value_block_statement_type_rethrow ||
                     *type == afw_value_block_statement_type_return)
                 {
                     break;
@@ -615,6 +616,7 @@ afw_value_block_evaluate_foreach(
             result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[3], p, xctx);
             if (*type == afw_value_block_statement_type_break ||
+                *type == afw_value_block_statement_type_rethrow ||
                 *type == afw_value_block_statement_type_return)
             {
                 break;
@@ -655,6 +657,7 @@ afw_value_block_evaluate_do_while(
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[2], p, xctx);
         if (*type == afw_value_block_statement_type_break ||
+            *type == afw_value_block_statement_type_rethrow ||
             *type == afw_value_block_statement_type_return)
         {
             break;
@@ -785,6 +788,10 @@ afw_value_block_evaluate_try(
                 use_type = afw_value_block_statement_type_return;
                 result = this_result;
             }
+            else if (*type == afw_value_block_statement_type_rethrow)
+            {
+                AFW_MARK_UNHANDLED;
+            }
         }
         else {
             AFW_MARK_UNHANDLED;
@@ -804,6 +811,10 @@ afw_value_block_evaluate_try(
             {
                 use_type = afw_value_block_statement_type_return;
                 result = this_result;
+            }
+            else if (*type == afw_value_block_statement_type_rethrow)
+            {
+                use_type = afw_value_block_statement_type_sequential;
             }
         }
     }
@@ -838,6 +849,7 @@ afw_value_block_evaluate_while(
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[2], p, xctx);
         if (*type == afw_value_block_statement_type_break ||
+            *type == afw_value_block_statement_type_rethrow ||
             *type == afw_value_block_statement_type_return)
         {
             break;
@@ -917,7 +929,7 @@ afw_value_block_evaluate_statement(
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_BREAK:
             if (!is_loop) {
-                AFW_THROW_ERROR_Z(general, "Misplaced break()", xctx);
+                AFW_THROW_ERROR_Z(general, "Misplaced break", xctx);
             }
             modified_x.argc = call->args.argc;
             modified_x.argv = call->args.argv;
@@ -1029,6 +1041,19 @@ afw_value_block_evaluate_statement(
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
+            break;
+
+        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW:
+            /** @fixme check if in catch
+            if (!is_in_catch) {
+                AFW_THROW_ERROR_Z(general, "Misplaced rethrow", xctx);
+            }
+             */
+            modified_x.argc = call->args.argc;
+            modified_x.argv = call->args.argv;
+            modified_x.function = &afw_function_definition_rethrow;
+            AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
+            *type = afw_value_block_statement_type_rethrow;
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN:

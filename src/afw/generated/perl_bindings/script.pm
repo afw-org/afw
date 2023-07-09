@@ -27,6 +27,7 @@ our @EXPORT_OK = qw(
     lt_script 
     ne_script 
     nex_script 
+    rethrow 
     return 
     script 
     throw 
@@ -418,6 +419,14 @@ Checks for not equal value or type
 
     $arg2
 
+
+=head3 rethrow
+
+This is a special function that can be called to rethrow an error inside of a
+catch block. If called outside of a catch body, an error is thrown.
+rethrow error from inside case block
+
+=head4 Parameters
 
 =head3 return
 
@@ -814,6 +823,16 @@ sub nex_script {
     $request->set("function" => "nex<script>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub rethrow {
+    my () = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "rethrow");
 
     return $request->getResult();
 }

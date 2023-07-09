@@ -38,10 +38,12 @@ AFW_BEGIN_DECLARES
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH   7
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF        8
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LOC       9
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN    10
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW     11
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY       12
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE     13
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW   10
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN    11
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_SWITCH    12
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW     13
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY       14
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE     15
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
@@ -55,6 +57,7 @@ typedef enum {
     afw_value_block_statement_type_sequential,
     afw_value_block_statement_type_break,
     afw_value_block_statement_type_continue,
+    afw_value_block_statement_type_rethrow,
     afw_value_block_statement_type_return
 } afw_value_block_statement_type_t;
 

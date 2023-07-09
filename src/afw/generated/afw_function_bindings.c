@@ -91071,6 +91071,95 @@ afw_function_definition_nex_script = {
     false
 };
 
+/* ---------- rethrow ---------- */
+
+static const afw_utf8_t
+impl_object_path__rethrow =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/rethrow");
+
+static const afw_runtime_object_indirect_t
+impl_object__rethrow = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_rethrow,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__rethrow
+        }
+    },
+    (void *)&afw_function_definition_rethrow
+};
+
+static const afw_value_function_parameter_t
+impl_rethrow_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This function rethrows the current error in a catch block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_rethrow_parameters[] = {
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_rethrow = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__rethrow,
+    AFW_UTF8_LITERAL("script"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("afwRethrow"),
+    AFW_UTF8_LITERAL("rethrow error from inside case block"),
+    AFW_UTF8_LITERAL("This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."),
+    AFW_UTF8_LITERAL("(): any"),
+    AFW_UTF8_LITERAL("/* rethrow error from inside case block */\nfunction rethrow (\n\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_rethrow,
+    NULL,
+    0,
+    0,
+    &impl_rethrow_parameters[0],
+    0,
+    &impl_rethrow_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
 /* ---------- return ---------- */
 
 static const afw_utf8_t
@@ -116019,6 +116108,7 @@ impl_function_bindings[] = {
     &afw_function_definition_lt_script,
     &afw_function_definition_ne_script,
     &afw_function_definition_nex_script,
+    &afw_function_definition_rethrow,
     &afw_function_definition_return,
     &afw_function_definition_script,
     &afw_function_definition_throw,

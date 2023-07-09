@@ -10907,6 +10907,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_result;
 /** @brief afw_utf8_t for string resultDataType */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_resultDataType;
 
+/** @brief define for quoted string rethrow */
+#define AFW_Q_rethrow "rethrow"
+
+/** @brief afw_utf8_t for string rethrow */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_rethrow;
+
 /** @brief define for quoted string retrieveObjectsCount */
 #define AFW_Q_retrieveObjectsCount "retrieveObjectsCount"
 

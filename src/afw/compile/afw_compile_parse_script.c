@@ -25,6 +25,10 @@ static const afw_value_t *
 impl_function_definition_continue =
     (const afw_value_t *)&afw_function_definition_continue;
 
+static const afw_value_t *
+impl_function_definition_rethrow =
+    (const afw_value_t *)&afw_function_definition_rethrow;
+
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_list_of_statements(
@@ -431,7 +435,8 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
     result = afw_value_call_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-            0, &impl_function_definition_break, parser->p, parser->xctx);
+            0, &impl_function_definition_break,
+            parser->p, parser->xctx);
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -920,6 +925,32 @@ impl_parse_LocStatement(afw_compile_parser_t *parser)
 }
 
 
+
+/*ebnf>>>
+ *
+ * RethrowStatement ::= 'rethrow' ';'
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_RethrowStatement(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+
+    /*FIXME Check for inside catch. */
+
+    result = afw_value_call_create(
+        afw_compile_create_contextual_to_cursor(
+            parser->token->token_source_offset),
+            0, &impl_function_definition_rethrow,
+            parser->p, parser->xctx);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+
+    return result;
+}
+
+
+
 /*ebnf>>>
  *
  *# Expression is required if inside a function that has a non-void return.
@@ -951,6 +982,23 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
         1, argv, parser->p, parser->xctx);
 
     return result;
+}
+
+
+
+/*ebnf>>>
+ *
+ * SwitchStatement ::= 'switch' ParenthesizedExpression
+ *     '{'
+ *         ( 'case' Expression ':' Statement )*
+ *         ( 'default' ':' Statement )?
+ *     '}'
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_SwitchStatement(afw_compile_parser_t *parser)
+{
+    AFW_COMPILE_THROW_ERROR_Z("Not implemented");
 }
 
 
@@ -1141,7 +1189,8 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *
  * CallStatement ::= EvaluationThatCompilesToCallValue
  *
- *# BreakStatement and ContinueStatement can only be in a loop
+ *# BreakStatement and ContinueStatement can only be in a loop.
+ *# RethrowStatement can only be in a catch block.
  *
  * Block ::= '{' Statement* '}'
  *
@@ -1161,7 +1210,9 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    IfStatement |
  *    InterfaceStatement |
  *    LocStatement |
+ *    RethrowStatement |
  *    ReturnStatement |
+ *    SwitchStatement |
  *    TypeStatement |
  *    WhileStatement    
  *
@@ -1234,9 +1285,19 @@ afw_compile_parse_Statement(
             result = impl_parse_IfStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
+            &afw_s_rethrow))
+        {
+            result = impl_parse_RethrowStatement(parser);
+        }
+        else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_return))
         {
             result = impl_parse_ReturnStatement(parser);
+        }
+        else if (afw_utf8_equal(parser->token->identifier_name,
+            &afw_s_switch))
+        {
+            result = impl_parse_SwitchStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_throw))
