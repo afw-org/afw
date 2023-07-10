@@ -49,7 +49,7 @@ assert(value &&= unresolved === 0, "value");
 
 loc value = 2;
 
-// \fixme needs try/catch
+// \fixme we don't have assert.throws()
 assert.throws(ReferenceError, function() {
   value &&= unresolved;
 });
@@ -179,7 +179,7 @@ assert(value === 0, "value");
 
 loc value = undefined;
 
-// \fixme needs try/catch
+// \fixme we don't allow for this
 assert.throws(ReferenceError, function() {
   value ??= unresolved;
 });
@@ -289,9 +289,8 @@ unresolved ||= 1;
 //? source: ...
 #!/usr/bin/env afw
 
-
 loc value = 2;
-// \fixme need try/catch
+// \fixme we don't allow this
 value ||= unresolved;
 
 assert(value === 2, "value");
@@ -304,10 +303,9 @@ assert(value === 2, "value");
 //? source: ...
 #!/usr/bin/env afw
 
-
 loc value = 0;
 
-// \fixme needs try/catch
+// \fixme we don't allow for this
 assert.throws(ReferenceError, function() {
   value ||= unresolved;
 });

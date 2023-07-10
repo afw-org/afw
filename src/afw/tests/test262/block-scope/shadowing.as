@@ -8,132 +8,108 @@
 //? test: catch-parameter-shadowing-catch-parameter
 //? description: catch parameter shadowing catch parameter
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-Can't do this until try/catch/throw
-
 function fn() {
-  var c = 1;
+  loc c = 1;
   try {
     throw 'stuff3';
   } catch (c) {
     try {
       throw 'stuff4';
     } catch(c) {
-      assert.sameValue(c,'stuff4');
+      assert(c.message === 'stuff4');
       // catch parameter shadowing catch parameter
       c = 3;
-      assert.sameValue(c, 3);
+      assert(c === 3);
     }
-    assert.sameValue(c, 'stuff3');
+    assert(c.message === 'stuff3');
   }
-  assert.sameValue(c, 1);
+  assert(c === 1);
 }
 fn(1);
-*/
+
 
 //? test: catch-parameter-shadowing-function-parameter-name
 //? description: catch parameter shadowing function parameter name
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-Can't do this until try/catch/throw
 
 function fn(a) {
   try {
     throw 'stuff1';
   } catch (a) {
-    assert.sameValue(a, 'stuff1');
+    assert(a.message === 'stuff1');
     // catch parameter shadowing function parameter name
     a = 2;
-    assert.sameValue(a, 2);
+    assert(a === 2);
   }
 }
 fn(1);
-*/
 
 
 //? test: catch-parameter-shadowing-let-declaration
 //? description: catch parameter shadowing let declaration
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-Can't do this until try/catch/throw
-
 {
-  let a = 3;
+  loc a = 3;
   try {
     throw 'stuff2';
   } catch (a) {
-    assert.sameValue(a, 'stuff2');
+    assert(a.message === 'stuff2');
     // catch parameter shadowing let declaration
     a = 4;
-    assert.sameValue(a, 4);
+    assert(a === 4);
   }
-  assert.sameValue(a, 3);
+  assert(a === 3);
 }
-*/
 
 
 //? test: catch-parameter-shadowing-var-variable
 //? description: catch parameter shadowing var variable
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-Can't do this until try/catch/throw
-
 function fn() {
-  var a = 1;
+  loc a = 1;
   try {
     throw 'stuff3';
   } catch (a) {
     // catch parameter shadowing var variable
-    assert.sameValue(a, 'stuff3');
+    assert(a.message === 'stuff3');
   }
-  assert.sameValue(a, 1);
+  assert(a === 1);
 }
 fn();
-*/
 
 
 //? test: const-declaration-shadowing-catch-parameter
 //? description: const declaration shadowing catch parameter
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-Can't do this until try/catch/throw
-
 function fn() {
-  var a = 1;
+  loc a = 1;
   try {
     throw 'stuff3';
   } catch (a) {
     {
       // const declaration shadowing catch parameter
       const a = 3;
-      assert.sameValue(a, 3);
+      assert(a === 3);
     }
-    assert.sameValue(a, 'stuff3');
+    assert(a.message === 'stuff3');
   }
-  assert.sameValue(a, 1);
+  assert(a === 1);
 }
 fn();
-*/
 
 
 //? test: const-declarations-shadowing-parameter-name-let-const-and-var-variables
@@ -218,24 +194,19 @@ fn(1);
 //? test: let-declaration-shadowing-catch-parameter
 //? description: let declaration shadowing catch parameter
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-Can't do this until try/catch/throw
 
 try {
   throw 'stuff1';
 } catch (a) {
   {
     // let declaration shadowing catch parameter
-    let a = 3;
-    assert.sameValue(a, 3);
+    loc a = 3;
+    assert(a === 3);
   }
-  assert.sameValue(a, 'stuff1');
+  assert(a.message === 'stuff1');
 }
-*/
 
 //? test: let-declarations-shadowing-parameter-name-let-const-and-var
 //? description: let declarations shadowing parameter name, let, const and var
@@ -319,25 +290,22 @@ fn(1);
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-Can't do this until try/catch/throw
-
+// can't do this function decl/call syntax
 function fn() {
-  var c = 1;
+  loc c = 1;
   try {
     throw 'stuff3';
   } catch (c) {
     (function(c) {
       // parameter name shadowing catch parameter
       c = 3;
-      assert.sameValue(c, 3);
+      assert(c === 3);
     })();
-    assert.sameValue(c, 'stuff3');
+    assert(c.message === 'stuff3');
   }
-  assert.sameValue(c, 1);
+  assert(c === 1);
 }
 fn();
-*/
 
 //? test: parameter-name-shadowing-parameter-name-let-const-and-var
 //? description: parameter name shadowing parameter name, let, const and var

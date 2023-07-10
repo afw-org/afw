@@ -244,7 +244,7 @@ base.prop = count += 1;
 //? source: ...
 #!/usr/bin/env afw
 
-// can't really test this without try/catch/throw
+// \fixme we don't have assert.throws()
 function DummyError() { }
 
 assert.throws(DummyError, function() {

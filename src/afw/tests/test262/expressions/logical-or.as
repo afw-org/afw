@@ -145,14 +145,14 @@ try {
 
 
 //? test: S11.11.2_A2.4_T3
-//? description: Checking with undeclarated variables
+//? description: Checking with undeclared variables
 //? expect: null
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
 
-// \fixme needs try/catch
+// \fixme don't allow catching these syntax errors
 //CHECK#1
 try {
   x || (x = true);
