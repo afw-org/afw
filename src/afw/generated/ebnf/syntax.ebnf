@@ -595,10 +595,6 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
 
 /* From afw_compile_parse_script.c                                            */
-
-RethrowStatement ::= 'rethrow' ';'
-
-/* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */
 
 ReturnStatement ::= 'return' Expression? ';'
@@ -612,11 +608,14 @@ SwitchStatement ::= 'switch' ParenthesizedExpression
     '}'
 
 /* From afw_compile_parse_script.c                                            */
-/* The first expresion is the message and is required. The second optional    */
-/* expression is any value for the "additional" property in the error         */
-/* object.                                                                    */
+/* If there is no expression, the exception is rethrow and can only be        */
+/* contained in a catch block. If there is an expression, it is the message   */
+/* for the exception to be thrown. If there is a second expression, it        */
+/* can be any value and will be the value for the "additional" property of the */
+/* error object.                                                              */
+/*                                                                            */
 
-ThrowStatement ::= 'throw' Expression  Expression?
+ThrowStatement ::=  'throw' ( Expression  Expression? )?
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -637,7 +636,6 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
-/* RethrowStatement can only be in a catch block.                             */
 
 Block ::= '{' Statement* '}'
 
@@ -657,7 +655,6 @@ Statement ::=
    IfStatement |
    InterfaceStatement |
    LocStatement |
-   RethrowStatement |
    ReturnStatement |
    SwitchStatement |
    TypeStatement |

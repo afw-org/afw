@@ -674,7 +674,7 @@ catch {
         }
         catch (e) {
             catch_inner_entered = true;
-            rethrow;
+            throw;
         }
         finally {
             finally_inner_entered = true;
@@ -705,7 +705,7 @@ try {
 catch (e) {
     /* Only handle if thrown by throw statement. */
     if (e.id != 'throw') {
-        rethrow;
+        throw;
     }
     catch_entered = true;
 }
@@ -728,9 +728,79 @@ try {
 catch (e) {
     /* Only handle if thrown by throw statement. */
     if (e.id != 'throw') {
-        rethrow;
+        throw;
     }
     catch_entered = true;
 }
 
 return catch_entered;
+
+//?
+//? test: Try-32
+//? description: rethrow must be in catch block
+//? expect: error:Parse error at offset 92 around line 6 column 6: Can only rethrow ("throw;") inside a catch block
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_entered = false;
+
+// Rethrow ("throw;") can not be here.
+throw;
+
+try {
+    throw "Throw it all away!";
+}
+catch (e) {
+    /* Only handle if thrown by throw statement. */
+    if (e.id != 'throw') {
+        throw;
+    }
+    catch_entered = true;
+}
+
+return catch_entered;
+
+
+//?
+//? test: Try-33
+//? description: throw must be in catch block but can't be in inner try block
+//? expect: error:Parse error at offset 343 around line 17 column 18: Can only rethrow ("throw;") inside a catch block
+//? source: ...
+#!/usr/bin/env afw
+
+loc catch_outer_entered = false;
+loc finally_outer_entered = false;
+loc catch_inner_entered = false;
+loc finally_inner_entered = false;
+
+try {
+    loc x = 1;
+    x = 1 / 0;
+}
+catch {
+    catch_outer_entered = true;
+    while (true) {
+        try {
+            // Rethrow ("throw;") can not be here either.
+            throw;
+            while (true) {
+                throw "Inner throw";
+                break;
+            }
+        }
+        catch (e) {
+            catch_inner_entered = true;
+            throw;
+        }
+        finally {
+            finally_inner_entered = true;
+        }
+        break;
+    }
+}
+finally {
+    finally_outer_entered = true;
+}
+
+return catch_outer_entered && finally_outer_entered && 
+       catch_inner_entered && finally_inner_entered;

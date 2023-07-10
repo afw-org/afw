@@ -928,31 +928,6 @@ impl_parse_LocStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * RethrowStatement ::= 'rethrow' ';'
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_RethrowStatement(afw_compile_parser_t *parser)
-{
-    const afw_value_t *result;
-
-    /*FIXME Check for inside catch. */
-
-    result = afw_value_call_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-            0, &impl_function_definition_rethrow,
-            parser->p, parser->xctx);
-
-    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
-
-    return result;
-}
-
-
-
-/*ebnf>>>
- *
  *# Expression is required if inside a function that has a non-void return.
  * ReturnStatement ::= 'return' Expression? ';'
  *
@@ -1005,10 +980,13 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# The first expresion is the message and is required. The second optional
- *# expression is any value for the "additional" property in the error
- *# object.
- * ThrowStatement ::= 'throw' Expression  Expression?
+ *# If there is no expression, the exception is rethrow and can only be
+ *# contained in a catch block. If there is an expression, it is the message
+ *# for the exception to be thrown. If there is a second expression, it
+ *# can be any value and will be the value for the "additional" property of the
+ *# error object.
+ *#
+ * ThrowStatement ::=  'throw' ( Expression  Expression? )?
  *
  *<<<ebnf*/
 static const afw_value_t *
@@ -1017,30 +995,47 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     afw_size_t argc;
     const afw_value_t **argv;
-    afw_size_t start_offset;
+    const afw_compile_value_contextual_t *contextual;
 
-    afw_compile_save_cursor(start_offset);
+    contextual = afw_compile_create_contextual_to_cursor(parser->cursor);
 
-    argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
-    argv[0] = (const afw_value_t *)&afw_function_definition_throw;
-    argc = 1;
-
-    /* Message */
-    argv[1] = afw_compile_parse_Expression(parser);
-
-    /* Optional additional */
+    /* rethrow if end of statement. */
     afw_compile_get_token();
-    if (!afw_compile_token_is(semicolon)) {
-        afw_compile_reuse_token();
-        argv[2] = afw_compile_parse_Expression(parser);
-        argc = 2;
-        AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    if (afw_compile_token_is(semicolon)) {
+        if (!parser->rethrow_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Can only rethrow (\"throw;\") inside a catch block");
+        }
+        result = afw_value_call_create(contextual,
+            0, &impl_function_definition_rethrow,
+            parser->p, parser->xctx);
     }
- 
-    /* Create the throw function call. */
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        argc, argv, parser->p, parser->xctx);
+
+    /* throw. */
+    else {
+        afw_compile_reuse_token();
+        argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 3,
+            parser->xctx);
+        argv[0] = (const afw_value_t *)&afw_function_definition_throw;
+        argc = 1;
+
+        /* Message */
+        argv[1] = afw_compile_parse_Expression(parser);
+
+        /* Optional additional */
+        afw_compile_get_token();
+        if (!afw_compile_token_is(semicolon)) {
+            afw_compile_reuse_token();
+            argv[2] = afw_compile_parse_Expression(parser);
+            argc = 2;
+            AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+        }
+    
+        /* Create the throw function call. */
+        result = afw_value_call_built_in_function_create(
+            contextual, argc, argv,
+            parser->p, parser->xctx);
+    }
 
     return result;
 }
@@ -1064,7 +1059,10 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     const afw_value_block_t *block;
     afw_size_t start_offset;
     afw_size_t argc;
+    afw_boolean_t rethrow_allowed;
 
+    rethrow_allowed = parser->rethrow_allowed;
+    parser->rethrow_allowed = false;
     block = NULL;
     afw_compile_save_cursor(start_offset);
 
@@ -1078,6 +1076,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     /* Catch */
     afw_compile_get_token();
     if (afw_compile_token_is_name(&afw_s_catch)) {
+        parser->rethrow_allowed = true;
         argc = 3;
         afw_compile_get_token();
         if (!afw_compile_token_is(open_parenthesis)) {
@@ -1102,6 +1101,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             }
         }
         argv[3] = afw_compile_parse_Statement(parser, NULL);
+        parser->rethrow_allowed = false;
     }
     else {
         afw_compile_reuse_token();
@@ -1138,6 +1138,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         result = (const afw_value_t *)block;
     }
 
+    parser->rethrow_allowed = rethrow_allowed;
     return result;
 }
 
@@ -1190,7 +1191,6 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  * CallStatement ::= EvaluationThatCompilesToCallValue
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
- *# RethrowStatement can only be in a catch block.
  *
  * Block ::= '{' Statement* '}'
  *
@@ -1210,7 +1210,6 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    IfStatement |
  *    InterfaceStatement |
  *    LocStatement |
- *    RethrowStatement |
  *    ReturnStatement |
  *    SwitchStatement |
  *    TypeStatement |
@@ -1283,11 +1282,6 @@ afw_compile_parse_Statement(
             &afw_s_if))
         {
             result = impl_parse_IfStatement(parser);
-        }
-        else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_rethrow))
-        {
-            result = impl_parse_RethrowStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_return))

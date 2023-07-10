@@ -392,6 +392,15 @@ struct afw_compile_internal_parser_s {
      */
     afw_boolean_t get_token_found_eol;
 
+    /* Rethrow only allowed in catch block. */
+    afw_boolean_t rethrow_allowed;
+
+    /* break statement allowed in loop can switch. */
+    afw_boolean_t break_allowed;
+
+    /* continue statement allowed in loop. */
+    afw_boolean_t continue_allowed;
+
 };
 
 
