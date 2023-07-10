@@ -7652,7 +7652,7 @@
                     },
                     "label": "Error",
                     "description": "This is error detail if status is error.",
-                    "dataTypeParameter": "_AdaptiveResponseError_",
+                    "dataTypeParameter": "_AdaptiveError_",
                     "dataType": "object",
                     "brief": "Details about the error"
                 },
@@ -21758,8 +21758,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveResponseError_",
-                "objectId": "_AdaptiveResponseError_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveError_",
+                "objectId": "_AdaptiveError_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -21874,7 +21874,7 @@
                     "dataType": "string",
                     "brief": "The internal source filename:line where the error occurred"
                 },
-                "errorCodeId": {
+                "id": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
@@ -21936,8 +21936,8 @@
                     "objectType": "_AdaptiveValueMeta_"
                 }
             },
-            "objectType": "_AdaptiveResponseError_",
-            "description": "The _AdaptiveObjectType_ for _AdaptiveResponseError_ objects.",
+            "objectType": "_AdaptiveError_",
+            "description": "The _AdaptiveObjectType_ for _AdaptiveError_ objects.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],

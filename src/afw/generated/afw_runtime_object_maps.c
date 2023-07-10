@@ -1324,6 +1324,21 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveErrorRVDecoder_);
 
 
+/* Runtime object map properties for _AdaptiveError_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveError_ = {
+    &afw_s__AdaptiveError_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveError_, 
+    impl_runtime_meta__AdaptiveError_);
+
+
 /* Runtime object map properties for _AdaptiveExtension_ objects. */
 
 static const afw_runtime_object_map_property_t
@@ -4083,21 +4098,6 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveResponseAction_);
 
 
-/* Runtime object map properties for _AdaptiveResponseError_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveResponseError_ = {
-    &afw_s__AdaptiveResponseError_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveResponseError_, 
-    impl_runtime_meta__AdaptiveResponseError_);
-
-
 /* Runtime object map properties for _AdaptiveResponse_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4722,6 +4722,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveEnvironmentRegistry_,
     &afw_runtime_inf__AdaptiveEnvironmentVariables_,
     &afw_runtime_inf__AdaptiveErrorRVDecoder_,
+    &afw_runtime_inf__AdaptiveError_,
     &afw_runtime_inf__AdaptiveExtension_,
     &afw_runtime_inf__AdaptiveFlag_,
     &afw_runtime_inf__AdaptiveFunctionCategory_,
@@ -4786,7 +4787,6 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveRequestHandler_,
     &afw_runtime_inf__AdaptiveRequestProperties_,
     &afw_runtime_inf__AdaptiveResponseAction_,
-    &afw_runtime_inf__AdaptiveResponseError_,
     &afw_runtime_inf__AdaptiveResponse_,
     &afw_runtime_inf__AdaptiveRootFilePaths_,
     &afw_runtime_inf__AdaptiveRuntimeCustom_,

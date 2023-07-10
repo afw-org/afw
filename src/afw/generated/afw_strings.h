@@ -743,6 +743,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentVariables_;
 /** @brief afw_utf8_t for string _AdaptiveErrorRVDecoder_ */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveErrorRVDecoder_;
 
+/** @brief define for quoted string _AdaptiveError_ */
+#define AFW_Q__AdaptiveError_ "_AdaptiveError_"
+
+/** @brief afw_utf8_t for string _AdaptiveError_ */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveError_;
+
 /** @brief define for quoted string _AdaptiveExtension_ */
 #define AFW_Q__AdaptiveExtension_ "_AdaptiveExtension_"
 
@@ -1126,12 +1132,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRequestProperties_;
 
 /** @brief afw_utf8_t for string _AdaptiveResponseAction_ */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponseAction_;
-
-/** @brief define for quoted string _AdaptiveResponseError_ */
-#define AFW_Q__AdaptiveResponseError_ "_AdaptiveResponseError_"
-
-/** @brief afw_utf8_t for string _AdaptiveResponseError_ */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponseError_;
 
 /** @brief define for quoted string _AdaptiveResponse_ */
 #define AFW_Q__AdaptiveResponse_ "_AdaptiveResponse_"
@@ -6178,12 +6178,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_error;
 
 /** @brief afw_utf8_t for string errorCode */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_errorCode;
-
-/** @brief define for quoted string errorCodeId */
-#define AFW_Q_errorCodeId "errorCodeId"
-
-/** @brief afw_utf8_t for string errorCodeId */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_errorCodeId;
 
 /** @brief define for quoted string errorReason */
 #define AFW_Q_errorReason "errorReason"

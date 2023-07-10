@@ -19,7 +19,7 @@ const useErrorObject = ({ error }) => {
         const setError = async() => {
             const obj = model.newObject({
                 adaptorId: "afw",
-                objectTypeId: "_AdaptiveResponseError_",
+                objectTypeId: "_AdaptiveError_",
                 object: error,
             });
 

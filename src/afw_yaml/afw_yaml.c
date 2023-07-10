@@ -180,7 +180,7 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
     return afw_utf8_printf(xctx->p, xctx,
         "\"status\": \"error\",\n"
         "\"errorCode\": %d,\n"
-        "\"errorCodeId\": %s,\n"
+        "\"id\": %s,\n"
         "\"sourceFile\": %s,\n"
         "\"function\": %s,\n"
         "\"lineNumber\": %d,\n"

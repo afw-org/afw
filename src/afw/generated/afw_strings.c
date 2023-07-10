@@ -382,6 +382,9 @@ AFW_UTF8_LITERAL("_AdaptiveEnvironmentVariables_");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveErrorRVDecoder_ =
 AFW_UTF8_LITERAL("_AdaptiveErrorRVDecoder_");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveError_ =
+AFW_UTF8_LITERAL("_AdaptiveError_");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveExtension_ =
 AFW_UTF8_LITERAL("_AdaptiveExtension_");
 
@@ -573,9 +576,6 @@ AFW_UTF8_LITERAL("_AdaptiveRequestProperties_");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponseAction_ =
 AFW_UTF8_LITERAL("_AdaptiveResponseAction_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponseError_ =
-AFW_UTF8_LITERAL("_AdaptiveResponseError_");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponse_ =
 AFW_UTF8_LITERAL("_AdaptiveResponse_");
@@ -3099,9 +3099,6 @@ AFW_UTF8_LITERAL("error");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorCode =
 AFW_UTF8_LITERAL("errorCode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorCodeId =
-AFW_UTF8_LITERAL("errorCodeId");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorReason =
 AFW_UTF8_LITERAL("errorReason");

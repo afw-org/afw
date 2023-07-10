@@ -6,8 +6,8 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "The _AdaptiveObjectType_ for _AdaptiveResponseError_ objects.",
-    "objectType": "_AdaptiveResponseError_",
+    "description": "The _AdaptiveObjectType_ for _AdaptiveError_ objects.",
+    "objectType": "_AdaptiveError_",
     "otherProperties": {},
     "propertyTypes": {
         "actionNumber": {
@@ -47,17 +47,17 @@
             "description": "The numeric error code.",
             "label": "Error Code"
         },
-        "errorCodeId": {
-            "brief": "The decoded error code",
-            "dataType": "string",
-            "description": "The decoded error code.",
-            "label": "Error Code Id"
-        },
         "errorSource": {
             "brief": "The internal source filename:line where the error occurred",
             "dataType": "string",
             "description": "The internal source filename:line where the error occurred.",
             "label": "Error Source"
+        },
+        "id": {
+            "brief": "Error code id",
+            "dataType": "string",
+            "description": "The mnemonic for the numeric error code (errorCode).",
+            "label": "Error Code Id"
         },
         "line": {
             "brief": "The line number in the adaptive value source of the error",

@@ -763,14 +763,14 @@ class script
      * throw()
      *
      * This throws an error that can be caught by a try/catch block. An error
-     * object of object type _AdaptiveResponseError_ will be available in the
-     * catch block. Its "errorCodeId" property will be set to "throw". The
-     * other properties set based on the parameters specified and where this
-     * function is called.
+     * object of object type _AdaptiveError_ will be available in the catch
+     * block. Its "id" property will be set to "throw". The other properties
+     * set based on the parameters specified and where this function is
+     * called.
      *
      * @param string $message This is the message that will be included in
-     *                        the _AdaptiveResponseError_ error object
-     *                        available in the catch block.
+     *                        the _AdaptiveError_ error object available in
+     *                        the catch block.
      * @param  $additional Optional additional information that will be
      *                     available as a "additional" property in the error
      *                     object.

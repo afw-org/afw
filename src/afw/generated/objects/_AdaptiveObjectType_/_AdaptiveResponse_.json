@@ -25,7 +25,7 @@
         "error": {
             "brief": "Details about the error",
             "dataType": "object",
-            "dataTypeParameter": "_AdaptiveResponseError_",
+            "dataTypeParameter": "_AdaptiveError_",
             "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
             "label": "Error"
         },

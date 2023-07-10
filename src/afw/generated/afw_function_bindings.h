@@ -26138,10 +26138,9 @@ afw_function_definition_throw;
  * @param x function execute parameter.
  *
  * This throws an error that can be caught by a try/catch block. An error
- * object of object type _AdaptiveResponseError_ will be available in the catch
- * block. Its "errorCodeId" property will be set to "throw". The other
- * properties set based on the parameters specified and where this function is
- * called.
+ * object of object type _AdaptiveError_ will be available in the catch block.
+ * Its "id" property will be set to "throw". The other properties set based on
+ * the parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26158,7 +26157,7 @@ afw_function_definition_throw;
  * Parameters:
  *
  *   message - (string) This is the message that will be included in the
- *       _AdaptiveResponseError_ error object available in the catch block.
+ *       _AdaptiveError_ error object available in the catch block.
  *
  *   additional - (optional any dataType) Optional additional information that
  *       will be available as a "additional" property in the error object.

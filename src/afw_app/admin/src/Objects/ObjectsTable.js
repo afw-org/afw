@@ -98,7 +98,7 @@ const onRetrieveObjects = async ({
         onStatus();
     } catch (error) {      
         onStatus();
-        if (error && !(error.errorCodeId === "not_found"))
+        if (error && !(error.id === "not_found"))
             onError(error);
     }
 

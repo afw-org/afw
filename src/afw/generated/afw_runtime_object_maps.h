@@ -273,6 +273,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveErrorRVDecoder_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveError_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveError_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveExtension_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
@@ -655,12 +661,6 @@ afw_runtime_inf__AdaptiveRequestProperties_;
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveResponseAction_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveResponseError_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveResponseError_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveResponse_

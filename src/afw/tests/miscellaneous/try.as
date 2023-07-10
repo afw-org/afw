@@ -704,7 +704,7 @@ try {
 }
 catch (e) {
     /* Only handle if thrown by throw statement. */
-    if (e.errorCodeId != 'throw') {
+    if (e.id != 'throw') {
         rethrow;
     }
     catch_entered = true;
@@ -727,7 +727,7 @@ try {
 }
 catch (e) {
     /* Only handle if thrown by throw statement. */
-    if (e.errorCodeId != 'throw') {
+    if (e.id != 'throw') {
         rethrow;
     }
     catch_entered = true;

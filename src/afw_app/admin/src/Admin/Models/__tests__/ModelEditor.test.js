@@ -129,7 +129,7 @@ describe("ModelEditor Tests", () => {
                             error: {
                                 error: true,
                                 errorCode: 9,
-                                errorCodeId: "not_found",
+                                id: "not_found",
                                 message: "Error opening /afw/models/_AdaptiveModel_/test1"
                             }
                         })

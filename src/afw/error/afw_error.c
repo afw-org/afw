@@ -954,7 +954,7 @@ afw_error_add_to_object(
     }
 
     afw_object_set_property_as_string(object,
-        &afw_s_errorCodeId,
+        &afw_s_id,
         afw_utf8_create(afw_error_code_id_z(error),
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);

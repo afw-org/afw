@@ -1,55 +1,19 @@
 {
     "$defs": {
-        "_AdaptiveResponseAction_": {
+        "_AdaptiveError_": {
             "additionalProperties": {
-                "description": "The result of an action."
+                "description": "The _AdaptiveObjectType_ for _AdaptiveError_ objects."
             },
             "anyOf": [
                 {
-                    "$ref": "#/$defs/_AdaptiveResponseAction_.propertyTypes"
-                }
-            ],
-            "description": "The result of an action.",
-            "type": "object"
-        },
-        "_AdaptiveResponseAction_.propertyTypes": {
-            "properties": {
-                "console": {
-                    "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
-                    "title": "Console",
-                    "type": "string"
-                },
-                "result": {
-                    "description": "Result of action.",
-                    "title": "Result"
-                },
-                "stderr": {
-                    "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
-                    "title": "Stderr",
-                    "type": "string"
-                },
-                "stdout": {
-                    "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
-                    "title": "Stdout",
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "_AdaptiveResponseError_": {
-            "additionalProperties": {
-                "description": "The _AdaptiveObjectType_ for _AdaptiveResponseError_ objects."
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveResponseError_.propertyTypes"
+                    "$ref": "#/$defs/_AdaptiveError_.propertyTypes"
                 }
             ],
             "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
             "title": "Error",
             "type": "object"
         },
-        "_AdaptiveResponseError_.propertyTypes": {
+        "_AdaptiveError_.propertyTypes": {
             "properties": {
                 "actionNumber": {
                     "description": "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error.",
@@ -82,14 +46,14 @@
                     "title": "Error Code",
                     "type": "integer"
                 },
-                "errorCodeId": {
-                    "description": "The decoded error code.",
-                    "title": "Error Code Id",
-                    "type": "string"
-                },
                 "errorSource": {
                     "description": "The internal source filename:line where the error occurred.",
                     "title": "Error Source",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The mnemonic for the numeric error code (errorCode).",
+                    "title": "Error Code Id",
                     "type": "string"
                 },
                 "line": {
@@ -165,6 +129,42 @@
             },
             "type": "object"
         },
+        "_AdaptiveResponseAction_": {
+            "additionalProperties": {
+                "description": "The result of an action."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveResponseAction_.propertyTypes"
+                }
+            ],
+            "description": "The result of an action.",
+            "type": "object"
+        },
+        "_AdaptiveResponseAction_.propertyTypes": {
+            "properties": {
+                "console": {
+                    "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
+                    "title": "Console",
+                    "type": "string"
+                },
+                "result": {
+                    "description": "Result of action.",
+                    "title": "Result"
+                },
+                "stderr": {
+                    "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
+                    "title": "Stderr",
+                    "type": "string"
+                },
+                "stdout": {
+                    "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
+                    "title": "Stdout",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "_AdaptiveResponse_": {
             "additionalProperties": {},
             "anyOf": [
@@ -193,7 +193,7 @@
                     "type": "string"
                 },
                 "error": {
-                    "$ref": "#/$defs/_AdaptiveResponseError_",
+                    "$ref": "#/$defs/_AdaptiveError_",
                     "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
                     "title": "Error",
                     "type": "object"
