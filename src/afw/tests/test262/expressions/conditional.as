@@ -17,26 +17,26 @@ assert((false ? false : true) === true, "false ? false : true !== true");
 loc x: boolean = true;
 loc y: boolean = false;
 if ((x ? y : true) !== y) {
-    assert(false, "x ? y : true !== y");
+    throw "x ? y : true !== y";
 }
 
 loc z: boolean = true;
 if ((false ? false : z) !== z) {
-    assert(false, "false ? false : z !== z");
+    throw "false ? false : z !== z";
 }
 
 x = true;
 y = false;
 z = true;
 if ((x ? y : z) !== y) {
-    assert(false, "x ? y : z !== y");
+    throw "x ? y : z !== y";
 }
 
 x = false;
 y = false;
 z = true;
 if ((x ? y : z) !== z) {
-    assert(false, "x ? y : z !== z");
+    throw "x ? y : z !== z";
 }
 
 
@@ -47,7 +47,7 @@ if ((x ? y : z) !== z) {
 #!/usr/bin/env afw
 
 if (x ? true : false) {
-    assert(false, "x ? true : false");
+    throw "x ? true : false";
 }
 
 
@@ -58,7 +58,7 @@ if (x ? true : false) {
 #!/usr/bin/env afw
 
 if (true ? y : false) {
-    assert(false, "true ? y : false");
+    throw "true ? y : false";
 }
 
 
@@ -69,7 +69,7 @@ if (true ? y : false) {
 #!/usr/bin/env afw
 
 if (false ? true : z) {
-    assert(false, "false ? true : z");
+    throw "false ? true : z";
 }
 
 
@@ -80,12 +80,12 @@ if (false ? true : z) {
 #!/usr/bin/env afw
 
 if ((false ? false : true) !== true) {
-    assert(false, "false ? false : true !== true");
+    throw "false ? false : true !== true";
 }
 
 loc z: boolean = true;
 if ((false ? true : z) !== z) {
-    assert(false, "false ? true : z !== z");
+    throw "false ? true : z !== z";
 }
 
 
@@ -96,11 +96,11 @@ if ((false ? true : z) !== z) {
 #!/usr/bin/env afw
 
 if ((false ? true : undefined) !== undefined) {
-    assert(false, "false ? true : undefined");
+    throw "false ? true : undefined";
 }
 
 if ((false ? true : null) !== null) {
-    assert(false, "false ? true : null");
+    throw "false ? true : null";
 }
 
 
@@ -111,12 +111,12 @@ if ((false ? true : null) !== null) {
 #!/usr/bin/env afw
 
 if ((true ? false : true) !== false) {
-    assert(false, "true ? false : true !== false");
+    throw "true ? false : true !== false";
 }
 
 loc y: boolean = true;
 if ((true ? y : false) !== y) {
-    assert(false, "true ? y : false !== y");
+    throw "true ? y : false !== y";
 }
 
 
@@ -127,11 +127,11 @@ if ((true ? y : false) !== y) {
 #!/usr/bin/env afw
 
 if ((true ? undefined : true) !== undefined) {
-    assert(false, "true ? undefined : true !== undefined");
+    throw "true ? undefined : true !== undefined";
 }
 
 if ((true ? null : true) !== null) {
-    assert(false, "true ? null : true !== null");
+    throw "true ? null : true !== null";
 }
 
 

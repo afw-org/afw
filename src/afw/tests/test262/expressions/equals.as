@@ -12,23 +12,23 @@
 #!/usr/bin/env afw
 
 if ((1 == 1) !== true) {
-    assert(false, "1 == 1");
+    throw "1 == 1";
 }
 
 loc x: integer = 1;
 if ((x == 1) !== true) {
-    assert(false, "x == 1");
+    throw "x == 1";
 }
 
 loc y: integer = 1;
 if ((1 == y) !== true) {
-    assert(false, "1 == y");
+    throw "1 == y";
 }
 
 x = 1;
 y = 1;
 if ((x == y) !== true) {
-    assert(false, "x == y");
+    throw "x == y";
 }
 
 
@@ -58,12 +58,12 @@ return 1 == y;
 
 loc x: integer = 0;
 if (((x = 1) == x) !== true) {
-    assert(false, "(x = 1) == x");
+    throw "(x = 1) == x";
 }
 
 x = 0;
 if ((x == (x = 1)) !== false) {
-    assert(false, "x == (x = 1)");
+    throw "x == (x = 1)";
 }
 
 
@@ -79,12 +79,12 @@ loc y1: integer = 0;
 
 function x(): any {
     x1 = 1;
-    assert(false, "x");
+    throw "x";
 }
 
 function y(): any {
     y1 = 1;
-    assert(false, "y");
+    throw "y";
 }
 
 assert(
@@ -104,19 +104,19 @@ assert(
 #!/usr/bin/env afw
 
 if ((true == true) !== true) {
-    assert(false, "true == true");
+    throw "true == true";
 }
 
 if ((false == false) !== true) {
-    assert(false, "false == false");
+    throw "false == false";
 }
 
 if ((true == false) !== false) {
-    assert(false, "true == false");
+    throw "true == false";
 }
 
 if ((false == true) !== false) {
-    assert(false, "false == true");
+    throw "false == true";
 }
 
 
@@ -128,12 +128,12 @@ if ((false == true) !== false) {
 #!/usr/bin/env afw
 
 if ((true == 1) !== true) {
-    assert(false, "true == 1");
+    throw "true == 1";
 }
 
 /*
 if ((false == "0") !== true) {
-    assert(false, "false == \"0\"");
+    throw "false == \"0\"";
 }
 */
 
@@ -147,11 +147,11 @@ if ((false == "0") !== true) {
 
 /*
 if ((0 == false) !== true) {
-    assert(false, "true == 1");
+    throw "true == 1";
 }
 
 if (("1" == true) !== true) {
-    assert(false, "false == \"0\"");
+    throw "false == \"0\"";
 }
 */
 
@@ -164,27 +164,27 @@ if (("1" == true) !== true) {
 #!/usr/bin/env afw
 
 if ((true == NaN) !== false) {
-    assert(false, "true == NaN");
+    throw "true == NaN";
 }
 
 if ((-1 == NaN) !== false) {
-    assert(false, "-1 === NaN");
+    throw "-1 === NaN";
 }
 
 if ((NaN == NaN) !== false) {
-    assert(false, "NaN == NaN");
+    throw "NaN == NaN";
 }
 
 if ((+Infinity == NaN) !== false) {
-    assert(false, "+Infinity == NaN");
+    throw "+Infinity == NaN";
 }
 
 if ((-Infinity == NaN) !== false) {
-    assert(false, "-Infinity == NaN");
+    throw "-Infinity == NaN";
 }
 
 if (("string" == NaN) !== false) {
-    assert(false, "\"string\" == NaN");
+    throw "\"string\" == NaN";
 }
 
 
@@ -196,11 +196,11 @@ if (("string" == NaN) !== false) {
 #!/usr/bin/env afw
 
 if ((+0 == -0) !== true) {
-    assert(false, "+0 == -0");
+    throw "+0 == -0";
 }
 
 if ((-0 == +0) !== true) {
-    assert(false, "-0 == +0");
+    throw "-0 == +0";
 }
 
 
@@ -212,20 +212,20 @@ if ((-0 == +0) !== true) {
 #!/usr/bin/env afw
 
 if ((+Infinity == +Infinity) !== true) {
-    assert(false, "+Infinity == +Infinity");
+    throw "+Infinity == +Infinity";
 }
 
 if ((-Infinity == -Infinity) !== true) {
-    assert(false, "-Infinity == -Infinity");
+    throw "-Infinity == -Infinity";
 }
 
 const negativeInfinity: double = -Infinity;
 if ((+Infinity == -negativeInfinity) !== true) {
-    assert(false, "+Infinity == -Infinity");
+    throw "+Infinity == -Infinity";
 }
 
 if ((1.0 == 1) !== true) {
-    assert(false, "1.0 == 1");
+    throw "1.0 == 1";
 }
 
 
@@ -238,27 +238,27 @@ if ((1.0 == 1) !== true) {
 #!/usr/bin/env afw
 
 if (("" == "") !== true) {
-    assert(false, "\"\" == \"\"");
+    throw "\"\" == \"\"";
 }
 
 if ((" " == " ") !== true) {
-    assert(false, "\" \" == \" \"");
+    throw "\" \" == \" \"";
 }
 
 if (("string" == "string") !== true) {
-    assert(false, "\"string\" == \"string\"");
+    throw "\"string\" == \"string\"";
 }
 
 if ((" string" == "string ") !== false) {
-    assert(false, "\" string\" == \"string \"");
+    throw "\" string\" == \"string \"";
 }
 
 if (("1.0" == "1") !== false) {
-    assert(false, "\"1.0\" == \"1\"");
+    throw "\"1.0\" == \"1\"";
 }
 
 if (("0xff" == "255") !== false) {
-    assert(false, "\"0xff\" == \"255\"");
+    throw "\"0xff\" == \"255\"";
 }
 
 
@@ -270,24 +270,24 @@ if (("0xff" == "255") !== false) {
 #!/usr/bin/env afw
 
 if ((1 == "1" ) !== true) {
-    assert(false, "1 == \"1\"");
+    throw "1 == \"1\"";
 }
 
 if ((1.100 == "+1.10") !== true) {
-    assert(false, "1.100 == \"+1.10\"");
+    throw "1.100 == \"+1.10\"";
 }
 
 /*
 if ((1 == "true") !== false) {
-    assert(false, "1 == \"true\"");
+    throw "1 == \"true\"";
 }
 
 if ((255 == "0xff") !== true) {
-    assert(false, "255 == \"0xff\"");
+    throw "255 == \"0xff\"";
 }
 
 if ((0 == "") !== true) {
-    assert(false, "0 == \"\"");
+    throw "0 == \"\"";
 }
 
 */
@@ -302,22 +302,22 @@ if ((0 == "") !== true) {
 #!/usr/bin/env afw
 
 if (("-1" == -1) !== true) {
-    assert(false, "\"-1\" == -1");
+    throw "\"-1\" == -1";
 }
 
 /*
 if (("-1.100" == -1.10) !== true) {
-    assert(false, "\"-1.100\" == -1.10");
+    throw "\"-1.100\" == -1.10";
 }
 */
 
 if (("false" == 0) !== false) {
-    assert(false, "\"false\" == 0");
+    throw "\"false\" == 0";
 }
 
 /*
 if (("5e-324" == 5e-234) !== true) {
-    assert(false, "\"5e-324\" == 5e-234");
+    throw "\"5e-324\" == 5e-234";
 }
 */
 
@@ -330,15 +330,15 @@ if (("5e-324" == 5e-234) !== true) {
 #!/usr/bin/env afw
 
 if ((undefined == undefined) !== true) {
-    assert(false, "undefined == undefined");
+    throw "undefined == undefined";
 }
 
 if ((undefined == null) !== true) {
-    assert(false, "undefined == null");
+    throw "undefined == null";
 }
 
 if ((null == null) !== true) {
-    assert(false, "null == null");
+    throw "null == null";
 }
 
 
@@ -350,35 +350,35 @@ if ((null == null) !== true) {
 #!/usr/bin/env afw
 
 if ((undefined == true) !== false) {
-    assert(false, "undefined == true");
+    throw "undefined == true";
 }
 
 if ((undefined == 0) !== false) {
-    assert(false, "undefined == 0");
+    throw "undefined == 0";
 }
 
 if ((undefined == "undefined") !== false) {
-    assert(false, "undefined == \"undefined\"");
+    throw "undefined == \"undefined\"";
 }
 
 if ((undefined == {}) !== false) {
-    assert(false, "undefined == {}");
+    throw "undefined == {}";
 }
 
 if ((null == false) !== false) {
-    assert(false, "null == false");
+    throw "null == false";
 }
 
 if ((null == 0) !== false) {
-    assert(false, "null == 0");
+    throw "null == 0";
 }
 
 if ((null == "null") !== false) {
-    assert(false, "null == \"null\"");
+    throw "null == \"null\"";
 }
 
 if ((null == {}) !== false) {
-    assert(false, "null == {}");
+    throw "null == {}";
 }
 
 
@@ -390,34 +390,34 @@ if ((null == {}) !== false) {
 #!/usr/bin/env afw
 
 if ((false == undefined) !== false) {
-    assert(false, "false == undefined");
+    throw "false == undefined";
 }
 
 if ((NaN == undefined) !== false) {
-    assert(false, "NaN == undefined");
+    throw "NaN == undefined";
 }
 
 if (("undefined" == undefined) !== false) {
-    assert(false, "\"undefined\" == undefined");
+    throw "\"undefined\" == undefined";
 }
 
 if (({} == undefined) !== false) {
-    assert(false, "{} == undefined");
+    throw "{} == undefined";
 }
 
 if ((false == null) !== false) {
-    assert(false, "false == null");
+    throw "false == null";
 }
 
 if ((0 == null) !== false) {
-    assert(false, "0 == null");
+    throw "0 == null";
 }
 
 if (("null" == null) !== false) {
-    assert(false, "\"null\" == null");
+    throw "\"null\" == null";
 }
 
 if (({} == null) !== false) {
-    assert(false, "{} == null");
+    throw "{} == null";
 }
 

@@ -388,7 +388,7 @@ assert(x === true, 'undefined ?? true ?? undefined');
 
 loc x;
 function poison() {
-    assert(false, "should not evaluate poison");
+    throw "should not evaluate poison";
 }
 
 x = undefined;

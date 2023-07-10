@@ -14,5 +14,5 @@
 
 //CHECK#1
 if (null !== null) {
-  assert(false, '#1: null === null');
+  throw '#1: null === null';
 }

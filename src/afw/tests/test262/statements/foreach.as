@@ -34,7 +34,7 @@ foreach loc x: integer of array {
     i = i + 1;
     break;
 
-    assert(false, "should not get here");
+    throw "should not get here";
 }
 
 return 0;
@@ -52,7 +52,7 @@ foreach loc x: integer of array {
     i = i + 1;
     continue;
 
-    assert(false, "should not get here");
+    throw "should not get here";
 }
 
 return 0;
@@ -70,5 +70,5 @@ foreach loc x: integer of array {
     i = i + 1;
     return 0;
 
-    assert(false, "should not get here");
+    throw "should not get here";
 }

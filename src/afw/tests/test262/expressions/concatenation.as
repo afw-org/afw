@@ -16,7 +16,7 @@
 // must be used to convert undefined to a string.
 
 if (concat(string(undefined) + "") !== "<undefined>") {
-    assert(false, "undefined + \"\" === \"<undefined>\"");
+    throw "undefined + \"\" === \"<undefined>\"";
 }
 
 
@@ -28,7 +28,7 @@ if (concat(string(undefined) + "") !== "<undefined>") {
 #!/usr/bin/env afw
 
 if (concat(null, "") !== "null") {
-    assert(false, "null + \"\" === \"null\"");
+    throw "null + \"\" === \"null\"";
 }
 
 
@@ -40,11 +40,11 @@ if (concat(null, "") !== "null") {
 #!/usr/bin/env afw
 
 if (concat(false, "") !== "false") {
-    assert(false, "false + \"\" === \"false\"");
+    throw "false + \"\" === \"false\"";
 }
 
 if (concat(true, "") !== "true") {
-    assert(false, "true + \"\" === \"true\"");
+    throw "true + \"\" === \"true\"";
 }
 
 
@@ -57,11 +57,11 @@ if (concat(true, "") !== "true") {
 
 loc x1: string = "abc";
 if (concat(x1, "") !== x1) {
-    assert(false, "x1 + \"\" === \"abc\"");
+    throw "x1 + \"\" === \"abc\"";
 }
 
 loc x2: string = "abc";
 if (concat(meta(x2).dataType, "") !== meta(x2).dataType) {
-    assert(false, "meta(x2).dataType + \"\" !== meta(x2).dataType");
+    throw "meta(x2).dataType + \"\" !== meta(x2).dataType";
 }
 

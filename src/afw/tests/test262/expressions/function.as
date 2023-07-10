@@ -13,7 +13,7 @@
 
 loc y: integer = function (): integer {return 2;}();
 if (y !== 2) {
-    assert(false, "Create anonymous function dynamically failed");
+    throw "Create anonymous function dynamically failed";
 }
 
 
@@ -27,7 +27,7 @@ if (y !== 2) {
 
 loc callCount: integer = 0;
 function fn_assert(): any {
-    assert(false, "error");
+    throw "error";
 };
 
 // \fixme function parameter default assignment can't be a function call

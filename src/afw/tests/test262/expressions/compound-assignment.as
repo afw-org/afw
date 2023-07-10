@@ -137,7 +137,7 @@ assert(_11_13_2_19 === 9, '_11_13_2_19');
 loc x = 1;
 x *= -1; 
 if (x !== -1) {
- assert(false, '#1: loc x = 1; x *= -1; x === -1. Actual: ' + (x));
+ throw '#1: loc x = 1; x *= -1; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
@@ -145,7 +145,7 @@ loc y;
 y = 1;
 y *= -1;
 if (y !== -1) {
-  assert(false, '#2: y = 1; y *= -1; y === -1. Actual: ' + (y));
+  throw '#2: y = 1; y *= -1; y === -1. Actual: ' + (y);
 }
 
 
@@ -158,7 +158,7 @@ if (y !== -1) {
 loc x = 1;
 x /= -1; 
 if (x !== -1) {
-  assert(false, '#1: loc x = 1; x /= -1; x === -1. Actual: ' + (x));
+  throw '#1: loc x = 1; x /= -1; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
@@ -166,7 +166,7 @@ loc y;
 y = 1;
 y /= -1;
 if (y !== -1) {
-  assert(false, '#2: y = 1; y /= -1; y === -1. Actual: ' + (y));
+  throw '#2: y = 1; y /= -1; y === -1. Actual: ' + (y);
 }
 
 
@@ -179,7 +179,7 @@ if (y !== -1) {
 loc x = -1;
 x %= 2; 
 if (x !== -1) {
-  assert(false, '#1: loc x = -1; x %= 2; x === -1. Actual: ' + (x));
+  throw '#1: loc x = -1; x %= 2; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
@@ -187,7 +187,7 @@ loc y;
 y = -1;
 y %= 2;
 if (y !== -1) {
-  assert(false, '#2: y = -1; y %= 2; y === -1. Actual: ' + (y));
+  throw '#2: y = -1; y %= 2; y === -1. Actual: ' + (y);
 }
 
 
@@ -200,7 +200,7 @@ if (y !== -1) {
 loc x = 1;
 x += 1; 
 if (x !== 2) {
-  assert(false, '#1: loc x = 1; x += 1; x === 2. Actual: ' + (x));
+  throw '#1: loc x = 1; x += 1; x === 2. Actual: ' + (x);
 }
 
 //CHECK#2
@@ -208,7 +208,7 @@ loc y;
 y = 1;
 y += 1;
 if (y !== 2) {
-  assert(false, '#2: y = 1; y += 1; y === 2. Actual: ' + (y));
+  throw '#2: y = 1; y += 1; y === 2. Actual: ' + (y);
 }
 
 
@@ -221,7 +221,7 @@ if (y !== 2) {
 loc x = -1;
 x -= 1; 
 if (x !== -2) {
-  assert(false, '#1: loc x = -1; x -= 1; x === -2. Actual: ' + (x));
+  throw '#1: loc x = -1; x -= 1; x === -2. Actual: ' + (x);
 }
 
 //CHECK#2
@@ -229,7 +229,7 @@ loc y;
 y = -1;
 y -= 1;
 if (y !== -2) {
-  assert(false, '#2: y = -1; y -= 1; y === -2. Actual: ' + (y));
+  throw '#2: y = -1; y -= 1; y === -2. Actual: ' + (y);
 }
 
 
@@ -244,7 +244,7 @@ loc x;
 x = 1;
 x *= 1;
 if (x !== 1) {
-  assert(false, '#1: x = 1; x *= 1; x === 1. Actual: ' + (x));
+  throw '#1: x = 1; x *= 1; x === 1. Actual: ' + (x);
 }
 
 //? test: S11.13.2_A4.3_T1.2
@@ -258,7 +258,7 @@ loc x;
 x = 1;
 x %= 1;
 if (x !== 0) {
-  assert(false, '#1: x = 1; x %= 1; x === 0. Actual: ' + (x));
+  throw '#1: x = 1; x %= 1; x === 0. Actual: ' + (x);
 }
 
 

@@ -64,7 +64,7 @@ x
 1;
 
 if (x !== 1) {
-  assert(false, '#1: loc\\nx\\n=\\n1\\n; x === 1. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\n1\\n; x === 1. Actual: ' + (x);
 }
 
 
@@ -536,7 +536,7 @@ y
 z
 ;
 if (x !== 5) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
 }
 x=0;
 
@@ -550,7 +550,7 @@ y
 z
 ;
 if (x !== 5) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
 }
 
 
@@ -572,7 +572,7 @@ y
 z
 ;
 if (x !== 1) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
 }
 x=0;
 
@@ -586,7 +586,7 @@ y
 z
 ;
 if (x !== 1) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
 }
 
 
@@ -608,7 +608,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -622,7 +622,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
@@ -644,7 +644,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -658,7 +658,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
@@ -680,7 +680,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -694,7 +694,7 @@ y
 z
 ;
 if (x !== 6) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
@@ -718,7 +718,7 @@ y
 z
 ;
 if (x !== true) {
-  assert(false, '#1: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x));
+  throw '#1: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
 }
 x=0;
 
@@ -732,5 +732,5 @@ y
 z
 ;
 if (x !== true) {
-  assert(false, '#2: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x));
+  throw '#2: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
 }

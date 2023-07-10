@@ -14,53 +14,53 @@
 
 //CHECK#1
 if ((evaluate(script("false\u0009||\u0009true"))) !== true) {
-  assert(false, '#1: (false\\u0009||\\u0009true) === true');
+  throw '#1: (false\\u0009||\\u0009true) === true';
 }
 
 //CHECK#2
 if ((evaluate(script("false\u000B||\u000Btrue"))) !== true) {
-  assert(false, '#2: (false\\u000B||\\u000Btrue) === true');
+  throw '#2: (false\\u000B||\\u000Btrue) === true';
 }
 
 //CHECK#3
 if ((evaluate(script("false\u000C||\u000Ctrue"))) !== true) {
-  assert(false, '#3: (false\\u000C||\\u000Ctrue) === true');
+  throw '#3: (false\\u000C||\\u000Ctrue) === true';
 }
 
 //CHECK#4
 if ((evaluate(script("false\u0020||\u0020true"))) !== true) {
-  assert(false, '#4: (false\\u0020||\\u0020true) === true');
+  throw '#4: (false\\u0020||\\u0020true) === true';
 }
 
 //CHECK#5
 if ((evaluate(script("false\u00A0||\u00A0true"))) !== true) {
-  assert(false, '#5: (false\\u00A0||\\u00A0true) === true');
+  throw '#5: (false\\u00A0||\\u00A0true) === true';
 }
 
 //CHECK#6
 if ((evaluate(script("false\u000A||\u000Atrue"))) !== true) {
-  assert(false, '#6: (false\\u000A||\\u000Atrue) === true');
+  throw '#6: (false\\u000A||\\u000Atrue) === true';
 }
 
 //CHECK#7
 if ((evaluate(script("false\u000D||\u000Dtrue"))) !== true) {
-  assert(false, '#7: (false\\u000D||\\u000Dtrue) === true');
+  throw '#7: (false\\u000D||\\u000Dtrue) === true';
 }
 
 //CHECK#8
 if ((evaluate(script("false\u2028||\u2028true"))) !== true) {
-  assert(false, '#8: (false\\u2028||\\u2028true) === true');
+  throw '#8: (false\\u2028||\\u2028true) === true';
 }
 
 //CHECK#9
 if ((evaluate(script("false\u2029||\u2029true"))) !== true) {
-  assert(false, '#9: (false\\u2029||\\u2029true) === true');
+  throw '#9: (false\\u2029||\\u2029true) === true';
 }
 
 
 //CHECK#10
 if ((evaluate(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029||\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true"))) !== true) {
-  assert(false, '#10: (false\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029||\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true) === true');
+  throw '#10: (false\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029||\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true) === true';
 }
 
 
@@ -73,12 +73,12 @@ if ((evaluate(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u202
 
 //CHECK#1
 if ((true || false) !== true) {
-  assert(false, '#1: (true || false) === true');
+  throw '#1: (true || false) === true';
 }
 
 //CHECK#2
 if ((false || true) !== true) {
-  assert(false, '#2: (false || true) === true');
+  throw '#2: (false || true) === true';
 }
 
 
@@ -114,7 +114,7 @@ false || y;
 // \fixme short-circuit here skips unresolved reference to x
 //CHECK#1
 if ((true || x) !== true) {
-  assert(false, '#1: (true || x) === true');
+  throw '#1: (true || x) === true';
 }
 
 
@@ -132,13 +132,13 @@ loc x = function () { throw "x"; };
 loc y = function () { throw "y"; };
 try {
    x() || y();
-   assert(false, '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (x() || y()));
+   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (x() || y());
 } catch (e) {
    if (e === "y") {
-     assert(false, '#1.2: First expression is evaluated first, and then second expression');
+     throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       assert(false, '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (e));
+       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (e);
      }
    }
 }
@@ -156,17 +156,17 @@ try {
 //CHECK#1
 try {
   x || (x = true);
-  assert(false, '#1.1: x || (x = true) throw ReferenceError. Actual: ' + (x || (x = true)));
+  throw '#1.1: x || (x = true) throw ReferenceError. Actual: ' + (x || (x = true));
 }
 catch (e) {
   if ((e instanceof ReferenceError) !== true) {
-    assert(false, '#1.2: x || (x = true) throw ReferenceError. Actual: ' + (e));
+    throw '#1.2: x || (x = true) throw ReferenceError. Actual: ' + (e);
   }
 }
 
 //CHECK#2
 if (((y = true) || y) !== true) {
-  assert(false, '#2: ((y = true) || y) === true');
+  throw '#2: ((y = true) || y) === true';
 }
 
 
@@ -179,12 +179,12 @@ if (((y = true) || y) !== true) {
 
 //CHECK#1
 if ((false || true) !== true) {
-  assert(false, '#1: (false || true) === true');
+  throw '#1: (false || true) === true';
 }
 
 //CHECK#2
 if ((false || false) !== false) {
-  assert(false, '#2: (false || false) === false');
+  throw '#2: (false || false) === false';
 }
 
 
@@ -197,12 +197,12 @@ if ((false || false) !== false) {
 
 //CHECK#1
 if (((true || true)) !== true) {
-  assert(false, '#1: (true || true) === true');
+  throw '#1: (true || true) === true';
 }
 
 //CHECK#2
 if ((true || false) !== true) {
-  assert(false, '#2: (true || false) === true');
+  throw '#2: (true || false) === true';
 }
 
 
@@ -215,12 +215,12 @@ if ((true || false) !== true) {
 
 //CHECK#1
 if ((true || undefined) !== true) {
-  assert(false, '#1: (true || undefined) === true');
+  throw '#1: (true || undefined) === true';
 }
 
 //CHECK#2
 if ((true || null) !== true) {
-  assert(false, '#2: (true || null) === true');
+  throw '#2: (true || null) === true';
 }
 
 

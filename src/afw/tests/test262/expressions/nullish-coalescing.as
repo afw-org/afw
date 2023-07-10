@@ -321,7 +321,7 @@ return 0;
 #!/usr/bin/env afw
 
 function poison(): any{
-    assert(false, "should not evaluate poison");
+    throw "should not evaluate poison";
 }
 
 loc x: integer;

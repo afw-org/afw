@@ -13,52 +13,52 @@
 
 //CHECK#1
 if (evaluate(script("1\u0009+\u00091")) !== 2) {
-  assert(false, '#1: 1\\u0009+\\u00091 === 2');
+  throw '#1: 1\\u0009+\\u00091 === 2';
 }
 
 //CHECK#2
 if (evaluate(script("1\u000B+\u000B1")) !== 2) {
-  assert(false, '#2: 1\\u000B+\\u000B1 === 2');  
+  throw '#2: 1\\u000B+\\u000B1 === 2';  
 }
 
 //CHECK#3
 if (evaluate(script("1\u000C+\u000C1")) !== 2) {
-  assert(false, '#3: 1\\u000C+\\u000C1 === 2');
+  throw '#3: 1\\u000C+\\u000C1 === 2';
 }
 
 //CHECK#4
 if (evaluate(script("1\u0020+\u00201")) !== 2) {
-  assert(false, '#4: 1\\u0020+\\u00201 === 2');
+  throw '#4: 1\\u0020+\\u00201 === 2';
 }
 
 //CHECK#5
 if (evaluate(script("1\u00A0+\u00A01")) !== 2) {
-  assert(false, '#5: 1\\u00A0+\\u00A01 === 2');
+  throw '#5: 1\\u00A0+\\u00A01 === 2';
 }
 
 //CHECK#6
 if (evaluate(script("1\u000A+\u000A1")) !== 2) {
-  assert(false, '#6: 1\\u000A+\\u000A1 === 2');  
+  throw '#6: 1\\u000A+\\u000A1 === 2';  
 }
 
 //CHECK#7
 if (evaluate(script("1\u000D+\u000D1")) !== 2) {
-  assert(false, '#7: 1\\u000D+\\u000D1 === 2');
+  throw '#7: 1\\u000D+\\u000D1 === 2';
 }
 
 //CHECK#8
 if (evaluate(script("1\u2028+\u20281")) !== 2) {
-  assert(false, '#8: 1\\u2028+\\u20281 === 2');
+  throw '#8: 1\\u2028+\\u20281 === 2';
 }
 
 //CHECK#9
 if (evaluate(script("1\u2029+\u20291")) !== 2) {
-  assert(false, '#9: 1\\u2029+\\u20291 === 2');
+  throw '#9: 1\\u2029+\\u20291 === 2';
 }
 
 //CHECK#10
 if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 2) {
-  assert(false, '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029+\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 2');
+  throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029+\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 2';
 }
 
 
@@ -69,23 +69,23 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029+\u0
 #!/usr/bin/env afw
 
 if (1 + 1 !== 2) {
-    assert(false, "1 + 1 !== 2");
+    throw "1 + 1 !== 2";
 }
 
 loc x = 1;
 if (x + 1 !== 2) {
-    assert(false, "x + 1 !== 2");
+    throw "x + 1 !== 2";
 }
 
 loc y = 1;
 if (1 + y !== 2) {
-    assert(false, "1 + y !== 2");
+    throw "1 + y !== 2";
 }
 
 x = 1;
 y = 1;
 if (x + y !== 2) {
-    assert(false, "x + y !== 2");
+    throw "x + y !== 2";
 }
 
 
@@ -115,12 +115,12 @@ x + 1;
 
 loc x = 0;
 if ((x = 1) + x !== 2) {
-    assert(false, "x = 1 + x !== 2");
+    throw "x = 1 + x !== 2";
 }
 
 x = 0;
 if (x = (x = 1) !== 1) {
-    assert(false, "x = (x = 1) !== 1");
+    throw "x = (x = 1) !== 1";
 }
 
 
@@ -135,12 +135,12 @@ loc x_1 = 0;
 loc y_1 = 0;
 function x(): any {
     x_1 = 1;
-    assert(false, "x");
+    throw "x";
 }
 
 function y(): any {
     y_1 = 1;
-    assert(false, "y");
+    throw "y";
 }
 
 safe_evaluate(

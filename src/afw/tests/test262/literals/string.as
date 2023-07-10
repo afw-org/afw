@@ -398,7 +398,7 @@ loc unicode = ["\u0041", "\u0042", "\u0043", "\u0044", "\u0045", "\u0046", "\u00
 loc character = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -415,7 +415,7 @@ loc hex = ["\u0061", "\u0062", "\u0063", "\u0064", "\u0065", "\u0066", "\u0067",
 loc character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (hex[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -432,7 +432,7 @@ loc unicode = ["\u0410", "\u0411", "\u0412", "\u0413", "\u0414", "\u0415", "\u04
 loc character = ["А", "Б", "В", "Г", "Д", "Е", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я", "Ё"];
 for (loc index = 0; index <= 32; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -449,7 +449,7 @@ loc unicode = ["\u0430", "\u0431", "\u0432", "\u0433", "\u0434", "\u0435", "\u04
 loc character = ["а", "б", "в", "г", "д", "е", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", "ё"];
 for (loc index = 0; index <= 32; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -466,7 +466,7 @@ loc unicode = ["\u0030", "\u0031", "\u0032", "\u0033", "\u0034", "\u0035", "\u00
 loc character = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 for (loc index = 0; index <= 9; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -533,32 +533,32 @@ for (loc index = 0; index <= 9; index = index + 1) {
 
 //CHECK#1
 if (String.fromCharCode(0x0008) !== "\b") {
-  assert(false, '#1: String.fromCharCode(0x0008) === "\\b"');
+  throw '#1: String.fromCharCode(0x0008) === "\\b"';
 }
 
 //CHECK#2
 if (String.fromCharCode(0x0009) !== "\t") {
-  assert(false, '#2: String.fromCharCode(0x0009) === "\\t"');
+  throw '#2: String.fromCharCode(0x0009) === "\\t"';
 }
 
 //CHECK#3
 if (String.fromCharCode(0x000A) !== "\n") {
-  assert(false, '#3: String.fromCharCode(0x000A) === "\\n"');
+  throw '#3: String.fromCharCode(0x000A) === "\\n"';
 }
 
 //CHECK#4
 if (String.fromCharCode(0x000B) !== "\v") {
-  assert(false, '#4: String.fromCharCode(0x000B) === "\\v"');
+  throw '#4: String.fromCharCode(0x000B) === "\\v"';
 }
 
 //CHECK#5
 if (String.fromCharCode(0x000C) !== "\f") {
-  assert(false, '#5: String.fromCharCode(0x000C) === "\\f"');
+  throw '#5: String.fromCharCode(0x000C) === "\\f"';
 }
 
 //CHECK#6
 if (String.fromCharCode(0x000D) !== "\r") {
-  assert(false, '#6: String.fromCharCode(0x000D) === "\\r"');
+  throw '#6: String.fromCharCode(0x000D) === "\\r"';
 }
 
 
@@ -573,27 +573,27 @@ if (String.fromCharCode(0x000D) !== "\r") {
 
 //CHECK#1
 if (String.fromCharCode(0x0027) !== "\'") {
-  assert(false, '#1: String.fromCharCode(0x0027) === "\\\'"');
+  throw '#1: String.fromCharCode(0x0027) === "\\\'"';
 }
 
 //CHECK#2
 if (String.fromCharCode(0x0022) !== '\"') {
-  assert(false, '#2: String.fromCharCode(0x0027) === \'\\\"\'');
+  throw '#2: String.fromCharCode(0x0027) === \'\\\"\'';
 }
 
 //CHECK#3
 if (String.fromCharCode(0x005C) !== "\\") {
-  assert(false, '#3: String.fromCharCode(0x005C) === "\\\"');
+  throw '#3: String.fromCharCode(0x005C) === "\\\"';
 }
 
 //CHECK#4
 if ("\'" !== "'") {
-  assert(false, '#4: "\'" === "\\\'"');
+  throw '#4: "\'" === "\\\'"';
 }
 
 //CHECK#5
 if ('\"' !== '"') {
-  assert(false, '#5: \'\"\' === \'\\\"\'');
+  throw '#5: \'\"\' === \'\\\"\'';
 }
 
 
@@ -610,7 +610,7 @@ loc CharacterCode = [0x0041, 0x0042, 0x0043, 0x0044, 0x0045, 0x0046, 0x0047, 0x0
 loc NonEscapeCharacter = ["\A", "\B", "\C", "\D", "\E", "\F", "\G", "\H", "\I", "\J", "\K", "\L", "\M", "\N", "\O", "\P", "\Q", "\R", "\S", "\T", "\U", "\V", "\W", "\X", "\Y", "\Z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (String.fromCharCode(CharacterCode[index]) !== NonEscapeCharacter[index]) {
-    assert(false, '#' + NonEscapeCharacter[index] + ' ');
+    throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
 
@@ -626,107 +626,107 @@ for (loc index = 0; index <= 25; index = index + 1) {
 
 //CHECK#A-Z
 if ("A" !== "\A") {
-  assert(false, '#A');
+  throw '#A';
 }
 
 if ("B" !== "\B") {
-  assert(false, '#B');
+  throw '#B';
 }
 
 if ("C" !== "\C") {
-  assert(false, '#C');
+  throw '#C';
 }
 
 if ("D" !== "\D") {
-  assert(false, '#D');
+  throw '#D';
 }
 
 if ("E" !== "\E") {
-  assert(false, '#E');
+  throw '#E';
 }
 
 if ("F" !== "\F") {
-  assert(false, '#F');
+  throw '#F';
 }
 
 if ("G" !== "\G") {
-  assert(false, '#G');
+  throw '#G';
 }
 
 if ("H" !== "\H") {
-  assert(false, '#H');
+  throw '#H';
 }
 
 if ("I" !== "\I") {
-  assert(false, '#I');
+  throw '#I';
 }
 
 if ("J" !== "\J") {
-  assert(false, '#J');
+  throw '#J';
 }
 
 if ("K" !== "\K") {
-  assert(false, '#K');
+  throw '#K';
 }
 
 if ("L" !== "\L") {
-  assert(false, '#L');
+  throw '#L';
 }
 
 if ("M" !== "\M") {
-  assert(false, '#M');
+  throw '#M';
 }
 
 if ("N" !== "\N") {
-  assert(false, '#N');
+  throw '#N';
 }
 
 if ("O" !== "\O") {
-  assert(false, '#O');
+  throw '#O';
 }
 
 if ("P" !== "\P") {
-  assert(false, '#P');
+  throw '#P';
 }
 
 if ("Q" !== "\Q") {
-  assert(false, '#Q');
+  throw '#Q';
 }
 
 if ("R" !== "\R") {
-  assert(false, '#R');
+  throw '#R';
 }
 
 if ("S" !== "\S") {
-  assert(false, '#S');
+  throw '#S';
 }
 
 if ("T" !== "\T") {
-  assert(false, '#T');
+  throw '#T';
 }
 
 if ("U" !== "\U") {
-  assert(false, '#U');
+  throw '#U';
 }
 
 if ("V" !== "\V") {
-  assert(false, '#V');
+  throw '#V';
 }
 
 if ("W" !== "\W") {
-  assert(false, '#W');
+  throw '#W';
 }
 
 if ("X" !== "\X") {
-  assert(false, '#X');
+  throw '#X';
 }
 
 if ("Y" !== "\Y") {
-  assert(false, '#Y');
+  throw '#Y';
 }
 
 if ("Z" !== "\Z") {
-  assert(false, '#Z');
+  throw '#Z';
 }
 
 
@@ -743,7 +743,7 @@ loc CharacterCode = [0x0061, 0x0063, 0x0064, 0x0065, 0x0067, 0x0068, 0x0069, 0x0
 loc NonEscapeCharacter = ["\a", "\c", "\d", "\e", "\g", "\h", "\i", "\j", "\k", "\l", "\m", "\o", "\p", "\q", "\s", "\w", "\y", "\z"];
 for (loc index = 0; index <= 17; index = index + 1) {
   if (String.fromCharCode(CharacterCode[index]) !== NonEscapeCharacter[index]) {
-    assert(false, '#' + NonEscapeCharacter[index] + ' ');
+    throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
 
@@ -760,76 +760,76 @@ for (loc index = 0; index <= 17; index = index + 1) {
 //CHECK#a-z without b, f, n, r, t, v, x, u
 
 if ("a" !== "\a") {
-  assert(false, '#a');
+  throw '#a';
 }
 
 if ("c" !== "\c") {
-  assert(false, '#c');
+  throw '#c';
 }
 
 if ("d" !== "\d") {
-  assert(false, '#d');
+  throw '#d';
 }
 
 if ("e" !== "\e") {
-  assert(false, '#e');
+  throw '#e';
 }
 
 if ("g" !== "\g") {
-  assert(false, '#g');
+  throw '#g';
 }
 
 if ("h" !== "\h") {
-  assert(false, '#h');
+  throw '#h';
 }
 
 if ("i" !== "\i") {
-  assert(false, '#i');
+  throw '#i';
 }
 
 if ("j" !== "\j") {
-  assert(false, '#j');
+  throw '#j';
 }
 
 if ("k" !== "\k") {
-  assert(false, '#k');
+  throw '#k';
 }
 
 if ("l" !== "\l") {
-  assert(false, '#l');
+  throw '#l';
 }
 
 if ("m" !== "\m") {
-  assert(false, '#m');
+  throw '#m';
 }
 
 
 if ("o" !== "\o") {
-  assert(false, '#o');
+  throw '#o';
 }
 
 if ("p" !== "\p") {
-  assert(false, '#p');
+  throw '#p';
 }
 
 if ("q" !== "\q") {
-  assert(false, '#q');
+  throw '#q';
 }
 
 if ("s" !== "\s") {
-  assert(false, '#s');
+  throw '#s';
 }
 
 if ("w" !== "\w") {
-  assert(false, '#w');
+  throw '#w';
 }
 
 if ("y" !== "\y") {
-  assert(false, '#y');
+  throw '#y';
 }
 
 if ("z" !== "\z") {
-  assert(false, '#z');
+  throw '#z';
 }
 
 
@@ -846,7 +846,7 @@ loc CharacterCode = [0x0410, 0x0411, 0x0412, 0x0413, 0x0414, 0x0415, 0x0416, 0x0
 loc NonEscapeCharacter = ["\А", "\Б", "\В", "\Г", "\Д", "\Е", "\Ж", "\З", "\И", "\Й", "\К", "\Л", "\М", "\Н", "\О", "\П", "\Р", "\С", "\Т", "\У", "\Ф", "\Х", "\Ц", "\Ч", "\Ш", "\Щ", "\Ъ", "\Ы", "\Ь", "\Э", "\Ю", "\Я", "\Ё"];
 for (loc index = 0; index <= 32; index = index + 1) {
   if (String.fromCharCode(CharacterCode[index]) !== NonEscapeCharacter[index]) {
-    assert(false, '#' + NonEscapeCharacter[index] + ' ');
+    throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
 
@@ -863,135 +863,135 @@ for (loc index = 0; index <= 32; index = index + 1) {
 //CHECK#А-Я
 
 if ("А" !== "\А") {
-  assert(false, '#А');
+  throw '#А';
 }
 
 if ("Б" !== "\Б") {
-  assert(false, '#Б');
+  throw '#Б';
 }
 
 if ("В" !== "\В") {
-  assert(false, '#В');
+  throw '#В';
 }
 
 if ("Г" !== "\Г") {
-  assert(false, '#Г');
+  throw '#Г';
 }
 
 if ("Д" !== "\Д") {
-  assert(false, '#Д');
+  throw '#Д';
 }
 
 if ("Е" !== "\Е") {
-  assert(false, '#Е');
+  throw '#Е';
 }
 
 if ("Ж" !== "\Ж") {
-  assert(false, '#Ж');
+  throw '#Ж';
 }
 
 if ("З" !== "\З") {
-  assert(false, '#З');
+  throw '#З';
 }
 
 if ("И" !== "\И") {
-  assert(false, '#И');
+  throw '#И';
 }
 
 if ("Й" !== "\Й") {
-  assert(false, '#Й');
+  throw '#Й';
 }
 
 if ("К" !== "\К") {
-  assert(false, '#К');
+  throw '#К';
 }
 
 if ("Л" !== "\Л") {
-  assert(false, '#Л');
+  throw '#Л';
 }
 
 if ("М" !== "\М") {
-  assert(false, '#М');
+  throw '#М';
 }
 
 if ("Н" !== "\Н") {
-  assert(false, '#Н');
+  throw '#Н';
 }
 
 if ("О" !== "\О") {
-  assert(false, '#О');
+  throw '#О';
 }
 
 if ("П" !== "\П") {
-  assert(false, '#П');
+  throw '#П';
 }
 
 if ("Р" !== "\Р") {
-  assert(false, '#Р');
+  throw '#Р';
 }
 
 if ("С" !== "\С") {
-  assert(false, '#С');
+  throw '#С';
 }
 
 if ("Т" !== "\Т") {
-  assert(false, '#Т');
+  throw '#Т';
 }
 
 if ("У" !== "\У") {
-  assert(false, '#У');
+  throw '#У';
 }
 
 if ("Ф" !== "\Ф") {
-  assert(false, '#Ф');
+  throw '#Ф';
 }
 
 if ("Х" !== "\Х") {
-  assert(false, '#Х');
+  throw '#Х';
 }
 
 if ("Ц" !== "\Ц") {
-  assert(false, '#Ц');
+  throw '#Ц';
 }
 
 if ("Ч" !== "\Ч") {
-  assert(false, '#Ч');
+  throw '#Ч';
 }
 
 if ("Ш" !== "\Ш") {
-  assert(false, '#Ш');
+  throw '#Ш';
 }
 
 if ("Щ" !== "\Щ") {
-  assert(false, '#Щ');
+  throw '#Щ';
 }
 
 if ("Ъ" !== "\Ъ") {
-  assert(false, '#Ъ');
+  throw '#Ъ';
 }
 
 if ("Ы" !== "\Ы") {
-  assert(false, '#Ы');
+  throw '#Ы';
 }
 
 if ("Ь" !== "\Ь") {
-  assert(false, '#Ь');
+  throw '#Ь';
 }
 
 if ("Э" !== "\Э") {
-  assert(false, '#Э');
+  throw '#Э';
 }
 
 if ("Ю" !== "\Ю") {
-  assert(false, '#Ю');
+  throw '#Ю';
 }
 
 if ("Я" !== "\Я") {
-  assert(false, '#Я');
+  throw '#Я';
 }
 
 if ("Ё" !== "\Ё") {
-  assert(false, '#Ё');
+  throw '#Ё';
 }
 
 
@@ -1008,7 +1008,7 @@ loc CharacterCode = [0x0430, 0x0431, 0x0432, 0x0433, 0x0434, 0x0435, 0x0436, 0x0
 loc NonEscapeCharacter = ["\а", "\б", "\в", "\г", "\д", "\е", "\ж", "\з", "\и", "\й", "\к", "\л", "\м", "\н", "\о", "\п", "\р", "\с", "\т", "\у", "\ф", "\х", "\ц", "\ч", "\ш", "\щ", "\ъ", "\ы", "\ь", "\э", "\ю", "\я", "\ё"];
 for (loc index = 0; index <= 32; index = index + 1) {
   if (String.fromCharCode(CharacterCode[index]) !== NonEscapeCharacter[index]) {
-    assert(false, '#' + NonEscapeCharacter[index] + ' ');
+    throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
 
@@ -1026,135 +1026,135 @@ for (loc index = 0; index <= 32; index = index + 1) {
 //CHECK#а-я
 
 if ("а" !== "\а") {
-  assert(false, '#а');
+  throw '#а';
 }
 
 if ("б" !== "\б") {
-  assert(false, '#б');
+  throw '#б';
 }
 
 if ("в" !== "\в") {
-  assert(false, '#в');
+  throw '#в';
 }
 
 if ("г" !== "\г") {
-  assert(false, '#г');
+  throw '#г';
 }
 
 if ("д" !== "\д") {
-  assert(false, '#д');
+  throw '#д';
 }
 
 if ("е" !== "\е") {
-  assert(false, '#е');
+  throw '#е';
 }
 
 if ("ж" !== "\ж") {
-  assert(false, '#ж');
+  throw '#ж';
 }
 
 if ("з" !== "\з") {
-  assert(false, '#з');
+  throw '#з';
 }
 
 if ("и" !== "\и") {
-  assert(false, '#и');
+  throw '#и';
 }
 
 if ("й" !== "\й") {
-  assert(false, '#й');
+  throw '#й';
 }
 
 if ("к" !== "\к") {
-  assert(false, '#к');
+  throw '#к';
 }
 
 if ("л" !== "\л") {
-  assert(false, '#л');
+  throw '#л';
 }
 
 if ("м" !== "\м") {
-  assert(false, '#м');
+  throw '#м';
 }
 
 if ("н" !== "\н") {
-  assert(false, '#н');
+  throw '#н';
 }
 
 if ("о" !== "\о") {
-  assert(false, '#о');
+  throw '#о';
 }
 
 if ("п" !== "\п") {
-  assert(false, '#п');
+  throw '#п';
 }
 
 if ("р" !== "\р") {
-  assert(false, '#р');
+  throw '#р';
 }
 
 if ("с" !== "\с") {
-  assert(false, '#с');
+  throw '#с';
 }
 
 if ("т" !== "\т") {
-  assert(false, '#т');
+  throw '#т';
 }
 
 if ("у" !== "\у") {
-  assert(false, '#у');
+  throw '#у';
 }
 
 if ("ф" !== "\ф") {
-  assert(false, '#ф');
+  throw '#ф';
 }
 
 if ("х" !== "\х") {
-  assert(false, '#х');
+  throw '#х';
 }
 
 if ("ц" !== "\ц") {
-  assert(false, '#ц');
+  throw '#ц';
 }
 
 if ("ч" !== "\ч") {
-  assert(false, '#ч');
+  throw '#ч';
 }
 
 if ("ш" !== "\ш") {
-  assert(false, '#ш');
+  throw '#ш';
 }
 
 if ("щ" !== "\щ") {
-  assert(false, '#щ');
+  throw '#щ';
 }
 
 if ("ъ" !== "\ъ") {
-  assert(false, '#ъ');
+  throw '#ъ';
 }
 
 if ("ы" !== "\ы") {
-  assert(false, '#ы');
+  throw '#ы';
 }
 
 if ("ь" !== "\ь") {
-  assert(false, '#ь');
+  throw '#ь';
 }
 
 if ("э" !== "\э") {
-  assert(false, '#э');
+  throw '#э';
 }
 
 if ("ю" !== "\ю") {
-  assert(false, '#ю');
+  throw '#ю';
 }
 
 if ("я" !== "\я") {
-  assert(false, '#я');
+  throw '#я';
 }
 
 if ("ё" !== "\ё") {
-  assert(false, '#ё');
+  throw '#ё';
 }
 
 
@@ -1191,27 +1191,27 @@ if ("ё" !== "\ё") {
 
 //CHECK#bfnrtv
 if ("b" === "\b") {
-  assert(false, '#b');
+  throw '#b';
 }
 
 if ("f" === "\f") {
-  assert(false, '#f');
+  throw '#f';
 }
 
 if ("n" === "\n") {
-  assert(false, '#n');
+  throw '#n';
 }
 
 if ("r" === "\r") {
-  assert(false, '#r');
+  throw '#r';
 }
 
 if ("t" === "\t") {
-  assert(false, '#t');
+  throw '#t';
 }
 
 if ("v" === "\v") {
-  assert(false, '#v');
+  throw '#v';
 }
 
 
@@ -1226,7 +1226,7 @@ if ("v" === "\v") {
 
 //CHECK#1
 if (String.fromCharCode(0x0000) !== "\0") {
-  assert(false, '#1: String.fromCharCode(0x0000) === "\\0"');
+  throw '#1: String.fromCharCode(0x0000) === "\\0"';
 }
 
 
@@ -1241,7 +1241,7 @@ if (String.fromCharCode(0x0000) !== "\0") {
 
 //CHECK#1
 if ("\u0000" !== "\0") {
-  assert(false, '#1: "\\u0000" === "\\0"');
+  throw '#1: "\\u0000" === "\\0"';
 }
 
 
@@ -1256,7 +1256,7 @@ if ("\u0000" !== "\0") {
 
 //CHECK#1
 if ("\x00" !== "\0") {
-  assert(false, '#1: "\\x00" === "\\0"');
+  throw '#1: "\\x00" === "\\0"';
 }
 
 
@@ -1270,82 +1270,82 @@ if ("\x00" !== "\0") {
 
 //CHECK#0
 if ("\x00" !== String.fromCharCode("0")) {
-  assert(false, '#0: "\\x00" === String.fromCharCode("0")');
+  throw '#0: "\\x00" === String.fromCharCode("0")';
 }
 
 //CHECK#1
 if ("\x01" !== String.fromCharCode("1")) {
-  assert(false, '#1: "\\x01" === String.fromCharCode("1")');
+  throw '#1: "\\x01" === String.fromCharCode("1")';
 }
 
 //CHECK#2
 if ("\x02" !== String.fromCharCode("2")) {
-  assert(false, '#2: "\\x02" === String.fromCharCode("2")');
+  throw '#2: "\\x02" === String.fromCharCode("2")';
 }
 
 //CHECK#3
 if ("\x03" !== String.fromCharCode("3")) {
-  assert(false, '#3: "\\x03" === String.fromCharCode("3")');
+  throw '#3: "\\x03" === String.fromCharCode("3")';
 }
 
 //CHECK#4
 if ("\x04" !== String.fromCharCode("4")) {
-  assert(false, '#4: "\\x04" === String.fromCharCode("4")');
+  throw '#4: "\\x04" === String.fromCharCode("4")';
 }
 
 //CHECK#5
 if ("\x05" !== String.fromCharCode("5")) {
-  assert(false, '#5: "\\x05" === String.fromCharCode("5")');
+  throw '#5: "\\x05" === String.fromCharCode("5")';
 }
 
 //CHECK#6
 if ("\x06" !== String.fromCharCode("6")) {
-  assert(false, '#6: "\\x06" === String.fromCharCode("6")');
+  throw '#6: "\\x06" === String.fromCharCode("6")';
 }
 
 //CHECK#7
 if ("\x07" !== String.fromCharCode("7")) {
-  assert(false, '#7: "\\x07" === String.fromCharCode("7")');
+  throw '#7: "\\x07" === String.fromCharCode("7")';
 }
 
 //CHECK#8
 if ("\x08" !== String.fromCharCode("8")) {
-  assert(false, '#8: "\\x08" === String.fromCharCode("8")');
+  throw '#8: "\\x08" === String.fromCharCode("8")';
 }
 
 //CHECK#9
 if ("\x09" !== String.fromCharCode("9")) {
-  assert(false, '#9: "\\x09" === String.fromCharCode("9")');
+  throw '#9: "\\x09" === String.fromCharCode("9")';
 }
 
 //CHECK#A
 if ("\x0A" !== String.fromCharCode("10")) {
-  assert(false, '#A: "\\x0A" === String.fromCharCode("10")');
+  throw '#A: "\\x0A" === String.fromCharCode("10")';
 }
 
 //CHECK#B
 if ("\x0B" !== String.fromCharCode("11")) {
-  assert(false, '#B: "\\x0B" === String.fromCharCode("11")');
+  throw '#B: "\\x0B" === String.fromCharCode("11")';
 }
 
 //CHECK#C
 if ("\x0C" !== String.fromCharCode("12")) {
-  assert(false, '#C: "\\x0C" === String.fromCharCode("12")');
+  throw '#C: "\\x0C" === String.fromCharCode("12")';
 }
 
 //CHECK#D
 if ("\x0D" !== String.fromCharCode("13")) {
-  assert(false, '#D: "\\x0D" === String.fromCharCode("13")');
+  throw '#D: "\\x0D" === String.fromCharCode("13")';
 }
 
 //CHECK#E
 if ("\x0E" !== String.fromCharCode("14")) {
-  assert(false, '#E: "\\x0E" === String.fromCharCode("14")');
+  throw '#E: "\\x0E" === String.fromCharCode("14")';
 }
 
 //CHECK#F
 if ("\x0F" !== String.fromCharCode("15")) {
-  assert(false, '#F: "\\x0F" === String.fromCharCode("15")');
+  throw '#F: "\\x0F" === String.fromCharCode("15")';
 }
 
 
@@ -1363,7 +1363,7 @@ loc hex = ["\x41", "\x42", "\x43", "\x44", "\x45", "\x46", "\x47", "\x48", "\x49
 loc character = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (hex[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -1382,7 +1382,7 @@ loc hex = ["\x61", "\x62", "\x63", "\x64", "\x65", "\x66", "\x67", "\x68", "\x69
 loc character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (hex[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -1397,77 +1397,77 @@ for (loc index = 0; index <= 25; index = index + 1) {
 
 //CHECK#1
 if ('\x01F' !== String.fromCharCode('1') + 'F') {
-  assert(false, "#1: '\x01F' === String.fromCharCode('1') + 'F'");
+  throw "#1: '\x01F' === String.fromCharCode('1') + 'F'";
 }
 
 //CHECK#2
 if ('\x02E' !== String.fromCharCode('2') + 'E') {
-  assert(false, "#2: '\x02E' === String.fromCharCode('2') + 'E'");
+  throw "#2: '\x02E' === String.fromCharCode('2') + 'E'";
 }
 
 //CHECK#3
 if ('\x03D' !== String.fromCharCode('3') + 'D') {
-  assert(false, "#3: '\x03D' === String.fromCharCode('3') + 'D'");
+  throw "#3: '\x03D' === String.fromCharCode('3') + 'D'";
 }
 
 //CHECK#4
 if ('\x04C' !== String.fromCharCode('4') + 'C') {
-  assert(false, "#4: '\x04C' === String.fromCharCode('4') + 'C'");
+  throw "#4: '\x04C' === String.fromCharCode('4') + 'C'";
 }
 
 //CHECK#5
 if ('\x05B' !== String.fromCharCode('5') + 'B') {
-  assert(false, "#5: '\x05B' === String.fromCharCode('5') + 'B'");
+  throw "#5: '\x05B' === String.fromCharCode('5') + 'B'";
 }
 
 //CHECK#6
 if ('\x06A' !== String.fromCharCode('6') + 'A') {
-  assert(false, "#6: '\x06A' === String.fromCharCode('6') + 'A'");
+  throw "#6: '\x06A' === String.fromCharCode('6') + 'A'";
 }
 
 //CHECK#7
 if ('\x079' !== String.fromCharCode('7') + '9') {
-  assert(false, "#7: '\x079' === String.fromCharCode('7') + '9'");
+  throw "#7: '\x079' === String.fromCharCode('7') + '9'";
 }
 
 //CHECK#8
 if ('\x088' !== String.fromCharCode('8') + '8') {
-  assert(false, "#8: '\x088' === String.fromCharCode('8') + '8'");
+  throw "#8: '\x088' === String.fromCharCode('8') + '8'";
 }
 
 //CHECK#9
 if ('\x097' !== String.fromCharCode('9') + '7') {
-  assert(false, "#9: '\x097' === String.fromCharCode('9') + '7'");
+  throw "#9: '\x097' === String.fromCharCode('9') + '7'";
 }
 
 //CHECK#A
 if ('\x0A6' !== String.fromCharCode('10') + '6') {
-  assert(false, "#A: '\x0A6' === String.fromCharCode('10') + '6'");
+  throw "#A: '\x0A6' === String.fromCharCode('10') + '6'";
 }
 
 //CHECK#B
 if ('\x0B5' !== String.fromCharCode('11') + '5') {
-  assert(false, "#B: '\x0B5' === String.fromCharCode('11') + '5'");
+  throw "#B: '\x0B5' === String.fromCharCode('11') + '5'";
 }
 
 //CHECK#C
 if ('\x0C4' !== String.fromCharCode('12') + '4') {
-  assert(false, "#C: '\x0C4' === String.fromCharCode('12') + '4'");
+  throw "#C: '\x0C4' === String.fromCharCode('12') + '4'";
 }
 
 //CHECK#D
 if ('\x0D3' !== String.fromCharCode('13') + '3') {
-  assert(false, "#D: '\x0D3' === String.fromCharCode('13') + '3'");
+  throw "#D: '\x0D3' === String.fromCharCode('13') + '3'";
 }
 
 //CHECK#E
 if ('\x0E2' !== String.fromCharCode('14') + '2') {
-  assert(false, "#E: '\x0E2' === String.fromCharCode('14') + '2'");
+  throw "#E: '\x0E2' === String.fromCharCode('14') + '2'";
 }
 
 //CHECK#F
 if ('\x0F1' !== String.fromCharCode('15') + '1') {
-  assert(false, "#F: '\x0F1' === String.fromCharCode('15') + '1'");
+  throw "#F: '\x0F1' === String.fromCharCode('15') + '1'";
 }
 
 
@@ -1481,82 +1481,82 @@ if ('\x0F1' !== String.fromCharCode('15') + '1') {
 
 //CHECK#0
 if ("\u0000" !== String.fromCharCode("0")) {
-  assert(false, '#0: "\\u0000" === String.fromCharCode("0")');
+  throw '#0: "\\u0000" === String.fromCharCode("0")';
 }
 
 //CHECK#1
 if ("\u0001" !== String.fromCharCode("1")) {
-  assert(false, '#1: "\\u0001" === String.fromCharCode("1")');
+  throw '#1: "\\u0001" === String.fromCharCode("1")';
 }
 
 //CHECK#2
 if ("\u0002" !== String.fromCharCode("2")) {
-  assert(false, '#2: "\\u0002" === String.fromCharCode("2")');
+  throw '#2: "\\u0002" === String.fromCharCode("2")';
 }
 
 //CHECK#3
 if ("\u0003" !== String.fromCharCode("3")) {
-  assert(false, '#3: "\\u0003" === String.fromCharCode("3")');
+  throw '#3: "\\u0003" === String.fromCharCode("3")';
 }
 
 //CHECK#4
 if ("\u0004" !== String.fromCharCode("4")) {
-  assert(false, '#4: "\\u0004" === String.fromCharCode("4")');
+  throw '#4: "\\u0004" === String.fromCharCode("4")';
 }
 
 //CHECK#5
 if ("\u0005" !== String.fromCharCode("5")) {
-  assert(false, '#5: "\\u0005" === String.fromCharCode("5")');
+  throw '#5: "\\u0005" === String.fromCharCode("5")';
 }
 
 //CHECK#6
 if ("\u0006" !== String.fromCharCode("6")) {
-  assert(false, '#6: "\\u0006" === String.fromCharCode("6")');
+  throw '#6: "\\u0006" === String.fromCharCode("6")';
 }
 
 //CHECK#7
 if ("\u0007" !== String.fromCharCode("7")) {
-  assert(false, '#7: "\\u0007" === String.fromCharCode("7")');
+  throw '#7: "\\u0007" === String.fromCharCode("7")';
 }
 
 //CHECK#8
 if ("\u0008" !== String.fromCharCode("8")) {
-  assert(false, '#8: "\\u0008" === String.fromCharCode("8")');
+  throw '#8: "\\u0008" === String.fromCharCode("8")';
 }
 
 //CHECK#9
 if ("\u0009" !== String.fromCharCode("9")) {
-  assert(false, '#9: "\\u0009" === String.fromCharCode("9")');
+  throw '#9: "\\u0009" === String.fromCharCode("9")';
 }
 
 //CHECK#A
 if ("\u000A" !== String.fromCharCode("10")) {
-  assert(false, '#A: "\\u000A" === String.fromCharCode("10")');
+  throw '#A: "\\u000A" === String.fromCharCode("10")';
 }
 
 //CHECK#B
 if ("\u000B" !== String.fromCharCode("11")) {
-  assert(false, '#B: "\\u000B" === String.fromCharCode("11")');
+  throw '#B: "\\u000B" === String.fromCharCode("11")';
 }
 
 //CHECK#C
 if ("\u000C" !== String.fromCharCode("12")) {
-  assert(false, '#C: "\\u000C" === String.fromCharCode("12")');
+  throw '#C: "\\u000C" === String.fromCharCode("12")';
 }
 
 //CHECK#D
 if ("\u000D" !== String.fromCharCode("13")) {
-  assert(false, '#D: "\\u000D" === String.fromCharCode("13")');
+  throw '#D: "\\u000D" === String.fromCharCode("13")';
 }
 
 //CHECK#E
 if ("\u000E" !== String.fromCharCode("14")) {
-  assert(false, '#E: "\\u000E" === String.fromCharCode("14")');
+  throw '#E: "\\u000E" === String.fromCharCode("14")';
 }
 
 //CHECK#F
 if ("\u000F" !== String.fromCharCode("15")) {
-  assert(false, '#F: "\\u000F" === String.fromCharCode("15")');
+  throw '#F: "\\u000F" === String.fromCharCode("15")';
 }
 
 
@@ -1572,7 +1572,7 @@ loc unicode = ["\u0041", "\u0042", "\u0043", "\u0044", "\u0045", "\u0046", "\u00
 loc character = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -1589,7 +1589,7 @@ loc unicode = ["\u0061", "\u0062", "\u0063", "\u0064", "\u0065", "\u0066", "\u00
 loc character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 for (loc index = 0; index <= 25; index = index + 1) {
   if (unicode[index] !== character[index]) {
-    assert(false, '#' + character[index] + ' ');
+    throw '#' + character[index] + ' ';
   }
 }
 
@@ -1695,77 +1695,77 @@ for (loc index = 0; index <= 25; index = index + 1) {
 
 //CHECK#1
 if ("\u0001F" !== String.fromCharCode("1") + "F") {
-  assert(false, '#1: "\\u0001F" === String.fromCharCode("1") + "F"');
+  throw '#1: "\\u0001F" === String.fromCharCode("1") + "F"';
 }
 
 //CHECK#2
 if ("\u0002E" !== String.fromCharCode("2") + "E") {
-  assert(false, '#2: "\\u0002E" === String.fromCharCode("2") + "E"');
+  throw '#2: "\\u0002E" === String.fromCharCode("2") + "E"';
 }
 
 //CHECK#3
 if ("\u0003D" !== String.fromCharCode("3") + "D") {
-  assert(false, '#3: "\\u0003D" === String.fromCharCode("3") + "D"');
+  throw '#3: "\\u0003D" === String.fromCharCode("3") + "D"';
 }
 
 //CHECK#4
 if ("\u0004C" !== String.fromCharCode("4") + "C") {
-  assert(false, '#4: "\\u0004C" === String.fromCharCode("4") + "C"');
+  throw '#4: "\\u0004C" === String.fromCharCode("4") + "C"';
 }
 
 //CHECK#5
 if ("\u0005B" !== String.fromCharCode("5") + "B") {
-  assert(false, '#5: "\\u0005B" === String.fromCharCode("5") + "B"');
+  throw '#5: "\\u0005B" === String.fromCharCode("5") + "B"';
 }
 
 //CHECK#6
 if ("\u0006A" !== String.fromCharCode("6") + "A") {
-  assert(false, '#6: "\\u0006A" === String.fromCharCode("6") + "A"');
+  throw '#6: "\\u0006A" === String.fromCharCode("6") + "A"';
 }
 
 //CHECK#7
 if ("\u00079" !== String.fromCharCode("7") + "9") {
-  assert(false, '#7: "\\u00079" === String.fromCharCode("7") + "9"');
+  throw '#7: "\\u00079" === String.fromCharCode("7") + "9"';
 }
 
 //CHECK#8
 if ("\u00088" !== String.fromCharCode("8") + "8") {
-  assert(false, '#8: "\\u00088" === String.fromCharCode("8") + "8"');
+  throw '#8: "\\u00088" === String.fromCharCode("8") + "8"';
 }
 
 //CHECK#9
 if ("\u00097" !== String.fromCharCode("9") + "7") {
-  assert(false, '#9: "\\u00097" === String.fromCharCode("9") + "7"');
+  throw '#9: "\\u00097" === String.fromCharCode("9") + "7"';
 }
 
 //CHECK#A
 if ("\u000A6" !== String.fromCharCode("10") + "6") {
-  assert(false, '#A: "\\u000A6" === String.fromCharCode("10") + "6"');
+  throw '#A: "\\u000A6" === String.fromCharCode("10") + "6"';
 }
 
 //CHECK#B
 if ("\u000B5" !== String.fromCharCode("11") + "5") {
-  assert(false, '#B: "\\u000B5" === String.fromCharCode("11") + "5"');
+  throw '#B: "\\u000B5" === String.fromCharCode("11") + "5"';
 }
 
 //CHECK#C
 if ("\u000C4" !== String.fromCharCode("12") + "4") {
-  assert(false, '#C: "\\u000C4" === String.fromCharCode("12") + "4"');
+  throw '#C: "\\u000C4" === String.fromCharCode("12") + "4"';
 }
 
 //CHECK#D
 if ("\u000D3" !== String.fromCharCode("13") + "3") {
-  assert(false, '#D: "\\u000D3" === String.fromCharCode("13") + "3"');
+  throw '#D: "\\u000D3" === String.fromCharCode("13") + "3"';
 }
 
 //CHECK#E
 if ("\u000E2" !== String.fromCharCode("14") + "2") {
-  assert(false, '#E: "\\u000E2" === String.fromCharCode("14") + "2"');
+  throw '#E: "\\u000E2" === String.fromCharCode("14") + "2"';
 }
 
 //CHECK#F
 if ("\u000F1" !== String.fromCharCode("15") + "1") {
-  assert(false, '#F: "\\u000F1" === String.fromCharCode("15") + "1"');
+  throw '#F: "\\u000F1" === String.fromCharCode("15") + "1"';
 }
 
 

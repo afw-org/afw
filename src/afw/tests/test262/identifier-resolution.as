@@ -23,7 +23,7 @@ function f1(){
 }
 
 if(!(f1() === 1)){
-  assert(false, "#1: Scope chain disturbed");
+  throw "#1: Scope chain disturbed";
 }
 
 
@@ -44,7 +44,7 @@ function f1(){
 }
 
 if(!(f1() === 0)){
-  assert(false, "#1: Scope chain disturbed");
+  throw "#1: Scope chain disturbed";
 }
 
 
@@ -67,6 +67,6 @@ function f1(){
 }
 
 if(!(f1() === 1)){
-  assert(false, "#1: Scope chain disturbed");
+  throw "#1: Scope chain disturbed";
 }
 

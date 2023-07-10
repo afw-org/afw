@@ -79,7 +79,7 @@ evaluate(script("/*\u000C multi line \u000C comment \u000C*/"));
 loc x = 0;
 evaluate(script("/*\u000C multi line \u000C comment \u000C x = 1;*/"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("/*\\u000C multi line \\u000C comment \\u000C x = 1;*/")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("/*\\u000C multi line \\u000C comment \\u000C x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -97,7 +97,7 @@ evaluate(script("/*\u0009 multi line \u0009 comment \u0009*/"));
 loc x = 0;
 evaluate(script("/*\u0009 multi line \u0009 comment \u0009 x = 1;*/"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("/*\\u0009 multi line \\u0009 comment \\u0009 x = 1;*/")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("/*\\u0009 multi line \\u0009 comment \\u0009 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -115,7 +115,7 @@ evaluate(script("/*\u00A0 multi line \u00A0 comment \u00A0*/"));
 loc x = 0;
 evaluate(script("/*\u00A0 multi line \u00A0 comment \u00A0 x = 1;*/"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("/*\\u00A0 multi line \\u00A0 comment \\u00A0 x = 1;*/")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("/*\\u00A0 multi line \\u00A0 comment \\u00A0 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -133,7 +133,7 @@ evaluate(script("/*\u0020 multi line \u0020 comment \u0020*/"));
 loc x = 0;
 evaluate(script("/*\u0020 multi line \u0020 comment \u0020 x = 1;*/"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("/*\\u0020 multi line \\u0020 comment \\u0020 x = 1;*/")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("/*\\u0020 multi line \\u0020 comment \\u0020 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -151,7 +151,7 @@ evaluate(script("/*\u000B multi line \u000B comment \u000B*/"));
 loc x = 0;
 evaluate(script("/*\u000B multi line \u000B comment \u000B x = 1;*/"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("/*\\u000B multi line \\u000B comment \\u000B x = 1;*/")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("/*\\u000B multi line \\u000B comment \\u000B x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -169,7 +169,7 @@ evaluate(script("//\u000C single line \u000C comment \u000C"));
 loc x = 0;
 evaluate(script("//\u000C single line \u000C comment \u000C x = 1;"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("//\\u000C single line \\u000C comment \\u000C x = 1;")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("//\\u000C single line \\u000C comment \\u000C x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -187,7 +187,7 @@ evaluate(script("//\u0009 single line \u0009 comment \u0009"));
 loc x = 0;
 evaluate(script("//\u0009 single line \u0009 comment \u0009 x = 1;"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("//\\u0009 single line \\u0009 comment \\u0009 x = 1;")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("//\\u0009 single line \\u0009 comment \\u0009 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -205,7 +205,7 @@ evaluate(script("//\u00A0 single line \u00A0 comment \u00A0"));
 loc x = 0;
 evaluate(script("//\u00A0 single line \u00A0 comment \u00A0 x = 1;"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("//\\u00A0 single line \\u00A0 comment \\u00A0 x = 1;")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("//\\u00A0 single line \\u00A0 comment \\u00A0 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -223,7 +223,7 @@ evaluate(script("//\u0020 single line \u0020 comment \u0020"));
 loc x = 0;
 evaluate(script("//\u0020 single line \u0020 comment \u0020 x = 1;"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("//\\u0020 single line \\u0020 comment \\u0020 x = 1;")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("//\\u0020 single line \\u0020 comment \\u0020 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -241,7 +241,7 @@ evaluate(script("//\u000B single line \u000B comment \u000B"));
 loc x = 0;
 evaluate(script("//\u000B single line \u000B comment \u000B x = 1;"));
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; evaluate(script("//\\u000B single line \\u000B comment \\u000B x = 1;")); x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; evaluate(script("//\\u000B single line \\u000B comment \\u000B x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -265,7 +265,7 @@ loc᠎foo;
 
 //CHECK#1
 if ("	str	ing	" !== "\u0009str\u0009ing\u0009") {
-  assert(false, '#1: "	str	ing	" === "\\u0009str\\u0009ing\\u0009"');
+  throw '#1: "	str	ing	" === "\\u0009str\\u0009ing\\u0009"';
 }
 
 
@@ -278,7 +278,7 @@ if ("	str	ing	" !== "\u0009str\u0009ing\u0009") {
 
 //CHECK#1
 if ("string" !== "\u000Bstr\u000Bing\u000B") {
-  assert(false, '#1: "string" === "\\u000Bstr\\u000Bing\\u000B"');
+  throw '#1: "string" === "\\u000Bstr\\u000Bing\\u000B"';
 }
 
 
@@ -291,7 +291,7 @@ if ("string" !== "\u000Bstr\u000Bing\u000B") {
 
 //CHECK#1
 if ("string" !== "\u000Cstr\u000Cing\u000C") {
-  assert(false, '#1: "string" === "\\u000Cstr\\u000Cing\\u000C"');
+  throw '#1: "string" === "\\u000Cstr\\u000Cing\\u000C"';
 }
 
 
@@ -304,7 +304,7 @@ if ("string" !== "\u000Cstr\u000Cing\u000C") {
 
 //CHECK#1
 if (" str ing " !== "\u0020str\u0020ing\u0020") {
-  assert(false, '#1: " str ing " === "\\u0020str\\u0020ing\\u0020"');
+  throw '#1: " str ing " === "\\u0020str\\u0020ing\\u0020"';
 }
 
 
@@ -317,7 +317,7 @@ if (" str ing " !== "\u0020str\u0020ing\u0020") {
 
 //CHECK#1
 if (" str ing " !== "\u00A0str\u00A0ing\u00A0") {
-  assert(false, '#1: " str ing " === "\\u00A0str\\u00A0ing\\u00A0"');
+  throw '#1: " str ing " === "\\u00A0str\\u00A0ing\\u00A0"';
 }
 
 
@@ -332,7 +332,7 @@ if (" str ing " !== "\u00A0str\u00A0ing\u00A0") {
 loc x = 0;
 //	single	line	comment	x = 1;
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; //	single	line	comment	x = 1; x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; //	single	line	comment	x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -347,7 +347,7 @@ if (x !== 0) {
 loc x = 0;
 //singlelinecommentx = 1;
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -362,7 +362,7 @@ if (x !== 0) {
 loc x = 0;
 //singlelinecommentx = 1;
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -377,7 +377,7 @@ if (x !== 0) {
 loc x = 0;
 // single line comment x = 1;
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -392,7 +392,7 @@ if (x !== 0) {
 loc x = 0;
 // single line comment x = 1;
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -407,7 +407,7 @@ if (x !== 0) {
 loc x = 0;
 /*	multi	line	comment	x = 1;*/
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; /*	multi	line	comment	x = 1;*/ x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; /*	multi	line	comment	x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -422,7 +422,7 @@ if (x !== 0) {
 loc x = 0;
 /*multilinecommentx = 1;*/
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -437,7 +437,7 @@ if (x !== 0) {
 loc x = 0;
 /*multilinecommentx = 1;*/
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -452,7 +452,7 @@ if (x !== 0) {
 loc x = 0;
 /* multi line comment x = 1;*/
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -467,7 +467,7 @@ if (x !== 0) {
 loc x = 0;
 /* multi line comment x = 1;*/
 if (x !== 0) {
-  assert(false, '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x));
+  throw '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -540,12 +540,12 @@ loc\u00A0x;
 
 // CHECK#1
 if (evaluate(script("'\u000Cstr\u000Cing\u000C'")) !== "\u000Cstr\u000Cing\u000C") {
-  assert(false, '#1: evaluate(script("\'\\u000Cstr\\u000Cing\\u000C\'")) === "\\u000Cstr\\u000Cing\\u000C"');
+  throw '#1: evaluate(script("\'\\u000Cstr\\u000Cing\\u000C\'")) === "\\u000Cstr\\u000Cing\\u000C"';
 }
 
 //CHECK#2
 if (evaluate(script("'\fstr\fing\f'")) !== "\fstr\fing\f") {
-  assert(false, '#2: evaluate(script("\'\\fstr\\fing\\f\'")) === "\\fstr\\fing\\f"');
+  throw '#2: evaluate(script("\'\\fstr\\fing\\f\'")) === "\\fstr\\fing\\f"';
 }
 
 
@@ -558,12 +558,12 @@ if (evaluate(script("'\fstr\fing\f'")) !== "\fstr\fing\f") {
 
 // CHECK#1
 if (evaluate(script("'\u0009str\u0009ing\u0009'")) !== "\u0009str\u0009ing\u0009") {
-  assert(false, '#1: evaluate(script("\'\\u0009str\\u0009ing\\u0009\'")) === "\\u0009str\\u0009ing\\u0009"');
+  throw '#1: evaluate(script("\'\\u0009str\\u0009ing\\u0009\'")) === "\\u0009str\\u0009ing\\u0009"';
 }
 
 //CHECK#2
 if (evaluate(script("'\tstr\ting\t'")) !== "\tstr\ting\t") {
-  assert(false, '#2: evaluate(script("\'\\tstr\\ting\\t\'")) === "\\tstr\\ting\\t"');
+  throw '#2: evaluate(script("\'\\tstr\\ting\\t\'")) === "\\tstr\\ting\\t"';
 }
 
 
@@ -576,7 +576,7 @@ if (evaluate(script("'\tstr\ting\t'")) !== "\tstr\ting\t") {
 
 // CHECK#1
 if (evaluate(script("'\u00A0str\u00A0ing\u00A0'")) !== "\u00A0str\u00A0ing\u00A0") {
-  assert(false, '#1: evaluate(script("\'\\u00A0str\\u00A0ing\\u00A0\'")) === "\\u00A0str\\u00A0ing\\u00A0"');
+  throw '#1: evaluate(script("\'\\u00A0str\\u00A0ing\\u00A0\'")) === "\\u00A0str\\u00A0ing\\u00A0"';
 }
 
 
@@ -589,12 +589,12 @@ if (evaluate(script("'\u00A0str\u00A0ing\u00A0'")) !== "\u00A0str\u00A0ing\u00A0
 
 // CHECK#1
 if (evaluate(script("'\u0020str\u0020ing\u0020'")) !== "\u0020str\u0020ing\u0020") {
-  assert(false, '#1: evaluate(script("\'\\u0020str\\u0020ing\\u0020\'")) === "\\u0020str\\u0020ing\\u0020"');
+  throw '#1: evaluate(script("\'\\u0020str\\u0020ing\\u0020\'")) === "\\u0020str\\u0020ing\\u0020"';
 }
 
 //CHECK#2
 if (evaluate(script("' str ing '")) !== " str ing ") {
-  assert(false, '#2: evaluate(script("\' str ing \'")) === " str ing "');
+  throw '#2: evaluate(script("\' str ing \'")) === " str ing "';
 }
 
 
@@ -607,10 +607,10 @@ if (evaluate(script("' str ing '")) !== " str ing ") {
 
 // CHECK#1
 if (evaluate(script("'\u000Bstr\u000Bing\u000B'")) !== "\u000Bstr\u000Bing\u000B") {
-  assert(false, '#1: evaluate(script("\'\\u000Bstr\\u000Bing\\u000B\'")) === "\\u000Bstr\\u000Bing\\u000B"');
+  throw '#1: evaluate(script("\'\\u000Bstr\\u000Bing\\u000B\'")) === "\\u000Bstr\\u000Bing\\u000B"';
 }
 
 //CHECK#2
 if (evaluate(script("'\vstr\ving\v'")) !== "\vstr\ving\v") {
-  assert(false, '#2: evaluate(script("\'\\vstr\\ving\\v\'")) === "\\vstr\\ving\\v"');
+  throw '#2: evaluate(script("\'\\vstr\\ving\\v\'")) === "\\vstr\\ving\\v"';
 }

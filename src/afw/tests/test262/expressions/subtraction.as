@@ -24,7 +24,7 @@ assert.throws(MyError, function() {
     throw new MyError();
   })() - (function() {
     trace += "2";
-    assert(false, "should not be evaluated");
+    throw "should not be evaluated";
   })();
 }, "?GetValue(lhs) throws.");
 assert.sameValue(trace, "1", "?GetValue(lhs) throws.");
@@ -37,7 +37,7 @@ assert.throws(MyError, function() {
     return {
       valueOf: function() {
         trace += "3";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })() - (function() {
@@ -63,7 +63,7 @@ assert.throws(MyError, function() {
     return {
       valueOf: function() {
         trace += "4";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })();
@@ -109,7 +109,7 @@ assert.throws(TypeError, function() {
     return {
       valueOf: function() {
         trace += "4";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })();
@@ -149,52 +149,52 @@ assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
 
 //CHECK#1
 if (evaluate(script("1\u0009-\u00091")) !== 0) {
-  assert(false, '#1: 1\\u0009-\\u00091 === 0');
+  throw '#1: 1\\u0009-\\u00091 === 0';
 }
 
 //CHECK#2
 if (evaluate(script("1\u000B-\u000B1")) !== 0) {
-  assert(false, '#2: 1\\u000B-\\u000B1 === 0');
+  throw '#2: 1\\u000B-\\u000B1 === 0';
 }
 
 //CHECK#3
 if (evaluate(script("1\u000C-\u000C1")) !== 0) {
-  assert(false, '#3: 1\\u000C-\\u000C1 === 0');
+  throw '#3: 1\\u000C-\\u000C1 === 0';
 }
 
 //CHECK#4
 if (evaluate(script("1\u0020-\u00201")) !== 0) {
-  assert(false, '#4: 1\\u0020-\\u00201 === 0');
+  throw '#4: 1\\u0020-\\u00201 === 0';
 }
 
 //CHECK#5
 if (evaluate(script("1\u00A0-\u00A01")) !== 0) {
-  assert(false, '#5: 1\\u00A0-\\u00A01 === 0');
+  throw '#5: 1\\u00A0-\\u00A01 === 0';
 }
 
 //CHECK#6
 if (evaluate(script("1\u000A-\u000A1")) !== 0) {
-  assert(false, '#6: 1\\u000A-\\u000A1 === 0');
+  throw '#6: 1\\u000A-\\u000A1 === 0';
 }
 
 //CHECK#7
 if (evaluate(script("1\u000D-\u000D1")) !== 0) {
-  assert(false, '#7: 1\\u000D-\\u000D1 === 0');
+  throw '#7: 1\\u000D-\\u000D1 === 0';
 }
 
 //CHECK#8
 if (evaluate(script("1\u2028-\u20281")) !== 0) {
-  assert(false, '#8: 1\\u2028-\\u20281 === 0');
+  throw '#8: 1\\u2028-\\u20281 === 0';
 }
 
 //CHECK#9
 if (evaluate(script("1\u2029-\u20291")) !== 0) {
-  assert(false, '#9: 1\\u2029-\\u20291 === 0');
+  throw '#9: 1\\u2029-\\u20291 === 0';
 }
 
 //CHECK#10
 if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029-\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 0) {
-  assert(false, '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029-\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 0');
+  throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029-\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 0';
 }
 
 
@@ -207,26 +207,26 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029-\u0
 
 //CHECK#1
 if (1 - 1 !== 0) {
-  assert(false, '#1: 1 - 1 === 0. Actual: ' + (1 - 1));
+  throw '#1: 1 - 1 === 0. Actual: ' + (1 - 1);
 }
 
 //CHECK#2
 loc x = 1;
 if (x - 1 !== 0) {
-  assert(false, '#2: loc x = 1; x - 1 === 0. Actual: ' + (x - 1));
+  throw '#2: loc x = 1; x - 1 === 0. Actual: ' + (x - 1);
 }
 
 //CHECK#3
 loc y = 1;
 if (1 - y !== 0) {
-  assert(false, '#3: loc y = 1; 1 - y === 0. Actual: ' + (1 - y));
+  throw '#3: loc y = 1; 1 - y === 0. Actual: ' + (1 - y);
 }
 
 //CHECK#4
 x = 1;
 y = 1;
 if (x - y !== 0) {
-  assert(false, '#4: loc x = 1; loc y = 1; x - y === 0. Actual: ' + (x - y));
+  throw '#4: loc x = 1; loc y = 1; x - y === 0. Actual: ' + (x - y);
 }
 
 
@@ -262,13 +262,13 @@ loc x = { valueOf: function () { throw "x"; } };
 loc y = { valueOf: function () { throw "y"; } };
 try {
    x - y;
-   assert(false, '#1.1: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x - y throw "x". Actual: ' + (x - y));
+   throw '#1.1: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x - y throw "x". Actual: ' + (x - y);
 } catch (e) {
    if (e === "y") {
-     assert(false, '#1.2: ToNumber(first expression) is called first, and then ToNumber(second expression)');
+     throw '#1.2: ToNumber(first expression) is called first, and then ToNumber(second expression)';
    } else {
      if (e !== "x") {
-       assert(false, '#1.3: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x - y throw "x". Actual: ' + (e));
+       throw '#1.3: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x - y throw "x". Actual: ' + (e);
      }
    }
 }
@@ -288,13 +288,13 @@ loc x = function () { throw "x"; };
 loc y = function () { throw "y"; };
 try {
    x() - y();
-   assert(false, '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (x() - y()));
+   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (x() - y());
 } catch (e) {
    if (e === "y") {
-     assert(false, '#1.2: First expression is evaluated first, and then second expression');
+     throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       assert(false, '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (e));
+       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (e);
      }
    }
 }
@@ -310,7 +310,7 @@ try {
 
 //CHECK#1
 if (1 - 1 !== 0) {
-  assert(false, '#1: 1 - 1 === 0. Actual: ' + (1 - 1));
+  throw '#1: 1 - 1 === 0. Actual: ' + (1 - 1);
 }
 
 
@@ -323,32 +323,32 @@ if (1 - 1 !== 0) {
 
 //CHECK#1
 if (is_NaN(NaN - 1.0) !== true ) {
-  assert(false, '#1: NaN - 1 === Not-a-Number. Actual: ' + (NaN - 1));
+  throw '#1: NaN - 1 === Not-a-Number. Actual: ' + (NaN - 1);
 }
 
 //CHECK#2
 if (is_NaN(1.0 - NaN) !== true ) {
-  assert(false, '#2: 1 - NaN === Not-a-Number. Actual: ' + (1 - NaN));
+  throw '#2: 1 - NaN === Not-a-Number. Actual: ' + (1 - NaN);
 }
 
 //CHECK#3
 if (is_NaN(NaN - Infinity) !== true ) {
-  assert(false, '#3: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity));
+  throw '#3: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity);
 }
 
 //CHECK#4
 if (is_NaN(Infinity - NaN) !== true ) {
-  assert(false, '#4: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN));
+  throw '#4: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN);
 }
 
 //CHECK#5
 if (is_NaN(NaN - -Infinity) !== true ) {
-  assert(false, '#5: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity));
+  throw '#5: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity);
 }
 
 //CHECK#6
 if (is_NaN(-Infinity - NaN) !== true ) {
-  assert(false, '#6: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN));
+  throw '#6: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN);
 }
 
 
@@ -363,12 +363,12 @@ if (is_NaN(-Infinity - NaN) !== true ) {
 
 //CHECK#1
 if (Infinity - -Infinity !== Infinity ) {
-  assert(false, '#1: Infinity - -Infinity === Infinity. Actual: ' + (Infinity - -Infinity));
+  throw '#1: Infinity - -Infinity === Infinity. Actual: ' + (Infinity - -Infinity);
 }
 
 //CHECK#2
 if (-Infinity - Infinity !== -Infinity ) {
-  assert(false, '#2: -Infinity - Infinity === -Infinity. Actual: ' + (-Infinity - Infinity));
+  throw '#2: -Infinity - Infinity === -Infinity. Actual: ' + (-Infinity - Infinity);
 }
 
 
@@ -382,12 +382,12 @@ if (-Infinity - Infinity !== -Infinity ) {
 
 //CHECK#1
 if (is_NaN(Infinity - Infinity) !== true ) {
-  assert(false, '#1: Infinity - Infinity === Not-a-Number. Actual: ' + (Infinity - Infinity));
+  throw '#1: Infinity - Infinity === Not-a-Number. Actual: ' + (Infinity - Infinity);
 }
 
 //CHECK#2
 if (is_NaN(-Infinity - -Infinity) !== true ) {
-  assert(false, '#2: -Infinity - -Infinity === Not-a-Number. Actual: ' + (-Infinity - -Infinity));
+  throw '#2: -Infinity - -Infinity === Not-a-Number. Actual: ' + (-Infinity - -Infinity);
 }
 
 
@@ -403,42 +403,42 @@ if (is_NaN(-Infinity - -Infinity) !== true ) {
 
 //CHECK#1
 if (Infinity - 1 !== Infinity ) {
-  assert(false, '#1: Infinity - 1 === Infinity. Actual: ' + (Infinity - 1));
+  throw '#1: Infinity - 1 === Infinity. Actual: ' + (Infinity - 1);
 }
 
 //CHECK#2
 if (-1 - Infinity !== -Infinity ) {
-  assert(false, '#2: -1 - Infinity === -Infinity. Actual: ' + (-1 - Infinity));
+  throw '#2: -1 - Infinity === -Infinity. Actual: ' + (-1 - Infinity);
 }
 
 //CHECK#3
 if (-Infinity - 1 !== -Infinity ) {
-  assert(false, '#3: -Infinity - 1 === -Infinity. Actual: ' + (-Infinity - 1));
+  throw '#3: -Infinity - 1 === -Infinity. Actual: ' + (-Infinity - 1);
 }
 
 //CHECK#4
 if (-1 - -Infinity !== Infinity ) {
-  assert(false, '#4: -1 - -Infinity === Infinity. Actual: ' + (-1 - -Infinity));
+  throw '#4: -1 - -Infinity === Infinity. Actual: ' + (-1 - -Infinity);
 }
 
 //CHECK#5
 if (Infinity - Number.MAX_VALUE !== Infinity ) {
-  assert(false, '#5: Infinity - Number.MAX_VALUE === Infinity. Actual: ' + (Infinity - Number.MAX_VALUE));
+  throw '#5: Infinity - Number.MAX_VALUE === Infinity. Actual: ' + (Infinity - Number.MAX_VALUE);
 }
 
 //CHECK#6
 if (-Number.MAX_VALUE - Infinity !== -Infinity ) {
-  assert(false, '#6: -Number.MAX_VALUE - Infinity === I-nfinity. Actual: ' + (-Number.MAX_VALUE - Infinity));
+  throw '#6: -Number.MAX_VALUE - Infinity === I-nfinity. Actual: ' + (-Number.MAX_VALUE - Infinity);
 }
 
 //CHECK#7
 if (-Infinity - Number.MAX_VALUE !== -Infinity ) {
-  assert(false, '#7: -Infinity - Number.MAX_VALUE === -Infinity. Actual: ' + (-Infinity - Number.MAX_VALUE));
+  throw '#7: -Infinity - Number.MAX_VALUE === -Infinity. Actual: ' + (-Infinity - Number.MAX_VALUE);
 }
 
 //CHECK#8
 if (-Number.MAX_VALUE - -Infinity !== Infinity ) {
-  assert(false, '#8: -Number.MAX_VALUE - -Infinity === Infinity. Actual: ' + (-Number.MAX_VALUE - -Infinity));
+  throw '#8: -Number.MAX_VALUE - -Infinity === Infinity. Actual: ' + (-Number.MAX_VALUE - -Infinity);
 }
 
 
@@ -454,37 +454,37 @@ if (-Number.MAX_VALUE - -Infinity !== Infinity ) {
 
 //CHECK#1
 if (-0 - -0 !== 0 ) {
-  assert(false, '#1.1: -0 - -0 === 0. Actual: ' + (-0 - -0));
+  throw '#1.1: -0 - -0 === 0. Actual: ' + (-0 - -0);
 } else {
   if (1 / (-0 - -0) !== Infinity) {
-    assert(false, '#1.2: -0 - -0 === + 0. Actual: -0');
+    throw '#1.2: -0 - -0 === + 0. Actual: -0';
   }
 }
 
 //CHECK#2
 if (0 - -0 !== 0 ) {
-  assert(false, '#2.1: 0 - -0 === 0. Actual: ' + (0 - -0));
+  throw '#2.1: 0 - -0 === 0. Actual: ' + (0 - -0);
 } else {
   if (1 / (0 - -0) !== Infinity) {
-    assert(false, '#2.2: 0 - -0 === + 0. Actual: -0');
+    throw '#2.2: 0 - -0 === + 0. Actual: -0';
   }
 }
 
 //CHECK#3
 if (-0 - 0 !== -0 ) {
-  assert(false, '#3.1: -0 - 0 === 0. Actual: ' + (-0 - 0));
+  throw '#3.1: -0 - 0 === 0. Actual: ' + (-0 - 0);
 } else {
   if (1 / (-0 - 0) !== -Infinity) {
-    assert(false, '#3.2: -0 - 0 === - 0. Actual: +0');
+    throw '#3.2: -0 - 0 === - 0. Actual: +0';
   }
 }
 
 //CHECK#4
 if (0 - 0 !== 0 ) {
-  assert(false, '#4.1: 0 - 0 === 0. Actual: ' + (0 - 0));
+  throw '#4.1: 0 - 0 === 0. Actual: ' + (0 - 0);
 } else {
   if (1 / (0 - 0) !== Infinity) {
-    assert(false, '#4.2: 0 - 0 === + 0. Actual: -0');
+    throw '#4.2: 0 - 0 === + 0. Actual: -0';
   }
 }
 
@@ -501,42 +501,42 @@ if (0 - 0 !== 0 ) {
 
 //CHECK#1
 if (1 - -0 !== 1 ) {
-  assert(false, '#1: 1 - -0 === 1. Actual: ' + (1 - -0));
+  throw '#1: 1 - -0 === 1. Actual: ' + (1 - -0);
 }
 
 //CHECK#2
 if (1 - 0 !== 1 ) {
-  assert(false, '#2: 1 - 0 === 1. Actual: ' + (1 - 0));
+  throw '#2: 1 - 0 === 1. Actual: ' + (1 - 0);
 }
 
 //CHECK#3
 if (-0 - 1 !== -1 ) {
-  assert(false, '#3: -0 - 1 === -1. Actual: ' + (-0 - 1));
+  throw '#3: -0 - 1 === -1. Actual: ' + (-0 - 1);
 }
 
 //CHECK#4
 if (0 - 1 !== -1 ) {
-  assert(false, '#4: 0 - 1 === -1. Actual: ' + (0 - 1));
+  throw '#4: 0 - 1 === -1. Actual: ' + (0 - 1);
 }
 
 //CHECK#5
 if (Number.MAX_VALUE - -0 !== Number.MAX_VALUE ) {
-  assert(false, '#5: Number.MAX_VALUE - -0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - -0));
+  throw '#5: Number.MAX_VALUE - -0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - -0);
 }
 
 //CHECK#6
 if (Number.MAX_VALUE - 0 !== Number.MAX_VALUE ) {
-  assert(false, '#6: Number.MAX_VALUE - 0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - 0));
+  throw '#6: Number.MAX_VALUE - 0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - 0);
 }
 
 //CHECK#7
 if (-0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
-  assert(false, '#7: -0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (-0 - Number.MIN_VALUE));
+  throw '#7: -0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (-0 - Number.MIN_VALUE);
 }
 
 //CHECK#8
 if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
-  assert(false, '#8: 0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (0 - Number.MIN_VALUE));
+  throw '#8: 0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (0 - Number.MIN_VALUE);
 }
 
 
@@ -552,28 +552,28 @@ if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
 
 //CHECK#1
 if (Number.MIN_VALUE - Number.MIN_VALUE !== +0) {
-  assert(false, '#1.1: Number.MIN_VALUE - Number.MIN_VALUE === 0. Actual: ' + (Number.MIN_VALUE - Number.MIN_VALUE));
+  throw '#1.1: Number.MIN_VALUE - Number.MIN_VALUE === 0. Actual: ' + (Number.MIN_VALUE - Number.MIN_VALUE);
 } else {
   if (1 / (Number.MIN_VALUE - Number.MIN_VALUE) !== Infinity) {
-    assert(false, '#1.2: Number.MIN_VALUE - Number.MIN_VALUE === + 0. Actual: -0');
+    throw '#1.2: Number.MIN_VALUE - Number.MIN_VALUE === + 0. Actual: -0';
   }
 }
 
 //CHECK#2
 if (-Number.MAX_VALUE - -Number.MAX_VALUE !== +0) {
-  assert(false, '#2.2: -Number.MAX_VALUE - -Number.MAX_VALUE === 0. Actual: ' + (-Number.MAX_VALUE - -Number.MAX_VALUE));
+  throw '#2.2: -Number.MAX_VALUE - -Number.MAX_VALUE === 0. Actual: ' + (-Number.MAX_VALUE - -Number.MAX_VALUE);
 } else {
   if (1 / (-Number.MAX_VALUE - -Number.MAX_VALUE) !== Infinity) {
-    assert(false, '#2.1: -Number.MAX_VALUE - -Number.MAX_VALUE === + 0. Actual: -0');
+    throw '#2.1: -Number.MAX_VALUE - -Number.MAX_VALUE === + 0. Actual: -0';
   }
 }
 
 //CHECK#3
 if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
-  assert(false, '#3.1: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === 0. Actual: ' + (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE));
+  throw '#3.1: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === 0. Actual: ' + (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE);
 } else {
   if (1 / (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE) !== Infinity) {
-    assert(false, '#3.2: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === + 0. Actual: -0');
+    throw '#3.2: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === + 0. Actual: -0';
   }
 }
 
@@ -590,22 +590,22 @@ if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
 
 //CHECK#1
 if (Number.MAX_VALUE - -Number.MAX_VALUE !== Infinity) {
-  assert(false, '#1: Number.MAX_VALUE - -Number.MAX_VALUE === Infinity. Actual: ' + (Number.MAX_VALUE - -Number.MAX_VALUE));
+  throw '#1: Number.MAX_VALUE - -Number.MAX_VALUE === Infinity. Actual: ' + (Number.MAX_VALUE - -Number.MAX_VALUE);
 }
 
 //CHECK#2
 if (-Number.MAX_VALUE - Number.MAX_VALUE !== -Infinity) {
-  assert(false, '#2: -Number.MAX_VALUE - umber.MAX_VALUE === -Infinity. Actual: ' + (-Number.MAX_VALUE - Number.MAX_VALUE));
+  throw '#2: -Number.MAX_VALUE - umber.MAX_VALUE === -Infinity. Actual: ' + (-Number.MAX_VALUE - Number.MAX_VALUE);
 }
 
 //CHECK#3
 if (1e+308 - -1e+308 !== Infinity) {
-  assert(false, '#3: 1e+308 - -1e+308 === Infinity. Actual: ' + (1e+308 - -1e+308));
+  throw '#3: 1e+308 - -1e+308 === Infinity. Actual: ' + (1e+308 - -1e+308);
 }
 
 //CHECK#4
 if (-8.99e+307 - 8.99e+307 !== -Infinity) {
-  assert(false, '#4: -8.99e+307 - 8.99e+307 === -Infinity. Actual: ' + (-8.99e+307 - 8.99e+307));
+  throw '#4: -8.99e+307 - 8.99e+307 === -Infinity. Actual: ' + (-8.99e+307 - 8.99e+307);
 }
 
 

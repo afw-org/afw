@@ -12,43 +12,43 @@
 #!/usr/bin/env afw
 
 if (evaluate(script("!\u0009true")) !== false) {
-    assert(false, "#1 !\\u009true === false");
+    throw "#1 !\\u009true === false";
 }
 
 if (evaluate(script("!\u000Btrue")) !== false) {
-    assert(false, "#2 !\u000Btrue === false");
+    throw "#2 !\u000Btrue === false";
 }
 
 if (evaluate(script("!\u000Ctrue")) !== false) {
-    assert(false, "#3 !\u000Ctrue === false");
+    throw "#3 !\u000Ctrue === false";
 }
 
 if (evaluate(script("!\u0020true")) !== false) {
-    assert(false, "#4 !\u0020true === false");
+    throw "#4 !\u0020true === false";
 }
 
 if (evaluate(script("!\u00A0true")) !== false) {
-    assert(false, "#5 !\u00A0true === false");
+    throw "#5 !\u00A0true === false";
 }
 
 if (evaluate(script("!\u000Atrue")) !== false) {
-    assert(false, "#6 !\u000Atrue === false");
+    throw "#6 !\u000Atrue === false";
 }
 
 if (evaluate(script("!\u000Dtrue")) !== false) {
-    assert(false, "#7 !\u000Dtrue === false");
+    throw "#7 !\u000Dtrue === false";
 }
 
 if (evaluate(script("!\u2028true")) !== false) {
-    assert(false, "#8 !\u2028true === false");
+    throw "#8 !\u2028true === false";
 }
 
 if (evaluate(script("!\u2029true")) !== false) {
-    assert(false, "#9 !\u2029true === false");
+    throw "#9 !\u2029true === false";
 }
 
 if (evaluate(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true")) !== false) {
-    assert(false, "#10 !\\u009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true === false");
+    throw "#10 !\\u009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true === false";
 }
 
 
@@ -60,21 +60,21 @@ if (evaluate(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true
 #!/usr/bin/env afw
 
 if (!true !== false) {
-    assert(false, "#1 !true !== false");
+    throw "#1 !true !== false";
 }
 
 if (!(!true) !== true) {
-    assert(false, "#2 !(!true) !== true");
+    throw "#2 !(!true) !== true";
 }
 
 loc x: boolean = true;
 if (!x !== false) {
-    assert(false, "#3 !x !== false");
+    throw "#3 !x !== false";
 }
 
 x = true;
 if (!(!x) !== true) {
-    assert(false, "#4 !(!x) !== true");
+    throw "#4 !(!x) !== true";
 }
 
 
@@ -86,7 +86,7 @@ if (!(!x) !== true) {
 #!/usr/bin/env afw
 
 if (!false !== true) {
-    assert(false, "#1 !false !== true");
+    throw "#1 !false !== true";
 }
 
 
@@ -98,19 +98,19 @@ if (!false !== true) {
 #!/usr/bin/env afw
 
 if (!0.1 !== false) {
-    assert(false, "#1 !0.1 !== false");
+    throw "#1 !0.1 !== false";
 }
 
 if (!NaN !== true) {
-    assert(false, "#2 !NaN !== true");
+    throw "#2 !NaN !== true";
 }
 
 if (!0 !== true) {
-    assert(false, "#3 !0 !== true");
+    throw "#3 !0 !== true";
 }
 
 if (!Infinity !== false) {
-    assert(false, "#4 !Infinity !== false");
+    throw "#4 !Infinity !== false";
 }
 
 
@@ -122,15 +122,15 @@ if (!Infinity !== false) {
 #!/usr/bin/env afw
 
 if (!(+0) !== true) {
-    assert(false, "#1 !(+0) !== true");
+    throw "#1 !(+0) !== true";
 }
 
 if (!(-0) !== true) {
-    assert(false, "#2 !(-0) !== true");
+    throw "#2 !(-0) !== true";
 }
 
 if (!(NaN) !== true) {
-    assert(false, "#3 !(NaN) !== true");
+    throw "#3 !(NaN) !== true";
 }
 
 
@@ -142,27 +142,27 @@ if (!(NaN) !== true) {
 #!/usr/bin/env afw
 
 if (!(+Infinity) !== false) {
-    assert(false, "#1 !(+Infinity) !== false");
+    throw "#1 !(+Infinity) !== false";
 }
 
 if (!(-Infinity) !== false) {
-    assert(false, "#2 !(-Infinity) !== false");
+    throw "#2 !(-Infinity) !== false";
 }
 
 if (!(13) !== false) {
-    assert(false, "#3 !(13) !== false");
+    throw "#3 !(13) !== false";
 }
 
 if (!(-13) !== false) {
-    assert(false, "#4 !(-13) !== false");
+    throw "#4 !(-13) !== false";
 }
 
 if (!(1.3) !== false) {
-    assert(false, "#5 !(1.3) !== false");
+    throw "#5 !(1.3) !== false";
 }
 
 if (!(-1.3) !== false) {
-    assert(false, "#6 !(-1.3) !== false");
+    throw "#6 !(-1.3) !== false";
 }
 
 
@@ -174,6 +174,6 @@ if (!(-1.3) !== false) {
 #!/usr/bin/env afw
 
 if (!("") !== true) {
-    assert(false, "#1 !(\"\") !== true");
+    throw "#1 !(\"\") !== true";
 }
 

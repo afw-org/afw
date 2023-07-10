@@ -12,43 +12,43 @@
 #!/usr/bin/env afw
 
 if (evaluate(script("1\u0009*\u00091")) !== 1) {
-    assert(false, "#1: 1\\u0009*\\u00091 === 1");
+    throw "#1: 1\\u0009*\\u00091 === 1";
 }
 
 if (evaluate(script("1\u000B*\u000B1")) !== 1) {
-    assert(false, "#2: 1\\u000B*\\u000B1 === 1");
+    throw "#2: 1\\u000B*\\u000B1 === 1";
 }
 
 if (evaluate(script("1\u000C*\u000C1")) !== 1) {
-    assert(false, "#3: 1\\u000C*\\u000C1 === 1");
+    throw "#3: 1\\u000C*\\u000C1 === 1";
 }
 
 if (evaluate(script("1\u0020*\u00201")) !== 1) {
-    assert(false, "#4: 1\\u0020*\\u00201 === 1");
+    throw "#4: 1\\u0020*\\u00201 === 1";
 }
 
 if (evaluate(script("1\u00A0*\u00A01")) !== 1) {
-    assert(false, "#5: 1\\u00A0*\\u00A01 === 1");
+    throw "#5: 1\\u00A0*\\u00A01 === 1";
 }
 
 if (evaluate(script("1\u000A*\u000A1")) !== 1) {
-    assert(false, "#6: 1\\u000A*\\u000A1 === 1");
+    throw "#6: 1\\u000A*\\u000A1 === 1";
 }
 
 if (evaluate(script("1\u000D*\u000D1")) !== 1) {
-    assert(false, "#7: 1\\u000D*\\u000D1 === 1");
+    throw "#7: 1\\u000D*\\u000D1 === 1";
 }
 
 if (evaluate(script("1\u2028*\u20281")) !== 1) {
-    assert(false, "#8: 1\\u2028*\\u20281 === 1");
+    throw "#8: 1\\u2028*\\u20281 === 1";
 }
 
 if (evaluate(script("1\u2029*\u20291")) !== 1) {
-    assert(false, "#9: 1\\u2029*\\u20291 === 1");
+    throw "#9: 1\\u2029*\\u20291 === 1";
 }
 
 if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029*\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
-    assert(false, "#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029*\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1");
+    throw "#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029*\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1";
 }
 
 
@@ -60,23 +60,23 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029*\u0
 #!/usr/bin/env afw
 
 if (1 * 1 !== 1) {
-    assert(false, "1 * 1 !== 1");
+    throw "1 * 1 !== 1";
 }
 
 loc x: integer = 1;
 if (x * 1 !== 1) {
-    assert(false, "x * 1 !== 1");
+    throw "x * 1 !== 1";
 }
 
 loc y: integer = 1;
 if (1 * y !== 1) {
-    assert(false, "1 * y !== 1");
+    throw "1 * y !== 1";
 }
 
 x = 1;
 y = 1;
 if (x * y !== 1) {
-    assert(false, "x * y !== 1");
+    throw "x * y !== 1";
 }
 
 
@@ -90,12 +90,12 @@ if (x * y !== 1) {
 
 loc x: integer = 0;
 if ((x = 1) * x !== 1) {
-    assert(false, "x = 1 * x !== 1");
+    throw "x = 1 * x !== 1";
 }
 
 loc x: integer = 0;
 if (x * (x = 1) !== 0) {
-    assert(false, "x * (x = 1) !== 0");
+    throw "x * (x = 1) !== 0";
 }
 
 
@@ -111,12 +111,12 @@ loc y1: integer = 0;
 
 const x: function = function (): any {
     x1 = 1;
-    assert(false, "x");
+    throw "x";
 };
 
 const y: function = function (): any {
     y1 = 1;
-    assert(false, "y");
+    throw "y";
 };
 
 safe_evaluate(
@@ -136,37 +136,37 @@ assert(y1 === 0, "y1 === 0");
 #!/usr/bin/env afw
 
 if (1 * 1 !== 1) {
-    assert(false, "#1: 1 * 1 !== 1");
+    throw "#1: 1 * 1 !== 1";
 }
 
 if (1 * -1 !== -1) {
-    assert(false, "#2: 1 * -1 !== -1");
+    throw "#2: 1 * -1 !== -1";
 }
 
 if (-1 * 1 !== -1) {
-    assert(false, "#3: -1 * 1 !== -1");
+    throw "#3: -1 * 1 !== -1";
 }
 
 /*
 if (-1 * -1 !== 1) {
-    assert(false, "#4: -1 * -1 !== 1");
+    throw "#4: -1 * -1 !== 1";
 }
 */
 
 if (0 * 0 !== 0) {
-    assert(false, "#5: 0 * 0 !== 0");
+    throw "#5: 0 * 0 !== 0";
 }
 
 if (0 * -0 !== -0) {
-    assert(false, "#6: 0 * -0 !== 0");
+    throw "#6: 0 * -0 !== 0";
 }
 
 if (-0 * 0 !== -0) {
-    assert(false, "#7: -0 * 0 !== -0");
+    throw "#7: -0 * 0 !== -0";
 }
 
 if (-0 * -0 !== 0) {
-    assert(false, "#8: -0 * -0 !== 0");
+    throw "#8: -0 * -0 !== 0";
 }
 
 
@@ -178,19 +178,19 @@ if (-0 * -0 !== 0) {
 #!/usr/bin/env afw
 
 if (-Infinity * -Infinity !== +Infinity) {
-    assert(false, "#1: -Infinity * -Infinity !== Infinity");
+    throw "#1: -Infinity * -Infinity !== Infinity";
 }
 
 if (+Infinity * Infinity !== +Infinity) {
-    assert(false, "#2: Infinity * Infinity !== Infinity");
+    throw "#2: Infinity * Infinity !== Infinity";
 }
 
 if (-Infinity * +Infinity !== -Infinity) {
-    assert(false, "#3: -Infinity * Infinity !== -Infinity");
+    throw "#3: -Infinity * Infinity !== -Infinity";
 }
 
 if (+Infinity * -Infinity !== -Infinity) {
-    assert(false, "#4: Infinity * -Infinity !== -Infinity");
+    throw "#4: Infinity * -Infinity !== -Infinity";
 }
 
 
@@ -202,19 +202,19 @@ if (+Infinity * -Infinity !== -Infinity) {
 #!/usr/bin/env afw
 
 if (-Infinity * -1.0 !== +Infinity) {
-    assert(false, "#1: -Infinity * -1.0 !== Infinity");
+    throw "#1: -Infinity * -1.0 !== Infinity";
 }
 
 if (-1.0 * -Infinity !== +Infinity) {
-    assert(false, "#2: -1.0 * -Infinity !== Infinity");
+    throw "#2: -1.0 * -Infinity !== Infinity";
 }
 
 if (+Infinity * -1.0 !== -Infinity) {
-    assert(false, "#3: Infinity * -1.0 !== -Infinity");
+    throw "#3: Infinity * -1.0 !== -Infinity";
 }
 
 if (-1.0 * +Infinity !== -Infinity) {
-    assert(false, "#4: -1.0 * Infinity !== -Infinity");
+    throw "#4: -1.0 * Infinity !== -Infinity";
 }
 
 

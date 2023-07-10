@@ -12,21 +12,21 @@
 #!/usr/bin/env afw
 
 if (-1 !== -1) {
-    assert(false, "#1: -1 === -1");
+    throw "#1: -1 === -1";
 }
 
 if (-(-1) !== 1) {
-    assert(false, "#2: -(-1) === 1");
+    throw "#2: -(-1) === 1";
 }
 
 loc x: integer = -1;
 if (-x !== 1) {
-    assert(false, "#3: -x === 1");
+    throw "#3: -x === 1";
 }
 
 x = -1;
 if (-(-x) !== -1) {
-    assert(false, "#4: -(-x) === -1");
+    throw "#4: -(-x) === -1";
 }
 
 
@@ -38,7 +38,7 @@ if (-(-x) !== -1) {
 #!/usr/bin/env afw
 
 if (-(1) !== -1) {
-    assert(false, "#1: -(1) === -1");
+    throw "#1: -(1) === -1";
 }
 
 
@@ -52,11 +52,11 @@ if (-(1) !== -1) {
 loc x: integer = 0;
 x = -x;
 if (x !== -0) {
-    assert(false, "#1: x === -0");
+    throw "#1: x === -0";
 }
 
 x = -0;
 x = -x;
 if (x !== 0) {
-    assert(false, "#2: x === 0");
+    throw "#2: x === 0";
 }

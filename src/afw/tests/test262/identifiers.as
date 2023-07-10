@@ -194,107 +194,107 @@ loc return = 123;
 
 loc a = 1;
 if (a !== 1) {
-  assert(false, '#a');
+  throw '#a';
 }
 loc b = 1;
 if (b !== 1) {
-  assert(false, '#b');
+  throw '#b';
 }
 loc c = 1;
 if (c !== 1) {
-  assert(false, '#c');
+  throw '#c';
 }
 loc d = 1;
 if (d !== 1) {
-  assert(false, '#d');
+  throw '#d';
 }
 loc e = 1;
 if (e !== 1) {
-  assert(false, '#e');
+  throw '#e';
 }
 loc f = 1;
 if (f !== 1) {
-  assert(false, '#f');
+  throw '#f';
 }
 loc g = 1;
 if (g !== 1) {
-  assert(false, '#g');
+  throw '#g';
 }
 loc h = 1;
 if (h !== 1) {
-  assert(false, '#h');
+  throw '#h';
 }
 loc i = 1;
 if (i !== 1) {
-  assert(false, '#i');
+  throw '#i';
 }
 loc j = 1;
 if (j !== 1) {
-  assert(false, '#j');
+  throw '#j';
 }
 loc k = 1;
 if (k !== 1) {
-  assert(false, '#k');
+  throw '#k';
 }
 loc l = 1;
 if (l !== 1) {
-  assert(false, '#l');
+  throw '#l';
 }
 loc m = 1;
 if (m !== 1) {
-  assert(false, '#m');
+  throw '#m';
 }
 loc n = 1;
 if (n !== 1) {
-  assert(false, '#n');
+  throw '#n';
 }
 loc o = 1;
 if (o !== 1) {
-  assert(false, '#o');
+  throw '#o';
 }
 loc p = 1;
 if (p !== 1) {
-  assert(false, '#p');
+  throw '#p';
 }
 loc q = 1;
 if (q !== 1) {
-  assert(false, '#q');
+  throw '#q';
 }
 loc r = 1;
 if (r !== 1) {
-  assert(false, '#r');
+  throw '#r';
 }
 loc s = 1;
 if (s !== 1) {
-  assert(false, '#s');
+  throw '#s';
 }
 loc t = 1;
 if (t !== 1) {
-  assert(false, '#t');
+  throw '#t';
 }
 loc u = 1;
 if (u !== 1) {
-  assert(false, '#u');
+  throw '#u';
 }
 loc v = 1;
 if (v !== 1) {
-  assert(false, '#v');
+  throw '#v';
 }
 loc w = 1;
 if (w !== 1) {
-  assert(false, '#w');
+  throw '#w';
 }
 loc x = 1;
 if (x !== 1) {
-  assert(false, '#x');
+  throw '#x';
 }
 loc y = 1;
 if (y !== 1) {
-  assert(false, '#y');
+  throw '#y';
 }
 loc z = 1;
 if (z !== 1) {
-  assert(false, '#z');
+  throw '#z';
 }
 
 

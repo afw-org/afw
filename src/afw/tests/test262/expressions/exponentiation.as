@@ -24,7 +24,7 @@ loc bases = [
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if (pow(bases[i], exponent) !== +Infinity) {
-    assert(false, "(" + string(bases[i]) + " ** " + string(exponent) +") !== +Infinity");
+    throw "(" + string(bases[i]) + " ** " + string(exponent) +") !== +Infinity";
   }
 }
 
@@ -47,7 +47,7 @@ Infinity,
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
 	if (base ** exponents[i] !== +Infinity) {
-		assert(false, "(" + string(base) + " ** " + string(exponents[i]) + ") !== +Infinity");
+		throw "(" + string(base) + " ** " + string(exponents[i]) + ") !== +Infinity";
 	}
 }
 
@@ -70,7 +70,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0.0) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
 
@@ -92,7 +92,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== -Infinity) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity";
   }
 }
 
@@ -117,7 +117,7 @@ Math.PI,
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
 }
 
@@ -162,7 +162,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
 
@@ -185,7 +185,7 @@ Infinity,
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0.0) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
 
@@ -208,7 +208,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
 }
 
@@ -281,7 +281,7 @@ Math.PI,
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
 
@@ -303,7 +303,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== -Infinity) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity";
   }
 }
 
@@ -328,7 +328,7 @@ loc exponents = [
 
 for (loc i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
-    assert(false, "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity");
+    throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
 }
 
@@ -394,7 +394,7 @@ NaN
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== 1.0) {
-    assert(false, "(" + string(bases[i]) + " **  " + string(exponent) +") !== 1");
+    throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== 1";
   }
 }
 
@@ -422,7 +422,7 @@ NaN
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== 1.0) {
-    assert(false, "(" + string(bases[i]) + " ** -0) !== 1");
+    throw "(" + string(bases[i]) + " ** -0) !== 1";
   }
 }
 
@@ -472,7 +472,7 @@ loc bases = [
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +Infinity) {
-    assert(false, "(" + string(bases[i]) + " **  " + string(exponent) +") !== +Infinity");
+    throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +Infinity";
   }
 }
 
@@ -497,7 +497,7 @@ loc bases = [
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +0.0) {
-    assert(false, "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0");
+    throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0";
   }
 }
 
@@ -561,7 +561,7 @@ loc bases = [
 
 for (loc i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +0.0) {
-    assert(false, "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0");
+    throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0";
   }
 }
 
@@ -714,7 +714,7 @@ assert.throws(MyError, function() {
     throw new MyError();
   })() ** (function() {
     trace += "2";
-    assert(false, "should not be evaluated");
+    throw "should not be evaluated";
   })();
 }, "?GetValue(lhs) throws.");
 assert(trace ===  "1", "?GetValue(lhs) throws.");
@@ -727,7 +727,7 @@ assert.throws(MyError, function() {
     return {
       valueOf: function() {
         trace += "3";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })() ** (function() {
@@ -753,7 +753,7 @@ assert.throws(MyError, function() {
     return {
       valueOf: function() {
         trace += "4";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })();
@@ -799,7 +799,7 @@ assert.throws(TypeError, function() {
     return {
       valueOf: function() {
         trace += "4";
-        assert(false, "should not be evaluated");
+        throw "should not be evaluated";
       }
     };
   })();

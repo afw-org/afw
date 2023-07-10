@@ -12,43 +12,43 @@
 #!/usr/bin/env afw
 
 if (evaluate(script("0\u0009>\u00091")) !== false) {
-    assert(false, "0\u0009>\u00091 !== false");
+    throw "0\u0009>\u00091 !== false";
 }
 
 if (evaluate(script("0\u000B>\u000B1")) !== false) {
-    assert(false, "0\u000B>\u000B1 !== false");
+    throw "0\u000B>\u000B1 !== false";
 }
 
 if (evaluate(script("0\u000C>\u000C1")) !== false) {
-    assert(false, "0\u000C>\u000C1 !== false");
+    throw "0\u000C>\u000C1 !== false";
 }
 
 if (evaluate(script("0\u0020>\u00201")) !== false) {
-    assert(false, "0\u0020>\u00201 !== false");
+    throw "0\u0020>\u00201 !== false";
 }
 
 if (evaluate(script("0\u00A0>\u00A01")) !== false) {
-    assert(false, "0\u00A0>\u00A01 !== false");
+    throw "0\u00A0>\u00A01 !== false";
 }
 
 if (evaluate(script("0\u000A>\u000A1")) !== false) {
-    assert(false, "0\u000A>\u000A1 !== false");
+    throw "0\u000A>\u000A1 !== false";
 }
 
 if (evaluate(script("0\u000D>\u000D1")) !== false) {
-    assert(false, "0\u000D>\u000D1 !== false");
+    throw "0\u000D>\u000D1 !== false";
 }
 
 if (evaluate(script("0\u2028>\u20281")) !== false) {
-    assert(false, "0\u2028>\u20281 !== false");
+    throw "0\u2028>\u20281 !== false";
 }
 
 if (evaluate(script("0\u2029>\u20291")) !== false) {
-    assert(false, "0\u2029>\u20291 !== false");
+    throw "0\u2029>\u20291 !== false";
 }
 
 if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== true) {
-    assert(false, "1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291 !== true");
+    throw "1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291 !== true";
 }
 
 
@@ -60,23 +60,23 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u
 #!/usr/bin/env afw
 
 if (2 > 1 !== true) {
-    assert(false, "2 > 1 !== true");
+    throw "2 > 1 !== true";
 }
 
 loc x: integer = 2;
 if (x > 1 !== true) {
-    assert(false, "x > 1 !== true");
+    throw "x > 1 !== true";
 }
 
 loc y: integer = 1;
 if (2 > y !== true) {
-    assert(false, "2 > y !== true");
+    throw "2 > y !== true";
 }
 
 x = 2;
 y = 1;
 if (x > 1 !== true) {
-    assert(false, "x > 1 !== true");
+    throw "x > 1 !== true";
 }
 
 
@@ -106,12 +106,12 @@ x > 1;
 
 loc x: integer = 0;
 if ((x = 1) > x !== false) {
-    assert(false, "(x = 1) > x !== false");
+    throw "(x = 1) > x !== false";
 }
 
 x = 1;
 if (x > (x = 0) !== true) {
-    assert(false, "x > (x = 0) !== true");
+    throw "x > (x = 0) !== true";
 }
 
 
@@ -127,12 +127,12 @@ loc y1: integer = 0;
 
 function x(): any {
     x1 = 1;
-    assert(false, "x");
+    throw "x";
 }
 
 function y(): any {
     y1 = 1;
-    assert(false, "y");
+    throw "y";
 }
 
 safe_evaluate(
@@ -152,7 +152,7 @@ assert(y1 === 0, "y1 !== 0");
 #!/usr/bin/env afw
 
 if (true > true !== false) {
-    assert(false, "true > true !== false");
+    throw "true > true !== false";
 }
 
 
@@ -164,7 +164,7 @@ if (true > true !== false) {
 #!/usr/bin/env afw
 
 if (1 > 1 !== false) {
-    assert(false, "1 > 1 !== false");
+    throw "1 > 1 !== false";
 }
 
 
@@ -176,11 +176,11 @@ if (1 > 1 !== false) {
 #!/usr/bin/env afw
 
 if (true > 1 !== false) {
-    assert(false, "true > 1 !== false");
+    throw "true > 1 !== false";
 }
 
 if (1 > true !== false) {
-    assert(false, "1 > true !== false");
+    throw "1 > true !== false";
 }
 
 
@@ -193,19 +193,19 @@ if (1 > true !== false) {
 
 /* mixing types won't work in AFW */
 if ("1" > 1 !== false) {
-    assert(false, "'1' > 1 !== false");
+    throw "'1' > 1 !== false";
 }
 
 if (1 > "1" !== false) {
-    assert(false, "1 > '1' !== false");
+    throw "1 > '1' !== false";
 }
 
 if ("x" > 1 !== false) {
-    assert(false, "'x' > 1 !== false");
+    throw "'x' > 1 !== false";
 }
 
 if (1 > "x" !== false) {
-    assert(false, "1 > 'x' !== false");
+    throw "1 > 'x' !== false";
 }
 
 
@@ -217,15 +217,15 @@ if (1 > "x" !== false) {
 //? source: ...
 
 if ("1" > "1" !== false) {
-    assert(false, "'1' > '1' !== false");
+    throw "'1' > '1' !== false";
 }
 
 if ("x" > "1" !== true) {
-    assert(false, "'x' > '1' !== true");
+    throw "'x' > '1' !== true";
 }
 
 if ("1" > "x" !== false) {
-    assert(false, "'1' > 'x' !== false");
+    throw "'1' > 'x' !== false";
 }
 
 
@@ -236,27 +236,27 @@ if ("1" > "x" !== false) {
 //? source: ...
 
 if ((NaN > 0.0) !== false) {
-    assert(false, "NaN > 0.0 !== false");
+    throw "NaN > 0.0 !== false";
 }
 
 if ((NaN > 1.1) !== false) {
-    assert(false, "NaN > 1.1 !== false");
+    throw "NaN > 1.1 !== false";
 }
 
 if ((NaN > -1.1) !== false) {
-    assert(false, "NaN > -1.1 !== false");
+    throw "NaN > -1.1 !== false";
 }
 
 if ((NaN > NaN) !== false) {
-    assert(false, "NaN > NaN !== false");
+    throw "NaN > NaN !== false";
 }
 
 if ((NaN > +Infinity) !== false) {
-    assert(false, "NaN > +Infinity !== false");
+    throw "NaN > +Infinity !== false";
 }
 
 if ((NaN > -Infinity) !== false) {
-    assert(false, "NaN > -Infinity !== false");
+    throw "NaN > -Infinity !== false";
 }
 
 
@@ -267,28 +267,28 @@ if ((NaN > -Infinity) !== false) {
 //? source: ...
 
 if (("x" > "x") !== false) {
-    assert(false, "'x' > 'x' !== false");
+    throw "'x' > 'x' !== false";
 }
 
 if (("" > "x") !== false) {
-    assert(false, "'' > 'x' !== false");
+    throw "'' > 'x' !== false";
 }
 
 if (("ab" > "abcd") !== false) {
-    assert(false, "'ab' > 'abcd' !== false");
+    throw "'ab' > 'abcd' !== false";
 }
 
 if (("abcd" > "abc\u0064") !== false) {
-    assert(false, "'abcd' > 'abc\\u0064' !== false");
+    throw "'abcd' > 'abc\\u0064' !== false";
 }
 
 if (("x" > ("x" + "y")) !== false) {
-    assert(false, "'x' > ('x' + 'y') !== false");
+    throw "'x' > ('x' + 'y') !== false";
 }
 
 loc x: string = "x";
 if ((x > (x + "y")) !== false) {
-    assert(false, "x > (x + 'y') !== false");
+    throw "x > (x + 'y') !== false";
 }
 
 
@@ -299,36 +299,36 @@ if ((x > (x + "y")) !== false) {
 //? source: ...
 
 if (("x " > "x") !== true) {
-    assert(false, "'x ' > 'x' !== true");
+    throw "'x ' > 'x' !== true";
 }
 
 if (("x" > "" ) !== true) {
-    assert(false, "'x' > '' !== true");
+    throw "'x' > '' !== true";
 }
 
 if (("abcd" > "ab") !== true) {
-    assert(false, "'abcd' > 'ab' !== true");
+    throw "'abcd' > 'ab' !== true";
 }
 
 if (("abc\u0064" > "abcd") !== false) {
-    assert(false, "'abc\\u0064' > 'abcd' !== false");
+    throw "'abc\\u0064' > 'abcd' !== false";
 }
 
 if ((("x" + "y") > "x") !== true) {
-    assert(false, "('x' + 'y') > 'x' !== true");
+    throw "('x' + 'y') > 'x' !== true";
 }
 
 loc x: string = "x";
 if (((x + "y") > x) !== true) {
-    assert(false, "('x' + 'y') > x !== true");
+    throw "('x' + 'y') > x !== true";
 }
 
 if (("a\u0000a" > "a\u0000") !== true) {
-    assert(false, "'a\\u0000a' > 'a\\u0000' !== true");
+    throw "'a\\u0000a' > 'a\\u0000' !== true";
 }
 
 if ((" x" > "x") !== false) {
-    assert(false, "' x' > 'x' !== false");
+    throw "' x' > 'x' !== false";
 }
 
 
@@ -339,31 +339,31 @@ if ((" x" > "x") !== false) {
 //? source: ...
 
 if (("xy" > "xx") !== true) {
-    assert(false, "'xy' > 'xx' !== true");
+    throw "'xy' > 'xx' !== true";
 }
 
 if (("xx" > "xy") !== false) {
-    assert(false, "'xx' > 'xy' !== false");
+    throw "'xx' > 'xy' !== false";
 }
 
 if (("y" > "x") !== true) {
-    assert(false, "'y' > 'x' !== true");
+    throw "'y' > 'x' !== true";
 }
 
 if (("aba" > "aab") !== true) {
-    assert(false, "'aba' > 'aab' !== true");
+    throw "'aba' > 'aab' !== true";
 }
 
 if (("\u0061\u0061\u0061\u0061" > "\u0061\u0061\u0061\u0062") !== false) {
-    assert(false, "'\\u0061\\u0061\\u0061\\u0061' > '\\u0061\\u0061\\u0061\\u0062' !== false");
+    throw "'\\u0061\\u0061\\u0061\\u0061' > '\\u0061\\u0061\\u0061\\u0062' !== false";
 }
 
 if (("a\u0000b" > "a\u0000a") !== true) {
-    assert(false, "'a\\u0000b' > 'a\\u0000a' !== true");
+    throw "'a\\u0000b' > 'a\\u0000a' !== true";
 }
 
 if (("aa" > "aB") !== true) {
-    assert(false, "'aa' > 'aB' !== true");
+    throw "'aa' > 'aB' !== true";
 }
 
 
@@ -374,27 +374,27 @@ if (("aa" > "aB") !== true) {
 //? source: ...
 
 if (("x" > "0") !== true) {
-    assert(false, "'x' > '0' !== true");
+    throw "'x' > '0' !== true";
 }
 
 if (("0" > "-0") !== true) {
-    assert(false, "'0' > '-0' !== true");
+    throw "'0' > '-0' !== true";
 }
 
 if (("-" > "+") !== true) {
-    assert(false, "'-' > '+' !== true");
+    throw "'-' > '+' !== true";
 }
 
 if (("-1" > "-0") !== true) {
-    assert(false, "'-1' > '-0' !== true");
+    throw "'-1' > '-0' !== true";
 }
 
 if (("-1" > "+1") !== true) {
-    assert(false, "'-1' > '+1' !== true");
+    throw "'-1' > '+1' !== true";
 }
 
 if (("1e-10" > "1") !== true) {
-    assert(false, "'1e-10' > '1' !== true");
+    throw "'1e-10' > '1' !== true";
 }
 
 
@@ -405,27 +405,27 @@ if (("1e-10" > "1") !== true) {
 //? source: ...
 
 if ((double(0) > NaN) !== false) {
-    assert(false, "0 > NaN !== false");
+    throw "0 > NaN !== false";
 }
 
 if ((1.1 > NaN) !== false) {
-    assert(false, "1.1 > NaN !== false");
+    throw "1.1 > NaN !== false";
 }
 
 if ((-1.1 > NaN) !== false) {
-    assert(false, "'-1.1' > NaN !== false");
+    throw "'-1.1' > NaN !== false";
 }
 
 if ((NaN > NaN) !== false) {
-    assert(false, "NaN > NaN !== false");
+    throw "NaN > NaN !== false";
 }
 
 if ((+Infinity > NaN) !== false) {
-    assert(false, "'+Infinity' > NaN !== false");
+    throw "'+Infinity' > NaN !== false";
 }
 
 if ((-Infinity > NaN) !== false) {
-    assert(false, "'-Infinity' > NaN !== false");
+    throw "'-Infinity' > NaN !== false";
 }
 
 
@@ -436,23 +436,23 @@ if ((-Infinity > NaN) !== false) {
 //? source: ...
 
 if ((1 > 1) !== false) {
-    assert(false, "1 > 1 !== false");
+    throw "1 > 1 !== false";
 }
 
 if ((1.1 > 1.1) !== false) {
-    assert(false, "1.1 > 1.1 !== false");
+    throw "1.1 > 1.1 !== false";
 }
 
 if ((-1.1 > -1.1) !== false) {
-    assert(false, "'-1.1' > -1.1 !== false");
+    throw "'-1.1' > -1.1 !== false";
 }
 
 if ((-Infinity > -Infinity) !== false) {
-    assert(false, "'-Infinity' > -Infinity !== false");
+    throw "'-Infinity' > -Infinity !== false";
 }
 
 if ((+Infinity > +Infinity) !== false) {
-    assert(false, "'+Infinity' > +Infinity !== false");
+    throw "'+Infinity' > +Infinity !== false";
 }
 
 
@@ -463,19 +463,19 @@ if ((+Infinity > +Infinity) !== false) {
 //? source: ...
 
 if ((0 > 0) !== false) {
-    assert(false, "0 > 0 !== false");
+    throw "0 > 0 !== false";
 }
 
 if ((-0 > 0) !== false) {
-    assert(false, "'-0' > 0 !== false");
+    throw "'-0' > 0 !== false";
 }
 
 if ((+0 > -0) !== false) {
-    assert(false, "'+0' > '-0' !== false");
+    throw "'+0' > '-0' !== false";
 }
 
 if ((-0 > +0) !== false) {
-    assert(false, "'-0' > '+0' !== false");
+    throw "'-0' > '+0' !== false";
 }
 
 
@@ -487,19 +487,19 @@ if ((-0 > +0) !== false) {
 //? source: ...
 
 if ((+Infinity > double(0)) !== true) {
-    assert(false, "'+Infinity' > 0 !== true");
+    throw "'+Infinity' > 0 !== true";
 }
 
 if ((+Infinity > 1.1) !== true) {
-    assert(false, "'+Infinity' > 1.1 !== true");
+    throw "'+Infinity' > 1.1 !== true";
 }
 
 if ((+Infinity > -1.1) !== true) {
-    assert(false, "'+Infinity' > -1.1 !== true");
+    throw "'+Infinity' > -1.1 !== true";
 }
 
 if ((+Infinity > -Infinity) !== true) {
-    assert(false, "'+Infinity' > -Infinity !== true");
+    throw "'+Infinity' > -Infinity !== true";
 }
 
 
@@ -510,19 +510,19 @@ if ((+Infinity > -Infinity) !== true) {
 //? source: ...
 
 if ((double(0) > +Infinity) !== false) {
-    assert(false, "0 > '+Infinity' !== false");
+    throw "0 > '+Infinity' !== false";
 }
 
 if ((1.1 > +Infinity) !== false) {
-    assert(false, "1.1 > '+Infinity' !== false");
+    throw "1.1 > '+Infinity' !== false";
 }
 
 if ((-1.1 > +Infinity) !== false) {
-    assert(false, "'-1.1' > '+Infinity' !== false");
+    throw "'-1.1' > '+Infinity' !== false";
 }
 
 if ((-Infinity > +Infinity) !== false) {
-    assert(false, "'-Infinity' > '+Infinity' !== false");
+    throw "'-Infinity' > '+Infinity' !== false";
 }
 
 
@@ -533,19 +533,19 @@ if ((-Infinity > +Infinity) !== false) {
 //? source: ...
 
 if ((-Infinity > 0.0) !== false) {
-    assert(false, "'-Infinity' > 0.0 !== false");
+    throw "'-Infinity' > 0.0 !== false";
 }
 
 if ((-Infinity > 1.1) !== false) {
-    assert(false, "'-Infinity' > 1.1 !== false");
+    throw "'-Infinity' > 1.1 !== false";
 }
 
 if ((-Infinity > -1.1) !== false) {
-    assert(false, "'-Infinity' > -1.1 !== false");
+    throw "'-Infinity' > -1.1 !== false";
 }
 
 if ((-Infinity > +Infinity) !== false) {
-    assert(false, "'-Infinity' > '+Infinity' !== false");
+    throw "'-Infinity' > '+Infinity' !== false";
 }
 
 
@@ -556,19 +556,19 @@ if ((-Infinity > +Infinity) !== false) {
 //? source: ...
 
 if ((0.0 > -Infinity) !== true) {
-    assert(false, "0.0 > '-Infinity' !== true");
+    throw "0.0 > '-Infinity' !== true";
 }
 
 if ((1.1 > -Infinity) !== true) {
-    assert(false, "1.1 > '-Infinity' !== true");
+    throw "1.1 > '-Infinity' !== true";
 }
 
 if ((-1.1 > -Infinity) !== true) {
-    assert(false, "'-1.1' > '-Infinity' !== true");
+    throw "'-1.1' > '-Infinity' !== true";
 }
 
 if ((+Infinity > -Infinity) !== true) {
-    assert(false, "'+Infinity' > '-Infinity' !== true");
+    throw "'+Infinity' > '-Infinity' !== true";
 }
 
 
@@ -579,26 +579,26 @@ if ((+Infinity > -Infinity) !== true) {
 //? source: ...
 
 if ((double(1) > 1.1) !== false) {
-    assert(false, "1 > 1.1 !== false");
+    throw "1 > 1.1 !== false";
 }
 
 if ((1.1 > double(1)) !== true) {
-    assert(false, "1.1 > 1 !== true");
+    throw "1.1 > 1 !== true";
 }
 
 if ((double(-1) > -1.1) !== true) {
-    assert(false, "'-1' > '-1.1' !== true");
+    throw "'-1' > '-1.1' !== true";
 }
 
 if ((-1.1 > double(-1)) !== false) {
-    assert(false, "'-1.1' > '-1' !== false");
+    throw "'-1.1' > '-1' !== false";
 }
 
 if ((0.1 > double(0)) !== true) {
-    assert(false, "0.1 > 0 !== true");
+    throw "0.1 > 0 !== true";
 }
 
 if ((double(0) > -0.1) !== true) {
-    assert(false, "0 > '-0.1' !== true");
+    throw "0 > '-0.1' !== true";
 }
 

@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 if (evaluate(script("true\u0009&&\u0009true")) !== true) {
-    assert(false, "#1: (true\\u0009&&\\u0009true) === true");
+    throw "#1: (true\\u0009&&\\u0009true) === true";
 }
 
 
@@ -27,12 +27,12 @@ return 0;
 
 loc x: boolean = false;
 if (((x = true) && x) !== true) {
-    assert(false, "#1: ((x = true) && x) === true");
+    throw "#1: ((x = true) && x) === true";
 }
 
 loc x: boolean = false;
 if ((x && (x = true)) !== false) {
-    assert(false, "#2: (x && (x = true)) === false");
+    throw "#2: (x && (x = true)) === false";
 }
 
 return 0;
@@ -48,12 +48,12 @@ loc y1: integer = 0;
 
 function x(): any {
     x1 = 1;
-    assert(false, "x");
+    throw "x";
 }
 
 function y(): any {
     y1 = 1;
-    assert(false, "y");
+    throw "y";
 }
 
 safe_evaluate(
@@ -73,11 +73,11 @@ return 0;
 #!/usr/bin/env afw
 
 if ((false && true) !== false) {
-    assert(false, "#1: (false && true) === false");
+    throw "#1: (false && true) === false";
 }
 
 if ((false && false) !== false) {
-    assert(false, "#2: (false && false) === false");
+    throw "#2: (false && false) === false";
 }
 
 return 0;
@@ -91,7 +91,7 @@ return 0;
 
 // \fixme skip for now
 if ((-0 && -1) !== 0) {
-    assert(false, "#1: (-0 && -1) === 0");
+    throw "#1: (-0 && -1) === 0";
 }
 
 return 0;
@@ -105,7 +105,7 @@ return 0;
 
 // \fixme skip for now
 if (("" && "1") !== "") {
-    assert(false, "#1: (\"\" && \"1\") === \"\"");
+    throw "#1: (\"\" && \"1\") === \"\"";
 }
 
 return 0;
@@ -118,11 +118,11 @@ return 0;
 
 // \fixme skip for now
 if ((true && true) !== true) {
-    assert(false, "#1: (true && true) === true");
+    throw "#1: (true && true) === true";
 }
 
 if ((true && false) !== false) {
-    assert(false, "#2: (true && false) === false");
+    throw "#2: (true && false) === false";
 }
 
 return 0;
@@ -136,11 +136,11 @@ return 0;
 
 // \fixme skip for now
 if ((-1 && -0) !== 0) {
-    assert(false, "#1: (-1 && -0) === 0");
+    throw "#1: (-1 && -0) === 0";
 }
 
 if ((-1 && 0) !== 0) {
-    assert(false, "#2: (-1 && 0) === 0");
+    throw "#2: (-1 && 0) === 0";
 }
 
 return 0;
@@ -154,11 +154,11 @@ return 0;
 
 // \fixme skip for now
 if (("0" && "-1") !== "-1") {
-    assert(false, "#1: (\"0\" && \"-1\") === \"-1\"");
+    throw "#1: (\"0\" && \"-1\") === \"-1\"";
 }
 
 if (("-1" && "x") !== "x") {
-    assert(false, "#2: (\"-1\" && \"x\") === \"x\"");
+    throw "#2: (\"-1\" && \"x\") === \"x\"";
 }
 
 return 0;

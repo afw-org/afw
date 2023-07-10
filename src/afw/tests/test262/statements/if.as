@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 if (false)
-    assert(false, "if false should be false");
+    throw "if false should be false";
 
 return 0;
 
@@ -25,7 +25,7 @@ return 0;
 
 loc c: integer = 1;
 if (false)
-    assert(false, "false in expression should be false");
+    throw "false in expression should be false";
 else
     c = c + 1;
 
@@ -41,45 +41,45 @@ return 0;
 
 if (true)
     if (false)
-        assert(false, "if false in if should be false");
+        throw "if false in if should be false";
     else
         ;
 else
     if (true)
-        assert(false, "if true in else should be false");
+        throw "if true in else should be false";
     else
-        assert(false, "else in else should be false");
+        throw "else in else should be false";
 
 if (true)
     if (true)
         ;
     else
-        assert(false, "else in if should be false");
+        throw "else in if should be false";
 else
     if (true)
-        assert(false, "if true in else should be false");
+        throw "if true in else should be false";
     else
-        assert(false, "else in else should be false");
+        throw "else in else should be false";
 
 if (false)
     if (true)
-        assert(false, "if true in if should be false");
+        throw "if true in if should be false";
     else
-        assert(false, "else in if should be false");
+        throw "else in if should be false";
 else
     if (true)
         ;
     else
-        assert(false, "else in else should be false");
+        throw "else in else should be false";
 
 if (false)
     if (true)
-        assert(false, "if true in if should be false");
+        throw "if true in if should be false";
     else
-        assert(false, "else in if should be false");
+        throw "else in if should be false";
 else
     if (false)
-        assert(false, "if false in else should be false");
+        throw "if false in else should be false";
     else
         ;
 
@@ -94,11 +94,11 @@ return 0;
 
 if(true){
   if (false)
-    assert(false, "if false in if should be false");
+    throw "if false in if should be false";
 }
 else{ 
   if (true)
-    assert(false, "if true in else should be false");
+    throw "if true in else should be false";
 }
 
 if(true){
@@ -107,12 +107,12 @@ if(true){
 }
 else{ 
   if (true)
-    assert(false, "else in if should be false");
+    throw "else in if should be false";
 }
 
 if(false){
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
 }
 else{ 
   if (true)
@@ -121,11 +121,11 @@ else{
 
 if(false){
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
 }
 else{ 
   if (false)
-    assert(false, "else in else should be false");
+    throw "else in else should be false";
 }
 
 return 0;
@@ -139,7 +139,7 @@ return 0;
 
 if(true)
   if (false)
-    assert(false, "if false in if should be false");
+    throw "if false in if should be false";
   else
     ;
 
@@ -147,19 +147,19 @@ if(true)
   if (true)
     ;
   else
-    assert(false, "else in if should be false");
+    throw "else in if should be false";
 
 if(false)
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
   else
-    assert(false, "else in if should be false");
+    throw "else in if should be false";
 
 if(false)
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
   else
-    assert(false, "else in if should be false");
+    throw "else in if should be false";
 
 return 0;
 
@@ -171,22 +171,22 @@ return 0;
 
 if(true)
   if (false)
-    assert(false, "if false in if should be false");
+    throw "if false in if should be false";
 
 loc c: integer=0;
 if(true)
   if (true)
     c=2;
 if (c!==2)
-    assert(false, "if true in if should be true");
+    throw "if true in if should be true";
 
 if(false)
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
 
 if(false)
   if (true)
-    assert(false, "if true in if should be false");
+    throw "if true in if should be false";
 
 return 0;
 
@@ -199,7 +199,7 @@ return 0;
 
 
 if (!(true))
-    assert(false, "if !(true) should be false");
+    throw "if !(true) should be false";
 
 return 0;
 
@@ -212,10 +212,10 @@ return 0;
 
 loc c: integer = 1;
 if(!(true))
-	assert(false, "if !(true) should be false");
+	throw "if !(true) should be false";
 else
   c = c + 1;
-if (c!=2) assert(false, "if !(true) else branch didn't execute");
+if (c!=2) throw "if !(true) else branch didn't execute";
 
 return 0;
 

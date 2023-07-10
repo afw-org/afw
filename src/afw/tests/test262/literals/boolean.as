@@ -14,7 +14,7 @@
 
 //CHECK#1
 if (true !== true) {
-  assert(false, '#1: Boolean(true) === true. Actual: Boolean(true) === ' + (string(true)));
+  throw '#1: Boolean(true) === true. Actual: Boolean(true) === ' + (string(true));
 }
 
 
@@ -27,5 +27,5 @@ if (true !== true) {
 
 //CHECK#1
 if (false !== false) {
-  assert(false, '#1: Boolean(false) === false. Actual: Boolean(false) === ' + (string(false)));
+  throw '#1: Boolean(false) === false. Actual: Boolean(false) === ' + (string(false));
 }

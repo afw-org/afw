@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 //CHECK#1
-// assert(false, "#1: Correct interpretation of single line comments");
+// throw "#1: Correct interpretation of single line comments"
 
 //CHECK#2
 loc x = 0;
@@ -24,12 +24,12 @@ y;
 assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
 //CHECK#4
-//assert(false, "#4: Correct interpretation of single line comments") // assert(false, "#4: Correct interpretation of single line comments"); //
+//throw "#4: Correct interpretation of single line comments") // throw "#4: Correct interpretation of single line comments"; //
 
 ////CHECK#5
 //loc x = 1;
 //if (x === 1) {
-//  assert(false, "#5: Correct interpretation of single line comments");
+//  throw "#5: Correct interpretation of single line comments";
 //}
 
 
@@ -50,7 +50,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 #!/usr/bin/env afw
 
 /*CHECK#1*/
-/* assert(false, "#1: Correct interpretation of multi line comments"); 
+/* throw "#1: Correct interpretation of multi line comments"; 
 */
 
 /*CHECK#2*/
@@ -70,7 +70,7 @@ assert(y2 === undefined, "The value of 'y2' is expected to equal undefined");
 /*CHECK#5*/
 /*loc x2 = 1;
 if (x2 === 1) {
-  assert(false, "#5: Correct interpretation of multi line comments");
+  throw "#5: Correct interpretation of multi line comments";
 }*/
 
 /*CHECK#6*/
@@ -84,15 +84,15 @@ loc string2 = "/*var y = 0"; /* y = 1;*/
 assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '/*var y = 0*/'");
 
 /*CHECK#9*/
-/** assert(false, "#9: Correct interpretation of multi line comments"); 
+/** throw "#9: Correct interpretation of multi line comments"; 
 */
 
 /*CHECK#10*/
-/* assert(false, "#10: Correct interpretation of multi line comments");
+/* throw "#10: Correct interpretation of multi line comments";
 **/
 
 /*CHECK#11*/
-/****** assert(false, '#11: Correct interpretation multi line comments');*********
+/****** throw '#11: Correct interpretation multi line comments';*********
 ***********
 *
 **********
@@ -249,7 +249,7 @@ for (loc i1 = 0; i1 < 14; i1 = i1 + 1) {
 
                 loc y = evaluate(script("/*loc " + xx + "y = 1*/"));
                 if (y !== null) {
-                    assert(false, "Expected y to be null");
+                    throw "Expected y to be null";
                 }
             }
         }
