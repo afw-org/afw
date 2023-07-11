@@ -16,9 +16,9 @@
             "description": "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error.",
             "label": "Action Index"
         },
-        "additional": {
-            "brief": "Optional additional information",
-            "description": "Optional additional information supplied on the throw.",
+        "data": {
+            "brief": "Optional throw data",
+            "description": "Optional data supplied on the throw.",
             "label": "Additional"
         },
         "backtrace": {

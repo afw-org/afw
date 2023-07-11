@@ -1007,7 +1007,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
  *# If there is no expression, the exception is rethrow and can only be
  *# contained in a catch block. If there is an expression, it is the message
  *# for the exception to be thrown. If there is a second expression, it
- *# can be any value and will be the value for the "additional" property of the
+ *# can be any value and will be the value for the "data" property of the
  *# error object.
  *#
  * ThrowStatement ::=  'throw' ( Expression  Expression? )?
@@ -1046,7 +1046,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
         /* Message */
         argv[1] = afw_compile_parse_Expression(parser);
 
-        /* Optional additional */
+        /* Optional data */
         afw_compile_get_token();
         if (!afw_compile_token_is(semicolon)) {
             afw_compile_reuse_token();

@@ -875,11 +875,11 @@ afw_error_add_to_object(
             p, xctx);
     }
 
-    /* Additional. */
-    if (error->additional) {
+    /* data. */
+    if (error->data) {
         afw_object_set_property(object,
-            &afw_s_additional,
-            error->additional,
+            &afw_s_data,
+            error->data,
             xctx);
     }
 

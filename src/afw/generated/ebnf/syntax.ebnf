@@ -617,7 +617,7 @@ SwitchStatement ::= 'switch' ParenthesizedExpression
 /* If there is no expression, the exception is rethrow and can only be        */
 /* contained in a catch block. If there is an expression, it is the message   */
 /* for the exception to be thrown. If there is a second expression, it        */
-/* can be any value and will be the value for the "additional" property of the */
+/* can be any value and will be the value for the "data" property of the      */
 /* error object.                                                              */
 /*                                                                            */
 

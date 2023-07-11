@@ -20,10 +20,6 @@
                     "title": "Action Index",
                     "type": "integer"
                 },
-                "additional": {
-                    "description": "Optional additional information supplied on the throw.",
-                    "title": "Additional"
-                },
                 "backtrace": {
                     "contentMediaType": "text/plain",
                     "description": "The backtrace from where the error occurred.",
@@ -40,6 +36,10 @@
                     "description": "The column in line of the error. This is only available if source contains line breaks.",
                     "title": "Column",
                     "type": "integer"
+                },
+                "data": {
+                    "description": "Optional data supplied on the throw.",
+                    "title": "Additional"
                 },
                 "errorCode": {
                     "description": "The numeric error code.",

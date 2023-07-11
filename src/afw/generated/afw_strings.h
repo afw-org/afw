@@ -4823,6 +4823,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_currentCursor;
 /** @brief afw_utf8_t for string custom */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_custom;
 
+/** @brief define for quoted string data */
+#define AFW_Q_data "data"
+
+/** @brief afw_utf8_t for string data */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_data;
+
 /** @brief define for quoted string dataType */
 #define AFW_Q_dataType "dataType"
 

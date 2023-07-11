@@ -722,15 +722,15 @@ afw_value_block_evaluate_throw(
 {
     IMPL_TEMP_FIX(throw);
     const afw_value_string_t *message;
-    const afw_value_t *additional;
+    const afw_value_t *data;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(2);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(message, 1, string);
-    AFW_FUNCTION_EVALUATE_PARAMETER(additional, 2);
+    AFW_FUNCTION_EVALUATE_PARAMETER(data, 2);
 
-    xctx->error->additional = additional;
+    xctx->error->data = data;
 
     AFW_THROW_ERROR_FZ(throw, xctx, "%" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&message->internal));

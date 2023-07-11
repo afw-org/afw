@@ -34938,13 +34938,13 @@ static const afw_runtime_const_object_instance_t
 impl_330;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/additional
+ * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtrace
  */
 
 static const afw_value_string_t
 impl_330_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Optional additional information")
+    AFW_UTF8_LITERAL("Backtrace from where the error occurred")
 };
 
 static const afw_runtime_property_t
@@ -34954,9 +34954,33 @@ impl_330_property_brief = {
 };
 
 static const afw_value_string_t
+impl_330_property_value_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
+
+static const afw_runtime_property_t
+impl_330_property_dataType = {
+    &afw_s_dataType,
+    (const afw_value_t *)&impl_330_property_value_dataType
+};
+
+static const afw_value_string_t
+impl_330_property_value_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("text/plain")
+};
+
+static const afw_runtime_property_t
+impl_330_property_dataTypeParameter = {
+    &afw_s_dataTypeParameter,
+    (const afw_value_t *)&impl_330_property_value_dataTypeParameter
+};
+
+static const afw_value_string_t
 impl_330_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Optional additional information supplied on the throw.")
+    AFW_UTF8_LITERAL("The backtrace from where the error occurred.")
 };
 
 static const afw_runtime_property_t
@@ -34968,7 +34992,7 @@ impl_330_property_description = {
 static const afw_value_string_t
 impl_330_property_value_label = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Additional")
+    AFW_UTF8_LITERAL("Backtrace")
 };
 
 static const afw_runtime_property_t
@@ -34980,6 +35004,8 @@ impl_330_property_label = {
 static const afw_runtime_property_t *
 impl_330_properties[] = {
     &impl_330_property_brief,
+    &impl_330_property_dataType,
+    &impl_330_property_dataTypeParameter,
     &impl_330_property_description,
     &impl_330_property_label,
     NULL
@@ -34996,7 +35022,7 @@ impl_330_meta_object = {
 
 static const afw_utf8_t
 impl_330_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/additional");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtrace");
 
 static const afw_runtime_const_object_instance_t
 impl_330 = {
@@ -35006,7 +35032,7 @@ impl_330 = {
         {
             (const afw_object_t *)&impl_330_meta_object,
             (const afw_object_t *)&impl_328,
-            &afw_s_additional,
+            &afw_s_backtrace,
             &afw_s__AdaptiveValueMeta_,
             &impl_330_meta_path
         }
@@ -35018,13 +35044,13 @@ static const afw_runtime_const_object_instance_t
 impl_331;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtrace
+ * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtraceEvaluation
  */
 
 static const afw_value_string_t
 impl_331_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Backtrace from where the error occurred")
+    AFW_UTF8_LITERAL("Evaluation backtrace from where the error occurred")
 };
 
 static const afw_runtime_property_t
@@ -35060,7 +35086,7 @@ impl_331_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_331_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The backtrace from where the error occurred.")
+    AFW_UTF8_LITERAL("The evaluation backtrace from where the error occurred.")
 };
 
 static const afw_runtime_property_t
@@ -35072,7 +35098,7 @@ impl_331_property_description = {
 static const afw_value_string_t
 impl_331_property_value_label = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Backtrace")
+    AFW_UTF8_LITERAL("Backtrace Expression")
 };
 
 static const afw_runtime_property_t
@@ -35102,7 +35128,7 @@ impl_331_meta_object = {
 
 static const afw_utf8_t
 impl_331_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtrace");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtraceEvaluation");
 
 static const afw_runtime_const_object_instance_t
 impl_331 = {
@@ -35112,7 +35138,7 @@ impl_331 = {
         {
             (const afw_object_t *)&impl_331_meta_object,
             (const afw_object_t *)&impl_328,
-            &afw_s_backtrace,
+            &afw_s_backtraceEvaluation,
             &afw_s__AdaptiveValueMeta_,
             &impl_331_meta_path
         }
@@ -35124,13 +35150,13 @@ static const afw_runtime_const_object_instance_t
 impl_332;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtraceEvaluation
+ * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/column
  */
 
 static const afw_value_string_t
 impl_332_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Evaluation backtrace from where the error occurred")
+    AFW_UTF8_LITERAL("The column in line of the error")
 };
 
 static const afw_runtime_property_t
@@ -35142,7 +35168,7 @@ impl_332_property_brief = {
 static const afw_value_string_t
 impl_332_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("string")
+    AFW_UTF8_LITERAL("integer")
 };
 
 static const afw_runtime_property_t
@@ -35152,21 +35178,9 @@ impl_332_property_dataType = {
 };
 
 static const afw_value_string_t
-impl_332_property_value_dataTypeParameter = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("text/plain")
-};
-
-static const afw_runtime_property_t
-impl_332_property_dataTypeParameter = {
-    &afw_s_dataTypeParameter,
-    (const afw_value_t *)&impl_332_property_value_dataTypeParameter
-};
-
-static const afw_value_string_t
 impl_332_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The evaluation backtrace from where the error occurred.")
+    AFW_UTF8_LITERAL("The column in line of the error. This is only available if source contains line breaks.")
 };
 
 static const afw_runtime_property_t
@@ -35178,7 +35192,7 @@ impl_332_property_description = {
 static const afw_value_string_t
 impl_332_property_value_label = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Backtrace Expression")
+    AFW_UTF8_LITERAL("Column")
 };
 
 static const afw_runtime_property_t
@@ -35191,7 +35205,6 @@ static const afw_runtime_property_t *
 impl_332_properties[] = {
     &impl_332_property_brief,
     &impl_332_property_dataType,
-    &impl_332_property_dataTypeParameter,
     &impl_332_property_description,
     &impl_332_property_label,
     NULL
@@ -35208,7 +35221,7 @@ impl_332_meta_object = {
 
 static const afw_utf8_t
 impl_332_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/backtraceEvaluation");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/column");
 
 static const afw_runtime_const_object_instance_t
 impl_332 = {
@@ -35218,7 +35231,7 @@ impl_332 = {
         {
             (const afw_object_t *)&impl_332_meta_object,
             (const afw_object_t *)&impl_328,
-            &afw_s_backtraceEvaluation,
+            &afw_s_column,
             &afw_s__AdaptiveValueMeta_,
             &impl_332_meta_path
         }
@@ -35230,13 +35243,13 @@ static const afw_runtime_const_object_instance_t
 impl_333;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/column
+ * /afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/data
  */
 
 static const afw_value_string_t
 impl_333_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The column in line of the error")
+    AFW_UTF8_LITERAL("Optional throw data")
 };
 
 static const afw_runtime_property_t
@@ -35246,21 +35259,9 @@ impl_333_property_brief = {
 };
 
 static const afw_value_string_t
-impl_333_property_value_dataType = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("integer")
-};
-
-static const afw_runtime_property_t
-impl_333_property_dataType = {
-    &afw_s_dataType,
-    (const afw_value_t *)&impl_333_property_value_dataType
-};
-
-static const afw_value_string_t
 impl_333_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The column in line of the error. This is only available if source contains line breaks.")
+    AFW_UTF8_LITERAL("Optional data supplied on the throw.")
 };
 
 static const afw_runtime_property_t
@@ -35272,7 +35273,7 @@ impl_333_property_description = {
 static const afw_value_string_t
 impl_333_property_value_label = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Column")
+    AFW_UTF8_LITERAL("Additional")
 };
 
 static const afw_runtime_property_t
@@ -35284,7 +35285,6 @@ impl_333_property_label = {
 static const afw_runtime_property_t *
 impl_333_properties[] = {
     &impl_333_property_brief,
-    &impl_333_property_dataType,
     &impl_333_property_description,
     &impl_333_property_label,
     NULL
@@ -35301,7 +35301,7 @@ impl_333_meta_object = {
 
 static const afw_utf8_t
 impl_333_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/column");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveError_/propertyTypes/data");
 
 static const afw_runtime_const_object_instance_t
 impl_333 = {
@@ -35311,7 +35311,7 @@ impl_333 = {
         {
             (const afw_object_t *)&impl_333_meta_object,
             (const afw_object_t *)&impl_328,
-            &afw_s_column,
+            &afw_s_data,
             &afw_s__AdaptiveValueMeta_,
             &impl_333_meta_path
         }
@@ -36917,21 +36917,9 @@ impl_328_property_actionNumber = {
 };
 
 static const afw_value_object_t
-impl_328_property_value_additional = {
-    &afw_value_permanent_object_inf,
-    (const afw_object_t *)&impl_330
-};
-
-static const afw_runtime_property_t
-impl_328_property_additional = {
-    &afw_s_additional,
-    (const afw_value_t *)&impl_328_property_value_additional
-};
-
-static const afw_value_object_t
 impl_328_property_value_backtrace = {
     &afw_value_permanent_object_inf,
-    (const afw_object_t *)&impl_331
+    (const afw_object_t *)&impl_330
 };
 
 static const afw_runtime_property_t
@@ -36943,7 +36931,7 @@ impl_328_property_backtrace = {
 static const afw_value_object_t
 impl_328_property_value_backtraceEvaluation = {
     &afw_value_permanent_object_inf,
-    (const afw_object_t *)&impl_332
+    (const afw_object_t *)&impl_331
 };
 
 static const afw_runtime_property_t
@@ -36955,13 +36943,25 @@ impl_328_property_backtraceEvaluation = {
 static const afw_value_object_t
 impl_328_property_value_column = {
     &afw_value_permanent_object_inf,
-    (const afw_object_t *)&impl_333
+    (const afw_object_t *)&impl_332
 };
 
 static const afw_runtime_property_t
 impl_328_property_column = {
     &afw_s_column,
     (const afw_value_t *)&impl_328_property_value_column
+};
+
+static const afw_value_object_t
+impl_328_property_value_data = {
+    &afw_value_permanent_object_inf,
+    (const afw_object_t *)&impl_333
+};
+
+static const afw_runtime_property_t
+impl_328_property_data = {
+    &afw_s_data,
+    (const afw_value_t *)&impl_328_property_value_data
 };
 
 static const afw_value_object_t
@@ -37171,10 +37171,10 @@ impl_328_property_xctxUUID = {
 static const afw_runtime_property_t *
 impl_328_properties[] = {
     &impl_328_property_actionNumber,
-    &impl_328_property_additional,
     &impl_328_property_backtrace,
     &impl_328_property_backtraceEvaluation,
     &impl_328_property_column,
+    &impl_328_property_data,
     &impl_328_property_errorCode,
     &impl_328_property_errorSource,
     &impl_328_property_id,

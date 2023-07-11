@@ -2422,6 +2422,9 @@ AFW_UTF8_LITERAL("currentCursor");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_custom =
 AFW_UTF8_LITERAL("custom");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_data =
+AFW_UTF8_LITERAL("data");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataType =
 AFW_UTF8_LITERAL("dataType");
 

@@ -191,18 +191,18 @@ catch (e) {
 
 //?
 //? test: Try-11
-//? description: throw with additional: return e.additional.more
+//? description: throw with data: return e.data.more
 //? expect: "I have more to say!"
 //? source: ...
 #!/usr/bin/env afw
 
 try {
-    // throw can have an additional expression of any type that will be
-    // available in the "additional" property of the error object.
+    // throw can have an data expression of any type that will be
+    // available in the "data" property of the error object.
     throw "Throw it all away!" {'more':'I have more to say!'};
 }
 catch (e) {
-    return e.additional.more;
+    return e.data.more;
 }
 
 
@@ -217,7 +217,7 @@ try {
     throw "Throw it all away!" {'more':'I have more to say!'} xyz;
 }
 catch (e) {
-    return e.additional.more;
+    return e.data.more;
 }
 
 
