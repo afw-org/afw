@@ -60,7 +60,9 @@ for line in lines:
         converted = stripped
 
         if "throw new Test262Error(" in converted:
-            converted = converted.replace("throw new Test262Error(", "assert(false, ")
+            converted = converted.replace("throw new Test262Error(", "throw ")
+            # replace last ) with ;
+            converted = converted[::-1].replace(")", "", 1)[::-1]
 
         #if "eval(" in converted:
         #    converted = re.sub(r'(eval(":[.*]"))', r'evaluate(script("\1"))')
@@ -93,6 +95,11 @@ for line in lines:
             expectError = True
             converted = ""
 
+        # convert assert.sameValue(x, y) to assert(x == y)
+        if "assert.sameValue(" in converted:
+            converted = converted.replace("assert.sameValue(", "assert(")
+            converted = converted.replace(", ", " === ")
+
         code += converted + "\n"
 
 
@@ -109,6 +116,7 @@ if expectError:
     print("//? expect: error")
 else:
     print("//? expect: null")
+
 print("//? source: ...")
 print("#!/usr/bin/env afw")
 print("")
