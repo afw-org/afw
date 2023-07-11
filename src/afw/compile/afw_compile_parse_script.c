@@ -996,8 +996,8 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
  * SwitchStatement ::= 'switch' ParenthesizedExpression
  *     ( 'using' EntryFunctionLambdaOrVariableReference )?
  *     '{'
- *         ( 'case' Expression ':' Statement )*
- *         ( 'default' ':' Statement )?
+ *         ( 'case' Expression ':' Statement? )*
+ *         ( 'default' ':' Statement? )?
  *     '}'
  *
  *<<<ebnf*/

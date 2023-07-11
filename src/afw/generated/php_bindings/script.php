@@ -760,6 +760,49 @@ class script
     }
 
     /**
+     * switch()
+     *
+     * Support for switch statement.
+     *
+     * @param function $predicate The predicate is passed two parameters and
+     *                            must return a boolean. The first parameter
+     *                            passed is the evaluated value of the value1
+     *                            parameter and the second is the value2 from
+     *                            a case clause. This predicate will often be
+     *                            "eqx" to use the exactly equal function but
+     *                            can also be any other function such as
+     *                            "regexp_match" or a lambda function.
+     * @param  $value1 The first parameter passed to the predicate.
+     * @param  $case_clause This is one or more case clauses which are pairs
+     *                      of a value2 parameter followed by a statement
+     *                      list or undefined parameter. One value2 can be
+     *                      undefined to indicate the default case clause.
+     *                      
+     *                      For the first value2 that is undefined or calling
+     *                      the predicate returns true, the statement list
+     *                      followed by any statement lists of subsequent
+     *                      case clauses are executed until a break or return
+     *                      is encountered. The predicate is called with
+     *                      value1 and the case clause's value2.
+     *
+     * @return
+     */
+    public function switch(, $predicate, $value1, $case_clause)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "switch");
+
+        /* pass along required parameters to the request payload */
+        $request->set("predicate", $predicate);
+        $request->set("value1", $value1);
+        $request->set("case_clause", $case_clause);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * throw()
      *
      * This throws an error that can be caught by a try/catch block. An error

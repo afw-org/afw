@@ -904,6 +904,54 @@ def script(session, value):
 
     return response['actions'][0]['result']
 
+def switch(session, predicate, value1, case_clause):
+    '''
+    All combinations true
+
+    Support for switch statement.
+
+    Parameters:
+
+        predicate (function): The predicate is passed two parameters and must
+        return a boolean. The first parameter passed is the evaluated value
+        of the value1 parameter and the second is the value2 from a case
+        clause. This predicate will often be "eqx" to use the exactly equal
+        function but can also be any other function such as "regexp_match" or
+        a lambda function.
+
+        value1 (): The first parameter passed to the predicate.
+
+        case_clause (): This is one or more case clauses which are pairs of a
+        value2 parameter followed by a statement list or undefined parameter.
+        One value2 can be undefined to indicate the default case clause.
+        
+        For the first value2 that is undefined or calling the predicate
+        returns true, the statement list followed by any statement lists of
+        subsequent case clauses are executed until a break or return is
+        encountered. The predicate is called with value1 and the case
+        clause's value2.
+
+    Returns:
+    None: 
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "switch",
+        "predicate": predicate,
+        "value1": value1,
+        "case_clause": case_clause
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def throw(session, message, additional=None):
     '''
     Throws an error

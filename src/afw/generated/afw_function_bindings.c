@@ -91400,6 +91400,176 @@ afw_function_definition_script = {
     false
 };
 
+/* ---------- switch ---------- */
+
+static const afw_utf8_t
+impl_object_path__switch =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/switch");
+
+static const afw_runtime_object_indirect_t
+impl_object__switch = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_switch,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__switch
+        }
+    },
+    (void *)&afw_function_definition_switch
+};
+
+static const afw_value_function_parameter_t
+impl_switch_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_function_direct,
+    AFW_UTF8_LITERAL("function"),
+    AFW_UTF8_LITERAL("(any value1: any, value2: any): boolean"),
+    AFW_UTF8_LITERAL("predicate"),
+    AFW_UTF8_LITERAL("Predicate function"),
+    AFW_UTF8_LITERAL("The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be \"eqx\" to use the exactly equal function but can also be any other function such as \"regexp_match\" or a lambda function."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value1"),
+    AFW_UTF8_LITERAL("First predicate parameter"),
+    AFW_UTF8_LITERAL("The first parameter passed to the predicate."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("case_clause"),
+    AFW_UTF8_LITERAL("One or more value2 and statement list pairs"),
+    AFW_UTF8_LITERAL("This is one or more case clauses which are pairs of a value2 parameter followed by a statement list or undefined parameter. One value2 can be undefined to indicate the default case clause.\n\nFor the first value2 that is undefined or calling the predicate returns true, the statement list followed by any statement lists of subsequent case clauses are executed until a break or return is encountered. The predicate is called with value1 and the case clause's value2."),
+    2,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_switch_parameters[] = {
+    &impl_switch_parameter_1,
+    &impl_switch_parameter_2,
+    &impl_switch_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_switch = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__switch,
+    AFW_UTF8_LITERAL("script"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("afwSwitch"),
+    AFW_UTF8_LITERAL("All combinations true"),
+    AFW_UTF8_LITERAL("Support for switch statement."),
+    AFW_UTF8_LITERAL("(predicate: (function (any value1: any, value2: any): boolean), value1: any, case_clause_1: any, case_clause_2: any, ...case_clause_rest: (list of any)): any"),
+    AFW_UTF8_LITERAL("/* All combinations true */\nfunction switch (\n    predicate: (function (any value1: any, value2: any): boolean) /* Predicate function */,\n    value1: any                                                   /* First predicate parameter */,\n    case_clause_1: any,\n    case_clause_2: any,\n    ...case_clause_rest: (list of any) /* One or more value2 and statement list pairs */\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_switch,
+    NULL,
+    4,
+    -1,
+    &impl_switch_parameters[0],
+    3,
+    &impl_switch_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_SWITCH,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
 /* ---------- throw ---------- */
 
 static const afw_utf8_t
@@ -116111,6 +116281,7 @@ impl_function_bindings[] = {
     &afw_function_definition_rethrow,
     &afw_function_definition_return,
     &afw_function_definition_script,
+    &afw_function_definition_switch,
     &afw_function_definition_throw,
     &afw_function_definition_try,
     &afw_function_definition_while,

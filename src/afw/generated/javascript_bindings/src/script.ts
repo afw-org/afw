@@ -612,6 +612,43 @@ export function afwScript(client : any, value : any) : any {
 }
 
 /**
+ * Support for switch statement.
+ * 
+ * @param {function} predicate - The predicate is passed two parameters and
+ *     must return a boolean. The first parameter passed is the evaluated
+ *     value of the value1 parameter and the second is the value2 from a case
+ *     clause. This predicate will often be "eqx" to use the exactly equal
+ *     function but can also be any other function such as "regexp_match" or
+ *     a lambda function.
+ * 
+ * @param {} value1 - The first parameter passed to the predicate.
+ * 
+ * @param {} case_clause - This is one or more case clauses which are pairs
+ *     of a value2 parameter followed by a statement list or undefined
+ *     parameter. One value2 can be undefined to indicate the default case
+ *     clause.
+ *     
+ *     For the first value2 that is undefined or calling the predicate
+ *     returns true, the statement list followed by any statement lists of
+ *     subsequent case clauses are executed until a break or return is
+ *     encountered. The predicate is called with value1 and the case clause's
+ *     value2.
+ * 
+ * @returns {}
+ */
+export function afwSwitch(client : any, predicate : any, value1 : any, case_clause : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "switch";
+    _action["predicate"] = predicate;
+    _action["value1"] = value1;
+    _action["case_clause"] = case_clause;
+
+    return client.perform(_action);
+}
+
+/**
  * This throws an error that can be caught by a try/catch block. An error
  * object of object type _AdaptiveError_ will be available in the catch
  * block. Its "id" property will be set to "throw". The other properties set

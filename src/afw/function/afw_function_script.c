@@ -682,6 +682,66 @@ afw_function_execute_return(
 }
 
 
+
+/*
+ * Adaptive function: switch
+ *
+ * afw_function_execute_switch
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Support for switch statement.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function switch(
+ *       predicate: (function (any value1: any, value2: any): boolean),
+ *       value1: any,
+ *       case_clause_1: any,
+ *       case_clause_2: any,
+ *       ...case_clause_rest: (list of any)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   predicate - (function (any value1: any, value2: any): boolean) The
+ *       predicate is passed two parameters and must return a boolean. The
+ *       first parameter passed is the evaluated value of the value1 parameter
+ *       and the second is the value2 from a case clause. This predicate will
+ *       often be "eqx" to use the exactly equal function but can also be any
+ *       other function such as "regexp_match" or a lambda function.
+ *
+ *   value1 - (any dataType) The first parameter passed to the predicate.
+ *
+ *   case_clause - (2 or more any dataType) This is one or more case clauses
+ *       which are pairs of a value2 parameter followed by a statement list or
+ *       undefined parameter. One value2 can be undefined to indicate the
+ *       default case clause.
+ *       
+ *       For the first value2 that is undefined or calling the predicate
+ *       returns true, the statement list followed by any statement lists of
+ *       subsequent case clauses are executed until a break or return is
+ *       encountered. The predicate is called with value1 and the case clause's
+ *       value2.
+ *
+ * Returns:
+ *
+ *   (any dataType)
+ */
+const afw_value_t *
+afw_function_execute_switch(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
 /*
  * Adaptive function: throw
  *

@@ -604,8 +604,8 @@ ReturnStatement ::= 'return' Expression? ';'
 SwitchStatement ::= 'switch' ParenthesizedExpression
     ( 'using' EntryFunctionLambdaOrVariableReference )?
     '{'
-        ( 'case' Expression ':' Statement )*
-        ( 'default' ':' Statement )?
+        ( 'case' Expression ':' Statement? )*
+        ( 'default' ':' Statement? )?
     '}'
 
 /* From afw_compile_parse_script.c                                            */

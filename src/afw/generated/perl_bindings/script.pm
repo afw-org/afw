@@ -30,6 +30,7 @@ our @EXPORT_OK = qw(
     rethrow 
     return 
     script 
+    switch 
     throw 
     try 
     while 
@@ -453,6 +454,36 @@ Convert to data type script
 
 Value to convert
 
+=head3 switch
+
+Support for switch statement.
+All combinations true
+
+=head4 Parameters
+
+    $predicate
+
+The predicate is passed two parameters and must return a boolean. The first
+parameter passed is the evaluated value of the value1 parameter and the
+second is the value2 from a case clause. This predicate will often be "eqx"
+to use the exactly equal function but can also be any other function such as
+"regexp_match" or a lambda function.
+
+    $value1
+
+The first parameter passed to the predicate.
+
+    $case_clause
+
+This is one or more case clauses which are pairs of a value2 parameter
+followed by a statement list or undefined parameter. One value2 can be
+undefined to indicate the default case clause.
+
+For the first value2 that is undefined or calling the predicate returns true,
+the statement list followed by any statement lists of subsequent case clauses
+are executed until a break or return is encountered. The predicate is called
+with value1 and the case clause's value2.
+
 =head3 throw
 
 This throws an error that can be caught by a try/catch block. An error object
@@ -857,6 +888,19 @@ sub script {
 
     $request->set("function" => "script");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub switch {
+    my ($predicate, $value1, $case_clause) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "switch");
+    $request->set("predicate", $predicate);
+    $request->set("value1", $value1);
+    $request->set("case_clause", $case_clause);
 
     return $request->getResult();
 }
