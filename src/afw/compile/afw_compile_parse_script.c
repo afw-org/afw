@@ -430,7 +430,9 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
 
-    /*FIXME Check for inside loop. */
+    if (!parser->break_allowed) {
+        AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+    }
 
     result = afw_value_call_create(
         afw_compile_create_contextual_to_cursor(
@@ -537,7 +539,9 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
 
-    /*FIXME Check for inside loop. */
+    if (!parser->continue_allowed) {
+        AFW_COMPILE_THROW_ERROR_Z("Misplaced continue");
+    }
 
     result = afw_value_call_create(
         afw_compile_create_contextual_to_cursor(
@@ -574,12 +578,21 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     const afw_value_t **argv;
     afw_size_t start_offset;
+    afw_boolean_t break_allowed;
+    afw_boolean_t continue_allowed;
 
     afw_compile_save_cursor(start_offset);
 
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
     argv[0] = (const afw_value_t *)&afw_function_definition_do_while;
+
+    break_allowed = parser->break_allowed;
+    continue_allowed = parser->continue_allowed;
+    parser->break_allowed = true;
+    parser->continue_allowed = true;
     argv[2] = afw_compile_parse_Statement(parser, NULL);
+    parser->break_allowed = break_allowed;
+    parser->continue_allowed = continue_allowed;
 
     afw_compile_get_token();
     if (!afw_compile_token_is_name(&afw_s_while)) {
@@ -603,7 +616,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
         2, argv, parser->p, parser->xctx);
-
+        
     return result;
 }
 
@@ -628,6 +641,8 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     const afw_list_t *list;
     const afw_value_block_t *block;
     afw_size_t start_offset;
+    afw_boolean_t break_allowed;
+    afw_boolean_t continue_allowed;
 
     block = NULL;
     afw_compile_save_cursor(start_offset);
@@ -715,7 +730,13 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         argv[3] = afw_value_create_list(list, parser->p, parser->xctx);
     }
 
+    break_allowed = parser->break_allowed;
+    continue_allowed = parser->continue_allowed;
+    parser->break_allowed = true;
+    parser->continue_allowed = true;
     argv[4] = afw_compile_parse_Statement(parser, NULL);
+    parser->break_allowed = break_allowed;
+    parser->continue_allowed = continue_allowed;
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
@@ -747,6 +768,8 @@ impl_parse_ForeachStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     const afw_value_t **argv;
     afw_size_t start_offset;
+    afw_boolean_t break_allowed;
+    afw_boolean_t continue_allowed;
 
     afw_compile_save_cursor(start_offset);
 
@@ -761,7 +784,14 @@ impl_parse_ForeachStatement(afw_compile_parser_t *parser)
     }
 
     argv[2] = afw_compile_parse_Expression(parser);
+
+    break_allowed = parser->break_allowed;
+    continue_allowed = parser->continue_allowed;
+    parser->break_allowed = true;
+    parser->continue_allowed = true;
     argv[3] = afw_compile_parse_Statement(parser, NULL);
+    parser->break_allowed = break_allowed;
+    parser->continue_allowed = continue_allowed;
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
@@ -964,6 +994,7 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * SwitchStatement ::= 'switch' ParenthesizedExpression
+ *     ( 'using' EntryFunctionLambdaOrVariableReference )?
  *     '{'
  *         ( 'case' Expression ':' Statement )*
  *         ( 'default' ':' Statement )?
@@ -973,7 +1004,25 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 static const afw_value_t *
 impl_parse_SwitchStatement(afw_compile_parser_t *parser)
 {
+    
+    const afw_value_t *result;
+    const afw_value_t **argv;
+    afw_size_t start_offset;
+    afw_boolean_t break_allowed;
+
+    afw_compile_save_cursor(start_offset);
+
     AFW_COMPILE_THROW_ERROR_Z("Not implemented");
+    /** @fixme finish code. */
+    start_offset = 1; start_offset = start_offset;/* REMOVE */
+
+    result = afw_value_null;
+    break_allowed = parser->break_allowed;
+    parser->break_allowed = true;
+    argv[2] = afw_compile_parse_Statement(parser, NULL);
+    parser->break_allowed = break_allowed;
+
+    return result;
 }
 
 
@@ -1155,6 +1204,8 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     const afw_value_t **argv;
     afw_size_t start_offset;
+    afw_boolean_t break_allowed;
+    afw_boolean_t continue_allowed;
 
     afw_compile_save_cursor(start_offset);
 
@@ -1172,7 +1223,13 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
     }  
 
+    break_allowed = parser->break_allowed;
+    continue_allowed = parser->continue_allowed;
+    parser->break_allowed = true;
+    parser->continue_allowed = true;
     argv[2] = afw_compile_parse_Statement(parser, NULL);
+    parser->break_allowed = break_allowed;
+    parser->continue_allowed = continue_allowed;
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
