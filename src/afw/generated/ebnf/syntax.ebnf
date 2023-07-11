@@ -601,11 +601,16 @@ ReturnStatement ::= 'return' Expression? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
+CaseClause ::= 'case' Expression ':' StatementList?
+
+DefaultClause ::= 'default' ':' StatementList?
+
 SwitchStatement ::= 'switch' ParenthesizedExpression
     ( 'using' EntryFunctionLambdaOrVariableReference )?
     '{'
-        ( 'case' Expression ':' Statement? )*
-        ( 'default' ':' Statement? )?
+        CaseClause*
+        DefaultClause?
+        CaseClause*
     '}'
 
 /* From afw_compile_parse_script.c                                            */
@@ -638,7 +643,7 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
 
-Block ::= '{' Statement* '}'
+Block ::= '{' StatementList '}'
 
 Statement ::=
    ';' |
@@ -660,6 +665,10 @@ Statement ::=
    SwitchStatement |
    TypeStatement |
    WhileStatement
+
+/* From afw_compile_parse_script.c                                            */
+
+StatementList ::= Statement*
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */

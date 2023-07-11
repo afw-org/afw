@@ -12977,6 +12977,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_user;
 /** @brief afw_utf8_t for string userinfo */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_userinfo;
 
+/** @brief define for quoted string using */
+#define AFW_Q_using "using"
+
+/** @brief afw_utf8_t for string using */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_using;
+
 /** @brief define for quoted string value */
 #define AFW_Q_value "value"
 

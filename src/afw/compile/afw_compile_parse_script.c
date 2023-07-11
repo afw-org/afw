@@ -30,89 +30,6 @@ impl_function_definition_rethrow =
     (const afw_value_t *)&afw_function_definition_rethrow;
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_list_of_statements(
-    afw_compile_parser_t *parser,
-    afw_boolean_t end_is_close_brace,
-    afw_boolean_t can_be_single_return_expression)
-{
-    const afw_value_t *result;
-    const afw_value_t *statement;
-    afw_compile_args_t *args;
-    const afw_value_t **argv;
-    const afw_value_block_t *block;
-    afw_size_t argc;
-    afw_size_t start_offset;
-    afw_boolean_t *was_expression;
-    afw_boolean_t was_expression_value;
-
-    args = afw_compile_args_create(parser);
-    was_expression_value = false;
-    was_expression = (can_be_single_return_expression)
-        ? &was_expression_value
-        : NULL;
-
-    /* Save starting cursor. */
-    afw_compile_save_cursor(start_offset);
-
-    /* Make new block and link. */
-    block = afw_compile_parse_link_new_value_block(parser, start_offset);
-
-    /* Process statements. */
-    for (;;) {
-
-        afw_compile_get_token();
-        if (end_is_close_brace) {
-            if (afw_compile_token_is(close_bracket) ||
-                afw_compile_token_is(close_brace))
-            {
-                break;
-            }
-            else if afw_compile_token_is(end) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting '}'");
-            }
-        }
-        else if (afw_compile_token_is(end)) {
-            break;
-        }
-        afw_compile_reuse_token();
-
-        if (was_expression_value) {
-            AFW_COMPILE_THROW_ERROR_Z(
-                "Expression can not be followed by Statement");
-        }
-
-        statement = afw_compile_parse_Statement(parser, was_expression);
-
-        if (was_expression_value) {
-            argv = afw_pool_malloc(parser->p,
-                sizeof(afw_value_t *) * 2, parser->xctx);
-            argv[0] = (const afw_value_t *)&afw_function_definition_return;
-            argv[1] = statement;
-            statement = afw_value_call_built_in_function_create(
-                afw_compile_create_contextual_to_cursor(start_offset),
-                1, argv, parser->p, parser->xctx);
-        }
-        was_expression = NULL;
-
-        if (statement) {
-            afw_compile_args_add_value(args, statement);
-        }
-    }
-
-    /* Make block of statements. */
-    afw_compile_args_finalize(args, &argc, &argv);
-    afw_value_block_finalize(block, argc, argv, parser->xctx);
-    result = (const afw_value_t *)block;
-
-    /* Pop block. */
-    afw_compile_parse_pop_value_block(parser);
-
-    /* Return block or list. */
-    return result;
-}
-
-
 
 /*ebnf>>>
  *
@@ -993,11 +910,16 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ * CaseClause ::= 'case' Expression ':' StatementList?
+ * 
+ * DefaultClause ::= 'default' ':' StatementList?
+ *
  * SwitchStatement ::= 'switch' ParenthesizedExpression
  *     ( 'using' EntryFunctionLambdaOrVariableReference )?
  *     '{'
- *         ( 'case' Expression ':' Statement? )*
- *         ( 'default' ':' Statement? )?
+ *         CaseClause*
+ *         DefaultClause?
+ *         CaseClause*
  *     '}'
  *
  *<<<ebnf*/
@@ -1006,21 +928,74 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
 {
     
     const afw_value_t *result;
+    const afw_value_t *predicate;
+    const afw_value_t *case_expression;
+    const afw_value_t *statement_list;
+    afw_compile_args_t *args;
+    afw_size_t argc;
     const afw_value_t **argv;
     afw_size_t start_offset;
     afw_boolean_t break_allowed;
 
     afw_compile_save_cursor(start_offset);
+ 
+    /* Build variable length args. */
+    args = afw_compile_args_create(parser);
+    afw_compile_args_add_value(args,
+        (const afw_value_t *)&afw_function_definition_switch);
 
-    AFW_COMPILE_THROW_ERROR_Z("Not implemented");
-    /** @fixme finish code. */
-    start_offset = 1; start_offset = start_offset;/* REMOVE */
+    /* ParenthesizedExpression */
+    result = afw_compile_parse_ParenthesizedExpression(parser);
 
-    result = afw_value_null;
+    /* Optional 'using' EntryFunctionLambdaOrVariableReference */
+    predicate = (const afw_value_t *)&afw_function_definition_eqx;
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(&afw_s_using)) {
+        predicate = afw_compile_parse_EntryFunctionLambdaOrVariableReference(
+            parser);
+        afw_compile_get_token();
+    }
+    if (!afw_compile_token_is(open_brace)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
+    }
+
+    /* Add predicate and expression to args. */
+    afw_compile_args_add_value(args, predicate);
+    afw_compile_args_add_value(args, result);
+
+    /* Loop processing clauses. */
     break_allowed = parser->break_allowed;
     parser->break_allowed = true;
-    argv[2] = afw_compile_parse_Statement(parser, NULL);
+    for (;;) {
+        afw_compile_get_token();
+        if (afw_compile_token_is(close_brace)) {
+            break;
+        }
+        if (afw_compile_token_is_name(&afw_s_case)) {
+            case_expression = afw_compile_parse_Expression(parser);
+        }
+        else if (afw_compile_token_is_name(&afw_s_default)) {
+            case_expression = NULL;
+        }
+        else {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting \"case\" or \"default\"");
+        }
+        afw_compile_get_token();
+        if (!afw_compile_token_is(colon)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
+        }
+        statement_list = afw_compile_parse_StatementList(parser,
+            false, true, false);
+        afw_compile_args_add_value(args, case_expression);
+        afw_compile_args_add_value(args, statement_list);
+    }
     parser->break_allowed = break_allowed;
+
+    /* Create switch support function call. */
+    afw_compile_args_finalize(args, &argc, &argv);
+    result = afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc - 1, argv, parser->p, parser->xctx);
 
     return result;
 }
@@ -1249,7 +1224,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
  *
- * Block ::= '{' Statement* '}'
+ * Block ::= '{' StatementList '}'
  *
  * Statement ::=
  *    ';' |
@@ -1270,7 +1245,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    ReturnStatement |
  *    SwitchStatement |
  *    TypeStatement |
- *    WhileStatement    
+ *    WhileStatement 
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -1289,9 +1264,9 @@ afw_compile_parse_Statement(
     /* Get next token. */
     afw_compile_get_token();
 
-    /* Get token '{'. */
+    /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
-        result = afw_compile_parse_list_of_statements(parser, true, false);
+        result = afw_compile_parse_StatementList(parser, true, false, false);
         return result;
     }
    
@@ -1445,6 +1420,106 @@ afw_compile_parse_Statement(
 }
 
 
+/*ebnf>>>
+ *
+ * StatementList ::= Statement*
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_compile_parse_StatementList(
+    afw_compile_parser_t *parser,
+    afw_boolean_t end_is_close_brace,
+    afw_boolean_t end_is_close_brace_case_or_default,   
+    afw_boolean_t can_be_single_return_expression)
+{
+    const afw_value_t *result;
+    const afw_value_t *statement;
+    afw_compile_args_t *args;
+    const afw_value_t **argv;
+    const afw_value_block_t *block;
+    afw_size_t argc;
+    afw_size_t start_offset;
+    afw_boolean_t *was_expression;
+    afw_boolean_t was_expression_value;
+
+    args = afw_compile_args_create(parser);
+    was_expression_value = false;
+    was_expression = (can_be_single_return_expression)
+        ? &was_expression_value
+        : NULL;
+
+    /* Save starting cursor. */
+    afw_compile_save_cursor(start_offset);
+
+    /* Make new block and link. */
+    block = afw_compile_parse_link_new_value_block(parser, start_offset);
+
+    /* Process statements. */
+    for (;;) {
+
+        afw_compile_get_token();
+        if (end_is_close_brace_case_or_default) {
+            if (afw_compile_token_is(close_brace) ||
+                afw_compile_token_is_name(&afw_s_case) ||
+                afw_compile_token_is_name(&afw_s_default))
+            {
+                afw_compile_reuse_token();
+                break;
+            }
+            else if afw_compile_token_is(end) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting '}'");
+            }
+        }
+        else if (end_is_close_brace) {
+            if (afw_compile_token_is(close_bracket) ||
+                afw_compile_token_is(close_brace))
+            {
+                break;
+            }
+            else if afw_compile_token_is(end) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting '}'");
+            }
+        }
+        else if (afw_compile_token_is(end)) {
+            break;
+        }
+        afw_compile_reuse_token();
+
+        if (was_expression_value) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expression can not be followed by Statement");
+        }
+
+        statement = afw_compile_parse_Statement(parser, was_expression);
+
+        if (was_expression_value) {
+            argv = afw_pool_malloc(parser->p,
+                sizeof(afw_value_t *) * 2, parser->xctx);
+            argv[0] = (const afw_value_t *)&afw_function_definition_return;
+            argv[1] = statement;
+            statement = afw_value_call_built_in_function_create(
+                afw_compile_create_contextual_to_cursor(start_offset),
+                1, argv, parser->p, parser->xctx);
+        }
+        was_expression = NULL;
+
+        if (statement) {
+            afw_compile_args_add_value(args, statement);
+        }
+    }
+
+    /* Make block of statements. */
+    afw_compile_args_finalize(args, &argc, &argv);
+    afw_value_block_finalize(block, argc, argv, parser->xctx);
+    result = (const afw_value_t *)block;
+
+    /* Pop block. */
+    afw_compile_parse_pop_value_block(parser);
+
+    /* Return block or list. */
+    return result;
+}
+
 
 /*ebnf>>>
  *
@@ -1486,7 +1561,7 @@ afw_compile_parse_Script(
     }
 
     /* Parse statements and return. */
-    result = afw_compile_parse_list_of_statements(parser, false, true);
+    result = afw_compile_parse_StatementList(parser, false, false, true);
     return result;
 }
 

@@ -6499,6 +6499,9 @@ AFW_UTF8_LITERAL("user");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_userinfo =
 AFW_UTF8_LITERAL("userinfo");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_using =
+AFW_UTF8_LITERAL("using");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_value =
 AFW_UTF8_LITERAL("value");
 

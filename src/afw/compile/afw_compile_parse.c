@@ -404,7 +404,7 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
             parser->compiled_value->full_source_type = &afw_s_script;
         }
 
-        return afw_compile_parse_list_of_statements(parser, false, true);
+        return afw_compile_parse_StatementList(parser, false, false, true);
     }
 
     /* Get first codepoint. */

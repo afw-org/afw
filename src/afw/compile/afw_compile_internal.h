@@ -687,9 +687,10 @@ afw_compile_next_raw_starts_with_z_impl(
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_list_of_statements(
+afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
     afw_boolean_t end_is_close_brace,
+    afw_boolean_t end_is_close_brace_case_or_default,   
     afw_boolean_t can_be_single_return_expression);
 
 
