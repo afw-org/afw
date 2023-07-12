@@ -299,6 +299,8 @@ afw_function_execute_do_while(
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
 
+    type = afw_value_block_statement_type_sequential;
+
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_do_while(x,
         &type, x->argc, x->argv, x->p, x->xctx);
@@ -429,6 +431,8 @@ afw_function_execute_for(
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
 
+    type = afw_value_block_statement_type_sequential;
+
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_for(x,
         &type, x->argc, x->argv, x->p, x->xctx);
@@ -488,6 +492,8 @@ afw_function_execute_foreach(
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
 
+    type = afw_value_block_statement_type_sequential;
+
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_foreach(x,
         &type, x->argc, x->argv, x->p, x->xctx);
@@ -543,6 +549,8 @@ afw_function_execute_if(
 {
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
+
+    type = afw_value_block_statement_type_sequential;
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_if(x,
@@ -737,8 +745,16 @@ const afw_value_t *
 afw_function_execute_switch(
     afw_function_execute_t *x)
 {
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_t *result;
+    afw_value_block_statement_type_t type;
+
+    type = afw_value_block_statement_type_sequential;
+
+    /* Can be called outside of a block, but usually part of a block value. */
+    result = afw_value_block_evaluate_switch(x,
+        &type, x->argc, x->argv, x->p, x->xctx);
+
+    return result;
 }
 
 
@@ -784,6 +800,8 @@ afw_function_execute_throw(
 {
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
+
+    type = afw_value_block_statement_type_sequential;
 
     result = afw_value_block_evaluate_throw(x,
         &type, x->argc, x->argv, x->p, x->xctx);
@@ -855,6 +873,8 @@ afw_function_execute_try(
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
 
+    type = afw_value_block_statement_type_sequential;
+
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_try(x,
         &type, x->argc, x->argv, x->p, x->xctx);
@@ -911,6 +931,8 @@ afw_function_execute_while(
 {
     const afw_value_t *result;
     afw_value_block_statement_type_t type;
+
+    type = afw_value_block_statement_type_sequential;
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_while(x,

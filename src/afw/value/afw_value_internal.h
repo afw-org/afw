@@ -691,6 +691,15 @@ afw_value_block_evaluate_if(
     afw_xctx_t *xctx);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_value_block_evaluate_switch(
+    afw_function_execute_t *x,
+    afw_value_block_statement_type_t *type,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_throw(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,

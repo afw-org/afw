@@ -712,6 +712,97 @@ afw_value_block_evaluate_if(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_value_block_evaluate_switch(
+    afw_function_execute_t *x,
+    afw_value_block_statement_type_t *type,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    IMPL_TEMP_FIX(switch);
+    struct {
+        const afw_value_t *function;
+        const afw_value_t *value1;
+        const afw_value_t *value2;
+    } args;
+    const afw_value_t *functor;
+    const afw_value_t * const *end_of_args;
+    const afw_value_t * const *pair;
+    const afw_value_t * const *default_pair;     
+    const afw_value_t *result;
+
+    result = afw_value_null;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(4);
+    if ((x->argc & 1) != 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Expecting an even number of parameters.", xctx);
+    }
+    end_of_args = argv + x->argc;
+
+    /* Create skeleton functor call. */
+    args.function = afw_function_evaluate_function_parameter(
+        x->argv[1], p, xctx);
+    AFW_FUNCTION_EVALUATE_PARAMETER(args.value1, 2);
+    args.value2 = NULL; /* Filled in later. */
+    functor = afw_value_call_create(NULL,
+        2, (const afw_value_t **)&args, p, xctx);
+
+
+    /* Find first true case. */
+    for (end_of_args = argv + x->argc,
+        pair = argv + 3,
+        default_pair = NULL;
+        pair < end_of_args;
+        pair += 2)
+    {
+        args.value2 = pair[0];
+        if (!args.value2) {
+            default_pair = pair;
+            continue;
+        }
+        result = afw_value_evaluate(functor, p, xctx);
+        if (!afw_value_is_boolean(result)) {
+            AFW_THROW_ERROR_Z(general,
+                "Expecting functor to return a boolean value",
+                xctx);
+        }
+        if (afw_value_is_true(result)) {
+            break;
+        }
+    }
+
+    /* If no true case, use default case if supplied. */
+    if (pair >= end_of_args) {
+        if (default_pair) {
+            pair = default_pair;
+        }
+    }
+
+    /*
+     * Evaluate statements in first true and subsequent cases until a
+     * break, rethrow or return is encountered.
+     */
+    for (;pair < end_of_args; pair += 2)
+    {
+        if (pair[1]) {
+            result = afw_value_block_evaluate_statement(x, type,
+                true, true, pair[1], p, xctx);
+            if (*type == afw_value_block_statement_type_break ||
+                *type == afw_value_block_statement_type_rethrow ||
+                *type == afw_value_block_statement_type_return)
+            {
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
+
+AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_throw(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,
