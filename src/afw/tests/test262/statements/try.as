@@ -527,3 +527,474 @@ fn = function() {
 assert(fn() === 'finally', '3: try Abrupt === catch Abrupt === finally Normal; Completion: finally');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
+
+
+//? test: completion-values
+//? description:...
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -2 }; } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -2 }; } while (false);'),
+  undefined
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; } while (false);'),
+  undefined
+);
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -3 }; -77 } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; -77 } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -3 }; -77 } while (false);'),
+  undefined
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; -77 } while (false);'),
+  undefined
+);
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; continue; -3 }; } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);'),
+  42
+);
+assert(
+  eval('99; do { -99; try { [].x.x } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);'),
+  42
+);
+
+
+
+
+//? test: cptn-catch-empty-break
+//? description: Abrupt completion from catch block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-catch-empty-continue
+//? description: Abrupt completion from catch block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-catch-finally-empty-break
+//? description: Abrupt completion from finally block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-catch-finally-empty-continue
+//? description: Abrupt completion from finally block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-catch
+//? description: Completion value from `catch` clause of a try..catch statement
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+assert(eval('1; try { throw null; } catch (err) { }') === undefined);
+assert(eval('2; try { throw null; } catch (err) { 3; }') === 3);
+
+
+//? test: cptn-finally-empty-break
+//? description: Abrupt completion from finally block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-finally-empty-continue
+//? description: Abrupt completion from finally block calls UpdatEmpty()
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// Ensure the completion value from the first iteration ('bad completion') is not returned.
+loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
+assert(completion === undefined);
+
+
+//? test: cptn-finally-from-catch
+//? description:...
+    Completion value from `finally` clause of a try..catch..finally statement
+    (following execution of `catch` block)
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+assert(
+  eval('1; try { throw null; } catch (err) { } finally { }'), undefined
+);
+assert(
+  eval('2; try { throw null; } catch (err) { 3; } finally { }'), 3
+);
+assert(
+  eval('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
+);
+assert(
+  eval('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
+);
+
+
+//? test: cptn-finally-skip-catch
+//? description:...
+    Completion value from `finally` clause of a try..catch..finally statement
+    (when `catch` block is not executed)
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+assert(eval('1; try { } catch (err) { } finally { }') === undefined);
+assert(eval('2; try { } catch (err) { 3; } finally { }') === undefined);
+assert(eval('4; try { } catch (err) { } finally { 5; }') === undefined);
+assert(eval('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
+assert(eval('9; try { 10; } catch (err) { } finally { }') === 10);
+assert(eval('11; try { 12; } catch (err) { 13; } finally { }') === 12);
+assert(eval('14; try { 15; } catch (err) { } finally { 16; }') === 15);
+assert(eval('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
+
+
+//? test: cptn-finally-wo-catch
+//? description: Completion value from `finally` clause of a try..finally statement
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+
+assert(eval('1; try { } finally { }') === undefined);
+assert(eval('2; try { 3; } finally { }') === 3);
+assert(eval('4; try { } finally { 5; }') === undefined);
+assert(eval('6; try { 7; } finally { 8; }') === 7);
+
+
+//? test: cptn-try
+//? description: Completion value from `try` clause of a try..catch statement
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+assert(eval('1; try { } catch (err) { }') === undefined);
+assert(eval('2; try { 3; } catch (err) { }') === 3);
+assert(eval('4; try { } catch (err) { 5; }') === undefined);
+assert(eval('6; try { 7; } catch (err) { 8; }') === 7);
+
+//? test: early-catch-duplicates
+//? description:...
+    It is a Syntax Error if BoundNames of CatchParameter contains any duplicate
+    elements.
+//? expect: error
+//? source: ...
+#!/usr/bin/env afw
+
+
+try { } catch ([x, x]) {}
+
+
+//? test: early-catch-function
+//? description:...
+//? expect: error
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+function f() {
+    try {
+    } catch (e) {
+        // fixme this should cause an error
+        function e(){}
+    }
+}
+
+return null;
+
+
+
+//? test: early-catch-lex
+//? description:...
+    It is a Syntax Error if any element of the BoundNames of CatchParameter
+    also occurs in the LexicallyDeclaredNames of Block.
+//? expect: error
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+// fixme this should throw an error
+try { } catch (x) { loc x; }
+
+
+
+//? test: optional-catch-binding-finally
+//? description: try/catch/finally syntax with omission of the catch binding
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+try {} catch {} finally {}
+
+
+//? test: optional-catch-binding
+//? description: try/catch syntax with omission of the catch binding
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+try {} catch {}
+
+
+
+//? test: optional-catch-binding-lexical
+//? description: lexical environment runtime semantics for optional catch binding
+//? expect: error:Parse error at offset 235 around line 20 column 5: Unknown built-in function y
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc x = 1;
+loc ranCatch = false;
+
+try {
+    x = 2;
+    throw "x";
+} catch {
+    loc x = 3;
+    loc y = true;
+    ranCatch = true;
+}
+
+assert(ranCatch, 'executed `catch` block');
+assert(x === 2);
+
+function f() {
+    y = false;
+}
+
+return null;
+
+
+
+//? test: optional-catch-binding-parens
+//? description:...
+//? expect: error
+//? source: ...
+#!/usr/bin/env afw
+
+
+try {} catch () {}
+
+
+
+//? test: S12.14_A10_T1
+//? description:...
+    Throwing exception while executing iteration statement placed into
+    try Block
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc i=0;
+try{
+while(i<10){
+  if(i===5) throw string(i);
+  i+=1;
+}
+}
+catch(e){
+  if(e.message!=="5")
+    throw '#1: Exception === 5. Actual:  Exception ==='+ e.message  ;
+}
+
+
+//? test: S12.14_A10_T2
+//? description: Try statement inside loop, where use continue loop
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=0;
+loc fin=0;
+while(c1<2){
+  try{
+    c1+=1;
+    continue;
+  }
+  catch(er1){}
+  finally{
+    fin=1;
+  }
+  fin=-1;
+};
+if(fin!==1){
+  throw '#1: "finally" block must be evaluated at "try{continue} catch finally" construction';
+}
+
+// CHECK#2
+loc c2=0;
+loc fin2=0;
+while(c2<2){
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c2+=1;
+    continue;
+  }
+  finally{
+    fin2=1;
+  }
+  fin2=-1;
+}
+if(fin2!==1){
+  throw '#2: "finally" block must be evaluated at "try catch{continue} finally" construction';
+}
+
+// CHECK#3
+loc c3=0;
+loc fin3=0;
+while(c3<2){
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c3+=1;
+  }
+  finally{
+    fin3=1;
+    continue;
+  }
+  fin3=0;
+}
+if(fin3!==1){
+  throw '#3: "finally" block must be evaluated at "try catch finally{continue}" construction';
+}
+
+// CHECK#4
+loc c4=0;
+loc fin4=0;
+while(c4<2){
+  try{
+    c4+=1;
+    continue;
+  }
+  finally{
+    fin4=1;
+  }
+  fin4=-1;
+};
+if(fin4!==1){
+  throw '#4: "finally" block must be evaluated at "try{continue} finally" construction';
+}
+
+// CHECK#5
+loc c5=0;
+while(c5<2){
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c5+=1;
+    continue;
+  }
+}
+if(c5!==2){
+  throw '#5: "try catch{continue}" must work correctly';
+}
+
+// CHECK#6
+loc c6=0;
+loc fin6=0;
+while(c6<2){
+  try{
+    c6+=1;
+    throw "ex1";
+  }
+  finally{
+    fin6=1;
+    continue;
+  }
+  fin6=-1;
+}
+if(fin6!==1){
+  throw '#6.1: "finally" block must be evaluated';
+}
+if(c6!==2){
+  throw '#6.2: "try finally{continue}" must work correctly';
+}
