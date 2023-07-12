@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
-//? testScript: try.as
+//? testScript: additional_try.as
 //? customPurpose: Part of miscellaneous category tests
-//? description: Test try statement
+//? description: Additional try tests, some accessing error object and data.
 //? sourceType: script
 //?
 //? test: Try-1
