@@ -194,7 +194,7 @@ impl_afw_authorization_handler_check(
         }
     }
     AFW_CATCH_UNHANDLED{
-        AFW_MARK_UNHANDLED;
+        AFW_ERROR_RETHROW;
     }
     AFW_FINALLY{
         afw_xctx_set_qualifier_stack_top(top, xctx);

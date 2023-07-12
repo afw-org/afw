@@ -1248,7 +1248,7 @@ afw_service_start(
 
     AFW_CATCH_UNHANDLED{
         AFW_LOG_Z(err, AFW_ERROR_THROWN->message_z, xctx);
-        AFW_MARK_UNHANDLED;
+        AFW_ERROR_RETHROW;
     }
 
     AFW_FINALLY {
@@ -1302,7 +1302,7 @@ afw_service_stop(
                         service->service_type, service->conf_id, xctx) > 0)
                     ? afw_service_status_running
                     : afw_service_status_stopped;
-                AFW_MARK_UNHANDLED;
+                AFW_ERROR_RETHROW;
             }
 
             AFW_ENDTRY;

@@ -111,7 +111,7 @@ afw_pool_create_debug(const afw_pool_t *parent,
  *  AFW_TRY {
  *      ... code that updates things in pool.
  *  AFW_CATCH_UNHANDLED {
- *      AFW_MARK_UNHANDLED;
+ *      AFW_ERROR_RETHROW;
  *  }
  *  AFW_FINALLY {
  *      afw_pool_unlock_write(p);

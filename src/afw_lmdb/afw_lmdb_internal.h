@@ -442,7 +442,7 @@ do { \
             } \
             apr_thread_rwlock_unlock(this_adaptor->dbLock); \
         } \
-        AFW_MARK_UNHANDLED; \
+        AFW_ERROR_RETHROW; \
     } \
     AFW_ENDTRY; \
 } while(0)

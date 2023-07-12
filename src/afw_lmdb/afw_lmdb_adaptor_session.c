@@ -410,7 +410,7 @@ impl_afw_adaptor_session_delete_object(
         }
         AFW_CATCH_UNHANDLED {
             /** @fixme we should not let the original error make it back to the client. */
-            AFW_MARK_UNHANDLED;
+            AFW_ERROR_RETHROW;
         }
         AFW_ENDTRY;
 

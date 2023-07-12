@@ -135,7 +135,7 @@ struct afw_error_s {
     afw_utf8_z_t message_wa_safety_zero_terminator;
 };
 
-/** @fixme AFW_MARK_UNHANDLED doesn't restore evaluation_stack. */
+/** @fixme AFW_ERROR_RETHROW doesn't restore evaluation_stack. */
 
 /* @brief Macro used to clear an error between code and decode_rv_wa. */
 #define AFW_ERROR_CLEAR_PARTIAL(__ERROR_) \
@@ -598,7 +598,7 @@ do { \
  *    break;               (optional) goes to AFW_FINALLY if present or
  *                         ENDTRY if not.
  *
- *    AFW_MARK_UNHANDLED;  (Optional) Marks error as unhandled and breaks.
+ *    AFW_ERROR_RETHROW;  (Optional) Marks error as unhandled and breaks.
  *                         AFW_ENDTRY will rethrow error.
  *
  * }
@@ -614,7 +614,7 @@ do { \
  *    break;               (optional) goes to AFW_FINALLY if present or
  *                         ENDTRY if not.
  *
- *    AFW_MARK_UNHANDLED;  (Optional) Marks error as unhandled and breaks.
+ *    AFW_ERROR_RETHROW;  (Optional) Marks error as unhandled and breaks.
  *                         AFW_ENDTRY will rethrow error.
  *
  * }
@@ -624,6 +624,8 @@ do { \
  *    ...                  Body of FINALLY is executed after the body of the
  *                         AFW_TRY and bodies of AFW_CATCH* macros, regardless
  *                         of whether an error has occurred.
+ * 
+ *    AFW_ERROR_MARK_CAUGHT;   (Optional) Marks error as handled even if not caught.
  *
  *    break;               (optional) goes to AFW_ENDTRY
  *
@@ -741,16 +743,26 @@ do {\
 } while (0)
 
 
+/**
+ * @brief Use an AFW_ERROR_MARK_CAUGHT in AFW_FINALLY block to mark error as
+ *   unconditionally unhandled even if not caught.
+ *
+ * The AFW_ENDTRY will not rethrow the error even if not caught.
+ *
+ * Always follow with a semicolon (AFW_ERROR_MARK_CAUGHT;).
+ */
+#define AFW_ERROR_MARK_CAUGHT \
+    this_ERROR_CAUGHT = true;
 
 /**
  * @brief Use in an AFW_CATCH or AFW_CATCH_UNHANDLED block to mark error
- *   as unhandled and break
+ *   as not caught and break
  *
  * The AFW_ENDTRY will rethrow the error.
  *
- * Always follow with a semicolon (AFW_MARK_UNHANDLED;).
+ * Always follow with a semicolon (AFW_ERROR_RETHROW;).
  */
-#define AFW_MARK_UNHANDLED \
+#define AFW_ERROR_RETHROW \
     this_ERROR_CAUGHT = false; \
     break;
 

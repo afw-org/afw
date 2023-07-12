@@ -881,11 +881,11 @@ afw_value_block_evaluate_try(
             }
             else if (*type == afw_value_block_statement_type_rethrow)
             {
-                AFW_MARK_UNHANDLED;
+                AFW_ERROR_RETHROW;
             }
         }
         else {
-            AFW_MARK_UNHANDLED;
+            AFW_ERROR_RETHROW;
         }
     }
 
@@ -897,11 +897,13 @@ afw_value_block_evaluate_try(
                 *type == afw_value_block_statement_type_continue)
             {
                 use_type = *type;
+                AFW_ERROR_MARK_CAUGHT;
             }
             else if (*type == afw_value_block_statement_type_return)
             {
                 use_type = afw_value_block_statement_type_return;
                 result = this_result;
+                AFW_ERROR_MARK_CAUGHT;
             }
             else if (*type == afw_value_block_statement_type_rethrow)
             {

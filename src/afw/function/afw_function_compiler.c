@@ -620,7 +620,7 @@ afw_function_execute_evaluate_with_retry(
         AFW_CATCH_UNHANDLED {
             failures++;
             if (failures > limit->internal) {
-                AFW_MARK_UNHANDLED;
+                AFW_ERROR_RETHROW;
             }
         }
 

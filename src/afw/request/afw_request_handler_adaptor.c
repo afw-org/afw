@@ -470,7 +470,7 @@ impl_afw_request_handler_process(
             afw_adaptor_session_commit_and_release_cache(true, xctx);
         }
 
-        AFW_MARK_UNHANDLED;
+        AFW_ERROR_RETHROW;
     }
 
     AFW_ENDTRY;
