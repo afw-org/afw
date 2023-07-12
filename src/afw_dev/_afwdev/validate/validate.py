@@ -155,7 +155,7 @@ def run(options):
             if (msg.is_verbose_mode()):
                 for e in error:
                     msg.error("  " + e)
-            if options.get('stop_on_failure', False):
+            if options.get('bail', False):
                 msg.highlighted_info("")            
                 return 1
         else:

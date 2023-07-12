@@ -789,19 +789,19 @@ _info_task = {
 
 # subcommand test
 
-_info_stop_on_failure = {
-    "optionName": "stop_on_failure",
-    "arg": "--stop-on-failure",     
+_info_bail = {
+    "optionName": "bail",
+    "arg": "--bail",     
     "action": "store_true",    
     "default": False,
-    "help": "Stop on first failure."
+    "help": "Stop after first failed test."
 }
 
 _info_errors = {
     "optionName": "errors",
     "arg": "--errors",     
     "action": "store_true",    
-    "default": False,
+    "default": True,
     "help": "Only show errors."
 }
 
@@ -883,7 +883,7 @@ _info_test = {
     "description": "Run tests for one more more source directories.",
     "thing": "test",
     "args": [        
-        _info_stop_on_failure,
+        _info_bail,
         _info_list,
         _info_test_tags,
         _info_errors,
@@ -917,9 +917,9 @@ _info_validation_errors_only = {
     "help": "Only show validation errors."
 }
 
-_info_validation_stop_on_failure = {
-    "optionName": "stop_on_failure",
-    "arg": "--stop-on-failure",     
+_info_validation_bail = {
+    "optionName": "bail",
+    "arg": "--bail",     
     "action": "store_true",    
     "default": False,
     "help": "Stop on first validation failure."
@@ -957,7 +957,7 @@ be used.
     "thing": "validate",
     "args": [
         _info_validation_errors_only,
-        _info_validation_stop_on_failure,
+        _info_validation_bail,
         _info_pattern
     ]
 }

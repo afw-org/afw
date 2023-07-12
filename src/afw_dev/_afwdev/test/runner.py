@@ -40,7 +40,7 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
     if testEnvironment:
         if not testEnvironment.get('cwd'):
             msg.error("Test environment '" + testEnvironment['name'] + "' has no 'cwd' set")            
-            sys.exit(0)
+            return None
         msg.debug("Using test environment: " + testEnvironment['name'] + ', cwd = ' + testEnvironment['cwd'])        
 
     try:
@@ -101,9 +101,13 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
 
             print_test_response(options, test, response, hasFailures, allSuccess, allSkipped)
 
-            if options.get('stop_on_failure') and failed > 0:
-                msg.highlighted_info("")            
-                sys.exit(1)
+            bail = options.get('bail', False)
+            if bail and failed > 0:
+                msg.highlighted_info("")          
+
+                # still make sure to cleanup by running after_all
+                after_all(root, testGroupConfig, testEnvironment)  
+                return None
                     
             msg.highlighted_info("")
 
@@ -197,15 +201,30 @@ def run(options, srcdirs):
         
         pool = multiprocessing.Pool(processes=test_jobs)                   
 
-        # run allTestGroups in parallel        
-        results = pool.map(
+        # run allTestGroups in parallel     
+        results = []   
+        bail = False
+        pool_results = pool.imap_unordered(
             partial(run_test_group, 
                 options=options, 
                 testEnvironments=testEnvironments, 
                 test_working_directory=test_working_directory
             ), allTestGroups
         )
+        pool.close()
+        for res in pool_results:
+            if not res:
+                bail = True
+                pool.terminate()
+                break
+            else:
+                # append to results
+                results.append(res)
+        pool.join()
 
+        if bail:
+            sys.exit(1)
+        
         for testGroup, passed, skipped, failed in results:
             _srcdir = testGroup[0]
 
@@ -214,9 +233,7 @@ def run(options, srcdirs):
                 allTestResults[_srcdir][1] += skipped
                 allTestResults[_srcdir][2] += failed
             else:
-                allTestResults[_srcdir] = [passed, skipped, failed]            
-
-        pool.close()       
+                allTestResults[_srcdir] = [passed, skipped, failed]             
 
     else:
         # run sequentially
