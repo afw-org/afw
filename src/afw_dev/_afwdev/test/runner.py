@@ -107,7 +107,8 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
 
                 # still make sure to cleanup by running after_all
                 after_all(root, testGroupConfig, testEnvironment)  
-                return None
+
+                raise Exception("Bailing due to test failure")
                     
             msg.highlighted_info("")
 
@@ -118,6 +119,7 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
         os.chdir(pwd)
 
     return testGroup, passed, skipped, failed
+
 
 # Creates a known, temporary folder to persist test output
 def allocate_working_directory():
@@ -202,8 +204,9 @@ def run(options, srcdirs):
         pool = multiprocessing.Pool(processes=test_jobs)                   
 
         # run allTestGroups in parallel     
-        results = []   
-        bail = False
+        results = []
+        terminate = False
+        
         pool_results = pool.imap_unordered(
             partial(run_test_group, 
                 options=options, 
@@ -212,18 +215,29 @@ def run(options, srcdirs):
             ), allTestGroups
         )
         pool.close()
-        for res in pool_results:
-            if not res:
-                bail = True
-                pool.terminate()
-                break
-            else:
-                # append to results
-                results.append(res)
-        pool.join()
 
-        if bail:
+        try:
+            for res in pool_results:
+                if not res:
+                    raise Exception("Test group returned no results")
+                else:
+                    # append to results
+                    results.append(res)
+        except KeyboardInterrupt:
+            msg.error("Caught KeyboardInterrupt, terminating test runner")
+            terminate = True
+
+        except Exception as e:
+            msg.error(str(e))
+            terminate = True
+
+        if terminate:
+            pool.terminate()
+            pool.join()
+
             sys.exit(1)
+
+        pool.join()
         
         for testGroup, passed, skipped, failed in results:
             _srcdir = testGroup[0]
