@@ -381,6 +381,7 @@ impl_parse_tuple_lambda_parameters(afw_compile_parser_t *parser,
                 goto error;
             }
         }
+        afw_compile_parse_pop_value_block(parser);
     }
 
     *count = parser->values->nelts - start_nelts;

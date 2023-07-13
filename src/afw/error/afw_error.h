@@ -625,7 +625,7 @@ do { \
  *                         AFW_TRY and bodies of AFW_CATCH* macros, regardless
  *                         of whether an error has occurred.
  * 
- *    AFW_ERROR_MARK_CAUGHT;   (Optional) Marks error as handled even if not caught.
+ *    AFW_ERROR_MARK_CAUGHT;(Optional) Marks error as handled even if not caught
  *
  *    break;               (optional) goes to AFW_ENDTRY
  *

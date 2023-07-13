@@ -659,11 +659,13 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         afw_compile_create_contextual_to_cursor(start_offset),
         4, argv, parser->p, parser->xctx);
 
+    /* If there is a block for loc/const finalize it. */
     if (block) {
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
         argv[0] = result;
         afw_value_block_finalize(block, 1, argv, parser->xctx);
         result = (const afw_value_t *)block;
+        afw_compile_parse_pop_value_block(parser);
     }
 
     return result;
@@ -1126,6 +1128,9 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         }
         argv[3] = afw_compile_parse_Statement(parser, NULL);
         parser->rethrow_allowed = false;
+        if (block) {
+            afw_compile_parse_pop_value_block(parser);
+        }
     }
     else {
         afw_compile_reuse_token();
