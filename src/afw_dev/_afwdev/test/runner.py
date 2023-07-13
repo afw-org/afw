@@ -223,12 +223,13 @@ def run(options, srcdirs):
                 else:
                     # append to results
                     results.append(res)
+                    
         except KeyboardInterrupt:
             msg.error("Caught KeyboardInterrupt, terminating test runner")
             terminate = True
 
         except Exception as e:
-            msg.error(str(e))
+            msg.error("Test runner caught Exception: " + str(e))
             terminate = True
 
         if terminate:

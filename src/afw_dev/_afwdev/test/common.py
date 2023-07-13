@@ -300,12 +300,36 @@ def get_rel_source_location_nav(test, testCase):
         tc_sourceLocationNav = test + ':' + tc_sourceLocationCoordinates
 
         return tc_sourceLocationNav
+    
+def get_rel_error_source_location_nav(test, testCase):
+
+    tc_sourceLineNumberInTestScript = testCase.get('sourceLineNumberInTestScript', 0)
+    error = testCase.get('error', None)
+
+    if error:
+        parserLineNumber = error.get("parserLineNumber")
+        parserColumnNumber = error.get("parserColumnNumber")
+
+        if not parserLineNumber or not parserColumnNumber:
+            return None
+
+        # format sourceLocation so that it's printed value can be easily navigated to              
+        tc_sourceErrorLocationCoordinates = str(
+            tc_sourceLineNumberInTestScript + parserLineNumber - 1
+            ) + ":" + str(parserColumnNumber)
+        tc_sourceLocationNav = test + ':' + tc_sourceErrorLocationCoordinates
+
+        return tc_sourceLocationNav
+
+    return None
+
 
 # This routine will print the result of a test that failed, including any error details that came back
 def print_test_failure(test, testCase):
 
     sourceLocation = testCase.get("sourceLocation")
     sourceLocationNav = get_rel_source_location_nav(test, testCase)
+    sourceErrorLocationNav = get_rel_error_source_location_nav(test, testCase)
 
     if testCase.get("error"):
         if testCase.get("error").get("message"):
@@ -333,8 +357,12 @@ def print_test_failure(test, testCase):
             source = testCase.get('source')
             sourceLineOffset = errorOffset       
 
-        if sourceLineOffset:                        
-            format_source_code(source, highlightOffset=sourceLineOffset, title="Test Failed at: {}".format(sourceLocationNav))
+        if sourceLineOffset: 
+            if sourceErrorLocationNav:   
+                title="Test Failed at: \n\t{}\n\t└─ {}".format(sourceErrorLocationNav, sourceLocationNav)
+            else:
+                title="Test Failed at: {}".format(sourceLocationNav)
+            format_source_code(source, highlightOffset=sourceLineOffset, title=title)
 
         else:
             # In this case, we couldn't determine the exact source location of the error
