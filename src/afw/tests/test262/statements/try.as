@@ -1338,7 +1338,7 @@ if(c3!==5){
 }
 
 // CHECK#4
-loc fin=0;
+fin=0;
 for(loc i=0;i<5;i+=1){
   try{
     i+=1;
@@ -2945,7 +2945,7 @@ catch(e){
 }
 
 // CHECK#4
-loc b=true;
+b=true;
 try{
   throw "" b;
 }
@@ -2954,7 +2954,7 @@ catch(e){
 }
 
 // CHECK#5
-loc b=true;
+b=true;
 try{
   throw "" b&&false;
 }
@@ -2963,7 +2963,7 @@ catch(e){
 }
 
 // CHECK#5
-loc b=true;
+b=true;
 try{
   throw "" b||false;
 }
@@ -3007,7 +3007,7 @@ catch(e){
 
 // CHECK#4
 loc a="exception";
-loc b=" #1";
+b=" #1";
 try{
   throw a+b;
 }

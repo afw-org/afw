@@ -120,7 +120,7 @@ catch(e){
 }
 
 // CHECK#2
-loc i=0;
+i=0;
 function adding2(){
   i = i + 1;
   return string(i);
@@ -133,7 +133,7 @@ if (i!==1)
     throw '#2: i===1. Actual: i==='+ i;
 
 // CHECK#3
-loc i=0;
+i=0;
 function adding3(){
   i = i + 1;
   return "x";
