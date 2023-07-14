@@ -59,24 +59,22 @@ assert(f("x") === 42);
 //? test: 12.14-12
 //? description: catch introduces scope - name lookup finds property
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-
-  function f(o) {
+function f(o) {
 
     function innerf(o) {
       try {
-        throw o;
+        throw '' o;
       }
       catch (e) {
-        return e.x;
+        return e.data.x;
       }
     }
 
     return innerf(o);
-  }
+}
 
 assert(f({x:42}) === 42);
 
@@ -88,10 +86,9 @@ assert(f({x:42}) === 42);
 //? source: ...
 #!/usr/bin/env afw
 
-
-        loc res1 = false;
-        loc res2 = false;
-        loc res3 = false;
+loc res1 = false;
+loc res2 = false;
+loc res3 = false;
 
 // fixme - can't call functions like this yet
 (function() {
@@ -214,54 +211,49 @@ assert(result === "test1" === 'result');
 //? test: 12.14-4
 //? description: catch introduces scope - block-local vars must shadow outer vars
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
+loc o = "x";
 
-  loc o = "x";
-
-  try {
+try {
     throw o;
-  }
-  catch (e) {
+}
+catch (e) {
     loc foo;
-  }
+}
 
 // fixme can't check if variables are not defined
-assert(foo === undefined);
-
+assert(variable_exists("foo") === false);
 
 
 //? test: 12.14-7
 //? description: catch introduces scope - scope removed when exiting catch block
-//? expect: null
-//? skip: true
+//? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function expObj
 //? source: ...
 #!/usr/bin/env afw
 
+loc o = {foo: 1};
+loc catchAccessed = false;
 
-      loc o = {foo: 1};
-      loc catchAccessed = false;
+try {
+    throw 'x' o;
+}
+catch (expObj) {
+    catchAccessed = (expObj.data.foo == 1);
+}
 
-      try {
-        throw o;
-      }
-      catch (expObj) {
-        catchAccessed = (expObj.foo == 1);
-      }
-      assert(catchAccessed, '(expObj.foo == 1)');
+assert(catchAccessed, '(expObj.foo == 1)');
 
-/* cannot catch undeclared variables
-      catchAccessed = false;
-      try {
-        expObj;
-      }
-      catch (e) {
-        catchAccessed = e instanceof ReferenceError
-      }
-      assert(catchAccessed, 'e instanceof ReferenceError');
-*/
+// can't catch ReferenceError in adaptive script
+catchAccessed = false;
+try {
+    expObj;
+}
+catch (e) {
+    catchAccessed = e instanceof ReferenceError
+}
+assert(catchAccessed, 'e instanceof ReferenceError');
 
 
 //? test: 12.14-8
@@ -272,15 +264,14 @@ assert(foo === undefined);
 //? source: ...
 #!/usr/bin/env afw
 
+loc o = {foo: 42};
 
-  loc o = {foo: 42};
-
-  try {
+try {
     throw "x";
-  }
-  catch (e) {
+}
+catch (e) {
     loc foo = 1;
-  }
+}
 
 assert(o.foo === 42);
 
@@ -313,10 +304,8 @@ assert(f({}) === 42);
 //? test: completion-values-fn-finally-abrupt
 //? description:...
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc fn;
 loc count = {};
@@ -337,10 +326,17 @@ fn = function() {
   return 'wat';
 };
 
-// fixme without assert.throws(), rest of test is meaningless
-//assert.throws(Test262Error, fn, '1: try Abrupt, catch Abrupt, finally Abrupt; Completion: finally');
-assert(count.catch === 1, '1: catch count');
-assert(count.finally === 1, '1: finally count');
+loc err = false;
+try {
+    fn();
+} catch (e) {
+    err = true;
+    assert(count.catch === 1, '1: catch count');
+    assert(count.finally === 1, '1: finally count');
+}
+// fixme doesn't work yet
+assert(err, '1: try Abrupt, catch Abrupt, finally Abrupt; Completion: finally');
+
 
 // 2: try Abrupt, catch Return, finally Abrupt; Completion: finally
 count.catch = 0;
@@ -358,9 +354,16 @@ fn = function() {
   return 'wat';
 };
 
-//assert.throws(Test262Error, fn, '2: try Abrupt, catch Return, finally Abrupt; Completion: finally');
-assert(count.catch === 1, '2: catch count');
-assert(count.finally === 1, '2: finally count');
+err = false;
+try {
+    fn();
+} catch (e) {
+    err = true;
+    assert(count.catch === 1, '2: catch count');
+    assert(count.finally === 1, '2: finally count');
+}
+assert(err, '2: try Abrupt, catch Return, finally Abrupt; Completion: finally');
+
 
 // 3: try Return, catch Return, finally Abrupt; Completion: finally
 count.catch = 0;
@@ -378,9 +381,16 @@ fn = function() {
   return 'wat';
 };
 
-//assert.throws(Test262Error, fn, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
-assert(count.catch === 0, '3: catch count');
-assert(count.finally === 1, '3: finally count');
+err = false;
+try {
+    fn();
+} catch (e) {
+    err = true;
+    assert(count.catch === 0, '3: catch count');
+    assert(count.finally === 1, '3: finally count');
+}
+assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
+
 
 
 //? test: completion-values-fn-finally-normal
@@ -3302,3 +3312,1565 @@ try{
 catch(e){
   if (e.toString()!=="URIError: message") throw '#7: Exception.toString()==="URIError: message". Actual: Exception is '+e;
 }
+
+
+//? test: S12.14_A19_T2
+//? description: Testing try/catch/finally syntax construction
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc fin=0;
+// CHECK#1
+try{
+  throw "Error: hello";
+}
+catch(e){
+  if (e.message!=="Error: hello") throw '#1.1: Exception.toString()==="Error: hello". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#1.2: "finally" block must be evaluated';
+
+// CHECK#2
+fin=0;
+try{
+  throw "Error: hello";
+}
+catch(e){
+  if (e.message!=="Error: hello") throw '#2.1: Exception.toString()==="Error: hello". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#2.2: "finally" block must be evaluated';
+
+// CHECK#3
+fin=0;
+loc c3=0;
+try{
+  throw "EvalError: 1";
+}
+catch(e){
+  if (e.message!=="EvalError: 1") throw '#3.1: Exception.toString()==="EvalError: 1". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#3.2: "finally" block must be evaluated';
+
+// CHECK#4
+fin=0;
+try{
+  throw "RangeError: 1";
+}
+catch(e){
+  if (e.message!=="RangeError: 1") throw '#4.1: Exception.toString()==="RangeError: 1". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#4.2: "finally" block must be evaluated';
+
+// CHECK#5
+fin=0;
+try{
+  throw "ReferenceError: 1";
+}
+catch(e){
+  if (e.message!=="ReferenceError: 1") throw '#5.1: Exception.toString()==="ReferenceError: 1". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#5.2: "finally" block must be evaluated';
+
+// CHECK#6
+fin=0;
+try{
+  throw "TypeError: 1";
+}
+catch(e){
+  if (e.message!=="TypeError: 1") throw '#6.1: Exception.toString()==="TypeError: 1". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#6.2: "finally" block must be evaluated';
+
+// CHECK#7
+fin=0;
+try{
+  throw "URIError: message";
+}
+catch(e){
+  if (e.message!=="URIError: message") throw '#7.1: Exception.toString()==="URIError: message". Actual: Exception is '+e.message;
+}
+finally{
+  fin=1;
+}
+if (fin!==1) throw '#7.2: "finally" block must be evaluated';
+
+
+//? test: S12.14_A1
+//? description:...
+    Executing TryStatement : try Block Catch. The statements doesn't
+    cause actual exceptions
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+// CHECK#1
+try {
+  loc x=0;
+}
+catch (e) {
+  throw '#1: If Result(1).type is not throw, return Result(1). Actual: 4 Return(Result(3))';
+}
+
+// CHECK#2
+loc c1=0;
+loc x1;
+try{
+  x1=1;
+}
+finally
+{
+  c1=1;
+}
+if(x1!==1){
+  throw '#2.1: "try" block must be evaluated. Actual: try Block has not been evaluated';
+}
+if (c1!==1){
+  throw '#2.2: "finally" block must be evaluated. Actual: finally Block has not been evaluated';
+}
+
+// CHECK#3
+loc c2=0;
+loc x2;
+try{
+  x2=1;
+}
+catch(e){
+  throw '#3.1: If Result(1).type is not throw, return Result(1). Actual: 4 Return(Result(3))';
+}
+finally{
+  c2=1;
+}
+if(x2!==1){
+  throw '#3.2: "try" block must be evaluated. Actual: try Block has not been evaluated';
+}
+if (c2!==1){
+  throw '#3.3: "finally" block must be evaluated. Actual: finally Block has not been evaluated';
+}
+
+
+//? test: S12.14_A2
+//? description:...
+    Checking if execution of "catch" catches an exception thrown with
+    "throw"
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try {
+  throw "catchme";
+  throw '#1: throw "catchme" lead to throwing exception';
+}
+catch(e){}
+
+// CHECK#2
+loc c2=0;
+try{
+  try{
+    throw "exc";
+    throw '#2.1: throw "exc" lead to throwing exception';
+  }finally{
+    c2=1;
+  }
+}
+catch(e){
+  if (c2!==1){
+    throw '#2.2: "finally" block must be evaluated';
+  }
+}
+
+// CHECK#3
+loc c3=0;
+loc x3;
+try{
+  throw "exc";
+  throw '#3.1: throw "exc" lead to throwing exception';
+}
+catch(err){
+  x3=1;
+}
+finally{
+  c3=1;
+}
+if (x3!==1){
+  throw '#3.2: "catch" block must be evaluated';
+}
+if (c3!==1){
+  throw '#3.3: "finally" block must be evaluated';
+}
+
+
+//? test: S12.14_A3
+//? description: Checking if execution of "catch" catches system exceptions
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try{
+  loc y;
+  throw '#1: "y" lead to throwing exception';
+}
+catch(e){}
+
+// CHECK#2
+loc c2=0;
+try{
+  try{
+    loc someValue;
+    throw '#3.1: "someValues" lead to throwing exception';
+  }
+  finally{
+    c2=1;
+  }
+}
+catch(e){
+  if (c2!==1){
+    throw '#3.2: "finally" block must be evaluated';
+  }
+}
+
+// CHECK#3
+loc c3=0;
+loc x3=0;
+try{
+  x3=someValue;
+  throw '#3.1: "x3=someValues" lead to throwing exception';
+}
+catch(err){
+  x3=1;
+}
+finally{
+  c3=1;
+}
+if (x3!==1){
+  throw '#3.2: "catch" block must be evaluated';
+}
+if (c3!==1){
+  throw '#3.3: "finally" block must be evaluated';
+}
+
+
+//? test: S12.14_A4
+//? description: Checking if deleting an exception fails
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try {
+  throw "catchme";
+  throw '#1.1: throw "catchme" lead to throwing exception';
+}
+catch (e) {
+  // fixme no delete
+  if (delete e){
+    throw '#1.2: Exception has DontDelete property';
+  }
+  if (e!=="catchme") {
+    throw '#1.3: Exception === "catchme". Actual:  Exception ==='+ e  ;
+  }
+}
+
+// CHECK#2
+try {
+  throw "catchme";
+  throw '#2.1: throw "catchme" lead to throwing exception';
+}
+catch(e){}
+try{
+  e;
+  throw '#2.2: Deleting catching exception after ending "catch" block';
+}
+catch(err){}
+
+
+//? test: S12.14_A5
+//? description: Checking "catch" catches the Identifier in appropriate way
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try {
+  throw "catchme";
+  throw "dontcatchme";
+  throw '#1.1: throw "catchme" lead to throwing exception';
+}
+catch (e) {
+  if(e==="dontcatchme"){
+    throw '#1.2: Exception !== "dontcatchme"';
+  }
+  if (e!=="catchme") {
+    throw '#1.3: Exception === "catchme". Actual:  Exception ==='+ e  ;
+  }
+}
+
+// CHECK#2
+function SwitchTest1(value){
+  loc result = 0;
+  try{
+    // fixme no switch
+    switch(value) {
+      case 1:
+        result += 4;
+        throw result;
+        break;
+      case 4:
+        result += 64;
+        throw "ex";
+    }
+  return result;
+  }
+  catch(e){
+    if ((value===1)&&(e!==4)) throw '#2.1: Exception === 4. Actual: '+e;
+    if ((value===4)&&(e!=="ex"))throw '#2.2: Exception === "ex". Actual: '+e;
+  }
+  finally{
+    return result;
+  }
+}
+if (SwitchTest1(1)!==4) throw '#2.3: "finally" block must be evaluated';
+if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
+
+
+
+//? test: S12.14_A6
+//? description:...
+    Executing sequence of "try" statements, using counters with
+    varying values within
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=0;
+try {
+  c1+=1;
+  // fixme expression as statement
+  y;
+  throw '#1.1: "y" lead to throwing exception';
+}
+catch (e) {
+  c1*=2;
+}
+if (c1!==2){
+  throw '#1.2: Sequence evaluation of commands try/catch is 1. try, 2. catch';
+}
+
+// CHECK#2
+loc c2=0;
+try{
+  c2+=1;
+}
+finally{
+  c2*=2;
+}
+if (c2!==2){
+  throw '#2: Sequence evaluation of commands try/finally is 1. try, 2. finally';
+}
+
+// CHECK#3
+loc c3=0;
+try{
+  c3=1;
+  z;
+}
+catch(err){
+  c3*=2;
+}
+finally{
+  c3+=1;
+}
+if (c3!==3){
+  throw '#3: Sequence evaluation of commands try/catch/finally(with exception) is 1. try, 2. catch, 3. finally';
+}
+
+// CHECK#4
+loc c4=0;
+try{
+  c4=1;
+}
+catch(err){
+  c4*=3;
+}
+finally{
+  c4+=1;
+}
+if (c4!==2){
+  throw '#4: Sequence evaluation of commands try/catch/finally(without exception) is 1. try, 2. finally';
+}
+
+
+//? test: S12.14_A7_T1
+//? description:...
+    Checking if the production of nested TryStatement statements
+    evaluates correct
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try{
+  try{
+    throw "ex2";
+  }
+  catch(er2){
+    if (er2.message!=="ex2")
+      throw '#1.1: Exception === "ex2". Actual:  Exception ==='+ er2.message  ;
+      throw "ex1";
+    }
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#1.2: Exception === "ex1". Actual: '+er1.message;
+    if (er1.message==="ex2") throw '#1.3: Exception !== "ex2". Actual: catch previous embedded exception';
+}
+
+// CHECK#2
+try{
+  throw "ex1";
+}
+catch(er1){
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message==="ex1") throw '#2.1: Exception !== "ex1". Actual: catch previous catching exception';
+    if (er1.message!=="ex2") throw '#2.2: Exception === "ex2". Actual:  Exception ==='+ er1.message  ;
+  }
+  if (er1.message!=="ex1") throw '#2.3: Exception === "ex1". Actual:  Exception ==='+ er1.message  ;
+  if (er1.message==="ex2") throw '#2.4: Exception !== "ex2". Actual: catch previous catching exception';
+}
+
+// CHECK#3
+try{
+  throw "ex1";
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#3.1: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
+}
+finally{
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message==="ex1") throw '#3.2: Exception !=="ex1". Actual: catch previous embedded exception';
+    if (er1.message!=="ex2") throw '#3.3: Exception ==="ex2". Actual:  Exception ==='+ er1.message  ;
+  }
+}
+
+// CHECK#4
+loc c4=0;
+try{
+  throw "ex1";
+}
+catch(er1){
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message==="ex1") throw '#4.1: Exception !=="ex1". Actual: catch previous catching exception';
+    if (er1.message!=="ex2") throw '#4.2: Exception ==="ex2". Actual:  Exception ==='+ er1.message  ;
+  }
+  if (er1.message!=="ex1") throw '#4.3: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
+  if (er1.message==="ex2") throw '#4.4: Exception !=="ex2". Actual: Catch previous embedded exception';
+}
+finally{
+  c4=1;
+}
+if (c4!==1) throw '#4.5: "finally" block must be evaluated';
+
+// CHECK#5
+loc c5=0;
+try{
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message!=="ex2") throw '#5.1: Exception ==="ex2". Actual:  Exception ==='+ er1.message  ;
+  }
+  throw "ex1";
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#5.2: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
+  if (er1.message==="ex2") throw '#5.3: Exception !=="ex2". Actual: catch previous embedded exception';
+}
+finally{
+  c5=1;
+}
+if (c5!==1) throw '#5.4: "finally" block must be evaluated';
+
+// CHECK#6
+loc c6=0;
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#6.1: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
+  }
+}
+finally{
+  c6=1;
+}
+if (c6!==1) throw '#6.2: "finally" block must be evaluated';
+
+// CHECK#7
+loc c7=0;
+try{
+  try{
+    throw "ex1";
+  }
+  finally{
+    try{
+      c7=1;
+      throw "ex2";
+    }
+    catch(er1){
+      if (er1.message!=="ex2") throw '#7.1: Exception ==="ex2". Actual:  Exception ==='+ er1.message  ;
+      if (er1.message==="ex1") throw '#7.2: Exception !=="ex1". Actual: catch previous embedded exception';
+      c7+=1;
+    }
+  }
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#7.3: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
+}
+if (c7!==2) throw '#7.4: "finally" block must be evaluated';
+
+
+//? test: S12.14_A7_T2
+//? description:...
+    Checking if the production of nested TryStatement statements
+    evaluates correct
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try{
+  try{
+    throw "ex2";
+  }
+  finally{
+    throw "ex1";
+  }
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#1.2: Exception === "ex1". Actual:  Exception ==='+er1.message ;
+  if (er1.message==="ex2") throw '#1.3: Exception !== "ex2". Actual: catch previous embedded exception';
+}
+
+// CHECK#2
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#2.1: Exception === "ex1". Actual:  Exception ==='+er1.message ;
+    try{
+      throw "ex2";
+    }
+    finally{
+      throw "ex3";
+    }
+    throw '#2.2: throw "ex1" lead to throwing exception';
+  }
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#2.3: Exception === "ex3". Actual:  Exception ==='+er1.message ;
+}
+
+// CHECK#3
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#3.1: Exception === "ex1". Actual:  Exception ==='+er1.message ;
+  }
+  finally{
+    try{
+      throw "ex2";
+    }
+    finally{
+      throw "ex3";
+    }
+  }
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#3.2: Exception === "ex3". Actual:  Exception ==='+er1.message ;
+}
+
+// CHECK#4
+loc c4=0;
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#4.1: Exception === "ex1". Actual:  Exception ==='+er1.message ;
+    try{
+      throw "ex2";
+    }
+    finally{
+      throw "ex3";
+    }
+  }
+  finally{
+    c4=1;
+  }
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#4.2: Exception === "ex3". Actual:  Exception ==='+er1.message ;
+}
+if (c4!==1) throw '#4.3: "finally" block must be evaluated';
+
+// CHECK#5
+loc c5=0;
+try{
+  try{
+    throw "ex2";
+  }
+  finally{
+    throw "ex3";
+  }
+  throw "ex1";
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#5.1: Exception === "ex3". Actual:  Exception ==='+er1.message ;
+  if (er1.message==="ex2") throw '#5.2: Exception !== "ex2". Actual: catch previous embedded exception';
+  if (er1.message==="ex1") throw '#5.3: Exception !=="ex1". Actual: catch previous embedded exception';
+}
+finally{
+  c5=1;
+}
+if (c5!==1) throw '#5.4: "finally" block must be evaluated';
+
+// CHECK#6
+loc c6=0;
+try{
+  try{
+    try{
+      throw "ex1";
+    }
+    finally{
+      throw "ex2";
+    }
+  }
+  finally{
+    c6=1;
+  }
+}
+catch(er1){
+  if (er1.message!=="ex2") throw '#6.1: Exception === "ex2". Actual:  Exception ==='+er1.message ;
+}
+if (c6!==1) throw '#6.2: "finally" block must be evaluated';
+
+// CHECK#7
+loc c7=0;
+try{
+  try{
+    throw "ex1";
+  }
+  finally{
+    try{
+      c7=1;
+      throw "ex2";
+    }
+    finally{
+      c7+=1;
+      throw "ex3";
+    }
+  }
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#7.1: Exception === "ex3". Actual:  Exception ==='+er1.message ;
+}
+if (c7!==2) throw '#7.2: Embedded "try/finally" blocks must be evaluated';
+
+
+//? test: S12.14_A7_T3
+//? description:...
+    Checking if the production of nested TryStatement statements
+    evaluates correct
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+try{
+  try{
+    throw "ex2";
+  }
+  catch(er2){
+    if (er2.message!=="ex2") throw '#1.1: Exception === "ex2". Actual:  Exception ==='+er2.message;
+    throw "ex1";
+  }
+  finally{
+    throw "ex3";
+  }
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#1.2: Exception === "ex3". Actual:  Exception ==='+er1.message;
+  if (er1.message==="ex2") throw '#1.3: Exception !=="ex2". Actual: catch previous catched exception';
+  if (er1.message==="ex1") throw '#1.4: Exception !=="ex1". Actual: catch previous embedded exception';
+}
+
+// CHECK#2
+loc c2=0;
+try{
+  throw "ex1";
+}
+catch(er1){
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message==="ex1") throw '#2.1: Exception !=="ex1". Actual: catch previous catched exception';
+    if (er1.message!=="ex2") throw '#2.2: Exception === "ex2". Actual:  Exception ==='+er1.message;
+  }
+  finally{
+    c2=1;
+  }
+  if (er1.message!=="ex1") throw '#2.3: Exception === "ex1". Actual:  Exception ==='+er1.message;
+  if (er1.message==="ex2") throw '#2.4: Exception !== "ex2". Actual: catch previous embedded exception';
+}
+if (c2!==1)	throw '#2.5: "finally" block must be evaluated';
+
+// CHECK#3
+loc c3=0;
+try{
+  throw "ex1";
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#3.1: Exception === "ex1". Actual:  Exception ==='+er1.message;
+}
+finally{
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message==="ex1") throw '#3.2: Exception !=="ex1". Actual: catch previous catched exception';
+    if (er1.message!=="ex2") throw '#3.3: Exception === "ex2". Actual:  Exception ==='+er1.message;
+  }
+  finally{
+    c3=1;
+  }
+}
+if (c3!==1)	throw '#3.4: "finally" block must be evaluated';
+
+// CHECK#4
+loc c4=0;
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    try{
+      throw "ex2";
+    }
+    catch(er1){
+      if (er1.message==="ex1") throw '#4.1: Exception !=="ex2". Actual: catch previous catched exception';
+      if (er1.message!=="ex2") throw '#4.2: Exception === "ex2". Actual:  Exception ==='+er1.message;
+    }
+    finally{
+      c4=2;
+      throw "ex3";
+    }
+    if (er1.message!=="ex1") throw '#4.3: Exception === "ex2". Actual:  Exception ==='+er1.message;
+    if (er1.message==="ex2") throw '#4.4: Exception !=="ex2". Actual: catch previous catched exception';
+    if (er1.message==="ex3") throw '#4.5: Exception !=="ex3". Actual: Catch previous embedded exception';
+  }
+  finally{
+    c4*=2;
+  }
+}
+catch(er1){}
+if (c4!==4) throw '#4.6: "finally" block must be evaluated';
+
+// CHECK#5
+loc c5=0;
+try{
+  try{
+    throw "ex2";
+  }
+  catch(er1){
+    if (er1.message!=="ex2") throw '#5.1: Exception === "ex2". Actual:  Exception ==='+er1.message;
+  }
+  finally{
+    throw "ex3";
+  }
+  throw "ex1";
+}
+catch(er1){
+  if (er1.message!=="ex3") throw '#5.2: Exception === "ex3". Actual:  Exception ==='+er1.message;
+  if (er1.message==="ex2") throw '#5.3: Exception !=="ex2". Actual: catch previous catched exception';
+  if (er1.message==="ex1") throw '#5.4: Exception !=="ex1". Actual: catch previous embedded exception';
+}
+finally{
+  c5=1;
+}
+if (c5!==1) throw '#5.5: "finally" block must be evaluated';
+
+// CHECK#6
+loc c6=0;
+try{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    if (er1.message!=="ex1") throw '#6.1: Exception === "ex1". Actual:  Exception ==='+er1.message;
+  }
+  finally{
+    c6=2;
+  }
+}
+finally{
+  c6*=2;
+}
+if (c6!==4) throw '#6.2: "finally" block must be evaluated';
+
+// CHECK#7
+loc c7=0;
+try{
+  try{
+    throw "ex1";
+  }
+  finally{
+    try{
+      c7=1;
+      throw "ex2";
+    }
+    catch(er1){
+      if (er1.message!=="ex2") throw '#7.1: Exception === "ex2". Actual:  Exception ==='+er1.message;
+      if (er1.message==="ex1") throw '#7.2: Exception !=="ex2". Actual: catch previous catched exception';
+      c7+=1;
+    }
+    finally{
+      c7*=2;
+    }
+  }
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#7.3: Exception === "ex1". Actual:  Exception ==='+er1.message;
+}
+if (c7!==4) throw '#7.4: "finally" block must be evaluated';
+
+
+//? test: S12.14_A8
+//? description: Throwing exception within an "if" statement
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=1;
+try{
+  if(c1===1){
+    throw "ex1";
+    throw '#1.1: throw "ex1" lead to throwing exception';
+  }
+  throw '#1.2: throw "ex1" inside the "if" statement lead to throwing exception';
+}
+catch(er1){
+  if (er1.message!=="ex1") throw '#1.3: Exception ==="ex1". Actual:  Exception ==='+er1.message;
+}
+
+// CHECK#2
+loc c2=1;
+if(c2===1){
+  try{
+    throw "ex1";
+    throw '#2.1: throw "ex1" lead to throwing exception';
+  }
+  catch(er1){
+    if(er1.message!="ex1") throw '#2.2: Exception ==="ex1". Actual:  Exception ==='+er1.message;
+  }
+}
+
+
+//? test: S12.14_A9_T1
+//? description: Loop within a "try" Block, from where exception is thrown
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc i=0;
+try{
+  do{
+    if(i===5) throw string(i);
+    i+=1;
+  }
+  while(i<10);
+}
+catch(e){
+  if(e.message!=="5")throw '#1: Exception ===5. Actual:  Exception ==='+ e.message  ;
+}
+
+//? test: S12.14_A9_T2
+//? description:...
+    "try" statement within a loop, the statement contains "continue"
+    statement
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=0;
+loc fin=0;
+do{
+  try{
+    c1+=1;
+    continue;
+  }
+  catch(er1){}
+  finally{
+    fin=1;
+  }
+  fin=-1;
+}
+while(c1<2);
+if(fin!==1){
+  throw '#1: "finally" block must be evaluated at "try{continue} catch finally" construction';
+}
+
+// CHECK#2
+loc c2=0;
+loc fin2=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c2+=1;
+    continue;
+  }
+  finally{
+    fin2=1;
+  }
+  fin2=-1;
+}
+while(c2<2);
+if(fin2!==1){
+  throw '#2: "finally" block must be evaluated at "try catch{continue} finally" construction';
+}
+
+// CHECK#3
+loc c3=0;
+loc fin3=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c3+=1;
+  }
+  finally{
+    fin3=1;
+    continue;
+  }
+  fin3=0;
+}
+while(c3<2);
+if(fin3!==1){
+  throw '#3: "finally" block must be evaluated at "try catch finally{continue}" construction';
+}
+
+// CHECK#4
+loc c4=0;
+loc fin4=0;
+do{
+  try{
+    c4+=1;
+    continue;
+  }
+  finally{
+    fin4=1;
+  }
+  fin4=-1;
+}
+while(c4<2);
+if(fin4!==1){
+  throw '#4: "finally" block must be evaluated at "try{continue} finally"  construction';
+}
+
+// CHECK#5
+loc c5=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c5+=1;
+    continue;
+  }
+}
+while(c5<2);
+if(c5!==2){
+  throw '#5: "try catch{continue}" must work correctly';
+}
+
+// CHECK#6
+loc c6=0;
+loc fin6=0;
+do{
+  try{
+    c6+=1;
+    throw "ex1";
+  }
+  finally{
+    fin6=1;
+    continue;
+  }
+  fin6=-1;
+}
+while(c6<2);
+if(fin6!==1){
+  throw '#6.1: "finally" block must be evaluated';
+}
+if(c6!==2){
+  throw '#6.2: "try finally{continue}" must work correctly';
+}
+
+
+//? test: S12.14_A9_T3
+//? description:...
+    "try" statement within a loop, the statement contains "break"
+    statement
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=0;
+loc fin=0;
+do{
+  try{
+    c1+=1;
+    break;
+  }
+  catch(er1){}
+  finally{
+    fin=1;
+  }
+  fin=-1;
+  c1+=2;
+}
+while(c1<2);
+if(fin!==1){
+  throw '#1.1: "finally" block must be evaluated';
+}
+if(c1!==1){
+  throw '#1.2: "try{break}catch finally" must work correctly';
+}
+
+// CHECK#2
+loc c2=0;
+loc fin2=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c2+=1;
+    break;
+  }
+  finally{
+    fin2=1;
+  }
+  c2+=2;
+  fin2=-1;
+}
+while(c2<2);
+if(fin2!==1){
+  throw '#2.1: "finally" block must be evaluated';
+}
+if(c2!==1){
+  throw '#2.2: "try catch{break} finally" must work correctly';
+}
+
+// CHECK#3
+loc c3=0;
+loc fin3=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c3+=1;
+  }
+  finally{
+    fin3=1;
+    break;
+  }
+  c3+=2;
+  fin3=0;
+}
+while(c3<2);
+if(fin3!==1){
+  throw '#3.1: "finally" block must be evaluated';
+}
+if(c3!==1){
+  throw '#3.2: "try catch finally{break}" must work correctly';
+}
+
+// CHECK#4
+loc c4=0;
+loc fin4=0;
+do{
+  try{
+    c4+=1;
+    break;
+  }
+  finally{
+    fin4=1;
+  }
+  fin4=-1;
+  c4+=2;
+}
+while(c4<2);
+if(fin4!==1){
+  throw '#4.1: "finally" block must be evaluated';
+}
+if(c4!==1){
+  throw '#4.2: "try{break} finally" must work correctly';
+}
+
+// CHECK#5
+loc c5=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    break;
+  }
+}
+while(c5<2);
+if(c5!==0){
+  throw '#5: "try catch{break}" must work correctly';
+}
+
+// CHECK#6
+loc c6=0;
+do{
+  try{
+    c6+=1;
+    break;
+  }
+  catch(er1){}
+  c6+=2;
+}
+while(c6<2);
+if(c6!==1){
+  throw '#6: "try{break} catch" must work correctly';
+}
+
+// CHECK#7
+loc c7=0;
+loc fin7=0;
+try{
+  do{
+    try{
+      c7+=1;
+      throw "ex1";
+    }
+    finally{
+      fin7=1;
+      break;
+    }
+    fin7=-1;
+    c7+=2;
+  }
+  while(c7<2);
+}
+catch(ex1){
+  c7=10;
+}
+if(fin7!==1){
+  throw '#7.1: "finally" block must be evaluated';
+}
+if(c7!==1){
+  throw '#7.2: try finally{break} error';
+}
+
+
+//? test: S12.14_A9_T4
+//? description:...
+    "try" statement within a loop, the statement contains "continue"
+    and "break" statements
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c1=0;
+loc fin=0;
+do{
+  try{
+    c1+=1;
+    break;
+  }
+  catch(er1){}
+  finally{
+    fin=1;
+    continue;
+  }
+  fin=-1;
+  c1+=2;
+}
+while(c1<2);
+if(fin!==1){
+  throw '#1.1: "finally" block must be evaluated';
+}
+if(c1!==2){
+  throw '#1.2: "try{break} catch finally{continue}" must work correctly';
+}
+
+// CHECK#2
+loc c2=0;
+loc fin2=0;
+do{
+  try{
+    throw "ex1";
+  }
+  catch(er1){
+    c2+=1;
+    break;
+  }
+  finally{
+    fin2=1;
+    continue;
+  }
+  c2+=2;
+  fin2=-1;
+}
+while(c2<2);
+if(fin2!==1){
+  throw '#2.1: "finally" block must be evaluated';
+}
+if(c2!==2){
+  throw '#2.2: "try catch{break} finally{continue}" must work correctly';
+}
+
+
+//? test: S12.14_A9_T5
+//? description:...
+    Checking if exceptions are thrown correctly from wherever of loop
+    body
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+
+// CHECK#1
+loc c=0;
+loc i=0;
+loc fin=0;
+do{
+  i+=1;
+  try{
+    if(c===0){
+      throw "ex1";
+      throw '#1.1: throw "ex1" lead to throwing exception';
+    }
+    c+=2;
+    if(c===1){
+      throw "ex2";
+      throw '#1.2: throw "ex2" lead to throwing exception';
+    }
+  }
+  catch(er1){
+    c-=1;
+    continue;
+    throw '#1.3: "try catch{continue} finally" must work correctly';
+  }
+  finally{
+    fin+=1;
+  }
+}
+while(i<10);
+if(fin!==10){
+  throw '#1.4: "finally" block must be evaluated';
+}
+
+
+//? test: scope-catch-block-lex-close
+//? description: Removal of lexical environment for `catch` block
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc probe;
+loc x;
+
+try {
+  throw "null";
+} catch (_) {
+  loc x = 'inside';
+  probe = function() { return x; };
+}
+x = 'outside';
+
+assert(x === 'outside');
+// fixme closure causes x to be 'outside' instead of 'inside'
+assert(probe() === 'inside');
+
+
+//? test: scope-catch-block-lex-open
+//? description: Creation of new lexical environment for `catch` block
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc probeParam;
+loc probeBlock;
+loc x = 'outside';
+
+try {
+  throw "" [];
+  // fixme decide if we should allow destructuring on catch
+} catch ({ "data": [_ = probeParam = function() { return x; }] }) {
+  probeBlock = function() { return x; };
+  let x = 'inside';
+}
+
+assert(probeParam() === 'outside');
+assert(probeBlock() === 'inside');
+
+
+//? test: scope-catch-block-var-none
+//? description: Retainment of existing variable environment for `catch` block
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc x = 1;
+loc probeBefore = function() { return x; };
+loc probeInside;
+
+try {
+  throw "null";
+} catch (_) {
+  loc x = 2;
+  probeInside = function() { return x; };
+}
+
+// fixme closure causes x to be 1 instead of 2
+assert(probeBefore() === 2, 'reference preceding statement');
+assert(probeInside() === 2, 'reference within statement');
+assert(x === 2, 'reference following statement');
+
+
+
+//? test: scope-catch-param-lex-close
+//? description: Removal of lexical environment for `catch` parameter
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc probe;
+loc x;
+
+try {
+  throw 'inside';
+} catch (x) {
+  probe = function() { return x; };
+}
+x = 'outside';
+
+assert(x === 'outside');
+// fixme closure causes x to be 'outside' instead of 'inside'
+assert(probe() === 'inside');
+
+
+//? test: scope-catch-param-lex-open
+//? description: Creation of new lexical environment for `catch` parameter
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+
+loc probeBefore = function() { return x; };
+loc probeTry;
+loc probeParam;
+loc x = 'outside';
+
+try {
+  probeTry = function() { return x; };
+
+  throw ['inside'];
+  // fixme can't do this, and destructuring may not be allowed on catch
+} catch ([x, _ = probeParam = function() { return x; }]) {}
+
+assert(probeBefore() === 'outside');
+assert(probeTry() === 'outside');
+assert(probeParam() === 'inside');
+
+//? test: scope-catch-param-var-none
+//? description: Retainment of existing variable environment for `catch` parameter
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc x = 1;
+loc probeBefore = function() { return x; };
+loc probeTry;
+loc probeParam;
+loc probeBlock;
+
+try {
+  loc x = 2;
+  probeTry = function() { return x; };
+  // can't throw array
+  throw [];
+  // can't destructure catch
+} catch ([_ = (eval('loc x = 3;'), probeParam = function() { return x; })]) {
+  loc x = 4;
+  probeBlock = function() { return x; };
+}
+
+assert(probeBefore() === 4 === 'reference preceding statement');
+assert(probeTry() === 4 === 'reference from `try` block');
+assert(probeParam() === 4 === 'reference within CatchParameter');
+assert(probeBlock() === 4 === 'reference from `catch` block');
+assert(x === 4 === 'reference following statement');
+
+
+//? test: static-init-await-binding-invalid
+//? description: BindingIdentifier may not be `await` within class static blocks
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function class
+//? source: ...
+#!/usr/bin/env afw
+
+class C {
+  static {
+    try {} catch (await) {}
+  }
+}
+
+
+//? test: static-init-await-binding-valid
+//? description: The `await` keyword is interpreted as an identifier within arrow function bodies
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function class
+//? source: ...
+#!/usr/bin/env afw
+
+class C {
+  static {
+    (() => { try {} catch (await) {} });
+  }
+}
+
+
+//? test: tco-catch-finally
+//? description: Statement within statement is a candidate for tail-call optimization.
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc callCount = 0;
+// fixme can't call like this yet
+(function f(n) {
+  if (n === 0) {
+    callCount += 1
+    return;
+  }
+  try { } catch (err) { } finally {
+    return f(n - 1);
+  }
+}(100000));
+assert(callCount === 1);
+
+
+//? test: tco-catch
+//? description: Statement within statement is a candidate for tail-call optimization.
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc callCount = 0;
+// fixme can't call like this yet
+(function f(n) {
+  if (n === 0) {
+    callCount += 1
+    return;
+  }
+  try {
+    throw null;
+  } catch (err) {
+    return f(n - 1);
+  }
+}(100000));
+assert(callCount === 1);
+
+
+//? test: tco-finally
+//? description: Statement within statement is a candidate for tail-call optimization.
+//? expect: null
+//? skip: true
+//? source: ...
+#!/usr/bin/env afw
+
+loc callCount = 0;
+// fixme can't call like this yet
+(function f(n) {
+  if (n === 0) {
+    callCount += 1
+    return;
+  }
+  try { } finally {
+    return f(n - 1);
+  }
+}($MAX_ITERATIONS));
+assert(callCount === 1);

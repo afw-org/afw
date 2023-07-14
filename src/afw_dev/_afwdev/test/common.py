@@ -233,12 +233,26 @@ def compare_source_locations(sourceLocation1, sourceLocation2):
     basename2 = get_source_location_basename(sourceLocation2)
 
     return basename1 == basename2
-    
+
+def get_source_location_coordinates(source, sourceLocation):    
+
+    if source != None:
+        cursor = 0
+
+        sourceLines = source.split("\n")
+        for index, sourceLine in enumerate(sourceLines):
+            cursor += len(sourceLine) + 1
+
+            if cursor > sourceLocation:
+                offset = len(sourceLine) - (cursor - sourceLocation) + 1
+                return index + 1, offset
+            
+    return None, None
 
 # Formats a chunk of source code, with an optional title and 
 # highlightOffset, to indicate where in the source code the 
 # user should focus on.
-def format_source_code(source, title = None, highlightOffset = 0, maxLines = 20):
+def format_source_code(source, title = None, highlightOffset = 0, maxLines = 10, message = None):
 
     if source != None:
         if title:
@@ -256,7 +270,12 @@ def format_source_code(source, title = None, highlightOffset = 0, maxLines = 20)
                     offset = len(sourceLine) - (cursor - highlightOffset) + 1
                     if offset >= 0:
                         outputLines.append("  > | " + sourceLine)                        
-                        outputLines.append("    | " + (" " * offset) + "^")  
+                        outputLines.append("    | " + (" " * offset) + "^") 
+
+                        if message:
+                            outputLines.append("")
+                            outputLines.append("      " + message) 
+                            outputLines.append("")
 
                         highlightLine = index
                     else:
@@ -264,12 +283,26 @@ def format_source_code(source, title = None, highlightOffset = 0, maxLines = 20)
                 else:
                     outputLines.append("    | " + sourceLine)     
 
-            numLines = len(sourceLines)
+            numLines = len(outputLines)
             if numLines > maxLines:
                 cut = int(maxLines / 2)
-                outputLines = outputLines[highlightLine - cut:highlightLine + cut]
-                outputLines.insert(0, "    | ...")
-                outputLines.append("    | ...")                                             
+                start = highlightLine - cut
+                end = highlightLine + cut + 2
+                if message:
+                    # adjust for the error message
+                    end = end + 3
+
+                if start < 0:
+                    start = 0
+                if end > numLines:
+                    end = numLines
+
+                outputLines = outputLines[start:end]
+
+                if start > 0:
+                    outputLines.insert(0, "    | ...")
+                if end < numLines:
+                    outputLines.append("    | ...")                                             
 
             for line in outputLines:
                 msg.error(line)
@@ -307,16 +340,22 @@ def get_rel_error_source_location_nav(test, testCase):
     error = testCase.get('error', None)
 
     if error:
-        parserLineNumber = error.get("parserLineNumber")
-        parserColumnNumber = error.get("parserColumnNumber")
+        lineNumber = error.get("parserLineNumber")
+        columnNumber = error.get("parserColumnNumber")
+        offset = error.get("offset")
 
-        if not parserLineNumber or not parserColumnNumber:
+        if not lineNumber or not columnNumber:
+            if offset:
+                source = testCase.get('source')
+                lineNumber, columnNumber = get_source_location_coordinates(source, offset)
+
+        if not lineNumber or not columnNumber:
             return None
 
         # format sourceLocation so that it's printed value can be easily navigated to              
         tc_sourceErrorLocationCoordinates = str(
-            tc_sourceLineNumberInTestScript + parserLineNumber - 1
-            ) + ":" + str(parserColumnNumber)
+            tc_sourceLineNumberInTestScript + lineNumber - 1
+            ) + ":" + str(columnNumber)
         tc_sourceLocationNav = test + ':' + tc_sourceErrorLocationCoordinates
 
         return tc_sourceLocationNav
@@ -330,14 +369,16 @@ def print_test_failure(test, testCase):
     sourceLocation = testCase.get("sourceLocation")
     sourceLocationNav = get_rel_source_location_nav(test, testCase)
     sourceErrorLocationNav = get_rel_error_source_location_nav(test, testCase)
+    error = testCase.get("error")
 
-    if testCase.get("error"):
-        if testCase.get("error").get("message"):
-            msg.error("    " + testCase["error"]["message"] + "\n")        
+    if error:
+        message = error.get("message")
+        if message:
+            msg.error("    " + message + "\n")        
 
-        errorSourceLocation = testCase.get("error").get("sourceLocation")    
-        parserCursor = testCase.get("error").get("parserCursor")
-        errorOffset = testCase.get("error").get("offset")        
+        errorSourceLocation = error.get("sourceLocation")    
+        parserCursor = error.get("parserCursor")
+        errorOffset = error.get("offset")        
 
         source = ""
         sourceLineOffset = 0
@@ -349,7 +390,7 @@ def print_test_failure(test, testCase):
 
         # if parserCursor was provided, we have a syntax error and use parserSource
         if parserCursor:
-            source = testCase.get("error").get('parserSource')
+            source = error.get('parserSource')
             sourceLineOffset = parserCursor
 
         # otherwise use the test source, if the sourceLocation value matches the error sourceLocation
@@ -362,15 +403,19 @@ def print_test_failure(test, testCase):
                 title="Test Failed at: \n\t{}\n\t└─ {}".format(sourceErrorLocationNav, sourceLocationNav)
             else:
                 title="Test Failed at: {}".format(sourceLocationNav)
-            format_source_code(source, highlightOffset=sourceLineOffset, title=title)
+            
+            format_source_code(source, highlightOffset=sourceLineOffset, title=title, message=message)
 
         else:
             # In this case, we couldn't determine the exact source location of the error
             # This may be due to the error occurring in a model or external script that
             # we can't access in this context.            
             if errorSourceLocation is not None and errorOffset is not None:
-                msg.error("    Error occurred at source location: {}+{}\n".format(errorSourceLocation, errorOffset))            
+                msg.error("    Error occurred at source location: {}+{}\n".format(errorSourceLocation, errorOffset))   
                 format_source_code(testCase.get("source"), "Test Failed at: {}".format(sourceLocationNav))
+            elif errorSourceLocation is not None:
+                msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
+                
 
     else:
         # if there was no error object, look for expect/result and dump the source

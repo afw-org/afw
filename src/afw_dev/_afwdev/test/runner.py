@@ -252,20 +252,29 @@ def run(options, srcdirs):
 
     else:
         # run sequentially
-        for testGroup in allTestGroups:
-            _, passed, skipped, failed = run_test_group(
-                testGroup, 
-                options, 
-                testEnvironments, 
-                test_working_directory
-            )
-            _srcdir = testGroup[0]
+        try:
+            for testGroup in allTestGroups:
+                _, passed, skipped, failed = run_test_group(
+                    testGroup, 
+                    options, 
+                    testEnvironments, 
+                    test_working_directory
+                )
+                _srcdir = testGroup[0]
 
-            if allTestResults.get(_srcdir):
-                allTestResults[_srcdir][0] += passed
-                allTestResults[_srcdir][1] += skipped
-                allTestResults[_srcdir][2] += failed
-            else:
-                allTestResults[_srcdir] = [passed, skipped, failed]
+                if allTestResults.get(_srcdir):
+                    allTestResults[_srcdir][0] += passed
+                    allTestResults[_srcdir][1] += skipped
+                    allTestResults[_srcdir][2] += failed
+                else:
+                    allTestResults[_srcdir] = [passed, skipped, failed]
+
+        except KeyboardInterrupt:
+            msg.error("Caught KeyboardInterrupt, terminating test runner")
+            sys.exit(1)
+
+        except Exception as e:
+            msg.error("Test runner caught Exception: " + str(e))
+            sys.exit(1)
 
     return allTestResults
