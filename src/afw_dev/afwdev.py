@@ -789,15 +789,17 @@ _info_task = {
 
 # subcommand test
 
-_info_bail = {
+_info_test_bail = {
     "optionName": "bail",
     "arg": "--bail",     
-    "action": "store_true",    
-    "default": False,
-    "help": "Stop after first failed test."
+    "short": "-b",
+    "int" : True,
+    "nargs": "?",
+    "const": "0",
+    "help": "Stop after [N] failed test."
 }
 
-_info_errors = {
+_info_test_errors = {
     "optionName": "errors",
     "arg": "--errors",     
     "action": "store_true",    
@@ -805,7 +807,7 @@ _info_errors = {
     "help": "Only show errors."
 }
 
-_info_list = {
+_info_test_list = {
     "optionName": "list",
     "arg": "--list",
     "action": "store_true",
@@ -813,7 +815,7 @@ _info_list = {
     "help": "List tests (do not run)"
 }
 
-_info_coverage = {
+_info_test_coverage = {
     "optionName": "coverage",
     "arg": "--coverage",
     "action": "store_true",
@@ -830,7 +832,7 @@ _info_test_tags = {
     "help": "Test tags to match and run"
 }
 
-_info_watch = {
+_info_test_watch = {
     "optionName": "watch",
     "arg": "--watch",
     "action": "store_true",
@@ -883,13 +885,13 @@ _info_test = {
     "description": "Run tests for one more more source directories.",
     "thing": "test",
     "args": [        
-        _info_bail,
-        _info_list,
+        _info_test_bail,
+        _info_test_list,
         _info_test_tags,
-        _info_errors,
-        _info_coverage,
+        _info_test_errors,
+        _info_test_coverage,
         _info_srcdir_pattern, 
-        _info_watch,
+        _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,

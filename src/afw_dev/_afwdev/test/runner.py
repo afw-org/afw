@@ -101,8 +101,8 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
 
             print_test_response(options, test, response, hasFailures, allSuccess, allSkipped)
 
-            bail = options.get('bail', False)
-            if bail and failed > 0:
+            bail = options.get('bail', 0)
+            if bail > 0 and failed >= bail:
                 msg.highlighted_info("")          
 
                 # still make sure to cleanup by running after_all

@@ -396,10 +396,8 @@ assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
 //? test: completion-values-fn-finally-normal
 //? description:...
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // 1: try Return, catch Return, finally Normal; Completion: try
 loc count = {
@@ -415,8 +413,7 @@ loc fn = function() {
     return 'catch';
   } finally {
     count.finally += 1;
-    // fixme can't do this in adaptive script
-    'normal';
+    loc x = 'normal';
   }
   return 'wat';
 };
@@ -436,7 +433,7 @@ fn = function() {
     return 'catch';
   } finally {
     count.finally += 1;
-    'finally';
+    loc x = 'finally';
   }
   return 'wat';
 };
@@ -456,12 +453,18 @@ fn = function() {
     throw 'catch';
   } finally {
     count.finally += 1;
-    'finally';
+    loc x = 'finally';
   }
   return 'wat';
 };
 
-//assert.throws(Test262Error, fn, '3: try Abrupt, catch Abrupt, finally Normal; Completion: catch');
+loc caught = false;
+try {
+    fn();
+} catch (e) {
+    caught = true;
+}
+assert(caught, '3: try Abrupt, catch Abrupt, finally Normal; Completion: catch');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
 
@@ -469,10 +472,8 @@ assert(count.finally === 1, '3: finally count');
 //? test: completion-values-fn-finally-return
 //? description:...
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // 1: try Return, catch Return, finally Return; Completion: finally
 loc count = {
@@ -525,7 +526,6 @@ fn = function() {
     throw 'try';
   } catch(e) {
     count.catch += 1;
-    // fixme finally should have last say here, and not throw
     throw 'catch';
   } finally {
     count.finally += 1;
@@ -541,58 +541,51 @@ assert(count.finally === 1, '3: finally count');
 
 //? test: completion-values
 //? description:...
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 2 around line 1 column 3: Expression can not be followed by Statement
 //? source: ...
 #!/usr/bin/env afw
 
-
 assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -2 }; } while (false);'),
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -2 }; } while (false);')) === 42
+);
+assert(
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; } while (false);')) === 42
+);
+assert(
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -2 }; } while (false);')) === undefined
+);
+assert(
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; } while (false);')) === undefined
+);
+assert(
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -3 }; -77 } while (false);')) === 42
+);
+assert(
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; -77 } while (false);')) ===
   42
 );
 assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; } while (false);'),
-  42
-);
-assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -2 }; } while (false);'),
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -3 }; -77 } while (false);')) ===
   undefined
 );
 assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; } while (false);'),
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; -77 } while (false);')) ===
   undefined
 );
 assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -3 }; -77 } while (false);'),
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; } while (false);')) ===
   42
 );
 assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; -77 } while (false);'),
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; continue; -3 }; } while (false);')) ===
   42
 );
 assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -3 }; -77 } while (false);'),
-  undefined
-);
-assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; -77 } while (false);'),
-  undefined
-);
-assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; } while (false);'),
+  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
   42
 );
 assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; continue; -3 }; } while (false);'),
-  42
-);
-assert(
-  eval('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);'),
-  42
-);
-assert(
-  eval('99; do { -99; try { [].x.x } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);'),
+  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
   42
 );
 
@@ -601,53 +594,45 @@ assert(
 
 //? test: cptn-catch-empty-break
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect: null
-//? skip: true
+//? expect:error:Parse error at offset 99 around line 1 column 100: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
-
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-empty-continue
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 102 around line 1 column 103: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
-
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 110 around line 1 column 111: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
-
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 113 around line 1 column 114: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
-
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -659,8 +644,8 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 
-assert(eval('1; try { throw null; } catch (err) { }') === undefined);
-assert(eval('2; try { throw null; } catch (err) { 3; }') === 3);
+assert(evaluate(script('1; try { throw null; } catch (err) { }') === undefined);
+assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 
 
 //? test: cptn-finally-empty-break
@@ -672,7 +657,7 @@ assert(eval('2; try { throw null; } catch (err) { 3; }') === 3);
 
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -685,7 +670,7 @@ assert(completion === undefined);
 
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = eval("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
+loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -700,16 +685,16 @@ assert(completion === undefined);
 
 
 assert(
-  eval('1; try { throw null; } catch (err) { } finally { }'), undefined
+  evaluate(script('1; try { throw null; } catch (err) { } finally { }'), undefined
 );
 assert(
-  eval('2; try { throw null; } catch (err) { 3; } finally { }'), 3
+  evaluate(script('2; try { throw null; } catch (err) { 3; } finally { }'), 3
 );
 assert(
-  eval('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
+  evaluate(script('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
 );
 assert(
-  eval('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
+  evaluate(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
 );
 
 
@@ -723,14 +708,14 @@ assert(
 #!/usr/bin/env afw
 
 
-assert(eval('1; try { } catch (err) { } finally { }') === undefined);
-assert(eval('2; try { } catch (err) { 3; } finally { }') === undefined);
-assert(eval('4; try { } catch (err) { } finally { 5; }') === undefined);
-assert(eval('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
-assert(eval('9; try { 10; } catch (err) { } finally { }') === 10);
-assert(eval('11; try { 12; } catch (err) { 13; } finally { }') === 12);
-assert(eval('14; try { 15; } catch (err) { } finally { 16; }') === 15);
-assert(eval('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
+assert(evaluate(script('1; try { } catch (err) { } finally { }') === undefined);
+assert(evaluate(script('2; try { } catch (err) { 3; } finally { }') === undefined);
+assert(evaluate(script('4; try { } catch (err) { } finally { 5; }') === undefined);
+assert(evaluate(script('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
+assert(evaluate(script('9; try { 10; } catch (err) { } finally { }') === 10);
+assert(evaluate(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
+assert(evaluate(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
+assert(evaluate(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
 
 
 //? test: cptn-finally-wo-catch
@@ -742,10 +727,10 @@ assert(eval('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
 
 
 
-assert(eval('1; try { } finally { }') === undefined);
-assert(eval('2; try { 3; } finally { }') === 3);
-assert(eval('4; try { } finally { 5; }') === undefined);
-assert(eval('6; try { 7; } finally { 8; }') === 7);
+assert(evaluate(script('1; try { } finally { }') === undefined);
+assert(evaluate(script('2; try { 3; } finally { }') === 3);
+assert(evaluate(script('4; try { } finally { 5; }') === undefined);
+assert(evaluate(script('6; try { 7; } finally { 8; }') === 7);
 
 
 //? test: cptn-try
@@ -756,10 +741,10 @@ assert(eval('6; try { 7; } finally { 8; }') === 7);
 #!/usr/bin/env afw
 
 
-assert(eval('1; try { } catch (err) { }') === undefined);
-assert(eval('2; try { 3; } catch (err) { }') === 3);
-assert(eval('4; try { } catch (err) { 5; }') === undefined);
-assert(eval('6; try { 7; } catch (err) { 8; }') === 7);
+assert(evaluate(script('1; try { } catch (err) { }') === undefined);
+assert(evaluate(script('2; try { 3; } catch (err) { }') === 3);
+assert(evaluate(script('4; try { } catch (err) { 5; }') === undefined);
+assert(evaluate(script('6; try { 7; } catch (err) { 8; }') === 7);
 
 //? test: early-catch-duplicates
 //? description:...
@@ -3160,7 +3145,7 @@ catch(e){
 // CHECK#2
   if (e.value!=='myObj_value') throw '#2: e.value===\'myObj_value\'. Actual:  e.value==='+ e.value ;
 // CHECK#3
-  if (e.eval()!=='obj_eval') throw '#3: e.eval()===\'obj_eval\'. Actual:  e.eval()==='+ e.eval() ;
+  if (e.evaluate(script()!=='obj_eval') throw '#3: e.evaluate(script()===\'obj_eval\'. Actual:  e.evaluate(script()==='+ e.evaluate(script() ;
 }
 
 // CHECK#4
@@ -4773,7 +4758,7 @@ try {
   // can't throw array
   throw [];
   // can't destructure catch
-} catch ([_ = (eval('loc x = 3;'), probeParam = function() { return x; })]) {
+} catch ([_ = (evaluate(script('loc x = 3;'), probeParam = function() { return x; })]) {
   loc x = 4;
   probeBlock = function() { return x; };
 }
