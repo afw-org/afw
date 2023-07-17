@@ -81,8 +81,7 @@ assert(f({x:42}) === 42);
 
 //? test: 12.14-13
 //? description: catch introduces scope - updates are based on scope
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 194 around line 12 column 13: Unknown built-in function this
 //? source: ...
 #!/usr/bin/env afw
 
@@ -90,23 +89,23 @@ loc res1 = false;
 loc res2 = false;
 loc res3 = false;
 
-// fixme - can't call functions like this yet
+// fixme: we do not have "this".
 (function() {
         loc x_12_14_13 = 'local';
 
-            function foo() {
-                this.x_12_14_13 = 'instance';
-            }
+        function foo() {
+            this.x_12_14_13 = 'instance';
+        }
 
-            try {
-                throw foo;
-            }
-            catch (e) {
-                res1 = (x_12_14_13 === 'local');
-                e();
-                res2 = (x_12_14_13 === 'local');
-            }
-            res3 = (x_12_14_13 === 'local');
+        try {
+            throw foo;
+        }
+        catch (e) {
+            res1 = (x_12_14_13 === 'local');
+            e();
+            res2 = (x_12_14_13 === 'local');
+        }
+        res3 = (x_12_14_13 === 'local');
 })();
 
 assert(res1, 'res1 !== true');
@@ -119,16 +118,14 @@ assert(res3, 'res3 !== true');
     Exception object is a function, when an exception parameter is
     called as a function in catch block, global object is passed as
     the this value
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc global = this;
 loc result;
 
-// fixme - can't call functions like this yet,
+// fixme - we don't have "this".
 (function() {
         try {
             throw function () {
@@ -148,16 +145,14 @@ assert(result === "test" === 'result');
     Exception object is a function which is a property of an object,
     when an exception parameter is called as a function in catch
     block, global object is passed as the this value
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc global = this;
 loc result;
 
-// fixme - can't call functions like this yet
+// fixme - we don't have "this"
 (function() {
         loc obj = {};
         obj.test = function () {
@@ -179,16 +174,14 @@ assert(result === "test" === 'result');
     Exception object is a function which update in catch block, when
     an exception parameter is called as a function in catch block,
     global object is passed as the this value
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc global = this;
 loc result;
 
-// fixme - can't call functions like this yet
+// fixme - we don't have "this".
 (function() {
         try {
             throw function () {
@@ -643,7 +636,6 @@ assert(completion === undefined);
 //? source: ...
 #!/usr/bin/env afw
 
-
 assert(evaluate(script('1; try { throw null; } catch (err) { }') === undefined);
 assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 
@@ -654,7 +646,6 @@ assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
 loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
@@ -667,7 +658,6 @@ assert(completion === undefined);
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
 loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
@@ -682,7 +672,6 @@ assert(completion === undefined);
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 assert(
   evaluate(script('1; try { throw null; } catch (err) { } finally { }'), undefined
@@ -707,7 +696,6 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-
 assert(evaluate(script('1; try { } catch (err) { } finally { }') === undefined);
 assert(evaluate(script('2; try { } catch (err) { 3; } finally { }') === undefined);
 assert(evaluate(script('4; try { } catch (err) { } finally { 5; }') === undefined);
@@ -725,8 +713,6 @@ assert(evaluate(script('17; try { 18; } catch (err) { 19; } finally { 20; }') ==
 //? source: ...
 #!/usr/bin/env afw
 
-
-
 assert(evaluate(script('1; try { } finally { }') === undefined);
 assert(evaluate(script('2; try { 3; } finally { }') === 3);
 assert(evaluate(script('4; try { } finally { 5; }') === undefined);
@@ -740,7 +726,6 @@ assert(evaluate(script('6; try { 7; } finally { 8; }') === 7);
 //? source: ...
 #!/usr/bin/env afw
 
-
 assert(evaluate(script('1; try { } catch (err) { }') === undefined);
 assert(evaluate(script('2; try { 3; } catch (err) { }') === 3);
 assert(evaluate(script('4; try { } catch (err) { 5; }') === undefined);
@@ -750,10 +735,9 @@ assert(evaluate(script('6; try { 7; } catch (err) { 8; }') === 7);
 //? description:...
     It is a Syntax Error if BoundNames of CatchParameter contains any duplicate
     elements.
-//? expect: error
+//? expect: error:Parse error at offset 35 around line 3 column 16: Expecting identifier
 //? source: ...
 #!/usr/bin/env afw
-
 
 try { } catch ([x, x]) {}
 
@@ -761,7 +745,6 @@ try { } catch ([x, x]) {}
 //? test: early-catch-function
 //? description:...
 //? expect: error
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
@@ -782,7 +765,6 @@ return null;
     It is a Syntax Error if any element of the BoundNames of CatchParameter
     also occurs in the LexicallyDeclaredNames of Block.
 //? expect: error
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
@@ -796,7 +778,6 @@ try { } catch (x) { loc x; }
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 try {} catch {} finally {}
 
@@ -1389,10 +1370,8 @@ if(c6!==10){
 //? test: S12.14_A11_T3
 //? description: Try statement inside loop, where use break
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 loc c1=0;
@@ -1626,10 +1605,8 @@ catch(e){
 //? test: S12.14_A12_T2
 //? description: Try statement inside loop, where use continue loop
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc mycars = [
     "Saab",
@@ -1762,10 +1739,8 @@ if(c6!==3){
 //? test: S12.14_A12_T3
 //? description: Try statement inside loop, where use break
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc mycars = [
     "Saab",
@@ -1929,12 +1904,9 @@ if(c7!==1){
 //? test: S12.14_A12_T4
 //? description: Try statement inside loop, where combinate using break and continue
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-
-loc x;
 loc mycars = [
     "Saab",
     "Volvo",
@@ -1944,8 +1916,7 @@ loc mycars = [
 // CHECK#1
 loc c1=0;
 loc fin=0;
-// fixme this gives an error that x is already defined
-foreach loc x in mycars {
+foreach loc x of mycars {
   try{
     c1+=1;
     break;
@@ -1968,7 +1939,7 @@ if(c1!==3){
 // CHECK#2
 loc c2=0;
 loc fin2=0;
-foreach loc x in mycars{
+foreach loc x of mycars{
   try{
     throw "ex1";
   }
@@ -1993,11 +1964,9 @@ if(c2!==3){
 
 //? test: S12.14_A13_T1
 //? description: Using try/catch syntax construction
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 537 around line 37 column 12: Unknown built-in function someValue
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 function myFunction1(){
@@ -2033,7 +2002,6 @@ if (x2!==2){
 // CHECK#3
 function myFunction3(){
   try{
-    // fixme this gives an error that someValue is not defined
     return someValue;
   }catch(err){
     return 1;
@@ -2072,11 +2040,9 @@ catch(e){
 
 //? test: S12.14_A13_T2
 //? description: Using try/finally syntax construction
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 674 around line 46 column 12: Unknown built-in function someValue
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 loc c1=0;
@@ -2121,7 +2087,6 @@ catch(e){
 loc c3=0;
 function myFunction3(){
   try{
-    // fixme this gives an error that someValue is not defined
     return someValue;
   }finally{
     c3=1;
@@ -2253,11 +2218,9 @@ if (c8!==1){
 
 //? test: S12.14_A13_T3
 //? description: Using try/catch/finally syntax construction
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 743 around line 49 column 12: Unknown built-in function someValue
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 loc c1=0;
@@ -2305,7 +2268,6 @@ if (x2!==0){
 loc c3=0;
 function myFunction3(){
   try{
-    // fixme this gives an error that someValue is not defined
     return someValue;
   }catch(err){
     return 1;
@@ -2439,25 +2401,24 @@ if(c7!==1) throw '#7.2: "finally" block must be evaluated';
 
 //? test: S12.14_A14
 //? description: Using try/catch/finally in With and With in try/catch/finally
-//? skip: true
-//? expect: null
+//? expect: error:Parse error at offset 596 around line 20 column 3: Unknown built-in function with
 //? source: ...
 #!/usr/bin/env afw
 
 
-loc myObj = {p1: 'a',
-             p2: 'b',
-             p3: 'c',
-             value: 'myObj_value',
-             valueOf : function(){return 'obj_valueOf';},
-             parseInt : function(){return 'obj_parseInt';},
-             NaN : 'obj_NaN',
-             Infinity : 'obj_Infinity',
-             eval     : function(){return 'obj_eval';},
-             parseFloat : function(){return 'obj_parseFloat';},
-             isNaN      : function(){return 'obj_isNaN';},
-             isFinite   : function(){return 'obj_isFinite';}
-}
+loc myObj = {"p1": 'a',
+             "p2": 'b',
+             "p3": 'c',
+             "value": 'myObj_value',
+             "valueOf" : function(){return 'obj_valueOf';},
+             "parseInt" : function(){return 'obj_parseInt';},
+             "NaN" : 'obj_NaN',
+             "Infinity" : 'obj_Infinity',
+             "eval"     : function(){return 'obj_eval';},
+             "parseFloat" : function(){return 'obj_parseFloat';},
+             "isNaN"      : function(){return 'obj_isNaN';},
+             "isFinite"   : function(){return 'obj_isFinite';}
+};
 
 // CHECK#1
 try{
@@ -2517,10 +2478,8 @@ if(myObj.p1!=='pass') throw '#4: "finally" block must be evaluated';
 //? test: S12.14_A15
 //? description: Insert try/catch/finally to switch statement
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 function SwitchTest1(value){
@@ -2612,7 +2571,6 @@ catch(e){
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try{}
 catch(){}
@@ -2626,9 +2584,6 @@ finally{}
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
-
 
 // CHECK#1
 try{
@@ -2644,9 +2599,6 @@ try{
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
-
 
 // CHECK#1
 try
@@ -2668,7 +2620,6 @@ catch(e2){}
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try
 {
@@ -2684,7 +2635,6 @@ catch("22")
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try(e1){
 }
@@ -2699,9 +2649,6 @@ catch(e){}
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 try{
 }
@@ -2714,9 +2661,6 @@ finally(e){}
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 try
 
@@ -2727,9 +2671,6 @@ try
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 catch
 
@@ -2739,9 +2680,6 @@ catch
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
-
 
 // CHECK#1
 finally
@@ -2754,9 +2692,6 @@ finally
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
-
 
 // CHECK#1
 try{}
@@ -2771,9 +2706,6 @@ catch()
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 try{
 catch(){}
@@ -2786,9 +2718,6 @@ catch(){}
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
-
 
 // CHECK#1
 try{}
@@ -2803,9 +2732,6 @@ catch(){
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 try{}
 catch(){
@@ -2818,9 +2744,6 @@ finally{}
 //? source: ...
 #!/usr/bin/env afw
 
-
-
-
 // CHECK#1
 catch(){}
 finally{}
@@ -2829,11 +2752,9 @@ finally{}
 
 //? test: S12.14_A17
 //? description: Creating exceptions within constructor
-//? skip: true
-//? expect: null
+//? expect: error:Parse error at offset 79 around line 6 column 5: Unknown built-in function this
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc i=1;
 function Integer( value, exception ) {
@@ -2873,15 +2794,12 @@ new Integer(Math.LN2, true);
 
 //? test: S12.14_A18_T1
 //? description: Catching undefined
-//? expect: null
-//? skip: true
+//? expect: error:#1: Exception === undefined. Actual: Parameter 1 of function throw can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try{
-  // we cannot do this with our throw
   throw undefined;
 }
 catch(e){
@@ -2891,79 +2809,75 @@ catch(e){
 
 //? test: S12.14_A18_T2
 //? description: Catching null
-//? expect: null
-//? skip: true
+//? expect: error:#1: Exception ===null. Actual: Parameter 1 of function throw must evaluate to data type string but evaluated to be null
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try{
-  // we can't do this with our throw
   throw null;
 }
 catch(e){
-  if (e!==null) throw '#1: Exception ===null. Actual: '+e;
+  if (e.message!==null) throw '#1: Exception ===null. Actual: '+e.message;
 }
 
 
 //? test: S12.14_A18_T3
 //? description: Catching boolean
-//? expect: null
+//? expect: error:#1: Exception ===true. Actual:  Exception ===Parameter 1 of function throw must evaluate to data type string but evaluated to be boolean
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 try{
-  throw "" true;
+  throw true;
 }
 catch(e){
-  if (e.data!==true) throw '#1: Exception ===true. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==true) throw '#1: Exception ===true. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#2
 try{
-  throw "" false;
+  throw false;
 }
 catch(e){
-  if (e.data!==false) throw '#2: Exception ===false. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==false) throw '#2: Exception ===false. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#3
 loc b=false;
 try{
-  throw "" b;
+  throw b;
 }
 catch(e){
-  if (e.data!==false) throw '#3: Exception ===false. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==false) throw '#3: Exception ===false. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#4
 b=true;
 try{
-  throw "" b;
+  throw b;
 }
 catch(e){
-  if (e.data!==true) throw '#4: Exception ===true. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==true) throw '#4: Exception ===true. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#5
 b=true;
 try{
-  throw "" b&&false;
+  throw b&&false;
 }
 catch(e){
-  if (e.data!==false) throw '#5: Exception ===false. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==false) throw '#5: Exception ===false. Actual:  Exception ==='+ e.messsage  ;
 }
 
 // CHECK#5
 b=true;
 try{
-  throw "" b||false;
+  throw b||false;
 }
 catch(e){
-  if (e.data!==true) throw '#6: Exception ===true. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==true) throw '#6: Exception ===true. Actual:  Exception ==='+ e.message  ;
 }
 
 
@@ -2973,7 +2887,6 @@ catch(e){
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 try{
@@ -3013,67 +2926,66 @@ catch(e){
 
 //? test: S12.14_A18_T5
 //? description: Catching Number
-//? expect: null
-//? skip: true
+//? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function throw must evaluate to data type string but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
 try{
-  throw "" 13;
+  throw 13;
 }
 catch(e){
-  if (e.data!==13) throw '#1: Exception ===13. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==13) throw '#1: Exception ===13. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#2
 try{
-  throw "" 10+3;
+  throw 10+3;
 }
 catch(e){
-  if (e.data!==13) throw '#2: Exception ===13. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==13) throw '#2: Exception ===13. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#3
 loc b=13;
 try{
-  throw "" b;
+  throw b;
 }
 catch(e){
-  if (e.data!==13) throw '#3: Exception ===13. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==13) throw '#3: Exception ===13. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#4
 loc a=3;
-loc b=10;
+b=10;
 try{
-  throw "" a+b;
+  throw a+b;
 }
 catch(e){
-  if (e.data!==13) throw '#4: Exception ===13. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==13) throw '#4: Exception ===13. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#5
 try{
-  throw "" 2.13;
+  throw 2.13;
 }
 catch(e){
-  if (e.data!==2.13) throw '#5: Exception ===2.13. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==2.13) throw '#5: Exception ===2.13. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#6
 loc ex=2/3;
 try{
-  throw "" 2/3;
+  throw 2/3;
 }
 catch(e){
-  if (e.data!==ex) throw '#6: Exception ===2/3. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==ex) throw '#6: Exception ===2/3. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#7
 try{
-  throw "" NaN;
+  throw NaN;
 }
 catch(e){
   assert(isNaN(e.data), "e is NaN");
@@ -3081,60 +2993,57 @@ catch(e){
 
 // CHECK#8
 try{
-  throw  "" +Infinity;
+  throw +Infinity;
 }
 catch(e){
-  // fixme maybe this should work?
-  if (e.data!==+Infinity) throw '#8: Exception ===+Infinity. Actual:  Exception ==='+ string(e.data);
+  if (e.message!==+Infinity) throw '#8: Exception ===+Infinity. Actual:  Exception ==='+ e.message;
 }
 
 // CHECK#9
 try{
-  throw "" -Infinity;
+  throw -Infinity;
 }
 catch(e){
-  if (e.data!==-Infinity) throw '#9: Exception ===-Infinity. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==-Infinity) throw '#9: Exception ===-Infinity. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#10
 try{
-  throw "" +0;
+  throw +0;
 }
 catch(e){
-  if (e.data!==+0) throw '#10: Exception ===+0. Actual:  Exception ==='+ e.data  ;
+  if (e.message!==+0) throw '#10: Exception ===+0. Actual:  Exception ==='+ e.message  ;
 }
 
 // CHECK#11
 try{
-  throw "" -0;
+  throw -0;
 }
 catch(e){
-  assert(e.data === -0);
+  assert(e.message === -0);
 }
 
 
 //? test: S12.14_A18_T6
 //? description: Catching Object
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function add<string> can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 
-
-loc myObj = {p1: 'a',
-             p2: 'b',
-             p3: 'c',
-             value: 'myObj_value',
-             valueOf : function(){return 'obj_valueOf';},
-             parseInt : function(){return 'obj_parseInt';},
-             NaN : 'obj_NaN',
-             Infinity : 'obj_Infinity',
-             eval     : function(){return 'obj_eval';},
-             parseFloat : function(){return 'obj_parseFloat';},
-             isNaN      : function(){return 'obj_isNaN';},
-             isFinite   : function(){return 'obj_isFinite';},
-             i:7,
-}
+loc myObj = {"p1": 'a',
+             "p2": 'b',
+             "p3": 'c',
+             "value": 'myObj_value',
+             "valueOf" : function(){return 'obj_valueOf';},
+             "parseInt" : function(){return 'obj_parseInt';},
+             "NaN" : 'obj_NaN',
+             "Infinity" : 'obj_Infinity',
+             "eval"     : function(){return 'obj_eval';},
+             "parseFloat" : function(){return 'obj_parseFloat';},
+             "isNaN"      : function(){return 'obj_isNaN';},
+             "isFinite"   : function(){return 'obj_isFinite';},
+             "i":7,
+};
 
 try{
   throw myObj;
@@ -3145,7 +3054,7 @@ catch(e){
 // CHECK#2
   if (e.value!=='myObj_value') throw '#2: e.value===\'myObj_value\'. Actual:  e.value==='+ e.value ;
 // CHECK#3
-  if (e.evaluate(script()!=='obj_eval') throw '#3: e.evaluate(script()===\'obj_eval\'. Actual:  e.evaluate(script()==='+ e.evaluate(script() ;
+  if (e.evaluate(script()!=='obj_eval')) throw '#3: e.evaluate(script()===\'obj_eval\'. Actual:  e.evaluate(script())==='+ e.evaluate(script()) ;
 }
 
 // CHECK#4
@@ -3169,11 +3078,9 @@ if (myObj.i!==10) throw '#5: Handling of catch must be correct';
 
 //? test: S12.14_A18_T7
 //? description: Catching Array
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 708 around line 40 column 9: Unknown built-in function new
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc mycars = [
     "Saab",
@@ -3189,7 +3096,7 @@ loc mycars2 = [
 
 // CHECK#1
 try{
-  throw "" mycars;
+  throw mycars;
 }
 catch(e){
   for (loc i=0;i<3;i+=1){
@@ -3202,10 +3109,10 @@ try{
   throw mycars.concat(mycars2);
 }
 catch(e){
-  for (loc i=0;i<3;i++){
+  for (loc i=0;i<3;i+=1){
     if (e[i]!==mycars[i]) throw '#2.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (loc i=3;i<6;i++){
+  for (loc i=3;i<6;i+=1){
     if (e[i]!==mycars2[i-3]) throw '#2.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
 }
@@ -3215,7 +3122,7 @@ try{
   throw new Array("Mercedes","Jeep","Suzuki");
 }
 catch(e){
-  for (loc i=0;i<3;i++){
+  for (loc i=0;i<3;i+=1){
     if (e[i]!==mycars2[i]) throw '#3.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
@@ -3225,18 +3132,17 @@ try{
   throw mycars.concat(new Array("Mercedes","Jeep","Suzuki"));
 }
 catch(e){
-  for (loc i=0;i<3;i++){
+  for (loc i=0;i<3;i+=1){
     if (e[i]!==mycars[i]) throw '#4.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (loc i=3;i<6;i++){
+  for (loc i=3;i<6;i+=1){
     if (e[i]!==mycars2[i-3]) throw '#4.'+i+': Exception['+i+']===mycars2['+(i-3)+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
 
 //? test: S12.14_A19_T1
 //? description: Testing try/catch syntax construction
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 45 around line 5 column 10: Unknown built-in function Error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3507,11 +3413,9 @@ if (c3!==1){
 
 //? test: S12.14_A3
 //? description: Checking if execution of "catch" catches system exceptions
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 373 around line 31 column 6: Unknown built-in function someValue
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 try{
@@ -3560,11 +3464,9 @@ if (c3!==1){
 
 //? test: S12.14_A4
 //? description: Checking if deleting an exception fails
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 136 around line 9 column 7: Unknown built-in function delete
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 try {
@@ -3572,7 +3474,6 @@ try {
   throw '#1.1: throw "catchme" lead to throwing exception';
 }
 catch (e) {
-  // fixme no delete
   if (delete e){
     throw '#1.2: Exception has DontDelete property';
   }
@@ -3597,10 +3498,8 @@ catch(err){}
 //? test: S12.14_A5
 //? description: Checking "catch" catches the Identifier in appropriate way
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 // CHECK#1
 try {
@@ -3609,10 +3508,10 @@ try {
   throw '#1.1: throw "catchme" lead to throwing exception';
 }
 catch (e) {
-  if(e==="dontcatchme"){
+  if(e.message==="dontcatchme"){
     throw '#1.2: Exception !== "dontcatchme"';
   }
-  if (e!=="catchme") {
+  if (e.message!=="catchme") {
     throw '#1.3: Exception === "catchme". Actual:  Exception ==='+ e  ;
   }
 }
@@ -3655,12 +3554,10 @@ if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
 loc c1=0;
 try {
   c1+=1;
-  // fixme expression as statement
   y;
   throw '#1.1: "y" lead to throwing exception';
 }
@@ -4620,11 +4517,9 @@ if(fin!==10){
 
 //? test: scope-catch-block-lex-close
 //? description: Removal of lexical environment for `catch` block
-//? expect: null
-//? skip: true
+//? expect: error:Assertion failed
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc probe;
 loc x;
@@ -4649,7 +4544,6 @@ assert(probe() === 'inside');
 //? source: ...
 #!/usr/bin/env afw
 
-
 loc probeParam;
 loc probeBlock;
 loc x = 'outside';
@@ -4668,11 +4562,9 @@ assert(probeBlock() === 'inside');
 
 //? test: scope-catch-block-var-none
 //? description: Retainment of existing variable environment for `catch` block
-//? expect: null
-//? skip: true
+//? expect: error:Assertion failed: reference preceding statement
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc x = 1;
 loc probeBefore = function() { return x; };
@@ -4694,11 +4586,9 @@ assert(x === 2, 'reference following statement');
 
 //? test: scope-catch-param-lex-close
 //? description: Removal of lexical environment for `catch` parameter
-//? expect: null
-//? skip: true
+//? expect: error:Assertion failed
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc probe;
 loc x;
@@ -4717,11 +4607,9 @@ assert(probe() === 'inside');
 
 //? test: scope-catch-param-lex-open
 //? description: Creation of new lexical environment for `catch` parameter
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 58 around line 3 column 39: Unknown built-in function x
 //? source: ...
 #!/usr/bin/env afw
-
 
 loc probeBefore = function() { return x; };
 loc probeTry;
@@ -4741,8 +4629,7 @@ assert(probeParam() === 'inside');
 
 //? test: scope-catch-param-var-none
 //? description: Retainment of existing variable environment for `catch` parameter
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 253 around line 15 column 10: Expecting identifier
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4798,8 +4685,7 @@ class C {
 
 //? test: tco-catch-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4819,8 +4705,7 @@ assert(callCount === 1);
 
 //? test: tco-catch
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4842,8 +4727,7 @@ assert(callCount === 1);
 
 //? test: tco-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4857,5 +4741,5 @@ loc callCount = 0;
   try { } finally {
     return f(n - 1);
   }
-}($MAX_ITERATIONS));
+}(100000));
 assert(callCount === 1);
