@@ -256,8 +256,12 @@ FunctionBody ::= ( '{' Script '}' ) | Expression
 
 /* From afw_compile_parse_expression.c                                        */
 /* 'function' is a reserved variable/function name.                           */
+/* This can be used in body of the Lambda to call recursively.                */
 
-Lambda ::= 'lambda::'? 'function' FunctionSignatureAndBody
+SelfReferenceLambdaName ::= FunctionName - ReservedWords
+
+Lambda ::= 'lambda::'? 'function'
+               SelfReferenceLambdaName? FunctionSignatureAndBody
 
 /* From afw_compile_parse_expression.c                                        */
 

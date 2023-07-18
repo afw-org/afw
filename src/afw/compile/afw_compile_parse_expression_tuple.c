@@ -451,7 +451,7 @@ impl_parse_tuple_operation_lambda_function(
     }
 
     return afw_value_script_function_definition_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
+        afw_compile_create_contextual_to_cursor(start_offset), NULL,
         returns->type, count, parameters, body, parser->p, parser->xctx);
 
 error:

@@ -148,6 +148,13 @@ impl_call_script_function(
             cur->name = (*params)->name;
         }
 
+        /* If there is a function name, make it a local variable. */
+        if (l->signature && l->signature->function_name_value) {
+            cur = (afw_name_value_t *)apr_array_push(xctx->stack);
+            cur->name = &l->signature->function_name_value->internal;
+            cur->value = lambda;            
+        }
+
         /* Evaluate body. */
         result = afw_value_evaluate(l->body, p, xctx);
     }

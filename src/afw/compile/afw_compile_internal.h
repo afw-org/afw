@@ -1063,12 +1063,15 @@ afw_compile_parse_Factor(afw_compile_parser_t *parser);
 AFW_DECLARE_INTERNAL(const afw_value_script_function_signature_t *)
 afw_compile_parse_FunctionSignature(
     afw_compile_parser_t *parser,
-    const afw_value_block_t **block);
+    const afw_value_block_t **block,
+    const afw_value_string_t **function_name_value);
 
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_FunctionSignatureAndBody(afw_compile_parser_t *parser);
+afw_compile_parse_FunctionSignatureAndBody(
+    afw_compile_parser_t *parser,
+    const afw_value_string_t **function_name_value);
 
 
 

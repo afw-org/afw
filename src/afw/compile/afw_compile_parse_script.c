@@ -735,6 +735,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
+    const afw_value_string_t *function_name_value;
     afw_size_t start_offset;
 
     afw_compile_save_cursor(start_offset);
@@ -743,20 +744,16 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         return NULL;
     }
-
-    if (afw_compile_is_reserved_word(parser, parser->token->identifier_name))
-    {
-        AFW_COMPILE_THROW_ERROR_Z("Function name can not be a reserved word");
-    }
-
-    afw_compile_parse_add_symbol_entry(parser,
-        parser->token->identifier_name);
-
+    afw_compile_reuse_token();
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = (const afw_value_t *)&afw_function_definition_const;
-    argv[1] = afw_value_create_string(parser->token->identifier_name,
-        parser->p, parser->xctx);
-    argv[2] = afw_compile_parse_FunctionSignatureAndBody(parser);
+    argv[2] = afw_compile_parse_FunctionSignatureAndBody(parser,
+        &function_name_value);
+    if (function_name_value) {
+        afw_compile_parse_add_symbol_entry(parser,
+            &function_name_value->internal);
+    }
+    argv[1] = (const afw_value_t *)function_name_value;
     argv[3] = NULL;
 
     result = afw_value_call_built_in_function_create(

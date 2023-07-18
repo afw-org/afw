@@ -394,6 +394,7 @@ struct afw_value_script_function_signature_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_type_t *returns;
     afw_size_t count;
+    const afw_value_string_t *function_name_value;
     const afw_value_script_function_parameter_t **parameters;
 };
 

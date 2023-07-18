@@ -425,10 +425,17 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
  * FunctionSignature ::= '(' ParameterList ')' OptionalReturnType
  *
  *<<<ebnf*/
+/*
+ * This does a little more than just parse the function signature. It will
+ * also parse and return the function name and require it if requested.
+ * This is so the function name symbol is placed in the same block as the
+ * parameters.
+ */
 AFW_DEFINE_INTERNAL(const afw_value_script_function_signature_t *)
 afw_compile_parse_FunctionSignature(
     afw_compile_parser_t *parser,
-    const afw_value_block_t * *block)
+    const afw_value_block_t **block,
+    const afw_value_string_t **function_name_value)
 {
     apr_array_header_t *params;
     afw_value_script_function_parameter_t *param;
@@ -442,6 +449,36 @@ afw_compile_parse_FunctionSignature(
         afw_value_script_function_signature_t, parser->xctx);
 
     afw_compile_save_offset(start_offset);
+
+    /* Parse function name. */
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        if (afw_compile_is_reserved_word(parser,
+            parser->token->identifier_name))
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Function name can not be a reserved word");
+        }
+
+        if (block) {
+            *block = afw_compile_parse_link_new_value_block(parser,
+                start_offset);
+            afw_compile_parse_add_symbol_entry(parser,
+                parser->token->identifier_name);
+        }
+        signature->function_name_value = (const afw_value_string_t *)
+            afw_value_create_string(parser->token->identifier_name,
+                parser->p, parser->xctx);
+        if (function_name_value) {
+            *function_name_value = signature->function_name_value;
+        }
+    }
+    else {
+        afw_compile_reuse_token();
+        if (function_name_value) {
+            *function_name_value = NULL;
+        }
+    }
 
     /* Parse parameters. */
     params = apr_array_make(parser->apr_p, 5,
@@ -499,11 +536,13 @@ afw_compile_parse_FunctionSignature(
                 param;
 
             /* Create block if first parameter and add symbol. */
-            if (!*block) {
-                *block = afw_compile_parse_link_new_value_block(parser,
-                start_offset);
+            if (block) {
+                if (!*block) {
+                    *block = afw_compile_parse_link_new_value_block(parser,
+                        start_offset);
+                }
+                afw_compile_parse_add_symbol_entry(parser, param->name);
             }
-            afw_compile_parse_add_symbol_entry(parser, param->name);
 
             /* Get next token. */
             afw_compile_get_token();
@@ -561,9 +600,10 @@ afw_compile_parse_FunctionSignature(
  * FunctionBody ::= ( '{' Script '}' ) | Expression
  *
  *<<<ebnf*/
-/*FIXME This has not been modified to match ebnf. */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_FunctionSignatureAndBody(afw_compile_parser_t *parser)
+afw_compile_parse_FunctionSignatureAndBody(
+    afw_compile_parser_t *parser,
+    const afw_value_string_t **function_name_value)
 {
     const afw_value_t *body;
     const afw_value_block_t *block;
@@ -574,7 +614,8 @@ afw_compile_parse_FunctionSignatureAndBody(afw_compile_parser_t *parser)
     afw_compile_save_offset(start_offset);
 
     /* Parse signature. */
-    signature = afw_compile_parse_FunctionSignature(parser, &block);
+    signature = afw_compile_parse_FunctionSignature(parser, &block,
+        function_name_value);
 
     /* Parse body. */
     afw_compile_get_token();
@@ -593,7 +634,7 @@ afw_compile_parse_FunctionSignatureAndBody(afw_compile_parser_t *parser)
 
     /* Return lambda function value. */
     return afw_value_script_function_definition_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
+        afw_compile_create_contextual_to_cursor(start_offset), signature,
         signature->returns, signature->count, signature->parameters,
         body, parser->p, parser->xctx);
 }
@@ -604,7 +645,11 @@ afw_compile_parse_FunctionSignatureAndBody(afw_compile_parser_t *parser)
  *
  *# 'function' is a reserved variable/function name.
  *
- * Lambda ::= 'lambda::'? 'function' FunctionSignatureAndBody
+ *# This can be used in body of the Lambda to call recursively.
+ * SelfReferenceLambdaName ::= FunctionName - ReservedWords
+ *
+ * Lambda ::= 'lambda::'? 'function'
+ *                SelfReferenceLambdaName? FunctionSignatureAndBody
  *
  *<<<ebnf*/
 
@@ -647,7 +692,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
     }
 
     /* Return lambda definition. */
-    return afw_compile_parse_FunctionSignatureAndBody(parser);
+    return afw_compile_parse_FunctionSignatureAndBody(parser, NULL);
 }
 
 
@@ -851,7 +896,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 {
                     afw_compile_reuse_token();
                     type->function_signature =
-                        afw_compile_parse_FunctionSignature(parser, NULL);
+                        afw_compile_parse_FunctionSignature(parser, NULL, NULL);
                 }
 
                 /* ListOf */
