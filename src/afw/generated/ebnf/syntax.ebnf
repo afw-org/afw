@@ -270,7 +270,7 @@ ParametersExceptFirst ::= Parameters
 
 /* From afw_compile_parse_expression.c                                        */
 
-ParenthesizedExpression ::= '(' Expression ')'
+ParenthesizedExpression ::= '(' Expression ')' Parameters*
 
 /* From afw_compile_parse_expression.c                                        */
 /* See RFC https://tools.ietf.org/html/rfc2616#section-3.7                    */

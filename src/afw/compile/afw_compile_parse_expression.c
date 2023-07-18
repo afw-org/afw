@@ -704,13 +704,19 @@ afw_compile_parse_Parameters(
 
 /*ebnf>>>
  *
- * ParenthesizedExpression ::= '(' Expression ')'
+ * ParenthesizedExpression ::= '(' Expression ')' Parameters*
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_compile_value_contextual_t *contextual;
+    afw_compile_args_t *args;
+    const afw_value_t **argv;
+    afw_size_t argc;
+    afw_size_t start_offset;
+
 
     /* Parse ( expression ) */
     afw_compile_get_token();
@@ -721,6 +727,18 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
     afw_compile_get_token();
     if (!afw_compile_token_is(close_parenthesis)) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
+    }
+
+    /* Parse optional Parameters. */
+    while (afw_compile_peek_next_token_is(open_parenthesis)) {
+        afw_compile_save_offset(start_offset);
+        args = afw_compile_args_create(parser);
+        afw_compile_args_add_value(args, result); /* Function argv[0] */
+        afw_compile_parse_Parameters(parser, args);
+        afw_compile_args_finalize(args, &argc, &argv);
+        contextual = afw_compile_create_contextual_to_cursor(start_offset);
+        result = afw_value_call_create(contextual, argc - 1, argv,
+            parser->p, parser->xctx);
     }
 
     return result;
