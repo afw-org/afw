@@ -35,9 +35,9 @@
         loc result: string = "";
         if (num >= 1) {
             result += hanoi(num - 1, s, d, i);
-            result += "Move disk from post " + s +" to " + d + "\n";
+            result += "Move disk from post " + s + " to " + d + "\n";
             result += hanoi(num - 1, i, s, d);
-         }
-         return result;
+        }
+        return result;
      })
 (3, "1", "2", "3");
