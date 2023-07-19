@@ -41,18 +41,15 @@ assert(value &&= unresolved === 0, "value");
 
 //? test: lgcl-and-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(&&=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function unresolved
 //? source: ...
 #!/usr/bin/env afw
 
-
 let value = 2;
 
-// \fixme we don't have assert.throws()
-assert.throws(ReferenceError, function() {
+(function() {
   value &&= unresolved;
-});
+})();
 assert(value === 2, "value");
 
 
@@ -61,8 +58,6 @@ assert(value === 2, "value");
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
-
 
 eval &&= 20;
 
@@ -157,32 +152,26 @@ unresolved ??= 1;
 
 //? test: lgcl-nullish-assignment-operator-unresolved-rhs
 //? description:  ReferenceError is not thrown if the AssignmentExpression of a Logical Assignment operator(??=) evaluates to an unresolvable reference and the AssignmentExpression is not evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function unresolved
 //? source: ...
 #!/usr/bin/env afw
 
-
 let value = 0;
-// \fixme this is interesting - not a reference error if the rhs is not evaluated
 value ??= unresolved;
 assert(value === 0, "value");
 
 
 //? test: lgcl-nullish-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(??=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 70 around line 6 column 13: Unknown built-in function unresolved
 //? source: ...
 #!/usr/bin/env afw
 
-
 let value = undefined;
 
-// \fixme we don't allow for this
-assert.throws(ReferenceError, function() {
+(function() {
   value ??= unresolved;
-});
+})();
 assert(value === undefined, "value");
 
 
@@ -284,13 +273,11 @@ unresolved ||= 1;
 
 //? test: lgcl-or-assignment-operator-unresolved-rhs
 //? description:  ReferenceError is not thrown if the AssignmentExpression of a Logical Assignment operator(||=) evaluates to an unresolvable reference and the AssignmentExpression is not evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function unresolved
 //? source: ...
 #!/usr/bin/env afw
 
 let value = 2;
-// \fixme we don't allow this
 value ||= unresolved;
 
 assert(value === 2, "value");
@@ -298,17 +285,15 @@ assert(value === 2, "value");
 
 //? test: lgcl-or-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(||=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function unresolved
 //? source: ...
 #!/usr/bin/env afw
 
 let value = 0;
 
-// \fixme we don't allow for this
-assert.throws(ReferenceError, function() {
+(function() {
   value ||= unresolved;
-});
+})();
 assert(value === 0, "value");
 
 

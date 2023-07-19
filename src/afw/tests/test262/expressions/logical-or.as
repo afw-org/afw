@@ -102,21 +102,16 @@ x || true;
 false || y;
 
 
-
 //? test: S11.11.2_A2.1_T4
 //? description: If ToBoolean(x) is true and GetBase(y) is null, return true
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 43 around line 4 column 14: Unknown built-in function x
 //? source: ...
 #!/usr/bin/env afw
 
-
-// \fixme short-circuit here skips unresolved reference to x
 //CHECK#1
 if ((true || x) !== true) {
   throw '#1: (true || x) === true';
 }
-
 
 
 //? test: S11.11.2_A2.4_T2
@@ -146,13 +141,10 @@ try {
 
 //? test: S11.11.2_A2.4_T3
 //? description: Checking with undeclared variables
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 38 around line 5 column 3: Unknown built-in function x
 //? source: ...
 #!/usr/bin/env afw
 
-
-// \fixme don't allow catching these syntax errors
 //CHECK#1
 try {
   x || (x = true);

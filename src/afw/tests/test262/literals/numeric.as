@@ -1020,8 +1020,7 @@ if (9E0 !== 9.0) {
 
 //? test: S7.8.3_A2.1_T1
 //? description: Use .DecimalDigit
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1080,8 +1079,7 @@ if (.9 !== 0.9) {
 
 //? test: S7.8.3_A2.1_T2
 //? description: Use .DecimalDigits
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1140,8 +1138,7 @@ if (.99 !== 0.99) {
 
 //? test: S7.8.3_A2.1_T3
 //? description: Use .DecimalDigits that have at the end zeros
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
 

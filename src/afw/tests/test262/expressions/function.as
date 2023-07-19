@@ -137,21 +137,18 @@ assert(callCount === 0, "function body not evaluated");
 
 //? test: named-no-strict-reassign-fn-name-in-body-in-arrow
 //? description: Reassignment of function name is silently ignored
-//? expect: null
-//? skip: true
+//? expect: error:Assertion failed: ref() !== ref
 //? source: ...
 #!/usr/bin/env afw
 
-let callCount: integer = 0;
-function BindingIdentifier(): any {
-    callCount = callCount + 1;
-    // \fixme seems assignment is required here, instead of just an expression
-    let x: integer = function integer() {
+let callCount = 0;
+let ref = function BindingIdentifier() {
+    callCount++;
+    (function () {
         BindingIdentifier = 1;
-    }();
+    })();
     return BindingIdentifier;
 };
-let ref: function = BindingIdentifier;
 
 assert(ref() === ref, "ref() !== ref");
 assert(callCount === 1, "function invoked exactly once");

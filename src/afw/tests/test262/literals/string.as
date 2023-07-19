@@ -207,8 +207,7 @@ assert('\377', '\xff' ===  '\\377');
 
 //? test: line-continuation-double
 //? description: line-continuation-double
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 87 around line 6 column 8: Invalid escape code
 //? source: ...
 #!/usr/bin/env afw
 
@@ -237,8 +236,7 @@ assert("\
 
 //? test: line-continuation-single
 //? description: line-continuation-single
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 87 around line 6 column 8: Invalid escape code
 //? source: ...
 #!/usr/bin/env afw
 

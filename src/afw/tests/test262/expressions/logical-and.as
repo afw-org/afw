@@ -84,31 +84,29 @@ return 0;
 
 //? test: 11.11.1_A3_T2
 //? description: If boolean(x) is false, return x
-//? expect: 0
-//? skip: true
+//? expect: error:Parameter 1 of function and must evaluate to data type boolean but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme skip for now
 if ((-0 && -1) !== 0) {
     throw "#1: (-0 && -1) === 0";
 }
 
 return 0;
 
+
 //? test: 11.11.1_A3_T3
 //? description: If boolean(x) is false, return x
-//? expect: 0
-//? skip: true
+//? expect: error:Parameter 1 of function and must evaluate to data type boolean but evaluated to be string
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme skip for now
 if (("" && "1") !== "") {
     throw "#1: (\"\" && \"1\") === \"\"";
 }
 
 return 0;
+
 
 //? test: 11.11.1_A4_T1
 //? description: If boolean(x) is false, return x
@@ -116,7 +114,6 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme skip for now
 if ((true && true) !== true) {
     throw "#1: (true && true) === true";
 }
@@ -129,12 +126,10 @@ return 0;
 
 //? test: 11.11.1_A4_T2
 //? description: If boolean(x) is true, return y
-//? expect: 0
-//? skip: true
+//? expect: error:Parameter 1 of function and must evaluate to data type boolean but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme skip for now
 if ((-1 && -0) !== 0) {
     throw "#1: (-1 && -0) === 0";
 }
@@ -147,12 +142,10 @@ return 0;
 
 //? test: 11.11.1_A4_T3
 //? description: If boolean(x) is true, return y
-//? expect: 0
-//? skip: true
+//? expect: error:Parameter 1 of function and must evaluate to data type boolean but evaluated to be string
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme skip for now
 if (("0" && "-1") !== "-1") {
     throw "#1: (\"0\" && \"-1\") === \"-1\"";
 }
