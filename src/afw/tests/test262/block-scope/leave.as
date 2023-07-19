@@ -61,8 +61,8 @@ We need try/catch/throw for this
 #!/usr/bin/env afw
 
 function(x) {
-    for (loc i = 0; i < 10; i = i + 1) {
-        loc x = 'inner' + string(i);
+    for (let i = 0; i < 10; i = i + 1) {
+        let x = 'inner' + string(i);
         continue;
     }
     assert(x === 'outer');
@@ -187,8 +187,8 @@ function f() {}
 function f() {}
 
 function(x) {
-    for (loc i = 0; i < 10; i = i + 1) {
-        loc x = "inner" + string(i);
+    for (let i = 0; i < 10; i = i + 1) {
+        let x = "inner" + string(i);
         continue;
     }    
     f();
@@ -228,10 +228,10 @@ function f() {}
 #!/usr/bin/env afw
 
 do {
-    loc x = 4;
+    let x = 4;
     assert(x === 4);
     {
-        loc x = 5;
+        let x = 5;
         assert(x === 5);
         continue;
         assert(false);

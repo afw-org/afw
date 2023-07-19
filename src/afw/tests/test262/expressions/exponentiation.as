@@ -12,8 +12,8 @@
 #!/usr/bin/env afw
 
 
-loc exponent = -Infinity;
-loc bases = [
+let exponent = -Infinity;
+let bases = [
 0.999999999999999,
 0.5,
 +0.0,
@@ -22,7 +22,7 @@ loc bases = [
 -0.999999999999999,
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if (pow(bases[i], exponent) !== +Infinity) {
     throw "(" + string(bases[i]) + " ** " + string(exponent) +") !== +Infinity";
   }
@@ -37,15 +37,15 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 
 
 
-loc base = +Infinity;
-loc exponents = [
+let base = +Infinity;
+let exponents = [
 Infinity,
 1.7976931348623157E308, //largest (by module) finite number
 1.0,
 0.000000000000001
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
 	if (base ** exponents[i] !== +Infinity) {
 		throw "(" + string(base) + " ** " + string(exponents[i]) + ") !== +Infinity";
 	}
@@ -60,15 +60,15 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = +Infinity;
-loc exponents = [
+let base = +Infinity;
+let exponents = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -1.0,
 -0.000000000000001
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
@@ -83,14 +83,14 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -Infinity;
-loc exponents = [
+let base = -Infinity;
+let exponents = [
 1.0,
 111.0,
 111111.0
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== -Infinity) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity";
   }
@@ -106,8 +106,8 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -Infinity;
-loc exponents = [
+let base = -Infinity;
+let exponents = [
 0.000000000000001,
 2,
 Math.PI,
@@ -115,7 +115,7 @@ Math.PI,
 +Infinity
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
@@ -130,14 +130,14 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -Infinity;
-loc exponents = [
+let base = -Infinity;
+let exponents = [
 -1.0,
 -111.0,
 -111111.0
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   assert(base ** exponents[i] ===  -0.0, string(base) + "** " + string(exponents[i]));
 }
 
@@ -151,8 +151,8 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -Infinity;
-loc exponents = [
+let base = -Infinity;
+let exponents = [
 -0.000000000000001,
 -2,
 -Math.PI,
@@ -160,7 +160,7 @@ loc exponents = [
 -Infinity
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
@@ -175,15 +175,15 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = +0.0;
-loc exponents = [
+let base = +0.0;
+let exponents = [
 Infinity,
 1.7976931348623157E308, //largest finite number
 1.0,
 0.000000000000001
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
@@ -198,15 +198,15 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = +0.0;
-loc exponents = [
+let base = +0.0;
+let exponents = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -1.0,
 -0.000000000000001
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
@@ -221,14 +221,14 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -0.0;
-loc exponents = [
+let base = -0.0;
+let exponents = [
 1.0,
 111.0,
 111111.0
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   assert(base ** exponents[i] ===  -0.0, string(base) + "**  " + string(exponents[i]));
 }
 
@@ -240,8 +240,8 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 #!/usr/bin/env afw
 
 
-loc exponent = NaN;
-loc bases = [
+let exponent = NaN;
+let bases = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -0.000000000000001,
@@ -253,7 +253,7 @@ loc bases = [
 NaN
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   assert(
     is_NaN(bases[i] ** exponent),    
     string(bases[i]) + " ** " + string(exponent)
@@ -270,8 +270,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 
 
 
-loc base = -0;
-loc exponents = [
+let base = -0;
+let exponents = [
 0.000000000000001,
 2,
 Math.PI,
@@ -279,7 +279,7 @@ Math.PI,
 +Infinity
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
@@ -294,14 +294,14 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -0.0;
-loc exponents = [
+let base = -0.0;
+let exponents = [
 -1.0,
 -111.0,
 -111111.0
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== -Infinity) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== -Infinity";
   }
@@ -317,8 +317,8 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc base = -0;
-loc exponents = [
+let base = -0;
+let exponents = [
 -0.000000000000001,
 -2,
 -Math.PI,
@@ -326,7 +326,7 @@ loc exponents = [
 -Infinity
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   if ((base ** exponents[i]) !== +Infinity) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +Infinity";
   }
@@ -342,14 +342,14 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc bases = [];
+let bases = [];
 -1.7976931348623157E308, //largest (by module) finite number
 -Math.PI,
 -1,
 -0.000000000000001
 ];
 
-loc exponents = [
+let exponents = [
 -Math.PI,
 -Math.E,
 -1.000000000000001,
@@ -360,8 +360,8 @@ Math.E,
 Math.PI
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
-  for (loc j = 0; j < length(exponents); j++) {
+for (let i = 0; i < length(bases); i = i + 1) {
+  for (let j = 0; j < length(exponents); j++) {
     assert(
       bases[i] ** exponents[j] == NaN,      
       bases[i] + " ** " + exponents[j]
@@ -379,8 +379,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 
 
 
-loc exponent = +0.0;
-loc bases = [
+let exponent = +0.0;
+let bases = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -0.000000000000001,
@@ -392,7 +392,7 @@ loc bases = [
 NaN
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== 1.0) {
     throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== 1";
   }
@@ -407,8 +407,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 
 
 
-loc exponent = -0.0;
-loc bases = [
+let exponent = -0.0;
+let bases = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -0.000000000000001,
@@ -420,7 +420,7 @@ loc bases = [
 NaN
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== 1.0) {
     throw "(" + string(bases[i]) + " ** -0) !== 1";
   }
@@ -433,8 +433,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc base = NaN;
-loc exponents = [
+let base = NaN;
+let exponents = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -0.000000000000001,
@@ -444,7 +444,7 @@ loc exponents = [
 NaN
 ];
 
-for (loc i = 0; i < length(exponents); i = i + 1) {
+for (let i = 0; i < length(exponents); i = i + 1) {
   assert(
     is_NaN(base ** exponents[i]),
     string(base) + "** " + string(exponents[i])
@@ -460,8 +460,8 @@ for (loc i = 0; i < length(exponents); i = i + 1) {
 
 
 
-loc exponent = +Infinity;
-loc bases = [
+let exponent = +Infinity;
+let bases = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -1.000000000000001,
@@ -470,7 +470,7 @@ loc bases = [
 +Infinity
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +Infinity) {
     throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +Infinity";
   }
@@ -485,8 +485,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 
 
 
-loc exponent = -Infinity;
-loc bases = [
+let exponent = -Infinity;
+let bases = [
 -Infinity,
 -1.7976931348623157E308, //largest (by module) finite number
 -1.000000000000001,
@@ -495,7 +495,7 @@ loc bases = [
 +Infinity
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +0.0) {
     throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0";
   }
@@ -508,13 +508,13 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc exponent = +Infinity;
-loc bases = [
+let exponent = +Infinity;
+let bases = [
 -1.0,
 1.0,
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   assert(
     is_NaN(bases[i] ** exponent),
     string(bases[i]) + " ** " + string(exponent)
@@ -528,13 +528,13 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc exponent = -Infinity;
-loc bases = [
+let exponent = -Infinity;
+let bases = [
 -1.0,
 1.0,
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   assert(
     is_NaN(bases[i] ** exponent),
     string(bases[i]) + " ** " + string(exponent)
@@ -549,8 +549,8 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 #!/usr/bin/env afw
 
 
-loc exponent = +Infinity;
-loc bases = [
+let exponent = +Infinity;
+let bases = [
     0.999999999999999,
     0.5,
     +0.0,
@@ -559,7 +559,7 @@ loc bases = [
     -0.999999999999999
 ];
 
-for (loc i = 0; i < length(bases); i = i + 1) {
+for (let i = 0; i < length(bases); i = i + 1) {
   if ((bases[i] ** exponent) !== +0.0) {
     throw "(" + string(bases[i]) + " **  " + string(exponent) +") !== +0";
   }
@@ -574,9 +574,9 @@ for (loc i = 0; i < length(bases); i = i + 1) {
 #!/usr/bin/env afw
 
 
-loc capture = [];
-loc leftValue = { valueOf() { capture.push("leftValue"); return 3; }};
-loc rightValue = { valueOf() { capture.push("rightValue"); return 2; }};
+let capture = [];
+let leftValue = { valueOf() { capture.push("leftValue"); return 3; }};
+let rightValue = { valueOf() { capture.push("rightValue"); return 2; }};
 
 (capture.push("left"), leftValue) ** (capture.push("right"), rightValue);
 
@@ -595,7 +595,7 @@ assert(capture[3] ===  "rightValue", "Expected the 4th element captured to be 'r
 #!/usr/bin/env afw
 
 
-loc exponent = 2.0;
+let exponent = 2.0;
 assert(2.0 ** 3.0 ===  8.0, "(2 ** 3) === 8");
 assert(3.0 * 2.0 ** 3.0 ===  24.0, "(3 * 2 ** 3) === 24");
 //assert(2 ** ++exponent ===  8, "(2 ** ++exponent) === 8");
@@ -622,10 +622,10 @@ assert(+(3.0 ** 2.0) === 9.0, "+(3 ** 2) === 9");
 
 assert(2.0 ** -2.0 === 0.25);
 
-loc o = { p: 1 };
+let o = { p: 1 };
 
-loc s = "2";
-loc n = 2.0;
+let s = "2";
+let n = 2.0;
 
 //assert(2 ** +s ===  4, "+s -> +'2' -> 2 -> ToNumber(2) -> 2");
 assert(2.0 ** +n ===  4.0, "+s -> +2 -> 2 -> ToNumber(2) -> 2");
@@ -704,7 +704,7 @@ assert(1.0**INT32_MIN === 1.0,
 
 
 function MyError() {}
-loc trace;
+let trace;
 
 // ?GetValue(lhs) throws.
 trace = "";

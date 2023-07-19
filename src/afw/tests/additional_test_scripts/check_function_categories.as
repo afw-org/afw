@@ -19,7 +19,7 @@ const funcs: object = retrieve_objects("dev", "_AdaptiveFunctionGenerate_");
 foreach const func: object of funcs {
     const {category} /* @todo :{category: string} */ = func;
 
-    loc found: boolean = false;
+    let found: boolean = false;
     foreach const c: object of categories {
         const {category: cat} = c;        
         

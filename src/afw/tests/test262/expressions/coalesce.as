@@ -81,7 +81,7 @@ assert.throws(Test262Error, function() {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = null ?? 42;
 assert(x === 42, 'null ?? 42');
@@ -102,7 +102,7 @@ assert(x === false, 'null ?? false');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = undefined ?? 42;
 assert(x === 42, 'undefined ?? 42');
@@ -123,7 +123,7 @@ assert(x === false, 'undefined ?? false');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = undefined;
 x = 0 ?? 1;
@@ -172,7 +172,7 @@ assert(x === 0, 'undefined ?? 0 ?? undefined');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = undefined;
 x = 42 ?? 1;
@@ -226,8 +226,8 @@ assert(x === 42, 'undefined ?? 42 ?? undefined');
 #!/usr/bin/env afw
 
 
-loc x;
-loc str = '';
+let x;
+let str = '';
 
 x = undefined;
 x = str ?? 1;
@@ -280,7 +280,7 @@ assert(x === str, 'undefined ?? str ?? undefined');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = undefined;
 x = false ?? 1;
@@ -333,7 +333,7 @@ assert(x === false, 'undefined ?? false ?? undefined');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = undefined;
 x = true ?? 1;
@@ -386,7 +386,7 @@ assert(x === true, 'undefined ?? true ?? undefined');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 function poison() {
     throw "should not evaluate poison";
 }
@@ -413,7 +413,7 @@ assert(x === 42);
 
 // We do not currently support tail-call optimization
 
-loc callCount = 0;
+let callCount = 0;
 function f(n) {
     if (n === 0) {
         callCount += 1;
@@ -434,7 +434,7 @@ assert(callCount === 1);
 
 // We do not currently support tail-call optimization
 
-loc callCount = 0;
+let callCount = 0;
 function f(n) {
     if (n === 0) {
         callCount += 1;

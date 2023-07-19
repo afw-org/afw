@@ -14,13 +14,13 @@
 assert((true ? false : true) === false, "true ? false : true !== false");
 assert((false ? false : true) === true, "false ? false : true !== true");
 
-loc x: boolean = true;
-loc y: boolean = false;
+let x: boolean = true;
+let y: boolean = false;
 if ((x ? y : true) !== y) {
     throw "x ? y : true !== y";
 }
 
-loc z: boolean = true;
+let z: boolean = true;
 if ((false ? false : z) !== z) {
     throw "false ? false : z !== z";
 }
@@ -83,7 +83,7 @@ if ((false ? false : true) !== true) {
     throw "false ? false : true !== true";
 }
 
-loc z: boolean = true;
+let z: boolean = true;
 if ((false ? true : z) !== z) {
     throw "false ? true : z !== z";
 }
@@ -114,7 +114,7 @@ if ((true ? false : true) !== false) {
     throw "true ? false : true !== false";
 }
 
-loc y: boolean = true;
+let y: boolean = true;
 if ((true ? y : false) !== y) {
     throw "true ? y : false !== y";
 }
@@ -141,7 +141,7 @@ if ((true ? null : true) !== null) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer;
+let x: integer;
 x = undefined ?? true ? 0 : 42;
 assert(x === 0, "undefined ?? true ? 0 : 42");
 

@@ -63,12 +63,12 @@ if (1 * 1 !== 1) {
     throw "1 * 1 !== 1";
 }
 
-loc x: integer = 1;
+let x: integer = 1;
 if (x * 1 !== 1) {
     throw "x * 1 !== 1";
 }
 
-loc y: integer = 1;
+let y: integer = 1;
 if (1 * y !== 1) {
     throw "1 * y !== 1";
 }
@@ -88,12 +88,12 @@ if (x * y !== 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
+let x: integer = 0;
 if ((x = 1) * x !== 1) {
     throw "x = 1 * x !== 1";
 }
 
-loc x: integer = 0;
+let x: integer = 0;
 if (x * (x = 1) !== 0) {
     throw "x * (x = 1) !== 0";
 }
@@ -106,8 +106,8 @@ if (x * (x = 1) !== 0) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x1: integer = 0;
-loc y1: integer = 0;
+let x1: integer = 0;
+let y1: integer = 0;
 
 const x: function = function (): any {
     x1 = 1;
@@ -225,7 +225,7 @@ if (-1.0 * +Infinity !== -Infinity) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 18
+let x: integer = 18
 
 *
 

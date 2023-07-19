@@ -10,7 +10,7 @@
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, 1);
 
@@ -24,7 +24,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, "x");
 
@@ -38,7 +38,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, true);
 
@@ -52,7 +52,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, null);
 
@@ -66,7 +66,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, { "x": "y", "z": 1 });
 
@@ -79,7 +79,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ 1 ]);
 
@@ -92,7 +92,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ "x" ]);
 
@@ -105,7 +105,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ true ]);
 
@@ -118,7 +118,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ null ]);
 
@@ -131,7 +131,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ 1.0 ]);
 
@@ -144,7 +144,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [];
+let l1 = [];
 
 add_entries(l1, [ { "x": "y", "z": 1 } ]);
 
@@ -157,12 +157,12 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [    
+let l1 = [    
     { "x": "y", "z": 1 },    
     { "x": "y", "z": 1 }
 ];
 
-loc l2 = [];
+let l2 = [];
 foreach const item of l1 {
     add_entries(l2, [ item ]);
 }
@@ -176,12 +176,12 @@ return 0;
 //? expect: 0
 //? source: ...
 
-loc l1 = [    
+let l1 = [    
     { "x": "y", "z": 1 },    
     { "x": "y", "z": 1 }
 ];
 
-loc l2 = [];
+let l2 = [];
 foreach const item of l1 {
     const x = 5;
 

@@ -74,7 +74,7 @@ _11_13_2_9 &= 1;
 //? source: ...
 #!/usr/bin/env afw
 
-        loc _11_13_2_12 = 5;
+        let _11_13_2_12 = 5;
         _11_13_2_12 *= 2;
 
 assert(_11_13_2_12 === 10, '_11_13_2_12');
@@ -86,7 +86,7 @@ assert(_11_13_2_12 === 10, '_11_13_2_12');
 //? source: ...
 #!/usr/bin/env afw
 
-        loc _11_13_2_13 = 6;
+        let _11_13_2_13 = 6;
         _11_13_2_13 /= 2;
 
 assert(_11_13_2_13 === 3, '_11_13_2_13');
@@ -98,7 +98,7 @@ assert(_11_13_2_13 === 3, '_11_13_2_13');
 //? source: ...
 #!/usr/bin/env afw
 
-        loc _11_13_2_14 = 5;
+        let _11_13_2_14 = 5;
         _11_13_2_14 %= 2;
 
 assert(_11_13_2_14 === 1, '_11_13_2_14');
@@ -110,7 +110,7 @@ assert(_11_13_2_14 === 1, '_11_13_2_14');
 //? source: ...
 #!/usr/bin/env afw
 
-        loc _11_13_2_16 = 5;
+        let _11_13_2_16 = 5;
         _11_13_2_16 -= 2;
 
 assert(_11_13_2_16 === 3, '_11_13_2_16');
@@ -122,7 +122,7 @@ assert(_11_13_2_16 === 3, '_11_13_2_16');
 //? source: ...
 #!/usr/bin/env afw
 
-        loc _11_13_2_19 = -1;
+        let _11_13_2_19 = -1;
         _11_13_2_19 += 10;
 
 assert(_11_13_2_19 === 9, '_11_13_2_19');
@@ -134,14 +134,14 @@ assert(_11_13_2_19 === 9, '_11_13_2_19');
 //? source: ...
 
 //CHECK#1
-loc x = 1;
+let x = 1;
 x *= -1; 
 if (x !== -1) {
- throw '#1: loc x = 1; x *= -1; x === -1. Actual: ' + (x);
+ throw '#1: let x = 1; x *= -1; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
-loc y;
+let y;
 y = 1;
 y *= -1;
 if (y !== -1) {
@@ -155,14 +155,14 @@ if (y !== -1) {
 //? source: ...
 
 //CHECK#1
-loc x = 1;
+let x = 1;
 x /= -1; 
 if (x !== -1) {
-  throw '#1: loc x = 1; x /= -1; x === -1. Actual: ' + (x);
+  throw '#1: let x = 1; x /= -1; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
-loc y;
+let y;
 y = 1;
 y /= -1;
 if (y !== -1) {
@@ -176,14 +176,14 @@ if (y !== -1) {
 //? source: ...
 
 //CHECK#1
-loc x = -1;
+let x = -1;
 x %= 2; 
 if (x !== -1) {
-  throw '#1: loc x = -1; x %= 2; x === -1. Actual: ' + (x);
+  throw '#1: let x = -1; x %= 2; x === -1. Actual: ' + (x);
 }
 
 //CHECK#2
-loc y;
+let y;
 y = -1;
 y %= 2;
 if (y !== -1) {
@@ -197,14 +197,14 @@ if (y !== -1) {
 //? source: ...
 
 //CHECK#1
-loc x = 1;
+let x = 1;
 x += 1; 
 if (x !== 2) {
-  throw '#1: loc x = 1; x += 1; x === 2. Actual: ' + (x);
+  throw '#1: let x = 1; x += 1; x === 2. Actual: ' + (x);
 }
 
 //CHECK#2
-loc y;
+let y;
 y = 1;
 y += 1;
 if (y !== 2) {
@@ -218,14 +218,14 @@ if (y !== 2) {
 //? source: ...
 
 //CHECK#1
-loc x = -1;
+let x = -1;
 x -= 1; 
 if (x !== -2) {
-  throw '#1: loc x = -1; x -= 1; x === -2. Actual: ' + (x);
+  throw '#1: let x = -1; x -= 1; x === -2. Actual: ' + (x);
 }
 
 //CHECK#2
-loc y;
+let y;
 y = -1;
 y -= 1;
 if (y !== -2) {
@@ -238,7 +238,7 @@ if (y !== -2) {
 //? expect: null
 //? source: ...
 
-loc x;
+let x;
 
 //CHECK#1
 x = 1;
@@ -252,7 +252,7 @@ if (x !== 1) {
 //? expect: null
 //? source: ...
 
-loc x;
+let x;
 
 //CHECK#1
 x = 1;

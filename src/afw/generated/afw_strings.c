@@ -4207,6 +4207,9 @@ AFW_UTF8_LITERAL("length_list");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_string =
 AFW_UTF8_LITERAL("length_string");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_let =
+AFW_UTF8_LITERAL("let");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_libafwVersion =
 AFW_UTF8_LITERAL("libafwVersion");
 
@@ -4230,9 +4233,6 @@ AFW_UTF8_LITERAL("list_includes");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_load =
 AFW_UTF8_LITERAL("load");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_loc =
-AFW_UTF8_LITERAL("loc");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_local_object_meta_set_ids =
 AFW_UTF8_LITERAL("local_object_meta_set_ids");

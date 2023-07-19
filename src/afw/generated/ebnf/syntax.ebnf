@@ -501,13 +501,13 @@ AssignmentExpression ::= Expression
 /* From afw_compile_parse_script.c                                            */
 
 OptionalDefineTarget ::=
-   ( ( 'loc' | 'const' ) AssignmentTarget ) |
+   ( ( 'let' | 'const' ) AssignmentTarget ) |
    AssignmentTarget
 
 /* From afw_compile_parse_script.c                                            */
 
 OptionalDefineAssignment ::= (
-    ( ( 'loc' | 'const' ) AssignmentTarget '=' Expression ) |
+    ( ( 'let' | 'const' ) AssignmentTarget '=' Expression ) |
     Assignment
 )
 
@@ -602,7 +602,7 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 
 /* From afw_compile_parse_script.c                                            */
 
-LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
+LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
 
 /* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */
@@ -670,7 +670,7 @@ Statement ::=
    FunctionStatement |
    IfStatement |
    InterfaceStatement |
-   LocStatement |
+   LetStatement |
    ReturnStatement |
    SwitchStatement |
    TypeStatement |
@@ -1013,7 +1013,7 @@ ReservedWords ::=
    'in' |
    'instanceof' |
    'interface' |
-   'loc' |
+   'let' |
    'return' |
    'switch' |
    'throw' |

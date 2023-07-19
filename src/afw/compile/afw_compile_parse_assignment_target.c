@@ -328,7 +328,7 @@ afw_compile_parse_AssignmentBindingTarget(
                 "Variable name can not be a reserved word");
         }
  
-        if (assignment_type == afw_compile_assignment_type_loc ||
+        if (assignment_type == afw_compile_assignment_type_let ||
             assignment_type == afw_compile_assignment_type_const)
         {
             *type = afw_compile_parse_OptionalType(parser, false);

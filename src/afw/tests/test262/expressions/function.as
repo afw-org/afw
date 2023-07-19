@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc y: integer = function (): integer {return 2;}();
+let y: integer = function (): integer {return 2;}();
 if (y !== 2) {
     throw "Create anonymous function dynamically failed";
 }
@@ -25,13 +25,13 @@ if (y !== 2) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount: integer = 0;
+let callCount: integer = 0;
 function fn_assert(): any {
     throw "error";
 };
 
 // \fixme function parameter default assignment can't be a function call
-loc f: function = function (x: any = fn_assert()): any {
+let f: function = function (x: any = fn_assert()): any {
     callCount = callCount + 1;
 };
 
@@ -44,8 +44,8 @@ loc f: function = function (x: any = fn_assert()): any {
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount: integer = 0;
-loc ref: function;
+let callCount: integer = 0;
+let ref: function;
 ref = function (fromLiteral: integer = 23, fromExpr: integer = 45, fromHole: integer = 99): any {
     assert(fromLiteral === 23, "fromLiteral !== 23");
     assert(fromExpr === 45, "fromExpr !== 45");
@@ -79,9 +79,9 @@ function f(x: integer = 0, x: integer): any {};
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
-loc callCount: integer = 0;
-loc f: function;
+let x: integer = 0;
+let callCount: integer = 0;
+let f: function;
 // \fixme this gives a parse error, but perhaps not the correct one?
 f = function (x: integer = y, y?: integer): any {
     callCount = callCount + 1;
@@ -96,9 +96,9 @@ f = function (x: integer = y, y?: integer): any {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
-loc callCount: integer = 0;
-loc ref: function;
+let x: integer = 0;
+let callCount: integer = 0;
+let ref: function;
 
 ref = function (x: integer, y: integer = x, z: integer = y): any {
     assert(x === 3, "first argument value");
@@ -121,9 +121,9 @@ assert(callCount === 1, "function invoked exactly once");
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
-loc callCount: integer = 0;
-loc f: function;
+let x: integer = 0;
+let callCount: integer = 0;
+let f: function;
 
 f = function (x: integer = x): any {    
     callCount = callCount + 1;
@@ -142,16 +142,16 @@ assert(callCount === 0, "function body not evaluated");
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount: integer = 0;
+let callCount: integer = 0;
 function BindingIdentifier(): any {
     callCount = callCount + 1;
     // \fixme seems assignment is required here, instead of just an expression
-    loc x: integer = function integer() {
+    let x: integer = function integer() {
         BindingIdentifier = 1;
     }();
     return BindingIdentifier;
 };
-loc ref: function = BindingIdentifier;
+let ref: function = BindingIdentifier;
 
 assert(ref() === ref, "ref() !== ref");
 assert(callCount === 1, "function invoked exactly once");
@@ -165,13 +165,13 @@ assert(callCount === 1, "function invoked exactly once");
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount: integer = 0;
+let callCount: integer = 0;
 function BindingIdentifier(): any {
     callCount = callCount + 1;
     BindingIdentifier = 1;
     return BindingIdentifier;
 };
-loc ref: function = BindingIdentifier;
+let ref: function = BindingIdentifier;
 
 assert(ref() === ref, "ref() !== ref");
 assert(callCount === 1, "function invoked exactly once");

@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc y = 010;
+let y = 010;
 
 
 //? test: 7.8.3-2gs
@@ -22,7 +22,7 @@ loc y = 010;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a;
+let a;
 a = 0x1;
 a = 01;
 
@@ -35,7 +35,7 @@ a = 01;
 //? source: ...
 #!/usr/bin/env afw
 
-evaluate(script("loc a = 0x1;a = 01;"));
+evaluate(script("let a = 0x1;a = 01;"));
 
 
 //? test: binary-invalid-digit

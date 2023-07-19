@@ -67,7 +67,7 @@ if (!(!true) !== true) {
     throw "#2 !(!true) !== true";
 }
 
-loc x: boolean = true;
+let x: boolean = true;
 if (!x !== false) {
     throw "#3 !x !== false";
 }

@@ -3,7 +3,7 @@
     <title>Qualified Variables</title>
     <paragraph>
         Adaptive Script allows you to declare local and const variables, using 
-        the <literal>loc</literal> and <literal>const</literal> keywords. 
+        the <literal>let</literal> and <literal>const</literal> keywords. 
     </paragraph>
     <paragraph>
         Some variables are declared outside of the execution a script, 

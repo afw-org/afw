@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 function fn() {
-  loc c = 1;
+  let c = 1;
   try {
     throw 'stuff3';
   } catch (c) {
@@ -57,7 +57,7 @@ fn(1);
 #!/usr/bin/env afw
 
 {
-  loc a = 3;
+  let a = 3;
   try {
     throw 'stuff2';
   } catch (a) {
@@ -77,7 +77,7 @@ fn(1);
 #!/usr/bin/env afw
 
 function fn() {
-  loc a = 1;
+  let a = 1;
   try {
     throw 'stuff3';
   } catch (a) {
@@ -96,7 +96,7 @@ fn();
 #!/usr/bin/env afw
 
 function fn() {
-  loc a = 1;
+  let a = 1;
   try {
     throw 'stuff3';
   } catch (a) {
@@ -119,7 +119,7 @@ fn();
 #!/usr/bin/env afw
 
 function fn(a) {
-  loc b = 1;
+  let b = 1;
   //var c = 1;
   const d = 1;
   {
@@ -148,10 +148,10 @@ fn(1);
 
 function fn(one) {
   //var x = one + 1;
-  loc y = one + 2;
+  let y = one + 2;
   const u = one + 4;
   {
-    loc z = one + 3;
+    let z = one + 3;
     const v = one + 5;
     function f() {
       assert(one === 1);
@@ -175,10 +175,10 @@ fn(1);
 
 function fn(one) {
   //var x = one + 1;
-  loc y = one + 2;
+  let y = one + 2;
   const u = one + 4;
   {
-    loc z = one + 3;
+    let z = one + 3;
     const v = one + 5;
     assert(one === 1);
     //assert.sameValue(x, 2);
@@ -202,7 +202,7 @@ try {
 } catch (a) {
   {
     // let declaration shadowing catch parameter
-    loc a = 3;
+    let a = 3;
     assert(a === 3);
   }
   assert(a.message === 'stuff1');
@@ -215,14 +215,14 @@ try {
 #!/usr/bin/env afw
 
 function fn(a) {
-  loc b = 1;
+  let b = 1;
   //var c = 1;
   const d = 1;
   {
-    loc a = 2;
-    loc b = 2;
+    let a = 2;
+    let b = 2;
     //let c = 2;
-    loc d = 2;
+    let d = 2;
     assert(a === 2);
     assert(b === 2);
     //assert.sameValue(c, 2);
@@ -240,10 +240,10 @@ fn(1);
 
 function f5(one) {
   //var x = one + 1;
-  loc y = one + 2;
+  let y = one + 2;
   const u = one + 4;
   {
-    loc z = one + 3;
+    let z = one + 3;
     const v = one + 5;
     function f() {
       assert(one === 1);
@@ -267,10 +267,10 @@ f5(1);
 
 function fn(one) {
   //var x = one + 1;
-  loc y = one + 2;
+  let y = one + 2;
   const u = one + 4;
   {
-    loc z = one + 3;
+    let z = one + 3;
     const v = one + 5;
     assert(one === 1);
     //assert.sameValue(x, 2);
@@ -292,7 +292,7 @@ fn(1);
 
 // can't do this function decl/call syntax
 function fn() {
-  loc c = 1;
+  let c = 1;
   try {
     throw 'stuff3';
   } catch (c) {
@@ -314,7 +314,7 @@ fn();
 #!/usr/bin/env afw
 
 function fn(a) {
-  loc b = 1;
+  let b = 1;
   //var c = 1;
   const d = 1;
 

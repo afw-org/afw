@@ -15,12 +15,12 @@ if ((1 == 1) !== true) {
     throw "1 == 1";
 }
 
-loc x: integer = 1;
+let x: integer = 1;
 if ((x == 1) !== true) {
     throw "x == 1";
 }
 
-loc y: integer = 1;
+let y: integer = 1;
 if ((1 == y) !== true) {
     throw "1 == y";
 }
@@ -56,7 +56,7 @@ return 1 == y;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
+let x: integer = 0;
 if (((x = 1) == x) !== true) {
     throw "(x = 1) == x";
 }
@@ -74,8 +74,8 @@ if ((x == (x = 1)) !== false) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x1: integer = 0;
-loc y1: integer = 0;
+let x1: integer = 0;
+let y1: integer = 0;
 
 function x(): any {
     x1 = 1;

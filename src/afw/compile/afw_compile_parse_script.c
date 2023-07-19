@@ -58,7 +58,7 @@ afw_compile_parse_AssignmentExpression(
 /*ebnf>>>
  *
  * OptionalDefineTarget ::=
- *    ( ( 'loc' | 'const' ) AssignmentTarget ) |
+ *    ( ( 'let' | 'const' ) AssignmentTarget ) |
  *    AssignmentTarget
  *
  *<<<ebnf*/
@@ -72,8 +72,8 @@ afw_compile_parse_OptionalDefineTarget(
     /* Determine assignment type. */
     assignment_type = afw_compile_assignment_type_assign_only;
     afw_compile_get_token();
-    if (afw_compile_token_is_name(&afw_s_loc)) {
-        assignment_type = afw_compile_assignment_type_loc;
+    if (afw_compile_token_is_name(&afw_s_let)) {
+        assignment_type = afw_compile_assignment_type_let;
     }
     else if afw_compile_token_is_name(&afw_s_const) {
         assignment_type = afw_compile_assignment_type_const;
@@ -92,7 +92,7 @@ afw_compile_parse_OptionalDefineTarget(
 /*ebnf>>>
  *
  * OptionalDefineAssignment ::= (
- *     ( ( 'loc' | 'const' ) AssignmentTarget '=' Expression ) |
+ *     ( ( 'let' | 'const' ) AssignmentTarget '=' Expression ) |
  *     Assignment
  * )
  *
@@ -107,21 +107,21 @@ afw_compile_parse_OptionalDefineAssignment(
     const afw_value_t *function;
 
     /* Determine assignment type and function_id. */
-    if (afw_compile_token_is_name(&afw_s_loc)) {
-        assignment_type = afw_compile_assignment_type_loc;
-        function = (const afw_value_t *)&afw_function_definition_loc;
+    if (afw_compile_token_is_name(&afw_s_let)) {
+        assignment_type = afw_compile_assignment_type_let;
+        function = (const afw_value_t *)&afw_function_definition_let;
     }
     else if afw_compile_token_is_name(&afw_s_const) {
         assignment_type = afw_compile_assignment_type_const;
         function = (const afw_value_t *)&afw_function_definition_const;
     }
 
-    /* If not const or loc, return result of normal Assignment. */
+    /* If not const or let, return result of normal Assignment. */
     else {
         return afw_compile_parse_Assignment(parser, NULL);
     }
 
-    /* Call appropriate function for const and loc. */
+    /* Call appropriate function for const and let. */
     argv = afw_pool_malloc(parser->p,
         sizeof(afw_value_t *) * 4,
         parser->xctx);
@@ -601,8 +601,8 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     if (!afw_compile_token_is(semicolon)) {
         for (;;) {
 
-            /* If there are loc and/or const, a block is needed. */
-            if (afw_compile_token_is_name(&afw_s_loc) ||
+            /* If there are let and/or const, a block is needed. */
+            if (afw_compile_token_is_name(&afw_s_let) ||
                 afw_compile_token_is_name(&afw_s_const))
             {
                 if (!block) {
@@ -682,7 +682,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         afw_compile_create_contextual_to_cursor(start_offset),
         4, argv, parser->p, parser->xctx);
 
-    /* If there is a block for loc/const finalize it. */
+    /* If there is a block for let/const finalize it. */
     if (block) {
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
         argv[0] = result;
@@ -856,11 +856,11 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * LocStatement ::= 'loc' AssignmentTarget ( '=' Expression )? ';'
+ * LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_LocStatement(afw_compile_parser_t *parser)
+impl_parse_LetStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -870,9 +870,9 @@ impl_parse_LocStatement(afw_compile_parser_t *parser)
         sizeof(afw_value_t *) * 4,
         parser->xctx);
 
-    argv[0] = (const afw_value_t *)&afw_function_definition_loc;
+    argv[0] = (const afw_value_t *)&afw_function_definition_let;
     argv[1] = afw_compile_parse_AssignmentTarget(parser,
-        afw_compile_assignment_type_loc);
+        afw_compile_assignment_type_let);
     argv[2] = NULL;
     argv[3] = NULL;
 
@@ -1139,7 +1139,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             argv[4] = (const afw_value_t *)
                 afw_compile_parse_variable_reference_create(parser,
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    afw_compile_assignment_type_loc,
+                    afw_compile_assignment_type_let,
                     parser->token->identifier_name);
             afw_compile_get_token();
             if (!afw_compile_token_is(close_parenthesis)) {
@@ -1266,7 +1266,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    FunctionStatement |
  *    IfStatement |
  *    InterfaceStatement |
- *    LocStatement |
+ *    LetStatement |
  *    ReturnStatement |
  *    SwitchStatement |
  *    TypeStatement |
@@ -1301,9 +1301,9 @@ afw_compile_parse_Statement(
         !parser->token->identifier_qualifier)
     {
         if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_loc))
+            &afw_s_let))
         {
-            result = impl_parse_LocStatement(parser);
+            result = impl_parse_LetStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_const))

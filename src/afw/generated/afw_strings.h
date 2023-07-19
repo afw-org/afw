@@ -8393,6 +8393,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length_list;
 /** @brief afw_utf8_t for string length_string */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length_string;
 
+/** @brief define for quoted string let */
+#define AFW_Q_let "let"
+
+/** @brief afw_utf8_t for string let */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_let;
+
 /** @brief define for quoted string libafwVersion */
 #define AFW_Q_libafwVersion "libafwVersion"
 
@@ -8440,12 +8446,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_list_includes;
 
 /** @brief afw_utf8_t for string load */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_load;
-
-/** @brief define for quoted string loc */
-#define AFW_Q_loc "loc"
-
-/** @brief afw_utf8_t for string loc */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_loc;
 
 /** @brief define for quoted string local_object_meta_set_ids */
 #define AFW_Q_local_object_meta_set_ids "local_object_meta_set_ids"

@@ -34,7 +34,7 @@ unresolved &&= 1;
 #!/usr/bin/env afw
 
 
-loc value = 0;
+let value = 0;
 
 assert(value &&= unresolved === 0, "value");
 
@@ -47,7 +47,7 @@ assert(value &&= unresolved === 0, "value");
 #!/usr/bin/env afw
 
 
-loc value = 2;
+let value = 2;
 
 // \fixme we don't have assert.throws()
 assert.throws(ReferenceError, function() {
@@ -86,7 +86,7 @@ eval &&= 20;
 #!/usr/bin/env afw
 
 
-loc value = undefined;
+let value = undefined;
 value ??= 1;
 assert(value === 1, "(value ??= 1) === 1; where value = undefined");
 
@@ -128,7 +128,7 @@ value = "test";
 value ??= 1;
 assert(value === "test", '(value ??= 1) === "test"; where value = "test"');
 
-loc obj = {};
+let obj = {};
 value = obj;
 assert(value === obj, "(value ??= 1) === {}; where value = {}");
 
@@ -163,7 +163,7 @@ unresolved ??= 1;
 #!/usr/bin/env afw
 
 
-loc value = 0;
+let value = 0;
 // \fixme this is interesting - not a reference error if the rhs is not evaluated
 value ??= unresolved;
 assert(value === 0, "value");
@@ -177,7 +177,7 @@ assert(value === 0, "value");
 #!/usr/bin/env afw
 
 
-loc value = undefined;
+let value = undefined;
 
 // \fixme we don't allow for this
 assert.throws(ReferenceError, function() {
@@ -211,7 +211,7 @@ eval ??= 20;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x = null;
 assert(x	??=	1 === 1, 'U+0009 (expression)');
@@ -289,7 +289,7 @@ unresolved ||= 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc value = 2;
+let value = 2;
 // \fixme we don't allow this
 value ||= unresolved;
 
@@ -303,7 +303,7 @@ assert(value === 2, "value");
 //? source: ...
 #!/usr/bin/env afw
 
-loc value = 0;
+let value = 0;
 
 // \fixme we don't allow for this
 assert.throws(ReferenceError, function() {

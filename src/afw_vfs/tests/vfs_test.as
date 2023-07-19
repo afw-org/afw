@@ -14,8 +14,8 @@
 
 const temp_directory: string = string('temp/', generate_uuid(), '/');
 const testfile_objectId: string = string(temp_directory, 'test.txt');
-loc object: object;
-loc result: object;
+let object: object;
+let result: object;
 
 // Create the temp directory.
 result = add_object('vfs','_AdaptiveFile_vfs', {}, temp_directory);

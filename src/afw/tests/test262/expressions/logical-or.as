@@ -128,17 +128,17 @@ if ((true || x) !== true) {
 
 
 //CHECK#1
-loc x = function () { throw "x"; };
-loc y = function () { throw "y"; };
+let x = function () { throw "x"; };
+let y = function () { throw "y"; };
 try {
    x() || y();
-   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (x() || y());
+   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (x() || y());
 } catch (e) {
    if (e === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (e);
+       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (e);
      }
    }
 }

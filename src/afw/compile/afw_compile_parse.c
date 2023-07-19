@@ -223,7 +223,7 @@ afw_compile_parse_variable_reference_create(
 {
     afw_value_block_symbol_t *symbol;
 
-    if (assignment_type == afw_compile_assignment_type_loc) {
+    if (assignment_type == afw_compile_assignment_type_let) {
         symbol = afw_compile_parse_add_symbol_entry(parser, identifier);
     }
     else if (assignment_type == afw_compile_assignment_type_const) {

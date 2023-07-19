@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: double;
+let rand: double;
 
 // let it generate a random number
 rand = random_number();
@@ -28,7 +28,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: double;
+let rand: double;
 
 // let it generate a random number
 rand = random_number(5.0, 10.0);
@@ -45,9 +45,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: double;
+let rand: double;
 
-for (loc i: integer = 0; i < 1000; i = i + 1) {
+for (let i: integer = 0; i < 1000; i = i + 1) {
     // let it generate a random number
     rand = random_number(1.0, 2.0);
 
@@ -64,7 +64,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: base64Binary;
+let rand: base64Binary;
 
 rand = random_base64Binary(16);
 
@@ -79,9 +79,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: string;
+let rand: string;
 
-for (loc i: integer = 1; i < 19; i = i + 1) {
+for (let i: integer = 1; i < 19; i = i + 1) {
     rand = random_digits(i);
 
     assert(length(rand) === i, "random_digits() failed!");
@@ -96,7 +96,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: string;
+let rand: string;
 
 assert(
     safe_evaluate(
@@ -115,7 +115,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: hexBinary;
+let rand: hexBinary;
 
 rand = random_hexBinary(16);
 
@@ -130,7 +130,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc rand: integer;
+let rand: integer;
 
 rand = random_integer(5, 10);
 

@@ -29,7 +29,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc service: object = service_get("adaptor-afw");
+let service: object = service_get("adaptor-afw");
 
 assert(service.serviceId === "adaptor-afw", "serviceId should be 'adaptor-afw'");
 

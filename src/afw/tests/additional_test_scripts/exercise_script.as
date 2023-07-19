@@ -14,7 +14,7 @@
 
 // There are still parts of this script that needs to be converted to assert()
 
-loc s: string;
+let s: string;
 
 const deep: object = {
     a: 'a',
@@ -71,7 +71,7 @@ assert(deep.c?.c2 == 'c2');
 
 // Test ??
 
-loc nc: string;
+let nc: string;
 
 assert(nc == undefined);
 
@@ -85,7 +85,7 @@ assert(nc == "Default value");
 
 // Test ??=
 
-loc nc2: string;
+let nc2: string;
 
 assert(!is_defined(nc2));
 
@@ -170,12 +170,12 @@ assert(test9('1', '2') == '2');
 assert(test9('1') == 'b is missing');
 
 // Trailing comma in list
-loc y1: list = [1,3,2,4,];
+let y1: list = [1,3,2,4,];
 
 assert(string(y1) == string([1,3,2,4])); //FIXME Need to support list ==
 
 // Trailing comma in object
-loc y2: object = {a:1,b:2,};
+let y2: object = {a:1,b:2,};
 
 assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 
@@ -216,16 +216,16 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 }
 
 
-loc hello: string = "Defined outside block";
+let hello: string = "Defined outside block";
 {
-    loc hello: any = "Defined inside block";
+    let hello: any = "Defined inside block";
     assert(hello == 'Defined inside block');
 }
 assert(hello == 'Defined outside block');
 
 
 // Test list destructure
-loc world: any = "?";
+let world: any = "?";
 
 [hello, , world] = ["entry1", "entry2", "entry3" ];
 assert( ( hello + " " + world ) == 'entry1 entry3');
@@ -240,13 +240,13 @@ assert( ( hello + " " + world ) == 'entry1 entry3');
 assert( ( hello + " " + world ) == 'entry1 entry2');
 
 // Test 3 list destructure
-loc rest: string;
+let rest: string;
 [hello, world, ...rest] = ["entry1", "entry2", "entry3", "entry4" ];
 assert( ( hello + " " + world + ' rest=' + string(rest)) == 'entry1 entry2 rest=["entry3","entry4"]');
 
 //
 const immutable: string = "I can't change";
-loc obj: object = {hello: "OHello", world: "OWorld!", la:"LA", la2:"LA"};
+let obj: object = {hello: "OHello", world: "OWorld!", la:"LA", la2:"LA"};
 
 // Test object destructure
 ({hello, world} = obj);
@@ -275,15 +275,15 @@ assert( ( hello + " " + world + ' rest=' + string(rest)) == 'OHello OWorld! rest
     assert( ( hello + " " + y + extra + extra2 + extra3 ) == 'OHello OWorld!?****+crazy');
 }
 
-// Test loc
-loc x: string = "Defined Variable";
+// Test let
+let x: string = "Defined Variable";
 assert(x == 'Defined Variable');
 
 // Test assign
 x = "Changed variable";
 assert(x == 'Changed variable');
 
-loc num: integer;
+let num: integer;
 
 // Test +=
 num = 21;
@@ -312,7 +312,7 @@ assert(x == 'outside foreach');
 // Test foreach
 {
     s = '';
-    foreach loc x: string of ['a','b','c'] {
+    foreach let x: string of ['a','b','c'] {
         s += x;
     }
     assert( s == 'abc' );
@@ -345,7 +345,7 @@ print("\n");
 /*
 print('\nTest foreach using same retrieve_objects with object destructure - should print >>> with info for each data type\n');
 {
-    foreach loc {dataType, brief} of retrieve_objects('afw','_AdaptiveDataType_') {
+    foreach let {dataType, brief} of retrieve_objects('afw','_AdaptiveDataType_') {
         print('>>> ' + dataType + ' - ' + brief + '\n');
     }    
 }
@@ -533,8 +533,8 @@ assert(abc("Function", " abc ", "worked!") == 'Function abc worked!');
 assert(abc("Function", " abc ", "worked twice!") == 'Function abc worked twice!');
 
 s = '';
-loc i: integer;
-loc j: integer;
+let i: integer;
+let j: integer;
 for (i = 1; i < 5; i = i + 1) {
     s += string(i) + '\n';
 }

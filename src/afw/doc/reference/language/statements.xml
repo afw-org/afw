@@ -18,9 +18,9 @@
         <section>
             <title>Example</title>
             <code><![CDATA[{
-    loc x = 1;
-    loc y = 2;
-    loc z = x + y;
+    let x = 1;
+    let y = 2;
+    let z = x + y;
     print(z);
 }]]></code>
         </section>
@@ -45,9 +45,9 @@
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[loc x = 1;
-loc {y} = { y: 2 };
-loc [z] = [ 3 ];]]></code>
+            <code><![CDATA[let x = 1;
+let {y} = { y: 2 };
+let [z] = [ 3 ];]]></code>
         </section>
     </section>
     <section>
@@ -100,7 +100,7 @@ loc [z] = [ 3 ];]]></code>
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[loc x = 0;
+            <code><![CDATA[let x = 0;
 do {
     x = x + 1;
 } while (x < 10);]]></code>
@@ -116,7 +116,7 @@ do {
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[for (loc i = 0; i < 10; i = i + 1) {
+            <code><![CDATA[for (let i = 0; i < 10; i = i + 1) {
     print(i);
 }]]></code>
         </section>
@@ -128,7 +128,7 @@ do {
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[foreach loc x of [1, 2, 3] {
+            <code><![CDATA[foreach let x of [1, 2, 3] {
     print(x);
 }]]></code>
         </section>
@@ -169,11 +169,11 @@ function func2(a, b) : a + b;]]></code>
     </section>
     <section>
         <title>Loc</title>
-        <image generated-src="ebnf/syntax/diagram/LocStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
         <paragraph>
-            The <literal>loc</literal> statement declares a local variable.
+            The <literal>let</literal> statement declares a local variable.
         </paragraph>
-        <code><![CDATA[loc x = 1;]]></code>
+        <code><![CDATA[let x = 1;]]></code>
     </section>
     <section>
         <title>Return</title>

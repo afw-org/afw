@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 
-loc inCatch = false;
+let inCatch = false;
 
 try {
   throw "expected_message";
@@ -40,7 +40,7 @@ catch(e){
 }
 
 // CHECK#2
-loc b="exception #1";
+let b="exception #1";
 try{
   throw b;
 }
@@ -67,8 +67,8 @@ catch(e){
 }
 
 // CHECK#2
-loc b="exception";
-loc a=" #1";
+let b="exception";
+let a=" #1";
 try{
   throw b+a;
 }
@@ -87,8 +87,8 @@ catch(e){
 
 
 // CHECK#1
-loc a=true;
-loc b=false;
+let a=true;
+let b=false;
 try{
   throw ((a&&(!b))?"exception":" #1");
 }
@@ -106,7 +106,7 @@ catch(e){
 
 
 // CHECK#1
-loc i=0;
+let i=0;
 function adding1(){
   i = i + 1;
   return string(1);

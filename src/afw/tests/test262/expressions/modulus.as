@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 
-loc x = 18
+let x = 18
 
 %
 
@@ -35,7 +35,7 @@ assert(x === 1);
 
 
 function MyError() {}
-loc trace;
+let trace;
 
 // ?GetValue(lhs) throws.
 trace = "";
@@ -232,22 +232,22 @@ if (1 % 2 !== 1) {
 }
 
 //CHECK#2
-loc x = 1;
+let x = 1;
 if (x % 2 !== 1) {
-  throw '#2: loc x = 1; x % 2 === 1. Actual: ' + (x % 2);
+  throw '#2: let x = 1; x % 2 === 1. Actual: ' + (x % 2);
 }
 
 //CHECK#3
-loc y = 2;
+let y = 2;
 if (1 % y !== 1) {
-  throw '#3: loc y = 2; 1 % y === 1. Actual: ' + (1 % y);
+  throw '#3: let y = 2; 1 % y === 1. Actual: ' + (1 % y);
 }
 
 //CHECK#4
 x = 1;
 y = 2;
 if (x % y !== 1) {
-  throw '#4: loc x = 1; loc y = 2; x % y === 1. Actual: ' + (x % y);
+  throw '#4: let x = 1; let y = 2; x % y === 1. Actual: ' + (x % y);
 }
 
 
@@ -279,17 +279,17 @@ x % 1;
 
 
 //CHECK#1
-loc x = { valueOf: function () { throw "x"; } };
-loc y = { valueOf: function () { throw "y"; } };
+let x = { valueOf: function () { throw "x"; } };
+let y = { valueOf: function () { throw "y"; } };
 try {
    x % y;
-   throw '#1.1: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x % y throw "x". Actual: ' + (x % y);
+   throw '#1.1: let x = { valueOf: function () { throw "x"; } }; let y = { valueOf: function () { throw "y"; } }; x % y throw "x". Actual: ' + (x % y);
 } catch (e) {
    if (e === "y") {
      throw '#1.2: ToNumber(first expression) is called first, and then ToNumber(second expression)';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x % y throw "x". Actual: ' + (e);
+       throw '#1.3: let x = { valueOf: function () { throw "x"; } }; let y = { valueOf: function () { throw "y"; } }; x % y throw "x". Actual: ' + (e);
      }
    }
 }
@@ -304,17 +304,17 @@ try {
 
 
 //CHECK#1
-loc x = function () { throw "x"; };
-loc y = function () { throw "y"; };
+let x = function () { throw "x"; };
+let y = function () { throw "y"; };
 try {
    x() % y();
-   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (x() % y());
+   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (x() % y());
 } catch (e) {
    if (e === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (e);
+       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (e);
      }
    }
 }
@@ -1103,7 +1103,7 @@ function truncate(x) {
   }
 }
 
-loc x, y;
+let x, y;
 
 //CHECK#1
 x = 1.3;

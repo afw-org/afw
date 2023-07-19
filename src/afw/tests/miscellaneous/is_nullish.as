@@ -78,7 +78,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer;
+let x: integer;
 
 assert(is_nullish(x) === true);
 

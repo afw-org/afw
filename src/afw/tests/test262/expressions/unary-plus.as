@@ -81,15 +81,15 @@ if (+(+1) !== 1) {
 }
 
 //CHECK#3
-loc x = 1;
+let x = 1;
 if (+x !== 1) {
-  throw '#3: loc x = +1; -x === 1. Actual: ' + (-x);
+  throw '#3: let x = +1; -x === 1. Actual: ' + (-x);
 }
 
 //CHECK#4
 x = 1;
 if (+(+x) !== 1) {
-  throw '#4: loc x = 1; +(+x) === 1. Actual: ' + (+(+x));
+  throw '#4: let x = 1; +(+x) === 1. Actual: ' + (+(+x));
 }
 
 
@@ -219,8 +219,8 @@ if (is_NaN(+(void 0)) !== true) {
 */
 
 // CHECK#3
-if (is_NaN(+(evaluate(script("loc x;")))) !== true) {
-  throw '#3: +(evaluate(script("loc x;")) === Not-a-Number. Actual: ' + (+(evaluate(script("loc x;"))));
+if (is_NaN(+(evaluate(script("let x;")))) !== true) {
+  throw '#3: +(evaluate(script("let x;")) === Not-a-Number. Actual: ' + (+(evaluate(script("let x;"))));
 }
 
 

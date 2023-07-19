@@ -562,9 +562,9 @@ afw_function_execute_if(
 
 
 /*
- * Adaptive function: loc
+ * Adaptive function: let
  *
- * afw_function_execute_loc
+ * afw_function_execute_let
  *
  * See afw_function_bindings.h for more information.
  *
@@ -579,7 +579,7 @@ afw_function_execute_if(
  * Declaration:
  *
  * ```
- *   function loc(
+ *   function let(
  *       name: (list string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
@@ -602,11 +602,11 @@ afw_function_execute_if(
  *   (any dataType) The value assigned.
  */
 const afw_value_t *
-afw_function_execute_loc(
+afw_function_execute_let(
     afw_function_execute_t *x)
 {
     /* Only allowed in a block value. See afw_value_block.c */
-    AFW_THROW_ERROR_Z(general, "Misplaced loc()", x->xctx);
+    AFW_THROW_ERROR_Z(general, "Misplaced let()", x->xctx);
 }
 
 

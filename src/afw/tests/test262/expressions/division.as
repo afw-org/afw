@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 
-loc x = 18
+let x = 18
 
 /
 
@@ -34,10 +34,10 @@ assert(x ===  1);
 #!/usr/bin/env afw
 
 
-loc of = 4;
-loc g = 2;
+let of = 4;
+let g = 2;
 
-loc notRegExp = eval('{[42]}.8/of/g');
+let notRegExp = eval('{[42]}.8/of/g');
 
 assert(notRegExp ===  .1);
 
@@ -49,11 +49,11 @@ assert(notRegExp ===  .1);
 #!/usr/bin/env afw
 
 
-loc instance = 60;
-loc of = 6;
-loc g = 2;
+let instance = 60;
+let of = 6;
+let g = 2;
 
-loc notRegExp = instance/of/g;
+let notRegExp = instance/of/g;
 
 assert(notRegExp ===  5);
 
@@ -130,22 +130,22 @@ if (1 / 1 !== 1) {
 }
 
 //CHECK#2
-loc x = 1;
+let x = 1;
 if (x / 1 !== 1) {
-  throw '#2: loc x = 1; x / 1 === 1. Actual: ' + (x / 1);
+  throw '#2: let x = 1; x / 1 === 1. Actual: ' + (x / 1);
 }
 
 //CHECK#3
-loc y = 1;
+let y = 1;
 if (1 / y !== 1) {
-  throw '#3: loc y = 1; 1 / y === 1. Actual: ' + (1 / y);
+  throw '#3: let y = 1; 1 / y === 1. Actual: ' + (1 / y);
 }
 
 //CHECK#4
 x = 1;
 y = 1;
 if (x / y !== 1) {
-  throw '#4: loc x = 1; loc y = 1; x / y === 1. Actual: ' + (x / y);
+  throw '#4: let x = 1; let y = 1; x / y === 1. Actual: ' + (x / y);
 }
 
 
@@ -198,17 +198,17 @@ catch (e) {
 
 
 //CHECK#1
-loc x = function () { throw "x"; };
-loc y = function () { throw "y"; };
+let x = function () { throw "x"; };
+let y = function () { throw "y"; };
 try {
    x() / y();
-   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (x() / y());
+   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (x() / y());
 } catch (e) {
    if (e === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (e);
+       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (e);
      }
    }
 }

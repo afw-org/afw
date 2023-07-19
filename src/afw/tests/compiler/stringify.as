@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: string;
+let result: string;
 
 result = stringify(true);
 assert(result == "true");
@@ -29,7 +29,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: string;
+let result: string;
 
 result = stringify(0);
 assert(result == "0");
@@ -52,7 +52,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: string;
+let result: string;
 
 result = stringify("abc");
 assert(result == "\"abc\"");
@@ -69,7 +69,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: string;
+let result: string;
 
 result = stringify([]);
 assert(result == "[]");
@@ -89,8 +89,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object;
-loc result: string;
+let obj: object;
+let result: string;
 
 obj = {
     "a": "b",
@@ -110,8 +110,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object;
-loc result: string;
+let obj: object;
+let result: string;
 
 obj = {
     "a": "b",

@@ -76,22 +76,22 @@ if (1 < 2 !== true) {
 }
 
 //CHECK#2
-loc x = 1;
+let x = 1;
 if (x < 2 !== true) {
-  throw '#2: loc x = 1; x < 2 === true';
+  throw '#2: let x = 1; x < 2 === true';
 }
 
 //CHECK#3
-loc y = 2;
+let y = 2;
 if (1 < y !== true) {
-  throw '#3: loc y = 2; 1 < y === true';
+  throw '#3: let y = 2; 1 < y === true';
 }
 
 //CHECK#4
 x = 1;
 y = 2;
 if (x < y !== true) {
-  throw '#4: loc x = 1; loc y = 2; x < y === true';
+  throw '#4: let x = 1; let y = 2; x < y === true';
 }
 
 
@@ -124,17 +124,17 @@ x < 1;
 
 
 //CHECK#1
-loc x = { valueOf: function () { throw "x"; } };
-loc y = { valueOf: function () { throw "y"; } };
+let x = { valueOf: function () { throw "x"; } };
+let y = { valueOf: function () { throw "y"; } };
 try {
    x < y;
-   throw '#1.1: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x < y throw "x". Actual: ' + (x < y);
+   throw '#1.1: let x = { valueOf: function () { throw "x"; } }; let y = { valueOf: function () { throw "y"; } }; x < y throw "x". Actual: ' + (x < y);
 } catch (e) {
    if (e === "y") {
      throw '#1.2: ToNumber(first expression) is called first, and then ToNumber(second expression)';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = { valueOf: function () { throw "x"; } }; loc y = { valueOf: function () { throw "y"; } }; x < y throw "x". Actual: ' + (e);
+       throw '#1.3: let x = { valueOf: function () { throw "x"; } }; let y = { valueOf: function () { throw "y"; } }; x < y throw "x". Actual: ' + (e);
      }
    }
 }
@@ -149,17 +149,17 @@ try {
 
 
 //CHECK#1
-loc x = function () { throw "x"; };
-loc y = function () { throw "y"; };
+let x = function () { throw "x"; };
+let y = function () { throw "y"; };
 try {
    x() < y();
-   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (x() < y());
+   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (x() < y());
 } catch (e) {
    if (e === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (e);
+       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (e);
      }
    }
 }
@@ -249,9 +249,9 @@ if (("x" + "y" < "x") !== false) {
 }
 
 //CHECK#6
-loc x = "x";
+let x = "x";
 if ((x + "y" < x) !== false) {
-  throw '#6: loc x = "x"; (x + "y" < x) === false';
+  throw '#6: let x = "x"; (x + "y" < x) === false';
 }
 
 
@@ -288,9 +288,9 @@ if (("x" < "x" + "y") !== true) {
 }
 
 //CHECK#6
-loc x = "x";
+let x = "x";
 if ((x < x + "y") !== true) {
-  throw '#6: loc x = "x"; (x < x + "y") === true';
+  throw '#6: let x = "x"; (x < x + "y") === true';
 }
 
 //CHECK#7

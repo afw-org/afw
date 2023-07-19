@@ -75,22 +75,22 @@ if ((1 != 1) !== false) {
 }
 
 //CHECK#2
-loc x = 1;
+let x = 1;
 if ((x != 1) !== false) {
-  throw '#2: loc x = 1; (x != 1) === false';
+  throw '#2: let x = 1; (x != 1) === false';
 }
 
 //CHECK#3
-loc y = 1;
+let y = 1;
 if ((1 != y) !== false) {
-  throw '#3: loc y = 1; (1 != y) === false';
+  throw '#3: let y = 1; (1 != y) === false';
 }
 
 //CHECK#4
 x = 1;
 y = 1;
 if ((x != y) !== false) {
-  throw '#4: loc x = 1; loc y = 1; (x != y) === false';
+  throw '#4: let x = 1; let y = 1; (x != y) === false';
 }
 
 
@@ -123,17 +123,17 @@ x != 1;
 
 
 //CHECK#1
-loc x = function () { throw "x"; };
-loc y = function () { throw "y"; };
+let x = function () { throw "x"; };
+let y = function () { throw "y"; };
 try {
    x() != y();
-   throw '#1.1: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (x() != y());
+   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (x() != y());
 } catch (e) {
    if (e === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
      if (e !== "x") {
-       throw '#1.3: loc x = function () { throw "x"; }; loc y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (e);
+       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (e);
      }
    }
 }
@@ -370,8 +370,8 @@ if ((undefined != undefined) !== false) {
 }
 
 //CHECK#3
-if ((undefined != evaluate(script("loc x;"))) !== false) {
-  throw '#3: (undefined != evaluate(script("loc x"))) === false';
+if ((undefined != evaluate(script("let x;"))) !== false) {
+  throw '#3: (undefined != evaluate(script("let x"))) === false';
 }
 
 //CHECK#4

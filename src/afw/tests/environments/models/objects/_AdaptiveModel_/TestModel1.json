@@ -38,7 +38,7 @@
         },
         "MyObjectType4": { 
             "mappedObjectType": "TestObjectType2",  
-            "onRetrieveObjects": "#! afw\n\nloc newCriteria: object = { filter: { op: \"eq\", property: \"TestString1\", value: \"This is a test string.\"} };\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,current::mappedObjectType,newCriteria,current::objectOptions);\nreturn null;",
+            "onRetrieveObjects": "#! afw\n\nlet  newCriteria: object = { filter: { op: \"eq\", property: \"TestString1\", value: \"This is a test string.\"} };\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,current::mappedObjectType,newCriteria,current::objectOptions);\nreturn null;",
             "propertyTypes": {
                 "MyTestString1": {
                     "dataType": "string",
@@ -59,8 +59,8 @@
             "propertyTypes": {
                 "TestOnPropertyList": {
                     "dataType": "list",
-                    "onGetProperty": "#! afw\n\nloc l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
-                    "onSetProperty": "#! afw\n\n//loc x = current::value[0];\nreturn \"x\";"
+                    "onGetProperty": "#! afw\n\nlet  l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
+                    "onSetProperty": "#! afw\n\n//let x = current::value[0];\nreturn \"x\";"
                 }
             }
         }

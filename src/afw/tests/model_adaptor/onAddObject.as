@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: object;
+let result: object;
 
 const uuid: string = generate_uuid();
 
@@ -36,7 +36,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: object;
+let result: object;
 
 const uuid: string = generate_uuid();
 

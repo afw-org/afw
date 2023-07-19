@@ -1303,7 +1303,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
  *    'in' |
  *    'instanceof' |
  *    'interface' |
- *    'loc' |
+ *    'let' |
  *    'return' |
  *    'switch' |
  *    'throw' |
@@ -1342,7 +1342,7 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, &afw_s_in)           ||
         afw_utf8_equal(s, &afw_s_instanceof)   ||
         afw_utf8_equal(s, &afw_s_interface)    ||
-        afw_utf8_equal(s, &afw_s_loc)          ||
+        afw_utf8_equal(s, &afw_s_let)          ||
         afw_utf8_equal(s, &afw_s_return)       ||
         afw_utf8_equal(s, &afw_s_switch)       ||
         afw_utf8_equal(s, &afw_s_throw)        ||

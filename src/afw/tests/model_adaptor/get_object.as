@@ -13,7 +13,7 @@
 #!/usr/bin/env afw
 
 // get the mapped object
-loc obj: object = get_object("model", "MyObjectType1", "Test1");
+let obj: object = get_object("model", "MyObjectType1", "Test1");
 
 // we should have one object to start with
 assert(obj !== undefined);
@@ -50,7 +50,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object;
+let obj: object;
 
 obj = get_object("model", "MyObjectType1", "Test1", 
     { 

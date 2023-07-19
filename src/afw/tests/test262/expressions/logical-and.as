@@ -25,12 +25,12 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: boolean = false;
+let x: boolean = false;
 if (((x = true) && x) !== true) {
     throw "#1: ((x = true) && x) === true";
 }
 
-loc x: boolean = false;
+let x: boolean = false;
 if ((x && (x = true)) !== false) {
     throw "#2: (x && (x = true)) === false";
 }
@@ -43,8 +43,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x1: integer = 0;
-loc y1: integer = 0;
+let x1: integer = 0;
+let y1: integer = 0;
 
 function x(): any {
     x1 = 1;

@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
+let count: integer = 0;
 const obj: object = {a: true};
 do {
     count = count + 1;
@@ -27,7 +27,7 @@ assert(count == 1, "count == 1");
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer;
+let count: integer;
 const obj: object = {a: true};
 for (count = 0; obj?.a; count = count + 1) {
     if (count > 0) break;
@@ -42,7 +42,7 @@ assert(count == 1, "count == 1");
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
+let count: integer = 0;
 const obj: object = {a: true};
 while (obj?.a) {
     count = count + 1;
@@ -168,7 +168,7 @@ assert(undefined === undf?.b, "undefined === undf?.b");
 #!/usr/bin/env afw
 
 const a: any = undefined;
-loc x: integer = 1;
+let x: integer = 1;
 
 a?.[++x];
 a?.b.c(++x).d;

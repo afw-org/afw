@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc in_do: integer;
+let in_do: integer;
 
 do in_do=1; while (false);
 
@@ -20,12 +20,12 @@ assert(in_do === 1, "the inner statement of a do-loop should be evaluated before
 return 0;
 
 //? test: do-while-2
-//? description: checking if execution of "do loc x: integer = 1; loc y: integer = 2; while (false)" fails
+//? description: checking if execution of "do let x: integer = 1; let y: integer = 2; while (false)" fails
 //? expect: error:Parse error at offset 43 around line 3 column 24: Expecting while
 //? source: ...
 #!/usr/bin/env afw
 
-do loc x: integer = 1; loc y: integer = 2; while (false);
+do let x: integer = 1; let y: integer = 2; while (false);
 
 return 0;
 
@@ -35,8 +35,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc in_do_before_break: string;
-loc in_do_after_break: string;
+let in_do_before_break: string;
+let in_do_after_break: string;
 
 do {
     in_do_before_break = "reached";

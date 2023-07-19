@@ -11,8 +11,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
-loc y;
+let x;
+let y;
 
 //CHECK#1
 x = 1;
@@ -46,7 +46,7 @@ if (x !== 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x = y;
+let x = y;
 
 
 //? test: 11.13.1_A3.1
@@ -56,7 +56,7 @@ loc x = y;
 #!/usr/bin/env afw
 
 //CHECK#1
-loc x = 1;
+let x = 1;
 if (x !== 1) {
   throw '#1: var x = 1; x === 1. Actual: ' + (x);
 }
@@ -76,7 +76,7 @@ if (x !== 1) {
 #!/usr/bin/env afw
 
 // This seems to work when perhaps it shouldn't?
-loc x = x;
+let x = x;
 
 
 //? test: S8.12.5_A2
@@ -85,7 +85,7 @@ loc x = x;
 //? source: ...
 #!/usr/bin/env afw
 
-loc _map={"1":"one", "two":2};
+let _map={"1":"one", "two":2};
 
 //////////////////////////////////////////////////////////////////////////////
 //CHECK#1
@@ -131,7 +131,7 @@ if (_map.two !== "duo") {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x
 =
@@ -149,7 +149,7 @@ if (x !== true) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj = {};
+let obj = {};
 
 // FIXME don't know if we should support this
 obj.bre\u0061k = 42;
@@ -163,7 +163,7 @@ assert(property_exists(obj, "break"));
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj = {};
+let obj = {};
 
 obj.default = 42;
 
@@ -186,7 +186,7 @@ assert(property_exists(obj, "default"));
 #!/usr/bin/env afw
 
 function f() {
-    loc a, b = 2;
+    let a, b = 2;
     (a = b) = 1;
 }
 
@@ -197,7 +197,7 @@ function f() {
 //? source: ...
 #!/usr/bin/env afw
 
-loc a, b = 2;
+let a, b = 2;
 (a = b) = 1;
 
 
@@ -216,7 +216,7 @@ true = 42;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 (x) = 1;
 
@@ -230,8 +230,8 @@ assert(x === 1);
 //? source: ...
 #!/usr/bin/env afw
 
-loc count = 0;
-loc base = null;
+let count = 0;
+let base = null;
 
 // we can't test this because assignment statement can't be used in expression
 base.prop = count += 1;
@@ -307,7 +307,7 @@ null = 42;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x;
+let x;
 
 x	=	'U+0009';
 if (x !== 'U+0009') {

@@ -11,8 +11,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc s: string = "";
-loc x: integer = 0;
+let s: string = "";
+let x: integer = 0;
 do {
     s += string(x);
     x += 1;
@@ -21,7 +21,7 @@ do {
 } while (true);
 assert(s == "01234", "continue did not work inside do/while");
 
-foreach loc y: string of [0, 1, 2, 3, 4, 5] {
+foreach let y: string of [0, 1, 2, 3, 4, 5] {
     if (y > 1)
         continue;
 
@@ -37,8 +37,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc sum: integer = 0;
-for (loc i: integer = 1; i <= 10; i = i + 1) {
+let sum: integer = 0;
+for (let i: integer = 1; i <= 10; i = i + 1) {
     if (true)
         continue
     ; else {}
@@ -55,9 +55,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 continue;
-loc y: integer = 2;
+let y: integer = 2;
 
 return 0;
 
@@ -68,23 +68,23 @@ return 0;
 #!/usr/bin/env afw
 
 {
-    loc x: integer = 1;
+    let x: integer = 1;
     continue;
-    loc y: integer = 2;
+    let y: integer = 2;
 }
 
 return 0;
 
 //? test: continue-5
-//? description: nested loc bound for loops inner continue
+//? description: nested let bound for loops inner continue
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-for (loc x: integer = 0; x < 10;) {
+let count: integer = 0;
+for (let x: integer = 0; x < 10;) {
     x = x + 1;
-    for (loc y: integer = 0; y < 2;){
+    for (let y: integer = 0; y < 2;){
         y = y + 1;
         count = count + 1;
         continue;
@@ -96,15 +96,15 @@ assert(count === 20, string("The value of count was ", count));
 return 0;
 
 //? test: continue-6
-//? description: nested loc bound for loops outer continue
+//? description: nested let bound for loops outer continue
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-for (loc x: integer = 0; x < 10;) {
+let count: integer = 0;
+for (let x: integer = 0; x < 10;) {
     x = x + 1;
-    for (loc y: integer = 0; y < 2;){
+    for (let y: integer = 0; y < 2;){
         y = y + 1;
         count = count + 1;        
     }
@@ -121,12 +121,12 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-for (loc x: integer = 0; x < 10;) {
+let count: integer = 0;
+for (let x: integer = 0; x < 10;) {
     x = x + 1;
     count = count + 1;
     {
-        loc x: string = "hello";
+        let x: string = "hello";
         continue;
     }    
 }

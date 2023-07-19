@@ -20,7 +20,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-{ const f = 0; loc f; }
+{ const f = 0; let f; }
 
 
 //? test: function-name-redeclaration-attempt-with-const
@@ -47,7 +47,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-{ function f() {}; loc f; }
+{ function f() {}; let f; }
 
 
 //? test: let-name-redeclaration-attempt-with-const
@@ -56,7 +56,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-{ loc f; const f = 0; }
+{ let f; const f = 0; }
 
 
 //? test: let-name-redeclaration-attempt-with-function
@@ -65,7 +65,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-{ loc f; function f() {}; }
+{ let f; function f() {}; }
 
 
 //? test: let-name-redeclaration-attempt-with-let
@@ -74,4 +74,4 @@
 //? source: ...
 #!/usr/bin/env afw
 
-{ loc f; loc f; }
+{ let f; let f; }

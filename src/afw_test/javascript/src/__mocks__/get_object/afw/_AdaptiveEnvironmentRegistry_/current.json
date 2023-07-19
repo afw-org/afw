@@ -30499,16 +30499,16 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "loc": {
+            "let": {
                 "afwCamelCaseFunctionLabel": "afwLoc",
                 "brief": "Declare one or more variables in the current block",
-                "camelCaseFunctionLabel": "loc",
+                "camelCaseFunctionLabel": "let",
                 "category": "script",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value.  These variables can be accessed and assigned different values from the current block and inner blocks.",
-                "functionId": "loc",
-                "functionLabel": "loc",
+                "functionId": "let",
+                "functionLabel": "let",
                 "functionSignature": "any((list string) name, any value?, (object _AdaptiveValueMeta_) type?)",
                 "functionDeclaration": "/* Declare one or more variables in the current block */\nany (\n    (list string) name,\n    any value?,\n    (object _AdaptiveValueMeta_) type?)",
                 "parameters": [

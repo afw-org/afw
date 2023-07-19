@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object = get_object("model", "MyObjectType1", "Test1");
+let obj: object = get_object("model", "MyObjectType1", "Test1");
 
 // we should have one object to start with
 assert(obj !== undefined);

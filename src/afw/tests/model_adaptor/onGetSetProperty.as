@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: object;
+let result: object;
 
 const uuid: string = generate_uuid();
 
@@ -26,8 +26,8 @@ result = add_object(
 assert((result.objectId == uuid), "objectId was not created with uuid properly");
 
 // now get it back
-loc obj = get_object("model", "MyObjectType6", uuid);
-loc x = obj.TestOnPropertyList;
+let obj = get_object("model", "MyObjectType6", uuid);
+let x = obj.TestOnPropertyList;
 assert((length(x) === 1), "Expected x to have length of 1, instead length = " + string(length(x)));
 assert((x[0] === "x"), "Expected 'x', got " + string(x));
 

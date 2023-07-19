@@ -72,12 +72,12 @@ if (1 + 1 !== 2) {
     throw "1 + 1 !== 2";
 }
 
-loc x = 1;
+let x = 1;
 if (x + 1 !== 2) {
     throw "x + 1 !== 2";
 }
 
-loc y = 1;
+let y = 1;
 if (1 + y !== 2) {
     throw "1 + y !== 2";
 }
@@ -113,7 +113,7 @@ x + 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x = 0;
+let x = 0;
 if ((x = 1) + x !== 2) {
     throw "x = 1 + x !== 2";
 }
@@ -131,8 +131,8 @@ if (x = (x = 1) !== 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x_1 = 0;
-loc y_1 = 0;
+let x_1 = 0;
+let y_1 = 0;
 function x(): any {
     x_1 = 1;
     throw "x";

@@ -25856,12 +25856,12 @@ afw_function_definition_le_script;
  * __________
  */
 
-/** @brief Function definition loc */
+/** @brief Function definition let */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_loc;
+afw_function_definition_let;
 
 /**
- * @brief Adaptive Function `loc`
+ * @brief Adaptive Function `let`
  * @param x function execute parameter.
  *
  * Declare one or more statically scoped variable locations local to the
@@ -25875,7 +25875,7 @@ afw_function_definition_loc;
  * Declaration:
  *
  * ```
- *   function loc(
+ *   function let(
  *       name: (list string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
@@ -25898,7 +25898,7 @@ afw_function_definition_loc;
  *   (any dataType) The value assigned.
  */
 const afw_value_t *
-afw_function_execute_loc(
+afw_function_execute_let(
     afw_function_execute_t *x);
 
 /** @brief Function definition lt<script> */

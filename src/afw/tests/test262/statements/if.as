@@ -23,7 +23,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc c: integer = 1;
+let c: integer = 1;
 if (false)
     throw "false in expression should be false";
 else
@@ -173,7 +173,7 @@ if(true)
   if (false)
     throw "if false in if should be false";
 
-loc c: integer=0;
+let c: integer=0;
 if(true)
   if (true)
     c=2;
@@ -210,7 +210,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc c: integer = 1;
+let c: integer = 1;
 if(!(true))
 	throw "if !(true) should be false";
 else
@@ -243,10 +243,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-if (true) loc x
+if (true) let x
 : integer;
 
-if (false) loc 
+if (false) let 
 y: integer = 1;
 
 return 0;

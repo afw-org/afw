@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [];
+let a: list = [];
 
 assert(length(a) == 0, "length(a) != 0");
 
@@ -23,7 +23,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [1,2,3,4,5];
+let a: list = [1,2,3,4,5];
 
 assert(length(a) == 5, "length(a) != 5");
 assert(a[0] == 1, "a[0] != 1");
@@ -40,10 +40,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc array: list = [[1,2], [3], []];
+let array: list = [[1,2], [3], []];
 assert(length(array) === 3, "length(array) != 3");
 
-loc subarray: list = array[0];
+let subarray: list = array[0];
 assert(length(subarray) === 2, "length(subarray) != 2");
 
 subarray = array[1];
@@ -64,7 +64,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [{a: 0, ...unresolvableReference}];
+let a: list = [{a: 0, ...unresolvableReference}];
 
 return 0;
 
@@ -74,7 +74,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [0, ...unresolvableReference];
+let a: list = [0, ...unresolvableReference];
 
 return 0;
 
@@ -85,7 +85,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [...unresolvableReference];
+let a: list = [...unresolvableReference];
 
 return 0;
 
@@ -95,7 +95,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [{...unresolvableReference}];
+let a: list = [{...unresolvableReference}];
 
 return 0;
 
@@ -105,7 +105,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [1, 2, 3, ...[]];
+let a: list = [1, 2, 3, ...[]];
 
 assert(length(a) === 3, "length(a) != 3");
 assert(a[0] === 1, "a[0] != 1");
@@ -120,7 +120,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [5, ...[6, 7, 8], 9];
+let a: list = [5, ...[6, 7, 8], 9];
 assert(length(a) === 5, "length(a) != 5");
 assert(a[0] === 5, "a[0] != 5");
 assert(a[1] === 6, "a[1] != 6");
@@ -136,9 +136,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc o: object = {a: 2, b: 3};
-loc o2: object = {c: 4, d: 5};
-loc a: list = [{...o, ...o2}];
+let o: object = {a: 2, b: 3};
+let o2: object = {c: 4, d: 5};
+let a: list = [{...o, ...o2}];
 
 assert(length(a) === 1, "length(a) != 1");
 assert(a[0].a === 2, "a[0].a != 2");
@@ -154,7 +154,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [...[]];
+let a: list = [...[]];
 assert(length(a) === 0, "length(a) != 0");
 
 return 0;
@@ -165,7 +165,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc a: list = [...[3, 4, 5]];
+let a: list = [...[3, 4, 5]];
 assert(length(a) === 3, "length(a) != 3");
 
 return 0;

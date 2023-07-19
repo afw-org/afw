@@ -11,10 +11,10 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc array: list = [0, 'a', true, false, null];
-loc i: integer = 0;
+let array: list = [0, 'a', true, false, null];
+let i: integer = 0;
 
-foreach loc value: any of array {
+foreach let value: any of array {
     assert(value === array[i], string("element at index ", i, " is not equal"));
     i = i + 1;
 }
@@ -27,10 +27,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc array: list = [0, 1, 2];
-loc i: integer = 0;
+let array: list = [0, 1, 2];
+let i: integer = 0;
 
-foreach loc x: integer of array {
+foreach let x: integer of array {
     i = i + 1;
     break;
 
@@ -45,10 +45,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc array: list = [0, 1, 2];
-loc i: integer = 0;
+let array: list = [0, 1, 2];
+let i: integer = 0;
 
-foreach loc x: integer of array {
+foreach let x: integer of array {
     i = i + 1;
     continue;
 
@@ -63,10 +63,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc array: list = [0, 1, 2];
-loc i: integer = 0;
+let array: list = [0, 1, 2];
+let i: integer = 0;
 
-foreach loc x: integer of array {
+foreach let x: integer of array {
     i = i + 1;
     return 0;
 

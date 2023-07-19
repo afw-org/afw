@@ -11,8 +11,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-for (loc i: integer = 0; false;) {
+let count: integer = 0;
+for (let i: integer = 0; false;) {
     count = count + 1;
 }
 assert(count === 0);
@@ -25,8 +25,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-for (loc i: integer = 0; null;) {
+let count: integer = 0;
+for (let i: integer = 0; null;) {
     count = count + 1;
 }
 assert(count === 0);
@@ -39,10 +39,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc str: string;
+let str: string;
 str = "";
 
-for (loc index: integer = 0; index < 10; index = index + 1) {
+for (let index: integer = 0; index < 10; index = index + 1) {
     if (index < 5) continue;
     str = str + string(index);
 }
@@ -56,10 +56,10 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc str: string;
+let str: string;
 str = "";
 
-for (loc index: integer = 0; index < 10; index = index + 1) {
+for (let index: integer = 0; index < 10; index = index + 1) {
     if (index > 5) break;
     str += string(index);
 }
@@ -73,7 +73,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-for (loc index: integer = 0; index < 6; index = index + 1) {
+for (let index: integer = 0; index < 6; index = index + 1) {
     ;
 }
 
@@ -85,8 +85,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc i: integer;
-loc j: integer;
+let i: integer;
+let j: integer;
 
 for (i = 0; i < 10; i = i + 1) {}
 assert(i === 10, "Expected i = 10, got " + string(i));
@@ -128,7 +128,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc i: integer;
+let i: integer;
 for (i = 0; i < 10; i = i + 1) {
     i = i * 2;
     break;
@@ -148,7 +148,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-for (loc index: integer = 0; index < 10; index = index + 1; index = index - 1);
+for (let index: integer = 0; index < 10; index = index + 1; index = index - 1);
 
 //? test: for-9
 //? description: Blocks not allowed in third expression
@@ -156,7 +156,7 @@ for (loc index: integer = 0; index < 10; index = index + 1; index = index - 1);
 //? source: ...
 #!/usr/bin/env afw
 
-for (loc index: integer = 0; index < 100; {index = index + 1; index = index * 2;}) {
+for (let index: integer = 0; index < 100; {index = index + 1; index = index * 2;}) {
     ;
 }
 
@@ -168,7 +168,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-for (loc index: integer = 0; {index = index + 1; index < 100;}; index = index * 2;) {
+for (let index: integer = 0; {index = index + 1; index < 100;}; index = index * 2;) {
     ;
 }
 
@@ -180,7 +180,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc index: integer;
+let index: integer;
 for ({index = 0; index = index + 1;}; index < 100; index = index * 2;) {
     ;
 }
@@ -193,9 +193,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc value: integer;
+let value: integer;
 
-for (loc [x: integer] = [23]; ; ) {
+for (let [x: integer] = [23]; ; ) {
     value = x;
     break;
 }
@@ -210,7 +210,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-for (; false; ) loc
+for (; false; ) let
 x : integer = 1;
 
 return 0;

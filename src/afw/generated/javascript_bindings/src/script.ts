@@ -473,11 +473,11 @@ export function afwLeScript(client : any, arg1 : any, arg2 : any) : any {
  * 
  * @returns {} The value assigned.
  */
-export function afwLoc(client : any, name : any[], value? : any, type? : object) : any {
+export function afwLet(client : any, name : any[], value? : any, type? : object) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "loc";
+    _action["function"] = "let";
     _action["name"] = name;
 
     if (value !== undefined)

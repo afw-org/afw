@@ -87,11 +87,11 @@ impl_set_variable(
         afw_xctx_define_variable(name, value, xctx);
         break;
 
-    case afw_compile_assignment_type_loc:
+    case afw_compile_assignment_type_let:
         afw_xctx_define_variable(name, value, xctx);
         break;
 
-    case afw_compile_assignment_type_define_loc_if_needed:
+    case afw_compile_assignment_type_define_if_needed:
         afw_xctx_set_local_variable(name, value, xctx);
         break;
 
@@ -865,7 +865,7 @@ afw_value_block_evaluate_try(
                 error_value = afw_value_create_object(error_object, p, xctx);
                 /// @fixme Assignment type is not correct when frames used
                 impl_assign_value(argv[4], error_value,
-                    afw_compile_assignment_type_loc, p, xctx);            
+                    afw_compile_assignment_type_let, p, xctx);            
             }
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[3], p, xctx);
@@ -1118,18 +1118,18 @@ afw_value_block_evaluate_statement(
             xctx->error->contextual = saved_contextual;
             break;
 
-        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LOC:
+        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET:
             afw_xctx_evaluation_stack_push_value(statement, xctx);
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
             modified_x.argc = call->args.argc;
             modified_x.argv = call->args.argv;
-            modified_x.function = &afw_function_definition_loc;
+            modified_x.function = &afw_function_definition_let;
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
             result = impl_assign(modified_x.argv[1], AFW_FUNCTION_ARGV(2),
-                afw_compile_assignment_type_loc,
+                afw_compile_assignment_type_let,
                 p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);

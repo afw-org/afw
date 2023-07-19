@@ -12,16 +12,16 @@
 #!/usr/bin/env afw
 
 
-loc _ = 1;
+let _ = 1;
 assert(_ === 1);
 
-loc _x = 2;
+let _x = 2;
 assert(_x === 2);
 
-loc _$ = 3;
+let _$ = 3;
 assert(_$ === 3);
 
-loc __ = 4;
+let __ = 4;
 assert(__ === 4);
 
 
@@ -32,16 +32,16 @@ assert(__ === 4);
 #!/usr/bin/env afw
 
 
-loc x = 1;
+let x = 1;
 assert(x === 1);
 
-loc xx = 2;
+let xx = 2;
 assert(xx === 2);
 
-loc x$ = 3;
+let x$ = 3;
 assert(x$ === 3);
 
-loc x_ = 4;
+let x_ = 4;
 assert(x_ === 4);
 
 
@@ -52,7 +52,7 @@ assert(x_ === 4);
 //? source: ...
 #!/usr/bin/env afw
 
-loc case = 123;
+let case = 123;
 
 
 
@@ -63,7 +63,7 @@ loc case = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch = 123;
+let catch = 123;
 
 
 //? test: val-const
@@ -73,7 +73,7 @@ loc catch = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc const = 123;
+let const = 123;
 
 
 
@@ -84,7 +84,7 @@ loc const = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc continue = 123;
+let continue = 123;
 
 
 
@@ -95,7 +95,7 @@ loc continue = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc else = 123;
+let else = 123;
 
 
 
@@ -107,7 +107,7 @@ loc else = 123;
 #!/usr/bin/env afw
 
 
-loc false = 123;
+let false = 123;
 
 
 
@@ -119,7 +119,7 @@ loc false = 123;
 #!/usr/bin/env afw
 
 
-loc finally = 123;
+let finally = 123;
 
 
 
@@ -130,7 +130,7 @@ loc finally = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc for = 123;
+let for = 123;
 
 
 
@@ -141,7 +141,7 @@ loc for = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc function = 123;
+let function = 123;
 
 
 
@@ -152,7 +152,7 @@ loc function = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc if = 123;
+let if = 123;
 
 
 //? test: val-in
@@ -162,7 +162,7 @@ loc if = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc in = 123;
+let in = 123;
 
 
 //? test: val-null
@@ -172,7 +172,7 @@ loc in = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc null = 123;
+let null = 123;
 
 
 //? test: val-return
@@ -182,7 +182,7 @@ loc null = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc return = 123;
+let return = 123;
 
 
 //? test: vals-eng-alpha-lower
@@ -192,107 +192,107 @@ loc return = 123;
 #!/usr/bin/env afw
 
 
-loc a = 1;
+let a = 1;
 if (a !== 1) {
   throw '#a';
 }
-loc b = 1;
+let b = 1;
 if (b !== 1) {
   throw '#b';
 }
-loc c = 1;
+let c = 1;
 if (c !== 1) {
   throw '#c';
 }
-loc d = 1;
+let d = 1;
 if (d !== 1) {
   throw '#d';
 }
-loc e = 1;
+let e = 1;
 if (e !== 1) {
   throw '#e';
 }
-loc f = 1;
+let f = 1;
 if (f !== 1) {
   throw '#f';
 }
-loc g = 1;
+let g = 1;
 if (g !== 1) {
   throw '#g';
 }
-loc h = 1;
+let h = 1;
 if (h !== 1) {
   throw '#h';
 }
-loc i = 1;
+let i = 1;
 if (i !== 1) {
   throw '#i';
 }
-loc j = 1;
+let j = 1;
 if (j !== 1) {
   throw '#j';
 }
-loc k = 1;
+let k = 1;
 if (k !== 1) {
   throw '#k';
 }
-loc l = 1;
+let l = 1;
 if (l !== 1) {
   throw '#l';
 }
-loc m = 1;
+let m = 1;
 if (m !== 1) {
   throw '#m';
 }
-loc n = 1;
+let n = 1;
 if (n !== 1) {
   throw '#n';
 }
-loc o = 1;
+let o = 1;
 if (o !== 1) {
   throw '#o';
 }
-loc p = 1;
+let p = 1;
 if (p !== 1) {
   throw '#p';
 }
-loc q = 1;
+let q = 1;
 if (q !== 1) {
   throw '#q';
 }
-loc r = 1;
+let r = 1;
 if (r !== 1) {
   throw '#r';
 }
-loc s = 1;
+let s = 1;
 if (s !== 1) {
   throw '#s';
 }
-loc t = 1;
+let t = 1;
 if (t !== 1) {
   throw '#t';
 }
-loc u = 1;
+let u = 1;
 if (u !== 1) {
   throw '#u';
 }
-loc v = 1;
+let v = 1;
 if (v !== 1) {
   throw '#v';
 }
-loc w = 1;
+let w = 1;
 if (w !== 1) {
   throw '#w';
 }
-loc x = 1;
+let x = 1;
 if (x !== 1) {
   throw '#x';
 }
-loc y = 1;
+let y = 1;
 if (y !== 1) {
   throw '#y';
 }
-loc z = 1;
+let z = 1;
 if (z !== 1) {
   throw '#z';
 }
@@ -306,82 +306,82 @@ if (z !== 1) {
 #!/usr/bin/env afw
 
 
-loc A = 1;
+let A = 1;
 assert(A === 1);
 
-loc B = 1;
+let B = 1;
 assert(B === 1);
 
-loc C = 1;
+let C = 1;
 assert(C === 1);
 
-loc D = 1;
+let D = 1;
 assert(D === 1);
 
-loc E = 1;
+let E = 1;
 assert(E === 1);
 
-loc F = 1;
+let F = 1;
 assert(F === 1);
 
-loc G = 1;
+let G = 1;
 assert(G === 1);
 
-loc H = 1;
+let H = 1;
 assert(H === 1);
 
-loc I = 1;
+let I = 1;
 assert(I === 1);
 
-loc J = 1;
+let J = 1;
 assert(J === 1);
 
-loc K = 1;
+let K = 1;
 assert(K === 1);
 
-loc L = 1;
+let L = 1;
 assert(L === 1);
 
-loc M = 1;
+let M = 1;
 assert(M === 1);
 
-loc N = 1;
+let N = 1;
 assert(N === 1);
 
-loc O = 1;
+let O = 1;
 assert(O === 1);
 
-loc P = 1;
+let P = 1;
 assert(P === 1);
 
-loc Q = 1;
+let Q = 1;
 assert(Q === 1);
 
-loc R = 1;
+let R = 1;
 assert(R === 1);
 
-loc S = 1;
+let S = 1;
 assert(S === 1);
 
-loc T = 1;
+let T = 1;
 assert(T === 1);
 
-loc U = 1;
+let U = 1;
 assert(U === 1);
 
-loc V = 1;
+let V = 1;
 assert(V === 1);
 
-loc W = 1;
+let W = 1;
 assert(W === 1);
 
-loc X = 1;
+let X = 1;
 assert(X === 1);
 
-loc Y = 1;
+let Y = 1;
 assert(Y === 1);
 
-loc Z = 1;
+let Z = 1;
 assert(Z === 1);
 
 
@@ -394,103 +394,103 @@ assert(Z === 1);
 #!/usr/bin/env afw
 
 
-loc а = 1;
+let а = 1;
 assert(а === 1);
 
-loc б = 1;
+let б = 1;
 assert(б === 1);
 
-loc в = 1;
+let в = 1;
 assert(в === 1);
 
-loc г = 1;
+let г = 1;
 assert(г === 1);
 
-loc д = 1;
+let д = 1;
 assert(д === 1);
 
-loc е = 1;
+let е = 1;
 assert(е === 1);
 
-loc ж = 1;
+let ж = 1;
 assert(ж === 1);
 
-loc з = 1;
+let з = 1;
 assert(з === 1);
 
-loc и = 1;
+let и = 1;
 assert(и === 1);
 
-loc й = 1;
+let й = 1;
 assert(й === 1);
 
-loc к = 1;
+let к = 1;
 assert(к === 1);
 
-loc л = 1;
+let л = 1;
 assert(л === 1);
 
-loc м = 1;
+let м = 1;
 assert(м === 1);
 
-loc н = 1;
+let н = 1;
 assert(н === 1);
 
-loc о = 1;
+let о = 1;
 assert(о === 1);
 
-loc п = 1;
+let п = 1;
 assert(п === 1);
 
-loc р = 1;
+let р = 1;
 assert(р === 1);
 
-loc с = 1;
+let с = 1;
 assert(с === 1);
 
-loc т = 1;
+let т = 1;
 assert(т === 1);
 
-loc у = 1;
+let у = 1;
 assert(у === 1);
 
-loc ф = 1;
+let ф = 1;
 assert(ф === 1);
 
-loc х = 1;
+let х = 1;
 assert(х === 1);
 
-loc ц = 1;
+let ц = 1;
 assert(ц === 1);
 
-loc ч = 1;
+let ч = 1;
 assert(ч === 1);
 
-loc ш = 1;
+let ш = 1;
 assert(ш === 1);
 
-loc щ = 1;
+let щ = 1;
 assert(щ === 1);
 
-loc ъ = 1;
+let ъ = 1;
 assert(ъ === 1);
 
-loc ы = 1;
+let ы = 1;
 assert(ы === 1);
 
-loc ь = 1;
+let ь = 1;
 assert(ь === 1);
 
-loc э = 1;
+let э = 1;
 assert(э === 1);
 
-loc ю = 1;
+let ю = 1;
 assert(ю === 1);
 
-loc я = 1;
+let я = 1;
 assert(я === 1);
 
-loc ё = 1;
+let ё = 1;
 assert(ё === 1);
 
 
@@ -503,7 +503,7 @@ assert(ё === 1);
 //? source: ...
 #!/usr/bin/env afw
 
-loc throw = 123;
+let throw = 123;
 
 
 //? test: val-true
@@ -513,7 +513,7 @@ loc throw = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc true = 123;
+let true = 123;
 
 
 //? test: val-try
@@ -523,7 +523,7 @@ loc true = 123;
 //? source: ...
 #!/usr/bin/env afw
 
-loc try = 123;
+let try = 123;
 
 
 
@@ -535,7 +535,7 @@ loc try = 123;
 
 
 //CHECK#1
-loc _ = 1;
+let _ = 1;
 
 assert(_ === 1);
 
@@ -549,4 +549,4 @@ assert(_ === 1);
 #!/usr/bin/env afw
 
 
-loc loc = 123;
+let let = 123;

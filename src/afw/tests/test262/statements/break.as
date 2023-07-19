@@ -11,8 +11,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc sum: integer = 0;
-for (loc i: integer = 1; i <= 10; i = i + 1) {
+let sum: integer = 0;
+for (let i: integer = 1; i <= 10; i = i + 1) {
     if (i === 6) {
         break
         ;
@@ -31,9 +31,9 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 break;
-loc y: integer = 2;
+let y: integer = 2;
 
 return 0;
 
@@ -44,9 +44,9 @@ return 0;
 #!/usr/bin/env afw
 
 {
-    loc x: integer = 1;
+    let x: integer = 1;
     break;
-    loc y: integer = 2;
+    let y: integer = 2;
 }
 
 return 0;

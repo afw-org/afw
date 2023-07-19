@@ -23,7 +23,7 @@ our @EXPORT_OK = qw(
     if 
     is_script 
     le_script 
-    loc 
+    let 
     lt_script 
     ne_script 
     nex_script 
@@ -354,7 +354,7 @@ Checks for less than or equal
     $arg2
 
 
-=head3 loc
+=head3 let
 
 Declare one or more statically scoped variable locations local to the current
 script block and optionally assign them an initial value. These variables can
@@ -805,12 +805,12 @@ sub le_script {
     return $request->getResult();
 }
 
-sub loc {
+sub let {
     my ($name, $value, $type) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "loc");
+    $request->set("function" => "let");
     $request->set("name", $name);
 
     if (defined $value)

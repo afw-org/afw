@@ -573,7 +573,7 @@ class script
     }
 
     /**
-     * loc()
+     * let()
      *
      * Declare one or more statically scoped variable locations local to the
      * current script block and optionally assign them an initial value.
@@ -588,11 +588,11 @@ class script
      *
      * @return  The value assigned.
      */
-    public function loc(, $name, $value = null, $type = null)
+    public function let(, $name, $value = null, $type = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "loc");
+        $request->set("function", "let");
 
         /* pass along required parameters to the request payload */
         $request->set("name", $name);

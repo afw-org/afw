@@ -12,8 +12,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc count: integer = 0;
-loc obj: object;
+let count: integer = 0;
+let obj: object;
 
 function cb (theObj: object): boolean
 {

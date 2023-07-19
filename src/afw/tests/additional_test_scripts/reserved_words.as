@@ -6,12 +6,12 @@
 //? sourceType: script
 //?
 //? test: reserved_word_1
-//? description: Reserved word after "loc" is an error.
+//? description: Reserved word after "let" is an error.
 //? expect: error:Parse error at offset 24 around line 3 column 5: Variable name can not be a reserved word
 //? source: ...
 #!/usr/bin/env afw
 
-loc if: integer = 1;
+let if: integer = 1;
 return if;
 
 //? test: reserved_word_2
@@ -20,7 +20,7 @@ return if;
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object = {};
+let obj: object = {};
 obj.if = 1;
 
 return obj.if;
@@ -31,7 +31,7 @@ return obj.if;
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object = {};
+let obj: object = {};
 obj.NaN = 1;
 
 return obj.NaN;

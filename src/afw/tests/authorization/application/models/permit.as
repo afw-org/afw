@@ -12,6 +12,6 @@
 #!/usr/bin/env afw
 
 // get the mapped object
-loc obj = get_object("model", "MyObjectType1", "Test1");
+let obj = get_object("model", "MyObjectType1", "Test1");
 
 return 0;

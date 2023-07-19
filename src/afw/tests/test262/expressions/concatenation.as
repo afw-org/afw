@@ -55,12 +55,12 @@ if (concat(true, "") !== "true") {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x1: string = "abc";
+let x1: string = "abc";
 if (concat(x1, "") !== x1) {
     throw "x1 + \"\" === \"abc\"";
 }
 
-loc x2: string = "abc";
+let x2: string = "abc";
 if (concat(meta(x2).dataType, "") !== meta(x2).dataType) {
     throw "meta(x2).dataType + \"\" !== meta(x2).dataType";
 }

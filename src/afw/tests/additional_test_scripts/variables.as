@@ -39,7 +39,7 @@ return 0;
 #!/usr/bin/env afw
 
 const myvar: string = "def";
-loc myvar2: any;
+let myvar2: any;
 
 assert(variable_is_not_null("myvar"), "variable_is_not_null() failed!");
 assert(variable_is_not_null("myvar2") === false, "variable_is_not_null() failed for null variable!");

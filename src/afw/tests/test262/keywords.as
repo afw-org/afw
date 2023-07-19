@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc break = 1;
+let break = 1;
 
 
 //? test: ident-ref-case
@@ -20,7 +20,7 @@ loc break = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc case = 1;
+let case = 1;
 
 
 //? test: ident-ref-catch
@@ -29,7 +29,7 @@ loc case = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch = 1;
+let catch = 1;
 
 
 //? test: ident-ref-continue
@@ -38,7 +38,7 @@ loc catch = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc continue = 1;
+let continue = 1;
 
 
 //? test: ident-ref-default
@@ -48,7 +48,7 @@ loc continue = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc default = 1;
+let default = 1;
 
 
 
@@ -58,7 +58,7 @@ loc default = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc do = 1;
+let do = 1;
 
 
 //? test: ident-ref-else
@@ -67,7 +67,7 @@ loc do = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc else = 1;
+let else = 1;
 
 
 //? test: ident-ref-finally
@@ -76,7 +76,7 @@ loc else = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc finally = 1;
+let finally = 1;
 
 
 //? test: ident-ref-for
@@ -85,7 +85,7 @@ loc finally = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc for = 1;
+let for = 1;
 
 
 //? test: ident-ref-function
@@ -94,7 +94,7 @@ loc for = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc function = 1;
+let function = 1;
 
 
 //? test: ident-ref-if
@@ -103,7 +103,7 @@ loc function = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc if = 1;
+let if = 1;
 
 
 //? test: ident-ref-in
@@ -112,7 +112,7 @@ loc if = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc in = 1;
+let in = 1;
 
 
 //? test: ident-ref-instanceof
@@ -121,7 +121,7 @@ loc in = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc instanceof = 1;
+let instanceof = 1;
 
 
 
@@ -131,7 +131,7 @@ loc instanceof = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc return = 1;
+let return = 1;
 
 
 //? test: ident-ref-switch
@@ -140,7 +140,7 @@ loc return = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc switch = 1;
+let switch = 1;
 
 
 //? test: ident-ref-throw
@@ -149,7 +149,7 @@ loc switch = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc throw = 1;
+let throw = 1;
 
 
 //? test: ident-ref-try
@@ -158,7 +158,7 @@ loc throw = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc try = 1;
+let try = 1;
 
 
 //? test: ident-ref-typeof
@@ -167,7 +167,7 @@ loc try = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc typeof = 1;
+let typeof = 1;
 
 
 //? test: ident-ref-var
@@ -176,7 +176,7 @@ loc typeof = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc loc = 1;
+let let = 1;
 
 
 //? test: ident-ref-while
@@ -185,4 +185,4 @@ loc loc = 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc while = 1;
+let while = 1;

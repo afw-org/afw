@@ -11,8 +11,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj: object;
-loc result: object;
+let obj: object;
+let result: object;
 
 const uuid: string = generate_uuid();
 

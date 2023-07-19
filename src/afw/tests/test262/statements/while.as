@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc in_while: integer;
+let in_while: integer;
 
 while (false) in_while = 1;
 assert(in_while !== 1, "while (false) in_while = 1");
@@ -25,8 +25,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc in_do_before_break: integer;
-loc in_do_after_break: integer;
+let in_do_before_break: integer;
+let in_do_after_break: integer;
 
 while (1 === 1) {
     in_do_before_break = 1;

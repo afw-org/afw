@@ -19,7 +19,7 @@ if (-(-1) !== 1) {
     throw "#2: -(-1) === 1";
 }
 
-loc x: integer = -1;
+let x: integer = -1;
 if (-x !== 1) {
     throw "#3: -x === 1";
 }
@@ -49,7 +49,7 @@ if (-(1) !== -1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 0;
+let x: integer = 0;
 x = -x;
 if (x !== -0) {
     throw "#1: x === -0";

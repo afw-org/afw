@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 
-locx=1;
+letx=1;
 
 assert(x === 1);
 
@@ -24,7 +24,7 @@ assert(x === 1);
 #!/usr/bin/env afw
 
 
-	loc  x	=	1	;
+	let  x	=	1	;
 
 assert(x === 1);
 
@@ -36,7 +36,7 @@ assert(x === 1);
 #!/usr/bin/env afw
 
 
- loc x = 2 ;
+ let x = 2 ;
 
 assert(x === 2);
 
@@ -48,7 +48,7 @@ assert(x === 2);
 #!/usr/bin/env afw
 
 
- loc x = 2 ;
+ let x = 2 ;
 
 assert(x === 2);
 
@@ -60,7 +60,7 @@ assert(x === 2);
 #!/usr/bin/env afw
 
 
-locx=1;
+letx=1;
 
 assert(x === 1);
 
@@ -76,10 +76,10 @@ assert(x === 1);
 evaluate(script("/*\u000C multi line \u000C comment \u000C*/"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("/*\u000C multi line \u000C comment \u000C x = 1;*/"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("/*\\u000C multi line \\u000C comment \\u000C x = 1;*/")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("/*\\u000C multi line \\u000C comment \\u000C x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -94,10 +94,10 @@ if (x !== 0) {
 evaluate(script("/*\u0009 multi line \u0009 comment \u0009*/"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("/*\u0009 multi line \u0009 comment \u0009 x = 1;*/"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("/*\\u0009 multi line \\u0009 comment \\u0009 x = 1;*/")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("/*\\u0009 multi line \\u0009 comment \\u0009 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -112,10 +112,10 @@ if (x !== 0) {
 evaluate(script("/*\u00A0 multi line \u00A0 comment \u00A0*/"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("/*\u00A0 multi line \u00A0 comment \u00A0 x = 1;*/"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("/*\\u00A0 multi line \\u00A0 comment \\u00A0 x = 1;*/")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("/*\\u00A0 multi line \\u00A0 comment \\u00A0 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -130,10 +130,10 @@ if (x !== 0) {
 evaluate(script("/*\u0020 multi line \u0020 comment \u0020*/"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("/*\u0020 multi line \u0020 comment \u0020 x = 1;*/"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("/*\\u0020 multi line \\u0020 comment \\u0020 x = 1;*/")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("/*\\u0020 multi line \\u0020 comment \\u0020 x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -148,10 +148,10 @@ if (x !== 0) {
 evaluate(script("/*\u000B multi line \u000B comment \u000B*/"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("/*\u000B multi line \u000B comment \u000B x = 1;*/"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("/*\\u000B multi line \\u000B comment \\u000B x = 1;*/")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("/*\\u000B multi line \\u000B comment \\u000B x = 1;*/")); x === 0. Actual: ' + (x);
 }
 
 
@@ -166,10 +166,10 @@ if (x !== 0) {
 evaluate(script("//\u000C single line \u000C comment \u000C"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("//\u000C single line \u000C comment \u000C x = 1;"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("//\\u000C single line \\u000C comment \\u000C x = 1;")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("//\\u000C single line \\u000C comment \\u000C x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -184,10 +184,10 @@ if (x !== 0) {
 evaluate(script("//\u0009 single line \u0009 comment \u0009"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("//\u0009 single line \u0009 comment \u0009 x = 1;"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("//\\u0009 single line \\u0009 comment \\u0009 x = 1;")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("//\\u0009 single line \\u0009 comment \\u0009 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -202,10 +202,10 @@ if (x !== 0) {
 evaluate(script("//\u00A0 single line \u00A0 comment \u00A0"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("//\u00A0 single line \u00A0 comment \u00A0 x = 1;"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("//\\u00A0 single line \\u00A0 comment \\u00A0 x = 1;")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("//\\u00A0 single line \\u00A0 comment \\u00A0 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -220,10 +220,10 @@ if (x !== 0) {
 evaluate(script("//\u0020 single line \u0020 comment \u0020"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("//\u0020 single line \u0020 comment \u0020 x = 1;"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("//\\u0020 single line \\u0020 comment \\u0020 x = 1;")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("//\\u0020 single line \\u0020 comment \\u0020 x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -238,10 +238,10 @@ if (x !== 0) {
 evaluate(script("//\u000B single line \u000B comment \u000B"));
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 evaluate(script("//\u000B single line \u000B comment \u000B x = 1;"));
 if (x !== 0) {
-  throw '#1: loc x = 0; evaluate(script("//\\u000B single line \\u000B comment \\u000B x = 1;")); x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; evaluate(script("//\\u000B single line \\u000B comment \\u000B x = 1;")); x === 0. Actual: ' + (x);
 }
 
 
@@ -252,8 +252,8 @@ if (x !== 0) {
 //? source: ...
 #!/usr/bin/env afw
 
-// U+180E between "loc" and "foo"; UTF8(0x180E) = 0xE1 0xA0 0x8E
-loc᠎foo;
+// U+180E between "let" and "foo"; UTF8(0x180E) = 0xE1 0xA0 0x8E
+let᠎foo;
 
 
 //? test: S7.2_A2.1_T2
@@ -329,10 +329,10 @@ if (" str ing " !== "\u00A0str\u00A0ing\u00A0") {
 
 
 //CHECK#1
-loc x = 0;
+let x = 0;
 //	single	line	comment	x = 1;
 if (x !== 0) {
-  throw '#1: loc x = 0; //	single	line	comment	x = 1; x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; //	single	line	comment	x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -344,10 +344,10 @@ if (x !== 0) {
 
 
 //CHECK#1
-loc x = 0;
+let x = 0;
 //singlelinecommentx = 1;
 if (x !== 0) {
-  throw '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -359,10 +359,10 @@ if (x !== 0) {
 
 
 //CHECK#1
-loc x = 0;
+let x = 0;
 //singlelinecommentx = 1;
 if (x !== 0) {
-  throw '#1: loc x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; //singlelinecommentx = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -374,10 +374,10 @@ if (x !== 0) {
 
 
 //CHECK#1
-loc x = 0;
+let x = 0;
 // single line comment x = 1;
 if (x !== 0) {
-  throw '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -389,10 +389,10 @@ if (x !== 0) {
 
 
 //CHECK#1
-loc x = 0;
+let x = 0;
 // single line comment x = 1;
 if (x !== 0) {
-  throw '#1: loc x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; // single line comment x = 1; x === 0. Actual: ' + (x);
 }
 
 
@@ -404,10 +404,10 @@ if (x !== 0) {
 
 
 /*CHECK#1*/
-loc x = 0;
+let x = 0;
 /*	multi	line	comment	x = 1;*/
 if (x !== 0) {
-  throw '#1: loc x = 0; /*	multi	line	comment	x = 1;*/ x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; /*	multi	line	comment	x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -419,10 +419,10 @@ if (x !== 0) {
 
 
 /*CHECK#1*/
-loc x = 0;
+let x = 0;
 /*multilinecommentx = 1;*/
 if (x !== 0) {
-  throw '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -434,10 +434,10 @@ if (x !== 0) {
 
 
 /*CHECK#1*/
-loc x = 0;
+let x = 0;
 /*multilinecommentx = 1;*/
 if (x !== 0) {
-  throw '#1: loc x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; /*multilinecommentx = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -449,10 +449,10 @@ if (x !== 0) {
 
 
 /*CHECK#1*/
-loc x = 0;
+let x = 0;
 /* multi line comment x = 1;*/
 if (x !== 0) {
-  throw '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -464,10 +464,10 @@ if (x !== 0) {
 
 
 /*CHECK#1*/
-loc x = 0;
+let x = 0;
 /* multi line comment x = 1;*/
 if (x !== 0) {
-  throw '#1: loc x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
+  throw '#1: let x = 0; /* multi line comment x = 1;*/ x === 0. Actual: ' + (x);
 }
 
 
@@ -480,7 +480,7 @@ if (x !== 0) {
 
 
 
-loc\u0009x;
+let\u0009x;
 
 
 //? test: S7.2_A5_T2
@@ -492,7 +492,7 @@ loc\u0009x;
 
 
 
-loc\u000Bx;
+let\u000Bx;
 
 
 //? test: S7.2_A5_T3
@@ -504,7 +504,7 @@ loc\u000Bx;
 
 
 
-loc\u000Cx;
+let\u000Cx;
 
 
 //? test: S7.2_A5_T4
@@ -516,7 +516,7 @@ loc\u000Cx;
 
 
 
-loc\u0020x;
+let\u0020x;
 
 
 //? test: S7.2_A5_T5
@@ -528,7 +528,7 @@ loc\u0020x;
 
 
 
-loc\u00A0x;
+let\u00A0x;
 
 
 //? test: string-form-feed

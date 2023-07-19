@@ -12,10 +12,10 @@
 #!/usr/bin/env afw
 
 
-loc x = 0;
+let x = 0;
 
 function f1(){
-  loc x = 1;
+  let x = 1;
   function f2(){
     return x;
   };
@@ -34,7 +34,7 @@ if(!(f1() === 1)){
 #!/usr/bin/env afw
 
 
-loc x = 0;
+let x = 0;
 
 function f1(){
   function f2(){
@@ -55,14 +55,14 @@ if(!(f1() === 0)){
 #!/usr/bin/env afw
 
 
-loc x = 0;
+let x = 0;
 
 function f1(){
   function f2(){
     return x;
   };
 
-  loc x = 1;
+  let x = 1;
   return f2();
 }
 

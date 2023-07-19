@@ -421,14 +421,14 @@ struct afw_compile_internal_parser_s {
     XX(declare_only,                                                            \
         "This is a declare of a new variable without assignment.")              \
                                                                                 \
-    XX(define_loc_if_needed,                                                    \
+    XX(define_if_needed,                                                        \
         "This is an assignment to a new or existing local variable. ")          \
                                                                                 \
-    XX(loc,                                                                     \
+    XX(let,                                                                     \
         "This is an assignment to a new local variable. ")                      \
                                                                                 \
     XX(reference_only,                                                          \
-            "No assignment, just reference.")                                   \
+        "No assignment, just reference.")                                       \
                                                                                 \
     XX(use_assignment_targets,                                                  \
         "Use the assignment type from assignment target.")                      \

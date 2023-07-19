@@ -10,11 +10,11 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
-loc finally_entered = false;
+let catch_entered = false;
+let finally_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch {
@@ -33,11 +33,11 @@ return catch_entered && finally_entered;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
-loc finally_entered = false;
+let catch_entered = false;
+let finally_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch {
@@ -53,11 +53,11 @@ return catch_entered && !finally_entered;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
-loc finally_entered = false;
+let catch_entered = false;
+let finally_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 finally {
@@ -91,7 +91,7 @@ finally {
 #!/usr/bin/env afw
 
 try {
-    loc x;
+    let x;
     x = 1 / 0;
     return "I tried!";
 }
@@ -110,7 +110,7 @@ finally {
 #!/usr/bin/env afw
 
 try {
-    loc x;
+    let x;
     return "I tried!";
     x = 1 / 0;
 }
@@ -129,7 +129,7 @@ finally {
 #!/usr/bin/env afw
 
 try {
-    loc x;
+    let x;
     x = 1 / 0;
     return "I tried!";
 }
@@ -148,7 +148,7 @@ finally {
 #!/usr/bin/env afw
 
 try {
-    loc x;
+    let x;
     x = 1 / 0;
     return "I tried!";
 }
@@ -167,7 +167,7 @@ finally {
 #!/usr/bin/env afw
 
 try {
-    loc x;
+    let x;
     x = 1 / 0;
 }
 catch (e) {
@@ -232,7 +232,7 @@ try {
     throw "Throw it all away!" {'more':'I have more to say!'};
 }
 catch (e) {
-    loc x;
+    let x;
     x = 1 / 0;
 }
 
@@ -243,13 +243,13 @@ catch (e) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x;
+    let x;
 
     try {
         x = 1 / 0;
@@ -278,13 +278,13 @@ return !catch_outer_entered && finally_outer_entered &&
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x;
+    let x;
     x = 1 / 0;
 
     try {
@@ -315,13 +315,13 @@ return catch_outer_entered && finally_outer_entered &&
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x;
+    let x;
 
     try {
         
@@ -388,7 +388,7 @@ return "How did I get here!";
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -414,7 +414,7 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -442,7 +442,7 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -473,7 +473,7 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -502,7 +502,7 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -546,7 +546,7 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
@@ -567,11 +567,11 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
-        loc x = 1 / 0;
+        let x = 1 / 0;
     }
     catch {
         continue;
@@ -588,11 +588,11 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc count;
+let count;
 
 for (count = 1; count < 10; count += 1) {
     try {
-        loc x = 1 / 0;
+        let x = 1 / 0;
         break; // Finally continue overrides
     }
     catch {
@@ -613,13 +613,13 @@ return count;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch {
@@ -654,13 +654,13 @@ return catch_outer_entered && finally_outer_entered &&
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch {
@@ -696,10 +696,10 @@ return catch_outer_entered && finally_outer_entered &&
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
+let catch_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch (e) {
@@ -720,7 +720,7 @@ return catch_entered;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
+let catch_entered = false;
 
 try {
     throw "Throw it all away!";
@@ -742,7 +742,7 @@ return catch_entered;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_entered = false;
+let catch_entered = false;
 
 // Rethrow ("throw;") can not be here.
 throw;
@@ -768,13 +768,13 @@ return catch_entered;
 //? source: ...
 #!/usr/bin/env afw
 
-loc catch_outer_entered = false;
-loc finally_outer_entered = false;
-loc catch_inner_entered = false;
-loc finally_inner_entered = false;
+let catch_outer_entered = false;
+let finally_outer_entered = false;
+let catch_inner_entered = false;
+let finally_inner_entered = false;
 
 try {
-    loc x = 1;
+    let x = 1;
     x = 1 / 0;
 }
 catch {

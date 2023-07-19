@@ -12,8 +12,8 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc journal = journal_get_first("journal");
-loc journa2 = journal_get_first("journal");
+let journal = journal_get_first("journal");
+let journa2 = journal_get_first("journal");
 
 return 0;
 
@@ -25,13 +25,13 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc uuid = generate_uuid();
+let uuid = generate_uuid();
 
 add_object("lmdb", "_AdaptiveObject_", { 
     firstName: "bob"
 }, uuid);
 
-loc journal = journal_get_first("journal");
+let journal = journal_get_first("journal");
 assert(journal.entry.request.suggestedObjectId === uuid);
 
 return 0;
@@ -44,11 +44,11 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc entry = journal_get_first("journal");
-loc cursor = entry.entryCursor;
+let entry = journal_get_first("journal");
+let cursor = entry.entryCursor;
 assert(cursor != null);
 
-loc e2 = journal_get_by_cursor("journal", cursor);
+let e2 = journal_get_by_cursor("journal", cursor);
 assert(e2 === entry);
 
 return 0;
@@ -61,11 +61,11 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc entry = journal_get_first("journal");
-loc cursor = entry.entryCursor;
+let entry = journal_get_first("journal");
+let cursor = entry.entryCursor;
 assert(cursor != null);
 
-loc j1 = journal_get_next_after_cursor("journal", cursor);
+let j1 = journal_get_next_after_cursor("journal", cursor);
 assert(j1 == {});
 
 return 0;

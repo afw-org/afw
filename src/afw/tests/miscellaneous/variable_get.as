@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: string = "x";
+let result: string = "x";
 
 assert(variable_get("result") === "x");
 

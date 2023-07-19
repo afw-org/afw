@@ -39,7 +39,7 @@ assert(f("x") === 42);
   function f(o) {
 
     function innerf(o) {
-      loc x = 42;
+      let x = 42;
 
       try {
         throw o;
@@ -85,13 +85,13 @@ assert(f({x:42}) === 42);
 //? source: ...
 #!/usr/bin/env afw
 
-loc res1 = false;
-loc res2 = false;
-loc res3 = false;
+let res1 = false;
+let res2 = false;
+let res3 = false;
 
 // fixme: we do not have "this".
 (function() {
-        loc x_12_14_13 = 'local';
+        let x_12_14_13 = 'local';
 
         function foo() {
             this.x_12_14_13 = 'instance';
@@ -122,8 +122,8 @@ assert(res3, 'res3 !== true');
 //? source: ...
 #!/usr/bin/env afw
 
-loc global = this;
-loc result;
+let global = this;
+let result;
 
 // fixme - we don't have "this".
 (function() {
@@ -149,12 +149,12 @@ assert(result === "test" === 'result');
 //? source: ...
 #!/usr/bin/env afw
 
-loc global = this;
-loc result;
+let global = this;
+let result;
 
 // fixme - we don't have "this"
 (function() {
-        loc obj = {};
+        let obj = {};
         obj.test = function () {
             this._12_14_15_foo = "test";
         };
@@ -178,8 +178,8 @@ assert(result === "test" === 'result');
 //? source: ...
 #!/usr/bin/env afw
 
-loc global = this;
-loc result;
+let global = this;
+let result;
 
 // fixme - we don't have "this".
 (function() {
@@ -188,7 +188,7 @@ loc result;
                 this._12_14_16_foo = "test";
             };
         } catch (e) {
-            loc obj = {};
+            let obj = {};
             obj.test = function () {
                 this._12_14_16_foo = "test1";
             };
@@ -207,13 +207,13 @@ assert(result === "test1" === 'result');
 //? source: ...
 #!/usr/bin/env afw
 
-loc o = "x";
+let o = "x";
 
 try {
     throw o;
 }
 catch (e) {
-    loc foo;
+    let foo;
 }
 
 // fixme can't check if variables are not defined
@@ -226,8 +226,8 @@ assert(variable_exists("foo") === false);
 //? source: ...
 #!/usr/bin/env afw
 
-loc o = {foo: 1};
-loc catchAccessed = false;
+let o = {foo: 1};
+let catchAccessed = false;
 
 try {
     throw 'x' o;
@@ -257,13 +257,13 @@ assert(catchAccessed, 'e instanceof ReferenceError');
 //? source: ...
 #!/usr/bin/env afw
 
-loc o = {foo: 42};
+let o = {foo: 42};
 
 try {
     throw "x";
 }
 catch (e) {
-    loc foo = 1;
+    let foo = 1;
 }
 
 assert(o.foo === 42);
@@ -277,7 +277,7 @@ assert(o.foo === 42);
 
 
   function f(o) {
-    loc x = 42;
+    let x = 42;
 
     function innerf(o) {
       try {
@@ -300,8 +300,8 @@ assert(f({}) === 42);
 //? source: ...
 #!/usr/bin/env afw
 
-loc fn;
-loc count = {};
+let fn;
+let count = {};
 
 // 1: try Abrupt, catch Abrupt, finally Abrupt; Completion: finally
 count.catch = 0;
@@ -319,7 +319,7 @@ fn = function() {
   return 'wat';
 };
 
-loc err = false;
+let err = false;
 try {
     fn();
 } catch (e) {
@@ -393,12 +393,12 @@ assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
 #!/usr/bin/env afw
 
 // 1: try Return, catch Return, finally Normal; Completion: try
-loc count = {
+let count = {
   "catch": 0,
   "finally": 0
 };
 
-loc fn = function() {
+let fn = function() {
   try {
     return 'try';
   } catch(e) {
@@ -406,7 +406,7 @@ loc fn = function() {
     return 'catch';
   } finally {
     count.finally += 1;
-    loc x = 'normal';
+    let x = 'normal';
   }
   return 'wat';
 };
@@ -426,7 +426,7 @@ fn = function() {
     return 'catch';
   } finally {
     count.finally += 1;
-    loc x = 'finally';
+    let x = 'finally';
   }
   return 'wat';
 };
@@ -446,12 +446,12 @@ fn = function() {
     throw 'catch';
   } finally {
     count.finally += 1;
-    loc x = 'finally';
+    let x = 'finally';
   }
   return 'wat';
 };
 
-loc caught = false;
+let caught = false;
 try {
     fn();
 } catch (e) {
@@ -469,12 +469,12 @@ assert(count.finally === 1, '3: finally count');
 #!/usr/bin/env afw
 
 // 1: try Return, catch Return, finally Return; Completion: finally
-loc count = {
+let count = {
   "catch": 0,
   "finally": 0
 };
 
-loc fn = function() {
+let fn = function() {
   try {
     return 'try';
   } catch(e) {
@@ -592,7 +592,7 @@ assert(
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -603,7 +603,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -614,7 +614,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -625,7 +625,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -648,7 +648,7 @@ assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
+let completion = evaluate(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -660,7 +660,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-loc completion = evaluate(script("for (loc i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
+let completion = evaluate(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -769,7 +769,7 @@ return null;
 #!/usr/bin/env afw
 
 // fixme this should throw an error
-try { } catch (x) { loc x; }
+try { } catch (x) { let x; }
 
 
 
@@ -800,15 +800,15 @@ try {} catch {}
 #!/usr/bin/env afw
 
 
-loc x = 1;
-loc ranCatch = false;
+let x = 1;
+let ranCatch = false;
 
 try {
     x = 2;
     throw "x";
 } catch {
-    loc x = 3;
-    loc y = true;
+    let x = 3;
+    let y = true;
     ranCatch = true;
 }
 
@@ -844,7 +844,7 @@ try {} catch () {}
 
 
 // CHECK#1
-loc i=0;
+let i=0;
 try{
 while(i<10){
   if(i===5) throw string(i);
@@ -865,8 +865,8 @@ catch(e){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 while(c1<2){
   try{
     c1+=1;
@@ -883,8 +883,8 @@ if(fin!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 while(c2<2){
   try{
     throw "ex1";
@@ -903,8 +903,8 @@ if(fin2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
+let c3=0;
+let fin3=0;
 while(c3<2){
   try{
     throw "ex1";
@@ -923,8 +923,8 @@ if(fin3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
+let c4=0;
+let fin4=0;
 while(c4<2){
   try{
     c4+=1;
@@ -940,7 +940,7 @@ if(fin4!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 while(c5<2){
   try{
     throw "ex1";
@@ -955,8 +955,8 @@ if(c5!==2){
 }
 
 // CHECK#6
-loc c6=0;
-loc fin6=0;
+let c6=0;
+let fin6=0;
 while(c6<2){
   try{
     c6+=1;
@@ -984,8 +984,8 @@ if(c6!==2){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 while(c1<2){
   try{
     c1+=1;
@@ -1006,8 +1006,8 @@ if(c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 while(c2<2){
   try{
     throw "ex1";
@@ -1030,8 +1030,8 @@ if(c2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
+let c3=0;
+let fin3=0;
 while(c3<2){
   try{
     throw "ex1";
@@ -1054,8 +1054,8 @@ if(c3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
+let c4=0;
+let fin4=0;
 while(c4<2){
   try{
     c4+=1;
@@ -1075,7 +1075,7 @@ if(c4!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 while(c5<2){
   try{
     throw "ex1";
@@ -1089,7 +1089,7 @@ if(c5!==0){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 while(c6<2){
   try{
     c6+=1;
@@ -1103,8 +1103,8 @@ if(c6!==1){
 }
 
 // CHECK#7
-loc c7=0;
-loc fin7=0;
+let c7=0;
+let fin7=0;
 try{
   while(c7<2){
     try{
@@ -1139,8 +1139,8 @@ if(c7!==1){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 while(c1<2){
   try{
     c1+=1;
@@ -1162,8 +1162,8 @@ if(c1!==2){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 while(c2<2){
   try{
     throw "ex1";
@@ -1195,9 +1195,9 @@ if(c2!==2){
 
 
 // CHECK#1
-loc c=0;
-loc i=0;
-loc fin=0;
+let c=0;
+let i=0;
+let fin=0;
 while(i<10){
   i+=1;
   try{
@@ -1234,7 +1234,7 @@ if(fin!==10){
 
 // CHECK#1
 try{
-  for(loc i=0;i<10;i+=1){
+  for(let i=0;i<10;i+=1){
     if(i===5) throw string(i);
   }
 }
@@ -1251,8 +1251,8 @@ catch(e){
 
 
 // CHECK#1
-loc fin=0;
-for(loc i=0;i<5;i+=1){
+let fin=0;
+for(let i=0;i<5;i+=1){
   try{
     i+=1;
     continue;
@@ -1268,9 +1268,9 @@ if(fin!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-for(loc i=0;i<5;i+=1){
+let c2=0;
+let fin2=0;
+for(let i=0;i<5;i+=1){
   try{
     throw "ex1";
   }
@@ -1291,9 +1291,9 @@ if(c2!==5){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
-for(loc i=0;i<5;i+=1){
+let c3=0;
+let fin3=0;
+for(let i=0;i<5;i+=1){
   try{
     throw "ex1";
   }
@@ -1315,7 +1315,7 @@ if(c3!==5){
 
 // CHECK#4
 fin=0;
-for(loc i=0;i<5;i+=1){
+for(let i=0;i<5;i+=1){
   try{
     i+=1;
     continue;
@@ -1330,7 +1330,7 @@ if(fin!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 for(c5=0;c5<10;){
   try{
     throw "ex1";
@@ -1346,8 +1346,8 @@ if(c5!==10){
 }
 
 // CHECK#6
-loc c6=0;
-loc fin6=0;
+let c6=0;
+let fin6=0;
 for(c6=0;c6<10;){
   try{
     c6+=1;
@@ -1374,9 +1374,9 @@ if(c6!==10){
 #!/usr/bin/env afw
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
-for(loc i=0;i<5;i+=1){
+let c1=0;
+let fin=0;
+for(let i=0;i<5;i+=1){
   try{
     c1+=1;
     break;
@@ -1396,9 +1396,9 @@ if(c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-for(loc i=0;i<5;i+=1){
+let c2=0;
+let fin2=0;
+for(let i=0;i<5;i+=1){
   try{
     throw "ex1";
   }
@@ -1420,9 +1420,9 @@ if(c2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
-for(loc i=0;i<5;i+=1){
+let c3=0;
+let fin3=0;
+for(let i=0;i<5;i+=1){
   try{
     throw "ex1";
   }
@@ -1444,9 +1444,9 @@ if(c3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
-for(loc i=0;i<5;i+=1){
+let c4=0;
+let fin4=0;
+for(let i=0;i<5;i+=1){
   try{
     c4+=1;
     break;
@@ -1466,7 +1466,7 @@ if(c4!==1){
 
 // CHECK#5
 // fixme
-loc i;
+let i;
 for(i=0;i<5;i+=1){
   try{
     throw "ex1";
@@ -1480,7 +1480,7 @@ if(i!==0){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 for(c6=0;c6<5;){
   try{
     c6+=1;
@@ -1494,8 +1494,8 @@ if(c6!==1){
 }
 
 // CHECK#7
-loc c7=0;
-loc fin7=0;
+let c7=0;
+let fin7=0;
 try{
   for(c7=0;c7<5;){
     try{
@@ -1529,9 +1529,9 @@ if(c7!==1){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
-for(loc i=0;i<5;i+=1){
+let c1=0;
+let fin=0;
+for(let i=0;i<5;i+=1){
   try{
     c1+=1;
     break;
@@ -1552,9 +1552,9 @@ if(c1!==5){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-for(loc i=0;i<5;i+=1){
+let c2=0;
+let fin2=0;
+for(let i=0;i<5;i+=1){
   try{
     throw "ex1";
   }
@@ -1584,7 +1584,7 @@ if(c2!==5){
 #!/usr/bin/env afw
 
 
-loc mycars = [
+let mycars = [
     "Saab",
     "Volvo",
     "BMW"
@@ -1592,7 +1592,7 @@ loc mycars = [
 
 // CHECK#1
 try{
-  for (loc x = 0; x <3; x += 1) {
+  for (let x = 0; x <3; x += 1) {
     if (mycars[x]==="BMW") throw "ex";
   }
 }
@@ -1608,16 +1608,16 @@ catch(e){
 //? source: ...
 #!/usr/bin/env afw
 
-loc mycars = [
+let mycars = [
     "Saab",
     "Volvo",
     "BMW"
 ];
 
 // CHECK#1
-loc fin=0;
-loc i=0;
-foreach loc x of mycars {
+let fin=0;
+let i=0;
+foreach let x of mycars {
   try{
     i+=1;
     continue;
@@ -1636,9 +1636,9 @@ if(i!==3){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-foreach loc x of mycars{
+let c2=0;
+let fin2=0;
+foreach let x of mycars{
   try{
     throw "ex1";
   }
@@ -1659,9 +1659,9 @@ if(c2!==3){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
-foreach loc x of mycars{
+let c3=0;
+let fin3=0;
+foreach let x of mycars{
   try{
     throw "ex1";
   }
@@ -1682,8 +1682,8 @@ if(fin3!==1){
 }
 
 // CHECK#4
-loc fin=0;
-foreach loc x of mycars{
+let fin=0;
+foreach let x of mycars{
   try{
     continue;
   }
@@ -1697,9 +1697,9 @@ if(fin!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 // fixme this gives an error that x is already defined
-foreach loc x of mycars{
+foreach let x of mycars{
   try{
     throw "ex1";
   }
@@ -1714,9 +1714,9 @@ if(c5!==3){
 }
 
 // CHECK#6
-loc c6=0;
-loc fin6=0;
-foreach loc x of mycars{
+let c6=0;
+let fin6=0;
+foreach let x of mycars{
   try{
     c6+=1;
     throw "ex1";
@@ -1742,16 +1742,16 @@ if(c6!==3){
 //? source: ...
 #!/usr/bin/env afw
 
-loc mycars = [
+let mycars = [
     "Saab",
     "Volvo",
     "BMW"
 ];
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
-foreach loc x of mycars{
+let c1=0;
+let fin=0;
+foreach let x of mycars{
   try{
     c1+=1;
     break;
@@ -1773,9 +1773,9 @@ if(c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-foreach loc x of mycars {
+let c2=0;
+let fin2=0;
+foreach let x of mycars {
   try{
     throw "ex1";
   }
@@ -1797,9 +1797,9 @@ if(c2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
-foreach loc x of mycars{
+let c3=0;
+let fin3=0;
+foreach let x of mycars{
   try{
     throw "ex1";
   }
@@ -1821,9 +1821,9 @@ if(c3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
-foreach loc x of mycars {
+let c4=0;
+let fin4=0;
+foreach let x of mycars {
   try{
     c4+=1;
     break;
@@ -1842,9 +1842,9 @@ if(c4!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 // fixme this gives an error that x is already defined
-foreach loc x of mycars {
+foreach let x of mycars {
   try{
     throw "ex1";
     c5++;
@@ -1860,8 +1860,8 @@ if(c5!==0){
 }
 
 // CHECK#6
-loc c6=0;
-foreach loc x of mycars{
+let c6=0;
+foreach let x of mycars{
   try{
     c6+=1;
     break;
@@ -1874,10 +1874,10 @@ if(c6!==1){
 }
 
 // CHECK#7
-loc c7=0;
-loc fin7=0;
+let c7=0;
+let fin7=0;
 try{
-  foreach loc x of mycars{
+  foreach let x of mycars{
     try{
       c7+=1;
       throw "ex1";
@@ -1907,16 +1907,16 @@ if(c7!==1){
 //? source: ...
 #!/usr/bin/env afw
 
-loc mycars = [
+let mycars = [
     "Saab",
     "Volvo",
     "BMW"
 ];
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
-foreach loc x of mycars {
+let c1=0;
+let fin=0;
+foreach let x of mycars {
   try{
     c1+=1;
     break;
@@ -1937,9 +1937,9 @@ if(c1!==3){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
-foreach loc x of mycars{
+let c2=0;
+let fin2=0;
+foreach let x of mycars{
   try{
     throw "ex1";
   }
@@ -1979,7 +1979,7 @@ function myFunction1(){
   }
   return 2;
 }
-loc x1=myFunction1();
+let x1=myFunction1();
 if(x1!==1){
   throw '#1.2: x1===1. Actual: x1==='+x1;
 }
@@ -1994,7 +1994,7 @@ function myFunction2(){
   }
   return 3;
 }
-loc x2=myFunction2();
+let x2=myFunction2();
 if (x2!==2){
   throw '#2: x2===2. Actual: x2==='+x2;
 }
@@ -2008,7 +2008,7 @@ function myFunction3(){
   }
   return 2;
 }
-loc x3=myFunction3();
+let x3=myFunction3();
 if (x3!==1){
   throw '#3: x3===1. Actual: x3==='+x3;
 }
@@ -2025,7 +2025,7 @@ function myFunction4(){
   return 2;
 }
 try{
-  loc x4=myFunction4();
+  let x4=myFunction4();
   throw '#4.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2045,7 +2045,7 @@ catch(e){
 #!/usr/bin/env afw
 
 // CHECK#1
-loc c1=0;
+let c1=0;
 function myFunction1(){
   try{
     return 1;
@@ -2054,7 +2054,7 @@ function myFunction1(){
   }
   return 2;
 }
-loc x1=myFunction1();
+let x1=myFunction1();
 if(x1!==1){
   throw '#1.1: x1===1. Actual: x1==='+x1;
 }
@@ -2063,7 +2063,7 @@ if (c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 function myFunction2(){
   try{
     throw "exc";
@@ -2074,7 +2074,7 @@ function myFunction2(){
   return 2;
 }
 try{
-  loc x2=myFunction2();
+  let x2=myFunction2();
   throw '#2.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2084,7 +2084,7 @@ catch(e){
 }
 
 // CHECK#3
-loc c3=0;
+let c3=0;
 function myFunction3(){
   try{
     return someValue;
@@ -2094,7 +2094,7 @@ function myFunction3(){
   return 2;
 }
 try{
-  loc x3=myFunction3();
+  let x3=myFunction3();
   throw '#3.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2104,7 +2104,7 @@ catch(e){
 }
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 function myFunction4(){
   try{
     return 1;
@@ -2116,7 +2116,7 @@ function myFunction4(){
   return 2;
 }
 try{
-  loc x4=myFunction4();
+  let x4=myFunction4();
   throw '#4.2: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2126,7 +2126,7 @@ catch(e){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 function myFunction5(){
   try{
     return 1;
@@ -2138,7 +2138,7 @@ function myFunction5(){
   return 2;
 }
 try{
-  loc x5=myFunction5();
+  let x5=myFunction5();
   throw '#5.2: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2148,7 +2148,7 @@ catch(e){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 function myFunction6(){
   try{
     throw "ex1";
@@ -2161,7 +2161,7 @@ function myFunction6(){
   return 3;
 }
 try{
-  loc x6=myFunction6();
+  let x6=myFunction6();
   throw '#6.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2177,7 +2177,7 @@ catch(e){
 }
 
 // CHECK#7
-loc c7=0;
+let c7=0;
 function myFunction7(){
   try{
     return 1;
@@ -2187,7 +2187,7 @@ function myFunction7(){
   }
   return 3;
 }
-loc x7=myFunction7();
+let x7=myFunction7();
 if(x7!==2){
   throw '#7.1: "catch" block must be evaluated';
 }
@@ -2196,7 +2196,7 @@ if (c7!==1){
 }
 
 // CHECK#8
-loc c8=0;
+let c8=0;
 function myFunction8(){
   try{
     throw "ex1";
@@ -2207,7 +2207,7 @@ function myFunction8(){
   return 3;
 }
 try{
-  loc x8=myFunction8();
+  let x8=myFunction8();
 }
 catch(ex1){
   c8=10;
@@ -2223,7 +2223,7 @@ if (c8!==1){
 #!/usr/bin/env afw
 
 // CHECK#1
-loc c1=0;
+let c1=0;
 function myFunction1(){
   try{
     return 1;
@@ -2235,7 +2235,7 @@ function myFunction1(){
   }
   return 2;
 }
-loc x1=myFunction1();
+let x1=myFunction1();
 if(x1!==1){
   throw '#1.3: x1===1. Actual: x1==='+x1;
 }
@@ -2244,7 +2244,7 @@ if (c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 function myFunction2(){
   try{
     throw "exc";
@@ -2256,7 +2256,7 @@ function myFunction2(){
   }
   return 2;
 }
-loc x2=myFunction2();
+let x2=myFunction2();
 if (c2!==1){
   throw '#2.1: "finally" block must be evaluated';
 }
@@ -2265,7 +2265,7 @@ if (x2!==0){
 }
 
 // CHECK#3
-loc c3=0;
+let c3=0;
 function myFunction3(){
   try{
     return someValue;
@@ -2276,7 +2276,7 @@ function myFunction3(){
   }
   return 2;
 }
-loc x3=myFunction3();
+let x3=myFunction3();
 if (c3!==1){
   throw '#3.1: "finally" block must be evaluated';
 }
@@ -2285,7 +2285,7 @@ if (x3!==1){
 }
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 function myFunction4(){
   try{
     throw "ex1";
@@ -2299,7 +2299,7 @@ function myFunction4(){
   return 2;
 }
 try{
-  loc x4=myFunction4();
+  let x4=myFunction4();
   throw '#4.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2315,7 +2315,7 @@ catch(e){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 function myFunction5(){
   try{
     throw "ex1";
@@ -2329,7 +2329,7 @@ function myFunction5(){
   return 2;
 }
 try{
-  loc x5=myFunction5();
+  let x5=myFunction5();
   throw '#5.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2345,7 +2345,7 @@ catch(e){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 function myFunction6(){
   try{
     throw "ex1";
@@ -2360,7 +2360,7 @@ function myFunction6(){
   return 2;
 }
 try{
-  loc x6=myFunction6();
+  let x6=myFunction6();
   throw '#6.1: Throwing exception inside function lead to throwing exception outside this function';
 }
 catch(e){
@@ -2377,7 +2377,7 @@ catch(e){
 }
 
 // CHECK#7
-loc c7=0;
+let c7=0;
 function myFunction7(){
   try{
     throw "ex1";
@@ -2392,7 +2392,7 @@ function myFunction7(){
   return 3;
 }
 try{
-  loc x7=myFunction7();
+  let x7=myFunction7();
   if(x7!==2) throw '#7.1: x7===2. Actual: x7==='+x7;
 }
 catch(e){}
@@ -2406,7 +2406,7 @@ if(c7!==1) throw '#7.2: "finally" block must be evaluated';
 #!/usr/bin/env afw
 
 
-loc myObj = {"p1": 'a',
+let myObj = {"p1": 'a',
              "p2": 'b',
              "p3": 'c',
              "value": 'myObj_value',
@@ -2483,7 +2483,7 @@ if(myObj.p1!=='pass') throw '#4: "finally" block must be evaluated';
 
 // CHECK#1
 function SwitchTest1(value){
-  loc result = 0;
+  let result = 0;
   try{
     // fixme need switch first
     switch(value) {
@@ -2512,9 +2512,9 @@ if (SwitchTest1(1)!==4) throw '#1.3: SwitchTest1(1)===4. Actual:  SwitchTest1(1)
 if (SwitchTest1(4)!==64) throw '#1.4: SwitchTest1(4)===64. Actual:  SwitchTest1(4)==='+ SwitchTest1(4) ;
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 function SwitchTest2(value){
-  loc result = 0;
+  let result = 0;
   switch(value) {
     case 0:
       try{
@@ -2540,7 +2540,7 @@ if (c2!==1) throw '#2.4: "finally" block must be evaluated';
 
 // CHECK#3
 function SwitchTest3(value){
-  loc result = 0;
+  let result = 0;
   switch(value) {
     case 0:
       try{
@@ -2557,7 +2557,7 @@ function SwitchTest3(value){
   return result;
 }
 try{
-  loc x3=SwitchTest3(0);
+  let x3=SwitchTest3(0);
   if (x3!==2) throw '#3.1: x3===2. Actual: x3==='+x3;
 }
 catch(e){
@@ -2756,7 +2756,7 @@ finally{}
 //? source: ...
 #!/usr/bin/env afw
 
-loc i=1;
+let i=1;
 function Integer( value, exception ) {
   try{
     this.value = checkValue( value );
@@ -2845,7 +2845,7 @@ catch(e){
 }
 
 // CHECK#3
-loc b=false;
+let b=false;
 try{
   throw b;
 }
@@ -2905,7 +2905,7 @@ catch(e){
 }
 
 // CHECK#3
-loc b="exception #1";
+let b="exception #1";
 try{
   throw b;
 }
@@ -2914,7 +2914,7 @@ catch(e){
 }
 
 // CHECK#4
-loc a="exception";
+let a="exception";
 b=" #1";
 try{
   throw a+b;
@@ -2948,7 +2948,7 @@ catch(e){
 }
 
 // CHECK#3
-loc b=13;
+let b=13;
 try{
   throw b;
 }
@@ -2957,7 +2957,7 @@ catch(e){
 }
 
 // CHECK#4
-loc a=3;
+let a=3;
 b=10;
 try{
   throw a+b;
@@ -2975,7 +2975,7 @@ catch(e){
 }
 
 // CHECK#6
-loc ex=2/3;
+let ex=2/3;
 try{
   throw 2/3;
 }
@@ -3030,7 +3030,7 @@ catch(e){
 //? source: ...
 #!/usr/bin/env afw
 
-loc myObj = {"p1": 'a',
+let myObj = {"p1": 'a',
              "p2": 'b',
              "p3": 'c',
              "value": 'myObj_value',
@@ -3082,13 +3082,13 @@ if (myObj.i!==10) throw '#5: Handling of catch must be correct';
 //? source: ...
 #!/usr/bin/env afw
 
-loc mycars = [
+let mycars = [
     "Saab",
     "Volvo",
     "BMW"
 ];
 
-loc mycars2 = [
+let mycars2 = [
     "Mercedes",
     "Jeep",
     "Suzuki"
@@ -3099,7 +3099,7 @@ try{
   throw mycars;
 }
 catch(e){
-  for (loc i=0;i<3;i+=1){
+  for (let i=0;i<3;i+=1){
     if (e[i]!==mycars[i]) throw '#1.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
 }
@@ -3109,10 +3109,10 @@ try{
   throw mycars.concat(mycars2);
 }
 catch(e){
-  for (loc i=0;i<3;i+=1){
+  for (let i=0;i<3;i+=1){
     if (e[i]!==mycars[i]) throw '#2.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (loc i=3;i<6;i+=1){
+  for (let i=3;i<6;i+=1){
     if (e[i]!==mycars2[i-3]) throw '#2.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
 }
@@ -3122,7 +3122,7 @@ try{
   throw new Array("Mercedes","Jeep","Suzuki");
 }
 catch(e){
-  for (loc i=0;i<3;i+=1){
+  for (let i=0;i<3;i+=1){
     if (e[i]!==mycars2[i]) throw '#3.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
@@ -3132,10 +3132,10 @@ try{
   throw mycars.concat(new Array("Mercedes","Jeep","Suzuki"));
 }
 catch(e){
-  for (loc i=0;i<3;i+=1){
+  for (let i=0;i<3;i+=1){
     if (e[i]!==mycars[i]) throw '#4.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (loc i=3;i<6;i+=1){
+  for (let i=3;i<6;i+=1){
     if (e[i]!==mycars2[i-3]) throw '#4.'+i+': Exception['+i+']===mycars2['+(i-3)+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
@@ -3163,7 +3163,7 @@ catch(e){
 }
 
 // CHECK#3
-loc c3=0;
+let c3=0;
 try{
   throw EvalError(1);
 }
@@ -3188,7 +3188,7 @@ catch(e){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 try{
   throw TypeError(1);
 }
@@ -3212,7 +3212,7 @@ catch(e){
 #!/usr/bin/env afw
 
 
-loc fin=0;
+let fin=0;
 // CHECK#1
 try{
   throw "Error: hello";
@@ -3240,7 +3240,7 @@ if (fin!==1) throw '#2.2: "finally" block must be evaluated';
 
 // CHECK#3
 fin=0;
-loc c3=0;
+let c3=0;
 try{
   throw "EvalError: 1";
 }
@@ -3315,15 +3315,15 @@ if (fin!==1) throw '#7.2: "finally" block must be evaluated';
 
 // CHECK#1
 try {
-  loc x=0;
+  let x=0;
 }
 catch (e) {
   throw '#1: If Result(1).type is not throw, return Result(1). Actual: 4 Return(Result(3))';
 }
 
 // CHECK#2
-loc c1=0;
-loc x1;
+let c1=0;
+let x1;
 try{
   x1=1;
 }
@@ -3339,8 +3339,8 @@ if (c1!==1){
 }
 
 // CHECK#3
-loc c2=0;
-loc x2;
+let c2=0;
+let x2;
 try{
   x2=1;
 }
@@ -3375,7 +3375,7 @@ try {
 catch(e){}
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 try{
   try{
     throw "exc";
@@ -3391,8 +3391,8 @@ catch(e){
 }
 
 // CHECK#3
-loc c3=0;
-loc x3;
+let c3=0;
+let x3;
 try{
   throw "exc";
   throw '#3.1: throw "exc" lead to throwing exception';
@@ -3419,16 +3419,16 @@ if (c3!==1){
 
 // CHECK#1
 try{
-  loc y;
+  let y;
   throw '#1: "y" lead to throwing exception';
 }
 catch(e){}
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 try{
   try{
-    loc someValue;
+    let someValue;
     throw '#3.1: "someValues" lead to throwing exception';
   }
   finally{
@@ -3442,8 +3442,8 @@ catch(e){
 }
 
 // CHECK#3
-loc c3=0;
-loc x3=0;
+let c3=0;
+let x3=0;
 try{
   x3=someValue;
   throw '#3.1: "x3=someValues" lead to throwing exception';
@@ -3518,7 +3518,7 @@ catch (e) {
 
 // CHECK#2
 function SwitchTest1(value){
-  loc result = 0;
+  let result = 0;
   try{
     // fixme no switch
     switch(value) {
@@ -3555,7 +3555,7 @@ if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
 #!/usr/bin/env afw
 
 // CHECK#1
-loc c1=0;
+let c1=0;
 try {
   c1+=1;
   y;
@@ -3569,7 +3569,7 @@ if (c1!==2){
 }
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 try{
   c2+=1;
 }
@@ -3581,7 +3581,7 @@ if (c2!==2){
 }
 
 // CHECK#3
-loc c3=0;
+let c3=0;
 try{
   c3=1;
   z;
@@ -3597,7 +3597,7 @@ if (c3!==3){
 }
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 try{
   c4=1;
 }
@@ -3671,7 +3671,7 @@ finally{
 }
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 try{
   throw "ex1";
 }
@@ -3692,7 +3692,7 @@ finally{
 if (c4!==1) throw '#4.5: "finally" block must be evaluated';
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 try{
   try{
     throw "ex2";
@@ -3712,7 +3712,7 @@ finally{
 if (c5!==1) throw '#5.4: "finally" block must be evaluated';
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 try{
   try{
     throw "ex1";
@@ -3727,7 +3727,7 @@ finally{
 if (c6!==1) throw '#6.2: "finally" block must be evaluated';
 
 // CHECK#7
-loc c7=0;
+let c7=0;
 try{
   try{
     throw "ex1";
@@ -3815,7 +3815,7 @@ catch(er1){
 }
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 try{
   try{
     throw "ex1";
@@ -3839,7 +3839,7 @@ catch(er1){
 if (c4!==1) throw '#4.3: "finally" block must be evaluated';
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 try{
   try{
     throw "ex2";
@@ -3860,7 +3860,7 @@ finally{
 if (c5!==1) throw '#5.4: "finally" block must be evaluated';
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 try{
   try{
     try{
@@ -3880,7 +3880,7 @@ catch(er1){
 if (c6!==1) throw '#6.2: "finally" block must be evaluated';
 
 // CHECK#7
-loc c7=0;
+let c7=0;
 try{
   try{
     throw "ex1";
@@ -3931,7 +3931,7 @@ catch(er1){
 }
 
 // CHECK#2
-loc c2=0;
+let c2=0;
 try{
   throw "ex1";
 }
@@ -3952,7 +3952,7 @@ catch(er1){
 if (c2!==1)	throw '#2.5: "finally" block must be evaluated';
 
 // CHECK#3
-loc c3=0;
+let c3=0;
 try{
   throw "ex1";
 }
@@ -3974,7 +3974,7 @@ finally{
 if (c3!==1)	throw '#3.4: "finally" block must be evaluated';
 
 // CHECK#4
-loc c4=0;
+let c4=0;
 try{
   try{
     throw "ex1";
@@ -4003,7 +4003,7 @@ catch(er1){}
 if (c4!==4) throw '#4.6: "finally" block must be evaluated';
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 try{
   try{
     throw "ex2";
@@ -4027,7 +4027,7 @@ finally{
 if (c5!==1) throw '#5.5: "finally" block must be evaluated';
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 try{
   try{
     throw "ex1";
@@ -4045,7 +4045,7 @@ finally{
 if (c6!==4) throw '#6.2: "finally" block must be evaluated';
 
 // CHECK#7
-loc c7=0;
+let c7=0;
 try{
   try{
     throw "ex1";
@@ -4079,7 +4079,7 @@ if (c7!==4) throw '#7.4: "finally" block must be evaluated';
 
 
 // CHECK#1
-loc c1=1;
+let c1=1;
 try{
   if(c1===1){
     throw "ex1";
@@ -4092,7 +4092,7 @@ catch(er1){
 }
 
 // CHECK#2
-loc c2=1;
+let c2=1;
 if(c2===1){
   try{
     throw "ex1";
@@ -4112,7 +4112,7 @@ if(c2===1){
 
 
 // CHECK#1
-loc i=0;
+let i=0;
 try{
   do{
     if(i===5) throw string(i);
@@ -4134,8 +4134,8 @@ catch(e){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 do{
   try{
     c1+=1;
@@ -4153,8 +4153,8 @@ if(fin!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 do{
   try{
     throw "ex1";
@@ -4174,8 +4174,8 @@ if(fin2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
+let c3=0;
+let fin3=0;
 do{
   try{
     throw "ex1";
@@ -4195,8 +4195,8 @@ if(fin3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
+let c4=0;
+let fin4=0;
 do{
   try{
     c4+=1;
@@ -4213,7 +4213,7 @@ if(fin4!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 do{
   try{
     throw "ex1";
@@ -4229,8 +4229,8 @@ if(c5!==2){
 }
 
 // CHECK#6
-loc c6=0;
-loc fin6=0;
+let c6=0;
+let fin6=0;
 do{
   try{
     c6+=1;
@@ -4261,8 +4261,8 @@ if(c6!==2){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 do{
   try{
     c1+=1;
@@ -4284,8 +4284,8 @@ if(c1!==1){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 do{
   try{
     throw "ex1";
@@ -4309,8 +4309,8 @@ if(c2!==1){
 }
 
 // CHECK#3
-loc c3=0;
-loc fin3=0;
+let c3=0;
+let fin3=0;
 do{
   try{
     throw "ex1";
@@ -4334,8 +4334,8 @@ if(c3!==1){
 }
 
 // CHECK#4
-loc c4=0;
-loc fin4=0;
+let c4=0;
+let fin4=0;
 do{
   try{
     c4+=1;
@@ -4356,7 +4356,7 @@ if(c4!==1){
 }
 
 // CHECK#5
-loc c5=0;
+let c5=0;
 do{
   try{
     throw "ex1";
@@ -4371,7 +4371,7 @@ if(c5!==0){
 }
 
 // CHECK#6
-loc c6=0;
+let c6=0;
 do{
   try{
     c6+=1;
@@ -4386,8 +4386,8 @@ if(c6!==1){
 }
 
 // CHECK#7
-loc c7=0;
-loc fin7=0;
+let c7=0;
+let fin7=0;
 try{
   do{
     try{
@@ -4424,8 +4424,8 @@ if(c7!==1){
 
 
 // CHECK#1
-loc c1=0;
-loc fin=0;
+let c1=0;
+let fin=0;
 do{
   try{
     c1+=1;
@@ -4448,8 +4448,8 @@ if(c1!==2){
 }
 
 // CHECK#2
-loc c2=0;
-loc fin2=0;
+let c2=0;
+let fin2=0;
 do{
   try{
     throw "ex1";
@@ -4484,9 +4484,9 @@ if(c2!==2){
 
 
 // CHECK#1
-loc c=0;
-loc i=0;
-loc fin=0;
+let c=0;
+let i=0;
+let fin=0;
 do{
   i+=1;
   try{
@@ -4521,13 +4521,13 @@ if(fin!==10){
 //? source: ...
 #!/usr/bin/env afw
 
-loc probe;
-loc x;
+let probe;
+let x;
 
 try {
   throw "null";
 } catch (_) {
-  loc x = 'inside';
+  let x = 'inside';
   probe = function() { return x; };
 }
 x = 'outside';
@@ -4544,9 +4544,9 @@ assert(probe() === 'inside');
 //? source: ...
 #!/usr/bin/env afw
 
-loc probeParam;
-loc probeBlock;
-loc x = 'outside';
+let probeParam;
+let probeBlock;
+let x = 'outside';
 
 try {
   throw "" [];
@@ -4566,14 +4566,14 @@ assert(probeBlock() === 'inside');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x = 1;
-loc probeBefore = function() { return x; };
-loc probeInside;
+let x = 1;
+let probeBefore = function() { return x; };
+let probeInside;
 
 try {
   throw "null";
 } catch (_) {
-  loc x = 2;
+  let x = 2;
   probeInside = function() { return x; };
 }
 
@@ -4590,8 +4590,8 @@ assert(x === 2, 'reference following statement');
 //? source: ...
 #!/usr/bin/env afw
 
-loc probe;
-loc x;
+let probe;
+let x;
 
 try {
   throw 'inside';
@@ -4611,10 +4611,10 @@ assert(probe() === 'inside');
 //? source: ...
 #!/usr/bin/env afw
 
-loc probeBefore = function() { return x; };
-loc probeTry;
-loc probeParam;
-loc x = 'outside';
+let probeBefore = function() { return x; };
+let probeTry;
+let probeParam;
+let x = 'outside';
 
 try {
   probeTry = function() { return x; };
@@ -4633,20 +4633,20 @@ assert(probeParam() === 'inside');
 //? source: ...
 #!/usr/bin/env afw
 
-loc x = 1;
-loc probeBefore = function() { return x; };
-loc probeTry;
-loc probeParam;
-loc probeBlock;
+let x = 1;
+let probeBefore = function() { return x; };
+let probeTry;
+let probeParam;
+let probeBlock;
 
 try {
-  loc x = 2;
+  let x = 2;
   probeTry = function() { return x; };
   // can't throw array
   throw [];
   // can't destructure catch
-} catch ([_ = (evaluate(script('loc x = 3;'), probeParam = function() { return x; })]) {
-  loc x = 4;
+} catch ([_ = (evaluate(script('let x = 3;'), probeParam = function() { return x; })]) {
+  let x = 4;
   probeBlock = function() { return x; };
 }
 
@@ -4689,7 +4689,7 @@ class C {
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount = 0;
+let callCount = 0;
 // fixme can't call like this yet
 (function f(n) {
   if (n === 0) {
@@ -4709,7 +4709,7 @@ assert(callCount === 1);
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount = 0;
+let callCount = 0;
 // fixme can't call like this yet
 (function f(n) {
   if (n === 0) {
@@ -4731,7 +4731,7 @@ assert(callCount === 1);
 //? source: ...
 #!/usr/bin/env afw
 
-loc callCount = 0;
+let callCount = 0;
 // fixme can't call like this yet
 (function f(n) {
   if (n === 0) {

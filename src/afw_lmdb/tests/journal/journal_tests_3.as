@@ -12,22 +12,22 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc j1 = journal_get_first("journal");
+let j1 = journal_get_first("journal");
 assert(j1 == {}, string(j1));
 
-for (loc i = 0; i < 100; i += 1) {
+for (let i = 0; i < 100; i += 1) {
     add_object("lmdb", "_AdaptiveObject_", { 
         firstName: "bob"
     });    
 }
 
 /* now read each one */
-loc j2 = journal_get_first("journal");
-loc entryCursor = j2.entryCursor;
+let j2 = journal_get_first("journal");
+let entryCursor = j2.entryCursor;
 assert(entryCursor != null);
 
-loc j3;
-for (loc i = 0; i < 100; i += 1) {
+let j3;
+for (let i = 0; i < 100; i += 1) {
     j3 = journal_get_next_after_cursor("journal", entryCursor);
     assert(j3.entryCursor !== entryCursor);
     entryCursor = j3.entryCursor;

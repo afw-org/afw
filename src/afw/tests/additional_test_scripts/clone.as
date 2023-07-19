@@ -11,13 +11,13 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc obj1: object = {
+let obj1: object = {
     "a": 1,
     "b": "abc",
     "c": true
 };
 
-loc obj2: object = clone(obj1);
+let obj2: object = clone(obj1);
 
 assert(obj1 === obj2);
 
@@ -35,8 +35,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc list1: list = [0, 1, 2];
-loc list2: list = clone(list1);
+let list1: list = [0, 1, 2];
+let list2: list = clone(list1);
 
 assert(list1 === list2);
 

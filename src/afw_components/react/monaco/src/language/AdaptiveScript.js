@@ -100,7 +100,7 @@ export const monarchLanguage = {
 
     keywords: [
         "break", "catch", "const", "continue", "do", "else", "false", "for", "foreach", 
-        "function", "if", "loc", "of", "return", "throw", "true", "try", "undefined", "while"
+        "function", "if", "let", "of", "return", "throw", "true", "try", "undefined", "while"
     ],
 
     /*! \fixme these should be fetched from dataTypes? */

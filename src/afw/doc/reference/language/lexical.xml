@@ -65,7 +65,7 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
 undefined   break       case     catch     const    
 continue    do          else     finally   for
 foreach     function    if       in        instanceof
-interface   loc         return   switch    throw
+interface   let         return   switch    throw
 try         typeof      type     while</code>    
     <header>Literals</header>
     <paragraph>

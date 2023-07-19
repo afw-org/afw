@@ -666,7 +666,7 @@ def le_script(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def loc(session, name, value=None, type=None):
+def let(session, name, value=None, type=None):
     '''
     Declare one or more variables in the current block
 
@@ -692,7 +692,7 @@ def loc(session, name, value=None, type=None):
     request = session.Request()
 
     action = {
-        "function": "loc",
+        "function": "let",
         "name": name
     }
 

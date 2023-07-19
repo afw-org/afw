@@ -22,7 +22,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 return x;
 x = x + 1;
 
@@ -32,7 +32,7 @@ x = x + 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 return x;
 x = x + 1;
 return x;

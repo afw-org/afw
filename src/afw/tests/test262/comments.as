@@ -15,11 +15,11 @@
 // throw "#1: Correct interpretation of single line comments"
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 assert(x === 0, "the value of 'x' is 0");
 
 //CHECK#3
-loc // y = 1;
+let // y = 1;
 y;
 assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
@@ -27,7 +27,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 //throw "#4: Correct interpretation of single line comments") // throw "#4: Correct interpretation of single line comments"; //
 
 ////CHECK#5
-//loc x = 1;
+//let x = 1;
 //if (x === 1) {
 //  throw "#5: Correct interpretation of single line comments";
 //}
@@ -54,21 +54,21 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 */
 
 /*CHECK#2*/
-loc x = 0;
+let x = 0;
 /* x = 1;*/
 assert(x === 0, "the value of 'x' is 0");
 
 //CHECK#3
-loc /* y = 1;*/
+let /* y = 1;*/
 y;
 assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
 //CHECK#4
-loc /* y2 = 1;*/ y2;
+let /* y2 = 1;*/ y2;
 assert(y2 === undefined, "The value of 'y2' is expected to equal undefined");
 
 /*CHECK#5*/
-/*loc x2 = 1;
+/*let x2 = 1;
 if (x2 === 1) {
   throw "#5: Correct interpretation of multi line comments";
 }*/
@@ -76,11 +76,11 @@ if (x2 === 1) {
 /*CHECK#6*/
 
 //CHECK#7
-loc string = "/*var y = 0*/"; /* y = 1;*/
+let string = "/*var y = 0*/"; /* y = 1;*/
 assert(string === "/*var y = 0*/", "The value of 'string' is expected to equal '/*var y = 0*/'");
 
 //CHECK#8
-loc string2 = "/*var y = 0"; /* y = 1;*/
+let string2 = "/*var y = 0"; /* y = 1;*/
 assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '/*var y = 0*/'");
 
 /*CHECK#9*/
@@ -116,7 +116,7 @@ assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '
 /*CHECK#1*/
 
 /*
-loc
+let
 /* x */
 = 1;
 */
@@ -130,7 +130,7 @@ loc
 
 /*CHECK#1*/
 
-/* loc*/
+/* let*/
 x*/
 
 
@@ -142,7 +142,7 @@ x*/
 
 /*CHECK#1*/
 
-/* loc
+/* let
 *///x*/
 
 
@@ -154,7 +154,7 @@ x*/
 
 /*CHECK#1*/
 
-/* loc
+/* let
 //x1
 */
 
@@ -167,7 +167,7 @@ x*/
 
 /*CHECK#1*/
 
-// loc /*
+// let /*
 x*/
 
 
@@ -179,7 +179,7 @@ x*/
 
 /*CHECK#1*/
 
-// loc /* x */
+// let /* x */
 
 
 //? test: S7.4_A4_T6
@@ -190,7 +190,7 @@ x*/
 
 /*CHECK#1*/
 
-// loc /* x / = */ 1 */
+// let /* x / = */ 1 */
 
 //? test: S7.4_A4_T7
 //? description: Insert Multi line comment into Single line comments
@@ -200,7 +200,7 @@ x*/
 
 /*CHECK#1*/
 
-// loc /*
+// let /*
 // x
 // =
 // 1*/
@@ -211,17 +211,17 @@ x*/
 //? source: ...
 #!/usr/bin/env afw
 
-loc hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-for (loc i1 = 0; i1 < 14; i1 = i1 + 1) {
-    for (loc i2 = 0; i2 < 8; i2 = i2 + 1) {
-        for (loc i3 = 0; i3 < 16; i3 = i3 + 1) {
-            for (loc i4 = 0; i4 < 16; i4 = i4 + 1) {                
-                loc uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                loc xx = evaluate<expression>(expression("\"\\u" + uu + "\""));
-                loc LineTerminators = ((uu === "000A") || (uu === "000D") || (uu === "2028") || (uu === "2029"));                
+let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
+    for (let i2 = 0; i2 < 8; i2 = i2 + 1) {
+        for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
+            for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
+                let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
+                let xx = evaluate<expression>(expression("\"\\u" + uu + "\""));
+                let LineTerminators = ((uu === "000A") || (uu === "000D") || (uu === "2028") || (uu === "2029"));                
                 
-                loc strToEval = script("loc yy = 0;\n//loc " + xx + "yy = -1;");                  
-                loc e = evaluate<script>(strToEval);                
+                let strToEval = script("let yy = 0;\n//let " + xx + "yy = -1;");                  
+                let e = evaluate<script>(strToEval);                
                 if (LineTerminators) {
                     assert(e === -1, "The value of 'e' is expected to equal -1");
                 } else {
@@ -239,15 +239,15 @@ for (loc i1 = 0; i1 < 14; i1 = i1 + 1) {
 //? source: ...
 #!/usr/bin/env afw
 
-loc hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-for (loc i1 = 0; i1 < 14; i1 = i1 + 1) {
-    for (loc i2 = 0; i2 < 8; i2 = i2 + 1) {
-        for (loc i3 = 0; i3 < 16; i3 = i3 + 1) {
-            for (loc i4 = 0; i4 < 16; i4 = i4 + 1) {                
-                loc uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                loc xx = evaluate<expression>(expression("\"\\u" + uu + "\""));
+let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
+    for (let i2 = 0; i2 < 8; i2 = i2 + 1) {
+        for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
+            for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
+                let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
+                let xx = evaluate<expression>(expression("\"\\u" + uu + "\""));
 
-                loc y = evaluate(script("/*loc " + xx + "y = 1*/"));
+                let y = evaluate(script("/*let " + xx + "y = 1*/"));
                 if (y !== null) {
                     throw "Expected y to be null";
                 }

@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc result: object;
+let result: object;
 
 const uuid: string = generate_uuid();
 

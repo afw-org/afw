@@ -25,7 +25,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer;
+let x: integer;
 
 x = null ?? undefined ?? 42;
 assert(x === 42, "null ?? undefined ?? 42");
@@ -47,7 +47,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer;
+let x: integer;
 
 x = undefined;
 x = 0 ?? 1;
@@ -101,7 +101,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer;
+let x: integer;
 
 x = undefined;
 x = 42 ?? 1;
@@ -155,8 +155,8 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: string;
-loc str: string = '';
+let x: string;
+let str: string = '';
 
 x = undefined;
 x = str ?? 1;
@@ -210,7 +210,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: boolean;
+let x: boolean;
 
 x = undefined;
 x = false ?? 1;
@@ -265,7 +265,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: boolean;
+let x: boolean;
 
 x = undefined;
 x = true ?? 1;
@@ -324,7 +324,7 @@ function poison(): any{
     throw "should not evaluate poison";
 }
 
-loc x: integer;
+let x: integer;
 
 x = undefined;
 x = undefined ?? 42 ?? undefined ?? poison();

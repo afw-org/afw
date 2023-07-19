@@ -13,7 +13,7 @@
 
 (function hanoi(num, s, i, d)
      {
-        loc result = "";
+        let result = "";
         if (num >= 1) {
             result += hanoi(num - 1, s, d, i);
             result += "Move disk from post " + s + " to " + d + "\n";
@@ -32,7 +32,7 @@
 
 (function hanoi(num: integer, s: string, i: string, d: string): string
      {
-        loc result: string = "";
+        let result: string = "";
         if (num >= 1) {
             result += hanoi(num - 1, s, d, i);
             result += "Move disk from post " + s + " to " + d + "\n";

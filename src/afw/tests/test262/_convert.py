@@ -68,7 +68,7 @@ for line in lines:
         #    converted = re.sub(r'(eval(":[.*]"))', r'evaluate(script("\1"))')
 
         if "var " in converted:
-            converted = converted.replace("var ", "loc ")
+            converted = converted.replace("var ", "let ")
 
         if "Number.NaN" in converted:
             converted = converted.replace("Number.NaN", "NaN");

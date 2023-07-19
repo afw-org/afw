@@ -13,9 +13,9 @@
 #!/usr/bin/env afw
 
 
-loc object: object;
-loc result: object;
-loc objectId: string;
+let object: object;
+let result: object;
+let objectId: string;
 
 // Generate a uuid
 const uuid: string = generate_uuid();

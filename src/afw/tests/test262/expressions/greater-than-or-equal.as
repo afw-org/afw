@@ -15,12 +15,12 @@ if (1 >= 1 !== true) {
     throw "1 >= 1 === true";
 }
 
-loc x: integer = 1;
+let x: integer = 1;
 if (x >= 1 !== true) {
     throw "x >= 1 === true";
 }
 
-loc y: integer = 1;
+let y: integer = 1;
 if (1 >= y !== true) {
     throw "1 >= y === true";
 }
@@ -56,7 +56,7 @@ x >= 1;
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 if (((x = 0) >= x !== true) {
     throw "x >= x === true";
 }
@@ -233,7 +233,7 @@ if (("x" >= ("x" + "y")) !== false) {
     throw "'x' >= 'x' + 'y' === false";
 }
 
-loc x: string = "x";
+let x: string = "x";
 if ((x >= (x + "y")) !== false) {
     throw "x >= x + 'y' === false";
 }
@@ -266,7 +266,7 @@ if ((("x" + "y") >= "x") !== true) {
     throw "'x' + 'y' >= 'x' === true";
 }
 
-loc x: string = "x";
+let x: string = "x";
 if (((x + "y") >= x) !== true) {
     throw "x + 'y' >= x === true";
 }

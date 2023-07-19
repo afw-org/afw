@@ -27,9 +27,9 @@ assert(fn() === 9);
 #!/usr/bin/env afw
 
 function fn() {
-    loc x = 3;
+    let x = 3;
     {
-        loc y = 6;
+        let y = 6;
         return x + y;
     }
 }

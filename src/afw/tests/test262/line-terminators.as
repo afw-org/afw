@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 
-        loc prop = "a\uFFFFa";
+        let prop = "a\uFFFFa";
 
 assert(length(prop) === 3,  'prop.length');
 assert(prop !== "aa", 'prop');
@@ -28,7 +28,7 @@ assert(prop !== "aa", 'prop');
 #!/usr/bin/env afw
 
 
-        loc prop = "66\u2028123";
+        let prop = "66\u2028123";
 
 assert(prop === "66\u2028123", 'prop');
 //assert(prop[2] === "\u2028", 'prop[2]');
@@ -44,7 +44,7 @@ assert(length(prop) === 6, 'prop.length');
 #!/usr/bin/env afw
 
 
-        loc prop = "66\u2029123";
+        let prop = "66\u2029123";
 
 assert(prop === "66\u2029123",  'prop');
 //assert(prop[2] === "\u2029",  'prop[2]');
@@ -52,30 +52,30 @@ assert(length(prop) === 6,  'prop.length');
 
 
 //? test: between-tokens-cr
-//? description: Insert real CARRIAGE RETURN between tokens of loc x=1
+//? description: Insert real CARRIAGE RETURN between tokens of let x=1
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
-loc
+let
 x
 =
 1;
 
 if (x !== 1) {
-  throw '#1: loc\\nx\\n=\\n1\\n; x === 1. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\n1\\n; x === 1. Actual: ' + (x);
 }
 
 
 //? test: between-tokens-lf
-//? description: Insert real LINE FEED between tokens of loc x=1
+//? description: Insert real LINE FEED between tokens of let x=1
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
-loc
+let
 x
 =
 1;
@@ -84,25 +84,25 @@ assert(x ===  1);
 
 
 //? test: between-tokens-ls
-//? description: Insert LINE SEPARATOR (\u2028) between tokens of loc x=1
+//? description: Insert LINE SEPARATOR (\u2028) between tokens of let x=1
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
-loc x = 1 ;
+let x = 1 ;
 
 assert(x ===  1);
 
 
 //? test: between-tokens-ps
-//? description: Insert PARAGRAPH SEPARATOR (\u2029) between tokens of loc x=1
+//? description: Insert PARAGRAPH SEPARATOR (\u2029) between tokens of let x=1
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
-loc x = 1 ;
+let x = 1 ;
 
 assert(x === 1);
 
@@ -114,7 +114,7 @@ assert(x === 1);
 #!/usr/bin/env afw
 
 
-loc x = 0;
+let x = 0;
 /*
 multi^Mline^Mcomment^Mx = 1;
 */
@@ -138,7 +138,7 @@ if (x !== 0) {
 // guarantees that test runners will only consider the test "passing" if
 // executable sequences are correctly interpreted as such.
 
-loc x = 0;
+let x = 0;
 
 /*
 x = 1;
@@ -164,7 +164,7 @@ if (x === 0) {
 // guarantees that test runners will only consider the test "passing" if
 // executable sequences are correctly interpreted as such.
 
-loc x = 0;
+let x = 0;
 
 /* x = 1; */
 
@@ -188,7 +188,7 @@ if (x === 0) {
 // guarantees that test runners will only consider the test "passing" if
 // executable sequences are correctly interpreted as such.
 
-loc x = 0;
+let x = 0;
 
 /* x = 1; */
 
@@ -465,13 +465,13 @@ ing
 // CHECK#1
 
 //CHECK#2
-loc x = 0;
+let x = 0;
 if (x !== 0) {
 }
 
 
 //? test: S7.3_A6_T1
-//? description: Insert LINE FEED (U+000A) in loc x
+//? description: Insert LINE FEED (U+000A) in let x
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -479,11 +479,11 @@ if (x !== 0) {
 
 
 
-loc\u000Ax;
+let\u000Ax;
 
 
 //? test: S7.3_A6_T2
-//? description: Insert CARRIAGE RETURN (U+000D) in loc x
+//? description: Insert CARRIAGE RETURN (U+000D) in let x
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -491,11 +491,11 @@ loc\u000Ax;
 
 
 
-loc\u000Dx;
+let\u000Dx;
 
 
 //? test: S7.3_A6_T3
-//? description: Insert LINE SEPARATOR (U+2028) in loc x
+//? description: Insert LINE SEPARATOR (U+2028) in let x
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -503,11 +503,11 @@ loc\u000Dx;
 
 
 
-loc\u2028x;
+let\u2028x;
 
 
 //? test: S7.3_A6_T4
-//? description: Insert PARAGRAPH SEPARATOR (U+2029) in loc x
+//? description: Insert PARAGRAPH SEPARATOR (U+2029) in let x
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -515,20 +515,20 @@ loc\u2028x;
 
 
 
-loc\u2029x;
+let\u2029x;
 
 
 //? test: S7.3_A7_T1
-//? description: Insert Line Terminator in loc x=y+z
+//? description: Insert Line Terminator in let x=y+z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=2;
-loc z=3;
-loc
+let y=2;
+let z=3;
+let
 x
 =
 y
@@ -536,7 +536,7 @@ y
 z
 ;
 if (x !== 5) {
-  throw '#1: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
 }
 x=0;
 
@@ -550,21 +550,21 @@ y
 z
 ;
 if (x !== 5) {
-  throw '#2: loc\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
 }
 
 
 //? test: S7.3_A7_T2
-//? description: Insert Line Terminator in loc x=y-z
+//? description: Insert Line Terminator in let x=y-z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=3;
-loc z=2;
-loc
+let y=3;
+let z=2;
+let
 x
 =
 y
@@ -572,7 +572,7 @@ y
 z
 ;
 if (x !== 1) {
-  throw '#1: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
 }
 x=0;
 
@@ -586,21 +586,21 @@ y
 z
 ;
 if (x !== 1) {
-  throw '#2: loc\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
 }
 
 
 //? test: S7.3_A7_T3
-//? description: Insert Line Terminator in loc x=y*z
+//? description: Insert Line Terminator in let x=y*z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=3;
-loc z=2;
-loc
+let y=3;
+let z=2;
+let
 x
 =
 y
@@ -608,7 +608,7 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#1: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -622,21 +622,21 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#2: loc\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
 //? test: S7.3_A7_T4
-//? description: Insert Line Terminator in loc x=y/z
+//? description: Insert Line Terminator in let x=y/z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=12;
-loc z=2;
-loc
+let y=12;
+let z=2;
+let
 x
 =
 y
@@ -644,7 +644,7 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#1: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -658,21 +658,21 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#2: loc\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
 //? test: S7.3_A7_T5
-//? description: Insert Line Terminator in loc x=y%z
+//? description: Insert Line Terminator in let x=y%z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=16;
-loc z=10;
-loc
+let y=16;
+let z=10;
+let
 x
 =
 y
@@ -680,7 +680,7 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#1: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
 }
 x=0;
 
@@ -694,23 +694,23 @@ y
 z
 ;
 if (x !== 6) {
-  throw '#2: loc\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
 }
 
 
 
 
 //? test: S7.3_A7_T8
-//? description: Insert Line Terminator in loc x=y<z
+//? description: Insert Line Terminator in let x=y<z
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 
 // CHECK#1
-loc y=2;
-loc z=3;
-loc
+let y=2;
+let z=3;
+let
 x
 =
 y
@@ -718,7 +718,7 @@ y
 z
 ;
 if (x !== true) {
-  throw '#1: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
+  throw '#1: let\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
 }
 x=0;
 
@@ -732,5 +732,5 @@ y
 z
 ;
 if (x !== true) {
-  throw '#2: loc\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
+  throw '#2: let\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
 }

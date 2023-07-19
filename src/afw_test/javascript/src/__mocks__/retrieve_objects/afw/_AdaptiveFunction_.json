@@ -24619,8 +24619,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunction_/loc",
-                "objectId": "loc",
+                "path": "/afw/_AdaptiveFunction_/let",
+                "objectId": "let",
                 "objectType": "_AdaptiveFunction_"
             },
             "scriptSupportNumber": 9,
@@ -24680,13 +24680,13 @@
                 }
             ],
             "functionPrototype": "*** coming soon ***",
-            "functionLabel": "loc",
-            "functionId": "loc",
+            "functionLabel": "let",
+            "functionId": "let",
             "description": "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value.  These variables can be accessed and assigned different values from the current block and inner blocks.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
             "category": "script",
-            "camelCaseFunctionLabel": "loc",
+            "camelCaseFunctionLabel": "let",
             "brief": "Declare one or more variables in the current block",
             "afwCamelCaseFunctionLabel": "afwLoc"
         },

@@ -11,9 +11,9 @@
 //? source: ...
 #!/usr/bin/env afw
 
-loc x: integer = 1;
+let x: integer = 1;
 {
-    loc x: integer = 3;
+    let x: integer = 3;
     assert(x == 3, "expected x to be 3");
 }
 
@@ -29,7 +29,7 @@ return 0;
 #!/usr/bin/env afw
 
 {
-    loc x: integer = 3;
+    let x: integer = 3;
     assert(x == 3, "expected x to be 3");
 }
 
@@ -45,10 +45,10 @@ return 0;
 #!/usr/bin/env afw
 
 do {
-    loc x: integer = 4;
+    let x: integer = 4;
     assert(x === 4, "expected x to be 4");
     {
-        loc x: integer = 5;
+        let x: integer = 5;
         assert(x === 5, "expected x to be 5");
         continue;
         assert(false);

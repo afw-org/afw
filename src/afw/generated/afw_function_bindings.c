@@ -90464,30 +90464,30 @@ afw_function_definition_le_script = {
     false
 };
 
-/* ---------- loc ---------- */
+/* ---------- let ---------- */
 
 static const afw_utf8_t
-impl_object_path__loc =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/loc");
+impl_object_path__let =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/let");
 
 static const afw_runtime_object_indirect_t
-impl_object__loc = {
+impl_object__let = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
         {
             NULL,
             NULL,
-            &afw_s_loc,
+            &afw_s_let,
             &afw_s__AdaptiveFunction_,
-            &impl_object_path__loc
+            &impl_object_path__let
         }
     },
-    (void *)&afw_function_definition_loc
+    (void *)&afw_function_definition_let
 };
 
 static const afw_value_function_parameter_t
-impl_loc_returns = {
+impl_let_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -90513,7 +90513,7 @@ impl_loc_returns = {
 };
 
 static const afw_value_function_parameter_t
-impl_loc_parameter_1 = {
+impl_let_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -90539,7 +90539,7 @@ impl_loc_parameter_1 = {
 };
 
 static const afw_value_function_parameter_t
-impl_loc_parameter_2 = {
+impl_let_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -90565,7 +90565,7 @@ impl_loc_parameter_2 = {
 };
 
 static const afw_value_function_parameter_t
-impl_loc_parameter_3 = {
+impl_let_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -90591,42 +90591,42 @@ impl_loc_parameter_3 = {
 };
 
 static const afw_value_function_parameter_t *
-impl_loc_parameters[] = {
-    &impl_loc_parameter_1,
-    &impl_loc_parameter_2,
-    &impl_loc_parameter_3,
+impl_let_parameters[] = {
+    &impl_let_parameter_1,
+    &impl_let_parameter_2,
+    &impl_let_parameter_3,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_loc = {
+afw_function_definition_let = {
     &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__loc,
+    (const afw_object_t *)&impl_object__let,
     AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("loc"),
-    AFW_UTF8_LITERAL("loc"),
-    AFW_UTF8_LITERAL("loc"),
-    AFW_UTF8_LITERAL("loc"),
-    AFW_UTF8_LITERAL("afwLoc"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("afwLet"),
     AFW_UTF8_LITERAL("Declare one or more variables in the current block"),
     AFW_UTF8_LITERAL("Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."),
     AFW_UTF8_LITERAL("(name: (list string), value?: any, type?: (object _AdaptiveValueMeta_)): any"),
-    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction loc (\n    name: (list string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction let (\n    name: (list string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
     AFW_UTF8_LITERAL(""),
-    afw_function_execute_loc,
+    afw_function_execute_let,
     NULL,
     1,
     3,
-    &impl_loc_parameters[0],
+    &impl_let_parameters[0],
     3,
-    &impl_loc_returns,
+    &impl_let_returns,
     NULL,
     NULL,
     AFW_UTF8_LITERAL(""),
     NULL,
     NULL,
     0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LOC,
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET,
     false,
     false,
     false,
@@ -116274,7 +116274,7 @@ impl_function_bindings[] = {
     &afw_function_definition_if,
     &afw_function_definition_is_script,
     &afw_function_definition_le_script,
-    &afw_function_definition_loc,
+    &afw_function_definition_let,
     &afw_function_definition_lt_script,
     &afw_function_definition_ne_script,
     &afw_function_definition_nex_script,
