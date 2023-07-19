@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Language Features</title>
+    <paragraph>
+        In this section, you will be guided through the features of Adaptive
+        Script and how they compare and contrast to other languages, such as
+        ECMAScript.
+    </paragraph>
+    <header>Variables</header>
+    <paragraph>
+        Variables in Adaptive Script are used to indentify a memory location,
+        and are declared using the <literal>let<literal> or
+        <literal>const</literal>
+        keywords. Unlike ECMAScript, Adaptive Script does not support the
+        <literal>var</literal>
+        keyword, which has semantics surrounding its scope that are not
+        compatible with how Adaptive Script processes variables.
+    </paragraph>
+    <header>Classes</header>
+    <paragraph>
+        Adaptive Script does not have support for classes. This means that the
+        ECMAScript classes such as Array, Object, Integer, String, Boolean,
+        Symbol, Map, Error, Exception, etc. cannot be used in Adaptive Script. 
+    </paragraph>
+    <header>Importing modules</header>
+    <paragraph>
+    </paragraph>
+    <header>Types and Type Casting</header>
+    <paragraph>
+    </paragraph>
+    <header>Closure</header>
+    <paragraph>
+    </paragraph>
+    <header>Statements</header>
+    <paragraph>
+        There are two import differences between Adaptive Script and ECMAScript 
+        as it relates to statements. In ECMAScript, semicolons are optionally 
+        used to separate statements. In Adaptive Script, they are required.
+        Futhermore, in ECMAScript, any expression can be used as statements and 
+        in Adaptive Script, this is not allowed.
+    </paragraph>
+    <header>Exception Handling</header>
+    <paragraph>
+    </paragraph>
+    <header>Working with lists and objects</header>
+    <paragraph>
+    </paragraph>
+    <header>Keywords new and delete</header>
+    <paragraph>
+    </paragraph>
+    <header>Generators</header>
+    <paragraph>
+    </paragraph>
+    <header>Asynchronous Operations</header>
+    <paragraph>
+    </paragraph>
+    <header>eval</header>
+    <paragraph>
+    </paragraph>
+    <header>for .. in</header>
+    <paragraph>
+    </paragraph>
+    <header>foreach</header>
+    <paragraph>
+    </paragraph>
+    <header>switch</header>
+    <paragraph>
+    </paragraph>
+</doc>
