@@ -516,9 +516,15 @@ OptionalDefineAssignment ::= (
 Assignment ::=
    (
        AssignmentExpression
-       ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' | '**=' | '&&=' | '||=' |
-           '??=' )
-       Expression
+       (
+           ( '++' | '--' ) |
+           (
+               ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
+                 '**=' | '&&=' | '||=' | '??='
+               )
+               Expression
+          )
+       )
    )
 
 /* From afw_compile_parse_script.c                                            */

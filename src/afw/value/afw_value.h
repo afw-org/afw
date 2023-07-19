@@ -322,6 +322,14 @@ afw_value_null;
 
 
 /**
+ * @brief Adaptive value integer 1.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_1;
+
+
+
+/**
  * @brief An undefined value is represented by c NULL
  *
  * Undefined values are represented by c NULL.  Throughout source NULL and

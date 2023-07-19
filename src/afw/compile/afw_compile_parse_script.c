@@ -152,9 +152,15 @@ afw_compile_parse_OptionalDefineAssignment(
  * Assignment ::=
  *    (
  *        AssignmentExpression
- *        ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' | '**=' | '&&=' | '||=' |
- *            '??=' )
- *        Expression
+ *        (
+ *            ( '++' | '--' ) |
+ *            ( 
+ *                ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
+ *                  '**=' | '&&=' | '||=' | '??='
+ *                )
+ *                Expression
+ *           )
+ *        )
  *    )
  *
  *<<<ebnf*/
@@ -168,11 +174,13 @@ afw_compile_parse_Assignment(
     const afw_value_t **argv;
     const afw_value_t *function;
     afw_boolean_t just_expression_okay;
+    afw_boolean_t expression_is_one;
 
     /* Initialize was_expression to false. */
     if (was_expression) {
         *was_expression = false;
     }
+    expression_is_one = false;
     just_expression_okay = false;
 
     if (afw_compile_token_is(open_bracket) ||
@@ -207,8 +215,18 @@ afw_compile_parse_Assignment(
         function = (const afw_value_t *)&afw_function_definition_add;
         break;
 
+    case afw_compile_token_type_increment:
+        function = (const afw_value_t *)&afw_function_definition_add;
+        expression_is_one = true;
+        break;
+
     case afw_compile_token_type_minus_equal:
         function = (const afw_value_t *)&afw_function_definition_subtract;
+        break;
+
+    case afw_compile_token_type_decrement:
+        function = (const afw_value_t *)&afw_function_definition_subtract;
+        expression_is_one = true;
         break;
 
     case afw_compile_token_type_multiply_equal:
@@ -252,7 +270,12 @@ afw_compile_parse_Assignment(
     }
 
     if (function) {
-        result = afw_compile_parse_Expression(parser);
+        if (expression_is_one) {
+            result = afw_value_integer_1;
+        }
+        else {
+            result = afw_compile_parse_Expression(parser);
+        }
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 3,
             parser->xctx);

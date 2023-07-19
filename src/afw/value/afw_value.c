@@ -28,6 +28,17 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_null =
 { (const afw_value_t *)&impl_value_null };
 
+static const afw_value_integer_t
+impl_value_integer_1 = {
+    &afw_value_evaluated_integer_inf,
+    1
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_1 =
+{ (const afw_value_t *)&impl_value_integer_1 };
+
+
 static const afw_value_string_t
 impl_value_undefined_string = {
     &afw_value_evaluated_string_inf,
