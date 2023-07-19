@@ -71,7 +71,7 @@ for line in lines:
             converted = converted.replace("var ", "let ")
 
         if "Number.NaN" in converted:
-            converted = converted.replace("Number.NaN", "NaN");
+            converted = converted.replace("Number.NaN", "NaN")
 
         if "Number.NEGATIVE_INFINITY" in converted:
             converted = converted.replace("Number.NEGATIVE_INFINITY", "-Infinity")

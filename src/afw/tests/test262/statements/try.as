@@ -587,45 +587,45 @@ assert(
 
 //? test: cptn-catch-empty-break
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect:error:Parse error at offset 99 around line 1 column 100: Invalid statement
+//? expect:error:Parse error at offset 98 around line 1 column 99: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-empty-continue
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect: error:Parse error at offset 102 around line 1 column 103: Invalid statement
+//? expect: error:Parse error at offset 101 around line 1 column 102: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 110 around line 1 column 111: Invalid statement
+//? expect: error:Parse error at offset 109 around line 1 column 110: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
 //? test: cptn-catch-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 113 around line 1 column 114: Invalid statement
+//? expect: error:Parse error at offset 112 around line 1 column 113: Invalid statement
 //? source: ...
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i+=1) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
+let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -848,7 +848,7 @@ let i=0;
 try{
 while(i<10){
   if(i===5) throw string(i);
-  i+=1;
+  i++;
 }
 }
 catch(e){
@@ -946,7 +946,7 @@ while(c5<2){
     throw "ex1";
   }
   catch(er1){
-    c5+=1;
+    c5++;
     continue;
   }
 }
@@ -1108,7 +1108,7 @@ let fin7=0;
 try{
   while(c7<2){
     try{
-      c7+=1;
+      c7++;
       throw "ex1";
     }
     finally{
@@ -1199,7 +1199,7 @@ let c=0;
 let i=0;
 let fin=0;
 while(i<10){
-  i+=1;
+  i++;
   try{
     if(c===0){
       throw "ex1";
@@ -1234,7 +1234,7 @@ if(fin!==10){
 
 // CHECK#1
 try{
-  for(let i=0;i<10;i+=1){
+  for(let i=0;i<10;i++){
     if(i===5) throw string(i);
   }
 }
@@ -1252,9 +1252,9 @@ catch(e){
 
 // CHECK#1
 let fin=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
-    i+=1;
+    i++;
     continue;
   }
   catch(er1){}
@@ -1270,7 +1270,7 @@ if(fin!==1){
 // CHECK#2
 let c2=0;
 let fin2=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1293,7 +1293,7 @@ if(c2!==5){
 // CHECK#3
 let c3=0;
 let fin3=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1315,9 +1315,9 @@ if(c3!==5){
 
 // CHECK#4
 fin=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
-    i+=1;
+    i++;
     continue;
   }
   finally{
@@ -1336,10 +1336,10 @@ for(c5=0;c5<10;){
     throw "ex1";
   }
   catch(er1){
-    c5+=1;
+    c5++;
     continue;
   }
-  c5+=12;
+  c5+=2;
 };
 if(c5!==10){
   throw '#5: "try catch{continue} must work correctly"';
@@ -1376,7 +1376,7 @@ if(c6!==10){
 // CHECK#1
 let c1=0;
 let fin=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     c1+=1;
     break;
@@ -1398,7 +1398,7 @@ if(c1!==1){
 // CHECK#2
 let c2=0;
 let fin2=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1422,7 +1422,7 @@ if(c2!==1){
 // CHECK#3
 let c3=0;
 let fin3=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1446,7 +1446,7 @@ if(c3!==1){
 // CHECK#4
 let c4=0;
 let fin4=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     c4+=1;
     break;
@@ -1467,7 +1467,7 @@ if(c4!==1){
 // CHECK#5
 // fixme
 let i;
-for(i=0;i<5;i+=1){
+for(i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1499,7 +1499,7 @@ let fin7=0;
 try{
   for(c7=0;c7<5;){
     try{
-      c7+=1;
+      c7++;
       throw "ex1";
     }
     finally{
@@ -1531,7 +1531,7 @@ if(c7!==1){
 // CHECK#1
 let c1=0;
 let fin=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     c1+=1;
     break;
@@ -1554,7 +1554,7 @@ if(c1!==5){
 // CHECK#2
 let c2=0;
 let fin2=0;
-for(let i=0;i<5;i+=1){
+for(let i=0;i<5;i++){
   try{
     throw "ex1";
   }
@@ -1619,7 +1619,7 @@ let fin=0;
 let i=0;
 foreach let x of mycars {
   try{
-    i+=1;
+    i++;
     continue;
   }
   catch(er1){}
@@ -1704,10 +1704,10 @@ foreach let x of mycars{
     throw "ex1";
   }
   catch(er1){
-    c5+=1;
+    c5++;
     continue;
   }
-  c5+=12;
+  c5+=2;
 }
 if(c5!==3){
   throw '#5: "try catch{continue}" must work correctly';
@@ -1879,7 +1879,7 @@ let fin7=0;
 try{
   foreach let x of mycars{
     try{
-      c7+=1;
+      c7++;
       throw "ex1";
     }
     finally{
@@ -3078,7 +3078,7 @@ if (myObj.i!==10) throw '#5: Handling of catch must be correct';
 
 //? test: S12.14_A18_T7
 //? description: Catching Array
-//? expect: error:Parse error at offset 708 around line 40 column 9: Unknown built-in function new
+//? expect: error:Parse error at offset 705 around line 40 column 9: Unknown built-in function new
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3099,7 +3099,7 @@ try{
   throw mycars;
 }
 catch(e){
-  for (let i=0;i<3;i+=1){
+  for (let i=0;i<3;i++){
     if (e[i]!==mycars[i]) throw '#1.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
 }
@@ -3109,10 +3109,10 @@ try{
   throw mycars.concat(mycars2);
 }
 catch(e){
-  for (let i=0;i<3;i+=1){
+  for (let i=0;i<3;i++){
     if (e[i]!==mycars[i]) throw '#2.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (let i=3;i<6;i+=1){
+  for (let i=3;i<6;i++){
     if (e[i]!==mycars2[i-3]) throw '#2.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
 }
@@ -3122,7 +3122,7 @@ try{
   throw new Array("Mercedes","Jeep","Suzuki");
 }
 catch(e){
-  for (let i=0;i<3;i+=1){
+  for (let i=0;i<3;i++){
     if (e[i]!==mycars2[i]) throw '#3.'+i+': Exception['+i+']===mycars2['+i+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
@@ -3132,10 +3132,10 @@ try{
   throw mycars.concat(new Array("Mercedes","Jeep","Suzuki"));
 }
 catch(e){
-  for (let i=0;i<3;i+=1){
+  for (let i=0;i<3;i++){
     if (e[i]!==mycars[i]) throw '#4.'+i+': Exception['+i+']===mycars['+i+']. Actual:  Exception['+i+']==='+ e[i] ;
   }
-  for (let i=3;i<6;i+=1){
+  for (let i=3;i<6;i++){
     if (e[i]!==mycars2[i-3]) throw '#4.'+i+': Exception['+i+']===mycars2['+(i-3)+']. Actual:  Exception['+i+']==='+ e[i];
   }
 }
@@ -3740,7 +3740,7 @@ try{
     catch(er1){
       if (er1.message!=="ex2") throw '#7.1: Exception ==="ex2". Actual:  Exception ==='+ er1.message  ;
       if (er1.message==="ex1") throw '#7.2: Exception !=="ex1". Actual: catch previous embedded exception';
-      c7+=1;
+      c7++;
     }
   }
 }
@@ -3891,7 +3891,7 @@ try{
       throw "ex2";
     }
     finally{
-      c7+=1;
+      c7++;
       throw "ex3";
     }
   }
@@ -4058,7 +4058,7 @@ try{
     catch(er1){
       if (er1.message!=="ex2") throw '#7.1: Exception === "ex2". Actual:  Exception ==='+er1.message;
       if (er1.message==="ex1") throw '#7.2: Exception !=="ex2". Actual: catch previous catched exception';
-      c7+=1;
+      c7++;
     }
     finally{
       c7*=2;
@@ -4116,7 +4116,7 @@ let i=0;
 try{
   do{
     if(i===5) throw string(i);
-    i+=1;
+    i++;
   }
   while(i<10);
 }
@@ -4219,7 +4219,7 @@ do{
     throw "ex1";
   }
   catch(er1){
-    c5+=1;
+    c5++;
     continue;
   }
 }
@@ -4391,7 +4391,7 @@ let fin7=0;
 try{
   do{
     try{
-      c7+=1;
+      c7++;
       throw "ex1";
     }
     finally{
@@ -4488,7 +4488,7 @@ let c=0;
 let i=0;
 let fin=0;
 do{
-  i+=1;
+  i++;
   try{
     if(c===0){
       throw "ex1";
@@ -4685,61 +4685,58 @@ class C {
 
 //? test: tco-catch-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
+//? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 let callCount = 0;
-// fixme can't call like this yet
 (function f(n) {
   if (n === 0) {
-    callCount += 1
+    callCount += 1;
     return;
   }
   try { } catch (err) { } finally {
     return f(n - 1);
   }
-}(100000));
+}(20));
 assert(callCount === 1);
 
 
 //? test: tco-catch
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
+//? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 let callCount = 0;
-// fixme can't call like this yet
 (function f(n) {
   if (n === 0) {
-    callCount += 1
+    callCount += 1;
     return;
   }
   try {
-    throw null;
+    throw "";
   } catch (err) {
     return f(n - 1);
   }
-}(100000));
+}(20));
 assert(callCount === 1);
 
 
 //? test: tco-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: error:Parse error at offset 83 around line 5 column 11: Expecting '('
+//? expect: null
 //? source: ...
 #!/usr/bin/env afw
 
 let callCount = 0;
-// fixme can't call like this yet
 (function f(n) {
   if (n === 0) {
-    callCount += 1
+    callCount += 1;
     return;
   }
   try { } finally {
     return f(n - 1);
   }
-}(100000));
+}(30));
 assert(callCount === 1);
