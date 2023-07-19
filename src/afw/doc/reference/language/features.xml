@@ -9,7 +9,7 @@
     <header>Variables</header>
     <paragraph>
         Variables in Adaptive Script are used to indentify a memory location,
-        and are declared using the <literal>let<literal> or
+        and are declared using the <literal>let</literal> or
         <literal>const</literal>
         keywords. Unlike ECMAScript, Adaptive Script does not support the
         <literal>var</literal>
