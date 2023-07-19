@@ -958,6 +958,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     afw_size_t start_offset;
     afw_boolean_t break_allowed;
+    afw_boolean_t default_encountered;
 
     afw_compile_save_cursor(start_offset);
  
@@ -988,6 +989,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     /* Loop processing clauses. */
     break_allowed = parser->break_allowed;
     parser->break_allowed = true;
+    default_encountered = false;
     for (;;) {
         afw_compile_get_token();
         if (afw_compile_token_is(close_brace)) {
@@ -997,6 +999,10 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
             case_expression = afw_compile_parse_Expression(parser);
         }
         else if (afw_compile_token_is_name(&afw_s_default)) {
+            if (default_encountered) {
+                AFW_COMPILE_THROW_ERROR_Z("Multiple default clauses");
+            }
+            default_encountered = true;
             case_expression = NULL;
         }
         else {
