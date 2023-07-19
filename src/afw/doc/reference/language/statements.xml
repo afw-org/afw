@@ -168,7 +168,7 @@ function func2(a, b) : a + b;]]></code>
         </paragraph>
     </section>
     <section>
-        <title>Loc</title>
+        <title>Let</title>
         <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
         <paragraph>
             The <literal>let</literal> statement declares a local variable.
@@ -186,6 +186,28 @@ function func2(a, b) : a + b;]]></code>
             <title>Example</title>
             <code><![CDATA[function func(a, b) {
     return a + b;
+}]]></code>
+        </section>
+    </section>
+    <section>
+        <title>Switch</title>
+        <image generated-src="ebnf/syntax/diagram/SwitchStatement.png" />
+        <paragraph>
+            The <literal>switch</literal> statement branches control flow based
+            on the value of an expression and the value of each case.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[switch (val) {
+    case 1:
+        print(1);
+        break;
+    case 2:
+        print(2);
+        break;
+    default:
+        print("default");
+        break;
 }]]></code>
         </section>
     </section>
