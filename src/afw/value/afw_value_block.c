@@ -845,6 +845,7 @@ afw_value_block_evaluate_try(
     const afw_object_t *error_object;
     const afw_value_t *error_value;
     afw_value_block_statement_type_t use_type;
+    int local_top;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
@@ -852,6 +853,7 @@ afw_value_block_evaluate_try(
     result = afw_value_null;
     use_type = *type;
 
+    local_top = afw_xctx_begin_stack_frame(xctx);  
     AFW_TRY {
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[1], p, xctx);
@@ -859,6 +861,7 @@ afw_value_block_evaluate_try(
     }
 
     AFW_CATCH_UNHANDLED {
+        afw_xctx_end_stack_frame(local_top, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
@@ -890,6 +893,7 @@ afw_value_block_evaluate_try(
     }
 
     AFW_FINALLY {
+        afw_xctx_end_stack_frame(local_top, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[2], p, xctx);

@@ -644,7 +644,6 @@ do {\
     afw_error_t this_THROWN_ERROR; \
     afw_boolean_t this_ERROR_OCCURRED = false; \
     afw_boolean_t this_ERROR_CAUGHT = false; \
-    AFW_POSSIBLY_UNUSED_VARIABLE afw_boolean_t this_FINALLY_ENTERED = false; \
     this_TRY.prev = xctx->current_try;\
     xctx->current_try = &this_TRY;\
     this_TOP_OFFSET = xctx->evaluation_stack->top - \
@@ -709,11 +708,7 @@ do {\
         } \
     } while(0); \
     do { \
-        if (this_FINALLY_ENTERED) { \
-            this_THROWN_ERROR.recursive_error_in_finally = true; \
-            break; \
-        } \
-        this_FINALLY_ENTERED = true; \
+        xctx->current_try = this_TRY.prev; \
         { \
             do
 
