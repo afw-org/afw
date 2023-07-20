@@ -596,13 +596,6 @@ afw_error_to_utf8(
         (error->rv_decoded_z) ? "-" : "",
         (error->rv_decoded_z) ? (char *)error->rv_decoded_z : "",
 
-        /* recursive error */
-        (!error->recursive_error)
-        ? ""
-        : ((error->recursive_error_in_finally)
-            ? " recursive error in finally"
-            : " recursive error in catch"),
-
         /* source location */
         (do_contextual && error->contextual && error->contextual->source_location)
             ? " source_location=" : "",
@@ -705,17 +698,6 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     }
     rv = fprintf(fp, "message:     %s\n", error->message_z);
     if (rv < 0) goto return_rv;
-
-    /* recursive error */
-    if (error->recursive_error) {
-        if (error->recursive_error_in_finally) {
-            rv = fprintf(fp, "recursive error: in finally\n");
-        }
-        else {
-            rv = fprintf(fp, "recursive error: in catch\n");
-        }
-        if (rv < 0) goto return_rv;
-    }
 
     if (error->contextual) {
         afw_value_contextual_resolve_value_source(&value_source,
@@ -985,16 +967,6 @@ afw_error_add_to_object(
         afw_utf8_create_copy(error->message_z,
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
-
-    if (error->recursive_error) {
-        afw_object_set_property_as_string(object,
-            &afw_s_recursiveError,
-            (error->recursive_error_in_finally)
-            ? &afw_s_a_in_finally
-            : &afw_s_a_in_catch,
-            xctx);
-    }
-
 
     afw_object_set_property_as_string(object,
         &afw_s_xctxUUID, xctx->uuid, xctx);

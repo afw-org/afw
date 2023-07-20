@@ -91,11 +91,6 @@
                     "title": "Parser Source",
                     "type": "integer"
                 },
-                "recursiveError": {
-                    "description": "This is present if this error occurred while processing the original error's catch or finally.",
-                    "title": "Recursive Error",
-                    "type": "string"
-                },
                 "rv": {
                     "description": "The return value.",
                     "title": "Rv",

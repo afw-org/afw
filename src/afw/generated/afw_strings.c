@@ -5299,9 +5299,6 @@ AFW_UTF8_LITERAL("reconcilable");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reconcile_object =
 AFW_UTF8_LITERAL("reconcile_object");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_recursiveError =
-AFW_UTF8_LITERAL("recursiveError");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reduce =
 AFW_UTF8_LITERAL("reduce");
 

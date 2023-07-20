@@ -10577,12 +10577,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_reconcilable;
 /** @brief afw_utf8_t for string reconcile_object */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_reconcile_object;
 
-/** @brief define for quoted string recursiveError */
-#define AFW_Q_recursiveError "recursiveError"
-
-/** @brief afw_utf8_t for string recursiveError */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_recursiveError;
-
 /** @brief define for quoted string reduce */
 #define AFW_Q_reduce "reduce"
 

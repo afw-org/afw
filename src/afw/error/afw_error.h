@@ -114,12 +114,6 @@ struct afw_error_s {
     /** @brief If non-zero, this is rc, rv, or any int value related to error. */
     int rv;
 
-    /** @brief Recursive error. */
-    afw_boolean_t recursive_error;
-
-    /** @brief Recursive error in finally. */
-    afw_boolean_t recursive_error_in_finally;
-
     /*IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear up to decode_rv_wa. */
 
     /** @brief Place to optionally hold rv_decoded_z. */
@@ -653,7 +647,6 @@ do {\
             AFW_ERROR_COPY(&this_THROWN_ERROR, xctx->error); \
             AFW_ERROR_CLEAR_PARTIAL(xctx->error); \
             if (this_ERROR_OCCURRED) { \
-                this_THROWN_ERROR.recursive_error = true; \
                 this_ERROR_CAUGHT = false; \
                 break; \
             } \

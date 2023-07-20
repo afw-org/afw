@@ -101,12 +101,6 @@
             "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
             "label": "Parser Source"
         },
-        "recursiveError": {
-            "brief": "This error occurred while processing and handling the original error",
-            "dataType": "string",
-            "description": "This is present if this error occurred while processing the original error's catch or finally.",
-            "label": "Recursive Error"
-        },
         "rv": {
             "brief": "The return value",
             "dataType": "string",
