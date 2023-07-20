@@ -685,10 +685,19 @@ afw_compile_next_raw_starts_with_z_impl(
     afw_compile_next_raw_starts_with_z_impl(parser, s_z)
 
 
+typedef struct afw_compile_parse_StatementList_cb_s {
+    void (*func) (
+        struct afw_compile_parse_StatementList_cb_s *cb,
+        afw_compile_parser_t *parser,
+        const afw_value_block_t *block,
+        afw_compile_args_t *statements);
+} afw_compile_parse_StatementList_cb_t;
+
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
+    afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
     afw_boolean_t can_be_single_return_expression);

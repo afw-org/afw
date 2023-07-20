@@ -29,7 +29,7 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
 
     if (afw_compile_token_is(substitute_start)) {
         result = afw_compile_parse_StatementList(parser,
-            true, false, true);
+            NULL, true, false, true);
     }
 
     else {

@@ -1013,7 +1013,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
         }
         statement_list = afw_compile_parse_StatementList(parser,
-            false, true, false);
+            NULL, false, true, false);
         afw_compile_args_add_value(args, case_expression);
         afw_compile_args_add_value(args, statement_list);
     }
@@ -1091,8 +1091,31 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
 
     return result;
 }
+ 
 
+typedef struct {
+    afw_compile_parse_StatementList_cb_t public;
+    const afw_utf8_t *error_variable_name;
+    const afw_value_t **variable_reference;
+    const afw_compile_value_contextual_t *contextual;
+} impl_parse_TryStatement_StatementList_cb_t;
 
+static void
+impl_parse_TryStatement_StatementList_cb (
+    afw_compile_parse_StatementList_cb_t *cb,
+    afw_compile_parser_t *parser,
+    const afw_value_block_t *block,
+    afw_compile_args_t *statements)
+{
+    impl_parse_TryStatement_StatementList_cb_t *self =
+        (impl_parse_TryStatement_StatementList_cb_t *)cb;
+ 
+    *self->variable_reference = (const afw_value_t *)
+        afw_compile_parse_variable_reference_create(parser,
+            self->contextual,
+            afw_compile_assignment_type_let,
+            self->error_variable_name);
+}
 
 /*ebnf>>>
  *
@@ -1108,14 +1131,14 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
-    const afw_value_block_t *block;
-    afw_size_t start_offset;
+    impl_parse_TryStatement_StatementList_cb_t cb;
     afw_size_t argc;
+    afw_size_t start_offset;
     afw_boolean_t rethrow_allowed;
 
     rethrow_allowed = parser->rethrow_allowed;
     parser->rethrow_allowed = false;
-    block = NULL;
+    cb.public.func = NULL;
     afw_compile_save_cursor(start_offset);
 
     argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
@@ -1136,27 +1159,35 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         }
         else {
             argc = 4;
-            block = afw_compile_parse_link_new_value_block(
-                parser, start_offset);
             afw_compile_get_token();
             if (!afw_compile_token_is_unqualified_identifier()) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting identifier");
             }
-            argv[4] = (const afw_value_t *)
-                afw_compile_parse_variable_reference_create(parser,
-                    afw_compile_create_contextual_to_cursor(start_offset),
-                    afw_compile_assignment_type_let,
-                    parser->token->identifier_name);
+            /*
+             * Callback is needed so that error variable reference can be 
+             * created in afw_compile_parse_StatementList() after block has
+             * been created so it will be associated with the correct block.
+             */
+            cb.public.func = impl_parse_TryStatement_StatementList_cb;
+            cb.error_variable_name = parser->token->identifier_name;
+            cb.contextual = afw_compile_create_contextual_to_cursor(
+                start_offset);
+            cb.variable_reference = &argv[4];
             afw_compile_get_token();
             if (!afw_compile_token_is(close_parenthesis)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
             }
         }
-        argv[3] = afw_compile_parse_Statement(parser, NULL);
-        parser->rethrow_allowed = false;
-        if (block) {
-            afw_compile_parse_pop_value_block(parser);
+
+        /* catch always has to have a block, not single statement. */
+        afw_compile_get_token();
+        if (!afw_compile_token_is(open_brace)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
+        argv[3] = afw_compile_parse_StatementList(parser,
+            (cb.public.func) ? &cb.public : NULL,
+            true, false, false);
+        parser->rethrow_allowed = false;
     }
     else {
         afw_compile_reuse_token();
@@ -1168,8 +1199,13 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         if (argc == 1) {
             argc = 2;
         }
-
-        argv[2] = afw_compile_parse_Statement(parser, NULL);
+        /* finally always has to have a block, not single statement. */
+        afw_compile_get_token();
+        if (!afw_compile_token_is(open_brace)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
+        }
+        argv[2] = afw_compile_parse_StatementList(parser,
+            NULL, true, false, false);
     }
     else {
         afw_compile_reuse_token();
@@ -1184,14 +1220,6 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
         argc, argv, parser->p, parser->xctx);
-
-    /* If there is a catch with variable, create a block. */
-    if (block) {
-        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
-        argv[0] = result;
-        afw_value_block_finalize(block, 1, argv, parser->xctx);
-        result = (const afw_value_t *)block;
-    }
 
     parser->rethrow_allowed = rethrow_allowed;
     return result;
@@ -1297,7 +1325,8 @@ afw_compile_parse_Statement(
 
     /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
-        result = afw_compile_parse_StatementList(parser, true, false, false);
+        result = afw_compile_parse_StatementList(parser,
+            NULL, true, false, false);
         return result;
     }
    
@@ -1459,6 +1488,7 @@ afw_compile_parse_Statement(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
+    afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
     afw_boolean_t can_be_single_return_expression)
@@ -1484,6 +1514,11 @@ afw_compile_parse_StatementList(
 
     /* Make new block and link. */
     block = afw_compile_parse_link_new_value_block(parser, start_offset);
+
+    /* If cb passed, call it now that args and block are set. */
+    if (cb) {
+        (cb->func)(cb, parser, block, args);
+    }
 
     /* Process statements. */
     for (;;) {
@@ -1592,7 +1627,8 @@ afw_compile_parse_Script(
     }
 
     /* Parse statements and return. */
-    result = afw_compile_parse_StatementList(parser, false, false, true);
+    result = afw_compile_parse_StatementList(parser,
+        NULL, false, false, true);
     return result;
 }
 
