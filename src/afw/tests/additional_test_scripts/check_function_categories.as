@@ -16,11 +16,11 @@ const categories: object = retrieve_objects("dev", "_AdaptiveFunctionCategory_")
 
 // retrieve our functions
 const funcs: object = retrieve_objects("dev", "_AdaptiveFunctionGenerate_");
-foreach const func: object of funcs {
+for (const func: object of funcs) {
     const {category} /* @todo :{category: string} */ = func;
 
     let found: boolean = false;
-    foreach const c: object of categories {
+    for (const c: object of categories) {
         const {category: cat} = c;        
         
         if (category === cat) {

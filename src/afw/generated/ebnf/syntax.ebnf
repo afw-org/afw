@@ -501,8 +501,7 @@ AssignmentExpression ::= Expression
 /* From afw_compile_parse_script.c                                            */
 
 OptionalDefineTarget ::=
-   ( ( 'let' | 'const' ) AssignmentTarget ) |
-   AssignmentTarget
+   ( ( 'let' | 'const' )? AssignmentTarget )
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -513,19 +512,21 @@ OptionalDefineAssignment ::= (
 
 /* From afw_compile_parse_script.c                                            */
 
-Assignment ::=
+AssignmentOperation ::=
    (
-       AssignmentExpression
+       ( '++' | '--' ) |
        (
-           ( '++' | '--' ) |
            (
-               ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
-                 '**=' | '&&=' | '||=' | '??='
-               )
-               Expression
-          )
-       )
+             '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
+             '**=' | '&&=' | '||=' | '??='
+           )
+           Expression
+      )
    )
+
+/* From afw_compile_parse_script.c                                            */
+
+Assignment ::= AssignmentExpression AssignmentOperation
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -576,11 +577,16 @@ DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
 /* From afw_compile_parse_script.c                                            */
 
 ForStatement ::= 'for'
-  '('
-      ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
-      ';' Expression?
-      ';' ( Assignment ( ',' Assignment )* )?
-  ')' Statement
+  '(' (
+      (
+          ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+          ';' Expression?
+          ';' ( Assignment ( ',' Assignment )* )?
+      ) |
+      (
+          OptionalDefineTarget 'of' Expression
+      )
+  ) ')' Statement
 
 /* From afw_compile_parse_script.c                                            */
 /* This will probably change when set operators are added.                    */

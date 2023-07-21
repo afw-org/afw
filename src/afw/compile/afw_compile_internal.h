@@ -979,8 +979,19 @@ afw_compile_parse_AssignmentElement(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_compile_parse_AssignmentOperation(
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    afw_boolean_t just_expression_okay,
+    afw_boolean_t *was_expression);
+
+
+
+AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_AssignmentExpression(
-    afw_compile_parser_t *parser);
+    afw_compile_parser_t *parser,
+    afw_boolean_t *was_expression,
+    afw_boolean_t *just_expression_okay);
 
 
 
@@ -1133,15 +1144,19 @@ afw_compile_parse_Object(
     afw_boolean_t allow_enhanced_literals);
 
 
-
+/* afw_compile_parse_OptionalDefineTarget should be called first. */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_OptionalDefineAssignment(
-    afw_compile_parser_t *parser);
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    const afw_value_t *define_function);
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_OptionalDefineTarget(
-    afw_compile_parser_t *parser);
+    afw_compile_parser_t *parser,
+    const afw_value_t **define_function,
+    const afw_value_block_t **block);
 
 AFW_DECLARE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_OptionalType(

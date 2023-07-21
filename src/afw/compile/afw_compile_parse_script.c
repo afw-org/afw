@@ -44,13 +44,39 @@ impl_function_definition_rethrow =
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_AssignmentExpression(
-    afw_compile_parser_t *parser)
+    afw_compile_parser_t *parser,
+    afw_boolean_t *was_expression,
+    afw_boolean_t *just_expression_okay)
 {
     const afw_value_t *result;
+ 
+    /* Initialize was_expression to false. */
+    if (was_expression) {
+        *was_expression = false;
+    }
+    *just_expression_okay = false;
 
-    result = afw_compile_parse_Expression(parser);
+    if (afw_compile_token_is(open_bracket) ||
+        afw_compile_token_is(open_brace) ||
+        afw_compile_token_is(open_angle_bracket))
+    {
+        afw_compile_reuse_token();
+        result = afw_compile_parse_AssignmentTarget(parser,
+            afw_compile_assignment_type_assign_only);
+    }
+    else {
+        afw_compile_reuse_token();
+        result = afw_compile_parse_Evaluation(parser);
+        if (!result && was_expression) {
+            result = afw_compile_parse_Expression(parser);
+        }
+        if (!result) {
+            AFW_COMPILE_THROW_ERROR_Z("Invalid assignment target");
+        }
+        *just_expression_okay = true;
+    }
 
-    return result;
+     return result;
 }
 
 
@@ -58,28 +84,41 @@ afw_compile_parse_AssignmentExpression(
 /*ebnf>>>
  *
  * OptionalDefineTarget ::=
- *    ( ( 'let' | 'const' ) AssignmentTarget ) |
- *    AssignmentTarget
+ *    ( ( 'let' | 'const' )? AssignmentTarget )
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_OptionalDefineTarget(
-    afw_compile_parser_t *parser)
+    afw_compile_parser_t *parser,
+    const afw_value_t **define_function,
+    const afw_value_block_t **block)
 {
     const afw_value_t *result;
+    afw_size_t start_offset;
     afw_compile_internal_assignment_type_t assignment_type;
 
-    /* Determine assignment type. */
-    assignment_type = afw_compile_assignment_type_assign_only;
+    afw_compile_save_cursor(start_offset);
+
+   /* Determine assignment type. */
     afw_compile_get_token();
     if (afw_compile_token_is_name(&afw_s_let)) {
         assignment_type = afw_compile_assignment_type_let;
+        *define_function = (const afw_value_t *)&afw_function_definition_let;
     }
     else if afw_compile_token_is_name(&afw_s_const) {
         assignment_type = afw_compile_assignment_type_const;
+        *define_function = (const afw_value_t *)&afw_function_definition_const;
     }
     else {
         afw_compile_reuse_token();
+        assignment_type = afw_compile_assignment_type_assign_only;
+        *define_function = NULL;
+    }
+
+    /* If there is a let or const, block specified and not NULL, make one. */
+    if (define_function && block && !*block) {
+        *block = afw_compile_parse_link_new_value_block(
+            parser, start_offset);
     }
 
     /* Parse AssignmentTarget and return result. */
@@ -97,50 +136,44 @@ afw_compile_parse_OptionalDefineTarget(
  * )
  *
  *<<<ebnf*/
+/* Call afw_compile_parse_OptionalDefineTarget() first to get params. */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_OptionalDefineAssignment(
-    afw_compile_parser_t *parser)
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    const afw_value_t *define_function)
 {
     const afw_value_t *result;
-    afw_compile_internal_assignment_type_t assignment_type;
     const afw_value_t **argv;
-    const afw_value_t *function;
 
-    /* Determine assignment type and function_id. */
-    if (afw_compile_token_is_name(&afw_s_let)) {
-        assignment_type = afw_compile_assignment_type_let;
-        function = (const afw_value_t *)&afw_function_definition_let;
-    }
-    else if afw_compile_token_is_name(&afw_s_const) {
-        assignment_type = afw_compile_assignment_type_const;
-        function = (const afw_value_t *)&afw_function_definition_const;
+    if (!define_function) {
+        result = afw_compile_parse_AssignmentOperation(parser,
+            target, false, NULL);
     }
 
-    /* If not const or let, return result of normal Assignment. */
     else {
-        return afw_compile_parse_Assignment(parser, NULL);
+
+        /* Call appropriate function for const and let. */
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 4,
+            parser->xctx);
+
+        argv[0] = define_function;
+        argv[1] = target;
+        argv[2] = NULL;
+        argv[3] = NULL;
+
+        afw_compile_get_token();
+        if (!afw_compile_token_is(equal)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+        }
+        argv[2] = afw_compile_parse_Expression(parser);
+
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(
+                parser->token->token_source_offset),
+            3, argv, parser->p, parser->xctx);
     }
-
-    /* Call appropriate function for const and let. */
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 4,
-        parser->xctx);
-
-    argv[0] = function;
-    argv[1] = afw_compile_parse_AssignmentTarget(parser, assignment_type);
-    argv[2] = NULL;
-    argv[3] = NULL;
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is(equal)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
-    }
-    argv[2] = afw_compile_parse_Expression(parser);
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-        3, argv, parser->p, parser->xctx);
 
     return result;
 }
@@ -149,62 +182,32 @@ afw_compile_parse_OptionalDefineAssignment(
 
 /*ebnf>>>
  *
- * Assignment ::=
+ * AssignmentOperation ::=
  *    (
- *        AssignmentExpression
- *        (
- *            ( '++' | '--' ) |
- *            ( 
- *                ( '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
- *                  '**=' | '&&=' | '||=' | '??='
- *                )
- *                Expression
- *           )
- *        )
+ *        ( '++' | '--' ) |
+ *        ( 
+ *            (
+ *              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
+ *              '**=' | '&&=' | '||=' | '??='
+ *            )
+ *            Expression
+ *       )
  *    )
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_Assignment(
+afw_compile_parse_AssignmentOperation(
     afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    afw_boolean_t just_expression_okay,
     afw_boolean_t *was_expression)
 {
     const afw_value_t *result;
-    const afw_value_t *target;
     const afw_value_t **argv;
     const afw_value_t *function;
-    afw_boolean_t just_expression_okay;
     afw_boolean_t expression_is_one;
 
-    /* Initialize was_expression to false. */
-    if (was_expression) {
-        *was_expression = false;
-    }
     expression_is_one = false;
-    just_expression_okay = false;
-
-    if (afw_compile_token_is(open_bracket) ||
-        afw_compile_token_is(open_brace) ||
-        afw_compile_token_is(open_angle_bracket))
-    {
-        afw_compile_reuse_token();
-        target = afw_compile_parse_AssignmentTarget(parser,
-            afw_compile_assignment_type_assign_only);
-    }
-    else {
-        afw_compile_reuse_token();
-        target = afw_compile_parse_Evaluation(parser);
-        if (!target && was_expression) {
-            target = afw_compile_parse_Expression(parser);
-        }
-        if (!target) {
-            AFW_COMPILE_THROW_ERROR_Z("Invalid assignment target");
-        }
-        if (was_expression) {
-            just_expression_okay = true;
-        }
-    }
-
     afw_compile_get_token();
     switch (parser->token->type) {
     case afw_compile_token_type_equal:
@@ -301,6 +304,31 @@ afw_compile_parse_Assignment(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
             2, argv, parser->p, parser->xctx);
+
+    return result;
+}
+
+
+
+/*ebnf>>>
+ *
+ * Assignment ::= AssignmentExpression AssignmentOperation
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_compile_parse_Assignment(
+    afw_compile_parser_t *parser,
+    afw_boolean_t *was_expression)
+{
+    const afw_value_t *result;
+    const afw_value_t *target;
+    afw_boolean_t just_expression_okay;
+
+    target = afw_compile_parse_AssignmentExpression(parser,
+        was_expression, &just_expression_okay);
+
+    result = afw_compile_parse_AssignmentOperation(parser,
+        target, just_expression_okay, was_expression);
 
     return result;
 }
@@ -565,11 +593,16 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * ForStatement ::= 'for'
- *   '('
- *       ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
- *       ';' Expression?
- *       ';' ( Assignment ( ',' Assignment )* )?
- *   ')' Statement
+ *   '(' (
+  *       (
+ *           ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+ *           ';' Expression?
+ *           ';' ( Assignment ( ',' Assignment )* )?
+ *       ) |
+ *       (
+ *           OptionalDefineTarget 'of' Expression
+ *       )
+ *   ) ')' Statement
  *
  *<<<ebnf*/
 static const afw_value_t *
@@ -578,42 +611,51 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     const afw_value_t **argv;
     const afw_value_t *value;
+    const afw_value_t *target;
     const afw_list_t *list;
+    const afw_value_t *define_function;
     const afw_value_block_t *block;
     afw_size_t start_offset;
     afw_boolean_t break_allowed;
     afw_boolean_t continue_allowed;
+    afw_boolean_t is_for_of;
 
     block = NULL;
+    is_for_of = false;
     afw_compile_save_cursor(start_offset);
-
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
-    argv[0] = (const afw_value_t *)&afw_function_definition_for;
 
     afw_compile_get_token();
     if (!afw_compile_token_is(open_parenthesis)) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting '('");
     }
-
-    /* ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )? ';' */
-    afw_compile_get_token();
     list = NULL;
+    afw_compile_get_token();
     if (!afw_compile_token_is(semicolon)) {
+        afw_compile_reuse_token();
         for (;;) {
+            /*
+             * Get the target using OptionalDefineTarget(). This is needed for
+             * the "OptionalDefineTarget 'of' Expression" part of production. If
+             * it turns out the OptionalDefineAssignment matches instead, pass
+             * this target to OptionalDefineAssignment() since it has already
+             * been parsed and the first part is the same.
+             */
+            target = afw_compile_parse_OptionalDefineTarget(parser,
+                &define_function, &block);
 
-            /* If there are let and/or const, a block is needed. */
-            if (afw_compile_token_is_name(&afw_s_let) ||
-                afw_compile_token_is_name(&afw_s_const))
-            {
-                if (!block) {
-                    block = afw_compile_parse_link_new_value_block(
-                        parser, start_offset);
+            afw_compile_get_token();
+            if (afw_compile_token_is_name(&afw_s_of)) {
+                if (list) {
+                    AFW_COMPILE_THROW_ERROR_Z("Not expecting 'of'");
                 }
-                value = afw_compile_parse_OptionalDefineAssignment(parser);
+                is_for_of = true;
+                break;
             }
-            else {
-                value = afw_compile_parse_Assignment(parser, NULL);
-            }
+            afw_compile_reuse_token();
+
+            value = afw_compile_parse_OptionalDefineAssignment(parser,
+                target, define_function);
+
             if (!list) {
                 list = afw_list_create_generic(parser->p, parser->xctx);
             }
@@ -625,62 +667,92 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
             if (!afw_compile_token_is(comma)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
             }
-            afw_compile_get_token();
         }
     }
-    argv[1] = NULL;
-    if (list) {
-        argv[1] = afw_value_create_list(list, parser->p, parser->xctx);
+
+    if (is_for_of) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 4, parser->xctx);
+        argv[0] = (const afw_value_t *)&afw_function_definition_foreach;
+        argv[1] = target;   
+        argv[2] = afw_compile_parse_Expression(parser);
+        
+        afw_compile_get_token();
+        if (!afw_compile_token_is(close_parenthesis)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
+        }
+
+        break_allowed = parser->break_allowed;
+        continue_allowed = parser->continue_allowed;
+        parser->break_allowed = true;
+        parser->continue_allowed = true;
+        argv[3] = afw_compile_parse_Statement(parser, NULL);
+        parser->break_allowed = break_allowed;
+        parser->continue_allowed = continue_allowed;
+
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            3, argv, parser->p, parser->xctx);
     }
 
-    /* Expression? ';' */
-    argv[2] = NULL;
-    afw_compile_get_token();
-    if (!afw_compile_token_is(semicolon)) {
-        afw_compile_reuse_token();
-        argv[2] = afw_compile_parse_Expression(parser);
+    else {
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
+        argv[0] = (const afw_value_t *)&afw_function_definition_for;
+        argv[1] = NULL;
+        if (list) {
+            argv[1] = afw_value_create_list(list, parser->p, parser->xctx);
+        }
+
+        /* Expression? ';' */
+        argv[2] = NULL;
         afw_compile_get_token();
         if (!afw_compile_token_is(semicolon)) {
-            AFW_COMPILE_THROW_ERROR_Z("Expecting ';'");
-        }
-    }
-
-    /* ( Assignment ( ',' Assignment )* )? ')' */
-    afw_compile_get_token();
-    list = NULL;
-    if (!afw_compile_token_is(close_parenthesis)) {
-        for (;;) {
-            value = afw_compile_parse_Assignment(parser, NULL);
-            if (!list) {
-                list = afw_list_create_generic(parser->p, parser->xctx);
-            }
-            afw_list_add_value(list, value, parser->xctx);
+            afw_compile_reuse_token();
+            argv[2] = afw_compile_parse_Expression(parser);
             afw_compile_get_token();
-            if (afw_compile_token_is(close_parenthesis)) {
-                break;
+            if (!afw_compile_token_is(semicolon)) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting ';'");
             }
-            if (!afw_compile_token_is(comma)) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ')'");
-            }
-            afw_compile_get_token();
         }
-    }
-    argv[3] = NULL;
-    if (list) {
-        argv[3] = afw_value_create_list(list, parser->p, parser->xctx);
-    }
 
-    break_allowed = parser->break_allowed;
-    continue_allowed = parser->continue_allowed;
-    parser->break_allowed = true;
-    parser->continue_allowed = true;
-    argv[4] = afw_compile_parse_Statement(parser, NULL);
-    parser->break_allowed = break_allowed;
-    parser->continue_allowed = continue_allowed;
+        /* ( Assignment ( ',' Assignment )* )? ')' */
+        afw_compile_get_token();
+        list = NULL;
+        if (!afw_compile_token_is(close_parenthesis)) {
+            for (;;) {
+                value = afw_compile_parse_Assignment(parser, NULL);
+                if (!list) {
+                    list = afw_list_create_generic(parser->p, parser->xctx);
+                }
+                afw_list_add_value(list, value, parser->xctx);
+                afw_compile_get_token();
+                if (afw_compile_token_is(close_parenthesis)) {
+                    break;
+                }
+                if (!afw_compile_token_is(comma)) {
+                    AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ')'");
+                }
+                afw_compile_get_token();
+            }
+        }
+        argv[3] = NULL;
+        if (list) {
+            argv[3] = afw_value_create_list(list, parser->p, parser->xctx);
+        }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        4, argv, parser->p, parser->xctx);
+        break_allowed = parser->break_allowed;
+        continue_allowed = parser->continue_allowed;
+        parser->break_allowed = true;
+        parser->continue_allowed = true;
+        argv[4] = afw_compile_parse_Statement(parser, NULL);
+        parser->break_allowed = break_allowed;
+        parser->continue_allowed = continue_allowed;
+
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            4, argv, parser->p, parser->xctx);
+
+    }
 
     /* If there is a block for let/const finalize it. */
     if (block) {
@@ -709,15 +781,19 @@ impl_parse_ForeachStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
+    const afw_value_t *define_function;
+    const afw_value_block_t *block;
     afw_size_t start_offset;
     afw_boolean_t break_allowed;
     afw_boolean_t continue_allowed;
 
+    block = NULL;
     afw_compile_save_cursor(start_offset);
 
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = (const afw_value_t *)&afw_function_definition_foreach;
-    argv[1] = afw_compile_parse_OptionalDefineTarget(parser);
+    argv[1] = afw_compile_parse_OptionalDefineTarget(parser,
+        &define_function, &block);
 
     afw_compile_get_token();
     if (!afw_compile_token_is_name(&afw_s_of))
@@ -738,6 +814,15 @@ impl_parse_ForeachStatement(afw_compile_parser_t *parser)
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
         3, argv, parser->p, parser->xctx);
+
+    /* If there is a block for let/const finalize it. */
+    if (block) {
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
+        argv[0] = result;
+        afw_value_block_finalize(block, 1, argv, parser->xctx);
+        result = (const afw_value_t *)block;
+        afw_compile_parse_pop_value_block(parser);
+    }
 
     return result;
 }
