@@ -1286,7 +1286,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
  *      OperatorReservedWords |
  *      PredefinedConstReservedWords |
  *      StatementReservedWords |
- *      UnusedButReservedKeywords )
+ *      UnusedButReservedWords )
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(afw_boolean_t)
@@ -1356,7 +1356,7 @@ afw_compile_is_reserved_word(
 
 /*ebnf>>>
  * 
- * UnusedButReservedKeywords ::= ( 'as' | 'async' | 'await' | 'class' |
+ * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
  *      'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
  *      'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
  *

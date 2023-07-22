@@ -1002,7 +1002,7 @@ ReservedWords ::= (
      OperatorReservedWords |
      PredefinedConstReservedWords |
      StatementReservedWords |
-     UnusedButReservedKeywords )
+     UnusedButReservedWords )
 
 /* From afw_compile_lexical.c                                                 */
 
@@ -1022,7 +1022,7 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
 
 /* From afw_compile_lexical.c                                                 */
 
-UnusedButReservedKeywords ::= ( 'as' | 'async' | 'await' | 'class' |
+UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
      'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
      'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
 
