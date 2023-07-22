@@ -1281,36 +1281,12 @@ impl_parse_identifier(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * ReservedWords ::=
- *    'false' |
- *    'Infinity' |
- *    'null' |
- *    'NaN' |
- *    'true' |
- *    'undefined' |
- *    'break' |
- *    'case' |
- *    'catch' |
- *    'const' |
- *    'continue' |
- *    'do' |
- *    'else' |
- *    'finally' |
- *    'for' |
- *    'foreach' |
- *    'function' |
- *    'if' |
- *    'in' |
- *    'instanceof' |
- *    'interface' |
- *    'let' |
- *    'return' |
- *    'switch' |
- *    'throw' |
- *    'try' |
- *    'typeof' |
- *    'type' |
- *    'while'
+ *# Reserved words can not be used as an identifier.
+ * ReservedWords ::= (
+ *      OperatorReservedWords |
+ *      PredefinedConstReservedWords |
+ *      StatementReservedWords |
+ *      UnusedButReservedKeywords )
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(afw_boolean_t)
@@ -1318,20 +1294,52 @@ afw_compile_is_reserved_word(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
 {
+    /*
+     * The 'if' is probably a good way to do this since there are so few but
+     * might should change to a binary search.
+     */
     if (
-        afw_utf8_equal(s, &afw_s_true)         ||
+
+/*ebnf>>>
+ * 
+ * OperatorReservedWords ::= ( 'delete' | 'in' | 'instanceof' )
+ * 
+ *<<<ebnf*/
+
+        afw_utf8_equal(s, &afw_s_delete)       ||
+        afw_utf8_equal(s, &afw_s_in)           ||
+        afw_utf8_equal(s, &afw_s_instanceof)   ||
+
+/*ebnf>>>
+ *
+ * PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
+ *      'null' | 'true' | 'undefined' )
+ * 
+ *<<<ebnf*/
+
         afw_utf8_equal(s, &afw_s_false)        ||
-        afw_utf8_equal(s, &afw_s_Infinity)     ||
         afw_utf8_equal(s, &afw_s_INF)          ||
-        afw_utf8_equal(s, &afw_s_null)         ||
+        afw_utf8_equal(s, &afw_s_Infinity)     ||
         afw_utf8_equal(s, &afw_s_NaN)          ||
+        afw_utf8_equal(s, &afw_s_null)         ||
+        afw_utf8_equal(s, &afw_s_true)         ||
         afw_utf8_equal(s, &afw_s_undefined)    ||
+
+/*ebnf>>>
+ * 
+ * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' | 
+ *      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' | 
+ *      'foreach' | 'function' | 'if' | 'let' | 'return' | 'switch' |
+ *      'throw' | 'try' | 'while' )
+ * 
+ *<<<ebnf*/
 
         afw_utf8_equal(s, &afw_s_break)        ||
         afw_utf8_equal(s, &afw_s_case)         ||
         afw_utf8_equal(s, &afw_s_catch)        ||
         afw_utf8_equal(s, &afw_s_const)        ||
         afw_utf8_equal(s, &afw_s_continue)     ||
+        afw_utf8_equal(s, &afw_s_default)      ||
         afw_utf8_equal(s, &afw_s_do)           ||
         afw_utf8_equal(s, &afw_s_else)         ||
         afw_utf8_equal(s, &afw_s_finally)      ||
@@ -1339,18 +1347,37 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, &afw_s_foreach)      ||
         afw_utf8_equal(s, &afw_s_function)     ||
         afw_utf8_equal(s, &afw_s_if)           ||
-        afw_utf8_equal(s, &afw_s_in)           ||
-        afw_utf8_equal(s, &afw_s_instanceof)   ||
-        afw_utf8_equal(s, &afw_s_interface)    ||
         afw_utf8_equal(s, &afw_s_let)          ||
         afw_utf8_equal(s, &afw_s_return)       ||
         afw_utf8_equal(s, &afw_s_switch)       ||
         afw_utf8_equal(s, &afw_s_throw)        ||
         afw_utf8_equal(s, &afw_s_try)          ||
-        afw_utf8_equal(s, &afw_s_typeof)       ||
+        afw_utf8_equal(s, &afw_s_while)        ||
+
+/*ebnf>>>
+ * 
+ * UnusedButReservedKeywords ::= ( 'as' | 'async' | 'await' | 'class' |
+ *      'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
+ *      'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
+ *
+ *<<<ebnf*/
+
+        afw_utf8_equal(s, &afw_s_as)           ||
+        afw_utf8_equal(s, &afw_s_async)        ||
+        afw_utf8_equal(s, &afw_s_await)        ||
+        afw_utf8_equal(s, &afw_s_class)        ||
+        afw_utf8_equal(s, &afw_s_export)       ||
+        afw_utf8_equal(s, &afw_s_extends)      ||
+        afw_utf8_equal(s, &afw_s_from)         ||
+        afw_utf8_equal(s, &afw_s_import)       ||
+        afw_utf8_equal(s, &afw_s_interface)    ||
+        afw_utf8_equal(s, &afw_s_super)        ||
+        afw_utf8_equal(s, &afw_s_this)         ||
         afw_utf8_equal(s, &afw_s_type)         ||
-        afw_utf8_equal(s, &afw_s_while)
-        )
+        afw_utf8_equal(s, &afw_s_typeof)       ||
+        afw_utf8_equal(s, &afw_s_var)          ||
+        afw_utf8_equal(s, &afw_s_void)         ||
+        afw_utf8_equal(s, &afw_s_with)         )
     {
         return true;
     }

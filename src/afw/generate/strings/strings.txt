@@ -372,6 +372,17 @@ switch
 response_body
 raw_response_body
 using
+class
+extends
+super
+async
+await
+this
+import
+export
+from
+as
+with
 
 # _AdaptiveSystemInfo_ related
 general

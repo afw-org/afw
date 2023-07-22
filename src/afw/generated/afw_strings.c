@@ -1801,6 +1801,9 @@ AFW_UTF8_LITERAL("arguments");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_array =
 AFW_UTF8_LITERAL("array");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_as =
+AFW_UTF8_LITERAL("as");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assert =
 AFW_UTF8_LITERAL("assert");
 
@@ -1815,6 +1818,9 @@ AFW_UTF8_LITERAL("assert_value");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assign =
 AFW_UTF8_LITERAL("assign");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_async =
+AFW_UTF8_LITERAL("async");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of =
 AFW_UTF8_LITERAL("at_least_one_member_of");
@@ -1914,6 +1920,9 @@ AFW_UTF8_LITERAL("authorization_handler_type");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_autoRegister =
 AFW_UTF8_LITERAL("autoRegister");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_await =
+AFW_UTF8_LITERAL("await");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_backtrace =
 AFW_UTF8_LITERAL("backtrace");
@@ -2241,6 +2250,9 @@ AFW_UTF8_LITERAL("checkIntermediateMode");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_checkRequired =
 AFW_UTF8_LITERAL("checkRequired");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_class =
+AFW_UTF8_LITERAL("class");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone =
 AFW_UTF8_LITERAL("clone");
@@ -3190,6 +3202,9 @@ AFW_UTF8_LITERAL("expected");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectedError =
 AFW_UTF8_LITERAL("expectedError");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_export =
+AFW_UTF8_LITERAL("export");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expression =
 AFW_UTF8_LITERAL("expression");
 
@@ -3198,6 +3213,9 @@ AFW_UTF8_LITERAL("expression_tuple");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expressions =
 AFW_UTF8_LITERAL("expressions");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extends =
+AFW_UTF8_LITERAL("extends");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extension =
 AFW_UTF8_LITERAL("extension");
@@ -3300,6 +3318,9 @@ AFW_UTF8_LITERAL("fragment");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_fragmentTokens =
 AFW_UTF8_LITERAL("fragmentTokens");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_from =
+AFW_UTF8_LITERAL("from");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_function =
 AFW_UTF8_LITERAL("function");
@@ -3618,6 +3639,9 @@ AFW_UTF8_LITERAL("implemented");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implied =
 AFW_UTF8_LITERAL("implied");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_import =
+AFW_UTF8_LITERAL("import");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_in =
 AFW_UTF8_LITERAL("in");
@@ -6049,6 +6073,9 @@ AFW_UTF8_LITERAL("success");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_suggestedObjectId =
 AFW_UTF8_LITERAL("suggestedObjectId");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_super =
+AFW_UTF8_LITERAL("super");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_switch =
 AFW_UTF8_LITERAL("switch");
 
@@ -6102,6 +6129,9 @@ AFW_UTF8_LITERAL("tests");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_then =
 AFW_UTF8_LITERAL("then");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_this =
+AFW_UTF8_LITERAL("this");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_threadCount =
 AFW_UTF8_LITERAL("threadCount");
@@ -6546,6 +6576,9 @@ AFW_UTF8_LITERAL("while");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_whitespace =
 AFW_UTF8_LITERAL("whitespace");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_with =
+AFW_UTF8_LITERAL("with");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_write =
 AFW_UTF8_LITERAL("write");

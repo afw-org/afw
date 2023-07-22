@@ -996,37 +996,35 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ
 Identifier ::= IdentifierStart IdentifierContinue*
 
 /* From afw_compile_lexical.c                                                 */
+/* Reserved words can not be used as an identifier.                           */
 
-ReservedWords ::=
-   'false' |
-   'Infinity' |
-   'null' |
-   'NaN' |
-   'true' |
-   'undefined' |
-   'break' |
-   'case' |
-   'catch' |
-   'const' |
-   'continue' |
-   'do' |
-   'else' |
-   'finally' |
-   'for' |
-   'foreach' |
-   'function' |
-   'if' |
-   'in' |
-   'instanceof' |
-   'interface' |
-   'let' |
-   'return' |
-   'switch' |
-   'throw' |
-   'try' |
-   'typeof' |
-   'type' |
-   'while'
+ReservedWords ::= (
+     OperatorReservedWords |
+     PredefinedConstReservedWords |
+     StatementReservedWords |
+     UnusedButReservedKeywords )
+
+/* From afw_compile_lexical.c                                                 */
+
+OperatorReservedWords ::= ( 'delete' | 'in' | 'instanceof' )
+
+/* From afw_compile_lexical.c                                                 */
+
+PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
+     'null' | 'true' | 'undefined' )
+
+/* From afw_compile_lexical.c                                                 */
+
+StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
+     'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
+     'foreach' | 'function' | 'if' | 'let' | 'return' | 'switch' |
+     'throw' | 'try' | 'while' )
+
+/* From afw_compile_lexical.c                                                 */
+
+UnusedButReservedKeywords ::= ( 'as' | 'async' | 'await' | 'class' |
+     'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
+     'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */

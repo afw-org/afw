@@ -3581,6 +3581,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_arguments;
 /** @brief afw_utf8_t for string array */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_array;
 
+/** @brief define for quoted string as */
+#define AFW_Q_as "as"
+
+/** @brief afw_utf8_t for string as */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_as;
+
 /** @brief define for quoted string assert */
 #define AFW_Q_assert "assert"
 
@@ -3610,6 +3616,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_assert_value;
 
 /** @brief afw_utf8_t for string assign */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_assign;
+
+/** @brief define for quoted string async */
+#define AFW_Q_async "async"
+
+/** @brief afw_utf8_t for string async */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_async;
 
 /** @brief define for quoted string at_least_one_member_of */
 #define AFW_Q_at_least_one_member_of "at_least_one_member_of"
@@ -3808,6 +3820,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler_type;
 
 /** @brief afw_utf8_t for string autoRegister */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_autoRegister;
+
+/** @brief define for quoted string await */
+#define AFW_Q_await "await"
+
+/** @brief afw_utf8_t for string await */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_await;
 
 /** @brief define for quoted string backtrace */
 #define AFW_Q_backtrace "backtrace"
@@ -4462,6 +4480,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_checkIntermediateMode;
 
 /** @brief afw_utf8_t for string checkRequired */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_checkRequired;
+
+/** @brief define for quoted string class */
+#define AFW_Q_class "class"
+
+/** @brief afw_utf8_t for string class */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_class;
 
 /** @brief define for quoted string clone */
 #define AFW_Q_clone "clone"
@@ -6359,6 +6383,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expected;
 /** @brief afw_utf8_t for string expectedError */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expectedError;
 
+/** @brief define for quoted string export */
+#define AFW_Q_export "export"
+
+/** @brief afw_utf8_t for string export */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_export;
+
 /** @brief define for quoted string expression */
 #define AFW_Q_expression "expression"
 
@@ -6376,6 +6406,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expression_tuple;
 
 /** @brief afw_utf8_t for string expressions */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expressions;
+
+/** @brief define for quoted string extends */
+#define AFW_Q_extends "extends"
+
+/** @brief afw_utf8_t for string extends */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_extends;
 
 /** @brief define for quoted string extension */
 #define AFW_Q_extension "extension"
@@ -6580,6 +6616,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_fragment;
 
 /** @brief afw_utf8_t for string fragmentTokens */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_fragmentTokens;
+
+/** @brief define for quoted string from */
+#define AFW_Q_from "from"
+
+/** @brief afw_utf8_t for string from */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_from;
 
 /** @brief define for quoted string function */
 #define AFW_Q_function "function"
@@ -7216,6 +7258,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_implemented;
 
 /** @brief afw_utf8_t for string implied */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_implied;
+
+/** @brief define for quoted string import */
+#define AFW_Q_import "import"
+
+/** @brief afw_utf8_t for string import */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_import;
 
 /** @brief define for quoted string in */
 #define AFW_Q_in "in"
@@ -12077,6 +12125,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_success;
 /** @brief afw_utf8_t for string suggestedObjectId */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_suggestedObjectId;
 
+/** @brief define for quoted string super */
+#define AFW_Q_super "super"
+
+/** @brief afw_utf8_t for string super */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_super;
+
 /** @brief define for quoted string switch */
 #define AFW_Q_switch "switch"
 
@@ -12184,6 +12238,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_tests;
 
 /** @brief afw_utf8_t for string then */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_then;
+
+/** @brief define for quoted string this */
+#define AFW_Q_this "this"
+
+/** @brief afw_utf8_t for string this */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_this;
 
 /** @brief define for quoted string threadCount */
 #define AFW_Q_threadCount "threadCount"
@@ -13072,6 +13132,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_while;
 
 /** @brief afw_utf8_t for string whitespace */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_whitespace;
+
+/** @brief define for quoted string with */
+#define AFW_Q_with "with"
+
+/** @brief afw_utf8_t for string with */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_with;
 
 /** @brief define for quoted string write */
 #define AFW_Q_write "write"
