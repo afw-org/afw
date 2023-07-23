@@ -1088,7 +1088,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
                 AFW_COMPILE_THROW_ERROR_Z("Multiple default clauses");
             }
             default_encountered = true;
-            case_expression = NULL;
+            case_expression = afw_value_unique_default_case_value;
         }
         else {
             AFW_COMPILE_THROW_ERROR_Z("Expecting \"case\" or \"default\"");

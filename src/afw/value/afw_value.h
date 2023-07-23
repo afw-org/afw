@@ -339,6 +339,18 @@ afw_value_integer_1;
 
 
 
+/**
+ * @brief Unique value used to represent default case for switch().
+ *
+ * This is a unique value used to make the default case in parameters passed
+ * to the switch() runtime support function. The address of this value is
+ * used for uniqueness.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_unique_default_case_value;
+
+
+
 /** @brief Adaptive value containing `<undefined>` string. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_undefined_as_string;

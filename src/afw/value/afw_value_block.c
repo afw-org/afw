@@ -758,7 +758,7 @@ afw_value_block_evaluate_switch(
         pair += 2)
     {
         args.value2 = pair[0];
-        if (!args.value2) {
+        if (args.value2 == afw_value_unique_default_case_value) {
             default_pair = pair;
             continue;
         }

@@ -28,6 +28,16 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_null =
 { (const afw_value_t *)&impl_value_null };
 
+static const afw_value_null_t
+impl_value_unique_default_case_value = {
+    &afw_value_evaluated_null_inf,
+    NULL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_unique_default_case_value =
+{ (const afw_value_t *)&impl_value_unique_default_case_value };
+
 static const afw_value_integer_t
 impl_value_integer_1 = {
     &afw_value_evaluated_integer_inf,
