@@ -197,6 +197,144 @@ afw_function_execute_local_object_meta_set_ids(
 
 
 /*
+ * Adaptive function: property_delete
+ *
+ * afw_function_execute_property_delete
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Delete a property in an object.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete(
+ *       object: object,
+ *       name: string
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) This is the object to delete property from.
+ *
+ *   name - (string) This is a name of the property to delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_value_string_t *name;
+    afw_boolean_t has;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
+
+    /* If property exists, delete it and return true.*/
+    has = afw_object_has_property(object->internal, &name->internal, x->xctx);
+    if (has) {
+        afw_object_set_property(object->internal,
+            &name->internal, NULL, x->xctx);
+    }
+    return (has) ? afw_value_true : afw_value_false;
+}
+
+
+
+/*
+ * Adaptive function: property_delete_by_reference
+ *
+ * afw_function_execute_property_delete_by_reference
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Delete a property from an object by reference.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete_by_reference(
+ *       reference: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   reference - (any dataType) This is a reference to the object property to
+ *       delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete_by_reference(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_reference_by_key_t *reference;
+    const afw_value_t *object_value;
+    const afw_value_object_t *object;
+    const afw_value_t *key_value;
+    const afw_value_string_t *name;
+    afw_boolean_t has;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
+
+    /* Push parameter number on evaluation stack. */
+    afw_xctx_evaluation_stack_push_parameter_number(1, x->xctx);
+
+    /* Arg 1 must be a reference by key value. */
+    value = AFW_FUNCTION_ARGV(1);
+    if (!afw_value_is_reference_by_key(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "Expecting reference by key", x->xctx);
+    }
+    reference = (const afw_value_reference_by_key_t *)value;
+
+    /* The aggregate_value must be an object. */
+    object_value = afw_value_evaluate(reference->aggregate_value,
+        x->p, x->xctx);
+    if (!afw_value_is_object(object_value)) {
+        AFW_THROW_ERROR_Z(general,
+            "Expecting object reference", x->xctx);
+    }
+    object = (const afw_value_object_t *)object_value;
+
+    /* The key must be a property name. */
+    key_value = afw_value_evaluate(reference->key, x->p, x->xctx);
+    if (!afw_value_is_string(key_value)) {
+        AFW_THROW_ERROR_Z(general,
+            "Expecting property reference", x->xctx);
+    }
+    name = (const afw_value_string_t *)key_value;
+
+    /* Pop parameter number from evaluation stack and return result. */
+    afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
+
+    /* If property exists, delete it and return true.*/
+    has = afw_object_has_property(object->internal, &name->internal, x->xctx);
+    if (has) {
+        afw_object_set_property(object->internal,
+            &name->internal, NULL, x->xctx);
+    }
+    return (has) ? afw_value_true : afw_value_false;
+}
+
+
+
+/*
  * Adaptive function: property_exists
  *
  * afw_function_execute_property_exists

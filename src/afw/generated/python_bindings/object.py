@@ -532,6 +532,67 @@ def object(session, value):
 
     return response['actions'][0]['result']
 
+def property_delete(session, object, name):
+    '''
+    Delete a property
+
+    Delete a property in an object.
+
+    Parameters:
+
+        object (object): This is the object to delete property from.
+
+        name (string): This is a name of the property to delete.
+
+    Returns:
+    boolean: True if object had the property and it was deleted.
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "property_delete",
+        "object": object,
+        "name": name
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def property_delete_by_reference(session, reference):
+    '''
+    Delete referenced property
+
+    Delete a property from an object by reference.
+
+    Parameters:
+
+        reference (): This is a reference to the object property to delete.
+
+    Returns:
+    boolean: True if object had the property and it was deleted.
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "property_delete_by_reference",
+        "reference": reference
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def property_exists(session, object, name):
     '''
     Determine if a property exists in an object

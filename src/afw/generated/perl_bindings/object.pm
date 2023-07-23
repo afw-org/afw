@@ -21,6 +21,8 @@ our @EXPORT_OK = qw(
     ne_object 
     nex_object 
     object 
+    property_delete 
+    property_delete_by_reference 
     property_exists 
     property_get 
     property_is_not_null 
@@ -259,6 +261,32 @@ Convert to data type object
     $value
 
 Value to convert
+
+=head3 property_delete
+
+Delete a property in an object.
+Delete a property
+
+=head4 Parameters
+
+    $object
+
+This is the object to delete property from.
+
+    $name
+
+This is a name of the property to delete.
+
+=head3 property_delete_by_reference
+
+Delete a property from an object by reference.
+Delete referenced property
+
+=head4 Parameters
+
+    $reference
+
+This is a reference to the object property to delete.
 
 =head3 property_exists
 
@@ -516,6 +544,29 @@ sub object {
 
     $request->set("function" => "object");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub property_delete {
+    my ($object, $name) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "property_delete");
+    $request->set("object", $object);
+    $request->set("name", $name);
+
+    return $request->getResult();
+}
+
+sub property_delete_by_reference {
+    my ($reference) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "property_delete_by_reference");
+    $request->set("reference", $reference);
 
     return $request->getResult();
 }

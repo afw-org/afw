@@ -61919,6 +61919,122 @@ afw_function_definition_variable_is_not_null = {
     false
 };
 
+/* ---------- void ---------- */
+
+static const afw_utf8_t
+impl_object_path__void =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/void");
+
+static const afw_runtime_object_indirect_t
+impl_object__void = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_void,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__void
+        }
+    },
+    (void *)&afw_function_definition_void
+};
+
+static const afw_value_function_parameter_t
+impl_void_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("undefined"),
+    AFW_UTF8_LITERAL("This always returns undefined."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_void_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL("Value to evaluate"),
+    AFW_UTF8_LITERAL("This is the value to evaluate."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_void_parameters[] = {
+    &impl_void_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_void = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__void,
+    AFW_UTF8_LITERAL("miscellaneous"),
+    AFW_UTF8_LITERAL("void"),
+    AFW_UTF8_LITERAL("void"),
+    AFW_UTF8_LITERAL("void"),
+    AFW_UTF8_LITERAL("void"),
+    AFW_UTF8_LITERAL("afwVoid"),
+    AFW_UTF8_LITERAL("Evaluate and return undefined"),
+    AFW_UTF8_LITERAL("Evaluate a value and return undefined."),
+    AFW_UTF8_LITERAL("(value: any): any"),
+    AFW_UTF8_LITERAL("/* Evaluate and return undefined */\nfunction void (\n    value: any /* Value to evaluate */\n): any; /* undefined */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_void,
+    NULL,
+    1,
+    1,
+    &impl_void_parameters[0],
+    1,
+    &impl_void_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
 /* ---------- model_default_add_object_action ---------- */
 
 static const afw_utf8_t
@@ -69595,6 +69711,265 @@ afw_function_definition_object = {
     false,
     false,
     true,
+    false
+};
+
+/* ---------- property_delete ---------- */
+
+static const afw_utf8_t
+impl_object_path__property_delete =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/property_delete");
+
+static const afw_runtime_object_indirect_t
+impl_object__property_delete = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_property_delete,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__property_delete
+        }
+    },
+    (void *)&afw_function_definition_property_delete
+};
+
+static const afw_value_function_parameter_t
+impl_property_delete_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("True if deleted"),
+    AFW_UTF8_LITERAL("True if object had the property and it was deleted."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_property_delete_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("Object containing property"),
+    AFW_UTF8_LITERAL("This is the object to delete property from."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_property_delete_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("name"),
+    AFW_UTF8_LITERAL("Property name"),
+    AFW_UTF8_LITERAL("This is a name of the property to delete."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_property_delete_parameters[] = {
+    &impl_property_delete_parameter_1,
+    &impl_property_delete_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_property_delete = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__property_delete,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("property_delete"),
+    AFW_UTF8_LITERAL("property_delete"),
+    AFW_UTF8_LITERAL("property_delete"),
+    AFW_UTF8_LITERAL("propertyDelete"),
+    AFW_UTF8_LITERAL("afwPropertyDelete"),
+    AFW_UTF8_LITERAL("Delete a property"),
+    AFW_UTF8_LITERAL("Delete a property in an object."),
+    AFW_UTF8_LITERAL("(object: object, name: string): boolean"),
+    AFW_UTF8_LITERAL("/* Delete a property */\nfunction property_delete (\n    object: object /* Object containing property */,\n    name: string   /* Property name */\n): boolean; /* True if deleted */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_property_delete,
+    NULL,
+    2,
+    2,
+    &impl_property_delete_parameters[0],
+    2,
+    &impl_property_delete_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
+/* ---------- property_delete_by_reference ---------- */
+
+static const afw_utf8_t
+impl_object_path__property_delete_by_reference =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/property_delete_by_reference");
+
+static const afw_runtime_object_indirect_t
+impl_object__property_delete_by_reference = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_property_delete_by_reference,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__property_delete_by_reference
+        }
+    },
+    (void *)&afw_function_definition_property_delete_by_reference
+};
+
+static const afw_value_function_parameter_t
+impl_property_delete_by_reference_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("True if deleted"),
+    AFW_UTF8_LITERAL("True if object had the property and it was deleted."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_property_delete_by_reference_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("reference"),
+    AFW_UTF8_LITERAL("Property to delete"),
+    AFW_UTF8_LITERAL("This is a reference to the object property to delete."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_property_delete_by_reference_parameters[] = {
+    &impl_property_delete_by_reference_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_property_delete_by_reference = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__property_delete_by_reference,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("property_delete_by_reference"),
+    AFW_UTF8_LITERAL("property_delete_by_reference"),
+    AFW_UTF8_LITERAL("property_delete_by_reference"),
+    AFW_UTF8_LITERAL("propertyDeleteByReference"),
+    AFW_UTF8_LITERAL("afwPropertyDeleteByReference"),
+    AFW_UTF8_LITERAL("Delete referenced property"),
+    AFW_UTF8_LITERAL("Delete a property from an object by reference."),
+    AFW_UTF8_LITERAL("(reference: any): boolean"),
+    AFW_UTF8_LITERAL("/* Delete referenced property */\nfunction property_delete_by_reference (\n    reference: any /* Property to delete */\n): boolean; /* True if deleted */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_property_delete_by_reference,
+    NULL,
+    1,
+    1,
+    &impl_property_delete_by_reference_parameters[0],
+    1,
+    &impl_property_delete_by_reference_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
     false
 };
 
@@ -91495,7 +91870,7 @@ impl_switch_parameter_2 = {
     AFW_UTF8_LITERAL("The first parameter passed to the predicate."),
     -1,
     false,
-    false,
+    true,
     false,
     false,
 };
@@ -116074,6 +116449,7 @@ impl_function_bindings[] = {
     &afw_function_definition_variable_exists,
     &afw_function_definition_variable_get,
     &afw_function_definition_variable_is_not_null,
+    &afw_function_definition_void,
     &afw_function_definition_model_default_add_object_action,
     &afw_function_definition_model_default_delete_object_action,
     &afw_function_definition_model_default_modify_object_action,
@@ -116128,6 +116504,8 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_object,
     &afw_function_definition_nex_object,
     &afw_function_definition_object,
+    &afw_function_definition_property_delete,
+    &afw_function_definition_property_delete_by_reference,
     &afw_function_definition_property_exists,
     &afw_function_definition_property_get,
     &afw_function_definition_property_is_not_null,

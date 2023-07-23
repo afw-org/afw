@@ -1,0 +1,18 @@
+{
+    "brief": "Evaluate and return undefined",
+    "category": "miscellaneous",
+    "description": "Evaluate a value and return undefined.",
+    "functionId": "void",
+    "functionLabel": "void",
+    "parameters": [
+        {
+            "brief": "Value to evaluate",
+            "description": "This is the value to evaluate.",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "brief": "undefined",
+        "description": "This always returns undefined."
+    }
+}

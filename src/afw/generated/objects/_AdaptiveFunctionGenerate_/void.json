@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwVoid",
+    "brief": "Evaluate and return undefined",
+    "camelCaseFunctionLabel": "void",
+    "category": "miscellaneous",
+    "description": "Evaluate a value and return undefined.",
+    "functionId": "void",
+    "functionLabel": "void",
+    "parameters": [
+        {
+            "brief": "Value to evaluate",
+            "description": "This is the value to evaluate.",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "brief": "undefined",
+        "description": "This always returns undefined."
+    }
+}

@@ -17664,6 +17664,39 @@ const afw_value_t *
 afw_function_execute_variable_is_not_null(
     afw_function_execute_t *x);
 
+/** @brief Function definition void */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_void;
+
+/**
+ * @brief Adaptive Function `void`
+ * @param x function execute parameter.
+ *
+ * Evaluate a value and return undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function void(
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) This is the value to evaluate.
+ *
+ * Returns:
+ *
+ *   (any dataType) This always returns undefined.
+ */
+const afw_value_t *
+afw_function_execute_void(
+    afw_function_execute_t *x);
+
 /** @} */
 
 
@@ -19864,6 +19897,76 @@ afw_function_definition_object;
  *
  * __________
  */
+
+/** @brief Function definition property_delete */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_property_delete;
+
+/**
+ * @brief Adaptive Function `property_delete`
+ * @param x function execute parameter.
+ *
+ * Delete a property in an object.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete(
+ *       object: object,
+ *       name: string
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) This is the object to delete property from.
+ *
+ *   name - (string) This is a name of the property to delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete(
+    afw_function_execute_t *x);
+
+/** @brief Function definition property_delete_by_reference */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_property_delete_by_reference;
+
+/**
+ * @brief Adaptive Function `property_delete_by_reference`
+ * @param x function execute parameter.
+ *
+ * Delete a property from an object by reference.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete_by_reference(
+ *       reference: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   reference - (any dataType) This is a reference to the object property to
+ *       delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete_by_reference(
+    afw_function_execute_t *x);
 
 /** @brief Function definition property_exists */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)

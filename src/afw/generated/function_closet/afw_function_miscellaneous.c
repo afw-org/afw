@@ -794,3 +794,41 @@ afw_function_execute_variable_is_not_null(
     /** @todo Add code. */
     AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
+
+
+
+/*
+ * Adaptive function: void
+ *
+ * afw_function_execute_void
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Evaluate a value and return undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function void(
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) This is the value to evaluate.
+ *
+ * Returns:
+ *
+ *   (any dataType) This always returns undefined.
+ */
+const afw_value_t *
+afw_function_execute_void(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}

@@ -150,6 +150,86 @@ afw_function_execute_local_object_meta_set_ids(
 
 
 /*
+ * Adaptive function: property_delete
+ *
+ * afw_function_execute_property_delete
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Delete a property in an object.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete(
+ *       object: object,
+ *       name: string
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) This is the object to delete property from.
+ *
+ *   name - (string) This is a name of the property to delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: property_delete_by_reference
+ *
+ * afw_function_execute_property_delete_by_reference
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Delete a property from an object by reference.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function property_delete_by_reference(
+ *       reference: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   reference - (any dataType) This is a reference to the object property to
+ *       delete.
+ *
+ * Returns:
+ *
+ *   (boolean) True if object had the property and it was deleted.
+ */
+const afw_value_t *
+afw_function_execute_property_delete_by_reference(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: property_exists
  *
  * afw_function_execute_property_exists

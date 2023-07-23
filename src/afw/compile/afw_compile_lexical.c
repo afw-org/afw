@@ -1302,13 +1302,13 @@ afw_compile_is_reserved_word(
 
 /*ebnf>>>
  * 
- * OperatorReservedWords ::= ( 'delete' | 'in' | 'instanceof' )
+ * OperatorReservedWords ::= ( 'delete' | 'in' | 'void' )
  * 
  *<<<ebnf*/
 
         afw_utf8_equal(s, &afw_s_delete)       ||
         afw_utf8_equal(s, &afw_s_in)           ||
-        afw_utf8_equal(s, &afw_s_instanceof)   ||
+        afw_utf8_equal(s, &afw_s_void)         ||
 
 /*ebnf>>>
  *
@@ -1357,8 +1357,8 @@ afw_compile_is_reserved_word(
 /*ebnf>>>
  * 
  * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
- *      'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
- *      'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
+ *      'export' | 'extends' | 'from' | 'import' | 'interface' | 'instanceof' |
+ *      'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
  *
  *<<<ebnf*/
 
@@ -1371,12 +1371,12 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, &afw_s_from)         ||
         afw_utf8_equal(s, &afw_s_import)       ||
         afw_utf8_equal(s, &afw_s_interface)    ||
+        afw_utf8_equal(s, &afw_s_instanceof)   ||
         afw_utf8_equal(s, &afw_s_super)        ||
         afw_utf8_equal(s, &afw_s_this)         ||
         afw_utf8_equal(s, &afw_s_type)         ||
         afw_utf8_equal(s, &afw_s_typeof)       ||
         afw_utf8_equal(s, &afw_s_var)          ||
-        afw_utf8_equal(s, &afw_s_void)         ||
         afw_utf8_equal(s, &afw_s_with)         )
     {
         return true;

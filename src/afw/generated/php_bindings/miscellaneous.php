@@ -514,6 +514,28 @@ class miscellaneous
         return $request->get_result();
     }
 
+    /**
+     * void()
+     *
+     * Evaluate a value and return undefined.
+     *
+     * @param  $value This is the value to evaluate.
+     *
+     * @return  This always returns undefined.
+     */
+    public function void(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "void");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
 }
 
 ?>

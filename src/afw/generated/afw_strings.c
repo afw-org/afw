@@ -5239,6 +5239,12 @@ AFW_UTF8_LITERAL("propertyTypeObject");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_propertyTypes =
 AFW_UTF8_LITERAL("propertyTypes");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_delete =
+AFW_UTF8_LITERAL("property_delete");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_delete_by_reference =
+AFW_UTF8_LITERAL("property_delete_by_reference");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_exists =
 AFW_UTF8_LITERAL("property_exists");
 

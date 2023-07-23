@@ -16,6 +16,7 @@
         },
         {
             "brief": "First predicate parameter",
+            "canBeUndefined": true,
             "description": "The first parameter passed to the predicate.",
             "name": "value1"
         },

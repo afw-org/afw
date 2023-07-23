@@ -333,7 +333,8 @@ Equality ::= Comparison
 
 /* From afw_compile_parse_expression.c                                        */
 
-Comparison ::= Factor ( ('<' | '<=' | '>' | '>=' ) Factor )*
+Comparison ::= Factor (
+     ('<' | '<=' | '>' | '>=' | 'in' ) Factor )*
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -349,7 +350,7 @@ Exponentiation ::= Prefixed ( '**' Prefixed )*
 
 /* From afw_compile_parse_expression.c                                        */
 
-Prefixed ::= ( ( '+' | '-' | '!' ) Value ) | Value
+Prefixed ::= ( ( '+' | '-' | '!' | 'delete' | 'void' ) Value ) | Value
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -1006,7 +1007,7 @@ ReservedWords ::= (
 
 /* From afw_compile_lexical.c                                                 */
 
-OperatorReservedWords ::= ( 'delete' | 'in' | 'instanceof' )
+OperatorReservedWords ::= ( 'delete' | 'in' | 'void' )
 
 /* From afw_compile_lexical.c                                                 */
 
@@ -1023,8 +1024,8 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
 /* From afw_compile_lexical.c                                                 */
 
 UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
-     'export' | 'extends' | 'from' | 'import' | 'interface' | 'super' |
-     'this' | 'type' | 'typeof' | 'var' | 'void' | 'with' )
+     'export' | 'extends' | 'from' | 'import' | 'interface' | 'instanceof' |
+     'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */

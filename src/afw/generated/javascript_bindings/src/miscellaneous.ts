@@ -402,3 +402,20 @@ export function afwVariableIsNotNull(client : any, name : string) : any {
     return client.perform(_action);
 }
 
+/**
+ * Evaluate a value and return undefined.
+ * 
+ * @param {} value - This is the value to evaluate.
+ * 
+ * @returns {} This always returns undefined.
+ */
+export function afwVoid(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "void";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+

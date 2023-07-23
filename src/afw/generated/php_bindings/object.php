@@ -427,6 +427,53 @@ class object
     }
 
     /**
+     * property_delete()
+     *
+     * Delete a property in an object.
+     *
+     * @param object $object This is the object to delete property from.
+     * @param string $name This is a name of the property to delete.
+     *
+     * @return boolean True if object had the property and it was deleted.
+     */
+    public function property_delete(, $object, $name)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "property_delete");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
+        $request->set("name", $name);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * property_delete_by_reference()
+     *
+     * Delete a property from an object by reference.
+     *
+     * @param  $reference This is a reference to the object property to
+     *                    delete.
+     *
+     * @return boolean True if object had the property and it was deleted.
+     */
+    public function property_delete_by_reference(, $reference)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "property_delete_by_reference");
+
+        /* pass along required parameters to the request payload */
+        $request->set("reference", $reference);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * property_exists()
      *
      * Return true if the named property exists in an object.

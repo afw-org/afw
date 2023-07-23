@@ -24,6 +24,7 @@ our @EXPORT_OK = qw(
     variable_exists 
     variable_get 
     variable_is_not_null 
+    void 
 );
 
 =head1 NAME
@@ -288,6 +289,17 @@ Determine if a variable exists and is not null
 Name of variable to check. The name can optionally be preceded with a
 qualifier followed by "::".
 
+=head3 void
+
+Evaluate a value and return undefined.
+Evaluate and return undefined
+
+=head4 Parameters
+
+    $value
+
+This is the value to evaluate.
+
 =cut
 
 sub annotate {
@@ -517,6 +529,17 @@ sub variable_is_not_null {
 
     $request->set("function" => "variable_is_not_null");
     $request->set("name", $name);
+
+    return $request->getResult();
+}
+
+sub void {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "void");
+    $request->set("value", $value);
 
     return $request->getResult();
 }

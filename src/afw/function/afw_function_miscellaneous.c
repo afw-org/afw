@@ -634,118 +634,6 @@ afw_function_execute_trace(
 
 
 /*
- * Adaptive function: variable_exists
- *
- * afw_function_execute_variable_exists
- *
- * See afw_function_bindings.h for more information.
- *
- * Return the true if the named variable exists.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function variable_exists(
- *       name: string
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by "::".
- *
- * Returns:
- *
- *   (boolean) True if variable exists.
- */
-const afw_value_t *
-afw_function_execute_variable_exists(
-    afw_function_execute_t *x)
-{
-    const afw_value_string_t *qualified_name;
-    afw_utf8_t qualifier;
-    afw_utf8_t name;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
-
-    afw_compile_split_qualified_name(&qualified_name->internal,
-        &qualifier, &name, x->xctx);
-
-    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
-
-    return (value) ? afw_value_true : afw_value_false;
-}
-
-
-
-/*
- * Adaptive function: variable_get
- *
- * afw_function_execute_variable_get
- *
- * See afw_function_bindings.h for more information.
- *
- * Return the value of a variable. If variable is not available, return a
- * default or null value.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function variable_get(
- *       name: string,
- *       defaultValue?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by "::".
- *
- *   defaultValue - (optional any dataType) The default value of variable if it
- *       does not exist in object. If not specified, null value is the default.
- *
- * Returns:
- *
- *   (any dataType) Evaluated variable value or default.
- */
-const afw_value_t *
-afw_function_execute_variable_get(
-    afw_function_execute_t *x)
-{
-    const afw_value_string_t *qualified_name;
-    afw_utf8_t qualifier;
-    afw_utf8_t name;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
-  
-    afw_compile_split_qualified_name(&qualified_name->internal,
-        &qualifier, &name, x->xctx);
-
-    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
-
-    if (!value) {
-        value = afw_value_null;
-        if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-            value = afw_value_evaluate(x->argv[2], x->p, x->xctx);
-        }
-    }
-
-    return value;
-}
-
-
-
-/*
  * Adaptive function: variable_is_not_null
  *
  * afw_function_execute_variable_is_not_null
@@ -976,4 +864,157 @@ afw_function_execute_optional_chaining(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
     return arg2;
+}
+
+
+
+/*
+ * Adaptive function: variable_exists
+ *
+ * afw_function_execute_variable_exists
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return the true if the named variable exists.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function variable_exists(
+ *       name: string
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (string) Name of variable to check. The name can optionally be
+ *       preceded with a qualifier followed by "::".
+ *
+ * Returns:
+ *
+ *   (boolean) True if variable exists.
+ */
+const afw_value_t *
+afw_function_execute_variable_exists(
+    afw_function_execute_t *x)
+{
+    const afw_value_string_t *qualified_name;
+    afw_utf8_t qualifier;
+    afw_utf8_t name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
+
+    afw_compile_split_qualified_name(&qualified_name->internal,
+        &qualifier, &name, x->xctx);
+
+    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
+
+    return (value) ? afw_value_true : afw_value_false;
+}
+
+
+
+/*
+ * Adaptive function: variable_get
+ *
+ * afw_function_execute_variable_get
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return the value of a variable. If variable is not available, return a
+ * default or null value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function variable_get(
+ *       name: string,
+ *       defaultValue?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (string) Name of variable to get. The name can optionally be
+ *       preceded with a qualifier followed by "::".
+ *
+ *   defaultValue - (optional any dataType) The default value of variable if it
+ *       does not exist in object. If not specified, null value is the default.
+ *
+ * Returns:
+ *
+ *   (any dataType) Evaluated variable value or default.
+ */
+const afw_value_t *
+afw_function_execute_variable_get(
+    afw_function_execute_t *x)
+{
+    const afw_value_string_t *qualified_name;
+    afw_utf8_t qualifier;
+    afw_utf8_t name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
+  
+    afw_compile_split_qualified_name(&qualified_name->internal,
+        &qualifier, &name, x->xctx);
+
+    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
+
+    if (!value) {
+        value = afw_value_null;
+        if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+            value = afw_value_evaluate(x->argv[2], x->p, x->xctx);
+        }
+    }
+
+    return value;
+}
+
+
+
+/*
+ * Adaptive function: void
+ *
+ * afw_function_execute_void
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Evaluate a value and return undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function void(
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) This is the value to evaluate.
+ *
+ * Returns:
+ *
+ *   (any dataType) This always returns undefined.
+ */
+const afw_value_t *
+afw_function_execute_void(
+    afw_function_execute_t *x)
+{
+    AFW_POSSIBLY_UNUSED_VARIABLE const afw_value_t *result;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(result, 1);
+
+    return NULL;
 }

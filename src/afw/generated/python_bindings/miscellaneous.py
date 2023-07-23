@@ -621,3 +621,32 @@ def variable_is_not_null(session, name):
 
     return response['actions'][0]['result']
 
+def void(session, value):
+    '''
+    Evaluate and return undefined
+
+    Evaluate a value and return undefined.
+
+    Parameters:
+
+        value (): This is the value to evaluate.
+
+    Returns:
+    None: This always returns undefined.
+    '''
+
+    request = session.Request()
+
+    action = {
+        "function": "void",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+

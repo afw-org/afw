@@ -10457,6 +10457,18 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_propertyTypeObject;
 /** @brief afw_utf8_t for string propertyTypes */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_propertyTypes;
 
+/** @brief define for quoted string property_delete */
+#define AFW_Q_property_delete "property_delete"
+
+/** @brief afw_utf8_t for string property_delete */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_property_delete;
+
+/** @brief define for quoted string property_delete_by_reference */
+#define AFW_Q_property_delete_by_reference "property_delete_by_reference"
+
+/** @brief afw_utf8_t for string property_delete_by_reference */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_property_delete_by_reference;
+
 /** @brief define for quoted string property_exists */
 #define AFW_Q_property_exists "property_exists"
 

@@ -347,6 +347,44 @@ export function afwObject(client : any, value : any) : any {
 }
 
 /**
+ * Delete a property in an object.
+ * 
+ * @param {object} object - This is the object to delete property from.
+ * 
+ * @param {string} name - This is a name of the property to delete.
+ * 
+ * @returns {boolean} True if object had the property and it was deleted.
+ */
+export function afwPropertyDelete(client : any, object : object, name : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "property_delete";
+    _action["object"] = object;
+    _action["name"] = name;
+
+    return client.perform(_action);
+}
+
+/**
+ * Delete a property from an object by reference.
+ * 
+ * @param {} reference - This is a reference to the object property to
+ *     delete.
+ * 
+ * @returns {boolean} True if object had the property and it was deleted.
+ */
+export function afwPropertyDeleteByReference(client : any, reference : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "property_delete_by_reference";
+    _action["reference"] = reference;
+
+    return client.perform(_action);
+}
+
+/**
  * Return true if the named property exists in an object.
  * 
  * @param {object} object - Object to get property from.

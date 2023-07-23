@@ -15,7 +15,8 @@
         {
             "brief": "First predicate parameter",
             "description": "The first parameter passed to the predicate.",
-            "name": "value1"
+            "name": "value1",
+            "canBeUndefined": true
         },
         {
             "brief": "One or more value2 and statement list pairs",
