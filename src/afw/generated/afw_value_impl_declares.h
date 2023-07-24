@@ -133,22 +133,6 @@ impl_afw_value_get_data_type(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_value_get_evaluated_data_type
-/* Declare method get_evaluated_data_type */
-AFW_DECLARE_STATIC(const afw_data_type_t *)
-impl_afw_value_get_evaluated_data_type(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx);
-#endif
-
-#ifndef impl_afw_value_get_evaluated_data_type_parameter
-/* Declare method get_evaluated_data_type_parameter */
-AFW_DECLARE_STATIC(const afw_utf8_t *)
-impl_afw_value_get_evaluated_data_type_parameter(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_value_get_evaluated_meta
 /* Declare method get_evaluated_meta */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -222,8 +206,6 @@ impl_afw_value_inf = {
     impl_afw_value_get_reference,
     impl_afw_value_optional_evaluate,
     impl_afw_value_get_data_type,
-    impl_afw_value_get_evaluated_data_type,
-    impl_afw_value_get_evaluated_data_type_parameter,
     impl_afw_value_get_evaluated_meta,
     impl_afw_value_get_evaluated_metas,
     impl_afw_value_produce_compiler_listing,

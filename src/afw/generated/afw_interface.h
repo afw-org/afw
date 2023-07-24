@@ -5210,18 +5210,6 @@ typedef const afw_data_type_t *
     const afw_value_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_value_get_evaluated_data_type() */
-typedef const afw_data_type_t *
-(*afw_value_get_evaluated_data_type_t)(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx);
-
-/** @sa afw_value_get_evaluated_data_type_parameter() */
-typedef const afw_utf8_t *
-(*afw_value_get_evaluated_data_type_parameter_t)(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx);
-
 /** @sa afw_value_get_evaluated_meta() */
 typedef const afw_value_t *
 (*afw_value_get_evaluated_meta_t)(
@@ -5265,8 +5253,6 @@ struct afw_value_inf_s {
     afw_value_get_reference_t get_reference;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
-    afw_value_get_evaluated_data_type_t get_evaluated_data_type;
-    afw_value_get_evaluated_data_type_parameter_t get_evaluated_data_type_parameter;
     afw_value_get_evaluated_meta_t get_evaluated_meta;
     afw_value_get_evaluated_metas_t get_evaluated_metas;
     afw_value_produce_compiler_listing_t produce_compiler_listing;
@@ -5334,34 +5320,6 @@ struct afw_value_inf_s {
     xctx \
 ) \
 (instance)->inf->get_data_type( \
-    (instance), \
-    (xctx) \
-)
-
-/**
- * @brief Call method get_evaluated_data_type of interface afw_value
- * @param instance Pointer to this adaptive value instance.
- * @param xctx This is the caller's xctx.
- */
-#define afw_value_get_evaluated_data_type( \
-    instance, \
-    xctx \
-) \
-(instance)->inf->get_evaluated_data_type( \
-    (instance), \
-    (xctx) \
-)
-
-/**
- * @brief Call method get_evaluated_data_type_parameter of interface afw_value
- * @param instance Pointer to this adaptive value instance.
- * @param xctx This is the caller's xctx.
- */
-#define afw_value_get_evaluated_data_type_parameter( \
-    instance, \
-    xctx \
-) \
-(instance)->inf->get_evaluated_data_type_parameter( \
     (instance), \
     (xctx) \
 )

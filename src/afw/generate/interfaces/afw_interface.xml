@@ -5779,54 +5779,6 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="get_evaluated_data_type">
-
-      <description>
-        This method returns the data type this adaptive value has when evaluated,
-        if available.
-        For example, a data type expression adaptive value may evaluate to
-        data type integer.
-      </description>
-
-      <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this adaptive value instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="const afw_data_type_t *">
-        <description>
-          The data type of the value or NULL if not available.
-        </description>
-      </return>
-
-    </method>
-
-    <method name="get_evaluated_data_type_parameter">
-
-      <description>
-        This method returns the data type parameter of this adaptive value, if available.
-        This applies to the value before it is evaluated.
-      </description>
-
-      <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this adaptive value instance.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="const afw_utf8_t *">
-        <description>
-          The data type parameter or NULL if not available.
-        </description>
-      </return>
-
-    </method>
-
     <method name="get_evaluated_meta">
 
       <description>

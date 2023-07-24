@@ -457,29 +457,6 @@ impl_afw_value_get_data_type(
 }
 
 /*
- * Implementation of method get_evaluated_data_type for interface afw_value.
- */
-const afw_data_type_t *
-impl_afw_value_get_evaluated_data_type(
-    const afw_value_t *instance,
-    afw_xctx_t *xctx)
-{
-    return afw_data_type_implied;
-}
-
-/*
- * Implementation of method get_evaluated_data_type_parameter for interface
- * afw_value.
- */
-const afw_utf8_t *
-impl_afw_value_get_evaluated_data_type_parameter(
-    const afw_value_t *instance,
-    afw_xctx_t *xctx)
-{
-    return NULL;
-}
-
-/*
  * Implementation of method compiler_listing for interface afw_value.
  */
 void

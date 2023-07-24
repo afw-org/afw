@@ -259,8 +259,7 @@ struct afw_value_call_built_in_function_s {
  * are shared.  This parent also contributes to the source location.
  *
  * Methods of a compiled value value calls the root value's corresponding
- * methods for optional_evaluate(), get_data_type(),
- * get_evaluated_data_type() and get_evaluated_data_type_parameter().
+ * methods for optional_evaluate() and get_data_type().
  */
 struct afw_value_internal_compiled_value_s {
     const afw_value_inf_t *inf;

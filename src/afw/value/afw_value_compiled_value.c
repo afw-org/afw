@@ -65,40 +65,6 @@ impl_afw_value_get_data_type(
 }
 
 /*
- * Implementation of method get_evaluated_data_type for interface afw_value.
- */
-const afw_data_type_t *
-impl_afw_value_get_evaluated_data_type(
-    const afw_value_t * instance,
-    afw_xctx_t *xctx)
-{
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
-
-    /* Return the result of calling root value's get_evaluated_data_type(). */
-    return afw_value_get_evaluated_data_type(self->root_value, xctx);
-}
-
-/*
- * Implementation of method get_evaluated_data_type_parameter for interface
- * afw_value.
- */
-const afw_utf8_t *
-impl_afw_value_get_evaluated_data_type_parameter(
-    const afw_value_t * instance,
-    afw_xctx_t *xctx)
-{
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
-
-    /*
-     * Return the result of calling root value's
-     * get_evaluated_data_type_parameter().
-     */
-    return afw_value_get_evaluated_data_type_parameter(self->root_value, xctx);
-}
-
-/*
  * Implementation of method compiler_listing for interface afw_value.
  */
 void

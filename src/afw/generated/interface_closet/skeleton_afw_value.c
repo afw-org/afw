@@ -82,39 +82,6 @@ impl_afw_value_get_data_type(
 }
 
 /*
- * Implementation of method get_evaluated_data_type for interface afw_value.
- */
-const afw_data_type_t *
-impl_afw_value_get_evaluated_data_type(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx)
-{
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
- * Implementation of method get_evaluated_data_type_parameter for interface
- * afw_value.
- */
-const afw_utf8_t *
-impl_afw_value_get_evaluated_data_type_parameter(
-    const afw_value_t * instance,
-    afw_xctx_t * xctx)
-{
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
  * Implementation of method get_evaluated_meta for interface afw_value.
  */
 const afw_value_t *
