@@ -187,7 +187,12 @@ impl_afw_value_get_info(
     const afw_value_annotated_t *self =
         (const afw_value_annotated_t *)instance;
 
-    afw_memory_clear(info);
+    /* Prime with info of value. */
+    if (self->value) {
+        afw_value_get_info(self->value, info, p, xctx);
+    }
+
+    /* Override with this implementation_id and contextual */
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->contextual;
 }

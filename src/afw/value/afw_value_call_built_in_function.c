@@ -260,4 +260,7 @@ impl_afw_value_get_info(
     info->detail = &self->function->functionId;
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->args.contextual;
+    info->optimized_value = instance;
+
+    /* Note: Maybe something can be done for optimized_value_data_type. */
 }

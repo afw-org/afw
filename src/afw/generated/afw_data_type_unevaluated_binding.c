@@ -498,6 +498,8 @@ impl_afw_value_get_info(
 {
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->optimized_value = instance;
+    info->optimized_value_data_type = afw_data_type_unevaluated;
 }
 
 

@@ -1134,6 +1134,8 @@ def write_c_section(fd, prefix, obj):
     fd.write('{\n')
     fd.write('    afw_memory_clear(info);\n')
     fd.write('    info->value_inf_id = &instance->inf->rti.implementation_id;\n')
+    fd.write('    info->optimized_value = instance;\n')
+    fd.write('    info->optimized_value_data_type = afw_data_type_' + id + ';\n')
     fd.write('}\n')
     fd.write('\n')
 

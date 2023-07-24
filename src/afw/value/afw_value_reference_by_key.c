@@ -286,4 +286,7 @@ impl_afw_value_get_info(
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->detail = self->backtrace_detail;
+    info->optimized_value = instance;
+
+    /* Note: Maybe something can be done for optimized_value_data_type. */
 }
