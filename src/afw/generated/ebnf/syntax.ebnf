@@ -260,8 +260,7 @@ FunctionBody ::= ( '{' Script '}' ) | Expression
 
 SelfReferenceLambdaName ::= FunctionName - ReservedWords
 
-Lambda ::= 'lambda::'? 'function'
-               SelfReferenceLambdaName? FunctionSignatureAndBody
+Lambda ::= 'function' SelfReferenceLambdaName? FunctionSignatureAndBody
 
 /* From afw_compile_parse_expression.c                                        */
 

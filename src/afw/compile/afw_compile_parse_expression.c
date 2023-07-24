@@ -649,13 +649,12 @@ afw_compile_parse_FunctionSignatureAndBody(
  *# This can be used in body of the Lambda to call recursively.
  * SelfReferenceLambdaName ::= FunctionName - ReservedWords
  *
- * Lambda ::= 'lambda::'? 'function'
- *                SelfReferenceLambdaName? FunctionSignatureAndBody
+ * Lambda ::= 'function' SelfReferenceLambdaName? FunctionSignatureAndBody
  *
  *<<<ebnf*/
 
 /* 
- * Parse Lambda.   Returns NULL if not a Lambda function.
+ * Parse Lambda. Returns NULL if not a Lambda function.
  *
  * Returns an a lambda definition value.
  *
@@ -671,13 +670,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         return NULL;
     }
-    if (afw_utf8_equal(parser->token->identifier_qualifier, &afw_s_lambda)) {
-        if (!afw_utf8_equal(parser->token->identifier_name, &afw_s_function))
-        {
-            AFW_COMPILE_THROW_ERROR_Z("Must be lambda::function");
-        }
-    }
-    else if (afw_compile_token_is_name(&afw_s_function)) {
+    if (afw_compile_token_is_name(&afw_s_function)) {
         afw_compile_get_token();
         if (!afw_compile_token_is(open_parenthesis) &&
             !afw_compile_token_is(identifier))
