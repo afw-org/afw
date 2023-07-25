@@ -1617,7 +1617,7 @@ let mycars = [
 // CHECK#1
 let fin=0;
 let i=0;
-foreach let x of mycars {
+for (let x of mycars) {
   try{
     i++;
     continue;
@@ -1638,7 +1638,7 @@ if(i!==3){
 // CHECK#2
 let c2=0;
 let fin2=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     throw "ex1";
   }
@@ -1661,7 +1661,7 @@ if(c2!==3){
 // CHECK#3
 let c3=0;
 let fin3=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     throw "ex1";
   }
@@ -1683,7 +1683,7 @@ if(fin3!==1){
 
 // CHECK#4
 fin=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     continue;
   }
@@ -1698,7 +1698,7 @@ if(fin!==1){
 
 // CHECK#5
 let c5=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     throw "ex1";
   }
@@ -1715,7 +1715,7 @@ if(c5!==3){
 // CHECK#6
 let c6=0;
 let fin6=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     c6+=1;
     throw "ex1";
@@ -1750,7 +1750,7 @@ let mycars = [
 // CHECK#1
 let c1=0;
 let fin=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     c1+=1;
     break;
@@ -1774,7 +1774,7 @@ if(c1!==1){
 // CHECK#2
 let c2=0;
 let fin2=0;
-foreach let x of mycars {
+for (let x of mycars) {
   try{
     throw "ex1";
   }
@@ -1798,7 +1798,7 @@ if(c2!==1){
 // CHECK#3
 let c3=0;
 let fin3=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     throw "ex1";
   }
@@ -1822,7 +1822,7 @@ if(c3!==1){
 // CHECK#4
 let c4=0;
 let fin4=0;
-foreach let x of mycars {
+for (let x of mycars) {
   try{
     c4+=1;
     break;
@@ -1843,7 +1843,7 @@ if(c4!==1){
 // CHECK#5
 let c5=0;
 // fixme this gives an error that x is already defined
-foreach let x of mycars {
+for (let x of mycars) {
   try{
     throw "ex1";
     c5++;
@@ -1860,7 +1860,7 @@ if(c5!==0){
 
 // CHECK#6
 let c6=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     c6+=1;
     break;
@@ -1876,7 +1876,7 @@ if(c6!==1){
 let c7=0;
 let fin7=0;
 try{
-  foreach let x of mycars{
+  for (let x of mycars) {
     try{
       c7++;
       throw "ex1";
@@ -1915,7 +1915,7 @@ let mycars = [
 // CHECK#1
 let c1=0;
 let fin=0;
-foreach let x of mycars {
+for (let x of mycars) {
   try{
     c1+=1;
     break;
@@ -1938,7 +1938,7 @@ if(c1!==3){
 // CHECK#2
 let c2=0;
 let fin2=0;
-foreach let x of mycars{
+for (let x of mycars) {
   try{
     throw "ex1";
   }

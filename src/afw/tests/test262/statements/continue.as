@@ -21,13 +21,13 @@ do {
 } while (true);
 assert(s == "01234", "continue did not work inside do/while");
 
-foreach let y: string of [0, 1, 2, 3, 4, 5] {
+for (let y of [0, 1, 2, 3, 4, 5]) {
     if (y > 1)
         continue;
 
     x = y;    
 }
-assert(x == 1, "continue did not work inside foreach");
+assert(x == 1, "continue did not work inside for of");
 
 return 0;
 
