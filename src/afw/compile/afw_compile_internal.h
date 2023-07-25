@@ -873,6 +873,14 @@ afw_compile_internal_s_push_code_point(
 
 
 
+/* Called during compile in outer AFW_CATCH to add parse info to error. */
+AFW_DECLARE_INTERNAL(void)
+afw_compile_parse_embellish_error(
+    afw_compile_parser_t *parser,
+    afw_error_t *error);
+
+
+
 /* Parse error. */
 AFW_DECLARE_INTERNAL(void)
 afw_compile_parse_set_error_z(

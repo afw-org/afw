@@ -63,9 +63,16 @@ afw_value_call_built_in_function_create(
     result->args.argv = argv;
     result->optimized_value = (const afw_value_t *)result;
 
-    if (allow_optimize && false /** @fixme Not finished yet.*/) {
+    if (allow_optimize  && false /** @fixme Not finished yet so skipping.*/) {
 
-        if (function->polymorphic && argc >= 2 && argv[1]) {
+        if (function->polymorphic &&
+            !function->polymorphicExecuteFunctionEvaluatesFirstParameter)
+        {
+            if (argc < 2 || !argv[1]) {
+                AFW_THROW_ERROR_Z(general,
+                    "afw_value_call_built_in_function_create() argv[1] must be "
+                    "defined for polymorphic functions", xctx);
+            }
             afw_value_get_info(argv[1], &info, p, xctx);
             if (info.optimized_value_data_type) {
                 function = afw_environment_get_qualified_function(

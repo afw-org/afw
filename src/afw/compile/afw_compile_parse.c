@@ -162,6 +162,43 @@ afw_compile_parse_reference_create(
 }
 
 
+/* Embellish error. */
+AFW_DEFINE_INTERNAL(void)
+afw_compile_parse_embellish_error(
+    afw_compile_parser_t *parser,
+    afw_error_t *error)
+{
+    afw_size_t line;
+    afw_size_t column;
+
+    /* If compile info already part of message, return. */
+    if (error->parser_source) {
+        return;
+    }
+
+    afw_utf8_line_column_of_offset(
+        &line, &column,
+        parser->full_source, parser->token->token_source_offset,
+        4, parser->xctx);
+
+    error->message_z = afw_utf8_z_printf(parser->p, parser->xctx,
+        "Error during compile at offset "
+        "%" AFW_SIZE_T_FMT
+        " around line "
+        "%" AFW_SIZE_T_FMT
+        " column "
+        "%" AFW_SIZE_T_FMT
+        ": %s",
+        parser->token->token_source_offset, line, column,
+        error->message_z);
+
+    error->contextual = &parser->contextual;
+    error->parser_cursor = parser->cursor;
+
+    error->parser_source = parser->full_source;
+}
+
+
 
 /* Parse error. */
 AFW_DEFINE_INTERNAL(void)

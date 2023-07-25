@@ -294,6 +294,10 @@ afw_compile_to_value_with_callback(
         }
 
     }
+    AFW_CATCH_UNHANDLED {
+        afw_compile_parse_embellish_error(parser, &this_THROWN_ERROR);
+        AFW_ERROR_RETHROW;
+    }
     AFW_FINALLY {
         afw_xctx_end_stack_frame(top, xctx);
     }
@@ -367,6 +371,10 @@ afw_compile_to_object(
                     adaptor_id, object_type_id, object_id, xctx);
             }
         }
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_compile_parse_embellish_error(parser, &this_THROWN_ERROR);
+        AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {
         afw_xctx_end_stack_frame(top, xctx);
