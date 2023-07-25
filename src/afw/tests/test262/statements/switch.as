@@ -708,7 +708,7 @@ if(!(SwitchTest(x) === 128)){
 
 //? test: S12.11_A1_T3
 //? description: Using case with null, NaN, Infinity
-//? expect: error:Parse error at offset 1581 around line 73 column 17: Unknown built-in function void
+//? expect: error:Parameter 1 is required
 //? source: ...
 #!/usr/bin/env afw
 

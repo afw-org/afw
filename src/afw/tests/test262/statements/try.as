@@ -1682,7 +1682,7 @@ if(fin3!==1){
 }
 
 // CHECK#4
-let fin=0;
+fin=0;
 foreach let x of mycars{
   try{
     continue;
@@ -1698,7 +1698,6 @@ if(fin!==1){
 
 // CHECK#5
 let c5=0;
-// fixme this gives an error that x is already defined
 foreach let x of mycars{
   try{
     throw "ex1";
@@ -3464,7 +3463,7 @@ if (c3!==1){
 
 //? test: S12.14_A4
 //? description: Checking if deleting an exception fails
-//? expect: error:Parse error at offset 136 around line 9 column 7: Unknown built-in function delete
+//? expect: error:Parse error at offset 422 around line 24 column 3: Unknown built-in function e
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3489,7 +3488,7 @@ try {
 }
 catch(e){}
 try{
-  e;
+  e = "catchme";
   throw '#2.2: Deleting catching exception after ending "catch" block';
 }
 catch(err){}
