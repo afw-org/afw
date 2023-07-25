@@ -164,7 +164,7 @@ if (is_NaN(+"infinity") !== true) {
 
 //? test: S11.4.6_A3_T4
 //? description: Type(x) is undefined or null
-//? expect: error:Parameter 2 of function add<string> must evaluate to data type string but evaluated to be null
+//? expect: error:#2: +null === 0. Actual: null
 //? source: ...
 #!/usr/bin/env afw
 

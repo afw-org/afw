@@ -26,20 +26,22 @@ class string
     /**
      * add_string()
      *
-     * Add (concatenate) 2 or more string values and return the string
-     * result.
+     * Add (concatenate) a string with 1 or more values of any data type
+     * converted to their string value and return the string result.
      *
-     * @param string $values
+     * @param string $string
+     * @param  $values
      *
      * @return string
      */
-    public function add_string(, $values)
+    public function add_string(, $string, $values)
     {
         $request = $this->$session->request();
 
         $request->set("function", "add<string>");
 
         /* pass along required parameters to the request payload */
+        $request->set("string", $string);
         $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */

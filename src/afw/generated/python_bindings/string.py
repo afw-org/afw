@@ -5,15 +5,18 @@
 import requests
 import json
 
-def add_string(session, values):
+def add_string(session, string, values):
     '''
     Add (concatenate) strings
 
-    Add (concatenate) 2 or more string values and return the string result.
+    Add (concatenate) a string with 1 or more values of any data type
+    converted to their string value and return the string result.
 
     Parameters:
 
-        values (string):
+        string (string):
+
+        values ():
 
     Returns:
     string: 
@@ -23,6 +26,7 @@ def add_string(session, values):
 
     action = {
         "function": "add<string>",
+        "string": string,
         "values": values
     }
 

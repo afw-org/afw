@@ -94756,10 +94756,36 @@ impl_add_string_parameter_1 = {
     &afw_data_type_string_direct,
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_add_string_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
-    2,
+    1,
     false,
     false,
     false,
@@ -94769,6 +94795,7 @@ impl_add_string_parameter_1 = {
 static const afw_value_function_parameter_t *
 impl_add_string_parameters[] = {
     &impl_add_string_parameter_1,
+    &impl_add_string_parameter_2,
     NULL
 };
 
@@ -94783,16 +94810,16 @@ afw_function_definition_add_string = {
     AFW_UTF8_LITERAL("addString"),
     AFW_UTF8_LITERAL("afwAddString"),
     AFW_UTF8_LITERAL("Add (concatenate) strings"),
-    AFW_UTF8_LITERAL("Add (concatenate) 2 or more string values and return the string result."),
-    AFW_UTF8_LITERAL("(values_1: string, values_2: string, ...values_rest: (list of string)): string"),
-    AFW_UTF8_LITERAL("/* Add (concatenate) strings */\nfunction add<string> (\n    values_1: string,\n    values_2: string,\n    ...values_rest: (list of string)\n): string;\n"),
+    AFW_UTF8_LITERAL("Add (concatenate) a string with 1 or more values of any data type converted to their string value and return the string result."),
+    AFW_UTF8_LITERAL("(string: string, values_1: any, ...values_rest: (list of any)): string"),
+    AFW_UTF8_LITERAL("/* Add (concatenate) strings */\nfunction add<string> (\n    string: string,\n    values_1: any,\n    ...values_rest: (list of any)\n): string;\n"),
     AFW_UTF8_LITERAL("+"),
     afw_function_execute_add_string,
     NULL,
     2,
     -1,
     &impl_add_string_parameters[0],
-    1,
+    2,
     &impl_add_string_returns,
     NULL,
     &afw_data_type_string_direct,

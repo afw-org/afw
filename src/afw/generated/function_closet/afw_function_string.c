@@ -22,7 +22,8 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Add (concatenate) 2 or more string values and return the string result.
+ * Add (concatenate) a string with 1 or more values of any data type converted
+ * to their string value and return the string result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31,15 +32,17 @@
  *
  * ```
  *   function add<string>(
- *       values_1: string,
- *       values_2: string,
- *       ...values_rest: (list of string)
+ *       string: string,
+ *       values_1: any,
+ *       ...values_rest: (list of any)
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   values - (2 or more string)
+ *   string - (string)
+ *
+ *   values - (1 or more any dataType)
  *
  * Returns:
  *

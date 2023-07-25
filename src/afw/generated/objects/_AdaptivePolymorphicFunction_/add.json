@@ -5,7 +5,6 @@
     "description": "Add 2 or more <dataType> values and return the <dataType> result.",
     "functionId": "add",
     "functionLabel": "add",
-    "pure": true,
     "op": "+",
     "parameters": [
         {
@@ -23,9 +22,20 @@
     "polymorphicOverrides": {
         "string": {
             "brief": "Add (concatenate) strings",
-            "description": "Add (concatenate) 2 or more string values and return the string result."
+            "description": "Add (concatenate) a string with 1 or more values of any data type converted to their string value and return the string result.",
+            "parameters": [
+                {
+                    "dataType": "string",
+                    "name": "string"
+                },
+                {
+                    "minArgs": 1,
+                    "name": "values"
+                }
+            ]
         }
     },
+    "pure": true,
     "returns": {
         "polymorphicDataType": true
     }

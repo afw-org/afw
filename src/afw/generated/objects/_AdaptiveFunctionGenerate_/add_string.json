@@ -4,14 +4,17 @@
     "camelCaseFunctionLabel": "addString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Add (concatenate) 2 or more string values and return the string result.",
+    "description": "Add (concatenate) a string with 1 or more values of any data type converted to their string value and return the string result.",
     "functionId": "add<string>",
     "functionLabel": "add_string",
     "op": "+",
     "parameters": [
         {
             "dataType": "string",
-            "minArgs": 2,
+            "name": "string"
+        },
+        {
+            "minArgs": 1,
             "name": "values"
         }
     ],

@@ -74,10 +74,14 @@ The following functions are exported by default
 
 =head3 add_string
 
-Add (concatenate) 2 or more string values and return the string result.
+Add (concatenate) a string with 1 or more values of any data type converted
+to their string value and return the string result.
 Add (concatenate) strings
 
 =head4 Parameters
+
+    $string
+
 
     $values
 
@@ -831,11 +835,12 @@ more details.
 =cut
 
 sub add_string {
-    my ($values) = @_;
+    my ($string, $values) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "add<string>");
+    $request->set("string", $string);
     $request->set("values", $values);
 
     return $request->getResult();

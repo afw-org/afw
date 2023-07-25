@@ -12,17 +12,21 @@ interface IAnyObject {
 }
 
 /**
- * Add (concatenate) 2 or more string values and return the string result.
+ * Add (concatenate) a string with 1 or more values of any data type
+ * converted to their string value and return the string result.
  * 
- * @param {string} values -
+ * @param {string} string -
+ * 
+ * @param {} values -
  * 
  * @returns {string}
  */
-export function afwAddString(client : any, values : string) : any {
+export function afwAddString(client : any, string : string, values : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "add<string>";
+    _action["string"] = string;
     _action["values"] = values;
 
     return client.perform(_action);
