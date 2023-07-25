@@ -132,6 +132,23 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
         afw_compile_get_token();
         if (afw_compile_token_is(identifier)) {
 
+            /*
+             * Note:
+            *      This might should test for all reserved words, but this
+             *     is mainly here because this production is called after all
+             *     the reserved statement names have been checked and the only
+             *     other reserved words besides 'void' can not become an
+             *     identifier and will not be a built-in function name.
+             *  
+             *     If this becomes an issue, call afw_compile_is_reserved_word()
+             *     instead of testing for void, but that will take longer.
+             */
+            if (afw_compile_token_is_name(&afw_s_void))
+            {
+                afw_compile_reuse_token();
+                return NULL;             
+            }
+
             /* First check to see if identifier is a variable symbol. */
             if (!parser->token->identifier_qualifier) {
                 symbol = afw_compile_parse_get_symbol_entry(parser,
