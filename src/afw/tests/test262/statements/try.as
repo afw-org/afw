@@ -3463,7 +3463,7 @@ if (c3!==1){
 
 //? test: S12.14_A4
 //? description: Checking if deleting an exception fails
-//? expect: error:Parse error at offset 422 around line 24 column 3: Unknown built-in function e
+//? expect: error:Parse error at offset 136 around line 9 column 7: Unknown built-in function delete
 //? source: ...
 #!/usr/bin/env afw
 

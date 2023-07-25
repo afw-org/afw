@@ -27,12 +27,10 @@ try {
 //? test: finally-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: finally block let declaration only shadows outer parameter value 2
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-We need try/catch/throw for this
+
 (function(x) {
   try {
     let x = 'middle';
@@ -43,10 +41,9 @@ We need try/catch/throw for this
   } catch(e) {
 
   } finally {
-    assert.sameValue(x, 'outer');
+    assert(x === 'outer');
   }
 })('outer');
-*/
 
 
 //?
@@ -68,110 +65,90 @@ function(x) {
 //?
 //? test: outermost-binding-updated-in-catch-block-nested-block-let-declaration-unseen-outside-of-block
 //? description: outermost binding updated in catch block; nested block let declaration unseen outside of block
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 292 around line 16 column 14: Unknown built-in function xx
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-We need try/catch/throw for this
-
-var caught = false;
+let caught = false;
 try {
   {
     let xx = 18;
-    throw 25;
+    throw "25";
   }
 } catch (e) {
   caught = true;
-  assert.sameValue(e, 25);
+  assert(e === "25");
   (function () {
     try {
       // NOTE: This checks that the block scope containing xx has been
       // removed from the context chain.
-      assert.sameValue(xx, undefined);
+      assert(xx === undefined);
       eval('xx');
       assert(false);  // should not reach here
     } catch (e2) {
-      assert(e2 instanceof ReferenceError);
+      //assert(e2 instanceof ReferenceError);
     }
   })();
 }
 assert(caught);
-*/
 
 
 //?
 //? test: try-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: try block let declaration only shadows outer parameter value 1
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-We need try/catch/throw for this
 
 (function(x) {
   try {
     let x = 'inner';
-    throw 0;
+    throw "0";
   } catch (e) {
-    assert.sameValue(x, 'outer');
+    assert(x === 'outer');
   }
 })('outer');
-*/
 
 //?
 //? test: try-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: try block let declaration only shadows outer parameter value 2
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-We need try/catch/throw for this
 
 (function(x) {
   try {
     let x = 'middle';
     {
       let x = 'inner';
-      throw 0;
+      throw "0";
     }
   } catch (e) {
-    assert.sameValue(x, 'outer');
+    assert(x === 'outer');
   }
 })('outer');
-*/
 
 
 //?
 //? test: verify-context-in-finally-block
 //? description: verify context in finally block 1
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-We need try/catch/throw for this
 
 function f() {}
 
 (function(x) {
   try {
     let x = 'inner';
-    throw 0;
+    throw "0";
   } catch(e) {
 
   } finally {
     f();
-    assert.sameValue(x, 'outer');
+    assert(x === 'outer');
   }
 })('outer');
-*/
 
 //?
 //? test: verify-context-in-for-loop-block
@@ -195,25 +172,20 @@ function(x) {
 //? test: verify-context-in-for-loop-block
 //? description: verify context in try block 1
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
-/*
-We need try/catch/throw for this
 
 function f() {}
 
 (function(x) {
   try {
     let x = 'inner';
-    throw 0;
+    throw "0";
   } catch (e) {
     f();
-    assert.sameValue(x, 'outer');
+    assert(x === 'outer');
   }
 })('outer');
-*/
 
 
 //?

@@ -286,7 +286,6 @@ fn(1);
 //? test: parameter-name-shadowing-catch-parameter
 //? description: parameter name shadowing catch parameter
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
@@ -300,7 +299,7 @@ function fn() {
       // parameter name shadowing catch parameter
       c = 3;
       assert(c === 3);
-    })();
+    })(1);
     assert(c.message === 'stuff3');
   }
   assert(c === 1);

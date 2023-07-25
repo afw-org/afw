@@ -83,12 +83,12 @@ if (x * y !== 1) {
 
 //? test: 11.5.1_A2.4_T1
 //? description: First expression is evaluated first, and then second expression - checking with "="
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 89 around line 5 column 8: Expecting ')'
 //? source: ...
 #!/usr/bin/env afw
 
 let x: integer = 0;
+// can't use assignment inside expression
 if ((x = 1) * x !== 1) {
     throw "x = 1 * x !== 1";
 }

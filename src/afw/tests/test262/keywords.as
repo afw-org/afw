@@ -44,7 +44,6 @@ let continue = 1;
 //? test: ident-ref-default
 //? description: Checking if execution of "default=1" fails
 //? expect: error
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 

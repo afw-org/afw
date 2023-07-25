@@ -51,12 +51,12 @@ return 1 == y;
 
 //? test: 11.9.1_A2.1_T3
 //? description: Reference error
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 90 around line 5 column 9: Expecting ')'
 //? source: ...
 #!/usr/bin/env afw
 
 let x: integer = 0;
+// can't use assignment inside expression
 if (((x = 1) == x) !== true) {
     throw "(x = 1) == x";
 }

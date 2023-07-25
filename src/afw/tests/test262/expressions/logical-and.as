@@ -20,22 +20,21 @@ return 0;
 
 //? test: 11.11.1_A2.4_T1
 //? description: First expression is evaluated first, and then second expression: checking with "="
-//? expect: 0
-//? skip: true
+//? expect: error:Parse error at offset 87 around line 5 column 9: Expecting ')'
 //? source: ...
 #!/usr/bin/env afw
 
-let x: boolean = false;
+let x = false;
+// can't do assignment inside an expression
 if (((x = true) && x) !== true) {
     throw "#1: ((x = true) && x) === true";
 }
 
-let x: boolean = false;
+let x = false;
 if ((x && (x = true)) !== false) {
     throw "#2: (x && (x = true)) === false";
 }
 
-return 0;
 
 //? test: 11.11.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression: checking with assert()

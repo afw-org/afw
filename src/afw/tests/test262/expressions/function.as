@@ -20,8 +20,7 @@ if (y !== 2) {
 
 //? test: dflt-params-abrupt
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 209 around line 9 column 38: Expecting a literal
 //? source: ...
 #!/usr/bin/env afw
 
@@ -39,14 +38,12 @@ let f: function = function (x: any = fn_assert()): any {
 
 //? test: dflt-params-arg-val-undefined
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: null
-//? skip: true
+//? expect: error:Assertion failed: fromExpr !== 45
 //? source: ...
 #!/usr/bin/env afw
 
-let callCount: integer = 0;
-let ref: function;
-ref = function (fromLiteral: integer = 23, fromExpr: integer = 45, fromHole: integer = 99): any {
+let callCount = 0;
+let ref = function (fromLiteral = 23, fromExpr = 45, fromHole = 99): any {
     assert(fromLiteral === 23, "fromLiteral !== 23");
     assert(fromExpr === 45, "fromExpr !== 45");
     assert(fromHole === 99, "fromHole !== 99");
@@ -74,16 +71,14 @@ function f(x: integer = 0, x: integer): any {};
 
 //? test: dflt-params-ref-later
 //? description: Referencing a parameter that occurs later in the parameter list
-//? expect: error
-//? skip: true
+//? expect: error:Parse error at offset 85 around line 6 column 19: Expecting a literal
 //? source: ...
 #!/usr/bin/env afw
 
-let x: integer = 0;
-let callCount: integer = 0;
+let x = 0;
+let callCount = 0;
 let f: function;
-// \fixme this gives a parse error, but perhaps not the correct one?
-f = function (x: integer = y, y?: integer): any {
+f = function (x = y, y?): any {
     callCount = callCount + 1;
 };
 
@@ -91,16 +86,13 @@ f = function (x: integer = y, y?: integer): any {
 
 //? test: dflt-params-ref-prior
 //? description: Referencing a parameter that occurs earlier in the parameter list
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 77 around line 5 column 28: Expecting a literal
 //? source: ...
 #!/usr/bin/env afw
 
-let x: integer = 0;
-let callCount: integer = 0;
-let ref: function;
-
-ref = function (x: integer, y: integer = x, z: integer = y): any {
+let x = 0;
+let callCount = 0;
+let ref = function (x, y = x, z = y): any {
     assert(x === 3, "first argument value");
     assert(y === 3, "second argument value");
     assert(y === 3, "third argument value");
@@ -113,11 +105,9 @@ assert(callCount === 1, "function invoked exactly once");
 
 
 
-
 //? test: dflt-params-ref-self
 //? description: Referencing a parameter from within its own initializer
 //? expect: error
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 

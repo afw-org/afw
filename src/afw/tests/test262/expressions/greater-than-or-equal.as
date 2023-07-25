@@ -57,7 +57,7 @@ x >= 1;
 #!/usr/bin/env afw
 
 let x: integer = 1;
-if (((x = 0) >= x !== true) {
+if ((x = 0) >= x !== true) {
     throw "x >= x === true";
 }
 

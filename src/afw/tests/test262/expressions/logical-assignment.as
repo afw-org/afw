@@ -28,11 +28,9 @@ unresolved &&= 1;
 
 //? test: lgcl-and-assignment-operator-unresolved-rhs
 //? description:  ReferenceError is not thrown if the AssignmentExpression of a Logical Assignment operator(&&=) evaluates to an unresolvable reference and the AssignmentExpression is not evaluated.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 49 around line 5 column 14: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
-
 
 let value = 0;
 

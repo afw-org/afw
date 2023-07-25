@@ -121,18 +121,17 @@ x <= 1;
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
 let x = { valueOf: function () { throw "x"; } };
 let y = { valueOf: function () { throw "y"; } };
 try {
-   x <= y;
+   let z = x <= y;
    throw '#1.1: Should have thrown';
 } catch (e) {
-   if (e === "y") {
+   if (e.message === "y") {
      throw '#1.2: First expression should be evaluated first';
    } else {
-     if (e !== "x") {
+     if (e.message !== "x") {
        throw '#1.3: Failed with: ' + e;
      }
    }
@@ -142,22 +141,20 @@ try {
 //? test: S11.8.3_A2.4_T2
 //? description: Checking with "throw"
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 let x = function () { throw "x"; };
 let y = function () { throw "y"; };
 try {
-   x() <= y();
+   let z = x() <= y();
    throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() <= y() throw "x". Actual: ' + (x() <= y());
 } catch (e) {
-   if (e === "y") {
+   if (e.message === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
-     if (e !== "x") {
+     if (e.message !== "x") {
        throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() <= y() throw "x". Actual: ' + (e);
      }
    }
@@ -439,11 +436,9 @@ if ((NaN <= Number.MIN_VALUE) !== false) {
 
 //? test: S11.8.3_A4.2
 //? description: x is number primitive
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((0 <= NaN) !== false) {
@@ -475,6 +470,7 @@ if ((-Infinity <= NaN) !== false) {
   throw '#6: (-Infinity <= NaN) === false';
 }
 
+/*
 //CHECK#7
 if ((Number.MAX_VALUE <= NaN) !== false) {
   throw '#7: (Number.MAX_VALUE <= NaN) === false';
@@ -484,15 +480,14 @@ if ((Number.MAX_VALUE <= NaN) !== false) {
 if ((Number.MIN_VALUE <= NaN) !== false) {
   throw '#8: (Number.MIN_VALUE <= NaN) === false';
 }
+*/
 
 
 //? test: S11.8.3_A4.3
 //? description: x and y are number primitives
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((1 <= 1) !== true) {
@@ -519,6 +514,7 @@ if ((Infinity <= Infinity) !== true) {
   throw '#5: (+Infinity <= +Infinity) === true';
 }
 
+/*
 //CHECK#6
 if ((Number.MAX_VALUE <= Number.MAX_VALUE) !== true) {
   throw '#6: (Number.MAX_VALUE <= Number.MAX_VALUE) === true';
@@ -528,6 +524,7 @@ if ((Number.MAX_VALUE <= Number.MAX_VALUE) !== true) {
 if ((Number.MIN_VALUE <= Number.MIN_VALUE) !== true) {
   throw '#7: (Number.MIN_VALUE <= Number.MIN_VALUE) === true';
 }
+*/
 
 
 //? test: S11.8.3_A4.4
@@ -560,11 +557,9 @@ if ((-0 <= +0) !== true) {
 
 //? test: S11.8.3_A4.5
 //? description: y is number primitive
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((Infinity <= 0) !== false) {
@@ -586,6 +581,7 @@ if ((Infinity <= -Infinity) !== false) {
   throw '#4: (+Infinity <= -Infinity) === false';
 }
 
+/*
 //CHECK#5
 if ((Infinity <= Number.MAX_VALUE) !== false) {
   throw '#5: (+Infinity <= Number.MAX_VALUE) === false';
@@ -595,15 +591,14 @@ if ((Infinity <= Number.MAX_VALUE) !== false) {
 if ((Infinity <= Number.MIN_VALUE) !== false) {
   throw '#6: (+Infinity <= Number.MIN_VALUE) === false';
 }
+*/
 
 
 //? test: S11.8.3_A4.6
 //? description: x is number primitive
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((0 <= Infinity) !== true) {
@@ -625,6 +620,7 @@ if ((-Infinity <= Infinity) !== true) {
   throw '#4: (-Infinity <= +Infinity) === true';
 }
 
+/*
 //CHECK#5
 if ((Number.MAX_VALUE <= Infinity) !== true) {
   throw '#5: (Number.MAX_VALUE <= +Infinity) === true';
@@ -634,15 +630,14 @@ if ((Number.MAX_VALUE <= Infinity) !== true) {
 if ((Number.MIN_VALUE <= Infinity) !== true) {
   throw '#6: (Number.MIN_VALUE <= +Infinity) === true';
 }
+*/
 
 
 //? test: S11.8.3_A4.7
 //? description: y is number primitive
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((-Infinity <= 0) !== true) {
@@ -664,6 +659,7 @@ if ((-Infinity <= Infinity) !== true) {
   throw '#4: (-Infinity <= +Infinity) === true';
 }
 
+/*
 //CHECK#5
 if ((-Infinity <= Number.MAX_VALUE) !== true) {
   throw '#5: (-Infinity <= Number.MAX_VALUE) === true';
@@ -673,15 +669,14 @@ if ((-Infinity <= Number.MAX_VALUE) !== true) {
 if ((-Infinity <= Number.MIN_VALUE) !== true) {
   throw '#6: (-Infinity <= Number.MIN_VALUE) === true';
 }
+*/
 
 
 //? test: S11.8.3_A4.8
 //? description: x is number primitive
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((0 <= -Infinity) !== false) {
@@ -703,6 +698,7 @@ if ((Infinity <= -Infinity) !== false) {
   throw '#4: (+Infinity <= -Infinity) === false';
 }
 
+/*
 //CHECK#5
 if ((Number.MAX_VALUE <= -Infinity) !== false) {
   throw '#5: (Number.MAX_VALUE <= -Infinity) === false';
@@ -712,15 +708,15 @@ if ((Number.MAX_VALUE <= -Infinity) !== false) {
 if ((Number.MIN_VALUE <= -Infinity) !== false) {
   throw '#6: (Number.MIN_VALUE <= -Infinity) === false';
 }
+*/
 
 
 //? test: S11.8.3_A4.9
 //? description: x and y are number primitives
-//? skip: true
 //? expect: null
+//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((1.1 <= 1) !== false) {
@@ -738,6 +734,7 @@ if ((-1.1 <= -1) !== true) {
 }
 
 //CHECK#4
+// fixme this won't pass because of integer/double conversion
 if ((-1 <= -1.1) !== false) {
   throw '#4: (-1 <= -1.1) === false';
 }
@@ -752,6 +749,7 @@ if ((-0.1 <= 0) !== true) {
   throw '#6: (-0.1 <= 0) === true';
 }
 
+/*
 //CHECK#7
 if ((Number.MAX_VALUE/2 <= Number.MAX_VALUE) !== true) {
   throw '#7: (Number.MAX_VALUE/2 <= Number.MAX_VALUE) === true';
@@ -761,5 +759,4 @@ if ((Number.MAX_VALUE/2 <= Number.MAX_VALUE) !== true) {
 if ((Number.MIN_VALUE <= Number.MIN_VALUE*2) !== true) {
   throw '#8: (Number.MIN_VALUE <= Number.MIN_VALUE*2) === true';
 }
-
-
+*/

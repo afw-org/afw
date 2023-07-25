@@ -162,14 +162,14 @@ assert(undefined === undf?.b, "undefined === undf?.b");
 
 //? test: short-circuiting
 //? description: demonstrate syntax-based short-circuiting.
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 109 around line 7 column 5: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
 
 const a: any = undefined;
 let x: integer = 1;
 
+// we do not support pre-increment ++
 a?.[++x];
 a?.b.c(++x).d;
 

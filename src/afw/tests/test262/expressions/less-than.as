@@ -143,22 +143,20 @@ try {
 //? test: S11.8.1_A2.4_T2
 //? description: Checking with "throw"
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 let x = function () { throw "x"; };
 let y = function () { throw "y"; };
 try {
-   x() < y();
+   let z = x() < y();
    throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (x() < y());
 } catch (e) {
-   if (e === "y") {
+   if (e.message === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
-     if (e !== "x") {
+     if (e.message !== "x") {
        throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() < y() throw "x". Actual: ' + (e);
      }
    }
@@ -392,13 +390,12 @@ throw '#7: ("1" < "1e-10") !== true';
 
 //? test: S11.8.1_A4.1
 //? description: y is number primitive
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
+// this won't work because of double/integer conversion
 if ((NaN < 0) !== false) {
   throw '#1: (NaN < 0) === false';
 }
@@ -428,6 +425,7 @@ if ((NaN < -Infinity) !== false) {
   throw '#6: (NaN < -Infinity) === false';
 }
 
+/*
 //CHECK#7
 if ((NaN < Number.MAX_VALUE) !== false) {
   throw '#7: (NaN < Number.MAX_VALUE) === false';
@@ -437,6 +435,7 @@ if ((NaN < Number.MAX_VALUE) !== false) {
 if ((NaN < Number.MIN_VALUE) !== false) {
   throw '#8: (NaN < Number.MIN_VALUE) === false';
 }
+*/
 
 
 //? test: S11.8.1_A4.2
@@ -490,11 +489,9 @@ if ((Number.MIN_VALUE < NaN) !== false) {
 
 //? test: S11.8.1_A4.3
 //? description: x and y are number primitives
-//? skip: true
 //? expect: null
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 if ((1 < 1) !== false) {
@@ -521,6 +518,7 @@ if ((Infinity < Infinity) !== false) {
   throw '#5: (+Infinity < +Infinity) === false';
 }
 
+/*
 //CHECK#6
 if ((Number.MAX_VALUE < Number.MAX_VALUE) !== false) {
   throw '#6: (Number.MAX_VALUE < Number.MAX_VALUE) === false';
@@ -530,6 +528,7 @@ if ((Number.MAX_VALUE < Number.MAX_VALUE) !== false) {
 if ((Number.MIN_VALUE < Number.MIN_VALUE) !== false) {
   throw '#7: (Number.MIN_VALUE < Number.MIN_VALUE) === false';
 }
+*/
 
 
 //? test: S11.8.1_A4.4
@@ -562,13 +561,12 @@ if ((-0 < +0) !== false) {
 
 //? test: S11.8.1_A4.5
 //? description: y is number primitive
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
+// this won't work because of double/integer conversion
 if ((Infinity < 0) !== false) {
   throw '#1: (+Infinity < 0) === false';
 }
@@ -588,6 +586,7 @@ if ((Infinity < -Infinity) !== false) {
   throw '#4: (+Infinity < -Infinity) === false';
 }
 
+/*
 //CHECK#5
 if ((Infinity < Number.MAX_VALUE) !== false) {
   throw '#5: (+Infinity < Number.MAX_VALUE) === false';
@@ -597,6 +596,7 @@ if ((Infinity < Number.MAX_VALUE) !== false) {
 if ((Infinity < Number.MIN_VALUE) !== false) {
   throw '#6: (+Infinity < Number.MIN_VALUE) === false';
 }
+*/
 
 
 //? test: S11.8.1_A4.6
@@ -640,13 +640,12 @@ if ((Number.MIN_VALUE < Infinity) !== true) {
 
 //? test: S11.8.1_A4.7
 //? description: y is number primitive
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
+// this does not work because of double/integer conversion
 if ((-Infinity < 0) !== true) {
   throw '#1: (-Infinity < 0) === true';
 }
@@ -666,6 +665,7 @@ if ((-Infinity < Infinity) !== true) {
   throw '#4: (-Infinity < +Infinity) === true';
 }
 
+/*
 //CHECK#5
 if ((-Infinity < Number.MAX_VALUE) !== true) {
   throw '#5: (-Infinity < Number.MAX_VALUE) === true';
@@ -675,17 +675,17 @@ if ((-Infinity < Number.MAX_VALUE) !== true) {
 if ((-Infinity < Number.MIN_VALUE) !== true) {
   throw '#6: (-Infinity < Number.MIN_VALUE) === true';
 }
+*/
 
 
 //? test: S11.8.1_A4.8
 //? description: x is number primitive
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function lt<integer> must evaluate to data type integer but evaluated to be double
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
+// this won't work because of double/integer conversion
 if ((0 < -Infinity) !== false) {
   throw '#1: (0 < -Infinity) === false';
 }
@@ -705,6 +705,7 @@ if ((Infinity < -Infinity) !== false) {
   throw '#4: (+Infinity < -Infinity) === false';
 }
 
+/*
 //CHECK#5
 if ((Number.MAX_VALUE < -Infinity) !== false) {
   throw '#5: (Number.MAX_VALUE < -Infinity) === false';
@@ -714,17 +715,17 @@ if ((Number.MAX_VALUE < -Infinity) !== false) {
 if ((Number.MIN_VALUE < -Infinity) !== false) {
   throw '#6: (Number.MIN_VALUE < -Infinity) === false';
 }
+*/
 
 
 //? test: S11.8.1_A4.9
 //? description: x and y are number primitives
-//? skip: true
-//? expect: null
+//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
+// this won't work because of double/integer conversion
 if ((1.1 < 1) !== false) {
   throw '#1: (1.1 < 1) === false';
 }
@@ -754,6 +755,7 @@ if ((-0.1 < 0) !== true) {
   throw '#6: (-0.1 < 0) === true';
 }
 
+/*
 //CHECK#7
 if ((Number.MAX_VALUE/2 < Number.MAX_VALUE) !== true) {
   throw '#7: (Number.MAX_VALUE/2 < Number.MAX_VALUE) === true';
@@ -763,3 +765,4 @@ if ((Number.MAX_VALUE/2 < Number.MAX_VALUE) !== true) {
 if ((Number.MIN_VALUE < Number.MIN_VALUE*2) !== true) {
   throw '#8: (Number.MIN_VALUE < Number.MIN_VALUE*2) === true';
 }
+*/

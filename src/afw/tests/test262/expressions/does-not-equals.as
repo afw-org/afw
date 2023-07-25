@@ -117,22 +117,20 @@ x != 1;
 //? test: S11.9.2_A2.4_T2
 //? description:Checking with "throw"
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
-
 
 //CHECK#1
 let x = function () { throw "x"; };
 let y = function () { throw "y"; };
 try {
-   x() != y();
+   let z = x() != y();
    throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (x() != y());
 } catch (e) {
-   if (e === "y") {
+   if (e.message === "y") {
      throw '#1.2: First expression is evaluated first, and then second expression';
    } else {
-     if (e !== "x") {
+     if (e.message !== "x") {
        throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() != y() throw "x". Actual: ' + (e);
      }
    }
