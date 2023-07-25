@@ -333,7 +333,7 @@ Equality ::= Comparison
 /* From afw_compile_parse_expression.c                                        */
 
 Comparison ::= Factor (
-     ('<' | '<=' | '>' | '>=' | 'in' ) Factor )*
+     ('<' | '<=' | '>' | '>=' ) Factor )*
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -349,7 +349,7 @@ Exponentiation ::= Prefixed ( '**' Prefixed )*
 
 /* From afw_compile_parse_expression.c                                        */
 
-Prefixed ::= ( ( '+' | '-' | '!' | 'delete' | 'void' ) Value ) | Value
+Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -999,14 +999,9 @@ Identifier ::= IdentifierStart IdentifierContinue*
 /* Reserved words can not be used as an identifier.                           */
 
 ReservedWords ::= (
-     OperatorReservedWords |
      PredefinedConstReservedWords |
      StatementReservedWords |
      UnusedButReservedWords )
-
-/* From afw_compile_lexical.c                                                 */
-
-OperatorReservedWords ::= ( 'delete' | 'in' | 'void' )
 
 /* From afw_compile_lexical.c                                                 */
 
@@ -1018,13 +1013,13 @@ PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
 StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
      'foreach' | 'function' | 'if' | 'let' | 'return' | 'switch' |
-     'throw' | 'try' | 'while' )
+     'throw' | 'try' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
 
-UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
-     'export' | 'extends' | 'from' | 'import' | 'interface' | 'instanceof' |
-     'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
+     'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
+     'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */

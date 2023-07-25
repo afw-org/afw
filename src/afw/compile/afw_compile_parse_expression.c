@@ -1219,7 +1219,7 @@ afw_compile_parse_Equality(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * Comparison ::= Factor ( 
- *      ('<' | '<=' | '>' | '>=' | 'in' ) Factor )*
+ *      ('<' | '<=' | '>' | '>=' ) Factor )*
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -1252,27 +1252,6 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser)
     case afw_compile_token_type_greater_than_or_equal_to:
         function = &afw_function_definition_ge;
         break;
-
-    case afw_compile_token_type_identifier:
-        if (!parser->token->identifier_qualifier) {
-            if (afw_utf8_equal(parser->token->identifier_name,
-                &afw_s_in))
-            {
-                /* Parameters are reversed for this function. */
-                function = &afw_function_definition_property_exists;
-                argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3,
-                    parser->xctx);
-                argv[0] = (const afw_value_t *)function;
-                argv[2] = result;
-                argv[1] = afw_compile_parse_Factor(parser);
-
-                result = afw_value_call_built_in_function_create(
-                    afw_compile_create_contextual_to_cursor(start_offset),
-                    2, argv, true, parser->p, parser->xctx);
-                return result;
-            }
-        }
-        /* Fall through. */
 
     default:
         afw_compile_reuse_token();
@@ -1537,7 +1516,7 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * Prefixed ::= ( ( '+' | '-' | '!' | 'delete' | 'void' ) Value ) | Value
+ * Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -1577,19 +1556,6 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
 
     case afw_compile_token_type_identifier:
         if (!parser->token->identifier_qualifier) {
-            if (afw_utf8_equal(parser->token->identifier_name,
-                &afw_s_delete))
-            {
-                argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
-                    parser->xctx);
-                argv[0] = (const afw_value_t *)
-                    &afw_function_definition_property_delete_by_reference;
-                argv[1] = afw_compile_parse_Value(parser);
-                result = afw_value_call_built_in_function_create(
-                    afw_compile_create_contextual_to_cursor(start_offset),
-                    1, argv, true, parser->p, parser->xctx);
-                break;
-            }
             if (afw_utf8_equal(parser->token->identifier_name,
                 &afw_s_void))
             {
