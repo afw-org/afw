@@ -8,23 +8,19 @@
 //? test: finally-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: finally block let declaration only shadows outer parameter value 1
 //? expect: null
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 
-/*
-We need try/catch/throw for this
 try {
   (function(x) {
     try {
       let x = 'inner';
       throw 0;
     } finally {
-      assert.sameValue(x, 'outer');
+      assert(x === 'outer');
     }
   })('outer');
 } catch (e) {}
-*/
 
 
 //?
