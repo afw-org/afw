@@ -888,7 +888,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
 
         /* Parser args and create call value result. */
         impl_parse_ExpressionTupleValues(parser, function_value, &argc, &argv);
-        result = afw_value_call_create(contextual, argc, argv,
+        result = afw_value_call_create(contextual, argc, argv, true,
             parser->p, parser->xctx);
     }
 
@@ -931,7 +931,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
 
         /* Parser args and create call value result. */
         impl_parse_ExpressionTupleValues(parser, function_value, &argc, &argv);
-        result = afw_value_call_create(contextual, argc, argv,
+        result = afw_value_call_create(contextual, argc, argv, true, 
             parser->p, parser->xctx);
     }
 
@@ -973,7 +973,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
 
         /* Parser args and create call value result. */
         impl_parse_ExpressionTupleValues(parser, function_value, &argc, &argv);
-        result = afw_value_call_create(contextual, argc, argv,
+        result = afw_value_call_create(contextual, argc, argv, true,
             parser->p, parser->xctx);
     }
 

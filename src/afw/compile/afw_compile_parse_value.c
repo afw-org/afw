@@ -184,7 +184,7 @@ afw_compile_parse_List(
         afw_compile_args_finalize(args, &argc, &argv);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            argc - 1, argv, parser->p, parser->xctx);
+            argc - 1, argv, true, parser->p, parser->xctx);
     }
 
     /* Else if no entries yet, result is empty list. */
@@ -453,7 +453,7 @@ afw_compile_parse_Object(
         afw_compile_args_finalize(args, &argc, &argv);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            argc - 1, argv, parser->p, parser->xctx);
+            argc - 1, argv, true, parser->p, parser->xctx);
     }
 
     /* Else if object expression, result is object expression value. */

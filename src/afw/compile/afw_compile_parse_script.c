@@ -172,7 +172,7 @@ afw_compile_parse_OptionalDefineAssignment(
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(
                 parser->token->token_source_offset),
-            3, argv, parser->p, parser->xctx);
+            3, argv, true, parser->p, parser->xctx);
     }
 
     return result;
@@ -288,7 +288,7 @@ afw_compile_parse_AssignmentOperation(
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(
                 parser->token->token_source_offset),
-                2, argv, parser->p, parser->xctx);
+                2, argv, true, parser->p, parser->xctx);
     }
     else {
         result = afw_compile_parse_Expression(parser);
@@ -303,7 +303,7 @@ afw_compile_parse_AssignmentOperation(
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-            2, argv, parser->p, parser->xctx);
+            2, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -402,10 +402,10 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
     }
 
-    result = afw_value_call_create(
+    result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-            0, &impl_function_definition_break,
+            0, &impl_function_definition_break, true,
             parser->p, parser->xctx);
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
@@ -447,7 +447,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-            3, argv, parser->p, parser->xctx);
+            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -511,10 +511,11 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Misplaced continue");
     }
 
-    result = afw_value_call_create(
+    result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-        0, &impl_function_definition_continue, parser->p, parser->xctx);
+        0, &impl_function_definition_continue, true,
+        parser->p, parser->xctx);
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -583,7 +584,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
         
     return result;
 }
@@ -692,7 +693,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
 
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            3, argv, parser->p, parser->xctx);
+            3, argv, true, parser->p, parser->xctx);
     }
 
     else {
@@ -750,7 +751,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
 
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            4, argv, parser->p, parser->xctx);
+            4, argv, true, parser->p, parser->xctx);
 
     }
 
@@ -813,7 +814,7 @@ impl_parse_ForeachStatement(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        3, argv, parser->p, parser->xctx);
+        3, argv, true, parser->p, parser->xctx);
 
     /* If there is a block for let/const finalize it. */
     if (block) {
@@ -866,7 +867,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        3, argv, parser->p, parser->xctx);
+        3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -933,7 +934,7 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
     }
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc, argv, parser->p, parser->xctx);
+        argc, argv, true, parser->p, parser->xctx);
     return result;
 }
 
@@ -973,7 +974,7 @@ impl_parse_LetStatement(afw_compile_parser_t *parser)
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
-            3, argv, parser->p, parser->xctx);
+            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1008,7 +1009,7 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        1, argv, parser->p, parser->xctx);
+        1, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1108,7 +1109,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     afw_compile_args_finalize(args, &argc, &argv);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc - 1, argv, parser->p, parser->xctx);
+        argc - 1, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1143,8 +1144,8 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z(
                 "Can only rethrow (\"throw;\") inside a catch block");
         }
-        result = afw_value_call_create(contextual,
-            0, &impl_function_definition_rethrow,
+        result = afw_value_call_built_in_function_create(contextual,
+            0, &impl_function_definition_rethrow, true,
             parser->p, parser->xctx);
     }
 
@@ -1170,7 +1171,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
     
         /* Create the throw function call. */
         result = afw_value_call_built_in_function_create(
-            contextual, argc, argv,
+            contextual, argc, argv, true,
             parser->p, parser->xctx);
     }
 
@@ -1304,7 +1305,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     /* Create the try function call. */
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc, argv, parser->p, parser->xctx);
+        argc, argv, true, parser->p, parser->xctx);
 
     parser->rethrow_allowed = rethrow_allowed;
     return result;
@@ -1352,7 +1353,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1650,7 +1651,7 @@ afw_compile_parse_StatementList(
             argv[1] = statement;
             statement = afw_value_call_built_in_function_create(
                 afw_compile_create_contextual_to_cursor(start_offset),
-                1, argv, parser->p, parser->xctx);
+                1, argv, true, parser->p, parser->xctx);
         }
         was_expression = NULL;
 
@@ -2181,6 +2182,6 @@ afw_compile_parse_TestScript(
         parser->p, parser->xctx);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        1, argv, parser->p, parser->xctx);
+        1, argv, true, parser->p, parser->xctx);
     return result;
 }

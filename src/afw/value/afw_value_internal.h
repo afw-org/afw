@@ -228,6 +228,17 @@ struct afw_value_call_s {
     const afw_value_inf_t *inf;
     const afw_value_t *function_value;
     afw_value_call_args_t args;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the optimized value's data type. */
+    const afw_data_type_t *optimized_value_data_type;
 };
 
 
@@ -243,6 +254,17 @@ struct afw_value_call_built_in_function_s {
     const afw_value_inf_t *inf;
     const afw_value_function_definition_t *function;
     afw_value_call_args_t args;
+
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the optimized value's data type. */
+    const afw_data_type_t *optimized_value_data_type;
 };
 
 

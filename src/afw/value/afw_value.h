@@ -54,13 +54,13 @@ struct afw_value_info_s {
     /*
      * This is the optimized value or self. If self can be evaluated at create
      * time, this will the evaluated result. If this value references other
-     * values, there optimized value will be used. If no optimization can occur,
+     * values, their optimized value will be used. If no optimization can occur,
      * this will be self.
      */
     const afw_value_t *optimized_value;
 
     /* This is the optimized value's data type. */
-     const afw_data_type_t *optimized_value_data_type;
+    const afw_data_type_t *optimized_value_data_type;
 };
 
 
@@ -1274,10 +1274,15 @@ afw_value_evaluated_create(
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function value.
+ * @param allow_optimize if true, optimize call if possible.
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
  *
+ * Make sure to set allow_optimize to false if you are changing arguments values
+ * after the call to this function. For example, the higher order list functions
+ * do this. If the arguments will not be changed, allow_optimize can be true.
+ * 
  * The value can be a lambda definition (afw_value_script_function_definition_t *),
  * built-in function definition (afw_value_function_definition_t *) or
  * function thunk (afw_value_function_thunk_t *)
@@ -1287,6 +1292,7 @@ afw_value_call_create(
     const afw_compile_value_contextual_t *contextual,
     afw_size_t argc,
     const afw_value_t * const *argv,
+    const afw_boolean_t allow_optimize,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -1298,9 +1304,14 @@ afw_value_call_create(
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function
  *        definition value.
+ * @param allow_optimize if true, optimize call if possible.
  * @param p pool used for value.
  * @param xctx of caller.
  * @return Created afw_value_t.
+ *
+ * Make sure to set allow_optimize to false if you are changing arguments values
+ * after the call to this function. For example, the higher order list functions
+ * do this. If the arguments will not be changed, allow_optimize can be true.
  * 
  * Call this function instead of afw_value_call_create() when it's know that
  * argv[0] is a function definition to save a small amount of evaluation time.
@@ -1310,6 +1321,7 @@ afw_value_call_built_in_function_create(
     const afw_compile_value_contextual_t *contextual,
     afw_size_t argc,
     const afw_value_t * const *argv,
+    const afw_boolean_t allow_optimize,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

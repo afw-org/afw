@@ -180,6 +180,7 @@ afw_value_call_create(
     const afw_compile_value_contextual_t *contextual,
     afw_size_t argc,
     const afw_value_t * const *argv,
+    const afw_boolean_t allow_optimize,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -198,7 +199,7 @@ afw_value_call_create(
      */
     if (afw_value_is_function_definition(argv[0])) {
         return afw_value_call_built_in_function_create(
-            contextual, argc, argv, p, xctx);
+            contextual, argc, argv, allow_optimize, p, xctx);
     }
 
     result = afw_pool_calloc_type(p, afw_value_call_t, xctx);
@@ -207,6 +208,8 @@ afw_value_call_create(
     result->args.contextual = contextual;
     result->args.argc = argc;
     result->args.argv = argv;
+    result->optimized_value = (const afw_value_t *)result;
+    result->optimized_value_data_type = afw_data_type_string;
 
     return (const afw_value_t *)result;
 }
@@ -323,6 +326,18 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
+    if (self->optimized_value != instance) {
+        afw_writer_write_z(writer, "optimized_value: ", xctx);
+        afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+    if (self->optimized_value_data_type) {
+        afw_writer_write_z(writer, "optimized_value_data_type: ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->optimized_value_data_type->data_type_id, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
     afw_value_compiler_listing_call_args(writer, &self->args, xctx);
 
     afw_writer_decrement_indent(writer, xctx);
@@ -372,7 +387,6 @@ impl_afw_value_get_info(
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->args.contextual;
-    info->optimized_value = instance;
-
-    /* Note: Maybe something can be done for optimized_value_data_type. */
+    info->optimized_value = self->optimized_value;
+    info->optimized_value_data_type = self->optimized_value_data_type;
 }

@@ -747,7 +747,7 @@ afw_value_block_evaluate_switch(
     AFW_FUNCTION_EVALUATE_PARAMETER(args.value1, 2);
     args.value2 = NULL; /* Filled in later. */
     functor = afw_value_call_create(NULL,
-        2, (const afw_value_t **)&args, p, xctx);
+        2, (const afw_value_t **)&args, false, p, xctx);
 
 
     /* Find first true case. */

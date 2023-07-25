@@ -292,7 +292,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
             afw_compile_parse_Parameters(parser, args);
             afw_compile_args_finalize(args, &argc, &argv);
             contextual = afw_compile_create_contextual_to_cursor(start_offset);
-            result = afw_value_call_create(contextual, argc - 1, argv,
+            result = afw_value_call_create(contextual, argc - 1, argv, true,
                 parser->p, parser->xctx);
             use_function_self = NULL;
         }
@@ -381,7 +381,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
             result = afw_value_call_built_in_function_create(
                 afw_compile_create_contextual_to_cursor(
                     parser->token->token_source_offset),
-                2, argv, parser->p, parser->xctx);
+                2, argv, true, parser->p, parser->xctx);
         }
     }
 
@@ -776,7 +776,7 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
         afw_compile_parse_Parameters(parser, args);
         afw_compile_args_finalize(args, &argc, &argv);
         contextual = afw_compile_create_contextual_to_cursor(start_offset);
-        result = afw_value_call_create(contextual, argc - 1, argv,
+        result = afw_value_call_create(contextual, argc - 1, argv, true,
             parser->p, parser->xctx);
     }
 
@@ -1057,7 +1057,7 @@ afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser)
     afw_compile_args_finalize(args, &argc, &argv);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc - 1, argv, parser->p, parser->xctx);
+        argc - 1, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1106,7 +1106,7 @@ afw_compile_parse_LogicalExpression(afw_compile_parser_t *parser)
     afw_compile_args_finalize(args, &argc, &argv);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc - 1, argv,  parser->p, parser->xctx);
+        argc - 1, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1154,7 +1154,7 @@ afw_compile_parse_LogicalAnd(afw_compile_parser_t *parser)
     afw_compile_args_finalize(args, &argc, &argv);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        argc - 1, argv, parser->p, parser->xctx);
+        argc - 1, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1210,7 +1210,7 @@ afw_compile_parse_Equality(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1268,7 +1268,7 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser)
 
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    2, argv, parser->p, parser->xctx);
+                    2, argv, true, parser->p, parser->xctx);
                 return result;
             }
         }
@@ -1286,7 +1286,7 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser)
 
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1309,7 +1309,7 @@ impl_parse_subtract(
     argv[2] = afw_compile_parse_Term(parser);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
 
     afw_compile_next_can_be_operator();
     afw_compile_get_token();
@@ -1364,9 +1364,9 @@ afw_compile_parse_Factor(afw_compile_parser_t *parser)
             if (args) {
                 afw_compile_args_finalize(args, &argc, &argv);
                 args = NULL;
-                result = afw_value_call_create(
+                result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    argc - 1, argv, parser->p, parser->xctx);
+                    argc - 1, argv, true, parser->p, parser->xctx);
                 start_offset = parser->token->token_source_offset;
             }
             result = impl_parse_subtract(parser, result);
@@ -1376,9 +1376,9 @@ afw_compile_parse_Factor(afw_compile_parser_t *parser)
             afw_compile_reuse_token();
             if (args) {
                 afw_compile_args_finalize(args, &argc, &argv);
-                result = afw_value_call_create(
+                result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    argc - 1, argv, parser->p, parser->xctx);
+                    argc - 1, argv, true, parser->p, parser->xctx);
             }
             return result;
         }
@@ -1408,7 +1408,7 @@ impl_parse_divide_or_mod(
     argv[2] = afw_compile_parse_Exponentiation(parser);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, parser->p, parser->xctx);
+        2, argv, true, parser->p, parser->xctx);
     afw_compile_next_can_be_operator();
     afw_compile_get_token();
     if (afw_compile_token_is(divide) || afw_compile_token_is(modulus))
@@ -1466,7 +1466,7 @@ afw_compile_parse_Term(afw_compile_parser_t *parser)
                 args = NULL;
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    argc - 1, argv, parser->p, parser->xctx);
+                    argc - 1, argv, true, parser->p, parser->xctx);
                 start_offset = parser->token->token_source_offset;
             }
             result = impl_parse_divide_or_mod(parser, result);
@@ -1478,7 +1478,7 @@ afw_compile_parse_Term(afw_compile_parser_t *parser)
                 afw_compile_args_finalize(args, &argc, &argv);
                 result = afw_value_call_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    argc - 1, argv, parser->p, parser->xctx);
+                    argc - 1, argv, true, parser->p, parser->xctx);
             }
             return result;
         }
@@ -1524,7 +1524,7 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
                 afw_compile_args_finalize(args, &argc, &argv);
                 result = afw_value_call_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    argc - 1, argv, parser->p, parser->xctx);
+                    argc - 1, argv, true, parser->p, parser->xctx);
             }
             break;        
         }
@@ -1562,7 +1562,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
         argv[1] = afw_compile_parse_Value(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            1, argv, parser->p, parser->xctx);
+            1, argv, true, parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_unary_not:
@@ -1572,7 +1572,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
         argv[1] = afw_compile_parse_Value(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            1, argv, parser->p, parser->xctx);
+            1, argv, true, parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_identifier:
@@ -1587,7 +1587,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
                 argv[1] = afw_compile_parse_Value(parser);
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    1, argv, parser->p, parser->xctx);
+                    1, argv, true, parser->p, parser->xctx);
                 break;
             }
             if (afw_utf8_equal(parser->token->identifier_name,
@@ -1599,7 +1599,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
                 argv[1] = afw_compile_parse_Value(parser);
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
-                    1, argv, parser->p, parser->xctx);
+                    1, argv, true, parser->p, parser->xctx);
                 break;
             }
         }
@@ -1645,7 +1645,7 @@ afw_compile_parse_Expression(afw_compile_parser_t *parser)
 
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
-            3, argv, parser->p, parser->xctx);
+            3, argv, true, parser->p, parser->xctx);
     }
 
     else {

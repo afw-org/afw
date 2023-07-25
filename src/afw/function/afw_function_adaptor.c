@@ -71,7 +71,7 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(NULL,
-                    2, &ctx->argv[0], ctx->p, xctx);
+                    2, &ctx->argv[0], false, ctx->p, xctx);
             }
             abort_value = afw_value_evaluate(ctx->call, p, xctx);
             if (!afw_value_is_boolean(abort_value)) {
