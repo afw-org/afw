@@ -473,8 +473,9 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                     print("\033[2m      {}\033[0m\n".format(tc_description))                
                 msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))
                 
-                # always print test errors
-                print_test_failure(test, testCase)
+                # print test errors, if in verbose mode
+                if msg.is_verbose_mode():
+                    print_test_failure(test, testCase)
 
 
 # This routine parses a test run and returns the appropriate counters summing 
