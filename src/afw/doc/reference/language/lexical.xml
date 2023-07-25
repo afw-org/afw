@@ -61,12 +61,15 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
         When declaring a variable name, you may use any identifier with the exception 
         of the following reserved names:
     </paragraph>    
-    <code>false       Infinity    null      NaN      true
-undefined   break       case     catch     const    
-continue    do          else     finally   for
-foreach     function    if       in        instanceof
-interface   let         return   switch    throw
-try         typeof      type     while</code>    
+    <code>false       INF         Infinity    NaN      null    
+true        undefined   break       case     catch
+const       continue    do          else     finally
+for         foreach     function    if       let
+return      switch      throw       try      void
+while       as          async       await    class
+export      extends     from        import   interface
+instanceof  super       this        type     typeof
+var         with</code> 
     <header>Literals</header>
     <paragraph>
         Literals are constant that can be used as a values inside expressions. There are 
