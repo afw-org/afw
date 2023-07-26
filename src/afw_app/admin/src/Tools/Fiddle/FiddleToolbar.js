@@ -23,7 +23,7 @@ export const FiddleToolbar = (props) => {
         storage,
         onOpenRecent,
         onSaveFile,
-        onSaveFileLAs,
+        onSaveFileAs,
         canDelete,
         onDeleteScript,
         onOpen,
@@ -141,7 +141,7 @@ export const FiddleToolbar = (props) => {
                             key: "SaveAs",
                             label: "Save As...",
                             disabled: (!input || input.length === 0),
-                            onClick: onMenuOption(onSaveFileLAs)
+                            onClick: onMenuOption(onSaveFileAs)
                         },
                         {
                             key: "Delete",
