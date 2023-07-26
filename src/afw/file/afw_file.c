@@ -532,6 +532,7 @@ impl_afw_adaptor_session_retrieve_objects(
 
         /* Determine object_id and full_path. */
         object_id = afw_utf8_create(finfo.name, len, obj_p, xctx);
+        /** @fixme: Mike filename_suffix could be NULL here */
         full_path = afw_utf8_printf(obj_p, xctx,
             "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(adaptor->root),

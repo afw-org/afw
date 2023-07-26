@@ -591,7 +591,7 @@ afw_value_block_evaluate_foreach(
     afw_xctx_t *xctx)
 {
     IMPL_TEMP_FIX(foreach);
-    const afw_value_t *result;
+    const afw_value_t *result = afw_value_null;
     const afw_value_list_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *value;

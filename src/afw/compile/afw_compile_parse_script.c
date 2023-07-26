@@ -2066,6 +2066,7 @@ afw_compile_parse_TestScript(
 
         else if (afw_utf8_equal(key, &afw_s_skip)) {
             if (afw_utf8_equal(string, &afw_s_true)) {
+                /** @fixme Mike: test_object could be NULL here? */
                 afw_object_set_property(test_object,
                     key, afw_value_true, parser->xctx);
             }

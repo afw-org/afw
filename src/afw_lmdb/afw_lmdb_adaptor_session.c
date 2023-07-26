@@ -464,7 +464,7 @@ void afw_lmdb_adaptor_session_dump_objects(
     MDB_val key, data;
     MDB_dbi dbi;
     int rc;
-    afw_boolean_t abandon;
+    afw_boolean_t abandon = false;
 
     /* Open the database where our primary objects are stored */
     dbi = afw_lmdb_internal_open_database(session->adaptor, txn, 

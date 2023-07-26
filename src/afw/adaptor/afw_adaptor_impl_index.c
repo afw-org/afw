@@ -1228,7 +1228,8 @@ apr_array_header_t * afw_adaptor_impl_index_cursor_list_merge(
             that_cursor = ((const afw_adaptor_impl_index_cursor_t **)
                 temp->elts)[j];
 
-            rc = afw_adaptor_impl_index_cursor_get_count(
+            /* FIXME if the following returns rc, throw/break/return */
+            afw_adaptor_impl_index_cursor_get_count(
                 that_cursor, &that_cardinality, xctx);
 
             if (this_cardinality > that_cardinality) {

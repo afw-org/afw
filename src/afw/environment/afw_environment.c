@@ -1372,11 +1372,13 @@ afw_environment_register_function(
                 function->untypedFunctionId.len);
             if (method_number) {
                 if (function->dataTypeMethodNumber == 0) {
+                    /** @fixme Mike: f could be uninitialized here */
                     f->dataTypeMethodNumber = *method_number;
                 }
             }
             else {
                 if (function->dataTypeMethodNumber == 0) {
+                    /** @fixme Mike: f could be uninitialized here */
                     f->dataTypeMethodNumber = apr_hash_count(
                         env->data_type_method_number_ht) + 1;
                 }

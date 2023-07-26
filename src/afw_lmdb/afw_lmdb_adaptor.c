@@ -297,7 +297,8 @@ const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
         can accumulate.  This routine checks for stale readers and cleans them
         up, if they are no longer in use.
      */
-    rc = mdb_reader_check(self->dbEnv, &deadReaders);
+    // FIXME check return code here and decide what to do/throw
+    mdb_reader_check(self->dbEnv, &deadReaders);
 
     value = afw_object_get_property(properties, &afw_lmdb_s_limits, xctx);
     if (value) {
@@ -529,7 +530,7 @@ impl_afw_adaptor_get_additional_metrics (
 
         rc = mdb_cursor_open(txn, dbi, &cursor);  
         if (rc == 0) {
-            while ((rc = mdb_cursor_get(cursor, &key, NULL, MDB_NEXT_NODUP)) == 0) 
+            while (mdb_cursor_get(cursor, &key, NULL, MDB_NEXT_NODUP) == 0) 
             {
                 char *str;
                 MDB_dbi db2;
@@ -575,7 +576,8 @@ impl_afw_adaptor_get_additional_metrics (
         mdb_close(self->dbEnv, dbi);
     }
 
-    rc = mdb_txn_commit(txn);
+    /* FIXME check return code here and decide what to do/throw */
+    mdb_txn_commit(txn);
 
     apr_thread_rwlock_unlock(self->dbLock);
 

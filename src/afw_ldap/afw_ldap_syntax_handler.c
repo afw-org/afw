@@ -962,7 +962,7 @@ impl_syntax_handler_list_string_to_ber(
         if (!internal) {
             break;
         }
-        if ((data_type = afw_data_type_string)) {
+        if ((data_type == afw_data_type_string)) {
             s = (const afw_utf8_t *)internal;
         }
         else {

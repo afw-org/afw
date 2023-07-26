@@ -377,6 +377,7 @@ afw_compile_parse_AssignmentTarget(
         target->assignment_type = assignment_type;
         target->target_type =
             afw_compile_assignment_target_type_variable_reference;
+        /** @fixme Mike: type is not initialized to anything */
         target->variable_type = type;
         target->variable_reference =
             (const afw_value_variable_reference_t *)result;

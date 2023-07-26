@@ -61,7 +61,7 @@ impl_afw_adaptor_journal_add_entry(
     MDB_dbi dbi;
     MDB_val key, data;
     MDB_cursor *cursor;
-    apr_uint64_t t;
+    apr_uint64_t t = 0;
     int rc;
 
     AFW_LMDB_BEGIN_TRANSACTION(adaptor, session, 0, false, xctx) {

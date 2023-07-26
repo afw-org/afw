@@ -589,7 +589,7 @@ afw_compile_source_location_of_value(
     afw_xctx_t *xctx)
 {
     afw_value_info_t info;
-    const afw_utf8_t *result;
+    const afw_utf8_t *result = NULL;
     afw_size_t line_number;
     afw_size_t column_number;
 
