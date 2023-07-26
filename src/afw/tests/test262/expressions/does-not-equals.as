@@ -173,12 +173,14 @@ if ((false != true) !== true) {
 
 
 //CHECK#1
+/*
 if ((NaN != true) !== true) {
   throw '#1: (NaN != true) === true';
 }
+*/
 
 //CHECK#2
-if ((NaN != 1) !== true) {
+if ((NaN != 1.0) !== true) {
   throw '#2: (NaN != 1) === true';
 }
 
@@ -212,14 +214,18 @@ if ((NaN != Number.MIN_VALUE) !== true) {
 */
 
 //CHECK#8
+/*
 if ((NaN != "string") !== true) {
   throw '#8: (NaN != "string") === true';
 }
+*/
 
 //CHECK#9
+/*
 if ((NaN != {}) !== true) {
   throw '#9: (NaN != {}) === true';
 }
+*/
 
 
 //? test: S11.9.2_A4.1_T2
@@ -230,12 +236,14 @@ if ((NaN != {}) !== true) {
 
 
 //CHECK#1
+/*
 if ((true != NaN) !== true) {
   throw '#1: (true != NaN) === true';
 }
+*/
 
 //CHECK#2
-if ((-1 != NaN) !== true) {
+if ((double(-1) != NaN) !== true) {
   throw '#2: (-1 != NaN) === true';
 }
 
@@ -269,9 +277,11 @@ if ((Number.MIN_VALUE != NaN) !== true) {
 */
 
 //CHECK#8
+/*
 if (("string" != NaN) !== true) {
   throw '#8: ("string" != NaN) === true';
 }
+*/
 
 
 

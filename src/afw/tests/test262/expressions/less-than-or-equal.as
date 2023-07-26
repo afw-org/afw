@@ -390,8 +390,8 @@ throw '#7: ("1" <= "1e-10") !== true';
 
 
 //CHECK#1
-if ((NaN <= 0) !== false) {
-  throw '#1: (NaN <= 0) === false';
+if ((NaN <= 0.0) !== false) {
+  throw '#1: (NaN <= 0.0) === false';
 }
 
 //CHECK#2
@@ -441,8 +441,8 @@ if ((NaN <= Number.MIN_VALUE) !== false) {
 #!/usr/bin/env afw
 
 //CHECK#1
-if ((0 <= NaN) !== false) {
-  throw '#1: (0 <= NaN) === false';
+if ((0.0 <= NaN) !== false) {
+  throw '#1: (0.0 <= NaN) === false';
 }
 
 //CHECK#2

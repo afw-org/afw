@@ -514,23 +514,21 @@ afw_function_execute_eq(
         return afw_value_false;
     }
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_false;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -687,23 +685,21 @@ afw_function_execute_ge(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_false;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_false;
     }
 
     cmp = afw_data_type_compare_internal(
@@ -768,23 +764,21 @@ afw_function_execute_gt(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_false;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1180,23 +1174,21 @@ afw_function_execute_le(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_false;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1327,23 +1319,21 @@ afw_function_execute_lt(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_false;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1545,23 +1535,21 @@ afw_function_execute_ne(
         return afw_value_true;
     }
 
-    /* If either arg is NaN, return false. */
-    if (
-        (afw_value_is_double(arg1) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
-        ||
-        (afw_value_is_double(arg2) &&
-        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
-        )
-    {
-        return afw_value_true;
-    }
-
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
         AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+    }
+
+    /* If either arg is NaN, return true. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_value_true;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,

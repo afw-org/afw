@@ -163,12 +163,14 @@ if (("1" == true) !== true) {
 //? source: ...
 #!/usr/bin/env afw
 
+/*
 if ((true == NaN) !== false) {
     throw "true == NaN";
 }
+*/
 
-if ((-1 == NaN) !== false) {
-    throw "-1 === NaN";
+if ((-1.0 == NaN) !== false) {
+    throw "-1.0 === NaN";
 }
 
 if ((NaN == NaN) !== false) {
@@ -183,10 +185,11 @@ if ((-Infinity == NaN) !== false) {
     throw "-Infinity == NaN";
 }
 
+/*
 if (("string" == NaN) !== false) {
     throw "\"string\" == NaN";
 }
-
+*/
 
 
 //? test: 11.9.1_A4.2
