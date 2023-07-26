@@ -27,7 +27,7 @@ impl_is_in_list(
     const afw_data_type_t *entry_data_type;
 
     if (!data_type) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(arg_error,
             "impl_is_in_list() called with NULL data_type",
             xctx);
     }
@@ -518,7 +518,7 @@ afw_function_execute_eq(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -689,7 +689,7 @@ afw_function_execute_ge(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -768,7 +768,7 @@ afw_function_execute_gt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1033,7 +1033,7 @@ afw_function_execute_intersection(
     if (!data_type ||
         data_type != afw_list_get_data_type(list2->internal, x->xctx))
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(arg_error,
             "list1 and list2 must have a data type of the same type",
             x->xctx);
     }
@@ -1108,7 +1108,7 @@ afw_function_execute_is_in(
 
     data_type = afw_list_get_data_type(list->internal, x->xctx);
     if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(arg_error,
             "list must be list of value's data type",
             x->xctx);
     }
@@ -1178,7 +1178,7 @@ afw_function_execute_le(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1323,7 +1323,7 @@ afw_function_execute_lt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1539,7 +1539,7 @@ afw_function_execute_ne(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return true. */
@@ -1852,7 +1852,7 @@ afw_function_execute_repeat(
 
     /** @fixme How should this limit be handled? 1000 was arbitrary. */
     if (times->internal > 1000) {
-        AFW_THROW_ERROR_Z(general, "Parameter times exceeds 1000", x->xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Parameter times exceeds 1000", x->xctx);
     }
 
     result = afw_value_allocate_string(x->p, x->xctx);
@@ -2486,7 +2486,7 @@ afw_function_execute_union(
     data_type = afw_list_get_data_type(list1->internal, x->xctx);
     if (!data_type)
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(arg_error,
             "all lists must have the same data type",
             x->xctx);
     }
@@ -2496,7 +2496,7 @@ afw_function_execute_union(
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(listn, i, list);
         if (afw_list_get_data_type(listn->internal, x->xctx) != data_type) {
-            AFW_THROW_ERROR_Z(general,
+            AFW_THROW_ERROR_Z(arg_error,
                 "all lists must have the same data type",
                 x->xctx);
         }
