@@ -127,8 +127,8 @@ if ((false == true) !== false) {
 //? source: ...
 #!/usr/bin/env afw
 
-if ((true == 1) !== true) {
-    throw "true == 1";
+if ((true == boolean(1)) !== true) {
+    throw "(true == boolean(1)) !== true";
 }
 
 /*
@@ -224,8 +224,8 @@ if ((+Infinity == -negativeInfinity) !== true) {
     throw "+Infinity == -Infinity";
 }
 
-if ((1.0 == 1) !== true) {
-    throw "1.0 == 1";
+if ((1.0 == double(1)) !== true) {
+    throw "(1.0 == double(1)) !== true)";
 }
 
 
@@ -269,12 +269,12 @@ if (("0xff" == "255") !== false) {
 //? source: ...
 #!/usr/bin/env afw
 
-if ((1 == "1" ) !== true) {
-    throw "1 == \"1\"";
+if ((1 == integer("1")) !== true) {
+    throw "(1 == integer(\"1\")) !== true)";
 }
 
-if ((1.100 == "+1.10") !== true) {
-    throw "1.100 == \"+1.10\"";
+if ((1.100 == double("+1.10")) !== true) {
+    throw "1.100 == double(\"+1.10\")) !== true";
 }
 
 /*
@@ -301,8 +301,8 @@ if ((0 == "") !== true) {
 //? source: ...
 #!/usr/bin/env afw
 
-if (("-1" == -1) !== true) {
-    throw "\"-1\" == -1";
+if (("-1" == string(-1)) !== true) {
+    throw "\"-1\" == string(-1)) !== true";
 }
 
 /*
@@ -311,8 +311,8 @@ if (("-1.100" == -1.10) !== true) {
 }
 */
 
-if (("false" == 0) !== false) {
-    throw "\"false\" == 0";
+if (("false" == string(0)) !== false) {
+    throw "(\"false\" == string(0)) !== false";
 }
 
 /*

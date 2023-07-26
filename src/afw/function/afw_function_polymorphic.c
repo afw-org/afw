@@ -530,7 +530,7 @@ afw_function_execute_eq(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -703,7 +703,7 @@ afw_function_execute_ge(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(
@@ -784,7 +784,7 @@ afw_function_execute_gt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1196,7 +1196,7 @@ afw_function_execute_le(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1343,7 +1343,7 @@ afw_function_execute_lt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1561,7 +1561,7 @@ afw_function_execute_ne(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        arg2 = afw_function_evaluate_required_parameter(x, 2, arg1_data_type);
+        AFW_THROW_ERROR_Z(code, "Data types do not match", x->xctx);
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,

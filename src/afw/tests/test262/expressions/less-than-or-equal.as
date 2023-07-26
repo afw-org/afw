@@ -562,8 +562,8 @@ if ((-0 <= +0) !== true) {
 #!/usr/bin/env afw
 
 //CHECK#1
-if ((Infinity <= 0) !== false) {
-  throw '#1: (+Infinity <= 0) === false';
+if ((+Infinity <= 0.0) !== false) {
+  throw '#1: (+Infinity <= 0.0) === false';
 }
 
 //CHECK#2
@@ -601,8 +601,8 @@ if ((Infinity <= Number.MIN_VALUE) !== false) {
 #!/usr/bin/env afw
 
 //CHECK#1
-if ((0 <= Infinity) !== true) {
-  throw '#1: (0 <= +Infinity) === true';
+if ((0.0 <= +Infinity) !== true) {
+  throw '#1: (0.0 <= +Infinity) === true';
 }
 
 //CHECK#2
@@ -640,8 +640,8 @@ if ((Number.MIN_VALUE <= Infinity) !== true) {
 #!/usr/bin/env afw
 
 //CHECK#1
-if ((-Infinity <= 0) !== true) {
-  throw '#1: (-Infinity <= 0) === true';
+if ((-Infinity <= 0.0) !== true) {
+  throw '#1: (-Infinity <= 0.0) === true';
 }
 
 //CHECK#2
@@ -679,8 +679,8 @@ if ((-Infinity <= Number.MIN_VALUE) !== true) {
 #!/usr/bin/env afw
 
 //CHECK#1
-if ((0 <= -Infinity) !== false) {
-  throw '#1: (0 <= -Infinity) === false';
+if ((0.0 <= -Infinity) !== false) {
+  throw '#1: (0.0 <= -Infinity) === false';
 }
 
 //CHECK#2
