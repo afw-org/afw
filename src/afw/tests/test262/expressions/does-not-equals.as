@@ -12,53 +12,53 @@
 
 
 //CHECK#1
-if (evaluate(script("true\u0009!=\u00091")) !== false) {
-  throw '#1: (true\\u0009!=\\u00091) === false';
+if (evaluate(script("true\u0009===\u00091")) !== false) {
+  throw '#1: (true\\u0009===\\u00091) === false';
 }
 
 //CHECK#2
-if (evaluate(script("true\u000B!=\u000B1")) !== false) {
-  throw '#2: (true\\u000B!=\\u000B1) === false';
+if (evaluate(script("true\u000B===\u000B1")) !== false) {
+  throw '#2: (true\\u000B===\\u000B1) === false';
 }
 
 //CHECK#3
-if (evaluate(script("true\u000C!=\u000C1")) !== false) {
-  throw '#3: (true\\u000C!=\\u000C1) === false';
+if (evaluate(script("true\u000C===\u000C1")) !== false) {
+  throw '#3: (true\\u000C===\\u000C1) === false';
 }
 
 //CHECK#4
-if (evaluate(script("true\u0020!=\u00201")) !== false) {
-  throw '#4: (true\\u0020!=\\u00201) === false';
+if (evaluate(script("true\u0020===\u00201")) !== false) {
+  throw '#4: (true\\u0020===\\u00201) === false';
 }
 
 //CHECK#5
-if (evaluate(script("true\u00A0!=\u00A01")) !== false) {
-  throw '#5: (true\\u00A0!=\\u00A01) === false';
+if (evaluate(script("true\u00A0===\u00A01")) !== false) {
+  throw '#5: (true\\u00A0===\\u00A01) === false';
 }
 
 //CHECK#6
-if (evaluate(script("true\u000A!=\u000A1")) !== false) {
-  throw '#6: (true\\u000A!=\\u000A1) === false';
+if (evaluate(script("true\u000A===\u000A1")) !== false) {
+  throw '#6: (true\\u000A===\\u000A1) === false';
 }
 
 //CHECK#7
-if (evaluate(script("true\u000D!=\u000D1")) !== false) {
-  throw '#7: (true\\u000D!=\\u000D1) === false';
+if (evaluate(script("true\u000D===\u000D1")) !== false) {
+  throw '#7: (true\\u000D===\\u000D1) === false';
 }
 
 //CHECK#8
-if (evaluate(script("true\u2028!=\u20281")) !== false) {
-  throw '#8: (true\\u2028!=\\u20281) === false';
+if (evaluate(script("true\u2028===\u20281")) !== false) {
+  throw '#8: (true\\u2028===\\u20281) === false';
 }
 
 //CHECK#9
-if (evaluate(script("true\u2029!=\u20291")) !== false) {
-  throw '#9: (true\\u2029!=\\u20291) === false';
+if (evaluate(script("true\u2029===\u20291")) !== false) {
+  throw '#9: (true\\u2029===\\u20291) === false';
 }
 
 //CHECK#10
-if (evaluate(script("true\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029!=\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== false) {
-  throw '#10: (true\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029!=\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291) === false';
+if (evaluate(script("true\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029===\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== false) {
+  throw '#10: (true\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029===\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291) === false';
 }
 
 
