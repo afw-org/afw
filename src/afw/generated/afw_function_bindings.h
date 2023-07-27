@@ -17664,15 +17664,16 @@ const afw_value_t *
 afw_function_execute_variable_is_not_null(
     afw_function_execute_t *x);
 
-/** @brief Function definition void */
+/** @brief Function definition void_operator */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_void;
+afw_function_definition_void_operator;
 
 /**
- * @brief Adaptive Function `void`
+ * @brief Adaptive Function `void_operator`
  * @param x function execute parameter.
  *
- * Evaluate a value and return undefined.
+ * This is the support function for the void operator which evaluates value and
+ * returns undefined.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -17680,7 +17681,7 @@ afw_function_definition_void;
  * Declaration:
  *
  * ```
- *   function void(
+ *   function void_operator(
  *       value: any
  *   ): any;
  * ```
@@ -17694,7 +17695,7 @@ afw_function_definition_void;
  *   (any dataType) This always returns undefined.
  */
 const afw_value_t *
-afw_function_execute_void(
+afw_function_execute_void_operator(
     afw_function_execute_t *x);
 
 /** @} */

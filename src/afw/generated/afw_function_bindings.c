@@ -61919,30 +61919,30 @@ afw_function_definition_variable_is_not_null = {
     false
 };
 
-/* ---------- void ---------- */
+/* ---------- void_operator ---------- */
 
 static const afw_utf8_t
-impl_object_path__void =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/void");
+impl_object_path__void_operator =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/void_operator");
 
 static const afw_runtime_object_indirect_t
-impl_object__void = {
+impl_object__void_operator = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
         {
             NULL,
             NULL,
-            &afw_s_void,
+            &afw_s_void_operator,
             &afw_s__AdaptiveFunction_,
-            &impl_object_path__void
+            &impl_object_path__void_operator
         }
     },
-    (void *)&afw_function_definition_void
+    (void *)&afw_function_definition_void_operator
 };
 
 static const afw_value_function_parameter_t
-impl_void_returns = {
+impl_void_operator_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -61968,7 +61968,7 @@ impl_void_returns = {
 };
 
 static const afw_value_function_parameter_t
-impl_void_parameter_1 = {
+impl_void_operator_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -61984,7 +61984,7 @@ impl_void_parameter_1 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL("Value to evaluate"),
+    AFW_UTF8_LITERAL("Value"),
     AFW_UTF8_LITERAL("This is the value to evaluate."),
     -1,
     false,
@@ -61994,33 +61994,33 @@ impl_void_parameter_1 = {
 };
 
 static const afw_value_function_parameter_t *
-impl_void_parameters[] = {
-    &impl_void_parameter_1,
+impl_void_operator_parameters[] = {
+    &impl_void_operator_parameter_1,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_void = {
+afw_function_definition_void_operator = {
     &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__void,
+    (const afw_object_t *)&impl_object__void_operator,
     AFW_UTF8_LITERAL("miscellaneous"),
-    AFW_UTF8_LITERAL("void"),
-    AFW_UTF8_LITERAL("void"),
-    AFW_UTF8_LITERAL("void"),
-    AFW_UTF8_LITERAL("void"),
-    AFW_UTF8_LITERAL("afwVoid"),
-    AFW_UTF8_LITERAL("Evaluate and return undefined"),
-    AFW_UTF8_LITERAL("Evaluate a value and return undefined."),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("voidOperator"),
+    AFW_UTF8_LITERAL("afwVoidOperator"),
+    AFW_UTF8_LITERAL("Support for the void operator"),
+    AFW_UTF8_LITERAL("This is the support function for the void operator which evaluates value and returns undefined."),
     AFW_UTF8_LITERAL("(value: any): any"),
-    AFW_UTF8_LITERAL("/* Evaluate and return undefined */\nfunction void (\n    value: any /* Value to evaluate */\n): any; /* undefined */\n"),
+    AFW_UTF8_LITERAL("/* Support for the void operator */\nfunction void_operator (\n    value: any /* Value */\n): any; /* undefined */\n"),
     AFW_UTF8_LITERAL(""),
-    afw_function_execute_void,
+    afw_function_execute_void_operator,
     NULL,
     1,
     1,
-    &impl_void_parameters[0],
+    &impl_void_operator_parameters[0],
     1,
-    &impl_void_returns,
+    &impl_void_operator_returns,
     NULL,
     NULL,
     AFW_UTF8_LITERAL(""),
@@ -116476,7 +116476,7 @@ impl_function_bindings[] = {
     &afw_function_definition_variable_exists,
     &afw_function_definition_variable_get,
     &afw_function_definition_variable_is_not_null,
-    &afw_function_definition_void,
+    &afw_function_definition_void_operator,
     &afw_function_definition_model_default_add_object_action,
     &afw_function_definition_model_default_delete_object_action,
     &afw_function_definition_model_default_modify_object_action,

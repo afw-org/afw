@@ -24,7 +24,7 @@ our @EXPORT_OK = qw(
     variable_exists 
     variable_get 
     variable_is_not_null 
-    void 
+    void_operator 
 );
 
 =head1 NAME
@@ -289,10 +289,11 @@ Determine if a variable exists and is not null
 Name of variable to check. The name can optionally be preceded with a
 qualifier followed by "::".
 
-=head3 void
+=head3 void_operator
 
-Evaluate a value and return undefined.
-Evaluate and return undefined
+This is the support function for the void operator which evaluates value and
+returns undefined.
+Support for the void operator
 
 =head4 Parameters
 
@@ -533,12 +534,12 @@ sub variable_is_not_null {
     return $request->getResult();
 }
 
-sub void {
+sub void_operator {
     my ($value) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "void");
+    $request->set("function" => "void_operator");
     $request->set("value", $value);
 
     return $request->getResult();

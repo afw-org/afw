@@ -403,17 +403,18 @@ export function afwVariableIsNotNull(client : any, name : string) : any {
 }
 
 /**
- * Evaluate a value and return undefined.
+ * This is the support function for the void operator which evaluates value
+ * and returns undefined.
  * 
  * @param {} value - This is the value to evaluate.
  * 
  * @returns {} This always returns undefined.
  */
-export function afwVoid(client : any, value : any) : any {
+export function afwVoidOperator(client : any, value : any) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "void";
+    _action["function"] = "void_operator";
     _action["value"] = value;
 
     return client.perform(_action);

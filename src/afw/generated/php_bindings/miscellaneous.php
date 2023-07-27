@@ -515,19 +515,20 @@ class miscellaneous
     }
 
     /**
-     * void()
+     * void_operator()
      *
-     * Evaluate a value and return undefined.
+     * This is the support function for the void operator which evaluates
+     * value and returns undefined.
      *
      * @param  $value This is the value to evaluate.
      *
      * @return  This always returns undefined.
      */
-    public function void(, $value)
+    public function void_operator(, $value)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "void");
+        $request->set("function", "void_operator");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

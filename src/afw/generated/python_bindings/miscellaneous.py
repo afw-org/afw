@@ -621,11 +621,12 @@ def variable_is_not_null(session, name):
 
     return response['actions'][0]['result']
 
-def void(session, value):
+def void_operator(session, value):
     '''
-    Evaluate and return undefined
+    Support for the void operator
 
-    Evaluate a value and return undefined.
+    This is the support function for the void operator which evaluates value
+    and returns undefined.
 
     Parameters:
 
@@ -638,7 +639,7 @@ def void(session, value):
     request = session.Request()
 
     action = {
-        "function": "void",
+        "function": "void_operator",
         "value": value
     }
 

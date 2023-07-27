@@ -13127,6 +13127,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_versionWithGitInfo;
 /** @brief afw_utf8_t for string void */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_void;
 
+/** @brief define for quoted string void_operator */
+#define AFW_Q_void_operator "void_operator"
+
+/** @brief afw_utf8_t for string void_operator */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_void_operator;
+
 /** @brief define for quoted string warning */
 #define AFW_Q_warning "warning"
 

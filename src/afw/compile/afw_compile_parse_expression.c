@@ -134,7 +134,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
 
             /*
              * Note:
-            *      This might should test for all reserved words, but this
+             *     This might should test for all reserved words, but this
              *     is mainly here because this production is called after all
              *     the reserved statement names have been checked and the only
              *     other reserved words besides 'void' can not become an
@@ -1578,7 +1578,8 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
             {
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
                     parser->xctx);
-                argv[0] = (const afw_value_t *)&afw_function_definition_void;
+                argv[0] = (const afw_value_t *)
+                    &afw_function_definition_void_operator;
                 argv[1] = afw_compile_parse_Value(parser);
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),

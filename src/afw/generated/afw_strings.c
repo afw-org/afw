@@ -6574,6 +6574,9 @@ AFW_UTF8_LITERAL("versionWithGitInfo");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_void =
 AFW_UTF8_LITERAL("void");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_void_operator =
+AFW_UTF8_LITERAL("void_operator");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_warning =
 AFW_UTF8_LITERAL("warning");
 
