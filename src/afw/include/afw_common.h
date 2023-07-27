@@ -215,7 +215,7 @@ typedef unsigned char afw_octet_t;
  * 
  * This is one 8-bit octet of a UTF-8 encoded character.
  * 
- * Sting literals in c are "char *" and "NUL terminated strings" are
+ * String literals in c are "char *" and "NUL terminated strings" are
  * often declared as "char *". Because of this, afw_utf8_octet_t is also
  * "char" to avoid "differ in signedness" warnings when compiled using
  * gcc with CFLAGS -Werror=pointer-sign active.

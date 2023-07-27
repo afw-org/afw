@@ -162,7 +162,7 @@ class LocalRequest(object):
             bytes = int(self._session._fifo.readline())
             while bytes < 0:
                 # skip passed stderr (negative bytes)
-                err = self._fifo.read(bytes)
+                err = self._fifo.read(bytes * -1)
                 # write it directly to stderr
                 sys.stderr.write(err)
 

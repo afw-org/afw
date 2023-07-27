@@ -36,10 +36,11 @@ def test(session, name, description, uri, objectOptions, assertFn):
 
 def run():
 
-    # create a local session
-    session = Session("local", config='afw.conf')
+    session = None
 
     try:    
+        # create a local session
+        session = Session("local", config='afw.conf')
 
         test(
             session,
@@ -100,6 +101,7 @@ def run():
         )
     finally:    
         # close our session
-        session.close()
+        if session:
+            session.close()
 
     return response

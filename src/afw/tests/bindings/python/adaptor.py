@@ -2,6 +2,7 @@
 
 from python_bindings.adaptor import retrieve_objects_with_uri, get_object_with_uri
 from afw import Session
+import sys
 
 # These tests will perform some adaptor functions to test the 
 # Python Bindings. They create a session and run through a few 
@@ -9,14 +10,15 @@ from afw import Session
 # generated python_bindings.
 def run():    
 
+    session = None
     response = {
         "description": "Test python bindings for adaptor",
         "tests": []
     }
-
-    session = Session("local")
+    sys.stderr.write('run()..\n')
 
     try:    
+        session = Session("local")
 
         # first try retrieve_objects_with_uri
         passed = False
@@ -50,9 +52,12 @@ def run():
                 "passed": passed,
             })
     finally:
-        
+        sys.stderr.write('closing session..\n')
         # always make sure to close the session, or afw will hang around
-        session.close()
+        if session:
+            session.close()
 
     # return the test results for the afwdev test runner
+
+    sys.stderr.write('Returning response..\n')
     return response
