@@ -75,7 +75,7 @@ impl_call_function(
     for (i = 1, a = function->parameters; i <= argc; i++, a++) {
 
         /* If this is not minArgs parameter ... */
-        if ((*a)->minArgs == -1) {
+        if (*a && (*a)->minArgs == -1) {
             argv[i] = afw_object_get_property(action_entry, &(*a)->name,
                 xctx);
             if (argv[i]) {

@@ -1316,6 +1316,7 @@ afw_environment_register_function(
          * defintion and polymorphic parameters then resolve their data type
          * and data type method number in the clone.
          */
+        f = NULL;
         if (function->dataType.len > 0 && !function->data_type) {
             f = afw_xctx_calloc(sizeof(afw_value_function_definition_t),
                 xctx);
@@ -1372,13 +1373,23 @@ afw_environment_register_function(
                 function->untypedFunctionId.len);
             if (method_number) {
                 if (function->dataTypeMethodNumber == 0) {
-                    /** @fixme Mike: f could be uninitialized here */
+                    if (!f) {
+                        AFW_THROW_ERROR_Z(general,
+                            "Core data type function has "
+                            "dataTypeMethodNumber 0",
+                            xctx);
+                    }
                     f->dataTypeMethodNumber = *method_number;
                 }
             }
             else {
                 if (function->dataTypeMethodNumber == 0) {
-                    /** @fixme Mike: f could be uninitialized here */
+                    if (!f) {
+                        AFW_THROW_ERROR_Z(general,
+                            "Core data type function has "
+                            "dataTypeMethodNumber 0",
+                            xctx);
+                    }
                     f->dataTypeMethodNumber = apr_hash_count(
                         env->data_type_method_number_ht) + 1;
                 }
