@@ -9,7 +9,7 @@ RUN dnf install -y epel-release && \
     yum config-manager --set-enabled powertools && \
     dnf group install "Development Tools" -y && \
     dnf --enablerepo=powertools install -y \
-    make libtool cmake \
+    make libtool cmake clang-analyzer \
     nginx gdb gdb-gdbserver valgrind valgrind-devel \
     apr-devel apr-util-mysql apr-util-ldap \
     libxml2-devel libxslt-devel libicu-devel \

@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 # Install packages
 RUN zypper ref -s && \
     zypper -n --non-interactive in gcc9 gcc9-c++ \
-    libtool apache2-devel cmake \
+    libtool apache2-devel cmake clang-tools \
     libapr1 libapr1-devel libxml2 libxml2-devel \
     icu libicu-devel libunwind libunwind-devel \
     elfutils libdw1 libdw-devel libyaml-devel \
