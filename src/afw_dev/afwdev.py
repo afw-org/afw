@@ -537,11 +537,11 @@ under. The --all selects all of those contexts.
     "thing": "build",
     "args": [
         _info_build_all,
+        _info_build_cdev,
         _info_build_clean,
         _info_build_cmake,
         _info_build_docker,
         _info_build_docs,
-        _info_build_cdev,
         _info_build_generate,
         _info_build_install,
         _info_build_jobs,
