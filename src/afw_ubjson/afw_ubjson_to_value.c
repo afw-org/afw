@@ -226,6 +226,14 @@ const afw_utf8_t * afw_ubjson_parse_string(
     return string;
 }
 
+/**
+ * This routine parses an array from UBJSON and turns it into 
+ * an Adaptive List.
+ * 
+ * FIXME: UBJSON supports some optimization tricks for arrays
+ *        by providing a count of items, ahead of time, but 
+ *        we currently discard this information.
+ */
 const afw_list_t * afw_ubjson_parse_array(
     afw_ubjson_parser_t *parser, 
     afw_xctx_t *xctx)
@@ -234,7 +242,6 @@ const afw_list_t * afw_ubjson_parse_array(
     const afw_value_t *value;
     char c;
     char type = 0;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE size_t count = 0;
 
     list = afw_list_create_generic(parser->p, xctx);
 
@@ -248,11 +255,11 @@ const afw_list_t * afw_ubjson_parse_array(
         c = afw_ubjson_peek_byte(parser, xctx);
         if (c == AFW_UBJSON_MARKER_COUNT) {
             /* optimized count specified */
-            count = afw_ubjson_parse_length(parser, xctx);
+            afw_ubjson_parse_length(parser, xctx);
         }
     } else if (c == AFW_UBJSON_MARKER_COUNT) {
         /* optimized count specified */
-        count = afw_ubjson_parse_length(parser, xctx);
+        afw_ubjson_parse_length(parser, xctx);
     }
 
     while (c != AFW_UBJSON_MARKER_ARRAY_) {
@@ -269,6 +276,14 @@ const afw_list_t * afw_ubjson_parse_array(
     return list;
 }
 
+/**
+ * This routine parses an object from UBJSON and turns it into 
+ * an Adaptive Object.
+ * 
+ * FIXME: UBJSON supports some optimization tricks for objects
+ *        by providing a count of items, ahead of time, but 
+ *        we currently discard this information.
+ */
 const afw_object_t * afw_ubjson_parse_object(
     afw_ubjson_parser_t *parser,
     afw_xctx_t *xctx)
@@ -277,9 +292,7 @@ const afw_object_t * afw_ubjson_parse_object(
     const afw_utf8_t * property_name;
     const afw_value_t *property_value;
     char type = 0;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE size_t count = 0;
     char c;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE const afw_utf8_t *default_path;
     const afw_object_t *saved_embedding_object;
     const afw_utf8_t *saved_property_name;
     const afw_object_t *_meta_;
@@ -302,7 +315,6 @@ const afw_object_t * afw_ubjson_parse_object(
     parser->embedding_object = obj;
     saved_property_name = parser->property_name;
     parser->property_name = NULL;
-    default_path = (!saved_embedding_object) ? parser->path : NULL;
 
     c = afw_ubjson_peek_byte(parser, xctx);
 
@@ -314,11 +326,11 @@ const afw_object_t * afw_ubjson_parse_object(
         c = afw_ubjson_peek_byte(parser, xctx);
         if (c == AFW_UBJSON_MARKER_COUNT) {
             /* optimized count specified */
-            count = afw_ubjson_parse_length(parser, xctx);
+            afw_ubjson_parse_length(parser, xctx);
         }
     } else if (c == AFW_UBJSON_MARKER_COUNT) {
         /* optimized count specified */
-        count = afw_ubjson_parse_length(parser, xctx);
+        afw_ubjson_parse_length(parser, xctx);
     }
 
     c = afw_ubjson_peek_byte(parser, xctx);

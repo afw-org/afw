@@ -581,14 +581,15 @@ impl_create_general_object(afw_xctx_t *xctx)
             &impl_s_machine, &afw_s_description, "This is a description of the type of hardware that is in use.", xctx);
 
 #ifndef __MACH__
-/** \fixme Ask Jeremy. This was causing error for some reason using cmake
-error: ‘struct utsname’ has no member named ‘domainname’; did you mean ‘__domainname’?
-[build]   585 |             &impl_s_domainname, uname_s->domainname, xctx);
-[build]       |                                          ^~~~~~~~~~
-[build]       |                                          __domainname
-        afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_domainname, uname_s->domainname, xctx);
-        */
+        /** 
+         * \fixme The only wait to access ->domainname is to define 
+         * _GNU_SOURCE before include headers, and we need to understand 
+         * the implications of that, including access to non-standard / 
+         * non-portable code.
+         * 
+         * afw_object_set_property_as_string_from_utf8_z(result,
+         *    &impl_s_domainname, uname_s->domainname, xctx);
+         */
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_s_domainname, &afw_s_label, "Domain Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,

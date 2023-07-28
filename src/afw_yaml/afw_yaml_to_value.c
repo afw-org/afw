@@ -154,7 +154,6 @@ const afw_object_t * afw_yaml_parse_object(
     const afw_utf8_t *key = NULL;
     const afw_value_t *v;
     int done = 0;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE const afw_utf8_t *default_path;
     const afw_object_t *saved_embedding_object;
     const afw_utf8_t *saved_property_name;
     const afw_object_t *_meta_;
@@ -177,7 +176,6 @@ const afw_object_t * afw_yaml_parse_object(
     parser->embedding_object = object;
     saved_property_name = parser->property_name;
     parser->property_name = NULL;
-    default_path = (!saved_embedding_object) ? parser->path : NULL;
 
     while (!done) {
         token = afw_yaml_parser_scan(parser, xctx);

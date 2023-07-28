@@ -836,6 +836,11 @@ impl_afw_adaptor_key_value_get (
     return value;
 }
 
+#define AFW_LMDB_CURSOR_CHECK_RV(rv) \
+    if (rv && rv != MDB_NOTFOUND) { \
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rv, \
+            "Cursor operation failed.", xctx); \
+    }
 
 /*
  * Implementation of Index Cursor interface
@@ -848,7 +853,7 @@ void afw_lmdb_internal_cursor_reset(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *key_string;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE int rc;
+    int rv;
 
     memset(&self->data, 0, sizeof(MDB_val));
     if (self->key_string) { 
@@ -866,56 +871,65 @@ void afw_lmdb_internal_cursor_reset(
     /* the filter entry operator helps us determine our start position */
     switch (self->operator) {
         case afw_query_criteria_filter_op_id_ne:
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_FIRST);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
             break;
 
         case afw_query_criteria_filter_op_id_eq:
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_SET);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
             break;
 
         case afw_query_criteria_filter_op_id_ge:
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_SET_RANGE);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
             break;
 
         case afw_query_criteria_filter_op_id_le:
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_SET_RANGE);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
 
             /* MDB_SET_RANGE may have gone past our key */
             if (memcmp(self->key.mv_data, self->key_string->s, 
                         self->key_string->len) > 0) {
                 /* So set it to our previous data item */
-                rc = mdb_cursor_get(self->cursor, &self->key,
+                rv = mdb_cursor_get(self->cursor, &self->key,
                     &self->data, MDB_PREV);
+                AFW_LMDB_CURSOR_CHECK_RV(rv);
             }
 
             break;
 
         /* For lt, we start right before the key */
         case afw_query_criteria_filter_op_id_lt:
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_SET_RANGE);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
 
             /* MDB_SET_RANGE will always set at or just past
                 our key.  So, we go one item backwards */
-            rc = mdb_cursor_get(self->cursor, &self->key, 
+            rv = mdb_cursor_get(self->cursor, &self->key, 
                 &self->data, MDB_PREV);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
             
             break;
 
         /* For gt, we start right after this key */ 
         case afw_query_criteria_filter_op_id_gt:
-            rc = mdb_cursor_get(self->cursor, &self->key,
+            rv = mdb_cursor_get(self->cursor, &self->key,
                 &self->data, MDB_SET_RANGE);
+            AFW_LMDB_CURSOR_CHECK_RV(rv);
             if (self->key_string) {
                 if (memcmp(self->key.mv_data, self->key_string->s, 
                             self->key_string->len) == 0) {
                     /* if we've landed at our key, go past it */
-                    rc = mdb_cursor_get(self->cursor, &self->key,
+                    rv = mdb_cursor_get(self->cursor, &self->key,
                         &self->data, MDB_NEXT_NODUP);
+                    AFW_LMDB_CURSOR_CHECK_RV(rv);
                 }
             }
 
@@ -1210,10 +1224,19 @@ impl_afw_adaptor_impl_index_cursor_inner_join (
     impl_afw_adaptor_impl_index_cursor_self_t * that = 
         (impl_afw_adaptor_impl_index_cursor_self_t *)cursor;
     size_t count_this, count_that;
-    /** @fixme Jeremy */AFW_POSSIBLY_UNUSED_VARIABLE int rc;
+    int rv;
     
-    rc = mdb_cursor_count(self->cursor, &count_this);
-    rc = mdb_cursor_count(that->cursor, &count_that);
+    rv = mdb_cursor_count(self->cursor, &count_this);
+    if (rv) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rv, 
+                "Cursor count failed.", xctx);
+    }
+
+    rv = mdb_cursor_count(that->cursor, &count_that);
+    if (rv) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rv, 
+                "Cursor count failed.", xctx);
+    }
 
     /* use the cursor count and return the smaller set */
     if (count_this < count_that)
