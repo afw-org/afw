@@ -43,10 +43,10 @@ There are multiple ways to build Adaptive Framework on a Windows system. If you 
 ## Building Adaptive Framework
 
     cd afw
-    afwdev build --full --cmake
+    afwdev build --cdev --cmake
 
 ## TL;DR
 
     vcpkg install apr:x64-windows apr-util:x64-windows fastcgi:x64-windows icu:x64-windows libxml2:x64-windows libyaml:x64-windows lmdb:x64-windows pkgconf:x64-windows
     cd afw
-    afwdev build --full --cmake
+    afwdev build --cdev --cmake

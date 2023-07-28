@@ -52,7 +52,7 @@
             "group": "build",
             "type": "shell",
             "dependsOn": [
-                "Build:  Core (afwdev build --full)",
+                "Build:  Core (afwdev build --cdev)",
                 "Build:  Administrative Web Application"
             ],
             "problemMatcher": [],
@@ -75,14 +75,14 @@
             }
         },
         {
-            "label": "Build:  afwdev build --full",
-            "detail": "Runs the full C build process of afwdev build --full.",
+            "label": "Build:  afwdev build --cdev",
+            "detail": "Runs the full C build process of afwdev build --cdev.",
             "group": "build",
             "type": "shell",
             "linux": {
-                "command": "./afwdev build --full"
+                "command": "./afwdev build --cdev"
             },
-            "command": "./afwdev build --full",
+            "command": "./afwdev build --cdev",
             "problemMatcher": [],
             "icon": {
                 "id": "tools"

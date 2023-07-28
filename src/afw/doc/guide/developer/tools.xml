@@ -100,7 +100,7 @@
             <list>
                 <item>Build: Everything</item>
                 <item>Build: afwdev build</item>
-                <item>Build: afwdev build --full</item>
+                <item>Build: afwdev build --cdev</item>
                 <item>Build: Administrative Web Application</item>
                 <item>Start: nginx</item>
                 <item>Start: afwfcgi</item>

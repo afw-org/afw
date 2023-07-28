@@ -547,8 +547,8 @@ under. The --all selects all of those contexts.
         _info_build_jobs,
         _info_build_js,
         _info_build_prefix,
-        _info_build_sudo,
-        _info_build_scan
+        _info_build_scan,
+        _info_build_sudo
     ]
 }
 

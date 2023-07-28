@@ -139,7 +139,7 @@ jobs:
 
             - name: Run Build Steps
               run: |
-                  ./afwdev build --full
+                  ./afwdev build --cdev --scan
 
             - name: Run Tests
               run: |
@@ -176,7 +176,7 @@ jobs:
 
             - name: Run Build Steps
               run: |
-                  ./afwdev build --full
+                  ./afwdev build --cdev --scan
 
             - name: Run Tests
               run: |
@@ -213,7 +213,7 @@ jobs:
 
             - name: Run Build Steps
               run: |
-                  ./afwdev build --full
+                  ./afwdev build --cdev --scan
 
             # we need to skip afw_dev tests for now, since it requires compiler options
             - name: Run Tests
@@ -251,7 +251,7 @@ jobs:
 
             - name: Run Build Steps
               run: |
-                  ./afwdev build --full
+                  ./afwdev build --cdev --scan
 
             - name: Run Tests
               run: |
