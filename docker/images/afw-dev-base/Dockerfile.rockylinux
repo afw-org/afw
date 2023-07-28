@@ -1,4 +1,4 @@
-FROM rockylinux:8.7.20221219
+FROM rockylinux:8.8.20230518
 
 LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 

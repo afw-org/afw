@@ -453,12 +453,12 @@ _info_build_docs = {
         "AFW package."
 }
 
-_info_build_full = {
-    "optionName": "build_full",
-    "arg": "--full",     
+_info_build_cdev = {
+    "optionName": "build_cdev",
+    "arg": "--cdev",     
     "action": "store_true",    
     "default": False,
-    "help": "This is short for the switches --clean, --generate, and --install."
+    "help": "This is a shortcut to enable common switches used during C development."
 }
 
 _info_build_generate = {
@@ -514,6 +514,14 @@ _info_build_sudo = {
     "help": "Use sudo command when doing the install."
 }
 
+_info_build_scan = {
+    "optionName": "build_scan",
+    "arg": "--scan",     
+    "action": "store_true",    
+    "default": False,
+    "help": "Use clang analyze-build to analyze C source after compilation. Errors will cause the build to fail."
+}
+
 
 _info_build = {
     "subcommand": "build",
@@ -533,13 +541,14 @@ under. The --all selects all of those contexts.
         _info_build_cmake,
         _info_build_docker,
         _info_build_docs,
-        _info_build_full,
+        _info_build_cdev,
         _info_build_generate,
         _info_build_install,
         _info_build_jobs,
         _info_build_js,
         _info_build_prefix,
-        _info_build_sudo
+        _info_build_sudo,
+        _info_build_scan
     ]
 }
 

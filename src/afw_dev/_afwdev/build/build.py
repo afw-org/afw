@@ -41,8 +41,8 @@ def run(options):
         for build_type_context in build_type_contexts:
             options['build_' + build_type_context] = True
 
-    # --full sets all convenience switches.
-    if options.get('build_full', False):
+    # --cdev sets all convenience switches.
+    if options.get('build_cdev', False):
         for build_convenience_switch in build_convenience_switches:
             options['build_' + build_convenience_switch] = True
 

@@ -10,13 +10,13 @@ and the `afw-org` prefix:
 
 | Folder | Image Name | Tag(s) |
 |------------|--------------------------------|------|
-| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.4`, `ubuntu22.04` |
-| `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.4`, `ubuntu22.04` |
-| `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.4-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.6`, `ubuntu22.04` |
+| `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.6`, `ubuntu22.04` |
+| `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
 | `afw-admin`    | `ghcr.io/afw-org/afw-admin`    | `latest`, `nginx1.23.1-0.9.0-0`                            |
-| `afw`      | `ghcr.io/afw-org/afw`          | `latest`, `alpine3.16.4-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
-| `afwfcgi`  | `ghcr.io/afw-org/afwfcgi`      | `latest`, `alpine3.16.4-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
-| `builder`  | `N/A`  | `alpine3.16.4-0.9.0-0`, `alpine`, `node-0.9.0-0`, `node`  |
+| `afw`      | `ghcr.io/afw-org/afw`          | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `afwfcgi`  | `ghcr.io/afw-org/afwfcgi`      | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `builder`  | `N/A`  | `alpine3.16.6-0.9.0-0`, `alpine`, `node-0.9.0-0`, `node`  |
 
 An example of one of the full image names, along with its description of tag parts:
 
@@ -100,14 +100,14 @@ moment how it'll be used and when it'll be fully functional.
 This is a basic walk-through for building all of the Docker images, using 
 Alpine Linux as the underlying distribution.  The tag name should be based on 
 the tag name of the distribution and afw version (in these examples, 
-`alpine3.16.4` and `0.9.0-0`).
+`alpine3.16.6` and `0.9.0-0`).
 
 1. `afw-base` and `afw-dev-base`: These should be built first and in no order 
 in particular.
 
   ```  
   docker build -f docker/images/afw-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-base:alpine3.16.4 \
+    -t ghcr.io/afw-org/afw-base:alpine3.16.6 \
     -t ghcr.io/afw-org/afw-base:alpine \
     docker/images/afw-base
 
@@ -115,12 +115,12 @@ in particular.
   # build-time, which requires the Docker buildx plugin:
   docker buildx build --platform linux/amd64,linux/arm64 \
     -f docker/images/afw-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-base:alpine3.16.4 \
+    -t ghcr.io/afw-org/afw-base:alpine3.16.6 \
     -t ghcr.io/afw-org/afw-base:alpine \
     --push docker/images/afw-base
   
   docker build -f docker/images/afw-dev-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.4 \
+    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.6 \
     -t ghcr.io/afw-org/afw-dev-base:alpine \
     .
 
@@ -128,7 +128,7 @@ in particular.
   # build-time, which requires the Docker buildx plugin:  
   docker buildx build --platform linux/amd64,linux/arm64 \
     -f docker/images/afw-dev-base/Dockerfile.alpine \  
-    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.4 \
+    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.6 \
     -t ghcr.io/afw-org/afw-dev-base:alpine \
     --push .
   ```
@@ -156,11 +156,11 @@ This will produce multiple folders, `linux_amd64`, `linux_arm64`, each
 containing artifacts for that architecture. 
 
 3. From here, you can now build the `afw` image, 
-`ghcr.io/afw-org/afw:alpine3.16.4-0.9.0-0`:
+`ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0`:
 
 ```  
   docker build \    
-    -t ghcr.io/afw-org/afw:alpine3.16.4-0.9.0-0 \
+    -t ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0 \
     -t ghcr.io/afw-org/afw:alpine \
     -t ghcr.io/afw-org/afw:latest \
     -f docker/images/afw/Dockerfile.alpine .
@@ -169,16 +169,16 @@ containing artifacts for that architecture.
   # which requires the Docker buildx plugin:
   docker buildx build --platform linux/amd64,linux/arm64 \  
     -f docker/images/afw/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw:alpine3.16.4-0.9.0-0 \
+    -t ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0 \
     -t ghcr.io/afw-org/afw:alpine \
     -t ghcr.io/afw-org/afw:latest --push .
 ```
 
-4. To build the `afw-dev` image, `ghcr.io/afw-org/afw-dev:alpine3.16.4-0.9.0-0`:
+4. To build the `afw-dev` image, `ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0`:
 
 ```
   docker build \    
-    -t ghcr.io/afw-org/afw-dev:alpine3.16.4-0.9.0-0 \
+    -t ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0 \
     -t ghcr.io/afw-org/afw-dev:alpine \
     -f docker/images/afw-dev/Dockerfile.alpine .
 
@@ -186,7 +186,7 @@ containing artifacts for that architecture.
   # which requires the Docker buildx plugin:
   docker buildx build --platform linux/amd64,linux/arm64 \  
     -f docker/images/afw-dev/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-dev:alpine3.16.4-0.9.0-0 \
+    -t ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0 \
     -t ghcr.io/afw-org/afw-dev:alpine --push .
 ```
 

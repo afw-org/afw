@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.3
+FROM opensuse/leap:15.5
 
 LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 
@@ -12,7 +12,7 @@ RUN zypper ref -s && \
     FastCGI FastCGI-devel libmysqlclient-devel \
     libdb-4_8 libdb-4_8-devel libcurl-devel git \
     lmdb lmdb-devel doxygen rpm-build valgrind lato-fonts \
-    python3 python3-pip java-9-openjdk nodejs16 npm16 && \
+    python3 python3-pip java-9-openjdk nodejs18 npm18 && \
     zypper cc -a
 
 # change compiler symlinks
