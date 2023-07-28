@@ -216,7 +216,6 @@ catch (e) {
     let foo;
 }
 
-// fixme can't check if variables are not defined
 assert(variable_exists("foo") === false);
 
 
@@ -327,7 +326,6 @@ try {
     assert(count.catch === 1, '1: catch count');
     assert(count.finally === 1, '1: finally count');
 }
-// fixme doesn't work yet
 assert(err, '1: try Abrupt, catch Abrupt, finally Abrupt; Completion: finally');
 
 
@@ -744,14 +742,13 @@ try { } catch ([x, x]) {}
 
 //? test: early-catch-function
 //? description:...
-//? expect: error
+//? expect: error:Parse error at offset 84 around line 6 column 22: e already defined
 //? source: ...
 #!/usr/bin/env afw
 
 function f() {
     try {
     } catch (e) {
-        // fixme this should cause an error
         function e(){}
     }
 }
@@ -764,11 +761,10 @@ return null;
 //? description:...
     It is a Syntax Error if any element of the BoundNames of CatchParameter
     also occurs in the LexicallyDeclaredNames of Block.
-//? expect: error
+//? expect: error:Parse error at offset 45 around line 3 column 26: x already defined
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme this should throw an error
 try { } catch (x) { let x; }
 
 
@@ -1465,7 +1461,6 @@ if(c4!==1){
 }
 
 // CHECK#5
-// fixme
 let i;
 for(i=0;i<5;i++){
   try{
@@ -1842,7 +1837,6 @@ if(c4!==1){
 
 // CHECK#5
 let c5=0;
-// fixme this gives an error that x is already defined
 for (let x of mycars) {
   try{
     throw "ex1";
@@ -2484,7 +2478,6 @@ if(myObj.p1!=='pass') throw '#4: "finally" block must be evaluated';
 function SwitchTest1(value){
   let result = 0;
   try{
-    // fixme need switch first
     switch(value) {
       case 1:
         result += 4;
@@ -3519,7 +3512,6 @@ catch (e) {
 function SwitchTest1(value){
   let result = 0;
   try{
-    // fixme no switch
     switch(value) {
       case 1:
         result += 4;

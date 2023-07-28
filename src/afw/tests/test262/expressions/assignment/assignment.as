@@ -239,20 +239,19 @@ base.prop = count += 1;
 
 //? test: target-member-computed-reference-undefined
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (undefined)
-//? expect: null
-//? skip: true
+//? expect: error:Parse error at offset 175 around line 9 column 11: Unknown built-in function new
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme we don't have assert.throws()
+// we can't do some of these
 function DummyError() { }
 
 assert.throws(DummyError, function() {
-  var base = undefined;
-  var prop = function() {
+  let base = undefined;
+  let prop = function() {
     throw new DummyError();
   };
-  var expr = function() {
+  let expr = function() {
     throw new Test262Error("right-hand side expression evaluated");
   };
 
@@ -260,13 +259,13 @@ assert.throws(DummyError, function() {
 });
 
 assert.throws(DummyError, function() {
-  var base = undefined;
-  var prop = {
+  let base = undefined;
+  let prop = {
     toString: function() {
       throw new Test262Error("property key evaluated");
     }
   };
-  var expr = function() {
+  let expr = function() {
     throw new DummyError();
   };
 

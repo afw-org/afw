@@ -105,11 +105,11 @@ let y = 2;
         accessible as object properties. 
     </paragraph>
     <paragraph>
-        Object properties in Adaptive Script must also be quoted and do not 
-        currently support computed names.
+        Object properties in Adaptive Script do not currently support computed 
+        names.
     </paragraph>
     <code><![CDATA[let x = { 
-    a:   1, // invalid in Adaptive Script 
+    a:   1, // valid in Adaptive Script 
     "b": 2, // valid in Adaptive Script
     [y]: 3, // invalid in Adaptive Script
 };]]></code>

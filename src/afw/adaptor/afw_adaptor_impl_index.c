@@ -134,7 +134,9 @@ afw_boolean_t afw_adaptor_impl_index_filter_applicable(
         }
     } else {
         /* the filter expression did not evaluate to a boolean expression */
-        /** @fixme throw/log error here? */
+        AFW_THROW_ERROR_Z(general,
+            "Error: filter evaluation did not end with a boolean result.", 
+            xctx);
     }
 
     return false;
@@ -997,8 +999,8 @@ AFW_DEFINE(void) afw_adaptor_impl_index_reindex_object(
  * However, when evaluating an inclusive relationship (OR), we need
  *   every clause to be sargable in order for indexes to be useful.
  *
- * FIXME:  This routine will only report a clause is sargable if the 
- *         operation is eq, lt, lte, gt, or gte.
+ * FIXME:  This routine will only report that a clause is sargable 
+ *   if the operation is eq, lt, lte, gt, or gte.
  *
  */
 AFW_DEFINE(afw_boolean_t) afw_adaptor_impl_index_sargable_entry(
@@ -1228,9 +1230,12 @@ apr_array_header_t * afw_adaptor_impl_index_cursor_list_merge(
             that_cursor = ((const afw_adaptor_impl_index_cursor_t **)
                 temp->elts)[j];
 
-            /* FIXME if the following returns rc, throw/break/return */
-            afw_adaptor_impl_index_cursor_get_count(
+            rc = afw_adaptor_impl_index_cursor_get_count(
                 that_cursor, &that_cardinality, xctx);
+            if (!rc) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "Error occurred obtaining cursor count, rc = %d", rc); 
+            }
 
             if (this_cardinality > that_cardinality) {
                 *(const afw_adaptor_impl_index_cursor_t**)
@@ -1435,7 +1440,7 @@ static int afw_adaptor_impl_index_compare(
             "Error: property value cannot be of type object.", xctx);
     }
 
-    /* all we can do with Lists and Bags is check for equivalence */
+    /* all we can do with Lists is check for equivalence */
     else if (afw_value_is_list(value)) {
         values = afw_value_as_array_of_values(value, xctx->p, xctx);
         for (i = 0; values[i]; i++) {

@@ -713,8 +713,7 @@ if ((Number.MIN_VALUE <= -Infinity) !== false) {
 
 //? test: S11.8.3_A4.9
 //? description: x and y are number primitives
-//? expect: null
-//? skip: true
+//? expect: error:Data types do not match
 //? source: ...
 #!/usr/bin/env afw
 
@@ -734,7 +733,7 @@ if ((-1.1 <= -1) !== true) {
 }
 
 //CHECK#4
-// fixme this won't pass because of integer/double conversion
+// this won't pass because of integer/double conversion
 if ((-1 <= -1.1) !== false) {
   throw '#4: (-1 <= -1.1) === false';
 }
