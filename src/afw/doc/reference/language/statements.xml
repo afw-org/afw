@@ -210,6 +210,23 @@ function func2(a, b) : a + b;]]></code>
         break;
 }]]></code>
         </section>
+        <paragraph>
+            Unlike the <literal>switch</literal> in ECMAScript, Adaptive Script
+            includes an optional syntax that allows you to specify a matching 
+            function through the <literal>using</literal> option. The function 
+            provided must take two values and return a boolean result. You may 
+            use any built-in Adaptive Function, or provide a custom function, 
+            written in Adaptive Script.
+        </paragraph>
+        <title>Example</title>
+        <code><![CDATA[switch ("abc") using regexp_match {
+    case "a.*":
+        // do something
+        break;
+    default:
+        // no match
+        break; 
+}]]></code>
     </section>
     <section>
         <title>Type</title>
