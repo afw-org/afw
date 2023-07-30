@@ -1389,6 +1389,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         parser->p,
         afw_query_criteria_filter_entry_t,
         parser->xctx);
+    *filter = NULL;
     *tree = entry;
     if (parser->last) {
         parser->last->next = entry;
@@ -2406,7 +2407,7 @@ impl_entry_to_query_string(
             afw_writer_write_utf8(w, property_name, xctx);
             if (rql_op->op->is_list) {
                 list = afw_value_as_list(entry->value, xctx);
-                for (iterator = NULL, first_time = true;;) {
+                for (iterator = NULL;;) {
                     value = afw_list_get_next_value(list, &iterator, p, xctx);
                     if (!value) {
                         break;
