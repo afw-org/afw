@@ -306,7 +306,7 @@ afw_function_execute_join(
         result = afw_value_allocate_string(x->p, x->xctx);
         result->internal.len = len;
         result->internal.s = c;
-        for (iterator = NULL, len = 0;;) {
+        for (iterator = NULL;;) {
             s = afw_list_of_string_get_next(
                 list_of_string, &iterator, x->xctx);
             if (!s) {

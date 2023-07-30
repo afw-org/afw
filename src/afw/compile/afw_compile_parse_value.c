@@ -410,9 +410,11 @@ afw_compile_parse_Object(
                     if (!obj) {
                         obj = afw_object_create(
                             parser->p, parser->xctx);
-                        afw_compile_args_add_value(args,
-                            afw_value_create_object(obj,
-                                parser->p, parser->xctx));
+                        if (args) { /** @fixme Review how this can happen.*/
+                            afw_compile_args_add_value(args,
+                                afw_value_create_object(obj,
+                                    parser->p, parser->xctx));
+                        }
                     }
                     afw_object_set_property(obj, parser->property_name, v,
                         parser->xctx);

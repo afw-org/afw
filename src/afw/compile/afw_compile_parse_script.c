@@ -1869,7 +1869,7 @@ impl_test_script_get_next_key_value(
     }
 
     if (afw_utf8_equal(*key, &afw_s_expect)) {
-        if (string &&
+        if (*string &&
             afw_utf8_starts_with(*string, &afw_s_error) &&
             (*string)->len > afw_s_error.len &&
             *((*string)->s + afw_s_error.len) != ':')
@@ -2079,6 +2079,12 @@ afw_compile_parse_TestScript(
                 AFW_COMPILE_THROW_ERROR_Z(
                     "skip: must be true or false");
             }
+        }
+
+        else if (!test_object) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "%" AFW_UTF8_FMT ": specified before test",
+                AFW_UTF8_FMT_ARG(key));
         }
 
         else {

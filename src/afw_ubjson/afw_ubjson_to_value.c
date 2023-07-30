@@ -270,7 +270,7 @@ const afw_list_t * afw_ubjson_parse_array(
         c = afw_ubjson_peek_byte(parser, xctx);
     }
 
-    c = afw_ubjson_next_byte(parser, xctx);
+    afw_ubjson_next_byte(parser, xctx);
 
     /* Return. */
     return list;
@@ -360,7 +360,7 @@ const afw_object_t * afw_ubjson_parse_object(
         c = afw_ubjson_peek_byte(parser, xctx);
     }
 
-    c = afw_ubjson_next_byte(parser, xctx);
+    afw_ubjson_next_byte(parser, xctx);
 
     /* Set meta.  Note: must be called after properties are set. */
     afw_object_meta_set_meta_object(obj, _meta_, xctx);

@@ -1067,7 +1067,6 @@ afw_utf8_line_column_of_offset(
     const afw_octet_t *end;
     afw_boolean_t result;
 
-    end = (const afw_octet_t *)s->s + (offset <= s->len ? offset : s->len);
     for (
         newlines = line_offset = 0,
         c =  (const afw_octet_t *)s->s,
