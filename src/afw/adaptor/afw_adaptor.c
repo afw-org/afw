@@ -59,6 +59,11 @@ impl_set_instance_active(
         anchor = (afw_adaptor_id_anchor_t *)
             afw_environment_get_adaptor_id(adaptor_id, xctx);
         if (!anchor) {
+            if (!adaptor) {
+                AFW_THROW_ERROR_Z(general,
+                    "adaptor can not be NULL for a new anchor",
+                    xctx);
+            }
             anchor = afw_pool_calloc_type(
                 xctx->env->p, afw_adaptor_id_anchor_t, xctx);
             anchor->adaptor_id = afw_utf8_clone(

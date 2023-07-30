@@ -612,8 +612,6 @@ impl_add_runtime_service_info_to_object(
 
     /* If type or id is NULL, determine from service_id. */
     if (!type || !id) {
-        c = service_id->s;
-        len = service_id->len;
         for (
             w_type.s = c = service_id->s,
             w_type.len = len = service_id->len;

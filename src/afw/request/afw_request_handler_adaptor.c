@@ -123,7 +123,6 @@ impl_afw_request_handler_process(
     const afw_content_type_t *response_content_type;
     const afw_stream_t *stream;
     impl_retrieve_cb_context_t retrieve_cb_context;
-    afw_boolean_t temp_recurse = false; /** @fixme Put recurse support in AFW_TRY. */
 
     afw_request_handler_adaptor_internal_self_t * self = (afw_request_handler_adaptor_internal_self_t *)instance;
 
@@ -464,11 +463,8 @@ impl_afw_request_handler_process(
 
     AFW_CATCH_UNHANDLED {
 
-        if (!temp_recurse) {
-            temp_recurse = true;
-            /* Abort changes and release cached sessions and objects. */
-            afw_adaptor_session_commit_and_release_cache(true, xctx);
-        }
+        /* Abort changes and release cached sessions and objects. */
+        afw_adaptor_session_commit_and_release_cache(true, xctx);
 
         AFW_ERROR_RETHROW;
     }

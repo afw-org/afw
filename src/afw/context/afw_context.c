@@ -520,9 +520,6 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
     const afw_utf8_t *detail_source_location;
     const afw_object_t *variable_definitions_object;
 
-    variable_definitions_object =
-        afw_context_type_insure_variable_definitions_object_exists(
-        context_type_object, qualifier_id, xctx);
     detail_source_location = afw_utf8_printf(object->p, xctx,
         "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(source_location),

@@ -542,12 +542,14 @@ afw_authorization_check(
             check = ctl->core_authorization_check;
             property_name = "coreAuthorizationCheck";
             current_decider = &afw_s_coreAuthorizationCheck;
+            (void)current_decider; /* In catch. Avoid "not used" error. */
             final_decider = &afw_s_coreAuthorizationCheck;
         }
         else if (ctl->initial_authorization_check) {
             check = ctl->initial_authorization_check;
             property_name = "initialAuthorizationCheck";
             current_decider = &afw_s_initialAuthorizationCheck;
+            (void)current_decider; /* In catch. Avoid "not used" error. */
             final_decider = &afw_s_initialAuthorizationCheck;
         }
 
@@ -604,6 +606,7 @@ afw_authorization_check(
                 ah = anchor->authorization_handler;
                 if (ah) {
                     current_decider = &ah->authorization_handler_id;
+                    (void)current_decider; /* In catch. Avoid "not used". */
                     if (afw_utf8_equal(decision_id, &afw_s_permit)) {
                         if (!ah->allow_permit_override) {
                             afw_trace_fz(1, ah->trace_flag_index,
@@ -680,6 +683,7 @@ afw_authorization_check(
         /* If not applicable, permit/deny based on deny_if_not_applicable*/
         if (!final_result) {
             current_decider = &afw_s_denyIfNotApplicable;
+            (void)current_decider; /* In catch. Avoid "not used" error. */
             final_decider = &afw_s_denyIfNotApplicable;
             result = ctl->not_applicable_result;
             decision_id = ctl->not_applicable_decision_id;
@@ -958,7 +962,9 @@ impl_set_instance_active(
                 authorization_handler_id, xctx);
         if (!anchor) {
             if (!authorization_handler) {
-                AFW_THROW_ERROR_Z(general, "Internal error", xctx);
+                AFW_THROW_ERROR_Z(general,
+                    "authorization_handler can not be NULL for a new anchor",
+                    xctx);
             }
             anchor = afw_pool_calloc_type(
                 xctx->env->p, afw_authorization_handler_id_anchor_t, xctx);

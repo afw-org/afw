@@ -264,7 +264,9 @@ afw_compile_parse_AssignmentOperation(
     default:
         if (just_expression_okay) {
             afw_compile_reuse_token();
-            *was_expression = true;
+            if (was_expression) {
+                *was_expression = true;
+            }
             return target;
         }
         else {
@@ -1867,7 +1869,8 @@ impl_test_script_get_next_key_value(
     }
 
     if (afw_utf8_equal(*key, &afw_s_expect)) {
-        if (afw_utf8_starts_with(*string, &afw_s_error) &&
+        if (string &&
+            afw_utf8_starts_with(*string, &afw_s_error) &&
             (*string)->len > afw_s_error.len &&
             *((*string)->s + afw_s_error.len) != ':')
         {

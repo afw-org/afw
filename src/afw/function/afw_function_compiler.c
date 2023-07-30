@@ -1695,7 +1695,6 @@ afw_function_execute_test_script_runtime_support(
     const afw_utf8_t *source_type;
     const afw_utf8_t *source;
     const afw_utf8_t *expect;
-    const afw_utf8_t *sourceLocation;
     const afw_value_t *expected_value;
     const afw_value_t *compiled_value;
     const afw_value_t *evaluated_value;
@@ -1767,11 +1766,6 @@ afw_function_execute_test_script_runtime_support(
         if (!source) {
             AFW_THROW_ERROR_Z(general, "source required", xctx);
         }       
-        sourceLocation = afw_object_old_get_property_as_string(test,
-            &afw_s_sourceLocation, xctx);
-        if (!sourceLocation) {
-            sourceLocation = &afw_s_test_script;
-        }
         sourceUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
             test, &afw_s_sourceUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
@@ -1798,11 +1792,13 @@ afw_function_execute_test_script_runtime_support(
 
         AFW_TRY{
             error_in = error_in_other;
+            (void)error_in; /* In catch. Avoid "not used" error. */
             if (afw_utf8_starts_with(expect, &afw_s_error)) {
                 expected_value = NULL;
             }
             else {
                 error_in = error_in_compile_expect;
+                (void)error_in; /* In catch. Avoid "not used" error. */
                 contextual = afw_pool_calloc_type(x->p,
                     afw_compile_value_contextual_t, xctx);
                 afw_memory_copy(contextual, x->self->args.contextual);
@@ -1816,12 +1812,12 @@ afw_function_execute_test_script_runtime_support(
                     x->p, xctx);
                 compiled_value = afw_value_call_built_in_function(
                     contextual, info->compile_function, 1, argv, x->p, xctx);
-                error_in = error_in_evaluate_expect;
                 expected_value = afw_value_evaluate(compiled_value,
                     x->p, xctx);
             }
 
             error_in = error_in_compile_source;
+            (void)error_in; /* In catch. Avoid "not used" error. */
             contextual = afw_pool_calloc_type(x->p,
                 afw_compile_value_contextual_t, xctx);
             afw_memory_copy(contextual, x->self->args.contextual);
@@ -1836,9 +1832,11 @@ afw_function_execute_test_script_runtime_support(
             compiled_value = afw_value_call_built_in_function(
                 contextual, info->compile_function, 1, argv, x->p, xctx);
             error_in = error_in_evaluate_source;
+            (void)error_in; /* In catch. Avoid "not used" error. */
             evaluated_value = afw_value_evaluate(compiled_value,
                 x->p, xctx);
             error_in = error_in_other;
+            (void)error_in; /* In catch. Avoid "not used" error. */
 
             afw_object_set_property(test, &afw_s_result,
                 evaluated_value, xctx);

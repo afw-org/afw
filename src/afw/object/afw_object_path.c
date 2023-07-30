@@ -205,8 +205,7 @@ impl_object_path_parse(
         token = &parser.token;
         is_reserved = parser.is_reserved;
         at_end = !token->s;
-        c = parser.c;
-
+    
         /* Process based on state. */
         switch (state) {
 

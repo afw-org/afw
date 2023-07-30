@@ -615,7 +615,6 @@ impl_object_type_compile(
     ot->object_type_id = afw_object_meta_get_property_name(object, xctx);
     ot->object_type_id_value = afw_value_create_string(
         ot->object_type_id, p, xctx);
-    path = afw_object_meta_get_path(object, xctx);
 
     /* custom */
     custom = afw_object_old_get_property_as_object(object,
@@ -674,7 +673,7 @@ impl_object_type_compile(
     count = 0;
     if (properties) {
         for (iterator = NULL;
-            (pt_object = afw_object_old_get_next_property_as_object(
+            (afw_object_old_get_next_property_as_object(
                 properties, &iterator, &property_name, xctx));
             count++);
     }

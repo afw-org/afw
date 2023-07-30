@@ -653,7 +653,7 @@ afw_value_block_evaluate_do_while(
     const afw_value_boolean_t *condition;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-    for (result = afw_value_null;;) {
+    for (;;) {
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[2], p, xctx);
         if (*type == afw_value_block_statement_type_break ||
@@ -739,7 +739,6 @@ afw_value_block_evaluate_switch(
         AFW_THROW_ERROR_Z(general,
             "Expecting an even number of parameters.", xctx);
     }
-    end_of_args = argv + x->argc;
 
     /* Create skeleton functor call. */
     args.function = afw_function_evaluate_function_parameter(

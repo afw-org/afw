@@ -119,7 +119,7 @@ afw_list_const_create_null_terminated_array_of_values(
     const afw_value_t *const *v;
     afw_size_t count;
 
-    count = 0; {
+    {
         for (count = 0, v = values; *v; count++, v++);
     }
 

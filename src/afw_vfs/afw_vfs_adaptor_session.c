@@ -499,7 +499,7 @@ impl_afw_adaptor_session_retrieve_objects(
             if (object &&
                 afw_query_criteria_test_object(object, criteria, p, xctx))
             {
-                short_circuit = callback(object, context, xctx);
+                callback(object, context, xctx);
             }
         }
 

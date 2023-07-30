@@ -195,6 +195,7 @@ impl_afw_object_get_next_property(
                 goto return_result;
             }
             state = 5;
+            break;
 
         /* options = objectId. */
         case 2:

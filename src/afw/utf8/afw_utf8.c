@@ -669,9 +669,7 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_normalize_space(
     if (s->len == 0) return s;
 
     /* Set start after leading whitespace. */
-    len = s->len;
-    c = s->s;
-    for (c = s->s; len > 0 && IMPL_WHITESPACE(*c); len--, c++);
+    for (c = s->s, len = s->len; len > 0 && IMPL_WHITESPACE(*c); len--, c++);
     start = c;
 
     /* Set end past last char before trailing whitespace. */

@@ -278,7 +278,6 @@ impl_parse_tuple_lambda_type(afw_compile_parser_t *parser)
     afw_utf8_t s1;
     afw_utf8_t s2;
     const afw_utf8_octet_t *s;
-    const afw_utf8_t *data_type_id;
     afw_size_t len;
     afw_value_script_function_parameter_t *parameter;
     afw_value_type_t *type;
@@ -305,15 +304,13 @@ impl_parse_tuple_lambda_type(afw_compile_parser_t *parser)
         s2.len = s - s2.s;
     }
 
-    data_type_id = &s1;
     if (s2.len > 0) {
-        data_type_id = &s2;
         if (s1.len > 0) {
             type = afw_pool_calloc_type(parser->p,
                 afw_value_type_t, parser->xctx);
             parameter->type = type;
             type->data_type = afw_environment_get_data_type(
-                data_type_id, parser->xctx);
+                &s2, parser->xctx);
             if (!type->data_type) {
                 goto error;
             }

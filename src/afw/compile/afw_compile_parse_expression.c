@@ -1044,7 +1044,6 @@ afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     afw_size_t start_offset;
 
-    start_offset = parser->token->token_source_offset;
     result = afw_compile_parse_LogicalExpression(parser);
 
     afw_compile_next_can_be_operator();
