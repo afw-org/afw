@@ -185,40 +185,40 @@ impl_read_file_object(
     /* File type regular file. */
     else if (finfo.filetype == APR_REG) {
         fd = fopen(file_path_z, "r");
-        if (fd)
-        {
-            size = (size_t)finfo.size;
-            buff = afw_pool_malloc(p, size, xctx);
-            size_read = fread(buff, 1, size, fd);
-            fclose(fd);
-            if (size_read == -1) {
-                AFW_THROW_ERROR_FZ(general, xctx,
-                    "Error reading %s.", file_path_z);
-            }
-            object = afw_object_create_and_cede_p(p, xctx);
-            afw_object_meta_set_ids(object,
-                &self->pub.adaptor->adaptor_id,
-                &afw_vfs_s__AdaptiveFile_vfs,
-                object_id,
-                xctx);
-            vfs_path = afw_utf8_printf(p, xctx,
-                "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
-                AFW_UTF8_FMT_ARG(object_id));
-            afw_object_set_property_as_anyURI(object,
-                &afw_vfs_s_vfsPath, vfs_path, xctx);
-            if (afw_utf8_is_valid((const afw_utf8_octet_t *)buff, size_read, xctx)) {
-                data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size_read,
-                    p, xctx);
-                afw_object_set_property_as_string(object,
-                    &afw_vfs_s_data, data_string, xctx);
-            }
-            else {
-                data_binary = afw_memory_create(buff, size_read,
-                    p, xctx);
-                afw_object_set_property_as_hexBinary(object,
-                    &afw_vfs_s_data, data_binary, xctx);
-            }
+        if (!fd) {
+            AFW_THROW_ERROR_Z(general, "fopen() failed.", xctx);
+        }
+        size = (size_t)finfo.size;
+        buff = afw_pool_malloc(p, size, xctx);
+        size_read = fread(buff, 1, size, fd);
+        fclose(fd);
+        if (size_read == -1) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Error reading %s.", file_path_z);
+        }
+        object = afw_object_create_and_cede_p(p, xctx);
+        afw_object_meta_set_ids(object,
+            &self->pub.adaptor->adaptor_id,
+            &afw_vfs_s__AdaptiveFile_vfs,
+            object_id,
+            xctx);
+        vfs_path = afw_utf8_printf(p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_id));
+        afw_object_set_property_as_anyURI(object,
+            &afw_vfs_s_vfsPath, vfs_path, xctx);
+        if (afw_utf8_is_valid((const afw_utf8_octet_t *)buff, size_read, xctx)) {
+            data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size_read,
+                p, xctx);
+            afw_object_set_property_as_string(object,
+                &afw_vfs_s_data, data_string, xctx);
+        }
+        else {
+            data_binary = afw_memory_create(buff, size_read,
+                p, xctx);
+            afw_object_set_property_as_hexBinary(object,
+                &afw_vfs_s_data, data_binary, xctx);
         }
     }
 
