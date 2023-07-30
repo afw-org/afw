@@ -860,23 +860,15 @@ afw_runtime_get_object(
     impl_check_manifest_cb_context_t ctx;
 
     result = NULL;
-    for (c = xctx; c; c = c->parent) {
-        if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = apr_hash_get(c->runtime_objects->types_ht,
-                object_type_id->s, object_type_id->len);
-            if (ht) {
-                result = impl_get_object(ht, object_id->s, object_id->len,
-                    xctx);
-                if (result) break;
-            }
-        }
-    }
 
-    if (!result) {
-        ctx.object_type_id = object_type_id;
-        ctx.object_id = object_id;
-        afw_runtime_foreach(&afw_s__AdaptiveManifest_,
-            &ctx, impl_check_manifest_cb, xctx);
+    /*
+     * This if is necessary to keep build-scan from thinking that xctx might
+     * be NULL when calling afw_runtime_foreach(). It must think that because
+     * of the (c = xctx; c; c = c->parent), xctx might be NULL the first time
+     * through the loop. It can't but I couldn't figure out any other way to
+     * keep build-scan from producing a NULL reference error.
+     */
+    if (xctx) {
         for (c = xctx; c; c = c->parent) {
             if (c->runtime_objects && c->runtime_objects->types_ht) {
                 ht = apr_hash_get(c->runtime_objects->types_ht,
@@ -885,6 +877,24 @@ afw_runtime_get_object(
                     result = impl_get_object(ht, object_id->s, object_id->len,
                         xctx);
                     if (result) break;
+                }
+            }
+        }
+
+        if (!result) {
+            ctx.object_type_id = object_type_id;
+            ctx.object_id = object_id;
+            afw_runtime_foreach(&afw_s__AdaptiveManifest_,
+                &ctx, impl_check_manifest_cb, xctx);
+            for (c = xctx; c; c = c->parent) {
+                if (c->runtime_objects && c->runtime_objects->types_ht) {
+                    ht = apr_hash_get(c->runtime_objects->types_ht,
+                        object_type_id->s, object_type_id->len);
+                    if (ht) {
+                        result = impl_get_object(ht, object_id->s, object_id->len,
+                            xctx);
+                        if (result) break;
+                    }
                 }
             }
         }

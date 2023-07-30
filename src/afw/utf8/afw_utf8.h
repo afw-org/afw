@@ -531,6 +531,10 @@ afw_utf8_to_utf8_z(
 {
     afw_utf8_z_t * result;
 
+    if (!string || string->len == 0) {
+        return "";
+    }
+
     result = afw_pool_malloc(p, string->len + 1, xctx);
     memcpy(result, string->s, string->len);
     result[string->len] = 0;
