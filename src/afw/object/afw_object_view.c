@@ -741,7 +741,10 @@ impl_resolve_parents(
     origin = self->origin;
 
     parent_paths = afw_object_meta_get_parent_paths_value(origin, xctx);
-    if (!parent_paths) return;
+    if (!parent_paths) {
+        self->first_property = NULL;
+        return;
+    }
 
     /* Allocate memory for parents. */
     count = afw_list_get_count(parent_paths->internal, xctx);

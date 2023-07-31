@@ -1302,10 +1302,6 @@ impl_afw_adaptor_session_modify_object(
     impl_request_context_t ctx;
     const afw_utf8_t *resource_id;
 
-    resource_id = (impl_request)
-        ? impl_request->resource_id
-        : &afw_s_a_empty_string;
-
     resource_id = NULL;
     if (impl_request) {
         resource_id = impl_request->resource_id;
