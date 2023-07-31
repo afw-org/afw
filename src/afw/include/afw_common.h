@@ -119,12 +119,28 @@
  * 
  * Example:
  * 
- * AFW_POSSIBLY_UNUSED_VARIABLE afw_boolean_t this_FINALLY_ENTERED = false;
+ * AFW_COMPILER_ANNOTATION_UNUSED afw_boolean_t this_FINALLY_ENTERED = false;
  */
 #ifdef __GNUC__
-#define AFW_POSSIBLY_UNUSED_VARIABLE __attribute__((unused))
+#define AFW_COMPILER_ANNOTATION_UNUSED __attribute__((unused))
 #else
-#define AFW_POSSIBLY_UNUSED_VARIABLE
+#define AFW_COMPILER_ANNOTATION_UNUSED
+#endif
+
+/**
+ * @brief Macro to mark a variable as nonnull to get around a Clang warning
+ * 
+ * This avoids Clang warning that variable might be NULL when placed before a
+ * variable.
+ * 
+ * Example:
+ * 
+ * AFW_COMPILER_ANNOTATION_NONNULL afw_xctx_t *xctx;
+ */
+#ifdef __clang__
+#define AFW_COMPILER_ANNOTATION_NONNULL __attribute__((nonnull))
+#else
+#define AFW_COMPILER_ANNOTATION_NONNULL
 #endif
 
 /** @fixme Remove this as soon as no source contains it. */

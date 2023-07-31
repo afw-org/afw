@@ -1013,7 +1013,7 @@ const afw_value_t *
 afw_function_execute_void_operator(
     afw_function_execute_t *x)
 {
-    AFW_POSSIBLY_UNUSED_VARIABLE const afw_value_t *result;
+    AFW_COMPILER_ANNOTATION_UNUSED const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(result, 1);
 

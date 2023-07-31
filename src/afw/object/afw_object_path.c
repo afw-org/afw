@@ -540,7 +540,8 @@ impl_object_path_parse(
                     goto error;
                 }
 
-                if (!current_parsed->first_property_name ||
+                if (!current_parsed ||
+                    !current_parsed->first_property_name ||
                     !relative_name ||
                     afw_utf8_equal(&relative_name->property_name,
                         &afw_s_a_asterisk)
