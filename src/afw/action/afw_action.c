@@ -122,7 +122,7 @@ impl_call_function(
                 argv[i] = *varg;
 
                 /* If arg's data type doesn't match declared, convert. */
-                if ((*a)->data_type &&
+                if (*a && (*a)->data_type &&
                     (*a)->data_type != afw_value_quick_data_type(argv[i]))
                 {
                     argv[i] = afw_value_convert(argv[i],

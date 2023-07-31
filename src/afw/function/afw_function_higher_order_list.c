@@ -30,7 +30,7 @@ typedef struct {
 typedef afw_boolean_t
 (*impl_call_over_list_cb_t)(impl_call_over_list_cb_e_t *e);
 
-static void
+static const afw_data_type_t *
 impl_over_list(
     afw_function_execute_t *x,
     impl_call_over_list_cb_t callback,
@@ -115,6 +115,8 @@ impl_over_list(
             }
         }
     }
+
+    return e.data_type;
 }
 
 
@@ -679,8 +681,6 @@ afw_function_execute_find(
 
 
 typedef struct {
-    const afw_value_t *functor;
-    const afw_data_type_t *data_type;
     const afw_list_t *mapped_list;
 } impl_map_data_t;
 
@@ -690,8 +690,6 @@ impl_map_cb(impl_call_over_list_cb_e_t *e)
     impl_map_data_t * data = (impl_map_data_t *)e->data;
 
     if (!data->mapped_list) {
-        data->data_type = e->data_type;
-        data->functor = e->functor;
         data->mapped_list = afw_list_create_generic(e->p, e->xctx);
     }
 
@@ -740,15 +738,15 @@ afw_function_execute_map(
     afw_function_execute_t *x)
 {
     impl_map_data_t data;
+    const afw_data_type_t *data_type;
 
     afw_memory_clear(&data);
-    impl_over_list(x, impl_map_cb, (void *)&data);
+    data_type = impl_over_list(x, impl_map_cb, (void *)&data);
 
     if (!data.mapped_list) {
-        if (((afw_value_function_definition_t *)data.functor)->data_type)
+        if (data_type)
         {
-            return ((afw_value_function_definition_t *)
-                data.functor)->data_type->empty_list_value;
+            return data_type->empty_list_value;
         }
         else {
             return afw_data_type_null->empty_list_value;
