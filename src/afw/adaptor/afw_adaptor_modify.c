@@ -222,11 +222,6 @@ afw_adaptor_modify_entries_from_list(
                     }
                     break;
                 }
-                if (!prev_property_name_list) {
-                    property_name_entry = afw_pool_calloc_type(p,
-                        afw_object_path_property_name_entry_t, xctx);
-
-                }
                 property_name_entry = afw_pool_calloc_type(p,
                     afw_object_path_property_name_entry_t, xctx);
                 property_name_entry->property_name.s = s->s;
