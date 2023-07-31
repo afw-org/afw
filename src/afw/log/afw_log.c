@@ -226,7 +226,6 @@ afw_log_internal_create_environment_log(
 {
     impl_afw_log_self_t *self;
     const afw_log_t *log;
-    afw_log_impl_t *impl;
 
     self = afw_xctx_calloc_type(impl_afw_log_self_t, xctx);
     self->pub.inf = &impl_afw_log_inf;
@@ -235,7 +234,7 @@ afw_log_internal_create_environment_log(
     /* Log id to log_type (implementation_id). */
     afw_memory_copy(&self->pub.log_id, &impl_afw_log_inf.rti.implementation_id);
     self->pub.p = xctx->p;
-    self->pub.impl = impl = afw_xctx_calloc_type(afw_log_impl_t, xctx);
+    self->pub.impl = afw_xctx_calloc_type(afw_log_impl_t, xctx);
 
     /* Allocate log head and register its singleton. */
     self->head = afw_xctx_calloc_type(impl_log_head_t, xctx);

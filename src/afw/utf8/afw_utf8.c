@@ -220,6 +220,8 @@ afw_utf8_nfc(
      *
      * Use AFW_TRY to make sure malloc memory is freed.
      */
+    output_utf16 = NULL;
+    input_utf16 = NULL;
     AFW_TRY {
 
         result = NULL;
@@ -228,7 +230,6 @@ afw_utf8_nfc(
         errorCode = U_ZERO_ERROR;
         string = s;
         length = (int32_t)len;
-        output_utf16 = NULL;
         input_utf16 = malloc(length * sizeof(UChar));
         input_utf16 = u_strFromUTF8Lenient(input_utf16,
             length, &input_utf16_length, string, length,

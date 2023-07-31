@@ -1460,7 +1460,7 @@ impl_set_normalized_uri(
     }
     if (parsed->original_fragment.len != 0) {
         *s++ = '#';
-        s += impl_component_encode(s, &parsed->original_fragment);
+        impl_component_encode(s, &parsed->original_fragment);
     }
 }
 
