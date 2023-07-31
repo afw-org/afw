@@ -300,7 +300,8 @@ impl_evaluation_backtrace(
 
     for (entry_number = 0,
         i = xctx->evaluation_stack->top - xctx->evaluation_stack->first,
-        parameter_number = 0;
+        parameter_number = 0,
+        error_offset = 0;
         i >= 0;
         i--)
     {
