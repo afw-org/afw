@@ -617,10 +617,20 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
     const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     UChar32 c;
+    UChar32 c_lower;
     int32_t i1, i2, len1, len2;
     const uint8_t *cs1;
     uint8_t *cs2;
     afw_utf8_t *result;
+    afw_boolean_t already_lower_case;
+
+    if (!s) {
+        return NULL;
+    }
+
+    if (s->len == 0) {
+        return s;
+    }
 
     /* ICU only supports 32 bit non-negative lengths. */
     if (s->len > AFW_INT32_MAX) {
@@ -631,26 +641,31 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
     len1 = (int32_t) s->len;
     cs1 = (const uint8_t *)s->s;
 
-    /*
-     * Not sure if this is necessary, but if bytes to represent lower case is
-     * different than upper, this will get output length right.
-     */
-    for (i1 = 0, len2 = 0; i1 < len1; )
+    /* Pre-scan to see if already lower case and to get length of result. */
+    for (i1 = 0, len2 = 0, already_lower_case = true; i1 < len1; )
     {
         U8_NEXT_UNSAFE(cs1, i1, c);
         len2 += U8_LENGTH(c);
+        if (c != u_tolower(c)) {
+            already_lower_case = false;
+        }
     }
 
-    cs2 = (len2 > 0) ? afw_pool_calloc(p, len2, xctx) : NULL;
+    /* If already lower case, return s passed. */
+    if (already_lower_case) {
+        return s;
+    }
 
+    /* Convert s to lower case. */
+    cs2 = afw_pool_calloc(p, len2, xctx);
     result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
     result->s = (const afw_utf8_octet_t *)cs2;
     result->len = len2;
 
     for (i1 = 0, i2 = 0; i1 < len1;) {
         U8_NEXT_UNSAFE(cs1, i1, c);
-        c = u_tolower(c);
-        U8_APPEND_UNSAFE(cs2, i2, c);
+        c_lower = u_tolower(c);
+        U8_APPEND_UNSAFE(cs2, i2, c_lower);
     }
 
     return result;
