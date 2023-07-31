@@ -1008,6 +1008,11 @@ afw_object_path_make_property_name_expression(
     const afw_object_path_property_name_entry_t *entry;
     afw_utf8_t *result;
 
+    /* This shouldn't be able to be called with first NULL, but just in case: */
+    if (!first) {
+        AFW_THROW_ERROR_Z(general, "first can't be NULL", xctx);
+    }
+
     /** @fixme Improve to generate ['name'] when needed. */
     for (len = 0, entry = first; entry; entry = entry->next) {
         len += entry->property_name.len + 1;

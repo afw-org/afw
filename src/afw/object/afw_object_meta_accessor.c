@@ -188,11 +188,13 @@ impl_afw_object_get_next_property(
         /* Not limited meta. Just return all properties in meta and end. */
         case 1:
 
-            result = afw_object_get_next_property(
-                afw_object_meta_object(self->instance),
-                &self->iterator, property_name, xctx);
-            if (result) {
-                goto return_result;
+            if (afw_object_meta_object(self->instance)) {
+                result = afw_object_get_next_property(
+                    afw_object_meta_object(self->instance),
+                    &self->iterator, property_name, xctx);
+                if (result) {
+                    goto return_result;
+                }
             }
             state = 5;
             break;
