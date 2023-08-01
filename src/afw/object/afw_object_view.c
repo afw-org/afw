@@ -742,7 +742,6 @@ impl_resolve_parents(
 
     parent_paths = afw_object_meta_get_parent_paths_value(origin, xctx);
     if (!parent_paths) {
-        /// @fixme self->first_property = NULL;
         return;
     }
 
@@ -778,7 +777,8 @@ impl_resolve_parents(
 static void
 impl_merge_properties(
     afw_object_view_internal_object_self_t *self,
-    afw_object_view_internal_object_self_t *parent,
+    AFW_COMPILER_ANNOTATION_NONNULL
+        afw_object_view_internal_object_self_t *parent,
     afw_xctx_t *xctx)
 {
     afw_object_view_property_t *parent_prop;
