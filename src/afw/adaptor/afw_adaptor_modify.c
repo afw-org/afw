@@ -129,11 +129,11 @@ afw_adaptor_modify_entry_type(
         entry_type[i] && !afw_utf8_equal(entry_type[i], mnemonic);
         i++);
 
-    if (i > afw_adaptor_modify_entry_type_invalid) {
+    if (i >= afw_adaptor_modify_entry_type_invalid) {
         i = afw_adaptor_modify_entry_type_invalid;
     }
 
-    return (entry_type[i]) ? i : afw_adaptor_modify_entry_type_invalid;
+    return i;
 }
 
 
