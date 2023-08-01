@@ -231,7 +231,7 @@ afw_utf8_nfc(
         string = s;
         length = (int32_t)len;
         input_utf16 = malloc(length * sizeof(UChar));
-        input_utf16 = u_strFromUTF8Lenient(input_utf16,
+        u_strFromUTF8Lenient(input_utf16,
             length, &input_utf16_length, string, length,
             &errorCode);
         if (U_FAILURE(errorCode)) {
