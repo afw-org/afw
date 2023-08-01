@@ -498,6 +498,16 @@ _info_build_js = {
     "help": "Build JavaScript related parts of the AFW package."
 }
 
+_info_build_maxloop = {
+    "optionName": "build_maxloop",
+    "arg": "--maxloop",     
+    "nargs": 1,    
+    "default": 10,
+    "help": "This option is used by analyze-build. Specify the number of " 
+        "times a block can be visited before giving up. Increase for more " 
+        "comprehensive coverage at a cost of speed. "
+}
+
 _info_build_prefix = {
     "optionName": "build_prefix",
     "arg": "--prefix",     
@@ -546,6 +556,7 @@ under. The --all selects all of those contexts.
         _info_build_install,
         _info_build_jobs,
         _info_build_js,
+        _info_build_maxloop,
         _info_build_prefix,
         _info_build_scan,
         _info_build_sudo

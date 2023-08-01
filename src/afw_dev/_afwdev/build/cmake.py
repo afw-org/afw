@@ -62,6 +62,10 @@ def build(options):
             #'--disable-checker', 'deadcode.DeadStores', 
             '--status-bugs', '--verbose'])
         
+        maxloop = options.get('build_maxloop', '10')
+        _analyze_command.extend(['--maxloop', maxloop])
+
+        msg.highlighted_info('Running ' + str(" ".join(_analyze_command)))
         rc = subprocess.run(_analyze_command,
             cwd=options['afw_package_dir_path'])
         if rc.returncode < 0:
