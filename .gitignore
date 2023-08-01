@@ -332,3 +332,8 @@ $RECYCLE.BIN/
 
 # vim swap files
 *.swp
+
+# core dumps
+core
+vgcore.*
+!core/
