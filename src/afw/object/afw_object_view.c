@@ -742,7 +742,7 @@ impl_resolve_parents(
 
     parent_paths = afw_object_meta_get_parent_paths_value(origin, xctx);
     if (!parent_paths) {
-        self->first_property = NULL;
+        /// @fixme self->first_property = NULL;
         return;
     }
 
