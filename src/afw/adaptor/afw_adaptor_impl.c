@@ -38,6 +38,8 @@ typedef struct {
     const afw_pool_t *p;
     afw_adaptor_impl_session_t *session;
     const afw_adaptor_impl_request_t *impl_request;
+    const afw_utf8_t *resource_id;
+    const afw_value_t *action_id_value;
 
 } impl_request_context_t;
 
@@ -806,25 +808,27 @@ impl_afw_adaptor_session_destroy(
 static void
 impl_check_authorization(
     impl_request_context_t *ctx,
-    const afw_value_t *action_id_value,
     afw_xctx_t *xctx)
 {
     const afw_value_t *resource_id_value;
     const afw_value_t *object_value;
 
     resource_id_value = afw_value_create_string(
-        ctx->impl_request->resource_id,
+        ctx->resource_id,
         ctx->p, xctx);
 
-    object_value = afw_value_create_object(
-        ctx->impl_request->request,
-        ctx->p, xctx);
+    object_value = NULL;
+    if (ctx->impl_request && ctx->impl_request->request) {
+        object_value = afw_value_create_object(
+            ctx->impl_request->request,
+            ctx->p, xctx);
+    }
 
     afw_authorization_check(
         true, NULL,
         resource_id_value,
         object_value,
-        action_id_value,
+        ctx->action_id_value,
         ctx->p, xctx);
 }
 
@@ -990,7 +994,6 @@ impl_afw_adaptor_session_retrieve_objects(
     afw_adaptor_impl_core_object_type_t *e;
     afw_utf8_t object_id;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
@@ -998,29 +1001,29 @@ impl_afw_adaptor_session_retrieve_objects(
     ctx.original_context = context;
     ctx.original_callback = callback;
     ctx.impl_request = impl_request;
-
-    resource_id = NULL;
+    ctx.resource_id = NULL;
     if (impl_request) {
-        resource_id = impl_request->resource_id;
+        ctx.resource_id = impl_request->resource_id;
     }
-    if (!resource_id) {
-        resource_id = afw_utf8_printf(p, xctx,
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(p, xctx,
             "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id));
     }
+    ctx.action_id_value = afw_authorization_action_id_query;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin retrieve_objects "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->retrieve_objects_count);
 
-    /* Do authorization check. */
-    /** @fixme Add query info as object. */
+    /* Authorize */
+    impl_check_authorization(&ctx, xctx);
 
     /*
      * Handle _AdaptiveObjectType_.
@@ -1085,7 +1088,7 @@ impl_afw_adaptor_session_retrieve_objects(
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end retrieve_objects "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
 
@@ -1111,19 +1114,6 @@ impl_afw_adaptor_session_get_object(
     const afw_object_t *object_type_object;
     afw_adaptor_impl_core_object_type_t *e;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
-
-    resource_id = NULL;
-    if (impl_request) {
-        resource_id = impl_request->resource_id;
-    }
-    if (!resource_id) {
-        resource_id = afw_utf8_printf(p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
-            AFW_UTF8_FMT_ARG(object_type_id),
-            AFW_UTF8_FMT_ARG(object_id));
-    }
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
@@ -1131,15 +1121,30 @@ impl_afw_adaptor_session_get_object(
     ctx.original_context = context;
     ctx.original_callback = callback;
     ctx.impl_request = impl_request;
+    ctx.resource_id = NULL;
+    if (impl_request) {
+        ctx.resource_id = impl_request->resource_id;
+    }
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_type_id),
+            AFW_UTF8_FMT_ARG(object_id));
+    }
+    ctx.action_id_value = afw_authorization_action_id_query;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin get_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->get_object_count);
+
+    /* Authorize */
+    impl_check_authorization(&ctx, xctx);
 
     /* Get any core object types from runtime environment. */
     if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_) &&
@@ -1208,7 +1213,7 @@ end_trace:
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end get_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
 
@@ -1231,37 +1236,35 @@ impl_afw_adaptor_session_add_object(
     const afw_adaptor_t *adaptor = instance->adaptor;
     const afw_utf8_t *result;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
-
-    resource_id = NULL;
-    if (impl_request) {
-        resource_id = impl_request->resource_id;
-    }
-    if (!resource_id) {
-        resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
-            AFW_UTF8_FMT_ARG(object_type_id),
-            AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
-    }
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
     ctx.p = instance->p;
     ctx.impl_request = impl_request;
+    ctx.resource_id = NULL;
+    if (impl_request) {
+        ctx.resource_id = impl_request->resource_id;
+    }
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_type_id),
+            AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
+    }
+    ctx.action_id_value = afw_authorization_action_id_create;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin add_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->add_object_count);
 
     /* Authorize */
-    impl_check_authorization(&ctx,
-        afw_authorization_action_id_create, xctx);
+    impl_check_authorization(&ctx, xctx);
 
     /* Call wrapped instance method. */
     result = afw_adaptor_session_add_object(
@@ -1275,7 +1278,7 @@ impl_afw_adaptor_session_add_object(
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end add_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /* Return result. */
     return result;
@@ -1300,37 +1303,35 @@ impl_afw_adaptor_session_modify_object(
     afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_t *adaptor = instance->adaptor;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
-
-    resource_id = NULL;
-    if (impl_request) {
-        resource_id = impl_request->resource_id;
-    }
-    if (!resource_id) {
-        resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
-            AFW_UTF8_FMT_ARG(object_type_id),
-            AFW_UTF8_FMT_ARG(object_id));
-    }
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
     ctx.p = instance->p;
     ctx.impl_request = impl_request;
+    ctx.resource_id = NULL;
+    if (impl_request) {
+        ctx.resource_id = impl_request->resource_id;
+    }
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_type_id),
+            AFW_UTF8_FMT_ARG(object_id));
+    }
+    ctx.action_id_value = afw_authorization_action_id_modify;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin modify_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->modify_object_count);
 
     /* Authorize */
-    impl_check_authorization(&ctx,
-        afw_authorization_action_id_modify, xctx);
+    impl_check_authorization(&ctx, xctx);
 
     /* Call wrapped instance method. */
     afw_adaptor_session_modify_object(
@@ -1344,7 +1345,7 @@ impl_afw_adaptor_session_modify_object(
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end modify_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
 
@@ -1366,37 +1367,35 @@ impl_afw_adaptor_session_replace_object(
     afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_t *adaptor = instance->adaptor;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
-
-    resource_id = NULL;
-    if (impl_request) {
-        resource_id = impl_request->resource_id;
-    }
-    if (!resource_id) {
-        resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
-            AFW_UTF8_FMT_ARG(object_type_id),
-            AFW_UTF8_FMT_ARG(object_id));
-    }
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
     ctx.p = instance->p;
     ctx.impl_request = impl_request;
+    ctx.resource_id = NULL;
+    if (impl_request) {
+        ctx.resource_id = impl_request->resource_id;
+    }
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_type_id),
+            AFW_UTF8_FMT_ARG(object_id));
+    }
+    ctx.action_id_value = afw_authorization_action_id_modify;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin replace_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->replace_object_count);
 
     /* Authorize */
-    impl_check_authorization(&ctx,
-        afw_authorization_action_id_modify, xctx);
+    impl_check_authorization(&ctx, xctx);
 
     /* Call wrapped instance method. */
     afw_adaptor_session_replace_object(
@@ -1410,7 +1409,7 @@ impl_afw_adaptor_session_replace_object(
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end replace_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
 
@@ -1431,29 +1430,35 @@ impl_afw_adaptor_session_delete_object(
     afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_t *adaptor = instance->adaptor;
     impl_request_context_t ctx;
-    const afw_utf8_t *resource_id;
-
-    resource_id = (impl_request)
-        ? impl_request->resource_id
-        : &afw_s_a_empty_string;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
     ctx.p = instance->p;
     ctx.impl_request = impl_request;
+    ctx.resource_id = NULL;
+    if (impl_request) {
+        ctx.resource_id = impl_request->resource_id;
+    }
+    if (!ctx.resource_id) {
+        ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
+            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(object_type_id),
+            AFW_UTF8_FMT_ARG(object_id));
+    }
+    ctx.action_id_value = afw_authorization_action_id_delete;
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin delete_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->delete_object_count);
 
     /* Authorize */
-    impl_check_authorization(&ctx,
-        afw_authorization_action_id_delete, xctx);
+    impl_check_authorization(&ctx, xctx);
 
     /* Call wrapped instance method. */
     afw_adaptor_session_delete_object(
@@ -1466,7 +1471,7 @@ impl_afw_adaptor_session_delete_object(
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end delete_object "
         "%" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(resource_id));
+        AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
 
