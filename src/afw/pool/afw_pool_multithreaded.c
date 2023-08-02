@@ -43,11 +43,11 @@ do { \
     { \
         trace = afw_os_backtrace(0, -1, xctx); \
         afw_debug_write_fz(NULL, source_z, xctx, \
-            "pool %" AFW_INTEGER_FMT " " \
+            "pool " AFW_INTEGER_FMT " " \
             info_z \
-            ": before %" AFW_SIZE_T_FMT \
-            " refs %" AFW_INTEGER_FMT \
-            " parent %" AFW_INTEGER_FMT \
+            ": before " AFW_SIZE_T_FMT \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
             " multi" \
             "%s" \
             AFW_UTF8_FMT, \
@@ -70,11 +70,11 @@ do { \
     { \
         trace = afw_os_backtrace(0, -1, xctx); \
         afw_debug_write_fz(NULL, source_z, xctx, \
-            "pool %" AFW_INTEGER_FMT " " \
+            "pool " AFW_INTEGER_FMT " " \
             format_z \
-            ": before %" AFW_SIZE_T_FMT \
-            " refs %" AFW_INTEGER_FMT \
-            " parent %" AFW_INTEGER_FMT \
+            ": before " AFW_SIZE_T_FMT \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
             " multi" \
             "%s" \
             AFW_UTF8_FMT, \
@@ -228,7 +228,7 @@ afw_pool_create_multithreaded_debug(
         afw_pool_create_multithreaded(parent, xctx);
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_create_multithreaded %" AFW_INTEGER_FMT,
+        "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
         (self->parent) ? self->parent->pool_number : 0);
 
     return (const afw_pool_t *)self;
@@ -541,7 +541,7 @@ impl_afw_pool_calloc_debug(
         (afw_pool_internal_multithreaded_self_t *)instance;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_calloc %" AFW_SIZE_T_FMT,
+        "afw_pool_calloc " AFW_SIZE_T_FMT,
         size);
 
     return impl_afw_pool_calloc(instance, size, xctx);
@@ -561,7 +561,7 @@ impl_afw_pool_malloc_debug(
         (afw_pool_internal_multithreaded_self_t *)instance;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_malloc %" AFW_SIZE_T_FMT,
+        "afw_pool_malloc " AFW_SIZE_T_FMT,
         size);
 
     return impl_afw_pool_malloc(instance, size, xctx);
@@ -582,7 +582,7 @@ impl_afw_pool_free_debug(
         (afw_pool_internal_multithreaded_self_t *)instance;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_free %" AFW_SIZE_T_FMT,
+        "afw_pool_free " AFW_SIZE_T_FMT,
         size);
 
     impl_afw_pool_free(instance, address, size, xctx);

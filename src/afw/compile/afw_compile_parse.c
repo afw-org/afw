@@ -96,13 +96,13 @@ afw_compile_create_source_location_impl(
 
     if (has_nl) {
         result = afw_utf8_printf(parser->p, parser->xctx,
-            AFW_UTF8_FMT "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
+            AFW_UTF8_FMT "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
             AFW_UTF8_FMT_ARG(parser->contextual.source_location),
             line, column);
     }
     else {
         result = afw_utf8_printf(parser->p, parser->xctx,
-            AFW_UTF8_FMT "+%" AFW_SIZE_T_FMT,
+            AFW_UTF8_FMT "+" AFW_SIZE_T_FMT,
             AFW_UTF8_FMT_ARG(parser->contextual.source_location),
             start_offset);
     }
@@ -183,11 +183,11 @@ afw_compile_parse_embellish_error(
 
     error->message_z = afw_utf8_z_printf(parser->p, parser->xctx,
         "Error during compile at offset "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         " around line "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         " column "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         ": %s",
         parser->token->token_source_offset, line, column,
         error->message_z);
@@ -219,11 +219,11 @@ afw_compile_parse_set_error_z(
     afw_error_set_fz(afw_error_code_syntax,
         source_z, parser->xctx,
         "Parse error at offset "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         " around line "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         " column "
-        "%" AFW_SIZE_T_FMT
+        AFW_SIZE_T_FMT
         ": %s",
         parser->token->token_source_offset, line, column, message_z);
 

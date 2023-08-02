@@ -339,7 +339,15 @@ typedef apr_int64_t afw_integer_t;
 /**
  * @brief Format string specifier used for afw_integer_t.
  */
-#define AFW_INTEGER_FMT APR_INT64_T_FMT
+#define AFW_INTEGER_FMT "%" APR_INT64_T_FMT
+
+/**
+ * @brief Format string specifier used for afw_integer_t without %.
+ * 
+ * This can be used if additional specifiers are needed. For example,
+ * printf("The number is %0" AFW_INTEGER_FMT_NO_PERCENT "\n", number);
+ */
+#define AFW_INTEGER_FMT_NO_PERCENT APR_INT64_T_FMT
 
 /**
  * @brief afw_integer_t max digits.
@@ -354,7 +362,15 @@ typedef apr_int64_t afw_integer_t;
 /**
  * @brief Format string specifier used for afw_size_t.
  */
-#define AFW_SIZE_T_FMT APR_SIZE_T_FMT
+#define AFW_SIZE_T_FMT "%" APR_SIZE_T_FMT
+
+/**
+ * @brief Format string specifier used for afw_size_t without %.
+ * 
+ * This can be used if additional specifiers are needed. For example,
+ * printf("The size is %0" AFW_SIZE_T_FMT_NO_PERCENT "\n", size);
+ */
+#define AFW_SIZE_T_FMT_NO_PERCENT APR_SIZE_T_FMT
 
 /**
  * @brief afw_size_t max.

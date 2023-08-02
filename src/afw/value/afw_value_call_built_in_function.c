@@ -149,7 +149,7 @@ impl_afw_value_optional_evaluate(
     if (x.argc < x.function->numberOfRequiredParameters) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT
-            " expects %" AFW_SIZE_T_FMT " required parameters",
+            " expects " AFW_SIZE_T_FMT " required parameters",
             AFW_UTF8_FMT_ARG(&x.function->functionId),
             x.function->numberOfRequiredParameters);
     }
@@ -160,7 +160,7 @@ impl_afw_value_optional_evaluate(
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT
-            " expects no more than %" AFW_SIZE_T_FMT " parameters",
+            " expects no more than " AFW_SIZE_T_FMT " parameters",
             AFW_UTF8_FMT_ARG(&x.function->functionId),
             x.function->maximumNumberOfParameters);
     }

@@ -124,7 +124,7 @@ impl_call_script_function(
                     }
                     else if (!(*params)->is_optional) {
                         AFW_THROW_ERROR_FZ(general, xctx,
-                            "Parameter %" AFW_SIZE_T_FMT " is required",
+                            "Parameter " AFW_SIZE_T_FMT " is required",
                             parameter_number);
                     }
                 }

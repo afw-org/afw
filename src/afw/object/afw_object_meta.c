@@ -803,7 +803,7 @@ afw_object_meta_add_thrown_property_error(
     {        message = afw_error_to_utf8(error, instance->p, xctx);
         if (index >= 0) {
             message = afw_utf8_printf(instance->p, xctx,
-                "[%" AFW_INTEGER_FMT "] " AFW_UTF8_FMT,
+                "[" AFW_INTEGER_FMT "] " AFW_UTF8_FMT,
                 index,
                 AFW_UTF8_FMT_ARG(message));
         }
@@ -811,7 +811,7 @@ afw_object_meta_add_thrown_property_error(
 
     else if (index >= 0) {
         message = afw_utf8_printf(instance->p, xctx,
-                "[%" AFW_INTEGER_FMT "] %s",
+                "[" AFW_INTEGER_FMT "] %s",
                 index,
                 error->message_z);
     }

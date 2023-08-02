@@ -604,9 +604,9 @@ afw_compile_source_location_of_value(
                 4, xctx);
             result = afw_utf8_printf(p, xctx,
                 AFW_UTF8_FMT
-                "+%" AFW_SIZE_T_FMT
-                "(%" AFW_SIZE_T_FMT
-                ":%" AFW_SIZE_T_FMT ")",
+                "+" AFW_SIZE_T_FMT
+                "(" AFW_SIZE_T_FMT
+                ":" AFW_SIZE_T_FMT ")",
                 AFW_UTF8_FMT_ARG(info.contextual->source_location),
                 info.contextual->value_offset,
                 line_number, column_number);
@@ -621,7 +621,7 @@ afw_compile_source_location_of_value(
             else {
                 result = afw_utf8_printf(p, xctx,
                     AFW_UTF8_FMT
-                    "%s+%" AFW_SIZE_T_FMT,
+                    "%s+" AFW_SIZE_T_FMT,
                     AFW_UTF8_FMT_ARG(info.contextual->source_location),
                     info.contextual->value_offset);
             }
@@ -632,7 +632,7 @@ afw_compile_source_location_of_value(
             }
             else {
                 result = afw_utf8_printf(p, xctx,
-                    "%" AFW_SIZE_T_FMT,
+                    AFW_SIZE_T_FMT,
                     info.contextual->value_offset);
             }
         }

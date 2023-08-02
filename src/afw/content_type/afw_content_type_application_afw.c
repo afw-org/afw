@@ -257,8 +257,8 @@ impl_afw_stream_flush(
     if (self->cache_writer) {
         size = afw_memory_writer_get_current_size(self->cache_writer, xctx);
         header = afw_utf8_printf(self->cache_writer->p, xctx,
-            "%" AFW_INTEGER_FMT
-            " %" AFW_SIZE_T_FMT
+            AFW_INTEGER_FMT
+            " " AFW_SIZE_T_FMT
             " " AFW_UTF8_FMT
             "%s" AFW_UTF8_FMT
             "\n",

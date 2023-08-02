@@ -2104,8 +2104,8 @@ afw_compile_parse_TestScript(
                 string_offset, 4, parser->xctx);
             expect_location = afw_utf8_printf(parser->p, parser->xctx,
                 AFW_UTF8_FMT
-                "+%" AFW_SIZE_T_FMT
-                "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
+                "+" AFW_SIZE_T_FMT
+                "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,
@@ -2143,8 +2143,8 @@ afw_compile_parse_TestScript(
                 string_offset, 4, parser->xctx);
             source_location = afw_utf8_printf(parser->p, parser->xctx,
                 AFW_UTF8_FMT
-                "+%" AFW_SIZE_T_FMT
-                "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
+                "+" AFW_SIZE_T_FMT
+                "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,

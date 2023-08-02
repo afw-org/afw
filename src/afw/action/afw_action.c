@@ -351,7 +351,7 @@ afw_action_perform(
             functionId = afw_value_as_utf8(value, action_response_entry->p, xctx);
             if (!functionId) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
-                    "Property " AFW_UTF8_FMT " of action %" AFW_INTEGER_FMT
+                    "Property " AFW_UTF8_FMT " of action " AFW_INTEGER_FMT
                     " is missing or invalid",
                     AFW_UTF8_FMT_ARG(name), action_number);
             }
@@ -361,7 +361,7 @@ afw_action_perform(
             if (!function) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
                     "Unknown function " AFW_UTF8_FMT
-                    " in action %" AFW_INTEGER_FMT,
+                    " in action " AFW_INTEGER_FMT,
                     AFW_UTF8_FMT_ARG(functionId), action_number);
             }
 

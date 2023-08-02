@@ -150,7 +150,7 @@ afw_writer_write_integer(
 {
     char buf[AFW_INTEGER_MAX_BUFFER];
 
-    snprintf(buf, AFW_INTEGER_MAX_BUFFER, "%" AFW_INTEGER_FMT,
+    snprintf(buf, AFW_INTEGER_MAX_BUFFER, AFW_INTEGER_FMT,
         integer);
     afw_writer_write_z(writer, buf, xctx);
 }
@@ -166,7 +166,7 @@ afw_writer_write_size(
 {
     char buf[AFW_SIZE_T_MAX_BUFFER];
 
-    snprintf(buf, AFW_SIZE_T_MAX_BUFFER, "%" AFW_SIZE_T_FMT,
+    snprintf(buf, AFW_SIZE_T_MAX_BUFFER, AFW_SIZE_T_FMT,
         size);
     afw_writer_write_z(writer, buf, xctx);
 }

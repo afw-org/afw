@@ -608,7 +608,7 @@ afw_command_local_server_write_error(
         &afw_s_error, error_object, xctx);
 
     string = afw_data_type_object_to_utf8(response_object, xctx->p, xctx);
-    rv = fprintf(self->fd_output, "%" AFW_SIZE_T_FMT "\n", string->len);
+    rv = fprintf(self->fd_output, AFW_SIZE_T_FMT "\n", string->len);
     if (rv < 0) exit(EXIT_FAILURE);
     rv = fprintf(self->fd_output, AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(string));

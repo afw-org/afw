@@ -128,7 +128,7 @@ impl_relative_entry_path_to_object_id(
     const afw_utf8_z_t *z, afw_off_t offset, afw_xctx_t *xctx)
 {
     return afw_utf8_printf(xctx->p, xctx,
-        "%.4s%.2s%.2s%.2s_%" AFW_INTEGER_FMT,
+        "%.4s%.2s%.2s%.2s_" AFW_INTEGER_FMT,
         z + 1, z + 7, z + 11, z + 15, (afw_integer_t)offset);
 }
 
@@ -432,7 +432,7 @@ impl_afw_adaptor_journal_add_entry(
     rv = apr_file_seek(entry_f, APR_CUR, &offset);
     if (rv != APR_SUCCESS) goto error_journal_apr;
     cursor = afw_utf8_printf(xctx->p, xctx,
-        "%02d%02d%02d%02d%02d_%" AFW_INTEGER_FMT,
+        "%02d%02d%02d%02d%02d_" AFW_INTEGER_FMT,
         lock.century, lock.year, lock.month, lock.day, lock.hour,
         (afw_integer_t)offset);
 

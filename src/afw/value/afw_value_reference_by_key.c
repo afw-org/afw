@@ -59,7 +59,7 @@ afw_value_reference_by_key_create(
     else if (afw_value_is_integer(key)) {
         result->backtrace_detail = afw_utf8_printf(
             p, xctx,
-            "[%" AFW_INTEGER_FMT "]",
+            "[" AFW_INTEGER_FMT "]",
             ((const afw_value_integer_t *)key)->internal);
     }
     else if (!afw_value_is_defined_and_evaluated(key)) {

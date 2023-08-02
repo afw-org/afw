@@ -266,7 +266,7 @@ void convert_integer_to_yaml(
     from_value_wa_t *wa,
     afw_integer_t i)
 {
-    impl_printf(wa, "%" AFW_INTEGER_FMT, i);
+    impl_printf(wa, AFW_INTEGER_FMT, i);
 }
 
 /*

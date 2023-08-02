@@ -114,11 +114,11 @@ impl_write_source_line(
 
     /* Write prefix */
     len = snprintf(buffer, sizeof(buffer),
-        "%" AFW_SIZE_T_FMT,
+        AFW_SIZE_T_FMT,
         self->last_line_written);
     len = (int)self->prefix_size - len - 3;
     len = snprintf(buffer, sizeof(buffer),
-        "%.*s%" AFW_SIZE_T_FMT " | ",
+        "%.*s" AFW_SIZE_T_FMT " | ",
         len,
         &impl_empty_prefix[0],
         self->last_line_written);
@@ -468,14 +468,14 @@ afw_value_compiler_listing_to_string_instance(
     self->is_new_line = true;
     if (self->compiled_value->line_count == 0) {
         self->offset_only = true;
-        self->prefix_format = "%" AFW_SIZE_T_FMT "-%" AFW_SIZE_T_FMT;
+        self->prefix_format = AFW_SIZE_T_FMT "-" AFW_SIZE_T_FMT;
         self->prefix_size =
             impl_digits_needed(self->compiled_value->full_source->len) * 2 +
             4 /* '-' + space + '> '*/;
     }
     else {
-        self->prefix_format = "%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT
-            "-%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT;
+        self->prefix_format = AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT
+            "-" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT;
         self->prefix_size =
             impl_digits_needed(self->compiled_value->line_count) * 2 +
             impl_digits_needed(self->compiled_value->longest_line) * 2 +

@@ -2023,7 +2023,7 @@ afw_function_execute_retrieve_objects_to_stream(
         streamNumber->internal, x->xctx);
     if (!ctx.stream || !ctx.stream->write_cb) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamNumber %" AFW_INTEGER_FMT " is not an open output stream",
+            "streamNumber " AFW_INTEGER_FMT " is not an open output stream",
             streamNumber->internal);
     }
 
@@ -2560,7 +2560,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
         streamNumber->internal, x->xctx);
     if (!ctx.stream || !ctx.stream->write_cb) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamNumber %" AFW_INTEGER_FMT " is not an open output stream",
+            "streamNumber " AFW_INTEGER_FMT " is not an open output stream",
             streamNumber->internal);
     }
 

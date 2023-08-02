@@ -214,8 +214,8 @@ impl_write_source_lines(
             if (new_line) {
                 new_line = false;
                 snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                    "%*" AFW_SIZE_T_FMT "  "
-                    "%*" AFW_SIZE_T_FMT,
+                    "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
+                    "%*" AFW_SIZE_T_FMT_NO_PERCENT,
                     offset_cell_octets, offset,
                     line_cell_octets, line);
                 afw_writer_write_z(w, buf2, xctx);
@@ -360,7 +360,7 @@ impl_evaluation_backtrace(
                 }
                 afw_writer_write_z(w, "---CompiledValue ", xctx);
                 entry_number++;
-                snprintf(buf, AFW_INTEGER_MAX_BUFFER, "%" AFW_INTEGER_FMT,
+                snprintf(buf, AFW_INTEGER_MAX_BUFFER, AFW_INTEGER_FMT,
                     entry_number);
                 afw_writer_write_z(w, buf, xctx);
 
@@ -417,8 +417,8 @@ impl_evaluation_backtrace(
                     info.contextual->value_offset, 4, xctx);
                 afw_writer_write_z(w, " errorBetween:", xctx);
                 snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                    "%" AFW_SIZE_T_FMT
-                    "(%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT ")",
+                    AFW_SIZE_T_FMT
+                    "(" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT ")",
                     info.contextual->value_offset, line_number, column_number);
                 afw_writer_write_z(w, buf2, xctx);
 
@@ -429,8 +429,8 @@ impl_evaluation_backtrace(
                     info.contextual->compiled_value->full_source,
                     offset, 4, xctx);
                 snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                    "-%" AFW_SIZE_T_FMT
-                    "(%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT ")",
+                    "-" AFW_SIZE_T_FMT
+                    "(" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT ")",
                     offset, line_number, column_number);
                 afw_writer_write_z(w, buf2, xctx);
                 afw_writer_write_eol(w, xctx);
@@ -454,8 +454,8 @@ impl_evaluation_backtrace(
                         if (new_line) {
                             new_line = false;
                             snprintf(buf2, sizeof(buf2),
-                                "%*" AFW_SIZE_T_FMT "  "
-                                "%*" AFW_SIZE_T_FMT,
+                                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
+                                "%*" AFW_SIZE_T_FMT_NO_PERCENT,
                                 offset_cell_octets, offset,
                                 line_cell_octets, line);
                             afw_writer_write_z(w, buf2, xctx);
@@ -497,8 +497,8 @@ impl_evaluation_backtrace(
                 info.contextual->compiled_value->full_source,
                 info.contextual->value_offset, 4, xctx);
             snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
-                "%*" AFW_SIZE_T_FMT "  "
-                "%*" AFW_SIZE_T_FMT ":" "%-*" AFW_SIZE_T_FMT,
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT ":" "%-*" AFW_SIZE_T_FMT_NO_PERCENT,
                 offset_cell_octets, info.contextual->value_offset,
                 line_cell_octets, line_number,
                 column_cell_octets, column_number);
@@ -525,7 +525,7 @@ impl_evaluation_backtrace(
 
         if (parameter_number != 0) {
             afw_writer_write_z(w, " (evaluating parameter ", xctx);
-            snprintf(buf, AFW_INTEGER_MAX_BUFFER, "%" AFW_SIZE_T_FMT,
+            snprintf(buf, AFW_INTEGER_MAX_BUFFER, AFW_SIZE_T_FMT,
                 parameter_number);
             afw_writer_write_z(w, buf, xctx);
             afw_writer_write_z(w, ")", xctx);
@@ -556,7 +556,7 @@ afw_error_to_utf8(
     afw_boolean_t do_evaluation_backtrace;
     afw_boolean_t do_code_backtrace;
 
-    /** @fixme "%.0" AFW_SIZE_T_FMT should cause 0 not to be printed, but it does. */
+    /** @fixme "%.0" AFW_SIZE_T_FMT_NO_PERCENT should cause 0 not to be printed, but it does. */
     do_contextual = afw_flag_is_active(
         xctx->env->flag_index_response_error_contextual, xctx);
     do_evaluation_backtrace = afw_flag_is_active(
@@ -575,7 +575,7 @@ afw_error_to_utf8(
         "%s"                           /* recursive error */
 
         "%s" AFW_UTF8_FMT "%s"        /* source location */
-        "%.0" AFW_SIZE_T_FMT
+        "%.0" AFW_SIZE_T_FMT_NO_PERCENT
 
         "]"
 
@@ -712,7 +712,7 @@ afw_error_print(FILE *fp, const afw_error_t *error)
             if (rv < 0) goto return_rv;
         }
 
-        rv = fprintf(fp, "  offset:  %" AFW_SIZE_T_FMT "\n",
+        rv = fprintf(fp, "  offset:  " AFW_SIZE_T_FMT "\n",
             error->contextual->value_offset);
         if (rv < 0) goto return_rv;
 
@@ -735,9 +735,9 @@ afw_error_print(FILE *fp, const afw_error_t *error)
             }
             if (line != 1) {
                 line++;
-                rv = fprintf(fp, "  line:    %" AFW_INTEGER_FMT "\n", line);
+                rv = fprintf(fp, "  line:    " AFW_INTEGER_FMT "\n", line);
                 if (rv < 0) goto return_rv;
-                rv = fprintf(fp, "  column:  %" AFW_INTEGER_FMT "\n",
+                rv = fprintf(fp, "  column:  " AFW_INTEGER_FMT "\n",
                     (afw_integer_t)(end - last_nl));
                 if (rv < 0) goto return_rv;
             }
@@ -745,7 +745,7 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     }
 
     if (error->parser_cursor > 0) {
-        rv = fprintf(fp, "  cursor:  %" AFW_INTEGER_FMT "\n", 
+        rv = fprintf(fp, "  cursor:  " AFW_INTEGER_FMT "\n", 
             (afw_integer_t)error->parser_cursor);
         if (rv < 0) goto return_rv;
     }

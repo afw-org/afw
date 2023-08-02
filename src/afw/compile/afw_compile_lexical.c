@@ -2175,7 +2175,7 @@ afw_compile_check_for_residual(afw_compile_parser_t *parser)
 
 error:
     AFW_THROW_ERROR_FZ(syntax, parser->xctx,
-        "Residual data beginning at offset %" AFW_SIZE_T_FMT,
+        "Residual data beginning at offset " AFW_SIZE_T_FMT,
         save);
 
 }

@@ -129,7 +129,7 @@ afw_command_local_parse_request(
     impl_get_token(&x);
     if (x.token_type != afw_command_local_parse_token_type_string) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Line %" AFW_SIZE_T_FMT ": Expecting METHOD",
+            "Line " AFW_SIZE_T_FMT ": Expecting METHOD",
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
@@ -139,7 +139,7 @@ afw_command_local_parse_request(
     impl_get_token(&x);
     if (x.token_type != afw_command_local_parse_token_type_string) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Line %" AFW_SIZE_T_FMT ": Expecting URI",
+            "Line " AFW_SIZE_T_FMT ": Expecting URI",
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
@@ -149,7 +149,7 @@ afw_command_local_parse_request(
     impl_get_token(&x);
     if (x.token_type != afw_command_local_parse_token_type_string) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Line %" AFW_SIZE_T_FMT ": Expecting URI",
+            "Line " AFW_SIZE_T_FMT ": Expecting URI",
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
@@ -159,7 +159,7 @@ afw_command_local_parse_request(
     impl_get_token(&x);
     if (x.token_type != afw_command_local_parse_token_type_end_of_line) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Line %" AFW_SIZE_T_FMT ": Expecting end of line",
+            "Line " AFW_SIZE_T_FMT ": Expecting end of line",
             x.line_number);
     }
     if (x.cursor >= x.end) {
@@ -188,7 +188,7 @@ afw_command_local_parse_request(
         /* name */
         if (x.token_type != afw_command_local_parse_token_type_string) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Line %" AFW_SIZE_T_FMT ": Expecting header name",
+                "Line " AFW_SIZE_T_FMT ": Expecting header name",
                 x.line_number);
         }
         name = x.string;
@@ -197,7 +197,7 @@ afw_command_local_parse_request(
         impl_get_token(&x);
         if (x.token_type != afw_command_local_parse_token_type_colon) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Line %" AFW_SIZE_T_FMT ": Expecting colon",
+                "Line " AFW_SIZE_T_FMT ": Expecting colon",
                 x.line_number);
         }
 
@@ -205,7 +205,7 @@ afw_command_local_parse_request(
         impl_get_token(&x);
         if (x.token_type != afw_command_local_parse_token_type_string) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Line %" AFW_SIZE_T_FMT ": Expecting header value",
+                "Line " AFW_SIZE_T_FMT ": Expecting header value",
                 x.line_number);
         }
 
@@ -217,7 +217,7 @@ afw_command_local_parse_request(
         impl_get_token(&x);
         if (x.token_type != afw_command_local_parse_token_type_end_of_line) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Line %" AFW_SIZE_T_FMT ": Expecting end of line",
+                "Line " AFW_SIZE_T_FMT ": Expecting end of line",
                 x.line_number);
         }
     }

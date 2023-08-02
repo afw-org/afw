@@ -113,8 +113,7 @@ afw_function_evaluate_whitespace_parameter(
         }
         else {
             AFW_THROW_ERROR_FZ(general, x->xctx,
-                "parameter %"
-                AFW_SIZE_T_FMT
+                "parameter " AFW_SIZE_T_FMT
                 " must be a string no longer than 10 or an "
                 "integer between 0 and 10",
                 n);

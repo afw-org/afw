@@ -462,7 +462,7 @@ impl_string_parser_set_error_z(
 {
     afw_error_set_fz(afw_error_code_syntax,
         source_z, parser->xctx,
-        "Query string error at offset +%" AFW_SIZE_T_FMT
+        "Query string error at offset +" AFW_SIZE_T_FMT
         ": %s",
         parser->c - parser->start - parser->token.len,
         message_z);
