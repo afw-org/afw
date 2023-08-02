@@ -623,7 +623,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
     if (afw_value_is_undefined(value))
     {
         impl_print_result(self,
-            "%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&afw_s_a_undefined_as_string));
     }
 
@@ -648,7 +648,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
         string = afw_value_decompile_to_string(value, NULL,
                                                 self->xctx->p, self->xctx);
         impl_print_result(self,
-            "<unevaluated> %" AFW_UTF8_FMT,
+            "<unevaluated> " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(string));
     }
 }

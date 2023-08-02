@@ -194,8 +194,8 @@ impl_set_entry(
         test_ht = apr_hash_get(ht, object_id->s, object_id->len);
         if (test_ht) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/%"
-                AFW_UTF8_FMT "/%" AFW_UTF8_FMT " already set",
+                "Runtime object /afw/"
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
                 AFW_UTF8_FMT_ARG(object_type_id),
                 AFW_UTF8_FMT_ARG(object_id));
         }
@@ -329,8 +329,8 @@ afw_runtime_xctx_set_object(
         test_ht = apr_hash_get(ht, id->s, id->len);
         if (test_ht) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/%"
-                AFW_UTF8_FMT "/%" AFW_UTF8_FMT " already set",
+                "Runtime object /afw/"
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
                 AFW_UTF8_FMT_ARG(type), AFW_UTF8_FMT_ARG(id));
         }
     }
@@ -431,7 +431,7 @@ afw_runtime_resolve_and_register_object_map_infs(
                 if (!properties->data_type || !properties->accessor)
                 {
                     AFW_THROW_ERROR_FZ(general, xctx,
-                        "Error resolving runtime object map %" AFW_UTF8_FMT,
+                        "Error resolving runtime object map " AFW_UTF8_FMT,
                         AFW_UTF8_FMT_ARG(meta->object_type_id));
                 }
             }
@@ -492,7 +492,7 @@ afw_runtime_object_create_indirect(
         object_type_id, xctx);
     if (!inf) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Runtime object map %" AFW_UTF8_FMT " is not registered",
+            "Runtime object map " AFW_UTF8_FMT " is not registered",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
 
@@ -716,7 +716,7 @@ afw_runtime_resolve_const_object(
         unresolved->object_type_id, xctx);
     if (!o->pub.inf) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "No map available for object type %" AFW_UTF8_FMT,
+            "No map available for object type " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(unresolved->object_type_id));
     }
 

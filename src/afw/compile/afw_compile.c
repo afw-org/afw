@@ -449,7 +449,7 @@ afw_compile_expressions_templates_and_hybrids(
         /* If this is an expression value, compile it. */
         if (afw_value_is_expression(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
             value = afw_compile_to_value(
@@ -463,7 +463,7 @@ afw_compile_expressions_templates_and_hybrids(
         /* If this is a template value, compile it. */
         else if (afw_value_is_template(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
             value = afw_compile_to_value(
@@ -477,7 +477,7 @@ afw_compile_expressions_templates_and_hybrids(
         /* If this is a hybrid value, compile it. */
         else if (afw_value_is_hybrid(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
             value = afw_compile_hybrid(
@@ -489,7 +489,7 @@ afw_compile_expressions_templates_and_hybrids(
         /* Recursively process objects. */
         else if (recursive && afw_value_is_object(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
             afw_compile_expressions_templates_and_hybrids(
@@ -531,7 +531,7 @@ afw_compile_object_all_hybrid_properties(
         object, &iterator, &property_name, xctx)))
     {
         detail_source_location = afw_utf8_printf(object->p, xctx,
-                "%" AFW_UTF8_FMT " property %" AFW_UTF8_FMT,
+                AFW_UTF8_FMT " property " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
         value_data_type = afw_value_get_data_type(value, xctx);
@@ -539,7 +539,7 @@ afw_compile_object_all_hybrid_properties(
             !afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_FMT " is not a hybrid",
+                AFW_UTF8_FMT " is not a hybrid",
                 AFW_UTF8_FMT_ARG(detail_source_location));
         }
         compiled_value = afw_compile_hybrid_source(
@@ -603,7 +603,7 @@ afw_compile_source_location_of_value(
                 info.contextual->value_offset,
                 4, xctx);
             result = afw_utf8_printf(p, xctx,
-                "%" AFW_UTF8_FMT
+                AFW_UTF8_FMT
                 "+%" AFW_SIZE_T_FMT
                 "(%" AFW_SIZE_T_FMT
                 ":%" AFW_SIZE_T_FMT ")",
@@ -615,12 +615,12 @@ afw_compile_source_location_of_value(
         {
             if (info.contextual->value_offset == 0) {
                 result = afw_utf8_printf(p, xctx,
-                    "%" AFW_UTF8_FMT,
+                    AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(info.contextual->source_location));
             }
             else {
                 result = afw_utf8_printf(p, xctx,
-                    "%" AFW_UTF8_FMT
+                    AFW_UTF8_FMT
                     "%s+%" AFW_SIZE_T_FMT,
                     AFW_UTF8_FMT_ARG(info.contextual->source_location),
                     info.contextual->value_offset);

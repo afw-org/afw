@@ -225,7 +225,7 @@ impl_add_adapted_properties_from_adaptor(
             }
             else if ((*pt)->required) {
                 afw_object_meta_add_error_fz(result, xctx,
-                    "Missing property %" AFW_UTF8_FMT,
+                    "Missing property " AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG((*pt)->property_name));
             }
         }
@@ -369,7 +369,7 @@ afw_model_internal_convert_property(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid property %" AFW_UTF8_FMT,
+        "Invalid property " AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(from_property_name));
 }
 
@@ -418,7 +418,7 @@ afw_model_internal_convert_property_name(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid property %" AFW_UTF8_FMT,
+        "Invalid property " AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(from_property_name));
 
 }
@@ -621,7 +621,7 @@ impl_execute_mapBackObject_thunk(
     }
     if (!mapped_object) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " expects 1 object parameter",
+            AFW_UTF8_FMT " expects 1 object parameter",
             AFW_UTF8_FMT_ARG(thunk->name));
     }
 
@@ -684,7 +684,7 @@ impl_execute_returnObject_thunk(
     object = NULL;
     if (x->argc > 2) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " expects at most 2 parameters",
+            AFW_UTF8_FMT " expects at most 2 parameters",
             AFW_UTF8_FMT_OPTIONAL_ARG(thunk->name));
     }
 
@@ -696,7 +696,7 @@ impl_execute_returnObject_thunk(
     }
     if (!object) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " expects 1 object parameter",
+            AFW_UTF8_FMT " expects 1 object parameter",
             AFW_UTF8_FMT_OPTIONAL_ARG(thunk->name));
     }
 
@@ -706,7 +706,7 @@ impl_execute_returnObject_thunk(
         if (mapback_value) {
             if (!afw_value_is_boolean(mapback_value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "%" AFW_UTF8_FMT " expects parameter 2 to be boolean",
+                    AFW_UTF8_FMT " expects parameter 2 to be boolean",
                     AFW_UTF8_FMT_ARG(thunk->name));
             }
             if (((afw_value_boolean_t *)mapback_value)->internal) {
@@ -804,7 +804,7 @@ afw_model_adaptor_create_cede_p(
         &afw_s_modelLocationAdaptorId, p, xctx);
     if (afw_utf8_equal(self->model_location_adaptor_id, &adaptor->adaptor_id)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "modelLocationAdaptorId can not be the same as adaptorId",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -831,8 +831,8 @@ afw_model_adaptor_create_cede_p(
     model_location_adaptor = NULL;
     AFW_TRY {
         AFW_LOG_FZ(debug, xctx,
-            "Adaptor %" AFW_UTF8_FMT
-            " specified modelLocationAdaptorId %" AFW_UTF8_FMT
+            "Adaptor " AFW_UTF8_FMT
+            " specified modelLocationAdaptorId " AFW_UTF8_FMT
             ".",
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(self->model_location_adaptor_id));
@@ -840,8 +840,8 @@ afw_model_adaptor_create_cede_p(
             self->model_location_adaptor_id, xctx);
         if (!model_location_adaptor->impl || !model_location_adaptor->impl->model_location) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "the specified modelLocationAdaptorId %" AFW_UTF8_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                "the specified modelLocationAdaptorId " AFW_UTF8_FMT
                 " does not hold _AdaptiveModel_ objects",
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(self->model_location_adaptor_id));
@@ -934,15 +934,15 @@ impl_afw_adaptor_create_adaptor_session (
             self->model_location_adaptor_id, xctx);
     if (!session->model_location_adaptor) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Model adaptor %" AFW_UTF8_FMT " is not available",
+            "Model adaptor " AFW_UTF8_FMT " is not available",
             AFW_UTF8_FMT_ARG(self->model_location_adaptor_id));
     }
     session->model = afw_model_location_get_model(
         session->model_location_adaptor, self->model_id, xctx);
     if (!session->model) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Model adaptor %" AFW_UTF8_FMT
-            " model %" AFW_UTF8_FMT
+            "Model adaptor " AFW_UTF8_FMT
+            " model " AFW_UTF8_FMT
             " not found",
             AFW_UTF8_FMT_ARG(self->model_location_adaptor_id),
             AFW_UTF8_FMT_ARG(self->model_id));
@@ -1314,7 +1314,7 @@ afw_model_internal_create_basic_to_adaptor_mapped_object(
             afw_object_meta_add_property_error_fz(
                 ctx->impl_request->request,
                 property_name, xctx,
-                "Invalid property %" AFW_UTF8_FMT,
+                "Invalid property " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name));
         }
         else if (pt->allow_write)
@@ -1528,7 +1528,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             &(*entry)->first_property_name_entry->property_name, xctx);
         if (!model_property_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Property name %" AFW_UTF8_FMT " invalid",
+                "Property name " AFW_UTF8_FMT " invalid",
                 AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
         }
         afw_list_add_value(mapped_entry,

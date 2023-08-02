@@ -42,7 +42,7 @@ afw_environment_configure_with_object(
     type = afw_object_old_get_property_as_utf8(conf, &afw_s_type, p, xctx);
     if (!type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "missing type property",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -51,8 +51,8 @@ afw_environment_configure_with_object(
     conf_type = afw_environment_get_conf_type(type, xctx);
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid type \"%" AFW_UTF8_FMT "\"",
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "invalid type " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(type));
     }
@@ -88,12 +88,12 @@ afw_environment_configure_with_object_list(
 
         /* Source location will include entry number. */
         detail_source_location = afw_utf8_printf(xctx->env->p, xctx,
-            "%" AFW_UTF8_FMT " entry %d",
+            AFW_UTF8_FMT " entry %d",
             AFW_UTF8_FMT_ARG(source_location), count);
 
         if (!afw_value_is_object(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "is not an object",
                 AFW_UTF8_FMT_ARG(detail_source_location));
         }
@@ -121,7 +121,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
 
     if (!extension_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "\"extension_id\" required.",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -140,8 +140,8 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     }
     if (!module_path) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "\"modulePath\" needed for \"extension\" %" AFW_UTF8_FMT ".",
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "\"modulePath\" needed for \"extension\" " AFW_UTF8_FMT ".",
             AFW_UTF8_FMT_ARG(source_location), 
             AFW_UTF8_FMT_ARG(extension_id));
     }
@@ -181,7 +181,7 @@ afw_environment_prepare_conf_type_properties(
         &afw_s_type, xctx);
     if (!type || type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             " missing type",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -190,8 +190,8 @@ afw_environment_prepare_conf_type_properties(
     conf_type = afw_environment_get_conf_type(type, xctx);
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "type %" AFW_UTF8_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "type " AFW_UTF8_FMT
             " is not valid",
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(type));
@@ -204,9 +204,9 @@ afw_environment_prepare_conf_type_properties(
             properties, conf_type->subtype_property_name, xctx);
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "%" AFW_UTF8_FMT
-                " property required for conf type %" AFW_UTF8_FMT,
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_FMT
+                " property required for conf type " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(conf_type->subtype_property_name),
                 AFW_UTF8_FMT_ARG(type));
@@ -220,9 +220,9 @@ afw_environment_prepare_conf_type_properties(
             properties, conf_type->id_property_name, xctx);
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                " %" AFW_UTF8_FMT
-                " property required for conf type %" AFW_UTF8_FMT,
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                " " AFW_UTF8_FMT
+                " property required for conf type " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(conf_type->id_property_name),
                 AFW_UTF8_FMT_ARG(type));
@@ -231,9 +231,9 @@ afw_environment_prepare_conf_type_properties(
 
     /* Construct path. */
     path = afw_utf8_printf(p, xctx,
-        "/afw/_AdaptiveConf_%" AFW_UTF8_FMT
-        "%s%" AFW_UTF8_FMT
-        "/%" AFW_UTF8_FMT,
+        "/afw/_AdaptiveConf_" AFW_UTF8_FMT
+        "%s" AFW_UTF8_FMT
+        "/" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(type),
         (const char *)((subtype) ? "_" : ""),
         (int)((subtype) ? (int)subtype->len : 0),
@@ -260,7 +260,7 @@ afw_environment_prepare_conf_type_properties(
         if (afw_object_meta_has_errors(result, xctx)) {
             afw_object_meta_log_errors(result, source_location, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 " configuration error(s) logged",
                 AFW_UTF8_FMT_ARG(source_location));
         }

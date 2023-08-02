@@ -140,7 +140,7 @@ impl_set_error_immutable(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Property %" AFW_UTF8_FMT " immutable",
+        "Property " AFW_UTF8_FMT " immutable",
         AFW_UTF8_FMT_ARG(property_name));
 }
 

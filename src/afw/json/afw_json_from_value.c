@@ -347,7 +347,7 @@ impl_convert_value_to_json(
         afw_value_get_info(value, &info, wa->p, wa->xctx);
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Unevaluated value encountered producing json "
-            "(%" AFW_UTF8_FMT " %" AFW_UTF8_FMT ")",
+            "(" AFW_UTF8_FMT " " AFW_UTF8_FMT ")",
             AFW_UTF8_FMT_ARG(info.value_inf_id),
             AFW_UTF8_FMT_OPTIONAL_ARG(info.detail)
         );
@@ -440,7 +440,7 @@ impl_convert_value_to_json(
                 s = &afw_s_object;
                 if (afw_object_meta_get_object_type_id(object, xctx)) {
                     s = afw_utf8_printf(wa->p, wa->xctx,
-                        "object:%" AFW_UTF8_FMT,
+                        "object:" AFW_UTF8_FMT,
                         AFW_UTF8_FMT_ARG(
                             afw_object_meta_get_object_type_id(object, xctx))
                     );

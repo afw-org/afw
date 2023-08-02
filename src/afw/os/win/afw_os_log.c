@@ -129,6 +129,6 @@ impl_afw_log_write(
 
     /** @fixme Write to event log. */
     fprintf(xctx->env->stderr_fd,
-        "FIXME log_type=event_log: %" AFW_UTF8_FMT "\n",
+        "FIXME log_type=event_log: " AFW_UTF8_FMT "\n",
         AFW_UTF8_FMT_ARG(message));
 }

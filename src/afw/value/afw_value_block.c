@@ -822,7 +822,7 @@ afw_value_block_evaluate_throw(
 
     xctx->error->data = data;
 
-    AFW_THROW_ERROR_FZ(throw, xctx, "%" AFW_UTF8_FMT,
+    AFW_THROW_ERROR_FZ(throw, xctx, AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&message->internal));
 
     return afw_value_null;

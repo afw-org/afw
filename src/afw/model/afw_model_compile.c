@@ -60,7 +60,7 @@ impl_compile_custom(
             &iterator, &property_name, xctx);
         if (!s) break;
         source_location = afw_utf8_printf(model->p, xctx,
-            "%" AFW_UTF8_FMT "/custom/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT "/custom/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(path),
             AFW_UTF8_FMT_ARG(property_name));
         value = afw_compile_hybrid_source(s, source_location,
@@ -109,7 +109,7 @@ impl_compile_property_type(
         pt->data_type = afw_environment_get_data_type(s, xctx);
         if (!pt->data_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_FMT
+                AFW_UTF8_FMT
                 "/dataType is invalid",
                 AFW_UTF8_FMT_ARG(path));
         }
@@ -161,7 +161,7 @@ impl_compile_property_type(
         &afw_s_defaultValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/defaultValue",
+            AFW_UTF8_FMT "/defaultValue",
             AFW_UTF8_FMT_ARG(path));
         pt->default_value = afw_compile_hybrid_source(
             s,source_location, NULL, model->shared, NULL, xctx);
@@ -181,7 +181,7 @@ impl_compile_property_type(
         &afw_s_onGetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onGetProperty",
+            AFW_UTF8_FMT "/onGetProperty",
             AFW_UTF8_FMT_ARG(path));
         pt->onGetProperty = afw_compile_hybrid_source(
             s, source_location, NULL, model->shared, NULL, xctx);
@@ -192,7 +192,7 @@ impl_compile_property_type(
         &afw_s_onGetInitialValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onGetInitialValue",
+            AFW_UTF8_FMT "/onGetInitialValue",
             AFW_UTF8_FMT_ARG(path));
         pt->onGetInitialValue = afw_compile_hybrid_source(
             s, source_location, NULL, model->shared, NULL, xctx);
@@ -203,7 +203,7 @@ impl_compile_property_type(
         &afw_s_onSetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onSetProperty",
+            AFW_UTF8_FMT "/onSetProperty",
             AFW_UTF8_FMT_ARG(path));
         pt->onSetProperty = afw_compile_hybrid_source(
             s, source_location, NULL, model->shared, NULL, xctx);
@@ -428,7 +428,7 @@ impl_harvest_object_type(
             if (!path) break;
             if (afw_utf8_starts_with(path, model->objectType_path)) {
                 s = afw_utf8_printf(p, xctx,
-                    "/*/_AdaptiveObjectType_/%" AFW_UTF8_FMT,
+                    "/*/_AdaptiveObjectType_/" AFW_UTF8_FMT,
                     (int)(path->len - model->objectType_path->len),
                     (char *)(path->s + model->objectType_path->len));
                 afw_list_of_anyURI_add(to_parent_paths->internal, s, xctx);
@@ -632,7 +632,7 @@ impl_object_type_compile(
         &afw_s_onGetInitialObjectId, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onGetInitialObjectId",
+            AFW_UTF8_FMT "/onGetInitialObjectId",
             AFW_UTF8_FMT_ARG(path));
         ot->onGetInitialObjectId = afw_compile_hybrid_source(s,
             source_location,
@@ -700,7 +700,7 @@ impl_object_type_compile(
         &afw_s_onAddObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onAddObject",
+            AFW_UTF8_FMT "/onAddObject",
             AFW_UTF8_FMT_ARG(path));
         ot->onAddObject = afw_compile_hybrid_source(
             s, source_location, NULL, shared, p, xctx);
@@ -711,7 +711,7 @@ impl_object_type_compile(
         &afw_s_onDeleteObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onDeleteObject",
+            AFW_UTF8_FMT "/onDeleteObject",
             AFW_UTF8_FMT_ARG(path));
         ot->onDeleteObject = afw_compile_hybrid_source(
             s, source_location, NULL, shared, p, xctx);
@@ -722,7 +722,7 @@ impl_object_type_compile(
         &afw_s_onGetObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onGetObject",
+            AFW_UTF8_FMT "/onGetObject",
             AFW_UTF8_FMT_ARG(path));
         ot->onGetObject = afw_compile_hybrid_source(
             s, source_location, NULL, shared, p, xctx);
@@ -733,7 +733,7 @@ impl_object_type_compile(
         &afw_s_onModifyObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onModifyObject",
+            AFW_UTF8_FMT "/onModifyObject",
             AFW_UTF8_FMT_ARG(path));
         ot->onModifyObject = afw_compile_hybrid_source(
             s, source_location, NULL, shared, p, xctx);
@@ -744,7 +744,7 @@ impl_object_type_compile(
         &afw_s_onReplaceObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onReplaceObject",
+            AFW_UTF8_FMT "/onReplaceObject",
             AFW_UTF8_FMT_ARG(path));
         ot->onReplaceObject = afw_compile_hybrid_source(s,
             source_location, NULL, shared, p, xctx);
@@ -755,7 +755,7 @@ impl_object_type_compile(
         &afw_s_onRetrieveObjects, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            "%" AFW_UTF8_FMT "/onRetrieveObjects",
+            AFW_UTF8_FMT "/onRetrieveObjects",
             AFW_UTF8_FMT_ARG(path));
         ot->onRetrieveObjects = afw_compile_hybrid_source(
             s, source_location, NULL, shared, p, xctx);
@@ -808,7 +808,7 @@ afw_model_compile(
     model->model_object_types = apr_hash_make(afw_pool_get_apr_pool(p));
     path = afw_object_meta_get_path(object, xctx);
     model->objectType_path = afw_utf8_printf(p, xctx,
-        "%" AFW_UTF8_FMT "/objectTypes/", AFW_UTF8_FMT_ARG(path));
+        AFW_UTF8_FMT "/objectTypes/", AFW_UTF8_FMT_ARG(path));
 
     /* custom */
     model->custom_variables = afw_object_old_get_property_as_object(object,

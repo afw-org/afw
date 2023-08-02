@@ -373,7 +373,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
 
             if (!afw_value_is_defined_and_evaluated(value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "add_value %" AFW_UTF8_FMT
+                    "add_value " AFW_UTF8_FMT
                     " must be a defined and evaluated value",
                     AFW_UTF8_FMT_ARG(
                         &first_property_name_entry->property_name));
@@ -453,7 +453,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                         s = afw_object_path_make_property_name_expression(
                             first_property_name_entry, p, xctx);
                         AFW_THROW_ERROR_FZ(general, xctx,
-                            "Error: Value does not exist for property %"
+                            "Error: Value does not exist for property "
                             AFW_UTF8_FMT,
                             AFW_UTF8_FMT_ARG(s));
                     }
@@ -469,7 +469,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                 s = afw_object_path_make_property_name_expression(
                     first_property_name_entry, p, xctx);
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "Error: Value does not exist for property %" AFW_UTF8_FMT,
+                    "Error: Value does not exist for property " AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(s));
             }
 
@@ -515,7 +515,7 @@ impl_add_reconcile_property(
     if (embedding_pt && !embedding_pt->allow_write) {
         //return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
-            "Property %" AFW_UTF8_FMT " can not be modified",
+            "Property " AFW_UTF8_FMT " can not be modified",
             AFW_UTF8_FMT_ARG(embedding_property_name));
         //*/
     }
@@ -523,7 +523,7 @@ impl_add_reconcile_property(
     if (pt && !pt->allow_write) {
         // return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
-            "Property %" AFW_UTF8_FMT " can not be modified",
+            "Property " AFW_UTF8_FMT " can not be modified",
             AFW_UTF8_FMT_ARG(property_name));
         //*/
     }
@@ -599,7 +599,7 @@ impl_reconcile_object(
             property_name, wa->xctx);
         if (!pt) {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
-                "Missing property type for %" AFW_UTF8_FMT,
+                "Missing property type for " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name));
         }
 
@@ -770,8 +770,8 @@ afw_adaptor_modify_needed_to_reconcile(
         journal_entry, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Object type %" AFW_UTF8_FMT
-            " does not exist in Adaptor %" AFW_UTF8_FMT,
+            "Object type " AFW_UTF8_FMT
+            " does not exist in Adaptor " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(*object_type_id),
             AFW_UTF8_FMT_ARG(*adaptor_id));
     }
@@ -812,9 +812,9 @@ afw_adaptor_modify_object(
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
         "/"
-        "%" AFW_UTF8_FMT "/"
-        "%" AFW_UTF8_FMT "/"
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT "/"
+        AFW_UTF8_FMT "/"
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(adaptor_id),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));

@@ -2024,7 +2024,7 @@ afw_compile_parse_TestScript(
             if (afw_object_has_property(test_script_object, key, parser->xctx))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "%" AFW_UTF8_FMT ": already specified",
+                    AFW_UTF8_FMT ": already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             if (afw_utf8_equal(key, &afw_s_sourceType)) {
@@ -2083,14 +2083,14 @@ afw_compile_parse_TestScript(
 
         else if (!test_object) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "%" AFW_UTF8_FMT ": specified before test",
+                AFW_UTF8_FMT ": specified before test",
                 AFW_UTF8_FMT_ARG(key));
         }
 
         else {
             if (afw_object_has_property(test_object, key, parser->xctx)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "%" AFW_UTF8_FMT ": already specified",
+                    AFW_UTF8_FMT ": already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             afw_object_set_property_as_string(test_object,
@@ -2103,7 +2103,7 @@ afw_compile_parse_TestScript(
                 parser->full_source,
                 string_offset, 4, parser->xctx);
             expect_location = afw_utf8_printf(parser->p, parser->xctx,
-                "%" AFW_UTF8_FMT
+                AFW_UTF8_FMT
                 "+%" AFW_SIZE_T_FMT
                 "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),
@@ -2142,7 +2142,7 @@ afw_compile_parse_TestScript(
                 parser->full_source,
                 string_offset, 4, parser->xctx);
             source_location = afw_utf8_printf(parser->p, parser->xctx,
-                "%" AFW_UTF8_FMT
+                AFW_UTF8_FMT
                 "+%" AFW_SIZE_T_FMT
                 "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),

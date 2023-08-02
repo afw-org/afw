@@ -162,7 +162,7 @@ afw_adaptor_get_reference(
         instance = impl_get_reference(adaptor_id, xctx);
         if (!instance) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Adaptor %" AFW_UTF8_FMT
+                "Adaptor " AFW_UTF8_FMT
                 " is not available",
                 AFW_UTF8_FMT_ARG(adaptor_id));
         }
@@ -367,7 +367,7 @@ impl_get_adaptor_session_cache(const afw_utf8_t *adaptor_id,
     /* Error if no valid adaptor session. */
     if (!session_cache->session) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Unable to start session for adaptor id %" AFW_UTF8_FMT,
+            "Unable to start session for adaptor id " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(adaptor_id));
     }
 
@@ -591,7 +591,7 @@ afw_adaptor_internal_conf_type_create_cede_p(
         &afw_s_adaptorId, xctx);
     if (!adaptor_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "adaptorId properties is required",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -603,7 +603,7 @@ afw_adaptor_internal_conf_type_create_cede_p(
         /* If adaptor id is afw, handle special. */
         if (afw_utf8_equal(adaptor_id, &afw_s_afw)) {
             AFW_LOG_FZ(warning, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "adaptor id afw is automatically defined.  Entry ignored.",
                 AFW_UTF8_FMT_ARG(source_location));
             return;
@@ -612,7 +612,7 @@ afw_adaptor_internal_conf_type_create_cede_p(
         /* Any other adaptor id already registered is an error. */
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_FMT " adaptor %" AFW_UTF8_FMT " is already running",
+                AFW_UTF8_FMT " adaptor " AFW_UTF8_FMT " is already running",
                 source_location->len, source_location->s,
                 adaptor_id->len, adaptor_id->s);
         }
@@ -745,7 +745,7 @@ impl_afw_service_type_start_cede_p (
     factory = afw_environment_get_adaptor_type(adaptor_type, xctx);
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "adaptorType %" AFW_UTF8_FMT
+            "adaptorType " AFW_UTF8_FMT
             " is not a registered adaptor type",
             AFW_UTF8_FMT_ARG(adaptor_type));
     }

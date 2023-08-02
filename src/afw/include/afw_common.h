@@ -601,7 +601,13 @@ typedef struct afw_utf8_array_s {
 /**
  * @brief Format string specifier used for afw_utf8_t.
  */
-#define AFW_UTF8_FMT ".*s"
+#define AFW_UTF8_FMT "%.*s"
+
+/**
+ * @brief Format quoted string specifier used for afw_utf8_t.
+ */
+#define AFW_UTF8_FMT_Q "'%.*s'"
+
 
 /** @brief Format string used for source location separator. */
 #define AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP "> "
@@ -615,7 +621,7 @@ AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
  * @brief Convenience Macro for use with AFW_UTF8_FMT to specify arg.
  * @param A_STRING a (const afw_utf8_t *) string.
  *
- * The argument for %" AFW_UTF8_FMT " is an int length (not size_t) followed by
+ * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
  * a comma and const char *.  
  */
 #define AFW_UTF8_FMT_ARG(A_STRING) \
@@ -626,7 +632,7 @@ AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
  * @brief Convenience Macro for use with AFW_UTF8_FMT to specify optional arg.
  * @param A_STRING a (const afw_utf8_t *) string or NULL.
  *
- * The argument for %" AFW_UTF8_FMT " is an int length (not size_t) followed by
+ * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
  * a comma and const char *.  
  */
 #define AFW_UTF8_FMT_OPTIONAL_ARG(A_STRING) \
@@ -638,7 +644,7 @@ AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
  * @brief Convenience Macro for use with AFW_UTF8_FMT to specify optional arg.
  * @param A_STRING a (const afw_utf8_t *) string or undefined.
  *
- * The argument for %" AFW_UTF8_FMT " is an int length (not size_t) followed by
+ * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
  * a comma and const char *.  If NULL, `<undefined>` is supplied.
  */
 #define AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(A_STRING) \

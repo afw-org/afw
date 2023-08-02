@@ -188,8 +188,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                                 type_id, untyped_function_id, parser->xctx);
                             if (!function) {
                                 AFW_COMPILE_THROW_ERROR_FZ(
-                                    "Unknown built-in function %" AFW_UTF8_FMT
-                                    "<%" AFW_UTF8_FMT ">",
+                                    "Unknown built-in function " AFW_UTF8_FMT
+                                    "<" AFW_UTF8_FMT ">",
                                     AFW_UTF8_FMT_ARG(untyped_function_id),
                                     AFW_UTF8_FMT_ARG(type_id));
                             }
@@ -200,7 +200,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     }
                     if (!function) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Unknown built-in function %" AFW_UTF8_FMT,
+                            "Unknown built-in function " AFW_UTF8_FMT,
                             AFW_UTF8_FMT_ARG(untyped_function_id));                        
                     }
                     result = (const afw_value_t *)function;
@@ -210,7 +210,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                 else {
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Undeclared variable %" AFW_UTF8_FMT,
+                            "Undeclared variable " AFW_UTF8_FMT,
                             AFW_UTF8_FMT_ARG(parser->token->identifier));
                     }
                     result =
@@ -865,7 +865,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
             parser->xctx);
         if (!type->data_type) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown data type %" AFW_UTF8_FMT,
+                "Unknown data type " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(dataType));
         }
 

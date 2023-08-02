@@ -264,13 +264,13 @@ impl_afw_request_set_response_status_code(
      */
     if (reason) {
         rv = FCGX_FPrintF(self->fcgx_request->out,
-            "Status:%" AFW_UTF8_FMT " %" AFW_UTF8_FMT
+            "Status:" AFW_UTF8_FMT " " AFW_UTF8_FMT
             AFW_CRLF,
             AFW_UTF8_FMT_ARG(code), AFW_UTF8_FMT_ARG(reason));
     }
     else {
         rv = FCGX_FPrintF(self->fcgx_request->out,
-            "Status:%" AFW_UTF8_FMT AFW_CRLF,
+            "Status:" AFW_UTF8_FMT AFW_CRLF,
             AFW_UTF8_FMT_ARG(code));
     }
     if (rv == -1) {
@@ -304,7 +304,7 @@ impl_afw_request_write_response_header(
 
     /* Write response header */
     rv = FCGX_FPrintF(self->fcgx_request->out,
-        "%" AFW_UTF8_FMT ":%" AFW_UTF8_FMT AFW_CRLF,
+        AFW_UTF8_FMT ":" AFW_UTF8_FMT AFW_CRLF,
         AFW_UTF8_FMT_ARG(name), AFW_UTF8_FMT_ARG(value));
     if (rv == -1) {
         AFW_THROW_ERROR_Z(general,

@@ -367,7 +367,7 @@ afw_memory_decode_printable_hex(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid printable hex value %" AFW_UTF8_FMT ".",
+        "Invalid printable hex value " AFW_UTF8_FMT ".",
         AFW_UTF8_FMT_ARG(encoded));
 }
 

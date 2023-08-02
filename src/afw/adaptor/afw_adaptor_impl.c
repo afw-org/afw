@@ -61,13 +61,13 @@ impl_set_trace_flag_fields(
     /* adaptor_id_trace_flag_id */
     adaptor->trace_flag_id =
         afw_utf8_printf(p, xctx,
-            "trace:adaptorId:%" AFW_UTF8_FMT,
+            "trace:adaptorId:" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
     /* adaptor_id_detail_flag_id */
     adaptor->detail_flag_id =
         afw_utf8_printf(p, xctx,
-            "trace:adaptorId:%" AFW_UTF8_FMT ":detail",
+            "trace:adaptorId:" AFW_UTF8_FMT ":detail",
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
     /* adaptor_id_detail_flag_index */
@@ -79,16 +79,16 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Detail trace of adaptor id %" AFW_UTF8_FMT,
+            "Detail trace of adaptor id " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
         description = afw_utf8_printf(env_p, xctx,
             "This produces a basic plus detail trace "
-            "of adaptor id %" AFW_UTF8_FMT ".",
+            "of adaptor id " AFW_UTF8_FMT ".",
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
-            "trace:adaptorType:%" AFW_UTF8_FMT ":detail",
+            "trace:adaptorType:" AFW_UTF8_FMT ":detail",
             AFW_UTF8_FMT_ARG(adaptor->adaptor_type_id));
 
         afw_environment_register_flag(flag_id, brief, description,
@@ -109,15 +109,15 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Trace adaptor id %" AFW_UTF8_FMT,
+            "Trace adaptor id " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
         description = afw_utf8_printf(env_p, xctx,
-            "This produces a basic trace of adaptor id %" AFW_UTF8_FMT ".",
+            "This produces a basic trace of adaptor id " AFW_UTF8_FMT ".",
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
-            "trace:adaptorType:%" AFW_UTF8_FMT,
+            "trace:adaptorType:" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(adaptor->adaptor_type_id));
 
         afw_environment_register_flag(flag_id, brief, description,
@@ -142,11 +142,10 @@ afw_adaptor_impl_throw_property_invalid(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "%"
         AFW_UTF8_FMT
-        "Configuration type=adaptor, adaptorType=%"
+        "Configuration type=adaptor, adaptorType="
         AFW_UTF8_FMT
-        " property name %"
+        " property name "
         AFW_UTF8_FMT
         " is not valid.",
         AFW_UTF8_FMT_ARG(adaptor->impl->source_location),
@@ -163,9 +162,9 @@ afw_adaptor_impl_throw_property_required(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "%" AFW_UTF8_FMT
-        " Configuration type=adaptor, adaptorType=%" AFW_UTF8_FMT
-        " property name %" AFW_UTF8_FMT
+        AFW_UTF8_FMT
+        " Configuration type=adaptor, adaptorType=" AFW_UTF8_FMT
+        " property name " AFW_UTF8_FMT
         " is required.",
         AFW_UTF8_FMT_ARG(adaptor->impl->source_location),
         AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
@@ -259,7 +258,7 @@ afw_adaptor_impl_create_cede_p(
 
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " requires id property.",
+            AFW_UTF8_FMT " requires id property.",
             AFW_UTF8_FMT_ARG(impl->source_location));
     }
     afw_memory_copy(&adaptor->adaptor_id, s);
@@ -267,23 +266,23 @@ afw_adaptor_impl_create_cede_p(
 
     /* Create lock. */
     s = afw_utf8_printf(p, xctx,
-        "adaptor_id:%" AFW_UTF8_FMT,
+        "adaptor_id:" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(impl->adaptor_id));
     if (!afw_environment_get_lock(s, xctx)) {
         impl->adaptor_lock_rw = afw_lock_create_rw_and_register(
             afw_utf8_clone(s, xctx->env->p, xctx),
             afw_utf8_printf(xctx->env->p, xctx,
-                "Adaptor id %" AFW_UTF8_FMT " read/write lock",
+                "Adaptor id " AFW_UTF8_FMT " read/write lock",
                 AFW_UTF8_FMT_ARG(impl->adaptor_id)),
             afw_utf8_printf(xctx->env->p, xctx,
-                "Read/write lock used internally by adaptor id %" AFW_UTF8_FMT " implementation.",
+                "Read/write lock used internally by adaptor id " AFW_UTF8_FMT " implementation.",
                 AFW_UTF8_FMT_ARG(impl->adaptor_id)),
             xctx);
     }
 
     /* Service id. */
     adaptor->service_id = afw_utf8_printf(p, xctx,
-        "adaptor-%" AFW_UTF8_FMT,
+        "adaptor-" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(impl->adaptor_id));
 
     /* Set trace fields */
@@ -291,7 +290,7 @@ afw_adaptor_impl_create_cede_p(
 
     /* Trace create */
     afw_trace_fz(1, adaptor->trace_flag_index, adaptor, xctx,
-        "adaptorId %" AFW_UTF8_FMT " is being created",
+        "adaptorId " AFW_UTF8_FMT " is being created",
         AFW_UTF8_FMT_ARG(&adaptor->adaptor_id));
 
     /* As default, allow read _AdaptiveObjectType_/_AdaptiveObjectType_. */
@@ -319,8 +318,8 @@ afw_adaptor_impl_create_cede_p(
         AFW_ENDTRY;
         if (!authorization_handler) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_FMT
-                " authorizationHandlerId  %" AFW_UTF8_FMT
+                AFW_UTF8_FMT
+                " authorizationHandlerId  " AFW_UTF8_FMT
                 " is not startable",
                 AFW_UTF8_FMT_ARG(impl->source_location),
                 AFW_UTF8_FMT_ARG(impl->authorization_handler_id));
@@ -332,8 +331,8 @@ afw_adaptor_impl_create_cede_p(
         adaptor->properties, &afw_s_journalAdaptorId, xctx);
     if (impl->journal_adaptor_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Adaptor %" AFW_UTF8_FMT
-            " specified journalAdaptorId %" AFW_UTF8_FMT
+            "Adaptor " AFW_UTF8_FMT
+            " specified journalAdaptorId " AFW_UTF8_FMT
             ".",
             AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(impl->journal_adaptor_id));
@@ -350,8 +349,8 @@ afw_adaptor_impl_create_cede_p(
                 !afw_adaptor_session_get_journal_interface(temp_session, xctx))
             {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "%" AFW_UTF8_FMT
-                    " Adaptor id %" AFW_UTF8_FMT
+                    AFW_UTF8_FMT
+                    " Adaptor id " AFW_UTF8_FMT
                     " specified in journalAdaptorId property is not startable"
                     " or does not support journaling.",
                     AFW_UTF8_FMT_ARG(impl->source_location),
@@ -900,8 +899,8 @@ impl_special_object_handling_cb(
                         if (subtype) {
                             object_type_id = afw_utf8_printf(
                                 object->p, xctx,
-                                "_AdaptiveConf_%" AFW_UTF8_FMT
-                                "_%" AFW_UTF8_FMT,
+                                "_AdaptiveConf_" AFW_UTF8_FMT
+                                "_" AFW_UTF8_FMT,
                                 AFW_UTF8_FMT_ARG(type),
                                 AFW_UTF8_FMT_ARG(subtype));
                             afw_object_meta_set_object_type_id(conf,
@@ -1007,7 +1006,7 @@ impl_afw_adaptor_session_retrieve_objects(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id));
     }
@@ -1016,7 +1015,7 @@ impl_afw_adaptor_session_retrieve_objects(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin retrieve_objects "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1087,7 +1086,7 @@ impl_afw_adaptor_session_retrieve_objects(
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end retrieve_objects "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
@@ -1127,7 +1126,7 @@ impl_afw_adaptor_session_get_object(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
@@ -1137,7 +1136,7 @@ impl_afw_adaptor_session_get_object(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin get_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1212,7 +1211,7 @@ end_trace:
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end get_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
@@ -1247,7 +1246,7 @@ impl_afw_adaptor_session_add_object(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
@@ -1257,7 +1256,7 @@ impl_afw_adaptor_session_add_object(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin add_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1277,7 +1276,7 @@ impl_afw_adaptor_session_add_object(
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end add_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /* Return result. */
@@ -1314,7 +1313,7 @@ impl_afw_adaptor_session_modify_object(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
@@ -1324,7 +1323,7 @@ impl_afw_adaptor_session_modify_object(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin modify_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1344,7 +1343,7 @@ impl_afw_adaptor_session_modify_object(
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end modify_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
@@ -1378,7 +1377,7 @@ impl_afw_adaptor_session_replace_object(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
@@ -1388,7 +1387,7 @@ impl_afw_adaptor_session_replace_object(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin replace_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1408,7 +1407,7 @@ impl_afw_adaptor_session_replace_object(
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end replace_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 
@@ -1441,7 +1440,7 @@ impl_afw_adaptor_session_delete_object(
     }
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
@@ -1451,7 +1450,7 @@ impl_afw_adaptor_session_delete_object(
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "begin delete_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
     /** @fixme Add common prologue code. */
@@ -1470,7 +1469,7 @@ impl_afw_adaptor_session_delete_object(
     /* Trace end */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
         "end delete_object "
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 }
 

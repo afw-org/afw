@@ -251,14 +251,14 @@ impl_process_directive(
     if (is_invalid) {
         if (string->len <= 30) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive: %" AFW_UTF8_FMT,
+                "Invalid directive: " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(string));
         }
         else {
             partial.s = string->s;
             partial.len = 30;
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive beginning: %" AFW_UTF8_FMT,
+                "Invalid directive beginning: " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(&partial));
         }
     }
@@ -350,7 +350,7 @@ impl_read_and_process_request(
                 string = afw_data_type_object_to_utf8(response_object,
                     p, xctx);
                 afw_command_local_server_write_result(self,
-                    "%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(string));
+                    AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(string));
                 break;
 
             case afw_command_local_server_mode_evaluate:
@@ -360,8 +360,8 @@ impl_read_and_process_request(
                 string = afw_json_utf8_string_create(string, p, xctx);
                 input = (const afw_memory_t *)afw_utf8_printf(p, xctx,
                     "{\n"
-                    "    \"function\": \"%" AFW_UTF8_FMT "\",\n"
-                    "    \"source\": %" AFW_UTF8_FMT "\n"
+                    "    \"function\": \"" AFW_UTF8_FMT "\",\n"
+                    "    \"source\": " AFW_UTF8_FMT "\n"
                     "}\n",
                 AFW_UTF8_FMT_ARG(self->evaluate_function_id),
                 AFW_UTF8_FMT_ARG(string)
@@ -387,7 +387,7 @@ impl_read_and_process_request(
                 string = afw_data_type_object_to_utf8(response_object,
                     p, xctx);
                 afw_command_local_server_write_result(self,
-                    "%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(string));
+                    AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(string));
                 break;
 
             case afw_command_local_server_mode_http_like:
@@ -610,7 +610,7 @@ afw_command_local_server_write_error(
     string = afw_data_type_object_to_utf8(response_object, xctx->p, xctx);
     rv = fprintf(self->fd_output, "%" AFW_SIZE_T_FMT "\n", string->len);
     if (rv < 0) exit(EXIT_FAILURE);
-    rv = fprintf(self->fd_output, "%" AFW_UTF8_FMT,
+    rv = fprintf(self->fd_output, AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(string));
     if (rv < 0) exit(EXIT_FAILURE);
     rv = fflush(self->fd_output);

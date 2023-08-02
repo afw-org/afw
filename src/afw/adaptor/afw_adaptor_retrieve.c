@@ -68,8 +68,8 @@ afw_adaptor_retrieve_objects(
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
         "/"
-        "%" AFW_UTF8_FMT "/"
-        "%" AFW_UTF8_FMT "/",
+        AFW_UTF8_FMT "/"
+        AFW_UTF8_FMT "/",
         AFW_UTF8_FMT_ARG(adaptor_id),
         AFW_UTF8_FMT_ARG(object_type_id));
     afw_object_set_property_as_string(request,

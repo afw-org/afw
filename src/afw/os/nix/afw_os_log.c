@@ -163,5 +163,5 @@ impl_afw_log_write(
 
     syslog_priority = afw_syslog_map[priority];
 
-    syslog(syslog_priority, "%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(message));   
+    syslog(syslog_priority, AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(message));   
 }

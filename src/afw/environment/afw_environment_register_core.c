@@ -66,8 +66,8 @@ impl_AdaptiveLayoutComponentType_retrieve_cb(
                 object->meta.id, xctx))
             {
                 AFW_LOG_FZ(info, xctx,
-                    "/%" AFW_UTF8_FMT
-                    "/_AdaptiveLayoutComponentType_/%" AFW_UTF8_FMT
+                    "/" AFW_UTF8_FMT
+                    "/_AdaptiveLayoutComponentType_/" AFW_UTF8_FMT
                     " ignored because AFW core or an extension supplies it",
                     AFW_UTF8_FMT_ARG(xctx->env->layout_adaptor_id),
                     AFW_UTF8_FMT_ARG(object->meta.id));

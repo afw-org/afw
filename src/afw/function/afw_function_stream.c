@@ -493,7 +493,7 @@ afw_function_execute_open_file(
         &streamId->internal, x->xctx);
     if (number == -1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId %" AFW_UTF8_FMT " is already open",
+            "streamId " AFW_UTF8_FMT " is already open",
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 
@@ -504,7 +504,7 @@ afw_function_execute_open_file(
     number = afw_stream_set(stream, x->xctx);
     if (number == -1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId %" AFW_UTF8_FMT " could not be set",
+            "streamId " AFW_UTF8_FMT " could not be set",
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 
@@ -562,7 +562,7 @@ afw_function_execute_open_response(
         x->xctx);
     if (number == -1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId %" AFW_UTF8_FMT " is already open",
+            "streamId " AFW_UTF8_FMT " is already open",
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 
@@ -570,7 +570,7 @@ afw_function_execute_open_response(
     number = afw_stream_set(stream, x->xctx);
     if (number == -1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId %" AFW_UTF8_FMT " could not be set",
+            "streamId " AFW_UTF8_FMT " could not be set",
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 

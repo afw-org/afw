@@ -115,11 +115,11 @@ impl_afw_adaptor_session_retrieve_objects(
         /* Check to see if the user wants inherited object types to be returned */
         if (AFW_OBJECT_OPTION_IS(impl_request->options, includeDescendentObjectTypes)) {
             filter_class = afw_utf8_printf(p, xctx,
-                "objectclass=%" AFW_UTF8_FMT,
+                "objectclass=" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(object_type_id));
         } else {
             filter_class = afw_utf8_printf(p, xctx,
-                "structuralobjectclass=%" AFW_UTF8_FMT,
+                "structuralobjectclass=" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(object_type_id));
         }
     } else {
@@ -129,7 +129,7 @@ impl_afw_adaptor_session_retrieve_objects(
         filter = afw_ldap_internal_expression_from_query_criteria(
             self, criteria->filter, xctx);
         filter = afw_utf8_printf(p, xctx,
-            "(&(%" AFW_UTF8_FMT ")(%" AFW_UTF8_FMT "))",
+            "(&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT "))",
             AFW_UTF8_FMT_ARG(filter_class), AFW_UTF8_FMT_ARG(filter));
     } else {
         filter = filter_class;
@@ -250,7 +250,7 @@ impl_afw_adaptor_session_get_object(
     res = NULL;
     ldap_scope = LDAP_SCOPE_BASE;
     filter_z = apr_psprintf(afw_pool_get_apr_pool(xctx->p),
-        "(structuralobjectclass=%" AFW_UTF8_FMT ")",
+        "(structuralobjectclass=" AFW_UTF8_FMT ")",
         AFW_UTF8_FMT_ARG(object_type_id));
     rv = ldap_search_s(self->ld, (char *)dn_z, ldap_scope, (char *)filter_z,
         afw_ldap_internal_allattrs, 0, &res);
@@ -336,7 +336,7 @@ impl_afw_adaptor_session_add_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type %" AFW_UTF8_FMT " not found",
+            "Object type " AFW_UTF8_FMT " not found",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
 
@@ -437,7 +437,7 @@ impl_afw_adaptor_session_modify_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type %" AFW_UTF8_FMT " not found",
+            "Object type " AFW_UTF8_FMT " not found",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
 
@@ -463,7 +463,7 @@ impl_afw_adaptor_session_modify_object(
         if (!attribute || attribute->attribute_type->never_allow_write)
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
-                "Property %" AFW_UTF8_FMT " can not be modified",
+                "Property " AFW_UTF8_FMT " can not be modified",
                 AFW_UTF8_FMT_ARG(property_name)
             );
         }

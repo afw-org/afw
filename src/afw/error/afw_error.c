@@ -574,14 +574,14 @@ afw_error_to_utf8(
 
         "%s"                           /* recursive error */
 
-        "%s%" AFW_UTF8_FMT "%s"        /* source location */
+        "%s" AFW_UTF8_FMT "%s"        /* source location */
         "%.0" AFW_SIZE_T_FMT
 
         "]"
 
-        "%s%" AFW_UTF8_FMT             /* evaluation backtrace */
+        "%s" AFW_UTF8_FMT             /* evaluation backtrace */
 
-        "%s%" AFW_UTF8_FMT,            /* code backtrace */
+        "%s" AFW_UTF8_FMT,            /* code backtrace */
 
         /* message. */
         error->message_z,
@@ -641,7 +641,7 @@ afw_error_write_log(afw_log_priority_t priority,
             priority,
             afw_error_source_file(error),
             xctx,
-            "%s [%" AFW_UTF8_FMT "%s%0d]",
+            "%s [" AFW_UTF8_FMT "%s%0d]",
             error->message_z,
             AFW_UTF8_FMT_ARG(error->contextual->source_location),
             (error->contextual && error->contextual->value_offset != 0) ? " +" : "",
@@ -707,7 +707,7 @@ afw_error_print(FILE *fp, const afw_error_t *error)
         rv = fprintf(fp, "\ncontextual:\n");
         if (rv < 0) goto return_rv;
         if (error->contextual->source_location) {
-            rv = fprintf(fp, "  source:  %" AFW_UTF8_FMT "\n",
+            rv = fprintf(fp, "  source:  " AFW_UTF8_FMT "\n",
                 AFW_UTF8_FMT_ARG(error->contextual->source_location));
             if (rv < 0) goto return_rv;
         }
@@ -717,7 +717,7 @@ afw_error_print(FILE *fp, const afw_error_t *error)
         if (rv < 0) goto return_rv;
 
         if (value_source.len != 0) {
-            rv = fprintf(fp, "  around:  %" AFW_UTF8_FMT "\n",
+            rv = fprintf(fp, "  around:  " AFW_UTF8_FMT "\n",
                 AFW_UTF8_FMT_ARG(&value_source));
             if (rv < 0) goto return_rv;
 
@@ -751,7 +751,7 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     }
 
     if (error->backtrace) {
-        rv = fprintf(fp, "\nbacktrace:\n%" AFW_UTF8_FMT "\n",
+        rv = fprintf(fp, "\nbacktrace:\n" AFW_UTF8_FMT "\n",
             AFW_UTF8_FMT_ARG(error->backtrace));
         if (rv < 0) goto return_rv;
     }

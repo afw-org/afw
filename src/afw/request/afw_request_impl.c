@@ -31,7 +31,7 @@ afw_request_impl_trace_begin(
             xctx->p, xctx);
         afw_trace_fz(1, xctx->env->flag_index_trace_request,
             instance, xctx,
-            "RequestProperties=%" AFW_UTF8_FMT,
+            "RequestProperties=" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(s)
         );
     }
@@ -40,9 +40,9 @@ afw_request_impl_trace_begin(
     {
         afw_trace_fz(1, xctx->env->flag_index_trace_request, 
             instance, xctx,
-            "Method=%" AFW_UTF8_FMT
-            " uri=%" AFW_UTF8_FMT
-            " query_string=%" AFW_UTF8_FMT,
+            "Method=" AFW_UTF8_FMT
+            " uri=" AFW_UTF8_FMT
+            " query_string=" AFW_UTF8_FMT,
             AFW_UTF8_FMT_OPTIONAL_ARG(instance->method),
             AFW_UTF8_FMT_OPTIONAL_ARG(instance->uri),
             AFW_UTF8_FMT_OPTIONAL_ARG(instance->query_string));

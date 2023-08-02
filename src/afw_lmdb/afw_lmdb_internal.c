@@ -93,11 +93,11 @@ MDB_dbi afw_lmdb_internal_open_database(
             database->len, dbi_p);
     } else if (rc == MDB_NOTFOUND) {
         AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
-            "Unable to open database: %" AFW_UTF8_FMT ".", 
+            "Unable to open database: " AFW_UTF8_FMT ".", 
             AFW_UTF8_FMT_ARG(database));
     } else {
         AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
-            "Unable to open database: %" AFW_UTF8_FMT ".", 
+            "Unable to open database: " AFW_UTF8_FMT ".", 
             AFW_UTF8_FMT_ARG(database));
     }
 

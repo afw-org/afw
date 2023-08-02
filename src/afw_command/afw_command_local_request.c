@@ -178,7 +178,7 @@ impl_afw_request_write_raw_response_body(
     /* Write response body. */
     afw_command_local_server_write_result(
         self->server_self,
-        "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT,
         (int)size, (const char *)buffer);
 }
 

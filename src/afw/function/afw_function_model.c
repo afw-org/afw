@@ -65,7 +65,7 @@ impl_get_self_and_model(
         &afw_s_model))
     {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " is not a model adaptor",
+            AFW_UTF8_FMT " is not a model adaptor",
             AFW_UTF8_FMT_ARG(&adaptorId_value->internal));
     }
 

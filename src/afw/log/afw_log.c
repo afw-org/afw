@@ -169,9 +169,9 @@ void afw_log_internal_register_logType_context_type(
     const afw_object_t *variable_definitions;
 
     context_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "logType-%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(log_type_id));
+        "logType-" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(log_type_id));
     conf_object_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "_AdaptiveConf_log_%" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(log_type_id));
+        "_AdaptiveConf_log_" AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(log_type_id));
     context_type_object = afw_context_type_create(
         context_type_id, xctx->env->p, xctx);
     qualifier_definitions =
@@ -490,9 +490,9 @@ impl_write_formatted_message(
         else {
             /* No time or program name[pid] */
             wa->formatted_message = afw_utf8_printf(wa->p, xctx,
-                "[%" AFW_UTF8_FMT
-                " %" AFW_UTF8_FMT
-                "] %" AFW_UTF8_FMT,
+                "[" AFW_UTF8_FMT
+                " " AFW_UTF8_FMT
+                "] " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(&xctx->env->application_id),
                 AFW_UTF8_FMT_ARG(xctx->uuid),
                 AFW_UTF8_FMT_ARG(wa->message));
@@ -503,7 +503,7 @@ impl_write_formatted_message(
             afw_log_write(wa->e->log, wa->priority,
                 wa->source_z, wa->formatted_message, xctx);
         } else {
-            fprintf(xctx->env->stderr_fd, "%" AFW_UTF8_FMT "\n",
+            fprintf(xctx->env->stderr_fd, AFW_UTF8_FMT "\n",
                 AFW_UTF8_FMT_ARG(wa->formatted_message));
 
             /* flush output */
@@ -663,7 +663,7 @@ impl_afw_service_type_start_cede_p (
     factory = afw_environment_get_log_type(log_type, xctx);
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "logType %" AFW_UTF8_FMT " is not a registered log type.",
+            "logType " AFW_UTF8_FMT " is not a registered log type.",
             AFW_UTF8_FMT_ARG(log_type));
     }
    
@@ -742,8 +742,8 @@ afw_log_impl_throw_property_invalid(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=%" AFW_UTF8_FMT
-        " property name %" AFW_UTF8_FMT " is not valid.",
+        "Configuration type=log, logId=" AFW_UTF8_FMT
+        " property name " AFW_UTF8_FMT " is not valid.",
         AFW_UTF8_FMT_ARG(&log->log_id),
         AFW_UTF8_FMT_ARG(property_name));
 }
@@ -756,8 +756,8 @@ afw_log_impl_throw_property_required(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=%" AFW_UTF8_FMT
-        " property name %" AFW_UTF8_FMT " is required.",
+        "Configuration type=log, logId=" AFW_UTF8_FMT
+        " property name " AFW_UTF8_FMT " is required.",
         AFW_UTF8_FMT_ARG(&log->log_id),
         AFW_UTF8_FMT_ARG(property_name));
 }
@@ -805,7 +805,7 @@ afw_log_impl_create_cede_p(
 
     /* Service id. */
     self->service_id = afw_utf8_printf(p, xctx,
-        "log-%" AFW_UTF8_FMT,
+        "log-" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&self->log_id));
 
     /* Process <priority>, if they exists. */

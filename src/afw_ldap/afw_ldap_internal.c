@@ -183,7 +183,7 @@ afw_ldap_internal_session_begin(
         self->adaptor->bind_parameters, p, xctx);
     if (!afw_value_is_object(bind_parameters_value)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid bindParameters for adaptorId %" AFW_UTF8_FMT,
+            "Invalid bindParameters for adaptorId " AFW_UTF8_FMT,
             &adaptor->pub.adaptor_id);
     }
     bind_parameters = ((const afw_value_object_t *)bind_parameters_value)
@@ -194,7 +194,7 @@ afw_ldap_internal_session_begin(
         &afw_ldap_s_password, p, xctx);
     if (!self->bind_dn_z || !self->bind_password_z) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid bindParameters for adaptorId %" AFW_UTF8_FMT,
+            "Invalid bindParameters for adaptorId " AFW_UTF8_FMT,
             &adaptor->pub.adaptor_id);
     }
 
@@ -363,37 +363,37 @@ afw_ldap_internal_expression_from_filter_entry(
     switch (entry->op_id) {
         case afw_query_criteria_filter_op_id_eq:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "%" AFW_UTF8_FMT "=%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "=" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         case afw_query_criteria_filter_op_id_ne:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "!(%" AFW_UTF8_FMT "=%" AFW_UTF8_FMT ")",
+                "!(" AFW_UTF8_FMT "=" AFW_UTF8_FMT ")",
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         case afw_query_criteria_filter_op_id_lt:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "%" AFW_UTF8_FMT "<%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "<" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         case afw_query_criteria_filter_op_id_le:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "%" AFW_UTF8_FMT "<=%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT "<=" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         case afw_query_criteria_filter_op_id_gt:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "%" AFW_UTF8_FMT ">%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT ">" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         case afw_query_criteria_filter_op_id_ge:
             filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "%" AFW_UTF8_FMT ">=%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT ">=" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(property_name), 
                 AFW_UTF8_FMT_ARG(property_value));
             break;
@@ -440,7 +440,7 @@ afw_ldap_internal_expression_from_query_criteria(
 
         /* (|(&(filter_expression)(on_true))(on_false)) */
         filter_expression = afw_utf8_printf(xctx->p, xctx,
-            "|(&(%" AFW_UTF8_FMT ")(%" AFW_UTF8_FMT "))(%" AFW_UTF8_FMT ")",
+            "|(&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT "))(" AFW_UTF8_FMT ")",
             AFW_UTF8_FMT_ARG(filter_expression), 
             AFW_UTF8_FMT_ARG(on_true), AFW_UTF8_FMT_ARG(on_false));
     }
@@ -452,7 +452,7 @@ afw_ldap_internal_expression_from_query_criteria(
             session, entry->on_true, xctx);
 
         /* (&(filter_expression)(on_true)) */
-        filter_expression = afw_utf8_printf(xctx->p, xctx, "&(%" AFW_UTF8_FMT ")(%" AFW_UTF8_FMT ")",
+        filter_expression = afw_utf8_printf(xctx->p, xctx, "&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT ")",
             filter_expression->len, filter_expression->s,
             on_true->len, on_true->s);
     }
@@ -465,7 +465,7 @@ afw_ldap_internal_expression_from_query_criteria(
 
         /* (|(filter_expression)(on_false)) */
         filter_expression = afw_utf8_printf(xctx->p, xctx,
-            "|(%" AFW_UTF8_FMT ")(%" AFW_UTF8_FMT ")",
+            "|(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT ")",
             AFW_UTF8_FMT_ARG(filter_expression),
             AFW_UTF8_FMT_ARG(on_false));
     }

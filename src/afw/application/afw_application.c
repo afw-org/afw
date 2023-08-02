@@ -187,7 +187,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Only one application conf allowed. */
     if (env->application_object) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "type=application conf entry already specified.",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -202,7 +202,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Get conf adaptor.  It will not ever be released. */
     if (conf_adaptor_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified confAdaptorId %" AFW_UTF8_FMT
+            "Application specified confAdaptorId " AFW_UTF8_FMT
             ".",
             AFW_UTF8_FMT_ARG(conf_adaptor_id));
         env->conf_adaptor = afw_adaptor_get_reference(conf_adaptor_id, xctx);
@@ -247,7 +247,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         AFW_CATCH_UNHANDLED{
             error = true;
             AFW_LOG_FZ(err, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "%s",
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_ERROR_THROWN->message_z);
@@ -262,7 +262,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         /* If there was an unexpected error, throw error. */
         if (error) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "error logged _AdaptiveService_",
                 AFW_UTF8_FMT_ARG(source_location));
         }
@@ -280,11 +280,11 @@ afw_application_internal_application_conf_type_create_cede_p(
                 {
                     if (!afw_value_equal(value, entry_value, xctx)) {
                         AFW_LOG_FZ(warning, xctx,
-                            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                            AFW_UTF8_CONTEXTUAL_LABEL_FMT
                             "configuration type \"application\" ignored "
-                            "/%" AFW_UTF8_FMT
-                            "/_AdaptiveConf_application/%" AFW_UTF8_FMT
-                            ".%" AFW_UTF8_FMT
+                            "/" AFW_UTF8_FMT
+                            "/_AdaptiveConf_application/" AFW_UTF8_FMT
+                            "." AFW_UTF8_FMT
                             " because it is allowWrite=false or specified "
                             " in the conf file.",
                             AFW_UTF8_FMT_ARG(source_location),
@@ -348,7 +348,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     if (env->application_qualified_variables) {
         detail_source_location = afw_utf8_printf(
             env->application_qualified_variables->p, xctx,
-            "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(&afw_s_qualifiedVariables));
         env->application_qualified_variables = afw_object_create_clone(
@@ -376,7 +376,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Set supported core object type in adaptor. */
     if (env->layout_adaptor_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified layoutAdaptorId %" AFW_UTF8_FMT
+            "Application specified layoutAdaptorId " AFW_UTF8_FMT
             ".",
             AFW_UTF8_FMT_ARG(env->layout_adaptor_id));
         layout_adaptor = afw_adaptor_get_reference(env->layout_adaptor_id, xctx);
@@ -420,7 +420,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             s = afw_value_as_casted_utf8(value, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Application onApplicationStartupComplete script returned value "
-                "other than 0 - %" AFW_UTF8_FMT,
+                "other than 0 - " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(s));
         }
         else {
@@ -433,7 +433,7 @@ afw_application_internal_application_conf_type_create_cede_p(
   
     /* Log application startup complete. */
     AFW_LOG_FZ(info, xctx,
-        "%" AFW_UTF8_FMT " application startup complete.",
+        AFW_UTF8_FMT " application startup complete.",
         AFW_UTF8_FMT_ARG(application_id));
 
 }

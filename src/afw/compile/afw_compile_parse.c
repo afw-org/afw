@@ -96,13 +96,13 @@ afw_compile_create_source_location_impl(
 
     if (has_nl) {
         result = afw_utf8_printf(parser->p, parser->xctx,
-            "%" AFW_UTF8_FMT "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
+            AFW_UTF8_FMT "[%" AFW_SIZE_T_FMT ":%" AFW_SIZE_T_FMT "]",
             AFW_UTF8_FMT_ARG(parser->contextual.source_location),
             line, column);
     }
     else {
         result = afw_utf8_printf(parser->p, parser->xctx,
-            "%" AFW_UTF8_FMT "+%" AFW_SIZE_T_FMT,
+            AFW_UTF8_FMT "+%" AFW_SIZE_T_FMT,
             AFW_UTF8_FMT_ARG(parser->contextual.source_location),
             start_offset);
     }
@@ -143,12 +143,12 @@ afw_compile_parse_reference_create(
         if (!result) {
             if (qualifier.len == 0) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "Undeclared variable %" AFW_UTF8_FMT,
+                    "Undeclared variable " AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(&name));
             }
             if (afw_utf8_equal(&qualifier, &afw_s_fn)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "Unknown built-in function %" AFW_UTF8_FMT,
+                    "Unknown built-in function " AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(&name));
             }
             result =
@@ -270,7 +270,7 @@ afw_compile_parse_variable_reference_create(
         symbol = afw_compile_parse_get_symbol_entry(parser, identifier);
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Variable %" AFW_UTF8_FMT " is not declared",
+                "Variable " AFW_UTF8_FMT " is not declared",
                 AFW_UTF8_FMT_ARG(identifier));
         }
     }
@@ -278,7 +278,7 @@ afw_compile_parse_variable_reference_create(
         symbol = afw_compile_parse_get_symbol_entry(parser, identifier);
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Variable %" AFW_UTF8_FMT " is not declared",
+                "Variable " AFW_UTF8_FMT " is not declared",
                 AFW_UTF8_FMT_ARG(identifier));
         }
     }
@@ -344,7 +344,7 @@ afw_compile_parse_add_symbol_entry(
     afw_value_block_symbol_t *entry;
 
     if (afw_compile_parse_get_local_symbol_entry(parser, name)) {
-        AFW_COMPILE_THROW_ERROR_FZ("%" AFW_UTF8_FMT " already defined",
+        AFW_COMPILE_THROW_ERROR_FZ(AFW_UTF8_FMT " already defined",
             AFW_UTF8_FMT_ARG(name));
     }
 

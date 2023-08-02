@@ -76,7 +76,7 @@ impl_read_file_object(
     adjusted.s = object_id->s + vfs_entry->key.len;
     adjusted.len = object_id->len - vfs_entry->key.len;
     file_path_z = afw_utf8_z_printf(p, xctx,
-        "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&vfs_entry->string),
         AFW_UTF8_FMT_ARG(&adjusted));
     rv = apr_stat(&finfo, file_path_z, APR_FINFO_MIN, afw_pool_get_apr_pool(p));
@@ -122,7 +122,7 @@ impl_read_file_object(
         afw_object_set_property(object,
             &afw_vfs_s_isDirectory, afw_value_true, xctx);
         vfs_path = afw_utf8_printf(p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_id));
         afw_object_set_property_as_anyURI(object,
@@ -203,7 +203,7 @@ impl_read_file_object(
             object_id,
             xctx);
         vfs_path = afw_utf8_printf(p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_id));
         afw_object_set_property_as_anyURI(object,
@@ -552,13 +552,13 @@ impl_afw_adaptor_session_retrieve_objects(
     {
         if (subdirectory) {
             subdirectory_vfs_entry.key_z = afw_utf8_z_printf(p, xctx,
-                "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(&vfs_entry->key),
                 AFW_UTF8_FMT_ARG(subdirectory));
             subdirectory_vfs_entry.key.len =
                 strlen(subdirectory_vfs_entry.key_z);
             subdirectory_vfs_entry.string_z = afw_utf8_z_printf(p, xctx,
-                "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(&vfs_entry->string),
                 AFW_UTF8_FMT_ARG(subdirectory));
             subdirectory_vfs_entry.string.len =
@@ -665,7 +665,7 @@ impl_determine_path_for_object_id(
     adjusted.s.s = object_id->s + vfs_entry->key.len;
     adjusted.s.len = object_id->len - vfs_entry->key.len;
     path->s_z = afw_utf8_z_printf(p, xctx,
-        "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&vfs_entry->string),
         AFW_UTF8_FMT_ARG(&adjusted.s));
     path->s.len = strlen(path->s_z);
@@ -685,14 +685,14 @@ impl_determine_path_for_object_id(
     if (expect_exists) {
         if (!exists) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                "object_id %" AFW_UTF8_FMT " doesn't exist",
+                "object_id " AFW_UTF8_FMT " doesn't exist",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }
     }
     else {
         if (exists) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "object_id %" AFW_UTF8_FMT " already exists",
+                "object_id " AFW_UTF8_FMT " already exists",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }
     }
@@ -702,7 +702,7 @@ impl_determine_path_for_object_id(
         if (finfo.filetype == APR_DIR) {
             if (!*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id %" AFW_UTF8_FMT
+                    "object_id " AFW_UTF8_FMT
                     " is directory so must end with '/'",
                     AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
             }
@@ -710,14 +710,14 @@ impl_determine_path_for_object_id(
         else if (finfo.filetype == APR_REG) {
             if (*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id %" AFW_UTF8_FMT
+                    "object_id " AFW_UTF8_FMT
                     " is a regular file so must not end with '/'",
                     AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
             }
         }
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "object_id %" AFW_UTF8_FMT
+                "object_id " AFW_UTF8_FMT
                 " filetype is not allowed",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }
@@ -794,7 +794,7 @@ impl_write_data_to_file(
     /* Make file executable if match in adaptor->mark_executable. */
     if (adaptor->mark_executable) {
         vfs_path_z = afw_utf8_z_printf(self->pub.p, xctx,
-            "/%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT,
+            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
             AFW_UTF8_FMT_ARG(object_id));
         for (pattern = adaptor->mark_executable; pattern->s_z; pattern++) {

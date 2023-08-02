@@ -66,7 +66,7 @@ afw_function_execute_assert(
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(reason, 2, string);
         if (reason) {
             AFW_THROW_ERROR_FZ(assertion_failed, x->xctx,
-                "Assertion failed: %" AFW_UTF8_FMT,
+                "Assertion failed: " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(&reason->internal));
         }
         else {
@@ -1786,7 +1786,7 @@ afw_function_execute_test_script_runtime_support(
 
         if (info->compile_type == afw_compile_type_error) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "source_type=%" AFW_UTF8_FMT " is invalid",
+                "source_type=" AFW_UTF8_FMT " is invalid",
                 AFW_UTF8_FMT_ARG(source_type));
         }
 

@@ -191,7 +191,7 @@ afw_stream_fd_open_and_create(
     fd = fopen(actual_path_z, mode_z);
     if (!fd) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "streamId %" AFW_UTF8_FMT " failed to open: %s",
+            "streamId " AFW_UTF8_FMT " failed to open: %s",
             AFW_UTF8_FMT_ARG(streamId), strerror(errno));
     }
 

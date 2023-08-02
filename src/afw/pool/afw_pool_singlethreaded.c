@@ -41,7 +41,7 @@ do { \
             " parent %" AFW_INTEGER_FMT \
             " single" \
             "%s" \
-            "%" AFW_UTF8_FMT, \
+            AFW_UTF8_FMT, \
             self->pool_number, \
             (self->bytes_allocated), \
             (self->reference_count), \
@@ -68,7 +68,7 @@ do { \
             " parent %" AFW_INTEGER_FMT \
             " single" \
             "%s" \
-            "%" AFW_UTF8_FMT, \
+            AFW_UTF8_FMT, \
             self->pool_number, \
             __VA_ARGS__, \
             (self->bytes_allocated), \

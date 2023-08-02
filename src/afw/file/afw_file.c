@@ -112,7 +112,7 @@ afw_file_to_memory(
         to_memory->ptr = buff;
         if (to_memory->size < 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Error reading %" AFW_UTF8_FMT ".", 
+                "Error reading " AFW_UTF8_FMT ".", 
                 AFW_UTF8_FMT_ARG(file_path));
         }
 
@@ -332,12 +332,12 @@ afw_file_adaptor_create_cede_p(
 
     /* Make path for journal directory. */
     self->journal_dir_path_z = afw_utf8_z_printf(p, xctx,
-        "%" AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/",
+        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/",
         AFW_UTF8_FMT_ARG(self->root));
 
     /* Make path to journal lock file. */
     self->journal_lock_file_path_z = afw_utf8_z_printf(p, xctx,
-        "%" AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock",
+        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock",
         AFW_UTF8_FMT_ARG(self->root));
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
@@ -426,7 +426,7 @@ impl_get_full_path(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_utf8_printf(p, xctx,
-        "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(adaptor->root),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id),
@@ -478,7 +478,7 @@ impl_afw_adaptor_session_retrieve_objects(
 
     /* Open ObjectType's directory. */
     dirname_z = apr_psprintf(afw_pool_get_apr_pool(p),
-        "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT "/",
+        AFW_UTF8_FMT AFW_UTF8_FMT "/",
         AFW_UTF8_FMT_ARG(adaptor->root),
         AFW_UTF8_FMT_ARG(object_type_id));
     rv = apr_dir_open(&dir, dirname_z, afw_pool_get_apr_pool(p));
@@ -535,7 +535,7 @@ impl_afw_adaptor_session_retrieve_objects(
         
         /** @fixme: Mike filename_suffix could be NULL here */
         full_path = afw_utf8_printf(obj_p, xctx,
-            "%" AFW_UTF8_FMT "%" AFW_UTF8_FMT "/%" AFW_UTF8_FMT "%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(adaptor->root),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id),

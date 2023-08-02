@@ -33,7 +33,7 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         xctx);
     if (!head) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "request handler head missing.",
             AFW_UTF8_FMT_ARG(source_location));
     }
@@ -50,7 +50,7 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         &afw_s_requestHandlerType, p, xctx);
 
     /* Log request handler active. */
-    AFW_LOG_FZ(info, xctx, "Request handler for URI prefix %" AFW_UTF8_FMT
+    AFW_LOG_FZ(info, xctx, "Request handler for URI prefix " AFW_UTF8_FMT
         " starting.",
         AFW_UTF8_FMT_ARG(e->uri_prefix));
 
@@ -59,8 +59,8 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         e->handler_type, xctx);
     if (!e->factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid handler_type %" AFW_UTF8_FMT ".",
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "invalid handler_type " AFW_UTF8_FMT ".",
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(e->handler_type));
     }
@@ -86,7 +86,7 @@ void afw_request_handler_internal_conf_type_create_cede_p(
     afw_runtime_env_set_object(entry, false, xctx);
 
     /* Log request handler active. */
-    AFW_LOG_FZ(info, xctx, "Request handler for URI prefix %" AFW_UTF8_FMT
+    AFW_LOG_FZ(info, xctx, "Request handler for URI prefix " AFW_UTF8_FMT
         " successfully started.",
         AFW_UTF8_FMT_ARG(head->last_handler->uri_prefix));
 }

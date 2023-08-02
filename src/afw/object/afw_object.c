@@ -234,7 +234,7 @@ afw_object_get_property_compile_as(
         use_source_location = source_location;
     }
     use_source_location = afw_utf8_printf(p, xctx,
-        "%" AFW_UTF8_FMT "/" "%" AFW_UTF8_FMT,
+        AFW_UTF8_FMT "/" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(use_source_location), AFW_UTF8_FMT_ARG(property_name));
 
     value = afw_object_get_property(instance, property_name, xctx);
@@ -417,7 +417,7 @@ afw_object_old_get_property_as_compiled_hybrid(
     /* Only evaluated values are supported. */
     if (!afw_value_is_defined_and_evaluated(result)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "%" AFW_UTF8_FMT " %" AFW_UTF8_FMT
+            AFW_UTF8_FMT " " AFW_UTF8_FMT
             " is not an evaluated value",
             AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
             AFW_UTF8_FMT_ARG(property_name));

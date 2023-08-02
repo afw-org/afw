@@ -259,8 +259,8 @@ impl_afw_stream_flush(
         header = afw_utf8_printf(self->cache_writer->p, xctx,
             "%" AFW_INTEGER_FMT
             " %" AFW_SIZE_T_FMT
-            " %" AFW_UTF8_FMT
-            "%s%" AFW_UTF8_FMT
+            " " AFW_UTF8_FMT
+            "%s" AFW_UTF8_FMT
             "\n",
             ++(xctx->write_sequence),
             size,

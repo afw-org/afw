@@ -26,7 +26,7 @@ afw_debug_write(
 {
     if (rti) {
         fprintf(xctx->env->debug_fd,
-            ">debug [%" AFW_UTF8_FMT ":%" AFW_UTF8_FMT "] %" AFW_UTF8_FMT
+            ">debug [" AFW_UTF8_FMT ":" AFW_UTF8_FMT "] " AFW_UTF8_FMT
             " (%s)\n",
             AFW_UTF8_FMT_ARG(&rti->interface_name),
             AFW_UTF8_FMT_ARG(&rti->implementation_id),
@@ -34,7 +34,7 @@ afw_debug_write(
             afw_utf8_z_source_file(source_z));
     }
     else {
-        fprintf(xctx->env->debug_fd, ">debug %" AFW_UTF8_FMT " (%s)\n",
+        fprintf(xctx->env->debug_fd, ">debug " AFW_UTF8_FMT " (%s)\n",
             AFW_UTF8_FMT_ARG(message), afw_utf8_z_source_file(source_z));
     }
     fflush(xctx->env->debug_fd);

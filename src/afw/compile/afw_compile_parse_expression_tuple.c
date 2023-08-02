@@ -879,7 +879,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
             &qualifier, &name, parser->xctx);
         if (!function_value) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown built-in function %" AFW_UTF8_FMT,
+                "Unknown built-in function " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(parser->token->string));
         }
 
@@ -957,7 +957,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
                 contextual, parser->token->string);
             if (afw_value_is_function_definition(function_value)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "Use call or callA to call built-in function %"
+                    "Use call or callA to call built-in function "
                     AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(parser->token->string));
             }

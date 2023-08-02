@@ -639,8 +639,8 @@ impl_log_errors(
         &iterator, xctx)))
     {
         AFW_LOG_FZ(info, xctx,
-            "%" AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "%" AFW_UTF8_FMT,
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(error));
     }
@@ -693,8 +693,8 @@ afw_object_meta_log_errors(
                 &afw_s_errors, xctx);
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
-                    "%" AFW_UTF8_FMT
-                    ".%" AFW_UTF8_FMT,
+                    AFW_UTF8_FMT
+                    "." AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(source_location),
                     AFW_UTF8_FMT_ARG(property_name));
                 impl_log_errors(errors, property_source_location, xctx);
@@ -713,8 +713,8 @@ afw_object_meta_log_errors(
         embedded = ((afw_value_object_t *)value)->internal;
         if (afw_object_meta_has_errors(embedded, xctx)) {
             property_source_location = afw_utf8_printf(p, xctx,
-                "%" AFW_UTF8_FMT
-                ".%" AFW_UTF8_FMT,
+                AFW_UTF8_FMT
+                "." AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
             afw_object_meta_log_errors(embedded,
@@ -803,7 +803,7 @@ afw_object_meta_add_thrown_property_error(
     {        message = afw_error_to_utf8(error, instance->p, xctx);
         if (index >= 0) {
             message = afw_utf8_printf(instance->p, xctx,
-                "[%" AFW_INTEGER_FMT "] %" AFW_UTF8_FMT,
+                "[%" AFW_INTEGER_FMT "] " AFW_UTF8_FMT,
                 index,
                 AFW_UTF8_FMT_ARG(message));
         }

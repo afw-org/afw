@@ -1782,7 +1782,7 @@ afw_function_execute_regexp_match(
         xmlResetError(err);
         xmlRegFreeRegexp(rx);
         AFW_THROW_ERROR_FZ(arg_error, x->xctx,
-            "%" AFW_UTF8_FMT,
+            AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(err_message));
     }
 
