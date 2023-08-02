@@ -196,7 +196,7 @@ while (0)
 
 #define AFW_OBJECT_ERROR_PROPERTY_IMMUTABLE(property_name) \
 AFW_THROW_ERROR_FZ(read_only, xctx, \
-    "Object property " AFW_UTF8_FMT " is immutable", \
+    "Object property " AFW_UTF8_FMT_Q " is immutable", \
     AFW_UTF8_FMT_ARG(property_name))
 
 /**
@@ -469,7 +469,7 @@ afw_object_resolve_instance(
     if (object) return object;
     if (!path) return NULL;
     /* Will not happen if objects retrieved using afw_cache_* */
-    AFW_THROW_ERROR_FZ(objects_needed, xctx, AFW_UTF8_FMT,
+    AFW_THROW_ERROR_FZ(objects_needed, xctx, AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(path));
 };
 

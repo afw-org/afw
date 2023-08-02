@@ -366,7 +366,7 @@ afw_context_variable_definitions_add_based_on_object(
         if (!pt) {
             continue; /** @fixme How should this be handled? */
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Missing property type for " AFW_UTF8_FMT,
+                "Missing property type for " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(property_name));
         }
 

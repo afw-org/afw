@@ -2786,7 +2786,7 @@ new Integer(Math.LN2, true);
 
 //? test: S12.14_A18_T1
 //? description: Catching undefined
-//? expect: error:#1: Exception === undefined. Actual: Parameter 1 of function throw can not be undefined
+//? expect: error:#1: Exception === undefined. Actual: Parameter 1 of function 'throw' can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2801,7 +2801,7 @@ catch(e){
 
 //? test: S12.14_A18_T2
 //? description: Catching null
-//? expect: error:#1: Exception ===null. Actual: Parameter 1 of function throw must evaluate to data type string but evaluated to be null
+//? expect: error:#1: Exception ===null. Actual: Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'null'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2816,7 +2816,7 @@ catch(e){
 
 //? test: S12.14_A18_T3
 //? description: Catching boolean
-//? expect: error:#1: Exception ===true. Actual:  Exception ===Parameter 1 of function throw must evaluate to data type string but evaluated to be boolean
+//? expect: error:#1: Exception ===true. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'boolean'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2918,7 +2918,7 @@ catch(e){
 
 //? test: S12.14_A18_T5
 //? description: Catching Number
-//? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function throw must evaluate to data type string but evaluated to be integer
+//? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'integer'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3018,7 +3018,7 @@ catch(e){
 
 //? test: S12.14_A18_T6
 //? description: Catching Object
-//? expect: error:Parameter 2 of function add<string> can not be undefined
+//? expect: error:Parameter 2 of function 'add<string>' can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 

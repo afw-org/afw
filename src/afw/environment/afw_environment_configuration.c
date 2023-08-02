@@ -52,7 +52,7 @@ afw_environment_configure_with_object(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid type " AFW_UTF8_FMT,
+            "invalid type " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(type));
     }
@@ -191,7 +191,7 @@ afw_environment_prepare_conf_type_properties(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "type " AFW_UTF8_FMT
+            "type " AFW_UTF8_FMT_Q
             " is not valid",
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(type));
@@ -205,8 +205,8 @@ afw_environment_prepare_conf_type_properties(
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                AFW_UTF8_FMT
-                " property required for conf type " AFW_UTF8_FMT,
+                AFW_UTF8_FMT_Q
+                " property required for conf type " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(conf_type->subtype_property_name),
                 AFW_UTF8_FMT_ARG(type));
@@ -221,8 +221,8 @@ afw_environment_prepare_conf_type_properties(
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                " " AFW_UTF8_FMT
-                " property required for conf type " AFW_UTF8_FMT,
+                " " AFW_UTF8_FMT_Q
+                " property required for conf type " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(conf_type->id_property_name),
                 AFW_UTF8_FMT_ARG(type));

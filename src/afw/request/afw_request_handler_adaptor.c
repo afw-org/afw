@@ -237,7 +237,7 @@ impl_afw_request_handler_process(
                 /* If value not found, throw error. */
                 if (!value) {
                     AFW_THROW_ERROR_FZ(not_found, xctx,
-                        AFW_UTF8_FMT " Not found.",
+                        AFW_UTF8_FMT_Q " Not found.",
                         AFW_UTF8_FMT_ARG(request->uri));
                 }
 

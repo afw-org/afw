@@ -376,7 +376,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Set supported core object type in adaptor. */
     if (env->layout_adaptor_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified layoutAdaptorId " AFW_UTF8_FMT
+            "Application specified layoutAdaptorId " AFW_UTF8_FMT_Q
             ".",
             AFW_UTF8_FMT_ARG(env->layout_adaptor_id));
         layout_adaptor = afw_adaptor_get_reference(env->layout_adaptor_id, xctx);
@@ -433,7 +433,7 @@ afw_application_internal_application_conf_type_create_cede_p(
   
     /* Log application startup complete. */
     AFW_LOG_FZ(info, xctx,
-        AFW_UTF8_FMT " application startup complete.",
+        AFW_UTF8_FMT_Q " application startup complete.",
         AFW_UTF8_FMT_ARG(application_id));
 
 }

@@ -134,7 +134,7 @@ if (+0.1 !== 0.1) {
 
 //? test: S11.4.6_A3_T3
 //? description: Type(x) is string primitive or String object
-//? expect: error:Parameter 1 of function is_NaN must evaluate to data type double but evaluated to be string
+//? expect: error:Parameter 1 of function 'is_NaN' must evaluate to data type 'double' but evaluated to be 'string'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -184,7 +184,7 @@ if (+null !== 0) {
 
 //? test: S11.4.6_A3_T5
 //? description: Type(x) is Object object or Function object
-//? expect: error:Parameter 1 of function is_NaN must evaluate to data type double but evaluated to be object
+//? expect: error:Parameter 1 of function 'is_NaN' must evaluate to data type 'double' but evaluated to be 'object'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -201,7 +201,7 @@ if (is_NaN(+function(){return 1;}) !== true) {
 
 //? test: S9.3_A1_T2
 //? description: Undefined convert to Number by implicit transformation
-//? expect: error:Parameter 1 of function is_NaN can not be undefined
+//? expect: error:Parameter 1 of function 'is_NaN' can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 

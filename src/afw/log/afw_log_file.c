@@ -113,6 +113,6 @@ impl_afw_log_write(
     const afw_utf8_t * message,
     afw_xctx_t *xctx)
 {
-    fprintf(xctx->env->stdout_fd, "FIXME log_type=file: " AFW_UTF8_FMT "\n",
+    fprintf(xctx->env->stdout_fd, "FIXME log_type=file: " AFW_UTF8_FMT_Q "\n",
         AFW_UTF8_FMT_ARG(message));
 }

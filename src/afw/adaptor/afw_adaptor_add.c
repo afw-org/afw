@@ -80,7 +80,7 @@ afw_adaptor_add_object(
                 xctx);
             if (!journal) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "adaptor_id " AFW_UTF8_FMT
+                    "adaptor_id " AFW_UTF8_FMT_Q
                     " session get_journal() returned NULL",
                     AFW_UTF8_FMT_ARG(&session->adaptor->adaptor_id));
             }

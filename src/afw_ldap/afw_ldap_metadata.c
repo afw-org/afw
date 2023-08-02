@@ -794,7 +794,7 @@ impl_set_synthetic_object_type(apr_hash_t *ht,
         &afw_s__AdaptiveObjectType_, object_type_id, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Missing object /afw/_AdaptiveObjectType_/" AFW_UTF8_FMT,
+            "Missing object '/afw/_AdaptiveObjectType_/" AFW_UTF8_FMT "'",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
     apr_hash_set(ht, object_type_id->s, object_type_id->len,
@@ -1096,7 +1096,7 @@ impl_make_object_types(
         if (!value) {
             default_description = afw_utf8_printf(metadata->p, xctx,
                 "_AdaptiveObjectType representation of LDAP object"
-                "class " AFW_UTF8_FMT ".",
+                "class " AFW_UTF8_FMT_Q ".",
                 AFW_UTF8_FMT_ARG(id));
             value = afw_value_make_single_string(
                 default_description->s, default_description->len,
@@ -1541,7 +1541,7 @@ afw_ldap_metadata_value_to_bv(afw_ldap_internal_adaptor_session_t *session,
         attribute_name->s, attribute_name->len);
     if (!attribute_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Unknown attribute type " AFW_UTF8_FMT,
+            "Unknown attribute type " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(attribute_name));
     }
     if (!value) {

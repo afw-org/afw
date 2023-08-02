@@ -390,7 +390,7 @@ throw '#7: ("1" < "1e-10") !== true';
 
 //? test: S11.8.1_A4.1
 //? description: y is number primitive
-//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
+//? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -561,7 +561,7 @@ if ((-0 < +0) !== false) {
 
 //? test: S11.8.1_A4.5
 //? description: y is number primitive
-//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
+//? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -640,7 +640,7 @@ if ((Number.MIN_VALUE < Infinity) !== true) {
 
 //? test: S11.8.1_A4.7
 //? description: y is number primitive
-//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
+//? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -680,7 +680,7 @@ if ((-Infinity < Number.MIN_VALUE) !== true) {
 
 //? test: S11.8.1_A4.8
 //? description: x is number primitive
-//? expect: error:Parameter 2 of function lt<integer> must evaluate to data type integer but evaluated to be double
+//? expect: error:Parameter 2 of function 'lt<integer>' must evaluate to data type 'integer' but evaluated to be 'double'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -720,7 +720,7 @@ if ((Number.MIN_VALUE < -Infinity) !== false) {
 
 //? test: S11.8.1_A4.9
 //? description: x and y are number primitives
-//? expect: error:Parameter 2 of function lt<double> must evaluate to data type double but evaluated to be integer
+//? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
 //? source: ...
 #!/usr/bin/env afw
 

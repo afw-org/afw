@@ -284,8 +284,8 @@ impl_afw_data_type_from_double_convert_internal(
     else if (afw_data_type_is_integer(to_data_type)) {
         /*
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Cannot convert data type " AFW_UTF8_FMT
-            " to " AFW_UTF8_FMT,
+            "Cannot convert data type " AFW_UTF8_FMT_Q
+            " to " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(&instance->data_type_id),
             AFW_UTF8_FMT_ARG(&to_data_type->data_type_id));
          */
@@ -512,7 +512,7 @@ impl_afw_data_type_boolean_utf8_to_internal(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Not a valid boolean value " AFW_UTF8_FMT ".",
+        "Not a valid boolean value " AFW_UTF8_FMT_Q ".",
         (int)len, s);
 }
 

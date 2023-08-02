@@ -753,7 +753,7 @@ impl_parse_string_sort(impl_string_parser_t *parser)
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
                 IMPL_STRING_THROW_ERROR_FZ(
-                    "Property " AFW_UTF8_FMT " cannot be queried",
+                    "Property " AFW_UTF8_FMT_Q " cannot be queried",
                     AFW_UTF8_FMT_ARG(entry->property_name));
             }
         }
@@ -936,7 +936,7 @@ impl_parse_string_relation(
             entry->property_name, parser->xctx);
         if (!entry->pt || !entry->pt->allow_query) {
             IMPL_STRING_THROW_ERROR_FZ(
-                "Property " AFW_UTF8_FMT " cannot be queried",
+                "Property " AFW_UTF8_FMT_Q " cannot be queried",
                 AFW_UTF8_FMT_ARG(entry->property_name));
         }
     }
@@ -1171,7 +1171,7 @@ impl_parse_string_function(
     rql_op = impl_find_rql_op(&parser->token);
     if (!rql_op) {
         IMPL_STRING_THROW_ERROR_FZ(
-            "Operator " AFW_UTF8_FMT " is not valid",
+            "Operator " AFW_UTF8_FMT_Q " is not valid",
             AFW_UTF8_FMT_ARG(&parser->token));
     }
 
@@ -1259,7 +1259,7 @@ impl_parse_string_function(
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
                 IMPL_STRING_THROW_ERROR_FZ(
-                    "Property " AFW_UTF8_FMT " cannot be queried",
+                    "Property " AFW_UTF8_FMT_Q " cannot be queried",
                     AFW_UTF8_FMT_ARG(entry->property_name));
             }
         }
@@ -1380,7 +1380,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     rql_op = impl_find_rql_op(s);
     if (!rql_op) {
         AFW_THROW_ERROR_FZ(general, parser->xctx,
-            "Property \"op\" value is not valid: " AFW_UTF8_FMT,
+            "Property \"op\" value is not valid: " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(s));
     }
 
@@ -1470,7 +1470,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
                 AFW_THROW_ERROR_FZ(general, parser->xctx,
-                    "Property " AFW_UTF8_FMT " cannot be queried",
+                    "Property " AFW_UTF8_FMT_Q " cannot be queried",
                     AFW_UTF8_FMT_ARG(entry->property_name));
             }
         }
@@ -2059,7 +2059,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
         /* unknown property */
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Unknown query criteria property " AFW_UTF8_FMT,
+                "Unknown query criteria property " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(property_name));
         }
     }
@@ -2395,7 +2395,7 @@ impl_entry_to_query_string(
         rql_op = impl_find_rql_op(entry->op_name);
         if (!rql_op || !rql_op->can_be_property) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid op name " AFW_UTF8_FMT,
+                "Invalid op name " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(entry->op_name));
         }
         property_name = afw_uri_encode(entry->property_name,

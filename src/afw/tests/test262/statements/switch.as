@@ -539,7 +539,7 @@ assert(
 
 //? test: cptn-no-dflt-no-match
 //? description: Completion value when no cases match
-//? expect: error:evaluate is not a method of data type boolean
+//? expect: error:'evaluate' is not a method of data type 'boolean'
 //? source: ...
 #!/usr/bin/env afw
 

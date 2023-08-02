@@ -102,6 +102,6 @@ impl_afw_request_handler_process(
     }
 
     AFW_THROW_ERROR_FZ(not_found, xctx,
-        "Prefix " AFW_UTF8_FMT " not found",
+        "Prefix " AFW_UTF8_FMT_Q " not found",
         AFW_UTF8_FMT_ARG(request->uri));
 }

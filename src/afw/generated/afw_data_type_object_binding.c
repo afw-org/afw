@@ -236,15 +236,15 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
 
         if (!value) {
             AFW_THROW_ERROR_Z(general,
-                "Typesafe error: expecting object but "
-                "encountered <undefined>",
+                "Typesafe error: expecting 'object' but "
+                "encountered '<undefined>'",
                 xctx);
         }
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Typesafe error: expecting object but "
-            "encountered " AFW_UTF8_FMT,
+            "Typesafe error: expecting 'object' but "
+            "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
     return (((const afw_value_object_t *)value)->internal);
@@ -363,8 +363,8 @@ afw_object_get_property_as_object_source(
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting object but "
-            "encountered " AFW_UTF8_FMT,
+            "Typesafe error: expecting 'object' but "
+            "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
     }
@@ -393,8 +393,8 @@ afw_object_get_next_property_as_object_source(
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting object but "
-            "encountered " AFW_UTF8_FMT,
+            "Typesafe error: expecting 'object' but "
+            "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
     }
@@ -523,8 +523,8 @@ afw_list_of_object_get_next_source(
 
         data_type_id = &data_type->data_type_id;
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting object but "
-            "encountered " AFW_UTF8_FMT,
+            "Typesafe error: expecting 'object' but "
+            "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
     }

@@ -373,7 +373,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
 
             if (!afw_value_is_defined_and_evaluated(value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "add_value " AFW_UTF8_FMT
+                    "add_value " AFW_UTF8_FMT_Q
                     " must be a defined and evaluated value",
                     AFW_UTF8_FMT_ARG(
                         &first_property_name_entry->property_name));
@@ -454,7 +454,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                             first_property_name_entry, p, xctx);
                         AFW_THROW_ERROR_FZ(general, xctx,
                             "Error: Value does not exist for property "
-                            AFW_UTF8_FMT,
+                            AFW_UTF8_FMT_Q,
                             AFW_UTF8_FMT_ARG(s));
                     }
                     else {
@@ -599,7 +599,7 @@ impl_reconcile_object(
             property_name, wa->xctx);
         if (!pt) {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
-                "Missing property type for " AFW_UTF8_FMT,
+                "Missing property type for " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(property_name));
         }
 
@@ -770,8 +770,8 @@ afw_adaptor_modify_needed_to_reconcile(
         journal_entry, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Object type " AFW_UTF8_FMT
-            " does not exist in Adaptor " AFW_UTF8_FMT,
+            "Object type " AFW_UTF8_FMT_Q
+            " does not exist in Adaptor " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(*object_type_id),
             AFW_UTF8_FMT_ARG(*adaptor_id));
     }

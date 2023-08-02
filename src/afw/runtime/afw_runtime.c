@@ -431,7 +431,7 @@ afw_runtime_resolve_and_register_object_map_infs(
                 if (!properties->data_type || !properties->accessor)
                 {
                     AFW_THROW_ERROR_FZ(general, xctx,
-                        "Error resolving runtime object map " AFW_UTF8_FMT,
+                        "Error resolving runtime object map " AFW_UTF8_FMT_Q,
                         AFW_UTF8_FMT_ARG(meta->object_type_id));
                 }
             }
@@ -492,7 +492,7 @@ afw_runtime_object_create_indirect(
         object_type_id, xctx);
     if (!inf) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Runtime object map " AFW_UTF8_FMT " is not registered",
+            "Runtime object map " AFW_UTF8_FMT_Q " is not registered",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
 
@@ -716,7 +716,7 @@ afw_runtime_resolve_const_object(
         unresolved->object_type_id, xctx);
     if (!o->pub.inf) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "No map available for object type " AFW_UTF8_FMT,
+            "No map available for object type " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(unresolved->object_type_id));
     }
 

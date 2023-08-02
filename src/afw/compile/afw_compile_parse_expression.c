@@ -188,8 +188,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                                 type_id, untyped_function_id, parser->xctx);
                             if (!function) {
                                 AFW_COMPILE_THROW_ERROR_FZ(
-                                    "Unknown built-in function " AFW_UTF8_FMT_Q
-                                    "<" AFW_UTF8_FMT ">",
+                                    "Unknown built-in function '" AFW_UTF8_FMT
+                                    "<" AFW_UTF8_FMT ">'",
                                     AFW_UTF8_FMT_ARG(untyped_function_id),
                                     AFW_UTF8_FMT_ARG(type_id));
                             }

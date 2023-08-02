@@ -61,7 +61,7 @@ afw_value_function_thunk_create_impl(
     self->execute = execute;
     self->ctx = ctx;
     self->detail = afw_utf8_printf(p, xctx,
-        "Thunk " AFW_UTF8_FMT " created at %s",
+        "Thunk " AFW_UTF8_FMT_Q " created at %s",
         AFW_UTF8_FMT_ARG(name), source_z);
 
     return (const afw_value_t *)self;

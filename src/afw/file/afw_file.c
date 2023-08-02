@@ -112,7 +112,7 @@ afw_file_to_memory(
         to_memory->ptr = buff;
         if (to_memory->size < 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Error reading " AFW_UTF8_FMT ".", 
+                "Error reading " AFW_UTF8_FMT_Q ".", 
                 AFW_UTF8_FMT_ARG(file_path));
         }
 

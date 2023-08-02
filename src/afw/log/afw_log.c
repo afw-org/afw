@@ -663,7 +663,7 @@ impl_afw_service_type_start_cede_p (
     factory = afw_environment_get_log_type(log_type, xctx);
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "logType " AFW_UTF8_FMT " is not a registered log type.",
+            "logType " AFW_UTF8_FMT_Q " is not a registered log type.",
             AFW_UTF8_FMT_ARG(log_type));
     }
    
@@ -742,8 +742,8 @@ afw_log_impl_throw_property_invalid(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=" AFW_UTF8_FMT
-        " property name " AFW_UTF8_FMT " is not valid.",
+        "Configuration type=log, logId=" AFW_UTF8_FMT_Q
+        " property name " AFW_UTF8_FMT_Q " is not valid.",
         AFW_UTF8_FMT_ARG(&log->log_id),
         AFW_UTF8_FMT_ARG(property_name));
 }
@@ -756,8 +756,8 @@ afw_log_impl_throw_property_required(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=" AFW_UTF8_FMT
-        " property name " AFW_UTF8_FMT " is required.",
+        "Configuration type=log, logId=" AFW_UTF8_FMT_Q
+        " property name " AFW_UTF8_FMT_Q " is required.",
         AFW_UTF8_FMT_ARG(&log->log_id),
         AFW_UTF8_FMT_ARG(property_name));
 }

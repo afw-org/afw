@@ -76,7 +76,7 @@ afw_adaptor_journal_entry_consume(
     journal = afw_adaptor_session_get_journal_interface(session, xctx);
     if (!journal) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "adaptor_id " AFW_UTF8_FMT
+            "adaptor_id " AFW_UTF8_FMT_Q
             " session get_journal() returned NULL",
             AFW_UTF8_FMT_ARG(&session->adaptor->adaptor_id));
     }
@@ -122,7 +122,7 @@ impl_get_journal_interface(const afw_utf8_t *adaptor_id,
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Adaptor " AFW_UTF8_FMT " does not support journal",
+        "Adaptor " AFW_UTF8_FMT_Q " does not support journal",
         AFW_UTF8_FMT_ARG(adaptor_id));
 }
 

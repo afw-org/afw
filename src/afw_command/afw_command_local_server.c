@@ -251,14 +251,14 @@ impl_process_directive(
     if (is_invalid) {
         if (string->len <= 30) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive: " AFW_UTF8_FMT,
+                "Invalid directive: " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(string));
         }
         else {
             partial.s = string->s;
             partial.len = 30;
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive beginning: " AFW_UTF8_FMT,
+                "Invalid directive beginning: " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(&partial));
         }
     }

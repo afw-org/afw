@@ -111,7 +111,7 @@ impl_call_function(
             /* If arg is NULL and not optional, throw error. */
             else if (!(*a)->optional) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "Missing parameter " AFW_UTF8_FMT,
+                    "Missing parameter " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&(*a)->name));
             }
         }
@@ -153,7 +153,7 @@ impl_call_function(
         if (!afw_value_is_fully_evaluated(result, xctx)) {
             afw_value_get_info(result, &info, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Function " AFW_UTF8_FMT
+                "Function " AFW_UTF8_FMT_Q
                 " returned a value that is not evaluated. ("
                 AFW_UTF8_FMT " " AFW_UTF8_FMT ")",
                 AFW_UTF8_FMT_ARG(&function->functionId),
@@ -276,7 +276,7 @@ afw_action_perform(
                 function = afw_environment_get_function(functionId, xctx);
                 if (!function) {
                     AFW_THROW_ERROR_FZ(syntax, xctx,
-                        "Unknown function " AFW_UTF8_FMT,
+                        "Unknown function " AFW_UTF8_FMT_Q,
                         AFW_UTF8_FMT_ARG(functionId));
                 }
 
@@ -296,7 +296,7 @@ afw_action_perform(
         /* Make sure actions property is multiple actions list. */
         if (!afw_value_is_list(value)) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
-                "Property " AFW_UTF8_FMT " of actions is missing or invalid",
+                "Property " AFW_UTF8_FMT_Q " of actions is missing or invalid",
                 AFW_UTF8_FMT_ARG(name));
         }
         actions = ((const afw_value_list_t *)value)->internal;
@@ -351,7 +351,7 @@ afw_action_perform(
             functionId = afw_value_as_utf8(value, action_response_entry->p, xctx);
             if (!functionId) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
-                    "Property " AFW_UTF8_FMT " of action " AFW_INTEGER_FMT
+                    "Property " AFW_UTF8_FMT_Q " of action " AFW_INTEGER_FMT
                     " is missing or invalid",
                     AFW_UTF8_FMT_ARG(name), action_number);
             }
@@ -360,7 +360,7 @@ afw_action_perform(
             function = afw_environment_get_function(functionId, xctx);
             if (!function) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
-                    "Unknown function " AFW_UTF8_FMT
+                    "Unknown function " AFW_UTF8_FMT_Q
                     " in action " AFW_INTEGER_FMT,
                     AFW_UTF8_FMT_ARG(functionId), action_number);
             }

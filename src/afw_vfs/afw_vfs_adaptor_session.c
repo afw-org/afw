@@ -685,14 +685,14 @@ impl_determine_path_for_object_id(
     if (expect_exists) {
         if (!exists) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                "object_id " AFW_UTF8_FMT " doesn't exist",
+                "object_id " AFW_UTF8_FMT_Q " doesn't exist",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }
     }
     else {
         if (exists) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "object_id " AFW_UTF8_FMT " already exists",
+                "object_id " AFW_UTF8_FMT_Q " already exists",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }
     }
@@ -702,7 +702,7 @@ impl_determine_path_for_object_id(
         if (finfo.filetype == APR_DIR) {
             if (!*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id " AFW_UTF8_FMT
+                    "object_id " AFW_UTF8_FMT_Q
                     " is directory so must end with '/'",
                     AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
             }
@@ -710,14 +710,14 @@ impl_determine_path_for_object_id(
         else if (finfo.filetype == APR_REG) {
             if (*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id " AFW_UTF8_FMT
+                    "object_id " AFW_UTF8_FMT_Q
                     " is a regular file so must not end with '/'",
                     AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
             }
         }
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "object_id " AFW_UTF8_FMT
+                "object_id " AFW_UTF8_FMT_Q
                 " filetype is not allowed",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }

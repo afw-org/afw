@@ -189,7 +189,7 @@ impl_open_and_retrieve_peer_object(
 
 error_peer:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT " "
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
@@ -197,7 +197,7 @@ error_peer:
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT " "
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
@@ -257,7 +257,7 @@ impl_write_and_close_peer_object(
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT " "
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
@@ -511,29 +511,29 @@ impl_afw_adaptor_journal_add_entry(
 
 error_lock_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT
-        " journal lock file %s - %s",
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        " journal lock file '%s' - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
         adaptor->journal_lock_file_path_z, footprint.z);
 
 error_lock:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adaptor " AFW_UTF8_FMT " journal lock file %s - %s",
+        "adaptor " AFW_UTF8_FMT_Q " journal lock file '%s' - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
         adaptor->journal_lock_file_path_z, footprint.z);
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT
-        " journal file %s - %s",
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        " journal file '%s' - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
         full_entry_path_z, footprint.z);
 
 error_old_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT
-        " journal file %s - %s",
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        " journal file '%s' - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
         old_full_entry_path_z, footprint.z);
 }
@@ -876,14 +876,15 @@ impl_afw_adaptor_journal_get_entry(
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT " journal file %s - %s",
+        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+            " journal file '%s' - %s",
         adaptor->pub.adaptor_id.len, adaptor->pub.adaptor_id.s,
         full_entry_path_z, footprint.z);
 
 error_journal:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adaptor " AFW_UTF8_FMT " journal file %s - %s",
+        "adaptor " AFW_UTF8_FMT_Q " journal file '%s' - %s",
         AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
         full_entry_path_z, footprint.z);
 

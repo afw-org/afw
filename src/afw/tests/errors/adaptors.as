@@ -34,7 +34,7 @@ get_object("afw", "_AdaptiveObjectType_", "abc");
 
 //? test: get_object_required_parameters
 //? description: get_object expects 3 required parameters
-//? expect: error:get_object expects 3 required parameters
+//? expect: error:'get_object' expects 3 required parameters
 //? source: ...
 #!/usr/bin/env afw
 

@@ -48,12 +48,12 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Detail trace of authorizationHandlerId " AFW_UTF8_FMT,
+            "Detail trace of authorizationHandlerId " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(&self->authorization_handler_id));
 
         description = afw_utf8_printf(env_p, xctx,
             "This produces a basic plus detail trace "
-            "of authorizationHandlerId " AFW_UTF8_FMT ".",
+            "of authorizationHandlerId " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(&self->authorization_handler_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
@@ -78,11 +78,11 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Trace authorizationHandlerId " AFW_UTF8_FMT,
+            "Trace authorizationHandlerId " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(&self->authorization_handler_id));
 
         description = afw_utf8_printf(env_p, xctx,
-            "This produces a basic trace of authorizationHandlerId " AFW_UTF8_FMT ".",
+            "This produces a basic trace of authorizationHandlerId " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(&self->authorization_handler_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
@@ -143,7 +143,7 @@ afw_authorization_handler_impl_create_cede_p(
         &afw_s_authorizationHandlerId, p, xctx);
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_FMT " requires id property.",
+            AFW_UTF8_FMT " requires 'id' property.",
             AFW_UTF8_FMT_ARG(self->source_location));
     }
     afw_memory_copy(&self->authorization_handler_id, s);
@@ -156,11 +156,11 @@ afw_authorization_handler_impl_create_cede_p(
         self->authorization_handler_lock_rw = afw_lock_create_rw_and_register(
             afw_utf8_clone(s, xctx->env->p, xctx),
             afw_utf8_printf(xctx->env->p, xctx,
-                "Authorization handler id " AFW_UTF8_FMT " read/write lock",
+                "Authorization handler id " AFW_UTF8_FMT_Q " read/write lock",
                 AFW_UTF8_FMT_ARG(&self->authorization_handler_id)),
             afw_utf8_printf(xctx->env->p, xctx,
                 "Read/write lock used internally by authorization_handler id "
-                AFW_UTF8_FMT " implementation.",
+                AFW_UTF8_FMT_Q " implementation.",
                 AFW_UTF8_FMT_ARG(&self->authorization_handler_id)),
             xctx);
     }
@@ -190,7 +190,7 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* Trace create */
     afw_trace_fz(1, self->trace_flag_index, self, xctx,
-        "authorizationHandlerId " AFW_UTF8_FMT " is being created",
+        "authorizationHandlerId " AFW_UTF8_FMT_Q " is being created",
         AFW_UTF8_FMT_ARG(&self->authorization_handler_id));
 
     /* Return new instance. */

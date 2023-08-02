@@ -384,7 +384,7 @@ impl_afw_adaptor_session_delete_object(
             object_type_id, object_id, dbi, xctx);
         if (!object) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                AFW_UTF8_FMT " cannot be found.",
+                AFW_UTF8_FMT_Q " cannot be found.",
                 AFW_UTF8_FMT_ARG(object_id));
         }
 

@@ -17,7 +17,7 @@
 
 //? test: missing_parameter
 //? description: If arg is NULL and not optional, throw error
-//? expect: "Missing parameter arg2"
+//? expect: "Missing parameter 'arg2'"
 //? source: ...
 #!/usr/bin/env afw
 
@@ -58,7 +58,7 @@ return result.error.message;
 
 //? test: unknown_function
 //? description: Unknown function specified
-//? expect: "Unknown function blah"
+//? expect: "Unknown function 'blah'"
 //? source: ...
 #!/usr/bin/env afw
 
@@ -73,7 +73,7 @@ return result.error.message;
 
 //? test: property_of_actions_missing_or_invalid
 //? description: Property of actions is missing or invalid
-//? expect: "Property actions of actions is missing or invalid"
+//? expect: "Property 'actions' of actions is missing or invalid"
 //? source: ...
 #!/usr/bin/env afw
 
@@ -105,7 +105,7 @@ return result.error.message;
 
 //? test: property_of_action_missing_or_invalid
 //? description: Property of action is missing or invalid
-//? expect: "Property function of action 1 is missing or invalid"
+//? expect: "Property 'function' of action 1 is missing or invalid"
 //? source: ...
 #!/usr/bin/env afw
 
@@ -124,7 +124,7 @@ return result.error.message;
 
 //? test: unknown_function_in_action
 //? description: Unknown function in action
-//? expect: "Unknown function blah in action 1"
+//? expect: "Unknown function 'blah' in action 1"
 //? source: ...
 #!/usr/bin/env afw
 

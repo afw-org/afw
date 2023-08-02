@@ -247,7 +247,7 @@ afw_xctx_define_variable(const afw_utf8_t *name,
     {
         if (afw_utf8_equal(name, cur->name)) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Variable " AFW_UTF8_FMT " is already defined",
+                "Variable " AFW_UTF8_FMT_Q " is already defined",
                 AFW_UTF8_FMT_ARG(name));
         }
     };
@@ -279,7 +279,7 @@ afw_xctx_set_defined_variable(
     };
 
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Variable " AFW_UTF8_FMT " is not defined",
+        "Variable " AFW_UTF8_FMT_Q " is not defined",
         AFW_UTF8_FMT_ARG(name));
 }
 
