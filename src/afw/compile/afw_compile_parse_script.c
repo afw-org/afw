@@ -76,7 +76,7 @@ afw_compile_parse_AssignmentExpression(
         *just_expression_okay = true;
     }
 
-     return result;
+    return result;
 }
 
 
@@ -99,7 +99,7 @@ afw_compile_parse_OptionalDefineTarget(
 
     afw_compile_save_cursor(start_offset);
 
-   /* Determine assignment type. */
+    /* Determine assignment type. */
     afw_compile_get_token();
     if (afw_compile_token_is_name(&afw_s_let)) {
         assignment_type = afw_compile_assignment_type_let;
@@ -597,7 +597,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
  *
  * ForStatement ::= 'for'
  *   '(' (
-  *       (
+ *       (
  *           ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
  *           ';' Expression?
  *           ';' ( Assignment ( ',' Assignment )* )?
