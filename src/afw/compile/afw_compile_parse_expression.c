@@ -210,7 +210,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                 else {
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Undeclared variable " AFW_UTF8_FMT,
+                            "Undeclared variable " AFW_UTF8_FMT_Q,
                             AFW_UTF8_FMT_ARG(parser->token->identifier));
                     }
                     result =
@@ -865,7 +865,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
             parser->xctx);
         if (!type->data_type) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown data type " AFW_UTF8_FMT,
+                "Unknown data type " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(dataType));
         }
 
@@ -915,7 +915,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 {
                     if (!afw_compile_token_is_name_z("of")) {
                         AFW_COMPILE_THROW_ERROR_Z(
-                            "Expecting \"of\"");
+                            "Expecting 'of'");
                     }
                     if (!list_type) {
                         list_type = afw_pool_calloc_type(
@@ -930,8 +930,8 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                     else {
                         if (list_type->cell_type) {
                             AFW_COMPILE_THROW_ERROR_Z(
-                                "Only \"of list\" can be specified except for "
-                                "final \"of\"");
+                                "Only 'of list' can be specified except for "
+                                "final 'of'");
                         }
                         afw_compile_reuse_token();
                         list_type->cell_type = afw_compile_parse_Type(parser);

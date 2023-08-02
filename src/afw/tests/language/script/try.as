@@ -738,7 +738,7 @@ return catch_entered;
 //?
 //? test: Try-32
 //? description: rethrow must be in catch block
-//? expect: error:Parse error at offset 92 around line 6 column 6: Can only rethrow ("throw;") inside a catch block
+//? expect: error:Parse error at offset 92 around line 6 column 6: Can only rethrow ('throw;') inside a catch block
 //? source: ...
 #!/usr/bin/env afw
 
@@ -764,7 +764,7 @@ return catch_entered;
 //?
 //? test: Try-33
 //? description: throw must be in catch block but can't be in inner try block
-//? expect: error:Parse error at offset 343 around line 17 column 18: Can only rethrow ("throw;") inside a catch block
+//? expect: error:Parse error at offset 343 around line 17 column 18: Can only rethrow ('throw;') inside a catch block
 //? source: ...
 #!/usr/bin/env afw
 

@@ -396,7 +396,7 @@ afw_compile_parse_Object(
                 if (afw_utf8_equal(parser->property_name, &afw_s__meta_)) {
                     if (!afw_value_is_object(v)) {
                         AFW_COMPILE_THROW_ERROR_Z(
-                            "_meta_ property must be an object");
+                            "'_meta_' property must be an object");
                     }
                     _meta_ = ((const afw_value_object_t *)v)->internal;
                 }

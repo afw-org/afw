@@ -510,7 +510,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
 
     if (!parser->continue_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced continue");
+        AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
     }
 
     result = afw_value_call_built_in_function_create(
@@ -568,7 +568,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
     afw_compile_get_token();
     if (!afw_compile_token_is_name(&afw_s_while)) {
         AFW_COMPILE_THROW_ERROR_Z(
-            "Expecting while");
+            "Expecting 'while'");
     }
 
     /* ( expression ) */
@@ -1088,13 +1088,13 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
         }
         else if (afw_compile_token_is_name(&afw_s_default)) {
             if (default_encountered) {
-                AFW_COMPILE_THROW_ERROR_Z("Multiple default clauses");
+                AFW_COMPILE_THROW_ERROR_Z("Multiple 'default' clauses");
             }
             default_encountered = true;
             case_expression = afw_value_unique_default_case_value;
         }
         else {
-            AFW_COMPILE_THROW_ERROR_Z("Expecting \"case\" or \"default\"");
+            AFW_COMPILE_THROW_ERROR_Z("Expecting 'case' or 'default'");
         }
         afw_compile_get_token();
         if (!afw_compile_token_is(colon)) {
@@ -1144,7 +1144,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
     if (afw_compile_token_is(semicolon)) {
         if (!parser->rethrow_allowed) {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Can only rethrow (\"throw;\") inside a catch block");
+                "Can only rethrow ('throw;') inside a catch block");
         }
         result = afw_value_call_built_in_function_create(contextual,
             0, &impl_function_definition_rethrow, true,
@@ -1747,7 +1747,7 @@ impl_test_script_get_next_key_value(
         }
 
         if (!afw_utf8_starts_with_z(&line, "//?")) {
-            AFW_COMPILE_THROW_ERROR_Z("Line must start with //?");
+            AFW_COMPILE_THROW_ERROR_Z("Line must start with '//?'");
         }
 
         for (
@@ -1875,7 +1875,7 @@ impl_test_script_get_next_key_value(
             *((*string)->s + afw_s_error.len) != ':')
         {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Must be \"error\" by itself or \"error:\" immediately "
+                "Must be 'error' by itself or 'error:' immediately "
                 "followed by the exact error message expected");
         }
     }
@@ -2005,7 +2005,7 @@ afw_compile_parse_TestScript(
         }
         else if (!test_script_id) {
             AFW_COMPILE_THROW_ERROR_Z(
-                "test_script: must be specified first");
+                "'test_script:' must be specified first");
         }
         if (!key || afw_utf8_equal(key, &afw_s_test)) {
             break;
@@ -2017,14 +2017,14 @@ afw_compile_parse_TestScript(
             }
             else if (!afw_utf8_equal(string, &afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
-                    "skip: must be true or false");
+                    "'skip:' must be 'true' or 'false'");
             }
         }
         else {
             if (afw_object_has_property(test_script_object, key, parser->xctx))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    AFW_UTF8_FMT ": already specified",
+                    AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             if (afw_utf8_equal(key, &afw_s_sourceType)) {
@@ -2048,12 +2048,12 @@ afw_compile_parse_TestScript(
                 if (!afw_object_has_property(test_object,
                     &afw_s_source, parser->xctx))
                 {
-                    AFW_COMPILE_THROW_ERROR_Z("source: missing");
+                    AFW_COMPILE_THROW_ERROR_Z("'source:' missing");
                 }
                 if (!afw_object_has_property(test_object,
                     &afw_s_expect, parser->xctx))
                 {
-                    AFW_COMPILE_THROW_ERROR_Z("expect: missing");
+                    AFW_COMPILE_THROW_ERROR_Z("'expect:' missing");
                 }
             }
             if (!key) {
@@ -2070,27 +2070,27 @@ afw_compile_parse_TestScript(
         else if (afw_utf8_equal(key, &afw_s_skip)) {
             if (afw_utf8_equal(string, &afw_s_true)) {
                 if (!test_object) {
-                    AFW_COMPILE_THROW_ERROR_Z("test: missing");
+                    AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
                 afw_object_set_property(test_object,
                     key, afw_value_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, &afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
-                    "skip: must be true or false");
+                    "skip: must be 'true' or 'false'");
             }
         }
 
         else if (!test_object) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                AFW_UTF8_FMT ": specified before test",
+                AFW_UTF8_FMT_Q " specified before 'test'",
                 AFW_UTF8_FMT_ARG(key));
         }
 
         else {
             if (afw_object_has_property(test_object, key, parser->xctx)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    AFW_UTF8_FMT ": already specified",
+                    AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             afw_object_set_property_as_string(test_object,

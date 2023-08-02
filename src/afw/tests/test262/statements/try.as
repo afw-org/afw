@@ -742,7 +742,7 @@ try { } catch ([x, x]) {}
 
 //? test: early-catch-function
 //? description:...
-//? expect: error:Parse error at offset 84 around line 6 column 22: e already defined
+//? expect: error:Parse error at offset 84 around line 6 column 22: 'e' already defined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -761,7 +761,7 @@ return null;
 //? description:...
     It is a Syntax Error if any element of the BoundNames of CatchParameter
     also occurs in the LexicallyDeclaredNames of Block.
-//? expect: error:Parse error at offset 45 around line 3 column 26: x already defined
+//? expect: error:Parse error at offset 45 around line 3 column 26: 'x' already defined
 //? source: ...
 #!/usr/bin/env afw
 

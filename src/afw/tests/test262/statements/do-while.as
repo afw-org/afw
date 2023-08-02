@@ -21,7 +21,7 @@ return 0;
 
 //? test: do-while-2
 //? description: checking if execution of "do let x: integer = 1; let y: integer = 2; while (false)" fails
-//? expect: error:Parse error at offset 43 around line 3 column 24: Expecting while
+//? expect: error:Parse error at offset 43 around line 3 column 24: Expecting 'while'
 //? source: ...
 #!/usr/bin/env afw
 
