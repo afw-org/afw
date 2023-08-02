@@ -65,7 +65,7 @@ function(x) {
 //?
 //? test: outermost-binding-updated-in-catch-block-nested-block-let-declaration-unseen-outside-of-block
 //? description: outermost binding updated in catch block; nested block let declaration unseen outside of block
-//? expect: error:Parse error at offset 292 around line 16 column 14: Unknown built-in function xx
+//? expect: error:Parse error at offset 292 around line 16 column 14: Unknown built-in function 'xx'
 //? source: ...
 #!/usr/bin/env afw
 

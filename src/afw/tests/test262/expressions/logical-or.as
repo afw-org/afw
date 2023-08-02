@@ -85,7 +85,7 @@ if ((false || true) !== true) {
 
 //? test: S11.11.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function x
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -95,7 +95,7 @@ x || true;
 
 //? test: S11.11.2_A2.1_T3
 //? description:  If ToBoolean(x) is false and GetBase(y) is null, throw ReferenceError throw new Test262Error('#1.2: false || y throw ReferenceError. Actual: ' + (e));
-//? expect: error:Parse error at offset 29 around line 3 column 10: Unknown built-in function y
+//? expect: error:Parse error at offset 29 around line 3 column 10: Unknown built-in function 'y'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -104,7 +104,7 @@ false || y;
 
 //? test: S11.11.2_A2.1_T4
 //? description: If ToBoolean(x) is true and GetBase(y) is null, return true
-//? expect: error:Parse error at offset 43 around line 4 column 14: Unknown built-in function x
+//? expect: error:Parse error at offset 43 around line 4 column 14: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -141,7 +141,7 @@ try {
 
 //? test: S11.11.2_A2.4_T3
 //? description: Checking with undeclared variables
-//? expect: error:Parse error at offset 38 around line 5 column 3: Unknown built-in function x
+//? expect: error:Parse error at offset 38 around line 5 column 3: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 

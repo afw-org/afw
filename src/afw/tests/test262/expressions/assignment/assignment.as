@@ -42,7 +42,7 @@ if (x !== 1) {
 
 //? test: 11.13.1_A2.1_T2
 //? description: If GetBase(AssigmentExpression) is null, throw ReferenceError
-//? expect: error:Parse error at offset 28 around line 3 column 9: Unknown built-in function y
+//? expect: error:Parse error at offset 28 around line 3 column 9: Unknown built-in function 'y'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -239,7 +239,7 @@ base.prop = count += 1;
 
 //? test: target-member-computed-reference-undefined
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (undefined)
-//? expect: error:Parse error at offset 175 around line 9 column 11: Unknown built-in function new
+//? expect: error:Parse error at offset 175 around line 9 column 11: Unknown built-in function 'new'
 //? source: ...
 #!/usr/bin/env afw
 

@@ -148,7 +148,7 @@ afw_compile_parse_reference_create(
             }
             if (afw_utf8_equal(&qualifier, &afw_s_fn)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "Unknown built-in function " AFW_UTF8_FMT,
+                    "Unknown built-in function " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&name));
             }
             result =

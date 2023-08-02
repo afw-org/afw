@@ -7,7 +7,7 @@
 //?
 //? test: 11.13.2-10-s
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(^=) evaluates to an unresolvable reference 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_10
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_10'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -16,7 +16,7 @@ _11_13_2_10 ^= 1;
 
 //? test: 11.13.2-11-s
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(|=) evaluates to an unresolvable reference 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_11
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_11'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -25,7 +25,7 @@ _11_13_2_11 |= 1;
 
 //? test: 11.13.2-1-s
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(*=) evaluates to an unresolvable reference 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_1
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_1'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -34,7 +34,7 @@ _11_13_2_1 *= 1;
 
 //? test: 11.13.2-2-s
 //? description:  Strict Mode - ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(/=) evaluates to an unresolvable reference 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_2
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_2'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -43,7 +43,7 @@ _11_13_2_2 /= 1;
 
 //? test: 11.13.2-4-s
 //? description:  Strict Mode - ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(+=) 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_4
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_4'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -52,7 +52,7 @@ _11_13_2_4 += 1;
 
 //? test: 11.13.2-5-s
 //? description:  Strict Mode - ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(-=) 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_5
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_5'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -61,7 +61,7 @@ _11_13_2_5 -= 1;
 
 //? test: 11.13.2-9-s
 //? description:  Strict Mode - ReferenceError is thrown if the LeftHandSideExpression of a Compound Assignment operator(&=) 
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function _11_13_2_9
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function '_11_13_2_9'
 //? source: ...
 #!/usr/bin/env afw
 

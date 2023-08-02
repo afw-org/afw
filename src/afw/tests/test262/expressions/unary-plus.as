@@ -96,7 +96,7 @@ if (+(+x) !== 1) {
 
 //? test: S11.4.6_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 21 around line 3 column 2: Unknown built-in function x
+//? expect: error:Parse error at offset 21 around line 3 column 2: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 

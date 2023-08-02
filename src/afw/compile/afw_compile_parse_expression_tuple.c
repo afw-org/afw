@@ -879,7 +879,7 @@ afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser)
             &qualifier, &name, parser->xctx);
         if (!function_value) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown built-in function " AFW_UTF8_FMT,
+                "Unknown built-in function " AFW_UTF8_FMT_Q,
                 AFW_UTF8_FMT_ARG(parser->token->string));
         }
 

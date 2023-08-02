@@ -81,7 +81,7 @@ assert(f({x:42}) === 42);
 
 //? test: 12.14-13
 //? description: catch introduces scope - updates are based on scope
-//? expect: error:Parse error at offset 194 around line 12 column 13: Unknown built-in function this
+//? expect: error:Parse error at offset 194 around line 12 column 13: Unknown built-in function 'this'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -118,7 +118,7 @@ assert(res3, 'res3 !== true');
     Exception object is a function, when an exception parameter is
     called as a function in catch block, global object is passed as
     the this value
-//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function 'this'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -145,7 +145,7 @@ assert(result === "test" === 'result');
     Exception object is a function which is a property of an object,
     when an exception parameter is called as a function in catch
     block, global object is passed as the this value
-//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function 'this'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -174,7 +174,7 @@ assert(result === "test" === 'result');
     Exception object is a function which update in catch block, when
     an exception parameter is called as a function in catch block,
     global object is passed as the this value
-//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function this
+//? expect: error:Parse error at offset 33 around line 3 column 14: Unknown built-in function 'this'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -221,7 +221,7 @@ assert(variable_exists("foo") === false);
 
 //? test: 12.14-7
 //? description: catch introduces scope - scope removed when exiting catch block
-//? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function expObj
+//? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function 'expObj'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -791,7 +791,7 @@ try {} catch {}
 
 //? test: optional-catch-binding-lexical
 //? description: lexical environment runtime semantics for optional catch binding
-//? expect: error:Parse error at offset 235 around line 20 column 5: Unknown built-in function y
+//? expect: error:Parse error at offset 235 around line 20 column 5: Unknown built-in function 'y'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1957,7 +1957,7 @@ if(c2!==3){
 
 //? test: S12.14_A13_T1
 //? description: Using try/catch syntax construction
-//? expect: error:Parse error at offset 537 around line 37 column 12: Unknown built-in function someValue
+//? expect: error:Parse error at offset 537 around line 37 column 12: Unknown built-in function 'someValue'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2033,7 +2033,7 @@ catch(e){
 
 //? test: S12.14_A13_T2
 //? description: Using try/finally syntax construction
-//? expect: error:Parse error at offset 674 around line 46 column 12: Unknown built-in function someValue
+//? expect: error:Parse error at offset 674 around line 46 column 12: Unknown built-in function 'someValue'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2211,7 +2211,7 @@ if (c8!==1){
 
 //? test: S12.14_A13_T3
 //? description: Using try/catch/finally syntax construction
-//? expect: error:Parse error at offset 743 around line 49 column 12: Unknown built-in function someValue
+//? expect: error:Parse error at offset 743 around line 49 column 12: Unknown built-in function 'someValue'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2394,7 +2394,7 @@ if(c7!==1) throw '#7.2: "finally" block must be evaluated';
 
 //? test: S12.14_A14
 //? description: Using try/catch/finally in With and With in try/catch/finally
-//? expect: error:Parse error at offset 596 around line 20 column 3: Unknown built-in function with
+//? expect: error:Parse error at offset 596 around line 20 column 3: Unknown built-in function 'with'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2744,7 +2744,7 @@ finally{}
 
 //? test: S12.14_A17
 //? description: Creating exceptions within constructor
-//? expect: error:Parse error at offset 79 around line 6 column 5: Unknown built-in function this
+//? expect: error:Parse error at offset 79 around line 6 column 5: Unknown built-in function 'this'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3070,7 +3070,7 @@ if (myObj.i!==10) throw '#5: Handling of catch must be correct';
 
 //? test: S12.14_A18_T7
 //? description: Catching Array
-//? expect: error:Parse error at offset 705 around line 40 column 9: Unknown built-in function new
+//? expect: error:Parse error at offset 705 around line 40 column 9: Unknown built-in function 'new'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3134,7 +3134,7 @@ catch(e){
 
 //? test: S12.14_A19_T1
 //? description: Testing try/catch syntax construction
-//? expect: error:Parse error at offset 45 around line 5 column 10: Unknown built-in function Error
+//? expect: error:Parse error at offset 45 around line 5 column 10: Unknown built-in function 'Error'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3405,7 +3405,7 @@ if (c3!==1){
 
 //? test: S12.14_A3
 //? description: Checking if execution of "catch" catches system exceptions
-//? expect: error:Parse error at offset 373 around line 31 column 6: Unknown built-in function someValue
+//? expect: error:Parse error at offset 373 around line 31 column 6: Unknown built-in function 'someValue'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3456,7 +3456,7 @@ if (c3!==1){
 
 //? test: S12.14_A4
 //? description: Checking if deleting an exception fails
-//? expect: error:Parse error at offset 136 around line 9 column 7: Unknown built-in function delete
+//? expect: error:Parse error at offset 136 around line 9 column 7: Unknown built-in function 'delete'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4598,7 +4598,7 @@ assert(probe() === 'inside');
 
 //? test: scope-catch-param-lex-open
 //? description: Creation of new lexical environment for `catch` parameter
-//? expect: error:Parse error at offset 58 around line 3 column 39: Unknown built-in function x
+//? expect: error:Parse error at offset 58 around line 3 column 39: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4650,7 +4650,7 @@ assert(x === 4 === 'reference following statement');
 
 //? test: static-init-await-binding-invalid
 //? description: BindingIdentifier may not be `await` within class static blocks
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function class
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'class'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4663,7 +4663,7 @@ class C {
 
 //? test: static-init-await-binding-valid
 //? description: The `await` keyword is interpreted as an identifier within arrow function bodies
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function class
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'class'
 //? source: ...
 #!/usr/bin/env afw
 

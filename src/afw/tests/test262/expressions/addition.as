@@ -155,7 +155,7 @@ assert(y_1 === 0, "y_1 === 0");
 
 //? test: 11.6.1_A2.4_T3
 //? description: First expression is evaluated first, and then second expression: checking with undeclared variables
-//? expect: error:Parse error at offset 55 around line 5 column 9: Unknown built-in function x
+//? expect: error:Parse error at offset 55 around line 5 column 9: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -170,7 +170,7 @@ assert(
 
 //? test: 11.6.1_A2.4_T4
 //? description: First expression is evaluated first, and then second expression: checking with undeclared variables
-//? expect: error:Parse error at offset 57 around line 5 column 11: Unknown built-in function y
+//? expect: error:Parse error at offset 57 around line 5 column 11: Unknown built-in function 'y'
 //? source: ...
 #!/usr/bin/env afw
 

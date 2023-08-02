@@ -18,7 +18,7 @@ test() &&= 1;
 
 //? test: lgcl-and-assignment-operator-unresolved-lhs
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Logical Assignment operator(&&=) evaluates to an unresolvable reference
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -39,7 +39,7 @@ assert(value &&= unresolved === 0, "value");
 
 //? test: lgcl-and-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(&&=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -140,7 +140,7 @@ test() ??= 1;
 
 //? test: lgcl-nullish-assignment-operator-unresolved-lhs
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Logical Assignment operator(??=) evaluates to an unresolvable reference
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -150,7 +150,7 @@ unresolved ??= 1;
 
 //? test: lgcl-nullish-assignment-operator-unresolved-rhs
 //? description:  ReferenceError is not thrown if the AssignmentExpression of a Logical Assignment operator(??=) evaluates to an unresolvable reference and the AssignmentExpression is not evaluated.
-//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -161,7 +161,7 @@ assert(value === 0, "value");
 
 //? test: lgcl-nullish-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(??=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: error:Parse error at offset 70 around line 6 column 13: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 70 around line 6 column 13: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -261,7 +261,7 @@ test() ||= 1;
 
 //? test: lgcl-or-assignment-operator-unresolved-lhs
 //? description:  ReferenceError is thrown if the LeftHandSideExpression of a Logical Assignment operator(||=) evaluates to an unresolvable reference
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -271,7 +271,7 @@ unresolved ||= 1;
 
 //? test: lgcl-or-assignment-operator-unresolved-rhs
 //? description:  ReferenceError is not thrown if the AssignmentExpression of a Logical Assignment operator(||=) evaluates to an unresolvable reference and the AssignmentExpression is not evaluated.
-//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 45 around line 4 column 11: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -283,7 +283,7 @@ assert(value === 2, "value");
 
 //? test: lgcl-or-assignment-operator-unresolved-rhs-put
 //? description:  ReferenceError is thrown if the AssignmentExpression of a Logical Assignment operator(||=) evaluates to an unresolvable reference and the AssignmentExpression is evaluated.
-//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function unresolved
+//? expect: error:Parse error at offset 62 around line 6 column 13: Unknown built-in function 'unresolved'
 //? source: ...
 #!/usr/bin/env afw
 

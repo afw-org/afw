@@ -1056,7 +1056,7 @@ if(x!==6) throw "#1: SwitchTest(0) === 6. Actual:  SwitchTest(0) ==="+ SwitchTes
 
 //? test: scope-lex-async-function
 //? description: Creation of new lexical environment (into `default` clause)
-//? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function async
+//? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function 'async'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1067,7 +1067,7 @@ x;
 
 //? test: scope-lex-async-generator
 //? description: Creation of new lexical environment (into `default` clause)
-//? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function async
+//? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function 'async'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1141,7 +1141,7 @@ assert(
 
 //? test: scope-lex-const
 //? description: Creation of new lexical environment (into `default` clause)
-//? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function x
+//? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1163,7 +1163,7 @@ x;
 
 //? test: scope-lex-let
 //? description: Creation of new lexical environment (into `default` clause)
-//? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function f
+//? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function 'f'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1220,7 +1220,7 @@ assert(probeStmt() === 'inside');
 
 //? test: scope-var-none-case
 //? description: Retainment of existing variable environment (`case` clause)
-//? expect: error:Parse error at offset 108 around line 7 column 39: Unknown built-in function x
+//? expect: error:Parse error at offset 108 around line 7 column 39: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1245,7 +1245,7 @@ assert(x === 3 === 'reference following statement');
 
 //? test: scope-var-none-dflt
 //? description: Retainment of existing variable environment (`default` clause)
-//? expect: error:Parse error at offset 89 around line 6 column 39: Unknown built-in function x
+//? expect: error:Parse error at offset 89 around line 6 column 39: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 

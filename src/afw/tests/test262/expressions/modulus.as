@@ -254,7 +254,7 @@ if (x % y !== 1) {
 
 //? test: S11.5.3_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function x
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -263,7 +263,7 @@ x % 1;
 
 //? test: S11.5.3_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: error:Parse error at offset 24 around line 3 column 5: Unknown built-in function y
+//? expect: error:Parse error at offset 24 around line 3 column 5: Unknown built-in function 'y'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -322,7 +322,7 @@ try {
 
 //? test: S11.5.3_A2.4_T3
 //? description: Checking with undeclarated variables
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function x
+//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
 //? source: ...
 #!/usr/bin/env afw
 
