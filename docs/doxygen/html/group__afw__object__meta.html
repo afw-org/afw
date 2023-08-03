@@ -564,7 +564,7 @@ Functions</h2></td></tr>
 <div class="line">    ? <a class="code" href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76">afw_object_get_property</a>(<a class="code" href="group__afw__object__meta.html#gaa5794e17ce379163b264f5330e5dc9a2">afw_object_meta_object</a>(instance), \</div>
 <div class="line">        property_name, xctx) \</div>
 <div class="line">    : NULL</div>
-<div class="ttc" id="agroup__afw__object__interface_html_ga047bb2c3d32379692d67ac95f69d2b76"><div class="ttname"><a href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76">afw_object_get_property</a></div><div class="ttdeci">#define afw_object_get_property(instance, property_name, xctx)</div><div class="ttdoc">Call method get_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03415">afw_interface.h:3415</a></div></div>
+<div class="ttc" id="agroup__afw__object__interface_html_ga047bb2c3d32379692d67ac95f69d2b76"><div class="ttname"><a href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76">afw_object_get_property</a></div><div class="ttdeci">#define afw_object_get_property(instance, property_name, xctx)</div><div class="ttdoc">Call method get_property of interface afw_object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03357">afw_interface.h:3357</a></div></div>
 <div class="ttc" id="agroup__afw__object__meta_html_gaa5794e17ce379163b264f5330e5dc9a2"><div class="ttname"><a href="group__afw__object__meta.html#gaa5794e17ce379163b264f5330e5dc9a2">afw_object_meta_object</a></div><div class="ttdeci">#define afw_object_meta_object(instance)</div><div class="ttdoc">Return meta object for an object or NULL if there is not one.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__meta_8h_source.html#l00050">afw_object_meta.h:50</a></div></div>
 </div><!-- fragment -->
 <p>Get a meta property. </p>
@@ -1335,7 +1335,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>If property_name is NULL, <a class="el" href="group__afw__object__meta.html#ga27d3c8eebcf1a4f3d534e17815fa08bc" title="Add a thrown error to instance&#39;s meta.">afw_object_meta_add_thrown_error()</a> is called. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000263">Todo:</a></b></dt><dd>FIXME: Is the desired??? Log error. afw_error_write_log(afw_log_priority_debug, error, xctx);</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000251">Todo:</a></b></dt><dd>FIXME: Is the desired??? Log error. afw_error_write_log(afw_log_priority_debug, error, xctx);</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__meta_8c_source.html#l00782">782</a> of file <a class="el" href="afw__object__meta_8c_source.html">afw_object_meta.c</a>.</p>
 
@@ -1600,7 +1600,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>object id or NULL. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000261">Todo:</a></b></dt><dd>FIXME: Check meta first?? Store in meta??? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000249">Todo:</a></b></dt><dd>FIXME: Check meta first?? Store in meta??? </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__meta_8c_source.html#l00119">119</a> of file <a class="el" href="afw__object__meta_8c_source.html">afw_object_meta.c</a>.</p>
 
@@ -1683,7 +1683,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>path or NULL.</dd></dl>
 <p>If the object does not have a path, is an embedded object, and is not a const object (has a p), afw_object_path_make_for_embedded) will be used to make the path and that path will be stored as the object's path. This works this way so that paths do not have to be created for embedded objects unless the are accessed, so as the use of the inheritedFrom object option.</p>
 <p>If a object is a const object and does not have a path, NULL is returned. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000262">Todo:</a></b></dt><dd>FIXME: prune to just path. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000250">Todo:</a></b></dt><dd>FIXME: prune to just path. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__meta_8c_source.html#l00231">231</a> of file <a class="el" href="afw__object__meta_8c_source.html">afw_object_meta.c</a>.</p>
 
@@ -2054,7 +2054,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>This will set an instances parentPaths and path meta from a meta object. The meta must have a lifetime as long as the instance.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000268">Todo:</a></b></dt><dd>FIXME: Decide if meta object is validated at this point or later. Probably now or with a different call. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000254">Todo:</a></b></dt><dd>FIXME: Decide if meta object is validated at this point or later. Probably now or with a different call. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__object__meta_8c_source.html#l00315">315</a> of file <a class="el" href="afw__object__meta_8c_source.html">afw_object_meta.c</a>.</p>
 
@@ -2243,7 +2243,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

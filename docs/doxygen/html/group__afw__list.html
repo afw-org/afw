@@ -115,9 +115,6 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaa2f406c0c6b06503a0640c8a9be4a029"><td class="memItemLeft" align="right" valign="top"><a id="gaa2f406c0c6b06503a0640c8a9be4a029"></a>
-<a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>afw_list_count</b> (const <a class="el" href="structafw__list__s.html">afw_list_t</a> *list, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="separator:gaa2f406c0c6b06503a0640c8a9be4a029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae971ffa923f2b62c0e4ffa985d282ef8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__list.html#gae971ffa923f2b62c0e4ffa985d282ef8">afw_list_create_with_options</a> (int options, const <a class="el" href="structafw__data__type__s.html">afw_data_type_t</a> *data_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:gae971ffa923f2b62c0e4ffa985d282ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an list in memory with options.  <a href="group__afw__list.html#gae971ffa923f2b62c0e4ffa985d282ef8">More...</a><br /></td></tr>
 <tr class="separator:gae971ffa923f2b62c0e4ffa985d282ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,7 +217,7 @@ Variables</h2></td></tr>
 <p>Use this function to create a value list that is not associated with an adaptor.</p>
 <p>If only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga7af6bfc542df3ec641b16e822dfa5b5f" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00086">86</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00081">81</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +270,7 @@ Variables</h2></td></tr>
 <div class="line">    (instance)-&gt;indirect = _indirect; \</div>
 <div class="line">    (instance)-&gt;data_type = _data_type; \</div>
 <div class="line">    (instance)-&gt;count = _count</div>
-<div class="ttc" id="agroup__afw__list_html_ga3ebd3dde6f80e1a4abfbac9d1348a861"><div class="ttname"><a href="group__afw__list.html#ga3ebd3dde6f80e1a4abfbac9d1348a861">afw_list_wrapper_for_array_inf</a></div><div class="ttdeci">afw_list_wrapper_for_array_inf</div><div class="ttdoc">inf for afw_list_wrapper_for_array afw_list implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__list_8h_source.html#l00259">afw_list.h:259</a></div></div>
+<div class="ttc" id="agroup__afw__list_html_ga3ebd3dde6f80e1a4abfbac9d1348a861"><div class="ttname"><a href="group__afw__list.html#ga3ebd3dde6f80e1a4abfbac9d1348a861">afw_list_wrapper_for_array_inf</a></div><div class="ttdeci">afw_list_wrapper_for_array_inf</div><div class="ttdoc">inf for afw_list_wrapper_for_array afw_list implementation.</div><div class="ttdef"><b>Definition:</b> <a href="afw__list_8h_source.html#l00254">afw_list.h:254</a></div></div>
 </div><!-- fragment -->
 <p>Helper macro to fill out afw_list_wrapper_for_array_self_t. </p>
 <p>instance is pointer to afw_list_wrapper_for_array_self_t. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -290,7 +287,7 @@ Variables</h2></td></tr>
 <p>afw_list_wrapper_for_array_self_t wrapper;</p>
 <p><a class="el" href="group__afw__list.html#ga001f3fa7ac4e4b81c02ec83bd9493daf" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY(&amp;wrapper, array, data_type, count)</a>; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00281">281</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00276">276</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +360,7 @@ Variables</h2></td></tr>
 </dl>
 <p>If possible, use <a class="el" href="group__afw__list.html#ga001f3fa7ac4e4b81c02ec83bd9493daf" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY()</a> instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00302">302</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00297">297</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
@@ -403,7 +400,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00459">459</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00454">454</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +448,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to interface pointer of new value list.</dd></dl>
 <p>If data_type is NULL and only values of a single evaluated data type are added, <a class="el" href="group__afw__list__interface.html#ga7af6bfc542df3ec641b16e822dfa5b5f" title="Call method get_data_type of interface afw_list.">afw_list_get_data_type()</a> will return that data type. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00069">69</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00064">64</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +520,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00094">94</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00078">78</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -569,7 +566,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00120">120</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00104">104</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -880,7 +877,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>cloned instance of list.</dd></dl>
 <p>If data_type is not NULL and list is typed, they must match. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list__memory_8c_source.html#l00693">693</a> of file <a class="el" href="afw__list__memory_8c_source.html">afw_list_memory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list__memory_8c_source.html#l00692">692</a> of file <a class="el" href="afw__list__memory_8c_source.html">afw_list_memory.c</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1044,7 @@ Variables</h2></td></tr>
 <p>If data type of values in list is not already known and all values is list have the same data type, make the list a list of that data type.</p>
 <p>Once a list is set to immutable, all other set calls will throw an error. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00076">76</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00060">60</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1101,7 +1098,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>typed list. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list__memory_8c_source.html#l00732">732</a> of file <a class="el" href="afw__list__memory_8c_source.html">afw_list_memory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list__memory_8c_source.html#l00731">731</a> of file <a class="el" href="afw__list__memory_8c_source.html">afw_list_memory.c</a>.</p>
 
 </div>
 </div>
@@ -1188,7 +1185,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00144">144</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00128">128</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1241,7 +1238,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00163">163</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00147">147</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1287,7 +1284,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00184">184</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00168">168</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1327,7 +1324,7 @@ Variables</h2></td></tr>
 </dl>
 <p>Once a list is set to immutable, all other set calls will throw an error. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00060">60</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00044">44</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1380,7 +1377,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00204">204</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8c_source.html#l00188">188</a> of file <a class="el" href="afw__list_8c_source.html">afw_list.c</a>.</p>
 
 </div>
 </div>
@@ -1400,14 +1397,14 @@ Variables</h2></td></tr>
 <p>inf for afw_list_wrapper_for_array afw_list implementation. </p>
 <p>See <a class="el" href="group__afw__list.html#ga001f3fa7ac4e4b81c02ec83bd9493daf" title="Helper macro to fill out afw_list_wrapper_for_array_self_t.">AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY()</a> macro. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00259">259</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__list_8h_source.html#l00254">254</a> of file <a class="el" href="afw__list_8h_source.html">afw_list.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

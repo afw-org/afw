@@ -138,31 +138,36 @@ events {
 http {
     include       mime.types;
     default_type  application/json;
+    log_format    simple_format     '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent';
 
     server {
         listen 8080;
+        client_max_body_size 100M;        
+        access_log /dev/stdout simple_format;
+        error_log /dev/stdout;
+        
         location /favicon.ico {
             return 204;
             access_log     off;
             log_not_found  off;
-        }    
+        }        
         root /var/www/html/;
         location = / {
             return 301 $scheme://$http_host/afw_app/Home;
-        }
+        }  
         location ~ /afw_app/(.+) {
-            root /var/www/html/afw_app/;
-            try_files /$1 /index.html =404;
+            root /var/www/html/afw_app/;                        
+            try_files /$1 /$1/index.html /index.html =404;
+        }             
+        location = /docs {
+            return 301 $scheme://$http_host/docs/index.html;
         }
-        location = /doc {
-            return 301 $scheme://$http_host/doc/index.html;
-        }
-        location ~ /doc/(.+) {            
-            root /var/www/html/afw_app/doc;
+        location ~ /docs/(.+) {            
+            root /var/www/html/afw_app/docs;
             try_files /$1 /$1/index.html =404;
         }
         location / {
-            fastcgi_pass unix:/var/run/afw.sock;
+            fastcgi_pass unix:/tmp/afw.sock;
 
             fastcgi_param   IGNORE_URI_PREFIX       /;
             fastcgi_param   URI                     $uri;

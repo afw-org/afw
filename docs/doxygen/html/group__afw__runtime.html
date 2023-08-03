@@ -212,12 +212,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0bfab64646e4a23bd26a32ee01ca703a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__runtime.html#ga0bfab64646e4a23bd26a32ee01ca703a">afw_runtime_object_get_count</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga0bfab64646e4a23bd26a32ee01ca703a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method get_count for runtime object.  <a href="group__afw__runtime.html#ga0bfab64646e4a23bd26a32ee01ca703a">More...</a><br /></td></tr>
 <tr class="separator:ga0bfab64646e4a23bd26a32ee01ca703a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga64124e0a2803df43f4d6c97aba7b75d9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__runtime.html#ga64124e0a2803df43f4d6c97aba7b75d9">afw_runtime_object_get_entry</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> index, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga64124e0a2803df43f4d6c97aba7b75d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method get_entry for runtime object.  <a href="group__afw__runtime.html#ga64124e0a2803df43f4d6c97aba7b75d9">More...</a><br /></td></tr>
-<tr class="separator:ga64124e0a2803df43f4d6c97aba7b75d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9effabc862de895e4980e329f86bcf3a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__runtime.html#ga9effabc862de895e4980e329f86bcf3a">afw_runtime_object_get_entry_meta</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, <a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a> index, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga9effabc862de895e4980e329f86bcf3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method entry_meta for runtime object.  <a href="group__afw__runtime.html#ga9effabc862de895e4980e329f86bcf3a">More...</a><br /></td></tr>
-<tr class="separator:ga9effabc862de895e4980e329f86bcf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga372f3fbf73cc1a36d72c18b97092695a"><td class="memItemLeft" align="right" valign="top"><a id="ga372f3fbf73cc1a36d72c18b97092695a"></a>
 const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__runtime.html#ga372f3fbf73cc1a36d72c18b97092695a">afw_runtime_object_get_object_type_id</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga372f3fbf73cc1a36d72c18b97092695a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method get_object_type_id for runtime object. <br /></td></tr>
@@ -300,8 +294,6 @@ Variables</h2></td></tr>
 <div class="line">    afw_runtime_object_release,                                                 \</div>
 <div class="line">    afw_runtime_object_add_reference,                                           \</div>
 <div class="line">    afw_runtime_object_get_count,                                           \</div>
-<div class="line">    afw_runtime_object_get_entry,                                           \</div>
-<div class="line">    afw_runtime_object_get_entry_meta,                                           \</div>
 <div class="line">    afw_runtime_object_get_meta,                                                \</div>
 <div class="line">    afw_runtime_object_get_property,                                            \</div>
 <div class="line">    afw_runtime_object_get_property_meta,                                       \</div>
@@ -310,7 +302,7 @@ Variables</h2></td></tr>
 <div class="line">    afw_runtime_object_has_property,                                            \</div>
 <div class="line">    afw_runtime_object_get_setter                                               \</div>
 <div class="line">}                                                                               \</div>
-<div class="ttc" id="astructafw__object__inf__s_html"><div class="ttname"><a href="structafw__object__inf__s.html">afw_object_inf_s</a></div><div class="ttdoc">Interface afw_object_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03294">afw_interface.h:3294</a></div></div>
+<div class="ttc" id="astructafw__object__inf__s_html"><div class="ttname"><a href="structafw__object__inf__s.html">afw_object_inf_s</a></div><div class="ttdoc">Interface afw_object_inf_s struct.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l03278">afw_interface.h:3278</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="afw__runtime_8h_source.html#l00638">638</a> of file <a class="el" href="afw__runtime_8h_source.html">afw_runtime.h</a>.</p>
 
@@ -921,7 +913,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Method add_reference for runtime object. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000353">Todo:</a></b></dt><dd>FIXME: Think about this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000325">Todo:</a></b></dt><dd>FIXME: Think about this. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01328">1328</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
 
@@ -1074,99 +1066,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Method get_count for runtime object. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000354">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000326">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01340">1340</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
-
-</div>
-</div>
-<a id="ga64124e0a2803df43f4d6c97aba7b75d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga64124e0a2803df43f4d6c97aba7b75d9">&#9670;&nbsp;</a></span>afw_runtime_object_get_entry()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_runtime_object_get_entry </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a>&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Method get_entry for runtime object. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000355">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01356">1356</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
-
-</div>
-</div>
-<a id="ga9effabc862de895e4980e329f86bcf3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9effabc862de895e4980e329f86bcf3a">&#9670;&nbsp;</a></span>afw_runtime_object_get_entry_meta()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_runtime_object_get_entry_meta </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__afw__common.html#gaf758b90e3fadf75b6264795b4f8a1e57">afw_integer_t</a>&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
-          <td class="paramname"><em>xctx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Method entry_meta for runtime object. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000356">Todo:</a></b></dt><dd>Add code to implement method. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01374">1374</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01341">1341</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
 
 </div>
 </div>
@@ -1197,7 +1099,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Method release for runtime object. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000352">Todo:</a></b></dt><dd>FIXME: Think about this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000324">Todo:</a></b></dt><dd>FIXME: Think about this. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__runtime_8c_source.html#l01315">1315</a> of file <a class="el" href="afw__runtime_8c_source.html">afw_runtime.c</a>.</p>
 
@@ -1470,7 +1372,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -150,6 +150,12 @@ Macros</h2></td></tr>
 <tr class="memitem:ga1fb3cdf4ecff7c53c4285dff51883a6d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga1fb3cdf4ecff7c53c4285dff51883a6d">afw_value_is_function_thunk</a>(A_VALUE)</td></tr>
 <tr class="memdesc:ga1fb3cdf4ecff7c53c4285dff51883a6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to determine if value is a function thunk.  <a href="group__afw__value.html#ga1fb3cdf4ecff7c53c4285dff51883a6d">More...</a><br /></td></tr>
 <tr class="separator:ga1fb3cdf4ecff7c53c4285dff51883a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3a3ad8ef6215568b63485b2ee58168ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga3a3ad8ef6215568b63485b2ee58168ef">afw_value_is_list_expression</a>(A_VALUE)</td></tr>
+<tr class="memdesc:ga3a3ad8ef6215568b63485b2ee58168ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to determine if value is a list expression.  <a href="group__afw__value.html#ga3a3ad8ef6215568b63485b2ee58168ef">More...</a><br /></td></tr>
+<tr class="separator:ga3a3ad8ef6215568b63485b2ee58168ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c8ce73a4af045e511366a935c65bb44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga6c8ce73a4af045e511366a935c65bb44">afw_value_is_object_expression</a>(A_VALUE)</td></tr>
+<tr class="memdesc:ga6c8ce73a4af045e511366a935c65bb44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to determine if value is an object expression.  <a href="group__afw__value.html#ga6c8ce73a4af045e511366a935c65bb44">More...</a><br /></td></tr>
+<tr class="separator:ga6c8ce73a4af045e511366a935c65bb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae8a651c9ba632ee9b6f95d805b328cd2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#gae8a651c9ba632ee9b6f95d805b328cd2">afw_value_is_script_function</a>(A_VALUE)</td></tr>
 <tr class="memdesc:gae8a651c9ba632ee9b6f95d805b328cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to determine if value is lambda definition.  <a href="group__afw__value.html#gae8a651c9ba632ee9b6f95d805b328cd2">More...</a><br /></td></tr>
 <tr class="separator:gae8a651c9ba632ee9b6f95d805b328cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,9 +234,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6a2781ceb3ebb54518486cf0cd76749d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga6a2781ceb3ebb54518486cf0cd76749d">afw_value_compile</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga6a2781ceb3ebb54518486cf0cd76749d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile a value.  <a href="group__afw__value.html#ga6a2781ceb3ebb54518486cf0cd76749d">More...</a><br /></td></tr>
 <tr class="separator:ga6a2781ceb3ebb54518486cf0cd76749d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e657f11d52e30deb60daf2515491fb6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga4e657f11d52e30deb60daf2515491fb6">afw_value_compile_as</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a> compile_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga4e657f11d52e30deb60daf2515491fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile a value using specified compile type.  <a href="group__afw__value.html#ga4e657f11d52e30deb60daf2515491fb6">More...</a><br /></td></tr>
+<tr class="separator:ga4e657f11d52e30deb60daf2515491fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga61bceae988e8845ab2cc8d095437f315"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga61bceae988e8845ab2cc8d095437f315">afw_value_compile_and_evaluate</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga61bceae988e8845ab2cc8d095437f315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and evaluate a value.  <a href="group__afw__value.html#ga61bceae988e8845ab2cc8d095437f315">More...</a><br /></td></tr>
 <tr class="separator:ga61bceae988e8845ab2cc8d095437f315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39d826e670c31aa15ea6866c9510516a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga39d826e670c31aa15ea6866c9510516a">afw_value_compile_and_evaluate_as</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a> compile_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga39d826e670c31aa15ea6866c9510516a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and evaluate a value using specified compile type.  <a href="group__afw__value.html#ga39d826e670c31aa15ea6866c9510516a">More...</a><br /></td></tr>
+<tr class="separator:ga39d826e670c31aa15ea6866c9510516a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacaf76a70fc55b8b1d434a27374e5b816"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#gacaf76a70fc55b8b1d434a27374e5b816">afw_value_evaluate_with_additional_untrusted_qualified_variables</a> (const <a class="el" href="structafw__value__s.html">afw_value_t</a> *value, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *untrusted_qualified_variables, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:gacaf76a70fc55b8b1d434a27374e5b816"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate a value with additional insecure context.  <a href="group__afw__value.html#gacaf76a70fc55b8b1d434a27374e5b816">More...</a><br /></td></tr>
 <tr class="separator:gacaf76a70fc55b8b1d434a27374e5b816"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -292,9 +304,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga548e543c0028204eb67baeab6da47ad4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga548e543c0028204eb67baeab6da47ad4">afw_value_script_function_definition_create</a> (const <a class="el" href="group__afw__common.html#gabf665ad75e7e1e83e477c6726ad3819e">afw_compile_value_contextual_t</a> *contextual, const <a class="el" href="group__afw__common.html#gaa25b53fae749a5298b9b46c516891ace">afw_value_type_t</a> *returns, <a class="el" href="group__afw__common.html#gab55186af3197840e46bf41d88d0eb83b">afw_size_t</a> count, const <a class="el" href="group__afw__common.html#ga8763b630bdf159e0b535aefea784cab9">afw_value_script_function_parameter_t</a> **parameters, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *body, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga548e543c0028204eb67baeab6da47ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create function for lambda definition value.  <a href="group__afw__value.html#ga548e543c0028204eb67baeab6da47ad4">More...</a><br /></td></tr>
 <tr class="separator:ga548e543c0028204eb67baeab6da47ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga91139c5171e840e385a5a0ca8995192a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga91139c5171e840e385a5a0ca8995192a">afw_value_create_list_expression</a> (const <a class="el" href="group__afw__common.html#gabf665ad75e7e1e83e477c6726ad3819e">afw_compile_value_contextual_t</a> *contextual, const <a class="el" href="structafw__list__s.html">afw_list_t</a> *internal, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
-<tr class="memdesc:ga91139c5171e840e385a5a0ca8995192a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create function for list expression value.  <a href="group__afw__value.html#ga91139c5171e840e385a5a0ca8995192a">More...</a><br /></td></tr>
-<tr class="separator:ga91139c5171e840e385a5a0ca8995192a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56aacb3a31178445a59ba13b1d79e68b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#ga56aacb3a31178445a59ba13b1d79e68b">afw_value_create_list_expression</a> (const <a class="el" href="group__afw__common.html#gabf665ad75e7e1e83e477c6726ad3819e">afw_compile_value_contextual_t</a> *contextual, const <a class="el" href="structafw__value__s.html">afw_value_t</a> *internal, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:ga56aacb3a31178445a59ba13b1d79e68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create function for list expression value.  <a href="group__afw__value.html#ga56aacb3a31178445a59ba13b1d79e68b">More...</a><br /></td></tr>
+<tr class="separator:ga56aacb3a31178445a59ba13b1d79e68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf6e59d689179d157a561c2bf5e17fdc4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__value.html#gaf6e59d689179d157a561c2bf5e17fdc4">afw_value_create_object_expression</a> (const <a class="el" href="group__afw__common.html#gabf665ad75e7e1e83e477c6726ad3819e">afw_compile_value_contextual_t</a> *contextual, const <a class="el" href="structafw__object__s.html">afw_object_t</a> *internal, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:gaf6e59d689179d157a561c2bf5e17fdc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create function for object expression value.  <a href="group__afw__value.html#gaf6e59d689179d157a561c2bf5e17fdc4">More...</a><br /></td></tr>
 <tr class="separator:gaf6e59d689179d157a561c2bf5e17fdc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -470,7 +482,7 @@ Variables</h2></td></tr>
 <div class="line">{ \</div>
 <div class="line">    AFW_THROW_ERROR_Z(cast_error, <span class="stringliteral">&quot;Type safe exception.&quot;</span>, xctx); \</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__afw__value_html_ga1d9df9ab9f81aa15f2d008a9c885f8eb"><div class="ttname"><a href="group__afw__value.html#ga1d9df9ab9f81aa15f2d008a9c885f8eb">AFW_VALUE_DATA_TYPES_EQUAL</a></div><div class="ttdeci">#define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)</div><div class="ttdoc">Assert that the data type of two adaptive values is the same.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00841">afw_value.h:841</a></div></div>
+<div class="ttc" id="agroup__afw__value_html_ga1d9df9ab9f81aa15f2d008a9c885f8eb"><div class="ttname"><a href="group__afw__value.html#ga1d9df9ab9f81aa15f2d008a9c885f8eb">AFW_VALUE_DATA_TYPES_EQUAL</a></div><div class="ttdeci">#define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)</div><div class="ttdoc">Assert that the data type of two adaptive values is the same.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00867">afw_value.h:867</a></div></div>
 </div><!-- fragment -->
 <p>Assert that the data type of two adaptive values is the same. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -482,7 +494,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00853">853</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00879">879</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -522,7 +534,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p>Throw and error if A_VALUE is not value inf id. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00700">700</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00726">726</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -556,11 +568,11 @@ Variables</h2></td></tr>
 <div class="line">    !<a class="code" href="group__afw__value.html#gaa540aa259daf9bebefb4275510a3e025">AFW_VALUE_IS_DATA_TYPE</a>(A_VALUE, <span class="keywordtype">string</span>) ) \</div>
 <div class="line">    AFW_THROW_ERROR_Z(cast_error, <span class="stringliteral">&quot;Type safe exception.&quot;</span>, A_SCOPE); \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="agroup__afw__value_html_gaa540aa259daf9bebefb4275510a3e025"><div class="ttname"><a href="group__afw__value.html#gaa540aa259daf9bebefb4275510a3e025">AFW_VALUE_IS_DATA_TYPE</a></div><div class="ttdeci">#define AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)</div><div class="ttdoc">Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00733">afw_value.h:733</a></div></div>
+<div class="ttc" id="agroup__afw__value_html_gaa540aa259daf9bebefb4275510a3e025"><div class="ttname"><a href="group__afw__value.html#gaa540aa259daf9bebefb4275510a3e025">AFW_VALUE_IS_DATA_TYPE</a></div><div class="ttdeci">#define AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)</div><div class="ttdoc">Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00759">afw_value.h:759</a></div></div>
 </div><!-- fragment -->
 <p>Throw and error if A_VALUE is not anyURI or string. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00751">751</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00777">777</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -602,7 +614,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p>Throw and error if A_VALUE is not evaluated data type A_DATA_TYPE. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00742">742</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00768">768</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +651,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">(<a class="code" href="group__afw__value__interface.html#ga355792d70d105c24f0f88e87acedb6b4">afw_value_get_data_type</a>(value1, xctx) != \</div>
 <div class="line">    afw_value_get_data_type(value2, xctx))</div>
-<div class="ttc" id="agroup__afw__value__interface_html_ga355792d70d105c24f0f88e87acedb6b4"><div class="ttname"><a href="group__afw__value__interface.html#ga355792d70d105c24f0f88e87acedb6b4">afw_value_get_data_type</a></div><div class="ttdeci">#define afw_value_get_data_type(instance, xctx)</div><div class="ttdoc">Call method get_data_type of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05390">afw_interface.h:5390</a></div></div>
+<div class="ttc" id="agroup__afw__value__interface_html_ga355792d70d105c24f0f88e87acedb6b4"><div class="ttname"><a href="group__afw__value__interface.html#ga355792d70d105c24f0f88e87acedb6b4">afw_value_get_data_type</a></div><div class="ttdeci">#define afw_value_get_data_type(instance, xctx)</div><div class="ttdoc">Call method get_data_type of interface afw_value.</div><div class="ttdef"><b>Definition:</b> <a href="afw__interface_8h_source.html#l05332">afw_interface.h:5332</a></div></div>
 </div><!-- fragment -->
 <p>Assert that the data type of two adaptive values is the same. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -651,7 +663,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00841">841</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00867">867</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -702,7 +714,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>evaluated value.</dd></dl>
 <p>If value is undefined or there is not a optional_evaluate(), the value passed returned asis. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00815">815</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00841">841</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -808,7 +820,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l01273">1273</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l01338">1338</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -839,7 +851,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00725">725</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00751">751</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -869,7 +881,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>const void * of internal.</dd></dl>
 <p>This should be used with extreme care. The intended is to access internal of an evaluated value. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00830">830</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00856">856</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1157,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p>Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00733">733</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00759">759</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1284,6 +1296,40 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ga3a3ad8ef6215568b63485b2ee58168ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3a3ad8ef6215568b63485b2ee58168ef">&#9670;&nbsp;</a></span>afw_value_is_list_expression</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define afw_value_is_list_expression</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">A_VALUE</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">( \</div>
+<div class="line">    (A_VALUE) &amp;&amp; \</div>
+<div class="line">    (A_VALUE)-&gt;inf == &amp;<a class="code" href="group__afw__value.html#gacd2e3ceae9abf448c9e39f7fedde4857">afw_value_list_expression_inf</a> \</div>
+<div class="line">)</div>
+<div class="ttc" id="agroup__afw__value_html_gacd2e3ceae9abf448c9e39f7fedde4857"><div class="ttname"><a href="group__afw__value.html#gacd2e3ceae9abf448c9e39f7fedde4857">afw_value_list_expression_inf</a></div><div class="ttdeci">afw_value_list_expression_inf</div><div class="ttdoc">Value list expression inf.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00279">afw_value.h:279</a></div></div>
+</div><!-- fragment -->
+<p>Macro to determine if value is a list expression. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A_VALUE</td><td>to test. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00640">640</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+
+</div>
+</div>
 <a id="ga7e3160acb6d161dc0e3f6a2e57163981"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7e3160acb6d161dc0e3f6a2e57163981">&#9670;&nbsp;</a></span>afw_value_is_nullish</h2>
 
@@ -1320,6 +1366,40 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ga6c8ce73a4af045e511366a935c65bb44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6c8ce73a4af045e511366a935c65bb44">&#9670;&nbsp;</a></span>afw_value_is_object_expression</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define afw_value_is_object_expression</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">A_VALUE</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">( \</div>
+<div class="line">    (A_VALUE) &amp;&amp; \</div>
+<div class="line">    (A_VALUE)-&gt;inf == &amp;<a class="code" href="group__afw__value.html#ga76208c4b7b4599cea524c9b8e9caff5b">afw_value_object_expression_inf</a> \</div>
+<div class="line">)</div>
+<div class="ttc" id="agroup__afw__value_html_ga76208c4b7b4599cea524c9b8e9caff5b"><div class="ttname"><a href="group__afw__value.html#ga76208c4b7b4599cea524c9b8e9caff5b">afw_value_object_expression_inf</a></div><div class="ttdeci">afw_value_object_expression_inf</div><div class="ttdoc">Value object expression inf.</div><div class="ttdef"><b>Definition:</b> <a href="afw__value_8h_source.html#l00285">afw_value.h:285</a></div></div>
+</div><!-- fragment -->
+<p>Macro to determine if value is an object expression. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A_VALUE</td><td>to test. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00653">653</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+
+</div>
+</div>
 <a id="gaee6a39f9e8148e4854028ab335eadf2c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaee6a39f9e8148e4854028ab335eadf2c">&#9670;&nbsp;</a></span>afw_value_is_qualified_variable_reference</h2>
 
@@ -1350,7 +1430,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00653">653</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00679">679</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1384,7 +1464,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00666">666</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00692">692</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1418,7 +1498,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00640">640</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00666">666</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1452,7 +1532,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00679">679</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00705">705</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1487,7 +1567,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if value is an evaluated boolean true value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00867">867</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00893">893</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1585,7 +1665,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00692">692</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00718">718</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1615,7 +1695,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>data_type or NULL.</dd></dl>
 <p>This will return the data type of value if inf-&gt;data_type is not NULL. This will be available for all evaluated values and some other values. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00713">713</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8h_source.html#l00739">739</a> of file <a class="el" href="afw__value_8h_source.html">afw_value.h</a>.</p>
 
 </div>
 </div>
@@ -1851,7 +1931,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL terminated list of strings or undefined if value is undefined. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00765">765</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00827">827</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -1898,7 +1978,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL terminated list of values or undefined if value is undefined. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00755">755</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00817">817</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -1947,9 +2027,9 @@ Variables</h2></td></tr>
 <p><code>&lt;datatype&gt;("&lt;string&gt;")</code></p>
 <p>Where <code>&lt;datatype&gt;</code> is the data type of value and <code>&lt;string&gt;</code> is the quoted string representation of the value.</p>
 <p>For list values the result if "list(" followed by comma separated result of recursively calling this function, followed by ")". </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000388">Todo:</a></b></dt><dd>FIXME: change from bag to list when tests are modified. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000356">Todo:</a></b></dt><dd>FIXME: change from bag to list when tests are modified. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00272">272</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00334">334</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -1987,7 +2067,7 @@ Variables</h2></td></tr>
 <p>Convert value-&gt;value to afw_utf8_t *. Must be an evaluated value or list with exactly one entry</p>
 <p>Pool p will be used for result. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00394">394</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00456">456</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2025,7 +2105,7 @@ Variables</h2></td></tr>
 <p>Convert value-&gt;value to afw_utf8_z_t *. Must be evaluated list with exactly one entry or single value. Value can not contain x'00' bytes.</p>
 <p>Pool p will be used for result. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00253">253</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00315">315</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2138,7 +2218,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000394">Todo:</a></b></dt><dd>FIXME: Remove this code. Saving for now in case error is wrong. block = compiled_value-&gt;top_block; compiled_value-&gt;current_block = block; return (const afw_value_block_t *)block;</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000362">Todo:</a></b></dt><dd>FIXME: Remove this code. Saving for now in case error is wrong. block = compiled_value-&gt;top_block; compiled_value-&gt;current_block = block; return (const afw_value_block_t *)block;</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__value__block_8c_source.html#l00969">969</a> of file <a class="el" href="afw__value__block_8c_source.html">afw_value_block.c</a>.</p>
 
@@ -2366,7 +2446,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>cloned value.</dd></dl>
 <p>Only evaluated values are supported. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00220">220</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00282">282</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2414,7 +2494,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if equal, &lt; 0 if value1 &lt; value2, &gt; 0 if value1 &gt; value2.</dd></dl>
 <p>Values must be evaluated and the same data type or an error is thrown. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00831">831</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00893">893</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2459,7 +2539,7 @@ Variables</h2></td></tr>
 <p>Compile a value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">value</td><td>must be a type that can be compiled </td></tr>
     <tr><td class="paramname">source_location</td><td>to associate with compiled value or NULL. </td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
@@ -2513,8 +2593,9 @@ Variables</h2></td></tr>
 <p>Compile and evaluate a value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">value</td><td>must be a type that can be compiled </td></tr>
     <tr><td class="paramname">source_location</td><td>to associate with compiled string or NULL. </td></tr>
+    <tr><td class="paramname">compile_type.</td><td></td></tr>
     <tr><td class="paramname">p</td><td>to use for result. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
@@ -2522,7 +2603,129 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result of compiling and evaluating the value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00105">105</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00145">145</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+
+</div>
+</div>
+<a id="ga39d826e670c31aa15ea6866c9510516a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39d826e670c31aa15ea6866c9510516a">&#9670;&nbsp;</a></span>afw_value_compile_and_evaluate_as()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_value_compile_and_evaluate_as </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>source_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a>&#160;</td>
+          <td class="paramname"><em>compile_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compile and evaluate a value using specified compile type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>can be type appropriate for compile_type or string. </td></tr>
+    <tr><td class="paramname">source_location</td><td>to associate with compiled string or NULL. </td></tr>
+    <tr><td class="paramname">compile_type.</td><td></td></tr>
+    <tr><td class="paramname">p</td><td>to use for result. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of compiling and evaluating the value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00165">165</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+
+</div>
+</div>
+<a id="ga4e657f11d52e30deb60daf2515491fb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e657f11d52e30deb60daf2515491fb6">&#9670;&nbsp;</a></span>afw_value_compile_as()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_value_compile_as </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>source_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a>&#160;</td>
+          <td class="paramname"><em>compile_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compile a value using specified compile type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>can be type appropriate for compile_type or string. </td></tr>
+    <tr><td class="paramname">source_location</td><td>to associate with compiled value or NULL. </td></tr>
+    <tr><td class="paramname">compile_type</td><td>(set afw_compile_type_t) </td></tr>
+    <tr><td class="paramname">p</td><td>to use for result. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of compiling the value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00104">104</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2625,7 +2828,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if value contains substring.</dd></dl>
 <p>Value must be an evaluated value that has a cType of afw_utf8_t. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00869">869</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00931">931</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2686,9 +2889,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>converted value. If not conversion needed, value passed.</dd></dl>
 <p>An undefined error is thrown if value is NULL and required is true. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000389">Todo:</a></b></dt><dd>FIXME: make parameter </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000357">Todo:</a></b></dt><dd>FIXME: make parameter </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00522">522</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00584">584</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2743,7 +2946,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>converted value. If not conversion needed, value passed.</dd></dl>
 <p>An undefined error is thrown if result will be NULL and allow_undefined is false. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00626">626</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00688">688</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2783,7 +2986,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00687">687</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00749">749</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -2823,12 +3026,12 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00674">674</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00736">736</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
-<a id="ga91139c5171e840e385a5a0ca8995192a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga91139c5171e840e385a5a0ca8995192a">&#9670;&nbsp;</a></span>afw_value_create_list_expression()</h2>
+<a id="ga56aacb3a31178445a59ba13b1d79e68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56aacb3a31178445a59ba13b1d79e68b">&#9670;&nbsp;</a></span>afw_value_create_list_expression()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2842,7 +3045,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structafw__list__s.html">afw_list_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td>
           <td class="paramname"><em>internal</em>, </td>
         </tr>
         <tr>
@@ -2869,14 +3072,14 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">contextual</td><td>information for lambda. </td></tr>
-    <tr><td class="paramname">internal</td><td>list. </td></tr>
+    <tr><td class="paramname">internal</td><td>value that will evaluate to a list or NULL. </td></tr>
     <tr><td class="paramname">p</td><td>pool used for value. </td></tr>
     <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000397">Todo:</a></b></dt><dd>Add contextual to decompile, etc. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000365">Todo:</a></b></dt><dd>Add contextual to decompile, etc. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__value__list__expression_8c_source.html#l00038">38</a> of file <a class="el" href="afw__value__list__expression_8c_source.html">afw_value_list_expression.c</a>.</p>
 
@@ -2931,7 +3134,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000418">Todo:</a></b></dt><dd>Add contextual to decompile, etc. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000384">Todo:</a></b></dt><dd>Add contextual to decompile, etc. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__value__object__expression_8c_source.html#l00039">39</a> of file <a class="el" href="afw__value__object__expression_8c_source.html">afw_value_object_expression.c</a>.</p>
 
@@ -2970,7 +3173,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Make an afw_value_string_t from utf8_z in specified pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00457">457</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00519">519</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3172,7 +3375,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result of test. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00789">789</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00851">851</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3227,7 +3430,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>value or undefined if there is an error.</dd></dl>
 <p>The untrusted_qualified_variables supplied is checked before checking the xctx's context while evaluating value. This untrusted_qualified_variables is ignored for all secure evaluations that happen in the process such as authorization checking. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00472">472</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00534">534</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3504,7 +3707,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00156">156</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00218">218</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3544,7 +3747,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00209">209</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00271">271</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3587,7 +3790,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Make an afw_value_evaluated_t String using string in specified pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00416">416</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00478">478</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3630,7 +3833,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Make an afw_value_evaluated_t String using copy of string in specified pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00434">434</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00496">496</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3677,7 +3880,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value or undefined. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00345">345</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00407">407</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3724,7 +3927,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string representation of value or undefined. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00379">379</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00441">441</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -3845,7 +4048,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000419">Todo:</a></b></dt><dd>FIXME: Should have list entry by index too. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000385">Todo:</a></b></dt><dd>FIXME: Should have list entry by index too. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__value__reference__by__key_8c_source.html#l00037">37</a> of file <a class="el" href="afw__value__reference__by__key_8c_source.html">afw_value_reference_by_key.c</a>.</p>
 
@@ -3921,7 +4124,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created afw_value_t. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000420">Todo:</a></b></dt><dd>FIXME: Work about in all creates if copy needed. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000386">Todo:</a></b></dt><dd>FIXME: Work about in all creates if copy needed. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="afw__value__script__function_8c_source.html#l00044">44</a> of file <a class="el" href="afw__value__script__function_8c_source.html">afw_value_script_function.c</a>.</p>
 
@@ -3961,7 +4164,7 @@ Variables</h2></td></tr>
 <p>Convert internal value to string value.</p>
 <p>Convert internal value to single_string value. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00648">648</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00710">710</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -4053,7 +4256,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>undecorated value.</dd></dl>
 <p>A value "decoration" is annotation and compile_unit values. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00124">124</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00186">186</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -4094,7 +4297,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if undecorated value's inf is the supplied on.</dd></dl>
 <p>A value "decoration" is annotation and compile_unit values. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00135">135</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__value_8c_source.html#l00197">197</a> of file <a class="el" href="afw__value_8c_source.html">afw_value.c</a>.</p>
 
 </div>
 </div>
@@ -4175,7 +4378,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:33 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

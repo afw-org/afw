@@ -334,6 +334,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga5eaa1999e3a9a0e8590f35872437bd6d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga5eaa1999e3a9a0e8590f35872437bd6d">afw_object_resolve_instance</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *object, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *path, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga5eaa1999e3a9a0e8590f35872437bd6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve an object's instance pointer.  <a href="group__afw__object.html#ga5eaa1999e3a9a0e8590f35872437bd6d">More...</a><br /></td></tr>
 <tr class="separator:ga5eaa1999e3a9a0e8590f35872437bd6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4da897f598f34943f5b61a2c9003a28"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#gab4da897f598f34943f5b61a2c9003a28">afw_object_get_property_compile_as</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a> compile_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gab4da897f598f34943f5b61a2c9003a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile a property value using specified compile type.  <a href="group__afw__object.html#gab4da897f598f34943f5b61a2c9003a28">More...</a><br /></td></tr>
+<tr class="separator:gab4da897f598f34943f5b61a2c9003a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3eab032bb645947fb5afd68b5108615"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#gad3eab032bb645947fb5afd68b5108615">afw_object_get_property_compile_and_evaluate_as</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *source_location, <a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a> compile_type, const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *p, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
+<tr class="memdesc:gad3eab032bb645947fb5afd68b5108615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compile and evaluate a property value using specified compile type.  <a href="group__afw__object.html#gad3eab032bb645947fb5afd68b5108615">More...</a><br /></td></tr>
+<tr class="separator:gad3eab032bb645947fb5afd68b5108615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga34b0194432baec3d5a28e17784cd4625"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structafw__value__s.html">afw_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__afw__object.html#ga34b0194432baec3d5a28e17784cd4625">afw_object_get_property_extended</a> (const <a class="el" href="structafw__object__s.html">afw_object_t</a> *instance, const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *property_name, <a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *xctx)</td></tr>
 <tr class="memdesc:ga34b0194432baec3d5a28e17784cd4625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of an object's own property or embedded property.  <a href="group__afw__object.html#ga34b0194432baec3d5a28e17784cd4625">More...</a><br /></td></tr>
 <tr class="separator:ga34b0194432baec3d5a28e17784cd4625"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -511,7 +517,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__object.html#ga4bf3c5199d8e0957925729347072f3b9">afw_object_create_with_options</a>( \</div>
 <div class="line">        <a class="code" href="group__afw__object.html#ga1ecc3aa50c85148dfcdbea0a3d64a52b">AFW_OBJECT_MEMORY_OPTION_unmanaged</a>, p, xctx)</div>
-<div class="ttc" id="agroup__afw__object_html_ga1ecc3aa50c85148dfcdbea0a3d64a52b"><div class="ttname"><a href="group__afw__object.html#ga1ecc3aa50c85148dfcdbea0a3d64a52b">AFW_OBJECT_MEMORY_OPTION_unmanaged</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_unmanaged</div><div class="ttdoc">Object should be unmanaged.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00684">afw_object.h:684</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga1ecc3aa50c85148dfcdbea0a3d64a52b"><div class="ttname"><a href="group__afw__object.html#ga1ecc3aa50c85148dfcdbea0a3d64a52b">AFW_OBJECT_MEMORY_OPTION_unmanaged</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_unmanaged</div><div class="ttdoc">Object should be unmanaged.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00733">afw_object.h:733</a></div></div>
 <div class="ttc" id="agroup__afw__object_html_ga4bf3c5199d8e0957925729347072f3b9"><div class="ttname"><a href="group__afw__object.html#ga4bf3c5199d8e0957925729347072f3b9">afw_object_create_with_options</a></div><div class="ttdeci">const afw_object_t * afw_object_create_with_options(int options, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Create an empty entity object with options.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__memory_8c_source.html#l00032">afw_object_memory.c:32</a></div></div>
 </div><!-- fragment -->
 <p>Create an empty unmanaged object in memory. </p>
@@ -525,7 +531,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>instance of new object.</dd></dl>
 <p>Reference counting is not done for an unmanaged object, so the lifetime of the object will be controlled by the lifetime of the p specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00899">899</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00948">948</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -556,7 +562,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__object.html#ga4bf3c5199d8e0957925729347072f3b9">afw_object_create_with_options</a>( \</div>
 <div class="line">        <a class="code" href="group__afw__object.html#gab4365cd887e019b18bee32efac41798b">AFW_OBJECT_MEMORY_OPTION_cede_p</a>, p, xctx)</div>
-<div class="ttc" id="agroup__afw__object_html_gab4365cd887e019b18bee32efac41798b"><div class="ttname"><a href="group__afw__object.html#gab4365cd887e019b18bee32efac41798b">AFW_OBJECT_MEMORY_OPTION_cede_p</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_cede_p</div><div class="ttdoc">Object cedes control of the specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00694">afw_object.h:694</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gab4365cd887e019b18bee32efac41798b"><div class="ttname"><a href="group__afw__object.html#gab4365cd887e019b18bee32efac41798b">AFW_OBJECT_MEMORY_OPTION_cede_p</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_cede_p</div><div class="ttdoc">Object cedes control of the specified pool.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00743">afw_object.h:743</a></div></div>
 </div><!-- fragment -->
 <p>Create an empty entity object in memory in specified pool and cede control of the pool to the object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -578,7 +584,7 @@ Functions</h2></td></tr>
 <p>... set properties and use object ...</p>
 <p><a class="el" href="group__afw__object__interface.html#ga9d4659f85efca9c522fb96a018df4667" title="Call method release of interface afw_object.">afw_object_release(object, xctx)</a>; </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00849">849</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00898">898</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -609,7 +615,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__object.html#ga4bf3c5199d8e0957925729347072f3b9">afw_object_create_with_options</a>( \</div>
 <div class="line">        <a class="code" href="group__afw__object.html#gaf5263d61099e898cf90ae0d9905481e0">AFW_OBJECT_MEMORY_OPTION_clone_on_set</a>, p, xctx)</div>
-<div class="ttc" id="agroup__afw__object_html_gaf5263d61099e898cf90ae0d9905481e0"><div class="ttname"><a href="group__afw__object.html#gaf5263d61099e898cf90ae0d9905481e0">AFW_OBJECT_MEMORY_OPTION_clone_on_set</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_clone_on_set</div><div class="ttdoc">Clone values on set.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00704">afw_object.h:704</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gaf5263d61099e898cf90ae0d9905481e0"><div class="ttname"><a href="group__afw__object.html#gaf5263d61099e898cf90ae0d9905481e0">AFW_OBJECT_MEMORY_OPTION_clone_on_set</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_clone_on_set</div><div class="ttdoc">Clone values on set.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00753">afw_object.h:753</a></div></div>
 </div><!-- fragment -->
 <p>Create an empty entity object in its own pool and clone values on set. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -624,7 +630,7 @@ Functions</h2></td></tr>
 <p>This is like <a class="el" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3" title="Create an empty entity object in its own pool.">afw_object_create_managed()</a> except that the value of a set_property() is cloned into the object's pool.</p>
 <p>This function creates a subpool of the pool specified to hold the object and it's properties. A call to <a class="el" href="group__afw__object__interface.html#ga9d4659f85efca9c522fb96a018df4667" title="Call method release of interface afw_object.">afw_object_release()</a> for this object will release this subpool. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00885">885</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00934">934</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -661,7 +667,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="group__afw__data__type.html#gafb54c916fac5c6dcda7123ff1c29e1ee">afw_data_type_object_create_clone_to_managed_object</a>( \</div>
 <div class="line">        <span class="keywordtype">object</span>, p, xctx)</div>
-<div class="ttc" id="agroup__afw__data__type_html_gafb54c916fac5c6dcda7123ff1c29e1ee"><div class="ttname"><a href="group__afw__data__type.html#gafb54c916fac5c6dcda7123ff1c29e1ee">afw_data_type_object_create_clone_to_managed_object</a></div><div class="ttdeci">afw_data_type_object_create_clone_to_managed_object(const afw_object_t *object, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Clone an object to a managed object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type_8c_source.html#l01521">afw_data_type.c:1521</a></div></div>
+<div class="ttc" id="agroup__afw__data__type_html_gafb54c916fac5c6dcda7123ff1c29e1ee"><div class="ttname"><a href="group__afw__data__type.html#gafb54c916fac5c6dcda7123ff1c29e1ee">afw_data_type_object_create_clone_to_managed_object</a></div><div class="ttdeci">afw_data_type_object_create_clone_to_managed_object(const afw_object_t *object, const afw_pool_t *p, afw_xctx_t *xctx)</div><div class="ttdoc">Clone an object to a managed object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__data__type_8c_source.html#l01520">afw_data_type.c:1520</a></div></div>
 </div><!-- fragment -->
 <p>Clone an object to a managed object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -675,7 +681,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>cloned object.</dd></dl>
 <p>This will use <a class="el" href="group__afw__object.html#ga5a29f6a9be2505ca9675b10ceeca31a3" title="Create an empty entity object in its own pool.">afw_object_create_managed()</a> to create the cloned object. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l01014">1014</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l01063">1063</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -750,8 +756,8 @@ Functions</h2></td></tr>
 <div class="line">            : <a class="code" href="group__afw__object.html#gae732eb7d46c53c22d8ebc29d3f561ed0">AFW_OBJECT_MEMORY_OPTION_default</a>, \</div>
 <div class="line">            entity_p, xctx); \</div>
 <div class="line">    } \</div>
-<div class="ttc" id="agroup__afw__object_html_ga632736d9fd1da49c5aa9774a414411e1"><div class="ttname"><a href="group__afw__object.html#ga632736d9fd1da49c5aa9774a414411e1">afw_object_create</a></div><div class="ttdeci">#define afw_object_create(p, xctx)</div><div class="ttdoc">Create an empty unmanaged object in memory.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00899">afw_object.h:899</a></div></div>
-<div class="ttc" id="agroup__afw__object_html_gae732eb7d46c53c22d8ebc29d3f561ed0"><div class="ttname"><a href="group__afw__object.html#gae732eb7d46c53c22d8ebc29d3f561ed0">AFW_OBJECT_MEMORY_OPTION_default</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_default</div><div class="ttdoc">Default object behaviour.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00671">afw_object.h:671</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_ga632736d9fd1da49c5aa9774a414411e1"><div class="ttname"><a href="group__afw__object.html#ga632736d9fd1da49c5aa9774a414411e1">afw_object_create</a></div><div class="ttdeci">#define afw_object_create(p, xctx)</div><div class="ttdoc">Create an empty unmanaged object in memory.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00948">afw_object.h:948</a></div></div>
+<div class="ttc" id="agroup__afw__object_html_gae732eb7d46c53c22d8ebc29d3f561ed0"><div class="ttname"><a href="group__afw__object.html#gae732eb7d46c53c22d8ebc29d3f561ed0">AFW_OBJECT_MEMORY_OPTION_default</a></div><div class="ttdeci">#define AFW_OBJECT_MEMORY_OPTION_default</div><div class="ttdoc">Default object behaviour.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object_8h_source.html#l00720">afw_object.h:720</a></div></div>
 <div class="ttc" id="agroup__afw__object_html_gafee4eb8b66151154bba77a39ae7909d4"><div class="ttname"><a href="group__afw__object.html#gafee4eb8b66151154bba77a39ae7909d4">afw_object_create_embedded</a></div><div class="ttdeci">const afw_object_t * afw_object_create_embedded(const afw_object_t *embedding_object, const afw_utf8_t *property_name, afw_xctx_t *xctx)</div><div class="ttdoc">Create an empty embedded object in a memory object.</div><div class="ttdef"><b>Definition:</b> <a href="afw__object__memory_8c_source.html#l00060">afw_object_memory.c:60</a></div></div>
 <div class="ttc" id="agroup__afw__utf8_html_ga552f0dde7698dbc98c347188081e68ad"><div class="ttname"><a href="group__afw__utf8.html#ga552f0dde7698dbc98c347188081e68ad">afw_utf8_equal</a></div><div class="ttdeci">afw_boolean_t afw_utf8_equal(const afw_utf8_t *s1, const afw_utf8_t *s2)</div><div class="ttdoc">Check to see if a string equals another string.</div></div>
 </div><!-- fragment -->
@@ -772,7 +778,7 @@ Functions</h2></td></tr>
 <p>Param cede_p should only be used to cede control of a pool to a single entity object.</p>
 <p>This macro is useful for situations such as a recursive object parse function that uses an embedding_object and embedding_property_name variable that will be NULL on the first call and have the embedder on subsequent calls. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00966">966</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l01015">1015</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -815,7 +821,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>instance of new object.</dd></dl>
 <p>This function creates a subpool of the pool specified to hold the object and it's properties. A call to <a class="el" href="group__afw__object__interface.html#ga9d4659f85efca9c522fb96a018df4667" title="Call method release of interface afw_object.">afw_object_release()</a> for this object will release this subpool. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00864">864</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00913">913</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -977,7 +983,7 @@ Functions</h2></td></tr>
 <p>Object cedes control of the specified pool. </p>
 <p>The p passed to create will cede control to the object and be considered the object's pool. The lifetime of the object's pool will be controlled by calls to the object's add_reference() and release() methods. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00694">694</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00743">743</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -998,7 +1004,7 @@ Functions</h2></td></tr>
 <p>Object cedes control of the specified pool and clone on set. </p>
 <p>The p passed to create will cede control to the object and be considered the object's pool. The lifetime of the object's pool will be controlled by calls to the object's add_reference() and release() methods. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00714">714</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00763">763</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +1023,7 @@ Functions</h2></td></tr>
 <p>Clone values on set. </p>
 <p>Calls to the objects setter functions will clone the input value to the pool of the object. This is useful if the lifetime of the object is longer than the lifetime of the input values. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00704">704</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00753">753</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1036,7 +1042,7 @@ Functions</h2></td></tr>
 <p>Default object behaviour. </p>
 <p>A subpool will be created of the p passed to create and be considered the object's pool. The lifetime of the object's pool will be controlled by calls to the object's add_reference() and release() methods. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00671">671</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00720">720</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1056,7 +1062,7 @@ Functions</h2></td></tr>
 <p>Calls to methods release() and add_reference() will not do reference counting and the associated pool and will not call release() for the pool.</p>
 <p>Normally, managed entity objects and embedded object reside in a pool who's lifetime is controlled by the reference count of the object. Specifying this option disables this normal behaviour. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00684">684</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00733">733</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1084,7 +1090,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>property value or NULL if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00761">761</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00810">810</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1111,7 +1117,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00775">775</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8h_source.html#l00824">824</a> of file <a class="el" href="afw__object_8h_source.html">afw_object.h</a>.</p>
 
 </div>
 </div>
@@ -1572,6 +1578,144 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gad3eab032bb645947fb5afd68b5108615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad3eab032bb645947fb5afd68b5108615">&#9670;&nbsp;</a></span>afw_object_get_property_compile_and_evaluate_as()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_object_get_property_compile_and_evaluate_as </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>property_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>source_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a>&#160;</td>
+          <td class="paramname"><em>compile_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compile and evaluate a property value using specified compile type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>of object. </td></tr>
+    <tr><td class="paramname">property_name</td><td>of property. </td></tr>
+    <tr><td class="paramname">source_location</td><td>to associate with compiled value or NULL (path used). </td></tr>
+    <tr><td class="paramname">compile_type</td><td>(set afw_compile_type_t) </td></tr>
+    <tr><td class="paramname">p</td><td>to use for returned value. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of compiling and evaluating the property value.</dd></dl>
+<p>A slash ('/') followed by the property name will be appended to the source location when calling compile. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00252">252</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+
+</div>
+</div>
+<a id="gab4da897f598f34943f5b61a2c9003a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab4da897f598f34943f5b61a2c9003a28">&#9670;&nbsp;</a></span>afw_object_get_property_compile_as()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structafw__value__s.html">afw_value_t</a>* afw_object_get_property_compile_as </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structafw__object__s.html">afw_object_t</a> *&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>property_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__afw__common.html#gae4a62c5bdbd11f4f86bf0f426f20434f">afw_utf8_t</a> *&#160;</td>
+          <td class="paramname"><em>source_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__afw__common.html#gaa3ed4512b367a8e75798354e6b3e0212">afw_compile_type_t</a>&#160;</td>
+          <td class="paramname"><em>compile_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structafw__pool__s.html">afw_pool_t</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structafw__xctx__s.html">afw_xctx_t</a> *&#160;</td>
+          <td class="paramname"><em>xctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compile a property value using specified compile type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>of object. </td></tr>
+    <tr><td class="paramname">property_name</td><td>of property. </td></tr>
+    <tr><td class="paramname">source_location</td><td>to associate with compiled value or NULL (path used). </td></tr>
+    <tr><td class="paramname">compile_type</td><td>(set afw_compile_type_t) </td></tr>
+    <tr><td class="paramname">p</td><td>to use for returned value. </td></tr>
+    <tr><td class="paramname">xctx</td><td>of caller. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of compiling the property value.</dd></dl>
+<p>A slash ('/') followed by the property name will be appended to the source location when calling compile. </p>
+
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00215">215</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+
+</div>
+</div>
 <a id="ga34b0194432baec3d5a28e17784cd4625"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga34b0194432baec3d5a28e17784cd4625">&#9670;&nbsp;</a></span>afw_object_get_property_extended()</h2>
 
@@ -1627,11 +1771,11 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><em>meta</em>.path   </td><td class="markdownTableBodyNone">The result of calling <a class="el" href="group__afw__object__meta.html#ga58e85d44b1278e96595c89018297bfe5" title="Get an object&#39;s path.">afw_object_meta_get_path()</a>.   </td></tr>
 </table>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000239">Todo:</a></b></dt><dd>FIXME: Correct? Return NULL if instance or property_name is missing. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000240">Todo:</a></b></dt><dd>FIXME: make a list. else if (afw_utf8_equal_utf8_z(&amp;meta_pn, "parentPaths")) { meta_value = afw_object_get_parent_paths(instance, xctx); };</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000241">Todo:</a></b></dt><dd>FIXME: Property names like "xyz." and "xyz..x get through. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000237">Todo:</a></b></dt><dd>FIXME: Correct? Return NULL if instance or property_name is missing. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000238">Todo:</a></b></dt><dd>FIXME: make a list. else if (afw_utf8_equal_utf8_z(&amp;meta_pn, "parentPaths")) { meta_value = afw_object_get_parent_paths(instance, xctx); };</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000239">Todo:</a></b></dt><dd>FIXME: Property names like "xyz." and "xyz..x get through. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00214">214</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00274">274</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -1773,7 +1917,7 @@ Functions</h2></td></tr>
 </dl>
 <p>Embedded objects will be merged as well. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00516">516</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00576">576</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -1828,7 +1972,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>NULL terminated list of strings or NULL if value is NULL.</dd></dl>
 <p>The value can be a list, bag, or scalar. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00327">327</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00387">387</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -1882,7 +2026,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result of <a class="el" href="group__afw__value.html#gafd4abdea5e01b7e8c075a6b4ba61aa75" title="Return a NULL terminated list of values in a specified pool.">afw_value_as_array_of_values()</a> on the property value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00309">309</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00369">369</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -1930,7 +2074,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>value or false if not found.</dd></dl>
 <p>This accepts a boolean value of a case insensitive string value of "true", "t", "false", "f", "0", or "1". </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00376">376</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00436">436</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -1999,7 +2143,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the value representation of a compiled hybrid property.</dd></dl>
 <p>The property value must be an evaluated value. If the value is data type hybrid or string, it is compiled as a hybrid; otherwise, it's just returned. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00342">342</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00402">402</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -2054,7 +2198,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>value or false if not found.</dd></dl>
 <p>This is like <a class="el" href="group__afw__c__api__data__type__integer.html#ga381c0b78a70b54f15f8bf196c785f2d2" title="Get property function for data type integer value.">afw_object_old_get_property_as_integer()</a> except the value will be converted to integer if needed instead of throwing a type safe error. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00435">435</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00495">495</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -2108,7 +2252,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value or NULL if not found; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00471">471</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00531">531</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -2163,7 +2307,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>value or NULL if not found;</dd></dl>
 <p>Use with caution since strings can contain x'00' characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00495">495</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00555">555</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -2242,7 +2386,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of properties. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00564">564</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="afw__object_8c_source.html#l00624">624</a> of file <a class="el" href="afw__object_8c_source.html">afw_object.c</a>.</p>
 
 </div>
 </div>
@@ -2926,7 +3070,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

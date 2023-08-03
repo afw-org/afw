@@ -85,12 +85,10 @@ var menudata={children:[
 {text:"All",url:"globals.html",children:[
 {text:"a",url:"globals.html#index_a"},
 {text:"i",url:"globals_i.html#index_i"},
-{text:"o",url:"globals_o.html#index_o"},
-{text:"p",url:"globals_p.html#index_p"}]},
+{text:"o",url:"globals_o.html#index_o"}]},
 {text:"Functions",url:"globals_func.html",children:[
 {text:"a",url:"globals_func.html#index_a"},
-{text:"i",url:"globals_func_i.html#index_i"},
-{text:"p",url:"globals_func_p.html#index_p"}]},
+{text:"i",url:"globals_func_i.html#index_i"}]},
 {text:"Variables",url:"globals_vars.html",children:[
 {text:"a",url:"globals_vars.html#index_a"}]},
 {text:"Typedefs",url:"globals_type.html",children:[

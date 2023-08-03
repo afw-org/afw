@@ -70,14 +70,14 @@ $(function() {
 <dt>Global <a class="el" href="group__afw__adaptor.html#ga78bead6640d7ab65af5d51c66c8ae51c">afw_adaptor_get_object_type</a>  (const afw_utf8_t *adaptor_id, const afw_utf8_t *object_type_id, const afw_object_t *journal_entry, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000001"></a>FIXME: This may change so that object types are reused unless changed.  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl.html#ga799074e2d83c6aa095c459dfef8e7449">afw_adaptor_impl_create_cede_p</a>  (const afw_adaptor_inf_t *inf, afw_size_t instance_size, const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000006"></a>FIXME: have way for extension to add these. If isPolicyLocation is true, provide appropriate object types. b = afw_object_old_get_property_as_boolean_deprecated(properties, &amp;afw_s_isPolicyLocation, xctx); if (b) { impl-&gt;policy_location = afw_authorization_policy_internal_location_create( adaptor, p, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationAdviceExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationCombinerParameter_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationObligationExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicy_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicySet_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationRule_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveHybridProperties_, false, true, xctx); }</p>
-<p class="enddd"><a class="anchor" id="_todo000005"></a>FIXME: Reuse if already exists or reuse correct pool.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000005"></a>FIXME: Reuse if already exists or reuse correct pool. </p>
+<p class="enddd"><a class="anchor" id="_todo000006"></a>FIXME: have way for extension to add these. If isPolicyLocation is true, provide appropriate object types. b = afw_object_old_get_property_as_boolean_deprecated(properties, &amp;afw_s_isPolicyLocation, xctx); if (b) { impl-&gt;policy_location = afw_authorization_policy_internal_location_create( adaptor, p, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationAdviceExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationCombinerParameter_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationObligationExpression_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicy_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationPolicySet_, true, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveAuthorizationRule_, false, true, xctx); afw_adaptor_impl_set_supported_core_object_type(adaptor, &amp;afw_s__AdaptiveHybridProperties_, false, true, xctx); } </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl.html#ga1018d92e5e88b0d1cb6839b1cc56d80e">afw_adaptor_impl_generic_object_type_object_get</a>  (const afw_adaptor_t *adaptor, const afw_utf8_t *object_type_id, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000008"></a>FIXME: These can be cached off of impl.  </dd>
 <dt>Global <a class="el" href="afw__adaptor__impl__index_8c.html#af037fe0497724d3f3dc8010c33b6974c">afw_adaptor_impl_index_cursor_list</a>  (const afw_adaptor_impl_index_t *instance, const afw_utf8_t *object_type_id, const afw_query_criteria_filter_entry_t *entry, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000048"></a>FIXME: we need to register open cursors to be released, because we may not know exactly when to discard them </p>
-<p class="enddd"><a class="anchor" id="_todo000047"></a>FIXME: this may not help us with date or integer comparisons  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000047"></a>FIXME: this may not help us with date or integer comparisons </p>
+<p class="enddd"><a class="anchor" id="_todo000048"></a>FIXME: we need to register open cursors to be released, because we may not know exactly when to discard them  </p>
 </dd>
 <dt>Global <a class="el" href="afw__adaptor__impl__index_8c.html#ab13ca66715b95e6cc01eb8b0fdc0ebdf">afw_adaptor_impl_index_filter_applicable</a>  (const afw_object_t *object, const afw_object_t *indexDefinition, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000042"></a>FIXME: throw/log error here?  </dd>
@@ -86,13 +86,13 @@ $(function() {
 <dt>Global <a class="el" href="group__afw__adaptor__internal.html#ga950739d7ebfb1ce3b90b8e5130ff85c0">afw_adaptor_internal_journal_epilogue</a>  (const afw_adaptor_session_t *session, const afw_object_t *journal_entry, afw_boolean_t modification, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000050"></a>FIXME: Might want to record failures too????  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__internal.html#ga271bda69c4d0e4561325b03f154f20cd">afw_adaptor_internal_journal_get_entry</a>  (const afw_adaptor_session_t *session, const afw_utf8_t *object_id, const afw_object_t *journal_entry, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000060"></a>FIXME: Might want to url_decode consumer_id and entry_cursor. </p>
-<p class="interdd"><a class="anchor" id="_todo000059"></a>FIXME: Should this be error? </p>
-<p class="enddd"><a class="anchor" id="_todo000058"></a>FIXME: Should this be configurable and where? By adaptor?  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000059"></a>FIXME: Should this be error? </p>
+<p class="interdd"><a class="anchor" id="_todo000058"></a>FIXME: Should this be configurable and where? By adaptor? </p>
+<p class="enddd"><a class="anchor" id="_todo000060"></a>FIXME: Might want to url_decode consumer_id and entry_cursor.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__internal.html#gaf6a5ac3a2e9979b2e45710fdaad4eaf8">afw_adaptor_internal_process_object_from_adaptor</a>  (const afw_object_t **adapted_object, const afw_object_t **view, <a class="el" href="structafw__adaptor__internal__object__cb__context__t.html">afw_adaptor_internal_object_cb_context_t</a> *ctx, const afw_object_t *object, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000002"></a>FIXME: Do assess control here that might add meta and remove properties. Might be in view??? </p>
-<p class="enddd"><a class="anchor" id="_todo000003"></a>FIXME: Need to add releases at correct place by caller.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000003"></a>FIXME: Need to add releases at correct place by caller. </p>
+<p class="enddd"><a class="anchor" id="_todo000002"></a>FIXME: Do assess control here that might add meta and remove properties. Might be in view???  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor.html#ga9bdff8fb1771664aaac6e190a290d498">afw_adaptor_journal_advance_cursor_for_consumer</a>  (const afw_utf8_t *adaptor_id, const afw_utf8_t *consumer_id, afw_size_t limit, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000056"></a>FIXME: Add authorization check before and after call.  </dd>
@@ -113,15 +113,15 @@ $(function() {
 <dt>Global <a class="el" href="group__afw__adaptor.html#ga0bff4f5ede04c28e19e67d3eb01e6f4a">afw_adaptor_modify_using_update_object</a>  (const afw_utf8_t *adaptor_id, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_object_t *update_object, const afw_object_t *journal_entry, const afw_object_t *adaptor_type_specific, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000062"></a>FIXME: move this out of update </dd>
 <dt>Global <a class="el" href="group__afw__common.html#gaf3da3e8ae9f6001d98af7217717323bc">AFW_ASSERT</a>  (e)</dt>
-<dd><a class="anchor" id="_todo000206"></a>FIXME: Remove this as soon as no source contains it.  </dd>
+<dd><a class="anchor" id="_todo000204"></a>FIXME: Remove this as soon as no source contains it.  </dd>
 <dt>Global <a class="el" href="group__afw__authorization.html#ga7fa17e3cb7738dfe8ac0dfb537afb397">afw_authorization_check</a>  (afw_boolean_t enforce, const afw_value_t *request_id_value, const afw_value_t *resource_id_value, const afw_value_t *object_value, const afw_value_t *action_id_value, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000063"></a>FIXME: What to do about indeterminate?  </dd>
 <dt>File <a class="el" href="afw__command__local__request_8c.html">afw_command_local_request.c</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000434"></a>Search this file and its header for </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000398"></a>Search this file and its header for </p>
 <p class="enddd">and make appropriate changes. </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__command__internal.html#ga484155f4bc74cd5ba68345991938e720">afw_command_local_server_create</a>  (afw_command_self_t *command_self)</dt>
-<dd><a class="anchor" id="_todo000436"></a>these should be able to be changed.  </dd>
+<dd><a class="anchor" id="_todo000400"></a>these should be able to be changed.  </dd>
 <dt>Global <a class="el" href="group__afw__compile.html#gab38aa7acfe894b3a75e0ad4a88d654a4">afw_compile_and_evaluate</a>  (const afw_utf8_t *string, const afw_utf8_t *source_location, afw_compile_type_t compile_type, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000064"></a>more needs to be thought about for memory usage. Only result needs to be saved, but anything "done" in the script needs to remain "done". For instance, if a service is started, its pool should be available. This might solve itself with new memory management.  </dd>
 <dt>Global <a class="el" href="group__afw__compile.html#ga14c1c1be68f9f5aa58a83eb648a2e557">afw_compile_expressions_templates_and_hybrids</a>  (const afw_object_t *object, const afw_utf8_t *source_location, afw_boolean_t recursive, const afw_compile_shared_t *shared, afw_xctx_t *xctx)</dt>
@@ -145,18 +145,18 @@ $(function() {
 <p class="enddd"><a class="anchor" id="_todo000081"></a>FIXME: Think about dataType override more.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__context.html#gae456ad50f7e37a0fed015aee14e7e774">afw_context_variable_definitions_add_based_on_object_type_id</a>  (const afw_object_t *variable_definitions, const afw_utf8_t *object_type_id, afw_boolean_t include_evaluated, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000084"></a>FIXME: NOW relatedPropertyType no longer exists. related_pt = afw_object_old_get_property_as_object( pt, &amp;afw_s_relatedPropertyType, xctx); </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000082"></a>FIXME: Should be way to get one that is already composite. </p>
 <p class="interdd"><a class="anchor" id="_todo000083"></a>FIXME: NOW relatedPropertyType no longer exists. Use dataTypeParameter. </p>
-<p class="enddd"><a class="anchor" id="_todo000082"></a>FIXME: Should be way to get one that is already composite.  </p>
+<p class="enddd"><a class="anchor" id="_todo000084"></a>FIXME: NOW relatedPropertyType no longer exists. related_pt = afw_object_old_get_property_as_object( pt, &amp;afw_s_relatedPropertyType, xctx);  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__log__deprecated.html#gac5987d2d292a1b5c566af25f39511e88">afw_create_log_deprecated</a>  (apr_pool_t *temp_pool, apr_pool_t *module_pool, apr_file_t *log_file, const char *encoding)</dt>
-<dd><a class="anchor" id="_todo000220"></a>FIXME: Need to add convert to log code page.  </dd>
+<dd><a class="anchor" id="_todo000218"></a>FIXME: Need to add convert to log code page.  </dd>
 <dt>Global <a class="el" href="afw__adaptor__impl__index_8c.html#ac086d6fe8e2e802ae58c280e9e3d1c6e">AFW_DEFINE</a>  (const afw_object_t *)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000045"></a>FIXME: already indexed, rebuild? </p>
-<p class="interdd"><a class="anchor" id="_todo000043"></a>FIXME: xctx-&gt;p, session-&gt;p, or pool? <br  />
- </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000044"></a>FIXME: is pool correct? </p>
 <p class="interdd"><a class="anchor" id="_todo000046"></a>FIXME: should this be session-&gt;p, pool, or xctx-&gt;p? </p>
-<p class="enddd"><a class="anchor" id="_todo000044"></a>FIXME: is pool correct?  </p>
+<p class="interdd"><a class="anchor" id="_todo000045"></a>FIXME: already indexed, rebuild? </p>
+<p class="enddd"><a class="anchor" id="_todo000043"></a>FIXME: xctx-&gt;p, session-&gt;p, or pool? <br  />
+  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__environment.html#ga598587a374b55970b79cbd2062c173fb">afw_environment_create</a>  (unsigned int version, int argc, const char *const *argv, const afw_error_t **environment_create_error)</dt>
 <dd><a class="anchor" id="_todo000088"></a>FIXME: Commented out apr_terminate() since it free's error memory.  </dd>
@@ -165,319 +165,315 @@ $(function() {
 <dt>Global <a class="el" href="group__afw__environment__internal.html#ga4fc6abd7c2de5041a8d0f89056687f05">afw_environment_internal_register_core</a>  (afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000096"></a>FIXME: Not implemented yet Register factory for log_type=file. log_factory = <a class="el" href="group__afw__log.html#gab371bcf19d1b1afcdc4b56d51cde9da3" title="Get the factory for log type file.">afw_log_file_factory_get()</a>; afw_environment_register_log_type( &amp;log_factory-&gt;log_type, log_factory, xctx); </dd>
 <dt>Global <a class="el" href="group__afw__environment.html#gab22cf9f58b5b6747ed7c654d0ffc387f">afw_environment_register_function</a>  (const afw_utf8_t *function_id, const afw_value_function_definition_t *function, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000094"></a>resolve parameters. </p>
-<p class="enddd"><a class="anchor" id="_todo000095"></a>FIXME: Add support for extensions to add data type methods.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000095"></a>FIXME: Add support for extensions to add data type methods. </p>
+<p class="enddd"><a class="anchor" id="_todo000094"></a>resolve parameters.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__environment.html#ga62ccc9452bb4132cd7a8aae0f6f50b2b">afw_environment_registry_register</a>  (int type_number, const afw_utf8_t *key, const void *value, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000093"></a>FIXME: Small leak if deleting key and then adding again.  </dd>
 <dt>Global <a class="el" href="group__afw__environment.html#gac3272bca5a97a4a916083089318d05e4">afw_environment_release</a>  (afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000089"></a>FIXME: Causing exception because some things not cleaned up properly </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000091"></a>FIXME: apr_terminate(); </p>
 <p class="interdd"><a class="anchor" id="_todo000090"></a>FIXME: afw_pool_destroy(xctx-&gt;env-&gt;p, xctx); </p>
-<p class="enddd"><a class="anchor" id="_todo000091"></a>FIXME: apr_terminate();  </p>
+<p class="enddd"><a class="anchor" id="_todo000089"></a>FIXME: Causing exception because some things not cleaned up properly  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__error.html#gafc469a8f4c964fa01f0df85327f0601c">AFW_ERROR_CLEAR_PARTIAL</a>  (__ERROR_)</dt>
-<dd><a class="anchor" id="_todo000102"></a>FIXME: AFW_MARK_UNHANDLED doesn't restore evaluation_stack.  </dd>
+<dd><a class="anchor" id="_todo000100"></a>FIXME: AFW_MARK_UNHANDLED doesn't restore evaluation_stack.  </dd>
 <dt>Global <a class="el" href="group__afw__error.html#ga87a0429c4cc97978c39cea833e1a163a">afw_error_to_utf8</a>  (const afw_error_t *error, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000100"></a>FIXME: "%.0" AFW_SIZE_T_FMT should cause 0 not to be printed, but it does.  </dd>
+<dd><a class="anchor" id="_todo000098"></a>FIXME: "%.0" AFW_SIZE_T_FMT should cause 0 not to be printed, but it does.  </dd>
 <dt>Global <a class="el" href="group__afw__error.html#ga245c6a51be3e0c270da22fa888b82689">afw_error_write_log</a>  (afw_log_priority_t priority, const afw_error_t *error, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000101"></a>FIXME:  </dd>
+<dd><a class="anchor" id="_todo000099"></a>FIXME:  </dd>
 <dt>Global <a class="el" href="group__afw__flag.html#ga2fa454f13ea65585028f5dabf7790fe8">afw_flag_set_default</a>  (const afw_utf8_t *flag_id, afw_boolean_t set_to, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000108"></a>FIXME: Add authorization to set flag  </dd>
+<dd><a class="anchor" id="_todo000106"></a>FIXME: Add authorization to set flag  </dd>
 <dt>Global <a class="el" href="group__afw__function.html#ga7c7fb453dec18cbca411b5397f7e5e7c">afw_function_evaluate_parameter_with_type</a>  (const afw_value_t *value, afw_size_t parameter_number, const afw_value_type_t *type, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000109"></a>FIXME: add support for dataTypeParameter.  </dd>
+<dd><a class="anchor" id="_todo000107"></a>FIXME: add support for dataTypeParameter.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__double.html#gae270d2c5518859f044c0d2dea81138f2">afw_function_execute_abs_double</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000113"></a>FIXME: A lot of the argument check may be able to be replaced by signals.  </dd>
+<dd><a class="anchor" id="_todo000111"></a>FIXME: A lot of the argument check may be able to be replaced by signals.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__stream.html#ga6701522669ae4b4deb5edbd1314e1644">afw_function_execute_close</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000126"></a>FIXME: Haven't decided what to do about bad number.  </dd>
-<dt>Global <a class="el" href="afw__function__polymorphic_8c.html#ae9a43aba7f2179e950c734884b53261e">afw_function_execute_compile</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000118"></a>FIXME: Need a way to get source location  </dd>
-<dt>Global <a class="el" href="group__afw__functions__xpath_expression.html#ga24366d21969e6608ea2116438e6864f5">afw_function_execute_evaluate_xpathExpression</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000136"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga632b6233b4622c960a098e6d00217dbb">afw_function_execute_flush</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000123"></a>FIXME: Haven't decided what to do about bad number.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__time.html#gaed11a67e72b9536a75cfcabce3463529">afw_function_execute_in_range_time</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000134"></a>FIXME: This still doesn't feel right. Check + time zone, etc.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__miscellaneous.html#gaaf65ce06d9b1f7bac0754e5c52d2d9e1">afw_function_execute_log</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000114"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__rfc822_name.html#gaff35644d91d8b5c6df02f19023dbb2f9">afw_function_execute_match_rfc822Name</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000122"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__x500_name.html#ga664c90d2b5013398d67b3859896309b0">afw_function_execute_match_x500Name</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000135"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__model.html#ga46afb57b6811a70bef949d70cdeecf13">afw_function_execute_model_default_modify_object_action</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000116"></a>This next line was missing so do a complete review of this.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__model.html#gae83f2d61b36b42f2972879c28a216322">afw_function_execute_model_default_replace_object_action</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000117"></a>This next line was missing so do a complete review of this.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga945fcbe81974efb94522cb7a5ed8aa8e">afw_function_execute_open_uri</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000127"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga13056c1d221444db758382af04decb46">afw_function_execute_read</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000128"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga92b35c8bfdccfdd332530baf630cf24a">afw_function_execute_read_to_base64Binary</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000129"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#gac866de784671f054af86aa4af44002c5">afw_function_execute_read_to_hexBinary</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000130"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga773ed14326b16410d9c3d041bbb0776d">afw_function_execute_readln</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000131"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__adaptor.html#ga64a80c9c87be2a103664c1e71912e4fb">afw_function_execute_reconcile_object</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000111"></a>FIXME: Make part of journal object.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#ga2b69682da3bec7298908cd7a0fbe7aa7">afw_function_execute_regexp_index_of</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000120"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#ga966f3d922ac0fa0790206b4a19d189aa">afw_function_execute_regexp_replace</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000121"></a>FIXME: Add code.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#gafa35e2168004c65e52f74eb0241a1a1c">afw_function_execute_repeat</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000119"></a>FIXME: How should this limit be handled? 1000 was arbitrary.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__compiler.html#ga2cdfac54eb7db024f745d9ffed1bed78">afw_function_execute_stringify</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000112"></a>FIXME: add support for replacer  </dd>
-<dt>Global <a class="el" href="group__afw__functions__string.html#gac2f133b430b1da16809bfc844d60afbe">afw_function_execute_url_decode</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000133"></a>should this be here or in anyURI?.  </dd>
-<dt>Global <a class="el" href="group__afw__functions__stream.html#ga8420cf8ce2f19ff6d0e84ce787727702">afw_function_execute_write</a>  (afw_function_execute_t *x)</dt>
 <dd><a class="anchor" id="_todo000124"></a>FIXME: Haven't decided what to do about bad number.  </dd>
+<dt>Global <a class="el" href="afw__function__polymorphic_8c.html#ae9a43aba7f2179e950c734884b53261e">afw_function_execute_compile</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000116"></a>FIXME: Need a way to get source location  </dd>
+<dt>Global <a class="el" href="group__afw__functions__xpath_expression.html#ga24366d21969e6608ea2116438e6864f5">afw_function_execute_evaluate_xpathExpression</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000134"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga632b6233b4622c960a098e6d00217dbb">afw_function_execute_flush</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000121"></a>FIXME: Haven't decided what to do about bad number.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__time.html#gaed11a67e72b9536a75cfcabce3463529">afw_function_execute_in_range_time</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000132"></a>FIXME: This still doesn't feel right. Check + time zone, etc.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__miscellaneous.html#gaaf65ce06d9b1f7bac0754e5c52d2d9e1">afw_function_execute_log</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000112"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__rfc822_name.html#gaff35644d91d8b5c6df02f19023dbb2f9">afw_function_execute_match_rfc822Name</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000120"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__x500_name.html#ga664c90d2b5013398d67b3859896309b0">afw_function_execute_match_x500Name</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000133"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__model.html#ga46afb57b6811a70bef949d70cdeecf13">afw_function_execute_model_default_modify_object_action</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000114"></a>This next line was missing so do a complete review of this.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__model.html#gae83f2d61b36b42f2972879c28a216322">afw_function_execute_model_default_replace_object_action</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000115"></a>This next line was missing so do a complete review of this.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga945fcbe81974efb94522cb7a5ed8aa8e">afw_function_execute_open_uri</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000125"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga13056c1d221444db758382af04decb46">afw_function_execute_read</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000126"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga92b35c8bfdccfdd332530baf630cf24a">afw_function_execute_read_to_base64Binary</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000127"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#gac866de784671f054af86aa4af44002c5">afw_function_execute_read_to_hexBinary</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000128"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga773ed14326b16410d9c3d041bbb0776d">afw_function_execute_readln</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000129"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__adaptor.html#ga64a80c9c87be2a103664c1e71912e4fb">afw_function_execute_reconcile_object</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000109"></a>FIXME: Make part of journal object.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#ga2b69682da3bec7298908cd7a0fbe7aa7">afw_function_execute_regexp_index_of</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000118"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#ga966f3d922ac0fa0790206b4a19d189aa">afw_function_execute_regexp_replace</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000119"></a>FIXME: Add code.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__year_month_duration.html#gafa35e2168004c65e52f74eb0241a1a1c">afw_function_execute_repeat</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000117"></a>FIXME: How should this limit be handled? 1000 was arbitrary.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__compiler.html#ga2cdfac54eb7db024f745d9ffed1bed78">afw_function_execute_stringify</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000110"></a>FIXME: add support for replacer  </dd>
+<dt>Global <a class="el" href="group__afw__functions__string.html#gac2f133b430b1da16809bfc844d60afbe">afw_function_execute_url_decode</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000131"></a>should this be here or in anyURI?.  </dd>
+<dt>Global <a class="el" href="group__afw__functions__stream.html#ga8420cf8ce2f19ff6d0e84ce787727702">afw_function_execute_write</a>  (afw_function_execute_t *x)</dt>
+<dd><a class="anchor" id="_todo000122"></a>FIXME: Haven't decided what to do about bad number.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__stream.html#gac680c2f70583ccc7924b421126b56c7e">afw_function_execute_write_internal</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000132"></a>FIXME: Add code.  </dd>
+<dd><a class="anchor" id="_todo000130"></a>FIXME: Add code.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__stream.html#gab9a8dbd432e920b25950b64311a618bc">afw_function_execute_writeln</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000125"></a>FIXME: Haven't decided what to do about bad number.  </dd>
+<dd><a class="anchor" id="_todo000123"></a>FIXME: Haven't decided what to do about bad number.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__xpath_expression.html#ga71a082473e646e0b96ee484049a93cae">afw_function_execute_xpath_node_count</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000137"></a>FIXME: Add code.  </dd>
+<dd><a class="anchor" id="_todo000135"></a>FIXME: Add code.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__xpath_expression.html#ga27d573885593cb3e31fdace317442852">afw_function_execute_xpath_node_eq</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000139"></a>FIXME: Add code.  </dd>
+<dd><a class="anchor" id="_todo000137"></a>FIXME: Add code.  </dd>
 <dt>Global <a class="el" href="group__afw__functions__xpath_expression.html#ga721ad5b8efe2fc09b6d13ad756c853f0">afw_function_execute_xpath_node_match</a>  (afw_function_execute_t *x)</dt>
-<dd><a class="anchor" id="_todo000138"></a>FIXME: Add code.  </dd>
+<dd><a class="anchor" id="_todo000136"></a>FIXME: Add code.  </dd>
 <dt>Global <a class="el" href="afw__runtime__const__meta_8c.html#a6c899fd56a69f396f0b044bd49d6c7c3">AFW_IMPLEMENTATION_ID</a>  </dt>
-<dd><a class="anchor" id="_todo000357"></a>FIXME: Add include for headers and anything else you want in this part of code.  </dd>
+<dd><a class="anchor" id="_todo000327"></a>FIXME: Add include for headers and anything else you want in this part of code.  </dd>
 <dt>Global <a class="el" href="afw__ldap__internal_8h.html#af3122da19d942cc90eadb0ef8167ab54">afw_ldap_internal_adaptor_create_cede_p</a>  (const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000489"></a>FIXME: add parameter.  </dd>
+<dd><a class="anchor" id="_todo000453"></a>FIXME: add parameter.  </dd>
 <dt>Global <a class="el" href="afw__ldap__syntax__handler_8c.html#a39b1c2fd8175b6332bf7697df6546dfc">afw_ldap_internal_syntax_handler_assign</a>  (afw_ldap_metadata_t *metadata, afw_ldap_metadata_attribute_type_t *attribute_type, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000498"></a>FIXME: Add support for normal LDAP, probably using oid lookup.  </dd>
+<dd><a class="anchor" id="_todo000462"></a>FIXME: Add support for normal LDAP, probably using oid lookup.  </dd>
 <dt>Global <a class="el" href="afw__ldap__metadata_8h.html#aee21d4495b195f9c219bddcf3729103f">afw_ldap_metadata_load</a>  (afw_ldap_internal_adaptor_t *adaptor, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000496"></a>FIXME: use use count based release. </p>
-<p class="enddd"><a class="anchor" id="_todo000495"></a>FIXME: add code  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000459"></a>FIXME: add code </p>
+<p class="enddd"><a class="anchor" id="_todo000460"></a>FIXME: use use count based release.  </p>
 </dd>
 <dt>Class <a class="el" href="structafw__ldap__metadata__s.html">afw_ldap_metadata_s</a>  </dt>
-<dd><a class="anchor" id="_todo000497"></a>FIXME: metadata_adaptor needs usecount are something for release.  </dd>
+<dd><a class="anchor" id="_todo000461"></a>FIXME: metadata_adaptor needs usecount are something for release.  </dd>
 <dt>Global <a class="el" href="afw__lmdb__adaptor_8c.html#a9b880747b2db708a1a35b728221768ca">afw_lmdb_adaptor_open_databases</a>  (afw_lmdb_adaptor_t *self, const afw_pool_t *pool, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000500"></a>FIXME:: set compare routines? </p>
-<p class="enddd"><a class="anchor" id="_todo000499"></a>FIXME:  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000464"></a>FIXME:: set compare routines? </p>
+<p class="enddd"><a class="anchor" id="_todo000463"></a>FIXME:  </p>
 </dd>
 <dt>Global <a class="el" href="afw__lmdb__internal_8h.html#a96118b04eae65a6da5a3f7b9577617cd">AFW_LMDB_BEGIN_TRANSACTION</a>  (adaptor, session, flags, exclusive, xctx)</dt>
-<dd><a class="anchor" id="_todo000514"></a>FIXME: LMDB transactions may also be nested (second param). However, I don't believe LMDB allows for write transactions to be nested under read transactions, so this macro needs to contain logic to handle both scenarios.  </dd>
+<dd><a class="anchor" id="_todo000478"></a>FIXME: LMDB transactions may also be nested (second param). However, I don't believe LMDB allows for write transactions to be nested under read transactions, so this macro needs to contain logic to handle both scenarios.  </dd>
 <dt>Global <a class="el" href="afw__lmdb__journal_8c.html#a5893d39b81caac2a83e0032eb4b3c63e">afw_lmdb_journal_advance_cursor_for_consumer</a>  (afw_lmdb_journal_t *self, afw_lmdb_adaptor_session_t *session, afw_lmdb_adaptor_t *adaptor, MDB_dbi dbiJournal, MDB_txn *txn, const afw_utf8_t *consumer_id, afw_size_t limit, const afw_object_t *response, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000518"></a>FIXME:: we'll have to consider the scenario where we get a consume_cursor (re-issue) and now it's removed from the journal </p>
-<p class="enddd"><a class="anchor" id="_todo000519"></a>FIXME:: is the cursor further along than our existing advanceCursor?  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000483"></a>FIXME:: is the cursor further along than our existing advanceCursor? </p>
+<p class="enddd"><a class="anchor" id="_todo000482"></a>FIXME:: we'll have to consider the scenario where we get a consume_cursor (re-issue) and now it's removed from the journal  </p>
 </dd>
 <dt>Global <a class="el" href="afw__lmdb__journal_8c.html#a5124dd3d3da27947b3da5f7e6ccb7562">afw_lmdb_journal_get_next_for_consumer_after_cursor</a>  (afw_lmdb_journal_t *self, afw_lmdb_adaptor_session_t *session, afw_lmdb_adaptor_t *adaptor, MDB_dbi dbiJournal, MDB_txn *txn, const afw_utf8_t *consumer_id, const afw_utf8_t *entry_cursor, afw_size_t limit, const afw_object_t *response, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000515"></a>FIXME:: is the cursor further along than our existing advanceCursor?  </dd>
+<dd><a class="anchor" id="_todo000479"></a>FIXME:: is the cursor further along than our existing advanceCursor?  </dd>
 <dt>Global <a class="el" href="group__afw__log.html#ga4e70189a320b43908342377563c7ee30">afw_log_add_to_environment</a>  (const afw_log_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000213"></a>FIXME: runtime object might be accessing on another thread. afw_log_destroy(e-&gt;log, xctx);</p>
-<p class="enddd"><a class="anchor" id="_todo000212"></a>FIXME: Need to use a "log anchor" with id in it.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000211"></a>FIXME: runtime object might be accessing on another thread. afw_log_destroy(e-&gt;log, xctx);</p>
+<p class="enddd"><a class="anchor" id="_todo000210"></a>FIXME: Need to use a "log anchor" with id in it.  </p>
 </dd>
 <dt>Global <a class="el" href="structafw__log__deprecated__trace__options__t.html#ac3e1795766a80ec63b157951b4b9a7d4">afw_log_deprecated_trace_options_t::debug</a>  </dt>
-<dd><a class="anchor" id="_todo000221"></a>FIXME: Figure this out with Jeremy.  </dd>
+<dd><a class="anchor" id="_todo000219"></a>FIXME: Figure this out with Jeremy.  </dd>
 <dt>Global <a class="el" href="group__afw__log.html#ga9f8de8378589a5f1d7d4798b2cc8387b">afw_log_release</a>  </dt>
-<dd><a class="anchor" id="_todo000219"></a>FIXME: In middle of implementation.  </dd>
+<dd><a class="anchor" id="_todo000217"></a>FIXME: In middle of implementation.  </dd>
 <dt>Global <a class="el" href="group__afw__model.html#ga1a8a6a9efb81091264f17b769a58b792">afw_model_adaptor_create_cede_p</a>  (const afw_object_t *properties, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000229"></a>FIXME: Load modelId  </dd>
+<dd><a class="anchor" id="_todo000227"></a>FIXME: Load modelId  </dd>
 <dt>Global <a class="el" href="group__afw__model__internal.html#ga6669ba912c4fed6dc617efe212249539">afw_model_internal_complete_ctx_default_modify_object</a>  (afw_model_internal_context_t *ctx, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000234"></a>FIXME: Might should call to_mapped_value with single values from bag or list.  </dd>
+<dd><a class="anchor" id="_todo000232"></a>FIXME: Might should call to_mapped_value with single values from bag or list.  </dd>
 <dt>Global <a class="el" href="group__afw__model__internal.html#ga203daf6fddf7f52a1fd250bafd7f4de7">afw_model_internal_create_basic_to_adaptor_mapped_object</a>  (afw_model_internal_context_t *ctx, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000232"></a>FIXME: chance loop to check required etc. </p>
-<p class="enddd"><a class="anchor" id="_todo000233"></a>FIXME: add code  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000230"></a>FIXME: chance loop to check required etc. </p>
+<p class="enddd"><a class="anchor" id="_todo000231"></a>FIXME: add code  </p>
 </dd>
 <dt>Global <a class="el" href="structafw__model__internal__property__type__s.html#a9bea5788f64a1edae41ebb36fb4ba73e">afw_model_internal_property_type_s::custom_variables</a>  </dt>
-<dd><a class="anchor" id="_todo000238"></a>FIXME:  </dd>
+<dd><a class="anchor" id="_todo000236"></a>FIXME:  </dd>
 <dt>Global <a class="el" href="group__afw__object.html#ga34b0194432baec3d5a28e17784cd4625">afw_object_get_property_extended</a>  (const afw_object_t *instance, const afw_utf8_t *property_name, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000239"></a>FIXME: Correct? Return NULL if instance or property_name is missing. </p>
-<p class="interdd"><a class="anchor" id="_todo000240"></a>FIXME: make a list. else if (afw_utf8_equal_utf8_z(&amp;meta_pn, "parentPaths")) { meta_value = afw_object_get_parent_paths(instance, xctx); };</p>
-<p class="enddd"><a class="anchor" id="_todo000241"></a>FIXME: Property names like "xyz." and "xyz..x get through.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000237"></a>FIXME: Correct? Return NULL if instance or property_name is missing. </p>
+<p class="interdd"><a class="anchor" id="_todo000238"></a>FIXME: make a list. else if (afw_utf8_equal_utf8_z(&amp;meta_pn, "parentPaths")) { meta_value = afw_object_get_parent_paths(instance, xctx); };</p>
+<p class="enddd"><a class="anchor" id="_todo000239"></a>FIXME: Property names like "xyz." and "xyz..x get through.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__meta.html#gaeeb66f4a48ce8ebf8092fef085f5734c">afw_object_meta_add_thrown_property_error</a>  (const afw_object_t *instance, const afw_utf8_t *property_name, afw_integer_t index, const afw_error_t *error, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000263"></a>FIXME: Is the desired??? Log error. afw_error_write_log(afw_log_priority_debug, error, xctx); </dd>
+<dd><a class="anchor" id="_todo000251"></a>FIXME: Is the desired??? Log error. afw_error_write_log(afw_log_priority_debug, error, xctx); </dd>
 <dt>Global <a class="el" href="group__afw__object__meta.html#ga08fed5c8b0c26f46e97567b128721640">afw_object_meta_get_object_id_value</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000261"></a>FIXME: Check meta first?? Store in meta???  </dd>
+<dd><a class="anchor" id="_todo000249"></a>FIXME: Check meta first?? Store in meta???  </dd>
 <dt>Global <a class="el" href="group__afw__object__meta.html#ga58e85d44b1278e96595c89018297bfe5">afw_object_meta_get_path</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000262"></a>FIXME: prune to just path.  </dd>
+<dd><a class="anchor" id="_todo000250"></a>FIXME: prune to just path.  </dd>
 <dt>Global <a class="el" href="group__afw__object__meta.html#gadb299c63f37e4b73c5c974a78e2da299">afw_object_meta_set_meta_object</a>  (const afw_object_t *instance, const afw_object_t *meta, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000268"></a>FIXME: Decide if meta object is validated at this point or later. Probably now or with a different call.  </dd>
+<dd><a class="anchor" id="_todo000254"></a>FIXME: Decide if meta object is validated at this point or later. Probably now or with a different call.  </dd>
 <dt>Global <a class="el" href="group__afw__object__options.html#ga954868d01d1990d758485837b972dd79">afw_object_options_set_from_object</a>  (const afw_object_options_t *initial_options, const afw_object_t *options_object, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000309"></a>FIXME: May put in at some point ... options property already handled. if (afw_utf8_equal(name, &amp;afw_s_options)) continue;</p>
-<p class="enddd"><a class="anchor" id="_todo000308"></a>FIXME: May put in at some point ... Process options property first. v = <a class="el" href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76" title="Call method get_property of interface afw_object.">afw_object_get_property(options_object, &amp;afw_s_options, xctx)</a>; if (v) { </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000285"></a>FIXME: May put in at some point ... options property already handled. if (afw_utf8_equal(name, &amp;afw_s_options)) continue;</p>
+<p class="enddd"><a class="anchor" id="_todo000284"></a>FIXME: May put in at some point ... Process options property first. v = <a class="el" href="group__afw__object__interface.html#ga047bb2c3d32379692d67ac95f69d2b76" title="Call method get_property of interface afw_object.">afw_object_get_property(options_object, &amp;afw_s_options, xctx)</a>; if (v) { </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__path.html#ga4945b8c4b92acdeadfa0007f8dc1b8e3">afw_object_path_make_property_name_expression</a>  (const afw_object_path_property_name_entry_t *first, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000310"></a>FIXME: Improve to generate ['name'] when needed.  </dd>
+<dd><a class="anchor" id="_todo000286"></a>FIXME: Improve to generate ['name'] when needed.  </dd>
 <dt>Global <a class="el" href="group__afw__object__type.html#ga53f05314518889d475685c6d4a552179">afw_object_type_property_type_get_next</a>  (const afw_object_type_t *object_type, const afw_iterator_t **iterator, const afw_utf8_t **property_name, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000315"></a>FIXME: change after compile. This wastes a lot of time and space.  </dd>
+<dd><a class="anchor" id="_todo000289"></a>FIXME: change after compile. This wastes a lot of time and space.  </dd>
 <dt>Global <a class="el" href="group__afw__object__type.html#ga5b56351b502e9784785d516b6e6b7098">afw_object_type_property_type_normalize</a>  (const afw_object_type_property_type_t *pt, const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000316"></a>FIXME: normalize list entries.  </dd>
+<dd><a class="anchor" id="_todo000290"></a>FIXME: normalize list entries.  </dd>
 <dt>Global <a class="el" href="structafw__object__type__property__type__s.html#af954ce16522257cc41da894ba8612582">afw_object_type_property_type_s::context_type_id</a>  </dt>
-<dd><a class="anchor" id="_todo000317"></a>FIXME: add constraint things.  </dd>
+<dd><a class="anchor" id="_todo000291"></a>FIXME: add constraint things.  </dd>
 <dt>Global <a class="el" href="group__afw__object__view.html#gacf108581c459098f3358926d3a152575">afw_object_view_create</a>  (const afw_object_t *instance, const afw_utf8_t *entity_path, const afw_object_options_t *options, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000323"></a>FIXME: Should probably come in as parameter.  </dd>
+<dd><a class="anchor" id="_todo000295"></a>FIXME: Should probably come in as parameter.  </dd>
 <dt>Global <a class="el" href="group__afw__request.html#ga8e47ce532bf938601086466065770dd3">afw_request_body_to_utf8</a>  (const afw_request_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000344"></a>FIXME: Put in support of chunked encoding.  </dd>
+<dd><a class="anchor" id="_todo000316"></a>FIXME: Put in support of chunked encoding.  </dd>
 <dt>Global <a class="el" href="group__afw__request.html#ga3b254d6476c98e87bec35bfc520c6331">afw_request_body_to_value</a>  (const afw_request_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000345"></a>FIXME: should decode content type parameter (stuff after ;).  </dd>
+<dd><a class="anchor" id="_todo000317"></a>FIXME: should decode content type parameter (stuff after ;).  </dd>
 <dt>Global <a class="el" href="group__afw__runtime.html#ga871c823874bcf664c38600fbfcf87e22">afw_runtime_object_add_reference</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000353"></a>FIXME: Think about this.  </dd>
+<dd><a class="anchor" id="_todo000325"></a>FIXME: Think about this.  </dd>
 <dt>Global <a class="el" href="group__afw__runtime.html#ga0bfab64646e4a23bd26a32ee01ca703a">afw_runtime_object_get_count</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000354"></a>Add code to implement method.  </dd>
-<dt>Global <a class="el" href="group__afw__runtime.html#ga64124e0a2803df43f4d6c97aba7b75d9">afw_runtime_object_get_entry</a>  (const afw_object_t *instance, afw_integer_t index, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000355"></a>Add code to implement method.  </dd>
-<dt>Global <a class="el" href="group__afw__runtime.html#ga9effabc862de895e4980e329f86bcf3a">afw_runtime_object_get_entry_meta</a>  (const afw_object_t *instance, afw_integer_t index, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000356"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000326"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__runtime.html#ga0a659e5cf8d17900488fb3412446dd2a">afw_runtime_object_release</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000352"></a>FIXME: Think about this.  </dd>
+<dd><a class="anchor" id="_todo000324"></a>FIXME: Think about this.  </dd>
 <dt>Global <a class="el" href="afw__server__fcgi__internal_8h.html#ac4d525bcf3b09ee49d12d74e467ec386">afw_server_fcgi_internal_create</a>  (const char *path, afw_integer_t thread_count, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000520"></a>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm); </dd>
+<dd><a class="anchor" id="_todo000484"></a>FIXME: Removed for now because not working fully apr_signal(SIGTERM, impl_handle_sigterm); </dd>
 <dt>Module <a class="el" href="group__afw__service.html">afw_service</a>  </dt>
-<dd><a class="anchor" id="_todo000369"></a>FIXME: Can be <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a> instead if not part of it's #includes. Keep simple.  </dd>
+<dd><a class="anchor" id="_todo000337"></a>FIXME: Can be <a class="el" href="afw__minimal_8h.html" title="Adaptive Framework Minimal Header.">afw_minimal.h</a> instead if not part of it's #includes. Keep simple.  </dd>
 <dt>Global <a class="el" href="structafw__service__s.html#a735984d41155bc1032e09bece8f8d66d">afw_service_s::data</a>  </dt>
-<dd><a class="anchor" id="_todo000370"></a>FIXME: Might go away.  </dd>
+<dd><a class="anchor" id="_todo000338"></a>FIXME: Might go away.  </dd>
 <dt>Global <a class="el" href="group__afw__stack.html#ga3119c0bbe4f52ba6fd8a08a586b3ac29">afw_stack_internal_set_qualifier_stack</a>  (afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000371"></a>FIXME: </dd>
+<dd><a class="anchor" id="_todo000339"></a>FIXME: </dd>
 <dt>Global <a class="el" href="group__afw__stream.html#ga752ca5a573e0be1dd92b61e555199b28">afw_stream_fd_open_and_create</a>  (const afw_utf8_t *streamId, const afw_utf8_t *path, const afw_utf8_t *mode, afw_boolean_t auto_flush, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000375"></a>FIXME: use application rootPaths  </dd>
+<dd><a class="anchor" id="_todo000343"></a>FIXME: use application rootPaths  </dd>
 <dt>Class <a class="el" href="structafw__ubjson__parser__s.html">afw_ubjson_parser_s</a>  </dt>
-<dd><a class="anchor" id="_todo000531"></a>FIXME:: UTF-8 encoding/decoding. When converting JSON to UBJSON, back to JSON, we lose special characters.  </dd>
+<dd><a class="anchor" id="_todo000493"></a>FIXME:: UTF-8 encoding/decoding. When converting JSON to UBJSON, back to JSON, we lose special characters.  </dd>
 <dt>Global <a class="el" href="group__afw__uri.html#ga8592290423ae62de9fd4a150e48227ae">afw_uri_parse</a>  (const afw_utf8_t *uri, afw_boolean_t is_value_path, const afw_utf8_t *current_path, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000377"></a>FIXME: Should syntax check v4 address. </p>
-<p class="interdd"><a class="anchor" id="_todo000378"></a>FIXME: Should syntax check v6 address. </p>
-<p class="interdd"><a class="anchor" id="_todo000379"></a>FIXME: Needs further parsing. </p>
-<p class="enddd"><a class="anchor" id="_todo000380"></a>FIXME: Needs further parsing.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000345"></a>FIXME: Should syntax check v4 address. </p>
+<p class="interdd"><a class="anchor" id="_todo000346"></a>FIXME: Should syntax check v6 address. </p>
+<p class="interdd"><a class="anchor" id="_todo000347"></a>FIXME: Needs further parsing. </p>
+<p class="enddd"><a class="anchor" id="_todo000348"></a>FIXME: Needs further parsing.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__uri.html#gae469889c6bb3335beed3131fde5d944b">afw_uri_parsed_are_equivalent</a>  (const afw_uri_parsed_t *parsed1, const afw_uri_parsed_t *parsed2, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000381"></a>FIXME: compare decoded tokens instead. </p>
-<p class="enddd"><a class="anchor" id="_todo000382"></a>FIXME: compare query and fragment part.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000350"></a>FIXME: compare query and fragment part. </p>
+<p class="enddd"><a class="anchor" id="_todo000349"></a>FIXME: compare decoded tokens instead.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__utf8.html#ga6af67c979de245c8f3a75a3280b7b1d7">afw_utf8_line_column_of_offset</a>  (afw_size_t *line_number, afw_size_t *column_number, const afw_utf8_t *s, afw_size_t offset, int tab_size, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000383"></a>change this to also return code point offset.  </dd>
+<dd><a class="anchor" id="_todo000351"></a>change this to also return code point offset.  </dd>
 <dt>Global <a class="el" href="group__afw__utf8.html#ga93fc5d888858cae06b2a0b006ed51af0">afw_utf8_line_count_and_max_column</a>  (afw_size_t *number_of_lines, afw_size_t *max_column_number, const afw_utf8_t *s, int tab_size, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000384"></a>change this to also return octet offset.  </dd>
+<dd><a class="anchor" id="_todo000352"></a>change this to also return octet offset.  </dd>
 <dt>Global <a class="el" href="group__afw__utf8.html#gad5fb91e47126caa95e7a12ad009be1b2">afw_utf8_z_equal</a>  (const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)</dt>
-<dd><a class="anchor" id="_todo000385"></a>FIXME: Need to fix comments below and polish comments above.  </dd>
+<dd><a class="anchor" id="_todo000353"></a>FIXME: Need to fix comments below and polish comments above.  </dd>
 <dt>Global <a class="el" href="group__afw__utf8.html#ga524691efff226385ee2b541ccaf76160">afw_utf8_z_equal_ignore_case</a>  (const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)</dt>
-<dd><a class="anchor" id="_todo000386"></a>FIXME: FIXME This needs to change to be like <a class="el" href="group__afw__utf8.html#gab63636bd09243de76f4e5c8961b50e60" title="Compare two zero terminated utf-8 strings ignoring case.">afw_utf8_z_compare_ignore_case()</a> when XACML is chanced not to use this. New version has xctx so error can be thrown if string is not UTF8 or too large.  </dd>
+<dd><a class="anchor" id="_todo000354"></a>FIXME: FIXME This needs to change to be like <a class="el" href="group__afw__utf8.html#gab63636bd09243de76f4e5c8961b50e60" title="Compare two zero terminated utf-8 strings ignoring case.">afw_utf8_z_compare_ignore_case()</a> when XACML is chanced not to use this. New version has xctx so error can be thrown if string is not UTF8 or too large.  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#gac6459f641bcdbe4b4c9b0e52ada53115">afw_value_as_casted_utf8</a>  (const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000388"></a>FIXME: change from bag to list when tests are modified.  </dd>
+<dd><a class="anchor" id="_todo000356"></a>FIXME: change from bag to list when tests are modified.  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#gad98e6c32d6131ef0a72a63a43e0218d6">afw_value_block_allocated_and_link</a>  (const afw_compile_value_contextual_t *contextual, afw_value_compiled_value_t *compiled_value, afw_size_t *block_count, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000394"></a>FIXME: Remove this code. Saving for now in case error is wrong. block = compiled_value-&gt;top_block; compiled_value-&gt;current_block = block; return (const afw_value_block_t *)block; </dd>
+<dd><a class="anchor" id="_todo000362"></a>FIXME: Remove this code. Saving for now in case error is wrong. block = compiled_value-&gt;top_block; compiled_value-&gt;current_block = block; return (const afw_value_block_t *)block; </dd>
 <dt>Global <a class="el" href="group__afw__value__internal.html#ga462a523b79525ae1bc51c62bdce11fa0">afw_value_block_evaluate_statement</a>  (afw_function_execute_t *x, afw_value_block_statement_type_t *type, afw_boolean_t allow_return, afw_boolean_t is_loop, const afw_value_t *block, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000393"></a>FIXME: process type. </p>
-<p class="enddd"><a class="anchor" id="_todo000392"></a>this is temporary.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000360"></a>this is temporary. </p>
+<p class="enddd"><a class="anchor" id="_todo000361"></a>FIXME: process type.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__value__internal.html#gaee14f2a27119cbe7f53381afeeb0565f">afw_value_compiler_listing_to_string_instance</a>  (const afw_value_t *value, afw_value_compiler_listing_t *parent, const afw_utf8_t *tab, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000396"></a>make these an option  </dd>
+<dd><a class="anchor" id="_todo000364"></a>make these an option  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#ga9912133caaf6df93b4fff1cf78b07a62">afw_value_convert</a>  (const afw_value_t *value, const afw_data_type_t *to_data_type, afw_boolean_t required, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000389"></a>FIXME: make parameter  </dd>
-<dt>Global <a class="el" href="group__afw__value.html#ga91139c5171e840e385a5a0ca8995192a">afw_value_create_list_expression</a>  (const afw_compile_value_contextual_t *contextual, const afw_list_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000397"></a>Add contextual to decompile, etc.  </dd>
+<dd><a class="anchor" id="_todo000357"></a>FIXME: make parameter  </dd>
+<dt>Global <a class="el" href="group__afw__value.html#ga56aacb3a31178445a59ba13b1d79e68b">afw_value_create_list_expression</a>  (const afw_compile_value_contextual_t *contextual, const afw_value_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
+<dd><a class="anchor" id="_todo000365"></a>Add contextual to decompile, etc.  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#gaf6e59d689179d157a561c2bf5e17fdc4">afw_value_create_object_expression</a>  (const afw_compile_value_contextual_t *contextual, const afw_object_t *internal, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000418"></a>Add contextual to decompile, etc.  </dd>
+<dd><a class="anchor" id="_todo000384"></a>Add contextual to decompile, etc.  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#gafc592f596da096f2d79a30c8fd706d49">afw_value_reference_by_key_create</a>  (const afw_compile_value_contextual_t *contextual, const afw_value_t *aggregate_value, const afw_value_t *key, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000419"></a>FIXME: Should have list entry by index too.  </dd>
+<dd><a class="anchor" id="_todo000385"></a>FIXME: Should have list entry by index too.  </dd>
 <dt>Global <a class="el" href="group__afw__value.html#ga548e543c0028204eb67baeab6da47ad4">afw_value_script_function_definition_create</a>  (const afw_compile_value_contextual_t *contextual, const afw_value_type_t *returns, afw_size_t count, const afw_value_script_function_parameter_t **parameters, const afw_value_t *body, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000420"></a>FIXME: Work about in all creates if copy needed.  </dd>
+<dd><a class="anchor" id="_todo000386"></a>FIXME: Work about in all creates if copy needed.  </dd>
 <dt>Global <a class="el" href="group__afw__xctx__internal.html#gaa96472a65e302a587de9758a2de73307">afw_xctx_internal_create_initialize</a>  (afw_try_t *unhandled_error, afw_error_t *error, afw_environment_internal_t *env, const afw_pool_t *p)</dt>
-<dd><a class="anchor" id="_todo000423"></a>FIXME: stream_anchor may be too early???  </dd>
+<dd><a class="anchor" id="_todo000389"></a>FIXME: stream_anchor may be too early???  </dd>
 <dt>Global <a class="el" href="group__afw__xctx.html#gaf1d740d1b17f4e44229864292018fe22">afw_xctx_push_qualifier</a>  (const afw_utf8_t *qualifier, const afw_object_t *qualifier_object, afw_boolean_t secure, afw_xctx_get_variable_t get, void *data, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000424"></a>FIXME: add support for qualifier object.  </dd>
+<dd><a class="anchor" id="_todo000390"></a>FIXME: add support for qualifier object.  </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__autocomplete__r_e_a_d_m_e.html">Autocomplete</a>  </dt>
-<dd><a class="anchor" id="_todo000437"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000401"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__box__r_e_a_d_m_e.html">Box</a>  </dt>
-<dd><a class="anchor" id="_todo000438"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000402"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__breadcrumb__r_e_a_d_m_e.html">Breadcrumb</a>  </dt>
-<dd><a class="anchor" id="_todo000439"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000403"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__button__r_e_a_d_m_e.html">Button</a>  </dt>
-<dd><a class="anchor" id="_todo000440"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000404"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__callout__r_e_a_d_m_e.html">Callout</a>  </dt>
-<dd><a class="anchor" id="_todo000441"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000405"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__chart__r_e_a_d_m_e.html">Chart</a>  </dt>
-<dd><a class="anchor" id="_todo000442"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000406"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__checkbox__r_e_a_d_m_e.html">Checkbox</a>  </dt>
-<dd><a class="anchor" id="_todo000443"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000407"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__choice_group__r_e_a_d_m_e.html">ChoiceGroup</a>  </dt>
-<dd><a class="anchor" id="_todo000444"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000408"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__code_editor__r_e_a_d_m_e.html">CodeEditor</a>  </dt>
-<dd><a class="anchor" id="_todo000445"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000409"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__collapsible__r_e_a_d_m_e.html">Collapsible</a>  </dt>
-<dd><a class="anchor" id="_todo000446"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000410"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__date_picker__r_e_a_d_m_e.html">DatePicker</a>  </dt>
-<dd><a class="anchor" id="_todo000447"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000411"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__date_time_picker__r_e_a_d_m_e.html">DateTimePicker</a>  </dt>
-<dd><a class="anchor" id="_todo000448"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000412"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__dialog__r_e_a_d_m_e.html">Dialog</a>  </dt>
-<dd><a class="anchor" id="_todo000449"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000413"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__diff_editor__r_e_a_d_m_e.html">DiffEditor</a>  </dt>
-<dd><a class="anchor" id="_todo000450"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000414"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__divider__r_e_a_d_m_e.html">Divider</a>  </dt>
-<dd><a class="anchor" id="_todo000451"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000415"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__drawer__r_e_a_d_m_e.html">Drawer</a>  </dt>
-<dd><a class="anchor" id="_todo000452"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000416"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__dropdown__r_e_a_d_m_e.html">Dropdown</a>  </dt>
-<dd><a class="anchor" id="_todo000453"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000417"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__dropdown_editor__r_e_a_d_m_e.html">DropdownEditor</a>  </dt>
-<dd><a class="anchor" id="_todo000454"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000418"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__editable_callout__r_e_a_d_m_e.html">EditableCallout</a>  </dt>
-<dd><a class="anchor" id="_todo000455"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000419"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__editable_label__r_e_a_d_m_e.html">EditableLabel</a>  </dt>
-<dd><a class="anchor" id="_todo000456"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000420"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__hidden__r_e_a_d_m_e.html">Hidden</a>  </dt>
-<dd><a class="anchor" id="_todo000457"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000421"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__icon__r_e_a_d_m_e.html">Icon</a>  </dt>
-<dd><a class="anchor" id="_todo000458"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000422"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__image__r_e_a_d_m_e.html">Image</a>  </dt>
-<dd><a class="anchor" id="_todo000459"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000423"></a>-library/jest. </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__declares.html#ga7c516ff728ddd5f8fd7d73086fd2dfcd">impl_afw_adaptor_create_adaptor_session</a>  (const afw_adaptor_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000012"></a>FIXME: Add common epilogue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000011"></a>FIXME: Add common prologue code.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000011"></a>FIXME: Add common prologue code. </p>
+<p class="enddd"><a class="anchor" id="_todo000012"></a>FIXME: Add common epilogue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__declares.html#ga70d02473df1e1884ed4bf8421beceb7e">impl_afw_adaptor_destroy</a>  (const afw_adaptor_t *instance, afw_xctx_t *xctx)</dt>
 <dd><p class="startdd"><a class="anchor" id="_todo000009"></a>FIXME: Add common prologue code. </p>
 <p class="enddd"><a class="anchor" id="_todo000010"></a>FIXME: Add common epilogue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__declares.html#ga01291e51ff6ba55df1a9c4867255e32d">impl_afw_adaptor_get_additional_metrics</a>  (const afw_adaptor_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000013"></a>FIXME: Add common prologue code. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000228"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000013"></a>FIXME: Add common prologue code. </p>
 <p class="interdd"><a class="anchor" id="_todo000014"></a>FIXME: Add common epilogue code. </p>
-<p class="interdd"><a class="anchor" id="_todo000501"></a>FIXME: Jeremy</p>
-<p class="enddd"><a class="anchor" id="_todo000230"></a>Add code to implement method.  </p>
+<p class="enddd"><a class="anchor" id="_todo000465"></a>FIXME: Jeremy </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__index__impl__declares.html#gae7be5a7c732d34fc763bc45fb62103c3">impl_afw_adaptor_impl_index_add</a>  (const afw_adaptor_impl_index_t *instance, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_utf8_t *key, const afw_utf8_t *value, afw_boolean_t unique, const afw_pool_t *pool, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000504"></a>FIXME: this basically avoids indexing an empty string, so we should determine if this is an error condition or not  </dd>
+<dd><a class="anchor" id="_todo000468"></a>FIXME: this basically avoids indexing an empty string, so we should determine if this is an error condition or not  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__index__cursor__impl__declares.html#gaf52dd0679db6ae4807237832116c9b7c">impl_afw_adaptor_impl_index_cursor_contains_object</a>  (const afw_adaptor_impl_index_cursor_t *instance, const afw_object_t *object, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000512"></a>FIXME:: This routine only works for afw_query_criteria_filter_op_id_eq. In order to support other operators, we need to scan sequentially instead of letting LMDB try to find a specific key/data.  </dd>
+<dd><a class="anchor" id="_todo000476"></a>FIXME:: This routine only works for afw_query_criteria_filter_op_id_eq. In order to support other operators, we need to scan sequentially instead of letting LMDB try to find a specific key/data.  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__index__cursor__impl__declares.html#gaed12b37f8597ba132b35545bf42ec3d7">impl_afw_adaptor_impl_index_cursor_inner_join</a>  (const afw_adaptor_impl_index_cursor_t *instance, const afw_adaptor_impl_index_cursor_t *cursor, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000513"></a>FIXME: Jeremy  </dd>
+<dd><a class="anchor" id="_todo000477"></a>FIXME: Jeremy  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__impl__index__impl__declares.html#ga8a3dc4e900c3fd036df62147353f5cdb">impl_afw_adaptor_impl_index_delete</a>  (const afw_adaptor_impl_index_t *instance, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_utf8_t *key, const afw_utf8_t *value, const afw_pool_t *pool, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000505"></a>FIXME: this basically avoids indexing an empty string, so we should determine if this is an error condition or not  </dd>
+<dd><a class="anchor" id="_todo000469"></a>FIXME: this basically avoids indexing an empty string, so we should determine if this is an error condition or not  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__journal__impl__declares.html#ga19ca7a0c87c9ce4ac4112ff046cfd12d">impl_afw_adaptor_journal_add_entry</a>  (const afw_adaptor_journal_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_object_t *entry, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000105"></a>FIXME: is this the right options to use? Probably not. </p>
-<p class="interdd"><a class="anchor" id="_todo000039"></a>FIXME: authorization check </p>
-<p class="enddd"><a class="anchor" id="_todo000104"></a>FIXME: add in registers for cleanup.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000039"></a>FIXME: authorization check </p>
+<p class="interdd"><a class="anchor" id="_todo000102"></a>FIXME: add in registers for cleanup. </p>
+<p class="enddd"><a class="anchor" id="_todo000103"></a>FIXME: is this the right options to use? Probably not.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__journal__impl__declares.html#ga15a86e7357004cf7014cb7f33a6ffd2d">impl_afw_adaptor_journal_get_entry</a>  (const afw_adaptor_journal_t *instance, const afw_adaptor_impl_request_t *impl_request, afw_adaptor_journal_option_t option, const afw_utf8_t *consumer_id, const afw_utf8_t *entry_cursor, afw_size_t limit, const afw_object_t *response, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000106"></a>FIXME: Is this an error? </p>
-<p class="enddd"><a class="anchor" id="_todo000040"></a>FIXME: authorization check  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000040"></a>FIXME: authorization check </p>
+<p class="enddd"><a class="anchor" id="_todo000104"></a>FIXME: Is this an error?  </p>
 </dd>
 <dt>Global <a class="el" href="afw__lmdb__journal_8c.html#aebd6f6618bdb747fa33572a396f4b657">impl_afw_adaptor_journal_get_next_for_consumer</a>  (afw_lmdb_journal_t *self, afw_lmdb_adaptor_session_t *session, afw_lmdb_adaptor_t *adaptor, MDB_dbi dbiJournal, MDB_txn *txn, const afw_utf8_t *consumer_id, afw_size_t limit, const afw_object_t *response, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000517"></a>FIXME:: is the cursor further along than our existing advanceCursor? </p>
-<p class="enddd"><a class="anchor" id="_todo000516"></a>FIXME:: we'll have to consider the scenario where we get a consume_cursor (re-issue) and now it's removed from the journal  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000481"></a>FIXME:: is the cursor further along than our existing advanceCursor? </p>
+<p class="enddd"><a class="anchor" id="_todo000480"></a>FIXME:: we'll have to consider the scenario where we get a consume_cursor (re-issue) and now it's removed from the journal  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__journal__impl__declares.html#ga72af211d9efb1785d8d337fd7efb8815">impl_afw_adaptor_journal_mark_entry_consumed</a>  (const afw_adaptor_journal_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *consumer_id, const afw_utf8_t *entry_cursor, afw_xctx_t *xctx)</dt>
 <dd><a class="anchor" id="_todo000041"></a>FIXME: authorization check  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__key__value__impl__declares.html#ga155150306e53bdf18f47ce6e986061ef">impl_afw_adaptor_key_value_add</a>  (const afw_adaptor_key_value_t *instance, const afw_utf8_t *namespace, const afw_memory_t *key, const afw_memory_t *value, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000506"></a>FIXME: determine if we need to keep these databases open or not  </dd>
+<dd><a class="anchor" id="_todo000470"></a>FIXME: determine if we need to keep these databases open or not  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__key__value__impl__declares.html#ga147b3f8383c0e070555165a6445465e8">impl_afw_adaptor_key_value_get</a>  (const afw_adaptor_key_value_t *instance, const afw_utf8_t *namespace, const afw_memory_t *key, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000507"></a>FIXME:  </dd>
+<dd><a class="anchor" id="_todo000471"></a>FIXME:  </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#gabb0d3488a2b3123f9df02aa2ba29ae92">impl_afw_adaptor_session_add_object</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_utf8_t *suggested_object_id, const afw_object_t *object, const afw_object_t *adaptor_type_specific, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000025"></a>FIXME: Add common prologue code. </p>
-<p class="interdd"><a class="anchor" id="_todo000026"></a>FIXME: Add common epilogue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000491"></a>FIXME: Should this be an error???  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000026"></a>FIXME: Add common epilogue code. </p>
+<p class="interdd"><a class="anchor" id="_todo000455"></a>FIXME: Should this be an error??? </p>
+<p class="enddd"><a class="anchor" id="_todo000025"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#gaa845caa91e695c668d55bd2eb7f4cb72">impl_afw_adaptor_session_begin_transaction</a>  (const afw_adaptor_session_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000033"></a>FIXME: Add common prologue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000034"></a>FIXME: Add common epilogue code.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000034"></a>FIXME: Add common epilogue code. </p>
+<p class="enddd"><a class="anchor" id="_todo000033"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#ga3df08faea964dc9f6dcf1feab622da6a">impl_afw_adaptor_session_delete_object</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_object_t *adaptor_type_specific, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000502"></a>FIXME: This is ok, but we may want to log an internal message. </p>
-<p class="interdd"><a class="anchor" id="_todo000503"></a>FIXME: we should not let the original error make it back to the client. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000466"></a>FIXME: This is ok, but we may want to log an internal message. </p>
 <p class="interdd"><a class="anchor" id="_todo000031"></a>FIXME: Add common prologue code. </p>
+<p class="interdd"><a class="anchor" id="_todo000467"></a>FIXME: we should not let the original error make it back to the client. </p>
 <p class="enddd"><a class="anchor" id="_todo000032"></a>FIXME: Add common epilogue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#gab15934036ffa7a30d30068b062d45863">impl_afw_adaptor_session_destroy</a>  (const afw_adaptor_session_t *instance, afw_xctx_t *xctx)</dt>
@@ -489,381 +485,339 @@ $(function() {
 <p class="enddd"><a class="anchor" id="_todo000037"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#gafb63e13225d08a1119658de8054cf08e">impl_afw_adaptor_session_get_key_value_interface</a>  (const afw_adaptor_session_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000036"></a>FIXME: Add common epilogue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000035"></a>FIXME: Add common prologue code.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000035"></a>FIXME: Add common prologue code. </p>
+<p class="enddd"><a class="anchor" id="_todo000036"></a>FIXME: Add common epilogue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#gad5cf4240bf7598a383a477a258318b60">impl_afw_adaptor_session_get_object</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, void *context, afw_object_cb_t callback, const afw_object_t *adaptor_type_specific, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000490"></a>FIXME: Add timeout config parameter. </p>
-<p class="interdd"><a class="anchor" id="_todo000023"></a>FIXME: Add common prologue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000024"></a>FIXME: Add common epilogue code.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000454"></a>FIXME: Add timeout config parameter. </p>
+<p class="interdd"><a class="anchor" id="_todo000024"></a>FIXME: Add common epilogue code. </p>
+<p class="enddd"><a class="anchor" id="_todo000023"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#ga21c0c920efe8747fc384681ad4b075e4">impl_afw_adaptor_session_modify_object</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_adaptor_modify_entry_t *const *entry, const afw_object_t *adaptor_type_specific, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000235"></a>FIXME: Deal with results in journal entry. </p>
-<p class="interdd"><a class="anchor" id="_todo000028"></a>FIXME: Add common epilogue code. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000028"></a>FIXME: Add common epilogue code. </p>
+<p class="interdd"><a class="anchor" id="_todo000233"></a>FIXME: Deal with results in journal entry. </p>
 <p class="enddd"><a class="anchor" id="_todo000027"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#ga2f2405c73b379f15fec93d3b299c7092">impl_afw_adaptor_session_replace_object</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_utf8_t *object_id, const afw_object_t *replacement_object, const afw_object_t *adaptor_type_specific, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000236"></a>FIXME: Deal with results in journal entry. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000029"></a>FIXME: Add common prologue code. </p>
 <p class="interdd"><a class="anchor" id="_todo000030"></a>FIXME: Add common epilogue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000029"></a>FIXME: Add common prologue code.  </p>
+<p class="enddd"><a class="anchor" id="_todo000234"></a>FIXME: Deal with results in journal entry.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__adaptor__session__impl__declares.html#ga4be3c7030c4792481271b01319689572">impl_afw_adaptor_session_retrieve_objects</a>  (const afw_adaptor_session_t *instance, const afw_adaptor_impl_request_t *impl_request, const afw_utf8_t *object_type_id, const afw_query_criteria_t *criteria, void *context, afw_object_cb_t callback, const afw_object_t *adaptor_type_specific, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000231"></a>make sure (apr_ssize_t *) doesn't cause loss of bits. </p>
-<p class="interdd"><a class="anchor" id="_todo000020"></a>FIXME: Add query info as object. </p>
-<p class="interdd"><a class="anchor" id="_todo000019"></a>FIXME: Add common prologue code. </p>
-<p class="interdd"><a class="anchor" id="_todo000103"></a>FIXME: seems to be this on windows </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000020"></a>FIXME: Add query info as object. </p>
+<p class="interdd"><a class="anchor" id="_todo000101"></a>FIXME: seems to be this on windows </p>
 <p class="interdd"><a class="anchor" id="_todo000022"></a>FIXME: Add common epilogue code. </p>
-<p class="enddd"><a class="anchor" id="_todo000021"></a>FIXME: discuss this defensive check, it's null when indexing  </p>
+<p class="interdd"><a class="anchor" id="_todo000021"></a>FIXME: discuss this defensive check, it's null when indexing </p>
+<p class="interdd"><a class="anchor" id="_todo000229"></a>make sure (apr_ssize_t *) doesn't cause loss of bits. </p>
+<p class="enddd"><a class="anchor" id="_todo000019"></a>FIXME: Add common prologue code.  </p>
 </dd>
 <dt>Global <a class="el" href="afw__list__const__array_8c.html#a22f43f5cc01d9e972e631bd4335cccb5">impl_afw_list_const_array_of_values_self_t</a>  </dt>
-<dd><a class="anchor" id="_todo000210"></a>FIXME: </dd>
+<dd><a class="anchor" id="_todo000208"></a>FIXME: </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#gadb59c054dde354a5c1eaf494d2ace996">impl_afw_list_get_count</a>  (const afw_list_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000411"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000403"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000377"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000369"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga30a44845229723d931fe4d9b0f522b16">impl_afw_list_get_data_type</a>  (const afw_list_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000412"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000404"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000378"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000370"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga0ab29528b74e23e739702854aae69263">impl_afw_list_get_entry_internal</a>  (const afw_list_t *instance, afw_integer_t index, const afw_data_type_t **data_type, const void **internal, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000413"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000405"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000379"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000371"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#gae63dec9a5418d2426a5769443fb95ad9">impl_afw_list_get_entry_value</a>  (const afw_list_t *instance, afw_integer_t index, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000414"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000406"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000380"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000372"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga86bb7c41bd1861ec7db3d02f26ff46f0">impl_afw_list_get_next_internal</a>  (const afw_list_t *instance, const afw_iterator_t **iterator, const afw_data_type_t **data_type, const void **internal, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000415"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000407"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000381"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000373"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga00a93ca76a0d10eb3acb81fb5f327b04">impl_afw_list_get_next_value</a>  (const afw_list_t *instance, const afw_iterator_t **iterator, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000416"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000408"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000382"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000374"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga9e867d06ec03f80899d724c23090fa05">impl_afw_list_get_setter</a>  (const afw_list_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000409"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000417"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000383"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000375"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__impl__declares.html#ga543ec037897a2ccb853dcf4c8a4e258c">impl_afw_list_release</a>  (const afw_list_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000410"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000402"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000376"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000368"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__list__setter__impl__declares.html#gac8b0fc5eacbb57c1c8845096c7c52ce7">impl_afw_list_setter_set_value_by_index</a>  (const afw_list_setter_t *instance, afw_size_t index, const afw_value_t *value, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000211"></a>FIXME: Consider reducing reference count.  </dd>
+<dd><a class="anchor" id="_todo000209"></a>FIXME: Consider reducing reference count.  </dd>
 <dt>Global <a class="el" href="group__afw__log__impl__declares.html#ga286acc4c8ec10e3e12f0181f6a8bb3e3">impl_afw_log_write</a>  (const afw_log_t *instance, afw_log_priority_t priority, const afw_utf8_z_t *source_z, const afw_utf8_t *message, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000217"></a>FIXME: Maybe abort? </p>
-<p class="interdd"><a class="anchor" id="_todo000216"></a>FIXME: Throwing error is a bad idea, so indicate some other way. </p>
-<p class="enddd"><a class="anchor" id="_todo000327"></a>FIXME: Write to event log.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000299"></a>FIXME: Write to event log. </p>
+<p class="interdd"><a class="anchor" id="_todo000214"></a>FIXME: Throwing error is a bad idea, so indicate some other way. </p>
+<p class="enddd"><a class="anchor" id="_todo000215"></a>FIXME: Maybe abort?  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga3f8c01d0a1bd931076d65cfbc43bf232">impl_afw_object_add_reference</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000282"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000300"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000273"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000291"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000271"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000278"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000257"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000264"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__associative__array__impl__declares.html#ga86539386a4e60548550519c557f7b2bb">impl_afw_object_associative_array_for_each</a>  (const afw_object_associative_array_t *instance, void *context, afw_object_cb_t cb, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000260"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000248"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#gae87799b28b1ca79b4a2a4774e0d773bc">impl_afw_object_get_count</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000097"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000358"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000248"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000255"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000320"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000252"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000425"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000301"></a>Add code to implement method. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000241"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000272"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000279"></a>Add code to implement method. </p>
 <p class="interdd"><a class="anchor" id="_todo000245"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000524"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000292"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000242"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000269"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000283"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000264"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000311"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000274"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000399"></a>Add code to implement method.  </p>
-</dd>
-<dt>Global <a class="el" href="group__afw__object__impl__declares.html#gaf6626baefabdcdfb71c897496fa167ac">impl_afw_object_get_entry</a>  (const afw_object_t *instance, afw_integer_t index, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000265"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000098"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000256"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000293"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000312"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000302"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000359"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000249"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000400"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000246"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000321"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000426"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000284"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000243"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000525"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000275"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000270"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000253"></a>Add code to implement method.  </p>
-</dd>
-<dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga72969e045a7d4490cb67938514945d7a">impl_afw_object_get_entry_meta</a>  (const afw_object_t *instance, afw_integer_t index, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000401"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000427"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000303"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000099"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000257"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000526"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000360"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000271"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000276"></a>Add code to implement method. </p>
 <p class="interdd"><a class="anchor" id="_todo000244"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000322"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000285"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000247"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000254"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000250"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000313"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000266"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000294"></a>Add code to implement method.  </p>
+<p class="interdd"><a class="anchor" id="_todo000287"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000242"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000488"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000240"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000294"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000367"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000328"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000391"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000097"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000255"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000258"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000252"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000265"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga759631590e33b2b78179a95ee4c3c0ba">impl_afw_object_get_meta</a>  (const afw_object_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000428"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000392"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga5de98b6856ff6a6e5b2bd49d2bdc192e">impl_afw_object_get_next_property</a>  (const afw_object_t *instance, const afw_iterator_t **iterator, const afw_utf8_t **property_name, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000305"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000287"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000296"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000278"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000430"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000267"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000260"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000394"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000281"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000274"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga922a1d84266008cc5887e1712cbbbbad">impl_afw_object_get_next_property_meta</a>  (const afw_object_t *instance, const afw_iterator_t **iterator, const afw_utf8_t **property_name, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000431"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000395"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga926823ae5061902a9376103d744f172a">impl_afw_object_get_property</a>  (const afw_object_t *instance, const afw_utf8_t *property_name, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000258"></a>FIXME: Add parent support. </p>
-<p class="interdd"><a class="anchor" id="_todo000277"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000304"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000295"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000286"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000273"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000246"></a>FIXME: Add parent support. </p>
+<p class="interdd"><a class="anchor" id="_todo000259"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000266"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000280"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#gab0584c45d552920e769175c7ffaa9ce9">impl_afw_object_get_property_meta</a>  (const afw_object_t *instance, const afw_utf8_t *property_name, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000429"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000393"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga02968ecff26bd754b439ea04211d697b">impl_afw_object_get_setter</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000298"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000280"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000289"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000307"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000269"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000276"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000262"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000283"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga9f4f89bb9827024934b1c351199ae6b8">impl_afw_object_has_property</a>  (const afw_object_t *instance, const afw_utf8_t *property_name, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000288"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000306"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000297"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000279"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000261"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000268"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000275"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000282"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__impl__declares.html#ga65afaebe650b4ff867bc5c458c022577">impl_afw_object_release</a>  (const afw_object_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000290"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000299"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000272"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000398"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000281"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000251"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000243"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000256"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000366"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000263"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000270"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000277"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__object__setter__impl__declares.html#ga28688de9cfb32fc2024d0cab5285f79c">impl_afw_object_setter_set_immutable</a>  (const afw_object_setter_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000267"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000253"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__object__setter__impl__declares.html#ga8aea8b8d766fc1458f2d7505c8d60b6a">impl_afw_object_setter_set_property</a>  (const afw_object_setter_t *instance, const afw_utf8_t *property_name, const afw_value_t *value, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000259"></a>FIXME: Need to think about setting a property that is an object. Embedding object and property name needs to be correct, plus path and related meta needs to be clear. Might involve clone, but <a class="el" href="group__afw__object.html#gafee4eb8b66151154bba77a39ae7909d4" title="Create an empty embedded object in a memory object.">afw_object_create_embedded()</a> also calls this, so if embedded object is this instance, no clone needed. Also consider that clone might not should be used since the one setting property might want to add properties after doing the set.  </dd>
+<dd><a class="anchor" id="_todo000247"></a>FIXME: Need to think about setting a property that is an object. Embedding object and property name needs to be correct, plus path and related meta needs to be clear. Might involve clone, but <a class="el" href="group__afw__object.html#gafee4eb8b66151154bba77a39ae7909d4" title="Create an empty embedded object in a memory object.">afw_object_create_embedded()</a> also calls this, so if embedded object is this instance, no clone needed. Also consider that clone might not should be used since the one setting property might want to add properties after doing the set.  </dd>
 <dt>Global <a class="el" href="group__afw__pool__impl__declares.html#ga65a3157a679403c5267f839743f80528">impl_afw_pool_free</a>  (const afw_pool_t *instance, void *address, afw_size_t size, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000331"></a>Add code to implement method. </p>
-<p class="enddd"><a class="anchor" id="_todo000335"></a>Add code to implement method.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000307"></a>Add code to implement method. </p>
+<p class="enddd"><a class="anchor" id="_todo000303"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__pool__impl__declares.html#ga8ef130854bbae624d6e2a079da60c58c">impl_afw_pool_get_apr_pool</a>  (const afw_pool_t *instance)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000334"></a>FIXME: do something. </p>
-<p class="enddd"><a class="anchor" id="_todo000330"></a>FIXME: do something.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000306"></a>FIXME: do something. </p>
+<p class="enddd"><a class="anchor" id="_todo000302"></a>FIXME: do something.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__pool__impl__declares.html#ga2509f0342289954b8467accabde44bae">impl_afw_pool_release</a>  (const afw_pool_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000329"></a>FIXME: This should probably go away. </p>
-<p class="enddd"><a class="anchor" id="_todo000333"></a>FIXME: This should probably go away.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000305"></a>FIXME: This should probably go away. </p>
+<p class="enddd"><a class="anchor" id="_todo000301"></a>FIXME: This should probably go away.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__request__handler__impl__declares.html#gaca6c6b98f029bee6e51da85ea5005b30">impl_afw_request_handler_process</a>  (const afw_request_handler_t *instance, const afw_request_t *request, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000348"></a>FIXME: Put recurse support in AFW_TRY. </p>
-<p class="interdd"><a class="anchor" id="_todo000351"></a>FIXME: Remove. </p>
-<p class="interdd"><a class="anchor" id="_todo000350"></a>FIXME: Remove </p>
-<p class="enddd"><a class="anchor" id="_todo000349"></a>FIXME: Make user error.  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000323"></a>FIXME: Remove. </p>
+<p class="interdd"><a class="anchor" id="_todo000322"></a>FIXME: Remove </p>
+<p class="interdd"><a class="anchor" id="_todo000321"></a>FIXME: Make user error. </p>
+<p class="enddd"><a class="anchor" id="_todo000320"></a>FIXME: Put recurse support in AFW_TRY.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__server__impl__declares.html#gaa3040e64e8c8ab5dd083479e54d51f04">impl_afw_server_release</a>  (const afw_server_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000521"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000485"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="group__afw__server__impl__declares.html#gafafc6b4d621491c1467f18cd8439f26a">impl_afw_server_run</a>  (const afw_server_t *instance, const afw_request_handler_t *handler, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000522"></a>FIXME: Put in signal handling  </dd>
+<dd><a class="anchor" id="_todo000486"></a>FIXME: Put in signal handling  </dd>
 <dt>Global <a class="el" href="group__afw__service__type__impl__declares.html#ga0f2c63ce874f59ba8285f0118e3151da">impl_afw_service_type_stop</a>  (const afw_service_type_t *instance, const afw_utf8_t *id, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000218"></a>FIXME: Need to be able to destroy, but runtime object might be using. </dd>
+<dd><a class="anchor" id="_todo000216"></a>FIXME: Need to be able to destroy, but runtime object might be using. </dd>
 <dt>Global <a class="el" href="group__afw__stream__impl__declares.html#gae260a2c748eed925b963cc59bbbfd5ab">impl_afw_stream_read</a>  (const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000387"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000373"></a>Add code to implement method. </p>
-<p class="interdd"><a class="anchor" id="_todo000346"></a>Add code to implement method. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000341"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000318"></a>Add code to implement method. </p>
+<p class="interdd"><a class="anchor" id="_todo000355"></a>Add code to implement method. </p>
 <p class="enddd"><a class="anchor" id="_todo000076"></a>Add code to implement method.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__stream__impl__declares.html#ga1e537db856cec8fbae2ef5f63c360170">impl_afw_stream_write</a>  (const afw_stream_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000374"></a>loop if everything is not returned???  </dd>
+<dd><a class="anchor" id="_todo000342"></a>loop if everything is not returned???  </dd>
 <dt>Global <a class="el" href="group__afw__value__impl__declares.html#ga6c7720d716624937c9631b8541c1c31b">impl_afw_value_get_evaluated_meta</a>  (const afw_value_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000391"></a>Add code to implement method.  </dd>
+<dd><a class="anchor" id="_todo000359"></a>Add code to implement method.  </dd>
 <dt>Global <a class="el" href="afw__data__type__any__binding_8c.html#a254d37872d3a09d29185c24af442c921">impl_afw_value_managed_optional_release</a>  (const afw_value_t *instance, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000150"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000182"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000156"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000172"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000174"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000176"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000202"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000178"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000180"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000200"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000204"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000184"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000198"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000186"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000188"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000196"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000190"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000192"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000194"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000166"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000160"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000162"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000152"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000164"></a>this needs to release reference of value or free it. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000194"></a>this needs to release reference of value or free it. </p>
 <p class="interdd"><a class="anchor" id="_todo000146"></a>this needs to release reference of value or free it. </p>
 <p class="interdd"><a class="anchor" id="_todo000144"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000154"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000148"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000168"></a>this needs to release reference of value or free it. </p>
-<p class="interdd"><a class="anchor" id="_todo000158"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000142"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000184"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000186"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000188"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000190"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000192"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000182"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000196"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000198"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000200"></a>this needs to release reference of value or free it. </p>
 <p class="interdd"><a class="anchor" id="_todo000140"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000202"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000138"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000166"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000148"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000180"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000178"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000176"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000174"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000172"></a>this needs to release reference of value or free it. </p>
 <p class="interdd"><a class="anchor" id="_todo000170"></a>this needs to release reference of value or free it. </p>
-<p class="enddd"><a class="anchor" id="_todo000142"></a>this needs to release reference of value or free it.  </p>
+<p class="interdd"><a class="anchor" id="_todo000168"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000164"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000162"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000160"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000158"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000156"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000154"></a>this needs to release reference of value or free it. </p>
+<p class="interdd"><a class="anchor" id="_todo000152"></a>this needs to release reference of value or free it. </p>
+<p class="enddd"><a class="anchor" id="_todo000150"></a>this needs to release reference of value or free it.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__value__impl__declares.html#ga9ec460af7613c2af101548cd28f555e9">impl_afw_value_optional_evaluate</a>  (const afw_value_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000390"></a>FIXME: Add code to adjust based on annotation. </p>
-<p class="enddd"><a class="anchor" id="_todo000395"></a>temporary  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000358"></a>FIXME: Add code to adjust based on annotation. </p>
+<p class="enddd"><a class="anchor" id="_todo000363"></a>temporary  </p>
 </dd>
 <dt>Global <a class="el" href="afw__data__type__any__binding_8c.html#ad89dc149eccf114d5c2cfe8e01a7b066">impl_afw_value_unmanaged_get_reference</a>  (const afw_value_t *instance, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000201"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000199"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000203"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000181"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000197"></a>this needs to addref or return a copy. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000183"></a>this needs to addref or return a copy. </p>
 <p class="interdd"><a class="anchor" id="_todo000147"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000195"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000205"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000177"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000151"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000163"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000165"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000167"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000169"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000171"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000173"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000175"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000193"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000181"></a>this needs to addref or return a copy. </p>
 <p class="interdd"><a class="anchor" id="_todo000179"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000177"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000175"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000173"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000171"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000169"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000167"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000165"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000163"></a>this needs to addref or return a copy. </p>
 <p class="interdd"><a class="anchor" id="_todo000161"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000183"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000185"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000187"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000189"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000191"></a>this needs to addref or return a copy. </p>
 <p class="interdd"><a class="anchor" id="_todo000159"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000143"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000141"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000155"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000149"></a>this needs to addref or return a copy. </p>
-<p class="interdd"><a class="anchor" id="_todo000153"></a>this needs to addref or return a copy. </p>
 <p class="interdd"><a class="anchor" id="_todo000157"></a>this needs to addref or return a copy. </p>
-<p class="enddd"><a class="anchor" id="_todo000145"></a>this needs to addref or return a copy.  </p>
+<p class="interdd"><a class="anchor" id="_todo000155"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000153"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000151"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000149"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000139"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000141"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000143"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000145"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000185"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000203"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000201"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000199"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000197"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000195"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000193"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000191"></a>this needs to addref or return a copy. </p>
+<p class="interdd"><a class="anchor" id="_todo000189"></a>this needs to addref or return a copy. </p>
+<p class="enddd"><a class="anchor" id="_todo000187"></a>this needs to addref or return a copy.  </p>
 </dd>
 <dt>Global <a class="el" href="group__afw__writer__impl__declares.html#ga66955e155cbc085180bf26c297725740">impl_afw_writer_write</a>  (const afw_writer_t *instance, const void *buffer, afw_size_t size, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000421"></a>loop if everything is not returned???  </dd>
+<dd><a class="anchor" id="_todo000387"></a>loop if everything is not returned???  </dd>
 <dt>Global <a class="el" href="group__afw__writer__impl__declares.html#gacc7dd46ed41986aa23b86ca1937b28f7">impl_afw_writer_write_eol</a>  (const afw_writer_t *instance, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000422"></a>loop if everything is not returned???  </dd>
-<dt>Global <a class="el" href="afw__pool__singlethreaded_8c.html#a93460fbf8c5570ec2123ee2959e2a66e">IMPL_DEBUG_LEVEL_detail</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000332"></a>FIXME: If pool is multithread, use a lock when changing memory. </p>
-<p class="enddd"><a class="anchor" id="_todo000328"></a>FIXME: If pool is multithread, use a lock when changing memory.  </p>
+<dd><a class="anchor" id="_todo000388"></a>loop if everything is not returned???  </dd>
+<dt>Global <a class="el" href="afw__pool__multithreaded_8c.html#a93460fbf8c5570ec2123ee2959e2a66e">IMPL_DEBUG_LEVEL_detail</a>  </dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000300"></a>FIXME: If pool is multithread, use a lock when changing memory. </p>
+<p class="enddd"><a class="anchor" id="_todo000304"></a>FIXME: If pool is multithread, use a lock when changing memory.  </p>
 </dd>
 <dt>Global <a class="el" href="afw__model__adaptor_8c.html#a6f49cc2a8510820f465a5978e59ad921">impl_execute_mapBackObject_thunk</a>  (const afw_value_function_thunk_t *thunk, afw_size_t argc, const afw_value_t *const *argv, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000227"></a>FIXME: Temporary, remove  </dd>
+<dd><a class="anchor" id="_todo000225"></a>FIXME: Temporary, remove  </dd>
 <dt>Global <a class="el" href="afw__model__adaptor_8c.html#ade19d52bd805937a8d54e79ae68fa5bd">impl_execute_returnObject_thunk</a>  (const afw_value_function_thunk_t *thunk, afw_size_t argc, const afw_value_t *const *argv, const afw_pool_t *p, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000228"></a>FIXME: Temporary, remove  </dd>
+<dd><a class="anchor" id="_todo000226"></a>FIXME: Temporary, remove  </dd>
 <dt>Global <a class="el" href="afw__model__adaptor_8c.html#a531f1c3211c389b8093b8c0fade8f536">impl_get_converted_entry</a>  (<a class="el" href="structimpl__convert__entry__wa__t.html">impl_convert_entry_wa_t</a> *wa, const afw_query_criteria_filter_entry_t *old_entry)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000224"></a>FIXME: include conf? </p>
-<p class="enddd"><a class="anchor" id="_todo000225"></a>FIXME: include conf?  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000222"></a>FIXME: include conf? </p>
+<p class="enddd"><a class="anchor" id="_todo000223"></a>FIXME: include conf?  </p>
 </dd>
 <dt>Global <a class="el" href="afw__time_8c.html#ac12870e7782746c8bf2e0a32273e3536">impl_set_date_no_time_zone</a>  (afw_date_no_time_zone_t *date, int year, int month, int day, afw_xctx_t *xctx)</dt>
-<dd><a class="anchor" id="_todo000376"></a>FIXME: check for leapyear.  </dd>
+<dd><a class="anchor" id="_todo000344"></a>FIXME: check for leapyear.  </dd>
 <dt>Class <a class="el" href="structimpl__set__init__wa__t.html">impl_set_init_wa_t</a>  </dt>
-<dd><a class="anchor" id="_todo000107"></a>FIXME: should flag be condition or indicator and allow level?  </dd>
+<dd><a class="anchor" id="_todo000105"></a>FIXME: should flag be condition or indicator and allow level?  </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__link__r_e_a_d_m_e.html">Link</a>  </dt>
-<dd><a class="anchor" id="_todo000460"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000424"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__list__r_e_a_d_m_e.html">List</a>  </dt>
-<dd><a class="anchor" id="_todo000461"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000425"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__list_editor__r_e_a_d_m_e.html">ListEditor</a>  </dt>
-<dd><a class="anchor" id="_todo000462"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000426"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__menu__r_e_a_d_m_e.html">Menu</a>  </dt>
-<dd><a class="anchor" id="_todo000463"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000427"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__message__r_e_a_d_m_e.html">Message</a>  </dt>
-<dd><a class="anchor" id="_todo000464"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000428"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__modal__r_e_a_d_m_e.html">Modal</a>  </dt>
-<dd><a class="anchor" id="_todo000465"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000429"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__native__r_e_a_d_m_e.html">Native</a>  </dt>
-<dd><a class="anchor" id="_todo000466"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000430"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__nav__r_e_a_d_m_e.html">Nav</a>  </dt>
-<dd><a class="anchor" id="_todo000467"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000431"></a>-library/jest. </dd>
 <dt>Global <a class="el" href="group__afw__common.html#gafd049f7ad59dbe455f460807475c2841">offsetof</a>  (type, member)</dt>
-<dd><a class="anchor" id="_todo000207"></a>FIXME:  </dd>
+<dd><a class="anchor" id="_todo000205"></a>FIXME:  </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__paper__r_e_a_d_m_e.html">Paper</a>  </dt>
-<dd><a class="anchor" id="_todo000468"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000432"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__picker__r_e_a_d_m_e.html">Picker</a>  </dt>
-<dd><a class="anchor" id="_todo000469"></a>-library/jest. </dd>
-<dt>Global <a class="el" href="afw__yaml__from__value_8c.html#a83a4bbfaadcc0ca49c2f58ca002a8d21">put_quoted_to_yaml</a>  (from_value_wa_t *wa, const afw_utf8_t *s)</dt>
-<dd><a class="anchor" id="_todo000538"></a>FIXME: Need to encode?  </dd>
+<dd><a class="anchor" id="_todo000433"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__responsive__r_e_a_d_m_e.html">Responsive</a>  </dt>
-<dd><a class="anchor" id="_todo000470"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000434"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__skeleton__r_e_a_d_m_e.html">Skeleton</a>  </dt>
-<dd><a class="anchor" id="_todo000471"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000435"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__slider__r_e_a_d_m_e.html">Slider</a>  </dt>
-<dd><a class="anchor" id="_todo000472"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000436"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__snackbar__r_e_a_d_m_e.html">Snackbar</a>  </dt>
-<dd><a class="anchor" id="_todo000473"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000437"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__spin_button__r_e_a_d_m_e.html">SpinButton</a>  </dt>
-<dd><a class="anchor" id="_todo000474"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000438"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__spinner__r_e_a_d_m_e.html">Spinner</a>  </dt>
-<dd><a class="anchor" id="_todo000475"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000439"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__stepper__r_e_a_d_m_e.html">Stepper</a>  </dt>
-<dd><a class="anchor" id="_todo000476"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000440"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__table__r_e_a_d_m_e.html">Table</a>  </dt>
-<dd><a class="anchor" id="_todo000477"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000441"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__tabs__r_e_a_d_m_e.html">Tabs</a>  </dt>
-<dd><a class="anchor" id="_todo000478"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000442"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__text_field__r_e_a_d_m_e.html">TextField</a>  </dt>
-<dd><a class="anchor" id="_todo000479"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000443"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__time_duration__r_e_a_d_m_e.html">TimeDuration</a>  </dt>
-<dd><a class="anchor" id="_todo000480"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000444"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__time_picker__r_e_a_d_m_e.html">TimePicker</a>  </dt>
-<dd><a class="anchor" id="_todo000481"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000445"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__timezone_picker__r_e_a_d_m_e.html">TimezonePicker</a>  </dt>
-<dd><a class="anchor" id="_todo000482"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000446"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__toggle__r_e_a_d_m_e.html">Toggle</a>  </dt>
-<dd><a class="anchor" id="_todo000483"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000447"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__toggle_buttons__r_e_a_d_m_e.html">ToggleButtons</a>  </dt>
-<dd><a class="anchor" id="_todo000484"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000448"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__toolbar__r_e_a_d_m_e.html">Toolbar</a>  </dt>
-<dd><a class="anchor" id="_todo000485"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000449"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__tooltip__r_e_a_d_m_e.html">Tooltip</a>  </dt>
-<dd><a class="anchor" id="_todo000486"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000450"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__tree__r_e_a_d_m_e.html">Tree</a>  </dt>
-<dd><a class="anchor" id="_todo000487"></a>-library/jest. </dd>
+<dd><a class="anchor" id="_todo000451"></a>-library/jest. </dd>
 <dt>Page <a class="el" href="md_src_afw_components_react_core_src_components__typography__r_e_a_d_m_e.html">Typography</a>  </dt>
-<dd><a class="anchor" id="_todo000488"></a>-library/jest.</dd>
+<dd><a class="anchor" id="_todo000452"></a>-library/jest.</dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 2 2023 14:20:32 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Tue Jun 27 2023 16:19:58 for Adaptive Framework by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

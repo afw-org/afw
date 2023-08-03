@@ -319,6 +319,8 @@ under. The --all selects all of those contexts.
             <tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--all</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is short for for the build type context switches --cmake, --docker, --docs, and --js.</span></td>    
 </tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--cdev</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is a shortcut to enable common switches used during C development.</span></td>    
+</tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--clean</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Clean the build directory for each selected build type context before starting the build.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--cmake</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build everything that uses cmake in the AFW package. If no other build type context switches are specified, this is the default.</span></td>    
@@ -326,8 +328,6 @@ under. The --all selects all of those contexts.
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--docker</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build docker related parts of the AFW package.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--docs</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the build type context switch to build the docs for the AFW package.</span></td>    
-</tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--full</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is short for the switches --clean, --generate, and --install.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--generate</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Call afwdev generate --srcdir-pattern \* before build.</span></td>    
 </tr><tr>
@@ -337,7 +337,11 @@ under. The --all selects all of those contexts.
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--js</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Build JavaScript related parts of the AFW package.</span></td>    
 </tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--maxloop</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This option is used by analyze-build. Specify the number of times a block can be visited before giving up. Increase for more comprehensive coverage at a cost of speed. </span></td>    
+</tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--prefix</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>This is the directory path that is prepended onto all install directories.</span></td>    
+</tr><tr>
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--scan</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Use clang analyze-build to analyze C source after compilation. Errors will cause the build to fail.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--sudo</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Use sudo command when doing the install.</span></td>    
 </tr>
@@ -530,7 +534,7 @@ if the -jobs argument is not specified on afwdev build.
         </thead>
         <tbody>
             <tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--stop-on-failure</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop on first failure.</span></td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--bail</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop after [N] failed test.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--list</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>List tests (do not run)</span></td>    
 </tr><tr>
@@ -593,7 +597,7 @@ be used.
             <tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--errors</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Only show validation errors.</span></td>    
 </tr><tr>
-    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--stop-on-failure</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop on first validation failure.</span></td>    
+    <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--bail</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>Stop on first validation failure.</span></td>    
 </tr><tr>
     <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><code>--pattern</code></td><td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400 align-top" style='white-space: pre-line;'><span>One or more patterns, separated with a semicolon (';'), of files to validate.</span></td>    
 </tr>

@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "(@abcdefghijlmnopqrstuvwxy",
   1: "afis",
   2: "anw",
-  3: "aip",
+  3: "ai",
   4: "abcdefghijlmnopqrstuvwxy",
   5: "ai",
   6: "a",
