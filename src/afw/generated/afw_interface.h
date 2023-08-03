@@ -5217,6 +5217,11 @@ typedef const afw_value_t *
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
+/** @sa afw_value_optional_get_optimized() */
+typedef const afw_value_t *
+(*afw_value_optional_get_optimized_t)(
+    const afw_value_t * instance);
+
 /** @sa afw_value_get_evaluated_metas() */
 typedef const afw_value_t *
 (*afw_value_get_evaluated_metas_t)(
@@ -5254,6 +5259,7 @@ struct afw_value_inf_s {
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
     afw_value_get_evaluated_meta_t get_evaluated_meta;
+    afw_value_optional_get_optimized_t optional_get_optimized;
     afw_value_get_evaluated_metas_t get_evaluated_metas;
     afw_value_produce_compiler_listing_t produce_compiler_listing;
     afw_value_decompile_t decompile;
@@ -5341,6 +5347,17 @@ struct afw_value_inf_s {
     (instance), \
     (p), \
     (xctx) \
+)
+
+/**
+ * @brief Call method optional_get_optimized of interface afw_value
+ * @param instance Pointer to this adaptive value instance.
+ */
+#define afw_value_optional_get_optimized( \
+    instance \
+) \
+(instance)->inf->optional_get_optimized( \
+    (instance) \
 )
 
 /**

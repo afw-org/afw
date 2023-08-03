@@ -867,11 +867,26 @@ afw_value_contains(
  * @return evaluated value.
  *
  * If value is undefined or there is not a optional_evaluate(), the
- * value passed returned asis.
+ * value passed is returned asis.
  */
 #define afw_value_evaluate(value, p, xctx) \
 (((value) && (value)->inf->optional_evaluate) \
     ? (value)->inf->optional_evaluate(value, p, xctx) \
+    : value)
+
+
+
+/**
+ * @brief Get the optimized version of this value.
+ * @param value
+ * @return optimized version of the value.
+ *
+ * If there is not an optional_get_optimized method for this value, the
+ * value passed is returned asis.
+ */
+#define afw_value_get_optimized(value, p, xctx) \
+(((value) && (value)->inf->optional_evaluate) \
+    ? (value)->inf->optional_get_optimized(value) \
     : value)
 
 

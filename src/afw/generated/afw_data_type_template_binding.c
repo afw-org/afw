@@ -63,8 +63,11 @@ impl_afw_value_permanent_get_reference(
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
 
-/* All infs have a NULL optional evaluate. */
+/* This is fully evaluated so optional_evaluate method is NULL. */
 #define impl_afw_value_optional_evaluate NULL
+
+/* The optimized value is the same as the value itself. */
+#define impl_afw_value_optional_get_optimized NULL
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_template_direct

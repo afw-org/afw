@@ -535,8 +535,11 @@ def write_c_section(fd, prefix, obj):
     fd.write('\n#define impl_afw_value_get_evaluated_metas \\\n')
     fd.write('    ' + x +'\n')
 
-    fd.write('\n/* All infs have a NULL optional evaluate. */\n')
+    fd.write('\n/* This is fully evaluated so optional_evaluate method is NULL. */\n')
     fd.write('#define impl_afw_value_optional_evaluate NULL\n')
+
+    fd.write('\n/* The optimized value is the same as the value itself. */\n')
+    fd.write('#define impl_afw_value_optional_get_optimized NULL\n')
 
     fd.write('\n/* Inf specific is always data type. */\n')
     fd.write('#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_' + id + '_direct\n')

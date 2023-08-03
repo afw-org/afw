@@ -1561,6 +1561,7 @@ def _subcommand_task(args, options):
     failed = False
     try:
         for command in commands:
+            msg.info('Running ' + ' '.join(command))
             rc = subprocess.run(command)
             if rc.returncode != 0:
                 failed = True

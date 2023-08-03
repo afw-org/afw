@@ -99,6 +99,21 @@ impl_afw_value_get_evaluated_meta(
 }
 
 /*
+ * Implementation of method optional_get_optimized for interface afw_value.
+ */
+const afw_value_t *
+impl_afw_value_optional_get_optimized(
+    const afw_value_t * instance)
+{
+//    <afwdev {prefixed_interface_name}>_self_t *self =
+//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+
+}
+
+/*
  * Implementation of method get_evaluated_metas for interface afw_value.
  */
 const afw_value_t *

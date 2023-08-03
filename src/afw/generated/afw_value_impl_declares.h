@@ -142,6 +142,13 @@ impl_afw_value_get_evaluated_meta(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_value_optional_get_optimized
+/* Declare method optional_get_optimized */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_optional_get_optimized(
+    const afw_value_t * instance);
+#endif
+
 #ifndef impl_afw_value_get_evaluated_metas
 /* Declare method get_evaluated_metas */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -207,6 +214,7 @@ impl_afw_value_inf = {
     impl_afw_value_optional_evaluate,
     impl_afw_value_get_data_type,
     impl_afw_value_get_evaluated_meta,
+    impl_afw_value_optional_get_optimized,
     impl_afw_value_get_evaluated_metas,
     impl_afw_value_produce_compiler_listing,
     impl_afw_value_decompile,
