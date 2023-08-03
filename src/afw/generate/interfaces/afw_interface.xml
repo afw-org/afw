@@ -5787,7 +5787,6 @@ AFW_DEFINE(const afw_request_handler_t *)
       </return>
 
     </method>
-
     <method name="get_evaluated_meta">
 
       <description>
@@ -5814,31 +5813,6 @@ AFW_DEFINE(const afw_request_handler_t *)
         <description>
           The this is an evaluated object value that can be used to access the value's meta.
         </description>
-      </return>
-
-    </method>
-
-    <method name="optional_get_optimized">
-
-      <description>
-        This is an optional method used to get the optimized value of an
-        adaptive value. Normally the afw_value_get_optimized_value() macro
-        should be used instead or calling this method directly since it might
-        be NULL. Macro afw_value_get_optimized_value() will return the value
-        itself, if this method is NULL.
-
-        This optimized value is the result of any optimizations that can occur
-        at create time of the value. For instance, 'call' can sometimes resolve
-        the polymorphic function to call and well as replaces all parameters
-        with their optimized values.
-      </description>
-
-      <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this adaptive value instance.</description>
-      </parameter>
-
-      <return type="const afw_value_t *">
-        <description>The optimized adaptive value or NULL.</description>
       </return>
 
     </method>

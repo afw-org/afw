@@ -18,8 +18,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
 
@@ -39,23 +37,30 @@ afw_value_qualified_variable_reference_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_qualified_variable_reference_t *result;
-    result = afw_pool_calloc_type(p, afw_value_qualified_variable_reference_t, xctx);
-    result->inf = &afw_value_qualified_variable_reference_inf;
-    result->contextual = contextual;
-    memcpy(&result->name, name, sizeof(afw_utf8_t));
+    afw_value_qualified_variable_reference_t *self;
+    self = afw_pool_calloc_type(p, afw_value_qualified_variable_reference_t, xctx);
+    self->inf = &afw_value_qualified_variable_reference_inf;
+    self->contextual = contextual;
+    memcpy(&self->name, name, sizeof(afw_utf8_t));
     if (qualifier) {
-        memcpy(&result->qualifier, qualifier, sizeof(afw_utf8_t));
-        result->optionally_qualified_name = afw_utf8_concat(p, xctx,
-            &result->qualifier, &afw_s_a_qualification_operator, &result->name,
+        memcpy(&self->qualifier, qualifier, sizeof(afw_utf8_t));
+        self->optionally_qualified_name = afw_utf8_concat(p, xctx,
+            &self->qualifier, &afw_s_a_qualification_operator, &self->name,
             NULL);
     }
     else {
-        result->optionally_qualified_name = &result->name;
+        self->optionally_qualified_name = &self->name;
     }
-    result->backtrace_detail = result->optionally_qualified_name;
+    self->backtrace_detail = self->optionally_qualified_name;
+   
+    /** @fixme add optimization. */
+    self->optimized_value = (const afw_value_t *)self;
 
-    return (afw_value_t *)result;
+    /** @fixme Get right data type. */
+    self->evaluated_data_type = afw_data_type_string;
+    
+
+    return (afw_value_t *)self;
 }
 
 
@@ -187,7 +192,6 @@ impl_afw_value_get_info(
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->detail = self->backtrace_detail;
-    info->optimized_value = instance;
-
-    /* Note: Maybe something can be done for optimized_value_data_type. */
+    info->evaluated_data_type = self->evaluated_data_type;
+    info->optimized_value = self->optimized_value;
 }

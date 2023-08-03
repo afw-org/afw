@@ -66,9 +66,6 @@ impl_afw_value_permanent_get_reference(
 /* This is fully evaluated so optional_evaluate method is NULL. */
 #define impl_afw_value_optional_evaluate NULL
 
-/* The optimized value is the same as the value itself. */
-#define impl_afw_value_optional_get_optimized NULL
-
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_dayTimeDuration_direct
 
@@ -507,8 +504,8 @@ impl_afw_value_get_info(
 {
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->evaluated_data_type = afw_data_type_dayTimeDuration;
     info->optimized_value = instance;
-    info->optimized_value_data_type = afw_data_type_dayTimeDuration;
 }
 
 

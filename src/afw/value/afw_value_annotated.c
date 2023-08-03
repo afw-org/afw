@@ -17,8 +17,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
 
@@ -38,12 +36,12 @@ afw_value_annotation_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_annotated_t *result;
+    afw_value_annotated_t *self;
 
-    result = afw_pool_calloc_type(p, afw_value_annotated_t, xctx);
-    result->inf = &afw_value_annotated_inf;
+    self = afw_pool_calloc_type(p, afw_value_annotated_t, xctx);
+    self->inf = &afw_value_annotated_inf;
 
-    return result;
+    return self;
 }
 
 
@@ -57,15 +55,15 @@ afw_value_annotated_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_annotated_t *result;
+    afw_value_annotated_t *self;
 
-    result = afw_pool_calloc_type(p, afw_value_annotated_t, xctx);
-    result->inf = &afw_value_annotated_inf;
-    result->contextual = contextual;
-    result->value = value;
-    result->annotation = annotation;
+    self = afw_pool_calloc_type(p, afw_value_annotated_t, xctx);
+    self->inf = &afw_value_annotated_inf;
+    self->contextual = contextual;
+    self->value = value;
+    self->annotation = annotation;
 
-    return (const afw_value_t *)result;
+    return (const afw_value_t *)self;
 }
 
 

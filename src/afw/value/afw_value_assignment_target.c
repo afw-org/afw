@@ -17,8 +17,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
 
@@ -56,14 +54,14 @@ afw_value_assignment_target_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_assignment_target_t *result;
+    afw_value_assignment_target_t *self;
 
-    result = afw_pool_calloc_type(p, afw_value_assignment_target_t, xctx);
-    result->inf = &afw_value_assignment_target_inf;
-    result->contextual = contextual;
-    result->assignment_target = assignment_target;
+    self = afw_pool_calloc_type(p, afw_value_assignment_target_t, xctx);
+    self->inf = &afw_value_assignment_target_inf;
+    self->contextual = contextual;
+    self->assignment_target = assignment_target;
 
-    return (const afw_value_t *)result;
+    return (const afw_value_t *)self;
 }
 
 

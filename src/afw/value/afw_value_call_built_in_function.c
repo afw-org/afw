@@ -18,8 +18,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
 
@@ -44,7 +42,7 @@ afw_value_call_built_in_function_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_call_built_in_function_t *result;
+    afw_value_call_built_in_function_t *self;
     const afw_value_function_definition_t *function;
     afw_value_info_t info;
 
@@ -54,14 +52,14 @@ afw_value_call_built_in_function_create(
             "function definition", xctx);
     }
 
-    result = afw_pool_calloc_type(p, afw_value_call_built_in_function_t, xctx);
-    result->inf = &afw_value_call_built_in_function_inf;
+    self = afw_pool_calloc_type(p, afw_value_call_built_in_function_t, xctx);
+    self->inf = &afw_value_call_built_in_function_inf;
     function = (const afw_value_function_definition_t *)argv[0];
-    result->function = function;
-    result->args.contextual = contextual;
-    result->args.argc = argc;
-    result->args.argv = argv;
-    result->optimized_value = (const afw_value_t *)result;
+    self->function = function;
+    self->args.contextual = contextual;
+    self->args.argc = argc;
+    self->args.argv = argv;
+    self->optimized_value = (const afw_value_t *)self;
 
     if (allow_optimize  && false /** @fixme Not finished yet so skipping.*/) {
 
@@ -74,14 +72,14 @@ afw_value_call_built_in_function_create(
                     "defined for polymorphic functions", xctx);
             }
             afw_value_get_info(argv[1], &info, p, xctx);
-            if (info.optimized_value_data_type) {
+            if (info.evaluated_data_type) {
                 function = afw_environment_get_qualified_function(
-                    &info.optimized_value_data_type->data_type_id,
+                    &info.evaluated_data_type->data_type_id,
                     &function->functionId, xctx);
                 if (!function) {
-                    function = result->function;
+                    function = self->function;
                 }
-                result->function = function;
+                self->function = function;
             }
         }
 
@@ -89,10 +87,10 @@ afw_value_call_built_in_function_create(
 
     /* If function returns a value, set optimized_value_data_type. */
     if (function->returns && function->returns->data_type) {
-        result->optimized_value_data_type = function->returns->data_type;
+        self->evaluated_data_type = function->returns->data_type;
     }
 
-    return (const afw_value_t *)result;
+    return (const afw_value_t *)self;
 }
 
 
@@ -245,15 +243,16 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
+    if (self->evaluated_data_type) {
+        afw_writer_write_z(writer, "evaluated_data_type: ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->evaluated_data_type->data_type_id, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
     if (self->optimized_value != instance) {
         afw_writer_write_z(writer, "optimized_value: ", xctx);
         afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
-    if (self->optimized_value_data_type) {
-        afw_writer_write_z(writer, "optimized_value_data_type: ", xctx);
-        afw_writer_write_utf8(writer,
-            &self->optimized_value_data_type->data_type_id, xctx);
         afw_writer_write_eol(writer, xctx);
     }
 
@@ -307,7 +306,8 @@ impl_afw_value_get_info(
     info->detail = &self->function->functionId;
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->args.contextual;
-    info->optimized_value = instance;
+    info->evaluated_data_type = self->evaluated_data_type;
+    info->optimized_value = self->optimized_value;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

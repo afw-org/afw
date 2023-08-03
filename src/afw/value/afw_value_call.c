@@ -18,8 +18,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
 
@@ -184,7 +182,7 @@ afw_value_call_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_call_t *result;
+    afw_value_call_t *self;
 
     if (!argv[0]) {
         AFW_THROW_ERROR_Z(general,
@@ -193,7 +191,7 @@ afw_value_call_create(
     }
 
     /*
-     * If this is a function definition, return the result of the more specific
+     * If this is a function definition, return the self of the more specific
      * afw_value_call_built_in_function_create() to reduce the execution time
      * code path.
      */
@@ -202,16 +200,21 @@ afw_value_call_create(
             contextual, argc, argv, allow_optimize, p, xctx);
     }
 
-    result = afw_pool_calloc_type(p, afw_value_call_t, xctx);
-    result->inf = &afw_value_call_inf;
-    result->function_value = argv[0];
-    result->args.contextual = contextual;
-    result->args.argc = argc;
-    result->args.argv = argv;
-    result->optimized_value = (const afw_value_t *)result;
-    result->optimized_value_data_type = afw_data_type_string;
+    self = afw_pool_calloc_type(p, afw_value_call_t, xctx);
+    self->inf = &afw_value_call_inf;
+    self->function_value = argv[0];
+    self->args.contextual = contextual;
+    self->args.argc = argc;
+    self->args.argv = argv;
+   
+    /** @fixme add optimization. */
+    self->optimized_value = (const afw_value_t *)self;
 
-    return (const afw_value_t *)result;
+    /** @fixme Get right data type. */
+    self->evaluated_data_type = afw_data_type_string;
+    
+
+    return (const afw_value_t *)self;
 }
 
 
@@ -326,15 +329,16 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
+    if (self->evaluated_data_type) {
+        afw_writer_write_z(writer, "evaluated_data_type: ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->evaluated_data_type->data_type_id, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
     if (self->optimized_value != instance) {
         afw_writer_write_z(writer, "optimized_value: ", xctx);
         afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
-    if (self->optimized_value_data_type) {
-        afw_writer_write_z(writer, "optimized_value_data_type: ", xctx);
-        afw_writer_write_utf8(writer,
-            &self->optimized_value_data_type->data_type_id, xctx);
         afw_writer_write_eol(writer, xctx);
     }
 
@@ -387,6 +391,6 @@ impl_afw_value_get_info(
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->args.contextual;
+    info->evaluated_data_type = self->evaluated_data_type;
     info->optimized_value = self->optimized_value;
-    info->optimized_value_data_type = self->optimized_value_data_type;
 }

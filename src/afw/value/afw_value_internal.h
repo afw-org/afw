@@ -237,8 +237,8 @@ struct afw_value_call_s {
      */
     const afw_value_t *optimized_value;
 
-    /* This is the optimized value's data type. */
-    const afw_data_type_t *optimized_value_data_type;
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -254,7 +254,7 @@ struct afw_value_call_built_in_function_s {
     const afw_value_inf_t *inf;
     const afw_value_function_definition_t *function;
     afw_value_call_args_t args;
-
+  
     /*
      * This is the optimized value or self. If self can be evaluated at create
      * time, this will the evaluated result. If this value references other
@@ -263,8 +263,8 @@ struct afw_value_call_built_in_function_s {
      */
     const afw_value_t *optimized_value;
 
-    /* This is the optimized value's data type. */
-    const afw_data_type_t *optimized_value_data_type;
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -346,6 +346,17 @@ struct afw_value_internal_compiled_value_s {
      * The property name is the string and value is an evaluated string.
      */
     const afw_object_t *strings;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -397,6 +408,17 @@ struct afw_value_reference_by_key_s {
     const afw_value_t *aggregate_value; /* Object or list */
     const afw_value_t *key;
     const afw_utf8_t *backtrace_detail;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the referenced value or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -407,6 +429,17 @@ struct afw_value_expression_definition_s {
     /* NULL terminated list of assignments or NULL. */
     const afw_value_assignment_t * const *assignments;
     const afw_value_t * value;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -441,6 +474,17 @@ struct afw_value_script_function_definition_s {
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
     const afw_value_t *body;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -453,6 +497,17 @@ struct afw_value_qualified_variable_reference_s {
     afw_utf8_t name;
     const afw_utf8_t *optionally_qualified_name;
     const afw_utf8_t *backtrace_detail;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 
@@ -472,6 +527,17 @@ struct afw_value_variable_reference_s {
     const afw_value_inf_t *inf;
     const afw_compile_value_contextual_t *contextual;
     const afw_value_block_symbol_t *symbol;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
 };
 
 

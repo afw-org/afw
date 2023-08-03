@@ -18,8 +18,6 @@
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
 
@@ -41,38 +39,44 @@ afw_value_reference_by_key_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_reference_by_key_t *result;
+    afw_value_reference_by_key_t *self;
 
-    result = afw_pool_calloc_type(p, afw_value_reference_by_key_t, xctx);
-    result->inf = &afw_value_reference_by_key_inf;
-    result->contextual = contextual;
-    result->aggregate_value = aggregate_value;
-    result->key = key;
+    self = afw_pool_calloc_type(p, afw_value_reference_by_key_t, xctx);
+    self->inf = &afw_value_reference_by_key_inf;
+    self->contextual = contextual;
+    self->aggregate_value = aggregate_value;
+    self->key = key;
 
     /* Add backtrace detail. */
     if (afw_value_is_string(key)) {
-        result->backtrace_detail = afw_utf8_printf(
+        self->backtrace_detail = afw_utf8_printf(
             p, xctx,
             "[string " AFW_UTF8_FMT "]",
             AFW_UTF8_FMT_ARG(&((const afw_value_string_t *)key)->internal));
     }
     else if (afw_value_is_integer(key)) {
-        result->backtrace_detail = afw_utf8_printf(
+        self->backtrace_detail = afw_utf8_printf(
             p, xctx,
             "[" AFW_INTEGER_FMT "]",
             ((const afw_value_integer_t *)key)->internal);
     }
     else if (!afw_value_is_defined_and_evaluated(key)) {
-        result->backtrace_detail = &afw_s_a_bracketed_value;
+        self->backtrace_detail = &afw_s_a_bracketed_value;
     }
     else {
         AFW_THROW_ERROR_Z(general,
             "index must be an integer, expression, or string",
             xctx);
     }
+   
+    /** @fixme add optimization. */
+    self->optimized_value = (const afw_value_t *)self;
+
+    /** @fixme Get right data type. */
+    self->evaluated_data_type = afw_data_type_string;
 
     /* Return adaptive value. */
-    return (afw_value_t *)result;
+    return (afw_value_t *)self;
 }
 
 
@@ -154,6 +158,7 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = saved_contextual;
     return result;
 }
+
 
 /*
  * Implementation of method get_data_type for interface afw_value.
@@ -245,6 +250,19 @@ impl_afw_value_produce_compiler_listing(
 
     afw_value_produce_compiler_listing(self->aggregate_value, writer, xctx);
 
+    if (self->evaluated_data_type) {
+        afw_writer_write_z(writer, "evaluated_data_type: ", xctx);
+        afw_writer_write_utf8(writer,
+            &self->evaluated_data_type->data_type_id, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
+    if (self->optimized_value != instance) {
+        afw_writer_write_z(writer, "optimized_value: ", xctx);
+        afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -286,7 +304,6 @@ impl_afw_value_get_info(
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->detail = self->backtrace_detail;
-    info->optimized_value = instance;
-
-    /* Note: Maybe something can be done for optimized_value_data_type. */
+    info->evaluated_data_type = self->evaluated_data_type;
+    info->optimized_value = self->optimized_value;
 }

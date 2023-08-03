@@ -26,8 +26,6 @@
     (const void *)&afw_data_type_function_direct, \
     NULL
 
-#define impl_afw_value_optional_get_optimized NULL
-
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
 
@@ -53,20 +51,27 @@ afw_value_script_function_definition_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_script_function_definition_t *result;
+    afw_value_script_function_definition_t *self;
 
     /** @fixme Work about in all creates if copy needed. */
 
-    result = afw_pool_calloc_type(p, afw_value_script_function_definition_t, xctx);
-    result->inf = &afw_value_script_function_definition_inf;
-    result->contextual = contextual;
-    result->signature = signature;
-    result->returns = returns;
-    result->count = count;
-    result->parameters = parameters;
-    result->body = body;
+    self = afw_pool_calloc_type(p, afw_value_script_function_definition_t, xctx);
+    self->inf = &afw_value_script_function_definition_inf;
+    self->contextual = contextual;
+    self->signature = signature;
+    self->returns = returns;
+    self->count = count;
+    self->parameters = parameters;
+    self->body = body;
+   
+    /** @fixme add optimization. */
+    self->optimized_value = (const afw_value_t *)self;
+
+    /** @fixme Get right data type. */
+    self->evaluated_data_type = afw_data_type_string;
     
-    return (afw_value_t *)result;
+    
+    return (afw_value_t *)self;
 }
 
 
@@ -231,7 +236,6 @@ impl_afw_value_get_info(
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->contextual;
-    info->optimized_value = instance;
-
-    /* Note: Maybe something can be done for optimized_value_data_type. */
+    info->evaluated_data_type = self->evaluated_data_type;
+    info->optimized_value = self->optimized_value;
 }
