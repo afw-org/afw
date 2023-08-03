@@ -3,7 +3,7 @@
     "name": "Adaptive Framework",
     "dockerComposeFile": "docker-compose.yml",
     "service": "afw",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
     "mounts": [
         "source=afw-workspace-bashhistory,target=/commandhistory,type=volume",

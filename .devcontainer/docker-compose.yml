@@ -17,7 +17,7 @@ services:
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
-      #- ..:/workspace:cached
+      - ../..:/workspaces:cached
       # using a volume for the entire workspace will make building faster on Mac/Windows due to I/O.
       - afw-workspace-vol:/workspace
       - afw-workspace-bashhistory:/commandhistory
