@@ -838,6 +838,24 @@ AFW_UTF8_LITERAL("This configuration type adds additional functionality this Ada
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_extension_title =
 AFW_UTF8_LITERAL("Adaptive Framework Extension Configuration");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny =
+AFW_UTF8_LITERAL("compile:noImplicitAny");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_brief =
+AFW_UTF8_LITERAL("Do not infer type any");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_description =
+AFW_UTF8_LITERAL("If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize =
+AFW_UTF8_LITERAL("compile:noOptimize");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_brief =
+AFW_UTF8_LITERAL("Evaluate values that have not been optimized");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_description =
+AFW_UTF8_LITERAL("Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core.");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug =
 AFW_UTF8_LITERAL("debug");
 

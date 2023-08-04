@@ -1655,6 +1655,42 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_extension_description;
 /** @brief afw_utf8_t for string a_extension_title */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_extension_title;
 
+/** @brief define for quoted string a_flag_compile_noImplicitAny */
+#define AFW_Q_a_flag_compile_noImplicitAny "compile:noImplicitAny"
+
+/** @brief afw_utf8_t for string a_flag_compile_noImplicitAny */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny;
+
+/** @brief define for quoted string a_flag_compile_noImplicitAny_brief */
+#define AFW_Q_a_flag_compile_noImplicitAny_brief "Do not infer type any"
+
+/** @brief afw_utf8_t for string a_flag_compile_noImplicitAny_brief */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_brief;
+
+/** @brief define for quoted string a_flag_compile_noImplicitAny_description */
+#define AFW_Q_a_flag_compile_noImplicitAny_description "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed."
+
+/** @brief afw_utf8_t for string a_flag_compile_noImplicitAny_description */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_description;
+
+/** @brief define for quoted string a_flag_compile_noOptimize */
+#define AFW_Q_a_flag_compile_noOptimize "compile:noOptimize"
+
+/** @brief afw_utf8_t for string a_flag_compile_noOptimize */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize;
+
+/** @brief define for quoted string a_flag_compile_noOptimize_brief */
+#define AFW_Q_a_flag_compile_noOptimize_brief "Evaluate values that have not been optimized"
+
+/** @brief afw_utf8_t for string a_flag_compile_noOptimize_brief */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_brief;
+
+/** @brief define for quoted string a_flag_compile_noOptimize_description */
+#define AFW_Q_a_flag_compile_noOptimize_description "Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core."
+
+/** @brief afw_utf8_t for string a_flag_compile_noOptimize_description */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_description;
+
 /** @brief define for quoted string a_flag_debug */
 #define AFW_Q_a_flag_debug "debug"
 

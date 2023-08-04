@@ -221,6 +221,30 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         NULL,
         xctx);
 
+    /* Register flag compile:noImplicitAny */
+    afw_flag_environment_register_flag(
+        &afw_s_a_flag_compile_noImplicitAny,
+        &afw_s_a_flag_compile_noImplicitAny_brief,
+        &afw_s_a_flag_compile_noImplicitAny_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_noImplicitAny_active =
+        afw_environment_get_flag(
+            &afw_s_a_flag_compile_noImplicitAny,
+            xctx)->flag_index;
+
+   /* Register flag compile:noOptimize */
+    afw_flag_environment_register_flag(
+        &afw_s_a_flag_compile_noOptimize,
+        &afw_s_a_flag_compile_noOptimize_brief,
+        &afw_s_a_flag_compile_noOptimize_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_noOptimize_active =
+        afw_environment_get_flag(
+            &afw_s_a_flag_compile_noOptimize,
+            xctx)->flag_index;
+
     /* Register flag debug:detail */
     afw_flag_environment_register_flag(
         &afw_s_a_flag_debug_detail,

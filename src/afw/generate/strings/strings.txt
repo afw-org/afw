@@ -91,7 +91,15 @@ query
 modify
 read
 
-# Lock related
+# flags
+
+a_flag_compile_noImplicitAny=compile:noImplicitAny
+a_flag_compile_noImplicitAny_brief=Do not infer type any
+a_flag_compile_noImplicitAny_description=If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.
+
+a_flag_compile_noOptimize=compile:noOptimize
+a_flag_compile_noOptimize_brief=Evaluate values that have not been optimized
+a_flag_compile_noOptimize_description=Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core.
 
 a_lock_multithreaded_pool=multithreaded_pool
 a_lock_multithreaded_pool_brief=Multithreaded pool
@@ -116,8 +124,6 @@ a_lock_log_list_description=This lock is used internally when accessing environm
 a_lock_flags=environment:flags
 a_lock_flags_brief=Environment flags lock
 a_lock_flags_description=This lock is used internally when accessing environment flags memory.
-
-# Flag related
 
 a_flag_unspecified=unspecified
 a_flag_unspecified_brief=Never set

@@ -1566,6 +1566,12 @@ struct afw_environment_s {
      */
     const afw_flag_t * AFW_ATOMIC const *flag_by_index;
 
+    /** @brief Flag index of compile:noImplicitAny. */
+    afw_size_t flag_index_compile_noImplicitAny_active;
+
+    /** @brief Flag index of compile:noOptimize. */
+    afw_size_t flag_index_compile_noOptimize_active;
+
     /** @brief Flag index of debug:function_active. */
     afw_size_t flag_index_debug_function_active;
 
