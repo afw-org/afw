@@ -1,0 +1,514 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/hexBinary",
+                "objectId": "hexBinary",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.5",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type hexBinary holds binary data.  Its string value is character hex encoded.",
+            "dataTypeParameterType": "mediaType",
+            "dataType": "hexBinary",
+            "cType": "afw_memory_t",
+            "brief": "A binary value whose string value is character hex encoded"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/base64Binary",
+                "objectId": "base64Binary",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.5",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type base64Binary holds binary data.  Its string value is base64 encoded.",
+            "dataTypeParameterType": "mediaType",
+            "dataType": "base64Binary",
+            "cType": "afw_memory_t",
+            "brief": "A binary value whose string value is base64 encoded"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/dateTime",
+                "objectId": "dateTime",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type dateTime is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone.",
+            "dataType": "dateTime",
+            "cType": "afw_dateTime_t",
+            "brief": "A date and time"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/integer",
+                "objectId": "integer",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.27",
+            "jsonPrimitive": "number",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type integer hold a positive or negative whole numbers.  The string value of a negative integer is preceded with a minus sign ('-').  A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.",
+            "dataType": "integer",
+            "cType": "afw_integer_t",
+            "brief": "An integer"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/x500Name",
+                "objectId": "x500Name",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type x500Name hold a X.500 distinguished name.",
+            "dataType": "x500Name",
+            "cType": "afw_utf8_t",
+            "brief": "A X.500 distinguished name"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/time",
+                "objectId": "time",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type time is ISO 8601 extended format hh:mm:ss with an optional time zone.",
+            "dataType": "time",
+            "cType": "afw_time_t",
+            "brief": "A time"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/expression",
+                "objectId": "expression",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": true,
+            "directReturn": false,
+            "description": "Data type expression holds the source for an adaptive expression.",
+            "dataTypeParameterType": "evaluatedDataType",
+            "dataType": "expression",
+            "cType": "afw_utf8_t",
+            "brief": "An adaptive expression"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/dayTimeDuration",
+                "objectId": "dayTimeDuration",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type dayTimeDuration is an ISO 8601 extended format DTnHnMnS",
+            "dataType": "dayTimeDuration",
+            "cType": "afw_dayTimeDuration_t",
+            "brief": "A day time duration"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/password",
+                "objectId": "password",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.40{128}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type password hold a secret series of characters that enables a user to access a file, computer, or program.",
+            "dataType": "password",
+            "cType": "afw_utf8_t",
+            "brief": "A password"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/xpathExpression",
+                "objectId": "xpathExpression",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type xpathExpression holds an XML Path Language (XPath) expression.  An xpath expression provides the ability to navigate around the tree representation of an XML document.",
+            "dataType": "xpathExpression",
+            "cType": "afw_utf8_t",
+            "brief": "A XPath expression"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/ia5String",
+                "objectId": "ia5String",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.26{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type ia5String holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters. which contains precisely 128 characters.",
+            "dataType": "ia5String",
+            "cType": "afw_utf8_t",
+            "brief": "An ASN.1 value"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/object",
+                "objectId": "object",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "jsonPrimitive": "object",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type object holds an adaptive object.",
+            "dataTypeParameterType": "objectType",
+            "dataType": "object",
+            "cType": "const afw_object_t *",
+            "brief": "An adaptive object"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/string",
+                "objectId": "string",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type string hold a sequence of Unicode code points as defined at http://www.unicode.org.",
+            "dataTypeParameterType": "mediaType",
+            "dataType": "string",
+            "cType": "afw_utf8_t",
+            "brief": "A string"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/anyURI",
+                "objectId": "anyURI",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type anyURI holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.",
+            "dataType": "anyURI",
+            "cType": "afw_utf8_t",
+            "brief": "A Uniform Resource Identifier Reference (URI)"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/rfc822Name",
+                "objectId": "rfc822Name",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type rfc822Name holds a string value that conforms to RFC822: local-part@domain",
+            "dataType": "rfc822Name",
+            "cType": "afw_utf8_t",
+            "brief": "A RFC 822 name"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/double",
+                "objectId": "double",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "number",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type double holds a double-precision 64-bit floating point number.  It also can hold the values 0, -0, INF, -INF and NaN.",
+            "dataType": "double",
+            "cType": "double",
+            "brief": "A 64-bit floating point number"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/null",
+                "objectId": "null",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "jsonPrimitive": "null",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type null is a special data type that represents no value.",
+            "dataType": "null",
+            "cType": "void *",
+            "brief": "No value"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/list",
+                "objectId": "list",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "jsonPrimitive": "array",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type list holds a list of adaptive value.  The list can have value all of one data type or of different data types.",
+            "dataTypeParameterType": "dataType",
+            "dataType": "list",
+            "cType": "const afw_list_t *",
+            "brief": "A list of adaptive values"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/template",
+                "objectId": "template",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": true,
+            "directReturn": false,
+            "description": "Data type template holds the source for an adaptive template.",
+            "dataTypeParameterType": "evaluatedDataType",
+            "dataType": "template",
+            "cType": "afw_utf8_t",
+            "brief": "An adaptive template"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/yearMonthDuration",
+                "objectId": "yearMonthDuration",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type yearMonthDuration an ISO 8601 extended format PnYnMn.",
+            "dataType": "yearMonthDuration",
+            "cType": "afw_yearMonthDuration_t",
+            "brief": "A year month duration"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/date",
+                "objectId": "date",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type date holds a calendar date in format CCYY-MM-DD.",
+            "dataType": "date",
+            "cType": "afw_date_t",
+            "brief": "A date"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/ipAddress",
+                "objectId": "ipAddress",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type ipAddress holds an Internet Protocol address (IP address).",
+            "dataType": "ipAddress",
+            "cType": "afw_utf8_t",
+            "brief": "An IP address"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/boolean",
+                "objectId": "boolean",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.7",
+            "jsonPrimitive": "boolean",
+            "jsonImpliesDataType": true,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "Data type boolean holds a boolean value.  Its to_string() value is \"true\" or \"false\".  Its from_string() true value can be mixed case \"t\", \"true\" or \"1\".  Its from_string() false value can be mixed case \"f\", \"false\" or \"0\".",
+            "dataType": "boolean",
+            "cType": "afw_boolean_t",
+            "brief": "A boolean value"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/hybrid",
+                "objectId": "hybrid",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "jsonPrimitive": "varies",
+            "jsonImpliesDataType": false,
+            "evaluated": true,
+            "directReturn": true,
+            "description": "Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template.  It can also be a literal (evaluated value) such as boolean, double, integer, list, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple.  If the value is a string that begins with a shebang ('#!'), the string is the source for a script.  If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template.  In other cases, the string is a string literal.",
+            "dataTypeParameterType": "evaluatedDataType",
+            "dataType": "hybrid",
+            "cType": "const afw_value_t *",
+            "brief": "A hybrid value"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/objectId",
+                "objectId": "objectId",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adaptor id and object type id.",
+            "dataTypeParameterType": "objectType",
+            "dataType": "objectId",
+            "cType": "afw_utf8_t",
+            "brief": "An adaptive object's object id"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/objectPath",
+                "objectId": "objectPath",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": true,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
+            "dataType": "objectPath",
+            "cType": "afw_utf8_t",
+            "brief": "An adaptive object's object path"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/function",
+                "objectId": "function",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": false,
+            "relationalCompares": false,
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": true,
+            "description": "This is a lambda definition in either Lambda or ExpressionTupleOperation_lambda syntax, a string that contains a variable name assigned a lambda definition value, or a string that contains an adaptive function functionId.",
+            "dataTypeParameterType": "functionPrototypePattern",
+            "dataType": "function",
+            "cType": "const afw_value_t *",
+            "brief": "A function"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveDataType_/dnsName",
+                "objectId": "dnsName",
+                "objectType": "_AdaptiveDataType_"
+            },
+            "scalar": true,
+            "relationalCompares": false,
+            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+            "jsonPrimitive": "string",
+            "jsonImpliesDataType": false,
+            "evaluated": false,
+            "directReturn": false,
+            "description": "Data type dnsName is Domain Name System (DNS) name.",
+            "dataType": "dnsName",
+            "cType": "afw_utf8_t",
+            "brief": "A DNS name"
+        }
+    ],
+    "status": "success"
+}

@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfYearMonthDuration",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in yearMonthDuration list1 is in yearMonthDuration list2.",
+    "functionId": "at_least_one_member_of<yearMonthDuration>",
+    "functionLabel": "at_least_one_member_of_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

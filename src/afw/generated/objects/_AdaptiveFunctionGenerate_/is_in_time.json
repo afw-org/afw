@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInTime",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Checks whether time value is in list of time list and returns the boolean result.",
+    "functionId": "is_in<time>",
+    "functionLabel": "is_in_time",
+    "parameters": [
+        {
+            "dataType": "time",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

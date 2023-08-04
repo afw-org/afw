@@ -1,0 +1,31 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "Object type for type=adaptor adaptor_type=ldap synthetic attribute type object.",
+    "objectType": "_AdaptiveLdapAttributeType_",
+    "otherProperties": {
+    },
+    "propertyTypes": {
+        "DESC": {
+            "dataType": "string",
+            "label": "Description"
+        },
+        "SINGLE_VALUE": {
+            "dataType": "boolean",
+            "label": "Is Single"
+        },
+        "SYNTAX": {
+            "dataType": "string",
+            "label": "Syntax"
+        },
+        "numericoid": {
+            "dataType": "string",
+            "label": "Numeric OID"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwInteger",
+    "brief": "Convert to data type integer",
+    "camelCaseFunctionLabel": "integer",
+    "category": "integer",
+    "description": "Converts value to data type integer returning integer result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "integer",
+    "functionLabel": "integer",
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

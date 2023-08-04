@@ -1,0 +1,437 @@
+{
+    "cSpell.words": [
+        "Accordian",
+        "Promisable",
+        "afw",
+        "afw react fluentui",
+        "asensitive",
+        "backtrace",
+        "callout",
+        "decompile",
+        "decompiler",
+        "divs",
+        "fcgi",
+        "fluentui",
+        "react",
+        "scrollable",
+        "submenus",
+        "testid",
+        "textbox"
+    ],
+    "cmake.configureOnOpen": false,
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/afw-package.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptivePackage_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveDataTypeGenerate_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveDataTypeGenerate_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapSyntax_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapSyntax_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFunctionCategory_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFunctionCategory_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCollection_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCollection_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveConf_application/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveConf_application.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapRootDse_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapRootDse_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFunctionGenerate_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFunctionGenerate_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModel_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModel_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveManifest_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveManifest_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAdaptor_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAdaptor_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveObjectType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveObjectType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveServer_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveServer_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveDataType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveDataType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLayoutComponentType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLayoutComponentType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveSingleton_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveSingleton_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveServiceConf_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveServiceConf_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveDataTypeTestCase_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveDataTypeTestCase_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveSystemInfo_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveSystemInfo_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptivePolymorphicFunction_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptivePolymorphicFunction_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLock_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLock_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveExtension_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveExtension_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveVersionInfo_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveVersionInfo_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveProvisioningPeer_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveProvisioningPeer_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptivePackage_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptivePackage_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFunctionTest_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFunctionTest_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLogType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLogType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRequestHandler_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRequestHandler_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveContentType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveContentType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRequestContext_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRequestContext_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAuthorizationHandlerType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAuthorizationHandlerType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveService_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveService_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveObjectOptions_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveObjectOptions_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveEnvironmentRegistry_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveEnvironmentRegistry_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapMatchingRuleUse_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapMatchingRuleUse_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapSchema_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapSchema_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveErrorRVDecoder_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveErrorRVDecoder_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapAttributeType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapAttributeType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapMatchingRule_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapMatchingRule_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLayoutComponentTypeCategory_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLayoutComponentTypeCategory_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRuntimeValueAccessor_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRuntimeValueAccessor_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRequestProperties_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRequestProperties_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveTag_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveTag_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveConfType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveConfType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLdapObjectClass_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLdapObjectClass_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFlag_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFlag_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveInterface_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveInterface_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveResponse_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveResponse_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRequestHandlerType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRequestHandlerType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveRuntimeCustom_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveRuntimeCustom_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveDataTypeTest_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveDataTypeTest_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFunction_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFunction_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAuthorizationHandler_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAuthorizationHandler_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveLog_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveLog_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFunctionTestCase_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFunctionTestCase_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveFile_vfs/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveFile_vfs.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveApplication_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveApplication_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveEnvironmentRegistryType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveEnvironmentRegistryType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAdaptorType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAdaptorType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveValueInf_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveValueInf_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveContextType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveContextType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveServiceType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveServiceType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAuthorizationMode_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAuthorizationMode_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveAuthorizationDecision_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveAuthorizationDecision_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveEnvironmentVariables_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveEnvironmentVariables_.json"
+        }
+    ],
+    "python.analysis.extraPaths": [
+        "./src/afw/generated",
+        "./src/afw_client/python"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "javascript",
+        "json",
+        "xml",
+        "c"
+    ],
+    "spellright.language": [
+        "en"
+    ],
+    "terminal.integrated.scrollback": 2000
+}

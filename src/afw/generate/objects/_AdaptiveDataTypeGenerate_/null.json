@@ -1,0 +1,11 @@
+{
+    "brief": "No value",
+    "cType": "void *",
+    "dataType": "null",
+    "description": "Data type null is a special data type that represents no value.",
+    "directReturn": true,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "null",
+    "relationalCompares": false,
+    "scalar": true
+}

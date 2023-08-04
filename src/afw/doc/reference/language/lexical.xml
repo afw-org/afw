@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Lexical</title>
+    <paragraph>
+        The Lexical analyzer for Adaptive Framework is responsible for tokenizing Adaptive
+        Scripts, Templates and Expressions as inputs for the parser. In this section, we 
+        will cover comments and whitespace, identifiers, keywords, operators, and literals.        
+    </paragraph>
+    <header>Comments</header>
+    <paragraph>
+        Adaptive Script supports both Inline and Block comments. Inline comments start with
+        <literal>//</literal> and continue to the end of the line. Block comments start with 
+        <literal>/*</literal> and end with <literal>*/</literal>.
+    </paragraph>
+    <paragraph>
+        The following are examples of both types of comments:
+    </paragraph>
+    <code>// This is an inline comment
+
+/* 
+    This is a block comment.
+
+    It can wrap multiple lines.
+*/</code>
+    <header>Whitespace</header>
+    <paragraph>
+        Whitespace are character sequences that are ignored by the lexical analyzer and 
+        serve the purpose of making code more readable. The following is a list of 
+        whitespace characters:
+    </paragraph>
+    <list>
+        <item>TAB character</item>
+        <item>Vertical Tab</item>        
+        <item>Line Feed</item>
+        <item>Form Feed</item>        
+        <item>Carriage Return</item>
+        <item>Zero Width No-Break Space</item>
+        <item>Space Separator</item>
+        <item>(Comments)</item>
+    </list>
+    <header>Identifiers</header>
+    <paragraph>
+        Identifiers are sequences of characters that are used to identify a variable 
+        name, category, function name, method name, parameter name, qualifier name 
+        variable reference, interface name, type variable name, or object property name.
+    </paragraph>
+    <paragraph>
+        Identifiers have no length limit and are case-sensitive.
+    </paragraph>
+    <code>Identifier ::= IdentifierStart IdentifierContinue*
+IdentifierStart ::= ID_START | '$' | '_'
+IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
+    <list>
+        <item><literal>ID_START</literal> is any codepoint with <literal>ID_START</literal> flag</item>
+        <item><literal>ID_CONTINUE</literal> is any codepoint with <literal>ID_CONTINUE</literal> flag</item>
+        <item><literal>ZWNJ</literal> is the Zero-width Non-Joiner (0x200c)</item>
+        <item><literal>ZWJ</literal> is the Zero-width Joiner (0x200d)</item>
+    </list>    
+    <header>Reserved Names</header>
+    <paragraph>
+        When declaring a variable name, you may use any identifier with the exception 
+        of the following reserved names:
+    </paragraph>    
+    <code>false       INF         Infinity    NaN      null    
+true        undefined   break       case     catch
+const       continue    do          else     finally
+for         foreach     function    if       let
+return      switch      throw       try      void
+while       as          async       await    class
+export      extends     from        import   interface
+instanceof  super       this        type     typeof
+var         with</code> 
+    <header>Literals</header>
+    <paragraph>
+        Literals are constant that can be used as a values inside expressions. There are 
+        three types of literals:
+    </paragraph>    
+    <list>
+        <item>List Literal</item>
+        <item>Object Literal</item>
+        <item>Scalar Literal</item>
+    </list>
+    <paragraph>
+        A List Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
+    </paragraph>
+    <code>[ 1, 2, 3 ]</code>
+    <paragraph>
+        An Object Literal is a sequence of Identifier : Literal pairs, separated by <literal>,</literal> and enclosed by <literal>{</literal> and <literal>}</literal>.
+    </paragraph>
+    <code>{ 
+    "a": 1, 
+    "b": true 
+}</code>
+    <paragraph>
+        A Scalar Literal may be one of: Double, Integer, String, true, false or null. 
+    </paragraph>
+    <code>3.14
+42
+"a string"
+true 
+false
+null</code>
+    <header>Operators</header>
+    <paragraph>
+        The following tokens are used in expressions:
+    </paragraph>
+    <code>+     -     *     /     %     **   
++=    -=    *=    /=    %=    **=
+!     &amp;&amp;    ||    
+&lt;     &gt;     &lt;=    &gt;=   
+==   ===    !=    !==
+?     :     ++    --
+    </code>
+</doc>

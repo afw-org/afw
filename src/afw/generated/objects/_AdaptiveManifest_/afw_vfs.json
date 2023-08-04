@@ -1,0 +1,14 @@
+{
+    "brief": "Extension for VFS (Virtual File System)",
+    "description": "This extension provides an adaptor for accessing local files through a Virtual File System interface.",
+    "extensionId": "afw_vfs",
+    "modulePath": "libafwvfs",
+    "providesObjects": [
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs",
+        "/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs"
+    ],
+    "registers": [
+        "adaptor_type/vfs"
+    ]
+}

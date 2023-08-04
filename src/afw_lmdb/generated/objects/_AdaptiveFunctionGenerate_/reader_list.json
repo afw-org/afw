@@ -1,0 +1,19 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReaderList",
+    "camelCaseFunctionLabel": "readerList",
+    "category": "lmdb",
+    "description": "Dump the entries in the reader lock table.",
+    "functionId": "reader_list",
+    "functionLabel": "reader_list",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Adaptor Id.",
+            "name": "adaptorId"
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "Reader entries."
+    }
+}

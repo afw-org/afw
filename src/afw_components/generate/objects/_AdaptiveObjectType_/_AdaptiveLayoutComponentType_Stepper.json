@@ -1,0 +1,31 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Stepper component.",
+    "objectType": "_AdaptiveLayoutComponentType_Stepper",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "activeStep": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The step that is actively displayed.",
+            "label": "Active Step"
+        },
+        "steps": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The list of steps to be displayed for a the Stepper component.",
+            "label": "Steps"
+        }
+    }
+}

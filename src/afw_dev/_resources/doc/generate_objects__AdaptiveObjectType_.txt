@@ -1,0 +1,4 @@
+generate/objects/_AdaptiveObjectType_/
+--------------------------------------
+
+@todo add document

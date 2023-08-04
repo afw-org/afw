@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Extensions</title>
+    <paragraph>
+        The Adaptive Framework Core contains a lot of useful interfaces,
+        functions and data types out of the box, by default. However, the
+        built-in core cannot include everything and cannot anticipate what
+        technologies are developed or gain popularity. Therefore, it's useful to
+        extend the Core to include additional features, via the use of
+        <literal>Extensions</literal>.
+    </paragraph>
+    <paragraph>
+        An Adaptive Framework Extension is a shared library, which, when loaded
+        by the Core, may register interface implementations, such as additional
+        data types, functions, adaptors, content types or request handlers.
+        These allow for other technologies to be integrated in a way that they
+        can seem like a part of the core, as first-class citizens.  
+    </paragraph>
+    <paragraph>Extensions included with the framework:</paragraph>
+    <table>
+        <columns>
+            <column>Extension</column>
+            <column>Description</column>
+        </columns>
+        <rows>
+            <row>
+                <column>afw_components</column>
+                <column>Layout Components</column>
+            </row>      
+            <row>
+                <column>afw_ldap</column>
+                <column>Lightweight Directory Access Protocol</column>
+            </row>                  
+            <row>
+                <column>afw_lmdb</column>
+                <column>Lightning Memory-Mapped Database</column>
+            </row>            
+            <row>
+                <column>afw_ubjson</column>
+                <column>Universal Binary JSON</column>
+            </row>
+            <row>
+                <column>afw_vfs</column>
+                <column>Virtual File System</column>
+            </row>      
+            <row>
+                <column>afw_yaml</column>
+                <column>YAML Ain't Markup Language</column>
+            </row>                  
+        </rows>
+    </table>  
+</doc>

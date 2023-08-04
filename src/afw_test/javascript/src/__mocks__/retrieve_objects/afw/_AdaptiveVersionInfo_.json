@@ -1,0 +1,149 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_dbd"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_dbd",
+            "compileTime": "16:51:12",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_splunk"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_splunk",
+            "compileTime": "16:51:32",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_server_fcgi"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_server_fcgi",
+            "compileTime": "16:50:37",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_lmdb"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_lmdb",
+            "compileTime": "16:51:22",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_authorization_policy"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_authorization_policy",
+            "compileTime": "16:50:25",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw",
+            "compileTime": "16:50:05",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_ldap"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_ldap",
+            "compileTime": "16:51:17",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_xml"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_xml",
+            "compileTime": "16:50:49",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_ubjson"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_ubjson",
+            "compileTime": "16:50:36",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_xacml"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_xacml",
+            "compileTime": "16:50:55",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_curl"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_curl",
+            "compileTime": "16:50:45",
+            "compileDate": "Sep 22 2020"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveVersionInfo_/afw_components"
+            },
+            "GIT_SHA": "92e8cd2416e70f88db6396be6cdc83d533acba8c",
+            "GIT_DESCRIBE": "92e8cd241-dirty",
+            "GIT_BRANCH": "development",
+            "libafwVersion": "0.7.7-dev",
+            "id": "afw_components",
+            "compileTime": "16:51:02",
+            "compileDate": "Sep 22 2020"
+        }
+    ],
+    "status": "success"
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwStartsWithAnyURI",
+    "brief": "Checks whether value starts with a string",
+    "camelCaseFunctionLabel": "startsWithAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks whether anyURI value starts with a subString and return the boolean result.",
+    "functionId": "starts_with<anyURI>",
+    "functionLabel": "starts_with_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_starts_with"
+}

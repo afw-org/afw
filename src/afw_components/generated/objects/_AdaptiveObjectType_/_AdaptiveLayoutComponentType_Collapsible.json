@@ -1,0 +1,47 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Collapsible component.",
+    "label": "Collapsible Layout",
+    "objectType": "_AdaptiveLayoutComponentType_Collapsible",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Specifies the component contained within this Collapsible Body.",
+            "label": "Contains"
+        },
+        "headerItems": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Specifies the component contained within this Collapsible Header.",
+            "label": "Header Items"
+        },
+        "isCollapsed": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "Specifies whether the Collapsible content is collapsed or not.",
+            "label": "Is Collapsed"
+        },
+        "showCollapse": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "Specifies whether the Collapsible should render the collapse feature.",
+            "label": "Show Collapse"
+        }
+    }
+}

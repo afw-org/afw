@@ -1,0 +1,94 @@
+{
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Qualifier current:: for model onRetrieveObjects.",
+    "objectType": "_AdaptiveModelCurrentOnRetrieveObjects_",
+    "propertyTypes": {
+        "adaptorId": {
+            "brief": "Adaptor Id",
+            "dataType": "string",
+            "description": "The adaptor id of the object being converted to mapped object.",
+            "label": "Adaptor Id",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorId"
+            }
+        },
+        "adaptorTypeSpecific": {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is the adaptorTypeSpecific parameter value.",
+            "label": "Adaptor Specific",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorTypeSpecific"
+            }
+        },
+        "mapBackObject": {
+            "brief": "Function to map back an object",
+            "dataType": "function",
+            "dataTypeParameter": "(\\n    object mappedObject /* Object to map back. */\\n): object /* Mapped back object */",
+            "description": "The function to map back an object.",
+            "label": "mapBackObject",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mapBackObject"
+            }
+        },
+        "mappedAdaptorId": {
+            "brief": "Mapped Adaptor Id",
+            "dataType": "string",
+            "description": "The adaptor id of the object being converted to object.",
+            "label": "Mapped Adaptor Id",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedAdaptorId"
+            }
+        },
+        "mappedObjectType": {
+            "brief": "Mapped Object Type",
+            "dataType": "string",
+            "description": "The object type of the object being converted to object.",
+            "label": "Mapped Object Type",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedObjectType"
+            }
+        },
+        "objectType": {
+            "brief": "ObjectType",
+            "dataType": "string",
+            "description": "The object type of the object being converted to mapped object.",
+            "label": "Object Type",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_objectType"
+            }
+        },
+        "queryCriteria": {
+            "brief": "Query Criteria",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveQueryCriteria_",
+            "description": "The queryCriteria object.",
+            "label": "queryCriteria",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_queryCriteria"
+            }
+        },
+        "returnObject": {
+            "brief": "Function to call to return an object",
+            "dataType": "function",
+            "dataTypeParameter": "(\\n   object object /* The object to return. */\\n): boolean /* true if no more objects can be returned. */",
+            "description": "The function to call to return an object.",
+            "label": "returnObject",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_returnObject"
+            }
+        },
+        "useDefaultProcessing": {
+            "brief": "Use default processing return value",
+            "description": "Return this value to cause default processing to occur.",
+            "label": "Use Default Processing",
+            "runtime": {
+                "onGetValueCFunctionName": "afw_model_internal_get_current_useDefaultProcessing"
+            }
+        }
+    },
+    "runtime": {
+    }
+}

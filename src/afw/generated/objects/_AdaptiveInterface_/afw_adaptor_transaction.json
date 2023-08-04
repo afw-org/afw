@@ -1,0 +1,4 @@
+{
+    "name": "afw_adaptor_transaction",
+    "description": "Adaptor session transaction interface."
+}

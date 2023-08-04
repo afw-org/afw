@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInDate",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Checks whether date value is in list of date list and returns the boolean result.",
+    "functionId": "is_in<date>",
+    "functionLabel": "is_in_date",
+    "parameters": [
+        {
+            "dataType": "date",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "date",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

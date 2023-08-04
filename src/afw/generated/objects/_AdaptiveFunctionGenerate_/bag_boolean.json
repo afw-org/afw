@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagBoolean",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Takes any number of boolean values and returns a list of list.",
+    "functionId": "bag<boolean>",
+    "functionLabel": "bag_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

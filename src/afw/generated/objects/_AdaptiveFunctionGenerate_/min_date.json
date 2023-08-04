@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMinDate",
+    "brief": "Minimum value",
+    "camelCaseFunctionLabel": "minDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Return the date value that is less than or equal to the others..\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "min<date>",
+    "functionLabel": "min_date",
+    "parameters": [
+        {
+            "dataType": "date",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_min"
+}

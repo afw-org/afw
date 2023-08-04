@@ -1,0 +1,74 @@
+{
+    "description": "Tests for eq<time> function.",
+    "functionId": "eq<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "12:20"
+                },
+                {
+                    "dataType": "time",
+                    "value": "12:20"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "12:20:00"
+                },
+                {
+                    "dataType": "time",
+                    "value": "12:20"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "12:20"
+                },
+                {
+                    "dataType": "time",
+                    "value": "12:20:01"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "x"
+                },
+                {
+                    "dataType": "time",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

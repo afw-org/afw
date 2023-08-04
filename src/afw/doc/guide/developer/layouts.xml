@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Adaptive Layouts</title>    
+    <paragraph>
+        An Adaptive Layout uses primary input sources, namely:    
+    </paragraph>
+    <list>
+        <item>Data and its Metadata</item>
+        <item>Layout Instructions</item>
+        <item>Metadata Layout Components</item>
+        <item>Registered Layout Components</item>
+    </list>
+    <paragraph>
+        An Adaptive Layout uses those inputs and produces a composition of 
+        Adaptive Layout Components. Not all inputs are required, and the 
+        degree to which the inputs are used depends on the use case, described 
+        later in this document. Adaptive Layouts understand how to take data 
+        and map, or translate them, into meaningful component parameters.  
+        Adaptive Layouts also understand how to take changes from the 
+        components and store them back into the corresponding object adaptor.  
+        Some layouts are built into the core library and are used by default 
+        when no other layout is applicable. Some layouts can be created, 
+        stored and retrieved to augment the core with additional, registered 
+        layouts.
+    </paragraph>   
+    <section>
+        <title>Adaptive Layout Components</title>
+        <paragraph>
+            These are the building blocks for creating user interfaces. They 
+            are simple units for building up more complex UI patterns, while 
+            maintaining some degree of generality, left to the implementation 
+            details. This slight abstraction allows for the Layout Component 
+            to be portable between UI implementation frameworks. For example, 
+            a Text Field Layout Component may suggest that it has a label, a 
+            description and a value, but it doesn't specify how the inputs are 
+            arranged out and rendered. It contains no direct influence over, 
+            say, the font style or spacing, or whether the field has an outline 
+            or not. The implementation may even have more complex features 
+            than the generic Layout Component definition requires.
+        </paragraph>    
+        <paragraph>
+            Layout Components are also “dumb”, so to speak. They are unaware 
+            of where data comes from or where it needs to be stored. So, to 
+            produce something meaningful, a composite collection of components 
+            need to work together and a layer placed on top to handle the data 
+            synchronization. This is where Layouts and Metadata Components 
+            come in.
+        </paragraph>
+        <paragraph>
+            The following table is a complete list of Layout Components:
+        </paragraph>
+        <!-- <objects-table objectTypeId="_AdaptiveLayoutComponentType_" columns="componentType,description" /> -->
+        <table>
+            <columns>
+                <column>Layout Component</column>
+                <column>Description</column>
+            </columns>
+            <rows>
+                <row>
+                    <column>Autocomplete</column>
+                    <column>Component to display a list of options that may be selected or can be autocompleted by typing.</column>
+                </row>
+                <row>
+                    <column>Box</column>
+                    <column>A component that renders a flexible Box of content.</column>
+                </row>
+                <row>
+                    <column>Breadcrumb</column>
+                    <column>A component that renders a Breadcrumb path with links</column>
+                </row>
+                <row>
+                    <column>Button</column>
+                    <column>Component to display a Button.</column>
+                </row>
+                <row>
+                    <column>Callout</column>
+                    <column>A layout container that displays content inside a popup.</column>
+                </row>
+                <row>
+                    <column>Chart</column>
+                    <column>Component to display data in a Chart.</column>
+                </row>
+                <row>
+                    <column>Checkbox</column>
+                    <column>A component that displays a checkbox.</column>
+                </row>
+                <row>
+                    <column>ChoiceGroup</column>
+                    <column>A component to display a selectable choice of options.</column>
+                </row>
+                <row>
+                    <column>CodeEditor</column>
+                    <column>A component that renders a rich text editor.</column>
+                </row>
+                <row>
+                    <column>Collapsible</column>
+                    <column>A layout container that displays content that can be hidden by a collapsible control.</column>
+                </row>
+                <row>
+                    <column>DatePicker</column>
+                    <column>A component that allows you to select a date from a calendar.</column>
+                </row>
+                <row>
+                    <column>DateTimePicker</column>
+                    <column>A component that allows you to select a date and time.</column>
+                </row>
+                <row>
+                    <column>Dialog</column>
+                    <column>A layout container that displays content inside a popup, with a confirmation response.</column>
+                </row>
+                <row>
+                    <column>DiffEditor</column>
+                    <column>A component that compares two objects.</column>
+                </row>
+                <row>
+                    <column>Divider</column>
+                    <column>A component that displays a Divider line to separate content.</column>
+                </row>
+                <row>
+                    <column>Dropdown</column>
+                    <column>A component that displays a set of options that can be selected from a dropdown.</column>
+                </row>
+                <row>
+                    <column>DropdownEditor</column>
+                    <column>A component that manages a list of options in a Dropdown picker.</column>
+                </row>
+                <row>
+                    <column>EditableCallout</column>
+                    <column>A component that calls out with an editable multiline text area.</column>
+                </row>
+                <row>
+                    <column>EditableLabel</column>
+                    <column>A component that renders an label, which can be edited when clicked.</column>
+                </row>
+                <row>
+                    <column>Hidden</column>
+                    <column>A component that hides content under screen breakpoint conditions.</column>
+                </row>
+                <row>
+                    <column>Icon</column>
+                    <column>A component that displays an icon.</column>
+                </row>
+                <row>
+                    <column>Image</column>
+                    <column>A component that displays an image.</column>
+                </row>
+                <row>
+                    <column>Link</column>
+                    <column>A component that renders a url link.</column>
+                </row>
+                <row>
+                    <column>List</column>
+                    <column>A layout container that renders a list of components.</column>
+                </row>
+                <row>
+                    <column>ListEditor</column>
+                    <column>A component that allows the user to manage a list of text items.</column>
+                </row>
+                <row>
+                    <column>Menu</column>
+                    <column>A component that renders a Menu to be displayed.</column>
+                </row>
+                <row>
+                    <column>Message</column>
+                    <column>A component that renders a message to be displayed.</column>
+                </row>
+                <row>
+                    <column>Modal</column>
+                    <column>A layout container that displays content inside a popup.</column>
+                </row>
+                <row>
+                    <column>Native</column>
+                    <column>A component that displays a native HTML element.</column>
+                </row>
+                <row>
+                    <column>Nav</column>
+                    <column>A navigational component that displays a list of links.</column>
+                </row>
+                <row>
+                    <column>Paper</column>
+                    <column>A component that allows contents to be displayed on a Paper like surface.</column>
+                </row>
+                <row>
+                    <column>Picker</column>
+                    <column>A component that allows one or more items to be picked from a list.</column>
+                </row>
+                <row>
+                    <column>Responsive</column>
+                    <column>A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes.</column>
+                </row>
+                <row>
+                    <column>Skeleton</column>
+                    <column>A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded.</column>
+                </row>
+                <row>
+                    <column>Slider</column>
+                    <column>A component that displays numeric values in a slider control.</column>
+                </row>
+                <row>
+                    <column>Snackbar</column>
+                    <column>A component that renders a Snackbar to be displayed.</column>
+                </row>
+                <row>
+                    <column>SpinButton</column>
+                    <column>A component that renders a numeric field that an be incremented or decremented.</column>
+                </row>
+                <row>
+                    <column>Spinner</column>
+                    <column>A component that displays a spinner progress indicator.</column>
+                </row>
+                <row>
+                    <column>Stepper</column>
+                    <column>A component that displays a Stepper indicating a list of steps and the current one you are on.</column>
+                </row>
+                <row>
+                    <column>Table</column>
+                    <column>A component that displays data in a table format.</column>
+                </row>
+                <row>
+                    <column>Tabs</column>
+                    <column>A layout container that renders a series of tabs.</column>
+                </row>
+                <row>
+                    <column>TextField</column>
+                    <column>A component that renders a text field with a label and description.</column>
+                </row>
+                <row>
+                    <column>TimeDuration</column>
+                    <column>A component that renders a time duration.</column>
+                </row>
+                <row>
+                    <column>TimePicker</column>
+                    <column>A component that allows a time to be chosen.</column>
+                </row>
+                <row>
+                    <column>TimezonePicker</column>
+                    <column>A component that allows a timezone to be chosen.</column>
+                </row>
+                <row>
+                    <column>Toggle</column>
+                    <column>A component that renders a boolean value as a toggleable switch.</column>
+                </row>
+                <row>
+                    <column>ToggleButtons</column>
+                    <column>A component to display a selectable choice of options, presented as buttons that can be toggled on or off.</column>
+                </row>
+                <row>
+                    <column>Toolbar</column>
+                    <column>A container component that arranges a series of buttons or other minor content in a horizontal bar.</column>
+                </row>
+                <row>
+                    <column>Tooltip</column>
+                    <column>A component that surrounds content with a tooltip.</column>
+                </row>
+                <row>
+                    <column>Tree</column>
+                    <column>A component that renders data in a Tree structure.</column>
+                </row>
+                <row>
+                    <column>Typography</column>
+                    <column>A component that renders a text label.</column>
+                </row>        
+            </rows>
+        </table>
+    </section>
+
+  <section>
+    <title>Generating Adaptive Layouts</title>
+    <paragraph>
+        There are a variety of methods for building Adaptive Layouts. Some 
+        require very little effort, while others require varying degrees of 
+        programming. This range of flexibility resembles the patterns of 
+        Declarative vs Imperative design. We will visit each method of 
+        creating layouts, beginning with the most declarative way and move 
+        towards more imperative methods.
+    </paragraph>
+    <section>
+        <title>Method 1</title>
+        <image src="images/LayoutsMethod1.svg" description="Method 1" />
+        <paragraph>
+            By simply defining objects and their metadata - objectType and 
+            propertyType definitions - we have already given the Adaptive 
+            Layout processor much of what it needs to know to leverage built-in 
+            components and parameter mappings to generate some simple layouts.  
+            For example, suppose we have an object containing:
+        </paragraph>
+        <code>obj = {
+    “givenName”: “Robert”,
+    “surname”: “Smith”,
+    “registered”: true,
+}</code>
+        <paragraph>
+            And supposed we also define an Object Type to handle those 
+            properties:
+        </paragraph>
+        <code>objectType = {
+    “propertyTypes”: {
+        “givenName”: {
+            “dataType”: “string”,
+            “label”: “Given Name”,
+            “description”: “Your first name”
+        },
+        “surname”: {
+            “dataType”: “string”,
+            “label”: “Surname”,
+            "description": “Your last name”
+        },
+	      “registered”: {
+            “dataType”: “boolean”
+        }
+    }
+}</code>
+        <paragraph>
+            This may not seem like much, but already, we have enough to render 
+            the object with some appropriate default components. The 
+            properties givenName and surname would use TextField components, 
+            while registered would use a Checkbox component. Using metadata 
+            this way allows you to use declarative efforts to create your 
+            layouts. By changing the metadata and adding in constraints and 
+            dataTypeParameters, you can influence the way a layout is created.  
+            In this method, we are not explicitly defining any real Layout 
+            designs.
+        </paragraph>
+    
+        <section>
+            <title>Results</title>
+            <paragraph>
+                When we are finished, we may see something like:
+            </paragraph>
+            <image 
+                src="images/LayoutsMethod1Result.svg" 
+                description="Method 1 Results" 
+            />
+        </section>
+
+        <section>
+            <title>Pros</title>
+            <paragraph>
+                Layouts are implicitly generated simply by declaring metadata.  
+                This eliminates code and boilerplates, necessary for 
+                influencing the final output. Great for simple designs, or for 
+                end-users with little to no time or programming experience.
+            </paragraph>
+        </section>
+
+        <section>
+            <title>Cons</title>
+            <paragraph>
+                You are limited to what can be added to metadata, and therefore 
+                layouts auto-generated in this way may seem cookie-cutter like 
+                in their final output.
+            </paragraph>
+        </section>
+    </section>    
+
+    <section>
+      <title>Method 2</title>
+      <image src="images/LayoutsMethod2.svg" description="Method 2" />
+      <paragraph>
+          This method piggy-backs the first Method, but introduces the ability 
+          to declare some Layout Parameters. These parameters are instructions 
+          that the Adaptive Layout processor uses to influence which components 
+          to select, and how to handle parameter mappings to individual 
+          Components. If we reuse the example from Method 1, we may decide to 
+          tweak the design slightly so that boolean dataTypes are represented 
+          by Switch components instead of Checkbox components, and TextFields 
+          should ignore descriptions. To do this, we may create some Layout 
+          Parameters, such as:
+        </paragraph>
+      <code>layoutParameters = {
+    “preferredComponents”: [
+        {
+            “dataType”: “boolean”,
+            “componentType”: “Switch”
+        },
+        {
+            “dataType”: “string”,
+            “componentType”: “TextField”,
+            “componentProps”: {
+                “showDescriptions”: false
+            }
+        }
+  ]
+}</code>
+        <section>
+            <title>Results</title>
+            <paragraph>
+                When we're finished, we may see something like:
+            </paragraph>
+            <image 
+                src="images/LayoutsMethod2Result.svg" 
+                description="Method 2 Results" 
+            />
+        </section>
+
+        <section>
+            <title>Pros</title>
+            <paragraph>
+                This method still uses metadata for much of its rendering, but 
+                with some parameter declaration, we can produce much more 
+                flexible outputs than previously.
+            </paragraph>
+        </section>
+
+        <section>
+            <title>Cons</title>
+            <paragraph>
+                In addition to object metadata, we will have to actually create 
+                Adaptive Layouts to declare our Layout Parameters.
+            </paragraph>
+        </section>
+    </section>  
+
+    <section>
+        <title>Method 3</title>
+        <image src="images/LayoutsMethod3.svg" description="Method 3" />
+        <paragraph>
+            Now, we're going to have to start declaring our layouts much more 
+            directly. This method takes the Layouts that we created via Method 
+            2 and enhances them with some explicit instructions on how to 
+            actually layout the data we have to work with. In addition, we no 
+            longer need to tether the layout to object data or metadata, if we 
+            don't really want to. We are free to add spontaneous boxes, 
+            headers, text labels or icons.
+        </paragraph>
+        <code>layout = {
+        “componentType”: “Box”,
+        “parameters”: {
+            “contains”: [
+                {
+                    “componentType”: “Typography”,
+                    “parameters”: {
+                        “text”: “Register User Form”
+                    }
+                },
+                {
+                    “componentType”: “Box”,
+                    “parameters”: {
+                        “contains”: [
+                            {
+                                “componentType”: “TextField”,
+                                “parameters”: {
+                                    “label”: “Given Name”
+                                }
+                            },
+                            {
+                                “componentType”: “TextField”,
+                                “parameters”: {
+                                    “label”: “Surname”
+                                }
+                            },
+                            {
+                                “componentType”: “Switch”,
+                                “parameters”: {
+                                    “label”: “registered”
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+}</code>
+    
+        <section>
+            <title>Results</title>
+            <paragraph>
+                When we're finished, we may see something like:
+            </paragraph>
+            <image
+                src="images/LayoutsMethod3Result.svg" 
+                description="Method 3 Results" 
+            />
+        </section>
+
+        <section>
+            <title>Pros</title>
+            <paragraph>
+                The rendered output will be very customizable, while still 
+                maintaining the flexibility and portability offered by keeping 
+                the designs inside Adaptive Layouts.
+            </paragraph>
+        </section>
+
+        <section>
+            <title>Cons</title>
+            <paragraph>
+                More effort will be required, using the Adaptive Layout design 
+                tool to generate the layout instructions and any additional 
+                layout parameters. For a programmer with more experience, they 
+                may wish to simply use the underlying components directly 
+                inside an IDE.
+            </paragraph>
+        </section>
+
+    </section>
+
+    <section>
+        <title>Method 4</title>
+        <image src="images/LayoutsMethod4.svg" description="Method 4" />
+        <paragraph>
+            At this point, we are breaking away from Adaptive Layouts and 
+            directly importing and using layouts that have been implemented by 
+            a technology, such as Javascript/ReactJS. In this use-case, you 
+            are a programmer and may be writing a full-blown application that 
+            contains data and components that are outside of Adaptive Layouts 
+            or their purpose, but still want to pull in some Adaptive Layout 
+            code for an easier integration with Adaptive Framework data. You 
+            may also want to massage the data going in and out of the 
+            components in order to store and present them in different ways.
+        </paragraph>      
+        
+        <section>
+            <title>Results</title>
+            <paragraph>
+                A complete application, independent of Adaptive Framework, but 
+                importing common layouts:
+            </paragraph>
+            <image 
+                src="images/LayoutsMethod4Result.svg" 
+                description="Method 4 Results" 
+            />
+        </section>
+
+        <section>
+            <title>Pros</title>
+            <paragraph>
+                As a programmer, you get to work with tools and libraries that 
+                you may be more familiar with, while still extracting some of 
+                the work done by Adaptive Layouts. Entire apps can integrate 
+                parts of the framework without too much effort.
+            </paragraph>
+        </section>
+
+        <section>
+            <title>Cons</title>
+            <paragraph>
+                You must be an experienced programmer.
+            </paragraph>
+        </section>
+      
+    </section>
+
+    <section>
+        <title>Method 5</title>
+        <image src="images/LayoutsMethod5.svg" description="Method 5" />
+        <paragraph>
+            From here on out, we're not really talking about Adaptive Layouts 
+            at all, but more interested in the direct interfaces and APIs that 
+            can be used to integrate Adaptive Framework data. Perhaps, you 
+            import and use the Javascript bindings, or even hit the RESTful 
+            interfaces to access and use data. All of the UI is up to you and 
+            you may choose to use third-party component libraries to present 
+            the UI.
+        </paragraph>      
+        
+        <section>
+            <title>Results</title>
+            <paragraph>The sky's the limit!</paragraph>
+        </section>
+
+        <section>
+            <title>Pros</title>
+            <paragraph>
+                You have the ultimate flexibility here. Use what you need and 
+                discard the rest.
+            </paragraph>
+        </section>
+
+        <section>
+            <title>Cons</title>
+            <paragraph>
+                Some assembly required.
+            </paragraph>
+        </section>
+      
+    </section>
+
+  </section>  
+
+  <section>
+        <title>Metadata Components</title>
+            <paragraph>
+            In the previous section, the more declarative methods for creating 
+            Adaptive Layouts did some hand-waving to suggest the Layout 
+            processor that generated the layouts understood the best way to do 
+            so, given the data, metadata, instructions. This requires there be 
+            some default behavior when those instructions are not present.  
+            That's where Metadata Components come in. In general, there are 
+            three categories of built-ins. Not surprisingly, they are:
+        </paragraph>
+        <list>
+            <item>Data Type Components</item>
+            <item>Property Type Components</item>
+            <item>Object Type Components</item>
+        </list>
+        <paragraph>
+            The first set of Metadata Components, Data Type Components are 
+            fairly simple. They take a dataType and dataType parameter, along 
+            with any operational property, such as "editable", and return a 
+            Layout Component, such as a TextField, with its parameters 
+            appropriately mapped from the object and its object metadata. These 
+            Metadata Components map one-to-one with dataTypes:
+        </paragraph>
+        <list>
+            <item>anyURI</item>
+            <item>Base64Binary</item>
+            <item>Boolean</item>
+            <item>Date</item>
+            <item>DateTime</item>
+            <item>DayTimeDuration</item>
+            <item>DnsName</item>
+            <item>Double</item>
+            <item>Expression</item>
+            <item>HexBinary</item>
+            <item>Hybrid</item>
+            <item>Ia5String</item>
+            <item>Integer</item>
+            <item>IpAddress</item>
+            <item>List</item>
+            <item>Null</item>
+            <item>Object</item>
+            <item>ObjectId</item>
+            <item>ObjectPath</item>
+            <item>Password</item>
+            <item>Rfc822Name</item>
+            <item>String</item>
+            <item>Template</item>
+            <item>Time</item>
+            <item>X500Name</item>
+            <item>XpathExpression</item>
+            <item>YearMonthDuration</item>
+        </list>
+        <paragraph>
+            The next set of Metadata Components handle specific Property Types.  
+            These aren't as obvious, but some of the common ones are:
+        </paragraph>
+        <list>
+            <item>AdaptorDropdown</item>
+            <item>DataTypeDropdown</item>
+            <item>PropertyTypeDropdown</item>
+            <item>ObjectTypeDrodown</item>
+            <item>CustomVariables</item>
+        </list>
+        <paragraph>
+            Finally, some Metadata Components handle specific Object Types.  
+            For example, _AdaptiveObjectType_ objects are specially handled in 
+            order to display them in an easy-to-consume way.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>Customization</title> 
+        <section>
+            <title>Custom Adaptive Layouts</title>
+            <paragraph>    
+                Adaptive Layouts are intended to be created by end-users and 
+                developers in order to provide layout instructions for the 
+                Object Types and Property Types that are unique to your data.  
+                This section describes the process of creating and maintaining 
+                custom Adaptive Layouts.
+            </paragraph>
+            </section>
+            <section>
+            <title>Custom Adaptive Components</title>
+            <paragraph>    
+                There's a lot of flexibility and options that have been 
+                provided with the Adaptive Components provided out of the box.  
+                However, just like everything else in Adaptive Framework, these 
+                Adaptive Components are intended to be extended, so developers 
+                can create and add new Adaptive Components to be used and 
+                shared. This section provides steps to being creating your own 
+                custom Adaptive Components. 
+            </paragraph>
+        </section>
+    </section>
+</doc>

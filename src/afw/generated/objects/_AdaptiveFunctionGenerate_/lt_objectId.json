@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtObjectId",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltObjectId",
+    "category": "objectId",
+    "dataTypeMethod": true,
+    "description": "Checks for objectId arg1 is less that objectId arg2 and return the boolean result.",
+    "functionId": "lt<objectId>",
+    "functionLabel": "lt_objectId",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "objectId",
+            "name": "arg1"
+        },
+        {
+            "dataType": "objectId",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

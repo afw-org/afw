@@ -1,0 +1,24 @@
+uint32
+_AdaptiveServer_
+concurrent
+integer
+max_concurrent
+request_count
+single
+thread_count
+uint32
+afw_server_fcgi
+
+# Flag related
+
+a_flag_trace_server=trace:server
+a_flag_trace_server_brief=Server related flags
+a_flag_trace_server_description=This includes all trace:server related flags.
+
+a_flag_trace_server_request=trace:server:request
+a_flag_trace_server_request_brief=Trace server request
+a_flag_trace_server_request_description=This includes all trace:server:request related flags.
+
+a_flag_trace_server_request_process=trace:server:request:process
+a_flag_trace_server_request_process_brief=Trace process request begin and end
+a_flag_trace_server_request_process_description=This traces the begin and end of processing for requests.

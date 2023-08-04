@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Language Features</title>
+    <paragraph>
+        In this section, you will be guided through the features of Adaptive
+        Script and how they compare and contrast to other languages, such as
+        ECMAScript.
+    </paragraph>
+    <header>Variables</header>
+    <paragraph>
+        Variables in Adaptive Script are used to indentify a memory location,
+        and are declared using the <literal>let</literal> or
+        <literal>const</literal>
+        keywords. Unlike ECMAScript, Adaptive Script does not support the
+        <literal>var</literal>
+        keyword, which has semantics surrounding its scope that are not
+        compatible with how Adaptive Script processes variables.
+    </paragraph>
+    <header>Classes</header>
+    <paragraph>
+        Adaptive Script does not have support for classes. This means that the
+        ECMAScript classes such as Array, Object, Integer, String, Boolean,
+        Symbol, Map, Error, Exception, etc. cannot be used in Adaptive Script. 
+    </paragraph>
+    <header>Importing modules</header>
+    <paragraph>
+        At this time, Adaptive Script does not support importing code from 
+        other locations. The only way to share code between scripts is to store 
+        them in qualified variables that would be accessible to scripts.
+    </paragraph>
+    <header>Types and Type Casting</header>
+    <paragraph>
+        Adaptive Script has a type system that has more in common with 
+        Typescript. For instance, in ECMAScript, you can add values of 
+        different types together without runtime errors, often 
+        resulting in some unexpected results. In Adaptive Script, these will 
+        be caught at compile-time, preventing the script from being loaded.
+    </paragraph>
+    <header>Prototypal Inheritance</header>
+    <paragraph>
+        Adaptive Script does not have support for prototypal inheritance.
+    </paragraph>
+    <header>Closure</header>
+    <paragraph>
+        ECMAScript has a feature called closure, which allows a function to
+        access variables that are defined outside of its scope, and retain 
+        the values that were bound to those variables at the time of its 
+        scope creation.
+    </paragraph>
+    <paragraph>
+        At this time, Adaptive Script does not provide closure features.
+    </paragraph>
+    <code><![CDATA[let x = 1;
+let foo;
+{
+    let x = 2;
+    foo = function() {
+        return x;
+    }
+}
+
+// in ECMAScript, foo() will return 2, but in Adaptive Script, it will return 1
+foo();]]></code>
+    <header>Statements</header>
+    <paragraph>
+        There are two import differences between Adaptive Script and ECMAScript 
+        as it relates to statements. In ECMAScript, semicolons are optionally 
+        used to separate statements. In Adaptive Script, they are required.
+    </paragraph>
+    <paragraph>
+        Furthermore, in ECMAScript, any expression can be used as statements and 
+        in Adaptive Script, this is not allowed.
+    </paragraph>
+    <code><![CDATA[// ECMAScript
+let x = 1 // invalid in Adaptive Script (missing ;)
+let y = 2;
+'abc' // invalid in Adaptive Script (expression as statement)]]></code>
+    <header>Exception Handling</header>
+    <paragraph>
+        Adaptive Script provides <literal>try/throw/catch/finally</literal> 
+        exception handling, but the syntax and the objects are different than 
+        those in ECMAScript.
+    </paragraph>
+    <paragraph>
+        In Adaptive Script, <literal>throw</literal> is a statement that 
+        requires a string (the error message) and an optional data to allow 
+        users to pass along contextual data to the exception handler.
+    </paragraph>
+    <paragraph>
+        In ECMAScript, the <literal>catch</literal> statement accepts any value
+        that was thrown, including an Error object, but in Adaptive Script, a 
+        single object is always caught, which contains the message and data 
+        that was thrown.
+    </paragraph>
+    <code><![CDATA[try {
+    throw "Something bad happened" { "code": 123 };
+} catch (e) {
+    print(e.message);
+    print(e.data.code);
+}]]></code>
+    <header>Working with objects and lists</header>
+    <paragraph>
+        Because Adaptive Script does not have classes, it does not have all 
+        of the Object and Array methods, that are included in ECMAScript, 
+        accessible as object properties. 
+    </paragraph>
+    <paragraph>
+        Object properties in Adaptive Script do not currently support computed 
+        names.
+    </paragraph>
+    <code><![CDATA[let x = { 
+    a:   1, // valid in Adaptive Script 
+    "b": 2, // valid in Adaptive Script
+    [y]: 3, // invalid in Adaptive Script
+};]]></code>
+    <header>Keywords new and delete</header>
+    <paragraph>
+        Adaptive Script does not support the <literal>new</literal> and 
+        <literal>delete</literal> keywords.
+    </paragraph>
+    <header>Iterators and Generators</header>
+    <paragraph>
+        At this time, Adaptive Script does not support generators. Although 
+        objects and lists can be iterated over using the 
+        <literal>for-of</literal> statement, creating iterators as you can in 
+        ECMAScript is not supported.
+    </paragraph>
+    <header>Asynchronous Operations</header>
+    <paragraph>
+        At this time, Adaptive Script does not support asynchronous operations.
+    </paragraph>
+    <header>The this keyword</header>
+    <paragraph>
+        The <literal>this</literal> keyword in ECMAScript has no meaning in
+        Adaptive Script.
+    </paragraph>
+    <header>The eval function</header>
+    <paragraph>
+        The <literal>eval</literal> function in ECMAScript allows a programmer 
+        to execute a string as if it were code. In Adaptive Script, this is 
+        accomplished using the <literal>evaluate</literal> function, which has 
+        some differences.
+    </paragraph>
+    <paragraph>
+        In Adaptive Script, any code inside an <literal>evaluate</literal> 
+        call may not access or change any variables outside of its scope.
+    </paragraph>
+    <header>The for .. in statement</header>
+    <paragraph>
+        Adaptive Script does not support the <literal>for .. in</literal> and 
+        all of its semantics.
+    </paragraph>
+    <header>The switch statement</header>
+    <paragraph>
+        Adaptive Script supports the ECMAScript switch statement and even has 
+        some additional features, such as the ability to use functions to 
+        compare values matching a case.
+    </paragraph>
+</doc>

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRandomInteger",
+    "brief": "Generate a random integer between specified values",
+    "camelCaseFunctionLabel": "randomInteger",
+    "category": "random",
+    "description": "This returns a random integer between specified values inclusive.",
+    "functionId": "random_integer",
+    "functionLabel": "random_integer",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "Minimum integer inclusive.",
+            "name": "min"
+        },
+        {
+            "dataType": "integer",
+            "description": "Maximum integer inclusive.",
+            "name": "max"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "integer",
+        "description": "A random integer."
+    }
+}

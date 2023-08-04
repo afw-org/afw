@@ -1,0 +1,47 @@
+{
+    "brief": "Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.",
+    "category": "model",
+    "description": "This function returns a _AdaptiveAction_ object for the default action performed if a onModifyObject parameter is not specified on the associated _AdaptiveModelObjectType_. The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects. This function can be called as part of a onModify expression or for testing.",
+    "functionId": "model_default_modify_object_action",
+    "functionLabel": "model_default_modify_object_action",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "This is the adaptorId of a model adaptor. Variable custom::adaptorId can be used to access this value in model expressions.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the adaptive object type of object being modified. Variable custom::objectType can be used to access this value in model expressions.",
+            "name": "objectType"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the objectId of object to modify. Variable custom::objectId can be used to access this value in model expressions.",
+            "name": "objectId"
+        },
+        {
+            "dataType": "list",
+            "description": "This is a list of modifications. Variable custom::actions can be used to access this value in model expressions. Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
+            "name": "entries"
+        },
+        {
+            "dataType": "string",
+            "description": "This specifics a modelId of model to use for producing results. If not specified, the adaptor's current model will be used.",
+            "name": "modelId",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveContextType_",
+            "description": "This specifies additional context information available to model expressions.",
+            "name": "context",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveAction_",
+        "description": "The default action object."
+    }
+}

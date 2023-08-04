@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyDate",
+    "brief": "Converts a one value list to a date value",
+    "camelCaseFunctionLabel": "oneAndOnlyDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "This converts a list of date values that contains one value to a single date value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<date>",
+    "functionLabel": "one_and_only_date",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

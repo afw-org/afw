@@ -1,0 +1,246 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/files/_AdaptiveObjectType_/_AdaptiveMeta_"
+        },
+        "propertyTypes": {
+            "allowAdd": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "allowQuery": true,
+                "brief": "Objects of this type can be created",
+                "dataType": "boolean",
+                "defaultValue": true,
+                "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                "label": "Allow Add"
+            },
+            "allowEntity": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "allowQuery": true,
+                "brief": "Instances of this type can exist as entities",
+                "dataType": "boolean",
+                "defaultValue": true,
+                "description": "Instances of this object type can exist as an entity object, not just an embedded object.",
+                "label": "Allow Entity"
+            },
+            "collectionURIs": {
+                "allowQuery": true,
+                "brief": "The URIs of the collections this object type is a part of",
+                "dataType": "list",
+                "dataTypeParameter": "anyURI",
+                "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                "label": "Collection URIs"
+            },
+            "descriptionPropertyName": {
+                "allowQuery": true,
+                "brief": "The name of the property that is used as the \"description\" meta property",
+                "dataType": "string",
+                "description": "The name of the property in an instance that is used as the \"description\" property in the meta for instances of this object type.  If not specified, no description will be available.",
+                "label": "Description Property Name"
+            },
+            "label": {
+                "allowQuery": true,
+                "brief": "Label used to identify this instance",
+                "dataType": "string",
+                "description": "Label used to identify this instance.",
+                "label": "Label"
+            },
+            "objectIdPropertyName": {
+                "allowQuery": true,
+                "brief": "The name of the property that is used as the \"objectId\" meta property",
+                "dataType": "string",
+                "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                "label": "Object Id Property Name"
+            },
+            "originURI": {
+                "allowQuery": true,
+                "brief": "The origin URI of this object type",
+                "dataType": "anyURI",
+                "description": "The origin URI of this object type.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                "label": "Origin URI"
+            },
+            "otherProperties": {
+                "allowQuery": true,
+                "brief": "Property Type for properties not explicitly specified",
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveValueMeta_",
+                "description": "If specified, this is the property type for properties that are not explicitly specified.  If otherProperties is not specified, only explicitly specified properties are allowed.",
+                "label": "Other Properties"
+            },
+            "referenceURI": {
+                "allowQuery": true,
+                "brief": "URI of more reference information about this object",
+                "dataType": "anyURI",
+                "description": "URI of more reference information about this object.",
+                "label": "Reference URI"
+            },
+            "runtime": {
+                "brief": "Runtime information, available to runtime objects",
+                "dataType": "object",
+                "dataTypeParameter": "_AdaptiveRuntimeObject_",
+                "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                "label": "Runtime"
+            },
+            "tags": {
+                "brief": "List of keywords associated with this object type",
+                "dataType": "list",
+                "dataTypeParameter": "string",
+                "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                "label": "Tags"
+            },
+            "resolvedParentPaths": {
+                "label": "Resolved Parent Paths",
+                "description": "This is the associated object's direct parent paths before they were resolved by object option composite.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "The associated object's direct parent paths"
+            },
+            "reconcilable": {
+                "label": "Reconcilable",
+                "description": "This strings represents a stateful token, used by the reconcile_object() method, to perform a reconcile request on an object that has been obtained in reconcilable mode.",
+                "dataType": "string",
+                "brief": "Stateful token used to perform object reconciliation"
+            },
+            "propertyTypes": {
+                "allowQuery": true,
+                "label": "Property Types",
+                "description": "This is additional meta information that overrides and supplements property type information for specific associated object's properties.  The property name of properties in this object corresponds to properties with the same name in the associated object.",
+                "dataTypeParameter": "_AdaptiveMetaPropertyTypes_",
+                "dataType": "object",
+                "brief": "Additional meta information for this object's properties"
+            },
+            "path": {
+                "label": "Path",
+                "description": "This is the associated object's path within an Adaptive Framework environment.  The path is of the form \"/adaptorId/objectType/objectId\".",
+                "dataType": "anyURI",
+                "brief": "The associated object's path"
+            },
+            "parentPaths": {
+                "label": "Parent Paths",
+                "description": "This is the associated object's direct parent paths.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "The associated object's direct parent paths"
+            },
+            "objectTypes": {
+                "label": "Object Types",
+                "description": "This is a object with a property with a name of the objectType for each _AdaptiveObjectType_ used by this object and all of its embedded objects.",
+                "dataTypeParameter": "_AdaptiveObjectTypes_",
+                "dataType": "object",
+                "brief": "Each of the objectType objects used by this object"
+            },
+            "objectType": {
+                "allowQuery": true,
+                "label": "Object Type",
+                "description": "This the id of the associated object's object type within the object's adaptor.",
+                "dataType": "string",
+                "brief": "The id of the associated object's object type, within the object's adaptor"
+            },
+            "objectId": {
+                "label": "Object Id",
+                "description": "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment.  The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.",
+                "dataType": "string",
+                "brief": "Id to unique identify this object"
+            },
+            "hasErrors": {
+                "label": "Has Errors",
+                "description": "Indicates that at least one errors property exists in the meta.",
+                "dataType": "boolean",
+                "brief": "This object has errors"
+            },
+            "errors": {
+                "label": "Errors",
+                "description": "Object errors.",
+                "dataTypeParameter": "string",
+                "dataType": "list",
+                "brief": "Object errors"
+            },
+            "description": {
+                "allowQuery": true,
+                "label": "Description",
+                "description": "The optional description of the object.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "Optional description of the object"
+            },
+            "ancestorPaths": {
+                "label": "Ancestor Paths",
+                "description": "This is all of the associated object's ancestor paths.",
+                "dataType": "list",
+                "brief": "The associated object's ancestor paths"
+            },
+            "allowDelete": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "label": "Allow Delete",
+                "description": "If false this object can not be deleted.  If true, the object can be deleted unless denied by authorization policy or by the adaptor.",
+                "defaultValue": true,
+                "dataType": "boolean",
+                "brief": "This object can be deleted unless denied by authorization policy or by the adaptor",
+                "allowQuery": true
+            },
+            "allowChange": {
+                "_meta_": {
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveMetaPropertyTypes_"
+                        },
+                        "defaultValue": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveMetaPropertyType_"
+                            },
+                            "dataType": "boolean"
+                        }
+                    }
+                },
+                "label": "Allow Change",
+                "description": "If false this object is read only.  If true, the object can be changed unless denied by authorization policy or by the adaptor.",
+                "defaultValue": true,
+                "dataType": "boolean",
+                "brief": "This object can be changed, unless denied by authorization policy or by the adaptor",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveMeta_",
+        "description": "Object type for adaptive object meta information.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

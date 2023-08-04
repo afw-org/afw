@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFloor",
+    "brief": "Round downwards to nearest integer",
+    "camelCaseFunctionLabel": "floor",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine the largest integer that is smaller then or equal to the <dataType> value and return the <dataType> result.",
+    "functionId": "floor",
+    "functionLabel": "floor",
+    "parameters": [
+        {
+            "name": "number",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

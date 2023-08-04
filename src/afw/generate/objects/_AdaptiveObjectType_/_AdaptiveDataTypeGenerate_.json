@@ -1,0 +1,34 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveDataType_ objects.",
+    "objectType": "_AdaptiveDataTypeGenerate_",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveDataType_/propertyTypes"
+            ]
+        },
+        "afw_value_get_evaluated_meta": {
+            "allowQuery": true,
+            "brief": "Label for afw_value_get_evaluated_meta",
+            "dataType": "string",
+            "description": "This is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+            "label": "afw_value_get_evaluated_meta",
+            "required": false
+        },
+        "afw_value_get_evaluated_metas": {
+            "allowQuery": true,
+            "brief": "Label for afw_value_get_evaluated_metas",
+            "dataType": "string",
+            "description": "This is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+            "label": "afw_value_get_evaluated_metas",
+            "required": false
+        }
+    }
+}

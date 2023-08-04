@@ -1,0 +1,20 @@
+#
+# Adaptive Framework <afwdev {afwPackageId}> commands and extensions
+#
+
+# CMake 3.15 and below features are used
+cmake_minimum_required (VERSION 3.15)
+
+# Requires C standard C11 or higher
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
+# This is the <afwdev {afwPackageId}> package.
+project(<afwdev {afwPackageLabel}>_package LANGUAGES C)
+
+# Find the required afw core package.
+find_package(afw REQUIRED)
+
+# Include basic afwdev generated afw package build. See this file for
+# documentation and customization options.
+include(generated/afw_package_basic_build.cmake)

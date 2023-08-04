@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsHybrid",
+    "brief": "Checks whether value is dataType hybrid",
+    "camelCaseFunctionLabel": "isHybrid",
+    "category": "hybrid",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType hybrid and return the boolean result.",
+    "functionId": "is<hybrid>",
+    "functionLabel": "is_hybrid",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

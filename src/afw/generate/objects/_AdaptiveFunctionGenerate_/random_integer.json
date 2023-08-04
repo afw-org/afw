@@ -1,0 +1,24 @@
+{
+    "brief": "Generate a random integer between specified values",
+    "category": "random",
+    "description": "This returns a random integer between specified values inclusive.",
+    "functionId": "random_integer",
+    "functionLabel": "random_integer",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "Minimum integer inclusive.",
+            "name": "min"
+        },
+        {
+            "dataType": "integer",
+            "description": "Maximum integer inclusive.",
+            "name": "max"
+        }
+    ],
+    "returns": {
+        "dataType": "integer",
+        "description": "A random integer."
+    }
+}

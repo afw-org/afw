@@ -1,0 +1,33 @@
+{
+    "description": "Tests for to_boolean<string> function.",
+    "functionId": "to_boolean<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": null
+                }
+            ],
+            "description": "Boolean False from string \"\" (empty string)",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "whatever"
+                }
+            ],
+            "description": "Boolean True from string \"whatever\" (any non-empty string)",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

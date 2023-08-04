@@ -1,0 +1,20 @@
+{
+    "brief": "Perform actions",
+    "category": "miscellaneous",
+    "description": "Perform actions right away.",
+    "functionId": "perform",
+    "functionLabel": "perform",
+    "parameters": [
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveActions_",
+            "description": "See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for more information.",
+            "name": "request"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveResponse_",
+        "description": "Response object."
+    }
+}

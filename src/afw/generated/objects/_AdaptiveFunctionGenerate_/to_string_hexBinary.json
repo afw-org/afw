@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringHexBinary",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Converts hexBinary value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<hexBinary>",
+    "functionLabel": "to_string_hexBinary",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "description": "A hexBinary value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

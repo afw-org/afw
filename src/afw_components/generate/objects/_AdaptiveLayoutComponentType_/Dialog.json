@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Dialog",
+    "brief": "A layout container that displays content inside a popup, with a confirmation response.",
+    "description": "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed by confirming or cancelling via buttons.",
+    "implementationId": "Dialog",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Dialog",
+    "label": "Dialog"
+}

@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsXpathExpression",
+    "brief": "Checks whether value is dataType xpathExpression",
+    "camelCaseFunctionLabel": "isXpathExpression",
+    "category": "xpathExpression",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType xpathExpression and return the boolean result.",
+    "functionId": "is<xpathExpression>",
+    "functionLabel": "is_xpathExpression",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

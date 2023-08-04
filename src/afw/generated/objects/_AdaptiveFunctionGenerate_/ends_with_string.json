@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEndsWithString",
+    "brief": "Checks whether value ends with a string",
+    "camelCaseFunctionLabel": "endsWithString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks whether string value ends with a string and return the boolean result.",
+    "functionId": "ends_with<string>",
+    "functionLabel": "ends_with_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ends_with"
+}

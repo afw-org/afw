@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRound",
+    "brief": "Round to nearest integer",
+    "camelCaseFunctionLabel": "round",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine the integer closest to <dataType> value and return the <dataType> result.",
+    "functionId": "round",
+    "functionLabel": "round",
+    "parameters": [
+        {
+            "name": "number",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

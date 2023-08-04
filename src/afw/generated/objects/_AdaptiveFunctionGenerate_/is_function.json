@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsFunction",
+    "brief": "Checks whether value is dataType function",
+    "camelCaseFunctionLabel": "isFunction",
+    "category": "function",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType function and return the boolean result.",
+    "functionId": "is<function>",
+    "functionLabel": "is_function",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

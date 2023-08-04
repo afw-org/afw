@@ -1,0 +1,5 @@
+{
+  "extensionId": "<afwdev {srcdir}>",
+  "modulePath": "<afwdev {produces}>",
+  "description": "<afwdev {manifest_description}>"
+}

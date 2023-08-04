@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCloneObject",
+    "brief": "Clone object value",
+    "camelCaseFunctionLabel": "cloneObject",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Deep clone a object value.",
+    "functionId": "clone<object>",
+    "functionLabel": "clone_object",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "The object value to clone.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "object",
+        "description": "The cloned object value."
+    },
+    "useExecuteFunction": "afw_function_execute_clone"
+}

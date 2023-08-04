@@ -1,0 +1,25 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Image component.",
+    "label": "Image",
+    "objectType": "_AdaptiveLayoutComponentType_Image",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "src": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The source for the image to be rendered.",
+            "label": "Image Source"
+        }
+    }
+}

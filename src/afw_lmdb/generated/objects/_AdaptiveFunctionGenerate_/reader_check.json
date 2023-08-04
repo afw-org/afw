@@ -1,0 +1,19 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReaderCheck",
+    "camelCaseFunctionLabel": "readerCheck",
+    "category": "lmdb",
+    "description": "Check for stale entries in the reader lock table.",
+    "functionId": "reader_check",
+    "functionLabel": "reader_check",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Adaptor Id.",
+            "name": "adaptorId"
+        }
+    ],
+    "returns": {
+        "dataType": "integer",
+        "description": "Number of stale slots that were cleared."
+    }
+}

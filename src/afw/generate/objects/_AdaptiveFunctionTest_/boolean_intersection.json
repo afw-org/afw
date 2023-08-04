@@ -1,0 +1,114 @@
+{
+    "description": "Tests for intersection<boolean> function.",
+    "functionId": "intersection<boolean>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                }
+            ],
+            "description": "\n            Boolean intersection of two empty bags.\n        ",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "boolean",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true",
+                        "true",
+                        "false"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean intersection of bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "boolean",
+                "value": [
+                    "true",
+                    "false"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "false",
+                        "false",
+                        "false"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean intersection of bags:\n            { \"false\", \"false\", \"false\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "boolean",
+                "value": [
+                    "false"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "false",
+                        "false",
+                        "false"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean intersection of bags:\n            { \"true\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "boolean",
+                "value": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEvaluateExpression",
+    "brief": "Evaluate expression value",
+    "camelCaseFunctionLabel": "evaluateExpression",
+    "category": "expression",
+    "dataTypeMethod": true,
+    "description": "Compile and evaluate expression value.",
+    "functionId": "evaluate<expression>",
+    "functionLabel": "evaluate_expression",
+    "parameters": [
+        {
+            "brief": "Source to evaluate",
+            "dataType": "expression",
+            "description": "expression string to compile and evaluate",
+            "name": "source"
+        },
+        {
+            "brief": "Additional untrusted qualified variables",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+            "description": "This parameter supplies additional qualified variables that can be accessed during evaluation. These variables will not be used by anything that needs to ensure its qualified variables must come from a trusted source, such as authorization. This parameter is intended to be used for testing only and should not be used for anything running in production.",
+            "name": "additionalUntrustedQualifiedVariables",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "unevaluated"
+    }
+}

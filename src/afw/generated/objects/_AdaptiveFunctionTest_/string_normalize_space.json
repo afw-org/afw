@@ -1,0 +1,46 @@
+{
+    "description": "Tests for normalize_space<string> function.",
+    "functionId": "normalize_space<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "This     is            a                  sentence.         "
+                }
+            ],
+            "description": "One",
+            "result": {
+                "dataType": "string",
+                "value": "This is a sentence."
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "This\n      is            \n      a                  \n      sentence."
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "dataType": "string",
+                "value": "This is a sentence."
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "\n        This                                                 is\n        a\n        sentence.\n      "
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "dataType": "string",
+                "value": "This is a sentence."
+            }
+        }
+    ]
+}

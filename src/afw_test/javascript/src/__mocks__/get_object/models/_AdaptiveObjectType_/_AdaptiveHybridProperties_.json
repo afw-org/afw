@@ -1,0 +1,20 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/models/_AdaptiveObjectType_/_AdaptiveHybridProperties_"
+        },
+        "allowDelete": true,
+        "allowChange": true,
+        "allowAdd": true,
+        "otherProperties": {
+            "dataType": "hybrid"
+        },
+        "objectType": "_AdaptiveHybridProperties_",
+        "description": "Each property is a hybrid value.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true
+    },
+    "status": "success"
+}

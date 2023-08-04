@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionString",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns a list of string contains all of the unique values in two or more list of string values.",
+    "functionId": "union<string>",
+    "functionLabel": "union_string",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

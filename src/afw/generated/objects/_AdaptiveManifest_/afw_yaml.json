@@ -1,0 +1,13 @@
+{
+    "brief": "Extension for YAML Ain't Markup Language",
+    "description": "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON.",
+    "extensionId": "afw_yaml",
+    "modulePath": "libafwyaml",
+    "providesObjects": [
+        "/afw/_AdaptiveManifest_/afw_yaml"
+    ],
+    "registers": [
+        "content_type/yaml",
+        "content_type/x-yaml"
+    ]
+}

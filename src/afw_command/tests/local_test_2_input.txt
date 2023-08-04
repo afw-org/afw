@@ -1,0 +1,10 @@
+63
+++afw-local-mode-evaluate:
+{
+    "ACCEPT":"application/x-afw"
+}0
+58
+get_object('afw', '_AdaptiveRequestProperties_','current')0
+5
+exit
+0

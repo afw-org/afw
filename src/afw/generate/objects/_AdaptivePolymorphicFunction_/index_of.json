@@ -1,0 +1,37 @@
+{
+    "brief": "Returns index of first occurrence",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns the zero-based index into <dataType> value of subString. If subString is not found, -1 is returned.",
+    "functionId": "index_of",
+    "functionLabel": "index_of",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value to search.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "Substring to search for.",
+            "name": "subString"
+        },
+        {
+            "dataType": "integer",
+            "description": "Optional start index for search if different than start of string.",
+            "name": "startIndex",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_index_of",
+    "returns": {
+        "dataType": "integer",
+        "description": "Zero-based index of subString or -1 if not found."
+    }
+}

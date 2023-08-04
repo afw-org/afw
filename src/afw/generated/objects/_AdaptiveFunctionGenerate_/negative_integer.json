@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNegativeInteger",
+    "brief": "Negative of a number",
+    "camelCaseFunctionLabel": "negativeInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Return negative of integer value.",
+    "functionId": "negative<integer>",
+    "functionLabel": "negative_integer",
+    "op": "-",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=authorization. This object type is the parent of an _AdaptiveObjectType_ that contains authorizationType specific properties.",
+    "objectType": "_AdaptiveConf_authorizationHandler",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes"
+            ]
+        },
+        "allowDenyOverride": {
+            "allowQuery": true,
+            "brief": "Allow override of previous deny",
+            "dataType": "boolean",
+            "description": "Use caution when setting this parameter to true. If this parameter is true, a decision of permit by this authorization handler will override a decision of deny by a previous authorization handler.",
+            "label": "Allow Deny Override",
+            "required": false
+        },
+        "allowPermitOverride": {
+            "allowQuery": true,
+            "brief": "Allow override of previous permit",
+            "dataType": "boolean",
+            "description": "If this parameter is true, a decision of deny by this authorization handler will override a decision of permit by a previous authorization handler.",
+            "label": "Allow Permit Override",
+            "required": false
+        },
+        "authorizationHandlerId": {
+            "allowQuery": true,
+            "brief": "Authorization handler id",
+            "dataType": "string",
+            "description": "Authorization handler id.",
+            "label": "Authorization Id"
+        },
+        "authorizationHandlerType": {
+            "allowQuery": true,
+            "brief": "Authorization handler type",
+            "dataType": "string",
+            "description": "Authorization handler type.",
+            "label": "Authorization Type",
+            "required": true
+        },
+        "priority": {
+            "allowQuery": true,
+            "brief": "Authorization handler priority",
+            "dataType": "integer",
+            "description": "When there are multiple active authorization handlers, this priority determines order this handler will be checked. Priority 1 is the highest and will be checked first. If multiple handlers have the same priority the order will vary.",
+            "minValue": 1,
+            "maxValue": 9999,
+            "defaultValue": 9999,
+            "label": "Priority",
+            "required": false
+        },
+        "required": {
+            "allowQuery": true,
+            "brief": "This authorization handler is required",
+            "dataType": "boolean",
+            "description": "If true, this authorization handler must be running to make an authorization decision if not running in core mode and if initialAuthorizationCheck did not make a decision.",
+            "label": "Required",
+            "required": false
+        }
+    }
+}

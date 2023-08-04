@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNot",
+    "brief": "Logical not",
+    "camelCaseFunctionLabel": "not",
+    "category": "logical",
+    "description": "Evaluates boolean condition returning boolean true if condition evaluates to false and false if condition evaluates to true.",
+    "functionId": "not",
+    "functionLabel": "not",
+    "op": "!",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "name": "condition"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

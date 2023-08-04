@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAbsDouble",
+    "brief": "Absolute value",
+    "camelCaseFunctionLabel": "absDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Compute the absolute value of the double value and return the double result.",
+    "functionId": "abs<double>",
+    "functionLabel": "abs_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

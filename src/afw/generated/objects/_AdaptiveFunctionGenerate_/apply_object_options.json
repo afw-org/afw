@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwApplyObjectOptions",
+    "brief": "Apply object options",
+    "camelCaseFunctionLabel": "applyObjectOptions",
+    "category": "object",
+    "description": "This will return an object with the specified object options applied.",
+    "functionId": "apply_object_options",
+    "functionLabel": "apply_object_options",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object used to produce result.",
+            "name": "object"
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "This is an object with object options applied."
+    }
+}

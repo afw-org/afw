@@ -1,0 +1,12 @@
+{
+    "brief": "A boolean value",
+    "cType": "afw_boolean_t",
+    "dataType": "boolean",
+    "description": "Data type boolean holds a boolean value. Its to_string() value is \"true\" or \"false\". Its from_string() true value can be mixed case \"t\", \"true\" or \"1\". Its from_string() false value can be mixed case \"f\", \"false\" or \"0\".",
+    "directReturn": true,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "boolean",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.7",
+    "relationalCompares": false,
+    "scalar": true
+}

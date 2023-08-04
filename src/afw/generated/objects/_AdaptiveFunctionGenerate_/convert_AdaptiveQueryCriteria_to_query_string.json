@@ -1,0 +1,39 @@
+{
+    "afwCamelCaseFunctionLabel": "afwConvertAdaptiveQueryCriteriaToQueryString",
+    "brief": "Convert _AdaptiveQueryCriteria_ to RQL",
+    "camelCaseFunctionLabel": "convertAdaptiveQueryCriteriaToQueryString",
+    "category": "adaptor",
+    "description": "This function converts an _AdaptiveQueryCriteria_ object to a query string.",
+    "functionId": "convert_AdaptiveQueryCriteria_to_query_string",
+    "functionLabel": "convert_AdaptiveQueryCriteria_to_query_string",
+    "parameters": [
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveQueryCriteria_",
+            "description": "An object type _AdaptiveQueryCriteria_ object.",
+            "name": "queryCriteria"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the adaptorId of adaptor containing the objectType for validating and mapping this query. If not specified, no validation or mapping will occur.",
+            "name": "adaptorId",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "This is the objectType used in conjunction with the adaptorId parameter. This parameter is only allowed and is required if the adaptorId parameter is specified.",
+            "name": "objectType",
+            "optional": true
+        },
+        {
+            "dataType": "integer",
+            "description": "The style of the query string produced. All of the styles are appropriately url encoded.\n\n0 - \"name=op=value\" where \"=op=\" will be \"==\", \"!=\", \"=ge=\", etc. with conjunctions \"&\" (and) and \"|\" (or). Parentheses are placed around each group of like conjunctions except for outer \"&\". (default)\n\n1 - the same as 1 with \"=gte=\" instead of \"=ge=\", \"=lte=\" instead of \"=le=\", \"=eq=\" instead of \"=\", and \"=ne=\" instead of '!='.\n\n2 - similar to 1 with ';' for '&' and ',' for '|'.\n\n3 - comparisons \"op(name,value)\" where \"op\" will be \"eq\", \"ne\", \"ge\", ..., plus conjunctions \"and(list)\" and \"or(list)\" where \"list\" is a comma separated list of any comparison or conjunction.",
+            "name": "style",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "Query string representation of the query criteria."
+    }
+}

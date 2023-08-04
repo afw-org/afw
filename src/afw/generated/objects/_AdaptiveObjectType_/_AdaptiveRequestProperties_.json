@@ -1,0 +1,238 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server.",
+    "objectType": "_AdaptiveRequestProperties_",
+    "otherProperties": {
+        "dataType": "string"
+    },
+    "propertyTypes": {
+        "ACCEPT": {
+            "brief": "A list of the media types the client can accept",
+            "dataType": "string",
+            "description": "A list of the media types the client can accept."
+        },
+        "AUTH_TYPE": {
+            "brief": "The authentication method used to validate a user",
+            "dataType": "string",
+            "description": "The authentication method used to validate a user. This is blank if the request did not require authentication."
+        },
+        "CONTENT_LENGTH": {
+            "brief": "The length of the data (in bytes) passed to the CGI program via standard input",
+            "dataType": "string",
+            "description": "The length of the data (in bytes) passed to the CGI program via standard input."
+        },
+        "CONTENT_TYPE": {
+            "brief": "The media type of the request body",
+            "dataType": "string",
+            "description": "The media type of the request body, such as \"application/x-www-form-urlencoded\"."
+        },
+        "DOCUMENT_ROOT": {
+            "brief": "The directory from which static documents are served",
+            "dataType": "string",
+            "description": "The directory from which static documents are served."
+        },
+        "FCGI_ROLE": {
+            "brief": "Sets the role the Web server expects the application to play",
+            "dataType": "string",
+            "description": "The role component sets the role the Web server expects the application to play. The currently-defined roles are:  RESPONDER, AUTHORIZER, FILTER."
+        },
+        "GATEWAY_INTERFACE": {
+            "brief": "The revision of the Common Gateway Interface that the server uses",
+            "dataType": "string",
+            "description": "The revision of the Common Gateway Interface that the server uses."
+        },
+        "HTTPS": {
+            "brief": "This variable can be used as a flag to indicate whether the connection is secure",
+            "dataType": "string",
+            "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., \"ON\" or \"on\" when secure and blank or \"OFF\" when not)."
+        },
+        "HTTP_ACCEPT": {
+            "brief": "A list of the media types the client can accept",
+            "dataType": "string",
+            "description": "A list of the media types the client can accept."
+        },
+        "HTTP_ACCEPT_CHARSET": {
+            "brief": "A list of the character sets the client can accept",
+            "dataType": "string",
+            "description": "A list of the character sets the client can accept."
+        },
+        "HTTP_ACCEPT_ENCODING": {
+            "brief": "A list of the encodings the client can accept",
+            "dataType": "string",
+            "description": "A list of the encodings the client can accept."
+        },
+        "HTTP_ACCEPT_LANGUAGE": {
+            "brief": "A list of the languages the client can accept",
+            "dataType": "string",
+            "description": "A list of the languages the client can accept."
+        },    
+        "HTTP_COOKIE": {
+            "brief": "A name-value pair previously set by the server",
+            "dataType": "string",
+            "description": "A name-value pair previously set by the server."
+        },
+        "HTTP_FROM": {
+            "brief": "The email address of the user making the request",
+            "dataType": "string",
+            "description": "The email address of the user making the request; most browsers do not pass this information, since it is considered an invasion of the user's privacy."
+        },
+        "HTTP_HOST": {
+            "brief": "The hostname of the server from the requested URL",
+            "dataType": "string",
+            "description": "The hostname of the server from the requested URL (this corresponds to the HTTP 1.1 Host field)."
+        },
+        "HTTP_REFERER": {
+            "brief": "The URL of the document that directed the user to this CGI program",
+            "dataType": "string",
+            "description": "The URL of the document that directed the user to this CGI program (e.g., via a hyperlink or via a form)."
+        },
+        "HTTP_USER_AGENT": {
+            "brief": "The name and version of the client's browser",
+            "dataType": "string",
+            "description": "The name and version of the client's browser."
+        },
+        "PATH_INFO": {
+            "brief": "Extra path information passed to a CGI program",
+            "dataType": "string",
+            "description": "Extra path information passed to a CGI program."
+        },
+        "PATH_TRANSLATED": {
+            "brief": "The translated version of the path given by the variable PATH_INFO",
+            "dataType": "string",
+            "description": "The translated version of the path given by the variable PATH_INFO."
+        },
+        "QUERY_STRING": {
+            "brief": "The query information from requested URL",
+            "dataType": "string",
+            "description": "The query information from requested URL (i.e., the data following \"?\")."
+        },
+        "REMOTE_ADDR": {
+            "brief": "The remote IP address of the client making the request",
+            "dataType": "string",
+            "description": "The remote IP address of the client making the request; this could be the address of an HTTP proxy between the server and the user."
+        },
+        "REMOTE_HOST": {
+            "brief": "The remote hostname of the client making the request",
+            "dataType": "string",
+            "description": "The remote hostname of the client making the request; this could also be the name of an HTTP proxy between the server and the user."
+        },
+        "REMOTE_IDENT": {
+            "brief": "The user making the request, as reported by their ident daemon",
+            "dataType": "string",
+            "description": "The user making the request, as reported by their ident daemon. Only some Unix and IRC users are likely to have this running."
+        },
+        "REMOTE_PORT": {
+            "brief": "The port number used by the client",
+            "dataType": "string",
+            "description": "The port number used by the client."
+        },
+        "REMOTE_USER": {
+            "brief": "The user's login, authenticated by the web server",
+            "dataType": "string",
+            "description": "The user's login, authenticated by the web server."
+        },    
+        "REQUEST_METHOD": {
+            "brief": "The HTTP request method used for this request",
+            "dataType": "string",
+            "description": "The HTTP request method used for this request."
+        },
+        "REQUEST_SCHEME": {
+            "brief": "The scheme of the request",
+            "dataType": "string",
+            "description": "The scheme of the request (usually \"http\" or \"https\")."
+        },
+        "REQUEST_URI": {
+            "brief": "The URI for this request relative to DOCUMENT_ROOT",
+            "dataType": "string",
+            "description": "The URI for this request relative to DOCUMENT_ROOT."
+        },
+        "SCRIPT_NAME": {
+            "brief": "The URL path (e.g., /cgi/program.cgi) of the script being executed",
+            "dataType": "string",
+            "description": "The URL path (e.g., /cgi/program.cgi) of the script being executed."
+        },
+        "SCHEME": {
+            "brief": "The scheme of the request",
+            "dataType": "string",
+            "description": "The scheme of the request (usually \"http\" or \"https\")."
+        },
+        "SERVER_ADDR": {
+            "brief": "The IP address of the computer running the web server",
+            "dataType": "string",
+            "description": "The IP address of the computer running the web server."
+        },
+        "SERVER_ADMIN": {
+            "brief": "The email address for your server's webmaster",
+            "dataType": "string",
+            "description": "The email address for your server's webmaster."
+        },
+        "SERVER_NAME": {
+            "brief": "The server's hostname or IP address",
+            "dataType": "string",
+            "description": "The server's hostname or IP address."
+        },   
+        "SERVER_SIGNATURE": {
+            "brief": "The HTML string that may be embedded in the page to identify this host",
+            "dataType": "string",
+            "description": "The HTML string that may be embedded in the page to identify this host.\nFor example, <ADDRESS>/Apache/1.3.14 Server at www.zytrax.com Port 80</ADDRESS>"
+        },
+        "SERVER_PORT": {
+            "brief": "The port number of the host on which the server is listening",
+            "dataType": "string",
+            "description": "The port number of the host on which the server is listening."
+        },
+        "SERVER_PROTOCOL": {
+            "brief": "The name and revision of the request protocol",
+            "dataType": "string",
+            "description": "The name and revision of the request protocol, e.g., \"HTTP/1.1\"."
+        },
+        "SERVER_SOFTWARE": {
+            "brief": "The name and version of the server software that is answering the client request",
+            "dataType": "string",
+            "description": "The name and version of the server software that is answering the client request."
+        },    
+        "SSL_CLIENT_S_DN": {
+            "brief": "SSL client certificate subject DN",
+            "dataType": "string",
+            "description": "The SSL client certificate subject DN field."
+        },
+        "SSL_CLIENT_S_DN_CN": {
+            "brief": "SSL client certificate subject CN",
+            "dataType": "string",
+            "description": "The SSL client certificate subject component of the DN field."
+        },
+        "SSL_CLIENT_M_SERIAL": {
+            "brief": "SSL client certificate serial number",
+            "dataType": "string",
+            "description": "The SSL client certificate serial number."
+        },
+        "SSL_CLIENT_M_VERSION": {
+            "brief": "The SSL client certificate version",
+            "dataType": "string",
+            "description": "The SSL client certificate version."
+        },
+        "SSL_CLIENT_V_START": {
+            "brief": "Validity of client's certificate (start time)",
+            "dataType": "string",
+            "description": "Validity of client's certificate (start time)."
+        },
+        "SSL_CLIENT_V_END": {
+            "brief": "Validity of client's certificate (end time)",
+            "dataType": "string",
+            "description": "Validity of client's certificate (end time)."
+        },
+        "SSL_CLIENT_V_REMAIN": {
+            "brief": "Number of days until client's certificate expires",
+            "dataType": "string",
+            "description": "Number of days until client's certificate expires."
+        },
+        "SSL_CLIENT_VERIFY": {
+            "brief": "SSL client certificate verification result",
+            "dataType": "string",
+            "description": "The SSL client certificate verification result. May be NONE, SUCCESS, GENEROUS or FAILED:reason."
+        }
+    }
+}

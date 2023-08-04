@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetDate",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in date list1 are all in date list2.",
+    "functionId": "subset<date>",
+    "functionLabel": "subset_date",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "date",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "date",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

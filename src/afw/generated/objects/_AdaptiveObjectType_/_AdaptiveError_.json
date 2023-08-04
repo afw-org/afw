@@ -1,0 +1,141 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "The _AdaptiveObjectType_ for _AdaptiveError_ objects.",
+    "objectType": "_AdaptiveError_",
+    "otherProperties": {},
+    "propertyTypes": {
+        "actionNumber": {
+            "brief": "The index of the action that caused the error",
+            "dataType": "integer",
+            "description": "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error.",
+            "label": "Action Index"
+        },
+        "data": {
+            "brief": "Optional throw data",
+            "description": "Optional data supplied on the throw.",
+            "label": "Additional"
+        },
+        "backtrace": {
+            "brief": "Backtrace from where the error occurred",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "The backtrace from where the error occurred.",
+            "label": "Backtrace"
+        },
+        "backtraceEvaluation": {
+            "brief": "Evaluation backtrace from where the error occurred",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "The evaluation backtrace from where the error occurred.",
+            "label": "Backtrace Expression"
+        },
+        "column": {
+            "brief": "The column in line of the error",
+            "dataType": "integer",
+            "description": "The column in line of the error. This is only available if source contains line breaks.",
+            "label": "Column"
+        },
+        "errorCode": {
+            "brief": "The numeric error code",
+            "dataType": "integer",
+            "description": "The numeric error code.",
+            "label": "Error Code"
+        },
+        "errorSource": {
+            "brief": "The internal source filename:line where the error occurred",
+            "dataType": "string",
+            "description": "The internal source filename:line where the error occurred.",
+            "label": "Error Source"
+        },
+        "id": {
+            "brief": "Error code id",
+            "dataType": "string",
+            "description": "The mnemonic for the numeric error code (errorCode).",
+            "label": "Error Code Id"
+        },
+        "line": {
+            "brief": "The line number in the adaptive value source of the error",
+            "dataType": "integer",
+            "description": "The line number in the adaptive value source of the error. This is only available if source contains line breaks.",
+            "label": "Line"
+        },
+        "message": {
+            "brief": "The error message",
+            "dataType": "string",
+            "description": "The error message.",
+            "label": "Message"
+        },
+        "offset": {
+            "brief": "The offset in the adaptive value source of the error",
+            "dataType": "integer",
+            "description": "The offset in the adaptive value source of the error.",
+            "label": "Offset"
+        },
+        "parserColumnNumber": {
+            "brief": "The column number where the syntax error occurred",
+            "dataType": "integer",
+            "description": "The column number where the error occurred.",
+            "label": "Parser Column Number"
+        },
+        "parserCursor": {
+            "brief": "The parser cursor where the syntax error occurred",
+            "dataType": "integer",
+            "description": "The UTF-8 octet source cursor that the parser at the time the syntax error occurred. This can be used as an offset into parserSource if it is available.",
+            "label": "Parser Cursor"
+        },
+        "parserLineNumber": {
+            "brief": "The line number where the syntax error occurred",
+            "dataType": "integer",
+            "description": "The parser cursor's line number where the syntax error occurred.",
+            "label": "Parser Line Number"
+        },
+        "parserSource": {
+            "brief": "The partial/full source available when the syntax error occurred",
+            "dataType": "integer",
+            "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
+            "label": "Parser Source"
+        },
+        "rv": {
+            "brief": "The return value",
+            "dataType": "string",
+            "description": "The return value.",
+            "label": "Rv"
+        },
+        "rvDecoded": {
+            "brief": "The decoded rv",
+            "dataType": "string",
+            "description": "The decoded rv.",
+            "label": "Rv Decoded"
+        },
+        "rvSourceId": {
+            "brief": "The source id of rv",
+            "dataType": "string",
+            "description": "The source id of rv.",
+            "label": "Rv Source"
+        },
+        "sourceFile": {
+            "brief": "The c source file where the error was thrown",
+            "dataType": "string",
+            "description": "The c source file where the error was thrown.",
+            "label": "Source File"
+        },
+        "sourceLocation": {
+            "brief": "This is the source location of the error.",
+            "dataType": "string",
+            "description": "This is the source location of the error. This is usually a reference to the adaptive value source location.",
+            "label": "Source Location"
+        },
+        "xctxUUID": {
+            "brief": "This is the UUID of the execution context (xctx) when the error occurred",
+            "dataType": "string",
+            "description": "This is the UUID of the execution context (xctx) when the error occurred. There is normally one xctx per request. This UUID is included by default in log message, which can be useful for finding messages related to a request.",
+            "label": "XCTX UUID"
+        }
+    }
+}

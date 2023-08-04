@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpMatchString",
+    "brief": "Search for a match using a regular expression",
+    "camelCaseFunctionLabel": "regexpMatchString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks whether string value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match<string>",
+    "functionLabel": "regexp_match_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_match"
+}

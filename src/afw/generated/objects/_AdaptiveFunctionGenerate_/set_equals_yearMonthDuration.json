@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsYearMonthDuration",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<yearMonthDuration>",
+    "functionLabel": "set_equals_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

@@ -1,0 +1,84 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Button component.",
+    "objectType": "_AdaptiveLayoutComponentType_Button",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "color": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies an optional color for this Button (primary, secondary, error).",
+            "label": "Color",
+            "possibleValues": [
+                "default",
+                "inherit",
+                "primary",
+                "secondary"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Button component is disabled.",
+            "label": "Disabled"
+        },
+        "dropdown": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies an optional dropdown icon for this Button.",
+            "label": "Dropdown"
+        },
+        "icon": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies an optional icon for this Button.",
+            "label": "Icon"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies the text on the Button.",
+            "testDataParameter": "This is a label",
+            "label": "Label"
+        },
+        "secondaryText": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies optional text to be added below the main text label.",
+            "label": "Secondary Text"
+        },
+        "size": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Specifies a size for the button (small)",
+            "label": "Size",
+            "possibleValues": [
+                "small",
+                "medium",
+                "large"
+            ]
+        },
+        "type": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The type of Button (icon, split, compound, default).",
+            "label": "Type",
+            "possibleValues": [
+                "icon",
+                "split",
+                "compound",
+                "default"
+            ]
+        }
+    }
+}

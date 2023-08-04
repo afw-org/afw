@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpMatchRfc822Name",
+    "brief": "Search for a match using a regular expression",
+    "camelCaseFunctionLabel": "regexpMatchRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks whether rfc822Name value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match<rfc822Name>",
+    "functionLabel": "regexp_match_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_match"
+}

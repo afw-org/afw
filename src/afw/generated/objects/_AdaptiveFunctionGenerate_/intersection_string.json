@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionString",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns a list of string with the values that are common to both list of string list1 and list2.",
+    "functionId": "intersection<string>",
+    "functionLabel": "intersection_string",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

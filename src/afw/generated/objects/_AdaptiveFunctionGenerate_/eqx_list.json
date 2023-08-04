@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxList",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxList",
+    "category": "list",
+    "dataTypeMethod": true,
+    "description": "Determine if for list arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<list>",
+    "functionLabel": "eqx_list",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "list",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

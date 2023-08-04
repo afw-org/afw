@@ -1,0 +1,6 @@
+{
+    "brief": "Data type yearMonthDuration related functions",
+    "category": "yearMonthDuration",
+    "dataTypeCategory": true,
+    "description": "These function are related to data type yearMonthDuration.\n\nThe \"<yearMonthDuration>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMetas",
+    "brief": "Return a list of the result of calling meta() for each value in a list or object adaptive value",
+    "camelCaseFunctionLabel": "metas",
+    "category": "value",
+    "description": "This function returns a list of the result of calling meta() for each value in a list or object adaptive value.",
+    "functionId": "metas",
+    "functionLabel": "metas",
+    "parameters": [
+        {
+            "description": "This is an adaptive list or object.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "object",
+        "description": "An list containing the result of calling meta() of each value in list or object adaptive value."
+    }
+}

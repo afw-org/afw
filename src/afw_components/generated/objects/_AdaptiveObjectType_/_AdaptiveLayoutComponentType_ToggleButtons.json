@@ -1,0 +1,46 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the ToggleButtons component.",
+    "label": "ToggleButtons",
+    "objectType": "_AdaptiveLayoutComponentType_ToggleButtons",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the ToggleButtons component.",
+            "label": "Label"
+        },
+        "options": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object",
+            "description": "The available options for the ToggleButtons component.",
+            "label": "Options",
+            "required": true
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this ToggleButtons component is required.",
+            "label": "Required"
+        },
+        "exclusive": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "Specifies whether the choices are mutually exclusive.",
+            "label": "Exclusive"
+        }
+    }
+}

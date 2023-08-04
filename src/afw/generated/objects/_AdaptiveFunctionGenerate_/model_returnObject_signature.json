@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwModelReturnObjectSignature",
+    "brief": "Signature used for current:returnObject()",
+    "camelCaseFunctionLabel": "modelReturnObjectSignature",
+    "category": "model",
+    "description": "This is the function signature for current:returnObject used by onGetObjects and onRetrieveObjects. Calling this directly will throw a \"Do not call directly\" error.",
+    "functionId": "model_returnObject_signature",
+    "functionLabel": "model_returnObject_signature",
+    "parameters": [
+        {
+            "brief": "The object to return",
+            "dataType": "object",
+            "description": "This is the object to return.",
+            "name": "object"
+        },
+        {
+            "brief": "User data",
+            "dataType": "boolean",
+            "description": "If this is present and true, the object will be mapped its mapped adaptor's object type to the model adaptor's object type.",
+            "name": "userData",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "true if no more objects can be returned",
+        "dataType": "boolean",
+        "description": "This will return true if no more objects can be returned for any reason including a limit exceeded, connection closed, or server stopping."
+    },
+    "signatureOnly": true
+}

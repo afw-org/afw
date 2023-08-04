@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNexX500Name",
+    "brief": "Checks for not equal value or type",
+    "camelCaseFunctionLabel": "nexX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Determine if for x500Name arg1 is not equal to the value or data type of arg2 then return the boolean result. Use \"ne\" (\"!=\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "nex<x500Name>",
+    "functionLabel": "nex_x500Name",
+    "op": "!==",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "x500Name",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_nex"
+}

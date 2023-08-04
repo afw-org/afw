@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToYearMonthDurationString",
+    "brief": "Converts string to yearMonthDuration",
+    "camelCaseFunctionLabel": "toYearMonthDurationString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to yearMonthDuration.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_yearMonthDuration<string>",
+    "functionLabel": "to_yearMonthDuration_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "yearMonthDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

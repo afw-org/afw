@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtList",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltList",
+    "category": "list",
+    "dataTypeMethod": true,
+    "description": "Checks for list arg1 is less that list arg2 and return the boolean result.",
+    "functionId": "lt<list>",
+    "functionLabel": "lt_list",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "list",
+            "name": "arg1"
+        },
+        {
+            "dataType": "list",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

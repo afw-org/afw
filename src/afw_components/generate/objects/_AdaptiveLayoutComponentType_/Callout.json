@@ -1,0 +1,9 @@
+{
+    "category": "containers",
+    "componentType": "Callout",
+    "brief": "A layout container that displays content inside a popup.",
+    "description": "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed.",
+    "implementationId": "Callout",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Callout",
+    "label": "Callout"
+}

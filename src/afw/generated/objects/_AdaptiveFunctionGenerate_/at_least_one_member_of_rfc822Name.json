@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfRfc822Name",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in rfc822Name list1 is in rfc822Name list2.",
+    "functionId": "at_least_one_member_of<rfc822Name>",
+    "functionLabel": "at_least_one_member_of_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

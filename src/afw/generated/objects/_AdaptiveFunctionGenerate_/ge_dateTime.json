@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeDateTime",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Checks for dateTime arg1 is greater than or equal to dateTime arg2 and return the boolean result.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "ge<dateTime>",
+    "functionLabel": "ge_dateTime",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "name": "arg1"
+        },
+        {
+            "dataType": "dateTime",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

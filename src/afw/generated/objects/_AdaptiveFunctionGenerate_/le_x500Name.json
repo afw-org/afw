@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeX500Name",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Checks for x500Name arg1 is less than or equal to x500Name arg2 and return the boolean result.",
+    "functionId": "le<x500Name>",
+    "functionLabel": "le_x500Name",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

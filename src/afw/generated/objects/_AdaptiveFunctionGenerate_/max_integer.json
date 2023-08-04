@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMaxInteger",
+    "brief": "Maximum value",
+    "camelCaseFunctionLabel": "maxInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Return the integer value that is greater than or equal to the others.",
+    "functionId": "max<integer>",
+    "functionLabel": "max_integer",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_max"
+}

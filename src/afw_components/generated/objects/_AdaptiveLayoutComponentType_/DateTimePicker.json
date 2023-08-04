@@ -1,0 +1,9 @@
+{
+    "category": "pickers",
+    "componentType": "DateTimePicker",
+    "brief": "A component that allows you to select a date and time.",
+    "description": "This component understands both dates and time formats, which allows the user to select a date and time from a calendar and clock for higher date precision.",
+    "implementationId": "DateTimePicker",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_DateTimePicker",
+    "label": "Date Time Picker"
+}

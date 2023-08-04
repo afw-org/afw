@@ -1,0 +1,8 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "objectType": "_AdaptiveJournalEntrySource_",
+    "otherProperties": {}
+}

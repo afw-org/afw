@@ -1,0 +1,32 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the List component.",
+    "label": "List Layout",
+    "objectType": "_AdaptiveLayoutComponentType_List",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
+            "description": "The layout components that are contained by this List component.",
+            "label": "Contains"
+        },
+        "selectable": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Can the List items be selected?",
+            "label": "Selectable"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagInteger",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Takes any number of integer values and returns a list of list.",
+    "functionId": "bag<integer>",
+    "functionLabel": "bag_integer",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

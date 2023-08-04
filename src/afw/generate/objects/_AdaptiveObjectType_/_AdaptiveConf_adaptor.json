@@ -1,0 +1,45 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=adaptor. This object type is the parent of an _AdaptiveObjectType_ that contains adaptorType specific properties.",
+    "objectType": "_AdaptiveConf_adaptor",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes"
+            ]
+        },
+        "adaptorId": {
+            "allowQuery": true,
+            "brief": "Adaptor id",
+            "dataType": "string",
+            "description": "A unique identifier for this adaptor instance.",
+            "label": "Adaptor"
+        },
+        "adaptorType": {
+            "allowQuery": true,
+            "brief": "Adaptor type",
+            "dataType": "string",
+            "description": "This specifies the type of adaptor to use. The value of this field must match an adaptorType that is registered by core or by an extension.",
+            "label": "Adaptor Type",
+            "required": true
+        },
+        "authorizationHandlerId": {
+            "allowQuery": true,
+            "brief": "Authorization Handler Id",
+            "dataType": "string",
+            "description": "Id of authorization handler used to control access to resources in this adaptor.",
+            "label": "Authorization Handler"
+        },
+        "journalAdaptorId": {
+            "allowQuery": true,
+            "brief": "The adaptorId that provides journal service for this adaptor",
+            "dataType": "string",
+            "description": "This is the id of an adaptor that provides journal service for this adaptor. This can be this adaptor's own id or a previously defined adaptor's id. If not specified, no journaling will be performed.",
+            "label": "Journal Adaptor"
+        }
+    }
+}

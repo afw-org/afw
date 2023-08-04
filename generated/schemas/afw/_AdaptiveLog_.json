@@ -1,0 +1,45 @@
+{
+    "$defs": {
+        "_AdaptiveLog_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveLog_.propertyTypes"
+                }
+            ],
+            "description": "Runtime log information.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveLog_.propertyTypes": {
+            "properties": {
+                "logId": {
+                    "description": "Log id.",
+                    "title": "Log Id",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "This is a source location to help determine how this log was defined.",
+                    "title": "Source Location",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveLog_"
+        }
+    ]
+}

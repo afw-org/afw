@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCompileRegexp",
+    "brief": "Compile regexp value",
+    "camelCaseFunctionLabel": "compileRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Compile regexp value and return either an unevaluated adaptive value or a string containing the compiler listing.",
+    "functionId": "compile<regexp>",
+    "functionLabel": "compile_regexp",
+    "parameters": [
+        {
+            "brief": "Source to compile",
+            "dataType": "regexp",
+            "description": "regexp string to compile",
+            "name": "source"
+        },
+        {
+            "brief": "Listing option",
+            "description": "If specified, a compiler listing is produced instead of an unevaluated expression value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
+            "name": "listing",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "unevaluated"
+    }
+}

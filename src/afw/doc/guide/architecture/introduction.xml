@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Introduction</title>     
+    <paragraph>
+        <literal>Adaptive Framework (AFW)</literal> is a framework for building 
+        applications that facilitate the access of data from common sources,
+        such as databases, and presents the data and its metadata in flexible
+        formats that can be consumed and interacted with by clients or
+        applications that work well with object data. You will find that many
+        aspects of its design resemble common technologies, such as
+        <literal>Object-Relational Mapping (ORM)</literal>, <literal>Enterprise 
+        Integration Patterns (EIP)</literal> and <literal>Enterprise Service 
+        Buses (ESB)</literal>. This framework implements many of those same 
+        ideas and patterns in a way that's very extensible, adaptable to
+        technology changes, considerate of open standards, and available as open
+        source.
+    </paragraph>   
+    <paragraph>
+        While many of the development-time tools were written in Python and much
+        of the user interface components were written in TypeScript and
+        Javascript, the core of Adaptive Framework is written in C, a language
+        in which the primary engineers have had decades of experience with. This
+        implementation decision affords us fine-grain control over some of the
+        more technical aspects covered by this framework, while benefiting from
+        the notable efficiency characteristic of C. However, it is intended that
+        users of the framework will likely never have to write a line of C code.         
+        Instead, using the built-in extensions, configuration files, language
+        bindings, expressions and scripts, you can influence the adaptive
+        framework runtime without having to build or recompile anything. 
+    </paragraph>
+    <paragraph>
+        It's important to understand that this is a framework, not a product or
+        solution, and everything provided by Adaptive Framework are tools to
+        help build applications that would benefit from these features. 
+        Specific application requirements will vary and some applications may 
+        wish to use more or less features from this framework than others.
+    </paragraph>
+    <paragraph>
+        Adaptive Framework was also designed to be modular. A core set of
+        features exist, but extensions can be added at runtime and register
+        additional features that look just like first-class citizens.
+    </paragraph>   
+    <section>
+        <title>Objects and Metadata</title>
+        <paragraph>
+            Adaptive Framework was partially inspired by ideas and concepts
+            from <literal>Adaptive Object Model</literal> (<link
+            href="http://adaptiveobjectmodel.com">http://adaptiveobjectmodel.com</link>).  
+            Nearly everything in Adaptive Framework is described by objects and
+            metadata. By separating data from metadata, and representing them
+            by separate objects, we achieve flexibility over design that is very
+            dynamic and doesn't require recompilation when metadata is changed.  
+        </paragraph>
+    </section>        
+    <section>
+        <title>Background</title>
+        <paragraph>        
+            The origins of Adaptive Framework grew from a set of procedures and
+            tools that were created for the purpose of maintaining an identity
+            vault. We needed to integrate data from several systems and conform
+            to the unique rules that each system presented. We also needed to
+            conform to the unique needs of our user base. Data access, data
+            transformations, provisioning and deprovisioning, web applications,
+            security, and data inconsistencies were just some of the many
+            challenges to our project. During this process, it was also became
+            obvious that the only constant we could seem to rely on was change
+            itself. Requirements, data, protocols and software were always
+            changing. Staff, along with their expertise, moved between groups or
+            retired. Vendors could go out of business and licensing costs could
+            change. It was imperative, therefore, to design something that was
+            adaptable to all of these moving parts.
+        </paragraph>
+        <paragraph>
+            One feature that we really wanted was to be able to plug in any
+            database of choice and allow for all applications, new or legacy, to
+            interoperate with with each other. We also wanted to harvest
+            metadata from existing systems and use it to make business decisions
+            without replicating code and policy. We wanted to be able to adapt
+            to new software technologies and data formats without changing
+            business rules that were in place. We needed the ability to generate
+            documentation and APIs in order to keep up with the data model that
+            was constantly changing. Finally, it was ideal for the solution to
+            be open source. These emerging design features - the interface
+            definitions, objects, metadata, data types, functions, expressions,
+            languages, language bindings, command-line and web-based tools, doc
+            and code generation - produced the Adaptive Framework.
+        </paragraph>
+    </section> 
+    <section>
+        <title>Architecture Diagram</title>
+        <paragraph>
+            The following diagram constructs how the parts may be assembled
+            together, to create an <literal>Adaptive Framework
+            Application</literal> in order to demonstrate how the parts are
+            constructed, visually. This application leverages extensions to
+            interact with external databases in various data formats and uses
+            configuration files and objects to influence how it will respond to
+            client requests.
+        </paragraph>
+        <image src="images/ArchitectureDiagram.svg" description="Adaptive
+        Application Architecture" caption="Adaptive Application Architecture" />
+        <section>
+            <title>Adaptive Framework Core</title>
+            <paragraph>
+                The <literal>Adaptive Framework Core</literal> refers to the
+                functionality that is provided by the framework, by default.  
+                Core includes built-in interfaces, data types, functions,
+                extensions, adaptors for persisting objects, logs and request 
+                handlers. It also includes a runtime environment and a language 
+                interpreter to evaluate Adaptive Scripts and Expressions.
+            </paragraph>        
+        </section>    
+        <section>
+            <title>Extensions</title>
+            <paragraph>
+                <literal>Extensions</literal> are shared libraries that are able
+                to be loaded dynamically at runtime by Adaptive Framework Core.
+                These extensions can then register additional functionality,
+                such as new data types, functions or adaptors.
+            </paragraph>        
+        </section> 
+        <section>
+            <title>Services</title>
+            <paragraph>
+                <literal>Services</literal> bundle configuration objects with 
+                extension implementations, along with startup instructions, to 
+                deploy a dynamically reloadable unit of work. These may include 
+                logging, database adaptors, authorization handlers and more.
+            </paragraph>        
+        </section> 
+        <section>
+            <title>Server</title>
+            <paragraph>
+                The <literal>Server</literal> in this example is a compiled
+                binary that is linked against the Adaptive Framework Core, and
+                may load extensions at runtime based on configuration files that
+                it has been provided. It will also instantiate a request handler
+                in order to process client requests. The Adaptive Framework
+                provides a default server implementation, based on FastCGI,
+                which can be used behind a web server such as Apache or Nginx.
+            </paragraph>        
+        </section> 
+        <section>
+            <title>Configuration Objects</title>
+            <paragraph>
+                In order to configure an application, we use 
+                <literal>Configuration Objects</literal>, along with a single 
+                <literal>afw.conf</literal> file to instruct the application 
+                instance which extensions to load, what services to start and 
+                where to locate additional configurations.
+            </paragraph>
+        </section>
+        <section>
+            <title>Data</title>
+            <paragraph>
+                The <literal>Data</literal> in this diagram may be optional, 
+                structured databases, object stores, log files, event journals,
+                or anything else that may be used by services to read or persist
+                data.
+            </paragraph>
+        </section>
+        <section>
+            <title>Application</title>
+            <paragraph>
+                The <literal>Application</literal> is the sum of
+                everything in this diagram, and is defined to Adaptive Framework
+                through a special configuration object. This documents the
+                application and provides some additional processing
+                instructions, such as which extensions to load at startup, a
+                default authorization script, general file path information and
+                some properties useful for the Administrative Web Application.
+            </paragraph>        
+        </section> 
+    </section>
+</doc>

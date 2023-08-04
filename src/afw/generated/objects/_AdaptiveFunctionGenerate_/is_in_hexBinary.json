@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInHexBinary",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Checks whether hexBinary value is in list of hexBinary list and returns the boolean result.",
+    "functionId": "is_in<hexBinary>",
+    "functionLabel": "is_in_hexBinary",
+    "parameters": [
+        {
+            "dataType": "hexBinary",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

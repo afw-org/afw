@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwForeach",
+    "brief": "Evaluate a list of values (statements) while a condition is true with a list of initial and increment values",
+    "camelCaseFunctionLabel": "foreach",
+    "category": "script",
+    "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value.",
+    "functionId": "foreach",
+    "functionLabel": "foreach",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Variable name(s).",
+            "name": "name"
+        },
+        {
+            "description": "Any list, object or single value.",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
+            "name": "body",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "description": "The last value evaluated in body or null if condition evaluates to false the first time."
+    },
+    "scriptSupport": true
+}

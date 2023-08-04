@@ -1,0 +1,50 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Run time information for a loaded extension.",
+    "objectType": "_AdaptiveExtension_",
+    "propertyTypes": {
+        "afwCompiledVersion": {
+            "allowQuery": true,
+            "brief": "Version of libafw this extension was compiled against",
+            "dataType": "string",
+            "description": "Version of libafw this extension was compiled against.",
+            "label": "AFW Version",
+            "runtime": {
+                "memberName": "afw_compiled_version"
+            }
+        },
+        "extensionId": {
+            "allowQuery": true,
+            "brief": "Id of extension",
+            "dataType": "string",
+            "description": "Id of extension.",
+            "label": "Extension Id",
+            "runtime": {
+                "memberName": "extension_id"
+            }
+        },
+        "extensionVersion": {
+            "allowQuery": true,
+            "brief": "Version of this extension",
+            "dataType": "string",
+            "description": "Version of this extension.",
+            "label": "Version",
+            "runtime": {
+                "memberName": "extension_version"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "extension_id"
+        },
+        "typedef": "afw_extension_t"
+    }
+}

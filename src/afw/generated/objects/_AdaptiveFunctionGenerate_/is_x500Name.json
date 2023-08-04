@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsX500Name",
+    "brief": "Checks whether value is dataType x500Name",
+    "camelCaseFunctionLabel": "isX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType x500Name and return the boolean result.",
+    "functionId": "is<x500Name>",
+    "functionLabel": "is_x500Name",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

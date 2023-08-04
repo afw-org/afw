@@ -1,0 +1,45 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Callout component.",
+    "objectType": "_AdaptiveLayoutComponentType_Callout",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Specifies the placeholder text displayed when no value is present.",
+            "label": "Contains"
+        },
+        "gapSpace": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The gap space between target and the Callout component.",
+            "label": "Gap Space"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this Callout component is open.",
+            "label": "Open",
+            "required": true
+        },
+        "targetPosition": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_Callout_TargetPosition",
+            "description": "Specifies the position of the callout, relative to the target component.",
+            "label": "Target Position"
+        }
+    }
+}

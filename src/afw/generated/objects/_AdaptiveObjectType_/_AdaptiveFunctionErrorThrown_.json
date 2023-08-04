@@ -1,0 +1,26 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An object entry of _AdaptiveFunction_ errorsThrown list.",
+    "objectType": "_AdaptiveFunctionErrorThrown_",
+    "propertyTypes": {
+        "error": {
+            "allowQuery": true,
+            "brief": "The error",
+            "dataType": "string",
+            "description": "This is the error id of the error that can be thrown.",
+            "label": "Error",
+            "required": true
+        },
+        "reason": {
+            "allowQuery": true,
+            "brief": "The reason",
+            "dataType": "string",
+            "description": "This is the reason the error can be thrown.",
+            "label": "Reason",
+            "required": true
+        }
+    }
+}

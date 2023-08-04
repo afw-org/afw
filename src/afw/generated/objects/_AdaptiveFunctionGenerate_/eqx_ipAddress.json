@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxIpAddress",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Determine if for ipAddress arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<ipAddress>",
+    "functionLabel": "eqx_ipAddress",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "ipAddress",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

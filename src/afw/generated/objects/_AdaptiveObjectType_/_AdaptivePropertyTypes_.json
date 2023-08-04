@@ -1,0 +1,12 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Object type of the propertyTypes property of an object type.",
+    "objectType": "_AdaptivePropertyTypes_",
+    "otherProperties": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveValueMeta_"
+    }
+}

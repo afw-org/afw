@@ -1,0 +1,255 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/afw",
+                "objectId": "afw",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-afw",
+            "referenceCount": 3,
+            "properties": {
+                "_meta_": {
+                    "objectType": "_AdaptiveConf_adaptor_afw_runtime"
+                },
+                "sourceLocation": "Core afw adaptor",
+                "adaptorId": "afw",
+                "adaptorType": "afw_runtime",
+                "type": "adaptor"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 796,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 6572,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "afw"
+        },        
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/dev",
+                "objectId": "dev",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-dev",
+            "referenceCount": 1,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/dev",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "adaptorId": "dev",
+                "adaptorType": "file",
+                "type": "adaptor",
+                "description": "File adaptor for development input strings and objects.",
+                "root": "/workspace/src/afw/generate/objects/",
+                "isDevelopmentInput": true,
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-dev"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 0,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 0,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/layouts",
+                "objectId": "layouts",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-layouts",
+            "referenceCount": 1,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/layouts",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "type": "adaptor",
+                "adaptorType": "file",
+                "root": "/afw/layouts/",
+                "contentType": "json",
+                "filenameSuffix": ".json",
+                "description": "Stores adaptive layouts.",
+                "adaptorId": "layouts",
+                "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-layouts"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 0,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 0,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "layouts"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/auth",
+                "objectId": "auth",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-auth",
+            "referenceCount": 1,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/auth",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "type": "adaptor",
+                "adaptorType": "file",
+                "isPolicyLocation": true,
+                "root": "/afw/auth/",
+                "contentType": "json",
+                "filenameSuffix": ".json",
+                "description": "Stores adaptive authorization policies.",
+                "adaptorId": "auth",
+                "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-auth"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 17,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 17,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "auth"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/files",
+                "objectId": "files",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-files",
+            "referenceCount": 1,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/files",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "type": "adaptor",
+                "adaptorType": "file",
+                "root": "/afw/files/",
+                "contentType": "json",
+                "filenameSuffix": ".json",
+                "description": "Stores objects in files.",
+                "isDevelopmentInput": true,
+                "adaptorId": "files",
+                "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-files"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 0,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 0,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "files"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/models",
+                "objectId": "models",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-models",
+            "referenceCount": 1,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/models",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "type": "adaptor",
+                "adaptorType": "file",
+                "isModelLocation": true,
+                "root": "/afw/models/",
+                "contentType": "json",
+                "filenameSuffix": ".json",
+                "description": "Stores adaptive models.",
+                "adaptorId": "models",
+                "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-models"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 1,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 19,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "models"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveAdaptor_/conf",
+                "objectId": "conf",
+                "objectType": "_AdaptiveAdaptor_"
+            },
+            "serviceId": "adaptor-conf",
+            "referenceCount": 3,
+            "properties": {
+                "_meta_": {
+                    "path": "/afw/_AdaptiveConf_adaptor_file/conf",
+                    "objectType": "_AdaptiveConf_adaptor_file"
+                },
+                "type": "adaptor",
+                "adaptorId": "conf",
+                "adaptorType": "file",
+                "filenameSuffix": ".json",
+                "contentType": "json",
+                "root": "/afw/config/",
+                "sourceLocation": "/workspace/docker/dev/afw.conf entry 1"
+            },
+            "metrics": {
+                "_meta_": {
+                    "objectType": "_AdaptiveAdaptorMetrics_"
+                },
+                "updateObjectCount": 0,
+                "retrieveObjectsCount": 243,
+                "replaceObjectCount": 0,
+                "modifyObjectCount": 0,
+                "getObjectCount": 2712,
+                "deleteObjectCount": 0,
+                "addObjectCount": 0
+            },
+            "adaptorId": "conf"
+        }
+    ],
+    "status": "success"
+}

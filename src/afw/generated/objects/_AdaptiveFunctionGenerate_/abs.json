@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAbs",
+    "brief": "Absolute value",
+    "camelCaseFunctionLabel": "abs",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Compute the absolute value of the <dataType> value and return the <dataType> result.",
+    "functionId": "abs",
+    "functionLabel": "abs",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

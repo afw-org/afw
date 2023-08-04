@@ -1,0 +1,39 @@
+{
+    "description": "Tests for one_and_only<yearMonthDuration> function.",
+    "functionId": "one_and_only<yearMonthDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P20M"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "yearMonthDuration",
+                "value": "P20M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "yearMonthDuration",
+                "value": "P2Y6M"
+            }
+        }
+    ]
+}

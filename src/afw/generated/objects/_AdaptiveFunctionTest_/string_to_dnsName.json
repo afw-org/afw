@@ -1,0 +1,39 @@
+{
+    "description": "Tests for to_dnsName<string> function.",
+    "functionId": "to_dnsName<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "clemson:8080"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "dnsName",
+                "value": "clemson:8080"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "190.190.190.190:8080"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "dnsName",
+                "value": "190.190.190.190:8080"
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

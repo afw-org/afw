@@ -1,0 +1,58 @@
+{
+    "description": "Tests for le<date> function.",
+    "functionId": "le<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "1970-01-01"
+                },
+                {
+                    "dataType": "date",
+                    "value": "1970-01-02"
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "1970-01-01"
+                },
+                {
+                    "dataType": "date",
+                    "value": "1970-01-01"
+                }
+            ],
+            "description": "equal",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "1970-01-02"
+                },
+                {
+                    "dataType": "date",
+                    "value": "1970-01-01"
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

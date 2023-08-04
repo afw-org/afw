@@ -1,0 +1,52 @@
+{
+    "brief": "Returns the number of values in a bag",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size",
+    "functionLabel": "bag_size",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "name": "value",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_bag_size",
+    "returns": {
+        "dataType": "integer"
+    }
+}

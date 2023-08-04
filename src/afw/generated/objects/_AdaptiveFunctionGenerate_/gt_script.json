@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtScript",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtScript",
+    "category": "script",
+    "dataTypeMethod": true,
+    "description": "Checks for script arg1 is greater than script arg2 and return the boolean result.",
+    "functionId": "gt<script>",
+    "functionLabel": "gt_script",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "script",
+            "name": "arg1"
+        },
+        {
+            "dataType": "script",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

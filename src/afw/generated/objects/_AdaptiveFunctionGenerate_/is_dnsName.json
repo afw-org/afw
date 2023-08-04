@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsDnsName",
+    "brief": "Checks whether value is dataType dnsName",
+    "camelCaseFunctionLabel": "isDnsName",
+    "category": "dnsName",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType dnsName and return the boolean result.",
+    "functionId": "is<dnsName>",
+    "functionLabel": "is_dnsName",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

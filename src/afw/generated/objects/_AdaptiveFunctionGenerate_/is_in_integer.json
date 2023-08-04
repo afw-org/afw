@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInInteger",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Checks whether integer value is in list of integer list and returns the boolean result.",
+    "functionId": "is_in<integer>",
+    "functionLabel": "is_in_integer",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

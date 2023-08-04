@@ -1,0 +1,38 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToDouble",
+    "brief": "Converts to double",
+    "camelCaseFunctionLabel": "toDouble",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to double and returns double result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_double",
+    "functionLabel": "to_double",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "integer",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "polymorphicOverrides": {
+        "integer": {
+            "useExecuteFunction": "afw_function_execute_to_double_integer"
+        }
+    },
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

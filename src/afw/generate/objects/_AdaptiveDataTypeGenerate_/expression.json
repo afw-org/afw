@@ -1,0 +1,14 @@
+{
+    "brief": "An adaptive expression",
+    "cType": "afw_utf8_t",
+    "compileType": "expression",
+    "dataType": "expression",
+    "dataTypeParameterType": "SourceParameter",
+    "description": "Data type expression holds the source for an adaptive expression.",
+    "directReturn": false,
+    "evaluated": true,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

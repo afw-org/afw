@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeHybrid",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geHybrid",
+    "category": "hybrid",
+    "dataTypeMethod": true,
+    "description": "Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return the boolean result.",
+    "functionId": "ge<hybrid>",
+    "functionLabel": "ge_hybrid",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "hybrid",
+            "name": "arg1"
+        },
+        {
+            "dataType": "hybrid",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

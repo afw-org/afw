@@ -1,0 +1,24 @@
+{
+    "dataType": "base64Binary",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "0FB8 0F+9"
+        },
+        {
+            "value": "0FB8"
+        },
+        {
+            "value": "0fb8"
+        },
+        {
+            "value": "0FB80F+9"
+        },
+        {
+            "value": "0F+40A=="
+        },
+        {
+            "value": ""
+        }
+    ]
+}

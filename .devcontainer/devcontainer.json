@@ -1,0 +1,27 @@
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+    "name": "Adaptive Framework",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "afw",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+    "mounts": [
+        "source=afw-workspace-bashhistory,target=/commandhistory,type=volume",
+        "source=afw-workspace-extensions,target=/root/.vscode-server/extensions,type=volume",        
+        "source=afw-workspace-extensions-insiders,target=/root/.vscode-server-insiders/extensions,type=volume"
+    ],
+    
+    // Use 'settings' to set *default* container specific settings.json values on container create. 
+    // You can edit these settings after create using File > Preferences > Settings > Remote.
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+
+    "postCreateCommand": ".devcontainer/scripts/postCreateCommand.sh",
+    "postAttachCommand": ".devcontainer/scripts/postAttachCommand.sh",
+    "postStartCommand": ".devcontainer/scripts/postStartCommand.sh"        
+}

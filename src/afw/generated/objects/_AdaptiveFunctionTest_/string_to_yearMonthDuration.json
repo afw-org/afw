@@ -1,0 +1,46 @@
+{
+    "description": "Tests for to_yearMonthDuration<string> function.",
+    "functionId": "to_yearMonthDuration<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "P2Y6M"
+                }
+            ],
+            "description": "P2Y6M",
+            "result": {
+                "dataType": "yearMonthDuration",
+                "value": "P2Y6M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "-P60Y"
+                }
+            ],
+            "description": "-P60Y",
+            "result": {
+                "dataType": "yearMonthDuration",
+                "value": "-P60Y"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "P0Y"
+                }
+            ],
+            "description": "P0Y",
+            "result": {
+                "dataType": "yearMonthDuration",
+                "value": "P0Y"
+            }
+        }
+    ]
+}

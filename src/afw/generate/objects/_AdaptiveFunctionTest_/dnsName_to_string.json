@@ -1,0 +1,39 @@
+{
+    "description": "Tests for to_string<dnsName> function.",
+    "functionId": "to_string<dnsName>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dnsName",
+                    "value": "example.org"
+                }
+            ],
+            "description": "example.org",
+            "result": {
+                "dataType": "string",
+                "value": "example.org"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dnsName",
+                    "value": "microsoft.com"
+                }
+            ],
+            "description": "microsoft.com",
+            "result": {
+                "dataType": "string",
+                "value": "microsoft.com"
+            }
+        },
+        {
+            "description": "microsoft.com",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

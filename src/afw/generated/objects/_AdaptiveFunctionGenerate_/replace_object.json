@@ -1,0 +1,51 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReplaceObject",
+    "brief": "Replace adaptive object",
+    "camelCaseFunctionLabel": "replaceObject",
+    "category": "adaptor",
+    "description": "Replace an adaptive object.",
+    "functionId": "replace_object",
+    "functionLabel": "replace_object",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor containing object to replace.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "Id of adaptive object type of object to replace.",
+            "name": "objectType"
+        },
+        {
+            "dataType": "string",
+            "description": "Id of object to replace.",
+            "name": "objectId"
+        },
+        {
+            "dataType": "object",
+            "description": "Replacement object.",
+            "name": "object"
+        },
+        {
+            "dataType": "object",
+            "description": "The properties of this object will be added to the associated journal entry. Refer to /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to avoid and for ones that have specific semantics.",
+            "name": "journal",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveJournalEntry_",
+        "description": "Resulting journal entry."
+    },
+    "sideEffects": [
+        "Object modified"
+    ]
+}

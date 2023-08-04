@@ -1,0 +1,19 @@
+{
+    "brief": "Nullish coalescing",
+    "category": "miscellaneous",
+    "description": "Returns the first value of values that is not null or undefined leaving the remaining values unevaluated.",
+    "functionId": "nullish_coalescing",
+    "functionLabel": "nullish_coalescing",
+    "op": "??",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "minArgs": 2,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "description": "The first value of values that is not null or undefined."
+    }
+}

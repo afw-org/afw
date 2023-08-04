@@ -1,0 +1,67 @@
+{
+    "description": "Tests for intersection<dayTimeDuration> function.",
+    "functionId": "intersection<dayTimeDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "-P1DT10H30M",
+                        "P1DT10H30M",
+                        "-P1DT10H30M",
+                        "P1DT10H30M",
+                        "-P1DT10H35M"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "-P1DT10H30M",
+                        "P1DT10H30M",
+                        "P1DT10H30M",
+                        "P1DT10H30M",
+                        "P1DT10H30M",
+                        "P1DT30M"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "dayTimeDuration",
+                "value": [
+                    "-P1DT10H30M",
+                    "P1DT10H30M"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dayTimeDuration",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

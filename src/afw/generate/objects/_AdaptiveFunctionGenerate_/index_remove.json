@@ -1,0 +1,26 @@
+{
+    "brief": "Remove index definition",
+    "category": "indexes",
+    "description": "Remove an index definition.",
+    "functionId": "index_remove",
+    "functionLabel": "index_remove",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of adaptor.",
+            "name": "adaptorId"
+        },
+        {
+            "dataType": "string",
+            "description": "The index key to be removed.",
+            "name": "key"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "Object response from the indexing process"
+    },
+    "sideEffects": [
+        "Index removed"
+    ]
+}

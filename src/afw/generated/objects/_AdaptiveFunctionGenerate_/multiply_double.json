@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMultiplyDouble",
+    "brief": "Multiply numbers",
+    "camelCaseFunctionLabel": "multiplyDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Multiply 2 or more double values and return the double result.",
+    "functionId": "multiply<double>",
+    "functionLabel": "multiply_double",
+    "op": "*",
+    "parameters": [
+        {
+            "dataType": "double",
+            "minArgs": 2,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

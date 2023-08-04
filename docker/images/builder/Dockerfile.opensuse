@@ -1,0 +1,22 @@
+# Build stage for C compilation, which may use multi-arch builds
+FROM ghcr.io/afw-org/afw-dev-base:opensuse AS build-stage-c
+
+COPY ./ /src
+COPY ./docker/images/builder/builder-opensuse.sh /builder.sh
+COPY ./docker/images/builder/afw.spec /afw.spec
+
+RUN chmod +x /builder.sh && /builder.sh
+
+# Build stage for Javascript compiles (only build on native platform for JS)
+FROM --platform=$BUILDPLATFORM ghcr.io/afw-org/afw-dev-base:opensuse AS build-stage-js
+
+COPY ./ /src
+COPY ./docker/images/builder/builder-opensuse.sh /builder.sh
+
+RUN chmod +x /builder.sh && BUILD_TARGET=js /builder.sh
+
+
+FROM scratch
+
+COPY --from=build-stage-c /*.rpm /
+COPY --from=build-stage-js /*.tar /

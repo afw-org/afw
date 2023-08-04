@@ -1,0 +1,16 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=log logType=event_log. This log type is only available on Windows.",
+    "objectType": "_AdaptiveConf_log_event_log",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes"
+            ]
+        }
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "name": "afw_authorization_handler",
+    "description": "Adaptive framework authorization handler interface."
+}

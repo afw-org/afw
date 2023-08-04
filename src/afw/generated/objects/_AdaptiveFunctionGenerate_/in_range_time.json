@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwInRangeTime",
+    "brief": "Checks if time in range",
+    "camelCaseFunctionLabel": "inRangeTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Checks if time is between startTime and endTime, inclusive. Regardless of endTime value, it is always considered to be equal to, but less than 24 hours greater than startTime. If no time zone is specified for time, the default time zone is used. If no time zone is specified for startTime or endTime, the time zone of time is used.",
+    "functionId": "in_range<time>",
+    "functionLabel": "in_range_time",
+    "parameters": [
+        {
+            "dataType": "time",
+            "name": "time"
+        },
+        {
+            "dataType": "time",
+            "name": "startTime"
+        },
+        {
+            "dataType": "time",
+            "name": "endTime"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

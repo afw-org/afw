@@ -1,0 +1,14 @@
+{
+    "brief": "An adaptive template",
+    "cType": "afw_utf8_t",
+    "compileType": "template",
+    "dataType": "template",
+    "dataTypeParameterType": "SourceParameter",
+    "description": "Data type template holds the source for an adaptive template.",
+    "directReturn": false,
+    "evaluated": true,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

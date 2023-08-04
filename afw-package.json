@@ -1,0 +1,114 @@
+{
+    "afwPackageId": "afw",
+    "brief": "The base AFW repository including core",
+    "bugReportEmail": "info@adaptiveframework.org",
+    "compileOptions": {
+        "GNU": [
+            "-std=c11",
+            "-g",
+            "-Wall",
+            "-Wextra",
+            "-Wno-missing-field-initializers",
+            "-Wno-unused-parameter",
+            "-Wno-sign-compare",
+            "-Wno-implicit-fallthrough",
+            "-Werror",
+            "-fsigned-char"
+        ]
+    },
+    "description": "This is the Adaptive Framework (AFW) base which includes library libafw, the afw and afwdev commands, the core UI support, the AFW Administration application, plus a base set of extensions and server implementations.",
+    "homePageUrl": "https://github.com/afw-org",
+    "installPackageSubdir": "afw",
+    "srcdirManifest": "afw",
+    "srcdirs": {
+        "afw": {
+            "brief": "Library libafw",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafw.",
+            "prefix": "afw_",
+            "produces": "libafw",
+            "srcdirPath": "src/afw"
+        },
+        "afw_command": {
+            "brief": "Command afw",
+            "buildType": "afwmake",
+            "description": "AFW command - afw.",
+            "prefix": "afw_command_",
+            "produces": "afw",
+            "srcdirPath": "src/afw_command"
+        },
+        "afw_components": {
+            "brief": "Library libafwcomponents",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwcomponents.",
+            "prefix": "afw_components_",
+            "produces": "libafwcomponents",
+            "srcdirPath": "src/afw_components"
+        },
+        "afw_dev": {
+            "brief": "Command afwdev",
+            "buildType": "afwmake:python",
+            "buildTypeParameters": {
+                "manualMakefile": true
+            },
+            "description": "AFW shared object - libafw.",
+            "produces": "afwdev",
+            "srcdirPath": "src/afw_dev"
+        },
+        "afw_ldap": {
+            "brief": "Library libafwldap",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwldap.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_ldap_",
+            "produces": "libafwldap",
+            "srcdirPath": "src/afw_ldap"
+        },
+        "afw_lmdb": {
+            "brief": "Library libafwlmdb",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwlmdb.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_lmdb_",
+            "produces": "libafwlmdb",
+            "srcdirPath": "src/afw_lmdb"
+        },
+        "afw_server_fcgi": {
+            "brief": "Command afwfcgi",
+            "buildType": "afwmake",
+            "description": "AFW command - afwfcgi.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_server_fcgi_",
+            "produces": "afwfcgi",
+            "srcdirPath": "src/afw_server_fcgi"
+        },
+        "afw_ubjson": {
+            "brief": "Library libafwubjson",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwubjson.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_ubjson_",
+            "produces": "libafwubjson",
+            "srcdirPath": "src/afw_ubjson"
+        },
+        "afw_vfs": {
+            "brief": "Library libafwvfs",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwvfs.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_vfs_",
+            "produces": "libafwvfs",
+            "srcdirPath": "src/afw_vfs"
+        },
+        "afw_yaml": {
+            "brief": "Library libafwyaml",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwyaml.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_yaml_",
+            "produces": "libafwyaml",
+            "srcdirPath": "src/afw_yaml"
+        }
+    },
+    "version": "0.9.0"
+}

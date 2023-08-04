@@ -1,0 +1,22 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type of the labels property of _AdaptiveRuntimeObject_.",
+    "objectType": "_AdaptiveRuntimeLabels_",
+    "propertyTypes": {
+        "indirectObjectId": {
+            "brief": "The objectId in the associated struct is a pointer",
+            "dataType": "boolean",
+            "description": "Indicates that the objectId in the associated struct is a pointer.",
+            "label": "Indirect Object Id"
+        },
+        "objectId": {
+            "brief": "The name of member in the struct that contains the objectId",
+            "dataType": "string",
+            "description": "The name of member in the struct that contains the objectId.",
+            "label": "Object Id"
+        }
+    }
+}

@@ -1,0 +1,85 @@
+{
+    "description": "Tests for to_string<double> function.",
+    "functionId": "to_string<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "1.3"
+                }
+            ],
+            "description": "string from double test 1.3",
+            "result": {
+                "dataType": "string",
+                "value": "1.3E0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "12400.0"
+                }
+            ],
+            "description": "string from double test 1.24e4",
+            "result": {
+                "dataType": "string",
+                "value": "1.24E4"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-Infinity"
+                }
+            ],
+            "description": "string from double test -Infinity",
+            "result": {
+                "dataType": "string",
+                "value": "-Infinity"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "18.44224E18"
+                }
+            ],
+            "description": "string from double test",
+            "result": {
+                "dataType": "string",
+                "value": "1.844224E19"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "18.44002E-004"
+                }
+            ],
+            "description": "string from double test",
+            "result": {
+                "dataType": "string",
+                "value": "1.844002E-3"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "0.0"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "dataType": "string",
+                "value": "0.0E0"
+            }
+        }
+    ]
+}

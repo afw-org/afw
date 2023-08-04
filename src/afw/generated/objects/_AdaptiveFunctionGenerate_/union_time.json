@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionTime",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Returns a list of time contains all of the unique values in two or more list of time values.",
+    "functionId": "union<time>",
+    "functionLabel": "union_time",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "time"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

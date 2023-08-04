@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpMatchX500Name",
+    "brief": "Search for a match using a regular expression",
+    "camelCaseFunctionLabel": "regexpMatchX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Checks whether x500Name value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match<x500Name>",
+    "functionLabel": "regexp_match_x500Name",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_match"
+}

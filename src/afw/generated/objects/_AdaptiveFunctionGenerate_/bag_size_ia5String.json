@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeIa5String",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<ia5String>",
+    "functionLabel": "bag_size_ia5String",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "ia5String",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

@@ -1,0 +1,40 @@
+{
+    "brief": "Returns union of two or more string lists",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns a list of <dataType> contains all of the unique values in two or more list of <dataType> values.",
+    "functionId": "union",
+    "functionLabel": "union",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_union",
+    "returns": {
+        "dataType": "list",
+        "polymorphicDataTypeParameter": true
+    }
+}

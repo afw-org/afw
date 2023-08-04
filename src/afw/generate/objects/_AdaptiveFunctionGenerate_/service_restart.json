@@ -1,0 +1,22 @@
+{
+    "brief": "Restart service",
+    "category": "administrative",
+    "description": "Restart a service.",
+    "functionId": "service_restart",
+    "functionLabel": "service_restart",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The serviceId of the service to restart.",
+            "name": "serviceId"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveService_",
+        "description": "_AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be \"error\" and \"statusMessage\" contain an error message."
+    },
+    "sideEffects": [
+        "Service restarted"
+    ]
+}

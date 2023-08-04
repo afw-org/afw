@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFlagSet",
+    "brief": "Set or unset active xctx flags",
+    "camelCaseFunctionLabel": "flagSet",
+    "category": "administrative",
+    "description": "Set or unset one or more active xctx (request) flags.",
+    "functionId": "flag_set",
+    "functionLabel": "flag_set",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "List of flagId of flags to set or unset.",
+            "name": "flagId"
+        },
+        {
+            "dataType": "boolean",
+            "description": "Specify true to set and false to unset. If not specified, flags are set.",
+            "name": "setTo",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

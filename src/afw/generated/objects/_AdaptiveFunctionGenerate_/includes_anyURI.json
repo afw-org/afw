@@ -1,0 +1,38 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIncludesAnyURI",
+    "brief": "Checks whether the anyURI value includes a string",
+    "camelCaseFunctionLabel": "includesAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks whether the anyURI value includes a string and return the boolean result.",
+    "functionId": "includes<anyURI>",
+    "functionLabel": "includes_anyURI",
+    "parameters": [
+        {
+            "brief": "The anyURI to search",
+            "dataType": "anyURI",
+            "description": "The anyURI to search.",
+            "name": "searchString"
+        },
+        {
+            "brief": "Substring to find",
+            "dataType": "string",
+            "description": "Substring to find.",
+            "name": "subString"
+        },
+        {
+            "brief": "Zero-based position in the search string to start search",
+            "dataType": "integer",
+            "description": "Zero-based position in the search string to start search.",
+            "name": "position",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "brief": "Indicates if the substring is found",
+        "dataType": "boolean",
+        "description": "Indicates if the substring is contained in the search string."
+    },
+    "useExecuteFunction": "afw_function_execute_includes"
+}

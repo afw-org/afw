@@ -1,0 +1,47 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This controls how authorization checking occurs in an Adaptive Framework application.",
+    "objectType": "_AdaptiveAuthorizationControl_",
+    "propertyTypes": {
+        "checkIntermediateMode": {
+            "brief": "Check authorization in mode intermediate",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Do authorization check when running in mode intermediate. If false, the checks will be bypassed.",
+            "label": "Check Intermediate",
+            "required": false
+        },
+        "coreAuthorizationCheck": {
+            "brief": "Core Authorization Check",
+            "contextType": "authorizationCheck",
+            "dataType": "hybrid",
+            "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+            "description": "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
+            "label": "Core Check",
+            "required": false
+        },
+        "initialAuthorizationCheck": {
+            "brief": "Initial Authorization Check",
+            "contextType": "authorizationCheck",
+            "dataType": "hybrid",
+            "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+            "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
+            "label": "Initial Check",
+            "required": false
+        },
+        "denyIfNotApplicable": {
+            "brief": "Deny if not applicable",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",
+            "label": "Deny If Not Applicable",
+            "required": false
+        }
+    }
+}

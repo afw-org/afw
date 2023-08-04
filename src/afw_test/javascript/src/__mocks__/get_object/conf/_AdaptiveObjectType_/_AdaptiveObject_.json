@@ -1,0 +1,14 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveObject_"
+        },
+        "otherProperties": {},
+        "objectType": "_AdaptiveObject_",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true
+    },
+    "status": "success"
+}

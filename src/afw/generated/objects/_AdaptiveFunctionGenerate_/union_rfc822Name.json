@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionRfc822Name",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Returns a list of rfc822Name contains all of the unique values in two or more list of rfc822Name values.",
+    "functionId": "union<rfc822Name>",
+    "functionLabel": "union_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "rfc822Name"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

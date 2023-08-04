@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFlush",
+    "brief": "Flush stream buffer",
+    "camelCaseFunctionLabel": "flush",
+    "category": "stream",
+    "description": "Write the content of the stream's buffers to its destination.",
+    "functionId": "flush",
+    "functionLabel": "flush",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "The streamNumber for the stream to flush.",
+            "name": "streamNumber"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Buffers written"
+    ]
+}

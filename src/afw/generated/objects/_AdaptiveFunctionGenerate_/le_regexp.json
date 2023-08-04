@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeRegexp",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Checks for regexp arg1 is less than or equal to regexp arg2 and return the boolean result.",
+    "functionId": "le<regexp>",
+    "functionLabel": "le_regexp",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "regexp",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

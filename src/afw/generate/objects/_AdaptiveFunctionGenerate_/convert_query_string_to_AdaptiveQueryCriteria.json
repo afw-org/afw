@@ -1,0 +1,31 @@
+{
+    "brief": "Convert query string to _AdaptiveQueryCriteria_",
+    "category": "adaptor",
+    "description": "This function converts a query string to an _AdaptiveQueryCriteria_ object.",
+    "functionId": "convert_query_string_to_AdaptiveQueryCriteria",
+    "functionLabel": "convert_query_string_to_AdaptiveQueryCriteria",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The query string to convert.",
+            "name": "queryString"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the adaptorId of adaptor containing the objectType for validating and mapping this query. If not specified, no validation or mapping will occur.",
+            "name": "adaptorId",
+            "optional": true
+        },
+        {
+            "dataType": "string",
+            "description": "This is the objectType used in conjunction with the adaptorId parameter. This parameter is only allowed and is required if the adaptorId parameter is specified.",
+            "name": "objectType",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveQueryCriteria_",
+        "description": "An object type _AdaptiveQueryCriteria_ object representing query string."
+    }
+}

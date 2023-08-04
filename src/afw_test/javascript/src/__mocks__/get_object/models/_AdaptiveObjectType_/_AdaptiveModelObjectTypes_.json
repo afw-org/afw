@@ -1,0 +1,23 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/models/_AdaptiveObjectType_/_AdaptiveModelObjectTypes_"
+        },
+        "allowDelete": true,
+        "allowChange": true,
+        "allowAdd": true,
+        "otherProperties": {
+            "description": "Defines an Object Type definition in this Adaptive Model.",
+            "dataTypeParameter": "_AdaptiveModelObjectType_",
+            "dataType": "object",
+            "brief": "Defines an Object Type definition in this Adaptive Model"
+        },
+        "objectType": "_AdaptiveModelObjectTypes_",
+        "description": "The adaptive object type of all object that contains _AdaptiveModelObjectTypes_ objects as properties.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

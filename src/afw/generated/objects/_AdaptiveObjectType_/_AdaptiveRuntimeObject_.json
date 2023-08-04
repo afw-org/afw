@@ -1,0 +1,32 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type of the runtime property of _AdaptiveObjectType_.",
+    "objectType": "_AdaptiveRuntimeObject_",
+    "propertyTypes": {
+        "indirect": {
+            "brief": "The runtime struct is a pointer",
+            "dataType": "boolean",
+            "description": "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, the is ignored and runtime structure is always indirect.",
+            "label": "Indirect"
+        },
+        "labels": {
+            "brief": "Labels",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveRuntimeLabels_",
+            "description": "Labels.",
+            "label": "Labels"
+        },
+        "typedef": {
+            "brief": "The typedef of the struct for the runtime object",
+            "dataType": "string",
+            "description": "The typedef of the struct for the runtime object.",
+            "label": "Typedef"
+        }
+    }
+}

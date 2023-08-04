@@ -1,0 +1,69 @@
+{
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "The object type for properties in the \"propertyTypes\" property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+    "objectType": "_AdaptiveModelPropertyType_",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveValueMeta_/propertyTypes"
+            ]
+        },
+        "allowRead": {
+            "brief": "Indicates that this property can be read",
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+            "label": "Allow Read"
+        },
+        "custom": {
+            "brief": "Custom variables available to the model",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveHybridProperties_",
+            "description": "Property type level qualifier custom:: variables available to model expressions.",
+            "label": "Custom"
+        },
+        "onGetProperty": {
+            "brief": "Evaluated when getting an object property",
+            "contextType": "modelGetProperty",
+            "dataType": "hybrid",
+            "description": "This hybrid is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+            "label": "On Get Property"
+        },
+        "onGetInitialValue": {
+            "brief": "Get initial value to for this property",
+            "contextType": "modelGetProperty",
+            "dataType": "hybrid",
+            "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+            "label": "On Get Initial Value"
+        },
+        "mappedPropertyName": {
+            "brief": "Name to map property to and from",
+            "dataType": "string",
+            "description": "This is the property name of this property used internally by an adaptor. If not specified, propertyName is used.",
+            "label": "Mapped Property Name"
+        },
+        "method": {
+            "brief": "This executes when this property is called as a method",
+            "dataType": "hybrid",
+            "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in either script or expressionTuple syntax.",
+            "label": "Method"
+        },
+        "onSetProperty": {
+            "brief": "Evaluated when setting an object property",
+            "contextType": "modelSetProperty",
+            "dataType": "hybrid",
+            "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+            "label": "On Set Property"
+        },
+        "transitory": {
+            "brief": "This property will not be persisted",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Indicates that this property is transitory and will not be persisted by the adaptor. The value can be produced by setValue or supplied in the request.",
+            "label": "Transitory"
+        }
+    }
+}

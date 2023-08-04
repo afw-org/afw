@@ -1,0 +1,9 @@
+{
+    "category": "content",
+    "componentType": "Image",
+    "brief": "A component that displays an image.",
+    "description": "This component displays an image from a variety of sources and formats.",
+    "implementationId": "Image",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Image",
+    "label": "Image"
+}

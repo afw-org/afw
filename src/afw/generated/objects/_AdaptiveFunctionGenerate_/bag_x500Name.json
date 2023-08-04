@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagX500Name",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Takes any number of x500Name values and returns a list of list.",
+    "functionId": "bag<x500Name>",
+    "functionLabel": "bag_x500Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "x500Name"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

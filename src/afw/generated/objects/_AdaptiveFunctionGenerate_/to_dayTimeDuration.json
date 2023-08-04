@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToDayTimeDuration",
+    "brief": "Converts string to dayTimeDuration",
+    "camelCaseFunctionLabel": "toDayTimeDuration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to dayTimeDuration.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_dayTimeDuration",
+    "functionLabel": "to_dayTimeDuration",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "pure": true,
+    "returns": {
+        "dataType": "dayTimeDuration"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

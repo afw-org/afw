@@ -1,0 +1,4 @@
+{
+    "name": "afw_request_handler",
+    "description": "Adaptive framework request handler interface."
+}

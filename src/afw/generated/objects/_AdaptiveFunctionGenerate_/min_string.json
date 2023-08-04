@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMinString",
+    "brief": "Minimum value",
+    "camelCaseFunctionLabel": "minString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Return the string value that is less than or equal to the others.",
+    "functionId": "min<string>",
+    "functionLabel": "min_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_min"
+}

@@ -1,0 +1,55 @@
+generate/manifest/
+-------------------
+
+AdaptiveFramework environment registry has the following structure:
+
+<AdaptiveFramework runtime environment registry>
+|-- adaptor_type
+|   |-- A registry <KEY>
+|   ... More <KEY>s
+|-- log_type
+|   |-- A registry <KEY>
+|   ... More <KEY>s
+... More <REGISTRY_TYPE>s
+
+See afw/afw_environment.h for more information.
+
+The generate/manifest/ directory has a similar structure.  It contains zero or
+more subdirectories with the name of a <REGISTRY_TYPE> that each contain zero
+or more <KEY>.c files.  It also contains a manifest.json file that contains
+the properties used when creating the _AdaptiveManifest_ object except for the
+registers property.
+
+The generate/manifest/<REGISTRY_TYPE>/<KEY> directory names are used by
+generate to produce the "registers" property of the <SRCSUBDIR>'s
+_AdaptiveManifest_ object and the <KEY>.c files the function to register the
+<REGISTRY_TYPE>/<KEY>.
+
+Each <KEY>.c files must have a function that will be called by
+generated/<PREFIX>generate.c to register the <REGISTRY_TYPE>/<KEY>.
+
+The definition for the function must be of this form:
+
+void <PREFIX><REGISTRY_TYPE>_<KEY>_register(afw_xctx_t *xctx)
+
+Development tool afwdev can be used to add these <KEY>.c files using
+subcommands like add-adaptor-type and add-log-type or they can be added
+manually.
+
+For example, to register adaptor_type my_type with a factory struct define in
+<SRCSUBDIR> my whose const struct is my_adaptor_factory, either manually put
+this in <SRCSUBDIR>/generate/adaptor_type/my_type.c or let afwdev to do it.
+
+#include "afw.h"
+
+extern const afw_adaptor_factory_t
+my_adaptor_factory;
+
+void
+my_adaptor_type_my_type_register(afw_xctx_t *xctx)
+{
+	afw_environment_register_adaptor_type(
+		my_adaptor_factory.adaptor_type,
+		&my_adaptor_factory,
+		xctx);
+}

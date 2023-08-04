@@ -1,0 +1,27 @@
+{
+    "brief": "Write internal",
+    "category": "stream",
+    "description": "Write a value's internal memory. This is especially useful for writing data type base64Binary and hexBinary.",
+    "functionId": "write_internal",
+    "functionLabel": "write_internal",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "The streamNumber for the stream to write.",
+            "name": "streamNumber"
+        },
+        {
+            "brief": "Internal value to write",
+            "description": "The internal memory of this value is written.",
+            "dataType": "any",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Values written"
+    ]
+}

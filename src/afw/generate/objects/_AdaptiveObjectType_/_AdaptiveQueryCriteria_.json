@@ -1,0 +1,41 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type for the queryCriteria parameter of retrieve object functions.",
+    "objectType": "_AdaptiveQueryCriteria_",
+    "propertyTypes": {
+        "filter": {
+            "allowQuery": true,
+            "brief": "Filter",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveQueryCriteriaFilter_",
+            "description": "This filters the objects that will be returned. If not specified, all objects will be returned.",
+            "label": "Filter"
+        },
+        "select": {
+            "brief": "Properties to include",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "This is a list of the names of properties to include in result. If not specified, all properties are returned.",
+            "label": "Include Properties"
+        },
+        "sort": {
+            "brief": "Sort order",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "This is a list of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+            "label": "Sort Order"
+        },
+        "urlEncodedRQLString": {
+            "brief": "URL Encoded RQL String",
+            "dataType": "string",
+            "description": "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties.",
+            "label": "URL RQL String"
+        }
+    }
+}

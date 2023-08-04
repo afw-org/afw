@@ -1,0 +1,56 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This result of an authorization check.",
+    "objectType": "_AdaptiveAuthorizationResult_",
+    "propertyTypes": {
+        "advice": {
+            "brief": "Advice ids",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "Advice ids.",
+            "label": "Advice"
+        },
+        "applicablePolicies": {
+            "brief": "List of ids of matching policies",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "This is a list of ids of all policies whose target and condition matched during this check.",
+            "label": "Applicable Policies"
+        },
+        "decision": {
+            "brief": "This is the decision",
+            "dataType": "string",
+            "possibleValues": [ "deny", "indeterminate", "permit", "notApplicable" ],
+            "description": "This is the decision.",
+            "label": "Decision",
+            "required": true
+        },
+        "errors": {
+            "brief": "Errors that occurred",
+            "dataType": "list",
+            "dataTypeParameter": "_AdaptiveError_",
+            "description": "Error that occurred.",
+            "label": "Errors",
+            "required": false
+        },
+        "obligations": {
+            "brief": "Obligation ids that must be satisfied",
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "Obligation ids that must be satisfied.",
+            "label": "Obligations"
+        },
+        "properties": {
+            "brief": "Properties that were requested for retrieval",
+            "dataType": "list",
+            "description": "Properties that were requested for retrieval.",
+            "label": "Properties"
+        }
+    }
+}

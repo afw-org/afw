@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInRfc822Name",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks whether rfc822Name value is in list of rfc822Name list and returns the boolean result.",
+    "functionId": "is_in<rfc822Name>",
+    "functionLabel": "is_in_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "rfc822Name",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

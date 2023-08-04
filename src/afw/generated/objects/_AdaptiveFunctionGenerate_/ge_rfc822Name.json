@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeRfc822Name",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and return the boolean result.",
+    "functionId": "ge<rfc822Name>",
+    "functionLabel": "ge_rfc822Name",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "name": "arg1"
+        },
+        {
+            "dataType": "rfc822Name",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

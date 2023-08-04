@@ -1,0 +1,39 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the DiffEditor component.",
+    "label": "DiffEditor",
+    "objectType": "_AdaptiveLayoutComponentType_DiffEditor",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "showLineNumbers": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the line numbers should be visible in DiffEditor component.",
+            "label": "Line Numbers"
+        },
+        "original": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The original source value for the DiffEditor component to render.",
+            "testDataParameter": "This is the original text.",
+            "label": "Original"
+        },
+        "modified": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The modified source value for the DiffEditor component to render.",
+            "testDataParameter": "This is the modified text.",
+            "label": "Modified"
+        }
+    }
+}

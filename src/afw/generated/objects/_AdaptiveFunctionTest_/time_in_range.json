@@ -1,0 +1,70 @@
+{
+    "description": "Tests for in_range<time> function.",
+    "functionId": "in_range<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "13:20:00"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:40.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "13:20:35"
+                },
+                {
+                    "dataType": "time",
+                    "value": "13:20:30.5555"
+                },
+                {
+                    "dataType": "time",
+                    "value": "23:20:40.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "time",
+                    "value": "00:00:01"
+                },
+                {
+                    "dataType": "time",
+                    "value": "00:00:00+05:00"
+                },
+                {
+                    "dataType": "time",
+                    "value": "23:59:40.5555"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

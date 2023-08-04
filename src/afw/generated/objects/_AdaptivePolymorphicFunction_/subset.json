@@ -1,0 +1,44 @@
+{
+    "brief": "Determines if the first list is a subset of second list",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in <dataType> list1 are all in <dataType> list2.",
+    "functionId": "subset",
+    "functionLabel": "subset",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "The first list.",
+            "name": "list1",
+            "polymorphicDataTypeParameter": true
+        },
+        {
+            "dataType": "list",
+            "description": "The second list.",
+            "name": "list2",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_subset",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

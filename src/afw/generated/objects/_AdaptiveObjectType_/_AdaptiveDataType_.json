@@ -1,0 +1,151 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive data type.",
+    "objectType": "_AdaptiveDataType_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description",
+            "dataType": "string",
+            "description": "This is a predicate for the data type with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "cType": {
+            "allowQuery": true,
+            "brief": "C data type",
+            "dataType": "string",
+            "description": "C data type.",
+            "label": "C Type",
+            "required": true
+        },
+        "compileType": {
+            "allowQuery": true,
+            "brief": "Compile type of internal",
+            "dataType": "string",
+            "description": "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+            "label": "Compile Type",
+            "required": false,
+            "runtime": {
+                "memberName": "compile_type",
+                "valueAccessor": "compile_type"
+            }
+        },
+        "dataType": {
+            "allowQuery": true,
+            "brief": "Data type id",
+            "dataType": "string",
+            "description": "Data type id.",
+            "label": "Data Type",
+            "required": true,
+            "runtime": {
+                "memberName": "data_type_id"
+            }
+        },
+        "dataTypeParameterType": {
+            "allowQuery": true,
+            "brief": "The type of parameter this data type takes",
+            "dataType": "string",
+            "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the \"dataTypeParameter\" property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the \"dataTypeParameter\" property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nListOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+            "label": "Parameter Type",
+            "possibleValues": [
+                "FunctionSignature",
+                "ListOf",
+                "MediaType",
+                "ObjectType",
+                "SourceParameter",
+                "Type"
+            ],
+            "required": false,
+            "runtime": {
+                "memberName": "data_type_parameter_type"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this object type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this object type.",
+            "label": "Description",
+            "required": false
+        },
+        "directReturn": {
+            "allowQuery": true,
+            "brief": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer",
+            "dataType": "boolean",
+            "description": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+            "label": "Direct Return"
+        },
+        "evaluated": {
+            "allowQuery": true,
+            "brief": "This data type can be compiled and evaluated",
+            "dataType": "boolean",
+            "description": "This data type is source that can be compiled and evaluated with the compile() adaptive function.",
+            "label": "Evaluated"
+        },
+        "jsonImpliesDataType": {
+            "allowQuery": true,
+            "brief": "Indicates that dataType needs to be available to fully interpret json value",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+            "label": "JSON Implies Data Type",
+            "required": false,
+            "runtime": {
+                "memberName": "json_implies_data_type"
+            }
+        },
+        "jsonPrimitive": {
+            "allowQuery": true,
+            "brief": "JSON primitive type",
+            "dataType": "string",
+            "description": "This specifies the JSON primitive type that is used to represent this dataType.",
+            "label": "JSON Primitive",
+            "required": false
+        },
+        "jsonSchemaStringFormat": {
+            "allowQuery": true,
+            "brief": "JSON string format",
+            "dataType": "string",
+            "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of \"string\".",
+            "label": "JSON String Format",
+            "required": false
+        },
+        "ldapOid": {
+            "allowQuery": true,
+            "brief": "LDAP OID",
+            "dataType": "string",
+            "description": "LDAP OID.",
+            "label": "Ldap Oid",
+            "required": false
+        },
+        "relationalCompares": {
+            "allowQuery": true,
+            "brief": "This dataType supports relational compares in addition to equality compares",
+            "dataType": "boolean",
+            "description": "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+            "label": "Relational Compares"
+        },
+        "scalar": {
+            "allowQuery": true,
+            "brief": "Data type represents a scalar value",
+            "dataType": "boolean",
+            "description": "Data type represents a scalar value.",
+            "label": "Scalar"
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "data_type_id"
+        },
+        "typedef": "afw_data_type_t"
+    }
+}

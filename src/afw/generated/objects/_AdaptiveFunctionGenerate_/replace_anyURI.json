@@ -1,0 +1,39 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReplaceAnyURI",
+    "brief": "Replace strings",
+    "camelCaseFunctionLabel": "replaceAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Replace string(s) in a anyURI value.",
+    "functionId": "replace<anyURI>",
+    "functionLabel": "replace_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "The original anyURI value.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "The string to replace.",
+            "name": "match"
+        },
+        {
+            "dataType": "string",
+            "description": "The replacement string.",
+            "name": "replacement"
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "anyURI",
+        "description": "A anyURI value with the matched string(s) replaced."
+    },
+    "useExecuteFunction": "afw_function_execute_replace"
+}

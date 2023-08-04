@@ -1,0 +1,17 @@
+{
+    "brief": "Number of nodes in node-set",
+    "category": "xpathExpression",
+    "description": "The number of nodes in a node-set.",
+    "functionId": "xpath_node_count",
+    "functionLabel": "xpath_node_count",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "nodeset"
+        }
+    ],
+    "returns": {
+        "dataType": "integer"
+    }
+}

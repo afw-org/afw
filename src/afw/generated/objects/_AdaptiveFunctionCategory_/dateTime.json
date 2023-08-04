@@ -1,0 +1,6 @@
+{
+    "brief": "Data type dateTime related functions",
+    "category": "dateTime",
+    "dataTypeCategory": true,
+    "description": "These function are related to data type dateTime.\n\nThe \"<dateTime>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

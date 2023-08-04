@@ -1,0 +1,38 @@
+{
+    "brief": "Split at a separator",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Split <dataType> value into an list of strings using a separator.",
+    "functionId": "split",
+    "functionLabel": "split",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value to split.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "The separator to use. If this is an empty string or separator is not specified, the value is split between characters.",
+            "name": "separator",
+            "optional": true
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum number of splits. Any remaining part of value is ignored.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_split",
+    "returns": {
+        "dataType": "list",
+        "description": "An list of strings."
+    }
+}

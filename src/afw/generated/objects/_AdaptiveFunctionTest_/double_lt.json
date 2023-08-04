@@ -1,0 +1,75 @@
+{
+    "description": "Tests for lt<double> function.",
+    "functionId": "lt<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "109.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.09E2"
+                }
+            ],
+            "description": "109 less than 1.09e2",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "109.0"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.19E2"
+                }
+            ],
+            "description": "109 less than 1.19e2",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-INF"
+                },
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                }
+            ],
+            "description": "-INF less than INF",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "NaN"
+                },
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                }
+            ],
+            "description": "NaN less than INF",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGenerateUuid",
+    "brief": "Generate UUID",
+    "camelCaseFunctionLabel": "generateUuid",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Generate a UUID.",
+    "functionId": "generate_uuid",
+    "functionLabel": "generate_uuid",
+    "parameters": [],
+    "returns": {
+        "dataType": "string"
+    }
+}

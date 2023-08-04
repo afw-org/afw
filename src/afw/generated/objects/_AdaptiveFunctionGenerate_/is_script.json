@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsScript",
+    "brief": "Checks whether value is dataType script",
+    "camelCaseFunctionLabel": "isScript",
+    "category": "script",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType script and return the boolean result.",
+    "functionId": "is<script>",
+    "functionLabel": "is_script",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

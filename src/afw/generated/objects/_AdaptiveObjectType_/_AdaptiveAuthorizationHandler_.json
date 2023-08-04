@@ -1,0 +1,79 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime authorization handler information.",
+    "objectType": "_AdaptiveAuthorizationHandler_",
+    "propertyTypes": {
+        "authorizationHandlerId": {
+            "allowQuery": true,
+            "brief": "Authorization handler id",
+            "dataType": "string",
+            "description": "Authorization handler id.",
+            "label": "Authorization Handler Id",
+            "runtime": {
+                "memberName": "authorization_handler_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "processingOrder": {
+            "allowQuery": true,
+            "brief": "Order handler is processed",
+            "dataType": "integer",
+            "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+            "label": "Processing Order",
+            "runtime": {
+                "memberName": "processing_order"
+            }
+        },
+        "properties": {
+            "allowQuery": false,
+            "brief": "Properties associated with this handler",
+            "dataType": "object",
+            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "label": "Properties"
+        },
+        "referenceCount": {
+            "allowQuery": true,
+            "brief": "Authorization handler's reference count",
+            "dataType": "integer",
+            "description": "Authorization handler's reference count.",
+            "label": "Reference Count",
+            "runtime": {
+                "memberName": "reference_count"
+            }
+        },
+        "serviceId": {
+            "allowQuery": true,
+            "brief": "The id of the associated service",
+            "dataType": "string",
+            "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+            "label": "Service Id",
+            "runtime": {
+                "memberName": "service_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "stopping": {
+            "allowQuery": true,
+            "brief": "Reference count of stopping instances",
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "Reference count of stopping instances.",
+            "label": "Stopping Instances",
+            "runtime": {
+                "memberName": "authorization_handler_id",
+                "valueAccessor": "stopping_authorization_handler_instances"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "indirectObjectId": true,
+            "objectId": "authorization_handler_id"
+        },
+        "typedef": "afw_authorization_handler_id_anchor_t"
+    }
+}

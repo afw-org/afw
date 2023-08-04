@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsDateTime",
+    "brief": "Checks whether value is dataType dateTime",
+    "camelCaseFunctionLabel": "isDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType dateTime and return the boolean result.",
+    "functionId": "is<dateTime>",
+    "functionLabel": "is_dateTime",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

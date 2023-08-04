@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEncodeAsBase64BinaryString",
+    "brief": "Encode to a base64Binary value",
+    "camelCaseFunctionLabel": "encodeAsBase64BinaryString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Encode a value as a base64Binary. The effect is to create a base64Binary value with an internal value of the value passed.",
+    "functionId": "encode_as_base64Binary<string>",
+    "functionLabel": "encode_as_base64Binary_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value to encode.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "A base64Binary value."
+    },
+    "useExecuteFunction": "afw_function_execute_encode_as_base64Binary"
+}

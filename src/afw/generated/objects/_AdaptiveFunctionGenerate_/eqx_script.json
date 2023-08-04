@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxScript",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxScript",
+    "category": "script",
+    "dataTypeMethod": true,
+    "description": "Determine if for script arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<script>",
+    "functionLabel": "eqx_script",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "script",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

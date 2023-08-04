@@ -1,0 +1,34 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Skeleton component.",
+    "objectType": "_AdaptiveLayoutComponentType_Skeleton",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "type": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The shape of the skeleton to display (line or circle).",
+            "label": "Type"
+        },
+        "width": {
+            "allowWrite": true,
+            "description": "The CSS width of the skeleton.",
+            "label": "Width"
+        },
+        "height": {
+            "allowWrite": true,
+            "description": "The CSS height of the skeleton.",
+            "label": "Height"
+        }
+    }
+}

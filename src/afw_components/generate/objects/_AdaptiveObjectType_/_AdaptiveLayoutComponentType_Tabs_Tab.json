@@ -1,0 +1,34 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Tabs component.",
+    "label": "Tab",
+    "objectIdPropertyName": "text",
+    "objectType": "_AdaptiveLayoutComponentType_Tabs_Tab",
+    "propertyTypes": {
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "The layout components that are contained by this Tabs tab.",
+            "label": "Contains"
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text for this Tabs tab.",
+            "label": "Text"
+        },
+        "badge": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "An optional badge number to display next to the Tab text, indicating the number of items.",
+            "label": "Badge"
+        }
+    }
+}

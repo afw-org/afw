@@ -1,0 +1,62 @@
+{
+    "description": "Tests for intersection<date> function.",
+    "functionId": "intersection<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01",
+                        "2004-04-12"
+                    ]
+                }
+            ],
+            "description": "duplicates",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "date",
+                "value": [
+                    "2004-04-12",
+                    "1970-01-01"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01"
+                    ]
+                }
+            ],
+            "description": "empty",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "date",
+                "value": []
+            }
+        }
+    ]
+}

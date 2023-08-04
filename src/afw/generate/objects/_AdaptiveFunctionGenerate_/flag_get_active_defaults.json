@@ -1,0 +1,14 @@
+{
+    "brief": "Get a list of default active flags",
+    "category": "administrative",
+    "description": "Get a list of the flagId of flags that are set by default when a new execution context (xctx) is created.",
+    "functionId": "flag_get_active_defaults",
+    "functionLabel": "flag_get_active_defaults",
+    "parameters": [
+    ],
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "string",
+        "description": "This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created."
+    }
+}

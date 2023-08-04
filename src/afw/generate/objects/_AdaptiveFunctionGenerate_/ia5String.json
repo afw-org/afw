@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type ia5String",
+    "category": "ia5String",
+    "description": "Converts value to data type ia5String returning ia5String result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "ia5String",
+    "functionLabel": "ia5String",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "ia5String",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

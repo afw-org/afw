@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubtractYearMonthDuration",
+    "brief": "Subtract numbers",
+    "camelCaseFunctionLabel": "subtractYearMonthDuration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Subtract yearMonthDuration arg2 from <dataType> arg1 and return the <dataType> result.",
+    "functionId": "subtract_yearMonthDuration",
+    "functionLabel": "subtract_yearMonthDuration",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "date",
+        "dateTime"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

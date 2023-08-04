@@ -1,0 +1,26 @@
+{
+    "brief": "Delete a property",
+    "category": "object",
+    "description": "Delete a property in an object.",
+    "functionId": "property_delete",
+    "functionLabel": "property_delete",
+    "parameters": [
+        {
+            "brief": "Object containing property",
+            "dataType": "object",
+            "description": "This is the object to delete property from.",
+            "name": "object"
+        },
+        {
+            "brief": "Property name",
+            "dataType": "string",
+            "description": "This is a name of the property to delete.",
+            "name": "name"
+        }
+    ],
+    "returns": {
+        "brief": "True if deleted",
+        "dataType": "boolean",
+        "description": "True if object had the property and it was deleted."
+    }
+}

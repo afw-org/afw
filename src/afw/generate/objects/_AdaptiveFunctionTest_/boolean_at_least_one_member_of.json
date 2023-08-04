@@ -1,0 +1,105 @@
+{
+    "description": "Tests for at_least_one_member_of<boolean> function.",
+    "functionId": "at_least_one_member_of<boolean>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": []
+                }
+            ],
+            "description": "\n            Boolean at least one member of for bags:\n            { },\n            { }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true",
+                        "true",
+                        "false"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean at least one member of for bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "false",
+                        "false",
+                        "false"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "true"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean at least one member of for bags:\n            { \"false\", \"false\", \"false\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "boolean",
+                    "value": [
+                        "false",
+                        "false",
+                        "false",
+                        "false"
+                    ]
+                }
+            ],
+            "description": "\n            Boolean at least one member of for bags:\n            { \"true\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

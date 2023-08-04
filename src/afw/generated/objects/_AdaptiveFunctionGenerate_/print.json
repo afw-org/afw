@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPrint",
+    "brief": "Print value",
+    "camelCaseFunctionLabel": "print",
+    "category": "stream",
+    "description": "Evaluate and convert 0 or more values to its string value, then write them to stdout. An undefined value is represented by '<undefined>'.",
+    "functionId": "print",
+    "functionLabel": "print",
+    "parameters": [
+        {
+            "description": "Values to print.",
+            "minArgs": 0,
+            "name": "values"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Values written"
+    ]
+}

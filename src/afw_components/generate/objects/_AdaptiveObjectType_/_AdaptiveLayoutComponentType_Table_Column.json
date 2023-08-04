@@ -1,0 +1,59 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout column definition for the Table component.",
+    "label": "Table Layout Column",
+    "objectIdPropertyName": "key",
+    "objectType": "_AdaptiveLayoutComponentType_Table_Column",
+    "propertyTypes": {
+        "fieldName": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The fieldName for the rows used in this Table component column definition.",
+            "label": "Field Name"
+        },
+        "isMultiline": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates this column is multilined in this Table component.",
+            "label": "Multiline"
+        },
+        "isResizable": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates this column is resizable in this Table component.",
+            "label": "Resizable"
+        },
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The key for this column used in this Table component.",
+            "label": "Key",
+            "required": true
+        },
+        "maxWidth": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The maximum width for this column used in this Table component.",
+            "label": "Max Width"
+        },
+        "minWidth": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The minimum width for this column used in this Table component.",
+            "label": "Min Width"
+        },
+        "name": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The name to display for this column used in this Table component.",
+            "label": "Name",
+            "required": true
+        }
+    }
+}

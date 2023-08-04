@@ -1,0 +1,19 @@
+{
+    "brief": "Break out of a block",
+    "category": "script",
+    "description": "This is a special function that can be called to break out of the body of a loop. If called outside of a loop body, an error is thrown.",
+    "functionId": "break",
+    "functionLabel": "break",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The value to evaluate that the enclosing loop will return. If not specified, the last evaluated value or a null value will be returned.",
+            "name": "value",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "description": "This function returns from the body of a loop with the last evaluated value."
+    },
+    "scriptSupport": true
+}

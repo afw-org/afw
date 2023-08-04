@@ -1,0 +1,846 @@
+{
+  "custom": {},
+  "description": "TIER Core Schema for Systems of Record (SoR) and Entity Registry",
+  "modelId": "TIER Core Schema",
+  "objectTypes": {
+    "HRPersonRole": {
+      "_meta_": {
+        "parentPaths": [
+          "/*/*/*/objectTypes/PersonRole"
+        ]
+      },
+      "allowAdd": true,
+      "allowChange": true,
+      "allowDelete": true,
+      "allowEntity": true,
+      "description": "HR Person Role Attributes.",
+      "propertyTypes": {
+        "employeeType": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Type of employee.",
+          "label": "Employee Type",
+          "required": false,
+          "possibleValues": [
+            "consultant",
+            "contractor",
+            "emeritus",
+            "exempt",
+            "regular",
+            "tenured",
+            "vendor",
+            "visiting",
+            "workStudy"
+          ]
+        }
+      }
+    },
+    "Person": {
+      "allowAdd": true,
+      "allowChange": true,
+      "allowDelete": true,
+      "allowEntity": true,
+      "description": "Person Core Attributes",
+      "propertyTypes": {
+        "address": {
+          "dataType": "list",
+          "dataTypeParameter": "object address",
+          "description": "A list of physical addresses.",
+          "label": "Address",
+          "required": false
+        },
+        "dateOfBirth": {
+          "allowQuery": true,
+          "dataType": "date",
+          "description": "The date of birth of the person.",
+          "label": "Date of Birth",
+          "required": false
+        },
+        "emailAddress": {
+          "dataType": "list",
+          "dataTypeParameter": "object emailAddress",
+          "description": "A list of email addresses.",
+          "label": "Email Address",
+          "required": false
+        },
+        "ethnicity": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The ethnicity of the person (US Census).",
+          "label": "Ethnicity",
+          "required": false
+        },
+        "gender": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The gender of the person.",
+          "label": "Gender",
+          "required": false
+        },
+        "identifier": {
+          "dataType": "list",
+          "dataTypeParameter": "object identifier",
+          "description": "A list of identifiers.",
+          "label": "Identifier",
+          "required": false
+        },
+        "identityProof": {
+          "dataType": "list",
+          "dataTypeParameter": "object identityProof",
+          "description": "A list of identity proofs.",
+          "label": "Identity Proof",
+          "required": false
+        },
+        "name": {
+          "dataType": "list",
+          "dataTypeParameter": "object name",
+          "description": "A list of names.",
+          "label": "Name",
+          "required": false
+        },
+        "photo": {
+          "dataType": "list",
+          "dataTypeParameter": "object photo",
+          "description": "A list of photos.",
+          "label": "Photo",
+          "required": false
+        },
+        "primaryAffiliation": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The primary affiliation for the person, as defined by the institution (values same as for Person Role affiliation attribute).",
+          "label": "Primary Affiliation",
+          "required": false
+        },
+        "primaryCampus": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The primary campus location for the person, as defined by the institution.",
+          "label": "Primary Campus",
+          "required": false
+        },
+        "role": {
+          "dataType": "list",
+          "dataTypeParameter": "object PersonRole",
+          "description": "Parent attribute for Role attributes.",
+          "label": "Role",
+          "required": false
+        },
+        "telephoneNumber": {
+          "dataType": "list",
+          "dataTypeParameter": "object telephoneNumber",
+          "description": "A list of telephone numbers.",
+          "label": "Telephone Number",
+          "required": false
+        },
+        "test": {
+          "allowQuery": true,
+          "dataType": "boolean",
+          "description": "True if this record represents a test entry.",
+          "label": "Test",
+          "required": false
+        },
+        "url": {
+          "dataType": "list",
+          "dataTypeParameter": "object url",
+          "description": "A list of URLs.",
+          "label": "Url",
+          "required": false
+        },
+        "visa": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Visa status of the person.",
+          "label": "Visa",
+          "required": false
+        }
+      }
+    },
+    "PersonRole": {
+      "allowAdd": true,
+      "allowChange": true,
+      "allowDelete": true,
+      "allowEntity": true,
+      "description": "Person Role Core Attributes.",
+      "propertyTypes": {
+        "affiliation": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Visa status of the person.",
+          "label": "Affiliation",
+          "required": false
+        },
+        "campus": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The campus location this role is attached to, as defined by the institution.",
+          "label": "Campus",
+          "required": false
+        },
+        "campusCode": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
+          "label": "Campus Code",
+          "required": false
+        },
+        "department": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
+          "label": "Department",
+          "required": false
+        },
+        "departmentCode": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
+          "label": "Department Code",
+          "required": false
+        },
+        "displayTitle": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The display title for this role.",
+          "label": "Display Title",
+          "required": false
+        },
+        "leaveBegins": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Time at which leave from this role begins; advisory - status is controlling.",
+          "label": "Leave Begins",
+          "required": false
+        },
+        "leaveEnds": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Time after which leave fropm this role is no longer in effect; advisory - status is controlling.",
+          "label": "Leave Ends",
+          "required": false
+        },
+        "manager": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
+          "label": "Manager",
+          "required": false
+        },
+        "organization": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
+          "label": "Organization",
+          "required": false
+        },
+        "organizationCode": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
+          "label": "Organization Code",
+          "required": false
+        },
+        "percentTime": {
+          "allowQuery": true,
+          "dataType": "integer",
+          "description": "The percentage time for this role (100 = full time).",
+          "label": "Percent Time",
+          "required": false
+        },
+        "rank": {
+          "allowQuery": true,
+          "dataType": "integer",
+          "description": "The rank of this role relative to all roles from all SORs (highest rank = 1).",
+          "label": "Rank",
+          "required": false
+        },
+        "rankSor": {
+          "allowQuery": true,
+          "dataType": "integer",
+          "description": "The rank of this role relative to only roles from this SOR (highest rank = 1).",
+          "label": "Rank SOR",
+          "required": false
+        },
+        "roleBegins": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Time at which the role officially begins.",
+          "label": "Role Begins",
+          "required": false
+        },
+        "roleEnds": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Time after which the role is officially no longer in effect.",
+          "label": "Role Ends",
+          "required": false
+        },
+        "sor": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Label for the system of record asserting this role.",
+          "label": "SOR Label",
+          "required": false
+        },
+        "status": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Status associated with this role.",
+          "label": "Status",
+          "required": false,
+          "possibleValues": [
+            "accepted",
+            "applied",
+            "active",
+            "offered",
+            "onLeave",
+            "registered",
+            "suspended",
+            "terminated"
+          ]
+        },
+        "terminationReason": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Reason for termination associated with this role.",
+          "label": "Termination Reason",
+          "required": false,
+          "possibleValues": [
+            "deceased",
+            "graduated",
+            "involuntary",
+            "resigned",
+            "retired",
+            "withdrew"
+          ]
+        },
+        "title": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "The official title for this role.",
+          "label": "Title",
+          "required": false
+        }
+      }
+    },
+    "StudentPersonRole": {
+      "_meta_": {
+        "parentPaths": [
+          "/*/*/*/objectTypes/PersonRole"
+        ]
+      },
+      "allowAdd": true,
+      "allowChange": true,
+      "allowDelete": true,
+      "allowEntity": true,
+      "description": "Student Person Role Attributes.",
+      "propertyTypes": {
+        "classYear": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "#### is a four digit expected year of graduation.",
+          "label": "Class Year",
+          "required": false,
+          "possibleValues": [
+            "freshman",
+            "sophomore",
+            "junior",
+            "senior"
+          ]
+        },
+        "courseAffiliation": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "Person's affiliation/role with a course.  Based on MACE-Dir work.",
+          "label": "Course Affiliation",
+          "required": false,
+          "possibleValues": [
+            "Administrator",
+            "ContentDeveloper",
+            "Instructor",
+            "Learner",
+            "Manager",
+            "Member",
+            "Mentor",
+            "Officer",
+            "TeachingAssistant"
+          ]
+        },
+        "courseMembership": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "A list of course memberships.",
+          "label": "Course Membership",
+          "required": false
+        },
+        "degree": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "string",
+          "description": "A list of degrees.",
+          "label": "Degree",
+          "required": false,
+          "possibleValues": [
+            "AAS",
+            "BA",
+            "BFA",
+            "BS",
+            "DDS",
+            "DNP",
+            "JD",
+            "LLM",
+            "MA",
+            "MArch",
+            "MBA",
+            "MD",
+            "MFA",
+            "MPH",
+            "MPS",
+            "MS",
+            "PhD"
+          ]
+        },
+        "major": {
+          "allowQuery": true,
+          "dataType": "list",
+          "dataTypeParameter": "object major",
+          "description": "A list of student's major(s).",
+          "label": "Major",
+          "required": false
+        },
+        "residenceHall": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The name of the residence hall.",
+          "label": "Residence Hall",
+          "required": false
+        },
+        "studentType": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Secondary = (eg) high school.",
+          "label": "Student Type",
+          "required": false,
+          "possibleValues": [
+            "continuing",
+            "graduate",
+            "nondegree",
+            "professional",
+            "secondary",
+            "summer",
+            "undergraduate",
+            "visiting"
+          ]
+        },
+        "term": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Term for which this record applies.",
+          "label": "Term",
+          "required": false
+        }
+      }
+    },
+    "address": {
+      "description": "Describes the address information associated with an identity.",
+      "descriptionPropertyName": "formatted",
+      "propertyTypes": {
+        "country": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Country from a postal address.",
+          "label": "Country",
+          "required": false
+        },
+        "formatted": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Address rendered as a single string, possibly with embedded newlines.",
+          "label": "Formatted",
+          "required": false
+        },
+        "language": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The language encoding of the address.",
+          "label": "Language",
+          "required": false
+        },
+        "locality": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Locality information from a postal address (city, etc).",
+          "label": "Locality",
+          "required": false
+        },
+        "postalCode": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Postal code from a postal address.",
+          "label": "Postal Code",
+          "required": false
+        },
+        "region": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Region information from a postal address (state, province, etc).",
+          "label": "Region",
+          "required": false
+        },
+        "room": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Room information from a postal address.",
+          "label": "Room",
+          "required": false
+        },
+        "street": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Street/site information from a postal address (street name, house number, etc).",
+          "label": "Street",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the address.",
+          "label": "Type",
+          "required": false,
+          "possibleValues": [
+            "campus",
+            "home",
+            "office",
+            "parent",
+            "postal",
+            "summer",
+            "former-anytype"
+          ]
+        },
+        "verified": {
+          "allowQuery": true,
+          "dataType": "boolean",
+          "description": "True if the address has been verified.",
+          "label": "Verified",
+          "required": false
+        }
+      }
+    },
+    "emailAddress": {
+      "description": "Describes an electronic mailing address.",
+      "descriptionPropertyName": "address",
+      "propertyTypes": {
+        "address": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The email address",
+          "label": "Address",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the email address.",
+          "label": "Type",
+          "required": false
+        },
+        "verified": {
+          "allowQuery": true,
+          "dataType": "boolean",
+          "description": "True if the address has been verified.",
+          "label": "Verified",
+          "required": false
+        }
+      }
+    },
+    "identifier": {
+      "description": "Describes an identifier.",
+      "descriptionPropertyName": "identifier",
+      "propertyTypes": {
+        "identifier": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The identifier.",
+          "label": "Identifier",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the identifier.",
+          "label": "Type",
+          "required": false
+        }
+      }
+    },
+    "identityProof": {
+      "description": "Describes the proof of an identity.",
+      "descriptionPropertyName": "fullName",
+      "propertyTypes": {
+        "dateOfBirth": {
+          "allowQuery": true,
+          "dataType": "date",
+          "description": "Date of birth, as confirmed on document.",
+          "label": "Date of Birth",
+          "required": false
+        },
+        "documentIssuer": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Name of agency issuing the confirmation document.",
+          "label": "Document Issuer",
+          "required": false
+        },
+        "documentType": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Type of document used to confirm identity.",
+          "label": "Document Type",
+          "required": false
+        },
+        "fullName": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Full name, as confirmed on document.",
+          "label": "Full Name",
+          "required": false
+        },
+        "status": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Status of the identity proofing.",
+          "label": "Status",
+          "required": false
+        },
+        "timeVerified": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Time document was confirmed.",
+          "label": "Time Verified",
+          "required": false
+        },
+        "verifiedAddress": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Address, as confirmed on document.",
+          "label": "Verified Address",
+          "required": false
+        }
+      }
+    },
+    "meta": {
+      "description": "Any complex attribute (Person, Person Role, Address, Identifier, etc) may optionally have the following meta attributes.",
+      "descriptionPropertyName": "id",
+      "propertyTypes": {
+        "created": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Timestamp of record creation.",
+          "label": "Created",
+          "required": false
+        },
+        "id": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Identifier for this specific (sub)attribute.",
+          "label": "Id",
+          "required": false
+        },
+        "lastModified": {
+          "allowQuery": true,
+          "dataType": "dateTime",
+          "description": "Timestamp of last modification.",
+          "label": "Last Modified",
+          "required": false
+        },
+        "release": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Attribute release policy.",
+          "label": "Release",
+          "required": false
+        }
+      }
+    },
+    "name": {
+      "description": "Describes a person's name.",
+      "descriptionPropertyName": "formatted",
+      "propertyTypes": {
+        "family": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The component of the person's name excluding the given, middle, and honorific components.",
+          "label": "Family",
+          "required": false
+        },
+        "formatted": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The person's name, suitably formatted for display.",
+          "label": "Formatted",
+          "required": false
+        },
+        "given": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The component of the person's name excluding the middle, family, and honorific components.",
+          "label": "Given",
+          "required": false
+        },
+        "language": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The language encoding of the person's name.",
+          "label": "Language",
+          "required": false
+        },
+        "middle": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The component of the person's name excluding the given, family, and honorific components.",
+          "label": "Middle",
+          "required": false
+        },
+        "prefix": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The honorific prefix of the person's name, such as \"Dr\" or \"Ms\".",
+          "label": "Prefix",
+          "required": false
+        },
+        "suffix": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The honorific suffix of the person's name, such as \"Jr\" or \"III\".",
+          "label": "Suffix",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the name.",
+          "label": "Type",
+          "required": false
+        }
+      }
+    },
+    "photo": {
+      "description": "Describes a photo, including its data, type, and encoding.",
+      "propertyTypes": {
+        "data": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Encoding of a photo of the person.",
+          "label": "Data",
+          "required": false
+        },
+        "encoding": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The encoding used for the photo.",
+          "label": "Encoding",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the photo (not the encoding).",
+          "label": "Type",
+          "required": false
+        }
+      }
+    },
+    "telephoneNumber": {
+      "description": "Describes a telephone number.",
+      "descriptionPropertyName": "number",
+      "propertyTypes": {
+        "number": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Telephone number for the person, preferably in + notation.",
+          "label": "Number",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the telephone number.",
+          "label": "Type",
+          "required": false
+        },
+        "verified": {
+          "allowQuery": true,
+          "dataType": "boolean",
+          "description": "True if the telephone number has been verified.",
+          "label": "Verified",
+          "required": false
+        }
+      }
+    },
+    "url": {
+      "description": "Describes the url for a person.",
+      "descriptionPropertyName": "url",
+      "propertyTypes": {
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "The type of the telephone number.",
+          "label": "Type",
+          "required": false
+        },
+        "url": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "URL for the person.",
+          "label": "Url",
+          "required": false
+        }
+      }
+    },
+    "major": {
+      "description": "Describes a student's major.",
+      "descriptionPropertyName": "major",
+      "propertyTypes": {
+        "major": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Student's major.",
+          "label": "Major",
+          "required": false
+        },
+        "majorCode": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Machine readable identifier for the major. This value is unlikely to have meaning outside of a specific institution.",
+          "label": "Major Code",
+          "required": false
+        },
+        "type": {
+          "allowQuery": true,
+          "dataType": "string",
+          "description": "Type of major.",
+          "label": "Type",
+          "required": false,
+          "possibleValues": [
+            "dual",
+            "minor",
+            "primary",
+            "secondary"
+          ]
+        }
+      }
+    }
+  },
+  "originURI": "https://spaces.internet2.edu/display/TIERENTREG/TIER+SoR-Registry+Core+Schema"
+}

@@ -1,0 +1,59 @@
+{
+    "modelId": "TestModel1",
+    "objectTypes": {
+        "MyObjectType1": {
+            "mappedObjectType": "TestObjectType1",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        },
+        "MyObjectType2": {
+            "mappedObjectType": "TestObjectType2",
+            "onRetrieveObjects": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onAddObject": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onGetInitialObjectId": "#! afw\n\nreturn current::objectId;",
+            "onGetObject": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onModifyObject": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onReplaceObject": "#! afw\n\nreturn current::useDefaultProcessing;",            
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        },
+        "MyObjectType3": {  
+            "onRetrieveObjects": "#! afw\n\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,\"TestObjectType1\",current::queryCriteria,current::objectOptions);\nreturn null;",
+            "onAddObject": "#! afw\n\nconst add_result: (object '_AdaptiveResponse_') = add_object(current::mappedAdaptorId,\"TestObjectType1\",current::object,\"TestObject3\");\nreturn add_result.objectId;",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        },
+        "MyObjectType4": { 
+            "mappedObjectType": "TestObjectType2",  
+            "onRetrieveObjects": "#! afw\n\nlet  newCriteria: object = { filter: { op: \"eq\", property: \"TestString1\", value: \"This is a test string.\"} };\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,current::mappedObjectType,newCriteria,current::objectOptions);\nreturn null;",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        },
+        "MyObjectType5": {              
+            "onAddObject": "#! afw\n\nconst add_action: (object '_AdaptiveAction_') = model_default_add_object_action(current::adaptorId,current::objectType,current::object,\"TestObject4\");\nassert(add_action.function === \"add_object\",\"model_default_add_action() did not return a request\");\nreturn \"fake\";",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                }
+            }
+        }
+    }
+}

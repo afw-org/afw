@@ -1,0 +1,41 @@
+{
+    "description": "Tests for eq<dayTimeDuration> function.",
+    "functionId": "eq<dayTimeDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "PT10H30M"
+                },
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "PT10H30M"
+                }
+            ],
+            "description": "Are equal",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "PT10H30M"
+                },
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "PT10H31M"
+                }
+            ],
+            "description": "Are not equal",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

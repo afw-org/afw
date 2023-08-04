@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagXpathExpression",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagXpathExpression",
+    "category": "xpathExpression",
+    "dataTypeMethod": true,
+    "description": "Takes any number of xpathExpression values and returns a list of list.",
+    "functionId": "bag<xpathExpression>",
+    "functionLabel": "bag_xpathExpression",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "xpathExpression",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "xpathExpression"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

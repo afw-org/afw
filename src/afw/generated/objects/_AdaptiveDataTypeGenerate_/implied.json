@@ -1,0 +1,9 @@
+{
+    "brief": "The data type is implied by the value",
+    "cType": "const afw_value_t *",
+    "dataType": "implied",
+    "description": "Any value can be assigned as the value of data type \"implied\". The actual data type is the data type of the value. Most \"type check\" errors can be detected during compile to reduce the number of errors detected during evaluation.",
+    "directReturn": true,
+    "relationalCompares": false,
+    "scalar": false
+}

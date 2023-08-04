@@ -1,0 +1,49 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Snackbar component.",
+    "objectType": "_AdaptiveLayoutComponentType_Snackbar",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "duration": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "The amount of time, in milliseconds to display the Snackbar.",
+            "label": "Duration"
+        },
+        "message": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The message to be displayed in the Snackbar component.",
+            "testDataParameter": "This is a snackbar message!",
+            "label": "Message"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Snackbar is open or not.",
+            "label": "Open"
+        },
+        "type": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The type of message for the Snackbar component (error, warning, info, success).",
+            "label": "Type",
+            "possibleValues": [
+                "error",
+                "warning",
+                "info",
+                "success"
+            ]
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "brief": "Checks whether a value is in a list",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether <dataType> value is in list of <dataType> list and returns the boolean result.",
+    "functionId": "is_in",
+    "functionLabel": "is_in",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "list",
+            "name": "list",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "hexBinary",
+        "integer",
+        "ipAddress",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_is_in",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "description": "Tests for bag<base64Binary> function.",
+    "functionId": "bag<base64Binary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "base64Binary",
+                    "value": "0fa8"
+                },
+                {
+                    "dataType": "base64Binary",
+                    "value": "0fa80f+9"
+                },
+                {
+                    "dataType": "base64Binary",
+                    "value": "0F+40A=="
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "base64Binary",
+                "value": [
+                    "0fa8",
+                    "0fa80f+9",
+                    "0F+40A=="
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "base64Binary",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

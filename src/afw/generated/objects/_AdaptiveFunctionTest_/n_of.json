@@ -1,0 +1,126 @@
+{
+    "description": "Tests for n_of function.",
+    "functionId": "n_of",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "6"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "false"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "6"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "true"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                },
+                {
+                    "dataType": "boolean",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

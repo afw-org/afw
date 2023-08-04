@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionYearMonthDuration",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Returns a list of yearMonthDuration with the values that are common to both list of yearMonthDuration list1 and list2.",
+    "functionId": "intersection<yearMonthDuration>",
+    "functionLabel": "intersection_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "yearMonthDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

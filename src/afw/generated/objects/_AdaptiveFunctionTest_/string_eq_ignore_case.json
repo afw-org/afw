@@ -1,0 +1,58 @@
+{
+    "description": "Tests for eq_ignore_case<string> function.",
+    "functionId": "eq_ignore_case<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abcdefghijklmnop"
+                },
+                {
+                    "dataType": "string",
+                    "value": "AbCdEfGhijklmnop"
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abcdefghijklmnop"
+                },
+                {
+                    "dataType": "string",
+                    "value": "AbCdEfGhijklmnopq"
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "WILL NOT MATCH"
+                },
+                {
+                    "dataType": "string",
+                    "value": "will not match"
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

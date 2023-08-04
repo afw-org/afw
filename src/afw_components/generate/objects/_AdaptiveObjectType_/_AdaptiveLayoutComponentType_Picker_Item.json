@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Item for the Nav component",
+    "label": "Item",
+    "objectType": "_AdaptiveLayoutComponentType_Picker_Item",
+    "propertyTypes": {
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Key for this Picker item.",
+            "label": "Key"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Label for this Picker item.",
+            "label": "Label"
+        }
+    }
+}

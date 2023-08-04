@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsIpAddress",
+    "brief": "Checks whether value is dataType ipAddress",
+    "camelCaseFunctionLabel": "isIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType ipAddress and return the boolean result.",
+    "functionId": "is<ipAddress>",
+    "functionLabel": "is_ipAddress",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

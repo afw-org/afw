@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddDouble",
+    "brief": "Add",
+    "camelCaseFunctionLabel": "addDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Add 2 or more double values and return the double result.",
+    "functionId": "add<double>",
+    "functionLabel": "add_double",
+    "op": "+",
+    "parameters": [
+        {
+            "dataType": "double",
+            "minArgs": 2,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

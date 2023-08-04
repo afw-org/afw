@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeIa5String",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Checks for ia5String arg1 is greater than or equal to ia5String arg2 and return the boolean result.",
+    "functionId": "ge<ia5String>",
+    "functionLabel": "ge_ia5String",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "ia5String",
+            "name": "arg1"
+        },
+        {
+            "dataType": "ia5String",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

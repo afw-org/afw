@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeTime",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<time>",
+    "functionLabel": "bag_size_time",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

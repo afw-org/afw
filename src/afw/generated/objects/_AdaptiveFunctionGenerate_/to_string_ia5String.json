@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringIa5String",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Converts ia5String value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<ia5String>",
+    "functionLabel": "to_string_ia5String",
+    "parameters": [
+        {
+            "dataType": "ia5String",
+            "description": "A ia5String value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

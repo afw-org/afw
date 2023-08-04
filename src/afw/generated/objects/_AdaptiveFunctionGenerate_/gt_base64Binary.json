@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtBase64Binary",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Checks for base64Binary arg1 is greater than base64Binary arg2 and return the boolean result.",
+    "functionId": "gt<base64Binary>",
+    "functionLabel": "gt_base64Binary",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "base64Binary",
+            "name": "arg1"
+        },
+        {
+            "dataType": "base64Binary",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

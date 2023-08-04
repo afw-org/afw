@@ -1,0 +1,32 @@
+FROM ubuntu:22.04
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y git libtool pkg-config clang-tools \
+    libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev python3-pip python3-lxml \
+    libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
+    libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
+    libaprutil1-dbd-mysql libaprutil1-dbd-sqlite3 libaprutil1-dbd-odbc libaprutil1-dbd-pgsql \
+    libyaml-dev libfcgi-dev nginx gdb valgrind lsof default-jre doxygen \
+    nodejs npm tmux vim locales bash-completion docker.io && \
+    apt-get clean
+
+RUN npm install -g npm-upgrade && npm install -g n && n stable
+RUN npm install -g npm@8 eclint cspell
+
+COPY python-requirements.txt /tmp/python-requirements.txt
+RUN pip install -r /tmp/python-requirements.txt
+
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8 
+
+# install railroad ebnf syntax diagram generator
+ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
+
+CMD ["bash"]

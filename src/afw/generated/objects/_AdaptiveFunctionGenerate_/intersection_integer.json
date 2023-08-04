@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionInteger",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Returns a list of integer with the values that are common to both list of integer list1 and list2.",
+    "functionId": "intersection<integer>",
+    "functionLabel": "intersection_integer",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "integer",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

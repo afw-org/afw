@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Data Types</title>
+    <paragraph>
+        <literal>Data Types</literal> are the fundamental pieces of storage that
+        Adaptive Framework uses to represent a type of data. They are
+        implementations of the <literal>afw_data_type</literal> interface, 
+        created and registered by the core, or by extensions. Some of the 
+        features of a Data Type include storing the value internally, providing
+        an external representation, a way to declare it in JSON and JSONSchema
+        format, and a function to compare two values.
+    </paragraph>    
+    <paragraph>
+        The following data types are defined by core:
+    </paragraph>
+    <data-types-table />
+</doc>

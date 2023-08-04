@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagTime",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Takes any number of time values and returns a list of list.",
+    "functionId": "bag<time>",
+    "functionLabel": "bag_time",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "time"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

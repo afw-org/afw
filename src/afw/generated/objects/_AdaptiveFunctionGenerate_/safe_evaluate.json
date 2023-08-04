@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSafeEvaluate",
+    "brief": "Safe evaluate",
+    "camelCaseFunctionLabel": "safeEvaluate",
+    "category": "compiler",
+    "description": "Return the evaluated adaptive value. If an exception occurs, return evaluated error instead.",
+    "functionId": "safe_evaluate",
+    "functionLabel": "safe_evaluate",
+    "parameters": [
+        {
+            "description": "Value to evaluated",
+            "name": "value"
+        },
+        {
+            "description": "Value to evaluate and return if exception occurs. If an error occurs evaluating this value, the exception will continue.",
+            "name": "error"
+        }
+    ],
+    "returns": {
+        "description": "Evaluated adaptive value or error value."
+    }
+}

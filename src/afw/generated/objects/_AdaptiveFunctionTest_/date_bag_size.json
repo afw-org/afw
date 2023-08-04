@@ -1,0 +1,57 @@
+{
+    "description": "Tests for bag_size<date> function.",
+    "functionId": "bag_size<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "-1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12-05:00",
+                        "2004-04-12Z"
+                    ]
+                }
+            ],
+            "description": "Five",
+            "result": {
+                "dataType": "integer",
+                "value": "5"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12Z"
+                    ]
+                }
+            ],
+            "description": "One",
+            "result": {
+                "dataType": "integer",
+                "value": "1"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": []
+                }
+            ],
+            "description": "Zero",
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            }
+        }
+    ]
+}

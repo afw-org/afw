@@ -1,0 +1,72 @@
+{
+    "description": "Tests for set_equals<x500Name> function.",
+    "functionId": "set_equals<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme4",
+                        "cn=John Smith,ou=Finance,o=Acme4"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme4"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme1",
+                        "cn=John Smith,ou=Finance,o=Acme2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "cn=John Smith,ou=Finance,o=Acme1",
+                        "cn=John Smith,ou=Finance,o=Acme2"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "x500Name",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

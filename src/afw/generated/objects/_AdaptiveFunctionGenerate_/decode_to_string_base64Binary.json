@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDecodeToStringBase64Binary",
+    "brief": "Decode base64Binary to string",
+    "camelCaseFunctionLabel": "decodeToStringBase64Binary",
+    "category": "base64Binary",
+    "dataTypeMethod": true,
+    "description": "Decode base64Binary value to string. An error is thrown if decoded value is not valid UTF-8.",
+    "functionId": "decode_to_string<base64Binary>",
+    "functionLabel": "decode_to_string_base64Binary",
+    "parameters": [
+        {
+            "dataType": "base64Binary",
+            "description": "The base64Binary value to decode.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The decoded string."
+    }
+}

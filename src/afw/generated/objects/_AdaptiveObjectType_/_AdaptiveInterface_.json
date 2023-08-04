@@ -1,0 +1,27 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive interface object.",
+    "objectType": "_AdaptiveInterface_",    
+    "propertyTypes": {
+        "name": {
+            "allowQuery": true,
+            "brief": "Interface name",
+            "dataType": "string",
+            "description": "Interface name.",
+            "label": "Name",
+            "required": true
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this interface",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this interface",
+            "label": "Description",
+            "required": false
+        }
+    }
+}

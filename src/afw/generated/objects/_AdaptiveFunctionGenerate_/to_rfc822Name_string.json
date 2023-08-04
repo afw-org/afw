@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToRfc822NameString",
+    "brief": "Converts string to rfc822Name",
+    "camelCaseFunctionLabel": "toRfc822NameString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to rfc822Name.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "to_rfc822Name<string>",
+    "functionLabel": "to_rfc822Name_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "rfc822Name"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

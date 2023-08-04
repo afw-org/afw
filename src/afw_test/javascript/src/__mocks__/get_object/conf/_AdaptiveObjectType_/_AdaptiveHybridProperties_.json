@@ -1,0 +1,22 @@
+{
+    "_meta_": {
+        "path": "/conf/_AdaptiveObjectType_/_AdaptiveHybridProperties_",
+        "objectId": "_AdaptiveHybridProperties_",
+        "objectType": "_AdaptiveObjectType_"
+    },
+    "allowDelete": true,
+    "allowChange": true,
+    "allowAdd": true,
+    "otherProperties": {
+        "_meta_": {
+            "objectType": "_AdaptiveValueMeta_"
+        },
+        "dataType": "hybrid"
+    },
+    "objectType": "_AdaptiveHybridProperties_",
+    "description": "Each property is a hybrid value.",
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "allowEntity": true
+}

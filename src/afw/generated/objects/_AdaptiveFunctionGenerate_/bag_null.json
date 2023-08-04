@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagNull",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagNull",
+    "category": "null",
+    "dataTypeMethod": true,
+    "description": "Takes any number of null values and returns a list of list.",
+    "functionId": "bag<null>",
+    "functionLabel": "bag_null",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "null",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "null"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

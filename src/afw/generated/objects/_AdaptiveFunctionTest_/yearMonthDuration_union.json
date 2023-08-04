@@ -1,0 +1,91 @@
+{
+    "description": "Tests for union<yearMonthDuration> function.",
+    "functionId": "union<yearMonthDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M",
+                        "P0Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P0Y20M",
+                        "P20M"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "yearMonthDuration",
+                "value": [
+                    "P2Y6M",
+                    "P0Y",
+                    "P20M"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P2Y6M",
+                        "P0Y"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "P0Y",
+                        "P20M"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "yearMonthDuration",
+                "value": [
+                    "P2Y6M",
+                    "P0Y",
+                    "P20M"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "yearMonthDuration",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

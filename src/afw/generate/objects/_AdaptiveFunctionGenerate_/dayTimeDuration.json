@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type dateTimeDuration",
+    "category": "dayTimeDuration",
+    "description": "Converts value to data type dayTimeDuration returning dayTimeDuration result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "dayTimeDuration",
+    "functionLabel": "dayTimeDuration",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "dayTimeDuration",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

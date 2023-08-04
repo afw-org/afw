@@ -1,0 +1,4 @@
+{
+    "name": "afw_writer",
+    "description": "An interface for a writer."
+}

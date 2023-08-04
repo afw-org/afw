@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type base64Binary",
+    "category": "base64Binary",
+    "description": "Converts value to data type base64Binary returning base64Binary result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "base64Binary",
+    "functionLabel": "base64Binary",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

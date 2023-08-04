@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToIntegerString",
+    "brief": "Converts to integer",
+    "camelCaseFunctionLabel": "toIntegerString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Truncate string value to a whole number and returns integer result.",
+    "functionId": "to_integer<string>",
+    "functionLabel": "to_integer_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

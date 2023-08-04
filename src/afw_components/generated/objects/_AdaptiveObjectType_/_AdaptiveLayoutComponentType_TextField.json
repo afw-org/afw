@@ -1,0 +1,70 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the TextField component.",
+    "label": "TextField",
+    "objectType": "_AdaptiveLayoutComponentType_TextField",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "description": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The description for the TextField component that describes this input.",
+            "testDataParameter": "This is a description of the TextField.",
+            "label": "Description"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the the TextField is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the TextField component.",
+            "testDataParameter": "This is a label",
+            "label": "Label"
+        },
+        "placeholder": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The placeholder text for this component.",
+            "testDataParameter": "This is a placeholder",
+            "label": "Placeholder"
+        },
+        "multiline": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this TextField component is multilined.",
+            "label": "Multiline"
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this TextField component is required.",
+            "label": "Required"
+        },
+        "rows": {
+            "allowWrite": true,
+            "dataType": "integer",
+            "description": "Specifies the number of rows to display.",
+            "label": "Rows"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value of the TextField component.",
+            "label": "Value"
+        }
+    }
+}

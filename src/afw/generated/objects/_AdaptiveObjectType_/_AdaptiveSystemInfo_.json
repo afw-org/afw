@@ -1,0 +1,9 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information.",
+    "objectType": "_AdaptiveSystemInfo_",
+    "otherProperties": {}
+}

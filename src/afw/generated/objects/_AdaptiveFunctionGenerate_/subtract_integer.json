@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubtractInteger",
+    "brief": "Subtract numbers",
+    "camelCaseFunctionLabel": "subtractInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Subtract integer arg2 from integer arg1 and return the integer result.",
+    "functionId": "subtract<integer>",
+    "functionLabel": "subtract_integer",
+    "op": "-",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "arg1"
+        },
+        {
+            "dataType": "integer",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

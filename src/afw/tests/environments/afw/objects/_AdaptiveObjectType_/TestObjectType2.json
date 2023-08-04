@@ -1,0 +1,17 @@
+{
+    "_meta_": {
+        "parentPaths": [
+            "/*/*/TestObjectType1"
+        ]
+    },
+    "objectType": "TestObjectType2",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,    
+    "propertyTypes": {
+        "TestString2": {
+            "dataType": "string"
+        }
+    }     
+}

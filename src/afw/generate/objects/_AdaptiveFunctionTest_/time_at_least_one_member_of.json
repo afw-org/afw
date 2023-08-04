@@ -1,0 +1,57 @@
+{
+    "description": "Tests for at_least_one_member_of<time> function.",
+    "functionId": "at_least_one_member_of<time>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5555",
+                        "13:20:30.5556"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5555",
+                        "13:20:30.5555"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5557",
+                        "13:20:30.5556"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "time",
+                    "value": [
+                        "13:20:30.5555",
+                        "13:20:30.5555"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

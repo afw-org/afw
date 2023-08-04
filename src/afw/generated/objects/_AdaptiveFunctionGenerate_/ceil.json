@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCeil",
+    "brief": "Round upward to nearest integer",
+    "camelCaseFunctionLabel": "ceil",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine the smallest integer that is greater then or equal to the <dataType> value and return the <dataType> result.",
+    "functionId": "ceil",
+    "functionLabel": "ceil",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

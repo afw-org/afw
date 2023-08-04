@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalizeSpaceString",
+    "brief": "Trims whitespace from beginning and end",
+    "camelCaseFunctionLabel": "normalizeSpaceString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Remove whitespace from the beginning and end of a string value.",
+    "functionId": "normalize_space<string>",
+    "functionLabel": "normalize_space_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "string"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    }
+}

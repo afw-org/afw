@@ -1,0 +1,4 @@
+# .gitignore specific to src/afw_test and its subdirectories
+
+/prime.bin
+/app_c.csv

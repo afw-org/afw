@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagScript",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagScript",
+    "category": "script",
+    "dataTypeMethod": true,
+    "description": "Takes any number of script values and returns a list of list.",
+    "functionId": "bag<script>",
+    "functionLabel": "bag_script",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "script",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "script"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

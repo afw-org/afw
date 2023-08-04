@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToInteger",
+    "brief": "Converts to integer",
+    "camelCaseFunctionLabel": "toInteger",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Truncate <dataType> value to a whole number and returns integer result.",
+    "functionId": "to_integer",
+    "functionLabel": "to_integer",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_convert",
+    "polymorphicOverrides": {
+        "double": {
+            "useExecuteFunction": "afw_function_execute_to_integer_double"
+        }
+    },
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

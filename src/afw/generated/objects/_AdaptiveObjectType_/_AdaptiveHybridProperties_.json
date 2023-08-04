@@ -1,0 +1,11 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Each property is a hybrid value.",
+    "objectType": "_AdaptiveHybridProperties_",
+    "otherProperties": {
+        "dataType": "hybrid"
+    }
+}

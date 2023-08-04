@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddYearMonthDuration",
+    "brief": "Add duration",
+    "camelCaseFunctionLabel": "addYearMonthDuration",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Add <dataType> arg1 to yearMonthDuration arg2 and return the <dataType> result.",
+    "functionId": "add_yearMonthDuration",
+    "functionLabel": "add_yearMonthDuration",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "date",
+        "dateTime"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

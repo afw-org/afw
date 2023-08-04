@@ -1,0 +1,92 @@
+{
+    "description": "Tests for starts_with<string> function.",
+    "functionId": "starts_with<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abcd"
+                },
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                }
+            ],
+            "description": "string starts with test abc abcd",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                },
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                }
+            ],
+            "description": "string starts with test abc abc",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "ab"
+                },
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                }
+            ],
+            "description": "string starts with test abc ab",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "eabcd"
+                },
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                }
+            ],
+            "description": "string starts with test abc eabcd",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

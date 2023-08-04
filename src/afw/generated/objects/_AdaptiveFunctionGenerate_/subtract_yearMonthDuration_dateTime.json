@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubtractYearMonthDurationDateTime",
+    "brief": "Subtract numbers",
+    "camelCaseFunctionLabel": "subtractYearMonthDurationDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Subtract yearMonthDuration arg2 from dateTime arg1 and return the dateTime result.",
+    "functionId": "subtract_yearMonthDuration<dateTime>",
+    "functionLabel": "subtract_yearMonthDuration_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "name": "arg1"
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

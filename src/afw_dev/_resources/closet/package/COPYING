@@ -1,0 +1,17 @@
+Adaptive Framework is provided under the MIT license. See file LICENSE.
+
+In addition, Adaptive Framework and any software that has been developed using
+Adaptive Framework, also known as an "Adaptive Framework Package", will use 
+third-party libraries that are normally installed using the operating system's
+package handling utility. These third-party libraries may include additional
+licensing requirements. To identify these third-party libraries, refer to the
+instructions used to build the Adaptive Framework Package.
+
+Historical note:
+
+When Adaptive Framework was started, it was being jointly developed with
+Omnibond Systems, LLC., so the boilerplate copyright included them.  All
+of the source in the current branches of the repository has been developed
+by Clemson University staff. Boyd Wilson of Omnibond Systems, LLC. agreed
+that their copyright can be removed from the current source code for ease
+of open sourcing.

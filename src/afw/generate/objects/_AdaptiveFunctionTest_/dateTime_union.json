@@ -1,0 +1,72 @@
+{
+    "description": "Tests for union<dateTime> function.",
+    "functionId": "union<dateTime>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-12T13:20:00"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-18T13:20:01"
+                    ]
+                }
+            ],
+            "description": "Union",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "dateTime",
+                "value": [
+                    "2004-04-12T13:20:00",
+                    "2004-04-18T13:20:01"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-12T13:20:00",
+                        "2004-04-13T13:20:15.5",
+                        "2004-04-14T13:20:00",
+                        "2004-04-15T13:20:00"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dateTime",
+                    "value": [
+                        "2004-04-12T13:20:00",
+                        "2004-04-16T13:20:15.5",
+                        "2004-04-17T13:20:00",
+                        "2004-04-18T13:20:00"
+                    ]
+                }
+            ],
+            "description": "Union",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "dateTime",
+                "value": [
+                    "2004-04-12T13:20:00",
+                    "2004-04-13T13:20:15.5",
+                    "2004-04-14T13:20:00",
+                    "2004-04-15T13:20:00",
+                    "2004-04-16T13:20:15.5",
+                    "2004-04-17T13:20:00",
+                    "2004-04-18T13:20:00"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "brief": "A date and time",
+    "cType": "afw_dateTime_t",
+    "dataType": "dateTime",
+    "description": "Data type dateTime is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "date-time",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
+    "relationalCompares": true,
+    "scalar": true
+}

@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPow",
+    "brief": "Base raised to a power",
+    "camelCaseFunctionLabel": "pow",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent.",
+    "functionId": "pow",
+    "functionLabel": "pow",
+    "parameters": [
+        {
+            "brief": "Base value",
+            "description": "Base value.",
+            "name": "base",
+            "polymorphicDataType": true
+        },
+        {
+            "brief": "Exponent value",
+            "description": "Exponent value.",
+            "minArgs": 1,
+            "name": "exponent",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "pure": true,
+    "returns": {
+        "description": "Base raised to the power.",
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

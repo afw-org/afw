@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddYearMonthDurationDate",
+    "brief": "Add duration",
+    "camelCaseFunctionLabel": "addYearMonthDurationDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Add date arg1 to yearMonthDuration arg2 and return the date result.",
+    "functionId": "add_yearMonthDuration<date>",
+    "functionLabel": "add_yearMonthDuration_date",
+    "parameters": [
+        {
+            "dataType": "date",
+            "name": "arg1"
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "date"
+    }
+}

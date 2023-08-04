@@ -1,0 +1,84 @@
+{
+    "description": "Tests for intersection<base64Binary> function.",
+    "functionId": "intersection<base64Binary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0fa80f+9"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0F+40A=="
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "base64Binary",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0fa80f+9",
+                        "0F+40A=="
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0F+40A=="
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "base64Binary",
+                "value": [
+                    "0F+40A=="
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwStartsWith",
+    "brief": "Checks whether value starts with a string",
+    "camelCaseFunctionLabel": "startsWith",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether <dataType> value starts with a subString and return the boolean result.",
+    "functionId": "starts_with",
+    "functionLabel": "starts_with",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_starts_with",
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

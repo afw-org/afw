@@ -1,0 +1,5 @@
+{
+    "brief": "xpath related functions",
+    "category": "xpath",
+    "description": "Functions on path expressions used to navigate in XML documents."
+}

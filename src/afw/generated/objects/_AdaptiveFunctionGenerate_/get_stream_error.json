@@ -1,0 +1,15 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGetStreamError",
+    "brief": "Get stream error",
+    "camelCaseFunctionLabel": "getStreamError",
+    "category": "stream",
+    "description": "Get the most recent stream error.",
+    "functionId": "get_stream_error",
+    "functionLabel": "get_stream_error",
+    "parameters": [],
+    "returns": {
+        "brief": "Stream error",
+        "dataType": "string",
+        "description": "The most recent stream error."
+    }
+}

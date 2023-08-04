@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsDate",
+    "brief": "Checks whether value is dataType date",
+    "camelCaseFunctionLabel": "isDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType date and return the boolean result.",
+    "functionId": "is<date>",
+    "functionLabel": "is_date",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

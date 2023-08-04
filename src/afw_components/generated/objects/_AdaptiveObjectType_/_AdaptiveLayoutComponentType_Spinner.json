@@ -1,0 +1,31 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Spinner component.",
+    "objectType": "_AdaptiveLayoutComponentType_Spinner",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Spinner component.",
+            "testDataParameter": "This is a label",
+            "label": "Label"
+        },
+        "size": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The size of the Spinner component.",
+            "label": "Size"
+        }
+    }
+}

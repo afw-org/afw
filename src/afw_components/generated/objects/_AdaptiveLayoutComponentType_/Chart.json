@@ -1,0 +1,9 @@
+{
+    "category": "structured",
+    "componentType": "Chart",
+    "brief": "Component to display data in a Chart.",
+    "description": "This component can display a variety of simple or complex chart data in forms such as Pie, Line or Bar to offer a visual representation of the provided data.",
+    "implementationId": "Chart",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Chart",
+    "label": "Chart"
+}

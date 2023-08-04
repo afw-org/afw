@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# This is a convenience script that can only be invoked from the root of the afw
+# repository to run the uninstalled afwdev.py script with the same arguments.
+#
+
+src/afw_dev/afwdev.py "$@"

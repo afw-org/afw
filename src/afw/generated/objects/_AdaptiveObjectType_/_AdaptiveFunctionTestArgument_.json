@@ -1,0 +1,31 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive function test argument.",
+    "objectType": "_AdaptiveFunctionTestArgument_",
+    "propertyTypes": {
+        "dataType": {
+            "allowQuery": true,
+            "brief": "",
+            "dataType": "string",
+            "description": "",
+            "label": "Data Type",
+            "required": false
+        },
+        "dataTypeParameter": {
+            "brief": "Data type parameter",
+            "dataType": "string",
+            "description": "Data type parameter",
+            "label": "Data Type Parameter",
+            "required": false
+        },
+        "value": {
+            "brief": "",
+            "description": "",
+            "label": "Value",
+            "required": false
+        }
+    }
+}

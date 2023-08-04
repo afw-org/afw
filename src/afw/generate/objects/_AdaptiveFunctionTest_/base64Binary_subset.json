@@ -1,0 +1,83 @@
+{
+    "description": "Tests for subset<base64Binary> function.",
+    "functionId": "subset<base64Binary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0fa80f+9"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0F+40A==",
+                        "0fa80f+9"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa8",
+                        "0fa80f+9"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "0fa9",
+                        "0F+40A==",
+                        "0fa80f+9"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "base64Binary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

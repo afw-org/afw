@@ -1,0 +1,76 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/models/_AdaptiveObjectType_/_AdaptiveModel_"
+        },
+        "allowDelete": true,
+        "allowChange": true,
+        "allowAdd": true,
+        "propertyTypes": {
+            "propertyTypes": {
+                "label": "Property Types",
+                "description": "Property type objects that can be inherited by propertyTypes in objectTypes.",
+                "dataTypeParameter": "_AdaptiveModelPropertyTypes_",
+                "dataType": "object",
+                "brief": "Property type objects that can be inherited by propertyTypes in objectTypes",
+                "allowQuery": true
+            },
+            "originURI": {
+                "label": "Origin URI",
+                "description": "The origin URI of this model.  Descendant object types should be used for any deviations.  This URI may be different from the URI within this instance of Adaptive Framework.",
+                "dataType": "anyURI",
+                "brief": "The origin URI of this model",
+                "allowQuery": true
+            },
+            "objectTypes": {
+                "unique": false,
+                "required": false,
+                "label": "Object Types",
+                "description": "Model for an object type.",
+                "dataTypeParameter": "_AdaptiveModelObjectTypes_",
+                "dataType": "object",
+                "brief": "Model for an object type",
+                "allowWrite": true,
+                "allowQuery": false
+            },
+            "modelId": {
+                "label": "Model",
+                "description": "Object id of model.",
+                "dataType": "string",
+                "brief": "Object id of model",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "Description of this model.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "Description of this model",
+                "allowQuery": true
+            },
+            "custom": {
+                "label": "Custom",
+                "description": "Qualifier custom:: variables available to model expressions.",
+                "dataTypeParameter": "_AdaptiveHybridProperties_",
+                "dataType": "object",
+                "brief": "Custom variables available to model expressions"
+            },
+            "collectionURIs": {
+                "label": "Collection URIs",
+                "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "The URIs of the collections this map is part of",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveModel_",
+        "objectIdPropertyName": "modelId",
+        "description": "Adaptive map object type.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true
+    },
+    "status": "success"
+}

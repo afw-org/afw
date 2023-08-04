@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtExpression",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltExpression",
+    "category": "expression",
+    "dataTypeMethod": true,
+    "description": "Checks for expression arg1 is less that expression arg2 and return the boolean result.",
+    "functionId": "lt<expression>",
+    "functionLabel": "lt_expression",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "expression",
+            "name": "arg1"
+        },
+        {
+            "dataType": "expression",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

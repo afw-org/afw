@@ -1,0 +1,24 @@
+{
+    "category": "function",
+    "description": "Converts value to data type function returning function result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "function",
+    "functionLabel": "function",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "function",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

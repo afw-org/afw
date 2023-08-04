@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeInteger",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Checks for integer arg1 is less than or equal to integer arg2 and return the boolean result.",
+    "functionId": "le<integer>",
+    "functionLabel": "le_integer",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

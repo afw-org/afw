@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeDate",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Checks for date arg1 is less than or equal to date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "le<date>",
+    "functionLabel": "le_date",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "date",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

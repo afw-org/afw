@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsTemplate",
+    "brief": "Checks whether value is dataType template",
+    "camelCaseFunctionLabel": "isTemplate",
+    "category": "template",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType template and return the boolean result.",
+    "functionId": "is<template>",
+    "functionLabel": "is_template",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfString",
+    "brief": "Checks for at least one value in common",
+    "camelCaseFunctionLabel": "atLeastOneMemberOfString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if at least one value in string list1 is in string list2.",
+    "functionId": "at_least_one_member_of<string>",
+    "functionLabel": "at_least_one_member_of_string",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_at_least_one_member_of"
+}

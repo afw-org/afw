@@ -1,0 +1,9 @@
+{
+    "category": "pickers",
+    "componentType": "TimezonePicker",
+    "brief": "A component that allows a timezone to be chosen.",
+    "description": "This component allows a timezone to be chosen, typically from a dropdown of timezones, or from a world map.",
+    "implementationId": "TimezonePicker",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_TimezonePicker",
+    "label": "Timezone Picker"
+}

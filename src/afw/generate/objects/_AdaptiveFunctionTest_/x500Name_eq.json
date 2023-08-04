@@ -1,0 +1,47 @@
+{
+    "description": "Tests for eq<x500Name> function.",
+    "functionId": "eq<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                },
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                },
+                {
+                    "dataType": "x500Name",
+                    "value": "cn=Johny Smith,ou=Finance,o=Acme"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

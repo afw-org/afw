@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtRegexp",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Checks for regexp arg1 is greater than regexp arg2 and return the boolean result.",
+    "functionId": "gt<regexp>",
+    "functionLabel": "gt_regexp",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "regexp",
+            "name": "arg1"
+        },
+        {
+            "dataType": "regexp",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

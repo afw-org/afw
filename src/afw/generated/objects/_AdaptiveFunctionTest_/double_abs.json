@@ -1,0 +1,58 @@
+{
+    "description": "Tests for abs<double> function.",
+    "functionId": "abs<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "3.1416"
+                }
+            ],
+            "description": "3.1416",
+            "result": {
+                "dataType": "double",
+                "value": "3.1416"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-3.1416"
+                }
+            ],
+            "description": "-3.1416",
+            "result": {
+                "dataType": "double",
+                "value": "3.1416"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "-92233720368547758.0"
+                }
+            ],
+            "description": "-92233720368547758",
+            "result": {
+                "dataType": "double",
+                "value": "92233720368547758.0"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "x.0"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

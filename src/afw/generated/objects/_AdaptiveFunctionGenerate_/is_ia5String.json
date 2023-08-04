@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsIa5String",
+    "brief": "Checks whether value is dataType ia5String",
+    "camelCaseFunctionLabel": "isIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType ia5String and return the boolean result.",
+    "functionId": "is<ia5String>",
+    "functionLabel": "is_ia5String",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

@@ -1,0 +1,66 @@
+{
+  "name": "@afw/admin",
+  "version": "0.9.0",
+  "license": "UNLICENSED",
+  "description": "Adaptive Framework administrative application.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afw-org/afw.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@mui/icons-material": "^5.0.0",
+    "@mui/lab": "^5.0.0-alpha.47",
+    "@mui/material": "^5.0.0",    
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "cross-env": "^7.0.3",
+    "material-design-icons-iconfont": "^6.1.0",
+    "mdi-material-ui": "^7.1.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.33",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "vis-network": "^9.0.4",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^5.0.0",
+    "typeface-roboto": "^1.1.13",
+    "typeface-roboto-mono": "^1.1.13"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.13.9",
+    "@babel/runtime": "^7.8.4",        
+    "source-map-explorer": "^2.5.2",    
+    "webpack-bundle-analyzer": "^4.3.0"
+  },
+  "scripts": {
+    "prestart": "./prestart.sh",
+    "start": "react-scripts start",
+    "analyze": "source-map-explorer 'build/static/js/*.js{,.map}' --only-mapped",
+    "analyze:stats": "webpack-bundle-analyzer build/bundle-stats.json",
+    "prebuild": "./prebuild.sh",
+    "build": "cross-env PUBLIC_URL='/afw_app' react-scripts --max_old_space_size=4096 build",    
+    "build:stats": "react-scripts --max_old_space_size=4096 build --stats",
+    "test": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose",
+    "test-p": "cross-env TZ=UTC npm-run-all --parallel --aggregate-output test:app test:objects test:models test:services test:admin test:tools test:docs",
+    "test:app": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/App src/Home",
+    "test:objects": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Objects",
+    "test:models": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Admin/Models",
+    "test:services": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Admin/Services",
+    "test:admin": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Admin/Application src/Admin/Authorization src/Admin/Extensions src/Admin/Provisioning src/Admin/RequestHandlers src/Admin/Schema src/Admin/Server src/Admin/Status src/Admin/Versions",
+    "test:tools": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Tools",
+    "test:docs": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose src/Documentation",
+    "eject": "react-scripts eject"
+  },
+  "jest": {   
+  },
+  "homepage": ".",
+  "proxy": "http://localhost:8080/",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

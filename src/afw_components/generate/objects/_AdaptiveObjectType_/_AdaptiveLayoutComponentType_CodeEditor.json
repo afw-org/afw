@@ -1,0 +1,50 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the CodeEditor component.",
+    "label": "CodeEditor",
+    "objectType": "_AdaptiveLayoutComponentType_CodeEditor",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "readOnly": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The source value for the CodeEditor component should be read-only.",
+            "label": "Read Only"
+        },
+        "showGutter": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the gutter should be visible in CodeEditor component.",
+            "label": "Gutter"
+        },
+        "showLineNumbers": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the line numbers should be visible in CodeEditor component.",
+            "label": "Line Numbers"
+        },
+        "showPrintMargin": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the print margin should be visible in CodeEditor component.",
+            "label": "Print Margin"
+        },
+        "source": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The source value for the CodeEditor component to render.",
+            "testDataParameter": "This is some text that has been entered into the editor.",
+            "label": "Source"
+        }
+    }
+}

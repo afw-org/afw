@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtXpathExpression",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltXpathExpression",
+    "category": "xpathExpression",
+    "dataTypeMethod": true,
+    "description": "Checks for xpathExpression arg1 is less that xpathExpression arg2 and return the boolean result.",
+    "functionId": "lt<xpathExpression>",
+    "functionLabel": "lt_xpathExpression",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "arg1"
+        },
+        {
+            "dataType": "xpathExpression",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

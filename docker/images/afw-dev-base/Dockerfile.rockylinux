@@ -1,0 +1,35 @@
+FROM rockylinux:8.8.20230518
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+# Install packages
+RUN dnf install -y epel-release && \
+    dnf install -y 'dnf-command(config-manager)' && \
+    dnf install -y glibc-langpack-en && \
+    yum config-manager --set-enabled powertools && \
+    dnf group install "Development Tools" -y && \
+    dnf --enablerepo=powertools install -y \
+    make libtool cmake clang-analyzer \
+    nginx gdb gdb-gdbserver valgrind valgrind-devel \
+    apr-devel apr-util-mysql apr-util-ldap \
+    libxml2-devel libxslt-devel libicu-devel \
+    elfutils elfutils-devel libunwind-devel \
+    httpd-devel mariadb mariadb-devel libdb-devel lmdb lmdb-devel \
+    libcurl-devel libyaml libyaml-devel \
+    python3-pip python3-devel \
+    fcgi fcgi-devel wget git \
+    rpm-build npm \
+    openssl openssl-devel doxygen && \
+    dnf clean all && rm -rf /var/cache/*
+
+RUN npm install -g npm-upgrade && npm install -g n && n stable
+RUN npm install -g npm@8 eclint cspell
+
+# install python packages
+COPY python-requirements.txt /tmp/python-requirements.txt
+RUN pip3.6 install -r /tmp/python-requirements.txt
+
+# install railroad ebnf syntax diagram generator
+ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
+
+CMD [ "bash" ]

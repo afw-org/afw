@@ -1,0 +1,19 @@
+{
+    "brief": "Logical or",
+    "category": "logical",
+    "description": "Evaluates 0 or more boolean conditions returning boolean false if there are no conditions and boolean true if any condition evaluate to true. All conditions after the first true remain unevaluated.",
+    "functionId": "or",
+    "functionLabel": "or",
+    "pure": true,
+    "op": "||",
+    "parameters": [
+        {
+            "minArgs": 0,
+            "dataType": "boolean",
+            "name": "conditions"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

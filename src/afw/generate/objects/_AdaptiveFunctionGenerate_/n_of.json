@@ -1,0 +1,28 @@
+{
+    "brief": "Check for n true values",
+    "category": "logical",
+    "description": "integer n specifies the number of boolean conditions that follow that must evaluate to true for boolean true to be returned. If n is 0, true is returned. Once n conditions evaluate to true, true is returned and the remaining conditions remain unevaluated.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "there are less than n conditions"
+        }
+    ],
+    "functionId": "n_of",
+    "functionLabel": "n_of",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "n"
+        },
+        {
+            "minArgs": 0,
+            "dataType": "boolean",
+            "name": "conditions"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

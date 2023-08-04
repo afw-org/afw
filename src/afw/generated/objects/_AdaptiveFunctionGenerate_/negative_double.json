@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNegativeDouble",
+    "brief": "Negative of a number",
+    "camelCaseFunctionLabel": "negativeDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return negative of double value.",
+    "functionId": "negative<double>",
+    "functionLabel": "negative_double",
+    "op": "-",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

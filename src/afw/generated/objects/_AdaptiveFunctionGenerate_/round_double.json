@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRoundDouble",
+    "brief": "Round to nearest integer",
+    "camelCaseFunctionLabel": "roundDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Determine the integer closest to double value and return the double result.",
+    "functionId": "round<double>",
+    "functionLabel": "round_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "number"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

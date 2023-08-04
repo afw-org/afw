@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddEntries",
+    "brief": "Add entries of one or more lists to another",
+    "camelCaseFunctionLabel": "addEntries",
+    "category": "list",
+    "description": "Add the entries of one or more lists to another.",
+    "functionId": "add_entries",
+    "functionLabel": "add_entries",
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "Target list. This list must not be immutable.",
+            "name": "target"
+        },
+        {
+            "dataType": "list",
+            "description": "Source list(s).",
+            "minArgs": 1,
+            "name": "source"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "list",
+        "description": "The modified target list."
+    },
+    "sideEffects": [
+        "Target list is modified."
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeIa5String",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leIa5String",
+    "category": "ia5String",
+    "dataTypeMethod": true,
+    "description": "Checks for ia5String arg1 is less than or equal to ia5String arg2 and return the boolean result.",
+    "functionId": "le<ia5String>",
+    "functionLabel": "le_ia5String",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "ia5String",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

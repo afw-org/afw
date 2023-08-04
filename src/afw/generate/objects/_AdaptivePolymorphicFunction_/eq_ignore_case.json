@@ -1,0 +1,26 @@
+{
+    "brief": "Checks for equal ignoring case",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks for <dataType> arg1 is equal to <dataType> arg2 ignoring case and return the boolean result.",
+    "functionId": "eq_ignore_case",
+    "functionLabel": "eq_ignore_case",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "arg2",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

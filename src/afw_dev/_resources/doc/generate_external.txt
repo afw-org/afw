@@ -1,0 +1,13 @@
+generate/external/
+------------------
+
+Directory generate/external/ can contain any of the directories other
+than external/ that can be contained in a generate/ directory.  During
+./dev generate processing, if generate/external is present, the contents
+of generate/external and all of the directories in generate/ except
+external/ and temp_generate/ are merged in an appropriate way to
+produce generate/temp_generate/, which is then used for the generate
+process.
+
+A src/<subdir> can use a script or other means to create
+generate/external/ to provide additional objects, strings, etc.

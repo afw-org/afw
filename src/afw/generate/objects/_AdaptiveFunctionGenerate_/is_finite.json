@@ -1,0 +1,19 @@
+{
+    "brief": "Is a number finite",
+    "category": "double",
+    "description": "Checks if the argument 'number' is finite and returns the boolean result.",
+    "functionId": "is_finite",
+    "functionLabel": "is_finite",
+    "parameters": [
+        {
+            "dataType": "double",
+            "description": "Number to check",
+            "name": "number"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if the argument 'number' is finite."
+    }
+}

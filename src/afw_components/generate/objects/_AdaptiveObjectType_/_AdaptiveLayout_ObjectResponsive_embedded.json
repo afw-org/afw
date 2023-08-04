@@ -1,0 +1,26 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Object Form Preferred Component option.",
+    "objectType": "_AdaptiveLayout_ObjectResponsive_embedded",
+    "propertyTypes": {
+        "component": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The Preferred Component to apply to this embedded object.",
+            "label": "Component",
+            "possibleValues": [
+                "Collapsible",
+                "Box",
+                "Link",
+                "Paper",
+                "none"
+            ]
+        }
+    }
+}

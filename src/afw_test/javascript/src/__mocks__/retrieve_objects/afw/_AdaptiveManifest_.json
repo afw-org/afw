@@ -1,0 +1,481 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_bdb",
+                "objectId": "afw_bdb",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/bdb"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/bdb_extension",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_bdb"
+            ],
+            "modulePath": "libafwbdb",
+            "extensionId": "afw_bdb",
+            "description": "This extension registers an adaptor for retrieving and storing Adaptive Objects in BerkeleyDB, a key-value database.",
+            "brief": "Extension for BerkeleyDB"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_dbd",
+                "objectId": "afw_dbd",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/dbd_freetds",
+                "adaptor_type/dbd_mysql",
+                "adaptor_type/dbd_odbc",
+                "adaptor_type/dbd_oracle",
+                "adaptor_type/dbd_postgresql",
+                "adaptor_type/dbd_sqlite3",
+                "error_rv_decoder/dbd"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/dbd_extension",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_freetds",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_mysql",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_odbc",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_oracle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_postgresql",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_sqlite3"
+            ],
+            "modulePath": "libafwdbd",
+            "extensionId": "afw_dbd",
+            "description": "This extension leverages Apache's Database Driver (DBD) interface to connect to multiple databases through a single set of API's.  This includes MySQL, MariaDB, Postgres, FreeTDS, and ODBC.",
+            "brief": "Extension for Apache Database Driver (DBD)"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_dynamo_db",
+                "objectId": "afw_dynamo_db",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/dynamo_db"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/dynamo_db_extension",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dynamo_db"
+            ],
+            "modulePath": "libafwdynamodb",
+            "extensionId": "afw_dynamo_db",
+            "description": "This extension registers an adaptor for storing Adaptive Objects in Amazon's DynamoDB, a cloud-based NoSQL storage solution.",
+            "brief": "Extension for Amazon DynamoDB"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_splunk",
+                "objectId": "afw_splunk",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "error_rv_decoder/splunk",
+                "log_type/splunk"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/splunk_extension",
+                "/afw/_AdaptiveFunctionCategory_/splunk",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_log_splunk",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_log_splunk_connection",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_log_splunk_ssl"
+            ],
+            "modulePath": "libafwsplunk",
+            "extensionId": "afw_splunk",
+            "description": "This extension provides adaptive functions for logging messages directly to splunk.",
+            "brief": "Extension for Splunk"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_lmdb",
+                "objectId": "afw_lmdb",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/lmdb",
+                "error_rv_decoder/lmdb"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/lmdb_extension",
+                "/afw/_AdaptiveFunctionCategory_/lmdb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time"
+            ],
+            "modulePath": "libafwlmdb",
+            "extensionId": "afw_lmdb",
+            "description": "This extension provides an adaptor for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database.",
+            "brief": "Extension for Lightning Memory-Mapped Database (LMDB)"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_authorization_policy",
+                "objectId": "afw_authorization_policy",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "authorization_handler_type/policy"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveAuthorizationPolicyCombiningAlgorithm_/deny_override",
+                "/afw/_AdaptiveAuthorizationRuleCombiningAlgorithm_/deny_override",
+                "/afw/_AdaptiveFunctionCategory_/policy_combining_algorithm",
+                "/afw/_AdaptiveFunctionCategory_/rule_combining_algorithm",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationAdviceExpression_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationCombinerParameter_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationObligationExpression_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationPolicyCombiningAlgorithm_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationPolicyIssuer_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationPolicySet_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationPolicy_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationRuleCombiningAlgorithm_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAuthorizationRule_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_authorizationHandler_policy"
+            ],
+            "modulePath": "libafwauthorizationpolicy",
+            "extensionId": "afw_authorization_policy",
+            "description": "This extension provides configuration support for afw_authorization_policy objects.",
+            "brief": "Extension for afw_authorization_policy support"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_sql",
+                "objectId": "afw_sql",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/sql"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveManifest_/afw_sql"
+            ],
+            "modulePath": "libafwsql",
+            "extensionId": "afw_sql",
+            "description": "This extension uses libmsql to register an adaptor for retrieving and storing Adaptive Objects in a MySQL/MariaDB database.",
+            "brief": "Extension for MySQL"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_ldap",
+                "objectId": "afw_ldap",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/ldap",
+                "error_rv_decoder/ldap"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/ldap_extension",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_"
+            ],
+            "modulePath": "libafwldap",
+            "extensionId": "afw_ldap",
+            "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP).  This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
+            "brief": "Extension for LDAP"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_ubjson",
+                "objectId": "afw_ubjson",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "content_type/ubjson"
+            ],
+            "modulePath": "libafwubjson",
+            "extensionId": "afw_ubjson",
+            "description": "This extension provides a content-type handler for Universal Binary JSON (UBSJON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes.",
+            "brief": "Extension for UBJSON"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_xml",
+                "objectId": "afw_xml",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "content_type/application/xml",
+                "content_type/xml"
+            ],
+            "modulePath": "libafwxml",
+            "extensionId": "afw_xml",
+            "description": "This extension registers the eXtensible Markup Language (XML) content-type handler, to allow users to work with XML data.",
+            "brief": "Provides support for XML"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_yaml",
+                "objectId": "afw_yaml",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "content_type/x-yaml",
+                "content_type/yaml"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveManifest_/afw_yaml"
+            ],
+            "modulePath": "libafwyaml",
+            "extensionId": "afw_yaml",
+            "description": "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON.",
+            "brief": "Extension for YAML Ain't Markup Language"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_xacml",
+                "objectId": "afw_xacml",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "authorization_handler/xacml",
+                "request_handler/xacml"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveCollection_/afw_xacml",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler_xacml",
+                "/afw/_AdaptiveObjectType_/_AdaptiveXacmlDataType_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveXacmlFunction_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveXacmlPolicyCombiningAlgorithm_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveXacmlRuleCombiningAlgorithm_"
+            ],
+            "modulePath": "libafwxacml",
+            "extensionId": "afw_xacml",
+            "description": "This extension provides support for eXtensible Access Control Markup Language (XACML).  This includes an authorization handler and request handler for XACML.",
+            "brief": "Extension for XACML"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_components",
+                "objectId": "afw_components",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [],
+            "providesObjects": [
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/containers",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/content",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/editors",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/inputs",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/navigation",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/pickers",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/structured",
+                "/afw/_AdaptiveLayoutComponentTypeCategory_/utilities",
+                "/afw/_AdaptiveLayoutComponentType_/Autocomplete",
+                "/afw/_AdaptiveLayoutComponentType_/Box",
+                "/afw/_AdaptiveLayoutComponentType_/Breadcrumb",
+                "/afw/_AdaptiveLayoutComponentType_/Button",
+                "/afw/_AdaptiveLayoutComponentType_/Callout",
+                "/afw/_AdaptiveLayoutComponentType_/Chart",
+                "/afw/_AdaptiveLayoutComponentType_/Checkbox",
+                "/afw/_AdaptiveLayoutComponentType_/ChoiceGroup",
+                "/afw/_AdaptiveLayoutComponentType_/CodeEditor",
+                "/afw/_AdaptiveLayoutComponentType_/Collapsible",
+                "/afw/_AdaptiveLayoutComponentType_/DatePicker",
+                "/afw/_AdaptiveLayoutComponentType_/DateTimePicker",
+                "/afw/_AdaptiveLayoutComponentType_/Dialog",
+                "/afw/_AdaptiveLayoutComponentType_/DiffEditor",
+                "/afw/_AdaptiveLayoutComponentType_/Divider",
+                "/afw/_AdaptiveLayoutComponentType_/Drawer",
+                "/afw/_AdaptiveLayoutComponentType_/Dropdown",
+                "/afw/_AdaptiveLayoutComponentType_/DropdownEditor",
+                "/afw/_AdaptiveLayoutComponentType_/EditableCallout",
+                "/afw/_AdaptiveLayoutComponentType_/EditableLabel",
+                "/afw/_AdaptiveLayoutComponentType_/Hidden",
+                "/afw/_AdaptiveLayoutComponentType_/Icon",
+                "/afw/_AdaptiveLayoutComponentType_/Image",
+                "/afw/_AdaptiveLayoutComponentType_/Link",
+                "/afw/_AdaptiveLayoutComponentType_/List",
+                "/afw/_AdaptiveLayoutComponentType_/ListEditor",
+                "/afw/_AdaptiveLayoutComponentType_/Menu",
+                "/afw/_AdaptiveLayoutComponentType_/Message",
+                "/afw/_AdaptiveLayoutComponentType_/Modal",
+                "/afw/_AdaptiveLayoutComponentType_/Native",
+                "/afw/_AdaptiveLayoutComponentType_/Nav",
+                "/afw/_AdaptiveLayoutComponentType_/Paper",
+                "/afw/_AdaptiveLayoutComponentType_/Picker",
+                "/afw/_AdaptiveLayoutComponentType_/Responsive",
+                "/afw/_AdaptiveLayoutComponentType_/Skeleton",
+                "/afw/_AdaptiveLayoutComponentType_/Slider",
+                "/afw/_AdaptiveLayoutComponentType_/Snackbar",
+                "/afw/_AdaptiveLayoutComponentType_/SpinButton",
+                "/afw/_AdaptiveLayoutComponentType_/Spinner",
+                "/afw/_AdaptiveLayoutComponentType_/Stepper",
+                "/afw/_AdaptiveLayoutComponentType_/Table",
+                "/afw/_AdaptiveLayoutComponentType_/Tabs",
+                "/afw/_AdaptiveLayoutComponentType_/TextField",
+                "/afw/_AdaptiveLayoutComponentType_/TimeDuration",
+                "/afw/_AdaptiveLayoutComponentType_/TimePicker",
+                "/afw/_AdaptiveLayoutComponentType_/TimezonePicker",
+                "/afw/_AdaptiveLayoutComponentType_/Toggle",
+                "/afw/_AdaptiveLayoutComponentType_/ToggleButtons",
+                "/afw/_AdaptiveLayoutComponentType_/Toolbar",
+                "/afw/_AdaptiveLayoutComponentType_/Tooltip",
+                "/afw/_AdaptiveLayoutComponentType_/Tree",
+                "/afw/_AdaptiveLayoutComponentType_/Typography",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_AdaptiveProperty",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Autocomplete",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Autocomplete_Option",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Box",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_BoxItem",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Breadcrumb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_BreadcrumbItem",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Button",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Callout",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Chart",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Chart_Data",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Checkbox",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ChoiceGroup",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ChoiceGroup_Option",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_CodeEditor",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Collapsible",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Common",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DatePicker",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DateTimePicker",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dialog",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DiffEditor",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Divider",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Drawer",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dropdown",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DropdownEditor",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dropdown_Option",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_EditableCallout",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_EditableLabel",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Hidden",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Icon",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Image",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Label",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Link",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_List",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ListEditor",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ListEditor_Item",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Menu",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Menu_Item",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Message",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Modal",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Native",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Nav",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Nav_Item",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Paper",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Picker",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Picker_Item",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Responsive",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ResponsiveCol",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ResponsiveRow",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Responsive_Breakpoints",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Skeleton",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Slider",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Snackbar",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_SpinButton",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Spinner",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Stepper",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Style",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table_Column",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table_Row",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tabs",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tabs_Tab",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TextField",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimeDuration",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimePicker",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimezonePicker",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Toggle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ToggleButtons",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Toolbar",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tooltip",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tree",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tree_Node",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Typography",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_embedded",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_filterOptions",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_preferredComponent",
+                "/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_sortOptions"
+            ],
+            "modulePath": "libafwcomponents",
+            "extensionId": "afw_components",
+            "description": "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts.",
+            "brief": "Extension for Layout Components"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_curl",
+                "objectId": "afw_curl",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "error_rv_decoder/curl"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveFunctionCategory_/curl",
+                "/afw/_AdaptiveFunctionCategory_/http",
+                "/afw/_AdaptiveFunctionCategory_/smtp",
+                "/afw/_AdaptiveObjectType_/_AdaptiveCurlHttpResponse_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_"
+            ],
+            "modulePath": "libafwcurl",
+            "extensionId": "afw_curl",
+            "description": "This extension uses libcURL to provide a variety of adaptive functions for use in expressions and rules.  These functions allow users to connect with services over HTTP, SMTP, FTP, and Telnet/SSH.",
+            "brief": "Extension for cURL"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_oracle",
+                "objectId": "afw_oracle",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adaptor_type/oracle"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveFunctionCategory_/oracle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_oracle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleAll_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleArgument_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleColumn_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleDatabase_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleFunction_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleList_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOraclePackage_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleProcedure_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleRuleSet_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleRule_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleSchema_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleSelectResponse_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleSequence_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleSynonym_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTable_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTypeArgument_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTypeAttr_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTypeCollection_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTypeMethod_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleTypeResult_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleType_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleUnknown_",
+                "/afw/_AdaptiveObjectType_/_AdaptiveOracleView_"
+            ],
+            "modulePath": "libafworacle",
+            "extensionId": "afw_oracle",
+            "description": "This extension provides support for Oracle databases by registering an adaptor to retrieve and store Adaptive Objects in an Oracle database, along with adaptive functions for performing Oracle operations and allowing them to be executed from expressions.",
+            "brief": "Extension for Oracle"
+        }
+    ],
+    "status": "success"
+}

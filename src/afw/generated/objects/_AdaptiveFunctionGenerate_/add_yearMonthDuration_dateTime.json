@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAddYearMonthDurationDateTime",
+    "brief": "Add duration",
+    "camelCaseFunctionLabel": "addYearMonthDurationDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime result.",
+    "functionId": "add_yearMonthDuration<dateTime>",
+    "functionLabel": "add_yearMonthDuration_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "name": "arg1"
+        },
+        {
+            "dataType": "yearMonthDuration",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

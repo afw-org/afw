@@ -1,0 +1,28 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive component definition for the Dropdown Option component.",
+    "objectIdPropertyName": "key",
+    "objectType": "_AdaptiveLayoutComponentType_Dropdown_Option",
+    "otherProperties": {},
+    "propertyTypes": {
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The key identifier for this option.",
+            "label": "Key",
+            "required": true
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text displayed for this option.",
+            "label": "Text"
+        }
+    }
+}

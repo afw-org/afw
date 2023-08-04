@@ -1,0 +1,42 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Function category.",
+    "objectType": "_AdaptiveFunctionCategory_",
+    "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Brief description of this function category",
+            "dataType": "string",
+            "description": "This is a predicate for the function category with the first letter capitalized and without a trailing period.",
+            "label": "Brief",
+            "required": false
+        },
+        "category": {
+            "allowQuery": true,
+            "brief": "Function category",
+            "dataType": "string",
+            "description": "Function category that this function belongs to. Categories group similar functions together logically.",
+            "label": "Category",
+            "required": true
+        },
+        "dataTypeCategory": {
+            "allowQuery": true,
+            "brief": "This is a data type category",
+            "dataType": "boolean",
+            "description": "This is a data type category.",
+            "label": "Data Type Category",
+            "required": false
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of function category.",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of function category in more detail, for documentation purposes.",
+            "label": "Description"
+        }
+    }
+}

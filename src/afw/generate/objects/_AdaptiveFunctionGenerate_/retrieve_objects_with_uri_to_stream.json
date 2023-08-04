@@ -1,0 +1,38 @@
+{
+    "brief": "Retrieve adaptive object with URI to stream",
+    "category": "adaptor",
+    "description": "This function retrieves adaptive objects with a given URI.\n\nEach object is written to the \"streamId\" stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "functionId": "retrieve_objects_with_uri_to_stream",
+    "functionLabel": "retrieve_objects_with_uri_to_stream",
+    "parameters": [
+        {
+            "brief": "Stream number",
+            "dataType": "integer",
+            "description": "Stream number objects will be written to as they are retrieved.",
+            "name": "streamNumber"
+        },
+        {
+            "dataType": "anyURI",
+            "description": "URI of objects to retrieve. If a URI begins with a single slash ('/'), it is the local object path. A query string can be specified.",
+            "name": "uri"
+        },
+        {
+            "brief": "Object options",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.",
+            "name": "options",
+            "optional": true
+        },
+        {
+            "brief": "Adaptor specific",
+            "dataType": "object",
+            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+            "name": "adaptorTypeSpecific",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

@@ -1,0 +1,140 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive parsed URI.",
+    "objectType": "_AdaptiveParsedURI_",
+    "propertyTypes": {
+        "authority": {
+            "brief": "Decoded authority part of URI",
+            "dataType": "string",
+            "description": "Decoded authority part of URI.",
+            "label": "Authority"
+        },
+        "fragment": {
+            "brief": "Decoded fragment of URI",
+            "dataType": "string",
+            "description": "Decoded fragment of URI. If fragment tokens contain percent encoded reserved characters, fragmentTokens should be used.",
+            "label": "Fragment"
+        },
+        "fragmentTokens": {
+            "brief": "Decoded fragment tokens of URI",
+            "dataType": "list",
+            "description": "Decoded fragment tokens of URI.",
+            "label": "Fragment Tokens"
+        },
+        "host": {
+            "brief": "Decoded host part of URI",
+            "dataType": "string",
+            "description": "Decoded host part of URI.",
+            "label": "Host"
+        },
+        "normalizedURI": {
+            "brief": "The URI that adaptive framework considers the normalized form of the URI",
+            "dataType": "string",
+            "description": "This is the URI that adaptive framework considers the normalized form of the URI. If the URI starts with a single slash, the URI is a local path within the associated AFW instance; otherwise, it is a full URI.",
+            "label": "Normalized URI"
+        },
+        "originalAuthority": {
+            "brief": "Original, possibly encoded, authority part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, authority part of URI.",
+            "label": "Original Authority"
+        },
+        "originalFragment": {
+            "brief": "Original, possibly encoded, fragment part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, fragment part of URI.",
+            "label": "Original Fragment"
+        },
+        "originalHierPart": {
+            "brief": "Original, possibly encoded, hier-part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, hier-part of URI.",
+            "label": "Original Hier Part"
+        },
+        "originalHost": {
+            "brief": "Original, possibly encoded, host part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, host part of URI.",
+            "label": "Original Host"
+        },
+        "originalPath": {
+            "brief": "Original, possibly encoded, path part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, path part of URI.",
+            "label": "Original Path"
+        },
+        "originalQuery": {
+            "brief": "Original, possibly encoded, query part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, query part of URI.",
+            "label": "Original Query"
+        },
+        "originalURI": {
+            "brief": "Original URI",
+            "dataType": "string",
+            "description": "Original URI.",
+            "label": "Original URI"
+        },
+        "originalUserinfo": {
+            "brief": "Original, possibly encoded, userinfo part of URI",
+            "dataType": "string",
+            "description": "Original, possibly encoded, userinfo part of URI.",
+            "label": "Original Userinfo"
+        },
+        "path": {
+            "brief": "Decoded path of URI",
+            "dataType": "string",
+            "description": "Decoded path of URI. If path tokens contain percent encoded reserved characters, pathTokens should be used.",
+            "label": "Path"
+        },
+        "pathTokens": {
+            "brief": "Decoded path tokens of URI",
+            "dataType": "list",
+            "description": "Decoded path tokens of URI.",
+            "label": "Path Tokens"
+        },
+        "port": {
+            "brief": "Port which is never encoded",
+            "dataType": "string",
+            "description": "Port which is never encoded.",
+            "label": "Port"
+        },
+        "query": {
+            "brief": "Decoded query of URI",
+            "dataType": "string",
+            "description": "Decoded query of URI. If query tokens contain percent encoded reserved characters, queryTokens should be used.",
+            "label": "Query"
+        },
+        "queryTokens": {
+            "brief": "Decoded query tokens of URI",
+            "dataType": "list",
+            "description": "Decoded query tokens of URI.",
+            "label": "Query Tokens"
+        },
+        "scheme": {
+            "brief": "URI Scheme which is never encode",
+            "dataType": "string",
+            "description": "URI Scheme which is never encode.",
+            "label": "Scheme"
+        },
+        "userinfo": {
+            "brief": "Decoded userinfo part of URI",
+            "dataType": "string",
+            "description": "Decoded userinfo part of URI.",
+            "label": "Userinfo"
+        },
+        "valuePath": {
+            "brief": "Adaptive value path",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveValuePath_",
+            "description": "Adaptive value path.",
+            "label": "Value Path"
+        }
+    }
+}

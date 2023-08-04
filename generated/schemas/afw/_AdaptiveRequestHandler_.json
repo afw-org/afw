@@ -1,0 +1,51 @@
+{
+    "$defs": {
+        "_AdaptiveConf_requestHandler.propertyTypes": {
+            "properties": {
+                "_meta_": {
+                    "title": " Meta "
+                },
+                "requestHandlerType": {
+                    "description": "Type of request handler that will process requests directed to this handler.",
+                    "title": "Handler Type",
+                    "type": "string"
+                },
+                "uriPrefix": {
+                    "description": "Prefix of URIs that will be directed to this request handler.",
+                    "title": "URI Prefix",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveRequestHandler_": {
+            "additionalProperties": {
+                "description": "Runtime request handler information."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveRequestHandler_.propertyTypes"
+                },
+                {
+                    "$ref": "#/$defs/_AdaptiveConf_requestHandler.propertyTypes"
+                }
+            ],
+            "description": "Runtime request handler information.",
+            "type": "object"
+        },
+        "_AdaptiveRequestHandler_.propertyTypes": {
+            "properties": {
+                "_meta_": {
+                    "title": " Meta "
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveRequestHandler_"
+        }
+    ]
+}

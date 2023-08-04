@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMap",
+    "brief": "Maps values of a list",
+    "camelCaseFunctionLabel": "map",
+    "category": "higher_order_list",
+    "description": "This function creates a list of the results of calling functor with each value of the first list in values",
+    "functionId": "map",
+    "functionLabel": "map",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(... values: any): any",
+            "name": "functor"
+        },
+        {
+            "description": "These are the parameters passed to functor with the exception that the first list is passed one value at a time. At least one list is required.",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list"
+    }
+}

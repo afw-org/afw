@@ -1,0 +1,21 @@
+{
+    "brief": "Load extension by id",
+    "category": "administrative",
+    "description": "Load an extension by its extension id if it is not already loaded. Loading an AFW package's manifest extension will register the manifest of all extensions in the package.",
+    "functionId": "extension_load",
+    "functionLabel": "extension_load",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "This is the object id of a /afw/_AdaptiveManifest_/ object.",
+            "name": "extension_id"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem."
+    },
+    "sideEffects": [
+        "The loading of the extension may add environment registry entries as well as make other changes."
+    ]
+}

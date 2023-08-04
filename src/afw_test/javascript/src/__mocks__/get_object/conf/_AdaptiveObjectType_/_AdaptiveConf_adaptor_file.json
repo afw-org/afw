@@ -1,0 +1,119 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_adaptor_file"
+        },
+        "propertyTypes": {
+            "adaptorId": {
+                "allowQuery": true,
+                "brief": "Adaptor id",
+                "dataType": "string",
+                "description": "A unique identifier for this adaptor instance.",
+                "label": "Adaptor"
+            },
+            "adaptorType": {
+                "allowQuery": true,
+                "brief": "Adaptor type",
+                "dataType": "string",
+                "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
+                "label": "Adaptor Type",
+                "required": true
+            },
+            "authorizationHandlerId": {
+                "allowQuery": true,
+                "brief": "Authorization Handler Id",
+                "dataType": "string",
+                "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                "label": "Authorization Handler"
+            },
+            "journalAdaptorId": {
+                "allowQuery": true,
+                "brief": "The adaptorId that provides journal service for this adaptor",
+                "dataType": "string",
+                "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
+                "label": "Journal Adaptor"
+            },
+            "type": {
+                "required": true,
+                "label": "Type",
+                "description": "Configuration type.",
+                "dataType": "string",
+                "brief": "Configuration type",
+                "allowQuery": true
+            },
+            "title": {
+                "label": "Title",
+                "description": "The title for this configuration component.",
+                "dataType": "string",
+                "brief": "The title for this configuration component",
+                "allowQuery": true
+            },
+            "sourceLocation": {
+                "label": "Source Location",
+                "description": "This is a contextual string added when this configuration object is processed.",
+                "dataType": "string",
+                "brief": "Contextual string added when this configuration object is processed",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "The description of this configuration component.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "The description of this configuration component",
+                "allowQuery": true
+            },
+            "root": {
+                "required": true,
+                "label": "Root",
+                "description": "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames.  It must already exist and be accessible.",
+                "dataType": "string",
+                "brief": "Path to the directory holding object type directories",
+                "allowQuery": true
+            },
+            "isPolicyLocation": {
+                "label": "Is Policy Location",
+                "description": "If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects.  The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor.",
+                "dataType": "boolean",
+                "brief": "This adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects",
+                "allowQuery": true
+            },
+            "isModelLocation": {
+                "label": "Is Model Location",
+                "description": "If specified, this adaptor can hold _AdaptiveModel_ objects.  The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor.",
+                "dataType": "boolean",
+                "brief": "This adaptor can hold _AdaptiveModel_ objects",
+                "allowQuery": true
+            },
+            "isDevelopmentInput": {
+                "label": "Is Development Input",
+                "description": "This should only be used during Adaptive Framework core and extension development.  It allows core object type instances to be written to the directory used by generate.py.",
+                "dataType": "boolean",
+                "brief": "Specifies this adaptor is used for object development input",
+                "allowQuery": true
+            },
+            "filenameSuffix": {
+                "label": "Filename Suffix",
+                "description": "When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename.",
+                "dataType": "string",
+                "brief": "Suffix that will be appended to objectId for filename",
+                "allowQuery": true
+            },
+            "contentType": {
+                "required": true,
+                "label": "Content Type",
+                "description": "This is the content type to be used for this file adaptor.  This must be a content-type that is registered by core or by an extension.",
+                "dataType": "string",
+                "brief": "Content type for file objects",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveConf_adaptor_file",
+        "description": "Adaptive Framework configuration component for type=adaptor adaptorType=file.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

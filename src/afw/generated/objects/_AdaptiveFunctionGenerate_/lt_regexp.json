@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtRegexp",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Checks for regexp arg1 is less that regexp arg2 and return the boolean result.",
+    "functionId": "lt<regexp>",
+    "functionLabel": "lt_regexp",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "regexp",
+            "name": "arg1"
+        },
+        {
+            "dataType": "regexp",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

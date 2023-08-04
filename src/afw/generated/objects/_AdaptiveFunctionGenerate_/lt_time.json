@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtTime",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Checks for time arg1 is less that time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used.",
+    "functionId": "lt<time>",
+    "functionLabel": "lt_time",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "time",
+            "name": "arg1"
+        },
+        {
+            "dataType": "time",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

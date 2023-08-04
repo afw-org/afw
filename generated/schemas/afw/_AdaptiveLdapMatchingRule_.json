@@ -1,0 +1,26 @@
+{
+    "$defs": {
+        "_AdaptiveLdapMatchingRule_": {
+            "additionalProperties": {
+                "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveLdapMatchingRule_.propertyTypes"
+                }
+            ],
+            "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object.",
+            "type": "object"
+        },
+        "_AdaptiveLdapMatchingRule_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveLdapMatchingRule_"
+        }
+    ]
+}

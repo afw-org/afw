@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpIndexOfAnyURI",
+    "brief": "Returns index of first match of regular expression",
+    "camelCaseFunctionLabel": "regexpIndexOfAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Search anyURI value for a regular expression and return index. If not found, -1 is returned.",
+    "functionId": "regexp_index_of<anyURI>",
+    "functionLabel": "regexp_index_of_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "The anyURI value to search.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "A regular expression to use for search.",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "Zero-based index of subString or -1 if not found."
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_index_of"
+}

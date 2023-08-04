@@ -1,0 +1,12 @@
+{
+    "brief": "A day time duration",
+    "cType": "afw_dayTimeDuration_t",
+    "dataType": "dayTimeDuration",
+    "description": "Data type dayTimeDuration is an ISO 8601 extended format DTnHnMnS",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "jsonSchemaStringFormat": "duration",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

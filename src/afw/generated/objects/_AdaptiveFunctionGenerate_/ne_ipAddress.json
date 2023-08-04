@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNeIpAddress",
+    "brief": "Checks for not equal",
+    "camelCaseFunctionLabel": "neIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Determine if ipAddress arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use \"nex\" (\"!==\") instead if you want true to be returned if arg1 and arg2's data type don't match.",
+    "errorsThrown": [
+        {
+            "error": "conversion",
+            "reason": "arg2 cannot be converted to the data type of arg1."
+        }
+    ],
+    "functionId": "ne<ipAddress>",
+    "functionLabel": "ne_ipAddress",
+    "op": "!=",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "ipAddress",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ne"
+}

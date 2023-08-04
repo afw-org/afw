@@ -1,0 +1,9 @@
+{
+    "category": "utilities",
+    "componentType": "Spinner",
+    "brief": "A component that displays a spinner progress indicator.",
+    "description": "This utility component displays a spinning circle to indicate to the user to wait for processing to complete.",
+    "implementationId": "Spinner",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Spinner",
+    "label": "Spinner"
+}

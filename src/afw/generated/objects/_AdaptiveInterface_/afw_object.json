@@ -1,0 +1,4 @@
+{
+    "name": "afw_object",
+    "description": "This is interface used to access the properties of an adaptive object."
+}

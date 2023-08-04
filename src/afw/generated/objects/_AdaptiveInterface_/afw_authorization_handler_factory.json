@@ -1,0 +1,4 @@
+{
+    "name": "afw_authorization_handler_factory",
+    "description": "Factory to create an instance of an afw_authorization_handler."
+}

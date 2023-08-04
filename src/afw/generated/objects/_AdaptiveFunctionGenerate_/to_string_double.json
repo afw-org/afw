@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringDouble",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Converts double value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<double>",
+    "functionLabel": "to_string_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "description": "A double value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

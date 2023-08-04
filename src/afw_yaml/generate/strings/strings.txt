@@ -1,0 +1,25 @@
+#
+# Strings that will be included in <prefix>_s .h and .c.
+#
+# - Blank lines and lines that begin with # are ignored
+# - The string name must start in the first colon
+# - All spaces in each line is significant
+# - If a line does not contain an equal sign (=), the string name and
+#   associated value are the same.
+# - For lines that contains an equal sign (=), the name is the characters
+#   that precede the equal sign and the value is everything after the equal
+#   sign up to the end of the line.  The value can contain valid c escape
+#   characters such as \n.  By convention, name should start with a_ to
+#   distinguish it from name where name and value are the same.
+#
+# The generate process will automatically produce strings for object type ids,
+# object is, property names, and a few other things found in the
+# generate/objects directory.  
+#
+# Duplicate string definitions are ignored.  Avoid assigning the same name
+# with different values since all but one will be ignored.
+#
+# Example strings:
+#   afw
+#   a_hello_world=Hello World!
+#

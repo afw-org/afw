@@ -1,0 +1,9 @@
+{
+    "category": "utilities",
+    "componentType": "Tooltip",
+    "brief": "A component that surrounds content with a tooltip.",
+    "description": "This component renders a small popup with text when the user hovers over an element for a specific amount of time. This may provide helpful hints to explain to the user what they are looking at.",
+    "implementationId": "Tooltip",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Tooltip",
+    "label": "Tooltip"
+}

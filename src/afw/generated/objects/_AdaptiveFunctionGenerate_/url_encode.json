@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUrlEncode",
+    "brief": "URI encode",
+    "camelCaseFunctionLabel": "urlEncode",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "URL encode a value or bag of values.",
+    "functionId": "url_encode",
+    "functionLabel": "url_encode",
+    "parameters": [
+        {
+            "description": "URL encode a single value. See the url_encode method for the data type of more details.",
+            "name": "unencoded",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string",
+        "anyURI"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_url_encode",
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "URI encoded string."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

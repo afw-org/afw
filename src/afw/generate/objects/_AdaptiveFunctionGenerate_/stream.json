@@ -1,0 +1,20 @@
+{
+    "brief": "Get streamNumber for a streamId",
+    "category": "stream",
+    "description": "This will return the streamNumber for a streamId. This function useful to obtain the number of the automatically opened standard streams \"console\", \"stderr\" and \"stdout\" as well and any other open stream.",
+    "functionId": "stream",
+    "functionLabel": "stream",
+    "parameters": [
+        {
+            "brief": "Stream Id",
+            "dataType": "string",
+            "description": "The id of a stream.",
+            "name": "streamId"
+        }
+    ],
+    "returns": {
+        "brief": "streamNumber",
+        "dataType": "integer",
+        "description": "The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information."
+    }
+}

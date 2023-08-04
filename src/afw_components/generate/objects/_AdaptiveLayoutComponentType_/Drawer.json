@@ -1,0 +1,10 @@
+{
+    "category": "containers",
+    "componentType": "Drawer",
+    "brief": "A component that renders content inside a side sheet anchored to one of the edges.",
+    "description": "This component, which contains other content, is anchored to one of the edges of the main window. It's often animated to slide into view when an action occurs, but can be optionally docked, or permanent.",
+    "implementationId": "Drawer",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Drawer",
+    "label": "Drawer"
+}
+  

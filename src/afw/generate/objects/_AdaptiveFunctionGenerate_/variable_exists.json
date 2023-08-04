@@ -1,0 +1,18 @@
+{
+    "brief": "Determine if a variable exists",
+    "category": "miscellaneous",
+    "description": "Return the true if the named variable exists.",
+    "functionId": "variable_exists",
+    "functionLabel": "variable_exists",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by \"::\".",
+            "name": "name"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if variable exists."
+    }
+}

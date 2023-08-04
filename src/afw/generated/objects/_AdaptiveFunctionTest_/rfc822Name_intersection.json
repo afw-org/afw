@@ -1,0 +1,77 @@
+{
+    "description": "Tests for intersection<rfc822Name> function.",
+    "functionId": "intersection<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart3",
+                        "localPart@DOMAINPart4"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "rfc822Name",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart2",
+                        "localPart@DOMAINPart4"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "rfc822Name",
+                "value": [
+                    "localPart@DOMAINPart2"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

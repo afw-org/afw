@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeX500Name",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Checks for x500Name arg1 is greater than or equal to x500Name arg2 and return the boolean result.",
+    "functionId": "ge<x500Name>",
+    "functionLabel": "ge_x500Name",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "x500Name",
+            "name": "arg1"
+        },
+        {
+            "dataType": "x500Name",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

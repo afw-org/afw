@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionYearMonthDuration",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Returns a list of yearMonthDuration contains all of the unique values in two or more list of yearMonthDuration values.",
+    "functionId": "union<yearMonthDuration>",
+    "functionLabel": "union_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "yearMonthDuration",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "yearMonthDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

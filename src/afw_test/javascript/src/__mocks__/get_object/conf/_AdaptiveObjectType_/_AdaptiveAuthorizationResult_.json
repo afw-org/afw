@@ -1,0 +1,67 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveAuthorizationResult_"
+        },
+        "propertyTypes": {
+            "properties": {
+                "label": "Properties",
+                "description": "Properties that were requested for retrieval.",
+                "dataType": "list",
+                "brief": "Properties that were requested for retrieval"
+            },
+            "obligations": {
+                "label": "Obligations",
+                "description": "Obligation ids that must be satisfied.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "Obligation ids that must be satisfied"
+            },
+            "errors": {
+                "required": false,
+                "label": "Errors",
+                "description": "Error that occurred.",
+                "dataTypeParameter": "string",
+                "dataType": "list",
+                "brief": "Error that occurred"
+            },
+            "decision": {
+                "required": true,
+                "possibleValues": [
+                    "deny",
+                    "indeterminate",
+                    "notApplicable",
+                    "permit"
+                ],
+                "label": "Decision",
+                "description": "This is the decision.",
+                "dataType": "string",
+                "brief": "This is the decision"
+            },
+            "applicablePolicies": {
+                "label": "Applicable Policies",
+                "description": "This is a list of ids of all policies whose target and condition matched during this check.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "List of ids of matching policies"
+            },
+            "advice": {
+                "label": "Advice",
+                "description": "Advice ids.",
+                "dataTypeParameter": "anyURI",
+                "dataType": "list",
+                "brief": "Advice ids"
+            }
+        },
+        "objectType": "_AdaptiveAuthorizationResult_",
+        "description": "This result of an authorization check.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false,
+        "allowDelete": false,
+        "allowChange": false,
+        "allowAdd": false
+    },
+    "status": "success"
+}

@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSetEqualsTime",
+    "brief": "Checks whether two lists are subsets of each other",
+    "camelCaseFunctionLabel": "setEqualsTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if time list1 and time list2 are subsets of each other and return the boolean result.",
+    "functionId": "set_equals<time>",
+    "functionLabel": "set_equals_time",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "time",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_set_equals"
+}

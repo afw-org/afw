@@ -1,0 +1,91 @@
+{
+    "description": "Tests for at_least_one_member_of<date> function.",
+    "functionId": "at_least_one_member_of<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "2004-04-12",
+                        "1970-01-01",
+                        "2004-04-12",
+                        "2004-04-12-05:00",
+                        "2004-04-12Z"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01",
+                        "2004-04-12",
+                        "1969-01-01",
+                        "2004-04-12",
+                        "-2004-04-12-05:00",
+                        "2004-04-12Z"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "-1946-01-01"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "-2045-01-01",
+                        "2004-04-12",
+                        "2045-01-01",
+                        "2004-04-12",
+                        "2004-04-12-05:00",
+                        "2004-04-12Z"
+                    ]
+                }
+            ],
+            "description": "false",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

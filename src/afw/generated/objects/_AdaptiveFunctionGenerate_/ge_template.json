@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeTemplate",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geTemplate",
+    "category": "template",
+    "dataTypeMethod": true,
+    "description": "Checks for template arg1 is greater than or equal to template arg2 and return the boolean result.",
+    "functionId": "ge<template>",
+    "functionLabel": "ge_template",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "template",
+            "name": "arg1"
+        },
+        {
+            "dataType": "template",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

@@ -1,0 +1,28 @@
+{
+    "brief": "Checks whether value ends with a string",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether <dataType> value ends with a <dataType> and return the boolean result.",
+    "functionId": "ends_with",
+    "functionLabel": "ends_with",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_ends_with",
+    "returns": {
+        "dataType": "boolean"
+    }
+}

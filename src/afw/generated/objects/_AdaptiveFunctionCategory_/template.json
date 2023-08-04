@@ -1,0 +1,6 @@
+{
+    "brief": "Data type template related functions",
+    "category": "template",
+    "dataTypeCategory": true,
+    "description": "These template are related to data type template.\n\nThe \"<template>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

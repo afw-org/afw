@@ -1,0 +1,74 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "objectType": "_AdaptiveResponse_",
+    "otherProperties": {},
+    "propertyTypes": {
+        "actions": {
+            "brief": "List of _AdaptiveResponseAction_ objects",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveResponseAction_",
+            "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+            "label": "Actions"
+        },
+        "console": {
+            "brief": "Contains output written to console",
+            "dataType": "string",
+            "description": "If response:console flag is set and response:console:stream is not set, this will have any output written to console.",
+            "label": "Console"
+        },
+        "error": {
+            "brief": "Details about the error",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveError_",
+            "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
+            "label": "Error"
+        },
+        "intermediate": {
+            "brief": "Intermediate response",
+            "dataType": "boolean",
+            "description": "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
+            "label": "Intermediate"
+        },
+        "result": {
+            "brief": "The result if this is a single action request and no error occurred",
+            "description": "The result if this is a single action request or intermediate response when no error occurred. If the \"actions\" property is present, see that list of objects for results.",
+            "label": "Result"
+        },
+        "resultDataType": {
+            "allowQuery": true,
+            "brief": "Data type of result",
+            "dataType": "string",
+            "description": "Data type of result.",
+            "label": "Result Data Type"
+        },
+        "status": {
+            "brief": "The result status",
+            "dataType": "string",
+            "description": "Result status. If this value is \"error\", see property \"error\" for more detail. This property will not exist for intermediate response objects.",
+            "label": "Status",
+            "possibleValues": [
+                "success",
+                "error",
+                "fatal"
+            ]
+        },
+        "stderr": {
+            "brief": "Output written to stderr",
+            "dataType": "string",
+            "description": "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr.",
+            "label": "Stderr"
+        },
+        "stdout": {
+            "brief": "Output written to stdout",
+            "dataType": "string",
+            "description": "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout.",
+            "label": "Stdout"
+        }
+    }
+}

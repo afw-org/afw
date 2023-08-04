@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtDouble",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks for double arg1 is greater than double arg2 and return the boolean result.",
+    "functionId": "gt<double>",
+    "functionLabel": "gt_double",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "arg1"
+        },
+        {
+            "dataType": "double",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

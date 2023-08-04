@@ -1,0 +1,58 @@
+{
+    "description": "Tests for to_string<yearMonthDuration> function.",
+    "functionId": "to_string<yearMonthDuration>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P2Y6M"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "string",
+                "value": "P2Y6M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "-P2Y6M"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "string",
+                "value": "-P2Y6M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "P6M"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "string",
+                "value": "P6M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "yearMonthDuration",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

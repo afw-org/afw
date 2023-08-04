@@ -1,0 +1,41 @@
+{
+    "description": "Tests for multiply<double> function.",
+    "functionId": "multiply<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "NaN"
+                },
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                }
+            ],
+            "description": "NaN times anything is NaN",
+            "result": {
+                "dataType": "double",
+                "value": "NaN"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "3.0e2"
+                },
+                {
+                    "dataType": "double",
+                    "value": "3.0"
+                }
+            ],
+            "description": "3e2 times 3",
+            "result": {
+                "dataType": "double",
+                "value": "900.0"
+            }
+        }
+    ]
+}

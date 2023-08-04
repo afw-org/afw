@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwExtensionLoadByModulePath",
+    "brief": "Load extension by module path",
+    "camelCaseFunctionLabel": "extensionLoadByModulePath",
+    "category": "administrative",
+    "description": "Load an extension by its module path. Loading an AFW package's manifest extension will register the manifest of all extensions in the package.",
+    "functionId": "extension_load_by_module_path",
+    "functionLabel": "extension_load_by_module_path",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "This is the path to the dso containing the extension. If the extension is installed in the normal place, the library name without a file extension (.so) will suffice.",
+            "name": "module_path"
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "The extension id of the extension loaded."
+    },
+    "sideEffects": [
+        "The loading of the extension may add environment registry entries as well as make other changes."
+    ]
+}

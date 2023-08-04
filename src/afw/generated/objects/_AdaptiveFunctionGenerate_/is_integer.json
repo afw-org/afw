@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInteger",
+    "brief": "Checks whether value is dataType integer",
+    "camelCaseFunctionLabel": "isInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType integer and return the boolean result.",
+    "functionId": "is<integer>",
+    "functionLabel": "is_integer",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

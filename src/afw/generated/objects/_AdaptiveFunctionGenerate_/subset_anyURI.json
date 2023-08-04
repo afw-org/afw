@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetAnyURI",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in anyURI list1 are all in anyURI list2.",
+    "functionId": "subset<anyURI>",
+    "functionLabel": "subset_anyURI",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

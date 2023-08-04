@@ -1,0 +1,39 @@
+{
+    "description": "Tests for compile<script> function.",
+    "functionId": "compile<script>",
+    "implemented": true,
+    "tests": [
+        {
+            "implemented": false,
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "const integer x = 0;\nreturn x;\n"
+                }
+            ],
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            },
+            "description": "Test compile with a simple program."
+        },
+        {
+            "implemented": false,
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "const integer x = 0;\nreturn x;\n"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                }
+            ],
+            "result": {
+                "dataType": "integer",
+                "value": "0"
+            },
+            "description": "Test compile with a simple program with listing."
+        }
+    ]
+}

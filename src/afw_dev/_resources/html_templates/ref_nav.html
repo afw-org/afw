@@ -1,0 +1,31 @@
+<div class="hidden lg:block fixed z-20 inset-0 top-[3.8125rem] left-[max(0px,calc(50%%-45rem))] right-auto w-[25rem] pb-10 px-8 overflow-y-auto">
+    <nav id="nav" class="lg:ext-sm lg:leading-6 relative">
+        <ul>
+           %(nav_groups)s
+            <li class="mt-12 lg:mt-8">
+                <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Data Types</h5>   
+                <ul class="border-l border-slate-100 dark:border-slate-800">
+                    <li>
+                        %(data_types_nav)s                             
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-12 lg:mt-8">
+                <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Functions</h5>
+                <ul class="border-l border-slate-100 dark:border-slate-800">
+                    <li>
+                        %(func_cats_nav)s
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-12 lg:mt-8">
+                <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Object Types</h5>
+                <ul class="border-l border-slate-100 dark:border-slate-800">
+                    <li>
+                        %(object_types_nav)s
+                    </li>
+                </ul>
+            </li>                            
+        </ul>
+    </nav>
+</div>

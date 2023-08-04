@@ -1,0 +1,22 @@
+{
+    "brief": "Round to nearest integer",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Determine the integer closest to <dataType> value and return the <dataType> result.",
+    "functionId": "round",
+    "functionLabel": "round",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "number",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

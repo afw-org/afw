@@ -1,0 +1,63 @@
+{
+    "description": "Tests for is_in<dnsName> function.",
+    "functionId": "is_in<dnsName>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dnsName",
+                    "value": "clemson"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dnsName",
+                    "value": [
+                        "clemson:8080",
+                        "clemsen",
+                        "google:8080"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dnsName",
+                    "value": "clemson"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "dnsName",
+                    "value": [
+                        "clemson:8080",
+                        "clemson",
+                        "google:8080"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dnsName",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

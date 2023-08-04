@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqxX500Name",
+    "brief": "Checks for equal and type",
+    "camelCaseFunctionLabel": "eqxX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Determine if for x500Name arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "eqx<x500Name>",
+    "functionLabel": "eqx_x500Name",
+    "op": "===",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "x500Name",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eqx"
+}

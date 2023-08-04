@@ -1,0 +1,13 @@
+{
+    "brief": "A string",
+    "cType": "afw_utf8_t",
+    "dataType": "string",
+    "dataTypeParameterType": "MediaType",
+    "description": "Data type string hold a sequence of Unicode code points as defined at http://www.unicode.org.",
+    "directReturn": false,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

@@ -1,0 +1,53 @@
+{
+    "description": "Tests for starts_with<anyURI> function.",
+    "functionId": "starts_with<anyURI>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "http://www.w3schools.com/images/smiley.gif"
+                },
+                {
+                    "dataType": "string",
+                    "value": "http://www.w3"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "http://www.w3schools.com/images/smiley.gif"
+                },
+                {
+                    "dataType": "string",
+                    "value": "http://ww.w3"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "anyURI",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

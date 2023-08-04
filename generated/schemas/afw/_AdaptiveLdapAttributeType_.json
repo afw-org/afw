@@ -1,0 +1,43 @@
+{
+    "$defs": {
+        "_AdaptiveLdapAttributeType_": {
+            "additionalProperties": {
+                "description": "Object type for type=adaptor adaptor_type=ldap synthetic attribute type object."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveLdapAttributeType_.propertyTypes"
+                }
+            ],
+            "description": "Object type for type=adaptor adaptor_type=ldap synthetic attribute type object.",
+            "type": "object"
+        },
+        "_AdaptiveLdapAttributeType_.propertyTypes": {
+            "properties": {
+                "DESC": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "SINGLE_VALUE": {
+                    "title": "Is Single",
+                    "type": "boolean"
+                },
+                "SYNTAX": {
+                    "title": "Syntax",
+                    "type": "string"
+                },
+                "numericoid": {
+                    "title": "Numeric OID",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveLdapAttributeType_"
+        }
+    ]
+}

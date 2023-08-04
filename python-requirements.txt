@@ -1,0 +1,7 @@
+build
+inflection
+jsonschema
+lxml
+marko
+requests
+watchdog

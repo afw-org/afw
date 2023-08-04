@@ -1,0 +1,115 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Flexible Box component.",
+    "objectType": "_AdaptiveLayoutComponentType_Box",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "direction": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "The direction of items",
+            "description": "This declares the direction that items are oriented inside the Box.",
+            "label": "Direction",
+            "defaultValue": "row",
+            "allowedValues": [
+                "row",
+                "row-reverse",
+                "column",
+                "column-reverse"
+            ]
+        },
+        "wrap": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "Item wrap behavior",
+            "description": "By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property.",
+            "label": "Wrap",
+            "defaultValue": "nowrap",
+            "allowedValues": [ 
+                "nowrap",
+                "wrap",
+                "wrap-reverse"
+            ]
+        },
+        "justifyContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "Alignment along the main axis",
+            "description": "This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line.",
+            "label": "Justify Content",
+            "defaultValue": "flex-start",
+            "allowedValues": [
+                "flex-start",
+                "flex-end",
+                "center",
+                "space-between",
+                "space-around",
+                "space-evenly",
+                "start",
+                "end",
+                "left",
+                "right"
+            ]
+        },
+        "alignItems": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "Alignment along the cross axis",
+            "description": "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the \"Justify Content\" version for the cross axis (perpendicular to the main-axis).",
+            "label": "Align Items",
+            "defaultValue": "stretch",
+            "allowedValues": [
+                "stretch",
+                "flex-start",
+                "flex-end",
+                "center",
+                "baseline",
+                "first baseline",
+                "last baseline",
+                "start",
+                "end",
+                "self-start",
+                "self-end"
+            ]
+        },
+        "alignContent": {
+            "allowWrite": true,
+            "dataType": "string",
+            "brief": "Aligns the Box lines within",
+            "description": "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how \"Justify Content\" aligns individual items within the main-axis.",
+            "label": "Align Content",
+            "allowedValues": [
+                "flex-start",
+                "flex-end",
+                "center",
+                "space-between",
+                "space-around",
+                "space-evenly",
+                "stretch",
+                "start",
+                "end",
+                "baseline",
+                "first-baseline",
+                "last-baseline"
+            ]
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_BoxItem",
+            "brief": "Items inside of the Box",
+            "description": "This declares a list of items to be rendered inside the Box.",
+            "label": "Contains"
+        }
+    }  
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Development Tools</title>
+    <paragraph>
+        This section goes over some of the many tools that will help make 
+        development easier. None of these tools are an absolute requirement for 
+        development.
+    </paragraph>
+    <section>
+        <title>Docker</title>
+        <paragraph>
+            Docker is a lightweight virtualization solution, allowing you to 
+            containerize software that needs to run in a Linux runtime 
+            environment. Windows, MacOS and Linux all provide options to run 
+            Docker containers. Visit 
+            <link href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</link> 
+            for installation and configuration instructions for your Operating 
+            System.
+        </paragraph>
+    </section>
+    <section>
+        <title>Docker Compose</title>
+        <paragraph>
+            This project also uses an orchestration tool for Docker, called 
+            Docker Compose. Docker Compose reads a configuration file that may 
+            contain one or more containers, along with their runtime settings, 
+            such as disk volumes mounts, network routes and environment 
+            variables. For installation and configuration, follow the 
+            documentation at 
+            <link href="https://docs.docker.com/compose/">https://docs.docker.com/compose/</link>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Visual Studio Code</title>
+        <paragraph>
+            Visual Studio Code, or VS Code, is an IDE created and maintained by 
+            Microsoft. It's a powerful editor that uses an extension 
+            marketplace to provide additional functionality to its core 
+            features. One such feature is Remote Containers, which allows VS 
+            Code to interact with Docker. This allows you to setup a custom 
+            development environment inside a Docker container. For 
+            instructions on installing VS Code, please visit 
+            <link href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</link>.
+        </paragraph>
+        <section>
+            <title>Clone the Repository in a Container Volume</title>
+            <paragraph>
+                We recommend that you clone the source repository inside a 
+                Docker volume and develop from within this container 
+                environment. This will provide you with all of the tools 
+                you will need for development, along with a experience that is 
+                consistent and well tested with what we have used for 
+                development. By using a Docker Volume for storage, you will 
+                also gain some file system performance when running under 
+                MacOS or Windows, over bind-mounted volumes.
+            </paragraph>
+            <paragraph>
+                After you have installed everything, begin, by opening VS Code, 
+                either by launching by command-line (or from a GUI shortcut):
+            </paragraph>
+            <code>code</code>
+            <paragraph>
+                Using the Command Palette (Show All Commands), bring up a list 
+                of command options and select: <literal>Remote-Containers: 
+                Clone Repository in Named Container Volume...</literal>
+            </paragraph>            
+            <paragraph>
+                This will prompt you for the url to the GitHub repository. 
+            </paragraph>
+            <list>
+                <item>
+                    Enter 
+                    <literal>https://github.com/afw-org/afw.git</literal>
+                </item>
+                <item>
+                    Select <literal>Create a new volume...</literal>
+                </item>
+                <item>
+                    Accept the default name 
+                    <literal>vsc-remote-containers</literal>
+                </item>
+                <item>
+                    Accept the default repository name 
+                    <literal>afw</literal>
+                </item>
+            </list>            
+            <paragraph>
+                The first time this is performed, Docker may take a long time 
+                to download the appropriate software dependencies.
+            </paragraph>
+        </section>
+        <section>
+            <title>Using the VS Code Tasks</title>
+            <paragraph>
+                Once the development Docker Container is running, you can do 
+                anything manually, from the built-in terminal that VS Code 
+                provides. In addition, there are various VS Code "tasks" that 
+                are available to perform many of these steps.
+            </paragraph>
+            <list>
+                <item>Build: Everything</item>
+                <item>Build: afwdev build</item>
+                <item>Build: afwdev build --cdev</item>
+                <item>Build: Administrative Web Application</item>
+                <item>Start: nginx</item>
+                <item>Start: afwfcgi</item>
+                <item>Start: Administrative Web Application</item>
+                <item>afwdev: Generate</item>
+                <item>afwdev: Core Tests</item>
+            </list>
+        </section>
+        <section>
+            <title>Creating a Multi-Root Workspace</title>
+            <paragraph>
+                If you plan to develop extensions or applications, outside of 
+                the <literal>afw</literal> core folder, you may want to create 
+                a workspace to contain both core and your extensions and apps.                  
+            </paragraph>
+            <paragraph>
+                You can do so by selecting <literal>File -> Save Workspace As
+                </literal> from the menu bar. This will prompt you for a 
+                location within your Docker Volume to save the workspace 
+                file (<literal>afw.code-workspace</literal> by default). 
+                Choose a location outside of all of your project 
+                repository paths. For example, <literal>/workspaces</literal>.
+            </paragraph>
+            <paragraph>
+                Once you have saved the workspace, you can add additional 
+                project repository folders to your workspace by using the 
+                <literal>File->Add Folder to Workspace...</literal> command.                  
+            </paragraph>
+        </section>
+    </section>
+</doc>

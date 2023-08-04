@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionHexBinary",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Returns a list of hexBinary contains all of the unique values in two or more list of hexBinary values.",
+    "functionId": "union<hexBinary>",
+    "functionLabel": "union_hexBinary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "hexBinary"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

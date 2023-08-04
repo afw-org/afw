@@ -1,0 +1,21 @@
+{
+    "dataType": "rfc822Name",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "username@domainname"
+        },
+        {
+            "value": "foo@whatever.com"
+        },
+        {
+            "value": "fooemail@bar.com"
+        },
+        {
+            "value": "userxyz@192.168.0.5"
+        },
+        {
+            "value": "userxyz@FEDC:BA98:7654:3210:FEDC:BA98:7654:3210"
+        }
+    ]
+}

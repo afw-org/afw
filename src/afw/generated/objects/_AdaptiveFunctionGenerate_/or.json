@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOr",
+    "brief": "Logical or",
+    "camelCaseFunctionLabel": "or",
+    "category": "logical",
+    "description": "Evaluates 0 or more boolean conditions returning boolean false if there are no conditions and boolean true if any condition evaluate to true. All conditions after the first true remain unevaluated.",
+    "functionId": "or",
+    "functionLabel": "or",
+    "op": "||",
+    "parameters": [
+        {
+            "dataType": "boolean",
+            "minArgs": 0,
+            "name": "conditions"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

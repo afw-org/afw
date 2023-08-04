@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwClone",
+    "brief": "Clone <dataType> value",
+    "camelCaseFunctionLabel": "clone",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Deep clone a <dataType> value.",
+    "functionId": "clone",
+    "functionLabel": "clone",
+    "parameters": [
+        {
+            "description": "The <dataType> value to clone.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "list",
+        "object"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_clone",
+    "pure": true,
+    "returns": {
+        "description": "The cloned <dataType> value.",
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

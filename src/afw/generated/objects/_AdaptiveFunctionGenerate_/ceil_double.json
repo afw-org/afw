@@ -1,0 +1,20 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCeilDouble",
+    "brief": "Round upward to nearest integer",
+    "camelCaseFunctionLabel": "ceilDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Determine the smallest integer that is greater then or equal to the double value and return the double result.",
+    "functionId": "ceil<double>",
+    "functionLabel": "ceil_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

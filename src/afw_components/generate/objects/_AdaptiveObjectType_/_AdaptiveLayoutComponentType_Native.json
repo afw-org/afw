@@ -1,0 +1,24 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Native component.",
+    "objectType": "_AdaptiveLayoutComponentType_Native",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "tag": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The HTML Tag name.",
+            "label": "Tag Name"
+        }
+    }
+}

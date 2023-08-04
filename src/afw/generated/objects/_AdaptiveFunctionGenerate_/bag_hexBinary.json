@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagHexBinary",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Takes any number of hexBinary values and returns a list of list.",
+    "functionId": "bag<hexBinary>",
+    "functionLabel": "bag_hexBinary",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "hexBinary",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "hexBinary"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

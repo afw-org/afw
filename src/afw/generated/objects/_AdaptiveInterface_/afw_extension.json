@@ -1,0 +1,4 @@
+{
+    "name": "afw_extension",
+    "description": "Interface returned from afw_extension_initialize() of an\n      Adaptive Framework environment extension module. Additional\n      information about an extension is found in object\n      /afw/_AdaptiveManifest_/<extension_id>."
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFlagModifyDefaults",
+    "brief": "Add or remove flags used to determine the default active flags",
+    "camelCaseFunctionLabel": "flagModifyDefaults",
+    "category": "administrative",
+    "description": "Add or remove flags from the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.\n\nThis change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config.",
+    "functionId": "flag_modify_defaults",
+    "functionLabel": "flag_modify_defaults",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "The flagId of flags to be added or removed.",
+            "name": "flagId"
+        },
+        {
+            "dataType": "boolean",
+            "description": "Specify true to add and false to remove flags. If not specified, flags are added.",
+            "name": "add",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

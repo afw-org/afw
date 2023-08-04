@@ -1,0 +1,6 @@
+{
+    "brief": "Data type base64Binary related functions",
+    "category": "base64Binary",
+    "dataTypeCategory": true,
+    "description": "These function are related to data type base64Binary.\n\nThe \"<base64Binary>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+}

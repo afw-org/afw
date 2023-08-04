@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNexAnyURI",
+    "brief": "Checks for not equal value or type",
+    "camelCaseFunctionLabel": "nexAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Determine if for anyURI arg1 is not equal to the value or data type of arg2 then return the boolean result. Use \"ne\" (\"!=\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "functionId": "nex<anyURI>",
+    "functionLabel": "nex_anyURI",
+    "op": "!==",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "anyURI",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_nex"
+}

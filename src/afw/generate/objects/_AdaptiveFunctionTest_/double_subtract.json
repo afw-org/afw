@@ -1,0 +1,58 @@
+{
+    "description": "Tests for subtract<double> function.",
+    "functionId": "subtract<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                },
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                }
+            ],
+            "description": "INF minus INF",
+            "result": {
+                "dataType": "double",
+                "value": "NaN"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "NaN"
+                },
+                {
+                    "dataType": "double",
+                    "value": "INF"
+                }
+            ],
+            "description": "NaN minus INF",
+            "result": {
+                "dataType": "double",
+                "value": "NaN"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "50.1"
+                },
+                {
+                    "dataType": "double",
+                    "value": ".1"
+                }
+            ],
+            "description": "Normal",
+            "result": {
+                "dataType": "double",
+                "value": "50.0"
+            }
+        }
+    ]
+}

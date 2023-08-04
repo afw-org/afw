@@ -1,0 +1,58 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBag",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bag",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Takes any number of <dataType> values and returns a list of list.",
+    "functionId": "bag",
+    "functionLabel": "bag",
+    "parameters": [
+        {
+            "dataType": "list",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true,
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "dnsName",
+        "double",
+        "expression",
+        "function",
+        "hexBinary",
+        "hybrid",
+        "ia5String",
+        "integer",
+        "ipAddress",
+        "list",
+        "null",
+        "object",
+        "objectId",
+        "objectPath",
+        "password",
+        "rfc822Name",
+        "script",
+        "string",
+        "template",
+        "time",
+        "x500Name",
+        "xpathExpression",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_bag",
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "polymorphicDataTypeParameter": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtScript",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltScript",
+    "category": "script",
+    "dataTypeMethod": true,
+    "description": "Checks for script arg1 is less that script arg2 and return the boolean result.",
+    "functionId": "lt<script>",
+    "functionLabel": "lt_script",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "script",
+            "name": "arg1"
+        },
+        {
+            "dataType": "script",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

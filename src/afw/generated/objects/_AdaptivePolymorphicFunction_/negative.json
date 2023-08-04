@@ -1,0 +1,24 @@
+{
+    "brief": "Negative of a number",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return negative of <dataType> value.",
+    "functionId": "negative",
+    "functionLabel": "negative",
+    "pure": true,
+    "op": "-",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

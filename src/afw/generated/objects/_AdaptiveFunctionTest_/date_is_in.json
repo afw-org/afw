@@ -1,0 +1,49 @@
+{
+    "description": "Tests for is_in<date> function.",
+    "functionId": "is_in<date>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "1970-01-01"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01",
+                        "1980-01-01"
+                    ]
+                }
+            ],
+            "description": "true",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "date",
+                    "value": "-1970-01-01"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "date",
+                    "value": [
+                        "1970-01-01",
+                        "1980-01-01"
+                    ]
+                }
+            ],
+            "description": "false",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        }
+    ]
+}

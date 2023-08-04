@@ -1,0 +1,86 @@
+{
+    "$defs": {
+        "_AdaptiveLdapObjectClass_": {
+            "additionalProperties": {
+                "description": "Object type for type=adaptor adaptor_type=ldap synthetic object class object."
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveLdapObjectClass_.propertyTypes"
+                }
+            ],
+            "description": "Object type for type=adaptor adaptor_type=ldap synthetic object class object.",
+            "type": "object"
+        },
+        "_AdaptiveLdapObjectClass_.propertyTypes": {
+            "properties": {
+                "ABSTRACT": {
+                    "description": "Abstract Class",
+                    "title": "Abstract",
+                    "type": "boolean"
+                },
+                "AUXILIARY": {
+                    "description": "Auxiliary Class",
+                    "title": "Auxiliary",
+                    "type": "boolean"
+                },
+                "DESC": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "MAY": {
+                    "description": "Optional attributes of class.",
+                    "items": {
+                        "description": "Optional attributes of class.",
+                        "type": "string"
+                    },
+                    "title": "Optional",
+                    "type": "array"
+                },
+                "MUST": {
+                    "description": "Required attributes of class.",
+                    "items": {
+                        "description": "Required attributes of class.",
+                        "type": "string"
+                    },
+                    "title": "Required",
+                    "type": "array"
+                },
+                "NAME": {
+                    "description": "Name of class.",
+                    "items": {
+                        "description": "Name of class.",
+                        "type": "string"
+                    },
+                    "title": "Name",
+                    "type": "array"
+                },
+                "STRUCTURAL": {
+                    "description": "Structural Class",
+                    "title": "Structural",
+                    "type": "boolean"
+                },
+                "SUP": {
+                    "description": "Superior classes.",
+                    "items": {
+                        "description": "Superior classes.",
+                        "type": "string"
+                    },
+                    "title": "Sup",
+                    "type": "array"
+                },
+                "numericoid": {
+                    "title": "Numeric OID",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveLdapObjectClass_"
+        }
+    ]
+}

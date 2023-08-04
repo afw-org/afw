@@ -1,0 +1,19 @@
+{
+    "afwCamelCaseFunctionLabel": "afwXpathNodeCount",
+    "brief": "Number of nodes in node-set",
+    "camelCaseFunctionLabel": "xpathNodeCount",
+    "category": "xpathExpression",
+    "description": "The number of nodes in a node-set.",
+    "functionId": "xpath_node_count",
+    "functionLabel": "xpath_node_count",
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "nodeset"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

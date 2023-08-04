@@ -1,0 +1,33 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=authorizationHandler authorizationHandlerType=script.",
+    "objectType": "_AdaptiveConf_authorizationHandler_script",
+    "propertyTypes": {
+        "_meta_": {
+            "label": "Meta",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_authorizationHandler/propertyTypes"
+            ]
+        },
+        "authorizationCheck": {
+            "allowQuery": true,
+            "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
+            "contextType": "authorizationCheck",
+            "dataType": "hybrid",
+            "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
+            "description": "This is hybrid is evaluated to determine whether to allow the requested access to the specified resourceId and/or object.",
+            "label": "Authorization Check",
+            "required": true
+        },
+        "qualifiedVariables": {
+            "brief": "Qualified variables associated with this authorization handler",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.",
+            "label": "Qualified Variables"
+        }
+    }
+}

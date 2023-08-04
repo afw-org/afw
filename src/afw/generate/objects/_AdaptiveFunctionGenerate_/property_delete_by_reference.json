@@ -1,0 +1,19 @@
+{
+    "brief": "Delete referenced property",
+    "category": "object",
+    "description": "Delete a property from an object by reference.",
+    "functionId": "property_delete_by_reference",
+    "functionLabel": "property_delete_by_reference",
+    "parameters": [
+        {
+            "brief": "Property to delete",
+            "description": "This is a reference to the object property to delete.",
+            "name": "reference"
+        }
+    ],
+    "returns": {
+        "brief": "True if deleted",
+        "dataType": "boolean",
+        "description": "True if object had the property and it was deleted."
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the EditableCallout component.",
+    "label": "EditableCallout",
+    "objectType": "_AdaptiveLayoutComponentType_EditableCallout",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "allowWrite": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the EditableCallout component is writable.",
+            "label": "Allow Write"
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the EditableCallout component is disabled.",
+            "label": "Disabled"
+        },
+        "open": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the EditableCallout component is visible.",
+            "label": "Open",
+            "required": true
+        },
+        "placeholder": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The placeholder value for the text field when no value exists.",
+            "label": "Placeholder"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value for the EditableCallout component.",
+            "label": "Value"
+        }
+    }
+}

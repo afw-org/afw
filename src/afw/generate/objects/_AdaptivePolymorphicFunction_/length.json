@@ -1,0 +1,26 @@
+{
+    "brief": "Returns number of codepoints or entries in value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "This is a polymorphic function where <dataType> can be any of the supported data types. Return the integer number of entries in datatype list or codepoints in others.",
+    "functionId": "length",
+    "functionLabel": "length",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Returns the number of entries in a list or code points in others.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "list",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_length",
+    "returns": {
+        "dataType": "integer"
+    }
+}

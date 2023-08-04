@@ -1,0 +1,85 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/editors",
+                "objectId": "editors",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Editors",
+            "description": "Components that display data and allow for it to be edited.",
+            "category": "editors"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/content",
+                "objectId": "content",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Content",
+            "description": "Components that display simple data.",
+            "category": "content"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/utilities",
+                "objectId": "utilities",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Utilities",
+            "description": "Components that provide notification, feedback or contextual information.",
+            "category": "utilities"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/navigation",
+                "objectId": "navigation",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Navigation",
+            "description": "Components that provide or facilitate content navigation.",
+            "category": "navigation"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/pickers",
+                "objectId": "pickers",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Pickers",
+            "description": "Components that allow for users to pick or select data from a source.",
+            "category": "pickers"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/inputs",
+                "objectId": "inputs",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Inputs",
+            "description": "Components that provide basic inputs for a user to supply.",
+            "category": "inputs"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/structured",
+                "objectId": "structured",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Structured",
+            "description": "Components that structure data in a special way.",
+            "category": "structured"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveLayoutComponentTypeCategory_/containers",
+                "objectId": "containers",
+                "objectType": "_AdaptiveLayoutComponentTypeCategory_"
+            },
+            "label": "Containers",
+            "description": "Components that contain other layout components for a particular arrangement.",
+            "category": "containers"
+        }
+    ],
+    "status": "success"
+}

@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsNaN",
+    "brief": "Is not a number(NaN)",
+    "camelCaseFunctionLabel": "isNaN",
+    "category": "double",
+    "description": "Checks if the argument 'number' is not a number(NaN) and returns the boolean result.",
+    "functionId": "is_NaN",
+    "functionLabel": "is_NaN",
+    "parameters": [
+        {
+            "dataType": "double",
+            "description": "Number to check",
+            "name": "number"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "True if the argument 'number' is not a number."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRegexpMatchIpAddress",
+    "brief": "Search for a match using a regular expression",
+    "camelCaseFunctionLabel": "regexpMatchIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Checks whether ipAddress value matches the regular expression regexp and return the boolean result.",
+    "functionId": "regexp_match<ipAddress>",
+    "functionLabel": "regexp_match_ipAddress",
+    "parameters": [
+        {
+            "dataType": "ipAddress",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "regexp"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_regexp_match"
+}

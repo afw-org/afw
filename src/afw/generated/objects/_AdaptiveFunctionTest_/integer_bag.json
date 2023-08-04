@@ -1,0 +1,152 @@
+{
+    "description": "Tests for bag<integer> function.",
+    "functionId": "bag<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "description": "Create empty integer bag.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": []
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "52.4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-15.8"
+                }
+            ],
+            "description": "Create integer bag with 2 integers.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "52",
+                    "-15"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "200"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "11"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-11.2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "96"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "99"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-102"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-586.5"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "986"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "387"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5126189454"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-5126189454"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "200"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "11"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-11"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "96"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "99"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-102"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-586"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "986"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-0.0"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                }
+            ],
+            "description": "Create integer bag with 21 integers.",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "integer",
+                "value": [
+                    "200",
+                    "11",
+                    "-11",
+                    "96",
+                    "99",
+                    "-102",
+                    "-586",
+                    "986",
+                    "387",
+                    "5126189454",
+                    "-5126189454",
+                    "200",
+                    "11",
+                    "-11",
+                    "96",
+                    "99",
+                    "-102",
+                    "-586",
+                    "986",
+                    "0",
+                    "0"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+# Build stage for C compilation, which may use multi-arch builds
+FROM ghcr.io/afw-org/afw-dev-base:alpine AS build-stage-c
+
+COPY ./ /src
+COPY ./docker/images/builder/builder-alpine.sh /builder.sh
+
+RUN chmod +x /builder.sh && /builder.sh
+
+
+# Build stage for Javascript compiles (only build on native platform for JS)
+FROM --platform=$BUILDPLATFORM ghcr.io/afw-org/afw-dev-base:alpine AS build-stage-js
+
+COPY ./ /src
+COPY ./docker/images/builder/builder-alpine.sh /builder.sh
+
+RUN chmod +x /builder.sh && BUILD_TARGET=js /builder.sh
+
+# Create a single image with all artifacts
+# This stage can also be executed individually, using --target to emit artifacts
+# into the local file system
+FROM scratch as build-stage
+
+COPY --from=build-stage-c /*.tar /
+COPY --from=build-stage-js /*.tar /
+
+
+# create a final output image
+FROM ghcr.io/afw-org/afw-base:alpine
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+# add supervisor package for managing startup services
+RUN apk add --no-cache nginx supervisor && \
+    mkdir -p /var/www/html
+
+# obtain the artifacts from build-stage
+COPY --from=build-stage /afw-*.tar /
+COPY --from=build-stage /admin-app-*.tar /var/www/html/
+
+RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar && \
+    cd /var/www/html && tar xvf admin-app-*.tar && rm -f admin-app-*.tar
+
+# Copy service configurations
+COPY ./docker/images/afw/etc/nginx/nginx.conf /etc/nginx/
+COPY ./docker/images/afw/etc/supervisor /etc/supervisor/
+COPY ./docker/images/afw/afw /afw
+COPY ./docker/images/afw/bootstrap.sh /bootstrap.sh
+
+# Can't add empty directories to Git, so create them at build time.
+RUN mkdir /afw/lmdb && \
+    mkdir /afw/files && \
+    mkdir /afw/auth && \
+    mkdir /afw/layouts && \
+    mkdir /afw/mariadb && \
+    mkdir /afw/vfs && \
+    tar cvf /afw.tar /afw && \
+    chown -R nginx /afw && \
+    chmod +x /bootstrap.sh
+
+# open ports
+EXPOSE 8080
+
+# persist data in /afw
+VOLUME "/afw"
+
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf" ]

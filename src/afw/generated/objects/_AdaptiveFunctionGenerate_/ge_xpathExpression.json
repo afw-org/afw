@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeXpathExpression",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geXpathExpression",
+    "category": "xpathExpression",
+    "dataTypeMethod": true,
+    "description": "Checks for xpathExpression arg1 is greater than or equal to xpathExpression arg2 and return the boolean result.",
+    "functionId": "ge<xpathExpression>",
+    "functionLabel": "ge_xpathExpression",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "xpathExpression",
+            "name": "arg1"
+        },
+        {
+            "dataType": "xpathExpression",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

@@ -1,0 +1,9 @@
+{
+    "category": "editors",
+    "componentType": "DropdownEditor",
+    "brief": "A component that manages a list of options in a Dropdown picker.",
+    "description": "This component, given a set of options, provides the user with the ability to select, edit, add or delete one of the values by clicking on the dropdown icon and selecting the appropriate value and button from a list.",
+    "implementationId": "DropdownEditor",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_DropdownEditor",
+    "label": "Dropdown Editor"
+}

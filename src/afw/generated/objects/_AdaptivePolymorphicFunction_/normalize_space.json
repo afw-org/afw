@@ -1,0 +1,22 @@
+{
+    "brief": "Trims whitespace from beginning and end",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Remove whitespace from the beginning and end of a <dataType> value.",
+    "functionId": "normalize_space",
+    "functionLabel": "normalize_space",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "string",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

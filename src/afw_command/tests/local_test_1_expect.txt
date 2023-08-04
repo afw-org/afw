@@ -1,0 +1,187 @@
+24
+afw 0.9.0
+
+Local mode.
+0
+43
+{"result":"afw_private","status":"success"}0
+525
+{"brief":"An integer","cType":"afw_integer_t","compileType":"error","dataType":"integer","description":"Data type integer hold a positive or negative whole numbers.  The string value of a negative integer is preceded with a minus sign ('-').  A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"number","ldapOid":"1.3.6.1.4.1.1466.115.121.1.27","relationalCompares":true,"scalar":true}0
+0
+193
+{"REQUEST_METHOD":"GET","REQUEST_URI":"/afw/_AdaptiveRequestProperties_/current","SERVER_PROTOCOL":"HTTP/1.1","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"0","ACCEPT":"application/json"}0
+0
+304
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","SERVER_PROTOCOL":"HTTP/1.1","ALLOW":"application/xml","SOMETHING":"just testing","YOUCANQUOTEME":"you can quote me","ORNOT":"application/xml","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"132","ACCEPT":"application/json"},"status":"success"}0
+0
+129
+<?xml version="1.0" encoding="UTF-8"?>
+<object><integer name="result">3</integer><string name="status">success</string></object>
+0
+0
+138
+<?xml version="1.0" encoding="UTF-8"?>
+<object><string name="result">Hello World!</string><string name="status">success</string></object>
+0
+0
+612
+<?xml version="1.0" encoding="UTF-8"?>
+<object><object name="result" objectType="_AdaptiveServer_"><string name="afwCompiledVersion">0.9.0</string><string name="afwVersion">0.9.0</string><integer name="concurrent">1</integer><integer name="maxConcurrent">1</integer><integer name="requestCount">7</integer><string name="serverType">afw_command_local_mode</string><string name="serverVersion">0.9.0</string><dateTime name="startTime">2022-04-05T20:16:01.28522Z</dateTime><integer name="threadCount">1</integer><integer name="unhandledErrors">0</integer></object><string name="status">success</string></object>
+0
+0
+555
+{"result":{"brief":"An integer","cType":"afw_integer_t","compileType":"error","dataType":"integer","description":"Data type integer hold a positive or negative whole numbers.  The string value of a negative integer is preceded with a minus sign ('-').  A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"number","ldapOid":"1.3.6.1.4.1.1466.115.121.1.27","relationalCompares":true,"scalar":true},"status":"success"}0
+32
+{"result":10,"status":"success"}0
+137
+<?xml version="1.0" encoding="UTF-8"?>
+<object><string name="result">Hello World</string><string name="status">success</string></object>
+0
+0
+139
+<?xml version="1.0" encoding="UTF-8"?>
+<object><string name="result">Hello
+ World!</string><string name="status">success</string></object>
+0
+0
+138
+<?xml version="1.0" encoding="UTF-8"?>
+<object><string name="result">Hello World!</string><string name="status">success</string></object>
+0
+0
+138
+<?xml version="1.0" encoding="UTF-8"?>
+<object><string name="result">Hello World!</string><string name="status">success</string></object>
+0
+0
+930
+<?xml version="1.0" encoding="UTF-8"?>
+<object><object name="result" objectType="_AdaptiveDataType_"><string name="brief">An integer</string><string name="cType">afw_integer_t</string><string name="compileType">error</string><string name="dataType">integer</string><string name="description">Data type integer hold a positive or negative whole numbers.  The string value of a negative integer is preceded with a minus sign ('-').  A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.</string><boolean name="directReturn">true</boolean><boolean name="evaluated">false</boolean><boolean name="jsonImpliesDataType">true</boolean><string name="jsonPrimitive">number</string><string name="ldapOid">1.3.6.1.4.1.1466.115.121.1.27</string><boolean name="relationalCompares">true</boolean><boolean name="scalar">true</boolean></object><string name="status">success</string></object>
+0
+0
+130
+<?xml version="1.0" encoding="UTF-8"?>
+<object><integer name="result">10</integer><string name="status">success</string></object>
+0
+0
+161
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"118","ACCEPT":"application/json"},"status":"success"}0
+0
+193
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"118","ACCEPT":"application/json","prop1":"Hello","prop2":"World"},"status":"success"}0
+0
+15
+1 194 response
+194
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"118","ACCEPT":"application/x-afw","prop1":"Hello","prop2":"World"},"status":"success"}1
+27
+ 0 end
+0
+0
+15
+1 493 response
+493
+{"intermediate":true,"result":{"brief":"Any value is allowed","cType":"const afw_value_t *","compileType":"error","dataType":"any","description":"Any value can be assigned as the value of data type \"any\".  The actual data type is the data type of the value.  Data type \"implied\" is preferred over data type \"any\" since \"any\" only detects type check errors during evaluation.","directReturn":true,"evaluated":false,"jsonImpliesDataType":false,"relationalCompares":false,"scalar":false}}15
+2 477 response
+477
+{"intermediate":true,"result":{"brief":"A binary value whose string value is character hex encoded","cType":"afw_memory_t","compileType":"error","dataType":"hexBinary","dataTypeParameterType":"MediaType","description":"Data type hexBinary holds binary data.  Its string value is character hex encoded.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.5","relationalCompares":true,"scalar":true}}15
+3 479 response
+479
+{"intermediate":true,"result":{"brief":"An regular expression","cType":"afw_utf8_t","compileType":"regexp","dataType":"regexp","dataTypeParameterType":"SourceParameter","description":"Data type regexp holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F.","directReturn":false,"evaluated":true,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}15
+4 384 response
+384
+{"intermediate":true,"result":{"brief":"A X.500 distinguished name","cType":"afw_utf8_t","compileType":"error","dataType":"x500Name","description":"Data type x500Name hold a X.500 distinguished name.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":false,"scalar":true}}15
+5 427 response
+427
+{"intermediate":true,"result":{"brief":"A password","cType":"afw_utf8_t","compileType":"error","dataType":"password","description":"Data type password hold a secret series of characters that enables a user to access a file, computer, or program.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.40{128}","relationalCompares":true,"scalar":true}}15
+6 519 response
+519
+{"intermediate":true,"result":{"brief":"A XPath expression","cType":"afw_utf8_t","compileType":"xpathExpression","dataType":"xpathExpression","description":"Data type xpathExpression holds an XML Path Language (XPath) expression.  An xpath expression provides the ability to navigate around the tree representation of an XML document.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":false,"scalar":true}}15
+7 421 response
+421
+{"intermediate":true,"result":{"brief":"An adaptive script","cType":"afw_utf8_t","compileType":"script","dataType":"script","dataTypeParameterType":"SourceParameter","description":"Data type script holds the source for an adaptive script.","directReturn":false,"evaluated":true,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}15
+8 440 response
+440
+{"intermediate":true,"result":{"brief":"A string","cType":"afw_utf8_t","compileType":"error","dataType":"string","dataTypeParameterType":"MediaType","description":"Data type string hold a sequence of Unicode code points as defined at http://www.unicode.org.","directReturn":false,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}15
+9 362 response
+362
+{"intermediate":true,"result":{"brief":"An adaptive object","cType":"const afw_object_t *","compileType":"error","dataType":"object","dataTypeParameterType":"ObjectType","description":"Data type object holds an adaptive object.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"object","relationalCompares":false,"scalar":false}}16
+10 501 response
+501
+{"intermediate":true,"result":{"brief":"A Uniform Resource Identifier Reference (URI)","cType":"afw_utf8_t","compileType":"error","dataType":"anyURI","description":"Data type anyURI holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+11 317 response
+317
+{"intermediate":true,"result":{"brief":"No value","cType":"void *","compileType":"error","dataType":"null","description":"Data type null is a special data type that represents no value.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"null","relationalCompares":false,"scalar":true}}16
+12 431 response
+431
+{"intermediate":true,"result":{"brief":"An adaptive template","cType":"afw_utf8_t","compileType":"template","dataType":"template","dataTypeParameterType":"SourceParameter","description":"Data type template holds the source for an adaptive template.","directReturn":false,"evaluated":true,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+13 412 response
+412
+{"intermediate":true,"result":{"brief":"A year month duration","cType":"afw_yearMonthDuration_t","compileType":"error","dataType":"yearMonthDuration","description":"Data type yearMonthDuration an ISO 8601 extended format PnYnMn.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+14 434 response
+434
+{"intermediate":true,"result":{"brief":"An unevaluated value produced by compile","cType":"const afw_value_t *","compileType":"error","dataType":"unevaluated","dataTypeParameterType":"Type","description":"This is a value produced by any of the Adaptive compile functions that can be evaluated using the evaluate() function.","directReturn":true,"evaluated":false,"jsonImpliesDataType":false,"relationalCompares":false,"scalar":false}}16
+15 554 response
+554
+{"intermediate":true,"result":{"brief":"A boolean value","cType":"afw_boolean_t","compileType":"error","dataType":"boolean","description":"Data type boolean holds a boolean value.  Its to_string() value is \"true\" or \"false\".  Its from_string() true value can be mixed case \"t\", \"true\" or \"1\".  Its from_string() false value can be mixed case \"f\", \"false\" or \"0\".","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"boolean","ldapOid":"1.3.6.1.4.1.1466.115.121.1.7","relationalCompares":false,"scalar":true}}16
+16 606 response
+606
+{"intermediate":true,"result":{"brief":"An adaptive object's object path","cType":"afw_utf8_t","compileType":"error","dataType":"objectPath","description":"Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+17 543 response
+543
+{"intermediate":true,"result":{"brief":"An adaptive object's object id","cType":"afw_utf8_t","compileType":"error","dataType":"objectId","dataTypeParameterType":"ObjectType","description":"Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adaptor id and object type id.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+18 513 response
+513
+{"intermediate":true,"result":{"brief":"The data type is implied by the value","cType":"const afw_value_t *","compileType":"error","dataType":"implied","description":"Any value can be assigned as the value of data type \"implied\".  The actual data type is the data type of the value.  Most \"type check\" errors can be detected during compile to reduce the number of errors detected during evaluation.","directReturn":true,"evaluated":false,"jsonImpliesDataType":false,"relationalCompares":false,"scalar":false}}16
+19 367 response
+367
+{"intermediate":true,"result":{"brief":"A DNS name","cType":"afw_utf8_t","compileType":"error","dataType":"dnsName","description":"Data type dnsName is Domain Name System (DNS) name.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":false,"scalar":true}}16
+20 591 response
+591
+{"intermediate":true,"result":{"brief":"A function","cType":"const afw_value_t *","compileType":"error","dataType":"function","dataTypeParameterType":"FunctionSignature","description":"This is an Adaptive Script function definition, an ExpressionTupleOperation_lambda, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value.  If dataTypeParameterType is specified, the function must match that signature.","directReturn":true,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","relationalCompares":false,"scalar":false}}16
+21 469 response
+469
+{"intermediate":true,"result":{"brief":"A binary value whose string value is base64 encoded","cType":"afw_memory_t","compileType":"error","dataType":"base64Binary","dataTypeParameterType":"MediaType","description":"Data type base64Binary holds binary data.  Its string value is base64 encoded.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.5","relationalCompares":true,"scalar":true}}16
+22 412 response
+412
+{"intermediate":true,"result":{"brief":"A date and time","cType":"afw_dateTime_t","compileType":"error","dataType":"dateTime","description":"Data type dateTime is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.24","relationalCompares":true,"scalar":true}}16
+23 556 response
+556
+{"intermediate":true,"result":{"brief":"An integer","cType":"afw_integer_t","compileType":"error","dataType":"integer","description":"Data type integer hold a positive or negative whole numbers.  The string value of a negative integer is preceded with a minus sign ('-').  A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"number","ldapOid":"1.3.6.1.4.1.1466.115.121.1.27","relationalCompares":true,"scalar":true}}16
+24 380 response
+380
+{"intermediate":true,"result":{"brief":"A time","cType":"afw_time_t","compileType":"error","dataType":"time","description":"Data type time is ISO 8601 extended format hh:mm:ss with an optional time zone.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.24","relationalCompares":true,"scalar":true}}16
+25 441 response
+441
+{"intermediate":true,"result":{"brief":"An adaptive expression","cType":"afw_utf8_t","compileType":"expression","dataType":"expression","dataTypeParameterType":"SourceParameter","description":"Data type expression holds the source for an adaptive expression.","directReturn":false,"evaluated":true,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+26 408 response
+408
+{"intermediate":true,"result":{"brief":"A day time duration","cType":"afw_dayTimeDuration_t","compileType":"error","dataType":"dayTimeDuration","description":"Data type dayTimeDuration is an ISO 8601 extended format DTnHnMnS","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+27 480 response
+480
+{"intermediate":true,"result":{"brief":"An ASN.1 value","cType":"afw_utf8_t","compileType":"error","dataType":"ia5String","description":"Data type ia5String holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters. which contains precisely 128 characters.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.26{64512}","relationalCompares":true,"scalar":true}}16
+28 407 response
+407
+{"intermediate":true,"result":{"brief":"A RFC 822 name","cType":"afw_utf8_t","compileType":"error","dataType":"rfc822Name","description":"Data type rfc822Name holds a string value that conforms to RFC822: local-part@domain","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":false,"scalar":true}}16
+29 454 response
+454
+{"intermediate":true,"result":{"brief":"A 64-bit floating point number","cType":"double","compileType":"error","dataType":"double","description":"Data type double holds a double-precision 64-bit floating point number.  It also can hold the values 0, -0, INF, -INF and NaN.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"number","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":true,"scalar":true}}16
+30 438 response
+438
+{"intermediate":true,"result":{"brief":"A list of adaptive values","cType":"const afw_list_t *","compileType":"error","dataType":"list","dataTypeParameterType":"ListOf","description":"Data type list holds a list of adaptive value.  The list can have value all of one data type or of different data types.","directReturn":true,"evaluated":false,"jsonImpliesDataType":true,"jsonPrimitive":"array","relationalCompares":false,"scalar":false}}16
+31 359 response
+359
+{"intermediate":true,"result":{"brief":"A date","cType":"afw_date_t","compileType":"error","dataType":"date","description":"Data type date holds a calendar date in format CCYY-MM-DD.","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.24","relationalCompares":true,"scalar":true}}16
+32 389 response
+389
+{"intermediate":true,"result":{"brief":"An IP address","cType":"afw_utf8_t","compileType":"error","dataType":"ipAddress","description":"Data type ipAddress holds an Internet Protocol address (IP address).","directReturn":false,"evaluated":false,"jsonImpliesDataType":false,"jsonPrimitive":"string","ldapOid":"1.3.6.1.4.1.1466.115.121.1.15{64512}","relationalCompares":false,"scalar":true}}16
+33 939 response
+939
+{"intermediate":true,"result":{"brief":"A hybrid value","cType":"const afw_value_t *","compileType":"hybrid","dataType":"hybrid","dataTypeParameterType":"SourceParameter","description":"Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template.  It can also be a literal (evaluated value) such as boolean, double, integer, list, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple.  If the value is a string that begins with a shebang ('#!'), the string is the source for a script.  If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template.  In other cases, the string is a string literal.","directReturn":true,"evaluated":true,"jsonImpliesDataType":false,"jsonPrimitive":"varies","relationalCompares":false,"scalar":false}}15
+34 34 response
+34
+{"result":null,"status":"success"}2
+357
+ 0 end
+0
+0

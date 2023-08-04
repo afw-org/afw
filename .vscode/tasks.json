@@ -1,0 +1,323 @@
+{
+    "version": "2.0.0",    
+    "tasks": [
+        {
+            "linux": {
+                "command": "ldconfig && /usr/local/bin/afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25"
+            },
+            "command": "ldconfig && /usr/local/bin/afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25",
+            "label": "Start:  afwfcgi",
+            "detail": "Starts the C FastCGI Service, afwfcgi",
+            "type": "shell",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [],
+            "icon": {
+                "id": "run",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "Start:  nginx",
+            "detail": "Starts nginx web server, forwarding requests to FCGI and loads web app from build.",
+            "type": "shell",
+            "command": "nginx -g 'daemon off;' -c ${workspaceFolder}/.devcontainer/afw/nginx.conf -p ${workspaceFolder}/build",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [],
+            "icon": {
+                "id": "run",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "Stop:  nginx",
+            "detail": "Stops nginx web server.",
+            "type": "shell",
+            "command": "nginx -s stop",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [],
+            "icon": {
+                "id": "stop-circle",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "Build:  Everything",
+            "detail": "Runs the full build process for both Core and Web Services.",
+            "group": "build",
+            "type": "shell",
+            "dependsOn": [
+                "Build:  Core (afwdev build --cdev)",
+                "Build:  Administrative Web Application"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Clean:  Everything",
+            "detail": "Runs the full clean process for both Core and Javascript.",
+            "group": "build",
+            "type": "shell",
+            "dependsOn": [
+                "Clean:  afwdev build --clean",
+                "Clean:  node_modules"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "trash"
+            }
+        },
+        {
+            "label": "Build:  afwdev build --cdev",
+            "detail": "Runs the full C build process of afwdev build --cdev.",
+            "group": "build",
+            "type": "shell",
+            "linux": {
+                "command": "./afwdev build --cdev"
+            },
+            "command": "./afwdev build --cdev",
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Build:  afwdev build",
+            "detail": "Runs the C make.",
+            "group": "build",
+            "type": "shell",
+            "command": "./afwdev build",
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Build: ./afwdev for \"./afwdev build --clean --generate --install\"",
+            "detail": "Run in your default forSet: \"./afwdev build --clean --generate --install\".",
+            "type": "shell",
+            "group": "build",
+            "command": "./afwdev for \"./afwdev build --clean --generate --install\"",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Run:  afwdev build --install",
+            "detail": "Runs \"afwdev build --install\".",
+            "type": "shell",
+            "group": "build",
+            "command": "./afwdev build --install",
+            "problemMatcher": [],
+            "icon": {
+                "id": "package"
+            }
+        },
+        {
+            "label": "Clean:  afwdev build --clean",
+            "detail": "Runs a \"afwdev build --clean\".",
+            "type": "shell",
+            "group": "build",
+            "command": "./afwdev build --clean",
+            "problemMatcher": [],
+            "icon": {
+                "id": "trash"
+            }
+        },
+        {
+            "label": "Configuration:  Re-initialize Data Volume",
+            "detail": "Deletes everything in /afw and creates new skeleton configuration",
+            "type": "shell",
+            "linux": {
+                "command": "rm -f /afw/* && cp -r ${workspaceFolder}/.devcontainer/afw/* /afw"
+            },
+            "command": "rm -f /afw/* && cp -r ${workspaceFolder}/.devcontainer/afw/* /afw",
+            "problemMatcher": [],
+            "icon": {
+                "id": "settings-gear"
+            }
+        },
+        {
+            "label": "Generate:  *",
+            "detail": "Runs Python Generate Everything (objects, skeletons, extensions, etc.).",
+            "type": "shell",
+            "command": "./afwdev generate --srcdir-pattern \\*",
+            "problemMatcher": [],
+            "icon": {
+                "id": "combine"
+            }
+        },
+        {
+            "label": "Test:  Run Core Tests",
+            "detail": "Runs Python core tests.",
+            "group": "test",
+            "type": "shell",
+            "command": "./afwdev --verbose test --srcdir-pattern \\*",
+            "problemMatcher": [],
+            "icon": {
+                "id": "check"
+            }
+        },
+        {
+            "label": "Build:  Administrative Web Application",
+            "detail": "Builds Administrative Web Application.",
+            "group": "build",
+            "type": "shell",
+            "command": "./afwdev build --js",
+            "dependsOn": [
+                "Build:  Javascript Packages"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Start:  Administrative Web Application",
+            "detail": "Starts Administrative Web Application under Hot Loadable DEV web server on port 3000.",
+            "type": "shell",
+            "command": "cd src/afw_app/admin && npm start",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [],
+            "icon": {
+                "id": "run",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "Build:  Javascript Packages",
+            "detail": "Builds the Components for React (@afw/client, @afw/react, @afw/react-material-ui, @afw/react-monaco)",
+            "group": "build",
+            "type": "shell",
+            "command": "cd ${workspaceFolder} && npm run build-p:packages",
+            "dependsOn": [
+                "Run:  Bootstrap node_modules"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Build:  Make RPMs",
+            "detail": "Builds RPMs for Core.",
+            "type": "shell",
+            "command": "make rpm",
+            "problemMatcher": [],
+            "icon": {
+                "id": "package"
+            }
+        },
+        {
+            "label": "Clean:  node_modules",
+            "detail": "Deletes all Javascript node_modules everywhere.",
+            "type": "shell",
+            "command": "rm -rf node_modules",
+            "problemMatcher": [],
+            "icon": {
+                "id": "trash"
+            }
+        },
+        {
+            "label": "Test:  Run React Component Tests",
+            "detail": "Runs tests for the React Component extensions.",
+            "group": "test",
+            "type": "shell",
+            "command": "cd ${workspaceFolder} && npm run test",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "dependsOn": [
+                "Run:  Bootstrap node_modules"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "check"
+            }
+        },
+        {
+            "label": "Run:  Bootstrap node_modules",
+            "detail": "Installs all common node_modules for building, development and testing, if the directory is missing.",
+            "type": "shell",
+            "command": "((test ! -e node_modules && npm install) || true)",
+            "problemMatcher": [],
+            "icon": {
+                "id": "package"
+            }
+        },
+        {
+            "label": "Start:  valgrind afw gdb server",
+            "detail": "Starts the valgrind built-in gdb server, so you can debug afw with gdb running under valgrind.",
+            "type": "shell",
+            "isBackground": true,
+            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/valgrind.suppress /usr/local/bin/afw ${file}",
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": "."
+                    }
+                }
+            ],
+            "icon": {
+                "id": "debug-alt",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "Start:  valgrind afwfcgi gdb server",
+            "detail": "Starts the valgrind built-in gdb server, so you can debug afwfcgi with gdb running under valgrind.",
+            "type": "shell",
+            "isBackground": true,
+            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/valgrind.suppress /usr/local/bin/afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": "."
+                    }
+                }
+            ],
+            "icon": {
+                "id": "debug-alt",
+                "color": "terminal.ansiGreen"
+            }
+        }
+    ],
+    "inputs": [       
+    ]
+}

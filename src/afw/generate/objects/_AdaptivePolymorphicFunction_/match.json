@@ -1,0 +1,27 @@
+{
+    "brief": "Checks if x500Name matches",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_<dataType>.",
+    "functionId": "match",
+    "functionLabel": "match",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "rfc822Name",
+        "x500Name"
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

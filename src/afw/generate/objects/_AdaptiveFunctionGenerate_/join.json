@@ -1,0 +1,26 @@
+{
+    "brief": "Join the string values of list elements",
+    "category": "list",
+    "dataTypeMethod": true,
+    "description": "Concatenate the string values of the elements of a list with a separator.",
+    "functionId": "join",
+    "functionLabel": "join",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "A list of values (statements) of any data type.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "The separator to use. If not specified, a comma (,) is used.",
+            "name": "separator",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "Joined list values."
+    }
+}

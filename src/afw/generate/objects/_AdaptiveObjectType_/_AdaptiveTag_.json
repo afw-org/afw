@@ -1,0 +1,33 @@
+{
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with \"_Adaptive\" are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
+    "objectIdPropertyName": "tagId",
+    "objectType": "_AdaptiveTag_",
+    "propertyTypes": {
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this tag",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this tag.",
+            "label": "Description"
+        },
+        "tagId": {
+            "allowQuery": true,
+            "brief": "The id of this tag",
+            "dataType": "string",
+            "description": "The id of this tag.",
+            "label": "Tag Id"
+        },
+        "tags": {
+            "brief": "Tags that can be used to query for this tag",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+            "label": "Tags"
+        }
+    }
+}

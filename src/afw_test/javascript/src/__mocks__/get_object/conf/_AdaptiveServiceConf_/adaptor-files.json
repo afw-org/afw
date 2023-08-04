@@ -1,0 +1,26 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveServiceConf_/adaptor-files",
+            "objectId": "adaptor-files",
+            "objectType": "_AdaptiveServiceConf_",
+            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/adaptor-files\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_adaptor_file\"},\"adaptorId\":\"files\",\"isDevelopmentInput\":true,\"description\":\"Stores objects in files.\",\"filenameSuffix\":\".json\",\"contentType\":\"json\",\"root\":\"/afw/files/\",\"adaptorType\":\"file\",\"type\":\"adaptor\"},\"startup\":\"immediate\",\"serviceId\":\"adaptor-files\"}"
+        },
+        "conf": {
+            "_meta_": {
+                "objectType": "_AdaptiveConf_adaptor_file"
+            },
+            "adaptorId": "files",
+            "isDevelopmentInput": true,
+            "description": "Stores objects in files.",
+            "filenameSuffix": ".json",
+            "contentType": "json",
+            "root": "/afw/files/",
+            "adaptorType": "file",
+            "type": "adaptor"
+        },
+        "startup": "immediate",
+        "serviceId": "adaptor-files"
+    },
+    "status": "success"
+}

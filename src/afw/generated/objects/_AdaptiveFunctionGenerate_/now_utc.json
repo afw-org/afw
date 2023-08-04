@@ -1,0 +1,14 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNowUtc",
+    "brief": "UTC dataTime",
+    "camelCaseFunctionLabel": "nowUtc",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return current UTC dateTime.",
+    "functionId": "now_utc",
+    "functionLabel": "now_utc",
+    "parameters": [],
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

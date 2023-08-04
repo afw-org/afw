@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtHybrid",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltHybrid",
+    "category": "hybrid",
+    "dataTypeMethod": true,
+    "description": "Checks for hybrid arg1 is less that hybrid arg2 and return the boolean result.",
+    "functionId": "lt<hybrid>",
+    "functionLabel": "lt_hybrid",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "hybrid",
+            "name": "arg1"
+        },
+        {
+            "dataType": "hybrid",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

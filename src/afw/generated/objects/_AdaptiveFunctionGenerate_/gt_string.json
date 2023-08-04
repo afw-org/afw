@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtString",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks for string arg1 is greater than string arg2 and return the boolean result.",
+    "functionId": "gt<string>",
+    "functionLabel": "gt_string",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "arg1"
+        },
+        {
+            "dataType": "string",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

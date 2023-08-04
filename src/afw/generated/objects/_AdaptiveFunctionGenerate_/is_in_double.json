@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInDouble",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks whether double value is in list of double list and returns the boolean result.",
+    "functionId": "is_in<double>",
+    "functionLabel": "is_in_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "double",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

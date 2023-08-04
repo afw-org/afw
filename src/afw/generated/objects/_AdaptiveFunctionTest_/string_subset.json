@@ -1,0 +1,169 @@
+{
+    "description": "Tests for subset<string> function.",
+    "functionId": "subset<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": []
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": []
+                }
+            ],
+            "description": "\n            String subset of bags:\n            { },\n            { }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "three",
+                        "one",
+                        "three"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "one",
+                        "one",
+                        "two",
+                        "two",
+                        "two",
+                        "three",
+                        "three",
+                        "three"
+                    ]
+                }
+            ],
+            "description": "\n            String subset of bags:\n            { \"one\", \"three\", \"one\", \"three\" },\n            { \"one\", \"one\", \"one\", \"two\", \"two\", \"two\", \"three\", \"three\", \"three\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "two",
+                        "three"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "four",
+                        "five"
+                    ]
+                }
+            ],
+            "description": "\n            String subset of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"four\", \"five\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "two",
+                        "three"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "two",
+                        "four"
+                    ]
+                }
+            ],
+            "description": "\n            String subset of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"one\", \"two\", \"four\" }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "two",
+                        "four",
+                        "six",
+                        "eight",
+                        "ten",
+                        "twelve",
+                        "fourteen",
+                        "sixteen",
+                        "eighteen",
+                        "twenty"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "one",
+                        "two",
+                        "three",
+                        "four",
+                        "five",
+                        "six",
+                        "seven",
+                        "eight",
+                        "nine",
+                        "ten",
+                        "eleven",
+                        "twelve",
+                        "thirteen",
+                        "fourteen",
+                        "fifteen",
+                        "sixteen",
+                        "seventeen",
+                        "eighteen",
+                        "nineteen",
+                        "twenty",
+                        "twenty-one",
+                        "twenty-two",
+                        "twenty-three",
+                        "twenty-four",
+                        "twenty-five"
+                    ]
+                }
+            ],
+            "description": "\n            String subset of bags:\n            {\n                \"two\", \"four\", \"six\", \"eight\", \"ten\",\n                \"twelve\", \"fourteen\", \"sixteen\", \"eighteen\", \"twenty\"\n            },\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            }\n        ",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

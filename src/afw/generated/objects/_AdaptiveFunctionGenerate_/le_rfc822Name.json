@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLeRfc822Name",
+    "brief": "Checks for less than or equal",
+    "camelCaseFunctionLabel": "leRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and return the boolean result.",
+    "functionId": "le<rfc822Name>",
+    "functionLabel": "le_rfc822Name",
+    "op": "<=",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "name": "arg1"
+        },
+        {
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_le"
+}

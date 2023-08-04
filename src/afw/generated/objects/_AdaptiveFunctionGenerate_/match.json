@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMatch",
+    "brief": "Checks if x500Name matches",
+    "camelCaseFunctionLabel": "match",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_<dataType>.",
+    "functionId": "match",
+    "functionLabel": "match",
+    "parameters": [
+        {
+            "name": "arg1",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "name": "arg2"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "rfc822Name",
+        "x500Name"
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

@@ -1,0 +1,32 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the ListEditor component.",
+    "label": "ListEditor Layout",
+    "objectType": "_AdaptiveLayoutComponentType_ListEditor",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "items": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_ListEditor_Item",
+            "description": "The list of items to be managed.",
+            "label": "Items"
+        },
+        "editable": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this list is currently editable.",
+            "label": "Editable"
+        }
+    }
+}

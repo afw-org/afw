@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwStartsWithString",
+    "brief": "Checks whether value starts with a string",
+    "camelCaseFunctionLabel": "startsWithString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Checks whether string value starts with a subString and return the boolean result.",
+    "functionId": "starts_with<string>",
+    "functionLabel": "starts_with_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "name": "subString"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_starts_with"
+}

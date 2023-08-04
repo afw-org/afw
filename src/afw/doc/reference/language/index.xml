@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Language Reference</title>
+    <description>
+        The Language Reference contains all information related to the Adaptive 
+        Script language features.
+    </description>
+    <section href="introduction.xml" label="Introduction" content-type="xml"/>
+    <section href="features.xml" label="Features" content-type="xml"/>
+    <section href="lexical.xml" label="Lexical" content-type="xml"/>
+    <section href="expressions.xml" label="Expressions" content-type="xml"/>
+    <section href="statements.xml" label="Statements" content-type="xml"/>
+    <section href="qualified-variables.xml" label="Qualified Variables" content-type="xml"/>
+</doc>

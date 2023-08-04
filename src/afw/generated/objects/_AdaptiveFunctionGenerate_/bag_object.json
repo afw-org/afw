@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagObject",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagObject",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Takes any number of object values and returns a list of list.",
+    "functionId": "bag<object>",
+    "functionLabel": "bag_object",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "object",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "object"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

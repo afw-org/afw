@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwDivideInteger",
+    "brief": "Divide numbers",
+    "camelCaseFunctionLabel": "divideInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Divide integer dividend by integer divisor and return the integer quotient.",
+    "functionId": "divide<integer>",
+    "functionLabel": "divide_integer",
+    "op": "/",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "dividend"
+        },
+        {
+            "dataType": "integer",
+            "name": "divisor"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    }
+}

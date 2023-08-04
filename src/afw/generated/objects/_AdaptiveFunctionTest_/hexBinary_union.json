@@ -1,0 +1,74 @@
+{
+    "description": "Tests for union<hexBinary> function.",
+    "functionId": "union<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9",
+                        "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB1",
+                        "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB2",
+                        "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB3",
+                        "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB4"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "hexBinary",
+                "value": [
+                    "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                    "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                    "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                    "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                    "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB8",
+                    "0FB80FB80FB80FB80FB80FB80FB80FB80FB80FB9",
+                    "1FB80FB80FB80FB80FB80FB80FB80FB80FB80FB1",
+                    "2FB80FB80FB80FB80FB80FB80FB80FB80FB80FB2",
+                    "3FB80FB80FB80FB80FB80FB80FB80FB80FB80FB3",
+                    "4FB80FB80FB80FB80FB80FB80FB80FB80FB80FB4"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "hexBinary",
+                    "value": [
+                        "x",
+                        "x"
+                    ]
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

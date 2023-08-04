@@ -1,0 +1,34 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the ChoiceGroupOption component.",
+    "objectIdPropertyName": "key",
+    "objectType": "_AdaptiveLayoutComponentType_ChoiceGroup_Option",
+    "otherProperties": {},
+    "propertyTypes": {
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this option is disabled in the ChoiceGroup.",
+            "label": "Disabled"
+        },
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The key identifier for this option.",
+            "label": "Key",
+            "required": true
+        },
+        "text": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text displayed for this option.",
+            "label": "Text"
+        }
+    }
+}

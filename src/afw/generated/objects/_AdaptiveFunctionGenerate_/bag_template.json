@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagTemplate",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagTemplate",
+    "category": "template",
+    "dataTypeMethod": true,
+    "description": "Takes any number of template values and returns a list of list.",
+    "functionId": "bag<template>",
+    "functionLabel": "bag_template",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "template",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "template"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

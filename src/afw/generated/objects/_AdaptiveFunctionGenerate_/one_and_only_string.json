@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyString",
+    "brief": "Converts a one value list to a string value",
+    "camelCaseFunctionLabel": "oneAndOnlyString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "This converts a list of string values that contains one value to a single string value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<string>",
+    "functionLabel": "one_and_only_string",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

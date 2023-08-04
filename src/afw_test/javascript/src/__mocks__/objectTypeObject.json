@@ -1,0 +1,372 @@
+{
+    "propertyTypes": {
+        "anyURI": {
+            "dataType": "anyURI",
+            "label": "Any URI Label",
+            "brief": "This is an anyURI",
+            "testValues": [
+                "http://www.google.com",
+                "mailto:user@domain.com"
+            ],
+            "expectedTestValues": [
+                "http://www.google.com",
+                "mailto:user@domain.com"
+            ]
+        },
+        "base64Binary": {
+            "dataType": "base64Binary",
+            "label": "Base64 Binary Label",
+            "brief": "This is a base64Binary",
+            "testValues": [
+                "dGVzdDE=",
+                "dGVzdDI="
+            ],
+            "expectedTestValues": [
+                "test1",
+                "test2"
+            ],
+            "expectedReadonlyTestValues": [
+                "dGVzdDE=",
+                "dGVzdDI="
+            ]
+        },
+        "boolean": {
+            "dataType": "boolean",
+            "label": "Boolean Label",
+            "brief": "This is a boolean",
+            "testValues": [
+                true,
+                false
+            ],
+            "expectedTestValues": [
+                "true",
+                "false"
+            ]
+        },
+        "date": {
+            "dataType": "date",
+            "label": "Date Label",
+            "brief": "This is a date",
+            "testValues": [
+                "1978-07-31",
+                "1981-08-13"
+            ],            
+            "expectedTestValues": [
+                "1978-07-31",
+                "1981-08-13"
+            ]
+        },
+        "dateTime": {
+            "dataType": "dateTime",
+            "label": "Date Time Label",
+            "brief": "This is a dateTime",
+            "testValues": [
+                "1978-07-31T16:00:00+00:00",
+                "1981-08-13T16:00:00+00:00"
+            ],
+            "expectedTestValues": [
+                "07/31/1978 04:00 PM",
+                "08/13/1981 04:00 PM"
+            ],
+            "expectedReadonlyTestValues": [
+                "1978-07-31T16:00:00+00:00",
+                "1981-08-13T16:00:00+00:00"
+            ]
+        },
+        "dayTimeDuration": {
+            "dataType": "dayTimeDuration",
+            "label": "Day Time Duration Label",
+            "brief": "This is a dayTimeDuration",
+            "testValues": [
+                "PT20M",
+                "PT21M"
+            ],
+            "expectedTestValues": [
+                "PT20M",
+                "PT21M"
+            ]
+        },
+        "dnsName": {
+            "dataType": "dnsName",
+            "label": "DNS Name Label",
+            "brief": "This is a dnsName",
+            "testValues": [
+                "my.server.com",
+                "sub.domain.org"
+            ],
+            "expectedTestValues": [
+                "my.server.com",
+                "sub.domain.org"
+            ]
+        },
+        "double": {
+            "dataType": "double",
+            "label": "Double Label",
+            "brief": "This is a double",
+            "testValues": [
+                99999,
+                100000
+            ],
+            "expectedTestValues": [
+                "99999",
+                "100000"
+            ]
+        },
+        "expression": {
+            "dataType": "expression",
+            "label": "Expression Label",
+            "brief": "This is a expression",
+            "testValues": [
+                "1 + 1",
+                "x * 2"
+            ],
+            "expectedTestValues": [
+                "1 + 1",
+                "x * 2"
+            ]
+        },
+        "function": {
+            "dataType": "function",
+            "label": "Function Label",
+            "brief": "This is a function",
+            "testValues": [
+                "func1",
+                "func2"
+            ],
+            "expectedTestValues": [
+                "func1",
+                "func2"
+            ]
+        },
+        "hexBinary": {
+            "dataType": "hexBinary",
+            "label": "Hex Binary Label",
+            "brief": "This is a hexBinary",
+            "testValues": [
+                "FFFFFFFF",
+                "ABCD1234"
+            ],
+            "expectedTestValues": [
+                "FFFFFFFF",
+                "ABCD1234"
+            ]
+        },
+        "hybrid": {
+            "dataType": "hybrid",
+            "label": "Hybrid Label",
+            "brief": "This is a hybrid",
+            "testValues": [
+                "[\"v\", \"var1\"]",
+                "[\"f\", \"func\"]"
+            ],
+            "expectedTestValues": [
+                "[\"v\", \"var1\"]",
+                "[\"f\", \"func\"]"
+            ]
+        },
+        "integer": {
+            "dataType": "integer",
+            "label": "Integer Label",
+            "brief": "This is a integer",
+            "testValues": [
+                12345,
+                9999999
+            ],
+            "expectedTestValues": [
+                "12345",
+                "9999999"
+            ]
+        },
+        "ipAddress": {
+            "dataType": "ipAddress",
+            "label": "IP Address Label",
+            "brief": "This is a ipAddress",
+            "testValues": [
+                "127.0.0.1",
+                "10.0.1.1"
+            ],
+            "expectedTestValues": [
+                "127.0.0.1",
+                "10.0.1.1"
+            ]
+        },
+        "list": {
+            "dataType": "list",
+            "label": "List Label",
+            "brief": "This is a list",
+            "testValues": [
+                [],
+                [
+                    "abc"
+                ]
+            ],
+            "expectedTestValues": [
+                [],
+                [
+                    "abc"
+                ]
+            ]
+        },
+        "null": {
+            "dataType": "null",
+            "label": "Null Label",
+            "brief": "This is a null",
+            "testValues": [
+                null
+            ],
+            "expectedTestValues": [
+                "(null)"
+            ],
+            "expectedReadonlyTestValues": [
+                "null"
+            ]
+        },
+        "object": {
+            "dataType": "object",
+            "label": "Object Label",
+            "brief": "This is a object",
+            "testValues": [
+                {},
+                {
+                    "prop": "value"
+                }
+            ],
+            "expectedTestValues": [
+                {},
+                {
+                    "prop": "value"
+                }
+            ]
+        },
+        "objectId": {
+            "dataType": "objectId",
+            "label": "Object Id Label",
+            "brief": "This is an objectId",
+            "testValues": [
+                "object-id",
+                "obj-id2"
+            ],
+            "expectedTestValues": [
+                "object-id",
+                "obj-id2"
+            ]
+        },
+        "objectPath": {
+            "dataType": "objectPath",
+            "label": "Object Path Label",
+            "brief": "This is an objectPath",
+            "testValues": [
+                "/some/object/path",
+                "/other/object2/path2"
+            ],
+            "expectedTestValues": [
+                "/some/object/path",
+                "/other/object2/path2"
+            ]
+        },
+        "password": {
+            "dataType": "password",
+            "label": "Password Label",
+            "brief": "This is a password",
+            "testValues": [
+                "P@sSW0Rd",
+                "S3cr3Tp@SS"
+            ],
+            "expectedTestValues": [
+                "P@sSW0Rd",
+                "S3cr3Tp@SS"
+            ]
+        },
+        "rfc822Name": {
+            "dataType": "rfc822Name",
+            "label": "RFC822 Name Label",
+            "brief": "This is a rfc822Name",
+            "testValues": [
+                "Local-part@Domain",
+                "something@mydomain"
+            ],
+            "expectedTestValues": [
+                "Local-part@Domain",
+                "something@mydomain"
+            ]
+        },
+        "string": {
+            "dataType": "string",
+            "label": "String Label",
+            "brief": "This is a string",
+            "testValues": [
+                "This is a value!",
+                "Something"
+            ],
+            "expectedTestValues": [
+                "This is a value!",
+                "Something"
+            ]
+        },
+        "template": {
+            "dataType": "template",
+            "label": "Template Label",
+            "brief": "This is a template",
+            "testValues": [
+                "This is a ${var}-template",
+                "${var}"
+            ],
+            "expectedTestValues": [
+                "This is a ${var}-template",
+                "${var}"
+            ]
+        },
+        "time": {
+            "dataType": "time",
+            "label": "The Time Label",
+            "brief": "This is a time",
+            "testValues": [
+                "12:00",
+                "09:30"
+            ],
+            "expectedTestValues": [
+                "12:00",
+                "09:30"
+            ]
+        },
+        "x500Name": {
+            "dataType": "x500Name",
+            "label": "X500 Name Label",
+            "brief": "This is a x500Name",
+            "testValues": [
+                "name1",
+                "name2"
+            ],
+            "expectedTestValues": [
+                "name1",
+                "name2"
+            ]
+        },
+        "xpathExpression": {
+            "dataType": "xpathExpression",
+            "label": "XPath Expression Label",
+            "brief": "This is a xpathExpression",
+            "testValues": [
+                "//element[@attr='x']",
+                "//*[1]"
+            ],
+            "expectedTestValues": [
+                "//element[@attr='x']",
+                "//*[1]"
+            ]
+        },
+        "yearMonthDuration": {
+            "dataType": "yearMonthDuration",
+            "label": "Year Month Duration Label",
+            "brief": "This is a yearMonthDuration",
+            "testValues": [
+                "1 year",
+                "2 months"
+            ],
+            "expectedTestValues": [
+                "1 year",
+                "2 months"
+            ]
+        }
+    }
+}

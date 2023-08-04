@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionDayTimeDuration",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Returns a list of dayTimeDuration contains all of the unique values in two or more list of dayTimeDuration values.",
+    "functionId": "union<dayTimeDuration>",
+    "functionLabel": "union_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "dayTimeDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

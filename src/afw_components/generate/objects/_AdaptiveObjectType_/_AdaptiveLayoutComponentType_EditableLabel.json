@@ -1,0 +1,39 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the EditableLabel component.",
+    "label": "EditableLabel",
+    "objectType": "_AdaptiveLayoutComponentType_EditableLabel",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "multiline": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the TextField for the EditableLabel needs to be multilined.",
+            "label": "Multiline"
+        },
+        "placeholder": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The placeholder value for the text field when no value exists.",
+            "testDataParameter": "This is a placeholder.",
+            "label": "Placeholder"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value for the EditableLabel component.",
+            "testDataParameter": "This is label value.",
+            "label": "Value"
+        }
+    }
+}

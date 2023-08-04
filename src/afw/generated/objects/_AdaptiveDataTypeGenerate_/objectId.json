@@ -1,0 +1,12 @@
+{
+    "brief": "An adaptive object's object id",
+    "cType": "afw_utf8_t",
+    "dataType": "objectId",
+    "dataTypeParameterType": "ObjectType",
+    "description": "Data type objectId holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adaptor id and object type id.",
+    "directReturn": false,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

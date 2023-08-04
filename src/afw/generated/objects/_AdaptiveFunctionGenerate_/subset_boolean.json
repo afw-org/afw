@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetBoolean",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in boolean list1 are all in boolean list2.",
+    "functionId": "subset<boolean>",
+    "functionLabel": "subset_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

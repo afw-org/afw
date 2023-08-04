@@ -1,0 +1,8 @@
+{
+    "title":"AFWDemo",
+    "description":"Adaptive Framework Demo Image.",
+    "defaultAdaptorId":"vault",
+    "defaultModelAdaptorId":"models",
+    "layoutsAdaptorId":"layouts",
+    "extensions":["afw_yaml","afw_ldap","afw_lmdb","afw_vfs"]
+}

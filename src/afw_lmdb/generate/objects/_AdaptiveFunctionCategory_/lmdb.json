@@ -1,0 +1,5 @@
+{
+    "category": "lmdb",
+    "brief": "Lightning Memory-Mapped Database (LMDB) functions.",
+    "description": "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB)."
+}

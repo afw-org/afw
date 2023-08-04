@@ -1,0 +1,42 @@
+{
+    "afwCamelCaseFunctionLabel": "afwTestHybrid",
+    "brief": "Test hybrid",
+    "camelCaseFunctionLabel": "testHybrid",
+    "category": "compiler",
+    "description": "Compile and evaluate a string containing adaptive hybrid syntax which can be an adaptive template or adaptive expression tuple and then compare the results to an expected value. Return object with the test's results.",
+    "functionId": "test_hybrid",
+    "functionLabel": "test_hybrid",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "Id of test",
+            "name": "id"
+        },
+        {
+            "dataType": "string",
+            "description": "Description of test",
+            "name": "description"
+        },
+        {
+            "dataType": "string",
+            "description": "Hybrid to compile and evaluate.",
+            "name": "hybrid"
+        },
+        {
+            "description": "Expected evaluated result.",
+            "name": "expected"
+        },
+        {
+            "brief": "Additional untrusted qualified variables",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+            "description": "This parameter supplies additional qualified variables that can be accessed during evaluation. These variables will not be used by anything that needs to ensure its qualified variables must come from a trusted source, such as authorization. This parameter is intended to be used for testing only and should not be used for anything running in production.",
+            "name": "additionalUntrustedQualifiedVariables",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "description": "Test results."
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNeBoolean",
+    "brief": "Checks for not equal",
+    "camelCaseFunctionLabel": "neBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Determine if boolean arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use \"nex\" (\"!==\") instead if you want true to be returned if arg1 and arg2's data type don't match.",
+    "errorsThrown": [
+        {
+            "error": "conversion",
+            "reason": "arg2 cannot be converted to the data type of arg1."
+        }
+    ],
+    "functionId": "ne<boolean>",
+    "functionLabel": "ne_boolean",
+    "op": "!=",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "boolean",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ne"
+}

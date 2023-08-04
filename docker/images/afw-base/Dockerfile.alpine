@@ -1,0 +1,6 @@
+FROM alpine:3.16.6
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+RUN apk add --no-cache apr apr-util icu-libs fcgi \
+    libxml2 libunwind elfutils curl db lmdb yaml libldap nginx

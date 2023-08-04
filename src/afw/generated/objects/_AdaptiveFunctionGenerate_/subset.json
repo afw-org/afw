@@ -1,0 +1,47 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubset",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subset",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in <dataType> list1 are all in <dataType> list2.",
+    "functionId": "subset",
+    "functionLabel": "subset",
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "The first list.",
+            "name": "list1",
+            "polymorphicDataTypeParameter": true
+        },
+        {
+            "dataType": "list",
+            "description": "The second list.",
+            "name": "list2",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_subset",
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

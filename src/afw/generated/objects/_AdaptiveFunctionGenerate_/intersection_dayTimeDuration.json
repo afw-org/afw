@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionDayTimeDuration",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "Returns a list of dayTimeDuration with the values that are common to both list of dayTimeDuration list1 and list2.",
+    "functionId": "intersection<dayTimeDuration>",
+    "functionLabel": "intersection_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "dayTimeDuration"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

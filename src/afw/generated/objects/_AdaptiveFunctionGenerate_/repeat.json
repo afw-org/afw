@@ -1,0 +1,34 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRepeat",
+    "brief": "Returns a repeated value",
+    "camelCaseFunctionLabel": "repeat",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Repeat a <dataType> value a specified number of times.",
+    "functionId": "repeat",
+    "functionLabel": "repeat",
+    "parameters": [
+        {
+            "description": "The <dataType> value to repeat.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "integer",
+            "description": "The number of times to repeat the value.",
+            "name": "times"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_repeat",
+    "pure": true,
+    "returns": {
+        "description": "The repeated <dataType> value.",
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

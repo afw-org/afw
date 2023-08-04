@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtDouble",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks for double arg1 is less that double arg2 and return the boolean result.",
+    "functionId": "lt<double>",
+    "functionLabel": "lt_double",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "arg1"
+        },
+        {
+            "dataType": "double",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

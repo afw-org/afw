@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSplitString",
+    "brief": "Split at a separator",
+    "camelCaseFunctionLabel": "splitString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Split string value into an list of strings using a separator.",
+    "functionId": "split<string>",
+    "functionLabel": "split_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value to split.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "The separator to use. If this is an empty string or separator is not specified, the value is split between characters.",
+            "name": "separator",
+            "optional": true
+        },
+        {
+            "dataType": "integer",
+            "description": "This is the maximum number of splits. Any remaining part of value is ignored.",
+            "name": "limit",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "description": "An list of strings."
+    },
+    "useExecuteFunction": "afw_function_execute_split"
+}

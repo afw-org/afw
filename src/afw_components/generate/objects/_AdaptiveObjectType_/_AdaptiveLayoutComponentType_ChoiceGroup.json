@@ -1,0 +1,56 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the ChoiceGroup component.",
+    "label": "ChoiceGroup",
+    "objectType": "_AdaptiveLayoutComponentType_ChoiceGroup",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the ChoiceGroup component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "options": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_ChoiceGroup_Option",
+            "description": "The available options for the ChoiceGroup component.",
+            "label": "Options",
+            "required": true
+        },
+        "orientation": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The orientation of the Choice Group (horizontal or vertical).",
+            "label": "Orientation",
+            "possibleValues": [
+                "horizontal",
+                "vertical"
+            ]
+        },
+        "required": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether this ChoiceGroup component is required.",
+            "label": "Required"
+        },
+        "selectedKey": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The value of the selected key for the ChoiceGroup options.",
+            "label": "Selected Key"
+        }
+    }
+}

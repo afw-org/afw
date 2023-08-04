@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyX500Name",
+    "brief": "Converts a one value list to a x500Name value",
+    "camelCaseFunctionLabel": "oneAndOnlyX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "This converts a list of x500Name values that contains one value to a single x500Name value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<x500Name>",
+    "functionLabel": "one_and_only_x500Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "x500Name"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

@@ -1,0 +1,12 @@
+{
+    "brief": "Local dataTime",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return current local dateTime.",
+    "functionId": "now_local",
+    "functionLabel": "now_local",
+    "parameters": [],
+    "returns": {
+        "dataType": "dateTime"
+    }
+}

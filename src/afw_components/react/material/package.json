@@ -1,0 +1,36 @@
+{
+  "name": "@afw/react-material-ui",
+  "license": "UNLICENSED",
+  "version": "0.9.0",
+  "description": "Adaptive Framework components implemented with MaterialUI.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afw-org/afw.git"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@mui/material": "^5.0.0",
+    "mdi-material-ui": "^7.1.0",    
+    "@afw/react": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@swc/cli": "^0.1.51",
+    "@swc/core": "^1.2.103", 
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.0",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",    
+    "build-p": "npm-run-all --parallel --aggregate-output build:cjs build:esm",    
+    "build:cjs": "rimraf build/cjs && cross-env NODE_ENV=production swc src -d build/cjs -s --config-file ../../../../.swcrc",    
+    "build:esm": "rimraf build/esm && cross-env NODE_ENV=production swc -C module.type=es6 src -d build/esm -s --config-file ../../../../.swcrc",
+    "build:copy-types": "cpx \"src/**/*.d.ts\" build/esm && cpx \"src/**/*.d.ts\" build/cjs",
+    "build:types": "tsc --build --listEmittedFiles tsconfig.json",
+    "test": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='<rootDir>/../../../afw_test/javascript/src/setupTests.js' --verbose"
+  }
+}

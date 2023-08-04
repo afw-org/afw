@@ -1,0 +1,6144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- See the 'COPYING' file in the project root for licensing information.                                          -->
+<!--                                                                        -->
+<!-- Adaptive Framework Core Interface Definition                           -->
+<!--                                                                        -->
+<!-- Copyright (c) 2010-2023 Clemson University                                 -->
+<!--                                                                        -->
+
+<definitions>
+
+  <interface name="afw_extension" id="afwex">
+
+    <description>
+      Interface returned from afw_extension_initialize() of an
+      Adaptive Framework environment extension module. Additional
+      information about an extension is found in object
+      /afw/_AdaptiveManifest_/&lt;extension_id&gt;.
+    </description>
+
+    <variable name="extension_id" type="afw_utf8_t">
+      <description>Id of this extension.</description>
+    </variable>
+
+    <variable name="extension_version" type="afw_utf8_t">
+      <description>Version of this extension.</description>
+    </variable>
+
+    <variable name="afw_compiled_version" type="afw_utf8_t">
+      <description>Version of libafw this extension was compiled against.</description>
+    </variable>
+
+    <variable name="afw_compiled_version_hex" type="unsigned int">
+      <description>The hex version of libafw this extension was compiled against.</description>
+    </variable>
+
+    <model_c_code label="create"></model_c_code>
+    <model_c_code label="more_includes">
+      <![CDATA[
+#include "generated/<afwdev {prefix}>generated.h"
+
+#define AFW_IMPLEMENTATION_VERSION <afwdev {prefix.upper()}>VERSION_STRING
+#include "generated/<afwdev {prefix}>version_info.h"
+
+//* Define extension implementation. */
+AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
+
+]]>
+    </model_c_code>
+
+
+    <method name="initialize">
+
+      <model_c_code label="method_body">
+        <![CDATA[
+    /*
+     *  IMPORTANT:
+     *
+     *  Make sure associated _AdaptiveManifest_ is up to date,
+     *  especially the "registers" property.
+     *
+     */
+    
+    /* Call the generated register function for this extension. */
+    <afwdev {prefix}>generated_register(xctx);
+
+    /** @todo Add additional extension initialization here, if needed. */
+
+    /*
+     * Return the extension instance.
+     *
+     * Note: The instance returned can also a copy of the instance passed with
+     * additional private instance data appended to its end. The instance
+     * returned here is the instance registered in the AFW environment and the
+     * instance passed to the other methods.
+     */
+    return &impl_extension;
+]]>
+      </model_c_code>
+
+      <description>
+        This method is called once by afw_environment_load_extension() the first time
+        this instance is loaded in an instance of an Adaptive Framework environment.
+        
+        This method should call afw_environment register functions and do
+        any other one-time initialization that is required.
+
+        After afw_environment_load_extension() calls this function, it will register
+        the instance returned in the AFW environment.
+      </description>
+
+      <parameter name="instance" type="const afw_extension_t *">
+        <description>This extension's instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>
+          This is the properties supplied to afw_environment_load_extension() or NULL.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          This is the pool to use for extension resources.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_extension_t *">
+        <description>
+          This is the instance parameter passed or a copy of it with additional
+          private data appended.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="release">
+
+      <model_c_code label="assign_self"></model_c_code>
+      <model_c_code label="method_body">
+        <![CDATA[
+    /* Extension release() is not currently used. */
+]]>
+      </model_c_code>
+
+      <description>
+        Release resources associated with this extension.
+      </description>
+
+      <parameter name="instance" type="const afw_extension_t *">
+        <description>Pointer to this adaptor instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_factory" id="afwaf">
+
+    <description>Factory to create an instance of an afw_adaptor.</description>
+
+    <variable name="adaptor_type" type="afw_utf8_t">
+      <description>Type of adaptor this factory creates.</description>
+    </variable>
+
+    <variable name="description" type="const afw_utf8_t *">
+      <description>Type of adaptor this factory creates.</description>
+    </variable>
+
+    <model_c_code label="more_includes">
+      <![CDATA[
+#include "<afwdev {prefixed_interface_name.replace('_factory','')}>.h"]]>
+    </model_c_code>
+
+    <method name="create_adaptor_cede_p">
+
+      <description>
+        Create an adaptor of the factory's type.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_factory_t *">
+        <description>Pointer to this adaptor instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>
+          Configuration parameters for the particular type of adaptor. This
+          will become the properties object for adaptor.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          The pool that will be used for adaptor resources.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_t *">
+        <description>
+          An instance of an adaptor.
+        </description>
+      </return>
+
+      <model_c_code label="method_body">
+        <![CDATA[
+    /** @todo If needed, add/modify the following code to implement method. */
+
+    /* Return adaptor instance. */
+    return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
+      ]]>
+      </model_c_code>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor" id="afwa" create_function="create_cede_p">
+
+    <description>
+      Adaptor interface.
+    </description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        Adaptor's pool. This pool will exist for the life of the adaptor.
+      </description>
+    </variable>
+
+    <variable name="adaptor_id" type="afw_utf8_t">
+      <description>Id of adaptor.</description>
+    </variable>
+
+    <variable name="adaptor_type_id" type="const afw_utf8_t *">
+      <description>Id of adaptor type.</description>
+    </variable>
+
+    <variable name="service_id" type="const afw_utf8_t *">
+      <description>
+        This is the associated service id. The path of the service is
+        "/afw/_AdaptiveService_/" followed by this id.
+      </description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>This adaptor's properties (configuration) object.</description>
+    </variable>
+
+    <variable name="source_location" type="const afw_utf8_t *">
+      <description>
+        This is the source location to help determine how this adaptor was defined.
+      </description>
+    </variable>
+
+    <variable name="trace_flag_id" type="const afw_utf8_t *">
+      <description>
+        This is the basic trace flag id for this adaptor's adaptor id.
+      </description>
+    </variable>
+
+    <variable name="trace_flag_index" type="afw_size_t">
+      <description>
+        This is the basic trace flag index for this adaptor's adaptor id.
+      </description>
+    </variable>
+
+    <variable name="detail_flag_id" type="const afw_utf8_t *">
+      <description>
+        This is the detail trace flag id for this adaptor's adaptor id.
+      </description>
+    </variable>
+
+    <variable name="detail_flag_index" type="afw_size_t">
+      <description>
+        This is the detail trace flag index for this adaptor's adaptor id.
+      </description>
+    </variable>
+
+    <variable name="impl" type="const afw_adaptor_impl_t *">
+      <description>
+        Used by adaptor common code.
+      </description>
+    </variable>
+
+    <model_c_code label="create">
+      <![CDATA[    
+/* Create an instance of the adaptor. */
+AFW_DEFINE(const afw_adaptor_t *)
+<afwdev {prefixed_interface_name}>_create_cede_p(
+    const afw_object_t *properties,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    <afwdev {prefixed_interface_name}>_self_t *self;
+    afw_adaptor_t *adaptor;
+    
+    /* Create adaptor and process common properties. */
+    adaptor = afw_adaptor_impl_create_cede_p(
+            &impl_afw_adaptor_inf,
+            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            properties, p, xctx);
+    self = (<afwdev {prefixed_interface_name}>_self_t *)adaptor;
+
+    /** @todo Handle implementation specific configuration parameters, etc. */
+       
+    /* Return adaptor. */
+    return adaptor;
+}
+      ]]>
+    </model_c_code>
+
+
+    <method name="destroy">
+
+      <description>
+        This method should not be called directly unless you are manually
+        managing the lifetime of this adaptor. The functions in afw_adaptor.h
+        will call this method when there are no more references to this adaptor
+        and then destroy the pool passed to the create function.
+
+        The implementation of this method releases any resource not tied to that pool.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_t *">
+        <description>Pointer to this adaptor instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="create_adaptor_session">
+
+      <description>
+        This method should not be called directly unless you are manually
+        managing the lifetime of this adaptor. The functions in afw_adaptor.h will
+        call this method to create an adaptor session instance and will call
+        the session's destroy() method when the session has on more references.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_t *">
+        <description>Pointer to this adaptor instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          The execution context (xctx) of caller.
+        </description>
+      </parameter>
+
+      <return type="const afw_adaptor_session_t *">
+        <description>Pointer to new adaptor session instance.</description>
+      </return>
+
+    </method>
+
+    <method name="get_additional_metrics">
+
+      <description>
+        Get additional adaptor specific metrics.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_t *">
+        <description>Pointer to this adaptor instance.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          Pool used for results.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          The execution context (xctx) of caller.
+        </description>
+      </parameter>
+
+      <return type="const afw_object_t *">
+        <description>Object with metrics or NULL.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_object_type_cache" id="afwaot">
+
+    <description>
+      Adaptor object type cache interface. This interface is used by
+      afw_adaptor_get_object_type(). 
+    </description>
+
+    <variable name="session" type="const afw_adaptor_session_t *">
+      <description>
+        Associated adaptor session.
+      </description>
+    </variable>
+
+    <variable name="all_object_types_immutable" type="afw_boolean_t">
+      <description>
+        All object types for associated adaptor are immutable.
+
+        If true, afw_adaptor_get_object_type() will call the set()
+        method when new object types are created.
+
+        If false, afw_adaptor_get_object_type() will only cache object
+        type for session.
+      </description>
+    </variable>
+
+    <method name="get">
+
+      <description>
+        Get a object type.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_object_type_cache_t *">
+        <description>
+          Pointer to this adaptor object type cache instance.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>
+          Object type id of object type to get from cache.
+        </description>
+      </parameter>
+
+      <parameter name="final_result" type="afw_boolean_t *">
+        <description>
+          Pointer to place to return flag.
+
+          If true, afw_adaptor_get_object_type() will always return the
+          result of calling the get() method.
+
+          If false and get() returns NULL, afw_adaptor_get_object_type()
+          will try to create and return a new object_type and return.
+          The set() method will be called if all_object_types_immutable is
+          true.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_type_t *">
+        <description>
+          An object type or NULL if not found.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="set">
+
+      <description>
+        Get a object type.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_object_type_cache_t *">
+        <description>
+          Pointer to this adaptor object type cache instance.
+        </description>
+      </parameter>
+
+      <parameter name="object_type" type="const afw_object_type_t *">
+        <description>
+          Object type to set in cache.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_session" id="afwas" create_function="create_internal">
+
+    <description>
+      Adaptor session interface.
+    </description>
+
+    <variable name="adaptor" type="const afw_adaptor_t *">
+      <description>Adaptor sessions's associated adaptor.</description>
+    </variable>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>Adaptor sessions's pool. This pool will exist for the life of the adaptor session.</description>
+    </variable>
+
+    <method name="destroy">
+
+      <description>
+        This method should not be called directly unless you are manually
+        managing the lifetime of this adaptor. The functions in afw_adaptor.h will
+        call this method when there are no more references to this adaptor session.
+
+        The implementation releases resources acquired since the session was
+        created by create_adaptor_session().
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>
+          Pointer to this adaptor session instance.
+          Make sure to call commit or changes will be lost.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="retrieve_objects">
+
+      <description>
+        Retrieve adaptive objects via this adaptor that match criteria.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>The object type of objects to be retrieved.</description>
+      </parameter>
+
+      <parameter name="criteria" type="const afw_query_criteria_t *">
+        <description>
+          Query criteria. Use member filter or normalized, whichever is easier,
+          to filter the objects retrieved. See afw_query_criteria.h for more
+          information.
+          The other members should be ignored.
+        </description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Pointer passed to callback routine.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_object_cb_t">
+        <description>
+          Callback function will be called each time an object is retrieved and once
+          with a NULL object pointer when finished.
+
+          The callback function will call afw_object_release() on the object
+          when finished with it. If you want to have the object last past the
+          callback, call afw_object_add_reference() on the object before calling
+          the callback.
+        </description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+          
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool used for objects passed to callback.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="get_object">
+
+      <description>
+        Retrieve an read-only copy of an adaptive object via adaptor.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type of object to get.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id of object to get.</description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Pointer passed to callback routine.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_object_cb_t">
+        <description>
+          Callback function will be called once with either the object retrieved
+          or a NULL object pointer if not found.
+
+          The callback function will call afw_object_release() on the object
+          when finished with it. If you want to have the object last past the
+          callback, call afw_object_add_reference() on the object before calling
+          the callback.
+        </description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool used for object passed to callback.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="add_object">
+
+      <description>
+        Add an adaptive object via this adaptor.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type of object to add.</description>
+      </parameter>
+
+      <parameter name="suggested_object_id" type="const afw_utf8_t *">
+        <description>
+          The suggested object id of the added object. This object id must be
+          unique within the object type. If NULL or at the adaptor's option,
+          the adaptor will generate a unique object id.
+        </description>
+      </parameter>
+
+      <parameter name="object" type="const afw_object_t *">
+        <description>
+          Object to add.
+
+          Unless documented otherwise by non-default options, this object only needs
+          to exist for the life of the add_object() call. Some adaptors have options
+          that require longer lifetimes for these objects. For example, a memory
+          adaptor can be created with the option to not clone an object when added
+          to memory store. In this case, it's the caller responsibility to create
+          the object in a pool that has the minimal lifetime of the memory adaptor
+          itself. For instance, the adaptor's pool can be used during object create.
+          The memory adaptor then uses the object's pool's add_reference() and release()
+          methods to manage the lifetime of the object.
+        </description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_utf8_t *">
+        <description>Object id of added object.</description>
+      </return>
+
+    </method>
+
+
+    <method name="modify_object">
+
+      <description>
+        Modify an existing adaptive object via adaptor. Unlike the
+        update_object method, this method allows value assertions and
+        modifications of single values of multi-value properties.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type of object to modify.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id of object to modify.</description>
+      </parameter>
+
+      <parameter name="entry" type="const afw_adaptor_modify_entry_t * const *">
+        <description>NULL terminated list of pointers to adaptor modify entries.</description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="replace_object">
+
+      <description>
+        Completely replace an existing adaptive object via adaptor.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type of object to update.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id of object to update.</description>
+      </parameter>
+
+      <parameter name="replacement_object" type="const afw_object_t *">
+        <description>
+          Replacement object.
+        </description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="delete_object">
+
+      <description>
+        Delete an existing adaptive object. It's not
+        considered an error if object does not exist.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type of object to delete.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id of object to delete.</description>
+      </parameter>
+
+      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+        <description>
+          This is an adaptor type specific object parameter or NULL.
+
+          If the adaptor type supports this parameter, the object type of the
+          object is available via the afw adaptor with an object type id of:
+
+          _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+
+          where ${adaptorType} is the adaptor type id.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="begin_transaction">
+
+      <description>
+        If this adaptor supports transactions, call this method to begin a
+        transaction. If this function is called and returns a non-NULL
+        result, add_object(), delete_object(), modify_object(), replace_object(),
+        and update_object() will not commit changes until the transactions
+        commit function is called.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_transaction_t *">
+        <description>
+          Transaction instance or NULL if adaptor does not support
+          transactions.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_journal_interface">
+
+      <description>
+        Returns the optional afw_adaptor_journal interface for this session.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_journal_t *">
+        <description>
+          Event journal instance for this session or NULL if not support it.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_key_value_interface">
+
+      <description>
+        Returns the optional afw_adaptor_key_value interface for this session.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_key_value_t *">
+        <description>
+          Key value instance for this session or NULL if not support it.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_index_interface">
+
+      <description>
+        Returns the optional afw_adaptor_impl_index interface for this session.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_impl_index_t *">
+        <description>
+          Index instance for this session or NULL if not support it.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_object_type_cache_interface">
+
+      <description>
+        Returns the optional afw_adaptor_object_type_cache interface for this
+        adaptor.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_session_t *">
+        <description>Pointer to this adaptor session instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_object_type_cache_t *">
+        <description>
+          Object type cache interface for this adaptor or NULL.
+        </description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_transaction" id="afwast">
+
+    <description>
+      Adaptor session transaction interface.
+    </description>
+
+    <method name="release">
+
+      <description>
+        Release resources associated with adaptor session transaction. If
+        commit() is not called before release, any changes will be lost.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_transaction_t *">
+        <description>Pointer to this adaptor session transaction instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="commit">
+
+      <description>
+        Commit changes to objects have occurred since transaction began.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_transaction_t *">
+        <description>
+          Pointer to this adaptor session transaction instance.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+  <interface name="afw_adaptor_impl_index_cursor" id="afwaiic">
+
+    <variable name="filter_entry" type="const afw_query_criteria_filter_entry_t *">
+      <description>The query criteria associated with this cursor.</description>
+    </variable>
+
+    <variable name="inner_join" type="afw_boolean_t">
+      <description>This variable indicates whether this cursor describes a strict intersection of cursor(s) (true), or if it's a left/right outer join (false).</description>
+    </variable>
+
+    <description>
+      Adaptor implementation index cursor interface.
+    </description>
+
+    <method name="release">
+
+      <description>
+        Release resources.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to this adaptor impl index cursor instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="get_next_object">
+
+      <description>
+        Get the next indexed object from the adaptor store.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to this adaptor impl index cursor instance.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Memory pool to allocate resources in.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_t *" />
+
+    </method>
+
+    <method name="contains_object">
+
+      <description>
+        Returns true or false, if the object is contained in this cursor.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to this adaptor impl index cursor instance.</description>
+      </parameter>
+
+      <parameter name="object" type="const afw_object_t *">
+        <description>Pointer to object we need to determine is in this cursor.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t" />
+
+    </method>
+
+    <method name="inner_join">
+
+      <description>
+        Join this cursor with another cursor and return the intersection. An implementation may use cardinality, if known, or simply return one or the other (left or right inner join).
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to this adaptor impl index cursor instance.</description>
+      </parameter>
+
+      <parameter name="cursor" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to the cursor we need to join with.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_impl_index_cursor_t *" />
+
+    </method>
+
+    <method name="get_count">
+
+      <description>
+        Return the count, or cardinality, associated with this cursor. This should return true if successful.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
+        <description>Pointer to this adaptor impl index cursor instance.</description>
+      </parameter>
+
+      <parameter name="count" type="size_t *">
+        <description>Pointer to the count, where the caller should return the value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t"/>
+
+    </method>
+
+  </interface>
+
+  <interface name="afw_adaptor_key_value" id="afwkv">
+
+    <description>
+      Adaptor implementation of key value interface.
+    </description>
+
+    <method name="add">
+
+      <description>
+        Add a keyed value.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_key_value_t *">
+        <description>Pointer to this adaptor key value instance.</description>
+      </parameter>
+
+      <parameter name="namespace" type="const afw_utf8_t *">
+        <description>Namespace for key.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_memory_t *">
+        <description>Key.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_memory_t *">
+        <description>Value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="delete">
+
+      <description>
+        Delete a keyed value.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_key_value_t *">
+        <description>Pointer to this adaptor key value instance.</description>
+      </parameter>
+
+      <parameter name="namespace" type="const afw_utf8_t *">
+        <description>Namespace for key.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_memory_t *">
+        <description>Key.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_memory_t *">
+        <description>Value the key must have or NULL if it doesn't matter.</description>
+      </parameter>
+
+      <parameter name="must_exist" type="afw_boolean_t">
+        <description>It is an error if value does not exist.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="replace">
+
+      <description>
+        Replace a keyed value.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_key_value_t *">
+        <description>Pointer to this adaptor key value instance.</description>
+      </parameter>
+
+      <parameter name="namespace" type="const afw_utf8_t *">
+        <description>Namespace for key.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_memory_t *">
+        <description>Key.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_memory_t *">
+        <description>Value the key must have or NULL if it doesn't matter.</description>
+      </parameter>
+
+      <parameter name="must_exist" type="afw_boolean_t">
+        <description>
+          It is an error if value does not exist. If must_exist is
+          false, the keyed value will be added if it doesn't exist.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="get">
+
+      <description>
+        Get a keyed value.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_key_value_t *">
+        <description>Pointer to this adaptor key value instance.</description>
+      </parameter>
+
+      <parameter name="namespace" type="const afw_utf8_t *">
+        <description>Namespace for key.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_memory_t *">
+        <description>Key.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_memory_t *" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_impl_index" id="afwaii">
+
+    <description>
+      Adaptor implementation index interface.
+    </description>
+
+    <variable name="indexDefinitions" type="const afw_object_t *">
+      <description>The index definitions.</description>
+    </variable>
+
+    <method name="open">
+
+      <description>
+        Open an index database. This may be useful for adaptors that have special parameters or need to open the database/table before an index can be used.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index. NULL means all objectTypes are applicable.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>Index key associated with the index value we are creating.</description>
+      </parameter>
+
+      <parameter name="integer" type="afw_boolean_t">
+        <description>Should index values be stored as integer values.</description>
+      </parameter>
+
+      <parameter name="unique" type="afw_boolean_t">
+        <description>Should generated index values be unique.</description>
+      </parameter>
+
+      <parameter name="reverse" type="afw_boolean_t">
+        <description>Should index values be stored in reverse order.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+    </method>
+
+    <method name="release">
+
+      <description>
+        Release resources.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="get_index_definitions">
+
+      <description>
+        Returns the adaptor's internal index definitions.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_t *" />
+
+    </method>
+
+    <method name="update_index_definitions">
+
+      <description>
+        Replace the adaptor's internal index definitions with the updated index configuration object.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="indexDefinitions" type="const afw_object_t *">
+        <description>Updated indexes definitions.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="add">
+
+      <description>
+        Add an index to the adaptor store
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adaptor as a reference to the primary entry.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>Index key associated with the index value we are creating.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_utf8_t*">
+        <description>Index value associated with the index we are creating. This should be used by the adaptor as the key to the index entry.</description>
+      </parameter>
+
+      <parameter name="unique" type="afw_boolean_t">
+        <description>Flag indicating that the index being added should be unique.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_rc_t" />
+
+    </method>
+
+    <method name="delete">
+
+      <description>
+        Delete an index from the adaptor store.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the property and value of the index we are removing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id for the object associated with the property and value of the index we are removing. This should be used by the adaptor as a reference to the primary entry.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>Index key associated with the index value we are deleting.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_utf8_t*">
+        <description>Index value associated with the index we are deleting. This should be used by the adaptor as the key to the index entry.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_rc_t" />
+
+    </method>
+
+    <method name="replace">
+
+      <description>
+        Replace an index in the adaptor store
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adaptor as a reference to the primary entry.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>Index key associated with the index value we are replacing.</description>
+      </parameter>
+
+      <parameter name="old_value" type="const afw_utf8_t*">
+        <description>Old index value associated with the index we are replacing. This should be used by the adaptor as the key to the index entry.</description>
+      </parameter>
+
+      <parameter name="new_value" type="const afw_utf8_t*">
+        <description>New index value associated with the index we are replacing. This should be used by the adaptor as the key to the index entry.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_rc_t" />
+
+    </method>
+
+    <method name="drop">
+
+      <description>
+        Drop an in index. The underlying store may decide to drop an entire table or database. Returns a boolean, determining whether the operation was successful.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the index. This may be useful for the adaptor to determine the target table or database for the index.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>Index key.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_rc_t" />
+
+    </method>
+
+    <method name="open_cursor">
+
+      <description>
+        Opens a cursor to an index table or database, from which the caller can iterate over to obtain objects.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to find the index.</description>
+      </parameter>
+
+      <parameter name="index_key" type="const afw_utf8_t *">
+        <description>Key associated with the index we are replacing.</description>
+      </parameter>
+
+      <parameter name="operator" type="int">
+        <description>Query criteria operator.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_utf8_t *">
+        <description>Index value associated with the index we are querying. This should be used by the adaptor as the key to the index entry.</description>
+      </parameter>
+
+      <parameter name="unique" type="afw_boolean_t">
+        <description>Index values are unique.</description>
+      </parameter>
+
+      <parameter name="pool" type="const afw_pool_t *">
+        <description>Caller's pool.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_adaptor_impl_index_cursor_t *" />
+
+    </method>
+
+    <method name="get_session">
+
+      <description>
+        Obtains the session for this adaptor, used to build and repair indexes.
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
+        <description>Pointer to this adaptor impl index instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_adaptor_session_t *"/>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_authorization_handler_factory" id="afwahf">
+
+    <description>Factory to create an instance of an afw_authorization_handler.</description>
+
+    <variable name="authorization_handler_type" type="afw_utf8_t">
+      <description>Type of authorization handler this factory creates.</description>
+    </variable>
+
+    <variable name="description" type="const afw_utf8_t *">
+      <description>Type of adaptor this factory creates.</description>
+    </variable>
+
+    <model_c_code label="more_includes">
+      <![CDATA[
+#include "<afwdev {prefixed_interface_name.replace('_factory','')}>.h"]]>
+    </model_c_code>
+
+    <method name="create_authorization_handler_cede_p">
+
+      <description>
+        Create an authorization handler of the factory's type.
+      </description>
+
+      <parameter name="instance" type="const afw_authorization_handler_factory_t *">
+        <description>Pointer to this authorization handler factory instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>
+          Configuration parameters for the particular type of authorization handler.
+          This will become the properties object for handler.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          The pool that will be used for authorization handler resources.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_authorization_handler_t *">
+        <description>
+          An instance of an authorization handler.
+        </description>
+      </return>
+
+      <model_c_code label="method_body">
+        <![CDATA[
+    /** @todo If needed, add/modify the following code to implement method. */
+
+    /* Return adaptor instance. */
+    return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
+      ]]>
+      </model_c_code>
+
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_authorization_handler" id="afwah" create_function="create_cede_p">
+
+    <description>Adaptive framework authorization handler interface.</description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        Authorization handler's pool. This pool will exist for the life of the handler.
+      </description>
+
+    </variable>
+
+    <variable name="authorization_handler_id" type="afw_utf8_t">
+      <description>Id of authorization handler.</description>
+    </variable>
+
+    <variable name="authorization_handler_type_id" type="const afw_utf8_t *">
+      <description>Id of authorization handler type.</description>
+    </variable>
+
+    <variable name="service_id" type="const afw_utf8_t *">
+      <description>
+        This is the associated service id. The path of the service is
+        "/afw/_AdaptiveService_/" followed by this id.
+      </description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>
+        This authorization handler's properties (configuration) object.
+      </description>
+    </variable>
+
+    <variable name="source_location" type="const afw_utf8_t *">
+      <description>
+        This is the source location to help determine how this authorization handler was defined.
+      </description>
+    </variable>
+
+    <variable name="trace_flag_id" type="const afw_utf8_t *">
+      <description>
+        This is the basic trace flag id for this authorization handler's authorization handler id.
+      </description>
+    </variable>
+
+    <variable name="trace_flag_index" type="afw_size_t">
+      <description>
+        This is the basic trace flag index for this authorization handler's authorization handler id.
+      </description>
+    </variable>
+
+    <variable name="detail_flag_id" type="const afw_utf8_t *">
+      <description>
+        This is the detail trace flag id for this authorization handler's authorization handler id.
+      </description>
+    </variable>
+
+    <variable name="detail_flag_index" type="afw_size_t">
+      <description>
+        This is the detail trace flag index for this authorization handler's authorization handler id.
+      </description>
+    </variable>
+
+    <variable name="authorization_handler_lock_rw" type="const afw_lock_rw_t *">
+      <description>
+        Read/write lock for this authorization handler id.
+      </description>
+    </variable>
+
+    <variable name="priority" type="afw_integer_t">
+      <description>
+        When there are multiple active authorization handlers, this priority determines order this handler will be checked. Priority 1 is the highest and will be checked first. If multiple handlers have the same priority the order will vary.
+      </description>
+    </variable>
+
+    <variable name="allow_deny_override" type="afw_boolean_t">
+      <description>
+        Use caution when setting this parameter to true. If this parameter is true, a decision of permit by this authorization handler will override a decision of deny by a previous authorization handler.
+      </description>
+    </variable>
+
+    <variable name="allow_permit_override" type="afw_boolean_t">
+      <description>
+        If this parameter is true, a decision of deny by this authorization handler will override a decision of permit by a previous authorization handler.
+      </description>
+    </variable>
+
+    <variable name="required" type="afw_boolean_t">
+      <description>
+        If true, this authorization handler must be running to make an authorization decision if not running in core mode and if initialAuthorizationCheck did not make a decision.
+      </description>
+    </variable>
+
+    <variable name="impl" type="const afw_authorization_handler_impl_t *">
+      <description>
+        Used by authorization handler common code.
+      </description>
+    </variable>
+
+    <model_c_code label="create">
+      <![CDATA[    
+/* Create an instance of the authorization handler. */
+AFW_DEFINE(const afw_authorization_handler_t *)
+<afwdev {prefixed_interface_name}>_create_cede_p(
+    const afw_object_t *properties,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    <afwdev {prefixed_interface_name}>_self_t *self;
+    afw_authorization_handler_t *authorization_handler;
+    
+    /* Create adaptor and process common properties. */
+    authorization_handler = afw_authorization_handler_impl_create_cede_p(
+            &impl_afw_authorization_handler_inf,
+            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            properties, p, xctx);
+    self = (<afwdev {prefixed_interface_name}>_self_t *)authorization_handler;
+
+    /** @todo Handle implementation specific configuration parameters, etc. */
+       
+    /* Return authorization handler. */
+    return authorization_handler;
+}
+      ]]>
+    </model_c_code>
+
+    <method name="destroy">
+
+      <description>
+        This method should not be called directly unless you are manually
+        managing the lifetime of this authorization handler. The functions in
+        afw_authorization_handler.h will call this method when there are no more
+        references to this authorization handler and then destroy the pool
+        passed to the create function.
+
+        The implementation of this method releases any resource not tied to that pool.
+      </description>
+
+      <parameter name="instance" type="const afw_authorization_handler_t *">
+        <description>Pointer to this adaptive authorization handler instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="check">
+
+      <description>
+        Perform authorization check.
+      </description>
+
+      <parameter name="instance" type="const afw_authorization_handler_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="resource_id" type="const afw_value_t *">
+        <description>Adaptive string value for the URI of resource to check.</description>
+      </parameter>
+
+      <parameter name="object" type="const afw_value_t *">
+        <description>Adaptive object value for the object associated with resource or NULL.</description>
+      </parameter>
+
+      <parameter name="action_id" type="const afw_value_t *">
+        <description>Adaptive string value for the action to check.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Authorization result.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_content_type" id="afwct">
+
+    <description>Adaptive Content Type.</description>
+
+    <variable name="content_type_id" type="afw_utf8_t">
+      <description>Id of content type.</description>
+    </variable>
+
+    <variable name="media_type_count" type="afw_size_t">
+      <description>The number of media types for this content type.</description>
+    </variable>
+
+    <variable name="media_types" type="const afw_utf8_t *">
+      <description>
+        An array of media types for this content type.
+      </description>
+    </variable>
+
+    <!-- Don't make a self struct. -->
+    <model_c_code label="self_struct"/>
+
+    <!-- Don't assign self in each function. -->
+    <model_c_code label="assign_self"/>
+
+    <model_c_code label="create_p">
+      <![CDATA[
+/**
+ *  @brief Get singleton instance of afw_context_typefor <afwdev {implementation_id}>.
+ */
+<afwdev {srcdir_prefix.upper()}>DECLARE(const afw_content_type_t *)
+<afwdev {prefixed_interface_name}>_get()
+
+]]>
+    </model_c_code>
+
+    <!-- Create a singleton instance and supply a content_type_get() function. -->
+    <model_c_code label="create">
+      <![CDATA[
+/* Media types supported by this afw_content_type implementation. */
+/** @todo Put one or more media type AFW_UTF8_LITERALS here. */
+static const afw_utf8_t
+impl_media_types[] = {
+    AFW_UTF8_LITERAL("application/type1"),
+    AFW_UTF8_LITERAL("application/type2")
+};
+
+/* Content type singleton instance for this implementation. */
+static const afw_content_type_t
+impl_afw_content_type =
+{
+    &impl_afw_content_type_inf,
+    AFW_UTF8_LITERAL(AFW_IMPLEMENTATION_ID),
+    sizeof(impl_media_types) / sizeof(afw_utf8_t),
+    &impl_media_types[0]
+};
+
+
+/*!
+ *  \brief Get the content type instance for <afwdev {implementation_id}>.
+ *
+ *  Call this from extension initialize() method as parameter to
+ *  afw_content_type_register() function.
+ * 
+ *  afw_content_type_register(..._content_type_get(), xctx);
+ */
+<afwdev {srcdir_prefix.upper()}>DEFINE(const afw_content_type_t *)
+<afwdev {prefixed_interface_name}>_get()
+{
+    return &impl_afw_content_type;
+}
+]]>
+    </model_c_code>
+
+
+    <method name="raw_to_value">
+
+      <description>Convert a raw representation of this content type to an adaptive value.</description>
+
+      <parameter name="instance" type="const afw_content_type_t *">
+        <description>Pointer to this content type instance.</description>
+      </parameter>
+
+      <parameter name="raw" type="const afw_memory_t *">
+        <description>Raw encoded representation of this content type.</description>
+      </parameter>
+
+      <parameter name="source_location" type="const afw_utf8_t *">
+        <description>Source location or NULL.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use to hold returned value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Adaptive value representation of raw value.</description>
+      </return>
+
+    </method>
+
+
+    <method name="raw_to_object">
+
+      <description>Convert a raw object representation for this content type to an adaptive object.</description>
+
+      <parameter name="instance" type="const afw_content_type_t *">
+        <description>Pointer to this content type instance.</description>
+      </parameter>
+
+      <parameter name="raw" type="const afw_memory_t *">
+        <description>Raw encoded object representation of this content type.</description>
+      </parameter>
+
+      <parameter name="source_location" type="const afw_utf8_t *">
+        <description>Source location or NULL.</description>
+      </parameter>
+
+      <parameter name="adaptor_id" type="const afw_utf8_t *">
+        <description>Adaptor id for created object.</description>
+      </parameter>
+
+      <parameter name="object_type_id" type="const afw_utf8_t *">
+        <description>Object type id for created object.</description>
+      </parameter>
+
+      <parameter name="object_id" type="const afw_utf8_t *">
+        <description>Object id for created object.</description>
+      </parameter>
+
+      <parameter name="cede_p" type="afw_boolean_t">
+        <description>
+          If true, cede control of p to the created object.
+          If false, a subpool will be created in p for the object.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          The pool to use.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_t *">
+        <description>Adaptive value representation of raw value.</description>
+      </return>
+
+    </method>
+
+
+    <method name="write_value">
+
+      <description>
+        Convert an adaptive value to the raw representation of this content
+        type can call callback to write it.
+      </description>
+
+      <parameter name="instance" type="const afw_content_type_t *">
+        <description>Pointer to this content type instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Adaptive value to convert and write.</description>
+      </parameter>
+
+      <parameter name="options" type="const afw_object_options_t *">
+        <description>
+          These options can determine if none, some, or all object meta
+          information should be included in output.
+
+          See afw_object_options_t for more information. Only options flagged
+          for use by content type processing are honored. All other options
+          are ignored. For instance, a call to afw_object_view_create() with
+          the composite option is needed before calling a content type write
+          function if inherited properties should be included in output.
+        </description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Pointer passed to callback routine.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_write_cb_t">
+        <description>
+          Callback function that will be called to write multiple times to write
+          the raw representation of the value.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="create_object_list_writer">
+
+      <description>Create an object list writer.</description>
+
+      <parameter name="instance" type="const afw_content_type_t *">
+        <description>Pointer to this content type instance.</description>
+      </parameter>
+
+      <parameter name="options" type="const afw_object_options_t *">
+        <description>
+          These options can determine if none, some, or all object meta
+          information should be included in output.
+
+          See afw_object_options_t for more information. Only options flagged
+          for use by content type processing are honored. All other options
+          are ignored. For instance, a call to afw_object_view_create() with
+          the composite option is needed before calling a content type write
+          function if inherited properties should be included in output.
+        </description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>Pointer passed to callback routine.</description>
+      </parameter>
+
+      <parameter name="callback" type="afw_write_cb_t">
+        <description>
+          Callback function that will be called each time the object list
+          writer has something to write.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_content_type_object_list_writer_t *">
+        <description>Object list writer.</description>
+      </return>
+
+      <model_c_code label="method_body">
+        <![CDATA[
+/* Raw begin object list used by object_list_writer. */
+/** @todo Replace "[\n" with appropriate value or remove here and use NULL in call. */
+static const afw_memory_t
+impl_raw_begin_object_list = {
+    (const afw_octet_t *)"[\n",
+    sizeof("[\n") - 1 /* "- 1" for string. */
+};
+
+/* Raw object separator used by object_list_writer. */
+/** @todo Replace ",\n" with appropriate value or remove here and use NULL in call. */
+static const afw_memory_t
+impl_raw_object_separator = {
+    (const afw_octet_t *)",\n",
+    sizeof(",\n") - 1 /* "- 1" for string. */
+};
+
+/* Raw last object separator used by object_list_writer. */
+/** @todo Replace "\n" with appropriate value or remove here and use NULL in call. */
+static const afw_memory_t
+impl_raw_last_object_separator = {
+    (const afw_octet_t *)"\n",
+    sizeof("\n") - 1  /* "- 1" for string. */
+};
+
+/* Raw end object list used by object_list_writer. */
+/** @todo Replace "]\n" with appropriate value or remove here and use NULL in call. */
+static const afw_memory_t
+impl_raw_end_object_list = {
+    (const afw_octet_t *)"]\n",
+    sizeof("]\n") - 1 /* "- 1" for string. */
+};
+
+    /* Create object_list_writer instance. */
+    return afw_content_type_impl_create_object_list_writer(
+        instance, options, context, callback,
+        &impl_raw_begin_object_list,
+        &impl_raw_object_separator,
+        &impl_raw_last_object_separator,
+        &impl_raw_end_object_list,
+        p, xctx);
+]]>
+      </model_c_code>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_content_type_object_list_writer">
+
+    <method name="release">
+
+      <description>
+        Write end of list and release resources associated with instance.
+      </description>
+
+      <parameter name="instance" type="const afw_content_type_object_list_writer_t *">
+        <description>Pointer to this instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="write_object">
+
+      <description>
+        Write the object. The object's pool will be used for any resources needed.
+      </description>
+
+      <parameter name="instance" type="const afw_content_type_object_list_writer_t *">
+        <description>Pointer to this instance.</description>
+      </parameter>
+
+      <parameter name="object" type="const afw_object_t *">
+        <description>The object to write.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+
+  <interface name="afw_data_type" id="afwdt">
+
+    <description>Adaptive Data Type.</description>
+
+    <variable name="object" type="const afw_object_t *">
+      <description>Object interface to this instance.</description>
+    </variable>
+
+    <variable name="data_type_id" type="afw_utf8_t">
+      <description>Id of this data type.</description>
+    </variable>
+
+    <variable name="brief" type="afw_utf8_t">
+      <description>
+        This is a predicate for the data type with the first letter capitalized
+        and without a trailing period.
+      </description>
+    </variable>
+
+    <variable name="description" type="afw_utf8_t">
+      <description>Description of data type.</description>
+    </variable>
+
+    <variable name="data_type_parameter_type" type="afw_utf8_t">
+      <description>
+        This is the data type parameter type.
+
+        If len is 0, no parameter is allowed following the data type id.
+
+        If "dataType", the data type id can be followed by another data type id.
+        For example data type "list" can be followed by the data type of entries
+        in the list.
+
+        If "objectType", the data_type_id can be followed by an object type id.
+        This is the case
+      </description>
+    </variable>
+
+    <variable name="data_type_number" type="int">
+      <description>
+        The data type number.
+      </description>
+    </variable>
+
+    <variable name="ldapOid" type="afw_utf8_t">
+      <description>
+        Default LDAP OID.
+      </description>
+    </variable>
+
+    <variable name="jsonPrimitive" type="afw_utf8_t">
+      <description>
+        JSON primitive used to represent this data type.
+      </description>
+    </variable>
+
+    <variable name="jsonSchemaStringFormat" type="afw_utf8_t">
+      <description>
+        This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of "string".
+      </description>
+    </variable>
+
+    <variable name="cType" type="afw_utf8_t">
+      <description>
+        Type of value in C.
+      </description>
+    </variable>
+
+    <variable name="c_type_size" type="afw_size_t">
+      <description>
+        The internal size of a value of this type.
+      </description>
+    </variable>
+
+    <variable name="empty_list" type="const afw_list_t *">
+      <description>
+        Instance of afw_list for an empty list of this data type.
+      </description>
+    </variable>
+
+    <variable name="empty_list_value" type="const afw_value_t *">
+      <description>
+        Instance of afw_value for an empty list of this data type.
+      </description>
+    </variable>
+
+    <variable name="evaluated_value_inf" type="const afw_value_inf_t *">
+      <description>
+        This is the inf pointer for evaluated adaptive values of this
+        data type.
+      </description>
+    </variable>
+
+    <variable name="compile_type" type="afw_compile_type_t">
+      <description>
+        This is the compile type for internal. If this data type can
+        not be compiled, this will be afw_compile_type_error(0).
+      </description>
+    </variable>
+
+    <variable name="json_implies_data_type" type="afw_boolean_t">
+      <description>
+        Indicates that dataType can be implied from json type. If false, the data type
+        needs to be obtained an alternate way.
+      </description>
+    </variable>
+
+    <variable name="evaluated" type="afw_boolean_t">
+      <description>
+        This data type is compiled and evaluated.
+      </description>
+    </variable>
+
+    <variable name="directReturn" type="afw_boolean_t">
+      <description>
+        This indicates if this is passed and returned as a pointer or directly.
+      </description>
+    </variable>
+
+    <variable name="relationalCompares" type="afw_boolean_t">
+      <description>
+        If true, this data type supports equality (equal) and relational compares
+        (greater than and less than). If false, only equality compares are allowed.
+      </description>
+    </variable>
+
+    <variable name="scalar" type="afw_boolean_t">
+      <description>
+        This is a scalar value (not Bag, List, Object, etc.).
+      </description>
+    </variable>
+
+    <method name="internal_to_utf8">
+
+      <description>Convert from cType value to const afw_utf8_t *.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>
+          Pointer to this data type instance.
+        </description>
+      </parameter>
+
+      <parameter name="from_internal" type="const void *">
+        <description>
+          Internal representation of this data type of correct cType to
+          convert.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use to hold returned value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_utf8_t *">
+        <description>Value converted to utf-8.</description>
+      </return>
+
+    </method>
+
+    <method name="utf8_to_internal">
+
+      <description>Convert a NFC utf-8 representation of a value to it's cType representation.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="to_internal" type="void *">
+        <description>
+          The address of the place to return result. This place must be the correct size
+          based on data type (c_type_size).
+        </description>
+      </parameter>
+
+      <parameter name="from_utf8" type="const afw_utf8_t *">
+        <description>NFC UTF-8 representation for of this data type.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use to hold returned value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="compare_internal">
+
+      <description>
+        Compare the internal representation of two cType representations of
+        this data type.
+      </description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="internal1" type="const void *">
+        <description>First value of correct cType to compare.</description>
+      </parameter>
+
+      <parameter name="internal2" type="const void *">
+        <description>Second value of correct cType to compare.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="int">
+        <description>
+          Result of comparison. A result of 0 indicates that the two values are
+          equal and not 0 indicates not equal.
+
+          For data types with allow,
+          a negative result indicates that the first value is less than the
+          second value and positive result indicates that the first value is greater
+          than the second value.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="convert_internal">
+
+      <description>Convert an internal value of one data type to another.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="to_internal" type="void *">
+        <description>
+          The address of the place to return result. This place must be the correct size
+          based on data type (c_type_size) of to_data_type.
+        </description>
+      </parameter>
+
+      <parameter name="from_internal" type="const void *">
+        <description>
+          Value of correct cType to of this data type to convert.
+        </description>
+      </parameter>
+
+      <parameter name="to_data_type" type="const afw_data_type_t *">
+        <description>Data type of to value.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use to hold returned value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="clone_internal">
+
+      <description>Clone an internal value.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="to_internal" type="void *">
+        <description>
+          The address of the place to return result. This place must be the correct size
+          based on data type (c_type_size) of to_data_type.
+        </description>
+      </parameter>
+
+      <parameter name="from_internal" type="const void *">
+        <description>
+          Value of correct cType to of this data type to convert.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use to hold returned value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="value_compiler_listing">
+
+      <description>Write data type instance value to compile listing.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="writer" type="const afw_writer_t *">
+        <description>
+          Writer instance to use.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>
+          Value to write to compiler listing.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="write_as_expression">
+
+      <description>Write as an expression.</description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="writer" type="const afw_writer_t *">
+        <description>
+          Writer instance to use.
+        </description>
+      </parameter>
+
+      <parameter name="from_internal" type="const void *">
+        <description>
+          Value of correct cType to of this data type to convert.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_list_setter" id="afwls">
+
+    <description>
+      Adaptive list setter interface.
+    </description>
+
+    <variable name="list" type="const afw_list_t *">
+      <description>
+        This is the associated list.
+      </description>
+    </variable>
+
+    <method name="set_immutable">
+
+      <description>
+        Set list to immutable. No error is throw if already immutable.
+
+        Once a list is set to immutable, all other set calls will throw
+        an error.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="determine_data_type_and_set_immutable">
+
+      <description>
+        Determine data type of entries then set list to immutable.
+
+        An error is throw if already immutable.
+
+        If data type of values in list is not already known and all
+        values is list have the same data type, make the list a list of
+        that data type.
+
+        Once a list is set to immutable, all other set calls will throw
+        an error.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_data_type_t *">
+        <description>
+          This is the data type of all values in the list or NULL
+          if unknown or different.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="add_internal">
+
+      <description>
+        Add a value to a list that only holds one data type using its
+        internal value.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>
+          The data type of internal.
+        </description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          The internal value to add of type data_type->cType.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="add_value">
+
+      <description>
+        Add a value to a list.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>A value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="insert_internal">
+
+      <description>
+        Insert a value to a list that only holds one data type using its
+        internal value at a specified index.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>
+          The data type of internal.
+        </description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          The internal value to add of type data_type->cType.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_size_t">
+        <description>
+          The zero based index for insert.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="insert_value">
+
+      <description>
+        Insert a value to a list at a specified index.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>A value.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_size_t">
+        <description>
+          The zero based index for insert.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="remove_all_values">
+
+      <description>
+        Remove all values from a list.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="remove_internal">
+
+      <description>
+        Remove a single value from list that only holds one data type using its
+        internal value.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>
+          Pointer to this value list instance.
+        </description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>
+          The data type of internal.
+        </description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          The internal value to delete of type data_type->cType.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="remove_value">
+
+      <description>
+        Remove a single value from list.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="set_value_by_index">
+
+      <description>
+        Set a value by index.
+      </description>
+
+      <parameter name="instance" type="const afw_list_setter_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_size_t">
+        <description>Index relative to 0.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_list" id="afwl">
+
+    <description>
+      Adaptive value list interface.
+    </description>
+
+    <method name="release">
+
+      <description>
+        Release resources associated with adaptive value list. This will automatically be called
+        if value list is part of an adaptive adaptor session.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="get_count">
+
+      <description>
+        Return the number of values in list.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Number of values in list.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_data_type">
+
+      <description>
+        Return the data type if typed list or NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_data_type_t *">
+        <description>Data type of typed list.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_entry_meta">
+
+      <description>
+        Get the meta object of list entry by index.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>
+          Pointer to this value list instance.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based index of list entry to return.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The object value to access the meta of the entry or NULL if index is out of range.
+        </description>
+      </return>
+    </method>
+
+
+    <method name="get_entry_internal">
+
+      <description>
+        Get internal entry of list entry by index. See data_type to
+        determine how to interpret.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>
+          Pointer to this value list instance.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based index of list entry to return.
+        </description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t * *">
+        <description>
+          Place to put data type pointer or NULL.
+        </description>
+      </parameter>
+
+      <parameter name="internal" type="const void * *">
+        <description>
+          Place to put data_type->cType pointer to the internal at the specified index.
+          This will be set to NULL if index is out of range.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>Will be true if *internal is not NULL.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_entry_value">
+
+      <description>
+        Get value of list entry by index.
+
+        For some lists, methods get_internal_by_index() is more efficient.
+        If the list implementation stores only the internal part of a value,
+        this function will create an adaptive value in the specified pool to return.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>
+          Pointer to this value list instance.
+        </description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based index of list entry to return.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The value at the specified index or NULL if out of range.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="get_next_entry_meta">
+
+      <description>
+        Get next value in list and update iterator. Set the iterator to NULL
+        before the first call of this method and any time you want to start
+        from the first value again.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t * *">
+        <description>Address of iterator pointer.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The object value to access the meta of the entry or NULL there are no more.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="get_next_internal">
+
+      <description>
+        Get next internal in list and update iterator. See data_type to
+        determine how to interpret.
+
+        Set the iterator to NULL before the first call of this method and
+        any time you want to start from the first value again.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>
+          Pointer to this value list instance.
+        </description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t * *">
+        <description>
+          Address of iterator pointer.
+        </description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t * *">
+        <description>
+          Place to put data type pointer or NULL.
+        </description>
+      </parameter>
+
+      <parameter name="internal" type="const void * *">
+        <description>
+          Place to put data_type->cType pointer to next internal.
+          This will be set to NULL if there is no next internal.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>Will be true if *internal is not NULL.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_next_value">
+
+      <description>
+        Get next value in list and update iterator. Set the iterator to NULL
+        before the first call of this method and any time you want to start
+        from the first value again.
+
+        For some lists, methods get_next_internal() and
+        get_next_internal_and_data_type() are more efficient.
+        If the list implementation stores only the internal part of a value,
+        this function will create an adaptive value in the specified pool to return.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>Pointer to this value list instance.</description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t * *">
+        <description>Address of iterator pointer.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          If necessary, this pool is used to create the return value.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          Pointer to next value or NULL if there are no more.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="get_setter">
+
+      <description>
+        Return the list's setter interface or NULL if immutable.
+      </description>
+
+      <parameter name="instance" type="const afw_list_t *">
+        <description>
+          Pointer to this object instance.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_list_setter_t *">
+        <description>
+          List's setter interface or NULL if immutable.
+        </description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_log_factory" id="afwlogf">
+
+    <description>
+      Log factory.
+    </description>
+
+    <variable name="log_type" type="afw_utf8_t">
+      <description>Type of log this factory creates.</description>
+    </variable>
+
+    <variable name="description" type="const afw_utf8_t *">
+      <description>Type of adaptor this factory creates.</description>
+    </variable>
+
+    <model_c_code label="more_includes">
+      <![CDATA[
+#include "<afwdev {prefixed_interface_name.replace('_factory','')}>.h"]]>
+    </model_c_code>
+
+    <method name="create_log_cede_p">
+
+      <description>
+        Create a log of the factory's type.
+      </description>
+
+      <parameter name="instance" type="const afw_log_factory_t *">
+        <description>Pointer to this log factory instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>Creation parameters for the particular type of log. This will become properties object for log.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for log resources.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_log_t *">
+        <description>
+          An instance of a log.
+        </description>
+      </return>
+
+      <model_c_code label="method_body">
+        <![CDATA[
+    /** @todo If needed, add/modify the following code to implement method. */
+
+    /* Return adaptor instance. */
+    return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
+      ]]>
+      </model_c_code>
+
+
+    </method>
+
+
+  </interface>
+
+
+  <interface name="afw_log" id="afwlog" create_function="create_cede_p">
+
+    <description>
+      Log.
+    </description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>Pool used for afw_log resources.</description>
+    </variable>
+
+    <variable name="log_id" type="afw_utf8_t">
+      <description>Log's id.</description>
+    </variable>
+
+    <variable name="service_id" type="const afw_utf8_t *">
+      <description>
+        This is the associated service id. The path of the service is
+        "/afw/_AdaptiveService_/" followed by this id.
+      </description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>This log's properties (configuration) object.</description>
+    </variable>
+
+    <variable name="source_location" type="const afw_utf8_t *">
+      <description>
+        This is the source location to help determine how this log was defined.
+      </description>
+    </variable>
+
+    <variable name="impl" type="const afw_log_impl_t *">
+      <description>
+        Used by log common code.
+      </description>
+    </variable>
+
+    <model_c_code label="create">
+      <![CDATA[    
+/* Create an instance of the log. */
+AFW_DEFINE(const afw_log_t *)
+<afwdev {prefixed_interface_name}>_create_cede_p(
+    const afw_object_t *properties,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    <afwdev {prefixed_interface_name}>_self_t *self;
+    afw_log_t *log;
+    
+    /* Create log and process common properties. */
+    log = afw_log_impl_create_cede_p(
+            &impl_afw_log_inf,
+            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            properties, p, xctx);
+    self = (<afwdev {prefixed_interface_name}>_self_t *)log;
+
+    /** @todo Handle implementation specific configuration parameters, etc. */
+       
+    /* Return log. */
+    return log;
+}
+      ]]>
+    </model_c_code>
+
+    <method name="destroy">
+
+      <description>
+        This method should not be called directly. Adaptive Framework core will
+        call this method when there are no more references to this log.
+
+        After this methods is called, core will destroy the pool passed to the
+        create function for this log. The implementation of this method
+        releases any resource not tied to that pool.
+      </description>
+
+      <parameter name="instance" type="const afw_log_t *">
+        <description>Pointer to this log instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="set_own_mask">
+
+      <description>
+        Set log's own priority mask.
+      </description>
+
+      <parameter name="instance" type="const afw_log_t *">
+        <description>Pointer to this log instance.</description>
+      </parameter>
+
+      <parameter name="mask" type="afw_log_priority_mask_t">
+        <description>Log priority mask.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="write">
+
+      <description>
+        Write log message.
+      </description>
+
+      <parameter name="instance" type="const afw_log_t *">
+        <description>Pointer to this log instance.</description>
+      </parameter>
+
+      <parameter name="priority" type="afw_log_priority_t">
+        <description>Log priority level.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file name</description>
+      </parameter>
+
+      <parameter name="message" type="const afw_utf8_t *">
+        <description>Message to log.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+  </interface>
+
+
+  <interface name="afw_object_setter">
+
+    <description>
+      This is interface used to set properties and meta of an adaptive object.
+      See interface afw_object method get_object_setter for more information.
+    </description>
+
+
+    <variable name="object" type="const afw_object_t *">
+      <description>
+        This is the object associated with this object setter interface.
+      </description>
+    </variable>
+
+
+    <method name="set_immutable">
+
+      <description>
+        Set object to immutable. No error is throw if already immutable.
+
+        Once a object is set to immutable, all other set calls will throw
+        an error.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+      <return type="void"/>
+
+    </method>
+
+
+    <method name="set_property">
+
+      <description>
+        Set the value of a property owned by an object. The property will be
+        added, if necessary. The object ancestors are not changed. If it is
+        important to know if property exists that is being set, use method
+        has_property() first.
+
+        The value and name must be available for the life of the object. Use the
+        object's pool to allocate memory for the name and value, if necessary.
+
+        If value is NULL, the property is removed. If the property does not exist,
+        no error is thrown.
+
+        An exception is thrown if the object is immutable.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object setter instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t *">
+        <description>
+          Property name of property to set.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>
+          Value to set or NULL to remove the property.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+  </interface>
+
+
+
+  <interface name="afw_object" id="afwo">
+
+    <description>
+      This is interface used to access the properties of an adaptive object.
+    </description>
+
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        This is the pool containing the object. This will be NULL if the
+        object is a const object.
+
+        This pool can be use to allocate memory that will last for the life
+        of the object and to register callback functions to call when the
+        object is released.
+
+        Depending on the afw_object implementation, this may be a subpool
+        of the pool the object was created in. If it is a subpool, the
+        release() method will release the subpool.
+      </description>
+    </variable>
+
+
+    <variable name="meta" type="afw_object_meta_t">
+      <description>
+        This is the meta associated with this object. See afw_object_meta.h
+        for more information.
+      </description>
+    </variable>
+
+
+    <method name="release">
+
+      <description>
+        Reduces the object's reference count and releases the object's resources
+        if the count is 0. An object returned from a create function has a
+        reference count of 1. Call's to method add_reference() increments
+        the count.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="add_reference">
+
+      <description>
+        Adds an additional reference to an object. This call is only necessary
+        if this object may be referenced after it would normally be released.
+        For example, when an object is added to a memory cache, this method
+        is called and when the object is removed from cache, the release() method
+        is called.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="get_count">
+
+      <description>
+        Return the number of properties in the object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Number of entries/properties in the object.</description>
+      </return>
+
+    </method>
+
+    <method name="get_meta">
+
+      <description>
+        Get the meta object for this object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The object value to access the meta for this object or NULL if property
+          does not exist.
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="get_property">
+
+      <description>
+        Get the value of a property in this object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t *">
+        <description>Property name.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Pointer to property value or NULL if property does not exist.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_property_meta">
+
+      <description>
+        Get the meta object of a property in this object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t *">
+        <description>Property name.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>The object value to access the meta of the property or NULL if property does not exist.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_next_property">
+
+      <description>
+        Get next property in this object and update iterator.
+        Set iterator to NULL before calling to get the first property.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t * *">
+        <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t * *">
+        <description>Place to return pointer to property name or NULL.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Pointer to property value or NULL if there is not another property.</description>
+      </return>
+
+
+    </method>
+
+
+    <method name="get_next_property_meta">
+
+      <description>
+        Get next property in this object and update iterator.
+        Set iterator to NULL before calling to get the first property.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t * *">
+        <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t * *">
+        <description>Place to return pointer to property name.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>The object instance value to access the meta of the next property or NULL if there is not another property.</description>
+      </return>
+
+
+    </method>
+
+
+    <method name="has_property">
+
+      <description>
+        Determine if a property exists in this object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_utf8_t *">
+        <description>Property name.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>True if property exists.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_setter">
+
+      <description>
+        Return the object setter interface, if the object is mutable.
+      </description>
+
+      <parameter name="instance" type="const afw_object_t *">
+        <description>Pointer to this object instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_setter_t *">
+        <description>Object's setter interface or NULL if immutable.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_server" id="afws">
+
+    <description>Adaptive framework server interface.</description>
+
+    <variable name="xctx" type="afw_xctx_t *">
+      <description>Server's xctx.</description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>
+        Adaptive object that contains the properties of this server.
+      </description>
+    </variable>
+
+    <variable name="afw_compiled_version" type="const afw_utf8_t *">
+      <description>
+        The version of libafw compiled against.
+      </description>
+    </variable>
+
+    <variable name="afw_version" type="const afw_utf8_t *">
+      <description>
+        The version of libafw compiled against.
+      </description>
+    </variable>
+
+    <variable name="concurrent" type="AFW_ATOMIC afw_integer_t">
+      <description>
+        The number of concurrent requests. Set atomically.
+      </description>
+    </variable>
+
+    <variable name="max_concurrent" type="AFW_ATOMIC afw_integer_t">
+      <description>
+        The maximum number of concurrent requests. Set atomically.
+      </description>
+    </variable>
+
+    <variable name="request_count" type="AFW_ATOMIC afw_integer_t">
+      <description>
+        The current request count. Increment atomically.
+      </description>
+    </variable>
+
+    <variable name="server_type" type="const afw_utf8_t *">
+      <description>
+        An Adaptive Framework server can be implemented in a variety of ways. This field identifies the type of this server.
+      </description>
+    </variable>
+
+    <variable name="server_version" type="const afw_utf8_t *">
+      <description>
+        This version represents the compiled version of the Adaptive Framework server code.
+      </description>
+    </variable>
+
+    <variable name="start_time" type="const afw_dateTime_t *">
+      <description>
+        This timestamp represents when the server was started.
+      </description>
+    </variable>
+
+    <variable name="thread_count" type="AFW_ATOMIC afw_integer_t">
+      <description>
+        The number of threads to create at startup to process client requests.
+      </description>
+    </variable>
+
+    <variable name="unhandled_errors" type="AFW_ATOMIC afw_integer_t">
+      <description>
+        The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.
+      </description>
+    </variable>
+
+    <method name="release">
+
+      <description>Release resources associated with server.</description>
+
+      <parameter name="instance" type="const afw_server_t *">
+        <description>Pointer to this adaptive server instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="run">
+
+      <description>
+        Run the server calling handler each time a request is received.
+      </description>
+
+      <parameter name="instance" type="const afw_server_t *">
+        <description>Pointer to this adaptive server instance.</description>
+      </parameter>
+
+      <parameter name="handler" type="const afw_request_handler_t *">
+        <description>Main request handler function.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+
+  </interface>
+
+
+
+  <interface name="afw_service_type" id="afwst">
+
+    <description>Adaptive framework service type interface. Each instance is registered in the environment with type of "service_type" and id of the service type id.</description>
+
+    <variable name="service_type_id" type="afw_utf8_t">
+      <description>Service type id.</description>
+    </variable>
+
+    <variable name="title" type="const afw_utf8_t *">
+      <description>Service type' title.</description>
+    </variable>
+
+    <variable name="description" type="const afw_utf8_t *">
+      <description>Service type's description.</description>
+    </variable>
+
+    <variable name="conf_type" type="const afw_environment_conf_type_t *">
+      <description>Conf type for this service type.</description>
+    </variable>
+
+    <variable name="conf_type_object" type="const afw_object_t *">
+      <description>Conf type object for this service type.</description>
+    </variable>
+
+    <method name="related_instance_count">
+
+      <description>
+        Called by functions in afw_service.h to get the number of related instances
+        of a service.
+      </description>
+
+      <parameter name="instance" type="const afw_service_type_t *">
+        <description>Pointer to this adaptive service type instance.</description>
+      </parameter>
+
+      <parameter name="id" type="const afw_utf8_t *">
+        <description>Value of appropriate id property for type.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_integer_t">
+        <description>
+          If result is positive, a related instance for the service is
+          running. If result is zero or negative, the service is stopped
+          and possibly its associated conf is deleted.
+
+          Results greater than one or less than zero indicate the number of
+          related instances that are still holding resources. These instances
+          will be destroyed when no longer referenced.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="start_cede_p">
+
+      <description>
+        Called by functions in afw_service.h to start this type of service.
+      </description>
+
+      <parameter name="instance" type="const afw_service_type_t *">
+        <description>Pointer to this adaptive service type instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>
+          Properties for start. This object will already be checked to insure
+          the appropriate id and subtype property is present for the
+          type. Other than that, these properties need to be validated using
+          /afw/_AdaptiveObjectType_/_AdaptiveConf_&lt;type&gt;_&lt;subtype&gt;.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to cede to start.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="stop">
+
+      <description>
+        Called by functions in afw_service.h to stop this type of service.
+      </description>
+
+      <parameter name="instance" type="const afw_service_type_t *">
+        <description>Pointer to this adaptive service type instance.</description>
+      </parameter>
+
+      <parameter name="id" type="const afw_utf8_t *">
+        <description>Value of appropriate id property for type.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="restart_cede_p">
+
+      <description>
+        Called by functions in afw_service.h to restart this type of service.
+      </description>
+
+      <parameter name="instance" type="const afw_service_type_t *">
+        <description>Pointer to this adaptive service type instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>
+          Properties for start. This object will already be checked to insure
+          the appropriate id and subtype property is present for the
+          type. Other than that, these properties need to be validated using
+          /afw/_AdaptiveObjectType_/_AdaptiveConf_&lt;type&gt;_&lt;subtype&gt;.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to cede to start.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_object_associative_array" id="afwooa">
+
+    <description>
+      This is interface for an object associative array.
+    </description>
+
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        This is a pool specified when the associative array is created.
+
+        Depending on the implementation, this will be a subpool of the pool
+        specified on the create function for the object associative array.
+
+        This pool can be used for objects created to be part of the object
+        associative array.
+      </description>
+    </variable>
+
+
+    <method name="release">
+
+      <description>
+        Call release for all associated objects. When the reference count
+        count goes to zero, the associative array resources will be released.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="add_reference">
+
+      <description>
+        Adds an additional reference to the object associative array.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="get">
+
+      <description>
+        Get a reference to an associated object. The object's add_reference()
+        method will be called. The reference will be released automatically
+        when the supplied xctx is released. Do not call the object's release()
+        function to release this reference or errors will occur.
+
+        If want to control when the reference is released, call method
+        get_reference() instead.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>
+          The key associated with the object.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_t *">
+        <description>The object associated with key.</description>
+      </return>
+
+    </method>
+
+
+    <method name="get_reference">
+
+      <description>
+        Get a reference to an associated object. The object's add_reference()
+        method will be called. When the reference to the object is no longer
+        needed, call the object's release() method.
+
+        If you want the object to be automatically released when the xctx is
+        released, call method get() instead.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>
+          The key associated with the object.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_object_t *">
+        <description>The object associated with key.</description>
+      </return>
+
+    </method>
+
+
+    <method name="for_each">
+
+      <description>
+        Get a reference to an associated object. The object's add_reference()
+        method will be called. When the reference to the object is no longer
+        needed, call the object's release() method.
+
+        If you want the object to be automatically released when the xctx is
+        released, call method get() instead.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="context" type="void *">
+        <description>
+          Context passed to callback function.
+        </description>
+      </parameter>
+
+      <parameter name="cb" type="afw_object_cb_t">
+        <description>
+          Callback function.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="set">
+
+      <description>
+        Set or remove an association of a key to an object in the associative array.
+
+        Set calls add_reference() for the object being set. When the associative
+        array is released, all object's in the associative array will have
+        their release() method called. When method set() is called for a
+        key that already has an associated object, that associated object's
+        release() function will be called.
+
+        If you only want an object to last as long as the associative, call
+        afw_object_associative_array_set_and_release().
+
+        See methods get() and get_reference() for information on how they
+        handle reference counting.
+
+        If you want to removed a key and release the associated object, pass NULL
+        for object.
+      </description>
+
+      <parameter name="instance" type="const afw_object_associative_array_t *">
+        <description>Pointer to this object associative array instance.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_utf8_t *">
+        <description>
+          The key associated with the object instance.
+        </description>
+      </parameter>
+
+      <parameter name="object" type="const afw_object_t *">
+        <description>
+          Object instance to associate with the key or NULL to remove a key.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_request_handler_factory" id="afwrhf">
+
+    <description>Create an instance of an afw_request_handler.</description>
+
+    <variable name="request_handler_type" type="afw_utf8_t">
+      <description>Type of request handler this factory creates.</description>
+    </variable>
+
+    <variable name="description" type="const afw_utf8_t *">
+      <description>Type of adaptor this factory creates.</description>
+    </variable>
+
+    <model_c_code label="more_includes">
+      <![CDATA[
+#include "<afwdev {prefixed_interface_name.replace('_factory','')}>.h"]]>
+    </model_c_code>
+
+    <method name="create_request_handler_cede_p">
+
+      <description>
+        Create a request handler of the factory's type.
+      </description>
+
+      <parameter name="instance" type="const afw_request_handler_factory_t *">
+        <description>Pointer to this request handler factory instance.</description>
+      </parameter>
+
+      <parameter name="properties" type="const afw_object_t *">
+        <description>Creation parameters for the particular type of request handler. This will become properties object for request handler.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for request handler resources.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_request_handler_t *">
+        <description>
+          An instance of an afw_request_handler.
+        </description>
+      </return>
+
+      <model_c_code label="method_body">
+        <![CDATA[
+    /** @todo If needed, add/modify the following code to implement method. */
+
+    /* Return adaptor instance. */
+    return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
+      ]]>
+      </model_c_code>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_request_handler" id="afwrh" create_function="create_cede_p">
+
+    <description>Adaptive framework request handler interface.</description>
+
+    <model_c_code label="create">
+      <![CDATA[    
+/* Create an instance of the request_handler. */
+AFW_DEFINE(const afw_request_handler_t *)
+<afwdev {prefixed_interface_name}>_create_cede_p(
+    const afw_object_t *properties,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    <afwdev {prefixed_interface_name}>_self_t *self;
+    afw_request_handler_t *request_handler;
+    
+    /* Create request_handler and process common properties. */
+    request_handler = afw_request_handler_impl_create_cede_p(
+            &impl_afw_request_handler_inf,
+            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            properties, p, xctx);
+    self = (<afwdev {prefixed_interface_name}>_self_t *)request_handler;
+
+    /** @todo Handle implementation specific configuration parameters, etc. */
+       
+    /* Return request_handler. */
+    return request_handler;
+}
+      ]]>
+    </model_c_code>
+
+
+    <method name="release">
+
+      <description>Release resources associated with a request handler.</description>
+
+      <parameter name="instance" type="const afw_request_handler_t *">
+        <description>Pointer to this adaptive request handler instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="process">
+
+      <description>
+        Process a request.
+      </description>
+
+      <parameter name="instance" type="const afw_request_handler_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="request" type="const afw_request_t *">
+        <description>Buffer to store data read.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          Execution context (xctx) the request should run in. If this is a new
+          request session, this should be the request session's xctx.
+        </description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_connection" id="afwc">
+
+    <!--
+    This is where access token, etc. will be. So "authenticate connection".
+    Once HTTP/2.0 is used, only one connection will be needed for multiple requests.
+    -->
+    <description>Adaptive Framework connection. This has not yet been developed.</description>
+
+    <method name="release">
+
+      <description>Release resources associated with a connection.</description>
+
+      <parameter name="instance" type="const afw_connection_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+
+  <interface name="afw_request" id="afwr">
+
+    <description>Adaptive framework request interface.</description>
+
+    <variable name="xctx" type="afw_xctx_t *">
+      <description>Request's xctx.</description>
+    </variable>
+
+    <variable name="read_content_cb" type="afw_read_cb_t">
+      <description>
+        Read content callback function. Context must be this afw_request
+        instance.
+      </description>
+    </variable>
+
+    <variable name="write_content_cb" type="afw_write_cb_t">
+      <description>
+        Write content callback function. Context must be this afw_request
+        instance.
+      </description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>
+        Adaptive object that holds the request properties.
+
+        This object constrains all of the request variables associated with the
+        request. In the case of fastcgi and nginx, this will be all of the
+        variables specified with fastcgi_param in the configuration. The
+        property name within this object matches the variable name.
+
+        Additional properties can be set while processing a request.
+
+        Property "_cache" is a special property whose value is an object with
+        property names matching the uri of a cached object. These cached
+        objects are any objects retrieved or produced during the processing of
+        a request.
+
+        Any property name of the form "RESPONSE_HEADER_&lt;x&gt;" will be
+        emitted as a response header field with a name of &lt;x&gt;. Always
+        set these properties before calling write_response() or the results are
+        undetermined.
+
+        Several standard properties that should be available are:
+
+        URI - the normalized uri of request
+
+        QUERY_STRING - the query string.
+
+        REQUEST_METHOD - the http method of the request. Usually, "GET",
+        "POST", "PUT", or "DELETE".
+
+        CONTENT_TYPE - the content type of the request
+
+        If any other request information is needed, the creator of this object
+        should make it available.
+
+      </description>
+    </variable>
+
+    <variable name="method" type="const afw_utf8_t *">
+      <description>Request's method.</description>
+    </variable>
+
+    <variable name="uri" type="const afw_utf8_t *">
+      <description>Request's URI.</description>
+    </variable>
+
+    <variable name="query_string" type="const afw_utf8_t *">
+      <description>Request's query string.</description>
+    </variable>
+
+    <variable name="content_type" type="const afw_utf8_t *">
+      <description>Request's content type.</description>
+    </variable>
+
+    <variable name="content_length" type="afw_size_t">
+      <description>Request's content length or -1 if chunked-encoding</description>
+    </variable>
+
+    <variable name="accept" type="const afw_utf8_t * const *">
+      <description>NULL terminated list of acceptable response content types.</description>
+    </variable>
+
+    <variable name="error_info" type="const afw_object_t *">
+      <description>
+        This can be set using method set_error_info() by a request handler to
+        supply additional informational properties that may be useful if an
+        error is thrown.
+      </description>
+    </variable>
+
+    <variable name="response_content_type" type="const afw_content_type_t *">
+      <description>
+        Response content type instance. Set by first call to
+        afw_request_get_response_content_type().
+      </description>
+    </variable>
+
+    <variable name="is_closed" type="afw_boolean_t">
+      <description>
+        Connection has been closed so all future writes will be ignored.
+      </description>
+    </variable>
+
+    <method name="release">
+
+      <description>Release resources associated with a request.</description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="set_error_info">
+
+      <description>Set error info object pointer associated with a request.</description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="error_info" type="const afw_object_t *">
+        <description>Error info object pointer.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="read_raw_request_body">
+
+      <description>
+        Reads raw request body ignoring content type.
+        This method should be called multiple times until all content is read.
+      </description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="buffer_size" type="afw_size_t">
+        <description>Length of the buffer in bytes.</description>
+      </parameter>
+
+      <parameter name="buffer" type="void *">
+        <description>Buffer to store data read.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t *">
+        <description>Place to return number of bytes read.</description>
+      </parameter>
+
+      <parameter name="more_to_read" type="afw_boolean_t *">
+        <description>Indicate there is more input to read.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="set_response_status_code">
+
+      <description>Set response status. This must be set before headers or response.</description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="code" type="const afw_utf8_t *">
+        <description>Three-digit status code that conforms to http RFC.</description>
+      </parameter>
+
+      <parameter name="reason" type="const afw_utf8_t *">
+        <description>Status reason phrase. If NULL and the status_code is standard, the standard phrase is supplied.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="write_response_header">
+
+      <description>
+        Write a response header. This must be called before write_response().
+      </description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="name" type="const afw_utf8_t *">
+        <description>Type of header.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_utf8_t *">
+        <description>Value of header.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="write_raw_response_body">
+
+      <description>
+        Write raw buffer response body ignoring content type.
+        This method can be called 0 or more times.
+      </description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Number of bytes in buffer to write.</description>
+      </parameter>
+
+      <parameter name="buffer" type="const void *">
+        <description>Buffer to write.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="flush_response">
+
+      <description>
+        Flush the response buffer. Calling this method is not necessary.
+      </description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="finish_response">
+
+      <description>
+        Call when response is complete.
+      </description>
+
+      <parameter name="instance" type="const afw_request_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+
+  <interface name="afw_xctx" id="afwsc">
+
+    <description>
+      Adaptive Framework Execution Context (xctx) interface.
+      
+      An execution context holds common information related to a unit of work in
+      Adaptive Framwork. This unit of work runs in a single thread of a
+      single-threaded or multi-threaded process. In a multi-threaded process,
+      the main thread has the global execution context. Other threads have their
+      own execution context and required the appropriate mutexes or queued work
+      to access memory in the global execution context.
+
+      The type of execution contexts can be "server", "request_session', etc. A
+      execution context's pool, properties, and object cache will last for the
+      life of the execution context. An execution context's parent will always
+      have a longer life.
+    </description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>Default pool or execution context (xctx).</description>
+    </variable>
+
+    <variable name="name" type="const afw_utf8_t *">
+      <description>The execution context (xctx) name or type.</description>
+    </variable>
+
+    <variable name="parent" type="afw_xctx_t *">
+      <description>The execution context (xctx) parent xctx.</description>
+    </variable>
+
+    <variable name="env" type="const afw_environment_t *">
+      <description>
+        Adaptive Framework Environment. This points to the same environment as
+        all other execution contexts in the same Adaptive Framework application.
+      </description>
+    </variable>
+
+    <variable name="thread" type="const afw_thread_t *">
+      <description>
+        Thread associate with xctx or NULL if base xctx.
+      </description>
+    </variable>
+
+    <variable name="request" type="const afw_request_t *">
+      <description>
+        Request instance associated with xctx or NULL.
+      </description>
+    </variable>
+
+    <variable name="uuid" type="const afw_utf8_t *">
+      <description>
+        A UUID to identify this xctx.
+      </description>
+    </variable>
+
+    <variable name="properties" type="const afw_object_t *">
+      <description>
+        The execution context (xctx) properties. This is an untyped object.
+      </description>
+    </variable>
+
+    <variable name="mode" type="const afw_value_t *">
+      <description>
+        Authorization mode value. This contains the value from one of the
+        afw_authorization_mode_id_*_value variables from afw_authorization_h.
+      </description>
+    </variable>
+
+    <variable name="stream_anchor" type="const afw_stream_anchor_t *">
+      <description>
+        Anchor for steams available in xctx. See afw_stream.h.
+      </description>
+    </variable>
+
+    <variable name="write_sequence" type="afw_integer_t">
+      <description>
+        A counter writers can increment and use to help identify the sequence
+        of writes.
+      </description>
+    </variable>
+
+    <variable name="priv" type="void *">
+      <description>Private data used by xctx implementation.</description>
+    </variable>
+
+    <variable name="error" type="afw_error_t *">
+      <description>Error.</description>
+    </variable>
+
+    <variable name="current_try" type="afw_try_t *">
+      <description>Current try.</description>
+    </variable>
+
+    <variable name="runtime_objects" type="const afw_runtime_objects_t *">
+      <description>Runtime objects for xctx.</description>
+    </variable>
+
+    <variable name="evaluation_stack" type="afw_xctx_evaluation_stack_t *">
+      <description>
+        The execution context (xctx) evaluation stack.
+      </description>
+    </variable>
+
+    <variable name="stack" type="apr_array_header_t *">
+      <description>
+        The execution context (xctx) stack. Entries are const afw_xctx_stack_entry_t *.
+      </description>
+    </variable>
+
+    <variable name="qualifier_stack" type="const afw_xctx_qualifier_stack_t *">
+      <description>
+        The execution context (xctx) qualifier stack. Entries are
+        const afw_xctx_qualifier_stack_entry_t *.
+      </description>
+    </variable>
+
+    <variable name="current_frame_index" type="int">
+      <description>
+        Index of current frame in stack.
+      </description>
+    </variable>
+
+    <variable name="adaptor_xctx_internal" type="afw_adaptor_xctx_internal_t *">
+      <description>Internal struct used by adaptors for this xctx. May be NULL.</description>
+    </variable>
+
+    <variable name="cache" type="afw_adaptor_internal_cache_t *">
+      <description>
+        The execution context (xctx) cache.
+      </description>
+    </variable>
+
+    <variable name="local_dateTime_when_created" type="afw_dateTime_t">
+      <description>
+        The local dateTime when execution context was created.
+      </description>
+    </variable>
+
+    <variable name="utc_dateTime_when_created" type="afw_dateTime_t">
+      <description>
+        The UTC/Zulu dateTime when execution context was created.
+      </description>
+    </variable>
+
+    <variable name="flags_count" type="afw_size_t">
+      <description>
+        The number of flags.
+      </description>
+    </variable>
+
+    <variable name="flags" type="const afw_boolean_t *">
+      <description>
+        Array of boolean flags. The size is flag_count.
+      </description>
+    </variable>
+
+    <variable name="flags_is_mutable_copy" type="afw_boolean_t">
+      <description>
+        This indicates that xctx->flags is a mutable copy for env->flags.
+
+        During xctx create, xctx->flags is set to env->flags. If flags change
+        for an xctx, xctx->flags is set to a mutable copy of env->flags and this
+        variable is set to true.
+      </description>
+    </variable>
+
+    <variable name="libxml2_error_func" type="void *">
+      <description>
+		    Error function for libxml2.
+      </description>
+    </variable>
+
+    <variable name="secure" type="afw_boolean_t">
+      <description>
+        If true, evaluates should only used secure context variables.
+        Use AFW_XCTX_SECURE_BEGIN and AFW_XCTX_SECURE_END for afw_xctx.h to
+        modify this variable.
+      </description>
+    </variable>
+
+    <method name="release">
+
+      <description>Release resources associated with a request.</description>
+
+      <parameter name="instance" type="afw_xctx_t *">
+        <description>Pointer to this adaptive request instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+
+  <interface name="afw_stream" id="afww">
+
+    <description>An interface for a stream.</description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        Pool used for stream resources including write method implementation.
+      </description>
+    </variable>
+
+    <variable name="streamId" type="const afw_utf8_t *">
+      <description>
+        This is the id of stream.
+      </description>
+    </variable>
+
+    <variable name="read_cb" type="afw_read_cb_t">
+      <description>
+        This can be passed to functions that expect an afw_read_cb_t
+        callback. The first parameter passed to the callback must be this
+        afw_stream instance. This can also be NULL if the stream is not
+        readable.
+      </description>
+    </variable>
+
+    <variable name="write_cb" type="afw_write_cb_t">
+      <description>
+        This can be passed to functions that expect an afw_write_cb_t
+        callback. The first parameter passed to the callback must be this
+        afw_stream instance. This is a raw write, so indentation is ignored
+        and the buffer written must be compatible with the afw_stream
+        instance's content. This can also be NULL if the stream is not
+        writable.
+      </description>
+    </variable>
+
+    <variable name="is_standard" type="const afw_boolean_t">
+      <description>
+        This is a standard stream that is automatically created and released.
+      </description>
+    </variable>
+
+    <method name="release">
+
+      <description>
+        This calls flush, closes, and release resources associated with this stream.
+      </description>
+
+      <parameter name="instance" type="const afw_stream_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="flush">
+
+      <description>
+        This will flush the stream's write buffer. The stream implementation
+        will do nothing if it doesn't support this concept.
+      </description>
+
+      <parameter name="instance" type="const afw_stream_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="read">
+
+      <description>
+        Write the specified bytes.
+      </description>
+
+      <parameter name="instance" type="const afw_stream_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="buffer" type="const void *">
+        <description>Buffer to write.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of buffer.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="write">
+
+      <description>
+        Write the specified bytes.
+      </description>
+
+      <parameter name="instance" type="const afw_stream_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="buffer" type="const void *">
+        <description>Buffer to write.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of buffer.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+
+
+  <interface name="afw_pool" id="afwp">
+
+    <description>
+      Adaptive framework pool interface.
+    </description>
+
+    <method name="release">
+
+      <description>
+        Reduce the reference count to pool. If count reaches 0, afw_pool_destroy()
+        is called.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="add_reference">
+
+      <description>
+        Add reference to a pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="destroy">
+
+      <description>
+        Destroy the pool.
+
+        This function should be called with caution since pools will be destroyed that
+        may still have a non-zero reference count. Function afw_pool_release()
+        should normally be used instead.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="get_apr_pool">
+
+      <description>
+        This will return an apr pool that can be used for calling Apache APR
+        function. This apr pool will be created the first time this method is
+        called for this afw pool and destroyed when this afw pool is destroyed.
+
+        Do not manually destroy this apr pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <return type="apr_pool_t *" />
+
+    </method>
+
+    <method name="calloc">
+
+      <description>
+        Allocate cleared memory in pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
+    <method name="malloc">
+
+      <description>
+        Allocate uncleared memory in pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
+    <method name="free">
+
+      <description>
+        Free allocated memory in pool. If the pool implementation does not support
+        freeing memory, the call does nothing.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="address" type="void *">
+        <description>Address of memory to free.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to free.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="register_cleanup_before">
+
+      <description>
+        Register pool cleanup function for this pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="data" type="void *">
+        <description>Data to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="data2" type="void *">
+        <description>Data2 to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
+        <description>Cleanup function to call when pool is released..</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="deregister_cleanup">
+
+      <description>
+        Deregister xctx cleanup function from this pool.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="data" type="void *">
+        <description>Data to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="data2" type="void *">
+        <description>Data2 to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
+        <description>Cleanup function to call when pool is released..</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="release_debug">
+
+      <description>
+        Debug version of method release().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="add_reference_debug">
+
+      <description>
+        Debug version of method add_reference().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="destroy_debug">
+
+      <description>
+        Debug version of method destroy().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="calloc_debug">
+
+      <description>
+        Debug version of method calloc().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
+    <method name="malloc_debug">
+
+      <description>
+        Debug version of method malloc().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
+    <method name="free_debug">
+
+      <description>
+        Debug version of method free().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="address" type="void *">
+        <description>Address of memory to free.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to free.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="register_cleanup_before_debug">
+
+      <description>
+        Debug version of method register_cleanup_before().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="data" type="void *">
+        <description>Data to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="data2" type="void *">
+        <description>Data2 to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
+        <description>Cleanup function to call when pool is released..</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="deregister_cleanup_debug">
+
+      <description>
+        Debug version of method deregister_cleanup_debug().
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="data" type="void *">
+        <description>Data to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="data2" type="void *">
+        <description>Data2 to pass to the cleanup function.</description>
+      </parameter>
+
+      <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
+        <description>Cleanup function to call when pool is released..</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <parameter name="source_z" type="const afw_utf8_z_t *">
+        <description>Source file:line where method was called.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_adaptor_journal" id="afwej">
+
+    <description>Adaptor journal interface.</description>
+
+    <variable name="session" type="const afw_adaptor_session_t *">
+      <description>Associated adaptor session.</description>
+    </variable>
+
+    <method name="add_entry">
+
+      <description>Record a journal entry.</description>
+
+      <parameter name="instance" type="const afw_adaptor_journal_t *">
+        <description>Pointer to this adaptive event journal instance.</description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="entry" type="const afw_object_t *">
+        <description>Pointer to the event to be logged in the journal.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_utf8_t *">
+        <description>Entry's cursor.</description>
+      </return>
+
+    </method>
+
+    <method name="get_entry">
+
+      <description>Gets an entry.</description>
+
+      <parameter name="instance" type="const afw_adaptor_journal_t *">
+        <description>
+          Pointer to this adaptive event journal instance.
+        </description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="option" type="afw_adaptor_journal_option_t">
+        <description>
+          Get entry option. See afw_adaptor_journal_option_t for
+          more information.
+        </description>
+      </parameter>
+
+      <parameter name="consumer_id" type="const afw_utf8_t *">
+        <description>
+          Peer id of consumer of event of NULL. See
+          afw_adaptor_journal_option_t for information on how this
+          parameter is used or ignored.
+        </description>
+      </parameter>
+
+      <parameter name="entry_cursor" type="const afw_utf8_t *">
+        <description>
+          Journal entry cursor or NULL. See
+          afw_adaptor_journal_option_t for information on how this
+          parameter is used or ignored.
+        </description>
+      </parameter>
+
+      <parameter name="limit" type="afw_size_t">
+        <description>
+          Limit or 0. See
+          afw_adaptor_journal_option_t for information on how this
+          parameter is used or ignored.
+        </description>
+      </parameter>
+
+      <parameter name="response" type="const afw_object_t *">
+        <description>
+          This is an existing response object that can have properties already
+          set. Depending on the option specified, get_entry() will set
+          additional properties. See afw_adaptor_journal_option_t
+          for information on which properties are set and under what condition.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="mark_entry_consumed">
+
+      <description>
+        Mark an entry consumed. If entry is not the current ... blah blah blah
+        Need to make object type for _AdaptiveJournalPeer_
+        Different journal ids?
+      </description>
+
+      <parameter name="instance" type="const afw_adaptor_journal_t *">
+        <description>
+          Pointer to this adaptive event journal instance.
+        </description>
+      </parameter>
+
+      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+        <description>
+          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
+          See afw_adaptor_impl.h for more information.
+        </description>
+      </parameter>
+
+      <parameter name="consumer_id" type="const afw_utf8_t *">
+        <description>
+          Get entry option. See afw_adaptor_journal_option_t for
+          more information.
+        </description>
+      </parameter>
+
+      <parameter name="entry_cursor" type="const afw_utf8_t *">
+        <description>
+          Token of the event to mark consumed.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+  <interface name="afw_value" id="afwv">
+
+    <description>Adaptive value.</description>
+
+    <inf_variable name="data_type" type="const afw_data_type_t *">
+      <description>
+        This is the data type of the value if already evaluated or know before evaluation.
+      </description>
+    </inf_variable>
+
+    <inf_variable name="is_evaluated_of_data_type" type="const afw_data_type_t *">
+      <description>
+        This is the data type of the value if it's already evaluated. If the value
+        is not evaluated, this value will be NULL.
+      </description>
+    </inf_variable>
+
+    <method name="optional_release">
+
+      <description>
+        This is an optional method that exists if the value's memory is managed. Constant values
+        that are compiled into object code are not managed.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="get_reference">
+
+      <description>
+        This will get a reference to this value. There are 3 possible results:
+        
+        1) If the value is managed and the value's internal value has an add_reference method,
+        the result of calling add_reference is returned.
+        
+        2) If the value is managed and the value's internal value does not have an add_reference method,
+        a copy of the value in the supplied pool (p) is returned.
+
+        3) If the value is not managed, the instance is returned asis.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Reference to this adaptive value.</description>
+      </return>
+
+    </method>
+
+
+    <method name="optional_evaluate">
+
+      <description>
+        This is an optional method used to evaluate an adaptive value. Normally
+        the afw_value_evaluate() macro should be used instead or calling this
+        method directly since it might be NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Evaluated adaptive value.</description>
+      </return>
+
+    </method>
+
+    <method name="get_data_type">
+
+      <description>
+        This method returns the expected data type of the result of calling
+        afw_value_evaluate() on this adaptive value, if available. This is
+        determined at the time the value is created.
+
+        For fully evaluated values, the data type will always be available.
+        
+        For values like 'call', the data type will be available if it can be
+        determined at the value's create time. For instance, if a function
+        always returns a specific data type or if the return data type is
+        polymorphic and the data type of the first parameter can be determined,
+        then the data type will be available.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_data_type_t *">
+        <description>
+          The data type of the adaptive value or NULL if not available.
+        </description>
+      </return>
+
+    </method>
+    <method name="get_evaluated_meta">
+
+      <description>
+        This method returns an object value for accessing a value's meta.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+          
+          IMPORTANT: Do not evaluate instance before calling since meta is harvested from the value's inf.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The this is an evaluated object value that can be used to access the value's meta.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_evaluated_metas">
+
+      <description>
+        This method returns a list value of with the result of calling afw_value_get_evaluated_meta()
+        for each entry in a value instance. If this is not a value instance with an iterator,
+        such as object or list, a list value with a single value is returned.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+          
+          NOTE: Always evaluate instance before calling so that right value inf is used.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use for result.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The this is an evaluated list value that can be used to access the value's entry meta.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="produce_compiler_listing">
+
+      <description>
+        This produces the compiler listing for a value and calls writer with the result.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="writer" type="const afw_writer_t *">
+        <description>Pointer to writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="decompile">
+
+      <description>
+        This decompiles this value to utf-8 and calls writer with the result.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="writer" type="const afw_writer_t *">
+        <description>Pointer to writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="get_info">
+
+      <description>
+        Get info about a value.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>Pointer to this adaptive value instance.</description>
+      </parameter>
+
+      <parameter name="info" type="afw_value_info_t *">
+        <description>
+          Struct that will be filled by this method with info about this value.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool to use if needed.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_variable_handler" id="afwvh">
+
+    <description>Adaptive variable handler.</description>
+
+    <method name="get_variable">
+
+      <description>
+        Get a variable's value.
+      </description>
+
+      <parameter name="instance" type="const afw_variable_handler_t *">
+        <description>Pointer to this adaptive variable handler instance.</description>
+      </parameter>
+
+      <parameter name="qualifier" type="const afw_utf8_t *">
+        <description>Qualifier or NULL.</description>
+      </parameter>
+
+      <parameter name="name" type="const afw_utf8_t *">
+        <description>Variable name.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Variable's adaptive value or NULL if not found.</description>
+      </return>
+
+    </method>
+
+    <method name="set_variable">
+
+      <description>
+        If this variable handler handles this variable, set its value.
+      </description>
+
+      <parameter name="instance" type="const afw_variable_handler_t *">
+        <description>Pointer to this adaptive variable handler instance.</description>
+      </parameter>
+
+      <parameter name="qualifier" type="const afw_utf8_t *">
+        <description>Qualifier or NULL.</description>
+      </parameter>
+
+      <parameter name="name" type="const afw_utf8_t *">
+        <description>Variable name.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to set.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>True if this variable is handled by this variable handler.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_writer" id="afww">
+
+    <description>An interface for a writer.</description>
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        Pool used for writer resources including write method implementation.
+      </description>
+    </variable>
+
+    <variable name="write_raw_cb" type="afw_write_cb_t">
+      <description>
+        This can be passed to functions that expect an afw_write_cb_t
+        callback. The first parameter passed to the callback must be this
+        afw_writer instance. This is a raw write, so indentation is ignored
+        and the buffer written must be compatible with the afw_writer
+        instance's content.
+      </description>
+    </variable>
+
+    <variable name="indent" type="afw_size_t">
+      <description>
+        The current indent if whitespace is being added.
+      </description>
+    </variable>
+
+    <variable name="tab" type="const afw_utf8_t *">
+      <description>
+        If not NULL, whitespace is added as appropriate. Calls to method write_eol
+        will cause \\n to be written.
+        This tab strings is used as needed to produce the appropriate indent. For
+        example, "\\t" can be specified to cause the number of tab characters needed
+        for the current indent.
+      </description>
+    </variable>
+
+    <method name="release">
+
+      <description>Call flush and release resources associated with this writer.</description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="flush">
+
+      <description>This will flush the writer's buffers. The writer implementation will do nothing if it doesn't support this concept.</description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="write">
+
+      <description>
+        Write the specified bytes.
+      </description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="buffer" type="const void *">
+        <description>Buffer to write.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of buffer.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="write_eol">
+
+      <description>
+        If white_space is true, write \n then indent next line.
+      </description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="increment_indent">
+
+      <description>
+        If white_space is true, increase indent.
+      </description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+    <method name="decrement_indent">
+
+      <description>
+        If white_space is true, decrease indent.
+      </description>
+
+      <parameter name="instance" type="const afw_writer_t *">
+        <description>Pointer to this writer instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void"/>
+
+    </method>
+
+  </interface>
+
+</definitions>

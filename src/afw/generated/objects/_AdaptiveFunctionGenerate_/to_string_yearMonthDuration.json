@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringYearMonthDuration",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Converts yearMonthDuration value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<yearMonthDuration>",
+    "functionLabel": "to_string_yearMonthDuration",
+    "parameters": [
+        {
+            "dataType": "yearMonthDuration",
+            "description": "A yearMonthDuration value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

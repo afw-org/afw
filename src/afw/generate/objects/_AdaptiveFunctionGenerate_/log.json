@@ -1,0 +1,19 @@
+{
+    "brief": "Log value",
+    "category": "miscellaneous",
+    "description": "Evaluate and convert value to String and log it.",
+    "functionId": "log",
+    "functionLabel": "log",
+    "parameters": [
+        {
+            "description": "Value to log.",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Value written to log"
+    ]
+}

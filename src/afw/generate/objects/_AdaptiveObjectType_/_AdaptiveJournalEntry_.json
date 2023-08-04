@@ -1,0 +1,32 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Event journal entry.",
+    "objectType": "_AdaptiveJournalEntry_",
+    "otherProperties": {},
+    "propertyTypes": {
+        "authorizationResults": {
+            "brief": "Authorization result",
+            "dataType": "list",
+            "dataTypeParameter": "_AdaptiveAuthorizationResult_",
+            "description": "Authorization result.",
+            "label": "Authorization Results"
+        },
+        "request": {
+            "brief": "Request",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveJournalEntryRequest_",
+            "description": "Request.",
+            "label": "Request"
+        },
+        "source": {
+            "brief": "Source",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveJournalEntrySource_",
+            "description": "Source.",
+            "label": "Source"
+        }
+    }
+}

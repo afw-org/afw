@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwMaxTime",
+    "brief": "Maximum value",
+    "camelCaseFunctionLabel": "maxTime",
+    "category": "time",
+    "dataTypeMethod": true,
+    "description": "Return the time value that is greater than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used.",
+    "functionId": "max<time>",
+    "functionLabel": "max_time",
+    "parameters": [
+        {
+            "dataType": "time",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "time"
+    },
+    "useExecuteFunction": "afw_function_execute_max"
+}

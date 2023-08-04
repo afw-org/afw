@@ -1,0 +1,45 @@
+{
+    "brief": "Returns intersection of two lists",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Returns a list of <dataType> with the values that are common to both list of <dataType> list1 and list2.",
+    "functionId": "intersection",
+    "functionLabel": "intersection",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "list",
+            "description": "The first list.",
+            "name": "list1",
+            "polymorphicDataTypeParameter": true
+        },
+        {
+            "dataType": "list",
+            "description": "The second list.",
+            "name": "list2",
+            "polymorphicDataTypeParameter": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "base64Binary",
+        "boolean",
+        "date",
+        "dateTime",
+        "dayTimeDuration",
+        "double",
+        "hexBinary",
+        "integer",
+        "rfc822Name",
+        "string",
+        "time",
+        "x500Name",
+        "yearMonthDuration"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_intersection",
+    "returns": {
+        "dataType": "list",
+        "polymorphicDataTypeParameter": true
+    }
+}

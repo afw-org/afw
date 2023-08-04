@@ -1,0 +1,9 @@
+{
+    "category": "editors",
+    "componentType": "CodeEditor",
+    "brief": "A component that renders a rich text editor.",
+    "description": "This component displays a rich text editor that allows the user to manually edit the source code for a particular piece of data.",
+    "implementationId": "CodeEditor",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_CodeEditor",
+    "label": "Code Editor"
+}

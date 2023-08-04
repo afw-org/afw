@@ -1,0 +1,49 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Toggle component.",
+    "objectType": "_AdaptiveLayoutComponentType_Toggle",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "disabled": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Specifies whether the Toggle component is disabled.",
+            "label": "Disabled"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for the Toggle component.",
+            "testDataParameter": "This is the label",
+            "label": "Label"
+        },
+        "offText": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text displayed when the Toggle component is off.",
+            "label": "Off Text"
+        },
+        "onText": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The text displayed when the Toggle component is on.",
+            "label": "On Text"
+        },
+        "value": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The value for the Toggle component.",
+            "label": "Value"
+        }
+    }
+}

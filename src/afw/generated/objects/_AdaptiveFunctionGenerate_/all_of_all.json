@@ -1,0 +1,30 @@
+{
+    "additionalArgCheck": true,
+    "afwCamelCaseFunctionLabel": "afwAllOfAll",
+    "brief": "All combinations true",
+    "camelCaseFunctionLabel": "allOfAll",
+    "category": "higher_order_list",
+    "description": "Returns true if the result of calling predicate with all of the combination of values from list1 and list2 returns true.",
+    "functionId": "all_of_all",
+    "functionLabel": "all_of_all",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(any value1: any, value2: any): boolean",
+            "description": "The predicate is passed two parameters, the first is a value from list1 and the second is a value from list2.",
+            "name": "predicate"
+        },
+        {
+            "dataType": "list",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    }
+}

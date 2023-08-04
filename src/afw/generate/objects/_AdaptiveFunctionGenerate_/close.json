@@ -1,0 +1,21 @@
+{
+    "brief": "Close a stream",
+    "category": "stream",
+    "description": "This will close an open stream",
+    "functionId": "close",
+    "functionLabel": "close",
+    "parameters": [
+        {
+            "brief": "Stream Number",
+            "dataType": "integer",
+            "description": "The streamNumber for the stream to close.",
+            "name": "streamNumber"
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    },
+    "sideEffects": [
+        "Buffers written and stream closed"
+    ]
+}

@@ -1,0 +1,1333 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema",
+                "objectId": "TIER Core Schema",
+                "objectType": "_AdaptiveModel_"
+            },
+            "originURI": "https://spaces.internet2.edu/display/TIERENTREG/TIER+SoR-Registry+Core+Schema",
+            "objectTypes": {
+                "_meta_": {
+                    "objectType": "_AdaptiveModelObjectTypes_",
+                    "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes"
+                },
+                "major": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/major"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/major/propertyTypes"
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/major/propertyTypes/type"
+                            },
+                            "possibleValues": [
+                                "dual",
+                                "minor",
+                                "primary",
+                                "secondary"
+                            ],
+                            "required": false,
+                            "label": "Type",
+                            "description": "Type of major.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "majorCode": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/major/propertyTypes/majorCode"
+                            },
+                            "required": false,
+                            "label": "Major Code",
+                            "description": "Machine readable identifier for the major. This value is unlikely to have meaning outside of a specific institution.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "major": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/major/propertyTypes/major"
+                            },
+                            "required": false,
+                            "label": "Major",
+                            "description": "Student's major.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "major",
+                    "description": "Describes a student's major."
+                },
+                "url": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/url"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/url/propertyTypes"
+                        },
+                        "url": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/url/propertyTypes/url"
+                            },
+                            "required": false,
+                            "label": "Url",
+                            "description": "URL for the person.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/url/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the telephone number.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "url",
+                    "description": "Describes the url for a person."
+                },
+                "telephoneNumber": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/telephoneNumber"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/telephoneNumber/propertyTypes"
+                        },
+                        "verified": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/telephoneNumber/propertyTypes/verified"
+                            },
+                            "required": false,
+                            "label": "Verified",
+                            "description": "True if the telephone number has been verified.",
+                            "dataType": "boolean",
+                            "allowQuery": true
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/telephoneNumber/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the telephone number.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "number": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/telephoneNumber/propertyTypes/number"
+                            },
+                            "required": false,
+                            "label": "Number",
+                            "description": "Telephone number for the person, preferably in + notation.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "number",
+                    "description": "Describes a telephone number."
+                },
+                "photo": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/photo"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/photo/propertyTypes"
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/photo/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the photo (not the encoding).",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "encoding": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/photo/propertyTypes/encoding"
+                            },
+                            "required": false,
+                            "label": "Encoding",
+                            "description": "The encoding used for the photo.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "data": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/photo/propertyTypes/data"
+                            },
+                            "required": false,
+                            "label": "Data",
+                            "description": "Encoding of a photo of the person.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "description": "Describes a photo, including its data, type, and encoding."
+                },
+                "name": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes"
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the name.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "suffix": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/suffix"
+                            },
+                            "required": false,
+                            "label": "Suffix",
+                            "description": "The honorific suffix of the person's name, such as \"Jr\" or \"III\".",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "prefix": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/prefix"
+                            },
+                            "required": false,
+                            "label": "Prefix",
+                            "description": "The honorific prefix of the person's name, such as \"Dr\" or \"Ms\".",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "middle": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/middle"
+                            },
+                            "required": false,
+                            "label": "Middle",
+                            "description": "The component of the person's name excluding the given, family, and honorific components.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "language": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/language"
+                            },
+                            "required": false,
+                            "label": "Language",
+                            "description": "The language encoding of the person's name.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "given": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/given"
+                            },
+                            "required": false,
+                            "label": "Given",
+                            "description": "The component of the person's name excluding the middle, family, and honorific components.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "formatted": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/formatted"
+                            },
+                            "required": false,
+                            "label": "Formatted",
+                            "description": "The person's name, suitably formatted for display.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "family": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/name/propertyTypes/family"
+                            },
+                            "required": false,
+                            "label": "Family",
+                            "description": "The component of the person's name excluding the given, middle, and honorific components.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "formatted",
+                    "description": "Describes a person's name."
+                },
+                "meta": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta/propertyTypes"
+                        },
+                        "release": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta/propertyTypes/release"
+                            },
+                            "required": false,
+                            "label": "Release",
+                            "description": "Attribute release policy.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "lastModified": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta/propertyTypes/lastModified"
+                            },
+                            "required": false,
+                            "label": "Last Modified",
+                            "description": "Timestamp of last modification.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "id": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta/propertyTypes/id"
+                            },
+                            "required": false,
+                            "label": "Id",
+                            "description": "Identifier for this specific (sub)attribute.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "created": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/meta/propertyTypes/created"
+                            },
+                            "required": false,
+                            "label": "Created",
+                            "description": "Timestamp of record creation.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "id",
+                    "description": "Any complex attribute (Person, Person Role, Address, Identifier, etc) may optionally have the following meta attributes."
+                },
+                "identityProof": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes"
+                        },
+                        "verifiedAddress": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/verifiedAddress"
+                            },
+                            "required": false,
+                            "label": "Verified Address",
+                            "description": "Address, as confirmed on document.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "timeVerified": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/timeVerified"
+                            },
+                            "required": false,
+                            "label": "Time Verified",
+                            "description": "Time document was confirmed.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "status": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/status"
+                            },
+                            "required": false,
+                            "label": "Status",
+                            "description": "Status of the identity proofing.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "fullName": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/fullName"
+                            },
+                            "required": false,
+                            "label": "Full Name",
+                            "description": "Full name, as confirmed on document.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "documentType": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/documentType"
+                            },
+                            "required": false,
+                            "label": "Document Type",
+                            "description": "Type of document used to confirm identity.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "documentIssuer": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/documentIssuer"
+                            },
+                            "required": false,
+                            "label": "Document Issuer",
+                            "description": "Name of agency issuing the confirmation document.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "dateOfBirth": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identityProof/propertyTypes/dateOfBirth"
+                            },
+                            "required": false,
+                            "label": "Date of Birth",
+                            "description": "Date of birth, as confirmed on document.",
+                            "dataType": "date",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "fullName",
+                    "description": "Describes the proof of an identity."
+                },
+                "identifier": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identifier"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identifier/propertyTypes"
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identifier/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the identifier.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "identifier": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/identifier/propertyTypes/identifier"
+                            },
+                            "required": false,
+                            "label": "Identifier",
+                            "description": "The identifier.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "identifier",
+                    "description": "Describes an identifier."
+                },
+                "emailAddress": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/emailAddress"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/emailAddress/propertyTypes"
+                        },
+                        "verified": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/emailAddress/propertyTypes/verified"
+                            },
+                            "required": false,
+                            "label": "Verified",
+                            "description": "True if the address has been verified.",
+                            "dataType": "boolean",
+                            "allowQuery": true
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/emailAddress/propertyTypes/type"
+                            },
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the email address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "address": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/emailAddress/propertyTypes/address"
+                            },
+                            "required": false,
+                            "label": "Address",
+                            "description": "The email address",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "address",
+                    "description": "Describes an electronic mailing address."
+                },
+                "address": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes"
+                        },
+                        "verified": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/verified"
+                            },
+                            "required": false,
+                            "label": "Verified",
+                            "description": "True if the address has been verified.",
+                            "dataType": "boolean",
+                            "allowQuery": true
+                        },
+                        "type": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/type"
+                            },
+                            "possibleValues": [
+                                "campus",
+                                "home",
+                                "office",
+                                "parent",
+                                "postal",
+                                "summer",
+                                "former-anytype"
+                            ],
+                            "required": false,
+                            "label": "Type",
+                            "description": "The type of the address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "street": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/street"
+                            },
+                            "required": false,
+                            "label": "Street",
+                            "description": "Street/site information from a postal address (street name, house number, etc).",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "room": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/room"
+                            },
+                            "required": false,
+                            "label": "Room",
+                            "description": "Room information from a postal address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "region": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/region"
+                            },
+                            "required": false,
+                            "label": "Region",
+                            "description": "Region information from a postal address (state, province, etc).",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "postalCode": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/postalCode"
+                            },
+                            "required": false,
+                            "label": "Postal Code",
+                            "description": "Postal code from a postal address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "locality": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/locality"
+                            },
+                            "required": false,
+                            "label": "Locality",
+                            "description": "Locality information from a postal address (city, etc).",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "language": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/language"
+                            },
+                            "required": false,
+                            "label": "Language",
+                            "description": "The language encoding of the address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "formatted": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/formatted"
+                            },
+                            "required": false,
+                            "label": "Formatted",
+                            "description": "Address rendered as a single string, possibly with embedded newlines.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "country": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/address/propertyTypes/country"
+                            },
+                            "required": false,
+                            "label": "Country",
+                            "description": "Country from a postal address.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "descriptionPropertyName": "formatted",
+                    "description": "Describes the address information associated with an identity."
+                },
+                "StudentPersonRole": {
+                    "_meta_": {
+                        "parentPaths": [
+                            "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole"
+                        ],
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes"
+                        },
+                        "term": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/term"
+                            },
+                            "required": false,
+                            "label": "Term",
+                            "description": "Term for which this record applies.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "studentType": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/studentType"
+                            },
+                            "possibleValues": [
+                                "continuing",
+                                "graduate",
+                                "nondegree",
+                                "professional",
+                                "secondary",
+                                "summer",
+                                "undergraduate",
+                                "visiting"
+                            ],
+                            "required": false,
+                            "label": "Student Type",
+                            "description": "Secondary = (eg) high school.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "residenceHall": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/residenceHall"
+                            },
+                            "required": false,
+                            "label": "Residence Hall",
+                            "description": "The name of the residence hall.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "major": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/major"
+                            },
+                            "required": false,
+                            "label": "Major",
+                            "description": "A list of student's major(s).",
+                            "dataTypeParameter": "object major",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "degree": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/degree"
+                            },
+                            "possibleValues": [
+                                "AAS",
+                                "BA",
+                                "BFA",
+                                "BS",
+                                "DDS",
+                                "DNP",
+                                "JD",
+                                "LLM",
+                                "MA",
+                                "MArch",
+                                "MBA",
+                                "MD",
+                                "MFA",
+                                "MPH",
+                                "MPS",
+                                "MS",
+                                "PhD"
+                            ],
+                            "required": false,
+                            "label": "Degree",
+                            "description": "A list of degrees.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "courseMembership": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/courseMembership"
+                            },
+                            "required": false,
+                            "label": "Course Membership",
+                            "description": "A list of course memberships.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "courseAffiliation": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/courseAffiliation"
+                            },
+                            "possibleValues": [
+                                "Administrator",
+                                "ContentDeveloper",
+                                "Instructor",
+                                "Learner",
+                                "Manager",
+                                "Member",
+                                "Mentor",
+                                "Officer",
+                                "TeachingAssistant"
+                            ],
+                            "required": false,
+                            "label": "Course Affiliation",
+                            "description": "Person's affiliation/role with a course.  Based on MACE-Dir work.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "classYear": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/StudentPersonRole/propertyTypes/classYear"
+                            },
+                            "possibleValues": [
+                                "freshman",
+                                "sophomore",
+                                "junior",
+                                "senior"
+                            ],
+                            "required": false,
+                            "label": "Class Year",
+                            "description": "#### is a four digit expected year of graduation.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "description": "Student Person Role Attributes.",
+                    "allowEntity": true,
+                    "allowDelete": true,
+                    "allowChange": true,
+                    "allowAdd": true
+                },
+                "PersonRole": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes"
+                        },
+                        "title": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/title"
+                            },
+                            "required": false,
+                            "label": "Title",
+                            "description": "The official title for this role.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "terminationReason": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/terminationReason"
+                            },
+                            "possibleValues": [
+                                "deceased",
+                                "graduated",
+                                "involuntary",
+                                "resigned",
+                                "retired",
+                                "withdrew"
+                            ],
+                            "required": false,
+                            "label": "Termination Reason",
+                            "description": "Reason for termination associated with this role.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "status": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/status"
+                            },
+                            "possibleValues": [
+                                "accepted",
+                                "applied",
+                                "active",
+                                "offered",
+                                "onLeave",
+                                "registered",
+                                "suspended",
+                                "terminated"
+                            ],
+                            "required": false,
+                            "label": "Status",
+                            "description": "Status associated with this role.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "sor": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/sor"
+                            },
+                            "required": false,
+                            "label": "SOR Label",
+                            "description": "Label for the system of record asserting this role.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "roleEnds": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/roleEnds"
+                            },
+                            "required": false,
+                            "label": "Role Ends",
+                            "description": "Time after which the role is officially no longer in effect.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "roleBegins": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/roleBegins"
+                            },
+                            "required": false,
+                            "label": "Role Begins",
+                            "description": "Time at which the role officially begins.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "rankSor": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/rankSor"
+                            },
+                            "required": false,
+                            "label": "Rank SOR",
+                            "description": "The rank of this role relative to only roles from this SOR (highest rank = 1).",
+                            "dataType": "integer",
+                            "allowQuery": true
+                        },
+                        "rank": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/rank"
+                            },
+                            "required": false,
+                            "label": "Rank",
+                            "description": "The rank of this role relative to all roles from all SORs (highest rank = 1).",
+                            "dataType": "integer",
+                            "allowQuery": true
+                        },
+                        "percentTime": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/percentTime"
+                            },
+                            "required": false,
+                            "label": "Percent Time",
+                            "description": "The percentage time for this role (100 = full time).",
+                            "dataType": "integer",
+                            "allowQuery": true
+                        },
+                        "organizationCode": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/organizationCode"
+                            },
+                            "required": false,
+                            "label": "Organization Code",
+                            "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "organization": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/organization"
+                            },
+                            "required": false,
+                            "label": "Organization",
+                            "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "manager": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/manager"
+                            },
+                            "required": false,
+                            "label": "Manager",
+                            "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "leaveEnds": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/leaveEnds"
+                            },
+                            "required": false,
+                            "label": "Leave Ends",
+                            "description": "Time after which leave fropm this role is no longer in effect; advisory - status is controlling.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "leaveBegins": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/leaveBegins"
+                            },
+                            "required": false,
+                            "label": "Leave Begins",
+                            "description": "Time at which leave from this role begins; advisory - status is controlling.",
+                            "dataType": "dateTime",
+                            "allowQuery": true
+                        },
+                        "displayTitle": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/displayTitle"
+                            },
+                            "required": false,
+                            "label": "Display Title",
+                            "description": "The display title for this role.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "departmentCode": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/departmentCode"
+                            },
+                            "required": false,
+                            "label": "Department Code",
+                            "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "department": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/department"
+                            },
+                            "required": false,
+                            "label": "Department",
+                            "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "campusCode": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/campusCode"
+                            },
+                            "required": false,
+                            "label": "Campus Code",
+                            "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "campus": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/campus"
+                            },
+                            "required": false,
+                            "label": "Campus",
+                            "description": "The campus location this role is attached to, as defined by the institution.",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "affiliation": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole/propertyTypes/affiliation"
+                            },
+                            "required": false,
+                            "label": "Affiliation",
+                            "description": "Visa status of the person.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "description": "Person Role Core Attributes.",
+                    "allowEntity": true,
+                    "allowDelete": true,
+                    "allowChange": true,
+                    "allowAdd": true
+                },
+                "Person": {
+                    "_meta_": {
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes"
+                        },
+                        "visa": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/visa"
+                            },
+                            "required": false,
+                            "label": "Visa",
+                            "description": "Visa status of the person.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "url": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/url"
+                            },
+                            "required": false,
+                            "label": "Url",
+                            "description": "A list of URLs.",
+                            "dataTypeParameter": "object url",
+                            "dataType": "list"
+                        },
+                        "test": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/test"
+                            },
+                            "required": false,
+                            "label": "Test",
+                            "description": "True if this record represents a test entry.",
+                            "dataType": "boolean",
+                            "allowQuery": true
+                        },
+                        "telephoneNumber": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/telephoneNumber"
+                            },
+                            "required": false,
+                            "label": "Telephone Number",
+                            "description": "A list of telephone numbers.",
+                            "dataTypeParameter": "object telephoneNumber",
+                            "dataType": "list"
+                        },
+                        "role": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/role"
+                            },
+                            "required": false,
+                            "label": "Role",
+                            "description": "Parent attribute for Role attributes.",
+                            "dataTypeParameter": "object PersonRole",
+                            "dataType": "list"
+                        },
+                        "primaryCampus": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/primaryCampus"
+                            },
+                            "required": false,
+                            "label": "Primary Campus",
+                            "description": "The primary campus location for the person, as defined by the institution.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "primaryAffiliation": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/primaryAffiliation"
+                            },
+                            "required": false,
+                            "label": "Primary Affiliation",
+                            "description": "The primary affiliation for the person, as defined by the institution (values same as for Person Role affiliation attribute).",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "photo": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/photo"
+                            },
+                            "required": false,
+                            "label": "Photo",
+                            "description": "A list of photos.",
+                            "dataTypeParameter": "object photo",
+                            "dataType": "list"
+                        },
+                        "name": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/name"
+                            },
+                            "required": false,
+                            "label": "Name",
+                            "description": "A list of names.",
+                            "dataTypeParameter": "object name",
+                            "dataType": "list"
+                        },
+                        "identityProof": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/identityProof"
+                            },
+                            "required": false,
+                            "label": "Identity Proof",
+                            "description": "A list of identity proofs.",
+                            "dataTypeParameter": "object identityProof",
+                            "dataType": "list"
+                        },
+                        "identifier": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/identifier"
+                            },
+                            "required": false,
+                            "label": "Identifier",
+                            "description": "A list of identifiers.",
+                            "dataTypeParameter": "object identifier",
+                            "dataType": "list"
+                        },
+                        "gender": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/gender"
+                            },
+                            "required": false,
+                            "label": "Gender",
+                            "description": "The gender of the person.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        },
+                        "ethnicity": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/ethnicity"
+                            },
+                            "required": false,
+                            "label": "Ethnicity",
+                            "description": "The ethnicity of the person (US Census).",
+                            "dataTypeParameter": "string",
+                            "dataType": "list",
+                            "allowQuery": true
+                        },
+                        "emailAddress": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/emailAddress"
+                            },
+                            "required": false,
+                            "label": "Email Address",
+                            "description": "A list of email addresses.",
+                            "dataTypeParameter": "object emailAddress",
+                            "dataType": "list"
+                        },
+                        "dateOfBirth": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/dateOfBirth"
+                            },
+                            "required": false,
+                            "label": "Date of Birth",
+                            "description": "The date of birth of the person.",
+                            "dataType": "date",
+                            "allowQuery": true
+                        },
+                        "address": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/Person/propertyTypes/address"
+                            },
+                            "required": false,
+                            "label": "Address",
+                            "description": "A list of physical addresses.",
+                            "dataTypeParameter": "object address",
+                            "dataType": "list"
+                        }
+                    },
+                    "description": "Person Core Attributes",
+                    "allowEntity": true,
+                    "allowDelete": true,
+                    "allowChange": true,
+                    "allowAdd": true
+                },
+                "HRPersonRole": {
+                    "_meta_": {
+                        "parentPaths": [
+                            "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/PersonRole"
+                        ],
+                        "objectType": "_AdaptiveModelObjectType_",
+                        "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/HRPersonRole"
+                    },
+                    "propertyTypes": {
+                        "_meta_": {
+                            "objectType": "_AdaptiveModelPropertyTypes_",
+                            "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/HRPersonRole/propertyTypes"
+                        },
+                        "employeeType": {
+                            "_meta_": {
+                                "objectType": "_AdaptiveModelPropertyType_",
+                                "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/objectTypes/HRPersonRole/propertyTypes/employeeType"
+                            },
+                            "possibleValues": [
+                                "consultant",
+                                "contractor",
+                                "emeritus",
+                                "exempt",
+                                "regular",
+                                "tenured",
+                                "vendor",
+                                "visiting",
+                                "workStudy"
+                            ],
+                            "required": false,
+                            "label": "Employee Type",
+                            "description": "Type of employee.",
+                            "dataType": "string",
+                            "allowQuery": true
+                        }
+                    },
+                    "description": "HR Person Role Attributes.",
+                    "allowEntity": true,
+                    "allowDelete": true,
+                    "allowChange": true,
+                    "allowAdd": true
+                }
+            },
+            "modelId": "TIER Core Schema",
+            "description": "TIER Core Schema for Systems of Record (SoR) and Entity Registry",
+            "custom": {
+                "_meta_": {
+                    "objectType": "_AdaptiveHybridProperties_",
+                    "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/custom"
+                }
+            }
+        }
+    ],
+    "status": "success"
+}

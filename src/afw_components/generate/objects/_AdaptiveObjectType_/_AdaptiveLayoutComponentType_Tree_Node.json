@@ -1,0 +1,47 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Tree Node component.",
+    "label": "Tree Node",
+    "objectType": "_AdaptiveLayoutComponentType_Tree_Node",
+    "propertyTypes": {
+        "key": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The unique identifying key for this tree node.",
+            "label": "Key",
+            "required": true
+        },
+        "children": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
+            "description": "The children of this Tree Node.",
+            "label": "Children"
+        },
+        "contains": {
+            "allowWrite": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveLayoutComponentType_",
+            "description": "Optional component under this tree node.",
+            "label": "Contains"
+        },
+        "icon": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The icon for this tree node.",
+            "label": "Icon"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The label for this tree node.",
+            "label": "Label"
+        }
+    }
+}

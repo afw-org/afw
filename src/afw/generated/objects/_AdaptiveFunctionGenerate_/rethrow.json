@@ -1,0 +1,15 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRethrow",
+    "brief": "rethrow error from inside case block",
+    "camelCaseFunctionLabel": "rethrow",
+    "category": "script",
+    "description": "This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown.",
+    "functionId": "rethrow",
+    "functionLabel": "rethrow",
+    "parameters": [],
+    "pure": true,
+    "returns": {
+        "description": "This function rethrows the current error in a catch block."
+    },
+    "scriptSupport": true
+}

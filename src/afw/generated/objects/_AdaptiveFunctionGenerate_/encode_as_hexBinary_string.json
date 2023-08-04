@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEncodeAsHexBinaryString",
+    "brief": "Encode to a hexBinary value",
+    "camelCaseFunctionLabel": "encodeAsHexBinaryString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Encode a value as a hexBinary. The effect is to create a hexBinary value with an internal value of the value passed.",
+    "functionId": "encode_as_hexBinary<string>",
+    "functionLabel": "encode_as_hexBinary_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value to encode.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "hexBinary",
+        "description": "A hexBinary value."
+    },
+    "useExecuteFunction": "afw_function_execute_encode_as_hexBinary"
+}

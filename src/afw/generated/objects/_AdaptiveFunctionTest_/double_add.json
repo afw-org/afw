@@ -1,0 +1,77 @@
+{
+    "description": "Tests for add<double> function.",
+    "functionId": "add<double>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "1.01"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.01"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.01"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.01"
+                },
+                {
+                    "dataType": "double",
+                    "value": "1.01"
+                }
+            ],
+            "description": "Add a list",
+            "result": {
+                "dataType": "double",
+                "value": "5.05"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "111111.1"
+                },
+                {
+                    "dataType": "double",
+                    "value": "111111.1"
+                },
+                {
+                    "dataType": "double",
+                    "value": "111111.1"
+                },
+                {
+                    "dataType": "double",
+                    "value": "111111.1"
+                },
+                {
+                    "dataType": "double",
+                    "value": "111111.1"
+                }
+            ],
+            "description": "Add a list",
+            "result": {
+                "dataType": "double",
+                "value": "555555.5"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "double",
+                    "value": "x.0"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

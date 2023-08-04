@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInAnyURI",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks whether anyURI value is in list of anyURI list and returns the boolean result.",
+    "functionId": "is_in<anyURI>",
+    "functionLabel": "is_in_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "anyURI",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

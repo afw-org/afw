@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsInDateTime",
+    "brief": "Checks whether a value is in a list",
+    "camelCaseFunctionLabel": "isInDateTime",
+    "category": "dateTime",
+    "dataTypeMethod": true,
+    "description": "Checks whether dateTime value is in list of dateTime list and returns the boolean result.",
+    "functionId": "is_in<dateTime>",
+    "functionLabel": "is_in_dateTime",
+    "parameters": [
+        {
+            "dataType": "dateTime",
+            "name": "value"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dateTime",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is_in"
+}

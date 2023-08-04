@@ -1,0 +1,57 @@
+{
+    "description": "Tests for regexp_match<x500Name> function.",
+    "functionId": "regexp_match<x500Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "CN=Foo,DC=xyz,DC=bar"
+                },
+                {
+                    "dataType": "string",
+                    "value": "CN=Foo,DC=.*,DC=bar"
+                }
+            ],
+            "description": "Matches",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "CN=Foo,DC=xyz,DC=abc"
+                },
+                {
+                    "dataType": "string",
+                    "value": "CN=Foo,DC=.*,DC=bar"
+                }
+            ],
+            "description": "Does not match",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "x500Name",
+                    "value": "CN=Foo,DC=xyz,DC=bar"
+                },
+                {
+                    "dataType": "string",
+                    "value": "CN=Foo,DC=.*,DC=bar)"
+                }
+            ],
+            "description": "Invalid expression test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

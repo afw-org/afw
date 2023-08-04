@@ -1,0 +1,5 @@
+{
+    "brief": "Core mode",
+    "modeId": "core",
+    "description": "This authorization mode is used for trusted internal code that does not generally require additional authorization."
+}

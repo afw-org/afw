@@ -1,0 +1,14 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Object type of the propertyTypes property of instances of _AdaptiveModelObjectType_.",
+    "objectType": "_AdaptiveModelPropertyTypes_",
+    "otherProperties": {
+        "brief": "Defines a Property Type within this Adaptive Model Object Type definition",
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveModelPropertyType_",
+        "description": "Defines a Property Type within this Adaptive Model Object Type definition."
+    }
+}

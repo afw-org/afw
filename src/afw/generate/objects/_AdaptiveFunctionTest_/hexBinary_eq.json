@@ -1,0 +1,57 @@
+{
+    "description": "Tests for eq<hexBinary> function.",
+    "functionId": "eq<hexBinary>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "0FB8"
+                },
+                {
+                    "dataType": "hexBinary",
+                    "value": "0fb8"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "0FB8"
+                },
+                {
+                    "dataType": "hexBinary",
+                    "value": "0eb8"
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "hexBinary",
+                    "value": "x"
+                },
+                {
+                    "dataType": "hexBinary",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

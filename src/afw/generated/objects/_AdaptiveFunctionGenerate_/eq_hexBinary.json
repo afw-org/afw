@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEqHexBinary",
+    "brief": "Checks for equal",
+    "camelCaseFunctionLabel": "eqHexBinary",
+    "category": "hexBinary",
+    "dataTypeMethod": true,
+    "description": "Determine if hexBinary arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use \"eqx\" (\"===\") instead if you want false to be returned if arg1 and arg2's data type don't match.",
+    "errorsThrown": [
+        {
+            "error": "conversion",
+            "reason": "arg2 cannot be converted to the data type of arg1."
+        }
+    ],
+    "functionId": "eq<hexBinary>",
+    "functionLabel": "eq_hexBinary",
+    "op": "==",
+    "parameters": [
+        {
+            "canBeUndefined": true,
+            "dataType": "hexBinary",
+            "name": "arg1"
+        },
+        {
+            "canBeUndefined": true,
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_eq"
+}

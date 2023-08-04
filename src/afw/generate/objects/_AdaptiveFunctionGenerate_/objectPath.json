@@ -1,0 +1,25 @@
+{
+    "brief": "Convert to data type objectPath",
+    "category": "objectPath",
+    "description": "Converts value to data type objectPath returning objectPath result.",
+    "errorsThrown": [
+        {
+            "error": "cast_error",
+            "reason": "value could not be converted"
+        }
+    ],
+    "functionId": "objectPath",
+    "functionLabel": "objectPath",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "Value to convert",
+            "name": "value"
+        }
+    ],
+    "returns": {
+        "dataType": "objectPath",
+        "description": "Converted value"
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagIpAddress",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "Takes any number of ipAddress values and returns a list of list.",
+    "functionId": "bag<ipAddress>",
+    "functionLabel": "bag_ipAddress",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "ipAddress",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "ipAddress"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

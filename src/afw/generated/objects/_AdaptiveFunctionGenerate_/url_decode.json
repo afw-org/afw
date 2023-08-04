@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUrlDecode",
+    "brief": "URL decode",
+    "camelCaseFunctionLabel": "urlDecode",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "URL decode a value or bag of values.",
+    "functionId": "url_decode",
+    "functionLabel": "url_decode",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "URL decode a single string or a bag of string.",
+            "name": "encoded"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "A string or bag of strings."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeDayTimeDuration",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeDayTimeDuration",
+    "category": "dayTimeDuration",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<dayTimeDuration>",
+    "functionLabel": "bag_size_dayTimeDuration",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "dayTimeDuration",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

@@ -1,0 +1,13 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object.",
+    "objectType": "_AdaptiveLdapMatchingRule_",
+    "otherProperties": {
+    }
+}

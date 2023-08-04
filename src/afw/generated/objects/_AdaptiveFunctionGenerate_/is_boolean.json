@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsBoolean",
+    "brief": "Checks whether value is dataType boolean",
+    "camelCaseFunctionLabel": "isBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType boolean and return the boolean result.",
+    "functionId": "is<boolean>",
+    "functionLabel": "is_boolean",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

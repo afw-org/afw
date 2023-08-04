@@ -1,0 +1,36 @@
+{
+    "description": "Tests for to_x500Name<string> function.",
+    "functionId": "to_x500Name<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "cn=John Smith,ou=Finance,o=Acme"
+                }
+            ],
+            "description": "Convert string to x500Name",
+            "result": {
+                "dataType": "x500Name",
+                "value": "cn=John Smith,ou=Finance,o=Acme"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                },
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

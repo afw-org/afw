@@ -1,0 +1,44 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Item for the Nav component",
+    "label": "Item",
+    "objectType": "_AdaptiveLayoutComponentType_Nav_Item",
+    "propertyTypes": {
+        "icon": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Icon for this Nav item.",
+            "label": "Icon"
+        },
+        "label": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Label for this Nav item.",
+            "label": "Label"
+        },
+        "url": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "Url for this Nav item.",
+            "label": "Url"
+        },
+        "selected": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Is the current Nav link selected.",
+            "label": "Is Selected"
+        },
+        "isExpanded": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Is the current Nav link expanded.",
+            "label": "Is Expanded"
+        }
+    }
+}

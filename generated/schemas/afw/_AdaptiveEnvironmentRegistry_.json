@@ -1,0 +1,27 @@
+{
+    "$defs": {
+        "_AdaptiveEnvironmentRegistry_": {
+            "additionalProperties": {
+                "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+                "type": "object"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveEnvironmentRegistry_.propertyTypes"
+                }
+            ],
+            "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+            "type": "object"
+        },
+        "_AdaptiveEnvironmentRegistry_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveEnvironmentRegistry_"
+        }
+    ]
+}

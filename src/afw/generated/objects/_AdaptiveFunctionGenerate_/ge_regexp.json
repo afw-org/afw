@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeRegexp",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geRegexp",
+    "category": "regexp",
+    "dataTypeMethod": true,
+    "description": "Checks for regexp arg1 is greater than or equal to regexp arg2 and return the boolean result.",
+    "functionId": "ge<regexp>",
+    "functionLabel": "ge_regexp",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "regexp",
+            "name": "arg1"
+        },
+        {
+            "dataType": "regexp",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

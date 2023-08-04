@@ -1,0 +1,97 @@
+{
+    "description": "Tests for match<rfc822Name> function.",
+    "functionId": "match<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                },
+                {
+                    "dataType": "string",
+                    "value": "localPart@DOMAINPART"
+                }
+            ],
+            "description": "domain part is not case sensitive",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "localPart@DOMAINPart"
+                },
+                {
+                    "dataType": "string",
+                    "value": "LOcalPart@DOMAINParT"
+                }
+            ],
+            "description": "local part is case sensitive",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "sun.com"
+                },
+                {
+                    "dataType": "string",
+                    "value": "anderson@SUN.COM"
+                }
+            ],
+            "description": "domain name is case insensitive",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": "sun.com"
+                },
+                {
+                    "dataType": "string",
+                    "value": "anderson@bobo.sun.com"
+                }
+            ],
+            "description": "extra part in domain name without leading dot is false",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "rfc822Name",
+                    "value": ".bobo.sun.com"
+                },
+                {
+                    "dataType": "string",
+                    "value": "anderson@abc.bobo.sun.com"
+                }
+            ],
+            "description": "extra part in domain name with leading dot is true",
+            "implemented": false,
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

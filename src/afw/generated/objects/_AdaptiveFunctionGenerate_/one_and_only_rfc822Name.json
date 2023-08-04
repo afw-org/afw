@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyRfc822Name",
+    "brief": "Converts a one value list to a rfc822Name value",
+    "camelCaseFunctionLabel": "oneAndOnlyRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "This converts a list of rfc822Name values that contains one value to a single rfc822Name value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<rfc822Name>",
+    "functionLabel": "one_and_only_rfc822Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "rfc822Name"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}

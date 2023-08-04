@@ -1,0 +1,29 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSubsetX500Name",
+    "brief": "Determines if the first list is a subset of second list",
+    "camelCaseFunctionLabel": "subsetX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Returns boolean true if the unique values in x500Name list1 are all in x500Name list2.",
+    "functionId": "subset<x500Name>",
+    "functionLabel": "subset_x500Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_subset"
+}

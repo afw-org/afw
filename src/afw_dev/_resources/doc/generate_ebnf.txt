@@ -1,0 +1,29 @@
+generate/ebnf/
+--------------
+
+This the generate/ebnf/ directory exists, all *.txt files other than README.txt
+will be processed.
+
+Each *.txt file will add a file to generated/ebnf/.
+
+Lines that begin with '#' are ignored.
+
+The first line that is not ignored is used as the filename of the file added to
+generated/ebnf/. Each of the following lines is a pattern used to search for files
+in the associated source subdir.
+
+Each matched source file is searched for ebnf to be added to generated/ebnf/
+file as follows:
+
+1) Lines that contain *ebnf>>> indicate the start of the ebnf up to a line that
+   contains *<<<ebnf.  A comment is emitted with the source file name and line
+   number.
+2) Lines in the ebnf that contain '*#' are comments.  Everything after the '*#'
+   will be emitted surrounded by '/*' and '*/\n'.
+3) Everything is ignored on each line up to the first '*'.  If there are no '*'
+   in a line, the whole line is used.
+4) Lines that contain '::=' represent the beginning of a production and determine
+   the indent for additional lines of the production.  Leading whitespace for the
+   '::=' line is removed.  An empty line followed by this line and the following
+   non-blank lines are emitted.
+

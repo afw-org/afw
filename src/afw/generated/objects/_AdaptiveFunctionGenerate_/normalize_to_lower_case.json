@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalizeToLowerCase",
+    "brief": "Converts to lower case",
+    "camelCaseFunctionLabel": "normalizeToLowerCase",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Normalize <dataType> value to lower case and returns <dataType> result.",
+    "functionId": "normalize_to_lower_case",
+    "functionLabel": "normalize_to_lower_case",
+    "parameters": [
+        {
+            "name": "string",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

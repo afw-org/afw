@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwRepeatString",
+    "brief": "Returns a repeated value",
+    "camelCaseFunctionLabel": "repeatString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Repeat a string value a specified number of times.",
+    "functionId": "repeat<string>",
+    "functionLabel": "repeat_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value to repeat.",
+            "name": "value"
+        },
+        {
+            "dataType": "integer",
+            "description": "The number of times to repeat the value.",
+            "name": "times"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The repeated string value."
+    },
+    "useExecuteFunction": "afw_function_execute_repeat"
+}

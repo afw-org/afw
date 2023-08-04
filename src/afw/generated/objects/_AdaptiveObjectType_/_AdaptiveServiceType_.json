@@ -1,0 +1,62 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive service type.",
+    "objectType": "_AdaptiveServiceType_",
+    "propertyTypes": {
+        "confType": {
+            "allowQuery": true,
+            "brief": "Conf type for this service type",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConfType_",
+            "description": "Conf type for this service type.",
+            "label": "Conf Type",
+            "runtime": {
+                "memberName": "conf_type_object"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "'Service type' description",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "'Service type' description.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "serviceType": {
+            "allowQuery": true,
+            "brief": "Configuration type id",
+            "dataType": "string",
+            "description": "Configuration type id.",
+            "label": "Service Type",
+            "runtime": {
+                "memberName": "service_type_id"
+            }
+        },
+        "title": {
+            "allowQuery": true,
+            "brief": "'Service type' title",
+            "dataType": "string",
+            "description": "'Service type' title.",
+            "label": "Title",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "service_type_id"
+        },
+        "typedef": "afw_service_type_t"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "category": "content",
+    "componentType": "Native",
+    "brief": "A component that displays a native HTML element.",
+    "description": "This component represents any additional native HTML node that is required by the end user, which is not covered by other components within this library.",
+    "implementationId": "Native",
+    "instanceObjectType": "_AdaptiveLayoutComponentType_Native",
+    "label": "Native"
+}

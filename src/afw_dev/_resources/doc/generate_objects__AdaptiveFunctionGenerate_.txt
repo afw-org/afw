@@ -1,0 +1,8 @@
+generate/objects/_AdaptiveFunctionGenerate_/
+--------------------------------------------
+
+The function objects from generate/objects/_AdaptiveFunctionGenerate_/ and
+generate/external/objects/_AdaptiveFunctionGenerate_/, plus
+the function objects produced by processing the
+generate/polymorphic_functions/_AdaptiveFunctionGenerate_/ are used to
+produce and maintain adaptive function related source files.

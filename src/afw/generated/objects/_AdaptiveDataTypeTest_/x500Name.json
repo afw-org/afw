@@ -1,0 +1,24 @@
+{
+    "dataType": "x500Name",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "CN=Steve Kille,O=Isode Limited,C=GB"
+        },
+        {
+            "value": "OU=Sales+CN=J. Smith,O=Widget Inc.,C=US"
+        },
+        {
+            "value": "CN=L. Eagle,O=Sue\\, Grabbit and Runn,C=GB"
+        },
+        {
+            "value": "CN=Before\\0DAfter,O=Test,C=GB"
+        },
+        {
+            "value": "1.3.6.1.4.1.1466.0=#04024869,O=Test,C=GB"
+        },
+        {
+            "value": "SN=Lu\\C4\\8Di\\C4\\87"
+        }
+    ]
+}

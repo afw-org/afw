@@ -1,0 +1,78 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIncludes",
+    "brief": "Checks whether the <dataType> value includes a string",
+    "camelCaseFunctionLabel": "includes",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Checks whether the <dataType> value includes a string and return the boolean result.",
+    "functionId": "includes",
+    "functionLabel": "includes",
+    "parameters": [
+        {
+            "brief": "The <dataType> to search",
+            "description": "The <dataType> to search.",
+            "name": "searchString",
+            "polymorphicDataType": true
+        },
+        {
+            "brief": "Substring to find",
+            "dataType": "string",
+            "description": "Substring to find.",
+            "name": "subString"
+        },
+        {
+            "brief": "Zero-based position in the search string to start search",
+            "dataType": "integer",
+            "description": "Zero-based position in the search string to start search.",
+            "name": "position",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "list",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_includes",
+    "polymorphicOverrides": {
+        "list": {
+            "brief": "Checks whether or not a list contains any value",
+            "description": "Checks whether or not a list contains any value.",
+            "parameters": [
+                {
+                    "brief": "The list to search",
+                    "dataType": "list",
+                    "description": "The list to search.",
+                    "name": "list",
+                    "polymorphicDataType": true
+                },
+                {
+                    "brief": "Element to find",
+                    "description": "Element to find.",
+                    "name": "searchElement"
+                },
+                {
+                    "brief": "Index in the list to start",
+                    "dataType": "integer",
+                    "description": "Index in the list to start search.",
+                    "name": "fromIndex",
+                    "optional": true
+                }
+            ],
+            "returns": {
+                "brief": "Indicates if the element is found",
+                "dataType": "boolean",
+                "description": "Indicates if the element is found in list."
+            },
+            "useExecuteFunction": "afw_function_execute_includes_list"
+        }
+    },
+    "pure": true,
+    "returns": {
+        "brief": "Indicates if the substring is found",
+        "dataType": "boolean",
+        "description": "Indicates if the substring is contained in the search string."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

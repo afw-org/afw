@@ -1,0 +1,70 @@
+{
+    "description": "Tests for substring<string> function.",
+    "functionId": "substring<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "description": "string substring test abc 0 1",
+            "result": {
+                "dataType": "string",
+                "value": "a"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "description": "string substring test abc 1 2",
+            "result": {
+                "dataType": "string",
+                "value": "b"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "abc"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-1"
+                }
+            ],
+            "description": "string substring test abc 1 -1",
+            "result": {
+                "dataType": "string",
+                "value": "bc"
+            }
+        }
+    ]
+}

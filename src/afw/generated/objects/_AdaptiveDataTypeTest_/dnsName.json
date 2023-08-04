@@ -1,0 +1,18 @@
+{
+    "dataType": "dnsName",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "example.com"
+        },
+        {
+            "value": "*.example.com"
+        },
+        {
+            "value": "www.example.com"
+        },
+        {
+            "value": "www.example.com:80"
+        }
+    ]
+}

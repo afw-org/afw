@@ -1,0 +1,58 @@
+{
+    "description": "Tests for add_dayTimeDuration<dateTime> function.",
+    "functionId": "add_dayTimeDuration<dateTime>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                },
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "P1D"
+                }
+            ],
+            "description": "Add a day",
+            "result": {
+                "dataType": "dateTime",
+                "value": "2004-04-13T13:20:00"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                },
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "P1DT1H"
+                }
+            ],
+            "description": "Add a day and an hour",
+            "result": {
+                "dataType": "dateTime",
+                "value": "2004-04-13T14:20:00"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "dateTime",
+                    "value": "2004-04-12T13:20:00"
+                },
+                {
+                    "dataType": "dayTimeDuration",
+                    "value": "P1DT1H1M30.5S"
+                }
+            ],
+            "description": "Add a day and an hour and a second",
+            "result": {
+                "dataType": "dateTime",
+                "value": "2004-04-13T14:21:30.5"
+            }
+        }
+    ]
+}

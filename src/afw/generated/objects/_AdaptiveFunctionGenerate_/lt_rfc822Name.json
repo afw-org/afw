@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtRfc822Name",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltRfc822Name",
+    "category": "rfc822Name",
+    "dataTypeMethod": true,
+    "description": "Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the boolean result.",
+    "functionId": "lt<rfc822Name>",
+    "functionLabel": "lt_rfc822Name",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "rfc822Name",
+            "name": "arg1"
+        },
+        {
+            "dataType": "rfc822Name",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

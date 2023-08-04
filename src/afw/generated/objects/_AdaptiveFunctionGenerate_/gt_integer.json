@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtInteger",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "Checks for integer arg1 is greater than integer arg2 and return the boolean result.",
+    "functionId": "gt<integer>",
+    "functionLabel": "gt_integer",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "name": "arg1"
+        },
+        {
+            "dataType": "integer",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

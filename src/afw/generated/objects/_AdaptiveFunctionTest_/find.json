@@ -1,0 +1,61 @@
+{
+    "description": "Tests for find function.",
+    "functionId": "find",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "lt"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "integer",
+                    "value": [
+                        "2",
+                        "9",
+                        "4",
+                        "0"
+                    ]
+                }
+            ],
+            "description": "Test find function with integers.",
+            "result": {
+                "dataType": "integer",
+                "value": "9"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "gt"
+                },
+                {
+                    "dataType": "string",
+                    "value": "mmmmm"
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "string",
+                    "value": [
+                        "mmmmm",
+                        "zzzzz",
+                        "aaaaa",
+                        "nnnnn"
+                    ]
+                }
+            ],
+            "description": "Test find function with strings.",
+            "result": {
+                "dataType": "string",
+                "value": "aaaaa"
+            }
+        }
+    ]
+}

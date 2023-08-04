@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToStringAnyURI",
+    "brief": "Converts value to string",
+    "camelCaseFunctionLabel": "toStringAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Converts anyURI value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "functionId": "to_string<anyURI>",
+    "functionLabel": "to_string_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "A anyURI value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The string representation of the value."
+    },
+    "useExecuteFunction": "afw_function_execute_convert"
+}

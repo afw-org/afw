@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagDate",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Takes any number of date values and returns a list of list.",
+    "functionId": "bag<date>",
+    "functionLabel": "bag_date",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "date",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "date"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

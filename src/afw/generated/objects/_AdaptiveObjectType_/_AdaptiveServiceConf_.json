@@ -1,0 +1,42 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "An adaptive service.",
+    "objectIdPropertyName": "serviceId",
+    "objectType": "_AdaptiveServiceConf_",
+    "propertyTypes": {
+        "annotation": {
+            "brief": "Annotation object",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveAnnotation_",
+            "description": "Annotation object",
+            "label": "Annotation"
+        },
+        "conf": {
+            "brief": "The configuration object",
+            "dataType": "object",
+            "description": "Configuration object. The object must have type and id property where type is a supported value.",
+            "label": "Conf"
+        },
+        "serviceId": {
+            "allowQuery": true,
+            "brief": "The unique service id",
+            "dataType": "string",
+            "description": "Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".",
+            "label": "Service Id"
+        },
+        "startup": {
+            "allowQuery": true,
+            "brief": "Service startup condition",
+            "dataType": "string",
+            "defaultValue": "manual",
+            "description": "Service startup condition specifies how the service should be started. Choose 'manual', if you intend to start the service by hand. Choose 'immediate' if the service should be started as soon as it as loaded. Services defined in the main configuration file are 'permanent', which are started immediately and cannot be stopped.",
+            "label": "Startup"
+        }
+    }
+}

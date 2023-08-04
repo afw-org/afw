@@ -1,0 +1,30 @@
+{
+    "dataType": "string",
+    "implemented": true,
+    "tests": [
+        {
+            "value": "This is a string!"
+        },
+        {
+            "value": "\u00c9dition fran\u00e7aise."
+        },
+        {
+            "value": "\u3053\u308c\u306f\u65e5\u672c\u306e\u6587\u5b57\u5217\u3067\u3059\u3002"
+        },
+        {
+            "value": "12.5"
+        },
+        {
+            "value": "None"
+        },
+        {
+            "value": "PB&J"
+        },
+        {
+            "value": "Separated   by   3   spaces."
+        },
+        {
+            "value": "This\n\t\t\tis on two lines."
+        }
+    ]
+}

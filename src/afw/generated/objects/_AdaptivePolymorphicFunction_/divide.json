@@ -1,0 +1,28 @@
+{
+    "brief": "Divide numbers",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Divide <dataType> dividend by <dataType> divisor and return the <dataType> quotient.",
+    "functionId": "divide",
+    "functionLabel": "divide",
+    "pure": true,
+    "op": "/",
+    "parameters": [
+        {
+            "name": "dividend",
+            "polymorphicDataType": true
+        },
+        {
+            "name": "divisor",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    }
+}

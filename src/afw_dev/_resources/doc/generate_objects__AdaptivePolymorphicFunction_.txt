@@ -1,0 +1,25 @@
+generate/objects/_AdaptivePolymorphicFunction_/
+-----------------------------------------------
+
+Currently only available in core afw/ directory.
+
+This directory can contain an _AdaptivePolymorphicFunction_ objects
+that produce the appropriate _AdaptiveFunctionGenerate_ objects.
+
+These objects must have:
+
+	"dataTypeMethod": true,
+	"polymorphic": true,
+	"polymorphicDataTypes": [ list of supported data types]
+
+These objects can also have:
+
+	"polymorphicExecuteFunction": is the useExecuteFunction for all the data types
+	"polymorphicOverrides": is overrides for specific data types
+	
+See the object type object _AdaptivePolymorphicFunction_ for more information.
+
+This directory is provided for convenience.  The same results can be
+obtained by using another means to add the polymorphic function object
+plus a function objects for the polymorphic data types to the
+objects/_AdaptiveFunctionGenerate_/ directory.

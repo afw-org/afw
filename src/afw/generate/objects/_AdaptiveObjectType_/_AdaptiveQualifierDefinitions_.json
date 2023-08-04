@@ -1,0 +1,12 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name.",
+    "objectType": "_AdaptiveQualifierDefinitions_",
+    "otherProperties": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptivePropertyTypes_"
+    }
+}

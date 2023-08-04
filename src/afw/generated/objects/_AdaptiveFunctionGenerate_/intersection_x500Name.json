@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIntersectionX500Name",
+    "brief": "Returns intersection of two lists",
+    "camelCaseFunctionLabel": "intersectionX500Name",
+    "category": "x500Name",
+    "dataTypeMethod": true,
+    "description": "Returns a list of x500Name with the values that are common to both list of x500Name list1 and list2.",
+    "functionId": "intersection<x500Name>",
+    "functionLabel": "intersection_x500Name",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "description": "The first list.",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "dataTypeParameter": "x500Name",
+            "description": "The second list.",
+            "name": "list2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "x500Name"
+    },
+    "useExecuteFunction": "afw_function_execute_intersection"
+}

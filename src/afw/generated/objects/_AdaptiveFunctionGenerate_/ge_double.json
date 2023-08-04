@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeDouble",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Checks for double arg1 is greater than or equal to double arg2 and return the boolean result.",
+    "functionId": "ge<double>",
+    "functionLabel": "ge_double",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "arg1"
+        },
+        {
+            "dataType": "double",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

@@ -1,0 +1,47 @@
+#
+# CMake Config file for Adaptive Framework Core library (afw/libafw).
+#
+
+# Call the macro to initialize the package
+@PACKAGE_INIT@
+
+# The name of the project
+set(@PROJECT_NAME@_NAME "@PROJECT_NAME@")
+
+set(@PROJECT_NAME@_VERSION "@PROJECT_VERSION@")
+
+# The library target for the project
+set(@PROJECT_NAME@_LIBRARY "@PROJECT_NAME@")
+
+# The path to the headers for the project
+set(@PROJECT_NAME@_INCLUDE_DIR "@AFW_PACKAGE_INSTALL_FULL_INCLUDEDIR@")
+
+# The path to the libraries for the project
+set(@PROJECT_NAME@_LIBRARY_DIR "@AFW_PACKAGE_INSTALL_FULL_LIBDIR@")
+
+# Include project's version config
+include("@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@/@PROJECT_NAME@-config-version.cmake")
+
+# Include exported targets
+include("@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@/@PROJECT_NAME@_EXPORTED_TARGETS.cmake")
+
+# Include afw_macros
+include("@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@/afw_macros.cmake")
+
+# Find the dependencies
+include(CMakeFindDependencyMacro)
+set(AFW_APR_DIR "@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@")
+find_dependency(AFW_APR)
+set(AFW_APRUTIL_DIR "@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@")
+find_dependency(AFW_APRUTIL)
+find_dependency(ICU COMPONENTS uc i18n)
+find_dependency(LibXml2)
+
+# Display variables
+message(STATUS "@PROJECT_NAME@_NAME = ${@PROJECT_NAME@_NAME}")
+message(STATUS "@PROJECT_NAME@_VERSION = ${@PROJECT_NAME@_VERSION}")
+message(STATUS "@PROJECT_NAME@_LIBRARY = ${@PROJECT_NAME@_LIBRARY}")
+message(STATUS "@PROJECT_NAME@_INCLUDE_DIR = ${@PROJECT_NAME@_INCLUDE_DIR}")
+message(STATUS "@PROJECT_NAME@_LIBRARY_DIR = ${@PROJECT_NAME@_LIBRARY_DIR}")
+
+@PACKAGE_END@

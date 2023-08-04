@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagExpression",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagExpression",
+    "category": "expression",
+    "dataTypeMethod": true,
+    "description": "Takes any number of expression values and returns a list of list.",
+    "functionId": "bag<expression>",
+    "functionLabel": "bag_expression",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "expression",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "expression"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

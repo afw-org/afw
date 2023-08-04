@@ -1,0 +1,17 @@
+FROM alpine:3.16.6
+
+LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+
+RUN apk add --no-cache build-base libtool clang-analyzer py3-clang \
+    apr-dev fcgi-dev libxml2-dev libxslt-dev apache2-dev cmake \
+    python3 python3-dev py3-pip openjdk8 valgrind libunwind-dev \
+    elfutils-dev yaml-dev curl-dev icu-libs icu-dev doxygen bash \
+    db-dev lmdb-dev git alpine-sdk sudo libexecinfo-dev nodejs npm
+
+COPY python-requirements.txt /tmp/python-requirements.txt
+RUN pip3 install -r /tmp/python-requirements.txt
+
+# install railroad ebnf syntax diagram generator
+ADD https://github.com/afw-org/rr/releases/download/v1.63/rr.war /usr/local/bin/rr.war
+
+CMD [ "bash" ]

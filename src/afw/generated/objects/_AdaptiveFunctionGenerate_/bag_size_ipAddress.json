@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagSizeIpAddress",
+    "brief": "Returns the number of values in a bag",
+    "camelCaseFunctionLabel": "bagSizeIpAddress",
+    "category": "ipAddress",
+    "dataTypeMethod": true,
+    "description": "This returns the integer number of values in list.",
+    "functionId": "bag_size<ipAddress>",
+    "functionLabel": "bag_size_ipAddress",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "ipAddress",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_bag_size"
+}

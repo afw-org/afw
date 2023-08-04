@@ -1,0 +1,52 @@
+{
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout definition for the Table component.",
+    "label": "Table Layout",
+    "objectType": "_AdaptiveLayoutComponentType_Table",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes"
+            ]
+        },
+        "columns": {
+            "allowWrite": true,
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveLayoutComponentType_Table_Column",
+            "description": "The columns that are defined for this Table component.",
+            "label": "Columns",
+            "required": true
+        },
+        "compact": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates whether this Table compact appears compact.",
+            "label": "Compact"
+        },
+        "isHeaderVisible": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Indicates whether this Table displays column headers.",
+            "label": "Header Visible"
+        },
+        "rows": {
+            "allowWrite": true,
+            "dataType": "list",
+            "description": "The rows that are defined for this Table component.",
+            "label": "Rows",
+            "required": true
+        },
+        "selectionMode": {
+            "allowWrite": true,
+            "dataType": "string",
+            "description": "The selection mode for this table (none, single, multiple).",
+            "label": "Selection Mode"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "brief": "Decode <dataType> to string",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Decode <dataType> value to string. An error is thrown if decoded value is not valid UTF-8.",
+    "functionId": "decode_to_string",
+    "functionLabel": "decode_to_string",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true,
+            "description": "The <dataType> value to decode."
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "base64Binary",
+        "hexBinary"
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "The decoded string."
+    }
+}

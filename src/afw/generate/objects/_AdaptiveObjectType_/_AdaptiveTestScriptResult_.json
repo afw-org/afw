@@ -1,0 +1,49 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This is the object type of objects produced by evaluating a test script.",
+    "objectType": "_AdaptiveTestScriptResult_",
+    "otherProperties": {
+        "dataType": "string",
+        "description": "This is a custom key:string specified in the TestScriptHeader."
+    },
+    "propertyTypes": {
+        "description": {
+            "brief": "description:",
+            "dataType": "string",
+            "description": "This is the value of \"description:\".",
+            "label": "Description"
+        },
+        "source": {
+            "brief": "Test script source",
+            "dataType": "string",
+            "description": "This is the full source of the test script.",
+            "label": "Test Script Source",
+            "required": true
+        },
+        "sourceType": {
+            "brief": "sourceType:",
+            "dataType": "string",
+            "description": "This is the value of \"sourceType:\". It is used as the default for tests that do not have one specified.",
+            "label": "Source Type",
+            "required": true
+        },
+        "testScript": {
+            "brief": "testScript:",
+            "dataType": "string",
+            "description": "This is the value of \"testScript:\".",
+            "label": "Test Script Name",
+            "required": true
+        },
+        "tests": {
+            "brief": "List of test results",
+            "dataType": "list",
+            "dataTypeParameter": "object _AdaptiveTestScriptTestResult_",
+            "description": "This is a list of the test results.",
+            "label": "Tests",
+            "required": true
+        }
+    }
+}

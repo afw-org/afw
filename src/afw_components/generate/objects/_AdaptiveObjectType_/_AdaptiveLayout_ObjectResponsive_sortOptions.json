@@ -1,0 +1,39 @@
+{    
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Layout parameters for ObjectForm sort options.",
+    "objectType": "_AdaptiveLayout_ObjectResponsive_sortOptions",
+    "propertyTypes": {      
+        "recurse": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "Recurse sort options to embedded objects.",
+            "label": "Recurse",
+            "defaultValue": true
+        },
+        "sortByDataType": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The properties should be sorted by their data type.",
+            "label": "Sort By Data Type"
+        },
+        "sortByPropertyName": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "The properties should be sorted by their property name.",
+            "label": "Sort By Property Name"
+        },
+        "sortByRequired": {
+            "allowWrite": true,
+            "dataType": "boolean",
+            "description": "The required properties should be sorted before optional properties.",
+            "label": "Sort By Required"
+        }
+    }
+}

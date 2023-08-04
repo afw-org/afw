@@ -1,0 +1,115 @@
+{
+    "result": [
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_splunk",
+                "objectId": "afw_splunk",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_splunk",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_lmdb",
+                "objectId": "afw_lmdb",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_lmdb",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_authorization_policy",
+                "objectId": "afw_authorization_policy",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_authorization_policy",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_sql",
+                "objectId": "afw_sql",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_sql",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_ldap",
+                "objectId": "afw_ldap",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_ldap",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_xml",
+                "objectId": "afw_xml",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_xml",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_ubjson",
+                "objectId": "afw_ubjson",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_ubjson",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_yaml",
+                "objectId": "afw_yaml",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_yaml",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_xacml",
+                "objectId": "afw_xacml",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_xacml",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_components",
+                "objectId": "afw_components",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.1.0",
+            "extensionId": "afw_components",
+            "afwCompiledVersion": "0.7.7-dev"
+        },
+        {
+            "_meta_": {
+                "path": "/afw/_AdaptiveExtension_/afw_dbd",
+                "objectId": "afw_dbd",
+                "objectType": "_AdaptiveExtension_"
+            },
+            "extensionVersion": "0.0.1",
+            "extensionId": "afw_dbd",
+            "afwCompiledVersion": "0.7.7-dev"
+        }
+    ],
+    "status": "success"
+}

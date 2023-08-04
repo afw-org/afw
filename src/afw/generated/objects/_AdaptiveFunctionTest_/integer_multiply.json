@@ -1,0 +1,134 @@
+{
+    "description": "Tests for multiply<integer> function.",
+    "functionId": "multiply<integer>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "description": "5 x 4 x 3 x 2 x 1",
+            "result": {
+                "dataType": "integer",
+                "value": "120"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-5"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "description": "-5 x -4 x -3 x 2 x 1",
+            "result": {
+                "dataType": "integer",
+                "value": "-120"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "-4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "9223372036854775806"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "description": "Positive Overflow",
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "4"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-9223372036854775806"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "description": "Negative Overflow",
+            "implemented": false,
+            "result": {
+                "error": true
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "integer",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

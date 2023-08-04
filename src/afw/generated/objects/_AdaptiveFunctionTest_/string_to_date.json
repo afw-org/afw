@@ -1,0 +1,46 @@
+{
+    "description": "Tests for to_date<string> function.",
+    "functionId": "to_date<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "1970-01-01"
+                }
+            ],
+            "description": "One",
+            "result": {
+                "dataType": "date",
+                "value": "1970-01-01"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "-1970-01-01"
+                }
+            ],
+            "description": "Two",
+            "result": {
+                "dataType": "date",
+                "value": "-1970-01-01"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "1970-01-01+05:00"
+                }
+            ],
+            "description": "Three",
+            "result": {
+                "dataType": "date",
+                "value": "1970-01-01+05:00"
+            }
+        }
+    ]
+}

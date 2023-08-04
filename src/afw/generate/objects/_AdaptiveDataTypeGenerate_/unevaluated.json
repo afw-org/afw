@@ -1,0 +1,10 @@
+{
+    "brief": "An unevaluated value produced by compile",
+    "cType": "const afw_value_t *",
+    "dataType": "unevaluated",
+    "dataTypeParameterType":  "Type",
+    "description": "This is a value produced by any of the Adaptive compile functions that can be evaluated using the evaluate() function.",
+    "directReturn": true,
+    "relationalCompares": false,
+    "scalar": false
+}

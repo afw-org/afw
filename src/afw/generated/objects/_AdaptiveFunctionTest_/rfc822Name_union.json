@@ -1,0 +1,72 @@
+{
+    "description": "Tests for union<rfc822Name> function.",
+    "functionId": "union<rfc822Name>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart2",
+                        "localPart@DOMAINPart"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "rfc822Name",
+                "value": [
+                    "localPart@DOMAINPart",
+                    "localPart@DOMAINPart2"
+                ]
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart",
+                        "localPart@DOMAINPart2"
+                    ]
+                },
+                {
+                    "dataType": "bag",
+                    "dataTypeParameter": "rfc822Name",
+                    "value": [
+                        "localPart@DOMAINPart2",
+                        "localPart@DOMAINPart3"
+                    ]
+                }
+            ],
+            "description": "x",
+            "result": {
+                "dataType": "bag",
+                "dataTypeParameter": "rfc822Name",
+                "value": [
+                    "localPart@DOMAINPart",
+                    "localPart@DOMAINPart2",
+                    "localPart@DOMAINPart3"
+                ]
+            }
+        },
+        {
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

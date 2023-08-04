@@ -1,0 +1,11 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveApplicationComponents_/current",
+            "objectId": "current",
+            "objectType": "_AdaptiveApplicationComponents_"
+        },
+        "load": true
+    },
+    "status": "success"
+}

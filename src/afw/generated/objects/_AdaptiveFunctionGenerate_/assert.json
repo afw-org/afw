@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAssert",
+    "brief": "Assert a value",
+    "camelCaseFunctionLabel": "assert",
+    "category": "compiler",
+    "description": "Assert that a value is true. If not, an assertion_failed error is thrown.",
+    "functionId": "assert",
+    "functionLabel": "assert",
+    "parameters": [
+        {
+            "brief": "Assertion",
+            "dataType": "boolean",
+            "description": "This is the assertion to make. If not true, an assertion_failed error is thrown.",
+            "name": "assertion"
+        },
+        {
+            "brief": "Reason",
+            "dataType": "string",
+            "description": "This is an optional reason to include in the assertion_failed message.",
+            "name": "reason",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "null"
+    }
+}

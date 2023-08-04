@@ -1,0 +1,13 @@
+# This is the .pc config file for the Adaptive Framework core library.
+
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@AFW_PACKAGE_INSTALL_LIBDIR@
+includedir=${prefix}/@AFW_PACKAGE_INSTALL_INCLUDEDIR@
+
+Name: @PROJECT_NAME@
+Description: Adaptive Framework core library
+Version: @PROJECT_VERSION@
+Requires: apr, apr-util
+Libs: -L${libdir} -lafw -lapr-1 -laprutil-1 -licui18n -licuuc -licudata
+Cflags: -I${includedir}

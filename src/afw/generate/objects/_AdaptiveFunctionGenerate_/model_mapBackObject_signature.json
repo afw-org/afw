@@ -1,0 +1,21 @@
+{
+    "brief": "Signature used for current:mapBackObject()",
+    "category": "model",
+    "description": "This is the function signature for current:mapBackObject used by onGetObjects and onRetrieveObjects. Calling this directly will throw a \"Do not call directly\" error.",
+    "functionId": "model_mapBackObject_signature",
+    "functionLabel": "model_mapBackObject_signature",
+    "parameters": [
+        {
+            "dataType": "object",
+            "brief": "The object to map back",
+            "description": "This is the object to map back.",
+            "name": "mappedObject"
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "brief": "The mapped back object",
+        "description": "This is the mappedObject mapped back from mapped adaptor object."
+    },
+    "signatureOnly": true
+}

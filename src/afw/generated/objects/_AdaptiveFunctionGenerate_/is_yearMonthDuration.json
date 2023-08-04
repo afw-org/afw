@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsYearMonthDuration",
+    "brief": "Checks whether value is dataType yearMonthDuration",
+    "camelCaseFunctionLabel": "isYearMonthDuration",
+    "category": "yearMonthDuration",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType yearMonthDuration and return the boolean result.",
+    "functionId": "is<yearMonthDuration>",
+    "functionLabel": "is_yearMonthDuration",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

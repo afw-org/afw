@@ -1,0 +1,38 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "The object type for properties in the \"propertyTypes\" property of an object's meta.",
+    "objectType": "_AdaptiveMetaPropertyType_",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveValueMeta_/propertyTypes"
+            ]
+        },
+        "allowWrite": {
+            "brief": "This property is read-only",
+            "dataType": "boolean",
+            "defaultValue": true,
+            "description": "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adaptor.",
+            "label": "Allow Write"
+        },
+        "errors": {
+            "brief": "Property errors",
+            "dataType": "list",
+            "dataTypeParameter": "string",
+            "description": "Property errors.",
+            "label": "Errors"
+        },
+        "inheritedFrom": {
+            "allowQuery": false,
+            "allowWrite": false,
+            "brief": "The URI where this value was inherited from",
+            "dataType": "anyURI",
+            "description": "This is the URI where this value is inherited from. This property is added by object option composite.",
+            "label": "Inherited From"
+        }
+    }
+}

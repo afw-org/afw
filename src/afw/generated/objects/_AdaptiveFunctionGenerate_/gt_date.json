@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtDate",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtDate",
+    "category": "date",
+    "dataTypeMethod": true,
+    "description": "Checks for date arg1 is greater than date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned.",
+    "functionId": "gt<date>",
+    "functionLabel": "gt_date",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "date",
+            "name": "arg1"
+        },
+        {
+            "dataType": "date",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

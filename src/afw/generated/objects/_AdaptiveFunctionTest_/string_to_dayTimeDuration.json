@@ -1,0 +1,45 @@
+{
+    "description": "Tests for to_dayTimeDuration<string> function.",
+    "functionId": "to_dayTimeDuration<string>",
+    "implemented": true,
+    "tests": [
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "-P1DT10H30M"
+                }
+            ],
+            "description": "-P1DT10H30M",
+            "result": {
+                "dataType": "dayTimeDuration",
+                "value": "-P1DT10H30M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "P1DT10H30M"
+                }
+            ],
+            "description": "P1DT10H30M",
+            "result": {
+                "dataType": "dayTimeDuration",
+                "value": "P1DT10H30M"
+            }
+        },
+        {
+            "arguments": [
+                {
+                    "dataType": "string",
+                    "value": "x"
+                }
+            ],
+            "description": "Invalid arguments test.",
+            "result": {
+                "error": true
+            }
+        }
+    ]
+}

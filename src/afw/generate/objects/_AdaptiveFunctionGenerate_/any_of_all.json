@@ -1,0 +1,28 @@
+{
+    "additionalArgCheck": true,
+    "brief": "Combinations of any in list1 and all in list2 true",
+    "category": "higher_order_list",
+    "description": "Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true.",
+    "functionId": "any_of_all",
+    "functionLabel": "any_of_all",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(value1: any, value2: any):boolean",
+            "description": "The predicate is passed two parameters, the first is a value from list1 and the second is a value from list2.",
+            "name": "predicate"
+        },
+        {
+            "dataType": "list",
+            "name": "list1"
+        },
+        {
+            "dataType": "list",
+            "name": "list2"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

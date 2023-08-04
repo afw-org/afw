@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwUnionBoolean",
+    "brief": "Returns union of two or more string lists",
+    "camelCaseFunctionLabel": "unionBoolean",
+    "category": "boolean",
+    "dataTypeMethod": true,
+    "description": "Returns a list of boolean contains all of the unique values in two or more list of boolean values.",
+    "functionId": "union<boolean>",
+    "functionLabel": "union_boolean",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "boolean",
+            "description": "Two or more lists.",
+            "minArgs": 2,
+            "name": "lists"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "list",
+        "dataTypeParameter": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_union"
+}

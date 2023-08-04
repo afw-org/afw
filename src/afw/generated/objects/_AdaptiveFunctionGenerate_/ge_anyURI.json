@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeAnyURI",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return the boolean result.",
+    "functionId": "ge<anyURI>",
+    "functionLabel": "ge_anyURI",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "name": "arg1"
+        },
+        {
+            "dataType": "anyURI",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

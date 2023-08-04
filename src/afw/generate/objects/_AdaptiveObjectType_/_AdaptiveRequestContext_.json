@@ -1,0 +1,20 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Request subject.",
+    "objectType": "_AdaptiveRequestContext_",
+    "otherProperties": {},
+    "propertyTypes": {
+        "subjectCategories": {
+            "brief": "The initiator of the request",
+            "dataType": "list",
+            "description": "The initiator of the request.",
+            "label": "Subject"
+        }
+    }
+}

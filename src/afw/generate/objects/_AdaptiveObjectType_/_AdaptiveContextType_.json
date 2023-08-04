@@ -1,0 +1,44 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime log information.",
+    "objectIdPropertyName": "contextTypeId",
+    "objectType": "_AdaptiveContextType_",
+    "propertyTypes": {
+        "contextTypeId": {
+            "allowQuery": true,
+            "brief": "This is the context type id",
+            "dataType": "string",
+            "description": "This is the context type id. For context types related to conf objects, the id should be the type followed by an optional dash and subtype. For example, the id for conf type log logType standard must be log-standard.",
+            "label": "Context Type Id"
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this context type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of this context type.",
+            "label": "Description"
+        },
+        "qualifierDefinitions": {
+            "allowQuery": false,
+            "brief": "Qualifiers that can be used in log related expressions",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveQualifierDefinitions_",
+            "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+            "label": "Qualifiers"
+        },
+        "title": {
+            "allowQuery": true,
+            "brief": "Title of this context type",
+            "dataType": "string",
+            "description": "Title of this context type.",
+            "label": "Title"
+        }
+    }
+}

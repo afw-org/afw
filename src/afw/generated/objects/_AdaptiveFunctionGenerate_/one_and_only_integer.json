@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwOneAndOnlyInteger",
+    "brief": "Converts a one value list to a integer value",
+    "camelCaseFunctionLabel": "oneAndOnlyInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "This converts a list of integer values that contains one value to a single integer value.",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "list does not contain exactly one value"
+        }
+    ],
+    "functionId": "one_and_only<integer>",
+    "functionLabel": "one_and_only_integer",
+    "parameters": [
+        {
+            "dataType": "list",
+            "dataTypeParameter": "list",
+            "name": "list"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer"
+    },
+    "useExecuteFunction": "afw_function_execute_one_and_only"
+}
