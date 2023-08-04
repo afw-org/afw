@@ -233,7 +233,7 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
             &afw_s_a_flag_compile_noImplicitAny,
             xctx)->flag_index;
 
-   /* Register flag compile:noOptimize */
+    /* Register flag compile:noOptimize */
     afw_flag_environment_register_flag(
         &afw_s_a_flag_compile_noOptimize,
         &afw_s_a_flag_compile_noOptimize_brief,
