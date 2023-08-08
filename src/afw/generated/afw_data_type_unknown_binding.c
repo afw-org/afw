@@ -18,7 +18,7 @@
 
 
 /**
- * @file afw_data_type_any_binding.c
+ * @file afw_data_type_unknown_binding.c
  * @brief Adaptive Framework core data types.
  */
 
@@ -67,19 +67,19 @@ impl_afw_value_permanent_get_reference(
 #define impl_afw_value_optional_evaluate NULL
 
 /* Inf specific is always data type. */
-#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_any_direct
+#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_unknown_direct
 
 /* Define inf variables for data_type and is_evaluated_of_data_type. */
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
-    (const void *)&afw_data_type_any_direct, \
-    (const void *)&afw_data_type_any_direct
+    (const void *)&afw_data_type_unknown_direct, \
+    (const void *)&afw_data_type_unknown_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged any values. For this one */
+/* This is the inf for unmanaged unknown values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "any"
+#define AFW_IMPLEMENTATION_ID "unknown"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_any_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_unknown_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference impl_afw_value_unmanaged_get_reference
 #include "afw_value_impl_declares.h"
@@ -89,10 +89,10 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_get_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed any values. For this one */
+/* This is the inf for managed unknown values. For this one */
 /* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "managed_any"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_any_inf
+#define AFW_IMPLEMENTATION_ID "managed_unknown"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_unknown_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
 #define AFW_VALUE_INF_ONLY 1
@@ -104,10 +104,10 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent any values. For this one */
+/* This is the inf for permanent unknown values. For this one */
 /* optional_release is NULL and get_reference returns instance asis. */
-#define AFW_IMPLEMENTATION_ID "permanent_any"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_any_inf
+#define AFW_IMPLEMENTATION_ID "permanent_unknown"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_unknown_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
 #define AFW_VALUE_INF_ONLY 1
@@ -119,64 +119,64 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
-impl_data_type_any_id_value = {
+impl_data_type_unknown_id_value = {
     &afw_value_evaluated_string_inf,
-    AFW_UTF8_LITERAL("any")
+    AFW_UTF8_LITERAL("unknown")
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_data_type_any_id_value =
+afw_data_type_unknown_id_value =
 {
-    (const afw_value_t *)&impl_data_type_any_id_value
+    (const afw_value_t *)&impl_data_type_unknown_id_value
 };
 
 static const afw_utf8_t
-impl_data_type_path_any =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/any");
+impl_data_type_path_unknown =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/unknown");
 
-/* Data type any object. */
+/* Data type unknown object. */
 static const afw_runtime_object_indirect_t
-impl_data_type_object_any = {
+impl_data_type_object_unknown = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
         {
             NULL,
             NULL,
-            &afw_s_any,
+            &afw_s_unknown,
             &afw_s__AdaptiveDataType_,
-            &impl_data_type_path_any
+            &impl_data_type_path_unknown
         }
     },
-    (void *)&afw_data_type_any_direct
+    (void *)&afw_data_type_unknown_direct
 };
 
-/* Value for empty list of any. */
+/* Value for empty list of unknown. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_any;
+impl_empty_list_of_unknown;
 
-/* Value for empty list of any. */
+/* Value for empty list of unknown. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_any;
+impl_value_empty_list_of_unknown;
 
-/* Data type any instance. */
+/* Data type unknown instance. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
-afw_data_type_any_direct = {
-    &afw_data_type_any_inf,
-    (const afw_object_t *)&impl_data_type_object_any,
-    AFW_UTF8_LITERAL("any"),
-    AFW_UTF8_LITERAL("Unrestricted type"),
-    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type \"any\". The actual data type is the data type of the value. Data type \"implied\" or a more specific data type is preferred over data type \"any\" since \"any\" only detects type check errors during evaluation."),
+afw_data_type_unknown_direct = {
+    &afw_data_type_unknown_inf,
+    (const afw_object_t *)&impl_data_type_object_unknown,
+    AFW_UTF8_LITERAL("unknown"),
+    AFW_UTF8_LITERAL("Type-safe unknown value"),
+    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type \"unknown\". The actual data type is the data type of the value. Most \"type check\" errors can be detected during compile to reduce the number of errors detected during evaluation."),
     AFW_UTF8_LITERAL(""),
-    afw_data_type_number_any,
+    afw_data_type_number_unknown,
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("const afw_value_t *"),
     sizeof(const afw_value_t *),
-    (const afw_list_t *)&impl_empty_list_of_any,
-    (const afw_value_t *)&impl_value_empty_list_of_any,
-    &afw_value_evaluated_any_inf,
+    (const afw_list_t *)&impl_empty_list_of_unknown,
+    (const afw_value_t *)&impl_value_empty_list_of_unknown,
+    &afw_value_evaluated_unknown_inf,
     afw_compile_type_error,
     false,
     false,
@@ -185,29 +185,29 @@ afw_data_type_any_direct = {
     false
 };
 
-/* Value for empty list of any. */
+/* Value for empty list of unknown. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_any = {
+impl_empty_list_of_unknown = {
     &afw_list_wrapper_for_array_inf,
-    &afw_data_type_any_direct,
+    &afw_data_type_unknown_direct,
     0
 };
 
-/* Value for empty list of any. */
+/* Value for empty list of unknown. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_any = {
+impl_value_empty_list_of_unknown = {
     &afw_value_permanent_list_inf,
-    (const afw_list_t *)&impl_empty_list_of_any
+    (const afw_list_t *)&impl_empty_list_of_unknown
 };
 
-/* Data type struct for any. */
+/* Data type struct for unknown. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t *)
-afw_data_type_any =
-    &afw_data_type_any_direct;
+afw_data_type_unknown =
+    &afw_data_type_unknown_direct;
 
-/* Set property function for data type any values. */
+/* Set property function for data type unknown values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_any(
+afw_object_set_property_as_unknown(
     const afw_object_t *object,
     const afw_utf8_t *property_name,
     const afw_value_t * internal,
@@ -221,130 +221,130 @@ afw_object_set_property_as_any(
             xctx);
     }
 
-    v = afw_value_create_any(internal, object->p, xctx);
+    v = afw_value_create_unknown(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type any. */
+/* Typesafe cast of data type unknown. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_as_any(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_unknown(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
+    if (!AFW_VALUE_IS_DATA_TYPE(value, unknown))
     {
         const afw_utf8_t *data_type_id;
 
         if (!value) {
             AFW_THROW_ERROR_Z(general,
-                "Typesafe error: expecting 'any' but "
+                "Typesafe error: expecting 'unknown' but "
                 "encountered '<undefined>'",
                 xctx);
         }
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Typesafe error: expecting 'any' but "
+            "Typesafe error: expecting 'unknown' but "
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_any_t *)value)->internal);
+    return (((const afw_value_unknown_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_any(const afw_pool_t *p, afw_xctx_t *xctx)
+/* Allocate function for unmanaged data type unknown values. */
+AFW_DEFINE(afw_value_unknown_t *)
+afw_value_allocate_unknown(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *result;
+    afw_value_unknown_t *result;
 
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
+    result = afw_pool_calloc(p, sizeof(afw_value_unknown_t),
         xctx);
-    result->inf = &afw_value_evaluated_any_inf;
+    result->inf = &afw_value_evaluated_unknown_inf;
     return result;
 }
 
-/* Create function for unmanaged data type any value. */
+/* Create function for unmanaged data type unknown value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_any(const afw_value_t * internal,
+afw_value_create_unknown(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *v;
+    afw_value_unknown_t *v;
 
-    v = afw_value_allocate_any(p, xctx);
+    v = afw_value_allocate_unknown(p, xctx);
     v->internal = internal;
     return (const afw_value_t *)v;
 }
 
-/* Allocate function for managed data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_managed_any(const afw_pool_t *p, afw_xctx_t *xctx)
+/* Allocate function for managed data type unknown values. */
+AFW_DEFINE(afw_value_unknown_t *)
+afw_value_allocate_managed_unknown(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *result;
+    afw_value_unknown_t *result;
 
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
+    result = afw_pool_calloc(p, sizeof(afw_value_unknown_t),
         xctx);
-    result->inf = &afw_value_managed_any_inf;
+    result->inf = &afw_value_managed_unknown_inf;
     return result;
 }
 
-/* Create function for data type any value. */
+/* Create function for data type unknown value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_any(const afw_value_t * internal,
+afw_value_create_managed_unknown(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *v;
+    afw_value_unknown_t *v;
 
-    v = afw_value_allocate_managed_any(p, xctx);
+    v = afw_value_allocate_managed_unknown(p, xctx);
     v->internal = internal;
     return (const afw_value_t *)v;
 }
 
-/* Allocate function for permanent data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_permanent_any(const afw_pool_t *p, afw_xctx_t *xctx)
+/* Allocate function for permanent data type unknown values. */
+AFW_DEFINE(afw_value_unknown_t *)
+afw_value_allocate_permanent_unknown(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *result;
+    afw_value_unknown_t *result;
 
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
+    result = afw_pool_calloc(p, sizeof(afw_value_unknown_t),
         xctx);
-    result->inf = &afw_value_permanent_any_inf;
+    result->inf = &afw_value_permanent_unknown_inf;
     return result;
 }
 
-/* Create function for data type any value. */
+/* Create function for data type unknown value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_any(const afw_value_t * internal,
+afw_value_create_permanent_unknown(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_any_t *v;
+    afw_value_unknown_t *v;
 
-    v = afw_value_allocate_permanent_any(p, xctx);
+    v = afw_value_allocate_permanent_unknown(p, xctx);
     v->internal = internal;
     return (const afw_value_t *)v;
 }
 
-/* Convert data type any string to const afw_value_t * *. */
+/* Convert data type unknown string to const afw_value_t * *. */
 AFW_DEFINE(void)
-afw_data_type_any_to_internal(const afw_value_t * *to_internal,
+afw_data_type_unknown_to_internal(const afw_value_t * *to_internal,
     const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_data_type_utf8_to_internal(
-        &afw_data_type_any_direct,
+        &afw_data_type_unknown_direct,
         (void *)to_internal, from_utf8, p, xctx);
 }
 
-/*  Convert data type any internal representation to utf-8. */
+/*  Convert data type unknown internal representation to utf-8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_data_type_any_to_utf8(const afw_value_t * internal,
+afw_data_type_unknown_to_utf8(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_data_type_internal_to_utf8(
-        &afw_data_type_any_direct,
+        &afw_data_type_unknown_direct,
         &internal, p, xctx);
 }
 
-/* Get property function for data type any values. */
+/* Get property function for data type unknown values. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_get_property_as_any_source(
+afw_object_get_property_as_unknown_source(
     const afw_object_t *object,
     const afw_utf8_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -357,23 +357,23 @@ afw_object_get_property_as_any_source(
     if (!value) return NULL;
 
     value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
+    if (!AFW_VALUE_IS_DATA_TYPE(value, unknown))
     {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
+            "Typesafe error: expecting 'unknown' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
     }
-    return (((const afw_value_any_t *)value)->internal);
+    return (((const afw_value_unknown_t *)value)->internal);
 }
 
-/* Get next property function for data type any values. */
+/* Get next property function for data type unknown values. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_get_next_property_as_any_source(
+afw_object_get_next_property_as_unknown_source(
     const afw_object_t *object,
     const afw_iterator_t * *iterator,
     const afw_utf8_t * *property_name,
@@ -387,18 +387,18 @@ afw_object_get_next_property_as_any_source(
     if (!value) return NULL;
 
     value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
+    if (!AFW_VALUE_IS_DATA_TYPE(value, unknown))
     {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
+            "Typesafe error: expecting 'unknown' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
     }
-    return (((const afw_value_any_t *)value)->internal);
+    return (((const afw_value_unknown_t *)value)->internal);
 }
 
 /* Implementation of method optional_release for managed value. */
@@ -453,7 +453,7 @@ impl_afw_value_get_data_type(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    return afw_data_type_any;
+    return afw_data_type_unknown;
 }
 
 /*
@@ -466,7 +466,7 @@ impl_afw_value_produce_compiler_listing(
     afw_xctx_t *xctx)
 {
     afw_data_type_value_compiler_listing(
-        afw_data_type_any,
+        afw_data_type_unknown,
         writer, instance, xctx);
 }
 
@@ -480,7 +480,7 @@ impl_afw_value_decompile(
     afw_xctx_t *xctx)
 {
     afw_data_type_write_as_expression(
-        afw_data_type_any,
+        afw_data_type_unknown,
         writer,
         (const void *)&(((const afw_value_evaluated_t *)instance)->internal),
         xctx);
@@ -498,14 +498,14 @@ impl_afw_value_get_info(
 {
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
-    info->evaluated_data_type = afw_data_type_any;
+    info->evaluated_data_type = afw_data_type_unknown;
     info->optimized_value = instance;
 }
 
 
-/* Get next value from list of any. */
+/* Get next value from list of unknown. */
 AFW_DEFINE(const afw_value_t *)
-afw_list_of_any_get_next_source(
+afw_list_of_unknown_get_next_source(
     const afw_list_t *instance,
     const afw_iterator_t * *iterator,
     const afw_utf8_z_t *source_z,
@@ -518,12 +518,12 @@ afw_list_of_any_get_next_source(
     if (!internal) {
         return NULL;
     }
-    if (data_type != afw_data_type_any) {
+    if (data_type != afw_data_type_unknown) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = &data_type->data_type_id;
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
+            "Typesafe error: expecting 'unknown' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
@@ -531,9 +531,9 @@ afw_list_of_any_get_next_source(
     return *(const afw_value_t * *)internal;
 }
 
-/* Add value from list of any */
+/* Add value from list of unknown */
 AFW_DEFINE(void)
-afw_list_of_any_add(
+afw_list_of_unknown_add(
     const afw_list_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
@@ -548,13 +548,13 @@ afw_list_of_any_add(
 
     internal = value;
     afw_list_setter_add_internal(setter, 
-        afw_data_type_any,
+        afw_data_type_unknown,
         (const void *)&internal, xctx);
 }
 
-/* Remove value from list of any */
+/* Remove value from list of unknown */
 AFW_DEFINE(void)
-afw_list_of_any_remove(
+afw_list_of_unknown_remove(
     const afw_list_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
@@ -569,6 +569,6 @@ afw_list_of_any_remove(
 
     internal = value;
     afw_list_setter_remove_internal(setter, 
-        afw_data_type_any,
+        afw_data_type_unknown,
         (const void *)&internal, xctx);
 }

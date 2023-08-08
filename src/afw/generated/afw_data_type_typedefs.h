@@ -631,6 +631,46 @@ typedef struct afw_value_unevaluated_s
 /** @} */
 
 /**
+ * @addtogroup afw_c_api_data_type_unknown
+ * @{
+ */
+
+/** @brief Typedef for data type unknown internal. */
+typedef const afw_value_t * afw_data_type_unknown_internal_t;
+
+/** @brief Typedef for data type unknown parameter. */
+typedef const afw_value_t * afw_data_type_unknown_parameter_t;
+
+/** @brief Typedef for data type unknown return. */
+typedef const afw_value_t * afw_data_type_unknown_return_t;
+
+/** @brief Typedef for data type unknown evaluated value. */
+typedef struct afw_value_unknown_s
+    afw_value_unknown_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_void
+ * @{
+ */
+
+/** @brief Typedef for data type void internal. */
+typedef void * afw_data_type_void_internal_t;
+
+/** @brief Typedef for data type void parameter. */
+typedef const void * afw_data_type_void_parameter_t;
+
+/** @brief Typedef for data type void return. */
+typedef void * afw_data_type_void_return_t;
+
+/** @brief Typedef for data type void evaluated value. */
+typedef struct afw_value_void_s
+    afw_value_void_t;
+
+/** @} */
+
+/**
  * @addtogroup afw_c_api_data_type_x500Name
  * @{
  */

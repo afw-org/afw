@@ -55,6 +55,8 @@
 #include "afw_data_type_template_binding.h"
 #include "afw_data_type_time_binding.h"
 #include "afw_data_type_unevaluated_binding.h"
+#include "afw_data_type_unknown_binding.h"
+#include "afw_data_type_void_binding.h"
 #include "afw_data_type_x500Name_binding.h"
 #include "afw_data_type_xpathExpression_binding.h"
 #include "afw_data_type_yearMonthDuration_binding.h"
@@ -93,6 +95,8 @@
     XX(template) \
     XX(time) \
     XX(unevaluated) \
+    XX(unknown) \
+    XX(void) \
     XX(x500Name) \
     XX(xpathExpression) \
     XX(yearMonthDuration) \

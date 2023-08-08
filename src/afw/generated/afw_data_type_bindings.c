@@ -226,6 +226,18 @@ afw_register_data_type_infs(
         &afw_value_evaluated_unevaluated_inf,
         xctx);
 
+    /* Register value inf id evaluated_unknown */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_unknown_inf.rti.implementation_id,
+        &afw_value_evaluated_unknown_inf,
+        xctx);
+
+    /* Register value inf id evaluated_void */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_void_inf.rti.implementation_id,
+        &afw_value_evaluated_void_inf,
+        xctx);
+
     /* Register value inf id evaluated_x500Name */
     afw_environment_register_value_inf(
         &afw_value_evaluated_x500Name_inf.rti.implementation_id,

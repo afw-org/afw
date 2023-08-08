@@ -1,8 +1,8 @@
 {
-    "brief": "No value",
+    "brief": "Intentional absence of value",
     "cType": "void *",
     "dataType": "null",
-    "description": "Data type null is a special data type that represents no value.",
+    "description": "Data type null is a special data type that represents the intentional absence of a value.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "null",

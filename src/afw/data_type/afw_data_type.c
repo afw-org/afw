@@ -2341,6 +2341,28 @@ IMPL_DATA_TYPE_INF(
     evaluate,             /* compiler listing  */
     evaluate)             /* as expression     */
 
+/** @fixme make appropriate changes. */
+IMPL_DATA_TYPE_INF(
+    unknown,              /* data type id      */
+    evaluate,             /* to utf8           */
+    evaluate,             /* to internal       */
+    evaluate,             /* compare           */
+    evaluate,             /* conversion        */
+    evaluate,             /* clone             */
+    evaluate,             /* compiler listing  */
+    evaluate)             /* as expression     */
+
+/** @fixme make appropriate changes. */
+IMPL_DATA_TYPE_INF(
+    void,                 /* data type id      */
+    evaluate,             /* to utf8           */
+    evaluate,             /* to internal       */
+    evaluate,             /* compare           */
+    evaluate,             /* conversion        */
+    evaluate,             /* clone             */
+    evaluate,             /* compiler listing  */
+    evaluate)             /* as expression     */
+
 IMPL_DATA_TYPE_INF(
     x500Name,             /* data type id      */
     utf8,                 /* to utf8           */

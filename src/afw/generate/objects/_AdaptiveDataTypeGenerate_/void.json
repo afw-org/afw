@@ -1,0 +1,11 @@
+{
+    "brief": "No value",
+    "cType": "void *",
+    "dataType": "void",
+    "description": "Commonly used as a return type for functions to indicate that the function does not return any value. While technically a variable could be of type void, in practice, it can only hold the values undefined (or null if compile::strictNullChecks flag is not set.)",
+    "directReturn": true,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "null",
+    "relationalCompares": false,
+    "scalar": true
+}
