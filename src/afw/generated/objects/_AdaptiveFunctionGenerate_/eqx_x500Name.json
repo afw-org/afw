@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "eqxX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Determine if for x500Name arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "description": "Determine if for x500Name arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison.",
     "functionId": "eqx<x500Name>",
     "functionLabel": "eqx_x500Name",
     "op": "===",

@@ -123,7 +123,7 @@ afw_function_execute_join(
  *
  *   values - (0 or more any dataType) A value can refer to any adaptable value
  *       belonging to any data type or a list expression. In the case of a list
- *       expression, indicated by "..." followed by an expression that results
+ *       expression, indicated by '...' followed by an expression that results
  *       in a list, every element within that list is included in the newly
  *       created list.
  *

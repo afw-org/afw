@@ -42,7 +42,7 @@
                     ]
                 }
             ],
-            "description": "\n            String at least one member of for bags:\n            { \"one\", \"two\", \"three\" },\n            { \"one\", \"three\" }\n        ",
+            "description": "\n            String at least one member of for bags:\n            { 'one', 'two', 'three' },\n            { 'one', 'three' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -68,7 +68,7 @@
                     ]
                 }
             ],
-            "description": "\n            String at least one member of for bags:\n            { \"one\", \"two\", \"three\" },\n            { \"four\", \"five\" }\n        ",
+            "description": "\n            String at least one member of for bags:\n            { 'one', 'two', 'three' },\n            { 'four', 'five' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -115,7 +115,7 @@
                     ]
                 }
             ],
-            "description": "\n            String intersection of bags:\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            },\n            { \"twenty-five\" }\n        ",
+            "description": "\n            String intersection of bags:\n            {\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            },\n            { 'twenty-five' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

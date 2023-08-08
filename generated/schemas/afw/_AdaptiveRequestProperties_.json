@@ -28,7 +28,7 @@
                     "type": "string"
                 },
                 "CONTENT_TYPE": {
-                    "description": "The media type of the request body, such as \"application/x-www-form-urlencoded\".",
+                    "description": "The media type of the request body, such as 'application/x-www-form-urlencoded'.",
                     "type": "string"
                 },
                 "DOCUMENT_ROOT": {
@@ -44,7 +44,7 @@
                     "type": "string"
                 },
                 "HTTPS": {
-                    "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., \"ON\" or \"on\" when secure and blank or \"OFF\" when not).",
+                    "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., 'ON' or 'on' when secure and blank or 'OFF' when not).",
                     "type": "string"
                 },
                 "HTTP_ACCEPT": {
@@ -92,7 +92,7 @@
                     "type": "string"
                 },
                 "QUERY_STRING": {
-                    "description": "The query information from requested URL (i.e., the data following \"?\").",
+                    "description": "The query information from requested URL (i.e., the data following '?').",
                     "type": "string"
                 },
                 "REMOTE_ADDR": {
@@ -120,7 +120,7 @@
                     "type": "string"
                 },
                 "REQUEST_SCHEME": {
-                    "description": "The scheme of the request (usually \"http\" or \"https\").",
+                    "description": "The scheme of the request (usually 'http' or 'https').",
                     "type": "string"
                 },
                 "REQUEST_URI": {
@@ -128,7 +128,7 @@
                     "type": "string"
                 },
                 "SCHEME": {
-                    "description": "The scheme of the request (usually \"http\" or \"https\").",
+                    "description": "The scheme of the request (usually 'http' or 'https').",
                     "type": "string"
                 },
                 "SCRIPT_NAME": {
@@ -152,7 +152,7 @@
                     "type": "string"
                 },
                 "SERVER_PROTOCOL": {
-                    "description": "The name and revision of the request protocol, e.g., \"HTTP/1.1\".",
+                    "description": "The name and revision of the request protocol, e.g., 'HTTP/1.1'.",
                     "type": "string"
                 },
                 "SERVER_SIGNATURE": {

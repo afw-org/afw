@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "eqxInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Determine if for integer arg1 is equal to the value and data type of arg2 then return the boolean result. Use \"eq\" (\"==\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "description": "Determine if for integer arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison.",
     "functionId": "eqx<integer>",
     "functionLabel": "eqx_integer",
     "op": "===",

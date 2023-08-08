@@ -3,7 +3,7 @@
     "brief": "Get next journal entry after cursor",
     "camelCaseFunctionLabel": "journalGetNextAfterCursor",
     "category": "journal",
-    "description": "Get the next journal entry after the one specified by the entry_cursor parameter.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is a next entry to retrieve.",
+    "description": "Get the next journal entry after the one specified by the entry_cursor parameter.\n\nThis option will set response properties 'entry' and 'cursor' if there is a next entry to retrieve.",
     "functionId": "journal_get_next_after_cursor",
     "functionLabel": "journal_get_next_after_cursor",
     "parameters": [

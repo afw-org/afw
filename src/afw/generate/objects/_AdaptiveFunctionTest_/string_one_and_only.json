@@ -13,7 +13,7 @@
                     ]
                 }
             ],
-            "description": "\n            String one and only for bag:\n            { \"one\" }\n        ",
+            "description": "\n            String one and only for bag:\n            { 'one' }\n        ",
             "result": {
                 "dataType": "string",
                 "value": "one"
@@ -33,7 +33,7 @@
                     ]
                 }
             ],
-            "description": "\n            String one and only for bag:\n            { \"one\", \"two\", \"three\", \"four\", five\" }\n        ",
+            "description": "\n            String one and only for bag:\n            { 'one', 'two', 'three', 'four', five' }\n        ",
             "result": {
                 "error": true
             }

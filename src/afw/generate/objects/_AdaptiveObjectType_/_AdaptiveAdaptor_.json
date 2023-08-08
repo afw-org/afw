@@ -52,7 +52,7 @@
             "allowQuery": true,
             "brief": "The id of the associated service",
             "dataType": "string",
-            "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
             "label": "Service Id",
             "runtime": {
                 "memberName": "service_id",

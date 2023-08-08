@@ -9,7 +9,7 @@
 //? description: ...
 
             String one and only for bag:
-            { "one" }
+            { 'one' }
         
 //? expect: string("one")
 //? source: ...
@@ -25,7 +25,7 @@ one_and_only<string>(
 //? description: ...
 
             String one and only for bag:
-            { "one", "two", "three", "four", five" }
+            { 'one', 'two', 'three', 'four', five' }
         
 //? expect: error
 //? source: ...

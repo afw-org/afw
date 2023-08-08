@@ -43,7 +43,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean intersection of bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean intersection of bags:\n            { 'true', 'true', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",
@@ -74,7 +74,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean intersection of bags:\n            { \"false\", \"false\", \"false\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean intersection of bags:\n            { 'false', 'false', 'false', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",
@@ -103,7 +103,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean intersection of bags:\n            { \"true\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "description": "\n            Boolean intersection of bags:\n            { 'true' },\n            { 'false', 'false', 'false', 'false' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",

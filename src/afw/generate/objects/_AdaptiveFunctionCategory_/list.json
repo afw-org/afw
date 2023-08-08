@@ -2,5 +2,5 @@
     "brief": "Data type list related functions",
     "category": "list",
     "dataTypeCategory": true,
-    "description": "These function are related to data type list.\n\nThe \"<list>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "description": "These function are related to data type list.\n\nThe '<list>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 }

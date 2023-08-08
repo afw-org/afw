@@ -623,7 +623,7 @@ impl_9_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_9_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the \"actions\" property is specified, this is the default \"_flags_\" property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
+    AFW_UTF8_LITERAL("This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
 };
 
 static const afw_runtime_property_t
@@ -836,7 +836,7 @@ impl_11_property_dataType = {
 static const afw_value_string_t
 impl_11_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a qualified or unqualified function name. If the \"actions\" property is not specified, this is the single function to call. If actions is specified, this is the default function name.")
+    AFW_UTF8_LITERAL("This is a qualified or unqualified function name. If the 'actions' property is not specified, this is the single function to call. If actions is specified, this is the default function name.")
 };
 
 static const afw_runtime_property_t
@@ -4592,7 +4592,7 @@ impl_49_property_dataType = {
 static const afw_value_string_t
 impl_49_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.")
+    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.")
 };
 
 static const afw_runtime_property_t
@@ -9339,7 +9339,7 @@ impl_96_property_dataType = {
 static const afw_value_string_t
 impl_96_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.")
+    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.")
 };
 
 static const afw_runtime_property_t
@@ -12468,7 +12468,7 @@ impl_125_property_dataType = {
 static const afw_value_string_t
 impl_125_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the id property name for instances of this conf type. For adaptor, this is \"adaptorId\".")
+    AFW_UTF8_LITERAL("This is the id property name for instances of this conf type. For adaptor, this is 'adaptorId'.")
 };
 
 static const afw_runtime_property_t
@@ -12654,7 +12654,7 @@ impl_127_property_dataType = {
 static const afw_value_string_t
 impl_127_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the registry type for instances of this conf type. For adaptor, this is \"adaptor_id\".")
+    AFW_UTF8_LITERAL("This is the registry type for instances of this conf type. For adaptor, this is 'adaptor_id'.")
 };
 
 static const afw_runtime_property_t
@@ -12840,7 +12840,7 @@ impl_129_property_dataType = {
 static const afw_value_string_t
 impl_129_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the runtime object type for instances of this conf type. For adaptor, this is \"_AdaptiveAdaptor_\".")
+    AFW_UTF8_LITERAL("This is the runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptor_'.")
 };
 
 static const afw_runtime_property_t
@@ -13199,7 +13199,7 @@ impl_133_property_dataType = {
 static const afw_value_string_t
 impl_133_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the subtype property name for instances of this conf type.  For adaptor, this is \"adaptorType\".")
+    AFW_UTF8_LITERAL("This is the subtype property name for instances of this conf type.  For adaptor, this is 'adaptorType'.")
 };
 
 static const afw_runtime_property_t
@@ -13385,7 +13385,7 @@ impl_135_property_dataType = {
 static const afw_value_string_t
 impl_135_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the subtype registry type for instances of this conf type. For adaptor, this is \"adaptor_type\".")
+    AFW_UTF8_LITERAL("This is the subtype registry type for instances of this conf type. For adaptor, this is 'adaptor_type'.")
 };
 
 static const afw_runtime_property_t
@@ -13571,7 +13571,7 @@ impl_137_property_dataType = {
 static const afw_value_string_t
 impl_137_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the subtype runtime object type for instances of this conf type. For adaptor, this is \"_AdaptiveAdaptorType_\".")
+    AFW_UTF8_LITERAL("This is the subtype runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptorType_'.")
 };
 
 static const afw_runtime_property_t
@@ -15933,7 +15933,7 @@ impl_157_property_collectionURIs = {
 static const afw_value_string_t
 impl_157_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of \"afw\" and can only be redefined to add common adaptor properties such as access control.")
+    AFW_UTF8_LITERAL("Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of 'afw' and can only be redefined to add common adaptor properties such as access control.")
 };
 
 static const afw_runtime_property_t
@@ -17698,7 +17698,7 @@ impl_175_property_dataType = {
 static const afw_value_string_t
 impl_175_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is id of the application. The default applicationId is \"application\". This property can only be specified in the type=application entry of the conf file.")
+    AFW_UTF8_LITERAL("This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.")
 };
 
 static const afw_runtime_property_t
@@ -17936,7 +17936,7 @@ impl_177_property_dataType = {
 static const afw_value_string_t
 impl_177_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.")
+    AFW_UTF8_LITERAL("This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.")
 };
 
 static const afw_runtime_property_t
@@ -19021,7 +19021,7 @@ impl_186_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_186_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.")
+    AFW_UTF8_LITERAL("The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.")
 };
 
 static const afw_runtime_property_t
@@ -20881,7 +20881,7 @@ impl_200_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_200_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.")
+    AFW_UTF8_LITERAL("The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.")
 };
 
 static const afw_runtime_property_t
@@ -28460,7 +28460,7 @@ impl_263_property_collectionURIs = {
 static const afw_value_string_t
 impl_263_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveDataType_ objects.")
+    AFW_UTF8_LITERAL("This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.")
 };
 
 static const afw_runtime_property_t
@@ -30785,7 +30785,7 @@ impl_288_property_dataType = {
 static const afw_value_string_t
 impl_288_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the \"dataTypeParameter\" property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the \"dataTypeParameter\" property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nListOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.")
+    AFW_UTF8_LITERAL("This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nListOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.")
 };
 
 static const afw_runtime_property_t
@@ -31610,7 +31610,7 @@ impl_296_property_dataType = {
 static const afw_value_string_t
 impl_296_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of \"string\".")
+    AFW_UTF8_LITERAL("This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.")
 };
 
 static const afw_runtime_property_t
@@ -42484,7 +42484,7 @@ impl_402_property_allowQuery = {
 static const afw_value_string_t
 impl_402_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The functionLabel prefixed with \"afw\" and converted to camel case")
+    AFW_UTF8_LITERAL("The functionLabel prefixed with 'afw' and converted to camel case")
 };
 
 static const afw_runtime_property_t
@@ -42508,7 +42508,7 @@ impl_402_property_dataType = {
 static const afw_value_string_t
 impl_402_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the functionLabel prefixed with \"afw\" and converted to camel case.")
+    AFW_UTF8_LITERAL("This is the functionLabel prefixed with 'afw' and converted to camel case.")
 };
 
 static const afw_runtime_property_t
@@ -45126,7 +45126,7 @@ impl_424_property_dataType = {
 static const afw_value_string_t
 impl_424_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form \"AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_\" followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.")
+    AFW_UTF8_LITERAL("This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form 'AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_' followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.")
 };
 
 static const afw_runtime_property_t
@@ -45963,7 +45963,7 @@ impl_399_property_collectionURIs = {
 static const afw_value_string_t
 impl_399_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveFunction_ objects.")
+    AFW_UTF8_LITERAL("This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects.")
 };
 
 static const afw_runtime_property_t
@@ -50444,7 +50444,7 @@ impl_469_property_allowQuery = {
 static const afw_value_string_t
 impl_469_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The functionLabel prefixed with \"afw\" and converted to camel case")
+    AFW_UTF8_LITERAL("The functionLabel prefixed with 'afw' and converted to camel case")
 };
 
 static const afw_runtime_property_t
@@ -50468,7 +50468,7 @@ impl_469_property_dataType = {
 static const afw_value_string_t
 impl_469_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the functionLabel prefixed with \"afw\" and converted to camel case.")
+    AFW_UTF8_LITERAL("This is the functionLabel prefixed with 'afw' and converted to camel case.")
 };
 
 static const afw_runtime_property_t
@@ -57719,7 +57719,7 @@ impl_524_property_collectionURIs = {
 static const afw_value_string_t
 impl_524_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of \"_AdaptiveLayoutComponentType_\" followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.")
+    AFW_UTF8_LITERAL("All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.")
 };
 
 static const afw_runtime_property_t
@@ -60698,7 +60698,7 @@ impl_565_property_dataType = {
 static const afw_value_string_t
 impl_565_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.")
+    AFW_UTF8_LITERAL("The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.")
 };
 
 static const afw_runtime_property_t
@@ -61758,7 +61758,7 @@ impl_576_property_dataType = {
 static const afw_value_string_t
 impl_576_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Module path. A system appropriate suffix will be added (\".so\" for Linux and \".dll\" for Windows).")
+    AFW_UTF8_LITERAL("Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).")
 };
 
 static const afw_runtime_property_t
@@ -61983,7 +61983,7 @@ impl_578_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_578_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Each entry is a string of the form \"<registry type>/<registry key>\", where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.")
+    AFW_UTF8_LITERAL("Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.")
 };
 
 static const afw_runtime_property_t
@@ -62752,7 +62752,7 @@ impl_579_property_collectionURIs = {
 static const afw_value_string_t
 impl_579_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The object type for properties in the \"propertyTypes\" property of an object's meta.")
+    AFW_UTF8_LITERAL("The object type for properties in the 'propertyTypes' property of an object's meta.")
 };
 
 static const afw_runtime_property_t
@@ -64084,7 +64084,7 @@ impl_598_property_dataType = {
 static const afw_value_string_t
 impl_598_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the associated object's path within an Adaptive Framework environment. The path is of the form \"/adaptorId/objectType/objectId\".")
+    AFW_UTF8_LITERAL("This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adaptorId/objectType/objectId'.")
 };
 
 static const afw_runtime_property_t
@@ -84618,7 +84618,7 @@ impl_841_property_label = {
 static const afw_value_string_t
 impl_841_property_value_skeleton = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("#! afw\n\n/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object \"_AdaptiveAction_\") action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    ")
+    AFW_UTF8_LITERAL("#! afw\n\n/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object '_AdaptiveAction_') action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    ")
 };
 
 static const afw_runtime_property_t
@@ -87089,7 +87089,7 @@ impl_851_property_collectionURIs = {
 static const afw_value_string_t
 impl_851_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The object type for properties in the \"propertyTypes\" property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.")
+    AFW_UTF8_LITERAL("The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.")
 };
 
 static const afw_runtime_property_t
@@ -91738,7 +91738,7 @@ impl_902_property_allowQuery = {
 static const afw_value_string_t
 impl_902_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of the property that is used as the \"description\" meta property")
+    AFW_UTF8_LITERAL("The name of the property that is used as the 'description' meta property")
 };
 
 static const afw_runtime_property_t
@@ -91762,7 +91762,7 @@ impl_902_property_dataType = {
 static const afw_value_string_t
 impl_902_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of the property in an instance that is used as the \"description\" property in the meta for instances of this object type. If not specified, no description will be available.")
+    AFW_UTF8_LITERAL("The name of the property in an instance that is used as the 'description' property in the meta for instances of this object type. If not specified, no description will be available.")
 };
 
 static const afw_runtime_property_t
@@ -91950,7 +91950,7 @@ impl_904_property_allowQuery = {
 static const afw_value_string_t
 impl_904_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of the property that is used as the \"objectId\" meta property")
+    AFW_UTF8_LITERAL("The name of the property that is used as the 'objectId' meta property")
 };
 
 static const afw_runtime_property_t
@@ -91974,7 +91974,7 @@ impl_904_property_dataType = {
 static const afw_value_string_t
 impl_904_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used.")
+    AFW_UTF8_LITERAL("The name of the property in an instance that is used as the 'objectId' property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used.")
 };
 
 static const afw_runtime_property_t
@@ -92742,7 +92742,7 @@ impl_911_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_911_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".")
+    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
 };
 
 static const afw_runtime_property_t
@@ -93663,7 +93663,7 @@ impl_916_property_collectionURIs = {
 static const afw_value_string_t
 impl_916_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("A LANG as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation.")
+    AFW_UTF8_LITERAL("A LANG as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation.")
 };
 
 static const afw_runtime_property_t
@@ -93856,7 +93856,7 @@ impl_921_property_dataType = {
 static const afw_value_string_t
 impl_921_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the type of build used for this source directory. Specify \"afwmake\" for c source directories.")
+    AFW_UTF8_LITERAL("This is the type of build used for this source directory. Specify 'afwmake' for c source directories.")
 };
 
 static const afw_runtime_property_t
@@ -94228,7 +94228,7 @@ impl_925_property_dataType = {
 static const afw_value_string_t
 impl_925_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType \"afwmake\", either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the \"id\" property with \"afw_\" removed if present and underscores ('_') replaced with dashes ('-').")
+    AFW_UTF8_LITERAL("If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType 'afwmake', either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the 'id' property with 'afw_' removed if present and underscores ('_') replaced with dashes ('-').")
 };
 
 static const afw_runtime_property_t
@@ -94321,7 +94321,7 @@ impl_926_property_dataType = {
 static const afw_value_string_t
 impl_926_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding \"srcdirs\" property name followed by an underscore ('_'), which is also its default.")
+    AFW_UTF8_LITERAL("This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding 'srcdirs' property name followed by an underscore ('_'), which is also its default.")
 };
 
 static const afw_runtime_property_t
@@ -94414,7 +94414,7 @@ impl_927_property_dataType = {
 static const afw_value_string_t
 impl_927_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the name of what this source directory produces as known to the buildType.\n\nFor buildType \"afwmake\", this starts with \"lib\" for libraries.")
+    AFW_UTF8_LITERAL("This is the name of what this source directory produces as known to the buildType.\n\nFor buildType 'afwmake', this starts with 'lib' for libraries.")
 };
 
 static const afw_runtime_property_t
@@ -94507,7 +94507,7 @@ impl_928_property_dataType = {
 static const afw_value_string_t
 impl_928_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the relative path in the repository for this source directory. This defaults to the corresponding \"srcdirs\" property name.")
+    AFW_UTF8_LITERAL("This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name.")
 };
 
 static const afw_runtime_property_t
@@ -95644,7 +95644,7 @@ impl_938_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_938_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.")
+    AFW_UTF8_LITERAL("This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.")
 };
 
 static const afw_runtime_property_t
@@ -96017,7 +96017,7 @@ impl_942_property_dataType = {
 static const afw_value_string_t
 impl_942_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the name of the property in the \"srcdirs\" property of the AFW extension, that when loaded at runtime, will register the repository's manifest.")
+    AFW_UTF8_LITERAL("This is the name of the property in the 'srcdirs' property of the AFW extension, that when loaded at runtime, will register the repository's manifest.")
 };
 
 static const afw_runtime_property_t
@@ -101516,7 +101516,7 @@ impl_992_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_992_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of _AdaptiveQueryCriteriaFilter_ objects for \"and\" and \"or\" operations. This property is allowed and required if the operation is \"and\" or \"or\".")
+    AFW_UTF8_LITERAL("This is a list of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.")
 };
 
 static const afw_runtime_property_t
@@ -101753,7 +101753,7 @@ impl_994_property_dataType = {
 static const afw_value_string_t
 impl_994_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the name of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".")
+    AFW_UTF8_LITERAL("This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.")
 };
 
 static const afw_runtime_property_t
@@ -101846,7 +101846,7 @@ impl_995_property_dataType = {
 static const afw_value_string_t
 impl_995_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".")
+    AFW_UTF8_LITERAL("This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.")
 };
 
 static const afw_runtime_property_t
@@ -104521,7 +104521,7 @@ impl_1023_property_dataType = {
 static const afw_value_string_t
 impl_1023_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The media type of the request body, such as \"application/x-www-form-urlencoded\".")
+    AFW_UTF8_LITERAL("The media type of the request body, such as 'application/x-www-form-urlencoded'.")
 };
 
 static const afw_runtime_property_t
@@ -104841,7 +104841,7 @@ impl_1027_property_dataType = {
 static const afw_value_string_t
 impl_1027_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., \"ON\" or \"on\" when secure and blank or \"OFF\" when not).")
+    AFW_UTF8_LITERAL("This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., 'ON' or 'on' when secure and blank or 'OFF' when not).")
 };
 
 static const afw_runtime_property_t
@@ -105801,7 +105801,7 @@ impl_1039_property_dataType = {
 static const afw_value_string_t
 impl_1039_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The query information from requested URL (i.e., the data following \"?\").")
+    AFW_UTF8_LITERAL("The query information from requested URL (i.e., the data following '?').")
 };
 
 static const afw_runtime_property_t
@@ -106361,7 +106361,7 @@ impl_1046_property_dataType = {
 static const afw_value_string_t
 impl_1046_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The scheme of the request (usually \"http\" or \"https\").")
+    AFW_UTF8_LITERAL("The scheme of the request (usually 'http' or 'https').")
 };
 
 static const afw_runtime_property_t
@@ -106521,7 +106521,7 @@ impl_1048_property_dataType = {
 static const afw_value_string_t
 impl_1048_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The scheme of the request (usually \"http\" or \"https\").")
+    AFW_UTF8_LITERAL("The scheme of the request (usually 'http' or 'https').")
 };
 
 static const afw_runtime_property_t
@@ -107001,7 +107001,7 @@ impl_1054_property_dataType = {
 static const afw_value_string_t
 impl_1054_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The name and revision of the request protocol, e.g., \"HTTP/1.1\".")
+    AFW_UTF8_LITERAL("The name and revision of the request protocol, e.g., 'HTTP/1.1'.")
 };
 
 static const afw_runtime_property_t
@@ -109730,7 +109730,7 @@ impl_1079_property_brief = {
 static const afw_value_string_t
 impl_1079_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The result if this is a single action request or intermediate response when no error occurred. If the \"actions\" property is present, see that list of objects for results.")
+    AFW_UTF8_LITERAL("The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.")
 };
 
 static const afw_runtime_property_t
@@ -109928,7 +109928,7 @@ impl_1081_property_dataType = {
 static const afw_value_string_t
 impl_1081_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Result status. If this value is \"error\", see property \"error\" for more detail. This property will not exist for intermediate response objects.")
+    AFW_UTF8_LITERAL("Result status. If this value is 'error', see property 'error' for more detail. This property will not exist for intermediate response objects.")
 };
 
 static const afw_runtime_property_t
@@ -116390,7 +116390,7 @@ impl_1146_property_dataType = {
 static const afw_value_string_t
 impl_1146_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".")
+    AFW_UTF8_LITERAL("Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be 'adaptor-x'.")
 };
 
 static const afw_runtime_property_t
@@ -118355,7 +118355,7 @@ impl_1166_property_dataType = {
 static const afw_value_string_t
 impl_1166_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The \"id\" part of serviceId. This is the value of appropriate conf id property based on the conf type.")
+    AFW_UTF8_LITERAL("The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.")
 };
 
 static const afw_runtime_property_t
@@ -118448,7 +118448,7 @@ impl_1167_property_dataType = {
 static const afw_value_string_t
 impl_1167_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Object type for \"conf\" property object.")
+    AFW_UTF8_LITERAL("Object type for 'conf' property object.")
 };
 
 static const afw_runtime_property_t
@@ -118727,7 +118727,7 @@ impl_1170_property_dataType = {
 static const afw_value_string_t
 impl_1170_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The \"type\" part of serviceId.")
+    AFW_UTF8_LITERAL("The 'type' part of serviceId.")
 };
 
 static const afw_runtime_property_t
@@ -121358,7 +121358,7 @@ impl_1189_property_collectionURIs = {
 static const afw_value_string_t
 impl_1189_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with \"_Adaptive\" are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.")
+    AFW_UTF8_LITERAL("This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.")
 };
 
 static const afw_runtime_property_t
@@ -121550,7 +121550,7 @@ impl_1197_property_dataType = {
 static const afw_value_string_t
 impl_1197_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"description:\".")
+    AFW_UTF8_LITERAL("This is the value of 'description:'.")
 };
 
 static const afw_runtime_property_t
@@ -121749,7 +121749,7 @@ impl_1199_property_dataType = {
 static const afw_value_string_t
 impl_1199_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"sourceType:\". It is used as the default for tests that do not have one specified.")
+    AFW_UTF8_LITERAL("This is the value of 'sourceType:'. It is used as the default for tests that do not have one specified.")
 };
 
 static const afw_runtime_property_t
@@ -121855,7 +121855,7 @@ impl_1200_property_dataType = {
 static const afw_value_string_t
 impl_1200_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"testScript:\".")
+    AFW_UTF8_LITERAL("This is the value of 'testScript:'.")
 };
 
 static const afw_runtime_property_t
@@ -122385,7 +122385,7 @@ impl_1205_property_dataType = {
 static const afw_value_string_t
 impl_1205_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"description:\" of the test.")
+    AFW_UTF8_LITERAL("This is the value of 'description:' of the test.")
 };
 
 static const afw_runtime_property_t
@@ -122664,7 +122664,7 @@ impl_1208_property_dataType = {
 static const afw_value_string_t
 impl_1208_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"expect:\" which is the result expected.")
+    AFW_UTF8_LITERAL("This is the value of 'expect:' which is the result expected.")
 };
 
 static const afw_runtime_property_t
@@ -122746,7 +122746,7 @@ impl_1209;
 static const afw_value_string_t
 impl_1209_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Length of test \"expect\" in codepoints")
+    AFW_UTF8_LITERAL("Length of test 'expect' in codepoints")
 };
 
 static const afw_runtime_property_t
@@ -122770,7 +122770,7 @@ impl_1209_property_dataType = {
 static const afw_value_string_t
 impl_1209_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -122839,7 +122839,7 @@ impl_1210;
 static const afw_value_string_t
 impl_1210_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Offset of test \"expect\" in codepoints")
+    AFW_UTF8_LITERAL("Offset of test 'expect' in codepoints")
 };
 
 static const afw_runtime_property_t
@@ -122863,7 +122863,7 @@ impl_1210_property_dataType = {
 static const afw_value_string_t
 impl_1210_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -122932,7 +122932,7 @@ impl_1211;
 static const afw_value_string_t
 impl_1211_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Column number of test \"expect\"")
+    AFW_UTF8_LITERAL("Column number of test 'expect'")
 };
 
 static const afw_runtime_property_t
@@ -122956,7 +122956,7 @@ impl_1211_property_dataType = {
 static const afw_value_string_t
 impl_1211_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the column number in the line of the full source for the test script where this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the column number in the line of the full source for the test script where this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -123049,7 +123049,7 @@ impl_1212_property_dataType = {
 static const afw_value_string_t
 impl_1212_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the line number in the full source for the test script where this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the line number in the full source for the test script where this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -123118,7 +123118,7 @@ impl_1213;
 static const afw_value_string_t
 impl_1213_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("sourceLocation for \"expect\" contextual")
+    AFW_UTF8_LITERAL("sourceLocation for 'expect' contextual")
 };
 
 static const afw_runtime_property_t
@@ -123142,7 +123142,7 @@ impl_1213_property_dataType = {
 static const afw_value_string_t
 impl_1213_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is where the \"expect\" for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs.")
+    AFW_UTF8_LITERAL("This is where the 'expect' for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs.")
 };
 
 static const afw_runtime_property_t
@@ -123224,7 +123224,7 @@ impl_1214;
 static const afw_value_string_t
 impl_1214_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Length of test \"expect\" in UTF-8 octets")
+    AFW_UTF8_LITERAL("Length of test 'expect' in UTF-8 octets")
 };
 
 static const afw_runtime_property_t
@@ -123248,7 +123248,7 @@ impl_1214_property_dataType = {
 static const afw_value_string_t
 impl_1214_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -123317,7 +123317,7 @@ impl_1215;
 static const afw_value_string_t
 impl_1215_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Offset of test \"expect\" in UTF-8 octets")
+    AFW_UTF8_LITERAL("Offset of test 'expect' in UTF-8 octets")
 };
 
 static const afw_runtime_property_t
@@ -123341,7 +123341,7 @@ impl_1215_property_dataType = {
 static const afw_value_string_t
 impl_1215_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's \"expect\" begins.")
+    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins.")
 };
 
 static const afw_runtime_property_t
@@ -123806,7 +123806,7 @@ impl_1220_property_dataType = {
 static const afw_value_string_t
 impl_1220_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"source:\" to evaluate.")
+    AFW_UTF8_LITERAL("This is the value of 'source:' to evaluate.")
 };
 
 static const afw_runtime_property_t
@@ -123888,7 +123888,7 @@ impl_1221;
 static const afw_value_string_t
 impl_1221_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Length of test \"source\" in codepoints")
+    AFW_UTF8_LITERAL("Length of test 'source' in codepoints")
 };
 
 static const afw_runtime_property_t
@@ -123912,7 +123912,7 @@ impl_1221_property_dataType = {
 static const afw_value_string_t
 impl_1221_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -123981,7 +123981,7 @@ impl_1222;
 static const afw_value_string_t
 impl_1222_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Offset of test \"source\" in codepoints")
+    AFW_UTF8_LITERAL("Offset of test 'source' in codepoints")
 };
 
 static const afw_runtime_property_t
@@ -124005,7 +124005,7 @@ impl_1222_property_dataType = {
 static const afw_value_string_t
 impl_1222_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the number of codepoints in the full source for the test script before this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -124098,7 +124098,7 @@ impl_1223_property_dataType = {
 static const afw_value_string_t
 impl_1223_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the column number in the line of the full source for the test script where this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the column number in the line of the full source for the test script where this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -124167,7 +124167,7 @@ impl_1224;
 static const afw_value_string_t
 impl_1224_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Length of test \"source\" in UTF-8 octets")
+    AFW_UTF8_LITERAL("Length of test 'source' in UTF-8 octets")
 };
 
 static const afw_runtime_property_t
@@ -124191,7 +124191,7 @@ impl_1224_property_dataType = {
 static const afw_value_string_t
 impl_1224_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -124390,7 +124390,7 @@ impl_1226_property_dataType = {
 static const afw_value_string_t
 impl_1226_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"sourceType:\". If not specified, the value of the testScript \"sourceType\" property is used.")
+    AFW_UTF8_LITERAL("This is the value of 'sourceType:'. If not specified, the value of the testScript 'sourceType' property is used.")
 };
 
 static const afw_runtime_property_t
@@ -124483,7 +124483,7 @@ impl_1227_property_dataType = {
 static const afw_value_string_t
 impl_1227_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full \"source\" for the test script before this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full 'source' for the test script before this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -124552,7 +124552,7 @@ impl_1228;
 static const afw_value_string_t
 impl_1228_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Offset of test \"source\" in UTF-8 octets")
+    AFW_UTF8_LITERAL("Offset of test 'source' in UTF-8 octets")
 };
 
 static const afw_runtime_property_t
@@ -124576,7 +124576,7 @@ impl_1228_property_dataType = {
 static const afw_value_string_t
 impl_1228_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's \"source\" begins.")
+    AFW_UTF8_LITERAL("This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins.")
 };
 
 static const afw_runtime_property_t
@@ -124669,7 +124669,7 @@ impl_1229_property_dataType = {
 static const afw_value_string_t
 impl_1229_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the value of \"test:\" which is the name of the test.")
+    AFW_UTF8_LITERAL("This is the value of 'test:' which is the name of the test.")
 };
 
 static const afw_runtime_property_t
@@ -125148,7 +125148,7 @@ impl_1202_property_collectionURIs = {
 static const afw_value_string_t
 impl_1202_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the object type of objects in the _AdaptiveTestScriptResult_ \"tests\" list property.")
+    AFW_UTF8_LITERAL("This is the object type of objects in the _AdaptiveTestScriptResult_ 'tests' list property.")
 };
 
 static const afw_runtime_property_t
@@ -128493,7 +128493,7 @@ impl_1263_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1263_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".")
+    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
 };
 
 static const afw_runtime_property_t
@@ -131551,7 +131551,7 @@ impl_1290_property_dataType = {
 static const afw_value_string_t
 impl_1290_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The current Git branch used for this build. It's calculated with the command, \"git rev-parse --abbrev-ref HEAD\"")
+    AFW_UTF8_LITERAL("The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'")
 };
 
 static const afw_runtime_property_t
@@ -131644,7 +131644,7 @@ impl_1291_property_dataType = {
 static const afw_value_string_t
 impl_1291_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command \"git describe --dirty --always --tags\"")
+    AFW_UTF8_LITERAL("The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'")
 };
 
 static const afw_runtime_property_t
@@ -131737,7 +131737,7 @@ impl_1292_property_dataType = {
 static const afw_value_string_t
 impl_1292_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command \"git rev-parse HEAD\"")
+    AFW_UTF8_LITERAL("The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'")
 };
 
 static const afw_runtime_property_t
@@ -138059,7 +138059,7 @@ impl_1355_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1355_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type anyURI.\n\nThe \"<anyURI>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type anyURI.\n\nThe '<anyURI>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -138232,7 +138232,7 @@ impl_1357_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1357_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type base64Binary.\n\nThe \"<base64Binary>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type base64Binary.\n\nThe '<base64Binary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -138325,7 +138325,7 @@ impl_1358_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1358_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type boolean.\n\nThe \"<boolean>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -138645,7 +138645,7 @@ impl_1362_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1362_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type date.\n\nThe \"<date>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -138738,7 +138738,7 @@ impl_1363_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1363_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dateTime.\n\nThe \"<dateTime>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -138831,7 +138831,7 @@ impl_1364_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1364_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dayTimeDuration.\n\nThe \"<dayTimeDuration>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139004,7 +139004,7 @@ impl_1366_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1366_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dnsName.\n\nThe \"<dnsName>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139097,7 +139097,7 @@ impl_1367_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1367_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type double.\n\nThe \"<double>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139190,7 +139190,7 @@ impl_1368_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1368_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type expression.\n\nThe \"<expression>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type expression.\n\nThe '<expression>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139283,7 +139283,7 @@ impl_1369_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1369_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type function.\n\nThe \"<function>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139376,7 +139376,7 @@ impl_1370_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1370_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type hexBinary.\n\nThe \"<hexBinary>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139549,7 +139549,7 @@ impl_1372_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1372_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These hybrid are related to data type hybrid.\n\nThe \"<hybrid>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These hybrid are related to data type hybrid.\n\nThe '<hybrid>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -139642,7 +139642,7 @@ impl_1373_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1373_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type ia5String. \n\nThe \"<ia5String>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -140174,7 +140174,7 @@ impl_1379_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1379_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type integer.\n\nThe \"<integer>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -140347,7 +140347,7 @@ impl_1381_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1381_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type ipAddress.\n\nThe \"<ipAddress>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -140520,7 +140520,7 @@ impl_1383_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1383_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type list.\n\nThe \"<list>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type list.\n\nThe '<list>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -140933,7 +140933,7 @@ impl_1388_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1388_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type null.\n\nThe \"<null>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141026,7 +141026,7 @@ impl_1389_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1389_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type object.\n\nThe \"<object>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141119,7 +141119,7 @@ impl_1390_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1390_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type objectId.\n\nThe \"<objectId>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141212,7 +141212,7 @@ impl_1391_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1391_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type objectPath.\n\nThe \"<objectPath>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141305,7 +141305,7 @@ impl_1392_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1392_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type password.\n\nThe \"<password>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141638,7 +141638,7 @@ impl_1396_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1396_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These regexp are related to data type regexp.\n\nThe \"<regexp>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141731,7 +141731,7 @@ impl_1397_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1397_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type rfc822Name.\n\nThe \"<rfc822Name>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -141997,7 +141997,7 @@ impl_1400_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1400_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type string.\n\nThe \"<string>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -142090,7 +142090,7 @@ impl_1401_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1401_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These template are related to data type template.\n\nThe \"<template>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -142183,7 +142183,7 @@ impl_1402_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1402_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type time.\n\nThe \"<time>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -142436,7 +142436,7 @@ impl_1405_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1405_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type x500Name.\n\nThe \"<x500Name>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -142689,7 +142689,7 @@ impl_1408_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1408_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type yearMonthDuration.\n\nThe \"<yearMonthDuration>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t

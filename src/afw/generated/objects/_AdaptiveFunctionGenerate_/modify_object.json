@@ -24,7 +24,7 @@
         },
         {
             "dataType": "list",
-            "description": "List of modifications. Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
+            "description": "List of modifications. Entries are of the form:\n\n    [\n        'add_value',\n        'property name' or ['property name', ... ],\n        value\n    ]\n\n    [\n        'remove_property',\n        'property name' or ['property name', ... ]\n    ]\n\n    [\n        'remove_value',\n        'property name' or ['property name', ... ],\n        value\n    ]\n\n    [\n        'set_property',\n        'property name' or ['property name', ... ],\n        value\n    ]",
             "name": "entries"
         },
         {

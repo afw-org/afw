@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "nexBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Determine if for base64Binary arg1 is not equal to the value or data type of arg2 then return the boolean result. Use \"ne\" (\"!=\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "description": "Determine if for base64Binary arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison.",
     "functionId": "nex<base64Binary>",
     "functionLabel": "nex_base64Binary",
     "op": "!==",

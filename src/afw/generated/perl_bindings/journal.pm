@@ -66,7 +66,7 @@ evaluates to true.
 
 Get journal entry specified by entry_cursor parameter.
 
-This option will set response properties "entry" and "cursor" if there is an
+This option will set response properties 'entry' and 'cursor' if there is an
 entry to retrieve. If an entry with the supplied cursor does not exist, a
 not_found error is thrown.
 Get journal entry at cursor
@@ -85,7 +85,7 @@ Journal entry cursor.
 
 Get first journal entry.
 
-This option will set response properties "entry" and "cursor" if there is a
+This option will set response properties 'entry' and 'cursor' if there is a
 first entry to return.
 Get first journal entry
 
@@ -100,7 +100,7 @@ Id of adaptor.
 Get the next journal entry after the one specified by the entry_cursor
 parameter.
 
-This option will set response properties "entry" and "cursor" if there is a
+This option will set response properties 'entry' and 'cursor' if there is a
 next entry to retrieve.
 Get next journal entry after cursor
 
@@ -121,8 +121,8 @@ parameter. The entry_cursor parameter is ignored. The limit parameter
 specifies the maximum number of entries to scan for an applicable entry for
 consumer before returning.
 
-This option will set response properties "entry" and "entryCursor" if an
-applicable entry is retrieved. Property "reissue" will be set as described
+This option will set response properties 'entry' and 'entryCursor' if an
+applicable entry is retrieved. Property 'reissue' will be set as described
 below.
 
 The properties of the _AdaptiveProvisioningPeer_ object associated with the
@@ -131,7 +131,7 @@ consumer_id are used in the following way:
 The consumerFilter expression is used to determine if an entry is applicable.
 
 If consumeCursor property exists, return that entry at that cursor again
-immediately with a "reissue" property added and set to true.
+immediately with a 'reissue' property added and set to true.
 
 Journal entries are scanned beginning at the entry at the cursor in the
 advanceCursor property. If the advanceCursor property is not present, the
@@ -170,7 +170,7 @@ the one specified by the entry_cursor parameter. The limit parameter
 specifies the maximum number of entries to scan for an applicable entry for
 consumer before returning.
 
-This option will set response properties "entry" and "cursor" if an
+This option will set response properties 'entry' and 'cursor' if an
 applicable entry is retrieved.
 
 The properties of the _AdaptiveProvisioningPeer_ object associated with the

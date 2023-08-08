@@ -42,7 +42,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean subset for bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean subset for bags:\n            { 'true', 'true', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -66,7 +66,7 @@
                     "value": []
                 }
             ],
-            "description": "\n            Boolean subset for bags:\n            { \"false\", \"false\", \"false\", \"true\" },\n            { }\n        ",
+            "description": "\n            Boolean subset for bags:\n            { 'false', 'false', 'false', 'true' },\n            { }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -92,7 +92,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean subset for bags:\n            { \"false\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "description": "\n            Boolean subset for bags:\n            { 'false' },\n            { 'false', 'false', 'false', 'false' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -128,7 +128,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean subset for bags:\n            { \"true\", \"true\", \"true\", \"true\", \"true\" },\n            { \"true\", \"true\", \"true\", \"true\", \"true\", \"false\", \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "description": "\n            Boolean subset for bags:\n            { 'true', 'true', 'true', 'true', 'true' },\n            { 'true', 'true', 'true', 'true', 'true', 'false', 'false', 'false', 'false', 'false' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

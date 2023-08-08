@@ -151,8 +151,8 @@ Continue at beginning of a loop
 This creates a new structured block with a new nested variable scope.
 
 This function will evaluate a list of values (statements) at least once while
-a condition is true. See the related functions "break", "continue", "return"
-and "throw".
+a condition is true. See the related functions 'break', 'continue', 'return'
+and 'throw'.
 Evaluate a list of values (statements) at least once while a condition is true
 
 =head4 Parameters
@@ -166,13 +166,13 @@ the loop's scope.
 
 This is a list of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a "break", "continue", "return" or "throw" function is
+list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 eq_script
 
 Determine if script arg1 is equal to the value of arg2 converted to the data
-type of arg1 then return the boolean result. Use "eqx" ("===") instead if you
+type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
 want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
@@ -187,7 +187,7 @@ Checks for equal
 =head3 eqx_script
 
 Determine if for script arg1 is equal to the value and data type of arg2 then
-return the boolean result. Use "eq" ("==") instead if you want arg2 to be
+return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
 converted to the data type of arg1 before comparison.
 Checks for equal and type
 
@@ -231,7 +231,7 @@ Evaluate a list of values (statements) while a condition is true with a list of 
     $initial
 
 This is a list of values (statements) to evaluate before the loop starts. The
-values will normally be a call to the "assign" function.
+values will normally be a call to the 'assign' function.
 
     $condition
 
@@ -240,13 +240,13 @@ While this condition is true, the loop will continue.
     $increment
 
 This is a list of values (statements) to evaluate after each iteration of the
-loop. The values will normally be a call to the "assign" function.
+loop. The values will normally be a call to the 'assign' function.
 
     $body
 
 This is a list of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a "break", "continue", "return" or "throw" function is
+list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 foreach
@@ -273,7 +273,7 @@ Any list, object or single value.
 
 This is a list of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a "break", "continue", "return" or "throw" function is
+list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 ge_script
@@ -313,20 +313,20 @@ If/then/else function
 
     $condition
 
-If true, parameter "then" is evaluated for result. If false, parameter "else"
+If true, parameter 'then' is evaluated for result. If false, parameter 'else'
 is evaluated.
 
     $then
 
-This is the body of a structured block that is evaluated if "condition" is
-true. See the "body" parameter of the "block" function for information on how
+This is the body of a structured block that is evaluated if 'condition' is
+true. See the 'body' parameter of the 'block' function for information on how
 the body is processed.
 
     $else
 
-This is the body of a structured block that is evaluated if "condition" is
+This is the body of a structured block that is evaluated if 'condition' is
 false. If not specified and condition is false, a null value is returned. See
-the "body" parameter of the "block" function for information on how the body
+the 'body' parameter of the 'block' function for information on how the body
 is processed.
 
 =head3 is_script
@@ -394,7 +394,7 @@ Checks for less than
 =head3 ne_script
 
 Determine if script arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
 if you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
@@ -409,7 +409,7 @@ Checks for not equal
 =head3 nex_script
 
 Determine if for script arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
 be converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
@@ -465,9 +465,9 @@ All combinations true
 
 The predicate is passed two parameters and must return a boolean. The first
 parameter passed is the evaluated value of the value1 parameter and the
-second is the value2 from a case clause. This predicate will often be "eqx"
+second is the value2 from a case clause. This predicate will often be 'eqx'
 to use the exactly equal function but can also be any other function such as
-"regexp_match" or a lambda function.
+'regexp_match' or a lambda function.
 
     $value1
 
@@ -487,8 +487,8 @@ with value1 and the case clause's value2.
 =head3 throw
 
 This throws an error that can be caught by a try/catch block. An error object
-of object type _AdaptiveError_ will be available in the catch block. Its "id"
-property will be set to "throw". The other properties set based on the
+of object type _AdaptiveError_ will be available in the catch block. Its 'id'
+property will be set to 'throw'. The other properties set based on the
 parameters specified and where this function is called.
 Throws an error
 
@@ -501,7 +501,7 @@ available in the catch block.
 
     $additional
 
-Optional additional information that will be available as a "additional"
+Optional additional information that will be available as a 'additional'
 property in the error object.
 
 =head3 try
@@ -509,10 +509,10 @@ property in the error object.
 This creates a new structured block with a new nested variable scope.
 
 This function will evaluate the body statements. If an error is thrown and
-there is an optional catch, the error will be "caught" and the associated
+there is an optional catch, the error will be 'caught' and the associated
 statements will be evaluated. The optional finally statements are always
 evaluated after the body and catch statements. See the related functions
-"break", "continue", "return" and "throw".
+'break', 'continue', 'return' and 'throw'.
 Evaluate a list of values (statements) as a try block with optional catch and finally statements
 
 =head4 Parameters
@@ -520,21 +520,21 @@ Evaluate a list of values (statements) as a try block with optional catch and fi
     $body
 
 This is a list of values (statements) that are evaluated. Each value in body
-is evaluated in order until the end of the list or until a "break",
-"continue", "return" or "throw" function is encountered.
+is evaluated in order until the end of the list or until a 'break',
+'continue', 'return' or 'throw' function is encountered.
 
     $finally
 
 This is a list of values (statements) that are evaluated after the try and
 catch statements even if an error occurs. Each value in body is evaluated in
-order until the end of the list or until a "break", "continue", "return" or
-"throw" function is encountered.
+order until the end of the list or until a 'break', 'continue', 'return' or
+'throw' function is encountered.
 
     $catch
 
 This is a list of values (statements) that are evaluated when an error is
 thrown while evaluating the body. Each value in body is evaluated in order
-until the end of the list or until a "break", "continue", "return" or "throw"
+until the end of the list or until a 'break', 'continue', 'return' or 'throw'
 function is encountered.
 
     $error
@@ -549,7 +549,7 @@ This creates a new structured block with a new nested variable scope.
 This function will evaluate a list of values (statements) while a condition
 is true. The condition is tested at the beginning of the loop. If the
 condition is false for the first iteration, the loop returns a null value.
-See the related functions "break", "continue", "return" and "throw".
+See the related functions 'break', 'continue', 'return' and 'throw'.
 Evaluate a list of values (statements) while a condition is true
 
 =head4 Parameters
@@ -563,7 +563,7 @@ the loop's scope.
 
 This is a list of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a "break", "continue", "return" or "throw" function is
+list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =cut

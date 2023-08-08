@@ -2,7 +2,7 @@
     "$defs": {
         "_AdaptivePackageCompileOptions_": {
             "additionalProperties": {
-                "description": "A LANG as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation.",
+                "description": "A LANG as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation.",
                 "items": {
                     "description": "A compiler option for the compiler id with this property name.",
                     "title": "Compiler option",
@@ -15,7 +15,7 @@
                     "$ref": "#/$defs/_AdaptivePackageCompileOptions_.propertyTypes"
                 }
             ],
-            "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
+            "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
             "title": "Compile Options",
             "type": "object"
         },
@@ -42,7 +42,7 @@
                     "type": "string"
                 },
                 "buildType": {
-                    "description": "This is the type of build used for this source directory. Specify \"afwmake\" for c source directories.",
+                    "description": "This is the type of build used for this source directory. Specify 'afwmake' for c source directories.",
                     "title": "Build Type",
                     "type": "string"
                 },
@@ -62,22 +62,22 @@
                     "type": "boolean"
                 },
                 "optionalChoiceDefault": {
-                    "description": "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType \"afwmake\", either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the \"id\" property with \"afw_\" removed if present and underscores ('_') replaced with dashes ('-').",
+                    "description": "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType 'afwmake', either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the 'id' property with 'afw_' removed if present and underscores ('_') replaced with dashes ('-').",
                     "title": "Optional Choice",
                     "type": "boolean"
                 },
                 "prefix": {
-                    "description": "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding \"srcdirs\" property name followed by an underscore ('_'), which is also its default.",
+                    "description": "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding 'srcdirs' property name followed by an underscore ('_'), which is also its default.",
                     "title": "Prefix",
                     "type": "string"
                 },
                 "produces": {
-                    "description": "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType \"afwmake\", this starts with \"lib\" for libraries.",
+                    "description": "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType 'afwmake', this starts with 'lib' for libraries.",
                     "title": "Produces",
                     "type": "string"
                 },
                 "srcdirPath": {
-                    "description": "This is the relative path in the repository for this source directory. This defaults to the corresponding \"srcdirs\" property name.",
+                    "description": "This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name.",
                     "title": "Srcdir Path",
                     "type": "string"
                 },
@@ -143,7 +143,7 @@
                 },
                 "compileOptions": {
                     "$ref": "#/$defs/_AdaptivePackageCompileOptions_",
-                    "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
+                    "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
                     "title": "Compile Options",
                     "type": "object"
                 },
@@ -163,7 +163,7 @@
                     "type": "string"
                 },
                 "srcdirManifest": {
-                    "description": "This is the name of the property in the \"srcdirs\" property of the AFW extension, that when loaded at runtime, will register the repository's manifest.",
+                    "description": "This is the name of the property in the 'srcdirs' property of the AFW extension, that when loaded at runtime, will register the repository's manifest.",
                     "title": "Manifest Srcsubdir",
                     "type": "string"
                 },

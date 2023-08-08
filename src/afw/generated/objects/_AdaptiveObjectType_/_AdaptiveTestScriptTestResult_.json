@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "This is the object type of objects in the _AdaptiveTestScriptResult_ \"tests\" list property.",
+    "description": "This is the object type of objects in the _AdaptiveTestScriptResult_ 'tests' list property.",
     "objectType": "_AdaptiveTestScriptTestResult_",
     "otherProperties": {
         "dataType": "string",
@@ -13,7 +13,7 @@
         "description": {
             "brief": "description:",
             "dataType": "string",
-            "description": "This is the value of \"description:\" of the test.",
+            "description": "This is the value of 'description:' of the test.",
             "label": "Description"
         },
         "error": {
@@ -37,51 +37,51 @@
         "expect": {
             "brief": "expect:",
             "dataType": "string",
-            "description": "This is the value of \"expect:\" which is the result expected.",
+            "description": "This is the value of 'expect:' which is the result expected.",
             "label": "Source Type",
             "required": true
         },
         "expectCodepointLengthInTestScript": {
-            "brief": "Length of test \"expect\" in codepoints",
+            "brief": "Length of test 'expect' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's \"expect\" begins.",
+            "description": "This is the number of codepoints in the full source for the test script before this test's 'expect' begins.",
             "label": "Test Script Offset"
         },
         "expectCodepointOffsetInTestScript": {
-            "brief": "Offset of test \"expect\" in codepoints",
+            "brief": "Offset of test 'expect' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's \"expect\" begins.",
+            "description": "This is the number of codepoints in the full source for the test script before this test's 'expect' begins.",
             "label": "Test Script Offset"
         },
         "expectColumnNumberInTestScript": {
-            "brief": "Column number of test \"expect\"",
+            "brief": "Column number of test 'expect'",
             "dataType": "integer",
-            "description": "This is the column number in the line of the full source for the test script where this test's \"expect\" begins.",
+            "description": "This is the column number in the line of the full source for the test script where this test's 'expect' begins.",
             "label": "Test Script Column"
         },
         "expectLineNumberInTestScript": {
             "brief": "Line number of test source",
             "dataType": "integer",
-            "description": "This is the line number in the full source for the test script where this test's \"expect\" begins.",
+            "description": "This is the line number in the full source for the test script where this test's 'expect' begins.",
             "label": "Test Script Line"
         },
         "expectLocation": {
-            "brief": "sourceLocation for \"expect\" contextual",
+            "brief": "sourceLocation for 'expect' contextual",
             "dataType": "string",
-            "description": "This is where the \"expect\" for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs.",
+            "description": "This is where the 'expect' for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs.",
             "label": "Source Type",
             "required": true
         },
         "expectUTF8OctetLengthInTestScript": {
-            "brief": "Length of test \"expect\" in UTF-8 octets",
+            "brief": "Length of test 'expect' in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's \"expect\" begins.",
+            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins.",
             "label": "Test Script Offset"
         },
         "expectUTF8OctetOffsetInTestScript": {
-            "brief": "Offset of test \"expect\" in UTF-8 octets",
+            "brief": "Offset of test 'expect' in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's \"expect\" begins.",
+            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins.",
             "label": "Test Script Offset"
         },
         "passed": {
@@ -105,32 +105,32 @@
         "source": {
             "brief": "source:",
             "dataType": "string",
-            "description": "This is the value of \"source:\" to evaluate.",
+            "description": "This is the value of 'source:' to evaluate.",
             "label": "Source",
             "required": true
         },
         "sourceCodepointLengthInTestScript": {
-            "brief": "Length of test \"source\" in codepoints",
+            "brief": "Length of test 'source' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's \"source\" begins.",
+            "description": "This is the number of codepoints in the full source for the test script before this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "sourceCodepointOffsetInTestScript": {
-            "brief": "Offset of test \"source\" in codepoints",
+            "brief": "Offset of test 'source' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's \"source\" begins.",
+            "description": "This is the number of codepoints in the full source for the test script before this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "sourceColumnNumberInTestScript": {
             "brief": "Column number of test source",
             "dataType": "integer",
-            "description": "This is the column number in the line of the full source for the test script where this test's \"source\" begins.",
+            "description": "This is the column number in the line of the full source for the test script where this test's 'source' begins.",
             "label": "Test Script Column"
         },
         "sourceLineNumberInTestScript": {
-            "brief": "Length of test \"source\" in UTF-8 octets",
+            "brief": "Length of test 'source' in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's \"source\" begins.",
+            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "sourceLocation": {
@@ -143,25 +143,25 @@
         "sourceType": {
             "brief": "sourceType:",
             "dataType": "string",
-            "description": "This is the value of \"sourceType:\". If not specified, the value of the testScript \"sourceType\" property is used.",
+            "description": "This is the value of 'sourceType:'. If not specified, the value of the testScript 'sourceType' property is used.",
             "label": "Source Type"
         },
         "sourceUTF8OctetOffsetInTestScript": {
-            "brief": "Offset of test \"source\" in UTF-8 octets",
+            "brief": "Offset of test 'source' in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's \"source\" begins.",
+            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "sourceUTF8OctetLengthInTestScript": {
             "brief": "Length of test source in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full \"source\" for the test script before this test's \"source\" begins.",
+            "description": "This is the number of UTF-8 octets in the full 'source' for the test script before this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "test": {
             "brief": "test:",
             "dataType": "string",
-            "description": "This is the value of \"test:\" which is the name of the test.",
+            "description": "This is the value of 'test:' which is the name of the test.",
             "label": "Test Name",
             "required": true
         }

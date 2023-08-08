@@ -90,14 +90,14 @@ afw_function_execute_annotate(
  * Parameters:
  *
  *   uri1 - (string) First URI for compare. This URI can not contain an
- *       asterisk ("*").
+ *       asterisk ('*').
  *
  *   uri2 - (string) Second URI for compare. This URI can contain asterisk
- *       ("*") for substitution if isValuePath is true and currentPath2 is
+ *       ('*') for substitution if isValuePath is true and currentPath2 is
  *       specified.
  *
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
- *       of the URIs begins with a single slash "/", both must, and each URI
+ *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
@@ -383,7 +383,7 @@ afw_function_execute_now_utc(
  *   uri - (string) URI to parse.
  *
  *   isValuePath - (optional boolean) The URI is an adaptive value path. If the
- *       path begins with a single slash "/", the URI will be parsed as an
+ *       path begins with a single slash '/', the URI will be parsed as an
  *       adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
@@ -580,7 +580,7 @@ afw_function_execute_execution_start_time_utc(
  *       be written to the trace log. The default is true.
  *
  *   number - (optional integer) This is an optional number between 1 and 8
- *       that is appended to "trace" to identify the trace log. The default is
+ *       that is appended to 'trace' to identify the trace log. The default is
  *       1.
  *
  * Returns:
@@ -656,7 +656,7 @@ afw_function_execute_trace(
  * Parameters:
  *
  *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  * Returns:
  *
@@ -891,7 +891,7 @@ afw_function_execute_optional_chaining(
  * Parameters:
  *
  *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  * Returns:
  *
@@ -943,7 +943,7 @@ afw_function_execute_variable_exists(
  * Parameters:
  *
  *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  *   defaultValue - (optional any dataType) The default value of variable if it
  *       does not exist in object. If not specified, null value is the default.

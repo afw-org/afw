@@ -3,7 +3,7 @@
     "brief": "Retrieve adaptive object with URI to stream",
     "camelCaseFunctionLabel": "retrieveObjectsWithUriToStream",
     "category": "adaptor",
-    "description": "This function retrieves adaptive objects with a given URI.\n\nEach object is written to the \"streamId\" stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "description": "This function retrieves adaptive objects with a given URI.\n\nEach object is written to the 'streamId' stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
     "functionId": "retrieve_objects_with_uri_to_stream",
     "functionLabel": "retrieve_objects_with_uri_to_stream",
     "parameters": [

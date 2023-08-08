@@ -43,7 +43,7 @@
                     ]
                 }
             ],
-            "description": "\n            String intersection of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"one\", \"three\" }\n        ",
+            "description": "\n            String intersection of bags:\n            { 'one', 'two', 'three' },\n            { 'one', 'three' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "string",
@@ -73,7 +73,7 @@
                     ]
                 }
             ],
-            "description": "\n            String intersection of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"four\", \"five\" }\n        ",
+            "description": "\n            String intersection of bags:\n            { 'one', 'two', 'three' },\n            { 'four', 'five' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "string",
@@ -100,7 +100,7 @@
                     ]
                 }
             ],
-            "description": "\n            String intersection of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"three\", \"four\" }\n        ",
+            "description": "\n            String intersection of bags:\n            { 'one', 'two', 'three' },\n            { 'three', 'four' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "string",
@@ -159,7 +159,7 @@
                     ]
                 }
             ],
-            "description": "\n            String intersection of bags:\n            {\n               \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n               \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n               \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            },\n            {\n               \"two\", \"four\", \"six\", \"eight\", \"ten\",\n               \"twelve\", \"fourteen\", \"sixteen\", \"eighteen\", \"twenty\"\n            }\n        ",
+            "description": "\n            String intersection of bags:\n            {\n               'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n               'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n               'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            },\n            {\n               'two', 'four', 'six', 'eight', 'ten',\n               'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'\n            }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "string",

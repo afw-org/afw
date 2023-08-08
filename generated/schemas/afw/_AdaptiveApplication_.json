@@ -63,7 +63,7 @@
             "properties": {
                 "_meta_": {},
                 "applicationId": {
-                    "description": "This is id of the application. The default applicationId is \"application\". This property can only be specified in the type=application entry of the conf file.",
+                    "description": "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
                     "readOnly": true,
                     "title": "Application Id",
                     "type": "string"
@@ -75,7 +75,7 @@
                     "type": "object"
                 },
                 "confAdaptorId": {
-                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "readOnly": true,
                     "title": "Conf Adaptor",
                     "type": "string"
@@ -138,7 +138,7 @@
                 },
                 "qualifiedVariables": {
                     "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_",
-                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
                     "title": "Qualified Variables",
                     "type": "object"
                 },
@@ -167,7 +167,7 @@
                     "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_.propertyTypes"
                 }
             ],
-            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
             "title": "Qualified Variables",
             "type": "object"
         },

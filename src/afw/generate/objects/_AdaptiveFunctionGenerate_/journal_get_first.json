@@ -1,7 +1,7 @@
 {
     "brief": "Get first journal entry",
     "category": "journal",
-    "description": "Get first journal entry.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is a first entry to return.",
+    "description": "Get first journal entry.\n\nThis option will set response properties 'entry' and 'cursor' if there is a first entry to return.",
     "functionId": "journal_get_first",
     "functionLabel": "journal_get_first",
     "parameters": [

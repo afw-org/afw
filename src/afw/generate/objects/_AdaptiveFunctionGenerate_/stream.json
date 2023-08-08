@@ -1,7 +1,7 @@
 {
     "brief": "Get streamNumber for a streamId",
     "category": "stream",
-    "description": "This will return the streamNumber for a streamId. This function useful to obtain the number of the automatically opened standard streams \"console\", \"stderr\" and \"stdout\" as well and any other open stream.",
+    "description": "This will return the streamNumber for a streamId. This function useful to obtain the number of the automatically opened standard streams 'console', 'stderr' and 'stdout' as well and any other open stream.",
     "functionId": "stream",
     "functionLabel": "stream",
     "parameters": [

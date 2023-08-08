@@ -8,8 +8,8 @@ This component is a very powerful container, which implements a box allowing ite
 ## Props
 | Name | Type | Required | Default | Description |
 |:----------|:----------|:----|:------------|:------------|
-|alignContent|string|false|null|This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how "Justify Content" aligns individual items within the main-axis.|
-|alignItems|string|false|"stretch"|This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the "Justify Content" version for the cross axis (perpendicular to the main-axis).|
+|alignContent|string|false|null|This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis.|
+|alignItems|string|false|"stretch"|This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis).|
 |contains|array|false|null|This declares a list of items to be rendered inside the Box.|
 |direction|string|false|"row"|This declares the direction that items are oriented inside the Box.|
 |justifyContent|string|false|"flex-start"|This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line.|

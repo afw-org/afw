@@ -131,7 +131,7 @@ def eq_list(session, arg1, arg2):
     Checks for equal
 
     Determine if list arg1 is equal to the value of arg2 converted to the
-    data type of arg1 then return the boolean result. Use "eqx" ("===")
+    data type of arg1 then return the boolean result. Use 'eqx' ('===')
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
@@ -166,7 +166,7 @@ def eqx_list(session, arg1, arg2):
     Checks for equal and type
 
     Determine if for list arg1 is equal to the value and data type of arg2
-    then return the boolean result. Use "eq" ("==") instead if you want arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
     Parameters:
@@ -437,7 +437,7 @@ def list(session, values):
 
         values (): A value can refer to any adaptable value belonging to any
         data type or a list expression. In the case of a list expression,
-        indicated by "..." followed by an expression that results in a list,
+        indicated by '...' followed by an expression that results in a list,
         every element within that list is included in the newly created list.
 
     Returns:
@@ -497,7 +497,7 @@ def ne_list(session, arg1, arg2):
     Checks for not equal
 
     Determine if list arg1 is not equal to the value of arg2 converted to the
-    data type of arg1 then return the boolean result. Use "nex" ("!==")
+    data type of arg1 then return the boolean result. Use 'nex' ('!==')
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
@@ -532,7 +532,7 @@ def nex_list(session, arg1, arg2):
     Checks for not equal value or type
 
     Determine if for list arg1 is not equal to the value or data type of arg2
-    then return the boolean result. Use "ne" ("!=") instead if you want arg2
+    then return the boolean result. Use 'ne' ('!=') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
     Parameters:

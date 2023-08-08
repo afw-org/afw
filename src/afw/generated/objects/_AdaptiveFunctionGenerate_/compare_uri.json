@@ -9,17 +9,17 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "First URI for compare. This URI can not contain an asterisk (\"*\")",
+            "description": "First URI for compare. This URI can not contain an asterisk ('*')",
             "name": "uri1"
         },
         {
             "dataType": "string",
-            "description": "Second URI for compare. This URI can contain asterisk (\"*\") for substitution if isValuePath is true and currentPath2 is specified.",
+            "description": "Second URI for compare. This URI can contain asterisk ('*') for substitution if isValuePath is true and currentPath2 is specified.",
             "name": "uri2"
         },
         {
             "dataType": "boolean",
-            "description": "The URIs are adaptive value paths. If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
+            "description": "The URIs are adaptive value paths. If one of the URIs begins with a single slash '/', both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
             "name": "isValuePath",
             "optional": true
         },

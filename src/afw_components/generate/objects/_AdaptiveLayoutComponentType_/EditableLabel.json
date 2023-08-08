@@ -2,7 +2,7 @@
     "category": "editors",
     "componentType": "EditableLabel",
     "brief": "A component that renders an label, which can be edited when clicked.",
-    "description": "This component provides a very quick way for a label to become \"editable\" simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component.",
+    "description": "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component.",
     "implementationId": "EditableLabel",
     "instanceObjectType": "_AdaptiveLayoutComponentType_EditableLabel",
     "label": "Editable Label"

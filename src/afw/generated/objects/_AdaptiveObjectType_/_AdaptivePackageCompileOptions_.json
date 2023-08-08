@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "A LANG as defined under \"CMAKE_LANG_COMPILER_ID\" in the CMake documentation.",
+    "description": "A LANG as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation.",
     "objectType": "_AdaptivePackageCompileOptions_",
     "otherProperties": {
         "brief": "Compiler option",

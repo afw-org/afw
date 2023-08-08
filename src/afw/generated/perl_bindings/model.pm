@@ -133,25 +133,25 @@ This is a list of modifications. Variable custom::actions can be used to
 access this value in model expressions. Entries are of the form:
 
     [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
     ]
 
     [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
     ]
 
@@ -208,8 +208,8 @@ This specifies additional context information available to model expressions.
 =head3 model_mapBackObject_signature
 
 This is the function signature for current:mapBackObject used by onGetObjects
-and onRetrieveObjects. Calling this directly will throw a "Do not call
-directly" error.
+and onRetrieveObjects. Calling this directly will throw a 'Do not call
+directly' error.
 Signature used for current:mapBackObject()
 
 =head4 Parameters
@@ -222,7 +222,7 @@ This is the object to map back.
 
 This is the function signature for current:mapObject used by onAddObject.
 onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
-will throw a "Do not call directly" error.
+will throw a 'Do not call directly' error.
 Signature used for current:mapObject()
 
 =head4 Parameters
@@ -234,8 +234,8 @@ This is the object to map.
 =head3 model_returnObject_signature
 
 This is the function signature for current:returnObject used by onGetObjects
-and onRetrieveObjects. Calling this directly will throw a "Do not call
-directly" error.
+and onRetrieveObjects. Calling this directly will throw a 'Do not call
+directly' error.
 Signature used for current:returnObject()
 
 =head4 Parameters

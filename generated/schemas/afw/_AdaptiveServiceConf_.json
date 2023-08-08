@@ -100,7 +100,7 @@
                     "type": "object"
                 },
                 "serviceId": {
-                    "description": "Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".",
+                    "description": "Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be 'adaptor-x'.",
                     "title": "Service Id",
                     "type": "string"
                 },
@@ -247,9 +247,9 @@
                     "title": "Skeleton"
                 },
                 "tags": {
-                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                     "items": {
-                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                         "title": "List of keywords and terms associated with values with this meta",
                         "type": "string"
                     },

@@ -15,7 +15,7 @@
                     "value": []
                 }
             ],
-            "description": "\n\t\tString \"one\" is in empty bag.\n\t\tShould return boolean false.\n\t",
+            "description": "\n\t\tString 'one' is in empty bag.\n\t\tShould return boolean false.\n\t",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -37,7 +37,7 @@
                     ]
                 }
             ],
-            "description": "\n\t\tString \"two\" is in bag: \"one\", \"two\", \"three\".\n\t\tShould return boolean true.\n\t",
+            "description": "\n\t\tString 'two' is in bag: 'one', 'two', 'three'.\n\t\tShould return boolean true.\n\t",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -59,7 +59,7 @@
                     ]
                 }
             ],
-            "description": "\n\t\tString \"four\" is in bag: \"one\", \"two\", \"three\".\n\t\tShould return boolean false.\n\t",
+            "description": "\n\t\tString 'four' is in bag: 'one', 'two', 'three'.\n\t\tShould return boolean false.\n\t",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -82,7 +82,7 @@
                     ]
                 }
             ],
-            "description": "\n\t\tString \"four\" is in bag: \"one\", \"two\", \"three\".\n\t\tShould return boolean false.\n\t",
+            "description": "\n\t\tString 'four' is in bag: 'one', 'two', 'three'.\n\t\tShould return boolean false.\n\t",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

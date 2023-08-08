@@ -116,9 +116,9 @@ class stream
      *                     
      *                     All of these modes expect data type string. If you
      *                     are using data type base64Binary or hexBinary you
-     *                     can use corresponding binary modes, "rb", "wb",
-     *                     "ab", "rb+", "r+b", "wb+", "w+b", "ab+", and
-     *                     "a+b".
+     *                     can use corresponding binary modes, 'rb', 'wb',
+     *                     'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
+     *                     'a+b'.
      * @param boolean $autoFlush If specified and true, this will
      *                           automatically flush the stream's buffers
      *                           after every write.
@@ -185,8 +185,8 @@ class stream
      * @param string $streamId This is the streamId that will be associated
      *                         with this open URI stream.
      * @param string $uri This is the URI of the stream to open.
-     * @param string $mode This is the access mode string. Values can be "r"
-     *                     for read or "w" for write.
+     * @param string $mode This is the access mode string. Values can be 'r'
+     *                     for read or 'w' for write.
      * @param boolean $autoFlush If specified and true, this will
      *                           automatically flush the stream's buffers
      *                           after every write.
@@ -367,7 +367,7 @@ class stream
      *
      * This will return the streamNumber for a streamId. This function useful
      * to obtain the number of the automatically opened standard streams
-     * "console", "stderr" and "stdout" as well and any other open stream.
+     * 'console', 'stderr' and 'stdout' as well and any other open stream.
      *
      * @param string $streamId The id of a stream.
      *

@@ -37,13 +37,13 @@
         "confId": {
             "allowQuery": true,
             "dataType": "string",
-            "description": "The \"id\" part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+            "description": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
             "label": "Conf Id"
         },
         "confPropertyObjectType": {
             "allowQuery": true,
             "dataType": "string",
-            "description": "Object type for \"conf\" property object.",
+            "description": "Object type for 'conf' property object.",
             "label": "Conf Property Object Type"
         },
         "confSubtype": {
@@ -67,7 +67,7 @@
         "serviceType": {
             "allowQuery": true,
             "dataType": "string",
-            "description": "The \"type\" part of serviceId.",
+            "description": "The 'type' part of serviceId.",
             "label": "Service Type"
         },
         "startTime": {

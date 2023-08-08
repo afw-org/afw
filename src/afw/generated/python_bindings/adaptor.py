@@ -10,8 +10,8 @@ def adaptor_objectCallback_signature(session, object, userData=None):
     Signature used for adaptor objectCallback
 
     This is the function signature for the objectCallback parameter in
-    adaptor functions. Calling this directly will throw a "Do not call
-    directly" error.
+    adaptor functions. Calling this directly will throw a 'Do not call
+    directly' error.
 
     Parameters:
 
@@ -78,7 +78,7 @@ def add_object(session, objectType, object, adaptorId=None, objectId=None, journ
         where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry. Property "objectId" is the objectId assigned by the adaptor.
+    object: Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor.
     '''
 
     request = session.Request()
@@ -139,7 +139,7 @@ def add_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry. Property "objectId" is the objectId assigned by the adaptor.
+    object: Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor.
     '''
 
     request = session.Request()
@@ -187,18 +187,18 @@ def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adapto
         style (integer): The style of the query string produced. All of the
         styles are appropriately url encoded.
         
-        0 - "name=op=value" where "=op=" will be "==", "!=", "=ge=", etc.
-        with conjunctions "&" (and) and "|" (or). Parentheses are placed
-        around each group of like conjunctions except for outer "&".
+        0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc.
+        with conjunctions '&' (and) and '|' (or). Parentheses are placed
+        around each group of like conjunctions except for outer '&'.
         (default)
         
-        1 - the same as 1 with "=gte=" instead of "=ge=", "=lte=" instead of
-        "=le=", "=eq=" instead of "=", and "=ne=" instead of '!='.
+        1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of
+        '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.
         
         2 - similar to 1 with ';' for '&' and ',' for '|'.
         
-        3 - comparisons "op(name,value)" where "op" will be "eq", "ne", "ge",
-        ..., plus conjunctions "and(list)" and "or(list)" where "list" is a
+        3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
+        ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
         comma separated list of any comparison or conjunction.
 
     Returns:
@@ -505,25 +505,25 @@ def modify_object(session, objectType, objectId, entries, adaptorId=None, journa
         entries (list): List of modifications. Entries are of the form:
         
         [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
         ]
         
         [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
         ]
 
@@ -586,25 +586,25 @@ def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpeci
         form:
         
         [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
         ]
         
         [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
         ]
 
@@ -956,10 +956,10 @@ def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCrite
     adaptorId, which match the type specified by objectType.
     
     This function is only allowed when called during a request with content
-    type "application/x-afw". An "_AdaptiveResponse_" object is written to
+    type 'application/x-afw'. An '_AdaptiveResponse_' object is written to
     the request's response as each object is retrieved. This
-    "_AdaptiveResponse_" object has a "result" property containing the
-    retrieved object and a "intermediate" property set to true.
+    '_AdaptiveResponse_' object has a 'result' property containing the
+    retrieved object and a 'intermediate' property set to true.
     
     The optional queryCriteria is used to filter the adaptive objects
     returned. Use the objectOptions parameter to influence how the objects
@@ -1028,7 +1028,7 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None
     This function retrieves adaptive objects from an adaptor, specified by
     adaptorId, which match the type specified by objectType.
     
-    Each object is written to the "streamId" stream as it's retrieved.
+    Each object is written to the 'streamId' stream as it's retrieved.
     
     The optional queryCriteria is used to filter the adaptive objects
     returned. Use the objectOptions parameter to influence how the objects
@@ -1226,10 +1226,10 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTyp
     This function retrieves adaptive objects with a given URI.
     
     This function is only allowed when called during a request with content
-    type "application/x-afw". An "_AdaptiveResponse_" object is written to
+    type 'application/x-afw'. An '_AdaptiveResponse_' object is written to
     the request's response as each object is retrieved. This
-    "_AdaptiveResponse_" object has a "result" property containing the
-    retrieved object and a "partial" property set to true.
+    '_AdaptiveResponse_' object has a 'result' property containing the
+    retrieved object and a 'partial' property set to true.
     
     The optional queryCriteria is used to filter the adaptive objects
     returned. Use the objectOptions parameter to influence how the objects
@@ -1287,7 +1287,7 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
 
     This function retrieves adaptive objects with a given URI.
     
-    Each object is written to the "streamId" stream as it's retrieved.
+    Each object is written to the 'streamId' stream as it's retrieved.
     
     The optional queryCriteria is used to filter the adaptive objects
     returned. Use the objectOptions parameter to influence how the objects

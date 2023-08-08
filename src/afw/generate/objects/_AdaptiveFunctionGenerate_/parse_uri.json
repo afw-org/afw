@@ -13,7 +13,7 @@
         },
         {
             "dataType": "boolean",
-            "description": "The URI is an adaptive value path. If the path begins with a single slash \"/\", the URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames)",
+            "description": "The URI is an adaptive value path. If the path begins with a single slash '/', the URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames)",
             "name": "isValuePath",
             "optional": true
         },

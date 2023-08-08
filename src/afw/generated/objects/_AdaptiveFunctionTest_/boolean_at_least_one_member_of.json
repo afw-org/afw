@@ -42,7 +42,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean at least one member of for bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean at least one member of for bags:\n            { 'true', 'true', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -69,7 +69,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean at least one member of for bags:\n            { \"false\", \"false\", \"false\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean at least one member of for bags:\n            { 'false', 'false', 'false', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -95,7 +95,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean at least one member of for bags:\n            { \"true\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "description": "\n            Boolean at least one member of for bags:\n            { 'true' },\n            { 'false', 'false', 'false', 'false' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"

@@ -226,7 +226,7 @@ export function afwRegistryKeyCheck(client : any, registryType : string, key : s
  * 
  * @returns {object} _AdaptiveService_ object for the service which will
  *     contain the current status of the service. If there is an error, the
- *     status property value will be "error" and "statusMessage" contain an
+ *     status property value will be 'error' and 'statusMessage' contain an
  *     error message.
  */
 export function afwServiceGet(client : any, serviceId : string) : any {
@@ -246,7 +246,7 @@ export function afwServiceGet(client : any, serviceId : string) : any {
  * 
  * @returns {object} _AdaptiveService_ object for the service which will
  *     contain the current status of the service. If there is an error, the
- *     status property value will be "error" and "statusMessage" contain an
+ *     status property value will be 'error' and 'statusMessage' contain an
  *     error message.
  */
 export function afwServiceRestart(client : any, serviceId : string) : any {
@@ -266,7 +266,7 @@ export function afwServiceRestart(client : any, serviceId : string) : any {
  * 
  * @returns {object} _AdaptiveService_ object for the service which will
  *     contain the current status of the service. If there is an error, the
- *     status property value will be "error" and "statusMessage" contain an
+ *     status property value will be 'error' and 'statusMessage' contain an
  *     error message.
  */
 export function afwServiceStart(client : any, serviceId : string) : any {
@@ -286,7 +286,7 @@ export function afwServiceStart(client : any, serviceId : string) : any {
  * 
  * @returns {object} _AdaptiveService_ object for the service which will
  *     contain the current status of the service. If there is an error, the
- *     status property value will be "error" and "statusMessage" contain an
+ *     status property value will be 'error' and 'statusMessage' contain an
  *     error message.
  */
 export function afwServiceStop(client : any, serviceId : string) : any {

@@ -31,7 +31,7 @@ compile_json(
 //? source: ...
 
 compile_json(
-    string("\"xyz\"")
+    string("'xyz'")
 )
 
 //?

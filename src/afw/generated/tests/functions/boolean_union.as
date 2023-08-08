@@ -31,8 +31,8 @@ union<boolean>(
 //? description: ...
 
             Boolean union for bags:
-            { "true", "true", "false" },
-            { "false", "true" }
+            { 'true', 'true', 'false' },
+            { 'false', 'true' }
         
 //? expect: ...
 
@@ -60,7 +60,7 @@ union<boolean>(
 //? description: ...
 
             Boolean union for bags:
-            { "false", "false", "false", "true" },
+            { 'false', 'false', 'false', 'true' },
             { }
         
 //? expect: ...
@@ -88,8 +88,8 @@ union<boolean>(
 //? description: ...
 
             Boolean union for bags:
-            { "false" },
-            { "false", "false", "false", "false" }
+            { 'false' },
+            { 'false', 'false', 'false', 'false' }
         
 //? expect: ...
 
@@ -116,8 +116,8 @@ union<boolean>(
 //? description: ...
 
             Boolean union for bags:
-            { "true", "true", "true", "true", "true" },
-            { "true", "true", "true", "true", "true", "true", "true", "true", "true", "true" }
+            { 'true', 'true', 'true', 'true', 'true' },
+            { 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true' }
         
 //? expect: ...
 

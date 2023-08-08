@@ -10,8 +10,8 @@
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        "This is it.",
-        { "This is not it.", "This is it." }
+        'This is it.',
+        { 'This is not it.', 'This is it.' }
     
 //? expect: boolean(true)
 //? source: ...
@@ -31,8 +31,8 @@ any_of(
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        "This is it.",
-        { "This is not it.", "This is it.", "Weve already found it..", "So, these shouldnt be checked" }
+        'This is it.',
+        { 'This is not it.', 'This is it.', 'Weve already found it..', 'So, these shouldnt be checked' }
     
 //? expect: boolean(true)
 //? source: ...
@@ -54,8 +54,8 @@ any_of(
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        { "This is not it.", "This is it." }
-        "This is it."
+        { 'This is not it.', 'This is it.' }
+        'This is it.'
     
 //? expect: boolean(true)
 //? source: ...
@@ -75,8 +75,8 @@ any_of(
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        "This is it.",
-        { "This is not it.", "This is not it either." }
+        'This is it.',
+        { 'This is not it.', 'This is not it either.' }
     
 //? expect: boolean(false)
 //? source: ...
@@ -96,8 +96,8 @@ any_of(
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        "This is it.",
-        { "This is not it." }
+        'This is it.',
+        { 'This is not it.' }
     
 //? expect: boolean(false)
 //? source: ...
@@ -116,8 +116,8 @@ any_of(
 
         Test any_of with arguments:
         urn:oasis:names:tc:xacml:1.0:function:string-equal,
-        "This is it.",
-        { "This is it." }
+        'This is it.',
+        { 'This is it.' }
     
 //? expect: boolean(true)
 //? source: ...

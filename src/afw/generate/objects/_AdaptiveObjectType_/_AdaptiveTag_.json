@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with \"_Adaptive\" are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
+    "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
     "objectIdPropertyName": "tagId",
     "objectType": "_AdaptiveTag_",
     "propertyTypes": {

@@ -2,7 +2,7 @@
     "brief": "A boolean value",
     "cType": "afw_boolean_t",
     "dataType": "boolean",
-    "description": "Data type boolean holds a boolean value. Its to_string() value is \"true\" or \"false\". Its from_string() true value can be mixed case \"t\", \"true\" or \"1\". Its from_string() false value can be mixed case \"f\", \"false\" or \"0\".",
+    "description": "Data type boolean holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "boolean",

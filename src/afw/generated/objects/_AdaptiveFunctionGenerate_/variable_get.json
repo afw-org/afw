@@ -9,7 +9,7 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "Name of variable to get. The name can optionally be preceded with a qualifier followed by \"::\".",
+            "description": "Name of variable to get. The name can optionally be preceded with a qualifier followed by '::'.",
             "name": "name"
         },
         {

@@ -323,7 +323,7 @@ def service_get(session, serviceId):
         serviceId (string): The serviceId of the service.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message.
+    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
     '''
 
     request = session.Request()
@@ -352,7 +352,7 @@ def service_restart(session, serviceId):
         serviceId (string): The serviceId of the service to restart.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message.
+    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
     '''
 
     request = session.Request()
@@ -381,7 +381,7 @@ def service_start(session, serviceId):
         serviceId (string): The serviceId of the service to start
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message.
+    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
     '''
 
     request = session.Request()
@@ -410,7 +410,7 @@ def service_stop(session, serviceId):
         serviceId (string): The serviceId of the service to stop.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be "error" and "statusMessage" contain an error message.
+    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
     '''
 
     request = session.Request()

@@ -1,7 +1,7 @@
 {
     "brief": "Signature used for current:returnObject()",
     "category": "model",
-    "description": "This is the function signature for current:returnObject used by onGetObjects and onRetrieveObjects. Calling this directly will throw a \"Do not call directly\" error.",
+    "description": "This is the function signature for current:returnObject used by onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do not call directly' error.",
     "functionId": "model_returnObject_signature",
     "functionLabel": "model_returnObject_signature",
     "parameters": [

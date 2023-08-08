@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveDataType_ objects.",
+    "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
     "objectType": "_AdaptiveDataTypeGenerate_",
     "propertyTypes": {
         "_meta_": {

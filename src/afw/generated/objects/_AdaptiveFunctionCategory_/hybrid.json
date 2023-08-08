@@ -2,5 +2,5 @@
     "brief": "Data type hybrid related functions",
     "category": "hybrid",
     "dataTypeCategory": true,
-    "description": "These hybrid are related to data type hybrid.\n\nThe \"<hybrid>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "description": "These hybrid are related to data type hybrid.\n\nThe '<hybrid>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 }

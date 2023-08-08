@@ -25,8 +25,8 @@ at_least_one_member_of<string>(
 //? description: ...
 
             String at least one member of for bags:
-            { "one", "two", "three" },
-            { "one", "three" }
+            { 'one', 'two', 'three' },
+            { 'one', 'three' }
         
 //? expect: boolean(true)
 //? source: ...
@@ -48,8 +48,8 @@ at_least_one_member_of<string>(
 //? description: ...
 
             String at least one member of for bags:
-            { "one", "two", "three" },
-            { "four", "five" }
+            { 'one', 'two', 'three' },
+            { 'four', 'five' }
         
 //? expect: boolean(false)
 //? source: ...
@@ -72,11 +72,11 @@ at_least_one_member_of<string>(
 
             String intersection of bags:
             {
-                "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-                "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
-                "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five"
+                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
+                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'
             },
-            { "twenty-five" }
+            { 'twenty-five' }
         
 //? expect: boolean(true)
 //? source: ...

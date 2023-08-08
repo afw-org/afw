@@ -42,7 +42,7 @@ The following functions are exported by default
 =head3 adaptor_objectCallback_signature
 
 This is the function signature for the objectCallback parameter in adaptor
-functions. Calling this directly will throw a "Do not call directly" error.
+functions. Calling this directly will throw a 'Do not call directly' error.
 Signature used for adaptor objectCallback
 
 =head4 Parameters
@@ -159,17 +159,17 @@ specified.
 The style of the query string produced. All of the styles are appropriately
 url encoded.
 
-0 - "name=op=value" where "=op=" will be "==", "!=", "=ge=", etc. with
-conjunctions "&" (and) and "|" (or). Parentheses are placed around each group
-of like conjunctions except for outer "&". (default)
+0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with
+conjunctions '&' (and) and '|' (or). Parentheses are placed around each group
+of like conjunctions except for outer '&'. (default)
 
-1 - the same as 1 with "=gte=" instead of "=ge=", "=lte=" instead of "=le=",
-"=eq=" instead of "=", and "=ne=" instead of '!='.
+1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of '=le=',
+'=eq=' instead of '=', and '=ne=' instead of '!='.
 
 2 - similar to 1 with ';' for '&' and ',' for '|'.
 
-3 - comparisons "op(name,value)" where "op" will be "eq", "ne", "ge", ...,
-plus conjunctions "and(list)" and "or(list)" where "list" is a comma
+3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge', ...,
+plus conjunctions 'and(list)' and 'or(list)' where 'list' is a comma
 separated list of any comparison or conjunction.
 
 =head3 convert_query_string_to_AdaptiveQueryCriteria
@@ -348,25 +348,25 @@ Id of object to modify.
 List of modifications. Entries are of the form:
 
     [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
     ]
 
     [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
     ]
 
@@ -404,25 +404,25 @@ local object path.
 List of asserts and modifications. Entries are of the form:
 
     [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
     ]
 
     [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
     ]
 
     [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
     ]
 
@@ -639,10 +639,10 @@ This function retrieves adaptive objects from an adaptor, specified by
 adaptorId, which match the type specified by objectType.
 
 This function is only allowed when called during a request with content type
-"application/x-afw". An "_AdaptiveResponse_" object is written to the
-request's response as each object is retrieved. This "_AdaptiveResponse_"
-object has a "result" property containing the retrieved object and a
-"intermediate" property set to true.
+'application/x-afw'. An '_AdaptiveResponse_' object is written to the
+request's response as each object is retrieved. This '_AdaptiveResponse_'
+object has a 'result' property containing the retrieved object and a
+'intermediate' property set to true.
 
 The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
@@ -686,7 +686,7 @@ Where ${adaptorType} is the adaptor type id.
 This function retrieves adaptive objects from an adaptor, specified by
 adaptorId, which match the type specified by objectType.
 
-Each object is written to the "streamId" stream as it's retrieved.
+Each object is written to the 'streamId' stream as it's retrieved.
 
 The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
@@ -814,10 +814,10 @@ Where ${adaptorType} is the adaptor type id.
 This function retrieves adaptive objects with a given URI.
 
 This function is only allowed when called during a request with content type
-"application/x-afw". An "_AdaptiveResponse_" object is written to the
-request's response as each object is retrieved. This "_AdaptiveResponse_"
-object has a "result" property containing the retrieved object and a
-"partial" property set to true.
+'application/x-afw'. An '_AdaptiveResponse_' object is written to the
+request's response as each object is retrieved. This '_AdaptiveResponse_'
+object has a 'result' property containing the retrieved object and a
+'partial' property set to true.
 
 The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
@@ -852,7 +852,7 @@ Where ${adaptorType} is the adaptor type id.
 
 This function retrieves adaptive objects with a given URI.
 
-Each object is written to the "streamId" stream as it's retrieved.
+Each object is written to the 'streamId' stream as it's retrieved.
 
 The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.

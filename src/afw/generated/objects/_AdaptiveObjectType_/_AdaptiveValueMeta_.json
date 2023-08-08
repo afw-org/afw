@@ -186,7 +186,7 @@
             "brief": "List of keywords and terms associated with values with this meta",
             "dataType": "list",
             "dataTypeParameter": "string",
-            "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+            "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
             "label": "Tags"
         },
         "testDataParameter": {

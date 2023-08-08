@@ -23,7 +23,7 @@
                     "type": "object"
                 },
                 "serviceId": {
-                    "description": "The id of the associated service. The URI of the service is \"/afw/_AdaptiveService_/\" followed by this id.",
+                    "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
                     "title": "Service Id",
                     "type": "string"
                 },

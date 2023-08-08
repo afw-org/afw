@@ -42,7 +42,7 @@
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveJournalEntry_",
-        "description": "Resulting journal entry. Property \"objectId\" is the objectId assigned by the adaptor."
+        "description": "Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor."
     },
     "sideEffects": [
         "Object created"

@@ -31,8 +31,8 @@ intersection<string>(
 //? description: ...
 
             String intersection of bags:
-            { "one", "two", "three" },
-            { "one", "three" }
+            { 'one', 'two', 'three' },
+            { 'one', 'three' }
         
 //? expect: ...
 
@@ -60,8 +60,8 @@ intersection<string>(
 //? description: ...
 
             String intersection of bags:
-            { "one", "two", "three" },
-            { "four", "five" }
+            { 'one', 'two', 'three' },
+            { 'four', 'five' }
         
 //? expect: ...
 
@@ -87,8 +87,8 @@ intersection<string>(
 //? description: ...
 
             String intersection of bags:
-            { "one", "two", "three" },
-            { "three", "four" }
+            { 'one', 'two', 'three' },
+            { 'three', 'four' }
         
 //? expect: ...
 
@@ -116,13 +116,13 @@ intersection<string>(
 
             String intersection of bags:
             {
-               "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-               "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
-               "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five"
+               'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+               'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
+               'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'
             },
             {
-               "two", "four", "six", "eight", "ten",
-               "twelve", "fourteen", "sixteen", "eighteen", "twenty"
+               'two', 'four', 'six', 'eight', 'ten',
+               'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'
             }
         
 //? expect: ...

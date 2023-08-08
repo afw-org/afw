@@ -8,7 +8,7 @@
 //? test: is_in<string>-1
 //? description: ...
 
-		String "one" is in empty bag.
+		String 'one' is in empty bag.
 		Should return boolean false.
 	
 //? expect: boolean(false)
@@ -24,7 +24,7 @@ is_in<string>(
 //? test: is_in<string>-2
 //? description: ...
 
-		String "two" is in bag: "one", "two", "three".
+		String 'two' is in bag: 'one', 'two', 'three'.
 		Should return boolean true.
 	
 //? expect: boolean(true)
@@ -43,7 +43,7 @@ is_in<string>(
 //? test: is_in<string>-3
 //? description: ...
 
-		String "four" is in bag: "one", "two", "three".
+		String 'four' is in bag: 'one', 'two', 'three'.
 		Should return boolean false.
 	
 //? expect: boolean(false)
@@ -62,7 +62,7 @@ is_in<string>(
 //? test: is_in<string>-4
 //? description: ...
 
-		String "four" is in bag: "one", "two", "three".
+		String 'four' is in bag: 'one', 'two', 'three'.
 		Should return boolean false.
 	
 //? expect: boolean(true)

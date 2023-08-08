@@ -1851,7 +1851,7 @@ impl_20_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This component provides a very quick way for a label to become \"editable\" simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
+        .string = "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
     }
 };
 
@@ -6422,7 +6422,7 @@ impl_75_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how \"Justify Content\" aligns individual items within the main-axis."
+        .string = "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis."
     }
 };
 
@@ -6530,7 +6530,7 @@ impl_76_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the \"Justify Content\" version for the cross axis (perpendicular to the main-axis)."
+        .string = "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis)."
     }
 };
 
@@ -12645,7 +12645,7 @@ impl_159_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Used internally, to indicate that the component is being rendered in \"design mode\", in case it needs to behave differently."
+        .string = "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently."
     }
 };
 
@@ -36527,7 +36527,7 @@ impl_540_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is \"justify\""
+        .string = "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
     }
 };
 
@@ -36809,7 +36809,7 @@ impl_546_property_description = {
     "description",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Sets or returns the justification method used when text-align is \"justify\""
+        .string = "Sets or returns the justification method used when text-align is 'justify'"
     }
 };
 

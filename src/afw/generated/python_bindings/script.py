@@ -251,8 +251,8 @@ def do_while(session, condition, body):
     This creates a new structured block with a new nested variable scope.
     
     This function will evaluate a list of values (statements) at least once
-    while a condition is true. See the related functions "break", "continue",
-    "return" and "throw".
+    while a condition is true. See the related functions 'break', 'continue',
+    'return' and 'throw'.
 
     Parameters:
 
@@ -261,8 +261,8 @@ def do_while(session, condition, body):
 
         body (list): This is a list of values (statements) that are evaluated
         for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a "break", "continue",
-        "return" or "throw" function is encountered.
+        order until the end of the list or until a 'break', 'continue',
+        'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if the body is empty.
@@ -289,7 +289,7 @@ def eq_script(session, arg1, arg2):
     Checks for equal
 
     Determine if script arg1 is equal to the value of arg2 converted to the
-    data type of arg1 then return the boolean result. Use "eqx" ("===")
+    data type of arg1 then return the boolean result. Use 'eqx' ('===')
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
@@ -324,7 +324,7 @@ def eqx_script(session, arg1, arg2):
     Checks for equal and type
 
     Determine if for script arg1 is equal to the value and data type of arg2
-    then return the boolean result. Use "eq" ("==") instead if you want arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
     Parameters:
@@ -406,19 +406,19 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
         initial (list): This is a list of values (statements) to evaluate
         before the loop starts. The values will normally be a call to the
-        "assign" function.
+        'assign' function.
 
         condition (boolean): While this condition is true, the loop will
         continue.
 
         increment (list): This is a list of values (statements) to evaluate
         after each iteration of the loop. The values will normally be a call
-        to the "assign" function.
+        to the 'assign' function.
 
         body (list): This is a list of values (statements) that are evaluated
         for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a "break", "continue",
-        "return" or "throw" function is encountered.
+        order until the end of the list or until a 'break', 'continue',
+        'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -469,8 +469,8 @@ def foreach(session, name, value, body=None):
 
         body (list): This is a list of values (statements) that are evaluated
         for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a "break", "continue",
-        "return" or "throw" function is encountered.
+        order until the end of the list or until a 'break', 'continue',
+        'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -569,20 +569,20 @@ def if_(session, condition, then, _else=None):
 
     Parameters:
 
-        condition (boolean): If true, parameter "then" is evaluated for
-        result. If false, parameter "else" is evaluated.
+        condition (boolean): If true, parameter 'then' is evaluated for
+        result. If false, parameter 'else' is evaluated.
 
         then (list): This is the body of a structured block that is evaluated
-        if "condition" is true. See the "body" parameter of the "block"
+        if 'condition' is true. See the 'body' parameter of the 'block'
         function for information on how the body is processed.
 
         else (list): This is the body of a structured block that is evaluated
-        if "condition" is false. If not specified and condition is false, a
-        null value is returned. See the "body" parameter of the "block"
+        if 'condition' is false. If not specified and condition is false, a
+        null value is returned. See the 'body' parameter of the 'block'
         function for information on how the body is processed.
 
     Returns:
-    None: The result of evaluating "then" or "else"
+    None: The result of evaluating 'then' or 'else'
     '''
 
     request = session.Request()
@@ -748,7 +748,7 @@ def ne_script(session, arg1, arg2):
     Checks for not equal
 
     Determine if script arg1 is not equal to the value of arg2 converted to
-    the data type of arg1 then return the boolean result. Use "nex" ("!==")
+    the data type of arg1 then return the boolean result. Use 'nex' ('!==')
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
@@ -783,7 +783,7 @@ def nex_script(session, arg1, arg2):
     Checks for not equal value or type
 
     Determine if for script arg1 is not equal to the value or data type of
-    arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+    arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
     Parameters:
@@ -915,8 +915,8 @@ def switch(session, predicate, value1, case_clause):
         predicate (function): The predicate is passed two parameters and must
         return a boolean. The first parameter passed is the evaluated value
         of the value1 parameter and the second is the value2 from a case
-        clause. This predicate will often be "eqx" to use the exactly equal
-        function but can also be any other function such as "regexp_match" or
+        clause. This predicate will often be 'eqx' to use the exactly equal
+        function but can also be any other function such as 'regexp_match' or
         a lambda function.
 
         value1 (): The first parameter passed to the predicate.
@@ -958,7 +958,7 @@ def throw(session, message, additional=None):
 
     This throws an error that can be caught by a try/catch block. An error
     object of object type _AdaptiveError_ will be available in the catch
-    block. Its "id" property will be set to "throw". The other properties set
+    block. Its 'id' property will be set to 'throw'. The other properties set
     based on the parameters specified and where this function is called.
 
     Parameters:
@@ -967,7 +967,7 @@ def throw(session, message, additional=None):
         _AdaptiveError_ error object available in the catch block.
 
         additional (): Optional additional information that will be available
-        as a "additional" property in the error object.
+        as a 'additional' property in the error object.
 
     Returns:
     null: 
@@ -998,28 +998,28 @@ def try_(session, body, _finally=None, catch=None, error=None):
     This creates a new structured block with a new nested variable scope.
     
     This function will evaluate the body statements. If an error is thrown
-    and there is an optional catch, the error will be "caught" and the
+    and there is an optional catch, the error will be 'caught' and the
     associated statements will be evaluated. The optional finally statements
     are always evaluated after the body and catch statements. See the related
-    functions "break", "continue", "return" and "throw".
+    functions 'break', 'continue', 'return' and 'throw'.
 
     Parameters:
 
         body (list): This is a list of values (statements) that are
         evaluated. Each value in body is evaluated in order until the end of
-        the list or until a "break", "continue", "return" or "throw" function
+        the list or until a 'break', 'continue', 'return' or 'throw' function
         is encountered.
 
         finally (list): This is a list of values (statements) that are
         evaluated after the try and catch statements even if an error occurs.
         Each value in body is evaluated in order until the end of the list or
-        until a "break", "continue", "return" or "throw" function is
+        until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
         catch (list): This is a list of values (statements) that are
         evaluated when an error is thrown while evaluating the body. Each
         value in body is evaluated in order until the end of the list or
-        until a "break", "continue", "return" or "throw" function is
+        until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
         error (object): The error object thrown. This is only available in
@@ -1063,8 +1063,8 @@ def while_(session, condition, body):
     This function will evaluate a list of values (statements) while a
     condition is true. The condition is tested at the beginning of the loop.
     If the condition is false for the first iteration, the loop returns a
-    null value. See the related functions "break", "continue", "return" and
-    "throw".
+    null value. See the related functions 'break', 'continue', 'return' and
+    'throw'.
 
     Parameters:
 
@@ -1073,8 +1073,8 @@ def while_(session, condition, body):
 
         body (list): This is a list of values (statements) that are evaluated
         for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a "break", "continue",
-        "return" or "throw" function is encountered.
+        order until the end of the list or until a 'break', 'continue',
+        'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.

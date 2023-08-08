@@ -50,7 +50,7 @@
                     "type": "string"
                 },
                 "descriptionPropertyName": {
-                    "description": "The name of the property in an instance that is used as the \"description\" property in the meta for instances of this object type. If not specified, no description will be available.",
+                    "description": "The name of the property in an instance that is used as the 'description' property in the meta for instances of this object type. If not specified, no description will be available.",
                     "title": "Description Property Name",
                     "type": "string"
                 },
@@ -60,7 +60,7 @@
                     "type": "string"
                 },
                 "objectIdPropertyName": {
-                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used.",
+                    "description": "The name of the property in an instance that is used as the 'objectId' property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used.",
                     "title": "Object Id Property Name",
                     "type": "string"
                 },
@@ -100,9 +100,9 @@
                     "type": "object"
                 },
                 "tags": {
-                    "description": "This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "description": "This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                     "items": {
-                        "description": "This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                        "description": "This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                         "title": "List of keywords associated with this object type",
                         "type": "string"
                     },
@@ -395,9 +395,9 @@
                     "title": "Skeleton"
                 },
                 "tags": {
-                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                     "items": {
-                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                         "title": "List of keywords and terms associated with values with this meta",
                         "type": "string"
                     },

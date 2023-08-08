@@ -12,7 +12,7 @@
         "designMode": {
             "allowWrite": true,
             "dataType": "boolean",
-            "description": "Used internally, to indicate that the component is being rendered in \"design mode\", in case it needs to behave differently.",
+            "description": "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently.",
             "label": "Design Mode"
         },
         "className": {

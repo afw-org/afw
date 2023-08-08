@@ -43,7 +43,7 @@
                     ]
                 }
             ],
-            "description": "\n            String set equals of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"one\", \"two\", \"three\" }\n        ",
+            "description": "\n            String set equals of bags:\n            { 'one', 'two', 'three' },\n            { 'one', 'two', 'three' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -69,7 +69,7 @@
                     ]
                 }
             ],
-            "description": "\n            String set equals of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"two\", \"three\" }\n        ",
+            "description": "\n            String set equals of bags:\n            { 'one', 'two', 'three' },\n            { 'two', 'three' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -100,7 +100,7 @@
                     ]
                 }
             ],
-            "description": "\n            String set equals of bags:\n            { \"one\", \"three\", \"one\", \"three\" },\n            { \"one\", \"one\", \"one\", \"three\", \"three\", \"three\" }\n        ",
+            "description": "\n            String set equals of bags:\n            { 'one', 'three', 'one', 'three' },\n            { 'one', 'one', 'one', 'three', 'three', 'three' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -156,7 +156,7 @@
                     ]
                 }
             ],
-            "description": "\n            String set equals of bags:\n            {\n                \"two\", \"four\", \"six\", \"eight\", \"ten\",\n                \"twelve\", \"fourteen\", \"sixteen\", \"eighteen\", \"twenty\"\n            },\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            }\n        ",
+            "description": "\n            String set equals of bags:\n            {\n                'two', 'four', 'six', 'eight', 'ten',\n                'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'\n            },\n            {\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -252,7 +252,7 @@
                     ]
                 }
             ],
-            "description": "\n            String set equals of bags:\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\",\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            },\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            }\n        ",
+            "description": "\n            String set equals of bags:\n            {\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five',\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            },\n            {\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

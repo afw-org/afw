@@ -6,7 +6,7 @@
 //? sourceType: expression
 //?
 //? test: to_boolean<string>-1
-//? description: Boolean False from string "" (empty string)
+//? description: Boolean False from string '' (empty string)
 //? expect: boolean(false)
 //? source: ...
 
@@ -16,7 +16,7 @@ to_boolean<string>(
 
 //?
 //? test: to_boolean<string>-2
-//? description: Boolean True from string "whatever" (any non-empty string)
+//? description: Boolean True from string 'whatever' (any non-empty string)
 //? expect: boolean(true)
 //? source: ...
 

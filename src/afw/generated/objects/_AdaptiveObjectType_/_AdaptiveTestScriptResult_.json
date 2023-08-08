@@ -13,7 +13,7 @@
         "description": {
             "brief": "description:",
             "dataType": "string",
-            "description": "This is the value of \"description:\".",
+            "description": "This is the value of 'description:'.",
             "label": "Description"
         },
         "source": {
@@ -26,14 +26,14 @@
         "sourceType": {
             "brief": "sourceType:",
             "dataType": "string",
-            "description": "This is the value of \"sourceType:\". It is used as the default for tests that do not have one specified.",
+            "description": "This is the value of 'sourceType:'. It is used as the default for tests that do not have one specified.",
             "label": "Source Type",
             "required": true
         },
         "testScript": {
             "brief": "testScript:",
             "dataType": "string",
-            "description": "This is the value of \"testScript:\".",
+            "description": "This is the value of 'testScript:'.",
             "label": "Test Script Name",
             "required": true
         },

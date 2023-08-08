@@ -2,5 +2,5 @@
     "brief": "Data type regexp related functions",
     "category": "regexp",
     "dataTypeCategory": true,
-    "description": "These regexp are related to data type regexp.\n\nThe \"<regexp>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "description": "These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 }

@@ -54,13 +54,13 @@ class miscellaneous
      * Compare two URIs.
      *
      * @param string $uri1 First URI for compare. This URI can not contain an
-     *                     asterisk ("*")
+     *                     asterisk ('*')
      * @param string $uri2 Second URI for compare. This URI can contain
-     *                     asterisk ("*") for substitution if isValuePath is
+     *                     asterisk ('*') for substitution if isValuePath is
      *                     true and currentPath2 is specified.
      * @param boolean $isValuePath The URIs are adaptive value paths. If one
      *                             of the URIs begins with a single slash
-     *                             "/", both must, and each URI will be
+     *                             '/', both must, and each URI will be
      *                             parsed as an adaptive value path (example:
      *                             /adaptorId/objectType/objectId.propertyName
      *                             s).
@@ -348,7 +348,7 @@ class miscellaneous
      *
      * @param string $uri URI to parse
      * @param boolean $isValuePath The URI is an adaptive value path. If the
-     *                             path begins with a single slash "/", the
+     *                             path begins with a single slash '/', the
      *                             URI will be parsed as an adaptive value
      *                             path (example:
      *                             /adaptorId/objectType/objectId.propertyName
@@ -414,7 +414,7 @@ class miscellaneous
      *                        be written to the trace log. The default is
      *                        true.
      * @param integer $number This is an optional number between 1 and 8 that
-     *                        is appended to "trace" to identify the trace
+     *                        is appended to 'trace' to identify the trace
      *                        log. The default is 1.
      *
      * @return null
@@ -444,7 +444,7 @@ class miscellaneous
      * Return the true if the named variable exists.
      *
      * @param string $name Name of variable to check. The name can optionally
-     *                     be preceded with a qualifier followed by "::".
+     *                     be preceded with a qualifier followed by '::'.
      *
      * @return boolean True if variable exists.
      */
@@ -468,7 +468,7 @@ class miscellaneous
      * default or null value.
      *
      * @param string $name Name of variable to get. The name can optionally
-     *                     be preceded with a qualifier followed by "::".
+     *                     be preceded with a qualifier followed by '::'.
      * @param  $defaultValue The default value of variable if it does not
      *                       exist in object. If not specified, null value is
      *                       the default.
@@ -497,7 +497,7 @@ class miscellaneous
      * Return the true if the named variable exists and is not null.
      *
      * @param string $name Name of variable to check. The name can optionally
-     *                     be preceded with a qualifier followed by "::".
+     *                     be preceded with a qualifier followed by '::'.
      *
      * @return boolean True if variable exists and is not null.
      */

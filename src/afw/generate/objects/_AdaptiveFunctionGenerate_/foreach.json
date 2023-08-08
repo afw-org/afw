@@ -18,7 +18,7 @@
         },
         {
             "dataType": "list",
-            "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
+            "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered.",
             "name": "body",
             "optional": true
         }

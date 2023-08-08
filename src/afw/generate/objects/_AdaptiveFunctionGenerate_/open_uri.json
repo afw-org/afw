@@ -20,7 +20,7 @@
         {
             "brief": "Mode",
             "dataType": "string",
-            "description": "This is the access mode string. Values can be \"r\" for read or \"w\" for write.",
+            "description": "This is the access mode string. Values can be 'r' for read or 'w' for write.",
             "name": "mode"
         },
         {

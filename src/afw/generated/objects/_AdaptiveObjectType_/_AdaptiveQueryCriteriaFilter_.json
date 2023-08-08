@@ -13,7 +13,7 @@
             "brief": "Filters",
             "dataType": "list",
             "dataTypeParameter": "object _AdaptiveQueryCriteriaFilter_",
-            "description": "This is a list of _AdaptiveQueryCriteriaFilter_ objects for \"and\" and \"or\" operations. This property is allowed and required if the operation is \"and\" or \"or\".",
+            "description": "This is a list of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
             "label": "Filters"
         },
         "op": {
@@ -27,13 +27,13 @@
         "property": {
             "brief": "Property name",
             "dataType": "string",
-            "description": "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".",
+            "description": "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
             "label": "Property Name"
         },
         "value": {
             "brief": "Value",
             "dataType": "string",
-            "description": "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not \"and\" or \"or\".",
+            "description": "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
             "label": "Value"
         }
     }

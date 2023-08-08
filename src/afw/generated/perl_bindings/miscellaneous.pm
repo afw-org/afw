@@ -59,17 +59,17 @@ Compare URIs
 
     $uri1
 
-First URI for compare. This URI can not contain an asterisk ("*")
+First URI for compare. This URI can not contain an asterisk ('*')
 
     $uri2
 
-Second URI for compare. This URI can contain asterisk ("*") for substitution
+Second URI for compare. This URI can contain asterisk ('*') for substitution
 if isValuePath is true and currentPath2 is specified.
 
     $isValuePath
 
 The URIs are adaptive value paths. If one of the URIs begins with a single
-slash "/", both must, and each URI will be parsed as an adaptive value path
+slash '/', both must, and each URI will be parsed as an adaptive value path
 (example: /adaptorId/objectType/objectId.propertyNames).
 
     $currentPath
@@ -206,7 +206,7 @@ URI to parse
     $isValuePath
 
 The URI is an adaptive value path. If the path begins with a single slash
-"/", the URI will be parsed as an adaptive value path (example:
+'/', the URI will be parsed as an adaptive value path (example:
 /adaptorId/objectType/objectId.propertyNames)
 
     $currentPath
@@ -244,7 +244,7 @@ The default is true.
 
     $number
 
-This is an optional number between 1 and 8 that is appended to "trace" to
+This is an optional number between 1 and 8 that is appended to 'trace' to
 identify the trace log. The default is 1.
 
 =head3 variable_exists
@@ -257,7 +257,7 @@ Determine if a variable exists
     $name
 
 Name of variable to check. The name can optionally be preceded with a
-qualifier followed by "::".
+qualifier followed by '::'.
 
 =head3 variable_get
 
@@ -270,7 +270,7 @@ Get a variable value
     $name
 
 Name of variable to get. The name can optionally be preceded with a qualifier
-followed by "::".
+followed by '::'.
 
     $defaultValue
 
@@ -287,7 +287,7 @@ Determine if a variable exists and is not null
     $name
 
 Name of variable to check. The name can optionally be preceded with a
-qualifier followed by "::".
+qualifier followed by '::'.
 
 =head3 void_operator
 

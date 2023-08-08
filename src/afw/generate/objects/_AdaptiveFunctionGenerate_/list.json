@@ -14,7 +14,7 @@
     "parameters": [
         {
             "minArgs": 0,
-            "description": "A value can refer to any adaptable value belonging to any data type or a list expression. In the case of a list expression, indicated by \"...\" followed by an expression that results in a list, every element within that list is included in the newly created list.",
+            "description": "A value can refer to any adaptable value belonging to any data type or a list expression. In the case of a list expression, indicated by '...' followed by an expression that results in a list, every element within that list is included in the newly created list.",
             "name": "values"
         }
     ],

@@ -425,25 +425,25 @@ afw_function_execute_model_default_delete_object_action(
  *       the form:
  *       
  *           [
- *               "add_value",
- *               "property name" or ["property name", ... ],
+ *               'add_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "remove_property",
- *               "property name" or ["property name", ... ]
+ *               'remove_property',
+ *               'property name' or ['property name', ... ]
  *           ]
  *       
  *           [
- *               "remove_value",
- *               "property name" or ["property name", ... ],
+ *               'remove_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "set_property",
- *               "property name" or ["property name", ... ],
+ *               'set_property',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ].
  *
@@ -710,8 +710,8 @@ afw_function_execute_model_default_replace_object_action(
  * See afw_function_bindings.h for more information.
  *
  * This is the function signature for current:mapBackObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a "Do
- * not call directly" error.
+ * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+ * not call directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -750,7 +750,7 @@ afw_function_execute_model_mapBackObject_signature(
  *
  * This is the function signature for current:mapObject used by onAddObject.
  * onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
- * will throw a "Do not call directly" error.
+ * will throw a 'Do not call directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -788,8 +788,8 @@ afw_function_execute_model_mapObject_signature(
  * See afw_function_bindings.h for more information.
  *
  * This is the function signature for current:returnObject used by onGetObjects
- * and onRetrieveObjects. Calling this directly will throw a "Do not call
- * directly" error.
+ * and onRetrieveObjects. Calling this directly will throw a 'Do not call
+ * directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

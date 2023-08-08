@@ -8,9 +8,9 @@
     "propertyTypes": {
         "afwCamelCaseFunctionLabel": {
             "allowQuery": true,
-            "brief": "The functionLabel prefixed with \"afw\" and converted to camel case",
+            "brief": "The functionLabel prefixed with 'afw' and converted to camel case",
             "dataType": "string",
-            "description": "This is the functionLabel prefixed with \"afw\" and converted to camel case.",
+            "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
             "label": "Prefixed Camel Case",
             "required": false
         },

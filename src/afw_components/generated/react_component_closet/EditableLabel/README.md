@@ -3,7 +3,7 @@
 A component that renders an label, which can be edited when clicked.
 
 ## Description
-This component provides a very quick way for a label to become "editable" simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component.
+This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component.
 
 ## Props
 | Name | Type | Required | Default | Description |

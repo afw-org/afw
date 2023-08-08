@@ -17,7 +17,7 @@
         },
         "buildType": {
             "dataType": "string",
-            "description": "This is the type of build used for this source directory. Specify \"afwmake\" for c source directories.",
+            "description": "This is the type of build used for this source directory. Specify 'afwmake' for c source directories.",
             "label": "Build Type",
             "required": false
         },
@@ -41,25 +41,25 @@
         },
         "optionalChoiceDefault": {
             "dataType": "boolean",
-            "description": "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType \"afwmake\", either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the \"id\" property with \"afw_\" removed if present and underscores ('_') replaced with dashes ('-').",
+            "description": "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType 'afwmake', either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the 'id' property with 'afw_' removed if present and underscores ('_') replaced with dashes ('-').",
             "label": "Optional Choice",
             "required": false
         },
         "prefix": {
             "dataType": "string",
-            "description": "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding \"srcdirs\" property name followed by an underscore ('_'), which is also its default.",
+            "description": "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding 'srcdirs' property name followed by an underscore ('_'), which is also its default.",
             "label": "Prefix",
             "required": false
         },
         "produces": {
             "dataType": "string",
-            "description": "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType \"afwmake\", this starts with \"lib\" for libraries.",
+            "description": "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType 'afwmake', this starts with 'lib' for libraries.",
             "label": "Produces",
             "required": false
         },
         "srcdirPath": {
             "dataType": "string",
-            "description": "This is the relative path in the repository for this source directory. This defaults to the corresponding \"srcdirs\" property name.",
+            "description": "This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name.",
             "label": "Srcdir Path",
             "required": false
         },

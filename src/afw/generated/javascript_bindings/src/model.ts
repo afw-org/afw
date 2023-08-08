@@ -140,25 +140,25 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  *     Entries are of the form:
  *     
  *     [
- *     "add_value",
- *     "property name" or ["property name", ... ],
+ *     'add_value',
+ *     'property name' or ['property name', ... ],
  *     value
  *     ]
  *     
  *     [
- *     "remove_property",
- *     "property name" or ["property name", ... ]
+ *     'remove_property',
+ *     'property name' or ['property name', ... ]
  *     ]
  *     
  *     [
- *     "remove_value",
- *     "property name" or ["property name", ... ],
+ *     'remove_value',
+ *     'property name' or ['property name', ... ],
  *     value
  *     ]
  *     
  *     [
- *     "set_property",
- *     "property name" or ["property name", ... ],
+ *     'set_property',
+ *     'property name' or ['property name', ... ],
  *     value
  *     ]
  * 
@@ -247,8 +247,8 @@ export function afwModelDefaultReplaceObjectAction(client : any, objectType : st
 
 /**
  * This is the function signature for current:mapBackObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a "Do
- * not call directly" error.
+ * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+ * not call directly' error.
  * 
  * @param {object} mappedObject - This is the object to map back.
  * 
@@ -268,7 +268,7 @@ export function afwModelMapBackObjectSignature(client : any, mappedObject : obje
 /**
  * This is the function signature for current:mapObject used by onAddObject.
  * onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
- * will throw a "Do not call directly" error.
+ * will throw a 'Do not call directly' error.
  * 
  * @param {object} object - This is the object to map.
  * 
@@ -286,8 +286,8 @@ export function afwModelMapObjectSignature(client : any, object : object) : any 
 
 /**
  * This is the function signature for current:returnObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a "Do
- * not call directly" error.
+ * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+ * not call directly' error.
  * 
  * @param {object} object - This is the object to return.
  * 

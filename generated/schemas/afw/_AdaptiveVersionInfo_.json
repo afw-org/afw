@@ -26,17 +26,17 @@
                     "type": "string"
                 },
                 "gitBranch": {
-                    "description": "The current Git branch used for this build. It's calculated with the command, \"git rev-parse --abbrev-ref HEAD\"",
+                    "description": "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
                     "title": "Git Branch",
                     "type": "string"
                 },
                 "gitDescribe": {
-                    "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command \"git describe --dirty --always --tags\"",
+                    "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
                     "title": "Git Describe",
                     "type": "string"
                 },
                 "gitSha": {
-                    "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command \"git rev-parse HEAD\"",
+                    "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
                     "title": "Git SHA",
                     "type": "string"
                 },

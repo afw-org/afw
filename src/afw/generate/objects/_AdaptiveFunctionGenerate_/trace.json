@@ -17,7 +17,7 @@
         },
         {
             "dataType": "integer",
-            "description": "This is an optional number between 1 and 8 that is appended to \"trace\" to identify the trace log. The default is 1.",
+            "description": "This is an optional number between 1 and 8 that is appended to 'trace' to identify the trace log. The default is 1.",
             "name": "number",
             "optional": true
         }

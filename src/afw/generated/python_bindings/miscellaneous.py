@@ -46,14 +46,14 @@ def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
     Parameters:
 
         uri1 (string): First URI for compare. This URI can not contain an
-        asterisk ("*")
+        asterisk ('*')
 
         uri2 (string): Second URI for compare. This URI can contain asterisk
-        ("*") for substitution if isValuePath is true and currentPath2 is
+        ('*') for substitution if isValuePath is true and currentPath2 is
         specified.
 
         isValuePath (boolean): The URIs are adaptive value paths. If one of
-        the URIs begins with a single slash "/", both must, and each URI will
+        the URIs begins with a single slash '/', both must, and each URI will
         be parsed as an adaptive value path (example:
         /adaptorId/objectType/objectId.propertyNames).
 
@@ -419,7 +419,7 @@ def parse_uri(session, uri, isValuePath=None, currentPath=None):
         uri (string): URI to parse
 
         isValuePath (boolean): The URI is an adaptive value path. If the path
-        begins with a single slash "/", the URI will be parsed as an adaptive
+        begins with a single slash '/', the URI will be parsed as an adaptive
         value path (example: /adaptorId/objectType/objectId.propertyNames)
 
         currentPath (string): If isValuePath is true, this is the current
@@ -497,7 +497,7 @@ def trace(session, value, filter=None, number=None):
         written to the trace log. The default is true.
 
         number (integer): This is an optional number between 1 and 8 that is
-        appended to "trace" to identify the trace log. The default is 1.
+        appended to 'trace' to identify the trace log. The default is 1.
 
     Returns:
     null: 
@@ -533,7 +533,7 @@ def variable_exists(session, name):
     Parameters:
 
         name (string): Name of variable to check. The name can optionally be
-        preceded with a qualifier followed by "::".
+        preceded with a qualifier followed by '::'.
 
     Returns:
     boolean: True if variable exists.
@@ -564,7 +564,7 @@ def variable_get(session, name, defaultValue=None):
     Parameters:
 
         name (string): Name of variable to get. The name can optionally be
-        preceded with a qualifier followed by "::".
+        preceded with a qualifier followed by '::'.
 
         defaultValue (): The default value of variable if it does not exist
         in object. If not specified, null value is the default.
@@ -600,7 +600,7 @@ def variable_is_not_null(session, name):
     Parameters:
 
         name (string): Name of variable to check. The name can optionally be
-        preceded with a qualifier followed by "::".
+        preceded with a qualifier followed by '::'.
 
     Returns:
     boolean: True if variable exists and is not null.

@@ -83,7 +83,7 @@
         "path": {
             "brief": "The associated object's path",
             "dataType": "anyURI",
-            "description": "This is the associated object's path within an Adaptive Framework environment. The path is of the form \"/adaptorId/objectType/objectId\".",
+            "description": "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adaptorId/objectType/objectId'.",
             "label": "Path"
         },
         "propertyTypes": {

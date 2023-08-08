@@ -27,7 +27,7 @@
         "CONTENT_TYPE": {
             "brief": "The media type of the request body",
             "dataType": "string",
-            "description": "The media type of the request body, such as \"application/x-www-form-urlencoded\"."
+            "description": "The media type of the request body, such as 'application/x-www-form-urlencoded'."
         },
         "DOCUMENT_ROOT": {
             "brief": "The directory from which static documents are served",
@@ -47,7 +47,7 @@
         "HTTPS": {
             "brief": "This variable can be used as a flag to indicate whether the connection is secure",
             "dataType": "string",
-            "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., \"ON\" or \"on\" when secure and blank or \"OFF\" when not)."
+            "description": "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., 'ON' or 'on' when secure and blank or 'OFF' when not)."
         },
         "HTTP_ACCEPT": {
             "brief": "A list of the media types the client can accept",
@@ -107,7 +107,7 @@
         "QUERY_STRING": {
             "brief": "The query information from requested URL",
             "dataType": "string",
-            "description": "The query information from requested URL (i.e., the data following \"?\")."
+            "description": "The query information from requested URL (i.e., the data following '?')."
         },
         "REMOTE_ADDR": {
             "brief": "The remote IP address of the client making the request",
@@ -142,7 +142,7 @@
         "REQUEST_SCHEME": {
             "brief": "The scheme of the request",
             "dataType": "string",
-            "description": "The scheme of the request (usually \"http\" or \"https\")."
+            "description": "The scheme of the request (usually 'http' or 'https')."
         },
         "REQUEST_URI": {
             "brief": "The URI for this request relative to DOCUMENT_ROOT",
@@ -157,7 +157,7 @@
         "SCHEME": {
             "brief": "The scheme of the request",
             "dataType": "string",
-            "description": "The scheme of the request (usually \"http\" or \"https\")."
+            "description": "The scheme of the request (usually 'http' or 'https')."
         },
         "SERVER_ADDR": {
             "brief": "The IP address of the computer running the web server",
@@ -187,7 +187,7 @@
         "SERVER_PROTOCOL": {
             "brief": "The name and revision of the request protocol",
             "dataType": "string",
-            "description": "The name and revision of the request protocol, e.g., \"HTTP/1.1\"."
+            "description": "The name and revision of the request protocol, e.g., 'HTTP/1.1'."
         },
         "SERVER_SOFTWARE": {
             "brief": "The name and version of the server software that is answering the client request",

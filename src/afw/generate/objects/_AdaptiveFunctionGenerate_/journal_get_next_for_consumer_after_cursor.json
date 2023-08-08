@@ -1,7 +1,7 @@
 {
     "brief": "Get next journal entry for consumer after cursor",
     "category": "journal",
-    "description": "Get the next journal entry for a consumer referenced by the consumer_id after the one specified by the entry_cursor parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\nThis option will set response properties \"entry\" and \"cursor\" if an applicable entry is retrieved.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nUnlike option get_next_for_consumer, no other properties are referenced or modified.",
+    "description": "Get the next journal entry for a consumer referenced by the consumer_id after the one specified by the entry_cursor parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\nThis option will set response properties 'entry' and 'cursor' if an applicable entry is retrieved.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nUnlike option get_next_for_consumer, no other properties are referenced or modified.",
     "functionId": "journal_get_next_for_consumer_after_cursor",
     "functionLabel": "journal_get_next_for_consumer_after_cursor",
     "parameters": [

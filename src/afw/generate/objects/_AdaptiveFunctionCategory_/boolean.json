@@ -2,5 +2,5 @@
     "brief": "Data type boolean related functions",
     "category": "boolean",
     "dataTypeCategory": true,
-    "description": "These function are related to data type boolean.\n\nThe \"<boolean>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "description": "These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 }

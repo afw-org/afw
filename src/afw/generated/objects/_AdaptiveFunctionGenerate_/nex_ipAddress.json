@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "nexIpAddress",
     "category": "ipAddress",
     "dataTypeMethod": true,
-    "description": "Determine if for ipAddress arg1 is not equal to the value or data type of arg2 then return the boolean result. Use \"ne\" (\"!=\") instead if you want arg2 to be converted to the data type of arg1 before comparison.",
+    "description": "Determine if for ipAddress arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison.",
     "functionId": "nex<ipAddress>",
     "functionLabel": "nex_ipAddress",
     "op": "!==",

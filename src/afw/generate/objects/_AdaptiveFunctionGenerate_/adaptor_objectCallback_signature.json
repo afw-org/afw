@@ -1,7 +1,7 @@
 {
     "brief": "Signature used for adaptor objectCallback",
     "category": "adaptor",
-    "description": "This is the function signature for the objectCallback parameter in adaptor functions. Calling this directly will throw a \"Do not call directly\" error.",
+    "description": "This is the function signature for the objectCallback parameter in adaptor functions. Calling this directly will throw a 'Do not call directly' error.",
     "functionId": "adaptor_objectCallback_signature",
     "functionLabel": "adaptor_objectCallback_signature",
     "parameters": [

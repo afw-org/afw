@@ -27,7 +27,7 @@
         },
         {
             "dataType": "integer",
-            "description": "The style of the query string produced. All of the styles are appropriately url encoded.\n\n0 - \"name=op=value\" where \"=op=\" will be \"==\", \"!=\", \"=ge=\", etc. with conjunctions \"&\" (and) and \"|\" (or). Parentheses are placed around each group of like conjunctions except for outer \"&\". (default)\n\n1 - the same as 1 with \"=gte=\" instead of \"=ge=\", \"=lte=\" instead of \"=le=\", \"=eq=\" instead of \"=\", and \"=ne=\" instead of '!='.\n\n2 - similar to 1 with ';' for '&' and ',' for '|'.\n\n3 - comparisons \"op(name,value)\" where \"op\" will be \"eq\", \"ne\", \"ge\", ..., plus conjunctions \"and(list)\" and \"or(list)\" where \"list\" is a comma separated list of any comparison or conjunction.",
+            "description": "The style of the query string produced. All of the styles are appropriately url encoded.\n\n0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with conjunctions '&' (and) and '|' (or). Parentheses are placed around each group of like conjunctions except for outer '&'. (default)\n\n1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.\n\n2 - similar to 1 with ';' for '&' and ',' for '|'.\n\n3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge', ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a comma separated list of any comparison or conjunction.",
             "name": "style",
             "optional": true
         }

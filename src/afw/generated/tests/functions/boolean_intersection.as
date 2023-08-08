@@ -29,8 +29,8 @@ intersection<boolean>(
 //? description: ...
 
             Boolean intersection of bags:
-            { "true", "true", "false" },
-            { "false", "true" }
+            { 'true', 'true', 'false' },
+            { 'false', 'true' }
         
 //? expect: ...
 
@@ -58,8 +58,8 @@ intersection<boolean>(
 //? description: ...
 
             Boolean intersection of bags:
-            { "false", "false", "false", "false" },
-            { "false", "true" }
+            { 'false', 'false', 'false', 'false' },
+            { 'false', 'true' }
         
 //? expect: ...
 
@@ -87,8 +87,8 @@ intersection<boolean>(
 //? description: ...
 
             Boolean intersection of bags:
-            { "true" },
-            { "false", "false", "false", "false" }
+            { 'true' },
+            { 'false', 'false', 'false', 'false' }
         
 //? expect: ...
 

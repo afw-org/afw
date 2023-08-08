@@ -7,7 +7,7 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by \"::\".",
+            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by '::'.",
             "name": "name"
         }
     ],

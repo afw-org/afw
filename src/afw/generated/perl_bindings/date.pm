@@ -101,7 +101,7 @@ Value to convert
 =head3 eq_date
 
 Determine if date arg1 is equal to the value of arg2 converted to the data
-type of arg1 then return the boolean result. Use "eqx" ("===") instead if you
+type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
 want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
@@ -116,7 +116,7 @@ Checks for equal
 =head3 eqx_date
 
 Determine if for date arg1 is equal to the value and data type of arg2 then
-return the boolean result. Use "eq" ("==") instead if you want arg2 to be
+return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
 converted to the data type of arg1 before comparison.
 Checks for equal and type
 
@@ -264,7 +264,7 @@ Minimum value
 =head3 ne_date
 
 Determine if date arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
 if you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
@@ -279,7 +279,7 @@ Checks for not equal
 =head3 nex_date
 
 Determine if for date arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
 be converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 

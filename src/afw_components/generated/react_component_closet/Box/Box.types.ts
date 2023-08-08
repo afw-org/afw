@@ -10,7 +10,7 @@ export interface IBoxProps {
      * Aligns the Box lines within
      * 
      * This aligns a flex container's lines within when there is extra space
-     * in the cross-axis, similar to how "Justify Content" aligns individual
+     * in the cross-axis, similar to how 'Justify Content' aligns individual
      * items within the main-axis.
      */
     alignContent?:                      string;
@@ -21,8 +21,8 @@ export interface IBoxProps {
      * Alignment along the cross axis
      * 
      * This defines the default behavior for how flex items are laid out
-     * along the cross axis on the current line. Think of it as the "Justify
-     * Content" version for the cross axis (perpendicular to the main-axis).
+     * along the cross axis on the current line. Think of it as the 'Justify
+     * Content' version for the cross axis (perpendicular to the main-axis).
      */
     alignItems?:                        string;
     /**

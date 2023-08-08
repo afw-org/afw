@@ -63,7 +63,7 @@ export function afwJournalAdvanceCursorForConsumer(client : any, consumerId : st
 /**
  * Get journal entry specified by entry_cursor parameter.
  * 
- * This option will set response properties "entry" and "cursor" if there is
+ * This option will set response properties 'entry' and 'cursor' if there is
  * an entry to retrieve. If an entry with the supplied cursor does not exist,
  * a not_found error is thrown.
  * 
@@ -89,7 +89,7 @@ export function afwJournalGetByCursor(client : any, cursor : string, adaptorId? 
 /**
  * Get first journal entry.
  * 
- * This option will set response properties "entry" and "cursor" if there is
+ * This option will set response properties 'entry' and 'cursor' if there is
  * a first entry to return.
  * 
  * @param {string} adaptorId - Id of adaptor.
@@ -112,7 +112,7 @@ export function afwJournalGetFirst(client : any, adaptorId? : string) : any {
  * Get the next journal entry after the one specified by the entry_cursor
  * parameter.
  * 
- * This option will set response properties "entry" and "cursor" if there is
+ * This option will set response properties 'entry' and 'cursor' if there is
  * a next entry to retrieve.
  * 
  * @param {string} adaptorId - Id of adaptor.
@@ -140,8 +140,8 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * specifies the maximum number of entries to scan for an applicable entry
  * for consumer before returning.
  * 
- * This option will set response properties "entry" and "entryCursor" if an
- * applicable entry is retrieved. Property "reissue" will be set as described
+ * This option will set response properties 'entry' and 'entryCursor' if an
+ * applicable entry is retrieved. Property 'reissue' will be set as described
  * below.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with
@@ -151,7 +151,7 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
- * immediately with a "reissue" property added and set to true.
+ * immediately with a 'reissue' property added and set to true.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
@@ -198,7 +198,7 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * specifies the maximum number of entries to scan for an applicable entry
  * for consumer before returning.
  * 
- * This option will set response properties "entry" and "cursor" if an
+ * This option will set response properties 'entry' and 'cursor' if an
  * applicable entry is retrieved.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with

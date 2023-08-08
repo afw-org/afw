@@ -787,7 +787,7 @@
         "textAlignLast": {
             "allowWrite": true,
             "dataType": "string",
-            "description": "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is \"justify\""
+            "description": "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
         },
         "textDecoration": {
             "allowWrite": true,
@@ -817,7 +817,7 @@
         "textJustify": {
             "allowWrite": true,
             "dataType": "string",
-            "description": "Sets or returns the justification method used when text-align is \"justify\""
+            "description": "Sets or returns the justification method used when text-align is 'justify'"
         },
         "textOverflow": {
             "allowWrite": true,

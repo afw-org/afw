@@ -27,8 +27,8 @@ at_least_one_member_of<boolean>(
 //? description: ...
 
             Boolean at least one member of for bags:
-            { "true", "true", "false" },
-            { "false", "true" }
+            { 'true', 'true', 'false' },
+            { 'false', 'true' }
         
 //? expect: boolean(true)
 //? source: ...
@@ -50,8 +50,8 @@ at_least_one_member_of<boolean>(
 //? description: ...
 
             Boolean at least one member of for bags:
-            { "false", "false", "false", "false" },
-            { "false", "true" }
+            { 'false', 'false', 'false', 'false' },
+            { 'false', 'true' }
         
 //? expect: boolean(true)
 //? source: ...
@@ -74,8 +74,8 @@ at_least_one_member_of<boolean>(
 //? description: ...
 
             Boolean at least one member of for bags:
-            { "true" },
-            { "false", "false", "false", "false" }
+            { 'true' },
+            { 'false', 'false', 'false', 'false' }
         
 //? expect: boolean(false)
 //? source: ...

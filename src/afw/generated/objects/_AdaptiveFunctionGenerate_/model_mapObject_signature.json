@@ -3,7 +3,7 @@
     "brief": "Signature used for current:mapObject()",
     "camelCaseFunctionLabel": "modelMapObjectSignature",
     "category": "model",
-    "description": "This is the function signature for current:mapObject used by onAddObject. onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly will throw a \"Do not call directly\" error.",
+    "description": "This is the function signature for current:mapObject used by onAddObject. onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly will throw a 'Do not call directly' error.",
     "functionId": "model_mapObject_signature",
     "functionLabel": "model_mapObject_signature",
     "parameters": [

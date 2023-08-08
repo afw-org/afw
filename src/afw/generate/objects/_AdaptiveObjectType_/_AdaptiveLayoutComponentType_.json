@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of \"_AdaptiveLayoutComponentType_\" followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
+    "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
     "objectIdPropertyName": "componentType",
     "objectType": "_AdaptiveLayoutComponentType_",
     "propertyTypes": {

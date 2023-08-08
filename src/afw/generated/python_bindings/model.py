@@ -162,25 +162,25 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         expressions. Entries are of the form:
         
         [
-        "add_value",
-        "property name" or ["property name", ... ],
+        'add_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "remove_property",
-        "property name" or ["property name", ... ]
+        'remove_property',
+        'property name' or ['property name', ... ]
         ]
         
         [
-        "remove_value",
-        "property name" or ["property name", ... ],
+        'remove_value',
+        'property name' or ['property name', ... ],
         value
         ]
         
         [
-        "set_property",
-        "property name" or ["property name", ... ],
+        'set_property',
+        'property name' or ['property name', ... ],
         value
         ]
 
@@ -292,7 +292,7 @@ def model_mapBackObject_signature(session, mappedObject):
 
     This is the function signature for current:mapBackObject used by
     onGetObjects and onRetrieveObjects. Calling this directly will throw a
-    "Do not call directly" error.
+    'Do not call directly' error.
 
     Parameters:
 
@@ -323,7 +323,7 @@ def model_mapObject_signature(session, object):
 
     This is the function signature for current:mapObject used by onAddObject.
     onDeleteObject, onModifyObject, and onReplaceObject. Calling this
-    directly will throw a "Do not call directly" error.
+    directly will throw a 'Do not call directly' error.
 
     Parameters:
 
@@ -354,7 +354,7 @@ def model_returnObject_signature(session, object, userData=None):
 
     This is the function signature for current:returnObject used by
     onGetObjects and onRetrieveObjects. Calling this directly will throw a
-    "Do not call directly" error.
+    'Do not call directly' error.
 
     Parameters:
 

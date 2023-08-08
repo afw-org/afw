@@ -289,8 +289,8 @@ class administrative
      *
      * @return object _AdaptiveService_ object for the service which will
      *                contain the current status of the service. If there is
-     *                an error, the status property value will be "error" and
-     *                "statusMessage" contain an error message.
+     *                an error, the status property value will be 'error' and
+     *                'statusMessage' contain an error message.
      */
     public function service_get(, $serviceId)
     {
@@ -314,8 +314,8 @@ class administrative
      *
      * @return object _AdaptiveService_ object for the service which will
      *                contain the current status of the service. If there is
-     *                an error, the status property value will be "error" and
-     *                "statusMessage" contain an error message.
+     *                an error, the status property value will be 'error' and
+     *                'statusMessage' contain an error message.
      */
     public function service_restart(, $serviceId)
     {
@@ -339,8 +339,8 @@ class administrative
      *
      * @return object _AdaptiveService_ object for the service which will
      *                contain the current status of the service. If there is
-     *                an error, the status property value will be "error" and
-     *                "statusMessage" contain an error message.
+     *                an error, the status property value will be 'error' and
+     *                'statusMessage' contain an error message.
      */
     public function service_start(, $serviceId)
     {
@@ -364,8 +364,8 @@ class administrative
      *
      * @return object _AdaptiveService_ object for the service which will
      *                contain the current status of the service. If there is
-     *                an error, the status property value will be "error" and
-     *                "statusMessage" contain an error message.
+     *                an error, the status property value will be 'error' and
+     *                'statusMessage' contain an error message.
      */
     public function service_stop(, $serviceId)
     {

@@ -21,14 +21,14 @@
         "function": {
             "brief": "Function name to call, if no actions",
             "dataType": "string",
-            "description": "This is a qualified or unqualified function name. If the \"actions\" property is not specified, this is the single function to call. If actions is specified, this is the default function name.",
+            "description": "This is a qualified or unqualified function name. If the 'actions' property is not specified, this is the single function to call. If actions is specified, this is the default function name.",
             "required": false
         },
         "_flags_": {
             "brief": "List of flags to set",
             "dataType": "list",
             "dataTypeParameter": "string",
-            "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the \"actions\" property is specified, this is the default \"_flags_\" property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
+            "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
             "label": "Flags",
             "required": false
         }

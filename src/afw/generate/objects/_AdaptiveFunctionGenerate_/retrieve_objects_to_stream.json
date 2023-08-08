@@ -1,7 +1,7 @@
 {
     "brief": "Retrieve adaptive objects to a stream",
     "category": "adaptor",
-    "description":"This function retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.\n\nEach object is written to the \"streamId\" stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "description":"This function retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.\n\nEach object is written to the 'streamId' stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
     "functionId": "retrieve_objects_to_stream",
     "functionLabel": "retrieve_objects_to_stream",
     "parameters": [

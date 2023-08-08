@@ -63,7 +63,7 @@ afw_function_definition_adaptor_objectCallback_signature;
  * @param x function execute parameter.
  *
  * This is the function signature for the objectCallback parameter in adaptor
- * functions. Calling this directly will throw a "Do not call directly" error.
+ * functions. Calling this directly will throw a 'Do not call directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -151,7 +151,7 @@ afw_function_definition_add_object;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
- *       "objectId" is the objectId assigned by the adaptor.
+ *       'objectId' is the objectId assigned by the adaptor.
  */
 const afw_value_t *
 afw_function_execute_add_object(
@@ -208,7 +208,7 @@ afw_function_definition_add_object_with_uri;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
- *       "objectId" is the objectId assigned by the adaptor.
+ *       'objectId' is the objectId assigned by the adaptor.
  */
 const afw_value_t *
 afw_function_execute_add_object_with_uri(
@@ -254,17 +254,17 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *   style - (optional integer) The style of the query string produced. All of
  *       the styles are appropriately url encoded.
  *       
- *       0 - "name=op=value" where "=op=" will be "==", "!=", "=ge=", etc. with
- *       conjunctions "&" (and) and "|" (or). Parentheses are placed around
- *       each group of like conjunctions except for outer "&". (default)
+ *       0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with
+ *       conjunctions '&' (and) and '|' (or). Parentheses are placed around
+ *       each group of like conjunctions except for outer '&'. (default)
  *       
- *       1 - the same as 1 with "=gte=" instead of "=ge=", "=lte=" instead of
- *       "=le=", "=eq=" instead of "=", and "=ne=" instead of '!='.
+ *       1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of
+ *       '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.
  *       
  *       2 - similar to 1 with ';' for '&' and ',' for '|'.
  *       
- *       3 - comparisons "op(name,value)" where "op" will be "eq", "ne", "ge",
- *       ..., plus conjunctions "and(list)" and "or(list)" where "list" is a
+ *       3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
+ *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
  *       comma separated list of any comparison or conjunction.
  *
  * Returns:
@@ -570,25 +570,25 @@ afw_function_definition_modify_object;
  *   entries - (list) List of modifications. Entries are of the form:
  *       
  *           [
- *               "add_value",
- *               "property name" or ["property name", ... ],
+ *               'add_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "remove_property",
- *               "property name" or ["property name", ... ]
+ *               'remove_property',
+ *               'property name' or ['property name', ... ]
  *           ]
  *       
  *           [
- *               "remove_value",
- *               "property name" or ["property name", ... ],
+ *               'remove_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "set_property",
- *               "property name" or ["property name", ... ],
+ *               'set_property',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ].
  *
@@ -648,25 +648,25 @@ afw_function_definition_modify_object_with_uri;
  *       form:
  *       
  *           [
- *               "add_value",
- *               "property name" or ["property name", ... ],
+ *               'add_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "remove_property",
- *               "property name" or ["property name", ... ]
+ *               'remove_property',
+ *               'property name' or ['property name', ... ]
  *           ]
  *       
  *           [
- *               "remove_value",
- *               "property name" or ["property name", ... ],
+ *               'remove_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "set_property",
- *               "property name" or ["property name", ... ],
+ *               'set_property',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ].
  *
@@ -1000,10 +1000,10 @@ afw_function_definition_retrieve_objects_to_response;
  * adaptorId, which match the type specified by objectType.
  * 
  * This function is only allowed when called during a request with content type
- * "application/x-afw". An "_AdaptiveResponse_" object is written to the
- * request's response as each object is retrieved. This "_AdaptiveResponse_"
- * object has a "result" property containing the retrieved object and a
- * "intermediate" property set to true.
+ * 'application/x-afw'. An '_AdaptiveResponse_' object is written to the
+ * request's response as each object is retrieved. This '_AdaptiveResponse_'
+ * object has a 'result' property containing the retrieved object and a
+ * 'intermediate' property set to true.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
@@ -1068,7 +1068,7 @@ afw_function_definition_retrieve_objects_to_stream;
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
  * 
- * Each object is written to the "streamId" stream as it's retrieved.
+ * Each object is written to the 'streamId' stream as it's retrieved.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
@@ -1263,10 +1263,10 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  * This function retrieves adaptive objects with a given URI.
  * 
  * This function is only allowed when called during a request with content type
- * "application/x-afw". An "_AdaptiveResponse_" object is written to the
- * request's response as each object is retrieved. This "_AdaptiveResponse_"
- * object has a "result" property containing the retrieved object and a
- * "partial" property set to true.
+ * 'application/x-afw'. An '_AdaptiveResponse_' object is written to the
+ * request's response as each object is retrieved. This '_AdaptiveResponse_'
+ * object has a 'result' property containing the retrieved object and a
+ * 'partial' property set to true.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
@@ -1324,7 +1324,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *
  * This function retrieves adaptive objects with a given URI.
  * 
- * Each object is written to the "streamId" stream as it's retrieved.
+ * Each object is written to the 'streamId' stream as it's retrieved.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
@@ -1880,7 +1880,7 @@ afw_function_definition_service_get;
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -1916,7 +1916,7 @@ afw_function_definition_service_restart;
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -1952,7 +1952,7 @@ afw_function_definition_service_start;
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -1988,7 +1988,7 @@ afw_function_definition_service_stop;
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -2196,7 +2196,7 @@ afw_function_definition_eq_anyURI;
  * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -2239,7 +2239,7 @@ afw_function_definition_eqx_anyURI;
  * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -2703,7 +2703,7 @@ afw_function_definition_ne_anyURI;
  * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -2746,7 +2746,7 @@ afw_function_definition_nex_anyURI;
  * @param x function execute parameter.
  *
  * Determine if for anyURI arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -3523,7 +3523,7 @@ afw_function_definition_eq_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -3567,7 +3567,7 @@ afw_function_definition_eqx_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -3868,7 +3868,7 @@ afw_function_definition_ne_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if base64Binary arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -3912,7 +3912,7 @@ afw_function_definition_nex_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -4292,7 +4292,7 @@ afw_function_definition_eq_boolean;
  * @param x function execute parameter.
  *
  * Determine if boolean arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -4335,7 +4335,7 @@ afw_function_definition_eqx_boolean;
  * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -4636,7 +4636,7 @@ afw_function_definition_ne_boolean;
  * @param x function execute parameter.
  *
  * Determine if boolean arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -4679,7 +4679,7 @@ afw_function_definition_nex_boolean;
  * @param x function execute parameter.
  *
  * Determine if for boolean arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -6028,7 +6028,7 @@ afw_function_definition_eq_dateTime;
  * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -6071,7 +6071,7 @@ afw_function_definition_eqx_dateTime;
  * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -6460,7 +6460,7 @@ afw_function_definition_ne_dateTime;
  * @param x function execute parameter.
  *
  * Determine if dateTime arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -6504,7 +6504,7 @@ afw_function_definition_nex_dateTime;
  * @param x function execute parameter.
  *
  * Determine if for dateTime arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -6993,7 +6993,7 @@ afw_function_definition_eq_date;
  * @param x function execute parameter.
  *
  * Determine if date arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -7036,7 +7036,7 @@ afw_function_definition_eqx_date;
  * @param x function execute parameter.
  *
  * Determine if for date arg1 is equal to the value and data type of arg2 then
- * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
  * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -7424,7 +7424,7 @@ afw_function_definition_ne_date;
  * @param x function execute parameter.
  *
  * Determine if date arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -7467,7 +7467,7 @@ afw_function_definition_nex_date;
  * @param x function execute parameter.
  *
  * Determine if for date arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -7884,7 +7884,7 @@ afw_function_definition_eq_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -7928,7 +7928,7 @@ afw_function_definition_eqx_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -8230,8 +8230,8 @@ afw_function_definition_ne_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Determine if dayTimeDuration arg1 is not equal to the value of arg2
- * converted to the data type of arg1 then return the boolean result. Use "nex"
- * ("!==") instead if you want true to be returned if arg1 and arg2's data type
+ * converted to the data type of arg1 then return the boolean result. Use 'nex'
+ * ('!==') instead if you want true to be returned if arg1 and arg2's data type
  * don't match.
  *
  * This function is pure, so it will always return the same result
@@ -8274,7 +8274,7 @@ afw_function_definition_nex_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is not equal to the value or data type
- * of arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -8616,7 +8616,7 @@ afw_function_definition_eq_dnsName;
  * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -8659,7 +8659,7 @@ afw_function_definition_eqx_dnsName;
  * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -8922,7 +8922,7 @@ afw_function_definition_ne_dnsName;
  * @param x function execute parameter.
  *
  * Determine if dnsName arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -8965,7 +8965,7 @@ afw_function_definition_nex_dnsName;
  * @param x function execute parameter.
  *
  * Determine if for dnsName arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -9408,7 +9408,7 @@ afw_function_definition_eq_double;
  * @param x function execute parameter.
  *
  * Determine if double arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -9451,7 +9451,7 @@ afw_function_definition_eqx_double;
  * @param x function execute parameter.
  *
  * Determine if for double arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -9958,7 +9958,7 @@ afw_function_definition_ne_double;
  * @param x function execute parameter.
  *
  * Determine if double arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -10034,7 +10034,7 @@ afw_function_definition_nex_double;
  * @param x function execute parameter.
  *
  * Determine if for double arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -10523,7 +10523,7 @@ afw_function_definition_eq_expression;
  * @param x function execute parameter.
  *
  * Determine if expression arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -10566,7 +10566,7 @@ afw_function_definition_eqx_expression;
  * @param x function execute parameter.
  *
  * Determine if for expression arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -10871,7 +10871,7 @@ afw_function_definition_ne_expression;
  * @param x function execute parameter.
  *
  * Determine if expression arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -10915,7 +10915,7 @@ afw_function_definition_nex_expression;
  * @param x function execute parameter.
  *
  * Determine if for expression arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -11067,7 +11067,7 @@ afw_function_definition_eq_function;
  * @param x function execute parameter.
  *
  * Determine if function arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -11110,7 +11110,7 @@ afw_function_definition_eqx_function;
  * @param x function execute parameter.
  *
  * Determine if for function arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -11373,7 +11373,7 @@ afw_function_definition_ne_function;
  * @param x function execute parameter.
  *
  * Determine if function arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -11417,7 +11417,7 @@ afw_function_definition_nex_function;
  * @param x function execute parameter.
  *
  * Determine if for function arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -11606,7 +11606,7 @@ afw_function_definition_eq_hexBinary;
  * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -11649,7 +11649,7 @@ afw_function_definition_eqx_hexBinary;
  * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -11988,7 +11988,7 @@ afw_function_definition_ne_hexBinary;
  * @param x function execute parameter.
  *
  * Determine if hexBinary arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -12032,7 +12032,7 @@ afw_function_definition_nex_hexBinary;
  * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -12852,7 +12852,7 @@ afw_function_definition_eq_hybrid;
  * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -12895,7 +12895,7 @@ afw_function_definition_eqx_hybrid;
  * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -13200,7 +13200,7 @@ afw_function_definition_ne_hybrid;
  * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -13243,7 +13243,7 @@ afw_function_definition_nex_hybrid;
  * @param x function execute parameter.
  *
  * Determine if for hybrid arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -13395,7 +13395,7 @@ afw_function_definition_eq_ia5String;
  * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -13438,7 +13438,7 @@ afw_function_definition_eqx_ia5String;
  * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -13701,7 +13701,7 @@ afw_function_definition_ne_ia5String;
  * @param x function execute parameter.
  *
  * Determine if ia5String arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -13745,7 +13745,7 @@ afw_function_definition_nex_ia5String;
  * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -14178,7 +14178,7 @@ afw_function_definition_eq_integer;
  * @param x function execute parameter.
  *
  * Determine if integer arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -14221,7 +14221,7 @@ afw_function_definition_eqx_integer;
  * @param x function execute parameter.
  *
  * Determine if for integer arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -14701,7 +14701,7 @@ afw_function_definition_ne_integer;
  * @param x function execute parameter.
  *
  * Determine if integer arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -14777,7 +14777,7 @@ afw_function_definition_nex_integer;
  * @param x function execute parameter.
  *
  * Determine if for integer arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -15155,7 +15155,7 @@ afw_function_definition_eq_ipAddress;
  * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -15198,7 +15198,7 @@ afw_function_definition_eqx_ipAddress;
  * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -15499,7 +15499,7 @@ afw_function_definition_ne_ipAddress;
  * @param x function execute parameter.
  *
  * Determine if ipAddress arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -15543,7 +15543,7 @@ afw_function_definition_nex_ipAddress;
  * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -15766,7 +15766,7 @@ afw_function_definition_journal_get_by_cursor;
  *
  * Get journal entry specified by entry_cursor parameter.
  * 
- * This option will set response properties "entry" and "cursor" if there is an
+ * This option will set response properties 'entry' and 'cursor' if there is an
  * entry to retrieve. If an entry with the supplied cursor does not exist, a
  * not_found error is thrown.
  *
@@ -15806,7 +15806,7 @@ afw_function_definition_journal_get_first;
  *
  * Get first journal entry.
  * 
- * This option will set response properties "entry" and "cursor" if there is a
+ * This option will set response properties 'entry' and 'cursor' if there is a
  * first entry to return.
  *
  * This function is not pure, so it may return a different result
@@ -15843,7 +15843,7 @@ afw_function_definition_journal_get_next_after_cursor;
  * Get the next journal entry after the one specified by the entry_cursor
  * parameter.
  * 
- * This option will set response properties "entry" and "cursor" if there is a
+ * This option will set response properties 'entry' and 'cursor' if there is a
  * next entry to retrieve.
  *
  * This function is not pure, so it may return a different result
@@ -15885,8 +15885,8 @@ afw_function_definition_journal_get_next_for_consumer;
  * specifies the maximum number of entries to scan for an applicable entry for
  * consumer before returning.
  * 
- *  This option will set response properties "entry" and "entryCursor" if an
- * applicable entry is retrieved. Property "reissue" will be set as described
+ *  This option will set response properties 'entry' and 'entryCursor' if an
+ * applicable entry is retrieved. Property 'reissue' will be set as described
  * below.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
@@ -15896,7 +15896,7 @@ afw_function_definition_journal_get_next_for_consumer;
  * applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
- * immediately with a "reissue" property added and set to true.
+ * immediately with a 'reissue' property added and set to true.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
@@ -15955,7 +15955,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  * specifies the maximum number of entries to scan for an applicable entry for
  * consumer before returning.
  * 
- * This option will set response properties "entry" and "cursor" if an
+ * This option will set response properties 'entry' and 'cursor' if an
  * applicable entry is retrieved.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
@@ -16200,7 +16200,7 @@ afw_function_definition_eq_list;
  * @param x function execute parameter.
  *
  * Determine if list arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -16243,7 +16243,7 @@ afw_function_definition_eqx_list;
  * @param x function execute parameter.
  *
  * Determine if for list arg1 is equal to the value and data type of arg2 then
- * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
  * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -16560,7 +16560,7 @@ afw_function_definition_list;
  *
  *   values - (0 or more any dataType) A value can refer to any adaptable value
  *       belonging to any data type or a list expression. In the case of a list
- *       expression, indicated by "..." followed by an expression that results
+ *       expression, indicated by '...' followed by an expression that results
  *       in a list, every element within that list is included in the newly
  *       created list.
  *
@@ -16622,7 +16622,7 @@ afw_function_definition_ne_list;
  * @param x function execute parameter.
  *
  * Determine if list arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -16665,7 +16665,7 @@ afw_function_definition_nex_list;
  * @param x function execute parameter.
  *
  * Determine if for list arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -17041,14 +17041,14 @@ afw_function_definition_compare_uri;
  * Parameters:
  *
  *   uri1 - (string) First URI for compare. This URI can not contain an
- *       asterisk ("*").
+ *       asterisk ('*').
  *
  *   uri2 - (string) Second URI for compare. This URI can contain asterisk
- *       ("*") for substitution if isValuePath is true and currentPath2 is
+ *       ('*') for substitution if isValuePath is true and currentPath2 is
  *       specified.
  *
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
- *       of the URIs begins with a single slash "/", both must, and each URI
+ *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
@@ -17463,7 +17463,7 @@ afw_function_definition_parse_uri;
  *   uri - (string) URI to parse.
  *
  *   isValuePath - (optional boolean) The URI is an adaptive value path. If the
- *       path begins with a single slash "/", the URI will be parsed as an
+ *       path begins with a single slash '/', the URI will be parsed as an
  *       adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
@@ -17546,7 +17546,7 @@ afw_function_definition_trace;
  *       be written to the trace log. The default is true.
  *
  *   number - (optional integer) This is an optional number between 1 and 8
- *       that is appended to "trace" to identify the trace log. The default is
+ *       that is appended to 'trace' to identify the trace log. The default is
  *       1.
  *
  * Returns:
@@ -17581,7 +17581,7 @@ afw_function_definition_variable_exists;
  * Parameters:
  *
  *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  * Returns:
  *
@@ -17617,7 +17617,7 @@ afw_function_definition_variable_get;
  * Parameters:
  *
  *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  *   defaultValue - (optional any dataType) The default value of variable if it
  *       does not exist in object. If not specified, null value is the default.
@@ -17654,7 +17654,7 @@ afw_function_definition_variable_is_not_null;
  * Parameters:
  *
  *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by "::".
+ *       preceded with a qualifier followed by '::'.
  *
  * Returns:
  *
@@ -17879,25 +17879,25 @@ afw_function_definition_model_default_modify_object_action;
  *       the form:
  *       
  *           [
- *               "add_value",
- *               "property name" or ["property name", ... ],
+ *               'add_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "remove_property",
- *               "property name" or ["property name", ... ]
+ *               'remove_property',
+ *               'property name' or ['property name', ... ]
  *           ]
  *       
  *           [
- *               "remove_value",
- *               "property name" or ["property name", ... ],
+ *               'remove_value',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ]
  *       
  *           [
- *               "set_property",
- *               "property name" or ["property name", ... ],
+ *               'set_property',
+ *               'property name' or ['property name', ... ],
  *               value
  *           ].
  *
@@ -17988,8 +17988,8 @@ afw_function_definition_model_mapBackObject_signature;
  * @param x function execute parameter.
  *
  * This is the function signature for current:mapBackObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a "Do
- * not call directly" error.
+ * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+ * not call directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -18024,7 +18024,7 @@ afw_function_definition_model_mapObject_signature;
  *
  * This is the function signature for current:mapObject used by onAddObject.
  * onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
- * will throw a "Do not call directly" error.
+ * will throw a 'Do not call directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -18058,8 +18058,8 @@ afw_function_definition_model_returnObject_signature;
  * @param x function execute parameter.
  *
  * This is the function signature for current:returnObject used by onGetObjects
- * and onRetrieveObjects. Calling this directly will throw a "Do not call
- * directly" error.
+ * and onRetrieveObjects. Calling this directly will throw a 'Do not call
+ * directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -18363,7 +18363,7 @@ afw_function_definition_eq_objectId;
  * @param x function execute parameter.
  *
  * Determine if objectId arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -18406,7 +18406,7 @@ afw_function_definition_eqx_objectId;
  * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -18631,7 +18631,7 @@ afw_function_definition_ne_objectId;
  * @param x function execute parameter.
  *
  * Determine if objectId arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -18675,7 +18675,7 @@ afw_function_definition_nex_objectId;
  * @param x function execute parameter.
  *
  * Determine if for objectId arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -18865,7 +18865,7 @@ afw_function_definition_eq_objectPath;
  * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -18908,7 +18908,7 @@ afw_function_definition_eqx_objectPath;
  * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -19133,7 +19133,7 @@ afw_function_definition_ne_objectPath;
  * @param x function execute parameter.
  *
  * Determine if objectPath arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -19177,7 +19177,7 @@ afw_function_definition_nex_objectPath;
  * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -19477,7 +19477,7 @@ afw_function_definition_eq_object;
  * @param x function execute parameter.
  *
  * Determine if object arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -19520,7 +19520,7 @@ afw_function_definition_eqx_object;
  * @param x function execute parameter.
  *
  * Determine if for object arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -19788,7 +19788,7 @@ afw_function_definition_ne_object;
  * @param x function execute parameter.
  *
  * Determine if object arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -19831,7 +19831,7 @@ afw_function_definition_nex_object;
  * @param x function execute parameter.
  *
  * Determine if for object arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -20204,7 +20204,7 @@ afw_function_definition_eq_password;
  * @param x function execute parameter.
  *
  * Determine if password arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -20247,7 +20247,7 @@ afw_function_definition_eqx_password;
  * @param x function execute parameter.
  *
  * Determine if for password arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -20472,7 +20472,7 @@ afw_function_definition_ne_password;
  * @param x function execute parameter.
  *
  * Determine if password arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -20516,7 +20516,7 @@ afw_function_definition_nex_password;
  * @param x function execute parameter.
  *
  * Determine if for password arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -21254,7 +21254,7 @@ afw_function_definition_eq;
  * @param x function execute parameter.
  *
  * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -21348,7 +21348,7 @@ afw_function_definition_eqx;
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -22224,7 +22224,7 @@ afw_function_definition_ne;
  * @param x function execute parameter.
  *
  * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -22314,7 +22314,7 @@ afw_function_definition_nex;
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -24036,7 +24036,7 @@ afw_function_definition_eq_regexp;
  * @param x function execute parameter.
  *
  * Determine if regexp arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -24079,7 +24079,7 @@ afw_function_definition_eqx_regexp;
  * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -24270,7 +24270,7 @@ afw_function_definition_ne_regexp;
  * @param x function execute parameter.
  *
  * Determine if regexp arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -24313,7 +24313,7 @@ afw_function_definition_nex_regexp;
  * @param x function execute parameter.
  *
  * Determine if for regexp arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -24506,7 +24506,7 @@ afw_function_definition_eq_rfc822Name;
  * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -24549,7 +24549,7 @@ afw_function_definition_eqx_rfc822Name;
  * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -24887,7 +24887,7 @@ afw_function_definition_ne_rfc822Name;
  * @param x function execute parameter.
  *
  * Determine if rfc822Name arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -24931,7 +24931,7 @@ afw_function_definition_nex_rfc822Name;
  * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -25507,8 +25507,8 @@ afw_function_definition_do_while;
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate a list of values (statements) at least once
- * while a condition is true. See the related functions "break", "continue",
- * "return" and "throw".
+ * while a condition is true. See the related functions 'break', 'continue',
+ * 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25529,8 +25529,8 @@ afw_function_definition_do_while;
  *
  *   body - (list) This is a list of values (statements) that are evaluated for
  *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a "break", "continue", "return" or
- *       "throw" function is encountered.
+ *       until the end of the list or until a 'break', 'continue', 'return' or
+ *       'throw' function is encountered.
  *
  * Returns:
  *
@@ -25550,7 +25550,7 @@ afw_function_definition_eq_script;
  * @param x function execute parameter.
  *
  * Determine if script arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -25593,7 +25593,7 @@ afw_function_definition_eqx_script;
  * @param x function execute parameter.
  *
  * Determine if for script arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -25696,19 +25696,19 @@ afw_function_definition_for;
  *
  *   initial - (optional list) This is a list of values (statements) to
  *       evaluate before the loop starts. The values will normally be a call to
- *       the "assign" function.
+ *       the 'assign' function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
  *   increment - (optional list) This is a list of values (statements) to
  *       evaluate after each iteration of the loop. The values will normally be
- *       a call to the "assign" function.
+ *       a call to the 'assign' function.
  *
  *   body - (optional list) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a "break",
- *       "continue", "return" or "throw" function is encountered.
+ *       evaluated in order until the end of the list or until a 'break',
+ *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
  *
@@ -25755,8 +25755,8 @@ afw_function_definition_foreach;
  *
  *   body - (optional list) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a "break",
- *       "continue", "return" or "throw" function is encountered.
+ *       evaluated in order until the end of the list or until a 'break',
+ *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
  *
@@ -25868,21 +25868,21 @@ afw_function_definition_if;
  *
  * Parameters:
  *
- *   condition - (boolean) If true, parameter "then" is evaluated for result.
- *       If false, parameter "else" is evaluated.
+ *   condition - (boolean) If true, parameter 'then' is evaluated for result.
+ *       If false, parameter 'else' is evaluated.
  *
  *   then - (list) This is the body of a structured block that is evaluated if
- *       "condition" is true. See the "body" parameter of the "block" function
+ *       'condition' is true. See the 'body' parameter of the 'block' function
  *       for information on how the body is processed.
  *
  *   else - (optional list) This is the body of a structured block that is
- *       evaluated if "condition" is false. If not specified and condition is
- *       false, a null value is returned. See the "body" parameter of the
- *       "block" function for information on how the body is processed.
+ *       evaluated if 'condition' is false. If not specified and condition is
+ *       false, a null value is returned. See the 'body' parameter of the
+ *       'block' function for information on how the body is processed.
  *
  * Returns:
  *
- *   (any dataType) The result of evaluating "then" or "else".
+ *   (any dataType) The result of evaluating 'then' or 'else'.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -26052,7 +26052,7 @@ afw_function_definition_ne_script;
  * @param x function execute parameter.
  *
  * Determine if script arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -26095,7 +26095,7 @@ afw_function_definition_nex_script;
  * @param x function execute parameter.
  *
  * Determine if for script arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -26264,8 +26264,8 @@ afw_function_definition_switch;
  *       predicate is passed two parameters and must return a boolean. The
  *       first parameter passed is the evaluated value of the value1 parameter
  *       and the second is the value2 from a case clause. This predicate will
- *       often be "eqx" to use the exactly equal function but can also be any
- *       other function such as "regexp_match" or a lambda function.
+ *       often be 'eqx' to use the exactly equal function but can also be any
+ *       other function such as 'regexp_match' or a lambda function.
  *
  *   value1 - (any dataType) The first parameter passed to the predicate.
  *
@@ -26298,7 +26298,7 @@ afw_function_definition_throw;
  *
  * This throws an error that can be caught by a try/catch block. An error
  * object of object type _AdaptiveError_ will be available in the catch block.
- * Its "id" property will be set to "throw". The other properties set based on
+ * Its 'id' property will be set to 'throw'. The other properties set based on
  * the parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
@@ -26319,7 +26319,7 @@ afw_function_definition_throw;
  *       _AdaptiveError_ error object available in the catch block.
  *
  *   additional - (optional any dataType) Optional additional information that
- *       will be available as a "additional" property in the error object.
+ *       will be available as a 'additional' property in the error object.
  *
  * Returns:
  *
@@ -26340,10 +26340,10 @@ afw_function_definition_try;
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate the body statements. If an error is thrown and
- * there is an optional catch, the error will be "caught" and the associated
+ * there is an optional catch, the error will be 'caught' and the associated
  * statements will be evaluated. The optional finally statements are always
  * evaluated after the body and catch statements. See the related functions
- * "break", "continue", "return" and "throw".
+ * 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26363,19 +26363,19 @@ afw_function_definition_try;
  *
  *   body - (list) This is a list of values (statements) that are evaluated.
  *       Each value in body is evaluated in order until the end of the list or
- *       until a "break", "continue", "return" or "throw" function is
+ *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
  *   finally - (optional list) This is a list of values (statements) that are
  *       evaluated after the try and catch statements even if an error occurs.
  *       Each value in body is evaluated in order until the end of the list or
- *       until a "break", "continue", "return" or "throw" function is
+ *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
  *   catch - (optional list) This is a list of values (statements) that are
  *       evaluated when an error is thrown while evaluating the body. Each
  *       value in body is evaluated in order until the end of the list or until
- *       a "break", "continue", "return" or "throw" function is encountered.
+ *       a 'break', 'continue', 'return' or 'throw' function is encountered.
  *
  *   error - (optional object _AdaptiveObjectType_) The error object thrown.
  *       This is only available in the catch block. See adaptive object type
@@ -26402,7 +26402,7 @@ afw_function_definition_while;
  * This function will evaluate a list of values (statements) while a condition
  * is true. The condition is tested at the beginning of the loop. If the
  * condition is false for the first iteration, the loop returns a null value.
- * See the related functions "break", "continue", "return" and "throw".
+ * See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26423,8 +26423,8 @@ afw_function_definition_while;
  *
  *   body - (list) This is a list of values (statements) that are evaluated for
  *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a "break", "continue", "return" or
- *       "throw" function is encountered.
+ *       until the end of the list or until a 'break', 'continue', 'return' or
+ *       'throw' function is encountered.
  *
  * Returns:
  *
@@ -26590,7 +26590,7 @@ afw_function_definition_open_file;
  *       
  *       All of these modes expect data type string. If you are using data type
  *       base64Binary or hexBinary you can use corresponding binary modes,
- *       "rb", "wb", "ab", "rb+", "r+b", "wb+", "w+b", "ab+", and "a+b".
+ *       'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
  *
  *   autoFlush - (optional boolean) If specified and true, this will
  *       automatically flush the stream's buffers after every write.
@@ -26675,8 +26675,8 @@ afw_function_definition_open_uri;
  *
  *   uri - (string) This is the URI of the stream to open.
  *
- *   mode - (string) This is the access mode string. Values can be "r" for read
- *       or "w" for write.
+ *   mode - (string) This is the access mode string. Values can be 'r' for read
+ *       or 'w' for write.
  *
  *   autoFlush - (optional boolean) If specified and true, this will
  *       automatically flush the stream's buffers after every write.
@@ -26916,8 +26916,8 @@ afw_function_definition_stream;
  * @param x function execute parameter.
  *
  * This will return the streamNumber for a streamId. This function useful to
- * obtain the number of the automatically opened standard streams "console",
- * "stderr" and "stdout" as well and any other open stream.
+ * obtain the number of the automatically opened standard streams 'console',
+ * 'stderr' and 'stdout' as well and any other open stream.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -27403,7 +27403,7 @@ afw_function_definition_eq_string;
  * @param x function execute parameter.
  *
  * Determine if string arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -27446,7 +27446,7 @@ afw_function_definition_eqx_string;
  * @param x function execute parameter.
  *
  * Determine if for string arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -27980,7 +27980,7 @@ afw_function_definition_ne_string;
  * @param x function execute parameter.
  *
  * Determine if string arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -28023,7 +28023,7 @@ afw_function_definition_nex_string;
  * @param x function execute parameter.
  *
  * Determine if for string arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -29362,7 +29362,7 @@ afw_function_definition_eq_template;
  * @param x function execute parameter.
  *
  * Determine if template arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -29405,7 +29405,7 @@ afw_function_definition_eqx_template;
  * @param x function execute parameter.
  *
  * Determine if for template arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -29672,7 +29672,7 @@ afw_function_definition_ne_template;
  * @param x function execute parameter.
  *
  * Determine if template arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -29716,7 +29716,7 @@ afw_function_definition_nex_template;
  * @param x function execute parameter.
  *
  * Determine if for template arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -29943,7 +29943,7 @@ afw_function_definition_eq_time;
  * @param x function execute parameter.
  *
  * Determine if time arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use "eqx" ("===") instead if
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -29986,7 +29986,7 @@ afw_function_definition_eqx_time;
  * @param x function execute parameter.
  *
  * Determine if for time arg1 is equal to the value and data type of arg2 then
- * return the boolean result. Use "eq" ("==") instead if you want arg2 to be
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
  * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -30417,7 +30417,7 @@ afw_function_definition_ne_time;
  * @param x function execute parameter.
  *
  * Determine if time arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "nex" ("!==") instead
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
  * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -30460,7 +30460,7 @@ afw_function_definition_nex_time;
  * @param x function execute parameter.
  *
  * Determine if for time arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use "ne" ("!=") instead if you want arg2 to
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -30966,7 +30966,7 @@ afw_function_definition_eq_x500Name;
  * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===") instead
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
@@ -31009,7 +31009,7 @@ afw_function_definition_eqx_x500Name;
  * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2 to
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
  * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -31347,7 +31347,7 @@ afw_function_definition_ne_x500Name;
  * @param x function execute parameter.
  *
  * Determine if x500Name arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -31391,7 +31391,7 @@ afw_function_definition_nex_x500Name;
  * @param x function execute parameter.
  *
  * Determine if for x500Name arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -31814,7 +31814,7 @@ afw_function_definition_eq_xpathExpression;
  * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -31858,7 +31858,7 @@ afw_function_definition_eqx_xpathExpression;
  * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -32126,8 +32126,8 @@ afw_function_definition_ne_xpathExpression;
  * @param x function execute parameter.
  *
  * Determine if xpathExpression arg1 is not equal to the value of arg2
- * converted to the data type of arg1 then return the boolean result. Use "nex"
- * ("!==") instead if you want true to be returned if arg1 and arg2's data type
+ * converted to the data type of arg1 then return the boolean result. Use 'nex'
+ * ('!==') instead if you want true to be returned if arg1 and arg2's data type
  * don't match.
  *
  * This function is pure, so it will always return the same result
@@ -32170,7 +32170,7 @@ afw_function_definition_nex_xpathExpression;
  * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is not equal to the value or data type
- * of arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -32506,7 +32506,7 @@ afw_function_definition_eq_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -32550,7 +32550,7 @@ afw_function_definition_eqx_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is equal to the value and data type
- * of arg2 then return the boolean result. Use "eq" ("==") instead if you want
+ * of arg2 then return the boolean result. Use 'eq' ('==') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
@@ -32852,8 +32852,8 @@ afw_function_definition_ne_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Determine if yearMonthDuration arg1 is not equal to the value of arg2
- * converted to the data type of arg1 then return the boolean result. Use "nex"
- * ("!==") instead if you want true to be returned if arg1 and arg2's data type
+ * converted to the data type of arg1 then return the boolean result. Use 'nex'
+ * ('!==') instead if you want true to be returned if arg1 and arg2's data type
  * don't match.
  *
  * This function is pure, so it will always return the same result
@@ -32896,7 +32896,7 @@ afw_function_definition_nex_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Determine if for yearMonthDuration arg1 is not equal to the value or data
- * type of arg2 then return the boolean result. Use "ne" ("!=") instead if you
+ * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
  * want arg2 to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result

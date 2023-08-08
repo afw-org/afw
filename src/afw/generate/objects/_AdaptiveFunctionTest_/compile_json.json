@@ -33,7 +33,7 @@
             "arguments": [
                 {
                     "dataType": "string",
-                    "value": "\"xyz\""
+                    "value": "'xyz'"
                 }
             ],
             "result": {

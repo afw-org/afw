@@ -9,7 +9,7 @@
                     "$ref": "#/$defs/_AdaptiveDataType_.propertyTypes"
                 }
             ],
-            "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveDataType_ objects.",
+            "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -52,7 +52,7 @@
                     "type": "string"
                 },
                 "dataTypeParameterType": {
-                    "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the \"dataTypeParameter\" property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the \"dataTypeParameter\" property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nListOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+                    "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nListOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
                     "title": "Parameter Type",
                     "type": "string"
                 },
@@ -83,7 +83,7 @@
                     "type": "string"
                 },
                 "jsonSchemaStringFormat": {
-                    "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of \"string\".",
+                    "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
                     "title": "JSON String Format",
                     "type": "string"
                 },

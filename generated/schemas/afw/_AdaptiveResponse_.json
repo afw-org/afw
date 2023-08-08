@@ -199,7 +199,7 @@
                     "type": "boolean"
                 },
                 "result": {
-                    "description": "The result if this is a single action request or intermediate response when no error occurred. If the \"actions\" property is present, see that list of objects for results.",
+                    "description": "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.",
                     "title": "Result"
                 },
                 "resultDataType": {
@@ -208,7 +208,7 @@
                     "type": "string"
                 },
                 "status": {
-                    "description": "Result status. If this value is \"error\", see property \"error\" for more detail. This property will not exist for intermediate response objects.",
+                    "description": "Result status. If this value is 'error', see property 'error' for more detail. This property will not exist for intermediate response objects.",
                     "title": "Status",
                     "type": "string"
                 },

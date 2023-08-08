@@ -170,16 +170,16 @@ export function afwContinue(client : any) : any {
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate a list of values (statements) at least once
- * while a condition is true. See the related functions "break", "continue",
- * "return" and "throw".
+ * while a condition is true. See the related functions 'break', 'continue',
+ * 'return' and 'throw'.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.
  * 
  * @param {list} body - This is a list of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a "break",
- *     "continue", "return" or "throw" function is encountered.
+ *     evaluated in order until the end of the list or until a 'break',
+ *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if the body is empty.
  */
@@ -196,7 +196,7 @@ export function afwDoWhile(client : any, condition : boolean, body : any[]) : an
 
 /**
  * Determine if script arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use "eqx" ("===")
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===')
  * instead if you want false to be returned if arg1 and arg2's data type
  * don't match.
  * 
@@ -219,7 +219,7 @@ export function afwEqScript(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for script arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use "eq" ("==") instead if you want arg2
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2
  * to be converted to the data type of arg1 before comparison.
  * 
  * @param {script} arg1 -
@@ -274,19 +274,19 @@ export function afwEvaluateScript(client : any, source : any, additionalUntruste
  * 
  * @param {list} initial - This is a list of values (statements) to evaluate
  *     before the loop starts. The values will normally be a call to the
- *     "assign" function.
+ *     'assign' function.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue.
  * 
  * @param {list} increment - This is a list of values (statements) to
  *     evaluate after each iteration of the loop. The values will normally be
- *     a call to the "assign" function.
+ *     a call to the 'assign' function.
  * 
  * @param {list} body - This is a list of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a "break",
- *     "continue", "return" or "throw" function is encountered.
+ *     evaluated in order until the end of the list or until a 'break',
+ *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if condition
  *     evaluates to false the first time.
@@ -326,8 +326,8 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  * 
  * @param {list} body - This is a list of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a "break",
- *     "continue", "return" or "throw" function is encountered.
+ *     evaluated in order until the end of the list or until a 'break',
+ *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if condition
  *     evaluates to false the first time.
@@ -391,19 +391,19 @@ export function afwGtScript(client : any, arg1 : any, arg2 : any) : any {
 /**
  * Evaluate one of two different values depending on test condition.
  * 
- * @param {boolean} condition - If true, parameter "then" is evaluated for
- *     result. If false, parameter "else" is evaluated.
+ * @param {boolean} condition - If true, parameter 'then' is evaluated for
+ *     result. If false, parameter 'else' is evaluated.
  * 
  * @param {list} then - This is the body of a structured block that is
- *     evaluated if "condition" is true. See the "body" parameter of the
- *     "block" function for information on how the body is processed.
+ *     evaluated if 'condition' is true. See the 'body' parameter of the
+ *     'block' function for information on how the body is processed.
  * 
  * @param {list} _else - This is the body of a structured block that is
- *     evaluated if "condition" is false. If not specified and condition is
- *     false, a null value is returned. See the "body" parameter of the
- *     "block" function for information on how the body is processed.
+ *     evaluated if 'condition' is false. If not specified and condition is
+ *     false, a null value is returned. See the 'body' parameter of the
+ *     'block' function for information on how the body is processed.
  * 
- * @returns {} The result of evaluating "then" or "else"
+ * @returns {} The result of evaluating 'then' or 'else'
  */
 export function afwIf(client : any, condition : boolean, then : any[], _else? : any[]) : any {
 
@@ -512,7 +512,7 @@ export function afwLtScript(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if script arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use "nex" ("!==")
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  * 
@@ -535,7 +535,7 @@ export function afwNeScript(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for script arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use "ne" ("!=") instead if you want
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
  * arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {script} arg1 -
@@ -617,8 +617,8 @@ export function afwScript(client : any, value : any) : any {
  * @param {function} predicate - The predicate is passed two parameters and
  *     must return a boolean. The first parameter passed is the evaluated
  *     value of the value1 parameter and the second is the value2 from a case
- *     clause. This predicate will often be "eqx" to use the exactly equal
- *     function but can also be any other function such as "regexp_match" or
+ *     clause. This predicate will often be 'eqx' to use the exactly equal
+ *     function but can also be any other function such as 'regexp_match' or
  *     a lambda function.
  * 
  * @param {} value1 - The first parameter passed to the predicate.
@@ -651,14 +651,14 @@ export function afwSwitch(client : any, predicate : any, value1 : any, case_clau
 /**
  * This throws an error that can be caught by a try/catch block. An error
  * object of object type _AdaptiveError_ will be available in the catch
- * block. Its "id" property will be set to "throw". The other properties set
+ * block. Its 'id' property will be set to 'throw'. The other properties set
  * based on the parameters specified and where this function is called.
  * 
  * @param {string} message - This is the message that will be included in the
  *     _AdaptiveError_ error object available in the catch block.
  * 
  * @param {} additional - Optional additional information that will be
- *     available as a "additional" property in the error object.
+ *     available as a 'additional' property in the error object.
  * 
  * @returns {null}
  */
@@ -679,26 +679,26 @@ export function afwThrow(client : any, message : string, additional? : any) : an
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate the body statements. If an error is thrown and
- * there is an optional catch, the error will be "caught" and the associated
+ * there is an optional catch, the error will be 'caught' and the associated
  * statements will be evaluated. The optional finally statements are always
  * evaluated after the body and catch statements. See the related functions
- * "break", "continue", "return" and "throw".
+ * 'break', 'continue', 'return' and 'throw'.
  * 
  * @param {list} body - This is a list of values (statements) that are
  *     evaluated. Each value in body is evaluated in order until the end of
- *     the list or until a "break", "continue", "return" or "throw" function
+ *     the list or until a 'break', 'continue', 'return' or 'throw' function
  *     is encountered.
  * 
  * @param {list} _finally - This is a list of values (statements) that are
  *     evaluated after the try and catch statements even if an error occurs.
  *     Each value in body is evaluated in order until the end of the list or
- *     until a "break", "continue", "return" or "throw" function is
+ *     until a 'break', 'continue', 'return' or 'throw' function is
  *     encountered.
  * 
  * @param {list} _catch - This is a list of values (statements) that are
  *     evaluated when an error is thrown while evaluating the body. Each
  *     value in body is evaluated in order until the end of the list or until
- *     a "break", "continue", "return" or "throw" function is encountered.
+ *     a 'break', 'continue', 'return' or 'throw' function is encountered.
  * 
  * @param {object} error - The error object thrown. This is only available in
  *     the catch block. See adaptive object type _AdaptiveObjectType_ for
@@ -731,16 +731,16 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  * This function will evaluate a list of values (statements) while a
  * condition is true. The condition is tested at the beginning of the loop.
  * If the condition is false for the first iteration, the loop returns a null
- * value. See the related functions "break", "continue", "return" and
- * "throw".
+ * value. See the related functions 'break', 'continue', 'return' and
+ * 'throw'.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.
  * 
  * @param {list} body - This is a list of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a "break",
- *     "continue", "return" or "throw" function is encountered.
+ *     evaluated in order until the end of the list or until a 'break',
+ *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if condition
  *     evaluates to false the first time.

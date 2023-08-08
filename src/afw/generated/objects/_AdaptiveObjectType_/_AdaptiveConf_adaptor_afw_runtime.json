@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of \"afw\" and can only be redefined to add common adaptor properties such as access control.",
+    "description": "Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of 'afw' and can only be redefined to add common adaptor properties such as access control.",
     "objectType": "_AdaptiveConf_adaptor_afw_runtime",
     "propertyTypes": {
         "_meta_": {

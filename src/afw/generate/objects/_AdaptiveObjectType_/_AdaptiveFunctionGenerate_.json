@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the \"dev.py generate\" script to generate _AdaptiveFunction_ objects.",
+    "description": "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects.",
     "objectType": "_AdaptiveFunctionGenerate_",
     "propertyTypes": {
         "additionalArgCheck": {
@@ -16,9 +16,9 @@
         },
         "afwCamelCaseFunctionLabel": {
             "allowQuery": true,
-            "brief": "The functionLabel prefixed with \"afw\" and converted to camel case",
+            "brief": "The functionLabel prefixed with 'afw' and converted to camel case",
             "dataType": "string",
-            "description": "This is the functionLabel prefixed with \"afw\" and converted to camel case.",
+            "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
             "label": "Prefixed Camel Case",
             "required": false
         },
@@ -194,7 +194,7 @@
             "allowQuery": true,
             "brief": "Script support function",
             "dataType": "boolean",
-            "description": "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form \"AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_\" followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.",
+            "description": "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form 'AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_' followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.",
             "label": "Script support"
         },
         "sideEffects": {

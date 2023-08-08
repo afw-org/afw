@@ -9,7 +9,7 @@
 //? description: ...
 
             Boolean one and only for bag:
-            { "true" }
+            { 'true' }
         
 //? expect: boolean(true)
 //? source: ...
@@ -25,7 +25,7 @@ one_and_only<boolean>(
 //? description: ...
 
             Boolean one and only for bag:
-            { "true", "false", "true", "false", true" }
+            { 'true', 'false', 'true', 'false', true' }
         
 //? expect: error
 //? source: ...

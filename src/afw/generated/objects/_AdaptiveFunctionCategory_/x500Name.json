@@ -2,5 +2,5 @@
     "brief": "Data type x500Name related functions",
     "category": "x500Name",
     "dataTypeCategory": true,
-    "description": "These function are related to data type x500Name.\n\nThe \"<x500Name>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "description": "These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 }

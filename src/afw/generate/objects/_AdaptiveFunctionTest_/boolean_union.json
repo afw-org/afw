@@ -43,7 +43,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean union for bags:\n            { \"true\", \"true\", \"false\" },\n            { \"false\", \"true\" }\n        ",
+            "description": "\n            Boolean union for bags:\n            { 'true', 'true', 'false' },\n            { 'false', 'true' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",
@@ -71,7 +71,7 @@
                     "value": []
                 }
             ],
-            "description": "\n            Boolean union for bags:\n            { \"false\", \"false\", \"false\", \"true\" },\n            { }\n        ",
+            "description": "\n            Boolean union for bags:\n            { 'false', 'false', 'false', 'true' },\n            { }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",
@@ -101,7 +101,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean union for bags:\n            { \"false\" },\n            { \"false\", \"false\", \"false\", \"false\" }\n        ",
+            "description": "\n            Boolean union for bags:\n            { 'false' },\n            { 'false', 'false', 'false', 'false' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",
@@ -140,7 +140,7 @@
                     ]
                 }
             ],
-            "description": "\n            Boolean union for bags:\n            { \"true\", \"true\", \"true\", \"true\", \"true\" },\n            { \"true\", \"true\", \"true\", \"true\", \"true\", \"true\", \"true\", \"true\", \"true\", \"true\" }\n        ",
+            "description": "\n            Boolean union for bags:\n            { 'true', 'true', 'true', 'true', 'true' },\n            { 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true' }\n        ",
             "result": {
                 "dataType": "bag",
                 "dataTypeParameter": "boolean",

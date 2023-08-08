@@ -50,7 +50,7 @@
                     ]
                 }
             ],
-            "description": "\n            String subset of bags:\n            { \"one\", \"three\", \"one\", \"three\" },\n            { \"one\", \"one\", \"one\", \"two\", \"two\", \"two\", \"three\", \"three\", \"three\" }\n        ",
+            "description": "\n            String subset of bags:\n            { 'one', 'three', 'one', 'three' },\n            { 'one', 'one', 'one', 'two', 'two', 'two', 'three', 'three', 'three' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -76,7 +76,7 @@
                     ]
                 }
             ],
-            "description": "\n            String subset of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"four\", \"five\" }\n        ",
+            "description": "\n            String subset of bags:\n            { 'one', 'two', 'three' },\n            { 'four', 'five' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -103,7 +103,7 @@
                     ]
                 }
             ],
-            "description": "\n            String subset of bags:\n            { \"one\", \"two\", \"three\" },\n            { \"one\", \"two\", \"four\" }\n        ",
+            "description": "\n            String subset of bags:\n            { 'one', 'two', 'three' },\n            { 'one', 'two', 'four' }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -159,7 +159,7 @@
                     ]
                 }
             ],
-            "description": "\n            String subset of bags:\n            {\n                \"two\", \"four\", \"six\", \"eight\", \"ten\",\n                \"twelve\", \"fourteen\", \"sixteen\", \"eighteen\", \"twenty\"\n            },\n            {\n                \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\", \"ten\",\n                \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\", \"twenty\",\n                \"twenty-one\", \"twenty-two\", \"twenty-three\", \"twenty-four\", \"twenty-five\"\n            }\n        ",
+            "description": "\n            String subset of bags:\n            {\n                'two', 'four', 'six', 'eight', 'ten',\n                'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'\n            },\n            {\n                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',\n                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',\n                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'\n            }\n        ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

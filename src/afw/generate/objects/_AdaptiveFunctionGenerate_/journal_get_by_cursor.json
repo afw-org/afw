@@ -1,7 +1,7 @@
 {
     "brief": "Get journal entry at cursor",
     "category": "journal",
-    "description": "Get journal entry specified by entry_cursor parameter.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is an entry to retrieve. If an entry with the supplied cursor does not exist, a not_found error is thrown.",
+    "description": "Get journal entry specified by entry_cursor parameter.\n\nThis option will set response properties 'entry' and 'cursor' if there is an entry to retrieve. If an entry with the supplied cursor does not exist, a not_found error is thrown.",
     "functionId": "journal_get_by_cursor",
     "functionLabel": "journal_get_by_cursor",
     "parameters": [

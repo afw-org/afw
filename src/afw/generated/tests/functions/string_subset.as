@@ -27,8 +27,8 @@ subset<string>(
 //? description: ...
 
             String subset of bags:
-            { "one", "three", "one", "three" },
-            { "one", "one", "one", "two", "two", "two", "three", "three", "three" }
+            { 'one', 'three', 'one', 'three' },
+            { 'one', 'one', 'one', 'two', 'two', 'two', 'three', 'three', 'three' }
         
 //? expect: boolean(true)
 //? source: ...
@@ -58,8 +58,8 @@ subset<string>(
 //? description: ...
 
             String subset of bags:
-            { "one", "two", "three" },
-            { "four", "five" }
+            { 'one', 'two', 'three' },
+            { 'four', 'five' }
         
 //? expect: boolean(false)
 //? source: ...
@@ -81,8 +81,8 @@ subset<string>(
 //? description: ...
 
             String subset of bags:
-            { "one", "two", "three" },
-            { "one", "two", "four" }
+            { 'one', 'two', 'three' },
+            { 'one', 'two', 'four' }
         
 //? expect: boolean(false)
 //? source: ...
@@ -106,13 +106,13 @@ subset<string>(
 
             String subset of bags:
             {
-                "two", "four", "six", "eight", "ten",
-                "twelve", "fourteen", "sixteen", "eighteen", "twenty"
+                'two', 'four', 'six', 'eight', 'ten',
+                'twelve', 'fourteen', 'sixteen', 'eighteen', 'twenty'
             },
             {
-                "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-                "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
-                "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five"
+                'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+                'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
+                'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five'
             }
         
 //? expect: boolean(true)

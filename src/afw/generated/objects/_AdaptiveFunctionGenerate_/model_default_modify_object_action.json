@@ -24,7 +24,7 @@
         },
         {
             "dataType": "list",
-            "description": "This is a list of modifications. Variable custom::actions can be used to access this value in model expressions. Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
+            "description": "This is a list of modifications. Variable custom::actions can be used to access this value in model expressions. Entries are of the form:\n\n    [\n        'add_value',\n        'property name' or ['property name', ... ],\n        value\n    ]\n\n    [\n        'remove_property',\n        'property name' or ['property name', ... ]\n    ]\n\n    [\n        'remove_value',\n        'property name' or ['property name', ... ],\n        value\n    ]\n\n    [\n        'set_property',\n        'property name' or ['property name', ... ],\n        value\n    ]",
             "name": "entries"
         },
         {

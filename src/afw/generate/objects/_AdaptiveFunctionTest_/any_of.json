@@ -22,7 +22,7 @@
                     ]
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is it.\" }\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        'This is it.',\n        { 'This is not it.', 'This is it.' }\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -49,7 +49,7 @@
                     ]
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is it.\", \"Weve already found it..\", \"So, these shouldnt be checked\" }\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        'This is it.',\n        { 'This is not it.', 'This is it.', 'Weve already found it..', 'So, these shouldnt be checked' }\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -74,7 +74,7 @@
                     "value": "This is it."
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        { \"This is not it.\", \"This is it.\" }\n        \"This is it.\"\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        { 'This is not it.', 'This is it.' }\n        'This is it.'\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"
@@ -99,7 +99,7 @@
                     ]
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\", \"This is not it either.\" }\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        'This is it.',\n        { 'This is not it.', 'This is not it either.' }\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -123,7 +123,7 @@
                     ]
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is not it.\" }\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        'This is it.',\n        { 'This is not it.' }\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "false"
@@ -147,7 +147,7 @@
                     ]
                 }
             ],
-            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        \"This is it.\",\n        { \"This is it.\" }\n    ",
+            "description": "\n        Test any_of with arguments:\n        urn:oasis:names:tc:xacml:1.0:function:string-equal,\n        'This is it.',\n        { 'This is it.' }\n    ",
             "result": {
                 "dataType": "boolean",
                 "value": "true"

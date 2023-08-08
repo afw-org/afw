@@ -110,12 +110,12 @@
                     "type": "boolean"
                 },
                 "confId": {
-                    "description": "The \"id\" part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+                    "description": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
                     "title": "Conf Id",
                     "type": "string"
                 },
                 "confPropertyObjectType": {
-                    "description": "Object type for \"conf\" property object.",
+                    "description": "Object type for 'conf' property object.",
                     "title": "Conf Property Object Type",
                     "type": "string"
                 },
@@ -130,7 +130,7 @@
                     "type": "string"
                 },
                 "serviceType": {
-                    "description": "The \"type\" part of serviceId.",
+                    "description": "The 'type' part of serviceId.",
                     "title": "Service Type",
                     "type": "string"
                 },
@@ -326,9 +326,9 @@
                     "title": "Skeleton"
                 },
                 "tags": {
-                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                     "items": {
-                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
+                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                         "title": "List of keywords and terms associated with values with this meta",
                         "type": "string"
                     },

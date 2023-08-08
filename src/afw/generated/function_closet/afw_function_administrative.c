@@ -434,7 +434,7 @@ afw_function_execute_registry_key_check(
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -475,7 +475,7 @@ afw_function_execute_service_get(
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -516,7 +516,7 @@ afw_function_execute_service_restart(
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *
@@ -557,7 +557,7 @@ afw_function_execute_service_start(
  *
  *   (object _AdaptiveService_) _AdaptiveService_ object for the service which
  *       will contain the current status of the service. If there is an error,
- *       the status property value will be "error" and "statusMessage" contain
+ *       the status property value will be 'error' and 'statusMessage' contain
  *       an error message.
  */
 const afw_value_t *

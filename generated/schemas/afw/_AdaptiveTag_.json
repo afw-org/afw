@@ -6,7 +6,7 @@
                     "$ref": "#/$defs/_AdaptiveTag_.propertyTypes"
                 }
             ],
-            "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with \"_Adaptive\" are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
+            "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
             "type": "object",
             "unevaluatedProperties": false
         },

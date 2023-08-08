@@ -10,7 +10,7 @@ export default {
                 name: "string",
                 required: false,
             },
-            description: "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how \"Justify Content\" aligns individual items within the main-axis.",
+            description: "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis.",
         },
         alignItems: {
             name: "alignItems",
@@ -18,7 +18,7 @@ export default {
                 name: "string",
                 required: false,
             },
-            description: "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the \"Justify Content\" version for the cross axis (perpendicular to the main-axis).",
+            description: "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis).",
             defaultValue: "stretch",
         },
         contains: {

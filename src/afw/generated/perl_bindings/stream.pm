@@ -91,8 +91,8 @@ will be overwritten. If the file does not exist, it will be created.
 the start of the file while writing will be appended to the end.
 
 All of these modes expect data type string. If you are using data type
-base64Binary or hexBinary you can use corresponding binary modes, "rb", "wb",
-"ab", "rb+", "r+b", "wb+", "w+b", "ab+", and "a+b".
+base64Binary or hexBinary you can use corresponding binary modes, 'rb', 'wb',
+'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
 
     $autoFlush
 
@@ -133,7 +133,7 @@ This is the URI of the stream to open.
 
     $mode
 
-This is the access mode string. Values can be "r" for read or "w" for write.
+This is the access mode string. Values can be 'r' for read or 'w' for write.
 
     $autoFlush
 
@@ -228,8 +228,8 @@ Stream number
 =head3 stream
 
 This will return the streamNumber for a streamId. This function useful to
-obtain the number of the automatically opened standard streams "console",
-"stderr" and "stdout" as well and any other open stream.
+obtain the number of the automatically opened standard streams 'console',
+'stderr' and 'stdout' as well and any other open stream.
 Get streamNumber for a streamId
 
 =head4 Parameters

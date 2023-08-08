@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "The object type for properties in the \"propertyTypes\" property of an object's meta.",
+    "description": "The object type for properties in the 'propertyTypes' property of an object's meta.",
     "objectType": "_AdaptiveMetaPropertyType_",
     "propertyTypes": {
         "_meta_": {

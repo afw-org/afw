@@ -16,7 +16,7 @@
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveService_",
-        "description": "_AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be \"error\" and \"statusMessage\" contain an error message."
+        "description": "_AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message."
     },
     "sideEffects": [
         "Service stopped"

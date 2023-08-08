@@ -166,7 +166,7 @@ afw_data_type_unknown_direct = {
     (const afw_object_t *)&impl_data_type_object_unknown,
     AFW_UTF8_LITERAL("unknown"),
     AFW_UTF8_LITERAL("Type-safe unknown value"),
-    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type \"unknown\". The actual data type is the data type of the value. Most \"type check\" errors can be detected during compile to reduce the number of errors detected during evaluation."),
+    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type 'unknown'. The actual data type is the data type of the value. Most 'type check' errors can be detected during compile to reduce the number of errors detected during evaluation."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_unknown,
     AFW_UTF8_LITERAL(""),

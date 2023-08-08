@@ -100,7 +100,7 @@ class yearMonthDuration
      *
      * Determine if yearMonthDuration arg1 is equal to the value of arg2
      * converted to the data type of arg1 then return the boolean result. Use
-     * "eqx" ("===") instead if you want false to be returned if arg1 and
+     * 'eqx' ('===') instead if you want false to be returned if arg1 and
      * arg2's data type don't match.
      *
      * @param yearMonthDuration $arg1
@@ -126,7 +126,7 @@ class yearMonthDuration
      * eqx_yearMonthDuration()
      *
      * Determine if for yearMonthDuration arg1 is equal to the value and data
-     * type of arg2 then return the boolean result. Use "eq" ("==") instead
+     * type of arg2 then return the boolean result. Use 'eq' ('==') instead
      * if you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
@@ -327,7 +327,7 @@ class yearMonthDuration
      *
      * Determine if yearMonthDuration arg1 is not equal to the value of arg2
      * converted to the data type of arg1 then return the boolean result. Use
-     * "nex" ("!==") instead if you want true to be returned if arg1 and
+     * 'nex' ('!==') instead if you want true to be returned if arg1 and
      * arg2's data type don't match.
      *
      * @param yearMonthDuration $arg1
@@ -353,7 +353,7 @@ class yearMonthDuration
      * nex_yearMonthDuration()
      *
      * Determine if for yearMonthDuration arg1 is not equal to the value or
-     * data type of arg2 then return the boolean result. Use "ne" ("!=")
+     * data type of arg2 then return the boolean result. Use 'ne' ('!=')
      * instead if you want arg2 to be converted to the data type of arg1
      * before comparison.
      *
