@@ -311,26 +311,6 @@ typedef struct afw_value_ia5String_s
 /** @} */
 
 /**
- * @addtogroup afw_c_api_data_type_implied
- * @{
- */
-
-/** @brief Typedef for data type implied internal. */
-typedef const afw_value_t * afw_data_type_implied_internal_t;
-
-/** @brief Typedef for data type implied parameter. */
-typedef const afw_value_t * afw_data_type_implied_parameter_t;
-
-/** @brief Typedef for data type implied return. */
-typedef const afw_value_t * afw_data_type_implied_return_t;
-
-/** @brief Typedef for data type implied evaluated value. */
-typedef struct afw_value_implied_s
-    afw_value_implied_t;
-
-/** @} */
-
-/**
  * @addtogroup afw_c_api_data_type_integer
  * @{
  */

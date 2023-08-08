@@ -93,7 +93,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_hybrid_binding.h
     generated/afw_data_type_ia5String_binding.h
     generated/afw_data_type_impl_declares.h
-    generated/afw_data_type_implied_binding.h
     generated/afw_data_type_integer_binding.h
     generated/afw_data_type_ipAddress_binding.h
     generated/afw_data_type_list_binding.h
@@ -351,7 +350,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_hexBinary_binding.c
     generated/afw_data_type_hybrid_binding.c
     generated/afw_data_type_ia5String_binding.c
-    generated/afw_data_type_implied_binding.c
     generated/afw_data_type_integer_binding.c
     generated/afw_data_type_ipAddress_binding.c
     generated/afw_data_type_list_binding.c

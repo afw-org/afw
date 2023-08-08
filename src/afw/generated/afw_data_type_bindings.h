@@ -39,7 +39,6 @@
 #include "afw_data_type_hexBinary_binding.h"
 #include "afw_data_type_hybrid_binding.h"
 #include "afw_data_type_ia5String_binding.h"
-#include "afw_data_type_implied_binding.h"
 #include "afw_data_type_integer_binding.h"
 #include "afw_data_type_ipAddress_binding.h"
 #include "afw_data_type_list_binding.h"
@@ -79,7 +78,6 @@
     XX(hexBinary) \
     XX(hybrid) \
     XX(ia5String) \
-    XX(implied) \
     XX(integer) \
     XX(ipAddress) \
     XX(list) \

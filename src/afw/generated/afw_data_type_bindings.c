@@ -130,12 +130,6 @@ afw_register_data_type_infs(
         &afw_value_evaluated_ia5String_inf,
         xctx);
 
-    /* Register value inf id evaluated_implied */
-    afw_environment_register_value_inf(
-        &afw_value_evaluated_implied_inf.rti.implementation_id,
-        &afw_value_evaluated_implied_inf,
-        xctx);
-
     /* Register value inf id evaluated_integer */
     afw_environment_register_value_inf(
         &afw_value_evaluated_integer_inf.rti.implementation_id,

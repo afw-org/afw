@@ -7289,12 +7289,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_implementationParameters;
 /** @brief afw_utf8_t for string implemented */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_implemented;
 
-/** @brief define for quoted string implied */
-#define AFW_Q_implied "implied"
-
-/** @brief afw_utf8_t for string implied */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_implied;
-
 /** @brief define for quoted string import */
 #define AFW_Q_import "import"
 

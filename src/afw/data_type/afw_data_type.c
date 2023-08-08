@@ -2171,16 +2171,6 @@ IMPL_DATA_TYPE_INF(
     typed_string)         /* as expression     */
 
 IMPL_DATA_TYPE_INF(
-    implied,              /* data type id      */
-    evaluate,             /* to utf8           */
-    evaluate,             /* to internal       */
-    evaluate,             /* compare           */
-    evaluate,             /* conversion        */
-    evaluate,             /* clone             */
-    evaluate,             /* compiler listing  */
-    evaluate)             /* as expression     */
-
-IMPL_DATA_TYPE_INF(
     hybrid,               /* data type id      */
     utf8,                 /* to utf8           */
     utf8,                 /* to internal       */

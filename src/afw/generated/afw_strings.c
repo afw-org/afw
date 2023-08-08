@@ -3655,9 +3655,6 @@ AFW_UTF8_LITERAL("implementationParameters");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implemented =
 AFW_UTF8_LITERAL("implemented");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implied =
-AFW_UTF8_LITERAL("implied");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_import =
 AFW_UTF8_LITERAL("import");
 
