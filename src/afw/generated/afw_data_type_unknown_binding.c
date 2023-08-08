@@ -182,7 +182,8 @@ afw_data_type_unknown_direct = {
     false,
     true,
     false,
-    false
+    false,
+    true
 };
 
 /* Value for empty list of unknown. */

@@ -182,7 +182,8 @@ afw_data_type_any_direct = {
     false,
     true,
     false,
-    false
+    false,
+    true
 };
 
 /* Value for empty list of any. */

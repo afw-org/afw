@@ -6,5 +6,6 @@
     "description": "This is a value produced by any of the Adaptive compile functions that can be evaluated using the evaluate() function.",
     "directReturn": true,
     "relationalCompares": false,
-    "scalar": false
+    "scalar": false,
+    "special": true
 }

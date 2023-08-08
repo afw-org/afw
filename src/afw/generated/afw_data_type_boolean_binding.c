@@ -182,7 +182,8 @@ afw_data_type_boolean_direct = {
     false,
     true,
     false,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of boolean. */

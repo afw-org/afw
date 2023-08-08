@@ -721,6 +721,12 @@ def write_c_section(fd, prefix, obj):
 
     # scalar
     if obj.get('scalar', False) == True:
+        fd.write('    true,\n')
+    else:
+        fd.write('    false,\n')
+
+    # special
+    if obj.get('special', False) == True:
         fd.write('    true\n')
     else:
         fd.write('    false\n')

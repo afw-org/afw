@@ -5800,6 +5800,9 @@ AFW_UTF8_LITERAL("sourceUTF8OctetLengthInTestScript");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceUTF8OctetOffsetInTestScript =
 AFW_UTF8_LITERAL("sourceUTF8OctetOffsetInTestScript");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_special =
+AFW_UTF8_LITERAL("special");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_split =
 AFW_UTF8_LITERAL("split");
 

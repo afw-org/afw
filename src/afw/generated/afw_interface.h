@@ -2105,6 +2105,7 @@ struct afw_data_type_s {
     afw_boolean_t directReturn;
     afw_boolean_t relationalCompares;
     afw_boolean_t scalar;
+    afw_boolean_t special;
 };
 
 /** @brief define for interface afw_data_type name. */

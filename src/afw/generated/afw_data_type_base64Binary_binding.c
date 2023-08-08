@@ -182,7 +182,8 @@ afw_data_type_base64Binary_direct = {
     false,
     false,
     true,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of base64Binary. */

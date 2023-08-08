@@ -182,7 +182,8 @@ afw_data_type_unevaluated_direct = {
     false,
     true,
     false,
-    false
+    false,
+    true
 };
 
 /* Value for empty list of unevaluated. */

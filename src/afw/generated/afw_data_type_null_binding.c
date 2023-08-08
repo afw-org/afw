@@ -182,7 +182,8 @@ afw_data_type_null_direct = {
     false,
     true,
     false,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of null. */

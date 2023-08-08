@@ -101,6 +101,11 @@
                     "description": "Data type represents a scalar value.",
                     "title": "Scalar",
                     "type": "boolean"
+                },
+                "special": {
+                    "description": "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+                    "title": "Special",
+                    "type": "boolean"
                 }
             },
             "required": [

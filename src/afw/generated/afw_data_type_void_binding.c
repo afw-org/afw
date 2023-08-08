@@ -182,6 +182,7 @@ afw_data_type_void_direct = {
     false,
     true,
     false,
+    true,
     true
 };
 

@@ -1159,13 +1159,23 @@ impl_properties__AdaptiveDataType_[] = {
         { NULL },
         &afw_s_default,
         afw_runtime_value_accessor_default
+    },
+    {
+        &afw_s_special,
+        offsetof(afw_data_type_t, special),
+        -1,
+        { &afw_data_type_boolean_direct },
+        AFW_UTF8_LITERAL(""),
+        { NULL },
+        &afw_s_default,
+        afw_runtime_value_accessor_default
     }
 };
 
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveDataType_ = {
     &afw_s__AdaptiveDataType_,
-    14,
+    15,
     &impl_properties__AdaptiveDataType_[0]
 };
 

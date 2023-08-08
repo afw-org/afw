@@ -7,5 +7,6 @@
     "jsonImpliesDataType": true,
     "jsonPrimitive": "null",
     "relationalCompares": false,
-    "scalar": true
+    "scalar": true,
+    "special": true
 }

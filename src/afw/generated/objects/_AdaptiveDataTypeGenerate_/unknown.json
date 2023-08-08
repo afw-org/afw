@@ -5,5 +5,6 @@
     "description": "Any value can be assigned as the value of data type 'unknown'. The actual data type is the data type of the value. Most 'type check' errors can be detected during compile to reduce the number of errors detected during evaluation.",
     "directReturn": true,
     "relationalCompares": false,
-    "scalar": false
+    "scalar": false,
+    "special": true
 }

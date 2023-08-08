@@ -182,7 +182,8 @@ afw_data_type_script_direct = {
     true,
     false,
     true,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of script. */

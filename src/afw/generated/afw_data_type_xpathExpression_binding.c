@@ -182,7 +182,8 @@ afw_data_type_xpathExpression_direct = {
     false,
     false,
     false,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of xpathExpression. */

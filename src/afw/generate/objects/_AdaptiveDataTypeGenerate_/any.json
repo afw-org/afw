@@ -5,5 +5,6 @@
     "description": "Any value can be assigned as the value of data type 'any'. The actual data type is the data type of the value. Data type 'unknown' or a more specific data type is preferred over data type 'any' since 'any' only detects type check errors during evaluation.",
     "directReturn": true,
     "relationalCompares": false,
-    "scalar": false
+    "scalar": false,
+    "special": true
 }

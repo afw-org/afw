@@ -11579,6 +11579,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_sourceUTF8OctetLengthInTestScript;
 /** @brief afw_utf8_t for string sourceUTF8OctetOffsetInTestScript */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_sourceUTF8OctetOffsetInTestScript;
 
+/** @brief define for quoted string special */
+#define AFW_Q_special "special"
+
+/** @brief afw_utf8_t for string special */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_special;
+
 /** @brief define for quoted string split */
 #define AFW_Q_split "split"
 

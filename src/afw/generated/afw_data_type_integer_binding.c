@@ -182,7 +182,8 @@ afw_data_type_integer_direct = {
     false,
     true,
     true,
-    true
+    true,
+    false
 };
 
 /* Value for empty list of integer. */

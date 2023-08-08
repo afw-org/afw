@@ -2374,6 +2374,13 @@ impl_raw_end_object_list = {
       </description>
     </variable>
 
+    <variable name="special" type="afw_boolean_t">
+      <description>
+        Special data types are not associated with a particular instance of a 
+        value but can be used to specify what data types a value can be.
+      </description>
+    </variable>
+
     <method name="internal_to_utf8">
 
       <description>Convert from cType value to const afw_utf8_t *.</description>

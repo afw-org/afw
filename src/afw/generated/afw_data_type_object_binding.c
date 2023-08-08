@@ -182,6 +182,7 @@ afw_data_type_object_direct = {
     false,
     true,
     false,
+    false,
     false
 };
 
