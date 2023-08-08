@@ -35,7 +35,6 @@
  *    'hexBinary' |
  *    'hybrid' |
  *    'ia5String' |
- *    'implied' |
  *    'integer' |
  *    'ipAddress' |
  *    'list' |
@@ -44,11 +43,15 @@
  *    'objectId' |
  *    'objectPath' |
  *    'password' |
+ *    'regexp' |
  *    'rfc822Name' |
+ *    'script' |
  *    'string' |
  *    'template' |
  *    'time' |
  *    'unevaluated' |
+ *    'unknown' |
+ *    'void' |
  *    'x500Name' |
  *    'xpathExpression' |
  *    'yearMonthDuration'

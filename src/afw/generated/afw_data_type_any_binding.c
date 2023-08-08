@@ -166,7 +166,7 @@ afw_data_type_any_direct = {
     (const afw_object_t *)&impl_data_type_object_any,
     AFW_UTF8_LITERAL("any"),
     AFW_UTF8_LITERAL("Unrestricted type"),
-    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type \"any\". The actual data type is the data type of the value. Data type \"implied\" or a more specific data type is preferred over data type \"any\" since \"any\" only detects type check errors during evaluation."),
+    AFW_UTF8_LITERAL("Any value can be assigned as the value of data type 'any'. The actual data type is the data type of the value. Data type 'unknown' or a more specific data type is preferred over data type 'any' since 'any' only detects type check errors during evaluation."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_any,
     AFW_UTF8_LITERAL(""),
