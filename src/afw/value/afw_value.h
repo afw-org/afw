@@ -61,6 +61,9 @@ struct afw_value_info_s {
      * this will be self.
      */
     const afw_value_t *optimized_value;
+
+    /* Original value type or NULL. */
+    const afw_value_type_t *extended_value_type;
 };
 
 

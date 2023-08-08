@@ -1202,7 +1202,7 @@ impl_parse_TryStatement_StatementList_cb (
         afw_compile_parse_variable_reference_create(parser,
             self->contextual,
             afw_compile_assignment_type_let,
-            self->error_variable_name);
+            self->error_variable_name, NULL);
 }
 
 /*ebnf>>>

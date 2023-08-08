@@ -61,12 +61,13 @@ afw_value_call_built_in_function_create(
     self->args.argv = argv;
     self->optimized_value = (const afw_value_t *)self;
 
-    if (allow_optimize  && false /** @fixme Not finished yet so skipping.*/) {
-
+    if (allow_optimize && afw_flag_is_active(
+        xctx->env->flag_index_compile_noOptimize_active, xctx))
+    {
         if (function->polymorphic &&
             !function->polymorphicExecuteFunctionEvaluatesFirstParameter)
         {
-            if (argc < 2 || !argv[1]) {
+            if (argc < 1 || !argv[1]) {
                 AFW_THROW_ERROR_Z(general,
                     "afw_value_call_built_in_function_create() argv[1] must be "
                     "defined for polymorphic functions", xctx);
@@ -79,10 +80,9 @@ afw_value_call_built_in_function_create(
                 if (!function) {
                     function = self->function;
                 }
-                self->function = function;
             }
+            self->function = function;
         }
-
     }
 
     /* If function returns a value, set optimized_value_data_type. */

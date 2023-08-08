@@ -235,7 +235,7 @@ afw_compile_parse_AssignmentProperty(
         contextual = afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset);
         ap->variable_reference = afw_compile_parse_variable_reference_create(
-            parser, contextual, assignment_type, identifier);
+            parser, contextual, assignment_type, identifier, NULL);
         if (afw_compile_token_is(equal)) {
             ap->default_value = afw_compile_parse_Expression(parser);
         }
@@ -338,7 +338,7 @@ afw_compile_parse_AssignmentBindingTarget(
         *value = (const afw_value_t *)
             afw_compile_parse_variable_reference_create(
                 parser, contextual, assignment_type,
-                variable_name);
+                variable_name, *type);
     }
 
     else {

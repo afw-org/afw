@@ -57,7 +57,7 @@ afw_value_qualified_variable_reference_create(
     self->optimized_value = (const afw_value_t *)self;
 
     /** @fixme Get right data type. */
-    self->evaluated_data_type = afw_data_type_string;
+    //self->evaluated_data_type = afw_data_type_string;
     
 
     return (afw_value_t *)self;

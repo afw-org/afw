@@ -1252,7 +1252,8 @@ afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
     afw_compile_internal_assignment_type_t assignment_type,
-    const afw_utf8_t *identifier);
+    const afw_utf8_t *identifier,
+    const afw_value_type_t *type);
 
 
 /* Skip white space and comments. */

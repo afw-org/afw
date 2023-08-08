@@ -73,7 +73,7 @@ afw_value_reference_by_key_create(
     self->optimized_value = (const afw_value_t *)self;
 
     /** @fixme Get right data type. */
-    self->evaluated_data_type = afw_data_type_string;
+    //self->evaluated_data_type = afw_data_type_string;
 
     /* Return adaptive value. */
     return (afw_value_t *)self;

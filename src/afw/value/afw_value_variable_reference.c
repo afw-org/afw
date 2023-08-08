@@ -43,8 +43,9 @@ afw_value_variable_reference_create(
     self->inf = &afw_value_variable_reference_inf;
     self->contextual = contextual;
     self->symbol = symbol;
+    self->evaluated_data_type = symbol->type.data_type;
 
-    /** @fixme add optimization. */
+    /** @fixme add optimization. Check type. Maybe replace evaluated_data_type*/
     self->optimized_value = (const afw_value_t *)self;
 
     return (afw_value_t *)self;
@@ -142,20 +143,12 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_size(writer, self->symbol->parent_block->depth, xctx);
     afw_writer_write_z(writer, " index=", xctx);
     afw_writer_write_size(writer, self->symbol->index, xctx);
-    afw_writer_write_eol(writer, xctx);
-
     if (self->evaluated_data_type) {
-        afw_writer_write_z(writer, "evaluated_data_type: ", xctx);
+        afw_writer_write_z(writer, " data_type=", xctx);
         afw_writer_write_utf8(writer,
             &self->evaluated_data_type->data_type_id, xctx);
-        afw_writer_write_eol(writer, xctx);
     }
-
-    if (self->optimized_value != instance) {
-        afw_writer_write_z(writer, "optimized_value: ", xctx);
-        afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
+    afw_writer_write_eol(writer, xctx);
 }
 
 
@@ -193,6 +186,7 @@ impl_afw_value_get_info(
     info->contextual = self->contextual;
     info->evaluated_data_type = self->evaluated_data_type;
     info->optimized_value = self->optimized_value;
+    info->extended_value_type = &self->symbol->type;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }
