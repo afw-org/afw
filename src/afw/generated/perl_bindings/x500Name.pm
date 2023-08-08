@@ -158,7 +158,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_x500Name
@@ -252,7 +252,7 @@ Converts a one value list to a x500Name value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_match_x500Name
@@ -433,13 +433,13 @@ sub intersection_x500Name {
 }
 
 sub is_in_x500Name {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<x500Name>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -516,12 +516,12 @@ sub nex_x500Name {
 }
 
 sub one_and_only_x500Name {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<x500Name>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -239,7 +239,7 @@ afw_function_execute_add_object_with_uri(
  *       2 - similar to 1 with ';' for '&' and ',' for '|'.
  *       
  *       3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
- *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
+ *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *       comma separated list of any comparison or conjunction.
  *
  * Returns:
@@ -558,7 +558,7 @@ afw_function_execute_get_object_with_uri(
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -572,7 +572,7 @@ afw_function_execute_get_object_with_uri(
  *
  *   objectId - (string) Id of object to modify.
  *
- *   entries - (list) List of modifications. Entries are of the form:
+ *   entries - (array) List of modifications. Entries are of the form:
  *       
  *           [
  *               'add_value',
@@ -643,7 +643,7 @@ afw_function_execute_modify_object(
  * ```
  *   function modify_object_with_uri(
  *       uri: anyURI,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -654,7 +654,7 @@ afw_function_execute_modify_object(
  *   uri - (anyURI) URI of object to modify. If a URI begins with a single
  *       slash ('/'), it is the local object path.
  *
- *   entries - (list) List of asserts and modifications. Entries are of the
+ *   entries - (array) List of asserts and modifications. Entries are of the
  *       form:
  *       
  *           [
@@ -905,7 +905,7 @@ afw_function_execute_replace_object_with_uri(
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -934,7 +934,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -1201,7 +1201,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -1226,7 +1226,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(

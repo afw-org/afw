@@ -17,7 +17,7 @@
     "polymorphic": true,
     "polymorphicDataTypes": [
         "anyURI",
-        "list",
+        "array",
         "string"
     ],
     "polymorphicExecuteFunction": "afw_function_execute_length",

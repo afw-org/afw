@@ -48,7 +48,7 @@ impl_convert_boolean_to_json(
 static void
 impl_convert_list_to_json(
     impl_from_value_wa_t *wa,
-    const afw_list_t *list);
+    const afw_array_t *list);
 
 static void
 impl_convert_object_to_json(
@@ -218,7 +218,7 @@ impl_convert_boolean_to_json(
 static void
 impl_convert_list_to_json(
     impl_from_value_wa_t *wa,
-    const afw_list_t *list)
+    const afw_array_t *list)
 {
     const afw_iterator_t *list_iterator;
     const afw_value_t *next;
@@ -228,12 +228,12 @@ impl_convert_list_to_json(
     (wa->indent)++;
 
     list_iterator = NULL;
-    next = afw_list_get_next_value(list, &list_iterator, 
+    next = afw_array_get_next_value(list, &list_iterator, 
         wa->p, wa->xctx);
 
     while (next) {
         impl_convert_value_to_json(wa, next);
-        next = afw_list_get_next_value(list, &list_iterator,
+        next = afw_array_get_next_value(list, &list_iterator,
             wa->p, wa->xctx);
         if (next) {
             impl_putc(wa, ',');
@@ -357,8 +357,8 @@ impl_convert_value_to_json(
     value_data_type = afw_value_get_data_type(value, wa->xctx);
 
     /* If value is a list, convert list to json. */
-    if (afw_value_is_list(value)) {
-        impl_convert_list_to_json(wa, ((afw_value_list_t *)value)->internal);
+    if (afw_value_is_array(value)) {
+        impl_convert_list_to_json(wa, ((afw_value_array_t *)value)->internal);
     }
 
     /* If value is object, convert object to json. */

@@ -8,12 +8,12 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list1",
             "polymorphicDataTypeParameter": true
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list2",
             "polymorphicDataTypeParameter": true
         }

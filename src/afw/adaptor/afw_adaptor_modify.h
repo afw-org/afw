@@ -79,7 +79,7 @@ afw_adaptor_modify_object(
     const afw_utf8_t *adaptor_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_list_t *entries,
+    const afw_array_t *entries,
     const afw_object_t *journal_entry,
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx);
@@ -206,7 +206,7 @@ afw_adaptor_modify_entry_type_value(afw_adaptor_modify_entry_type_t type);
  */
 AFW_DECLARE(const afw_adaptor_modify_entry_t * const *)
 afw_adaptor_modify_entries_from_list(
-    const afw_list_t *list, const afw_pool_t *p, afw_xctx_t *xctx);
+    const afw_array_t *list, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 /**
@@ -216,7 +216,7 @@ afw_adaptor_modify_entries_from_list(
  * @param xctx of caller.
  * @return list.
  */
-AFW_DECLARE(const afw_list_t *)
+AFW_DECLARE(const afw_array_t *)
 afw_adaptor_modify_entries_to_list(
     const afw_adaptor_modify_entry_t * const *entries,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -270,7 +270,7 @@ afw_adaptor_modify_needed_to_reconcile(
     const afw_utf8_t * *adaptor_id,
     const afw_utf8_t * *object_type_id,
     const afw_utf8_t * *object_id,
-    const afw_list_t * *entries,
+    const afw_array_t * *entries,
     const afw_object_t *original,
     const afw_object_t *modified,
     const afw_object_t *journal_entry,

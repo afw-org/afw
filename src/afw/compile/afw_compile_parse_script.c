@@ -615,7 +615,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     const afw_value_t *value;
     const afw_value_t *target;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *define_function;
     const afw_value_block_t *block;
     afw_size_t start_offset;
@@ -660,9 +660,9 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
                 target, define_function);
 
             if (!list) {
-                list = afw_list_create_generic(parser->p, parser->xctx);
+                list = afw_array_create_generic(parser->p, parser->xctx);
             }
-            afw_list_add_value(list, value, parser->xctx);
+            afw_array_add_value(list, value, parser->xctx);
             afw_compile_get_token();
             if (afw_compile_token_is(semicolon)) {
                 break;
@@ -703,7 +703,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         argv[0] = (const afw_value_t *)&afw_function_definition_for;
         argv[1] = NULL;
         if (list) {
-            argv[1] = afw_value_create_list(list, parser->p, parser->xctx);
+            argv[1] = afw_value_create_array(list, parser->p, parser->xctx);
         }
 
         /* Expression? ';' */
@@ -725,9 +725,9 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
             for (;;) {
                 value = afw_compile_parse_Assignment(parser, NULL);
                 if (!list) {
-                    list = afw_list_create_generic(parser->p, parser->xctx);
+                    list = afw_array_create_generic(parser->p, parser->xctx);
                 }
-                afw_list_add_value(list, value, parser->xctx);
+                afw_array_add_value(list, value, parser->xctx);
                 afw_compile_get_token();
                 if (afw_compile_token_is(close_parenthesis)) {
                     break;
@@ -740,7 +740,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         }
         argv[3] = NULL;
         if (list) {
-            argv[3] = afw_value_create_list(list, parser->p, parser->xctx);
+            argv[3] = afw_value_create_array(list, parser->p, parser->xctx);
         }
 
         break_allowed = parser->break_allowed;
@@ -1952,7 +1952,7 @@ afw_compile_parse_TestScript(
 {
     const afw_value_t *result;
     const afw_object_t *test_script_object;
-    const afw_list_t *test_list;
+    const afw_array_t *test_list;
     const afw_object_t *test_object;
     const afw_utf8_t *test_script_id;
     const afw_utf8_t *key;
@@ -1990,9 +1990,9 @@ afw_compile_parse_TestScript(
     }
 
     test_script_object = afw_object_create(parser->p, parser->xctx);
-    test_list = afw_list_of_create(afw_data_type_object,
+    test_list = afw_array_of_create(afw_data_type_object,
         parser->p, parser->xctx);
-    afw_object_set_property_as_list(test_script_object,
+    afw_object_set_property_as_array(test_script_object,
         &afw_s_tests, test_list, parser->xctx);
 
     /* Process TestScriptDefinition */
@@ -2060,7 +2060,7 @@ afw_compile_parse_TestScript(
                 break;
             }
             test_object = afw_object_create(parser->p, parser->xctx);
-            afw_list_add_value(test_list,
+            afw_array_add_value(test_list,
                 afw_value_create_object(test_object, parser->p, parser->xctx),
                 parser->xctx);
             afw_object_set_property_as_string(test_object,

@@ -70,7 +70,7 @@ struct afw_runtime_object_type_meta_s {
     /**
      * @brief Runtime properties offset in internal.
      * 
-     * This is the offset in internal of a NULL terminated list of pointers
+     * This is the offset in internal of a NULL terminated array of pointers
      * to (const afw_runtime_property_t *) runtime properties or -1 if
      * missing.
      */
@@ -110,7 +110,7 @@ struct afw_runtime_object_map_property_s {
     /**
      * @brief Offset of bag value count afw_size_t for bag values or -1.
      *
-     * Can be -1 for bag values as well if values are pointers and list of
+     * Can be -1 for bag values as well if values are pointers and array of
      * pointers in NULL terminated.
      */
     afw_size_t count_offset;
@@ -128,7 +128,7 @@ struct afw_runtime_object_map_property_s {
     };
 
     /**
-     * This is the dataTypeParameter.  If dataType is list, 'object ' is stripped off
+     * This is the dataTypeParameter.  If dataType is array, 'object ' is stripped off
      * since that can be determined by data_type_parameter_data_type.
      */
     afw_utf8_t data_type_parameter;
@@ -185,7 +185,7 @@ struct afw_runtime_const_object_instance_s {
     /** pub->inf MUST point to afw_runtime_object_inf. */
     afw_object_t pub;
 
-    /** NULL terminated list of read-only properties. */ 
+    /** NULL terminated array of read-only properties. */ 
     const afw_runtime_property_t *const * properties;
 
 };
@@ -201,7 +201,7 @@ struct afw_runtime_const_object_meta_object_s {
     const afw_runtime_const_object_instance_t *object;
 
     /** List of parent paths or NULL. */
-    const afw_value_list_t *parent_paths;
+    const afw_value_array_t *parent_paths;
 };
 
 
@@ -213,7 +213,7 @@ struct afw_runtime_property_s {
 
 
 
-struct afw_runtime_unresolved_const_list_s {
+struct afw_runtime_unresolved_const_array_s {
 
     /** Object type Id. */
     afw_utf8_t data_type_id;
@@ -238,7 +238,7 @@ struct afw_runtime_unresolved_const_object_s {
     /** Path to object. */
     const afw_utf8_t *path;
 
-    /** NULL terminated list of read-only properties. */ 
+    /** NULL terminated array of read-only properties. */ 
     const afw_runtime_unresolved_property_t * const * properties;
 
     /** Path to parent or empty string. */
@@ -250,7 +250,7 @@ struct afw_runtime_unresolved_const_object_s {
 
 struct afw_runtime_unresolved_const_embedded_untyped_object_s {
 
-    /** NULL terminated list of read-only properties. */ 
+    /** NULL terminated array of read-only properties. */ 
     const afw_runtime_unresolved_property_t * (*properties);
 
     /** Number of parent paths. */
@@ -274,8 +274,8 @@ typedef enum afw_runtime_unresolved_primitive_type_e {
     /** value points to (integer) */
     afw_runtime_unresolved_primitive_type_integer,
 
-    /** afw_runtime_unresolved_const_list_t. */
-    afw_runtime_unresolved_primitive_type_list,
+    /** afw_runtime_unresolved_const_array_t. */
+    afw_runtime_unresolved_primitive_type_array,
 
     /**
      * value points to 
@@ -301,7 +301,7 @@ struct afw_runtime_unresolved_value_s{
         afw_boolean_t boolean;
         afw_double_t number;
         afw_integer_t integer;
-        const afw_runtime_unresolved_const_list_t *list;
+        const afw_runtime_unresolved_const_array_t *array;
         const afw_runtime_unresolved_const_embedded_untyped_object_t *object;
         const afw_utf8_z_t *string;
     };
@@ -358,8 +358,8 @@ afw_runtime_env_set_object(
 
 
 /**
- * @brief Set a list of object pointers in the environment's runtime objects.
- * @param objects NULL terminated list of object pointers.
+ * @brief Set a array of object pointers in the environment's runtime objects.
+ * @param objects NULL terminated array of object pointers.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx of caller.
  */
@@ -449,9 +449,9 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
 
 
 /**
- * @brief Resolve and set a NULL terminated list of object pointers in the
+ * @brief Resolve and set a NULL terminated array of object pointers in the
  *    xctx's runtime objects.
- * @param unresolved NULL terminated list of unresolved object pointers.
+ * @param unresolved NULL terminated array of unresolved object pointers.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx of caller.
  */
@@ -567,8 +567,8 @@ afw_runtime_xctx_set_object(
 
 
 /**
- * @brief Set a list of object pointers in the xctx's runtime objects.
- * @param objects NULL terminated list of object pointers.
+ * @brief Set an array of object pointers in the xctx's runtime objects.
+ * @param objects NULL terminated array of object pointers.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx of caller.
  */
@@ -581,7 +581,7 @@ afw_runtime_xctx_set_objects(
 
 /**
  * @brief Register runtime object map interfaces.
- * @param inf is NULL terminate list of inf pointers.
+ * @param inf is NULL terminate array of inf pointers.
  * @param xctx
  *
  * inf->rti->implementation_specific MUST pointed to
@@ -597,7 +597,7 @@ afw_runtime_register_object_map_infs(
 
 /**
  * @brief Create and register runtime object map interfaces.
- * @param rti is NULL terminate list of rti pointers.
+ * @param rti is NULL terminate array of rti pointers.
  * @param xctx
  *
  * rti->implementation_specific MUST pointed to

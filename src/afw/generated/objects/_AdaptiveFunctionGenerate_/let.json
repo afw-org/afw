@@ -8,7 +8,7 @@
     "functionLabel": "let",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The name of one or more variables to declared in the current block.",
             "name": "name"

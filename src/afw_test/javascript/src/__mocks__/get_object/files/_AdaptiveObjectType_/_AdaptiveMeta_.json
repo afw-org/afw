@@ -49,7 +49,7 @@
             "collectionURIs": {
                 "allowQuery": true,
                 "brief": "The URIs of the collections this object type is a part of",
-                "dataType": "list",
+                "dataType": "array",
                 "dataTypeParameter": "anyURI",
                 "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                 "label": "Collection URIs"
@@ -106,7 +106,7 @@
             },
             "tags": {
                 "brief": "List of keywords associated with this object type",
-                "dataType": "list",
+                "dataType": "array",
                 "dataTypeParameter": "string",
                 "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                 "label": "Tags"
@@ -115,7 +115,7 @@
                 "label": "Resolved Parent Paths",
                 "description": "This is the associated object's direct parent paths before they were resolved by object option composite.",
                 "dataTypeParameter": "anyURI",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "The associated object's direct parent paths"
             },
             "reconcilable": {
@@ -142,7 +142,7 @@
                 "label": "Parent Paths",
                 "description": "This is the associated object's direct parent paths.",
                 "dataTypeParameter": "anyURI",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "The associated object's direct parent paths"
             },
             "objectTypes": {
@@ -175,7 +175,7 @@
                 "label": "Errors",
                 "description": "Object errors.",
                 "dataTypeParameter": "string",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "Object errors"
             },
             "description": {
@@ -189,7 +189,7 @@
             "ancestorPaths": {
                 "label": "Ancestor Paths",
                 "description": "This is all of the associated object's ancestor paths.",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "The associated object's ancestor paths"
             },
             "allowDelete": {

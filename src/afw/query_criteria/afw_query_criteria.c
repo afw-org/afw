@@ -143,12 +143,12 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
 static const afw_utf8_t * const *
 impl_AdaptiveQueryCriteria_object_parse_select(
     impl_AdaptiveQueryCriteria_object_parser_t *parser,
-    const afw_list_t *select);
+    const afw_array_t *select);
 
 static const afw_query_criteria_sort_entry_t *
 impl_AdaptiveQueryCriteria_object_parse_sort(
     impl_AdaptiveQueryCriteria_object_parser_t *parser,
-    const afw_list_t *sort);
+    const afw_array_t *sort);
 
 
 /* ------------------------------------------------------------------------- */
@@ -837,7 +837,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
     afw_utf8_t sign;
     apr_array_header_t *values;
     const afw_utf8_t *value;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *result;
 
     /** @fixme Change to use new list create function. */
@@ -890,10 +890,10 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
     }
 
     /* Return list of strings. */
-    list = afw_list_create_wrapper_for_array(
+    list = afw_array_create_wrapper_for_array(
         values->elts, false, afw_data_type_string,
         values->nelts, parser->p, parser->xctx);
-    result = afw_value_create_list(list, parser->p, parser->xctx);
+    result = afw_value_create_array(list, parser->p, parser->xctx);
     return result;
 }
 
@@ -1164,7 +1164,7 @@ impl_parse_string_function(
     afw_query_criteria_filter_entry_t *child_tree;
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     /* Find impl_rql_op_t for this operator. */
     impl_get_token(parser);
@@ -1282,15 +1282,15 @@ impl_parse_string_function(
 
         /* List value. */
         else {
-            list = afw_list_create_generic(parser->p, parser->xctx);
-            entry->value = afw_value_create_list(list,
+            list = afw_array_create_generic(parser->p, parser->xctx);
+            entry->value = afw_value_create_array(list,
                 parser->p, parser->xctx);
             for (;;) {
                 impl_get_token(parser);
                 if (parser->token_type != impl_token_type_string) {
                     IMPL_STRING_THROW_ERROR_Z("Expecting string value");
                 }
-                afw_list_add_value(list,
+                afw_array_add_value(list,
                     impl_token_to_value(parser), parser->xctx);
 
                 impl_get_token(parser);
@@ -1366,7 +1366,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
     const afw_iterator_t *iterator;
-    const afw_list_t *filters_list;
+    const afw_array_t *filters_list;
     const afw_object_t *child_object;
     const afw_value_t *value;
     const afw_utf8_t *s;
@@ -1403,7 +1403,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
-        filters_list = afw_object_old_get_property_as_list(filter_object,
+        filters_list = afw_object_old_get_property_as_array(filter_object,
             &afw_s_filters, parser->xctx);
         if (!filters_list) {
             AFW_THROW_ERROR_Z(general,
@@ -1417,7 +1417,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             ;
             ; previous_entry = child_entry, previous_tree = child_tree)
         {
-            value = afw_list_get_next_value(filters_list, &iterator,
+            value = afw_array_get_next_value(filters_list, &iterator,
                 parser->p, parser->xctx);
             if (!value) {
                 break;
@@ -1485,7 +1485,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
 static const afw_utf8_t * const *
 impl_AdaptiveQueryCriteria_object_parse_select(
     impl_AdaptiveQueryCriteria_object_parser_t *parser,
-    const afw_list_t *select)
+    const afw_array_t *select)
 {
     afw_const_utf8_a_stack_t *names;
     const afw_utf8_t *name;
@@ -1496,7 +1496,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
     names = afw_stack_create(afw_const_utf8_a_stack_t, 20, 0, true,
         parser->p, parser->xctx);
     for (iterator = NULL;;) {
-        value = afw_list_get_next_value(select, &iterator,
+        value = afw_array_get_next_value(select, &iterator,
             parser->p, parser->xctx);
         if (!value) {
             break;
@@ -1516,7 +1516,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
 static const afw_query_criteria_sort_entry_t *
 impl_AdaptiveQueryCriteria_object_parse_sort(
     impl_AdaptiveQueryCriteria_object_parser_t *parser,
-    const afw_list_t *sort)
+    const afw_array_t *sort)
 {
     afw_query_criteria_sort_entry_t *result;
     afw_query_criteria_sort_entry_t *prev;
@@ -1527,7 +1527,7 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
 
     for (iterator = NULL, result = NULL, curr = NULL;;)
     {
-        value = afw_list_get_next_value(sort, &iterator,
+        value = afw_array_get_next_value(sort, &iterator,
             parser->p, parser->xctx);
         if (!value) {
             break;
@@ -1577,8 +1577,8 @@ impl_compare_value(
     const afw_value_t *entry_value;
     const afw_data_type_t *data_type;
     const afw_data_type_t *entry_data_type;
-    const afw_list_t *list;
-    afw_list_wrapper_for_array_self_t list_for_single_internal;
+    const afw_array_t *list;
+    afw_array_wrapper_for_array_self_t list_for_single_internal;
 
     /*
      * If not operator contains or match and data type passed does not match,
@@ -1605,9 +1605,9 @@ impl_compare_value(
     }
 
     /* Set up so process operation can always work with a list. */
-    if (afw_value_is_list(value)) {
-        list = ((afw_value_list_t *)value)->internal;
-        data_type = afw_list_get_data_type(list, xctx);
+    if (afw_value_is_array(value)) {
+        list = ((afw_value_array_t *)value)->internal;
+        data_type = afw_array_get_data_type(list, xctx);
         /** @fixme will have to deal with data type from value if NULL data_type. */
     }
     else {
@@ -1616,7 +1616,7 @@ impl_compare_value(
             &list_for_single_internal,
             &((afw_value_evaluated_t *)value)->internal, false,
             data_type, 1);
-        list = (afw_list_t *)&list_for_single_internal;
+        list = (afw_array_t *)&list_for_single_internal;
     }
 
     /* Process operation. */
@@ -1625,7 +1625,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_eq:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1644,7 +1644,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_ne:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = true, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1663,7 +1663,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_lt:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1682,7 +1682,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_le:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1701,7 +1701,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_gt:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1720,7 +1720,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_ge:
         i1 = (const void *)&((const afw_value_evaluated_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
                 break;
             }
@@ -1739,9 +1739,9 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_in:
         AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
         /** @fixme 
-        entry_list = ((const afw_value_list_t *)entry_value)->internal;
+        entry_list = ((const afw_value_array_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_list_get_next_internal(list, &iterator, &entry_data_type, &i1, xctx);
+            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i1, xctx);
             if (!i1) {
                 break;
             }
@@ -1749,7 +1749,7 @@ impl_compare_value(
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
             for (iterator2 = NULL;;) {
-                afw_list_get_next_internal(entry_list, &iterator2, NULL, &i2, xctx);
+                afw_array_get_next_internal(entry_list, &iterator2, NULL, &i2, xctx);
                 if (!i2) {
                     break;
                 }
@@ -1981,8 +1981,8 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
     afw_query_criteria_t *criteria;
     const afw_object_t *filter_object;
     const afw_iterator_t *iterator;
-    const afw_list_t *sort;
-    const afw_list_t *select;
+    const afw_array_t *sort;
+    const afw_array_t *select;
     const afw_utf8_t *property_name;
     const afw_utf8_t *url_encoded_rql_string;
     const afw_value_t *value;
@@ -2044,14 +2044,14 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 
         /* select property */
         else if (afw_utf8_equal(property_name, &afw_s_select)) {
-            select = afw_value_as_list(value, xctx);
+            select = afw_value_as_array(value, xctx);
             criteria->select = impl_AdaptiveQueryCriteria_object_parse_select(
                 &parser, select);
         }
 
         /* sort property */
         else if (afw_utf8_equal(property_name, &afw_s_sort)) {
-            sort = afw_value_as_list(value, xctx);
+            sort = afw_value_as_array(value, xctx);
             criteria->first_sort = impl_AdaptiveQueryCriteria_object_parse_sort(
                 &parser, sort);
         }
@@ -2149,7 +2149,7 @@ impl_criteria_filter_to_property_value(
 {
     const afw_object_t *filter;
     const afw_query_criteria_filter_entry_t *e;
-    const afw_list_t *filters;
+    const afw_array_t *filters;
     const afw_object_t *o;
     const afw_value_t *v;
 
@@ -2164,12 +2164,12 @@ impl_criteria_filter_to_property_value(
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
-        filters = afw_list_create_generic(p, xctx);
-        afw_object_set_property_as_list(filter, &afw_s_filters, filters, xctx);
+        filters = afw_array_create_generic(p, xctx);
+        afw_object_set_property_as_array(filter, &afw_s_filters, filters, xctx);
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
             v = afw_value_create_object(o, p, xctx);
-            afw_list_add_value(filters, v, xctx);
+            afw_array_add_value(filters, v, xctx);
         }
     }
 
@@ -2183,13 +2183,13 @@ impl_criteria_filter_to_property_value(
 }
 
 
-static const afw_list_t *
+static const afw_array_t *
 impl_criteria_select_to_property_value(
     const afw_utf8_t * const *select,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *result;
+    const afw_array_t *result;
     const afw_utf8_t * const *e;
     afw_value_string_t *v;
 
@@ -2197,25 +2197,25 @@ impl_criteria_select_to_property_value(
         return NULL;
     }
 
-    result = afw_list_create_generic(p, xctx);
+    result = afw_array_create_generic(p, xctx);
 
     for (e = select; *e; e++) {
         v = afw_value_allocate_string(p, xctx);
         afw_memory_copy(&v->internal, *e);
-        afw_list_add_value(result, (const afw_value_t *)v, xctx);
+        afw_array_add_value(result, (const afw_value_t *)v, xctx);
     }
 
     return result;
 }
 
 
-static const afw_list_t *
+static const afw_array_t *
 impl_criteria_sort_to_property_value(
     const afw_query_criteria_sort_entry_t *sort_entry,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *result;
+    const afw_array_t *result;
     const afw_query_criteria_sort_entry_t *e;
     afw_value_string_t *v;
     afw_utf8_octet_t *c;
@@ -2224,7 +2224,7 @@ impl_criteria_sort_to_property_value(
         return NULL;
     }
 
-    result = afw_list_create_generic(p, xctx);
+    result = afw_array_create_generic(p, xctx);
 
     for (e = sort_entry; e; e = e->next) {
         v = afw_value_allocate_string(p, xctx);
@@ -2232,7 +2232,7 @@ impl_criteria_sort_to_property_value(
         v->internal.s = c = afw_pool_malloc(p, v->internal.len, xctx);
         *c++ = (e->descending) ? '-' : '+';
         memcpy(c, e->property_name->s, e->property_name->len);
-        afw_list_add_value(result, (const afw_value_t *)v, xctx);
+        afw_array_add_value(result, (const afw_value_t *)v, xctx);
     }
 
     return result;
@@ -2249,8 +2249,8 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
 {
     const afw_object_t *object;
     const afw_object_t *filter;
-    const afw_list_t *select;
-    const afw_list_t *sort;
+    const afw_array_t *select;
+    const afw_array_t *sort;
 
     /* Create object for result. */
     object = afw_object_create_managed(p, xctx);
@@ -2274,7 +2274,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     if (criteria->select) {
         select = impl_criteria_select_to_property_value(
             criteria->select, object->p, xctx);
-        afw_object_set_property_as_list(object,
+        afw_object_set_property_as_array(object,
             &afw_s_select, select, xctx);
     }
 
@@ -2282,7 +2282,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     if (criteria->first_sort) {
         sort = impl_criteria_sort_to_property_value(
             criteria->first_sort, object->p, xctx);
-        afw_object_set_property_as_list(object,
+        afw_object_set_property_as_array(object,
             &afw_s_sort, sort, xctx);
     }
 
@@ -2315,7 +2315,7 @@ impl_entry_to_query_string(
     const afw_utf8_z_t *fiql_op;
     const afw_utf8_t *s;
     const impl_rql_op_t *rql_op;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_query_criteria_filter_entry_t *child;
     afw_boolean_t first_time;
     afw_boolean_t need_close_parenthesis;
@@ -2406,9 +2406,9 @@ impl_entry_to_query_string(
             afw_writer_write_z(w, "(", xctx);
             afw_writer_write_utf8(w, property_name, xctx);
             if (rql_op->op->is_list) {
-                list = afw_value_as_list(entry->value, xctx);
+                list = afw_value_as_array(entry->value, xctx);
                 for (iterator = NULL;;) {
-                    value = afw_list_get_next_value(list, &iterator, p, xctx);
+                    value = afw_array_get_next_value(list, &iterator, p, xctx);
                     if (!value) {
                         break;
                     }
@@ -2458,9 +2458,9 @@ impl_entry_to_query_string(
             }
 
             if (rql_op->op->is_list) {
-                list = afw_value_as_list(entry->value, xctx);
+                list = afw_value_as_array(entry->value, xctx);
                 for (iterator = NULL, first_time = true;;) {
-                    value = afw_list_get_next_value(list, &iterator, p, xctx);
+                    value = afw_array_get_next_value(list, &iterator, p, xctx);
                     if (!value) {
                         break;
                     }

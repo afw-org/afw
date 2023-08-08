@@ -12,8 +12,8 @@
             "polymorphicDataType": true
         },
         {
-            "dataType": "list",
-            "name": "list",
+            "dataType": "array",
+            "name": "array",
             "polymorphicDataTypeParameter": true
         }
     ],

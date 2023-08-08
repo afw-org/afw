@@ -8,7 +8,7 @@
     "functionLabel": "compile_expression_tuple",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "expression tuple to compile.",
             "name": "expression_tuple"
         },

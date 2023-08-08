@@ -70,6 +70,9 @@ AFW_UTF8_LITERAL("allowWrite");
 AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_anyURI =
 AFW_UTF8_LITERAL("anyURI");
 
+AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_array =
+AFW_UTF8_LITERAL("array");
+
 AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_boolean =
 AFW_UTF8_LITERAL("boolean");
 
@@ -111,9 +114,6 @@ AFW_UTF8_LITERAL("isDirectory");
 
 AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_label =
 AFW_UTF8_LITERAL("label");
-
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_list =
-AFW_UTF8_LITERAL("list");
 
 AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_markExecutable =
 AFW_UTF8_LITERAL("markExecutable");

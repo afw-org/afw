@@ -124,8 +124,8 @@ class polymorphic
      * Returns boolean true if at least one value in `<dataType>` list1 is in
      * `<dataType>` list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -148,9 +148,9 @@ class polymorphic
      *
      * Takes any number of `<dataType>` values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag(, $values = null)
     {
@@ -172,7 +172,7 @@ class polymorphic
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -686,10 +686,10 @@ class polymorphic
      * Returns a list of `<dataType>` with the values that are common to both
      * list of `<dataType>` list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection(, $list1, $list2)
     {
@@ -735,11 +735,11 @@ class polymorphic
      * returns the boolean result.
      *
      * @param  $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in(, $value, $list)
+    public function is_in(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -747,7 +747,7 @@ class polymorphic
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -1104,18 +1104,18 @@ class polymorphic
      * This converts a list of `<dataType>` values that contains one value to
      * a single `<dataType>` value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return
      */
-    public function one_and_only(, $list)
+    public function one_and_only(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -1315,8 +1315,8 @@ class polymorphic
      * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
      * subsets of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -1346,7 +1346,7 @@ class polymorphic
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return list An list of strings.
+     * @return array An list of strings.
      */
     public function split(, $value, $separator = null, $limit = null)
     {
@@ -1398,8 +1398,8 @@ class polymorphic
      * Returns boolean true if the unique values in `<dataType>` list1 are
      * all in `<dataType>` list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -1839,9 +1839,9 @@ class polymorphic
      * Returns a list of `<dataType>` contains all of the unique values in
      * two or more list of `<dataType>` values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union(, $lists)
     {

@@ -34,7 +34,7 @@ const afw_value_t * afw_yaml_parse_value(
 const afw_object_t * afw_yaml_parse_object(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx);
 
-const afw_list_t * afw_yaml_parse_list(
+const afw_array_t * afw_yaml_parse_list(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx);
 
 const afw_value_t * afw_yaml_parse_scalar(
@@ -127,18 +127,18 @@ const afw_value_t * afw_yaml_parse_scalar(
 }
 
 
-const afw_list_t * afw_yaml_parse_list(
+const afw_array_t * afw_yaml_parse_list(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx)
 {
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *value;
 
-    list = afw_list_create_generic(parser->p, xctx);
+    list = afw_array_create_generic(parser->p, xctx);
 
     do {
         value = afw_yaml_parse_value(parser, xctx);
         if (value) {
-            afw_list_add_value(list, value, xctx);
+            afw_array_add_value(list, value, xctx);
         }
     } while (value);
 
@@ -237,7 +237,7 @@ const afw_value_t * afw_yaml_parse_value(
     yaml_token_t *token;
     const afw_value_t *value = NULL;
     const afw_object_t *obj;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     while (value == NULL) {
         token = afw_yaml_parser_scan(parser, xctx);
@@ -265,7 +265,7 @@ const afw_value_t * afw_yaml_parse_value(
                 /* FLOW sequence denotes [] list , while BLOCK sequence denotes - list */
                 list = afw_yaml_parse_list(parser, xctx);
 
-                value = afw_value_create_list(list, parser->p, xctx);
+                value = afw_value_create_array(list, parser->p, xctx);
                 break;
 
             case YAML_BLOCK_END_TOKEN:

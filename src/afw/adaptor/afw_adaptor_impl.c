@@ -446,7 +446,7 @@ afw_adaptor_impl_create_cede_p(
 /* Call object cb for list. */
 AFW_DEFINE(void)
 afw_adaptor_impl_call_object_cb_from_list(
-    const afw_list_t *list,
+    const afw_array_t *list,
     void *context,
     afw_object_cb_t callback,
     afw_xctx_t *xctx)
@@ -456,7 +456,7 @@ afw_adaptor_impl_call_object_cb_from_list(
 
     /* Call callback for each object in list. */
     for (iterator = NULL;;) {
-        obj = afw_list_of_object_get_next(
+        obj = afw_array_of_object_get_next(
             list, &iterator, xctx);
         if (!obj) break;
         callback(obj, context, xctx);
@@ -535,7 +535,7 @@ afw_adaptor_impl_set_supported_core_object_type(
     apr_hash_t *ht;
     afw_adaptor_impl_core_object_type_t *e;
     const afw_utf8_t *path;
-    afw_value_list_t *parent_paths;
+    afw_value_array_t *parent_paths;
 
     /* Ignore call for afw adaptor.  Will cause parentPaths loops. */
     if (afw_utf8_equal(&adaptor->adaptor_id, &afw_s_afw)) {
@@ -564,8 +564,8 @@ afw_adaptor_impl_set_supported_core_object_type(
         path = afw_object_meta_get_path(e->object, xctx);
         afw_object_meta_set_ids(e->object, &adaptor->adaptor_id,
             &afw_s__AdaptiveObjectType_, object_type_id, xctx);
-        parent_paths = afw_value_allocate_list(p, xctx);
-        parent_paths->internal = afw_list_create_wrapper_for_array(
+        parent_paths = afw_value_allocate_array(p, xctx);
+        parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
         afw_object_meta_set_parent_paths(e->object, parent_paths, xctx);
 

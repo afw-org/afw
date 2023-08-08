@@ -60,7 +60,7 @@ const Table_Column = {
 export const propTypes = {
     /**
      * columns
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Table_Column)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Table_Column)
      * 
      * The columns that are defined for this Table component.
      */
@@ -81,7 +81,7 @@ export const propTypes = {
     isHeaderVisible:                    PropTypes.bool,
     /**
      * rows
-     * Data Type: (list)
+     * Data Type: (array)
      * 
      * The rows that are defined for this Table component.
      */

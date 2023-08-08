@@ -13,9 +13,9 @@
             "name": "value"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
-            "name": "list"
+            "name": "array"
         }
     ],
     "pure": true,

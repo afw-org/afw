@@ -48,10 +48,10 @@ def bag_script(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -79,7 +79,7 @@ def bag_size_script(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -186,7 +186,7 @@ def const(session, name, value, type=None):
 
     Parameters:
 
-        name (list): The name of one or more constants to defined in the
+        name (array): The name of one or more constants to defined in the
         current block.
 
         value (): This is the value of the constant(s).
@@ -259,10 +259,10 @@ def do_while(session, condition, body):
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (list): This is a list of values (statements) that are evaluated
-        for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a 'break', 'continue',
-        'return' or 'throw' function is encountered.
+        body (array): This is a list of values (statements) that are
+        evaluated for each iteration of the loop. Each value in body is
+        evaluated in order until the end of the list or until a 'break',
+        'continue', 'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if the body is empty.
@@ -404,21 +404,21 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     Parameters:
 
-        initial (list): This is a list of values (statements) to evaluate
+        initial (array): This is a list of values (statements) to evaluate
         before the loop starts. The values will normally be a call to the
         'assign' function.
 
         condition (boolean): While this condition is true, the loop will
         continue.
 
-        increment (list): This is a list of values (statements) to evaluate
+        increment (array): This is a list of values (statements) to evaluate
         after each iteration of the loop. The values will normally be a call
         to the 'assign' function.
 
-        body (list): This is a list of values (statements) that are evaluated
-        for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a 'break', 'continue',
-        'return' or 'throw' function is encountered.
+        body (array): This is a list of values (statements) that are
+        evaluated for each iteration of the loop. Each value in body is
+        evaluated in order until the end of the list or until a 'break',
+        'continue', 'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -463,14 +463,14 @@ def foreach(session, name, value, body=None):
 
     Parameters:
 
-        name (list): Variable name(s).
+        name (array): Variable name(s).
 
         value (): Any list, object or single value.
 
-        body (list): This is a list of values (statements) that are evaluated
-        for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a 'break', 'continue',
-        'return' or 'throw' function is encountered.
+        body (array): This is a list of values (statements) that are
+        evaluated for each iteration of the loop. Each value in body is
+        evaluated in order until the end of the list or until a 'break',
+        'continue', 'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.
@@ -572,14 +572,14 @@ def if_(session, condition, then, _else=None):
         condition (boolean): If true, parameter 'then' is evaluated for
         result. If false, parameter 'else' is evaluated.
 
-        then (list): This is the body of a structured block that is evaluated
-        if 'condition' is true. See the 'body' parameter of the 'block'
-        function for information on how the body is processed.
+        then (array): This is the body of a structured block that is
+        evaluated if 'condition' is true. See the 'body' parameter of the
+        'block' function for information on how the body is processed.
 
-        else (list): This is the body of a structured block that is evaluated
-        if 'condition' is false. If not specified and condition is false, a
-        null value is returned. See the 'body' parameter of the 'block'
-        function for information on how the body is processed.
+        else (array): This is the body of a structured block that is
+        evaluated if 'condition' is false. If not specified and condition is
+        false, a null value is returned. See the 'body' parameter of the
+        'block' function for information on how the body is processed.
 
     Returns:
     None: The result of evaluating 'then' or 'else'
@@ -677,7 +677,7 @@ def let(session, name, value=None, type=None):
 
     Parameters:
 
-        name (list): The name of one or more variables to declared in the
+        name (array): The name of one or more variables to declared in the
         current block.
 
         value (): This is the initial value of the variable(s). If not
@@ -1005,18 +1005,18 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
     Parameters:
 
-        body (list): This is a list of values (statements) that are
+        body (array): This is a list of values (statements) that are
         evaluated. Each value in body is evaluated in order until the end of
         the list or until a 'break', 'continue', 'return' or 'throw' function
         is encountered.
 
-        finally (list): This is a list of values (statements) that are
+        finally (array): This is a list of values (statements) that are
         evaluated after the try and catch statements even if an error occurs.
         Each value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
-        catch (list): This is a list of values (statements) that are
+        catch (array): This is a list of values (statements) that are
         evaluated when an error is thrown while evaluating the body. Each
         value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
@@ -1071,10 +1071,10 @@ def while_(session, condition, body):
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (list): This is a list of values (statements) that are evaluated
-        for each iteration of the loop. Each value in body is evaluated in
-        order until the end of the list or until a 'break', 'continue',
-        'return' or 'throw' function is encountered.
+        body (array): This is a list of values (statements) that are
+        evaluated for each iteration of the loop. Each value in body is
+        evaluated in order until the end of the list or until a 'break',
+        'continue', 'return' or 'throw' function is encountered.
 
     Returns:
     None: The last value evaluated in body or null if condition evaluates to false the first time.

@@ -151,13 +151,13 @@ impl_data_type_object_integer = {
     (void *)&afw_data_type_integer_direct
 };
 
-/* Value for empty list of integer. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_integer;
+/* Value for empty array of integer. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_integer;
 
-/* Value for empty list of integer. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_integer;
+/* Value for empty array of integer. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_integer;
 
 /* Data type integer instance. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
@@ -174,8 +174,8 @@ afw_data_type_integer_direct = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("afw_integer_t"),
     sizeof(afw_integer_t),
-    (const afw_list_t *)&impl_empty_list_of_integer,
-    (const afw_value_t *)&impl_value_empty_list_of_integer,
+    (const afw_array_t *)&impl_empty_array_of_integer,
+    (const afw_value_t *)&impl_value_empty_array_of_integer,
     &afw_value_evaluated_integer_inf,
     afw_compile_type_error,
     true,
@@ -186,19 +186,19 @@ afw_data_type_integer_direct = {
     false
 };
 
-/* Value for empty list of integer. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_integer = {
-    &afw_list_wrapper_for_array_inf,
+/* Value for empty array of integer. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_integer = {
+    &afw_array_wrapper_for_array_inf,
     &afw_data_type_integer_direct,
     0
 };
 
-/* Value for empty list of integer. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_integer = {
-    &afw_value_permanent_list_inf,
-    (const afw_list_t *)&impl_empty_list_of_integer
+/* Value for empty array of integer. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_integer = {
+    &afw_value_permanent_array_inf,
+    (const afw_array_t *)&impl_empty_array_of_integer
 };
 
 /* Data type struct for integer. */
@@ -510,10 +510,10 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from list of integer. */
+/* Get next value from array of integer. */
 AFW_DEFINE(afw_integer_t)
-afw_list_of_integer_get_next_source(
-    const afw_list_t *instance,
+afw_array_of_integer_get_next_source(
+    const afw_array_t *instance,
     const afw_iterator_t * *iterator,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
@@ -522,7 +522,7 @@ afw_list_of_integer_get_next_source(
     const void *internal;
     const afw_data_type_t *data_type;
 
-    afw_list_get_next_internal(instance, iterator, &data_type, &internal, xctx);
+    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
     *found = true;
     if (!internal) {
         *found = false;
@@ -541,40 +541,40 @@ afw_list_of_integer_get_next_source(
     return *(afw_integer_t *)internal;
 }
 
-/* Add value from list of integer */
+/* Add value from array of integer */
 AFW_DEFINE(void)
-afw_list_of_integer_add(
-    const afw_list_t *instance,
+afw_array_of_integer_add(
+    const afw_array_t *instance,
     const afw_integer_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_list_setter_add_internal(setter, 
+    afw_array_setter_add_internal(setter, 
         afw_data_type_integer,
         (const void *)value, xctx);
 }
 
-/* Remove value from list of integer */
+/* Remove value from array of integer */
 AFW_DEFINE(void)
-afw_list_of_integer_remove(
-    const afw_list_t *instance,
+afw_array_of_integer_remove(
+    const afw_array_t *instance,
     const afw_integer_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_list_setter_remove_internal(setter, 
+    afw_array_setter_remove_internal(setter, 
         afw_data_type_integer,
         (const void *)value, xctx);
 }

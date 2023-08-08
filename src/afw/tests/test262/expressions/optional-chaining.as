@@ -66,7 +66,7 @@ assert(22 === a?.b, "22 === a?.b");
 //assert(44 === {a: 44}?.a);
 //assert('h' === `hello`?.[0]);
 
-const arr: list = [{a: 33}];
+const arr: array = [{a: 33}];
 assert(33 === arr[0]?.a, "33 === arr[0]?.a");
 
 const obj: object = {a: {b: 44}};
@@ -85,7 +85,7 @@ const a: any = undefined;
 const b: object = {e: 0};
 const c: object = {};
 //c[undefined] = 11;
-const d: list = [22];
+const d: array = [22];
 
 assert(undefined === a?.[a?.b], "undefined === a?.[a?.b]");
 //assert(11 === c?.[a?.b], "11 === c?.[a?.b]");
@@ -99,7 +99,7 @@ assert(22 === d?.[b?.e], "22 === d?.[b?.e]");
 //? source: ...
 #!/usr/bin/env afw
 
-const arr: list = [10, 11];
+const arr: array = [10, 11];
 const obj: object = {
     a: "hello",
     b: {val: 13},

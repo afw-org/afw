@@ -8,7 +8,7 @@
     "functionLabel": "flag_replace_defaults",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The list of the flagId of flags used to determine the default active flags.",
             "name": "flagId"

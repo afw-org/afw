@@ -2096,7 +2096,7 @@ struct afw_data_type_s {
     afw_utf8_t jsonSchemaStringFormat;
     afw_utf8_t cType;
     afw_size_t c_type_size;
-    const afw_list_t * empty_list;
+    const afw_array_t * empty_list;
     const afw_value_t * empty_list_value;
     const afw_value_inf_t * evaluated_value_inf;
     afw_compile_type_t compile_type;
@@ -2345,7 +2345,7 @@ struct afw_data_type_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_list_setter_interface afw_list_setter
+ * @addtogroup afw_array_setter_interface afw_array_setter
  *
  * 
  * Adaptive list setter interface.
@@ -2355,110 +2355,110 @@ struct afw_data_type_inf_s {
  */
 
 
-/** @brief Interface afw_list_setter public struct. */
-struct afw_list_setter_s {
-    const afw_list_setter_inf_t *inf;
-    const afw_list_t * list;
+/** @brief Interface afw_array_setter public struct. */
+struct afw_array_setter_s {
+    const afw_array_setter_inf_t *inf;
+    const afw_array_t * list;
 };
 
-/** @brief define for interface afw_list_setter name. */
-#define AFW_LIST_SETTER_INTERFACE_NAME \
-"afw_list_setter"
+/** @brief define for interface afw_array_setter name. */
+#define AFW_ARRAY_SETTER_INTERFACE_NAME \
+"afw_array_setter"
 
-/** @sa afw_list_setter_set_immutable() */
+/** @sa afw_array_setter_set_immutable() */
 typedef void
-(*afw_list_setter_set_immutable_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_set_immutable_t)(
+    const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_determine_data_type_and_set_immutable() */
+/** @sa afw_array_setter_determine_data_type_and_set_immutable() */
 typedef const afw_data_type_t *
-(*afw_list_setter_determine_data_type_and_set_immutable_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_determine_data_type_and_set_immutable_t)(
+    const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_add_internal() */
+/** @sa afw_array_setter_add_internal() */
 typedef void
-(*afw_list_setter_add_internal_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_add_internal_t)(
+    const afw_array_setter_t * instance,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_add_value() */
+/** @sa afw_array_setter_add_value() */
 typedef void
-(*afw_list_setter_add_value_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_add_value_t)(
+    const afw_array_setter_t * instance,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_insert_internal() */
+/** @sa afw_array_setter_insert_internal() */
 typedef void
-(*afw_list_setter_insert_internal_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_insert_internal_t)(
+    const afw_array_setter_t * instance,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_size_t index,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_insert_value() */
+/** @sa afw_array_setter_insert_value() */
 typedef void
-(*afw_list_setter_insert_value_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_insert_value_t)(
+    const afw_array_setter_t * instance,
     const afw_value_t * value,
     afw_size_t index,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_remove_all_values() */
+/** @sa afw_array_setter_remove_all_values() */
 typedef void
-(*afw_list_setter_remove_all_values_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_remove_all_values_t)(
+    const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_remove_internal() */
+/** @sa afw_array_setter_remove_internal() */
 typedef void
-(*afw_list_setter_remove_internal_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_remove_internal_t)(
+    const afw_array_setter_t * instance,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_remove_value() */
+/** @sa afw_array_setter_remove_value() */
 typedef void
-(*afw_list_setter_remove_value_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_remove_value_t)(
+    const afw_array_setter_t * instance,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_setter_set_value_by_index() */
+/** @sa afw_array_setter_set_value_by_index() */
 typedef void
-(*afw_list_setter_set_value_by_index_t)(
-    const afw_list_setter_t * instance,
+(*afw_array_setter_set_value_by_index_t)(
+    const afw_array_setter_t * instance,
     afw_size_t index,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_list_setter_inf_s struct. */
-struct afw_list_setter_inf_s {
+/** @brief Interface afw_array_setter_inf_s struct. */
+struct afw_array_setter_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_list_setter_set_immutable_t set_immutable;
-    afw_list_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
-    afw_list_setter_add_internal_t add_internal;
-    afw_list_setter_add_value_t add_value;
-    afw_list_setter_insert_internal_t insert_internal;
-    afw_list_setter_insert_value_t insert_value;
-    afw_list_setter_remove_all_values_t remove_all_values;
-    afw_list_setter_remove_internal_t remove_internal;
-    afw_list_setter_remove_value_t remove_value;
-    afw_list_setter_set_value_by_index_t set_value_by_index;
+    afw_array_setter_set_immutable_t set_immutable;
+    afw_array_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
+    afw_array_setter_add_internal_t add_internal;
+    afw_array_setter_add_value_t add_value;
+    afw_array_setter_insert_internal_t insert_internal;
+    afw_array_setter_insert_value_t insert_value;
+    afw_array_setter_remove_all_values_t remove_all_values;
+    afw_array_setter_remove_internal_t remove_internal;
+    afw_array_setter_remove_value_t remove_value;
+    afw_array_setter_set_value_by_index_t set_value_by_index;
 };
 
 /**
- * @brief Call method set_immutable of interface afw_list_setter
+ * @brief Call method set_immutable of interface afw_array_setter
  * @param instance Pointer to this object instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_set_immutable( \
+#define afw_array_setter_set_immutable( \
     instance, \
     xctx \
 ) \
@@ -2469,11 +2469,11 @@ struct afw_list_setter_inf_s {
 
 /**
  * @brief Call method determine_data_type_and_set_immutable of interface
- *     afw_list_setter
+ *     afw_array_setter
  * @param instance Pointer to this object instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_determine_data_type_and_set_immutable( \
+#define afw_array_setter_determine_data_type_and_set_immutable( \
     instance, \
     xctx \
 ) \
@@ -2483,13 +2483,13 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method add_internal of interface afw_list_setter
+ * @brief Call method add_internal of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to add of type data_type->cType.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_add_internal( \
+#define afw_array_setter_add_internal( \
     instance, \
     data_type, \
     internal, \
@@ -2503,12 +2503,12 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method add_value of interface afw_list_setter
+ * @brief Call method add_value of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param value A value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_add_value( \
+#define afw_array_setter_add_value( \
     instance, \
     value, \
     xctx \
@@ -2520,14 +2520,14 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method insert_internal of interface afw_list_setter
+ * @brief Call method insert_internal of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to add of type data_type->cType.
  * @param index The zero based index for insert.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_insert_internal( \
+#define afw_array_setter_insert_internal( \
     instance, \
     data_type, \
     internal, \
@@ -2543,13 +2543,13 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method insert_value of interface afw_list_setter
+ * @brief Call method insert_value of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param value A value.
  * @param index The zero based index for insert.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_insert_value( \
+#define afw_array_setter_insert_value( \
     instance, \
     value, \
     index, \
@@ -2563,11 +2563,11 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_all_values of interface afw_list_setter
+ * @brief Call method remove_all_values of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_remove_all_values( \
+#define afw_array_setter_remove_all_values( \
     instance, \
     xctx \
 ) \
@@ -2577,13 +2577,13 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_internal of interface afw_list_setter
+ * @brief Call method remove_internal of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to delete of type data_type->cType.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_remove_internal( \
+#define afw_array_setter_remove_internal( \
     instance, \
     data_type, \
     internal, \
@@ -2597,12 +2597,12 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_value of interface afw_list_setter
+ * @brief Call method remove_value of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param value Value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_remove_value( \
+#define afw_array_setter_remove_value( \
     instance, \
     value, \
     xctx \
@@ -2614,13 +2614,13 @@ struct afw_list_setter_inf_s {
 )
 
 /**
- * @brief Call method set_value_by_index of interface afw_list_setter
+ * @brief Call method set_value_by_index of interface afw_array_setter
  * @param instance Pointer to this value list instance.
  * @param index Index relative to 0.
  * @param value Value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_setter_set_value_by_index( \
+#define afw_array_setter_set_value_by_index( \
     instance, \
     index, \
     value, \
@@ -2636,7 +2636,7 @@ struct afw_list_setter_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_list_interface afw_list
+ * @addtogroup afw_array_interface afw_array
  *
  * 
  * Adaptive value list interface.
@@ -2646,110 +2646,110 @@ struct afw_list_setter_inf_s {
  */
 
 
-/** @brief Interface afw_list public struct. */
-struct afw_list_s {
-    const afw_list_inf_t *inf;
+/** @brief Interface afw_array public struct. */
+struct afw_array_s {
+    const afw_array_inf_t *inf;
 };
 
-/** @brief define for interface afw_list name. */
-#define AFW_LIST_INTERFACE_NAME \
-"afw_list"
+/** @brief define for interface afw_array name. */
+#define AFW_ARRAY_INTERFACE_NAME \
+"afw_array"
 
-/** @sa afw_list_release() */
+/** @sa afw_array_release() */
 typedef void
-(*afw_list_release_t)(
-    const afw_list_t * instance,
+(*afw_array_release_t)(
+    const afw_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_count() */
+/** @sa afw_array_get_count() */
 typedef afw_size_t
-(*afw_list_get_count_t)(
-    const afw_list_t * instance,
+(*afw_array_get_count_t)(
+    const afw_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_data_type() */
+/** @sa afw_array_get_data_type() */
 typedef const afw_data_type_t *
-(*afw_list_get_data_type_t)(
-    const afw_list_t * instance,
+(*afw_array_get_data_type_t)(
+    const afw_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_entry_meta() */
+/** @sa afw_array_get_entry_meta() */
 typedef const afw_value_t *
-(*afw_list_get_entry_meta_t)(
-    const afw_list_t * instance,
+(*afw_array_get_entry_meta_t)(
+    const afw_array_t * instance,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_entry_internal() */
+/** @sa afw_array_get_entry_internal() */
 typedef afw_boolean_t
-(*afw_list_get_entry_internal_t)(
-    const afw_list_t * instance,
+(*afw_array_get_entry_internal_t)(
+    const afw_array_t * instance,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_entry_value() */
+/** @sa afw_array_get_entry_value() */
 typedef const afw_value_t *
-(*afw_list_get_entry_value_t)(
-    const afw_list_t * instance,
+(*afw_array_get_entry_value_t)(
+    const afw_array_t * instance,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_next_entry_meta() */
+/** @sa afw_array_get_next_entry_meta() */
 typedef const afw_value_t *
-(*afw_list_get_next_entry_meta_t)(
-    const afw_list_t * instance,
+(*afw_array_get_next_entry_meta_t)(
+    const afw_array_t * instance,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_next_internal() */
+/** @sa afw_array_get_next_internal() */
 typedef afw_boolean_t
-(*afw_list_get_next_internal_t)(
-    const afw_list_t * instance,
+(*afw_array_get_next_internal_t)(
+    const afw_array_t * instance,
     const afw_iterator_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_next_value() */
+/** @sa afw_array_get_next_value() */
 typedef const afw_value_t *
-(*afw_list_get_next_value_t)(
-    const afw_list_t * instance,
+(*afw_array_get_next_value_t)(
+    const afw_array_t * instance,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_list_get_setter() */
-typedef const afw_list_setter_t *
-(*afw_list_get_setter_t)(
-    const afw_list_t * instance,
+/** @sa afw_array_get_setter() */
+typedef const afw_array_setter_t *
+(*afw_array_get_setter_t)(
+    const afw_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_list_inf_s struct. */
-struct afw_list_inf_s {
+/** @brief Interface afw_array_inf_s struct. */
+struct afw_array_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_list_release_t release;
-    afw_list_get_count_t get_count;
-    afw_list_get_data_type_t get_data_type;
-    afw_list_get_entry_meta_t get_entry_meta;
-    afw_list_get_entry_internal_t get_entry_internal;
-    afw_list_get_entry_value_t get_entry_value;
-    afw_list_get_next_entry_meta_t get_next_entry_meta;
-    afw_list_get_next_internal_t get_next_internal;
-    afw_list_get_next_value_t get_next_value;
-    afw_list_get_setter_t get_setter;
+    afw_array_release_t release;
+    afw_array_get_count_t get_count;
+    afw_array_get_data_type_t get_data_type;
+    afw_array_get_entry_meta_t get_entry_meta;
+    afw_array_get_entry_internal_t get_entry_internal;
+    afw_array_get_entry_value_t get_entry_value;
+    afw_array_get_next_entry_meta_t get_next_entry_meta;
+    afw_array_get_next_internal_t get_next_internal;
+    afw_array_get_next_value_t get_next_value;
+    afw_array_get_setter_t get_setter;
 };
 
 /**
- * @brief Call method release of interface afw_list
+ * @brief Call method release of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_release( \
+#define afw_array_release( \
     instance, \
     xctx \
 ) \
@@ -2759,11 +2759,11 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_count of interface afw_list
+ * @brief Call method get_count of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_count( \
+#define afw_array_get_count( \
     instance, \
     xctx \
 ) \
@@ -2773,11 +2773,11 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_data_type of interface afw_list
+ * @brief Call method get_data_type of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_data_type( \
+#define afw_array_get_data_type( \
     instance, \
     xctx \
 ) \
@@ -2787,13 +2787,13 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_entry_meta of interface afw_list
+ * @brief Call method get_entry_meta of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param index Zero-based index of list entry to return.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_entry_meta( \
+#define afw_array_get_entry_meta( \
     instance, \
     index, \
     p, \
@@ -2807,7 +2807,7 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_entry_internal of interface afw_list
+ * @brief Call method get_entry_internal of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param index Zero-based index of list entry to return.
  * @param data_type Place to put data type pointer or NULL.
@@ -2816,7 +2816,7 @@ struct afw_list_inf_s {
  *     range.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_entry_internal( \
+#define afw_array_get_entry_internal( \
     instance, \
     index, \
     data_type, \
@@ -2832,13 +2832,13 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_entry_value of interface afw_list
+ * @brief Call method get_entry_value of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param index Zero-based index of list entry to return.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_entry_value( \
+#define afw_array_get_entry_value( \
     instance, \
     index, \
     p, \
@@ -2852,13 +2852,13 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_next_entry_meta of interface afw_list
+ * @brief Call method get_next_entry_meta of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param iterator Address of iterator pointer.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_next_entry_meta( \
+#define afw_array_get_next_entry_meta( \
     instance, \
     iterator, \
     p, \
@@ -2872,7 +2872,7 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_next_internal of interface afw_list
+ * @brief Call method get_next_internal of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param iterator Address of iterator pointer.
  * @param data_type Place to put data type pointer or NULL.
@@ -2880,7 +2880,7 @@ struct afw_list_inf_s {
  *         This will be set to NULL if there is no next internal.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_next_internal( \
+#define afw_array_get_next_internal( \
     instance, \
     iterator, \
     data_type, \
@@ -2896,13 +2896,13 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_next_value of interface afw_list
+ * @brief Call method get_next_value of interface afw_array
  * @param instance Pointer to this value list instance.
  * @param iterator Address of iterator pointer.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_next_value( \
+#define afw_array_get_next_value( \
     instance, \
     iterator, \
     p, \
@@ -2916,11 +2916,11 @@ struct afw_list_inf_s {
 )
 
 /**
- * @brief Call method get_setter of interface afw_list
+ * @brief Call method get_setter of interface afw_array
  * @param instance Pointer to this object instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_list_get_setter( \
+#define afw_array_get_setter( \
     instance, \
     xctx \
 ) \

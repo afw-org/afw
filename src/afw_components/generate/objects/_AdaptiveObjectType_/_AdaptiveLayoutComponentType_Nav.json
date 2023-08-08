@@ -16,7 +16,7 @@
         },
         "items": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Nav_Item",
             "description": "Item to be displayed by this Nav layout.",
             "label": "Item"

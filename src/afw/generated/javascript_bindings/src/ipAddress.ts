@@ -14,9 +14,9 @@ interface IAnyObject {
 /**
  * Takes any number of ipAddress values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagIpAddress(client : any, values? : any[]) : any {
 
@@ -33,7 +33,7 @@ export function afwBagIpAddress(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -157,17 +157,17 @@ export function afwIpAddress(client : any, value : any) : any {
  * 
  * @param {ipAddress} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInIpAddress(client : any, value : any, list : any[]) : any {
+export function afwIsInIpAddress(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<ipAddress>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -280,16 +280,16 @@ export function afwNexIpAddress(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of ipAddress values that contains one value to a
  * single ipAddress value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {ipAddress}
  */
-export function afwOneAndOnlyIpAddress(client : any, list : any[]) : any {
+export function afwOneAndOnlyIpAddress(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<ipAddress>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }

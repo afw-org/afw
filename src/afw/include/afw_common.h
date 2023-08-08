@@ -1652,7 +1652,7 @@ typedef union afw_c_types_u {
     afw_uint64_t    uint64;
     afw_uint64_t  * uint64_p;
 
-    afw_list_t    * list_p;
+    afw_array_t    * list_p;
 
     afw_float32_t   float32;
     afw_float32_t * float32_p;

@@ -63,10 +63,10 @@ struct afw_flag_s {
     const afw_utf8_t *description;
  
     /** @brief list value of all flags that include this flag. */
-    const afw_value_list_t *included_by_value;
+    const afw_value_array_t *included_by_value;
  
     /** @brief list value of all other flags this flag includes. */
-    const afw_value_list_t *includes_value;
+    const afw_value_array_t *includes_value;
 
     /** @brief Pointer to direct parent afw_flag_t. */
     const afw_flag_t *parent;
@@ -155,7 +155,7 @@ afw_flag_set_default(
  */
 AFW_DECLARE(void)
 afw_flag_set_default_flag_ids(
-    const afw_list_t *default_flag_ids,
+    const afw_array_t *default_flag_ids,
     afw_xctx_t *xctx);
 
 

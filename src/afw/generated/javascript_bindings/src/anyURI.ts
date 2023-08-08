@@ -32,9 +32,9 @@ export function afwAnyURI(client : any, value : any) : any {
  * Returns boolean true if at least one value in anyURI list1 is in anyURI
  * list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -52,9 +52,9 @@ export function afwAtLeastOneMemberOfAnyURI(client : any, list1 : any[], list2 :
 /**
  * Takes any number of anyURI values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagAnyURI(client : any, values? : any[]) : any {
 
@@ -71,7 +71,7 @@ export function afwBagAnyURI(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -252,11 +252,11 @@ export function afwIndexOfAnyURI(client : any, value : any, subString : string, 
  * Returns a list of anyURI with the values that are common to both list of
  * anyURI list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionAnyURI(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -292,17 +292,17 @@ export function afwIsAnyURI(client : any, value : any) : any {
  * 
  * @param {anyURI} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInAnyURI(client : any, value : any, list : any[]) : any {
+export function afwIsInAnyURI(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<anyURI>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -445,16 +445,16 @@ export function afwNexAnyURI(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of anyURI values that contains one value to a single
  * anyURI value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {anyURI}
  */
-export function afwOneAndOnlyAnyURI(client : any, list : any[]) : any {
+export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<anyURI>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -583,9 +583,9 @@ export function afwReplaceAnyURI(client : any, value : any, match : string, repl
  * Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
  * other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -612,7 +612,7 @@ export function afwSetEqualsAnyURI(client : any, list1 : any[], list2 : any[]) :
  * @param {integer} limit - This is the maximum number of splits. Any
  *     remaining part of value is ignored.
  * 
- * @returns {list} An list of strings.
+ * @returns {array} An list of strings.
  */
 export function afwSplitAnyURI(client : any, value : any, separator? : string, limit? : number) : any {
 
@@ -655,9 +655,9 @@ export function afwStartsWithAnyURI(client : any, value : any, subString : strin
  * Returns boolean true if the unique values in anyURI list1 are all in
  * anyURI list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -721,9 +721,9 @@ export function afwToStringAnyURI(client : any, value : any) : any {
  * Returns a list of anyURI contains all of the unique values in two or more
  * list of anyURI values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionAnyURI(client : any, lists : any[]) : any {
 

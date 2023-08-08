@@ -52,14 +52,14 @@ export const propTypes = {
     multiselect:                        PropTypes.bool,
     /**
      * options
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Dropdown_Option)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Dropdown_Option)
      * 
      * Specifies the available options for the dropdown.
      */
     options:                            PropTypes.arrayOf(PropTypes.shape(Dropdown_Option)),
     /**
      * selectedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The key(s) that are selected for the Dropdown component.
      */

@@ -971,6 +971,12 @@ AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationPlayStat
 /** @brief afw_utf8_t for string animationTimingFunction */
 AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationTimingFunction;
 
+/** @brief define for quoted string array */
+#define AFW_COMPONENTS_Q_array "array"
+
+/** @brief afw_utf8_t for string array */
+AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_array;
+
 /** @brief define for quoted string backfaceVisibility */
 #define AFW_COMPONENTS_Q_backfaceVisibility "backfaceVisibility"
 
@@ -1972,12 +1978,6 @@ AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_lgDown;
 
 /** @brief afw_utf8_t for string lineHeight */
 AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_lineHeight;
-
-/** @brief define for quoted string list */
-#define AFW_COMPONENTS_Q_list "list"
-
-/** @brief afw_utf8_t for string list */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_list;
 
 /** @brief define for quoted string listStyle */
 #define AFW_COMPONENTS_Q_listStyle "listStyle"

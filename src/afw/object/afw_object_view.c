@@ -250,7 +250,7 @@ impl_make_value(
     const afw_value_t *value;
     afw_object_view_internal_view_t *view;
     const afw_pool_t *p;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_data_type_t *data_type;
     const afw_iterator_t *iterator;
     afw_object_view_internal_object_self_t *embedded_object;
@@ -272,23 +272,23 @@ impl_make_value(
     }
 
     /* If single list, make new list with entries using impl_make_value(). */
-    else if (afw_value_is_list(original_value)) {
-        data_type = afw_list_get_data_type(
-            ((const afw_value_list_t *)original_value)->internal,
+    else if (afw_value_is_array(original_value)) {
+        data_type = afw_array_get_data_type(
+            ((const afw_value_array_t *)original_value)->internal,
             xctx);
-        list = afw_list_of_create(data_type, p, xctx);
+        list = afw_array_of_create(data_type, p, xctx);
         for (iterator = NULL;;) {
-            original_entry_value = afw_list_get_next_value(
-                ((afw_value_list_t *)original_value)->internal,
+            original_entry_value = afw_array_get_next_value(
+                ((afw_value_array_t *)original_value)->internal,
                 &iterator, p, xctx);
             if (!original_entry_value) {
                 break;
             }
             value = impl_make_value(self, origin, property_name,
                 original_entry_value, xctx);
-            afw_list_add_value(list, value, xctx);
+            afw_array_add_value(list, value, xctx);
         }
-        result = afw_value_create_list(list, p, xctx);
+        result = afw_value_create_array(list, p, xctx);
     }
 
     /* Return result. */
@@ -598,8 +598,8 @@ impl_additional_object_option_processing(
     const afw_value_t *v;
     const afw_utf8_t *path;
     afw_object_view_property_t *prop;
-    const afw_value_list_t *parent_paths;
-    afw_value_list_t *resolved_parent_paths;
+    const afw_value_array_t *parent_paths;
+    afw_value_array_t *resolved_parent_paths;
     const afw_iterator_t *iterator;
 
     /*NOTE
@@ -662,16 +662,16 @@ impl_additional_object_option_processing(
         (const afw_object_t *)self, xctx);
     if (parent_paths) {
 
-        resolved_parent_paths = afw_value_allocate_list(p, xctx);
-        resolved_parent_paths->internal = afw_list_of_create(
+        resolved_parent_paths = afw_value_allocate_array(p, xctx);
+        resolved_parent_paths->internal = afw_array_of_create(
             afw_data_type_anyURI, p, xctx);
         for (iterator = NULL;;) {
-            path = afw_list_of_utf8_get_next(parent_paths->internal,
+            path = afw_array_of_utf8_get_next(parent_paths->internal,
                 &iterator, xctx);
             if (!path) break;
 
             v = impl_shared_path_value(self, path, xctx);
-            afw_list_add_value(resolved_parent_paths->internal, v, xctx);
+            afw_array_add_value(resolved_parent_paths->internal, v, xctx);
         }
 
         if (AFW_OBJECT_OPTION_IS(options, composite)) {
@@ -734,7 +734,7 @@ impl_resolve_parents(
     afw_object_view_internal_object_self_t * *parent;
     const afw_utf8_t *path;
     const afw_iterator_t *iterator;
-    const afw_value_list_t *parent_paths;
+    const afw_value_array_t *parent_paths;
     afw_size_t count;
 
     view = self->view;
@@ -747,7 +747,7 @@ impl_resolve_parents(
     }
 
     /* Allocate memory for parents. */
-    count = afw_list_get_count(parent_paths->internal, xctx);
+    count = afw_array_get_count(parent_paths->internal, xctx);
     self->parents = parent = afw_pool_malloc(p,
         (count + 1) *
         sizeof(afw_object_view_internal_object_self_t *),
@@ -755,7 +755,7 @@ impl_resolve_parents(
 
     AFW_TRY {
         for (iterator = NULL;;) {
-            path = afw_list_of_utf8_get_next(parent_paths->internal,
+            path = afw_array_of_utf8_get_next(parent_paths->internal,
                 &iterator, xctx);
             if (!path) break;
 

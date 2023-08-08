@@ -1,6 +1,6 @@
 {
     "brief": "Join the string values of list elements",
-    "category": "list",
+    "category": "array",
     "dataTypeMethod": true,
     "description": "Concatenate the string values of the elements of a list with a separator.",
     "functionId": "join",
@@ -8,7 +8,7 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "A list of values (statements) of any data type.",
             "name": "value"
         },

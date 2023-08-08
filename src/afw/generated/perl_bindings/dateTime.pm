@@ -216,7 +216,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_dateTime
@@ -317,7 +317,7 @@ Converts a one value list to a dateTime value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_dateTime
@@ -547,13 +547,13 @@ sub is_dateTime {
 }
 
 sub is_in_dateTime {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<dateTime>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -629,12 +629,12 @@ sub nex_dateTime {
 }
 
 sub one_and_only_dateTime {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<dateTime>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

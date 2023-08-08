@@ -26,19 +26,19 @@
             "label": "Description"
         },
         "MAY": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Optional attributes of class.",
             "label": "Optional"
         },
         "MUST": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Required attributes of class.",
             "label": "Required"
         },
         "NAME": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Name of class.",
             "label": "Name"
@@ -49,7 +49,7 @@
             "label": "Structural"
         },
         "SUP": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Superior classes.",
             "label": "Sup"

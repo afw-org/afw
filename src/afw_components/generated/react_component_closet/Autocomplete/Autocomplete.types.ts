@@ -33,7 +33,7 @@ export interface IAutocompleteProps {
     label?:                             string;
     /**
      * options
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Autocomplete_Option)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Autocomplete_Option)
      * 
      * The available options for the Autocomplete component.
      */

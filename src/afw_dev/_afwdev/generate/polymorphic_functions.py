@@ -26,7 +26,7 @@ def generate(options):
             msg.error_exit('useExecuteFunction can not be specified in polymorphic function')
         if polymorphic_function['parameters'] is None or len(polymorphic_function['parameters']) < 1:
             msg.error_exit('Polymorphic function ' +  functionId + ' is missing parameters parameter 1\n')
-        if polymorphic_function['parameters'][0].get('dataType') is not None and polymorphic_function['parameters'][0].get('dataType') != 'list':
+        if polymorphic_function['parameters'][0].get('dataType') is not None and polymorphic_function['parameters'][0].get('dataType') != 'array':
             msg.error_exit('Polymorphic function ' +  functionId + ' parameter 1 can not have dataType\n')
 
         # Include polymorphic version

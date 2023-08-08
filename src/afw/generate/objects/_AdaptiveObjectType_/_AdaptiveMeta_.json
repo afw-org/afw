@@ -30,7 +30,7 @@
         },
         "ancestorPaths": {
             "brief": "The associated object's ancestor paths",
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is all of the associated object's ancestor paths.",
             "label": "Ancestor Paths"
         },
@@ -43,7 +43,7 @@
         },
         "errors": {
             "brief": "Object errors",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Object errors.",
             "label": "Errors"
@@ -75,7 +75,7 @@
         },
         "parentPaths": {
             "brief": "The associated object's direct parent paths",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "This is the associated object's direct parent paths.",
             "label": "Parent Paths"
@@ -101,7 +101,7 @@
         },
         "resolvedParentPaths": {
             "brief": "The associated object's direct parent paths",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "This is the associated object's direct parent paths before they were resolved by object option composite.",
             "label": "Resolved Parent Paths"

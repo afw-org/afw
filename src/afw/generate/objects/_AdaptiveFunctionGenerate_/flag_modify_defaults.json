@@ -6,7 +6,7 @@
     "functionLabel": "flag_modify_defaults",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The flagId of flags to be added or removed.",
             "name": "flagId"

@@ -22,7 +22,7 @@
         },
         "steps": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The list of steps to be displayed for a the Stepper component.",
             "label": "Steps"

@@ -74,8 +74,8 @@ class double
      * Returns boolean true if at least one value in double list1 is in
      * double list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -98,9 +98,9 @@ class double
      *
      * Takes any number of double values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_double(, $values = null)
     {
@@ -122,7 +122,7 @@ class double
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -341,10 +341,10 @@ class double
      * Returns a list of double with the values that are common to both list
      * of double list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_double(, $list1, $list2)
     {
@@ -435,11 +435,11 @@ class double
      * boolean result.
      *
      * @param double $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_double(, $value, $list)
+    public function is_in_double(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -447,7 +447,7 @@ class double
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -650,18 +650,18 @@ class double
      * This converts a list of double values that contains one value to a
      * single double value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return double
      */
-    public function one_and_only_double(, $list)
+    public function one_and_only_double(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<double>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -722,8 +722,8 @@ class double
      * Returns boolean true if double list1 and double list2 are subsets of
      * each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -747,8 +747,8 @@ class double
      * Returns boolean true if the unique values in double list1 are all in
      * double list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -841,9 +841,9 @@ class double
      * Returns a list of double contains all of the unique values in two or
      * more list of double values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_double(, $lists)
     {

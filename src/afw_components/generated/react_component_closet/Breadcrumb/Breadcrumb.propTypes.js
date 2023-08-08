@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export const propTypes = {
     /**
      * items
-     * Data Type: (list, _AdaptiveLayoutComponentType_BreadcrumbItem)
+     * Data Type: (array, _AdaptiveLayoutComponentType_BreadcrumbItem)
      * 
      * Breadcrumb items
      * Breadcrumb items

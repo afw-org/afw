@@ -152,36 +152,36 @@ class model
      * @param string $objectId This is the objectId of object to modify.
      *                         Variable custom::objectId can be used to
      *                         access this value in model expressions.
-     * @param list $entries This is a list of modifications. Variable
-     *                      custom::actions can be used to access this value
-     *                      in model expressions. Entries are of the form:
-     *                      
-     *                      [
-     *                      'add_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_property',
-     *                      'property name' or ['property name', ...
-     *                      ]
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'set_property',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
+     * @param array $entries This is a list of modifications. Variable
+     *                       custom::actions can be used to access this value
+     *                       in model expressions. Entries are of the form:
+     *                       
+     *                       [
+     *                       'add_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_property',
+     *                       'property name' or ['property name', ...
+     *                       ]
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'set_property',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
      *                        adaptor's current model will be used.

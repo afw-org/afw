@@ -12,12 +12,12 @@
             "name": "condition"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is the body of a structured block that is evaluated if 'condition' is true. See the 'body' parameter of the 'block' function for information on how the body is processed.",
             "name": "then"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, a null value is returned. See the 'body' parameter of the 'block' function for information on how the body is processed.",
             "name": "else",
             "optional": true

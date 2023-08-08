@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("file", "TestObjectType1");
+const objects: array = retrieve_objects("file", "TestObjectType1");
 
 // we should have one object to start with
 const obj: object = objects[0];
@@ -30,7 +30,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("file", "TestObjectType1", {
+const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {
         "op": "eq",
         "property": "TestString1",
@@ -55,7 +55,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("file", "TestObjectType1", {
+const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {
         "op": "eq",
         "property": "TestInteger1",
@@ -79,7 +79,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("file", "TestObjectType1", {
+const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {
         "op": "and",
         "filters": [

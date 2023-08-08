@@ -35,7 +35,7 @@
                 },
                 "allowQuery": true,
                 "brief": "A list of allowed values for this adaptive value",
-                "dataType": "list",
+                "dataType": "array",
                 "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
                 "label": "Allowed Values"
             },
@@ -55,7 +55,7 @@
                 },
                 "allowQuery": true,
                 "brief": "The URIs of the collection this value meta is a part of",
-                "dataType": "list",
+                "dataType": "array",
                 "dataTypeParameter": "anyURI",
                 "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                 "label": "Collection URIs"
@@ -195,7 +195,7 @@
                 },
                 "allowQuery": false,
                 "brief": "Possible values of this value",
-                "dataType": "list",
+                "dataType": "array",
                 "description": "Possible values of this value.  This can be the typed value or the string value.",
                 "label": "Possible Values"
             },
@@ -235,7 +235,7 @@
                     "objectType": "_AdaptiveValueMeta_"
                 },
                 "brief": "List of keywords and terms associated with values with this meta",
-                "dataType": "list",
+                "dataType": "array",
                 "dataTypeParameter": "string",
                 "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                 "label": "Tags"
@@ -289,7 +289,7 @@
                 "label": "Errors",
                 "description": "Property errors.",
                 "dataTypeParameter": "string",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "Property errors"
             },
             "allowWrite": {

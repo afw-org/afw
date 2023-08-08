@@ -5,7 +5,7 @@
 export interface ITreeProps {
     /**
      * children
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Tree_Node)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Tree_Node)
      * 
      * The children of this Tree.
      */
@@ -19,14 +19,14 @@ export interface ITreeProps {
     dense?:                             boolean;
     /**
      * expandedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The keys of nodes in this tree that are expanded.
      */
     expandedKeys?:                      string[];
     /**
      * selectedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The keys of nodes in this tree that are selected.
      */

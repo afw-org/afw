@@ -43,7 +43,7 @@
         },
         "options": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Autocomplete_Option",
             "description": "The available options for the Autocomplete component.",
             "label": "Options"

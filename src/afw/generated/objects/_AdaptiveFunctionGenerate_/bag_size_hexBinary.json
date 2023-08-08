@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_hexBinary",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "name": "value"
         }

@@ -21,7 +21,7 @@
         },
         "errors": {
             "brief": "Property errors",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Property errors.",
             "label": "Errors"

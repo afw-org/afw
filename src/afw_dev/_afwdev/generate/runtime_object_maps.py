@@ -85,12 +85,12 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
             # dataType and dataTypeParameter
             dataTypeParameter = propertyType.get('dataTypeParameter', '')
-            if propertyType.get('dataType','') == 'list' and dataTypeParameter.startswith('object'):
+            if propertyType.get('dataType','') == 'array' and dataTypeParameter.startswith('object'):
                 fd.write('        AFW_UTF8_LITERAL("' + dataTypeParameter[6:].strip() + '"),\n')
             else:
                 fd.write('        AFW_UTF8_LITERAL("' + dataTypeParameter + '"),\n')
 
-            if propertyType.get('dataTypeParameter') is not None and propertyType.get('dataType','') == 'list':
+            if propertyType.get('dataTypeParameter') is not None and propertyType.get('dataType','') == 'array':
                 dataTypeParameter = propertyType.get('dataTypeParameter').split()[0]
                 if options['core']:
                     fd.write('        { &afw_data_type_' + dataTypeParameter + '_direct },\n')

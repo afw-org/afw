@@ -52,7 +52,7 @@ afw_compile_parse_List(
     afw_boolean_t allow_expression,
     afw_boolean_t allow_enhanced_literals)
 {
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *entry;
     const afw_value_t *value;
     const afw_value_t *result;
@@ -91,7 +91,7 @@ afw_compile_parse_List(
                 }
 
                 /* Entry is list expression. */
-                entry = afw_value_create_list_expression(
+                entry = afw_value_create_array_expression(
                     afw_compile_create_contextual_to_cursor(start_offset),
                     afw_compile_parse_Expression(parser),
                     parser->p, parser->xctx);
@@ -121,12 +121,12 @@ afw_compile_parse_List(
             if (!args && !afw_value_is_defined_and_evaluated(entry)) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
-                    (const afw_value_t *)&afw_function_definition_list);
+                    (const afw_value_t *)&afw_function_definition_array);
 
                 /* Add previous list entries as args for constructor. */
                 if (list) {
                     for (iterator = NULL;;) {
-                        value = afw_list_get_next_value(list, &iterator,
+                        value = afw_array_get_next_value(list, &iterator,
                             parser->p, parser->xctx);
                         if (!value) {
                             break;
@@ -145,11 +145,11 @@ afw_compile_parse_List(
             /* If all values so far are evaluated, add entry to list. */
             else {
                 if (!list) {
-                    list = afw_list_create_generic(parser->p, parser->xctx);
+                    list = afw_array_create_generic(parser->p, parser->xctx);
                 }
 
                 /* Add value to list. */
-                afw_list_add_value(list, entry, parser->xctx);
+                afw_array_add_value(list, entry, parser->xctx);
             }
 
             /*
@@ -189,15 +189,15 @@ afw_compile_parse_List(
 
     /* Else if no entries yet, result is empty list. */
     else if (!list) {
-        list = afw_list_create_generic(parser->p, parser->xctx);
-        afw_list_set_immutable(list, parser->xctx);
-        result = afw_value_create_list(list, parser->p, parser->xctx);
+        list = afw_array_create_generic(parser->p, parser->xctx);
+        afw_array_set_immutable(list, parser->xctx);
+        result = afw_value_create_array(list, parser->p, parser->xctx);
     }
 
     /* Else result is an evaluated list value. */
     else {
-        afw_list_set_immutable(list, parser->xctx);
-        result = afw_value_create_list(list, parser->p, parser->xctx);
+        afw_array_set_immutable(list, parser->xctx);
+        result = afw_value_create_array(list, parser->p, parser->xctx);
     }
 
     /* Return list value or call to add_entries. */

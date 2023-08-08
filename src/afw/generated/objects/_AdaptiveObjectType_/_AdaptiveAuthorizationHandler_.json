@@ -58,7 +58,7 @@
         "stopping": {
             "allowQuery": true,
             "brief": "Reference count of stopping instances",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
             "description": "Reference count of stopping instances.",
             "label": "Stopping Instances",

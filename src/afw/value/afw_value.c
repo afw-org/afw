@@ -267,11 +267,11 @@ afw_value_is_fully_evaluated(
         }
     }
 
-    else if (afw_value_is_list(value))
+    else if (afw_value_is_array(value))
     {
         for (iterator = NULL;;) {
-            v = afw_list_get_next_value(
-                ((const afw_value_list_t *)value)->internal,
+            v = afw_array_get_next_value(
+                ((const afw_value_array_t *)value)->internal,
                 &iterator, xctx->p, xctx);
             if (!v) {
                 break;
@@ -365,7 +365,7 @@ afw_value_as_casted_utf8(
     data_type = afw_value_get_data_type(value, xctx);
 
     /** @fixme change from bag to list when tests are modified. */
-    if (afw_value_is_list(value)) {
+    if (afw_value_is_array(value)) {
         s = afw_value_as_array_of_utf8(value, p, xctx);
         
         if (!s[0]) {
@@ -425,7 +425,7 @@ afw_value_one_and_only(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_iterator_t *iterator;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *result;
 
     /* Result is NULL if value is NULL.  */
@@ -434,12 +434,12 @@ afw_value_one_and_only(
     value = afw_value_evaluate(value, p, xctx);
 
     /* If list, use it's first value if there is exactly one entry. */
-    if (afw_value_is_list(value)) {
+    if (afw_value_is_array(value)) {
         iterator = NULL;
-        list = ((const afw_value_list_t *)value)->internal;
-        result = afw_list_get_next_value(list, &iterator, p, xctx);
+        list = ((const afw_value_array_t *)value)->internal;
+        result = afw_array_get_next_value(list, &iterator, p, xctx);
         if (result) {
-            if (afw_list_get_next_value(list, &iterator, p, xctx)) {
+            if (afw_array_get_next_value(list, &iterator, p, xctx)) {
                 result = NULL;
             }
         }
@@ -607,7 +607,7 @@ afw_value_convert(
     const afw_value_t *result;
     const afw_data_type_t *v_data_type;
     afw_value_evaluated_t *single;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_iterator_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
@@ -646,25 +646,25 @@ afw_value_convert(
     if (v_data_type != to_data_type) {
 
         /* Upconvert to one entry list. */
-        if (to_data_type == afw_data_type_list) {
-            list = afw_list_create_wrapper_for_array(
+        if (to_data_type == afw_data_type_array) {
+            list = afw_array_create_wrapper_for_array(
                 &((afw_value_evaluated_t *)value)->internal, false,
                 v_data_type, 1, p, xctx);
-            result = afw_value_create_list(list, p, xctx);
+            result = afw_value_create_array(list, p, xctx);
         }
 
         /* Down convert from a single entry list. */
-        else if (v_data_type == afw_data_type_list &&
+        else if (v_data_type == afw_data_type_array &&
             !afw_data_type_is_string(to_data_type))
         {
-            list = ((const afw_value_list_t *)value)->internal;
-            if (afw_list_get_count(list, xctx) != 1) {
+            list = ((const afw_value_array_t *)value)->internal;
+            if (afw_array_get_count(list, xctx) != 1) {
                 AFW_THROW_ERROR_Z(general,
                     "Can't down convert a list with more than one entry",
                     xctx);
             }
             iterator = NULL;
-            afw_list_get_next_internal(list,
+            afw_array_get_next_internal(list,
                 &iterator, &data_type, &internal, xctx);
             single = afw_value_evaluated_allocate(to_data_type, p, xctx);
             if (data_type == to_data_type) {
@@ -789,9 +789,9 @@ impl_value_as_array_of_values(
     }
 
     /* If value is a list, count is number of entries in list. */
-    else if (afw_value_is_list(value)) {
-        count = afw_list_get_count(
-            ((const afw_value_list_t *)value)->internal, xctx);
+    else if (afw_value_is_array(value)) {
+        count = afw_array_get_count(
+            ((const afw_value_array_t *)value)->internal, xctx);
     }
 
     /* For other types of values, count is 1. */
@@ -809,10 +809,10 @@ impl_value_as_array_of_values(
     }
 
     /* If value is a list, added list values. */
-    else if (afw_value_is_list(value)) {
+    else if (afw_value_is_array(value)) {
         for (iterator = NULL; ; e++) {
-            *e = afw_list_get_next_value(
-                ((const afw_value_list_t *)value)->internal,
+            *e = afw_array_get_next_value(
+                ((const afw_value_array_t *)value)->internal,
                 &iterator, p, xctx);
             if (!*e) break;
         }

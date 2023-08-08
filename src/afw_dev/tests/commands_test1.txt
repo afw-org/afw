@@ -83,13 +83,13 @@ afwdev --noprompt add-content-type --srcdir testall ct1
 # Build AFW package with content type ct1 added.
 afwdev build --generate
 
-# Add list interfaces for list1
-afwdev --noprompt add-core-interface --srcdir testall afw_list list1
+# Add array interfaces for array1
+afwdev --noprompt add-core-interface --srcdir testall afw_array array1
 
-# Add list setter interface for list1
-afwdev --noprompt add-core-interface --srcdir testall afw_list_setter list1
+# Add array setter interface for array1
+afwdev --noprompt add-core-interface --srcdir testall afw_array_setter array1
 
-# Build AFW package with list1 interfaces added.
+# Build AFW package with array1 interfaces added.
 afwdev build
 
 # Add log1 to testall

@@ -9,7 +9,7 @@
     "propertyTypes": {
         "authorizationResults": {
             "brief": "Authorization result",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "_AdaptiveAuthorizationResult_",
             "description": "Authorization result.",
             "label": "Authorization Results"

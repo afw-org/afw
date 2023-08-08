@@ -39,7 +39,7 @@
         },
         "tests": {
             "brief": "List of test results",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveTestScriptTestResult_",
             "description": "This is a list of the test results.",
             "label": "Tests",

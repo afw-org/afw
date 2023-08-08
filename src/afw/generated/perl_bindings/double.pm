@@ -271,7 +271,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_double
@@ -380,7 +380,7 @@ Converts a one value list to a double value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 pow_double
@@ -685,13 +685,13 @@ sub is_finite {
 }
 
 sub is_in_double {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<double>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -789,12 +789,12 @@ sub nex_double {
 }
 
 sub one_and_only_double {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<double>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

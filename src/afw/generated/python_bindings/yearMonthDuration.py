@@ -14,9 +14,9 @@ def at_least_one_member_of_yearMonthDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -46,7 +46,7 @@ def bag_size_yearMonthDuration(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -75,10 +75,10 @@ def bag_yearMonthDuration(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -242,12 +242,12 @@ def intersection_yearMonthDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -266,7 +266,7 @@ def intersection_yearMonthDuration(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def is_in_yearMonthDuration(session, value, list):
+def is_in_yearMonthDuration(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -277,7 +277,7 @@ def is_in_yearMonthDuration(session, value, list):
 
         value (yearMonthDuration):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -288,7 +288,7 @@ def is_in_yearMonthDuration(session, value, list):
     action = {
         "function": "is_in<yearMonthDuration>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -464,7 +464,7 @@ def nex_yearMonthDuration(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_yearMonthDuration(session, list):
+def one_and_only_yearMonthDuration(session, array):
     '''
     Converts a one value list to a yearMonthDuration value
 
@@ -473,7 +473,7 @@ def one_and_only_yearMonthDuration(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     yearMonthDuration: 
@@ -483,7 +483,7 @@ def one_and_only_yearMonthDuration(session, list):
 
     action = {
         "function": "one_and_only<yearMonthDuration>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -503,9 +503,9 @@ def set_equals_yearMonthDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -536,9 +536,9 @@ def subset_yearMonthDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -599,10 +599,10 @@ def union_yearMonthDuration(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

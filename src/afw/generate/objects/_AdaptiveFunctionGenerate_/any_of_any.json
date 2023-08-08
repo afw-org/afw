@@ -1,7 +1,7 @@
 {
     "additionalArgCheck": true,
     "brief": "Any combinations true",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "This function returns true if the result of calling predicate with any of the combination of values from list1 and list2 returns true.",
     "functionId": "any_of_any",
     "functionLabel": "any_of_any",
@@ -14,11 +14,11 @@
             "name": "predicate"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list2"
         }
     ],

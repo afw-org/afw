@@ -13,10 +13,10 @@ def bag_password(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -44,7 +44,7 @@ def bag_size_password(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 

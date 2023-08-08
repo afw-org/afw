@@ -15,7 +15,7 @@ export interface IDrawerProps {
     anchor?:                            string;
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_DrawerItem)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_DrawerItem)
      * 
      * Items inside of the Drawer
      * 

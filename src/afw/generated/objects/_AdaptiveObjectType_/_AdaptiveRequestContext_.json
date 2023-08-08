@@ -12,7 +12,7 @@
     "propertyTypes": {
         "subjectCategories": {
             "brief": "The initiator of the request",
-            "dataType": "list",
+            "dataType": "array",
             "description": "The initiator of the request.",
             "label": "Subject"
         }

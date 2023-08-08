@@ -460,7 +460,7 @@ error:
  *
  *# An list with ExpressionTupleValue property values.
  *
- * ExpressionTupleOperation_list ::='"list"' ( "," ExpressionTupleValue )*
+ * ExpressionTupleOperation_list ::='"array"' ( "," ExpressionTupleValue )*
  *
  *<<<ebnf*/
 static const afw_value_t *
@@ -468,11 +468,11 @@ impl_parse_tuple_operation_list(
     afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *value;
 
     /* Create object to hold result. */
-    list = afw_list_create_generic(parser->p, parser->xctx);
+    list = afw_array_create_generic(parser->p, parser->xctx);
 
     /* List properties - ( "," ExpressionTupleValue )* */
     for (;;) {
@@ -493,11 +493,11 @@ impl_parse_tuple_operation_list(
         value = afw_compile_parse_ExpressionTupleValue(parser);
 
         /* Set property in object. */
-        afw_list_add_value(list, value, parser->xctx);
+        afw_array_add_value(list, value, parser->xctx);
     }
 
     /* Return object value. */
-    result = afw_value_create_list(list, parser->p, parser->xctx);
+    result = afw_value_create_array(list, parser->p, parser->xctx);
     return result;
 
 error:

@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-let array: list = [0, 'a', true, false, null];
+let array: array = [0, 'a', true, false, null];
 let i: integer = 0;
 
 for (let value of array) {
@@ -27,7 +27,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-let array: list = [0, 1, 2];
+let array: array = [0, 1, 2];
 let i: integer = 0;
 
 for (let x of array) {
@@ -45,7 +45,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-let array: list = [0, 1, 2];
+let array: array = [0, 1, 2];
 let i: integer = 0;
 
 for (let x of array) {
@@ -63,7 +63,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-let array: list = [0, 1, 2];
+let array: array = [0, 1, 2];
 let i: integer = 0;
 
 for (let x of array) {

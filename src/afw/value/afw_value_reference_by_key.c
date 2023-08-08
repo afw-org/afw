@@ -94,7 +94,7 @@ impl_afw_value_optional_evaluate(
 
     const afw_value_t *v;
     const afw_value_object_t *object_value;
-    const afw_value_list_t *list;
+    const afw_value_array_t *list;
     const afw_value_t *key;
     const afw_utf8_t *name;
     afw_size_t i;
@@ -128,8 +128,8 @@ impl_afw_value_optional_evaluate(
     }
 
     /* If value is single list, index is index is index into list. */
-    else if (afw_value_is_list(v)) {
-        list = (const afw_value_list_t *)v;
+    else if (afw_value_is_array(v)) {
+        list = (const afw_value_array_t *)v;
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
@@ -140,7 +140,7 @@ impl_afw_value_optional_evaluate(
             ((const afw_value_integer_t *)key)->internal,
             xctx);
 
-        result = afw_list_get_entry_value(list->internal,
+        result = afw_array_get_entry_value(list->internal,
             i, p, xctx);
         if (!result) {
             AFW_THROW_ERROR_Z(evaluate,
@@ -201,15 +201,15 @@ impl_afw_value_get_evaluated_meta(
             &((const afw_value_string_t *)key)->internal,
             p, xctx);
     }
-    else if (afw_value_is_list(aggregate_value)) {
+    else if (afw_value_is_array(aggregate_value)) {
         key = afw_value_convert(key, afw_data_type_integer, false, p, xctx);
         if (!afw_value_is_integer(key)) {
             AFW_THROW_ERROR_Z(general,
                 "reference_by_key key for list must be an integer",
                 xctx);
         }
-        result = afw_list_get_entry_meta(
-            ((const afw_value_list_t *)aggregate_value)->internal,
+        result = afw_array_get_entry_meta(
+            ((const afw_value_array_t *)aggregate_value)->internal,
             ((const afw_value_integer_t *)key)->internal,
             p, xctx);
     }

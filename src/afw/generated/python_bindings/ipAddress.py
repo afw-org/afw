@@ -13,10 +13,10 @@ def bag_ipAddress(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -44,7 +44,7 @@ def bag_size_ipAddress(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -229,7 +229,7 @@ def ipAddress(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_ipAddress(session, value, list):
+def is_in_ipAddress(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -240,7 +240,7 @@ def is_in_ipAddress(session, value, list):
 
         value (ipAddress):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -251,7 +251,7 @@ def is_in_ipAddress(session, value, list):
     action = {
         "function": "is_in<ipAddress>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -426,7 +426,7 @@ def nex_ipAddress(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_ipAddress(session, list):
+def one_and_only_ipAddress(session, array):
     '''
     Converts a one value list to a ipAddress value
 
@@ -435,7 +435,7 @@ def one_and_only_ipAddress(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     ipAddress: 
@@ -445,7 +445,7 @@ def one_and_only_ipAddress(session, list):
 
     action = {
         "function": "one_and_only<ipAddress>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)

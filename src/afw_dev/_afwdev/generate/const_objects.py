@@ -44,7 +44,7 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
             dataType = 'double'
             value = str(prop)
         elif isinstance(prop, list):
-            dataType = 'list'
+            dataType = 'array'
             elementType = 'string'
             if len(prop) != 0:
                 if isinstance(prop[0], int):
@@ -65,9 +65,9 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
                         comma = ',\n'
                     fd.write('\n};\n')
 
-            fd.write('\nstatic const afw_list_wrapper_for_array_self_t\n')
+            fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
             fd.write(obj['_meta_']['_label_'] + '_list_' + tag_propname + ' = {\n')
-            fd.write('    &afw_list_wrapper_for_array_inf,\n')
+            fd.write('    &afw_array_wrapper_for_array_inf,\n')
             fd.write('    &afw_data_type_' + elementType + '_direct,\n')
             if len(prop) != 0:
                 fd.write('    sizeof(' +  obj['_meta_']['_label_'] + '_array_' + tag_propname + ') / sizeof(')
@@ -82,7 +82,7 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
                 fd.write('    NULL\n')
             fd.write('};\n')
 
-            value = '(const afw_list_t *)&' + obj['_meta_']['_label_'] + '_list_' + tag_propname
+            value = '(const afw_array_t *)&' + obj['_meta_']['_label_'] + '_list_' + tag_propname
         elif isinstance(prop, dict):
             dataType = 'object'
             value = '(const afw_object_t *)&' + prop['_meta_']['_label_']
@@ -126,18 +126,18 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
             comma = ',\n'
         fd.write('\n};\n')
 
-        fd.write('\nstatic const afw_list_wrapper_for_array_self_t\n')
+        fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
         fd.write(meta.get('_label_') + '_parentPaths_list = {\n')
-        fd.write('    &afw_list_wrapper_for_array_inf,\n')
+        fd.write('    &afw_array_wrapper_for_array_inf,\n')
         fd.write('    &afw_data_type_anyURI_direct,\n')
         fd.write('    sizeof(' +  meta.get('_label_') + '_parentPaths_array) / sizeof(afw_utf8_t),\n')
         fd.write('    (const void *)&' + meta.get('_label_') + '_parentPaths_array\n')
         fd.write('};\n')
 
-        fd.write('\nstatic const afw_value_list_t\n')
+        fd.write('\nstatic const afw_value_array_t\n')
         fd.write(meta.get('_label_') + '_parentPaths = {\n')
-        fd.write('    &afw_value_evaluated_list_inf,\n')
-        fd.write('    (const afw_list_t *)&' + meta.get('_label_') + '_parentPaths_list\n')
+        fd.write('    &afw_value_evaluated_array_inf,\n')
+        fd.write('    (const afw_array_t *)&' + meta.get('_label_') + '_parentPaths_list\n')
         fd.write('};\n')
 
         parentPathsList = '&' + meta.get('_label_') + '_parentPaths'
@@ -228,7 +228,7 @@ def write_const_unresolved_c(fd, prefix, obj, path, embedder):
             value = '&' + prop['_meta_']['_label_']
 
         elif isinstance(prop, list):
-            type = 'list'
+            type = 'array'
             elementType = 'afw_utf8_t';
             elementDataType = 'string';
             count = "0";
@@ -256,7 +256,7 @@ def write_const_unresolved_c(fd, prefix, obj, path, embedder):
                     count = 'sizeof(' + obj['_meta_']['_label_'] + '_array_' + tag_propname + ') / sizeof(afw_utf8_t)';
 
             value = '&' + obj['_meta_']['_label_'] + '_list_' + tag_propname
-            fd.write('\nstatic const afw_runtime_unresolved_const_list_t\n')
+            fd.write('\nstatic const afw_runtime_unresolved_const_array_t\n')
             fd.write(obj['_meta_']['_label_'] + '_list_' + tag_propname + ' = {\n')
             fd.write('    AFW_UTF8_LITERAL("' + elementDataType + '"),\n')
             fd.write('    ' + count + ',\n')

@@ -9,13 +9,13 @@
     "functionLabel": "subset_yearMonthDuration",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The second list.",
             "name": "list2"

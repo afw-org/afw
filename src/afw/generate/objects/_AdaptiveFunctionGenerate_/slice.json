@@ -1,15 +1,15 @@
 {
     "brief": "Return a consecutive slice of values from a list",
-    "category": "list",
+    "category": "array",
     "description": "This function extracts a consecutive slice of values from a list.",
     "functionId": "slice",
     "functionLabel": "slice",
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "The list to slice.",
-            "name": "list"
+            "name": "array"
         },
         {
             "dataType": "integer",
@@ -25,7 +25,7 @@
         }
     ],
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "A list containing the selected values. If all of the values are the same data type, the list will be a list of that data type."
     }
 }

@@ -74,7 +74,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-int
+//? test: add_entries-array-1-int
 //? description: Add a single integer entry
 //? expect: 0
 //? source: ...
@@ -87,7 +87,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-string
+//? test: add_entries-array-1-string
 //? description: Add a single string entry
 //? expect: 0
 //? source: ...
@@ -100,7 +100,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-boolean
+//? test: add_entries-array-1-boolean
 //? description: Add a single boolean entry
 //? expect: 0
 //? source: ...
@@ -113,7 +113,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-null
+//? test: add_entries-array-1-null
 //? description: Add a single null entry
 //? expect: 0
 //? source: ...
@@ -126,7 +126,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-double
+//? test: add_entries-array-1-double
 //? description: Add a single double entry
 //? expect: 0
 //? source: ...
@@ -139,7 +139,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 
 return 0;
 
-//? test: add_entries-list-1-object
+//? test: add_entries-array-1-object
 //? description: Add a single object entry
 //? expect: 0
 //? source: ...
@@ -153,7 +153,7 @@ assert(length(l1) === 1, "l1 is " + string(length(l1)));
 return 0;
 
 //? test: add_entries-2
-//? description: add_entries from another list
+//? description: add_entries from another array
 //? expect: 0
 //? source: ...
 
@@ -172,7 +172,7 @@ assert(length(l2) === 2, "l2 is " + string(length(l1)));
 return 0;
 
 //? test: add_entries-3
-//? description: add_entries from another list, plus one
+//? description: add_entries from another array, plus one
 //? expect: 0
 //? source: ...
 

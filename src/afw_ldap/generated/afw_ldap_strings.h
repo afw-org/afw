@@ -275,6 +275,12 @@ AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowEntity;
 /** @brief afw_utf8_t for string allowQuery */
 AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowQuery;
 
+/** @brief define for quoted string array */
+#define AFW_LDAP_Q_array "array"
+
+/** @brief afw_utf8_t for string array */
+AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_array;
+
 /** @brief define for quoted string attributeTypes */
 #define AFW_LDAP_Q_attributeTypes "attributeTypes"
 
@@ -382,12 +388,6 @@ AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapSyntaxes;
 
 /** @brief afw_utf8_t for string ldap_extension */
 AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap_extension;
-
-/** @brief define for quoted string list */
-#define AFW_LDAP_Q_list "list"
-
-/** @brief afw_utf8_t for string list */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_list;
 
 /** @brief define for quoted string matchingRuleUse */
 #define AFW_LDAP_Q_matchingRuleUse "matchingRuleUse"

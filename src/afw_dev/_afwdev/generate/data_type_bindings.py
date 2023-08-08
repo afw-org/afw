@@ -127,15 +127,15 @@ def write_h_section(fd, prefix, obj):
     fd.write(')\n')
 
     fd.write('\n/**\n')
-    fd.write(' * @brief Macro to determine if value is evaluated list of ' + id + '.\n')
+    fd.write(' * @brief Macro to determine if value is evaluated array of ' + id + '.\n')
     fd.write(' * @param A_VALUE to test.\n')
     fd.write(' * @return boolean result.\n')
     fd.write(' */\n')
-    fd.write('#define afw_value_is_list_of_' + id + '(A_VALUE) \\\n')
+    fd.write('#define afw_value_is_array_of_' + id + '(A_VALUE) \\\n')
     fd.write('( \\\n')
-    fd.write('    afw_value_is_list(A_VALUE) && \\\n')
-    fd.write('    afw_list_get_data_type( \\\n')
-    fd.write('        ((const afw_value_list_t *)(A_VALUE))->internal, \\\n')
+    fd.write('    afw_value_is_array(A_VALUE) && \\\n')
+    fd.write('    afw_array_get_data_type( \\\n')
+    fd.write('        ((const afw_value_array_t *)(A_VALUE))->internal, \\\n')
     fd.write('        xctx) == afw_data_type_' + id + ' \\\n')
     fd.write(')\n')
 
@@ -373,10 +373,10 @@ def write_h_section(fd, prefix, obj):
     fd.write('    ' + return_type + ' internal,\n')
     fd.write('    afw_xctx_t *xctx);\n')
 
-    # list
+    # array
     fd.write('\n/**\n')
-    fd.write(' * @brief Get next value from list of ' + id + '.\n')
-    fd.write(' * @param instance of list.\n')
+    fd.write(' * @brief Get next value from array of ' + id + '.\n')
+    fd.write(' * @param instance of array.\n')
     fd.write(' * @param iterator.\n')
     if needs_found:
         fd.write(' * @param found is place to return whether value is found.\n')
@@ -387,14 +387,14 @@ def write_h_section(fd, prefix, obj):
     fd.write(' * Set the iterator to NULL before the first call and anytime\n')
     fd.write(' * you want to start from the first value again.\n')
     fd.write(' */\n')
-    fd.write('#define afw_list_of_' + id + '_get_next( \\\n')
-    fd.write('    list, iterator, ' + needs_found_param + 'xctx) \\\n')
-    fd.write('    afw_list_of_' + id + '_get_next_source( \\\n')
-    fd.write('    list, iterator, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
+    fd.write('#define afw_array_of_' + id + '_get_next( \\\n')
+    fd.write('    array, iterator, ' + needs_found_param + 'xctx) \\\n')
+    fd.write('    afw_array_of_' + id + '_get_next_source( \\\n')
+    fd.write('    array, iterator, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
 
     fd.write('\n/**\n')
-    fd.write(' * @brief Get next value from list of ' + id + '.\n')
-    fd.write(' * @param instance of list.\n')
+    fd.write(' * @brief Get next value from array of ' + id + '.\n')
+    fd.write(' * @param instance of array.\n')
     fd.write(' * @param iterator.\n')
     if needs_found:
         fd.write(' * @param found is place to return whether value is found.\n')
@@ -406,8 +406,8 @@ def write_h_section(fd, prefix, obj):
     fd.write(' * you want to start from the first value again.\n')
     fd.write(' */\n')
     fd.write(declare + '(' + return_type + ')\n')
-    fd.write(prefix + 'list_of_' + id + '_get_next_source(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_get_next_source(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    const afw_iterator_t * *iterator,\n')
     if needs_found:
         fd.write('    afw_boolean_t *found,\n')
@@ -415,26 +415,26 @@ def write_h_section(fd, prefix, obj):
     fd.write('    afw_xctx_t *xctx);\n')
 
     fd.write('\n/**\n')
-    fd.write(' * @brief Add value from list of ' + id + '.\n')
-    fd.write(' * @param instance of list.\n')
+    fd.write(' * @brief Add value from array of ' + id + '.\n')
+    fd.write(' * @param instance of array.\n')
     fd.write(' * @param value to add.\n')
     fd.write(' * @param xctx of caller.\n')
     fd.write(' */\n')
     fd.write(declare + '(void)\n')
-    fd.write(prefix + 'list_of_' + id + '_add(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_add(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    ' + parameter_ctype + 'value,\n')
     fd.write('    afw_xctx_t *xctx);\n')
 
     fd.write('\n/**\n')
-    fd.write(' * @brief Remove value from list of ' + id + '.\n')
-    fd.write(' * @param instance of list.\n')
+    fd.write(' * @brief Remove value from array of ' + id + '.\n')
+    fd.write(' * @param instance of array.\n')
     fd.write(' * @param value to remove.\n')
     fd.write(' * @param xctx of caller.\n')
     fd.write(' */\n')
     fd.write(declare + '(void)\n')
-    fd.write(prefix + 'list_of_' + id + '_remove(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_remove(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    ' + parameter_ctype + 'value,\n')
     fd.write('    afw_xctx_t *xctx);\n')
 
@@ -622,15 +622,15 @@ def write_c_section(fd, prefix, obj):
     fd.write('    (void *)&' + prefix + 'data_type_' + id + '_direct\n')
     fd.write('};\n')
 
-    # Declare for empty list of this data type
-    fd.write('\n/* Value for empty list of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)\n')
-    fd.write('impl_empty_list_of_' + id + ';\n')
+    # Declare for empty array of this data type
+    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+    fd.write('impl_empty_array_of_' + id + ';\n')
     
-    # Declare for empty list value of this data type
-    fd.write('\n/* Value for empty list of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)\n')
-    fd.write('impl_value_empty_list_of_' + id + ';\n')
+    # Declare for empty array value of this data type
+    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+    fd.write('impl_value_empty_array_of_' + id + ';\n')
     
     # Data type
     fd.write('\n/* Data type ' + id + ' instance. */\n')
@@ -680,11 +680,11 @@ def write_c_section(fd, prefix, obj):
     # c_type_size
     fd.write('    sizeof(' + obj.get('cType', 'void *') + '),\n')
 
-    # empty_list
-    fd.write('    (const afw_list_t *)&impl_empty_list_of_' + id +',\n')
+    # empty_array
+    fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id +',\n')
 
-    # empty_list_value
-    fd.write('    (const afw_value_t *)&impl_value_empty_list_of_' + id +',\n')
+    # empty_array_value
+    fd.write('    (const afw_value_t *)&impl_value_empty_array_of_' + id +',\n')
 
     # evaluated_value_inf
     fd.write('    &afw_value_evaluated_' + id + '_inf,\n')
@@ -733,21 +733,21 @@ def write_c_section(fd, prefix, obj):
 
     fd.write('};\n')
 
-    # Define for empty list of this data type
-    fd.write('\n/* Value for empty list of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)\n')
-    fd.write('impl_empty_list_of_' + id + ' = {\n')
-    fd.write('    &afw_list_wrapper_for_array_inf,\n')
+    # Define for empty array of this data type
+    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+    fd.write('impl_empty_array_of_' + id + ' = {\n')
+    fd.write('    &afw_array_wrapper_for_array_inf,\n')
     fd.write('    &afw_data_type_' + id + '_direct,\n')
     fd.write('    0\n')
     fd.write('};\n')
     
-    # Define for empty list of this data type
-    fd.write('\n/* Value for empty list of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)\n')
-    fd.write('impl_value_empty_list_of_' + id + ' = {\n')
-    fd.write('    &afw_value_permanent_list_inf,\n')
-    fd.write('    (const afw_list_t *)&impl_empty_list_of_' + id + '\n')
+    # Define for empty array of this data type
+    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+    fd.write('impl_value_empty_array_of_' + id + ' = {\n')
+    fd.write('    &afw_value_permanent_array_inf,\n')
+    fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id + '\n')
     fd.write('};\n')
     
     fd.write('\n/* Data type struct for ' + id + '. */\n')
@@ -1146,12 +1146,12 @@ def write_c_section(fd, prefix, obj):
     fd.write('\n')
 
 
-    # list
+    # array
 
-    fd.write('\n/* Get next value from list of ' + id + '. */\n')
+    fd.write('\n/* Get next value from array of ' + id + '. */\n')
     fd.write(define + '(' + return_type + ')\n')
-    fd.write(prefix + 'list_of_' + id + '_get_next_source(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_get_next_source(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    const afw_iterator_t * *iterator,\n')
     if needs_found:
         fd.write('    afw_boolean_t *found,\n')
@@ -1161,7 +1161,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    const void *internal;\n')
     fd.write('    const afw_data_type_t *data_type;\n')
     fd.write('\n')
-    fd.write('    afw_list_get_next_internal(instance, iterator, &data_type, &internal, xctx);\n')
+    fd.write('    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);\n')
     if needs_found:
         fd.write('    *found = true;\n')
         fd.write('    if (!internal) {\n')
@@ -1188,56 +1188,56 @@ def write_c_section(fd, prefix, obj):
         fd.write('    return (' + return_type + ')internal;\n')
     fd.write('}\n')
 
-    fd.write('\n/* Add value from list of ' + id + ' */\n')
+    fd.write('\n/* Add value from array of ' + id + ' */\n')
     fd.write(define + '(void)\n')
-    fd.write(prefix + 'list_of_' + id + '_add(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_add(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    ' + parameter_ctype + 'value,\n')
     fd.write('    afw_xctx_t *xctx)\n')
     fd.write('{\n')
-    fd.write('    const afw_list_setter_t *setter;\n')
+    fd.write('    const afw_array_setter_t *setter;\n')
     if ctype.endswith('*'):
         fd.write('    ' + parameter_ctype + 'internal;\n')
     fd.write('\n')
-    fd.write('    setter = afw_list_get_setter(instance, xctx);\n')
+    fd.write('    setter = afw_array_get_setter(instance, xctx);\n')
     fd.write('    if (!setter) {\n')
     fd.write('        AFW_LIST_ERROR_OBJECT_IMMUTABLE;\n')
     fd.write('    }\n')
     fd.write('\n')
     if ctype.endswith('*'):
         fd.write('    internal = value;\n')
-        fd.write('    afw_list_setter_add_internal(setter, \n')
+        fd.write('    afw_array_setter_add_internal(setter, \n')
         fd.write('        afw_data_type_' + id + ',\n')
         fd.write('        (const void *)&internal, xctx);\n')
     else:
-        fd.write('    afw_list_setter_add_internal(setter, \n')
+        fd.write('    afw_array_setter_add_internal(setter, \n')
         fd.write('        afw_data_type_' + id + ',\n')
         fd.write('        (const void *)value, xctx);\n')
     fd.write('}\n')
 
-    fd.write('\n/* Remove value from list of ' + id + ' */\n')
+    fd.write('\n/* Remove value from array of ' + id + ' */\n')
     fd.write(define + '(void)\n')
-    fd.write(prefix + 'list_of_' + id + '_remove(\n')
-    fd.write('    const afw_list_t *instance,\n')
+    fd.write(prefix + 'array_of_' + id + '_remove(\n')
+    fd.write('    const afw_array_t *instance,\n')
     fd.write('    ' + parameter_ctype + 'value,\n')
     fd.write('    afw_xctx_t *xctx)\n')
     fd.write('{\n')
     if ctype.endswith('*'):
         fd.write('    ' + parameter_ctype + 'internal;\n')
-    fd.write('    const afw_list_setter_t *setter;\n')
+    fd.write('    const afw_array_setter_t *setter;\n')
     fd.write('\n')
-    fd.write('    setter = afw_list_get_setter(instance, xctx);\n')
+    fd.write('    setter = afw_array_get_setter(instance, xctx);\n')
     fd.write('    if (!setter) {\n')
     fd.write('        AFW_LIST_ERROR_OBJECT_IMMUTABLE;\n')
     fd.write('    }\n')
     fd.write('\n')
     if ctype.endswith('*'):
         fd.write('    internal = value;\n')
-        fd.write('    afw_list_setter_remove_internal(setter, \n')
+        fd.write('    afw_array_setter_remove_internal(setter, \n')
         fd.write('        afw_data_type_' + id + ',\n')
         fd.write('        (const void *)&internal, xctx);\n')
     else:
-        fd.write('    afw_list_setter_remove_internal(setter, \n')
+        fd.write('    afw_array_setter_remove_internal(setter, \n')
         fd.write('        afw_data_type_' + id + ',\n')
         fd.write('        (const void *)value, xctx);\n')
     fd.write('}\n')
@@ -1270,7 +1270,7 @@ def generate_h(prefix, obj, id, generated_by, dir, filename, options):
         c.write_h_epilogue(fd, filename)
 
 
-def generate_typedefs_h(prefix, data_type_list, id, generated_by, dir, filename, options):
+def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, filename, options):
     with nfc.open(dir+filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Data Type Typedefs ' + id , filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive data type typedefs ' + id + ' header.')
@@ -1278,7 +1278,7 @@ def generate_typedefs_h(prefix, data_type_list, id, generated_by, dir, filename,
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
-        for obj in data_type_list:
+        for obj in data_type_array:
             id = obj['_meta_']['objectId']
             if options['core']:
                 fd.write('\n/**\n')
@@ -1306,18 +1306,18 @@ def generate_c(prefix, obj, id, generated_by, dir, filename):
 
         write_c_section(fd, prefix, obj)
 
-def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
+def generate(generated_by, prefix, data_type_array, generated_dir_path, options):
     declare = prefix.upper() + 'DECLARE'
     define = prefix.upper() + 'DEFINE'
 
     # Just return if no data types
-    if len(data_type_list) == 0: return
+    if len(data_type_array) == 0: return
 
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
 
     # Generate <prefix>_data_type_<type>.h for each data type
-    for obj in data_type_list:
+    for obj in data_type_array:
         id = obj['_meta_']['objectId']
         filename = prefix + 'data_type_' + id + '_binding.h'
         generate_h(prefix, obj, id, generated_by, generated_dir_path, filename, options)
@@ -1326,7 +1326,7 @@ def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
     filename = prefix + 'data_type_typedefs.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        generate_typedefs_h(prefix, data_type_list, id, generated_by, generated_dir_path, filename, options)
+        generate_typedefs_h(prefix, data_type_array, id, generated_by, generated_dir_path, filename, options)
 
     # Generate <prefix>_data_type_bindings.h
     filename = prefix + 'data_type_bindings.h'
@@ -1336,7 +1336,7 @@ def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework core data type bindings header.')
         fd.write('\n')
 
-        for obj in data_type_list:
+        for obj in data_type_array:
             id = obj['_meta_']['objectId']
             fd.write('#include "' + prefix + 'data_type_' + id + '_binding.h"\n')
 
@@ -1344,7 +1344,7 @@ def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
         fd.write(' * @brief Data type map.\n')
         fd.write(' */\n')
         fd.write('#define ' + prefix.upper() + 'DATA_TYPES_MAP(XX) \\\n')
-        for obj in data_type_list:
+        for obj in data_type_array:
             id = obj['_meta_']['objectId']
             fd.write('    XX(' + id + ') \\\n')
         fd.write('\n')
@@ -1382,7 +1382,7 @@ def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
         c.write_h_epilogue(fd, filename)
 
     # Generate <prefix>data_type_<id>_binding.c
-    for obj in data_type_list:
+    for obj in data_type_array:
         id = obj['_meta_']['objectId']
         filename = prefix + 'data_type_' + id + '_binding.c'
         generate_c(prefix, obj, id, generated_by, generated_dir_path, filename)
@@ -1419,7 +1419,7 @@ def generate(generated_by, prefix, data_type_list, generated_dir_path, options):
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
 
-        for obj in data_type_list:
+        for obj in data_type_array:
             id = obj['_meta_']['objectId']
             fd.write('\n')
             fd.write('    /* Register value inf id evaluated_' + id + ' */\n')

@@ -19,7 +19,7 @@
         },
         "_flags_": {
             "brief": "List of flags to set for this function",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
             "label": "Flags",

@@ -1,0 +1,1141 @@
+{
+    "description": "Tests for includes<array> function.",
+    "functionId": "includes<array>",
+    "implemented": true,
+    "tests": [
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 'one')",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "string",
+                    "value": "one"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 'two')",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "string",
+                    "value": "two"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], [1,2])",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "array",
+                    "value": [
+                        1,
+                        2
+                    ]
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], [1,2,3])",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "array",
+                    "value": [
+                        1,
+                        2,
+                        3
+                    ]
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], [3,1,2])",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "array",
+                    "value": [
+                        3,
+                        1,
+                        2
+                    ]
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], [1,2,3,4])",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "array",
+                    "value": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 2)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 3)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], { two: 'two', three: 'three' })",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "object",
+                    "value": {
+                        "two": "two",
+                        "three": "three"
+                    }
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], { three: 'three', two: 'two' })",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "object",
+                    "value": {
+                        "three": "three",
+                        "two": "two"
+                    }
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], { four: 'four', three: 'three', two: 'two' })",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "object",
+                    "value": {
+                        "four": "four",
+                        "three": "three",
+                        "two": "two"
+                    }
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 0)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "0"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 1)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 2)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "2"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 3)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 4)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "3"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 5)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "5"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 6)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "6"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 7)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "7"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 8)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "8"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 9)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "9"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 10)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "10"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -0)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-0"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -1)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-1"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -2)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-2"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -3)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-3"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -4)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-4"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -5)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-5"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -6)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-6"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -7)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-7"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "false"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -8)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-8"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -9)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-9"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        },
+        {
+            "description": "includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -10)",
+            "arguments": [
+                {
+                    "dataType": "array",
+                    "value": [
+                        "one",
+                        {
+                            "two": "two",
+                            "three": "three"
+                        },
+                        1,
+                        2,
+                        [
+                            1,
+                            2,
+                            3
+                        ]
+                    ]
+                },
+                {
+                    "dataType": "integer",
+                    "value": "1"
+                },
+                {
+                    "dataType": "integer",
+                    "value": "-10"
+                }
+            ],
+            "result": {
+                "dataType": "boolean",
+                "value": "true"
+            }
+        }
+    ]
+}

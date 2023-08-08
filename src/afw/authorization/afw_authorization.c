@@ -345,7 +345,7 @@ afw_authorization_internal_set_control(
     afw_authorization_control_t *self;
     const afw_pool_t *p = xctx->env->p;
     const afw_object_t *not_applicable_object;
-    const afw_list_t *list;
+    const afw_array_t *list;
     afw_boolean_t found;
     afw_boolean_t deny_if_not_applicable;
 
@@ -393,10 +393,10 @@ afw_authorization_internal_set_control(
         (deny_if_not_applicable)
         ? &afw_s_deny
         : &afw_s_permit;
-    list = afw_list_create_wrapper_for_array(
+    list = afw_array_create_wrapper_for_array(
         &impl_s_a_notApplicable_policy_id,
         false, afw_data_type_anyURI, 1, p, xctx);
-    afw_object_set_property_as_list(not_applicable_object,
+    afw_object_set_property_as_array(not_applicable_object,
         &afw_s_applicablePolicies, list, xctx);
     self->not_applicable_result = afw_value_create_object(not_applicable_object, p, xctx);
 

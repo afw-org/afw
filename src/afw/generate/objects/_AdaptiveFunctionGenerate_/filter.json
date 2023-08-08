@@ -1,6 +1,6 @@
 {
     "brief": "Filter a list",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "This produces a list containing only values from another list that pass a predicate test.",
     "functionId": "filter",
     "functionLabel": "filter",
@@ -19,7 +19,7 @@
         }
     ],
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "This is the resulting filtered list."
     }
 }

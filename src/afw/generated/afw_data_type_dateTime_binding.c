@@ -151,13 +151,13 @@ impl_data_type_object_dateTime = {
     (void *)&afw_data_type_dateTime_direct
 };
 
-/* Value for empty list of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_dateTime;
+/* Value for empty array of dateTime. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_dateTime;
 
-/* Value for empty list of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_dateTime;
+/* Value for empty array of dateTime. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_dateTime;
 
 /* Data type dateTime instance. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
@@ -174,8 +174,8 @@ afw_data_type_dateTime_direct = {
     AFW_UTF8_LITERAL("date-time"),
     AFW_UTF8_LITERAL("afw_dateTime_t"),
     sizeof(afw_dateTime_t),
-    (const afw_list_t *)&impl_empty_list_of_dateTime,
-    (const afw_value_t *)&impl_value_empty_list_of_dateTime,
+    (const afw_array_t *)&impl_empty_array_of_dateTime,
+    (const afw_value_t *)&impl_value_empty_array_of_dateTime,
     &afw_value_evaluated_dateTime_inf,
     afw_compile_type_error,
     false,
@@ -186,19 +186,19 @@ afw_data_type_dateTime_direct = {
     false
 };
 
-/* Value for empty list of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_dateTime = {
-    &afw_list_wrapper_for_array_inf,
+/* Value for empty array of dateTime. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_dateTime = {
+    &afw_array_wrapper_for_array_inf,
     &afw_data_type_dateTime_direct,
     0
 };
 
-/* Value for empty list of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_dateTime = {
-    &afw_value_permanent_list_inf,
-    (const afw_list_t *)&impl_empty_list_of_dateTime
+/* Value for empty array of dateTime. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_dateTime = {
+    &afw_value_permanent_array_inf,
+    (const afw_array_t *)&impl_empty_array_of_dateTime
 };
 
 /* Data type struct for dateTime. */
@@ -510,10 +510,10 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from list of dateTime. */
+/* Get next value from array of dateTime. */
 AFW_DEFINE(const afw_dateTime_t *)
-afw_list_of_dateTime_get_next_source(
-    const afw_list_t *instance,
+afw_array_of_dateTime_get_next_source(
+    const afw_array_t *instance,
     const afw_iterator_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
@@ -521,7 +521,7 @@ afw_list_of_dateTime_get_next_source(
     const void *internal;
     const afw_data_type_t *data_type;
 
-    afw_list_get_next_internal(instance, iterator, &data_type, &internal, xctx);
+    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
     if (!internal) {
         return NULL;
     }
@@ -538,40 +538,40 @@ afw_list_of_dateTime_get_next_source(
     return (const afw_dateTime_t *)internal;
 }
 
-/* Add value from list of dateTime */
+/* Add value from array of dateTime */
 AFW_DEFINE(void)
-afw_list_of_dateTime_add(
-    const afw_list_t *instance,
+afw_array_of_dateTime_add(
+    const afw_array_t *instance,
     const afw_dateTime_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_list_setter_add_internal(setter, 
+    afw_array_setter_add_internal(setter, 
         afw_data_type_dateTime,
         (const void *)value, xctx);
 }
 
-/* Remove value from list of dateTime */
+/* Remove value from array of dateTime */
 AFW_DEFINE(void)
-afw_list_of_dateTime_remove(
-    const afw_list_t *instance,
+afw_array_of_dateTime_remove(
+    const afw_array_t *instance,
     const afw_dateTime_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_list_setter_remove_internal(setter, 
+    afw_array_setter_remove_internal(setter, 
         afw_data_type_dateTime,
         (const void *)value, xctx);
 }

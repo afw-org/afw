@@ -8,7 +8,7 @@
     "otherProperties": {
         "brief": "Compiler option",
         "description": "A compiler option for the compiler id with this property name.",
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "string"
     }
 }

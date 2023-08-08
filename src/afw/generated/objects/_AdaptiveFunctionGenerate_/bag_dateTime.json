@@ -9,7 +9,7 @@
     "functionLabel": "bag_dateTime",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "dateTime",
             "minArgs": 0,
             "name": "values",
@@ -18,7 +18,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "dateTime"
     },
     "useExecuteFunction": "afw_function_execute_bag"

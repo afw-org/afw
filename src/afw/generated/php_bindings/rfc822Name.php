@@ -29,8 +29,8 @@ class rfc822Name
      * Returns boolean true if at least one value in rfc822Name list1 is in
      * rfc822Name list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -53,9 +53,9 @@ class rfc822Name
      *
      * Takes any number of rfc822Name values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_rfc822Name(, $values = null)
     {
@@ -77,7 +77,7 @@ class rfc822Name
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -203,10 +203,10 @@ class rfc822Name
      * Returns a list of rfc822Name with the values that are common to both
      * list of rfc822Name list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_rfc822Name(, $list1, $list2)
     {
@@ -229,11 +229,11 @@ class rfc822Name
      * returns the boolean result.
      *
      * @param rfc822Name $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_rfc822Name(, $value, $list)
+    public function is_in_rfc822Name(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -241,7 +241,7 @@ class rfc822Name
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -405,18 +405,18 @@ class rfc822Name
      * This converts a list of rfc822Name values that contains one value to a
      * single rfc822Name value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return rfc822Name
      */
-    public function one_and_only_rfc822Name(, $list)
+    public function one_and_only_rfc822Name(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<rfc822Name>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -475,8 +475,8 @@ class rfc822Name
      * Returns boolean true if rfc822Name list1 and rfc822Name list2 are
      * subsets of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -500,8 +500,8 @@ class rfc822Name
      * Returns boolean true if the unique values in rfc822Name list1 are all
      * in rfc822Name list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -548,9 +548,9 @@ class rfc822Name
      * Returns a list of rfc822Name contains all of the unique values in two
      * or more list of rfc822Name values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_rfc822Name(, $lists)
     {

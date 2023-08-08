@@ -113,10 +113,10 @@ impl_list_destructure(
     const afw_compile_assignment_element_t *ae;
     const afw_iterator_t *iterator;
     const afw_value_t *v;
-    const afw_list_t *rest;
+    const afw_array_t *rest;
     afw_boolean_t eol;
 
-    if (!afw_value_is_list(value)) {
+    if (!afw_value_is_array(value)) {
         AFW_THROW_ERROR_Z(general,
             "List destructure can only be performed on a list", xctx);
     }
@@ -129,8 +129,8 @@ impl_list_destructure(
         ae = ae->next)
     {
         if (!eol) {
-            v = afw_list_get_next_value(
-                ((const afw_value_list_t *)value)->internal,
+            v = afw_array_get_next_value(
+                ((const afw_value_array_t *)value)->internal,
                 &iterator, p, xctx);
             if (!v) {
                 eol = true;
@@ -153,19 +153,19 @@ impl_list_destructure(
 
     if (!eol && ld->rest) {
         for (rest = NULL;;) {
-            v = afw_list_get_next_value(
-                ((const afw_value_list_t *)value)->internal,
+            v = afw_array_get_next_value(
+                ((const afw_value_array_t *)value)->internal,
                 &iterator, p, xctx);
             if (!v) {
                 break;
             }
             if (!rest) {
-                rest = afw_list_create_generic(p, xctx);
+                rest = afw_array_create_generic(p, xctx);
             }
-            afw_list_add_value(rest, v, xctx);
+            afw_array_add_value(rest, v, xctx);
         }
         if (rest) {
-            v = afw_value_create_list(rest, p, xctx);
+            v = afw_value_create_array(rest, p, xctx);
             impl_assign_value(ld->rest, v, assignment_type, p, xctx);
         }
     }
@@ -307,7 +307,7 @@ impl_assign(
 {
     const afw_value_assignment_target_t *at;
 
-    if (afw_value_is_object(value) || afw_value_is_list(value))
+    if (afw_value_is_object(value) || afw_value_is_array(value))
     {
         value = afw_value_clone(value, p, xctx);
     }
@@ -368,7 +368,7 @@ impl_assign_value(
         const afw_value_reference_by_key_t *t =
             (afw_value_reference_by_key_t *)target;
         const afw_object_t *object;
-        const afw_list_t *list;
+        const afw_array_t *list;
         const afw_value_t *key;
         const afw_value_t *aggregate_value;
         const afw_utf8_t *name;
@@ -387,10 +387,10 @@ impl_assign_value(
             afw_object_set_property(object, name, value, xctx);
         }
 
-        else if (afw_value_is_list(aggregate_value)) {
-            list = ((const afw_value_list_t *)aggregate_value)->internal;
+        else if (afw_value_is_array(aggregate_value)) {
+            list = ((const afw_value_array_t *)aggregate_value)->internal;
 
-            if (afw_list_is_immutable(list, xctx)) {
+            if (afw_array_is_immutable(list, xctx)) {
                 AFW_THROW_ERROR_Z(general, "Target list is immutable", xctx);
             }
 
@@ -398,7 +398,7 @@ impl_assign_value(
                 AFW_THROW_ERROR_Z(general, "List index must be integer", xctx);
             }
 
-            afw_list_set_value_by_index(list,
+            afw_array_set_value_by_index(list,
                 (afw_size_t)((const afw_value_integer_t *)key)->internal,
                 value, xctx);
         }
@@ -433,11 +433,11 @@ impl_evaluate_one_or_more_values(
     afw_value_block_statement_type_t type;
 
     result = NULL;
-    if (afw_value_is_list(values)) {
+    if (afw_value_is_array(values)) {
         iterator = NULL;
         for (;;) {
-            value = afw_list_get_next_value(
-                ((const afw_value_list_t *)values)->internal,
+            value = afw_array_get_next_value(
+                ((const afw_value_array_t *)values)->internal,
                 &iterator, p, xctx);
             if (!value) {
                 break;
@@ -590,7 +590,7 @@ afw_value_block_evaluate_foreach(
 {
     IMPL_TEMP_FIX(foreach);
     const afw_value_t *result = afw_value_null;
-    const afw_value_list_t *list;
+    const afw_value_array_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
     afw_compile_internal_assignment_type_t assignment_type;
@@ -600,11 +600,11 @@ afw_value_block_evaluate_foreach(
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 2, list);
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 2, array);
 
         assignment_type = afw_compile_assignment_type_use_assignment_targets;
         for (iterator = NULL;;) {
-            value = afw_list_get_next_value(list->internal, &iterator,
+            value = afw_array_get_next_value(list->internal, &iterator,
                 p, xctx);
             if (!value) {
                 break;

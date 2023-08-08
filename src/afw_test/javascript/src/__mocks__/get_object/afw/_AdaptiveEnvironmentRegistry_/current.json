@@ -1228,7 +1228,7 @@
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
-                            "dataType": "list",
+                            "dataType": "array",
                             "label": "Modify Entries",
                             "description": "The modify entries."
                         },
@@ -2108,7 +2108,7 @@
                         },
                         "extensions": {
                             "brief": "List of extensions to load at startup",
-                            "dataType": "list",
+                            "dataType": "array",
                             "dataTypeParameter": "string",
                             "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                             "label": "Extensions",
@@ -2116,7 +2116,7 @@
                         },
                         "defaultFlags": {
                             "brief": "List of default flags to be set when a scope (request) is created.",
-                            "dataType": "list",
+                            "dataType": "array",
                             "dataTypeParameter": "string",
                             "description": "This is a list of the flagId of default flags that will be set when a scope (request) is created.  Flags in this list that are not yet registered will be set as a default when/if they are registered.  Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                             "label": "Default Flags",
@@ -2418,11 +2418,11 @@
                 "relationalCompares": true,
                 "scalar": true
             },
-            "list": {
+            "array": {
                 "brief": "A list of adaptive values",
-                "cType": "const afw_list_t *",
-                "dataType": "list",
-                "dataTypeParameterType": "ListOf",
+                "cType": "const afw_array_t *",
+                "dataType": "array",
+                "dataTypeParameterType": "ArrayOf",
                 "description": "Data type list holds a list of adaptive value.  The list can have value all of one data type or of different data types.",
                 "directReturn": true,
                 "evaluated": false,
@@ -4166,7 +4166,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list integer) list1,\n    (list integer) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -4176,7 +4176,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -4243,7 +4243,7 @@
                 "afwCamelCaseFunctionLabel": "afwSort",
                 "brief": "Sort values in a list",
                 "camelCaseFunctionLabel": "sort",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This produces a list with values sorted based on result of compareFunction.  The compareFunction is passed two values from the list and must return an integer less than 0 if the first value is less than the second value, 0 if they are equal, and a integer greater than 0 if the first value is greater than the second value.",
@@ -4263,10 +4263,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is the list to sort.",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -4275,7 +4275,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "This the the resulting sorted list.",
                     "minArgs": -1,
                     "optional": false,
@@ -4469,10 +4469,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -4504,7 +4504,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list rfc822Name) list1,\n    (list rfc822Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -4514,7 +4514,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -4550,7 +4550,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list integer) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "minArgs": -1,
                         "name": "arg",
@@ -4585,7 +4585,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list yearMonthDuration_1_0) list1,\n    (list yearMonthDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -4595,7 +4595,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -4630,7 +4630,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - legacy_policy_deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -5061,10 +5061,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -5206,7 +5206,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list integer) list1,\n    (list integer) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -5216,7 +5216,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -5580,10 +5580,10 @@
                 "functionDeclaration": "/* Converts a one value list to a anyURI value */\nanyURI (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -5657,7 +5657,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list anyURI) list1,\n    (list anyURI) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -5667,7 +5667,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -5703,7 +5703,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list string) list1,\n    (list string) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -5713,7 +5713,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -5995,7 +5995,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list dateTime) (\n    ...(list dateTime) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -6008,7 +6008,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dateTime",
                     "minArgs": -1,
                     "optional": false,
@@ -6122,7 +6122,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - legacy_rule_permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -6158,7 +6158,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list rfc822Name) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "minArgs": -1,
                         "name": "arg",
@@ -6278,10 +6278,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -6546,7 +6546,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is the body of a structured block that is evaluated if \"condition\" is true.  See the \"body\" parameter of the \"block\" function for information on how the body is processed.",
                         "minArgs": -1,
                         "name": "then",
@@ -6555,7 +6555,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is the body of a structured block that is evaluated if \"condition\" is false.  If not specified and condition is false, a null value is returned.  See the \"body\" parameter of the \"block\" function for information on how the body is processed.",
                         "minArgs": -1,
                         "name": "else",
@@ -6634,7 +6634,7 @@
                 "polymorphic": false,
                 "pure": false,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of the flagId of flags used to determine the default active flags.",
                     "minArgs": -1,
@@ -6946,7 +6946,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - legacy_rule_deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -7112,7 +7112,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list anyURI) (\n    ...(list anyURI) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -7125,7 +7125,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "minArgs": -1,
                     "optional": false,
@@ -7271,7 +7271,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list date) (\n    ...(list date) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "minArgs": 0,
                         "name": "args",
@@ -7283,7 +7283,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "date",
                     "minArgs": -1,
                     "optional": false,
@@ -7315,7 +7315,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of asserts and modifications.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
                         "minArgs": -1,
                         "name": "entries",
@@ -7412,10 +7412,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7507,7 +7507,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of modifications.  Variable custom::actions can be used to access this value in model expressions.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
                         "minArgs": -1,
                         "name": "entries",
@@ -7618,7 +7618,7 @@
                 "pure": false,
                 "returns": {
                     "brief": "Objects retrieved",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "List of objects retrieved.",
                     "minArgs": -1,
                     "optional": false,
@@ -7796,7 +7796,7 @@
                 "polymorphic": false,
                 "pure": false,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of the flagId of flags that are set in the current scope (request).",
                     "minArgs": -1,
@@ -8094,7 +8094,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list dayTimeDuration) (\n    (list dayTimeDuration) list1,\n    (list dayTimeDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -8104,7 +8104,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -8117,7 +8117,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dayTimeDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -8185,7 +8185,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list hexBinary) (\n    ...(list hexBinary) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "minArgs": 0,
                         "name": "args",
@@ -8197,7 +8197,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "hexBinary",
                     "minArgs": -1,
                     "optional": false,
@@ -8520,7 +8520,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list dayTimeDuration) list1,\n    (list dayTimeDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -8530,7 +8530,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -8566,10 +8566,10 @@
                 "functionDeclaration": "/* Converts a one value list to a string value */\nstring (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -8601,7 +8601,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list string) list1,\n    (list string) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -8611,7 +8611,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -8647,7 +8647,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list base64Binary) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "minArgs": -1,
                         "name": "arg",
@@ -8996,7 +8996,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list integer) (\n    ...(list integer) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "minArgs": 0,
                         "name": "args",
@@ -9008,7 +9008,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "integer",
                     "minArgs": -1,
                     "optional": false,
@@ -9105,7 +9105,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list rfc822Name) (\n    ...(list rfc822Name) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -9118,7 +9118,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "rfc822Name",
                     "minArgs": -1,
                     "optional": false,
@@ -9345,10 +9345,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -9369,7 +9369,7 @@
                 "afwCamelCaseFunctionLabel": "afwFilter",
                 "brief": "Filter a list",
                 "camelCaseFunctionLabel": "filter",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This produces a list containing only values from another list that pass a predicate test.",
@@ -9400,7 +9400,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "This is the resulting filtered list.",
                     "minArgs": -1,
                     "optional": false,
@@ -9432,10 +9432,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -9511,10 +9511,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "ipAddress",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -9623,7 +9623,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n<Type> list (\n    list list1,\n    list list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The first list.",
                         "minArgs": -1,
                         "name": "list1",
@@ -9632,7 +9632,7 @@
                         "polymorphicDataTypeParameter": true
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The second list.",
                         "minArgs": -1,
                         "name": "list2",
@@ -9660,7 +9660,7 @@
                 ],
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -9691,7 +9691,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
                         "minArgs": -1,
                         "name": "body",
@@ -9725,7 +9725,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -9909,7 +9909,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list string) (\n    ...(list string) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -9922,7 +9922,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "minArgs": -1,
                     "optional": false,
@@ -10034,7 +10034,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list x500Name) list1,\n    (list x500Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "minArgs": -1,
                         "name": "list1",
@@ -10043,7 +10043,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "minArgs": -1,
                         "name": "list2",
@@ -10077,7 +10077,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\n<Type> integer (\n    list arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "arg",
                         "optional": false,
@@ -10129,7 +10129,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list x500Name) (\n    (list x500Name) list1,\n    (list x500Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -10139,7 +10139,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -10152,7 +10152,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "x500Name",
                     "minArgs": -1,
                     "optional": false,
@@ -10312,7 +10312,7 @@
                 "polymorphic": false,
                 "pure": false,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of the flagId of flags that are set by default when a scope (request) is created.",
                     "minArgs": -1,
@@ -10392,10 +10392,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -10427,7 +10427,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list dateTime) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "minArgs": -1,
                         "name": "arg",
@@ -10707,7 +10707,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list x500Name) (\n    ...(list x500Name) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "minArgs": 0,
                         "name": "args",
@@ -10719,7 +10719,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "x500Name",
                     "minArgs": -1,
                     "optional": false,
@@ -10773,7 +10773,7 @@
                 "polymorphic": false,
                 "pure": false,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "Bag of objects retrieved.",
                     "minArgs": -1,
                     "optional": false,
@@ -10786,7 +10786,7 @@
                 "afwCamelCaseFunctionLabel": "afwAnyOf",
                 "brief": "Any values pass a test",
                 "camelCaseFunctionLabel": "anyOf",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Returns true if any value in a list pass the predicate test.",
@@ -10988,7 +10988,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list yearMonthDuration) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "minArgs": -1,
                         "name": "arg",
@@ -11012,7 +11012,7 @@
                 "afwCamelCaseFunctionLabel": "afwFind",
                 "brief": "Returns the first value in a list that passes a test",
                 "camelCaseFunctionLabel": "find",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "The predicate is called for each value in the first list in args until true is returned, then that value is returned.",
@@ -11194,7 +11194,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list time) (\n    (list time) list1,\n    (list time) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -11204,7 +11204,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -11217,7 +11217,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "time",
                     "minArgs": -1,
                     "optional": false,
@@ -11447,10 +11447,10 @@
                 "functionDeclaration": "/* Converts a one value list to a <Type> value */\nyearMonthDuration_1_0 (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -11532,7 +11532,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list base64Binary) (\n    ...(list base64Binary) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "minArgs": 0,
                         "name": "args",
@@ -11544,7 +11544,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "base64Binary",
                     "minArgs": -1,
                     "optional": false,
@@ -12005,7 +12005,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list ipAddress) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "ipAddress",
                         "minArgs": -1,
                         "name": "arg",
@@ -12083,10 +12083,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -12261,7 +12261,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list yearMonthDuration) (\n    ...(list yearMonthDuration) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "minArgs": 0,
                         "name": "args",
@@ -12273,7 +12273,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "yearMonthDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -12297,7 +12297,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list boolean) (\n    ...(list boolean) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -12310,7 +12310,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "boolean",
                     "minArgs": -1,
                     "optional": false,
@@ -12447,7 +12447,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list time) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "minArgs": -1,
                         "name": "arg",
@@ -12585,7 +12585,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list dayTimeDuration) (\n    ...(list dayTimeDuration) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "minArgs": 0,
                         "name": "args",
@@ -12597,7 +12597,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dayTimeDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -12749,7 +12749,7 @@
                 "functionDeclaration": "/* Set or unset active scope flags */\nnull (\n    (list string) flagId,\n    boolean setTo?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "List of flagId of flags to set or unset.",
                         "minArgs": -1,
@@ -12883,7 +12883,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list time) list1,\n    (list time) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -12893,7 +12893,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -12937,10 +12937,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -12972,10 +12972,10 @@
                 "functionDeclaration": "/* Converts a one value list to a ipAddress value */\nipAddress (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -13049,7 +13049,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - legacy_policy_permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -13375,10 +13375,10 @@
                 "functionDeclaration": "/* Converts a one value list to a <Type> value */\ndayTimeDuration_1_0 (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -13601,7 +13601,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list boolean) (\n    (list boolean) list1,\n    (list boolean) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -13611,7 +13611,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -13624,7 +13624,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "boolean",
                     "minArgs": -1,
                     "optional": false,
@@ -13637,7 +13637,7 @@
                 "afwCamelCaseFunctionLabel": "afwIsList",
                 "brief": "Checks whether value is dataType list",
                 "camelCaseFunctionLabel": "isList",
-                "category": "list",
+                "category": "array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Test arg returning boolean True if it is data type list.  Use is_list_of_list() instead to test for a list of list.",
@@ -13851,10 +13851,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -13956,7 +13956,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list time) list1,\n    (list time) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "minArgs": -1,
                         "name": "list1",
@@ -13965,7 +13965,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "minArgs": -1,
                         "name": "list2",
@@ -14352,7 +14352,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list boolean) list1,\n    (list boolean) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "minArgs": -1,
                         "name": "list1",
@@ -14361,7 +14361,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "minArgs": -1,
                         "name": "list2",
@@ -14604,10 +14604,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14639,7 +14639,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list list) (\n    ...(list dayTimeDuration_1_0) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "minArgs": 0,
                         "name": "args",
@@ -14651,8 +14651,8 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
-                    "dataTypeParameter": "list",
+                    "dataType": "array",
+                    "dataTypeParameter": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -14674,7 +14674,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - only_one_applicable */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -14794,10 +14794,10 @@
                 "functionDeclaration": "/* Converts a one value list to a x500Name value */\nx500Name (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14879,10 +14879,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -15039,7 +15039,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - legacy_policy_deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -15224,7 +15224,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list base64Binary) list1,\n    (list base64Binary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -15234,7 +15234,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -15515,7 +15515,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list date) (\n    (list date) list1,\n    (list date) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -15525,7 +15525,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -15538,7 +15538,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "date",
                     "minArgs": -1,
                     "optional": false,
@@ -15843,7 +15843,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list x500Name) list1,\n    (list x500Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -15853,7 +15853,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -15889,7 +15889,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list double) (\n    ...(list double) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "minArgs": 0,
                         "name": "args",
@@ -15901,7 +15901,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "double",
                     "minArgs": -1,
                     "optional": false,
@@ -16014,7 +16014,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list yearMonthDuration) (\n    ...(list yearMonthDuration) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -16027,7 +16027,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "yearMonthDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -16093,8 +16093,8 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list list) list1,\n    (list list) list1)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16102,8 +16102,8 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16136,7 +16136,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - legacy_policy_permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -16213,7 +16213,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\n<Type> boolean (\n    list list1,\n    list list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16221,7 +16221,7 @@
                         "polymorphicDataTypeParameter": true
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list2",
                         "optional": false,
@@ -16271,7 +16271,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list time) (\n    ...(list time) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -16284,7 +16284,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "time",
                     "minArgs": -1,
                     "optional": false,
@@ -16307,7 +16307,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - legacy_rule_deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -16437,7 +16437,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list double) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "minArgs": -1,
                         "name": "arg",
@@ -16472,7 +16472,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list hexBinary) list1,\n    (list hexBinary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "minArgs": -1,
                         "name": "list1",
@@ -16481,7 +16481,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "minArgs": -1,
                         "name": "list2",
@@ -16516,7 +16516,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list date) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "minArgs": -1,
                         "name": "arg",
@@ -16574,7 +16574,7 @@
                 "afwCamelCaseFunctionLabel": "afwAllOfAll",
                 "brief": "All combinations true",
                 "camelCaseFunctionLabel": "allOfAll",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Returns true if the result of calling predicate with all of the combination of values from list1 and list2 returns true.",
@@ -16594,7 +16594,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16602,7 +16602,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list2",
                         "optional": false,
@@ -16721,8 +16721,8 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list list) list1,\n    (list list) list1)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16730,8 +16730,8 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -16849,7 +16849,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list rfc822Name) list1,\n    (list rfc822Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "minArgs": -1,
                         "name": "list1",
@@ -16858,7 +16858,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "minArgs": -1,
                         "name": "list2",
@@ -16993,8 +16993,8 @@
                 "afwCamelCaseFunctionLabel": "afwToStringList",
                 "brief": "Converts value to string",
                 "camelCaseFunctionLabel": "toStringList",
-                "category": "list",
-                "dataType": "list",
+                "category": "array",
+                "dataType": "array",
                 "dataTypeMethodNumber": 26,
                 "deprecated": false,
                 "description": "Converts list arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
@@ -17004,7 +17004,7 @@
                 "functionDeclaration": "/* Converts value to string */\nstring (\n    list arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "A list value.",
                         "minArgs": -1,
                         "name": "arg",
@@ -17076,7 +17076,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list date) list1,\n    (list date) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -17086,7 +17086,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -17191,7 +17191,7 @@
                 "functionDeclaration": "/* Returns union of two or more dayTimeDuration_1_0 lists */\n(list dayTimeDuration_1_0) (\n    ...(list dayTimeDuration_1_0) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -17204,7 +17204,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dayTimeDuration_1_0",
                     "minArgs": -1,
                     "optional": false,
@@ -17236,10 +17236,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -17356,7 +17356,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list hexBinary) (\n    (list hexBinary) list1,\n    (list hexBinary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -17366,7 +17366,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -17379,7 +17379,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "hexBinary",
                     "minArgs": -1,
                     "optional": false,
@@ -17446,7 +17446,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list x500Name) list1,\n    (list x500Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -17456,7 +17456,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -17808,10 +17808,10 @@
                 "functionDeclaration": "/* Converts a one value list to a yearMonthDuration value */\nyearMonthDuration (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -17912,7 +17912,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list dayTimeDuration) (\n    ...(list dayTimeDuration) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -17925,7 +17925,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dayTimeDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -18058,7 +18058,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -18129,7 +18129,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list anyURI) (\n    ...(list anyURI) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "minArgs": 0,
                         "name": "args",
@@ -18141,7 +18141,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "minArgs": -1,
                     "optional": false,
@@ -18154,7 +18154,7 @@
                 "afwCamelCaseFunctionLabel": "afwAddEntries",
                 "brief": "Add entries of one or more lists to another",
                 "camelCaseFunctionLabel": "addEntries",
-                "category": "list",
+                "category": "array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Add the entries of one or more lists to another.",
@@ -18164,7 +18164,7 @@
                 "functionDeclaration": "/* Add entries of one or more lists to another */\nlist (\n    list target,\n    ...list source)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "Target list.  This list must not be immutable.",
                         "minArgs": -1,
                         "name": "target",
@@ -18173,7 +18173,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "Source list(s).",
                         "minArgs": 1,
                         "name": "source",
@@ -18185,7 +18185,7 @@
                 "polymorphic": false,
                 "pure": false,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "The modified target list.",
                     "minArgs": -1,
                     "optional": false,
@@ -18246,7 +18246,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list dateTime) list1,\n    (list dateTime) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "minArgs": -1,
                         "name": "list1",
@@ -18255,7 +18255,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "minArgs": -1,
                         "name": "list2",
@@ -18290,7 +18290,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list dateTime) (\n    (list dateTime) list1,\n    (list dateTime) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -18300,7 +18300,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -18313,7 +18313,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dateTime",
                     "minArgs": -1,
                     "optional": false,
@@ -18424,7 +18424,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
                         "minArgs": -1,
                         "name": "body",
@@ -18492,7 +18492,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - first_applicable */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -18560,7 +18560,7 @@
                 ],
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "An list of strings.",
                     "minArgs": -1,
                     "optional": false,
@@ -18584,7 +18584,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list rfc822Name) (\n    (list rfc822Name) list1,\n    (list rfc822Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -18594,7 +18594,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -18607,7 +18607,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "rfc822Name",
                     "minArgs": -1,
                     "optional": false,
@@ -18665,7 +18665,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list hexBinary) (\n    ...(list hexBinary) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -18678,7 +18678,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "hexBinary",
                     "minArgs": -1,
                     "optional": false,
@@ -18765,7 +18765,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list date) list1,\n    (list date) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "minArgs": -1,
                         "name": "list1",
@@ -18774,7 +18774,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "minArgs": -1,
                         "name": "list2",
@@ -18877,7 +18877,7 @@
                 "afwCamelCaseFunctionLabel": "afwAllOfAny",
                 "brief": "Combinations of all in list1 and any in list2 true",
                 "camelCaseFunctionLabel": "allOfAny",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function returns true if the result of calling predicate with all of the combination of values from list1 and any of the values of list2 returns true.",
@@ -18897,7 +18897,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -18905,7 +18905,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list2",
                         "optional": false,
@@ -18939,7 +18939,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list dateTime) (\n    ...(list dateTime) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "minArgs": 0,
                         "name": "args",
@@ -18951,7 +18951,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dateTime",
                     "minArgs": -1,
                     "optional": false,
@@ -19170,7 +19170,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list anyURI) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "minArgs": -1,
                         "name": "arg",
@@ -19194,7 +19194,7 @@
                 "afwCamelCaseFunctionLabel": "afwMap",
                 "brief": "Maps values of a list",
                 "camelCaseFunctionLabel": "map",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function creates a list of the results of calling functor with each value of the first list in args",
@@ -19213,10 +19213,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "These are the parameters passed to functor with the exception that the first list is passed one value at a time.  At least one list is required.",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -19225,7 +19225,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -19432,7 +19432,7 @@
                 "functionDeclaration": "/* Evaluate a list of values while a condition is true with a list of initial and increment values */\nany (\n    list initial?,\n    boolean condition?,\n    list increment?,\n    list body?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values to evaluate before the loop starts. The values will normally be a call to the \"assign\" function.",
                         "minArgs": -1,
                         "name": "initial",
@@ -19450,7 +19450,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values to evaluate after each iteration of the loop.  The values will normally be a call to the \"assign\" function.",
                         "minArgs": -1,
                         "name": "increment",
@@ -19459,7 +19459,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
                         "minArgs": -1,
                         "name": "body",
@@ -19576,7 +19576,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list hexBinary) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "minArgs": -1,
                         "name": "arg",
@@ -19711,7 +19711,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list base64Binary) (\n    ...(list base64Binary) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -19724,7 +19724,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "base64Binary",
                     "minArgs": -1,
                     "optional": false,
@@ -19748,10 +19748,10 @@
                 "functionDeclaration": "/* Converts a one value list to a boolean value */\nboolean (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -20005,7 +20005,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list boolean) list1,\n    (list boolean) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -20015,7 +20015,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -20085,10 +20085,10 @@
                 "functionDeclaration": "/* Converts a one value list to a dnsName value */\ndnsName (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -20190,7 +20190,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list boolean) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "minArgs": -1,
                         "name": "arg",
@@ -20330,7 +20330,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list time) list1,\n    (list time) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -20340,7 +20340,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -20412,7 +20412,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list list) (\n    ...(list yearMonthDuration_1_0) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "minArgs": 0,
                         "name": "args",
@@ -20424,8 +20424,8 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
-                    "dataTypeParameter": "list",
+                    "dataType": "array",
+                    "dataTypeParameter": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -20447,7 +20447,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n<Type> list (\n    ...list lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "Two or more lists.",
                         "minArgs": 2,
                         "name": "lists",
@@ -20475,7 +20475,7 @@
                 ],
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -20498,7 +20498,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list dnsName) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dnsName",
                         "minArgs": -1,
                         "name": "arg",
@@ -20614,10 +20614,10 @@
                 "functionDeclaration": "/* Converts a one value list to a rfc822Name value */\nrfc822Name (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -20726,7 +20726,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list double) (\n    (list double) list1,\n    (list double) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -20736,7 +20736,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -20749,7 +20749,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "double",
                     "minArgs": -1,
                     "optional": false,
@@ -20773,7 +20773,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list yearMonthDuration) list1,\n    (list yearMonthDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "minArgs": -1,
                         "name": "list1",
@@ -20782,7 +20782,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "minArgs": -1,
                         "name": "list2",
@@ -20816,7 +20816,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -20852,7 +20852,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list boolean) list1,\n    (list boolean) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -20862,7 +20862,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -20996,7 +20996,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list dayTimeDuration) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "minArgs": -1,
                         "name": "arg",
@@ -21159,8 +21159,8 @@
                 "afwCamelCaseFunctionLabel": "afwReverse",
                 "brief": "Return list with elements reversed",
                 "camelCaseFunctionLabel": "reverse",
-                "category": "list",
-                "dataType": "list",
+                "category": "array",
+                "dataType": "array",
                 "dataTypeMethodNumber": 56,
                 "deprecated": false,
                 "description": "Reverse the order of the elements in a list.  If the list is typed, the resulting list will be the same type.",
@@ -21170,10 +21170,10 @@
                 "functionDeclaration": "/* Return list with elements reversed */\nlist (\n    list list)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "A list to reverse.",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21182,7 +21182,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "A list with elements reversed.",
                     "minArgs": -1,
                     "optional": false,
@@ -21240,10 +21240,10 @@
                 "functionDeclaration": "/* Converts a one value list to a hexBinary value */\nhexBinary (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21440,10 +21440,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21553,10 +21553,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21630,7 +21630,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list integer) (\n    ...(list integer) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -21643,7 +21643,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "integer",
                     "minArgs": -1,
                     "optional": false,
@@ -21675,10 +21675,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dnsName",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21752,7 +21752,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list string) (\n    ...(list string) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "minArgs": 0,
                         "name": "args",
@@ -21764,7 +21764,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "minArgs": -1,
                     "optional": false,
@@ -21861,7 +21861,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "An list of strings.",
                     "minArgs": -1,
                     "optional": false,
@@ -21885,10 +21885,10 @@
                 "functionDeclaration": "/* Converts a one value list to a time value */\ntime (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -21963,7 +21963,7 @@
                 "functionDeclaration": "/* Returns union of two or more yearMonthDuration_1_0 lists */\n(list yearMonthDuration_1_0) (\n    ...(list yearMonthDuration_1_0) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -21976,7 +21976,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "yearMonthDuration_1_0",
                     "minArgs": -1,
                     "optional": false,
@@ -22130,7 +22130,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list date) (\n    ...(list date) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -22143,7 +22143,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "date",
                     "minArgs": -1,
                     "optional": false,
@@ -22315,7 +22315,7 @@
                 "functionDeclaration": "/* Replace the list of flags used to determine the default active flags */\nnull (\n    (list string) flagId)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The list of the flagId of flags used to determine the default active flags.",
                         "minArgs": -1,
@@ -22473,7 +22473,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list double) list1,\n    (list double) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "minArgs": -1,
                         "name": "list1",
@@ -22482,7 +22482,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "minArgs": -1,
                         "name": "list2",
@@ -22516,7 +22516,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -22791,7 +22791,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list x500Name) (\n    ...(list x500Name) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -22804,7 +22804,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "x500Name",
                     "minArgs": -1,
                     "optional": false,
@@ -22896,7 +22896,7 @@
                     "ia5String",
                     "integer",
                     "ipAddress",
-                    "list",
+                    "array",
                     "null",
                     "object",
                     "objectId",
@@ -22936,7 +22936,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list string) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "minArgs": -1,
                         "name": "arg",
@@ -23101,10 +23101,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -23214,7 +23214,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list anyURI) (\n    (list anyURI) list1,\n    (list anyURI) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -23224,7 +23224,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -23237,7 +23237,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "minArgs": -1,
                     "optional": false,
@@ -23261,7 +23261,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list yearMonthDuration_1_0) list1,\n    (list yearMonthDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -23271,7 +23271,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -23382,7 +23382,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\n<Type> boolean (\n    list list1,\n    list list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The first list.",
                         "minArgs": -1,
                         "name": "list1",
@@ -23391,7 +23391,7 @@
                         "polymorphicDataTypeParameter": true
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The second list.",
                         "minArgs": -1,
                         "name": "list2",
@@ -23502,7 +23502,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of modifications.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
                         "minArgs": -1,
                         "name": "entries",
@@ -23641,7 +23641,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list base64Binary) list1,\n    (list base64Binary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "minArgs": -1,
                         "name": "list1",
@@ -23650,7 +23650,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "minArgs": -1,
                         "name": "list2",
@@ -23685,7 +23685,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list hexBinary) list1,\n    (list hexBinary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -23695,7 +23695,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -23773,10 +23773,10 @@
                 "functionDeclaration": "/* Converts a one value list to a dateTime value */\ndateTime (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -23808,7 +23808,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list integer) (\n    (list integer) list1,\n    (list integer) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -23818,7 +23818,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -23831,7 +23831,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "integer",
                     "minArgs": -1,
                     "optional": false,
@@ -24100,7 +24100,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list dayTimeDuration_1_0) list1,\n    (list dayTimeDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -24110,7 +24110,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -24146,7 +24146,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list rfc822Name) list1,\n    (list rfc822Name) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -24156,7 +24156,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -24181,7 +24181,7 @@
                 "afwCamelCaseFunctionLabel": "afwAllOf",
                 "brief": "All values pass a test",
                 "camelCaseFunctionLabel": "allOf",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Returns true if all values in a list pass the predicate test.",
@@ -24387,9 +24387,9 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": true
@@ -24515,7 +24515,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -24662,7 +24662,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list rfc822Name) (\n    ...(list rfc822Name) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "rfc822Name",
                         "minArgs": 0,
                         "name": "args",
@@ -24674,7 +24674,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "rfc822Name",
                     "minArgs": -1,
                     "optional": false,
@@ -24698,7 +24698,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list integer) list1,\n    (list integer) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "minArgs": -1,
                         "name": "list1",
@@ -24707,7 +24707,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "integer",
                         "minArgs": -1,
                         "name": "list2",
@@ -24829,7 +24829,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - permit_unless_deny */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -24865,7 +24865,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list boolean) (\n    ...(list boolean) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "boolean",
                         "minArgs": 0,
                         "name": "args",
@@ -24877,7 +24877,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "boolean",
                     "minArgs": -1,
                     "optional": false,
@@ -24957,7 +24957,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list anyURI) list1,\n    (list anyURI) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "minArgs": -1,
                         "name": "list1",
@@ -24966,7 +24966,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "minArgs": -1,
                         "name": "list2",
@@ -25044,7 +25044,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list dnsName) (\n    ...(list dnsName) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dnsName",
                         "minArgs": 0,
                         "name": "args",
@@ -25056,7 +25056,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dnsName",
                     "minArgs": -1,
                     "optional": false,
@@ -25105,7 +25105,7 @@
                 "afwCamelCaseFunctionLabel": "afwSlice",
                 "brief": "Return a consecutive slice of values from a list",
                 "camelCaseFunctionLabel": "slice",
-                "category": "list",
+                "category": "array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function extracts a consecutive slice of values from a list.",
@@ -25115,10 +25115,10 @@
                 "functionDeclaration": "/* Return a consecutive slice of values from a list */\nlist (\n    list list,\n    integer startIndex?,\n    integer endIndex?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The list to slice.",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -25145,7 +25145,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "A list containing the selected values.  If all of the values are the same data type, the list will be a list of that data type.",
                     "minArgs": -1,
                     "optional": false,
@@ -25245,7 +25245,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list yearMonthDuration) list1,\n    (list yearMonthDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -25255,7 +25255,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -25290,7 +25290,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -25394,7 +25394,7 @@
                 "afwCamelCaseFunctionLabel": "afwReduce",
                 "brief": "Reduce values of a list to a single value",
                 "camelCaseFunctionLabel": "reduce",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Reduce calls functor for each value in list with two parameters, accumulator and value, and must return a value of any dataType.  Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls.  The dataType of the return value should normally be the same as accumulator, but this is not required.",
@@ -25422,10 +25422,10 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list to be reduced.",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -25500,10 +25500,10 @@
                 "functionDeclaration": "/* Converts a one value list to a base64Binary value */\nbase64Binary (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -25773,7 +25773,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "An list of strings.",
                     "minArgs": -1,
                     "optional": false,
@@ -25797,7 +25797,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list dateTime) list1,\n    (list dateTime) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -25807,7 +25807,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -25959,7 +25959,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list ipAddress) (\n    ...(list ipAddress) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "ipAddress",
                         "minArgs": 0,
                         "name": "args",
@@ -25971,7 +25971,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "ipAddress",
                     "minArgs": -1,
                     "optional": false,
@@ -26187,7 +26187,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list date) list1,\n    (list date) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -26197,7 +26197,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "date",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -26233,7 +26233,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list double) list1,\n    (list double) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -26243,7 +26243,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -26502,8 +26502,8 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list list) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "arg",
                         "optional": false,
@@ -26687,7 +26687,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list dayTimeDuration_1_0) (\n    (list dayTimeDuration_1_0) list1,\n    (list dayTimeDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -26697,7 +26697,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -26710,7 +26710,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "dayTimeDuration_1_0",
                     "minArgs": -1,
                     "optional": false,
@@ -26734,7 +26734,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list dayTimeDuration_1_0) list1,\n    (list dayTimeDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -26744,7 +26744,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -26780,7 +26780,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list string) (\n    (list string) list1,\n    (list string) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -26790,7 +26790,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -26803,7 +26803,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "minArgs": -1,
                     "optional": false,
@@ -26816,8 +26816,8 @@
                 "afwCamelCaseFunctionLabel": "afwJoin",
                 "brief": "Join the string values of list elements",
                 "camelCaseFunctionLabel": "join",
-                "category": "list",
-                "dataType": "list",
+                "category": "array",
+                "dataType": "array",
                 "dataTypeMethodNumber": 55,
                 "deprecated": false,
                 "description": "Concatenate the string values of the elements of a list with a separator.",
@@ -26827,7 +26827,7 @@
                 "functionDeclaration": "/* Join the string values of list elements */\nstring (\n    list value,\n    string separator?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "A list of values of any data type.",
                         "minArgs": -1,
                         "name": "value",
@@ -26948,7 +26948,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - permit_unless_deny */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -27060,7 +27060,7 @@
                 "afwCamelCaseFunctionLabel": "afwAnyOfAll",
                 "brief": "Combinations of any in list1 and all in list2 true",
                 "camelCaseFunctionLabel": "anyOfAll",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true.",
@@ -27080,7 +27080,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -27088,7 +27088,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list2",
                         "optional": false,
@@ -27199,7 +27199,7 @@
                 "functionDeclaration": "/* Evaluate a list of values while a condition is true with a list of initial and increment values */\nany (\n    (list string) name,\n    any value,\n    list body?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Variable name(s).",
                         "minArgs": -1,
@@ -27217,7 +27217,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
                         "minArgs": -1,
                         "name": "body",
@@ -27289,7 +27289,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - deny_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -27381,7 +27381,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list base64Binary) (\n    (list base64Binary) list1,\n    (list base64Binary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -27391,7 +27391,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -27404,7 +27404,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "base64Binary",
                     "minArgs": -1,
                     "optional": false,
@@ -27473,7 +27473,7 @@
                 "functionDeclaration": "/* Compile expression tuple value */\nany (\n    list expression_tuple,\n    any listing?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "expression tuple to compile.",
                         "minArgs": -1,
                         "name": "expression_tuple",
@@ -27610,7 +27610,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list dateTime) list1,\n    (list dateTime) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -27620,7 +27620,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dateTime",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -27698,10 +27698,10 @@
                 "functionDeclaration": "/* Converts a one value list to a dayTimeDuration value */\ndayTimeDuration (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -27829,7 +27829,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n<Type> list (\n    ...list args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": 0,
                         "name": "args",
                         "optional": false,
@@ -27858,7 +27858,7 @@
                 ],
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -28003,7 +28003,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list dayTimeDuration) list1,\n    (list dayTimeDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -28013,7 +28013,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -28154,7 +28154,7 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list x500Name) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "x500Name",
                         "minArgs": -1,
                         "name": "arg",
@@ -28189,10 +28189,10 @@
                 "functionDeclaration": "/* Converts a one value list to a date value */\ndate (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -28224,7 +28224,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list yearMonthDuration) list1,\n    (list yearMonthDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -28234,7 +28234,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -28270,7 +28270,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list yearMonthDuration_1_0) (\n    (list yearMonthDuration_1_0) list1,\n    (list yearMonthDuration_1_0) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -28280,7 +28280,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration_1_0",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -28293,7 +28293,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "yearMonthDuration_1_0",
                     "minArgs": -1,
                     "optional": false,
@@ -28394,7 +28394,7 @@
                 "functionDeclaration": "/* Makes a list from args */\n(list time) (\n    ...(list time) args)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "time",
                         "minArgs": 0,
                         "name": "args",
@@ -28406,7 +28406,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "time",
                     "minArgs": -1,
                     "optional": false,
@@ -28514,7 +28514,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - legacy_rule_permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -28692,7 +28692,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list hexBinary) list1,\n    (list hexBinary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -28702,7 +28702,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "hexBinary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -28857,7 +28857,7 @@
                 "functionDeclaration": "/* Define one or more constants in the current block */\nany (\n    (list string) name,\n    any value,\n    (object _AdaptiveValueMeta_) type?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of one or more constants to defined in the current block.",
                         "minArgs": -1,
@@ -28911,7 +28911,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list dayTimeDuration) list1,\n    (list dayTimeDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "minArgs": -1,
                         "name": "list1",
@@ -28920,7 +28920,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "dayTimeDuration",
                         "minArgs": -1,
                         "name": "list2",
@@ -28954,7 +28954,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - deny_unless_permit */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -29060,7 +29060,7 @@
                 "functionDeclaration": "/* Checks whether two lists are subsets of each other */\nboolean (\n    (list string) list1,\n    (list string) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "minArgs": -1,
                         "name": "list1",
@@ -29069,7 +29069,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "minArgs": -1,
                         "name": "list2",
@@ -29227,7 +29227,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\nboolean (\n    (list anyURI) list1,\n    (list anyURI) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -29237,7 +29237,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "anyURI",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -29354,7 +29354,7 @@
                 "functionDeclaration": "/* Returns intersection of two lists */\n(list yearMonthDuration) (\n    (list yearMonthDuration) list1,\n    (list yearMonthDuration) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -29364,7 +29364,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "yearMonthDuration",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -29377,7 +29377,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "yearMonthDuration",
                     "minArgs": -1,
                     "optional": false,
@@ -29606,7 +29606,7 @@
                 "afwCamelCaseFunctionLabel": "afwAnyOfAny",
                 "brief": "Any combinations true",
                 "camelCaseFunctionLabel": "anyOfAny",
-                "category": "higher_order_list",
+                "category": "higher_order_array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function returns true if the result of calling predicate with any of the combination of values from list1 and list2 returns true.",
@@ -29626,7 +29626,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list1",
                         "optional": false,
@@ -29634,7 +29634,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "name": "list2",
                         "optional": false,
@@ -29832,10 +29832,10 @@
                 "functionDeclaration": "/* Converts a one value list to a double value */\ndouble (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -29949,7 +29949,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list double) list1,\n    (list double) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -29959,7 +29959,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -30037,10 +30037,10 @@
                 "functionDeclaration": "/* Converts a one value list to a <Type> value */\n<Type> Type (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -30179,7 +30179,7 @@
                 "functionDeclaration": "/* Add or remove flags used to determine the default active flags */\nnull (\n    (list string) flagId,\n    boolean add?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The flagId of flags to be added or removed.",
                         "minArgs": -1,
@@ -30223,7 +30223,7 @@
                 "functionDeclaration": "/* Checks for at least one value in common */\n<Type> boolean (\n    list list1,\n    list list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The first list.",
                         "minArgs": -1,
                         "name": "list1",
@@ -30232,7 +30232,7 @@
                         "polymorphicDataTypeParameter": true
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "The second list.",
                         "minArgs": -1,
                         "name": "list2",
@@ -30513,7 +30513,7 @@
                 "functionDeclaration": "/* Declare one or more variables in the current block */\nany (\n    (list string) name,\n    any value?,\n    (object _AdaptiveValueMeta_) type?)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of one or more variables to declared in the current block.",
                         "minArgs": -1,
@@ -31100,7 +31100,7 @@
                 "functionDeclaration": "/* Rule combining algorithm - deny_unless_permit */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -31273,8 +31273,8 @@
                 "functionDeclaration": "/* Returns the number of values in a bag */\ninteger (\n    (list list) arg)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
                         "name": "arg",
                         "optional": false,
@@ -31307,7 +31307,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - permit_overrides */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -31407,16 +31407,16 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "list": {
+            "array": {
                 "afwCamelCaseFunctionLabel": "afwList",
                 "brief": "Convert to data type list",
-                "camelCaseFunctionLabel": "list",
-                "category": "list",
+                "camelCaseFunctionLabel": "array",
+                "category": "array",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Converts 1 or more args to a list.  If an arg is a list, its individual values are included.\n\nIf the data types of all values in the resulting list are the same, the list will be a list of that data type.  Otherwise, the resulting list will be untyped.",
-                "functionId": "list",
-                "functionLabel": "list",
+                "functionId": "array",
+                "functionLabel": "array",
                 "functionSignature": "list(...any args)",
                 "functionDeclaration": "/* Convert to data type list */\nlist (\n    ...any args)",
                 "parameters": [
@@ -31432,7 +31432,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "Converted value",
                     "minArgs": -1,
                     "optional": false,
@@ -31516,7 +31516,7 @@
                 "functionDeclaration": "/* Determines if the first list is a subset of second list */\nboolean (\n    (list base64Binary) list1,\n    (list base64Binary) list2)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The first list.",
                         "minArgs": -1,
@@ -31526,7 +31526,7 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "base64Binary",
                         "description": "The second list.",
                         "minArgs": -1,
@@ -31562,10 +31562,10 @@
                 "functionDeclaration": "/* Converts a one value list to a integer value */\ninteger (\n    (list list) list)",
                 "parameters": [
                     {
-                        "dataType": "list",
-                        "dataTypeParameter": "list",
+                        "dataType": "array",
+                        "dataTypeParameter": "array",
                         "minArgs": -1,
-                        "name": "list",
+                        "name": "array",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -31597,7 +31597,7 @@
                 "functionDeclaration": "/* Returns union of two or more string lists */\n(list double) (\n    ...(list double) lists)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "double",
                         "description": "Two or more lists.",
                         "minArgs": 2,
@@ -31610,7 +31610,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "double",
                     "minArgs": -1,
                     "optional": false,
@@ -31633,7 +31633,7 @@
                 "functionDeclaration": "/* Policy combining algorithm - first_applicable */\nobject (\n    list policies)",
                 "parameters": [
                     {
-                        "dataType": "list",
+                        "dataType": "array",
                         "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                         "minArgs": -1,
                         "name": "policies",
@@ -32806,7 +32806,7 @@
                     "afwCamelCaseFunctionLabel": "afwAllOfAll",
                     "brief": "All combinations true",
                     "camelCaseFunctionLabel": "allOfAll",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "Returns true if the result of calling predicate with all of the combination of values from list1 and list2 returns true.",
@@ -32826,7 +32826,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list1",
                             "optional": false,
@@ -32834,7 +32834,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list2",
                             "optional": false,
@@ -33286,7 +33286,7 @@
                     "afwCamelCaseFunctionLabel": "afwAllOfAny",
                     "brief": "Combinations of all in list1 and any in list2 true",
                     "camelCaseFunctionLabel": "allOfAny",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "This function returns true if the result of calling predicate with all of the combination of values from list1 and any of the values of list2 returns true.",
@@ -33306,7 +33306,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list1",
                             "optional": false,
@@ -33314,7 +33314,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list2",
                             "optional": false,
@@ -34319,7 +34319,7 @@
                     "afwCamelCaseFunctionLabel": "afwAnyOf",
                     "brief": "Any values pass a test",
                     "camelCaseFunctionLabel": "anyOf",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "Returns true if any value in a list pass the predicate test.",
@@ -34426,7 +34426,7 @@
                     "afwCamelCaseFunctionLabel": "afwAllOf",
                     "brief": "All values pass a test",
                     "camelCaseFunctionLabel": "allOf",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "Returns true if all values in a list pass the predicate test.",
@@ -35005,7 +35005,7 @@
                     "afwCamelCaseFunctionLabel": "afwAnyOfAll",
                     "brief": "Combinations of any in list1 and all in list2 true",
                     "camelCaseFunctionLabel": "anyOfAll",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true.",
@@ -35025,7 +35025,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list1",
                             "optional": false,
@@ -35033,7 +35033,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list2",
                             "optional": false,
@@ -35128,7 +35128,7 @@
                     "afwCamelCaseFunctionLabel": "afwMap",
                     "brief": "Maps values of a list",
                     "camelCaseFunctionLabel": "map",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "This function creates a list of the results of calling functor with each value of the first list in args",
@@ -35147,10 +35147,10 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "These are the parameters passed to functor with the exception that the first list is passed one value at a time.  At least one list is required.",
                             "minArgs": -1,
-                            "name": "list",
+                            "name": "array",
                             "optional": false,
                             "polymorphicDataType": false,
                             "polymorphicDataTypeParameter": false
@@ -35159,7 +35159,7 @@
                     "polymorphic": false,
                     "pure": true,
                     "returns": {
-                        "dataType": "list",
+                        "dataType": "array",
                         "minArgs": -1,
                         "optional": false,
                         "polymorphicDataType": false,
@@ -35569,7 +35569,7 @@
                     "afwCamelCaseFunctionLabel": "afwAnyOfAny",
                     "brief": "Any combinations true",
                     "camelCaseFunctionLabel": "anyOfAny",
-                    "category": "higher_order_list",
+                    "category": "higher_order_array",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
                     "description": "This function returns true if the result of calling predicate with any of the combination of values from list1 and list2 returns true.",
@@ -35589,7 +35589,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list1",
                             "optional": false,
@@ -35597,7 +35597,7 @@
                             "polymorphicDataTypeParameter": false
                         },
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "minArgs": -1,
                             "name": "list2",
                             "optional": false,
@@ -35639,7 +35639,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35680,7 +35680,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - deny_unless_permit */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35721,7 +35721,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - permit_unless_deny */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35762,7 +35762,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - only_one_applicable */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35803,7 +35803,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - legacy_policy_deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35844,7 +35844,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - legacy_policy_permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35885,7 +35885,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35926,7 +35926,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - first_applicable */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -35967,7 +35967,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36008,7 +36008,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - legacy_policy_deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36049,7 +36049,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36090,7 +36090,7 @@
                     "functionDeclaration": "/* Policy combining algorithm - legacy_policy_permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36133,7 +36133,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - legacy_rule_deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36174,7 +36174,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - legacy_rule_permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36215,7 +36215,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36256,7 +36256,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - first_applicable */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36297,7 +36297,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36338,7 +36338,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - legacy_rule_deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36379,7 +36379,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - deny_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36420,7 +36420,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - legacy_rule_permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36461,7 +36461,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - permit_overrides */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36502,7 +36502,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - deny_unless_permit */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",
@@ -36543,7 +36543,7 @@
                     "functionDeclaration": "/* Rule combining algorithm - permit_unless_deny */\nobject (\n    list policies)",
                     "parameters": [
                         {
-                            "dataType": "list",
+                            "dataType": "array",
                             "description": "List of _AdaptiveAuthorizationPolicy_ objects.",
                             "minArgs": -1,
                             "name": "policies",

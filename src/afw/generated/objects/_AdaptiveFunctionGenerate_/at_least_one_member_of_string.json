@@ -9,13 +9,13 @@
     "functionLabel": "at_least_one_member_of_string",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The second list.",
             "name": "list2"

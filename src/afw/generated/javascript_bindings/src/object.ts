@@ -59,9 +59,9 @@ export function afwApplyObjectOptions(client : any, object : object, options? : 
 /**
  * Takes any number of object values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagObject(client : any, values? : any[]) : any {
 
@@ -78,7 +78,7 @@ export function afwBagObject(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */

@@ -9,7 +9,7 @@
     "functionLabel": "bag_ia5String",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "ia5String",
             "minArgs": 0,
             "name": "values",
@@ -18,7 +18,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "ia5String"
     },
     "useExecuteFunction": "afw_function_execute_bag"

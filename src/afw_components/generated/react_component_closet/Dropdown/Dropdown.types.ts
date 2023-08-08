@@ -33,14 +33,14 @@ export interface IDropdownProps {
     multiselect?:                       boolean;
     /**
      * options
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Dropdown_Option)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Dropdown_Option)
      * 
      * Specifies the available options for the dropdown.
      */
     options?:                           any[];
     /**
      * selectedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The key(s) that are selected for the Dropdown component.
      */

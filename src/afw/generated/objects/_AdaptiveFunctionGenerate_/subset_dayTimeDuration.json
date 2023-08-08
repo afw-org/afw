@@ -9,13 +9,13 @@
     "functionLabel": "subset_dayTimeDuration",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The second list.",
             "name": "list2"

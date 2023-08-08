@@ -40,7 +40,7 @@ static const afw_object_t * afw_ubjson_parse_object(
     afw_ubjson_parser_t *parser,
     afw_xctx_t *xctx);
 
-static const afw_list_t * afw_ubjson_parse_array(
+static const afw_array_t * afw_ubjson_parse_array(
     afw_ubjson_parser_t *parser,
     afw_xctx_t *xctx);
 
@@ -234,16 +234,16 @@ const afw_utf8_t * afw_ubjson_parse_string(
  *        by providing a count of items, ahead of time, but 
  *        we currently discard this information.
  */
-const afw_list_t * afw_ubjson_parse_array(
+const afw_array_t * afw_ubjson_parse_array(
     afw_ubjson_parser_t *parser, 
     afw_xctx_t *xctx)
 {
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *value;
     char c;
     char type = 0;
 
-    list = afw_list_create_generic(parser->p, xctx);
+    list = afw_array_create_generic(parser->p, xctx);
 
     c = afw_ubjson_peek_byte(parser, xctx);
 
@@ -265,7 +265,7 @@ const afw_list_t * afw_ubjson_parse_array(
     while (c != AFW_UBJSON_MARKER_ARRAY_) {
         value = afw_ubjson_parse_value(parser, type, xctx);
 
-        afw_list_add_value(list, value, xctx);
+        afw_array_add_value(list, value, xctx);
 
         c = afw_ubjson_peek_byte(parser, xctx);
     }
@@ -379,7 +379,7 @@ const afw_value_t * afw_ubjson_parse_value(
 {
     const afw_value_t *value = NULL;
     const afw_object_t *obj;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_utf8_t *string;
     unsigned char c;
 
@@ -443,7 +443,7 @@ const afw_value_t * afw_ubjson_parse_value(
         /* Array */
         case AFW_UBJSON_MARKER_ARRAY:
             list = afw_ubjson_parse_array(parser, xctx);
-            value = afw_value_create_list(list, parser->p, xctx);
+            value = afw_value_create_array(list, parser->p, xctx);
             break;
 
         /* Object */

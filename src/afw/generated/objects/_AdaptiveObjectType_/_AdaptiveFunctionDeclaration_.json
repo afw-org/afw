@@ -44,7 +44,7 @@
             "label": "Pure"
         },
         "parameters": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionParameter_",
             "description": "These are the function's parameters.",
             "label": "Parameters"
@@ -58,7 +58,7 @@
         },
         "polymorphicDataTypes": {
             "allowQuery": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "defaultValue": false,
             "description": "This function will call the appropriate function when the first parameter is one of these data types.",

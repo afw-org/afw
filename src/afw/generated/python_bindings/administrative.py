@@ -79,7 +79,7 @@ def flag_get_active(session):
     Parameters:
 
     Returns:
-    list: This is a list of the flagId of flags that are set in the current execution context (xctx).
+    array: This is a list of the flagId of flags that are set in the current execution context (xctx).
     '''
 
     request = session.Request()
@@ -106,7 +106,7 @@ def flag_get_active_defaults(session):
     Parameters:
 
     Returns:
-    list: This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created.
+    array: This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created.
     '''
 
     request = session.Request()
@@ -136,7 +136,7 @@ def flag_get_defaults(session):
     Parameters:
 
     Returns:
-    list: This is a list of the flagId of flags used to determine the default active flags.
+    array: This is a list of the flagId of flags used to determine the default active flags.
     '''
 
     request = session.Request()
@@ -170,7 +170,7 @@ def flag_modify_defaults(session, flagId, add=None):
 
     Parameters:
 
-        flagId (list): The flagId of flags to be added or removed.
+        flagId (array): The flagId of flags to be added or removed.
 
         add (boolean): Specify true to add and false to remove flags. If not
         specified, flags are added.
@@ -214,7 +214,7 @@ def flag_replace_defaults(session, flagId):
 
     Parameters:
 
-        flagId (list): The list of the flagId of flags used to determine the
+        flagId (array): The list of the flagId of flags used to determine the
         default active flags.
 
     Returns:
@@ -244,7 +244,7 @@ def flag_set(session, flagId, setTo=None):
 
     Parameters:
 
-        flagId (list): List of flagId of flags to set or unset.
+        flagId (array): List of flagId of flags to set or unset.
 
         setTo (boolean): Specify true to set and false to unset. If not
         specified, flags are set.

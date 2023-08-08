@@ -143,14 +143,14 @@ afw_function_evaluate_whitespace_parameter(
  *
  * ```
  *   function compile_expression_tuple(
- *       expression_tuple: list,
+ *       expression_tuple: array,
  *       listing?: any
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   expression_tuple - (list) expression tuple to compile.
+ *   expression_tuple - (array) expression tuple to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression tuple value.
@@ -169,12 +169,13 @@ const afw_value_t *
 afw_function_execute_compile_expression_tuple(
     afw_function_execute_t *x)
 {
-    const afw_value_list_t *expression_tuple;
+    const afw_value_array_t *expression_tuple;
     const afw_utf8_t *s;
     const afw_value_t *result;
     const afw_utf8_t *listing;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression_tuple, 1, list);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression_tuple,
+        1, array);
 
     s = afw_json_from_value((const afw_value_t *)expression_tuple, NULL,
         x->p, x->xctx);
@@ -1687,7 +1688,7 @@ afw_function_execute_test_script_runtime_support(
     afw_xctx_t *xctx = x->xctx;
     const afw_value_object_t *testScriptObject;
     const afw_iterator_t *iterator;
-    const afw_list_t *tests;
+    const afw_array_t *tests;
     const afw_object_t *test;
     const afw_value_t *value;
     const afw_utf8_t *default_source_type;
@@ -1723,7 +1724,7 @@ afw_function_execute_test_script_runtime_support(
         1, object);
 
     test_script = testScriptObject->internal;
-    tests = afw_object_old_get_property_as_list(test_script,
+    tests = afw_object_old_get_property_as_array(test_script,
         &afw_s_tests, xctx);
     default_source_type = afw_object_old_get_property_as_string(
         test_script, &afw_s_sourceType, xctx);
@@ -1731,7 +1732,7 @@ afw_function_execute_test_script_runtime_support(
         default_source_type = &afw_s_script;
     }
     for (iterator = NULL;;) {
-        value = afw_list_get_next_value(tests, &iterator, x->p, xctx);
+        value = afw_array_get_next_value(tests, &iterator, x->p, xctx);
         if (!value) {
             break;
         }

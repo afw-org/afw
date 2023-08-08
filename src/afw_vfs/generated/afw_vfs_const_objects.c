@@ -436,7 +436,7 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_1_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -447,8 +447,8 @@ static const afw_runtime_unresolved_property_t
 impl_1_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_1_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_1_list_collectionURIs
     }
 };
 
@@ -541,7 +541,7 @@ impl_10_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -608,7 +608,7 @@ impl_11_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -723,7 +723,7 @@ impl_8_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_8_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_8_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -734,8 +734,8 @@ static const afw_runtime_unresolved_property_t
 impl_8_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_8_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_8_list_collectionURIs
     }
 };
 
@@ -1288,7 +1288,7 @@ impl_12_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_12_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_12_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -1299,8 +1299,8 @@ static const afw_runtime_unresolved_property_t
 impl_12_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_12_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_12_list_collectionURIs
     }
 };
 

@@ -141,24 +141,24 @@ afw_object_meta_add_parent_path(
     const afw_utf8_t *parent_path,
     afw_xctx_t *xctx)
 {
-    const afw_value_list_t *existing_parent_paths;
-    afw_value_list_t *parent_paths;
+    const afw_value_array_t *existing_parent_paths;
+    afw_value_array_t *parent_paths;
     const afw_object_t *meta;
 
     existing_parent_paths = afw_object_meta_get_parent_paths_value(instance, xctx);
-    parent_paths = afw_value_allocate_list(instance->p, xctx);
+    parent_paths = afw_value_allocate_array(instance->p, xctx);
 
     if (existing_parent_paths) {
-        parent_paths->internal = afw_list_create_or_clone(
+        parent_paths->internal = afw_array_create_or_clone(
             existing_parent_paths->internal, afw_data_type_anyURI, false,
             instance->p, xctx);
     }
     else {
-        parent_paths->internal = afw_list_of_create(
+        parent_paths->internal = afw_array_of_create(
             afw_data_type_anyURI, instance->p, xctx);
     }
     
-    afw_list_of_anyURI_add(parent_paths->internal, parent_path, xctx);
+    afw_array_of_anyURI_add(parent_paths->internal, parent_path, xctx);
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
     afw_object_set_property(meta, &afw_s_parentPaths,
         (const afw_value_t *)parent_paths, xctx);
@@ -167,7 +167,7 @@ afw_object_meta_add_parent_path(
 
 
 /* Get meta parentPaths property. */
-AFW_DEFINE(const afw_value_list_t *)
+AFW_DEFINE(const afw_value_array_t *)
 afw_object_meta_get_parent_paths_value(
     const afw_object_t *instance,
     afw_xctx_t *xctx)
@@ -181,7 +181,7 @@ afw_object_meta_get_parent_paths_value(
         value = afw_object_get_property(
             afw_object_meta_object(instance),
             &afw_s_parentPaths, xctx);
-        if (value && !afw_value_is_list_of_anyURI(value))
+        if (value && !afw_value_is_array_of_anyURI(value))
         {
             AFW_THROW_ERROR_Z(general,
                 "Expecting parentPaths to be a list of anyURI",
@@ -189,7 +189,7 @@ afw_object_meta_get_parent_paths_value(
         }
     }
 
-    return (const afw_value_list_t *)value;
+    return (const afw_value_array_t *)value;
 }
 
 
@@ -326,7 +326,7 @@ afw_object_meta_set_meta_object(
     const afw_object_t *property_types;
     const afw_object_t *property_type;
     const afw_object_path_parsed_t *parsed_path;
-    const afw_list_t *parent_paths;
+    const afw_array_t *parent_paths;
 
     /* If no meta, just return. */
     if (!meta) {
@@ -347,9 +347,9 @@ afw_object_meta_set_meta_object(
     /* Make sure parentPaths is a list. */
     value = afw_object_get_property(meta, &afw_s_parentPaths, xctx);
     if (value) {
-        parent_paths = afw_list_of_create_from_value(
+        parent_paths = afw_array_of_create_from_value(
             afw_data_type_anyURI, value, meta->p, xctx);
-        afw_object_set_property_as_list(meta,
+        afw_object_set_property_as_array(meta,
             &afw_s_parentPaths, parent_paths, xctx);
     }
 
@@ -492,7 +492,7 @@ afw_object_meta_set_object_type_id(
 AFW_DEFINE(void)
 afw_object_meta_set_parent_paths(
     const afw_object_t *instance,
-    const afw_value_list_t *parent_paths,
+    const afw_value_array_t *parent_paths,
     afw_xctx_t *xctx)
 {
     const afw_object_t *meta;
@@ -586,14 +586,14 @@ afw_object_meta_add_error(
 {
     const afw_value_t *value;
     const afw_object_t *meta;
-    const afw_list_t *errors;
+    const afw_array_t *errors;
 
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
-    errors = afw_object_old_get_property_as_list(meta, &afw_s_errors, xctx);
+    errors = afw_object_old_get_property_as_array(meta, &afw_s_errors, xctx);
     if (!errors) {
-        errors = afw_list_of_create(
+        errors = afw_array_of_create(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_list(meta,
+        afw_object_set_property_as_array(meta,
             &afw_s_errors, errors, xctx);
         afw_object_set_property(meta, &afw_s_hasErrors, afw_value_true, xctx);
         afw_object_meta_set_property(afw_object_get_entity(instance, xctx),
@@ -601,7 +601,7 @@ afw_object_meta_add_error(
     }
 
     value = afw_value_create_string(message, instance->p, xctx);
-    afw_list_add_value(errors, value, xctx);
+    afw_array_add_value(errors, value, xctx);
 }
 
 
@@ -627,7 +627,7 @@ afw_object_meta_has_errors(
 
 static void
 impl_log_errors(
-    const afw_list_t *errors,
+    const afw_array_t *errors,
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
@@ -635,7 +635,7 @@ impl_log_errors(
     const afw_utf8_t *error;
 
     iterator = NULL;
-    while ((error = afw_list_of_string_get_next(errors,
+    while ((error = afw_array_of_string_get_next(errors,
         &iterator, xctx)))
     {
         AFW_LOG_FZ(info, xctx,
@@ -656,7 +656,7 @@ afw_object_meta_log_errors(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
-    const afw_list_t *errors;
+    const afw_array_t *errors;
     const afw_object_t *meta;
     const afw_object_t *property_types;
     const afw_object_t *property_type;
@@ -676,7 +676,7 @@ afw_object_meta_log_errors(
     p = instance->p;
 
     /* Log object level errors. */
-    errors = afw_object_old_get_property_as_list(meta, &afw_s_errors, xctx);
+    errors = afw_object_old_get_property_as_array(meta, &afw_s_errors, xctx);
     if (errors) {
         impl_log_errors(errors, source_location, xctx);
     }
@@ -689,7 +689,7 @@ afw_object_meta_log_errors(
         while ((property_type = afw_object_old_get_next_property_as_object(
             property_types, &iterator, &property_name, xctx)))
         {
-            errors = afw_object_old_get_property_as_list(property_type,
+            errors = afw_object_old_get_property_as_array(property_type,
                 &afw_s_errors, xctx);
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
@@ -757,16 +757,16 @@ afw_object_meta_add_property_error(
 {
     const afw_object_t *property_type;
     const afw_value_t *value;
-    const afw_list_t *errors;
+    const afw_array_t *errors;
  
     property_type = afw_object_meta_get_property_type(instance,
         property_name, xctx);
-    errors = afw_object_old_get_property_as_list(property_type,
+    errors = afw_object_old_get_property_as_array(property_type,
         &afw_s_errors, xctx);
     if (!errors) {
-        errors = afw_list_of_create(
+        errors = afw_array_of_create(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_list(property_type,
+        afw_object_set_property_as_array(property_type,
             &afw_s_errors, errors, xctx);
         afw_object_meta_set_property(instance,
             &afw_s_hasErrors, afw_value_true, xctx);
@@ -775,7 +775,7 @@ afw_object_meta_add_property_error(
     }
 
     value = afw_value_create_string(message, instance->p, xctx);
-    afw_list_add_value(errors, value, xctx);
+    afw_array_add_value(errors, value, xctx);
 }
 
 AFW_DEFINE(void)

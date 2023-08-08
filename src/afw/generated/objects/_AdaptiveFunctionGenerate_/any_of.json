@@ -3,7 +3,7 @@
     "afwCamelCaseFunctionLabel": "afwAnyOf",
     "brief": "Any values pass a test",
     "camelCaseFunctionLabel": "anyOf",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "Returns true if any value in a list pass the predicate test.",
     "functionId": "any_of",
     "functionLabel": "any_of",

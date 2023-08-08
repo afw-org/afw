@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwFind",
     "brief": "Returns the first value in a list that passes a test",
     "camelCaseFunctionLabel": "find",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "The predicate is called for each value in the first list in values until true is returned, then that value is returned.",
     "functionId": "find",
     "functionLabel": "find",

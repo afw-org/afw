@@ -87,7 +87,7 @@ return result.error.message;
 
 
 //? test: entries_in_actions_list
-//? description: Entries in actions list must be objects
+//? description: Entries in actions array must be objects
 //? expect: "Entries in actions list must be objects"
 //? source: ...
 #!/usr/bin/env afw

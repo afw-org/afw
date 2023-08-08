@@ -482,7 +482,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 last_index_of
@@ -673,7 +673,7 @@ Converts a one value list to a <dataType> value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 pow
@@ -1415,13 +1415,13 @@ sub is_ {
 }
 
 sub is_in {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -1591,12 +1591,12 @@ sub normalize_to_lower_case {
 }
 
 sub one_and_only {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

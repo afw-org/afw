@@ -70,7 +70,7 @@ assert(callCount === 1, "callCount !== 1");
 function f(x: integer = 0, x: integer): any {};
 
 //? test: dflt-params-ref-later
-//? description: Referencing a parameter that occurs later in the parameter list
+//? description: Referencing a parameter that occurs later in the parameter array
 //? expect: error:Parse error at offset 85 around line 6 column 19: Expecting a literal
 //? source: ...
 #!/usr/bin/env afw
@@ -85,7 +85,7 @@ f = function (x = y, y?): any {
 
 
 //? test: dflt-params-ref-prior
-//? description: Referencing a parameter that occurs earlier in the parameter list
+//? description: Referencing a parameter that occurs earlier in the parameter array
 //? expect: error:Parse error at offset 77 around line 5 column 28: Expecting a literal
 //? source: ...
 #!/usr/bin/env afw
@@ -166,7 +166,7 @@ assert(callCount === 1, "function invoked exactly once");
 
 
 //? test: param-duplicated-strict-1
-//? description: It is a syntax error if any identifier value occurs more than once within a parameter list
+//? description: It is a syntax error if any identifier value occurs more than once within a parameter array
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -176,7 +176,7 @@ function f(param: integer, param: integer): any {};
 
 
 //? test: param-duplicated-strict-2
-//? description: It is a syntax error if any identifier value occurs more than once within a parameter list
+//? description: It is a syntax error if any identifier value occurs more than once within a parameter array
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
@@ -186,7 +186,7 @@ function f(param1: integer, param2: integer, param1: integer): any {};
 
 
 //? test: param-duplicated-strict-3
-//? description: It is a syntax error if any identifier value occurs more than once within a parameter list
+//? description: It is a syntax error if any identifier value occurs more than once within a parameter array
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw

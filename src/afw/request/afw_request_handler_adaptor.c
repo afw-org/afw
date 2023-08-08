@@ -368,7 +368,7 @@ impl_afw_request_handler_process(
             value = afw_value_undecorate(value);
 
             /* If Modify ... */
-            if (afw_value_is_list(value)) {
+            if (afw_value_is_array(value)) {
                 if (parsed_path->object_type_id.len == 0 ||
                     parsed_path->entity_object_id.len == 0)
                 {
@@ -381,7 +381,7 @@ impl_afw_request_handler_process(
                 }
                 afw_adaptor_modify_object(&parsed_path->adaptor_id,
                     &parsed_path->object_type_id, &parsed_path->entity_object_id,
-                    ((const afw_value_list_t *)value)->internal, journal_entry,
+                    ((const afw_value_array_t *)value)->internal, journal_entry,
                     NULL, xctx);
             }
 

@@ -13,7 +13,7 @@
     "propertyTypes": {
         "actions": {
             "brief": "List of actions to perform",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveAction_",
             "description": "This is a list of actions to perform. Either the actions or function property must be specified.",
             "required": false
@@ -26,7 +26,7 @@
         },
         "_flags_": {
             "brief": "List of flags to set",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
             "label": "Flags",

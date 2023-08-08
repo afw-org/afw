@@ -410,14 +410,14 @@ afw_value_internal_get_evaluated_metas_default(
     afw_xctx_t *xctx)
 {
     const afw_value_t **metas;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     metas = afw_pool_malloc(p, sizeof(afw_value_t *) * 2, xctx);
     metas[0] = afw_value_get_evaluated_meta(value, p, xctx);
     metas[1] = NULL;
-    list = afw_list_const_create_null_terminated_array_of_values(metas, p, xctx);
+    list = afw_array_const_create_null_terminated_array_of_values(metas, p, xctx);
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }
 
 
@@ -445,24 +445,24 @@ afw_value_internal_get_evaluated_metas_for_list(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *passed_list;
-    const afw_list_t *list;
+    const afw_array_t *passed_list;
+    const afw_array_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *entry_meta;
 
-    passed_list = afw_value_as_list(value, xctx);
-    list = afw_list_create_generic(p, xctx);
+    passed_list = afw_value_as_array(value, xctx);
+    list = afw_array_create_generic(p, xctx);
 
     for (iterator = NULL;;) {
-        entry_meta = afw_list_get_next_entry_meta(passed_list,
+        entry_meta = afw_array_get_next_entry_meta(passed_list,
             &iterator, p, xctx);
         if (!entry_meta) {
             break;
         }
-        afw_list_add_value(list, entry_meta, xctx);
+        afw_array_add_value(list, entry_meta, xctx);
     }
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }
 
 
@@ -496,13 +496,13 @@ afw_value_internal_get_evaluated_metas_for_object(
     afw_xctx_t *xctx)
 {
     const afw_object_t *object;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *property_meta;
     const afw_utf8_t *property_name;
 
     object = afw_value_as_object(value, xctx);
-    list = afw_list_create_generic(p, xctx);
+    list = afw_array_create_generic(p, xctx);
 
     for (iterator = NULL;;) {
         property_meta = afw_object_get_next_property_meta(object,
@@ -510,8 +510,8 @@ afw_value_internal_get_evaluated_metas_for_object(
         if (!property_meta) {
             break;
         }
-        afw_list_add_value(list, property_meta, xctx);
+        afw_array_add_value(list, property_meta, xctx);
     }
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }

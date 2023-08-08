@@ -31,20 +31,20 @@
     "polymorphic": true,
     "polymorphicDataTypes": [
         "anyURI",
-        "list",
+        "array",
         "string"
     ],
     "polymorphicExecuteFunction": "afw_function_execute_includes",
     "polymorphicOverrides": {
-        "list": {
+        "array": {
             "brief": "Checks whether or not a list contains any value",
             "description": "Checks whether or not a list contains any value.",
             "parameters": [
                 {
                     "brief": "The list to search",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "The list to search.",
-                    "name": "list",
+                    "name": "array",
                     "polymorphicDataType": true
                 },
                 {
@@ -65,7 +65,7 @@
                 "dataType": "boolean",
                 "description": "Indicates if the element is found in list."
             },
-            "useExecuteFunction": "afw_function_execute_includes_list"
+            "useExecuteFunction": "afw_function_execute_includes_array"
         }
     },
     "pure": true,

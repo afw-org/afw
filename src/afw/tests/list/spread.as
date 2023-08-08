@@ -19,7 +19,7 @@ assert(length(l3) === 0);
 return 0;
 
 //? test: spread-2
-//? description: Spread operator with first list empty.
+//? description: Spread operator with first array empty.
 //? expect: 0
 //? source: ...
 
@@ -32,7 +32,7 @@ assert(length(l3) === 1);
 return 0;
 
 //? test: spread-3
-//? description: Spread operator with second list empty.
+//? description: Spread operator with second array empty.
 //? expect: 0
 //? source: ...
 
@@ -80,7 +80,7 @@ return 0;
 
 //? test: spread-foreach-error
 //? description: Spread inside a foreach loop with error
-//? expect: error:Typesafe error: expecting 'list' but encountered 'integer'
+//? expect: error:Typesafe error: expecting 'array' but encountered 'integer'
 //? source: ...
 
 const l1 = [1, 2, 3];

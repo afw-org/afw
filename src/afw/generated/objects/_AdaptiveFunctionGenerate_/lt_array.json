@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLtArray",
+    "brief": "Checks for less than",
+    "camelCaseFunctionLabel": "ltArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Checks for array arg1 is less that array arg2 and return the boolean result.",
+    "functionId": "lt<array>",
+    "functionLabel": "lt_array",
+    "op": "<",
+    "parameters": [
+        {
+            "dataType": "array",
+            "name": "arg1"
+        },
+        {
+            "dataType": "array",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_lt"
+}

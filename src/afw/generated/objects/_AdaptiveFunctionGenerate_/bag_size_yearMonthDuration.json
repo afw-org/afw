@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_yearMonthDuration",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "name": "value"
         }

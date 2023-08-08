@@ -23,7 +23,7 @@
         },
         "for": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl).",
             "label": "For"

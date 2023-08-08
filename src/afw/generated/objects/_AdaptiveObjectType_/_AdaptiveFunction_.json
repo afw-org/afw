@@ -74,7 +74,7 @@
         "errorsThrown": {
             "allowQuery": true,
             "brief": "Errors thrown",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
             "description": "These are errors that can possibly be thrown by this function.",
             "label": "Errors Thrown",
@@ -140,7 +140,7 @@
         },
         "parameters": {
             "brief": "The function's parameters",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionParameter_",
             "description": "These are the function's parameters.",
             "label": "Parameters",
@@ -159,7 +159,7 @@
         "polymorphicDataTypes": {
             "allowQuery": true,
             "brief": "This function will call the appropriate function when the first parameter is one of these data types",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "defaultValue": false,
             "description": "This function will call the appropriate function when the first parameter is one of these data types.",
@@ -199,7 +199,7 @@
         "sideEffects": {
             "allowQuery": true,
             "brief": "Side effects for this function.",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Any side effects that this function may produce as a result of execution.",
             "label": "Side Effects",

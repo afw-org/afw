@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_dayTimeDuration",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "name": "value"
         }

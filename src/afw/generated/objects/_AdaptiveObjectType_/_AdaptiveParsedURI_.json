@@ -23,7 +23,7 @@
         },
         "fragmentTokens": {
             "brief": "Decoded fragment tokens of URI",
-            "dataType": "list",
+            "dataType": "array",
             "description": "Decoded fragment tokens of URI.",
             "label": "Fragment Tokens"
         },
@@ -95,7 +95,7 @@
         },
         "pathTokens": {
             "brief": "Decoded path tokens of URI",
-            "dataType": "list",
+            "dataType": "array",
             "description": "Decoded path tokens of URI.",
             "label": "Path Tokens"
         },
@@ -113,7 +113,7 @@
         },
         "queryTokens": {
             "brief": "Decoded query tokens of URI",
-            "dataType": "list",
+            "dataType": "array",
             "description": "Decoded query tokens of URI.",
             "label": "Query Tokens"
         },

@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in rfc822Name list1 is in
  * rfc822Name list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -35,9 +35,9 @@ export function afwAtLeastOneMemberOfRfc822Name(client : any, list1 : any[], lis
 /**
  * Takes any number of rfc822Name values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagRfc822Name(client : any, values? : any[]) : any {
 
@@ -54,7 +54,7 @@ export function afwBagRfc822Name(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -159,11 +159,11 @@ export function afwGtRfc822Name(client : any, arg1 : any, arg2 : any) : any {
  * Returns a list of rfc822Name with the values that are common to both list
  * of rfc822Name list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionRfc822Name(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -182,17 +182,17 @@ export function afwIntersectionRfc822Name(client : any, list1 : any[], list2 : a
  * 
  * @param {rfc822Name} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInRfc822Name(client : any, value : any, list : any[]) : any {
+export function afwIsInRfc822Name(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<rfc822Name>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -326,16 +326,16 @@ export function afwNexRfc822Name(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of rfc822Name values that contains one value to a
  * single rfc822Name value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {rfc822Name}
  */
-export function afwOneAndOnlyRfc822Name(client : any, list : any[]) : any {
+export function afwOneAndOnlyRfc822Name(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<rfc822Name>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -382,9 +382,9 @@ export function afwRfc822Name(client : any, value : any) : any {
  * Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets
  * of each other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -403,9 +403,9 @@ export function afwSetEqualsRfc822Name(client : any, list1 : any[], list2 : any[
  * Returns boolean true if the unique values in rfc822Name list1 are all in
  * rfc822Name list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -442,9 +442,9 @@ export function afwToStringRfc822Name(client : any, value : any) : any {
  * Returns a list of rfc822Name contains all of the unique values in two or
  * more list of rfc822Name values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionRfc822Name(client : any, lists : any[]) : any {
 

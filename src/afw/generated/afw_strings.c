@@ -1519,6 +1519,12 @@ AFW_UTF8_LITERAL("afw_adaptor_session");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_transaction =
 AFW_UTF8_LITERAL("afw_adaptor_transaction");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_array =
+AFW_UTF8_LITERAL("afw_array");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_array_setter =
+AFW_UTF8_LITERAL("afw_array_setter");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_authorization_handler =
 AFW_UTF8_LITERAL("afw_authorization_handler");
 
@@ -1563,12 +1569,6 @@ AFW_UTF8_LITERAL("afw_ldap");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_ldap_adaptor =
 AFW_UTF8_LITERAL("afw_ldap_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_list =
-AFW_UTF8_LITERAL("afw_list");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_list_setter =
-AFW_UTF8_LITERAL("afw_list_setter");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_lmdb =
 AFW_UTF8_LITERAL("afw_lmdb");
@@ -1819,6 +1819,9 @@ AFW_UTF8_LITERAL("arguments");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_array =
 AFW_UTF8_LITERAL("array");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_array_includes =
+AFW_UTF8_LITERAL("array_includes");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_as =
 AFW_UTF8_LITERAL("as");
 
@@ -1954,6 +1957,9 @@ AFW_UTF8_LITERAL("bag");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_anyURI =
 AFW_UTF8_LITERAL("bag_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_array =
+AFW_UTF8_LITERAL("bag_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_base64Binary =
 AFW_UTF8_LITERAL("bag_base64Binary");
 
@@ -1996,9 +2002,6 @@ AFW_UTF8_LITERAL("bag_integer");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_ipAddress =
 AFW_UTF8_LITERAL("bag_ipAddress");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_list =
-AFW_UTF8_LITERAL("bag_list");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_null =
 AFW_UTF8_LITERAL("bag_null");
 
@@ -2025,6 +2028,9 @@ AFW_UTF8_LITERAL("bag_size");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_anyURI =
 AFW_UTF8_LITERAL("bag_size_anyURI");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_array =
+AFW_UTF8_LITERAL("bag_size_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_base64Binary =
 AFW_UTF8_LITERAL("bag_size_base64Binary");
@@ -2067,9 +2073,6 @@ AFW_UTF8_LITERAL("bag_size_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_ipAddress =
 AFW_UTF8_LITERAL("bag_size_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_list =
-AFW_UTF8_LITERAL("bag_size_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_null =
 AFW_UTF8_LITERAL("bag_size_null");
@@ -2275,8 +2278,8 @@ AFW_UTF8_LITERAL("class");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone =
 AFW_UTF8_LITERAL("clone");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone_list =
-AFW_UTF8_LITERAL("clone_list");
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone_array =
+AFW_UTF8_LITERAL("clone_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone_object =
 AFW_UTF8_LITERAL("clone_object");
@@ -2944,6 +2947,9 @@ AFW_UTF8_LITERAL("eq");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_anyURI =
 AFW_UTF8_LITERAL("eq_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_array =
+AFW_UTF8_LITERAL("eq_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_base64Binary =
 AFW_UTF8_LITERAL("eq_base64Binary");
 
@@ -2992,9 +2998,6 @@ AFW_UTF8_LITERAL("eq_integer");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_ipAddress =
 AFW_UTF8_LITERAL("eq_ipAddress");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_list =
-AFW_UTF8_LITERAL("eq_list");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_object =
 AFW_UTF8_LITERAL("eq_object");
 
@@ -3040,6 +3043,9 @@ AFW_UTF8_LITERAL("eqx");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_anyURI =
 AFW_UTF8_LITERAL("eqx_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_array =
+AFW_UTF8_LITERAL("eqx_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_base64Binary =
 AFW_UTF8_LITERAL("eqx_base64Binary");
 
@@ -3081,9 +3087,6 @@ AFW_UTF8_LITERAL("eqx_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_ipAddress =
 AFW_UTF8_LITERAL("eqx_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_list =
-AFW_UTF8_LITERAL("eqx_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_object =
 AFW_UTF8_LITERAL("eqx_object");
@@ -3364,6 +3367,9 @@ AFW_UTF8_LITERAL("ge");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_anyURI =
 AFW_UTF8_LITERAL("ge_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_array =
+AFW_UTF8_LITERAL("ge_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_base64Binary =
 AFW_UTF8_LITERAL("ge_base64Binary");
 
@@ -3405,9 +3411,6 @@ AFW_UTF8_LITERAL("ge_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_ipAddress =
 AFW_UTF8_LITERAL("ge_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_list =
-AFW_UTF8_LITERAL("ge_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_object =
 AFW_UTF8_LITERAL("ge_object");
@@ -3481,6 +3484,9 @@ AFW_UTF8_LITERAL("gt");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_anyURI =
 AFW_UTF8_LITERAL("gt_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_array =
+AFW_UTF8_LITERAL("gt_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_base64Binary =
 AFW_UTF8_LITERAL("gt_base64Binary");
 
@@ -3522,9 +3528,6 @@ AFW_UTF8_LITERAL("gt_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_ipAddress =
 AFW_UTF8_LITERAL("gt_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_list =
-AFW_UTF8_LITERAL("gt_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_object =
 AFW_UTF8_LITERAL("gt_object");
@@ -3604,8 +3607,8 @@ AFW_UTF8_LITERAL("hexBinary_subset");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_union =
 AFW_UTF8_LITERAL("hexBinary_union");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_higher_order_list =
-AFW_UTF8_LITERAL("higher_order_list");
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_higher_order_array =
+AFW_UTF8_LITERAL("higher_order_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hints =
 AFW_UTF8_LITERAL("hints");
@@ -3685,8 +3688,8 @@ AFW_UTF8_LITERAL("includesFlags");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_anyURI =
 AFW_UTF8_LITERAL("includes_anyURI");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_list =
-AFW_UTF8_LITERAL("includes_list");
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_array =
+AFW_UTF8_LITERAL("includes_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_string =
 AFW_UTF8_LITERAL("includes_string");
@@ -3922,6 +3925,9 @@ AFW_UTF8_LITERAL("is_NaN");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_anyURI =
 AFW_UTF8_LITERAL("is_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_array =
+AFW_UTF8_LITERAL("is_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_base64Binary =
 AFW_UTF8_LITERAL("is_base64Binary");
 
@@ -4020,9 +4026,6 @@ AFW_UTF8_LITERAL("is_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_ipAddress =
 AFW_UTF8_LITERAL("is_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_list =
-AFW_UTF8_LITERAL("is_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_null =
 AFW_UTF8_LITERAL("is_null");
@@ -4150,6 +4153,9 @@ AFW_UTF8_LITERAL("le");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_anyURI =
 AFW_UTF8_LITERAL("le_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_array =
+AFW_UTF8_LITERAL("le_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_base64Binary =
 AFW_UTF8_LITERAL("le_base64Binary");
 
@@ -4191,9 +4197,6 @@ AFW_UTF8_LITERAL("le_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_ipAddress =
 AFW_UTF8_LITERAL("le_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_list =
-AFW_UTF8_LITERAL("le_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_object =
 AFW_UTF8_LITERAL("le_object");
@@ -4240,8 +4243,8 @@ AFW_UTF8_LITERAL("length");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_anyURI =
 AFW_UTF8_LITERAL("length_anyURI");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_list =
-AFW_UTF8_LITERAL("length_list");
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_array =
+AFW_UTF8_LITERAL("length_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_string =
 AFW_UTF8_LITERAL("length_string");
@@ -4263,12 +4266,6 @@ AFW_UTF8_LITERAL("limit");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_line =
 AFW_UTF8_LITERAL("line");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_list =
-AFW_UTF8_LITERAL("list");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_list_includes =
-AFW_UTF8_LITERAL("list_includes");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_load =
 AFW_UTF8_LITERAL("load");
@@ -4302,6 +4299,9 @@ AFW_UTF8_LITERAL("lt");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_anyURI =
 AFW_UTF8_LITERAL("lt_anyURI");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_array =
+AFW_UTF8_LITERAL("lt_array");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_base64Binary =
 AFW_UTF8_LITERAL("lt_base64Binary");
@@ -4344,9 +4344,6 @@ AFW_UTF8_LITERAL("lt_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_ipAddress =
 AFW_UTF8_LITERAL("lt_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_list =
-AFW_UTF8_LITERAL("lt_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_object =
 AFW_UTF8_LITERAL("lt_object");
@@ -4648,6 +4645,9 @@ AFW_UTF8_LITERAL("ne");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_anyURI =
 AFW_UTF8_LITERAL("ne_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_array =
+AFW_UTF8_LITERAL("ne_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_base64Binary =
 AFW_UTF8_LITERAL("ne_base64Binary");
 
@@ -4689,9 +4689,6 @@ AFW_UTF8_LITERAL("ne_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_ipAddress =
 AFW_UTF8_LITERAL("ne_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_list =
-AFW_UTF8_LITERAL("ne_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_object =
 AFW_UTF8_LITERAL("ne_object");
@@ -4747,6 +4744,9 @@ AFW_UTF8_LITERAL("nex");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_anyURI =
 AFW_UTF8_LITERAL("nex_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_array =
+AFW_UTF8_LITERAL("nex_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_base64Binary =
 AFW_UTF8_LITERAL("nex_base64Binary");
 
@@ -4788,9 +4788,6 @@ AFW_UTF8_LITERAL("nex_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_ipAddress =
 AFW_UTF8_LITERAL("nex_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_list =
-AFW_UTF8_LITERAL("nex_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_object =
 AFW_UTF8_LITERAL("nex_object");
@@ -6289,6 +6286,9 @@ AFW_UTF8_LITERAL("to_string");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_anyURI =
 AFW_UTF8_LITERAL("to_string_anyURI");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_array =
+AFW_UTF8_LITERAL("to_string_array");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_base64Binary =
 AFW_UTF8_LITERAL("to_string_base64Binary");
 
@@ -6327,9 +6327,6 @@ AFW_UTF8_LITERAL("to_string_integer");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_ipAddress =
 AFW_UTF8_LITERAL("to_string_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_list =
-AFW_UTF8_LITERAL("to_string_list");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_null =
 AFW_UTF8_LITERAL("to_string_null");

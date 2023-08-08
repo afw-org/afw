@@ -32,8 +32,8 @@ afw_vfs_adaptor_internal_create_cede_p(
 {
     afw_vfs_adaptor_internal_t *self;
     afw_adaptor_t *adaptor;
-    const afw_list_t *vfs_map;
-    const afw_list_t *x_list;
+    const afw_array_t *vfs_map;
+    const afw_array_t *x_list;
     afw_utf8_utf8_z_t *mark_executable;
     const afw_iterator_t *iterator;
     afw_key_z_string_z_t *entries;
@@ -56,11 +56,11 @@ afw_vfs_adaptor_internal_create_cede_p(
     self = (afw_vfs_adaptor_internal_t *)adaptor;
 
     /* Get vfsMap property. */
-    vfs_map = afw_object_old_get_property_as_list(
+    vfs_map = afw_object_old_get_property_as_array(
         adaptor->properties, &afw_vfs_s_vfsMap, xctx);
     count = 0;
     if (vfs_map) {
-        count = afw_list_get_count(vfs_map, xctx);
+        count = afw_array_get_count(vfs_map, xctx);
     }
     if (count == 0) {
         AFW_THROW_ERROR_Z(general,
@@ -77,7 +77,7 @@ afw_vfs_adaptor_internal_create_cede_p(
     for (iterator = NULL;;entries++) {
 
         /* Get next entry and parse until there are no more. */
-        value = afw_list_get_next_value(vfs_map, &iterator, p, xctx);
+        value = afw_array_get_next_value(vfs_map, &iterator, p, xctx);
         if (!value) {
             break;
         }
@@ -163,11 +163,11 @@ afw_vfs_adaptor_internal_create_cede_p(
     }
 
     /* Process markExecutable */
-    x_list = afw_object_old_get_property_as_list(adaptor->properties,
+    x_list = afw_object_old_get_property_as_array(adaptor->properties,
         &afw_vfs_s_markExecutable, xctx);
     count = 0;
     if (x_list) {
-        count = afw_list_get_count(x_list, xctx);
+        count = afw_array_get_count(x_list, xctx);
     }
     if (count != 0) {
         mark_executable = afw_pool_calloc(p,
@@ -175,7 +175,7 @@ afw_vfs_adaptor_internal_create_cede_p(
         self->mark_executable = mark_executable;
 
         for (iterator = NULL;; mark_executable++) {
-            value = afw_list_get_next_value(x_list, &iterator, p, xctx);
+            value = afw_array_get_next_value(x_list, &iterator, p, xctx);
             if (!value) {
                 break;
             }

@@ -17,7 +17,7 @@
         },
         "children": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
             "description": "The children of this Tree.",
             "label": "Children",
@@ -25,14 +25,14 @@
         },
         "selectedKeys": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The keys of nodes in this tree that are selected.",
             "label": "Selected Keys"
         },
         "expandedKeys": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The keys of nodes in this tree that are expanded.",
             "label": "Expanded Keys"

@@ -54,9 +54,9 @@ assert(deep.d[0]?->concat("!!!!") == 'd1!!!!');
 
 assert(deep.d[0]?->not::there?.("!!!!") == undefined);
 
-// Test optional chaining for list
+// Test optional chaining for array
 
-const deeplist: list = [
+const deeplist: array = [
     "e1",
     "e2",
     {name:'e3', nested:['e3n1','e3n2', {name:'e3n3'}]},
@@ -107,10 +107,10 @@ assert(test2('1', '2') == '123');
 function test3 (a: string, b: string, c?: string): string (a + b + string(c));
 assert(test3('1', '2') == '12<undefined>');
 
-function test4 (a: string, ... b: (list of string)): string (a + string(b));
+function test4 (a: string, ... b: (array of string)): string (a + string(b));
 assert(test4('1', '2', '3', '4', '5') == '1["2","3","4","5"]');
 
-function test5 (a: string, ... b: (list of string)): string (a + string(b));
+function test5 (a: string, ... b: (array of string)): string (a + string(b));
 assert(test5('1') == '1[]');
 
 function test6(a: string, b?: string): string
@@ -169,10 +169,10 @@ assert(test9('1', '2') == '2');
 
 assert(test9('1') == 'b is missing');
 
-// Trailing comma in list
-let y1: list = [1,3,2,4,];
+// Trailing comma in array
+let y1: array = [1,3,2,4,];
 
-assert(string(y1) == string([1,3,2,4])); //FIXME Need to support list ==
+assert(string(y1) == string([1,3,2,4])); //FIXME Need to support array ==
 
 // Trailing comma in object
 let y2: object = {a:1,b:2,};
@@ -195,11 +195,11 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 
 // Miscellaneous tests
 
-// ...list
+// ...array
 {
-    const l1: (list of string) = ["a", "b"];
-    const l2: list = ["d", "e"];
-    const l3: list = [...l1, "c", ...l2, "f", "g", ...list("h", "i", "j"), "k",
+    const l1: (array of string) = ["a", "b"];
+    const l2: array = ["d", "e"];
+    const l3: array = [...l1, "c", ...l2, "f", "g", ...array("h", "i", "j"), "k",
         ...["l","m"], ...[], ...[...["n", "o", "p"], "q", "r", "s"] ];
     assert(stringify(l3) == '["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s"]');
 }
@@ -224,7 +224,7 @@ let hello: string = "Defined outside block";
 assert(hello == 'Defined outside block');
 
 
-// Test list destructure
+// Test array destructure
 let world: any = "?";
 
 [hello, , world] = ["entry1", "entry2", "entry3" ];
@@ -235,11 +235,11 @@ assert( ( hello + " " + world ) == 'entry1 entry3');
     assert( ( hello + " " + world ) == 'entry1 entry3');
 }
 
-// Test 2 list destructure
+// Test 2 array destructure
 [hello, world] = ["entry1", "entry2", "entry3", "entry4" ];
 assert( ( hello + " " + world ) == 'entry1 entry2');
 
-// Test 3 list destructure
+// Test 3 array destructure
 let rest: string;
 [hello, world, ...rest] = ["entry1", "entry2", "entry3", "entry4" ];
 assert( ( hello + " " + world + ' rest=' + string(rest)) == 'entry1 entry2 rest=["entry3","entry4"]');
@@ -270,8 +270,8 @@ assert( ( hello + " " + world + ' rest=' + string(rest)) == 'OHello OWorld! rest
 
 // Test object destructure
 {
-    const obj2: object = {embedded:obj, a:"?", b:2, list: ['a','****','c'] };
-    const {embedded: {hello, y="OWorld!"}, a:extra, list: [,extra2,,,extra3='+crazy'] } = obj2;
+    const obj2: object = {embedded:obj, a:"?", b:2, array: ['a','****','c'] };
+    const {embedded: {hello, y="OWorld!"}, a:extra, array: [,extra2,,,extra3='+crazy'] } = obj2;
     assert( ( hello + " " + y + extra + extra2 + extra3 ) == 'OHello OWorld!?****+crazy');
 }
 

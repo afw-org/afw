@@ -568,7 +568,7 @@ afw_environment_configure_with_object(
  */
 AFW_DECLARE(void)
 afw_environment_configure_with_object_list(
-    const afw_list_t *entry_list,
+    const afw_array_t *entry_list,
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx);
 

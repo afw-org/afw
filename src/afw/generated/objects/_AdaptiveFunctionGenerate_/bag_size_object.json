@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_object",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object",
             "name": "value"
         }

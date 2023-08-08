@@ -16,7 +16,7 @@
         },
         "items": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "_AdaptiveLayoutComponentType_BreadcrumbItem",
             "required": true,
             "brief": "Breadcrumb items",

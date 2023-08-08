@@ -30,13 +30,13 @@ assert(obj1 !== obj2);
 return 0;
 
 //? test: clone_list
-//? description: Clone a list
+//? description: Clone an array
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-let list1: list = [0, 1, 2];
-let list2: list = clone(list1);
+let list1: array = [0, 1, 2];
+let list2: array = clone(list1);
 
 assert(list1 === list2);
 

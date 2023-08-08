@@ -1,7 +1,7 @@
 {
     "additionalArgCheck": true,
     "brief": "All values pass a test",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "Returns true if all values in a list pass the predicate test.",
     "functionId": "all_of",
     "functionLabel": "all_of",

@@ -14,9 +14,9 @@ def at_least_one_member_of_hexBinary(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -46,10 +46,10 @@ def bag_hexBinary(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -77,7 +77,7 @@ def bag_size_hexBinary(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -301,12 +301,12 @@ def intersection_hexBinary(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -354,7 +354,7 @@ def is_hexBinary(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_hexBinary(session, value, list):
+def is_in_hexBinary(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -365,7 +365,7 @@ def is_in_hexBinary(session, value, list):
 
         value (hexBinary):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -376,7 +376,7 @@ def is_in_hexBinary(session, value, list):
     action = {
         "function": "is_in<hexBinary>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -522,7 +522,7 @@ def nex_hexBinary(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_hexBinary(session, list):
+def one_and_only_hexBinary(session, array):
     '''
     Converts a one value list to a hexBinary value
 
@@ -531,7 +531,7 @@ def one_and_only_hexBinary(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     hexBinary: 
@@ -541,7 +541,7 @@ def one_and_only_hexBinary(session, list):
 
     action = {
         "function": "one_and_only<hexBinary>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -561,9 +561,9 @@ def set_equals_hexBinary(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -594,9 +594,9 @@ def subset_hexBinary(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -657,10 +657,10 @@ def union_hexBinary(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

@@ -776,7 +776,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4 = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("style"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The style of the query string produced. All of the styles are appropriately url encoded.\n\n0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with conjunctions '&' (and) and '|' (or). Parentheses are placed around each group of like conjunctions except for outer '&'. (default)\n\n1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.\n\n2 - similar to 1 with ';' for '&' and ',' for '|'.\n\n3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge', ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a comma separated list of any comparison or conjunction."),
+    AFW_UTF8_LITERAL("The style of the query string produced. All of the styles are appropriately url encoded.\n\n0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with conjunctions '&' (and) and '|' (or). Parentheses are placed around each group of like conjunctions except for outer '&'. (default)\n\n1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.\n\n2 - similar to 1 with ';' for '&' and ',' for '|'.\n\n3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge', ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a comma separated list of any comparison or conjunction."),
     -1,
     true,
     false,
@@ -1938,8 +1938,8 @@ impl_modify_object_parameter_4 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("entries"),
     AFW_UTF8_LITERAL(""),
@@ -2032,8 +2032,8 @@ afw_function_definition_modify_object = {
     AFW_UTF8_LITERAL("afwModifyObject"),
     AFW_UTF8_LITERAL("Modify adaptive object"),
     AFW_UTF8_LITERAL("Modify an adaptive object."),
-    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, objectId: string, entries: list, journal?: object, adaptorTypeSpecific?: object): (object _AdaptiveJournalEntry_)"),
-    AFW_UTF8_LITERAL("/* Modify adaptive object */\nfunction modify_object (\n    adaptorId: string,\n    objectType: string,\n    objectId: string,\n    entries: list,\n    journal?: object,\n    adaptorTypeSpecific?: object\n): (object _AdaptiveJournalEntry_);\n"),
+    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, objectId: string, entries: array, journal?: object, adaptorTypeSpecific?: object): (object _AdaptiveJournalEntry_)"),
+    AFW_UTF8_LITERAL("/* Modify adaptive object */\nfunction modify_object (\n    adaptorId: string,\n    objectType: string,\n    objectId: string,\n    entries: array,\n    journal?: object,\n    adaptorTypeSpecific?: object\n): (object _AdaptiveJournalEntry_);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_modify_object,
     NULL,
@@ -2143,8 +2143,8 @@ impl_modify_object_with_uri_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("entries"),
     AFW_UTF8_LITERAL(""),
@@ -2235,8 +2235,8 @@ afw_function_definition_modify_object_with_uri = {
     AFW_UTF8_LITERAL("afwModifyObjectWithUri"),
     AFW_UTF8_LITERAL("Modify adaptive object with URI"),
     AFW_UTF8_LITERAL("Modify an adaptive object with a given URI."),
-    AFW_UTF8_LITERAL("(uri: anyURI, entries: list, journal?: object, adaptorTypeSpecific?: object): (object _AdaptiveJournalEntry_)"),
-    AFW_UTF8_LITERAL("/* Modify adaptive object with URI */\nfunction modify_object_with_uri (\n    uri: anyURI,\n    entries: list,\n    journal?: object,\n    adaptorTypeSpecific?: object\n): (object _AdaptiveJournalEntry_);\n"),
+    AFW_UTF8_LITERAL("(uri: anyURI, entries: array, journal?: object, adaptorTypeSpecific?: object): (object _AdaptiveJournalEntry_)"),
+    AFW_UTF8_LITERAL("/* Modify adaptive object with URI */\nfunction modify_object_with_uri (\n    uri: anyURI,\n    entries: array,\n    journal?: object,\n    adaptorTypeSpecific?: object\n): (object _AdaptiveJournalEntry_);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_modify_object_with_uri,
     NULL,
@@ -2903,8 +2903,8 @@ impl_retrieve_objects_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("Objects retrieved or undefined"),
@@ -3068,8 +3068,8 @@ afw_function_definition_retrieve_objects = {
     AFW_UTF8_LITERAL("afwRetrieveObjects"),
     AFW_UTF8_LITERAL("Retrieve adaptive objects"),
     AFW_UTF8_LITERAL("This function retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied."),
-    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, queryCriteria?: (object _AdaptiveQueryCriteria_), options?: (object _AdaptiveObjectOptions_), adaptorTypeSpecific?: object): list"),
-    AFW_UTF8_LITERAL("/* Retrieve adaptive objects */\nfunction retrieve_objects (\n    adaptorId: string                                /* Id of adaptor */,\n    objectType: string                               /* Id of object type */,\n    queryCriteria?: (object _AdaptiveQueryCriteria_) /* Query criteria */,\n    options?: (object _AdaptiveObjectOptions_)       /* Object options */,\n    adaptorTypeSpecific?: object                     /* Adaptor specific */\n): list; /* Objects retrieved or undefined */\n"),
+    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, queryCriteria?: (object _AdaptiveQueryCriteria_), options?: (object _AdaptiveObjectOptions_), adaptorTypeSpecific?: object): array"),
+    AFW_UTF8_LITERAL("/* Retrieve adaptive objects */\nfunction retrieve_objects (\n    adaptorId: string                                /* Id of adaptor */,\n    objectType: string                               /* Id of object type */,\n    queryCriteria?: (object _AdaptiveQueryCriteria_) /* Query criteria */,\n    options?: (object _AdaptiveObjectOptions_)       /* Object options */,\n    adaptorTypeSpecific?: object                     /* Adaptor specific */\n): array; /* Objects retrieved or undefined */\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_retrieve_objects,
     NULL,
@@ -3880,8 +3880,8 @@ impl_retrieve_objects_with_uri_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("Objects retrieved or undefined"),
@@ -3991,8 +3991,8 @@ afw_function_definition_retrieve_objects_with_uri = {
     AFW_UTF8_LITERAL("afwRetrieveObjectsWithUri"),
     AFW_UTF8_LITERAL("Retrieve adaptive object with URI"),
     AFW_UTF8_LITERAL("Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied."),
-    AFW_UTF8_LITERAL("(uri: anyURI, options?: (object _AdaptiveObjectOptions_), adaptorTypeSpecific?: object): list"),
-    AFW_UTF8_LITERAL("/* Retrieve adaptive object with URI */\nfunction retrieve_objects_with_uri (\n    uri: anyURI,\n    options?: (object _AdaptiveObjectOptions_) /* Object options */,\n    adaptorTypeSpecific?: object               /* Adaptor specific */\n): list; /* Objects retrieved or undefined */\n"),
+    AFW_UTF8_LITERAL("(uri: anyURI, options?: (object _AdaptiveObjectOptions_), adaptorTypeSpecific?: object): array"),
+    AFW_UTF8_LITERAL("/* Retrieve adaptive object with URI */\nfunction retrieve_objects_with_uri (\n    uri: anyURI,\n    options?: (object _AdaptiveObjectOptions_) /* Object options */,\n    adaptorTypeSpecific?: object               /* Adaptor specific */\n): array; /* Objects retrieved or undefined */\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_retrieve_objects_with_uri,
     NULL,
@@ -5345,8 +5345,8 @@ impl_flag_get_active_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -5375,8 +5375,8 @@ afw_function_definition_flag_get_active = {
     AFW_UTF8_LITERAL("afwFlagGetActive"),
     AFW_UTF8_LITERAL("Get a list of active flags"),
     AFW_UTF8_LITERAL("Get a list of of the flagId of flags that are set in the current execution context (xctx)."),
-    AFW_UTF8_LITERAL("(): (list string)"),
-    AFW_UTF8_LITERAL("/* Get a list of active flags */\nfunction flag_get_active (\n\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(): (array string)"),
+    AFW_UTF8_LITERAL("/* Get a list of active flags */\nfunction flag_get_active (\n\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_get_active,
     NULL,
@@ -5434,8 +5434,8 @@ impl_flag_get_active_defaults_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -5464,8 +5464,8 @@ afw_function_definition_flag_get_active_defaults = {
     AFW_UTF8_LITERAL("afwFlagGetActiveDefaults"),
     AFW_UTF8_LITERAL("Get a list of default active flags"),
     AFW_UTF8_LITERAL("Get a list of the flagId of flags that are set by default when a new execution context (xctx) is created."),
-    AFW_UTF8_LITERAL("(): (list string)"),
-    AFW_UTF8_LITERAL("/* Get a list of default active flags */\nfunction flag_get_active_defaults (\n\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(): (array string)"),
+    AFW_UTF8_LITERAL("/* Get a list of default active flags */\nfunction flag_get_active_defaults (\n\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_get_active_defaults,
     NULL,
@@ -5523,8 +5523,8 @@ impl_flag_get_defaults_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -5553,8 +5553,8 @@ afw_function_definition_flag_get_defaults = {
     AFW_UTF8_LITERAL("afwFlagGetDefaults"),
     AFW_UTF8_LITERAL("Get the list of flags used to determine the default active flags"),
     AFW_UTF8_LITERAL("Get the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags."),
-    AFW_UTF8_LITERAL("(): (list string)"),
-    AFW_UTF8_LITERAL("/* Get the list of flags used to determine the default active flags */\nfunction flag_get_defaults (\n\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(): (array string)"),
+    AFW_UTF8_LITERAL("/* Get the list of flags used to determine the default active flags */\nfunction flag_get_defaults (\n\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_get_defaults,
     NULL,
@@ -5638,8 +5638,8 @@ impl_flag_modify_defaults_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("flagId"),
     AFW_UTF8_LITERAL(""),
@@ -5696,8 +5696,8 @@ afw_function_definition_flag_modify_defaults = {
     AFW_UTF8_LITERAL("afwFlagModifyDefaults"),
     AFW_UTF8_LITERAL("Add or remove flags used to determine the default active flags"),
     AFW_UTF8_LITERAL("Add or remove flags from the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.\n\nThis change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config."),
-    AFW_UTF8_LITERAL("(flagId: (list string), add?: boolean): null"),
-    AFW_UTF8_LITERAL("/* Add or remove flags used to determine the default active flags */\nfunction flag_modify_defaults (\n    flagId: (list string),\n    add?: boolean\n): null;\n"),
+    AFW_UTF8_LITERAL("(flagId: (array string), add?: boolean): null"),
+    AFW_UTF8_LITERAL("/* Add or remove flags used to determine the default active flags */\nfunction flag_modify_defaults (\n    flagId: (array string),\n    add?: boolean\n): null;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_modify_defaults,
     NULL,
@@ -5781,8 +5781,8 @@ impl_flag_replace_defaults_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("flagId"),
     AFW_UTF8_LITERAL(""),
@@ -5812,8 +5812,8 @@ afw_function_definition_flag_replace_defaults = {
     AFW_UTF8_LITERAL("afwFlagReplaceDefaults"),
     AFW_UTF8_LITERAL("Replace the list of flags used to determine the default active flags"),
     AFW_UTF8_LITERAL("Completely replace the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.\n\nThis change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config."),
-    AFW_UTF8_LITERAL("(flagId: (list string)): null"),
-    AFW_UTF8_LITERAL("/* Replace the list of flags used to determine the default active flags */\nfunction flag_replace_defaults (\n    flagId: (list string)\n): null;\n"),
+    AFW_UTF8_LITERAL("(flagId: (array string)): null"),
+    AFW_UTF8_LITERAL("/* Replace the list of flags used to determine the default active flags */\nfunction flag_replace_defaults (\n    flagId: (array string)\n): null;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_replace_defaults,
     NULL,
@@ -5897,8 +5897,8 @@ impl_flag_set_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("flagId"),
     AFW_UTF8_LITERAL(""),
@@ -5955,8 +5955,8 @@ afw_function_definition_flag_set = {
     AFW_UTF8_LITERAL("afwFlagSet"),
     AFW_UTF8_LITERAL("Set or unset active xctx flags"),
     AFW_UTF8_LITERAL("Set or unset one or more active xctx (request) flags."),
-    AFW_UTF8_LITERAL("(flagId: (list string), setTo?: boolean): null"),
-    AFW_UTF8_LITERAL("/* Set or unset active xctx flags */\nfunction flag_set (\n    flagId: (list string),\n    setTo?: boolean\n): null;\n"),
+    AFW_UTF8_LITERAL("(flagId: (array string), setTo?: boolean): null"),
+    AFW_UTF8_LITERAL("/* Set or unset active xctx flags */\nfunction flag_set (\n    flagId: (array string),\n    setTo?: boolean\n): null;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_flag_set,
     NULL,
@@ -6822,8 +6822,8 @@ impl_at_least_one_member_of_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -6848,8 +6848,8 @@ impl_at_least_one_member_of_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -6880,8 +6880,8 @@ afw_function_definition_at_least_one_member_of_anyURI = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfAnyURI"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in anyURI list1 is in anyURI list2."),
-    AFW_UTF8_LITERAL("(list1: (list anyURI), list2: (list anyURI)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<anyURI> (\n    list1: (list anyURI),\n    list2: (list anyURI)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array anyURI), list2: (array anyURI)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<anyURI> (\n    list1: (array anyURI),\n    list2: (array anyURI)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -6939,8 +6939,8 @@ impl_bag_anyURI_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -6965,8 +6965,8 @@ impl_bag_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -6996,8 +6996,8 @@ afw_function_definition_bag_anyURI = {
     AFW_UTF8_LITERAL("afwBagAnyURI"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of anyURI values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list anyURI))): (list anyURI)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<anyURI> (\n    ...values: (list of (list anyURI))\n): (list anyURI);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array anyURI))): (array anyURI)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<anyURI> (\n    ...values: (list of (array anyURI))\n): (array anyURI);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -7081,8 +7081,8 @@ impl_bag_size_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -7112,8 +7112,8 @@ afw_function_definition_bag_size_anyURI = {
     AFW_UTF8_LITERAL("afwBagSizeAnyURI"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list anyURI)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<anyURI> (\n    value: (list anyURI)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array anyURI)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<anyURI> (\n    value: (array anyURI)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -8234,8 +8234,8 @@ impl_intersection_anyURI_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -8260,8 +8260,8 @@ impl_intersection_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -8286,8 +8286,8 @@ impl_intersection_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -8318,8 +8318,8 @@ afw_function_definition_intersection_anyURI = {
     AFW_UTF8_LITERAL("afwIntersectionAnyURI"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of anyURI with the values that are common to both list of anyURI list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list anyURI), list2: (list anyURI)): (list anyURI)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<anyURI> (\n    list1: (list anyURI),\n    list2: (list anyURI)\n): (list anyURI);\n"),
+    AFW_UTF8_LITERAL("(list1: (array anyURI), list2: (array anyURI)): (array anyURI)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<anyURI> (\n    list1: (array anyURI),\n    list2: (array anyURI)\n): (array anyURI);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -8545,10 +8545,10 @@ impl_is_in_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -8577,8 +8577,8 @@ afw_function_definition_is_in_anyURI = {
     AFW_UTF8_LITERAL("afwIsInAnyURI"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether anyURI value is in list of anyURI list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: anyURI, list: (list anyURI)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<anyURI> (\n    value: anyURI,\n    list: (list anyURI)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: anyURI, array: (array anyURI)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<anyURI> (\n    value: anyURI,\n    array: (array anyURI)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -9528,10 +9528,10 @@ impl_one_and_only_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -9567,8 +9567,8 @@ afw_function_definition_one_and_only_anyURI = {
     AFW_UTF8_LITERAL("afwOneAndOnlyAnyURI"),
     AFW_UTF8_LITERAL("Converts a one value list to a anyURI value"),
     AFW_UTF8_LITERAL("This converts a list of anyURI values that contains one value to a single anyURI value."),
-    AFW_UTF8_LITERAL("(list: (list list)): anyURI"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a anyURI value */\nfunction one_and_only<anyURI> (\n    list: (list list)\n): anyURI;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): anyURI"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a anyURI value */\nfunction one_and_only<anyURI> (\n    array: (array array)\n): anyURI;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -10475,8 +10475,8 @@ impl_set_equals_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -10501,8 +10501,8 @@ impl_set_equals_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -10533,8 +10533,8 @@ afw_function_definition_set_equals_anyURI = {
     AFW_UTF8_LITERAL("afwSetEqualsAnyURI"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if anyURI list1 and anyURI list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list anyURI), list2: (list anyURI)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<anyURI> (\n    list1: (list anyURI),\n    list2: (list anyURI)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array anyURI), list2: (array anyURI)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<anyURI> (\n    list1: (array anyURI),\n    list2: (array anyURI)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -10592,8 +10592,8 @@ impl_split_anyURI_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -10703,8 +10703,8 @@ afw_function_definition_split_anyURI = {
     AFW_UTF8_LITERAL("afwSplitAnyURI"),
     AFW_UTF8_LITERAL("Split at a separator"),
     AFW_UTF8_LITERAL("Split anyURI value into an list of strings using a separator."),
-    AFW_UTF8_LITERAL("(value: anyURI, separator?: string, limit?: integer): list"),
-    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split<anyURI> (\n    value: anyURI,\n    separator?: string,\n    limit?: integer\n): list;\n"),
+    AFW_UTF8_LITERAL("(value: anyURI, separator?: string, limit?: integer): array"),
+    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split<anyURI> (\n    value: anyURI,\n    separator?: string,\n    limit?: integer\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_split,
     NULL,
@@ -10931,8 +10931,8 @@ impl_subset_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -10957,8 +10957,8 @@ impl_subset_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -10989,8 +10989,8 @@ afw_function_definition_subset_anyURI = {
     AFW_UTF8_LITERAL("afwSubsetAnyURI"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in anyURI list1 are all in anyURI list2."),
-    AFW_UTF8_LITERAL("(list1: (list anyURI), list2: (list anyURI)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<anyURI> (\n    list1: (list anyURI),\n    list2: (list anyURI)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array anyURI), list2: (array anyURI)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<anyURI> (\n    list1: (array anyURI),\n    list2: (array anyURI)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -11342,8 +11342,8 @@ impl_union_anyURI_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -11368,8 +11368,8 @@ impl_union_anyURI_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("anyURI"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -11399,8 +11399,8 @@ afw_function_definition_union_anyURI = {
     AFW_UTF8_LITERAL("afwUnionAnyURI"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of anyURI contains all of the unique values in two or more list of anyURI values."),
-    AFW_UTF8_LITERAL("(lists_1: (list anyURI), lists_2: (list anyURI), ...lists_rest: (list of (list anyURI))): (list anyURI)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<anyURI> (\n    lists_1: (list anyURI),\n    lists_2: (list anyURI),\n    ...lists_rest: (list of (list anyURI))\n): (list anyURI);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array anyURI), lists_2: (array anyURI), ...lists_rest: (list of (array anyURI))): (array anyURI)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<anyURI> (\n    lists_1: (array anyURI),\n    lists_2: (array anyURI),\n    ...lists_rest: (list of (array anyURI))\n): (array anyURI);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -11539,6 +11539,2734 @@ afw_function_definition_url_encode_anyURI = {
     false
 };
 
+/* ---------- add_entries ---------- */
+
+static const afw_utf8_t
+impl_object_path__add_entries =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/add_entries");
+
+static const afw_runtime_object_indirect_t
+impl_object__add_entries = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_add_entries,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__add_entries
+        }
+    },
+    (void *)&afw_function_definition_add_entries
+};
+
+static const afw_value_function_parameter_t
+impl_add_entries_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The modified target list."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_add_entries_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("target"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Target list. This list must not be immutable."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_add_entries_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("source"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Source list(s)."),
+    1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_add_entries_parameters[] = {
+    &impl_add_entries_parameter_1,
+    &impl_add_entries_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_add_entries_sideEffects[] = {
+    AFW_UTF8_LITERAL("Target list is modified."),
+    { NULL }
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_add_entries = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__add_entries,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("add_entries"),
+    AFW_UTF8_LITERAL("add_entries"),
+    AFW_UTF8_LITERAL("add_entries"),
+    AFW_UTF8_LITERAL("addEntries"),
+    AFW_UTF8_LITERAL("afwAddEntries"),
+    AFW_UTF8_LITERAL("Add entries of one or more lists to another"),
+    AFW_UTF8_LITERAL("Add the entries of one or more lists to another."),
+    AFW_UTF8_LITERAL("(target: array, source_1: array, ...source_rest: (list of array)): array"),
+    AFW_UTF8_LITERAL("/* Add entries of one or more lists to another */\nfunction add_entries (\n    target: array,\n    source_1: array,\n    ...source_rest: (list of array)\n): array;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_add_entries,
+    NULL,
+    2,
+    -1,
+    &impl_add_entries_parameters[0],
+    2,
+    &impl_add_entries_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    &impl_add_entries_sideEffects[0],
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
+/* ---------- array ---------- */
+
+static const afw_utf8_t
+impl_object_path__array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/array");
+
+static const afw_runtime_object_indirect_t
+impl_object__array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__array
+        }
+    },
+    (void *)&afw_function_definition_array
+};
+
+static const afw_value_function_parameter_t
+impl_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The constructed array."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("values"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A value can refer to any adaptable value belonging to any data type or an array expression. In the case of an array expression, indicated by '...' followed by an expression that results in an array, every element within that array is included in the newly created array."),
+    0,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_array_parameters[] = {
+    &impl_array_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_array_errorsThrown[] = {
+    "error", "cast_error",
+    "reason", "value could not be converted",
+    NULL,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("afwArray"),
+    AFW_UTF8_LITERAL("Construct an array with 0 or more elements"),
+    AFW_UTF8_LITERAL("Construct an array with 0 or more elements."),
+    AFW_UTF8_LITERAL("(...values: (list of any)): array"),
+    AFW_UTF8_LITERAL("/* Construct an array with 0 or more elements */\nfunction array (\n    ...values: (list of any)\n): array;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_array,
+    NULL,
+    0,
+    -1,
+    &impl_array_parameters[0],
+    1,
+    &impl_array_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    &impl_array_errorsThrown[0],
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- bag<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__bag_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/bag_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__bag_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_bag_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__bag_array
+        }
+    },
+    (void *)&afw_function_definition_bag_array
+};
+
+static const afw_value_function_parameter_t
+impl_bag_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_bag_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("values"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    0,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_bag_array_parameters[] = {
+    &impl_bag_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_bag_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__bag_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("bag<array>"),
+    AFW_UTF8_LITERAL("bag"),
+    AFW_UTF8_LITERAL("bag_array"),
+    AFW_UTF8_LITERAL("bagArray"),
+    AFW_UTF8_LITERAL("afwBagArray"),
+    AFW_UTF8_LITERAL("Makes a list from values"),
+    AFW_UTF8_LITERAL("Takes any number of array values and returns a list of list."),
+    AFW_UTF8_LITERAL("(...values: (list of (array array))): (array array)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<array> (\n    ...values: (list of (array array))\n): (array array);\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_bag,
+    NULL,
+    0,
+    -1,
+    &impl_bag_array_parameters[0],
+    1,
+    &impl_bag_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_bag,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- bag_size<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__bag_size_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/bag_size_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__bag_size_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_bag_size_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__bag_size_array
+        }
+    },
+    (void *)&afw_function_definition_bag_size_array
+};
+
+static const afw_value_function_parameter_t
+impl_bag_size_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    AFW_UTF8_LITERAL("integer"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_bag_size_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_bag_size_array_parameters[] = {
+    &impl_bag_size_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_bag_size_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__bag_size_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("bag_size<array>"),
+    AFW_UTF8_LITERAL("bag_size"),
+    AFW_UTF8_LITERAL("bag_size_array"),
+    AFW_UTF8_LITERAL("bagSizeArray"),
+    AFW_UTF8_LITERAL("afwBagSizeArray"),
+    AFW_UTF8_LITERAL("Returns the number of values in a bag"),
+    AFW_UTF8_LITERAL("This returns the integer number of values in list."),
+    AFW_UTF8_LITERAL("(value: (array array)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<array> (\n    value: (array array)\n): integer;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_bag_size,
+    NULL,
+    1,
+    1,
+    &impl_bag_size_array_parameters[0],
+    1,
+    &impl_bag_size_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_bag_size,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- clone<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__clone_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/clone_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__clone_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_clone_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__clone_array
+        }
+    },
+    (void *)&afw_function_definition_clone_array
+};
+
+static const afw_value_function_parameter_t
+impl_clone_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The cloned array value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_clone_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The array value to clone."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_clone_array_parameters[] = {
+    &impl_clone_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_clone_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__clone_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("clone<array>"),
+    AFW_UTF8_LITERAL("clone"),
+    AFW_UTF8_LITERAL("clone_array"),
+    AFW_UTF8_LITERAL("cloneArray"),
+    AFW_UTF8_LITERAL("afwCloneArray"),
+    AFW_UTF8_LITERAL("Clone array value"),
+    AFW_UTF8_LITERAL("Deep clone a array value."),
+    AFW_UTF8_LITERAL("(value: array): array"),
+    AFW_UTF8_LITERAL("/* Clone array value */\nfunction clone<array> (\n    value: array\n): array;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_clone,
+    NULL,
+    1,
+    1,
+    &impl_clone_array_parameters[0],
+    1,
+    &impl_clone_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_clone,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- eq<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__eq_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eq_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__eq_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_eq_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__eq_array
+        }
+    },
+    (void *)&afw_function_definition_eq_array
+};
+
+static const afw_value_function_parameter_t
+impl_eq_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_eq_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_eq_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_eq_array_parameters[] = {
+    &impl_eq_array_parameter_1,
+    &impl_eq_array_parameter_2,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_eq_array_errorsThrown[] = {
+    "error", "conversion",
+    "reason", "arg2 cannot be converted to the data type of arg1.",
+    NULL,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eq_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__eq_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("eq<array>"),
+    AFW_UTF8_LITERAL("eq"),
+    AFW_UTF8_LITERAL("eq_array"),
+    AFW_UTF8_LITERAL("eqArray"),
+    AFW_UTF8_LITERAL("afwEqArray"),
+    AFW_UTF8_LITERAL("Checks for equal"),
+    AFW_UTF8_LITERAL("Determine if array arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you want false to be returned if arg1 and arg2's data type don't match."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for equal */\nfunction eq<array> (\n    arg1: array,\n    arg2: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL("=="),
+    afw_function_execute_eq,
+    NULL,
+    2,
+    2,
+    &impl_eq_array_parameters[0],
+    2,
+    &impl_eq_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    &impl_eq_array_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_eq,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- eqx<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__eqx_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eqx_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__eqx_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_eqx_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__eqx_array
+        }
+    },
+    (void *)&afw_function_definition_eqx_array
+};
+
+static const afw_value_function_parameter_t
+impl_eqx_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_eqx_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_eqx_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_eqx_array_parameters[] = {
+    &impl_eqx_array_parameter_1,
+    &impl_eqx_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eqx_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__eqx_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("eqx<array>"),
+    AFW_UTF8_LITERAL("eqx"),
+    AFW_UTF8_LITERAL("eqx_array"),
+    AFW_UTF8_LITERAL("eqxArray"),
+    AFW_UTF8_LITERAL("afwEqxArray"),
+    AFW_UTF8_LITERAL("Checks for equal and type"),
+    AFW_UTF8_LITERAL("Determine if for array arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for equal and type */\nfunction eqx<array> (\n    arg1: array,\n    arg2: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL("==="),
+    afw_function_execute_eqx,
+    NULL,
+    2,
+    2,
+    &impl_eqx_array_parameters[0],
+    2,
+    &impl_eqx_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_eqx,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- ge<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__ge_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__ge_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_ge_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__ge_array
+        }
+    },
+    (void *)&afw_function_definition_ge_array
+};
+
+static const afw_value_function_parameter_t
+impl_ge_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_ge_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_ge_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_ge_array_parameters[] = {
+    &impl_ge_array_parameter_1,
+    &impl_ge_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_ge_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__ge_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("ge<array>"),
+    AFW_UTF8_LITERAL("ge"),
+    AFW_UTF8_LITERAL("ge_array"),
+    AFW_UTF8_LITERAL("geArray"),
+    AFW_UTF8_LITERAL("afwGeArray"),
+    AFW_UTF8_LITERAL("Checks for greater than or equal"),
+    AFW_UTF8_LITERAL("Checks for array arg1 is greater than or equal to array arg2 and return the boolean result."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for greater than or equal */\nfunction ge<array> (\n    arg1: array,\n    arg2: array\n): boolean;\n"),
+    AFW_UTF8_LITERAL(">="),
+    afw_function_execute_ge,
+    NULL,
+    2,
+    2,
+    &impl_ge_array_parameters[0],
+    2,
+    &impl_ge_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_ge,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- gt<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__gt_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__gt_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_gt_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__gt_array
+        }
+    },
+    (void *)&afw_function_definition_gt_array
+};
+
+static const afw_value_function_parameter_t
+impl_gt_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_gt_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_gt_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_gt_array_parameters[] = {
+    &impl_gt_array_parameter_1,
+    &impl_gt_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_gt_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__gt_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("gt<array>"),
+    AFW_UTF8_LITERAL("gt"),
+    AFW_UTF8_LITERAL("gt_array"),
+    AFW_UTF8_LITERAL("gtArray"),
+    AFW_UTF8_LITERAL("afwGtArray"),
+    AFW_UTF8_LITERAL("Checks for greater than"),
+    AFW_UTF8_LITERAL("Checks for array arg1 is greater than array arg2 and return the boolean result."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for greater than */\nfunction gt<array> (\n    arg1: array,\n    arg2: array\n): boolean;\n"),
+    AFW_UTF8_LITERAL(">"),
+    afw_function_execute_gt,
+    NULL,
+    2,
+    2,
+    &impl_gt_array_parameters[0],
+    2,
+    &impl_gt_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_gt,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- includes<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__includes_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/includes_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__includes_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_includes_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__includes_array
+        }
+    },
+    (void *)&afw_function_definition_includes_array
+};
+
+static const afw_value_function_parameter_t
+impl_includes_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Indicates if the element is found"),
+    AFW_UTF8_LITERAL("Indicates if the element is found in list."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_includes_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("The list to search"),
+    AFW_UTF8_LITERAL("The list to search."),
+    -1,
+    false,
+    false,
+    true,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_includes_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("searchElement"),
+    AFW_UTF8_LITERAL("Element to find"),
+    AFW_UTF8_LITERAL("Element to find."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_includes_array_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    AFW_UTF8_LITERAL("integer"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("fromIndex"),
+    AFW_UTF8_LITERAL("Index in the list to start"),
+    AFW_UTF8_LITERAL("Index in the list to start search."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_includes_array_parameters[] = {
+    &impl_includes_array_parameter_1,
+    &impl_includes_array_parameter_2,
+    &impl_includes_array_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_includes_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__includes_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("includes<array>"),
+    AFW_UTF8_LITERAL("includes"),
+    AFW_UTF8_LITERAL("includes_array"),
+    AFW_UTF8_LITERAL("includesArray"),
+    AFW_UTF8_LITERAL("afwIncludesArray"),
+    AFW_UTF8_LITERAL("Checks whether or not a list contains any value"),
+    AFW_UTF8_LITERAL("Checks whether or not a list contains any value."),
+    AFW_UTF8_LITERAL("(array: array, searchElement: any, fromIndex?: integer): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether or not a list contains any value */\nfunction includes<array> (\n    array: array        /* The list to search */,\n    searchElement: any  /* Element to find */,\n    fromIndex?: integer /* Index in the list to start */\n): boolean; /* Indicates if the element is found */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_includes_array,
+    NULL,
+    2,
+    3,
+    &impl_includes_array_parameters[0],
+    3,
+    &impl_includes_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_includes,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- is<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__is_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/is_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__is_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_is_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__is_array
+        }
+    },
+    (void *)&afw_function_definition_is_array
+};
+
+static const afw_value_function_parameter_t
+impl_is_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_is_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Value to check"),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_is_array_parameters[] = {
+    &impl_is_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_is_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__is_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("is<array>"),
+    AFW_UTF8_LITERAL("is"),
+    AFW_UTF8_LITERAL("is_array"),
+    AFW_UTF8_LITERAL("isArray"),
+    AFW_UTF8_LITERAL("afwIsArray"),
+    AFW_UTF8_LITERAL("Checks whether value is dataType array"),
+    AFW_UTF8_LITERAL("Checks whether value is dataType array and return the boolean result."),
+    AFW_UTF8_LITERAL("(value: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether value is dataType array */\nfunction is<array> (\n    value: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_is,
+    NULL,
+    1,
+    1,
+    &impl_is_array_parameters[0],
+    1,
+    &impl_is_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_is,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- join ---------- */
+
+static const afw_utf8_t
+impl_object_path__join =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/join");
+
+static const afw_runtime_object_indirect_t
+impl_object__join = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_join,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__join
+        }
+    },
+    (void *)&afw_function_definition_join
+};
+
+static const afw_value_function_parameter_t
+impl_join_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Joined list values."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_join_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A list of values (statements) of any data type."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_join_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("separator"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The separator to use. If not specified, a comma (,) is used."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_join_parameters[] = {
+    &impl_join_parameter_1,
+    &impl_join_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_join = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__join,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("join"),
+    AFW_UTF8_LITERAL("join"),
+    AFW_UTF8_LITERAL("join"),
+    AFW_UTF8_LITERAL("join"),
+    AFW_UTF8_LITERAL("afwJoin"),
+    AFW_UTF8_LITERAL("Join the string values of list elements"),
+    AFW_UTF8_LITERAL("Concatenate the string values of the elements of a list with a separator."),
+    AFW_UTF8_LITERAL("(value: array, separator?: string): string"),
+    AFW_UTF8_LITERAL("/* Join the string values of list elements */\nfunction join (\n    value: array,\n    separator?: string\n): string;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_join,
+    NULL,
+    1,
+    2,
+    &impl_join_parameters[0],
+    2,
+    &impl_join_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_join,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- le<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__le_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__le_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_le_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__le_array
+        }
+    },
+    (void *)&afw_function_definition_le_array
+};
+
+static const afw_value_function_parameter_t
+impl_le_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_le_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_le_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_le_array_parameters[] = {
+    &impl_le_array_parameter_1,
+    &impl_le_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_le_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__le_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("le<array>"),
+    AFW_UTF8_LITERAL("le"),
+    AFW_UTF8_LITERAL("le_array"),
+    AFW_UTF8_LITERAL("leArray"),
+    AFW_UTF8_LITERAL("afwLeArray"),
+    AFW_UTF8_LITERAL("Checks for less than or equal"),
+    AFW_UTF8_LITERAL("Checks for array arg1 is less than or equal to array arg2 and return the boolean result."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for less than or equal */\nfunction le<array> (\n    arg1: array,\n    arg2: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL("<="),
+    afw_function_execute_le,
+    NULL,
+    2,
+    2,
+    &impl_le_array_parameters[0],
+    2,
+    &impl_le_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_le,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- length<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__length_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/length_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__length_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_length_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__length_array
+        }
+    },
+    (void *)&afw_function_definition_length_array
+};
+
+static const afw_value_function_parameter_t
+impl_length_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    AFW_UTF8_LITERAL("integer"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_length_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Returns the number of entries in a list or code points in others."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_length_array_parameters[] = {
+    &impl_length_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_length_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__length_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("length<array>"),
+    AFW_UTF8_LITERAL("length"),
+    AFW_UTF8_LITERAL("length_array"),
+    AFW_UTF8_LITERAL("lengthArray"),
+    AFW_UTF8_LITERAL("afwLengthArray"),
+    AFW_UTF8_LITERAL("Returns number of codepoints or entries in value"),
+    AFW_UTF8_LITERAL("This is a polymorphic function where array can be any of the supported data types. Return the integer number of entries in datatype list or codepoints in others."),
+    AFW_UTF8_LITERAL("(value: array): integer"),
+    AFW_UTF8_LITERAL("/* Returns number of codepoints or entries in value */\nfunction length<array> (\n    value: array\n): integer;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_length,
+    NULL,
+    1,
+    1,
+    &impl_length_array_parameters[0],
+    1,
+    &impl_length_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_length,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- lt<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__lt_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__lt_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_lt_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__lt_array
+        }
+    },
+    (void *)&afw_function_definition_lt_array
+};
+
+static const afw_value_function_parameter_t
+impl_lt_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_lt_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_lt_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_lt_array_parameters[] = {
+    &impl_lt_array_parameter_1,
+    &impl_lt_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_lt_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__lt_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("lt<array>"),
+    AFW_UTF8_LITERAL("lt"),
+    AFW_UTF8_LITERAL("lt_array"),
+    AFW_UTF8_LITERAL("ltArray"),
+    AFW_UTF8_LITERAL("afwLtArray"),
+    AFW_UTF8_LITERAL("Checks for less than"),
+    AFW_UTF8_LITERAL("Checks for array arg1 is less that array arg2 and return the boolean result."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for less than */\nfunction lt<array> (\n    arg1: array,\n    arg2: array\n): boolean;\n"),
+    AFW_UTF8_LITERAL("<"),
+    afw_function_execute_lt,
+    NULL,
+    2,
+    2,
+    &impl_lt_array_parameters[0],
+    2,
+    &impl_lt_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_lt,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- ne<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__ne_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ne_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__ne_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_ne_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__ne_array
+        }
+    },
+    (void *)&afw_function_definition_ne_array
+};
+
+static const afw_value_function_parameter_t
+impl_ne_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_ne_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_ne_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_ne_array_parameters[] = {
+    &impl_ne_array_parameter_1,
+    &impl_ne_array_parameter_2,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_ne_array_errorsThrown[] = {
+    "error", "conversion",
+    "reason", "arg2 cannot be converted to the data type of arg1.",
+    NULL,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_ne_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__ne_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("ne<array>"),
+    AFW_UTF8_LITERAL("ne"),
+    AFW_UTF8_LITERAL("ne_array"),
+    AFW_UTF8_LITERAL("neArray"),
+    AFW_UTF8_LITERAL("afwNeArray"),
+    AFW_UTF8_LITERAL("Checks for not equal"),
+    AFW_UTF8_LITERAL("Determine if array arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you want true to be returned if arg1 and arg2's data type don't match."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for not equal */\nfunction ne<array> (\n    arg1: array,\n    arg2: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL("!="),
+    afw_function_execute_ne,
+    NULL,
+    2,
+    2,
+    &impl_ne_array_parameters[0],
+    2,
+    &impl_ne_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    &impl_ne_array_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_ne,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- nex<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__nex_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/nex_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__nex_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_nex_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__nex_array
+        }
+    },
+    (void *)&afw_function_definition_nex_array
+};
+
+static const afw_value_function_parameter_t
+impl_nex_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_nex_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_nex_array_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_nex_array_parameters[] = {
+    &impl_nex_array_parameter_1,
+    &impl_nex_array_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_nex_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__nex_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("nex<array>"),
+    AFW_UTF8_LITERAL("nex"),
+    AFW_UTF8_LITERAL("nex_array"),
+    AFW_UTF8_LITERAL("nexArray"),
+    AFW_UTF8_LITERAL("afwNexArray"),
+    AFW_UTF8_LITERAL("Checks for not equal value or type"),
+    AFW_UTF8_LITERAL("Determine if for array arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison."),
+    AFW_UTF8_LITERAL("(arg1: array, arg2: any): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for not equal value or type */\nfunction nex<array> (\n    arg1: array,\n    arg2: any\n): boolean;\n"),
+    AFW_UTF8_LITERAL("!=="),
+    afw_function_execute_nex,
+    NULL,
+    2,
+    2,
+    &impl_nex_array_parameters[0],
+    2,
+    &impl_nex_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_nex,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- reverse ---------- */
+
+static const afw_utf8_t
+impl_object_path__reverse =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/reverse");
+
+static const afw_runtime_object_indirect_t
+impl_object__reverse = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_reverse,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__reverse
+        }
+    },
+    (void *)&afw_function_definition_reverse
+};
+
+static const afw_value_function_parameter_t
+impl_reverse_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A list with elements reversed."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_reverse_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A list to reverse."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_reverse_parameters[] = {
+    &impl_reverse_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_reverse = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__reverse,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("reverse"),
+    AFW_UTF8_LITERAL("reverse"),
+    AFW_UTF8_LITERAL("reverse"),
+    AFW_UTF8_LITERAL("reverse"),
+    AFW_UTF8_LITERAL("afwReverse"),
+    AFW_UTF8_LITERAL("Return list with elements reversed"),
+    AFW_UTF8_LITERAL("Reverse the order of the elements in a list. If the list is typed, the resulting list will be the same type."),
+    AFW_UTF8_LITERAL("(array: array): array"),
+    AFW_UTF8_LITERAL("/* Return list with elements reversed */\nfunction reverse (\n    array: array\n): array;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_reverse,
+    NULL,
+    1,
+    1,
+    &impl_reverse_parameters[0],
+    1,
+    &impl_reverse_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_reverse,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- slice ---------- */
+
+static const afw_utf8_t
+impl_object_path__slice =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/slice");
+
+static const afw_runtime_object_indirect_t
+impl_object__slice = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_slice,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__slice
+        }
+    },
+    (void *)&afw_function_definition_slice
+};
+
+static const afw_value_function_parameter_t
+impl_slice_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A list containing the selected values. If all of the values are the same data type, the list will be a list of that data type."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_slice_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The list to slice."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_slice_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    AFW_UTF8_LITERAL("integer"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("startIndex"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the zero based starting index. Use negative number to index from the end of the list. If not specified, an index of 0 is assumed."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_slice_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    AFW_UTF8_LITERAL("integer"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("endIndex"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the zero based ending index. If positive, this is one more than the index of the last value to include in the list. If negative, the index is from the end of the list. If not specified, the slice is from startIndex up to and including the end of the list."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_slice_parameters[] = {
+    &impl_slice_parameter_1,
+    &impl_slice_parameter_2,
+    &impl_slice_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_slice = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__slice,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("slice"),
+    AFW_UTF8_LITERAL("slice"),
+    AFW_UTF8_LITERAL("slice"),
+    AFW_UTF8_LITERAL("slice"),
+    AFW_UTF8_LITERAL("afwSlice"),
+    AFW_UTF8_LITERAL("Return a consecutive slice of values from a list"),
+    AFW_UTF8_LITERAL("This function extracts a consecutive slice of values from a list."),
+    AFW_UTF8_LITERAL("(array: array, startIndex?: integer, endIndex?: integer): array"),
+    AFW_UTF8_LITERAL("/* Return a consecutive slice of values from a list */\nfunction slice (\n    array: array,\n    startIndex?: integer,\n    endIndex?: integer\n): array;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_slice,
+    NULL,
+    1,
+    3,
+    &impl_slice_parameters[0],
+    3,
+    &impl_slice_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- to_string<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_string_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_string_array");
+
+static const afw_runtime_object_indirect_t
+impl_object__to_string_array = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_to_string_array,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__to_string_array
+        }
+    },
+    (void *)&afw_function_definition_to_string_array
+};
+
+static const afw_value_function_parameter_t
+impl_to_string_array_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The string representation of the value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_to_string_array_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("A array value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_to_string_array_parameters[] = {
+    &impl_to_string_array_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_to_string_array = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__to_string_array,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("to_string<array>"),
+    AFW_UTF8_LITERAL("to_string"),
+    AFW_UTF8_LITERAL("to_string_array"),
+    AFW_UTF8_LITERAL("toStringArray"),
+    AFW_UTF8_LITERAL("afwToStringArray"),
+    AFW_UTF8_LITERAL("Converts value to string"),
+    AFW_UTF8_LITERAL("Converts array value to string. For list values, the to_string() value for each entry is returned separated with commas."),
+    AFW_UTF8_LITERAL("(value: array): string"),
+    AFW_UTF8_LITERAL("/* Converts value to string */\nfunction to_string<array> (\n    value: array\n): string;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_convert,
+    NULL,
+    1,
+    1,
+    &impl_to_string_array_parameters[0],
+    1,
+    &impl_to_string_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    NULL,
+    NULL,
+    afw_data_type_method_number_to_string,
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
 /* ---------- at_least_one_member_of<base64Binary> ---------- */
 
 static const afw_utf8_t
@@ -11600,8 +14328,8 @@ impl_at_least_one_member_of_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -11626,8 +14354,8 @@ impl_at_least_one_member_of_base64Binary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -11658,8 +14386,8 @@ afw_function_definition_at_least_one_member_of_base64Binary = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfBase64Binary"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in base64Binary list1 is in base64Binary list2."),
-    AFW_UTF8_LITERAL("(list1: (list base64Binary), list2: (list base64Binary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<base64Binary> (\n    list1: (list base64Binary),\n    list2: (list base64Binary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array base64Binary), list2: (array base64Binary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<base64Binary> (\n    list1: (array base64Binary),\n    list2: (array base64Binary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -11717,8 +14445,8 @@ impl_bag_base64Binary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -11743,8 +14471,8 @@ impl_bag_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -11774,8 +14502,8 @@ afw_function_definition_bag_base64Binary = {
     AFW_UTF8_LITERAL("afwBagBase64Binary"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of base64Binary values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list base64Binary))): (list base64Binary)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<base64Binary> (\n    ...values: (list of (list base64Binary))\n): (list base64Binary);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array base64Binary))): (array base64Binary)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<base64Binary> (\n    ...values: (list of (array base64Binary))\n): (array base64Binary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -11859,8 +14587,8 @@ impl_bag_size_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -11890,8 +14618,8 @@ afw_function_definition_bag_size_base64Binary = {
     AFW_UTF8_LITERAL("afwBagSizeBase64Binary"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list base64Binary)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<base64Binary> (\n    value: (list base64Binary)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array base64Binary)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<base64Binary> (\n    value: (array base64Binary)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -12769,8 +15497,8 @@ impl_intersection_base64Binary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -12795,8 +15523,8 @@ impl_intersection_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -12821,8 +15549,8 @@ impl_intersection_base64Binary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -12853,8 +15581,8 @@ afw_function_definition_intersection_base64Binary = {
     AFW_UTF8_LITERAL("afwIntersectionBase64Binary"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of base64Binary with the values that are common to both list of base64Binary list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list base64Binary), list2: (list base64Binary)): (list base64Binary)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<base64Binary> (\n    list1: (list base64Binary),\n    list2: (list base64Binary)\n): (list base64Binary);\n"),
+    AFW_UTF8_LITERAL("(list1: (array base64Binary), list2: (array base64Binary)): (array base64Binary)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<base64Binary> (\n    list1: (array base64Binary),\n    list2: (array base64Binary)\n): (array base64Binary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -13080,10 +15808,10 @@ impl_is_in_base64Binary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -13112,8 +15840,8 @@ afw_function_definition_is_in_base64Binary = {
     AFW_UTF8_LITERAL("afwIsInBase64Binary"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether base64Binary value is in list of base64Binary list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: base64Binary, list: (list base64Binary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<base64Binary> (\n    value: base64Binary,\n    list: (list base64Binary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: base64Binary, array: (array base64Binary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<base64Binary> (\n    value: base64Binary,\n    array: (array base64Binary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -13777,10 +16505,10 @@ impl_one_and_only_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -13816,8 +16544,8 @@ afw_function_definition_one_and_only_base64Binary = {
     AFW_UTF8_LITERAL("afwOneAndOnlyBase64Binary"),
     AFW_UTF8_LITERAL("Converts a one value list to a base64Binary value"),
     AFW_UTF8_LITERAL("This converts a list of base64Binary values that contains one value to a single base64Binary value."),
-    AFW_UTF8_LITERAL("(list: (list list)): base64Binary"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a base64Binary value */\nfunction one_and_only<base64Binary> (\n    list: (list list)\n): base64Binary;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): base64Binary"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a base64Binary value */\nfunction one_and_only<base64Binary> (\n    array: (array array)\n): base64Binary;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -13901,8 +16629,8 @@ impl_set_equals_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -13927,8 +16655,8 @@ impl_set_equals_base64Binary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -13959,8 +16687,8 @@ afw_function_definition_set_equals_base64Binary = {
     AFW_UTF8_LITERAL("afwSetEqualsBase64Binary"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if base64Binary list1 and base64Binary list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list base64Binary), list2: (list base64Binary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<base64Binary> (\n    list1: (list base64Binary),\n    list2: (list base64Binary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array base64Binary), list2: (array base64Binary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<base64Binary> (\n    list1: (array base64Binary),\n    list2: (array base64Binary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -14044,8 +16772,8 @@ impl_subset_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -14070,8 +16798,8 @@ impl_subset_base64Binary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -14102,8 +16830,8 @@ afw_function_definition_subset_base64Binary = {
     AFW_UTF8_LITERAL("afwSubsetBase64Binary"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in base64Binary list1 are all in base64Binary list2."),
-    AFW_UTF8_LITERAL("(list1: (list base64Binary), list2: (list base64Binary)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<base64Binary> (\n    list1: (list base64Binary),\n    list2: (list base64Binary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array base64Binary), list2: (array base64Binary)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<base64Binary> (\n    list1: (array base64Binary),\n    list2: (array base64Binary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -14277,8 +17005,8 @@ impl_union_base64Binary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -14303,8 +17031,8 @@ impl_union_base64Binary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("base64Binary"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -14334,8 +17062,8 @@ afw_function_definition_union_base64Binary = {
     AFW_UTF8_LITERAL("afwUnionBase64Binary"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of base64Binary contains all of the unique values in two or more list of base64Binary values."),
-    AFW_UTF8_LITERAL("(lists_1: (list base64Binary), lists_2: (list base64Binary), ...lists_rest: (list of (list base64Binary))): (list base64Binary)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<base64Binary> (\n    lists_1: (list base64Binary),\n    lists_2: (list base64Binary),\n    ...lists_rest: (list of (list base64Binary))\n): (list base64Binary);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array base64Binary), lists_2: (array base64Binary), ...lists_rest: (list of (array base64Binary))): (array base64Binary)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<base64Binary> (\n    lists_1: (array base64Binary),\n    lists_2: (array base64Binary),\n    ...lists_rest: (list of (array base64Binary))\n): (array base64Binary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -14419,8 +17147,8 @@ impl_at_least_one_member_of_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -14445,8 +17173,8 @@ impl_at_least_one_member_of_boolean_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -14477,8 +17205,8 @@ afw_function_definition_at_least_one_member_of_boolean = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfBoolean"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in boolean list1 is in boolean list2."),
-    AFW_UTF8_LITERAL("(list1: (list boolean), list2: (list boolean)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<boolean> (\n    list1: (list boolean),\n    list2: (list boolean)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array boolean), list2: (array boolean)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<boolean> (\n    list1: (array boolean),\n    list2: (array boolean)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -14536,8 +17264,8 @@ impl_bag_boolean_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -14562,8 +17290,8 @@ impl_bag_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -14593,8 +17321,8 @@ afw_function_definition_bag_boolean = {
     AFW_UTF8_LITERAL("afwBagBoolean"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of boolean values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list boolean))): (list boolean)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<boolean> (\n    ...values: (list of (list boolean))\n): (list boolean);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array boolean))): (array boolean)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<boolean> (\n    ...values: (list of (array boolean))\n): (array boolean);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -14678,8 +17406,8 @@ impl_bag_size_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -14709,8 +17437,8 @@ afw_function_definition_bag_size_boolean = {
     AFW_UTF8_LITERAL("afwBagSizeBoolean"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list boolean)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<boolean> (\n    value: (list boolean)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array boolean)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<boolean> (\n    value: (array boolean)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -15472,8 +18200,8 @@ impl_intersection_boolean_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -15498,8 +18226,8 @@ impl_intersection_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -15524,8 +18252,8 @@ impl_intersection_boolean_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -15556,8 +18284,8 @@ afw_function_definition_intersection_boolean = {
     AFW_UTF8_LITERAL("afwIntersectionBoolean"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of boolean with the values that are common to both list of boolean list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list boolean), list2: (list boolean)): (list boolean)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<boolean> (\n    list1: (list boolean),\n    list2: (list boolean)\n): (list boolean);\n"),
+    AFW_UTF8_LITERAL("(list1: (array boolean), list2: (array boolean)): (array boolean)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<boolean> (\n    list1: (array boolean),\n    list2: (array boolean)\n): (array boolean);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -15783,10 +18511,10 @@ impl_is_in_boolean_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -15815,8 +18543,8 @@ afw_function_definition_is_in_boolean = {
     AFW_UTF8_LITERAL("afwIsInBoolean"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether boolean value is in list of boolean list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: boolean, list: (list boolean)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<boolean> (\n    value: boolean,\n    list: (list boolean)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: boolean, array: (array boolean)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<boolean> (\n    value: boolean,\n    array: (array boolean)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -16480,10 +19208,10 @@ impl_one_and_only_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -16519,8 +19247,8 @@ afw_function_definition_one_and_only_boolean = {
     AFW_UTF8_LITERAL("afwOneAndOnlyBoolean"),
     AFW_UTF8_LITERAL("Converts a one value list to a boolean value"),
     AFW_UTF8_LITERAL("This converts a list of boolean values that contains one value to a single boolean value."),
-    AFW_UTF8_LITERAL("(list: (list list)): boolean"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a boolean value */\nfunction one_and_only<boolean> (\n    list: (list list)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): boolean"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a boolean value */\nfunction one_and_only<boolean> (\n    array: (array array)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -16604,8 +19332,8 @@ impl_set_equals_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -16630,8 +19358,8 @@ impl_set_equals_boolean_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -16662,8 +19390,8 @@ afw_function_definition_set_equals_boolean = {
     AFW_UTF8_LITERAL("afwSetEqualsBoolean"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if boolean list1 and boolean list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list boolean), list2: (list boolean)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<boolean> (\n    list1: (list boolean),\n    list2: (list boolean)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array boolean), list2: (array boolean)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<boolean> (\n    list1: (array boolean),\n    list2: (array boolean)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -16747,8 +19475,8 @@ impl_subset_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -16773,8 +19501,8 @@ impl_subset_boolean_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -16805,8 +19533,8 @@ afw_function_definition_subset_boolean = {
     AFW_UTF8_LITERAL("afwSubsetBoolean"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in boolean list1 are all in boolean list2."),
-    AFW_UTF8_LITERAL("(list1: (list boolean), list2: (list boolean)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<boolean> (\n    list1: (list boolean),\n    list2: (list boolean)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array boolean), list2: (array boolean)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<boolean> (\n    list1: (array boolean),\n    list2: (array boolean)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -16980,8 +19708,8 @@ impl_union_boolean_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -17006,8 +19734,8 @@ impl_union_boolean_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -17037,8 +19765,8 @@ afw_function_definition_union_boolean = {
     AFW_UTF8_LITERAL("afwUnionBoolean"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of boolean contains all of the unique values in two or more list of boolean values."),
-    AFW_UTF8_LITERAL("(lists_1: (list boolean), lists_2: (list boolean), ...lists_rest: (list of (list boolean))): (list boolean)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<boolean> (\n    lists_1: (list boolean),\n    lists_2: (list boolean),\n    ...lists_rest: (list of (list boolean))\n): (list boolean);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array boolean), lists_2: (array boolean), ...lists_rest: (list of (array boolean))): (array boolean)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<boolean> (\n    lists_1: (array boolean),\n    lists_2: (array boolean),\n    ...lists_rest: (list of (array boolean))\n): (array boolean);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -17265,8 +19993,8 @@ impl_compile_expression_tuple_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("expression_tuple"),
     AFW_UTF8_LITERAL(""),
@@ -17323,8 +20051,8 @@ afw_function_definition_compile_expression_tuple = {
     AFW_UTF8_LITERAL("afwCompileExpressionTuple"),
     AFW_UTF8_LITERAL("Compile expression tuple value"),
     AFW_UTF8_LITERAL("Compile a string containing adaptive expression tuple syntax and return either an unevaluated expression tuple adaptive value or a string containing the compiler listing."),
-    AFW_UTF8_LITERAL("(expression_tuple: list, listing?: any): any"),
-    AFW_UTF8_LITERAL("/* Compile expression tuple value */\nfunction compile_expression_tuple (\n    expression_tuple: list,\n    listing?: any\n): any;\n"),
+    AFW_UTF8_LITERAL("(expression_tuple: array, listing?: any): any"),
+    AFW_UTF8_LITERAL("/* Compile expression tuple value */\nfunction compile_expression_tuple (\n    expression_tuple: array,\n    listing?: any\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_compile_expression_tuple,
     NULL,
@@ -20733,8 +23461,8 @@ impl_at_least_one_member_of_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -20759,8 +23487,8 @@ impl_at_least_one_member_of_dateTime_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -20791,8 +23519,8 @@ afw_function_definition_at_least_one_member_of_dateTime = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfDateTime"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in dateTime list1 is in dateTime list2."),
-    AFW_UTF8_LITERAL("(list1: (list dateTime), list2: (list dateTime)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<dateTime> (\n    list1: (list dateTime),\n    list2: (list dateTime)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dateTime), list2: (array dateTime)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<dateTime> (\n    list1: (array dateTime),\n    list2: (array dateTime)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -20850,8 +23578,8 @@ impl_bag_dateTime_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -20876,8 +23604,8 @@ impl_bag_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -20907,8 +23635,8 @@ afw_function_definition_bag_dateTime = {
     AFW_UTF8_LITERAL("afwBagDateTime"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of dateTime values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list dateTime))): (list dateTime)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dateTime> (\n    ...values: (list of (list dateTime))\n): (list dateTime);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array dateTime))): (array dateTime)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dateTime> (\n    ...values: (list of (array dateTime))\n): (array dateTime);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -20992,8 +23720,8 @@ impl_bag_size_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -21023,8 +23751,8 @@ afw_function_definition_bag_size_dateTime = {
     AFW_UTF8_LITERAL("afwBagSizeDateTime"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list dateTime)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dateTime> (\n    value: (list dateTime)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array dateTime)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dateTime> (\n    value: (array dateTime)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -21786,8 +24514,8 @@ impl_intersection_dateTime_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -21812,8 +24540,8 @@ impl_intersection_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -21838,8 +24566,8 @@ impl_intersection_dateTime_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -21870,8 +24598,8 @@ afw_function_definition_intersection_dateTime = {
     AFW_UTF8_LITERAL("afwIntersectionDateTime"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of dateTime with the values that are common to both list of dateTime list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list dateTime), list2: (list dateTime)): (list dateTime)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<dateTime> (\n    list1: (list dateTime),\n    list2: (list dateTime)\n): (list dateTime);\n"),
+    AFW_UTF8_LITERAL("(list1: (array dateTime), list2: (array dateTime)): (array dateTime)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<dateTime> (\n    list1: (array dateTime),\n    list2: (array dateTime)\n): (array dateTime);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -22097,10 +24825,10 @@ impl_is_in_dateTime_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -22129,8 +24857,8 @@ afw_function_definition_is_in_dateTime = {
     AFW_UTF8_LITERAL("afwIsInDateTime"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether dateTime value is in list of dateTime list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: dateTime, list: (list dateTime)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dateTime> (\n    value: dateTime,\n    list: (list dateTime)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: dateTime, array: (array dateTime)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dateTime> (\n    value: dateTime,\n    array: (array dateTime)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -23026,10 +25754,10 @@ impl_one_and_only_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -23065,8 +25793,8 @@ afw_function_definition_one_and_only_dateTime = {
     AFW_UTF8_LITERAL("afwOneAndOnlyDateTime"),
     AFW_UTF8_LITERAL("Converts a one value list to a dateTime value"),
     AFW_UTF8_LITERAL("This converts a list of dateTime values that contains one value to a single dateTime value."),
-    AFW_UTF8_LITERAL("(list: (list list)): dateTime"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a dateTime value */\nfunction one_and_only<dateTime> (\n    list: (list list)\n): dateTime;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): dateTime"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a dateTime value */\nfunction one_and_only<dateTime> (\n    array: (array array)\n): dateTime;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -23150,8 +25878,8 @@ impl_set_equals_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -23176,8 +25904,8 @@ impl_set_equals_dateTime_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -23208,8 +25936,8 @@ afw_function_definition_set_equals_dateTime = {
     AFW_UTF8_LITERAL("afwSetEqualsDateTime"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if dateTime list1 and dateTime list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list dateTime), list2: (list dateTime)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<dateTime> (\n    list1: (list dateTime),\n    list2: (list dateTime)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dateTime), list2: (array dateTime)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<dateTime> (\n    list1: (array dateTime),\n    list2: (array dateTime)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -23293,8 +26021,8 @@ impl_subset_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -23319,8 +26047,8 @@ impl_subset_dateTime_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -23351,8 +26079,8 @@ afw_function_definition_subset_dateTime = {
     AFW_UTF8_LITERAL("afwSubsetDateTime"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in dateTime list1 are all in dateTime list2."),
-    AFW_UTF8_LITERAL("(list1: (list dateTime), list2: (list dateTime)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<dateTime> (\n    list1: (list dateTime),\n    list2: (list dateTime)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dateTime), list2: (array dateTime)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<dateTime> (\n    list1: (array dateTime),\n    list2: (array dateTime)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -23812,8 +26540,8 @@ impl_union_dateTime_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -23838,8 +26566,8 @@ impl_union_dateTime_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -23869,8 +26597,8 @@ afw_function_definition_union_dateTime = {
     AFW_UTF8_LITERAL("afwUnionDateTime"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of dateTime contains all of the unique values in two or more list of dateTime values."),
-    AFW_UTF8_LITERAL("(lists_1: (list dateTime), lists_2: (list dateTime), ...lists_rest: (list of (list dateTime))): (list dateTime)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<dateTime> (\n    lists_1: (list dateTime),\n    lists_2: (list dateTime),\n    ...lists_rest: (list of (list dateTime))\n): (list dateTime);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array dateTime), lists_2: (array dateTime), ...lists_rest: (list of (array dateTime))): (array dateTime)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<dateTime> (\n    lists_1: (array dateTime),\n    lists_2: (array dateTime),\n    ...lists_rest: (list of (array dateTime))\n): (array dateTime);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -24097,8 +26825,8 @@ impl_at_least_one_member_of_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -24123,8 +26851,8 @@ impl_at_least_one_member_of_date_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -24155,8 +26883,8 @@ afw_function_definition_at_least_one_member_of_date = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfDate"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in date list1 is in date list2."),
-    AFW_UTF8_LITERAL("(list1: (list date), list2: (list date)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<date> (\n    list1: (list date),\n    list2: (list date)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array date), list2: (array date)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<date> (\n    list1: (array date),\n    list2: (array date)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -24214,8 +26942,8 @@ impl_bag_date_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -24240,8 +26968,8 @@ impl_bag_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -24271,8 +26999,8 @@ afw_function_definition_bag_date = {
     AFW_UTF8_LITERAL("afwBagDate"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of date values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list date))): (list date)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<date> (\n    ...values: (list of (list date))\n): (list date);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array date))): (array date)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<date> (\n    ...values: (list of (array date))\n): (array date);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -24356,8 +27084,8 @@ impl_bag_size_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -24387,8 +27115,8 @@ afw_function_definition_bag_size_date = {
     AFW_UTF8_LITERAL("afwBagSizeDate"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list date)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<date> (\n    value: (list date)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array date)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<date> (\n    value: (array date)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -25150,8 +27878,8 @@ impl_intersection_date_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -25176,8 +27904,8 @@ impl_intersection_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -25202,8 +27930,8 @@ impl_intersection_date_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -25234,8 +27962,8 @@ afw_function_definition_intersection_date = {
     AFW_UTF8_LITERAL("afwIntersectionDate"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of date with the values that are common to both list of date list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list date), list2: (list date)): (list date)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<date> (\n    list1: (list date),\n    list2: (list date)\n): (list date);\n"),
+    AFW_UTF8_LITERAL("(list1: (array date), list2: (array date)): (array date)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<date> (\n    list1: (array date),\n    list2: (array date)\n): (array date);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -25461,10 +28189,10 @@ impl_is_in_date_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -25493,8 +28221,8 @@ afw_function_definition_is_in_date = {
     AFW_UTF8_LITERAL("afwIsInDate"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether date value is in list of date list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: date, list: (list date)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<date> (\n    value: date,\n    list: (list date)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: date, array: (array date)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<date> (\n    value: date,\n    array: (array date)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -26390,10 +29118,10 @@ impl_one_and_only_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -26429,8 +29157,8 @@ afw_function_definition_one_and_only_date = {
     AFW_UTF8_LITERAL("afwOneAndOnlyDate"),
     AFW_UTF8_LITERAL("Converts a one value list to a date value"),
     AFW_UTF8_LITERAL("This converts a list of date values that contains one value to a single date value."),
-    AFW_UTF8_LITERAL("(list: (list list)): date"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a date value */\nfunction one_and_only<date> (\n    list: (list list)\n): date;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): date"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a date value */\nfunction one_and_only<date> (\n    array: (array array)\n): date;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -26514,8 +29242,8 @@ impl_set_equals_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -26540,8 +29268,8 @@ impl_set_equals_date_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -26572,8 +29300,8 @@ afw_function_definition_set_equals_date = {
     AFW_UTF8_LITERAL("afwSetEqualsDate"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if date list1 and date list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list date), list2: (list date)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<date> (\n    list1: (list date),\n    list2: (list date)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array date), list2: (array date)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<date> (\n    list1: (array date),\n    list2: (array date)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -26657,8 +29385,8 @@ impl_subset_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -26683,8 +29411,8 @@ impl_subset_date_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -26715,8 +29443,8 @@ afw_function_definition_subset_date = {
     AFW_UTF8_LITERAL("afwSubsetDate"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in date list1 are all in date list2."),
-    AFW_UTF8_LITERAL("(list1: (list date), list2: (list date)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<date> (\n    list1: (list date),\n    list2: (list date)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array date), list2: (array date)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<date> (\n    list1: (array date),\n    list2: (array date)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -27033,8 +29761,8 @@ impl_union_date_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -27059,8 +29787,8 @@ impl_union_date_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -27090,8 +29818,8 @@ afw_function_definition_union_date = {
     AFW_UTF8_LITERAL("afwUnionDate"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of date contains all of the unique values in two or more list of date values."),
-    AFW_UTF8_LITERAL("(lists_1: (list date), lists_2: (list date), ...lists_rest: (list of (list date))): (list date)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<date> (\n    lists_1: (list date),\n    lists_2: (list date),\n    ...lists_rest: (list of (list date))\n): (list date);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array date), lists_2: (array date), ...lists_rest: (list of (array date))): (array date)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<date> (\n    lists_1: (array date),\n    lists_2: (array date),\n    ...lists_rest: (list of (array date))\n): (array date);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -27175,8 +29903,8 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -27201,8 +29929,8 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -27233,8 +29961,8 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfDayTimeDuration"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in dayTimeDuration list1 is in dayTimeDuration list2."),
-    AFW_UTF8_LITERAL("(list1: (list dayTimeDuration), list2: (list dayTimeDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<dayTimeDuration> (\n    list1: (list dayTimeDuration),\n    list2: (list dayTimeDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dayTimeDuration), list2: (array dayTimeDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<dayTimeDuration> (\n    list1: (array dayTimeDuration),\n    list2: (array dayTimeDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -27292,8 +30020,8 @@ impl_bag_dayTimeDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -27318,8 +30046,8 @@ impl_bag_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -27349,8 +30077,8 @@ afw_function_definition_bag_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwBagDayTimeDuration"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of dayTimeDuration values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list dayTimeDuration))): (list dayTimeDuration)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dayTimeDuration> (\n    ...values: (list of (list dayTimeDuration))\n): (list dayTimeDuration);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array dayTimeDuration))): (array dayTimeDuration)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dayTimeDuration> (\n    ...values: (list of (array dayTimeDuration))\n): (array dayTimeDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -27434,8 +30162,8 @@ impl_bag_size_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -27465,8 +30193,8 @@ afw_function_definition_bag_size_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwBagSizeDayTimeDuration"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list dayTimeDuration)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dayTimeDuration> (\n    value: (list dayTimeDuration)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array dayTimeDuration)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dayTimeDuration> (\n    value: (array dayTimeDuration)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -28228,8 +30956,8 @@ impl_intersection_dayTimeDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -28254,8 +30982,8 @@ impl_intersection_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -28280,8 +31008,8 @@ impl_intersection_dayTimeDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -28312,8 +31040,8 @@ afw_function_definition_intersection_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwIntersectionDayTimeDuration"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of dayTimeDuration with the values that are common to both list of dayTimeDuration list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list dayTimeDuration), list2: (list dayTimeDuration)): (list dayTimeDuration)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<dayTimeDuration> (\n    list1: (list dayTimeDuration),\n    list2: (list dayTimeDuration)\n): (list dayTimeDuration);\n"),
+    AFW_UTF8_LITERAL("(list1: (array dayTimeDuration), list2: (array dayTimeDuration)): (array dayTimeDuration)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<dayTimeDuration> (\n    list1: (array dayTimeDuration),\n    list2: (array dayTimeDuration)\n): (array dayTimeDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -28539,10 +31267,10 @@ impl_is_in_dayTimeDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -28571,8 +31299,8 @@ afw_function_definition_is_in_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwIsInDayTimeDuration"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether dayTimeDuration value is in list of dayTimeDuration list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: dayTimeDuration, list: (list dayTimeDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dayTimeDuration> (\n    value: dayTimeDuration,\n    list: (list dayTimeDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: dayTimeDuration, array: (array dayTimeDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dayTimeDuration> (\n    value: dayTimeDuration,\n    array: (array dayTimeDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -29236,10 +31964,10 @@ impl_one_and_only_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -29275,8 +32003,8 @@ afw_function_definition_one_and_only_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwOneAndOnlyDayTimeDuration"),
     AFW_UTF8_LITERAL("Converts a one value list to a dayTimeDuration value"),
     AFW_UTF8_LITERAL("This converts a list of dayTimeDuration values that contains one value to a single dayTimeDuration value."),
-    AFW_UTF8_LITERAL("(list: (list list)): dayTimeDuration"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a dayTimeDuration value */\nfunction one_and_only<dayTimeDuration> (\n    list: (list list)\n): dayTimeDuration;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): dayTimeDuration"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a dayTimeDuration value */\nfunction one_and_only<dayTimeDuration> (\n    array: (array array)\n): dayTimeDuration;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -29360,8 +32088,8 @@ impl_set_equals_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -29386,8 +32114,8 @@ impl_set_equals_dayTimeDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -29418,8 +32146,8 @@ afw_function_definition_set_equals_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwSetEqualsDayTimeDuration"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list dayTimeDuration), list2: (list dayTimeDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<dayTimeDuration> (\n    list1: (list dayTimeDuration),\n    list2: (list dayTimeDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dayTimeDuration), list2: (array dayTimeDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<dayTimeDuration> (\n    list1: (array dayTimeDuration),\n    list2: (array dayTimeDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -29503,8 +32231,8 @@ impl_subset_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -29529,8 +32257,8 @@ impl_subset_dayTimeDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -29561,8 +32289,8 @@ afw_function_definition_subset_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwSubsetDayTimeDuration"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in dayTimeDuration list1 are all in dayTimeDuration list2."),
-    AFW_UTF8_LITERAL("(list1: (list dayTimeDuration), list2: (list dayTimeDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<dayTimeDuration> (\n    list1: (list dayTimeDuration),\n    list2: (list dayTimeDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array dayTimeDuration), list2: (array dayTimeDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<dayTimeDuration> (\n    list1: (array dayTimeDuration),\n    list2: (array dayTimeDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -29736,8 +32464,8 @@ impl_union_dayTimeDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -29762,8 +32490,8 @@ impl_union_dayTimeDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -29793,8 +32521,8 @@ afw_function_definition_union_dayTimeDuration = {
     AFW_UTF8_LITERAL("afwUnionDayTimeDuration"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of dayTimeDuration contains all of the unique values in two or more list of dayTimeDuration values."),
-    AFW_UTF8_LITERAL("(lists_1: (list dayTimeDuration), lists_2: (list dayTimeDuration), ...lists_rest: (list of (list dayTimeDuration))): (list dayTimeDuration)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<dayTimeDuration> (\n    lists_1: (list dayTimeDuration),\n    lists_2: (list dayTimeDuration),\n    ...lists_rest: (list of (list dayTimeDuration))\n): (list dayTimeDuration);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array dayTimeDuration), lists_2: (array dayTimeDuration), ...lists_rest: (list of (array dayTimeDuration))): (array dayTimeDuration)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<dayTimeDuration> (\n    lists_1: (array dayTimeDuration),\n    lists_2: (array dayTimeDuration),\n    ...lists_rest: (list of (array dayTimeDuration))\n): (array dayTimeDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -29852,8 +32580,8 @@ impl_bag_dnsName_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -29878,8 +32606,8 @@ impl_bag_dnsName_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -29909,8 +32637,8 @@ afw_function_definition_bag_dnsName = {
     AFW_UTF8_LITERAL("afwBagDnsName"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of dnsName values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list dnsName))): (list dnsName)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dnsName> (\n    ...values: (list of (list dnsName))\n): (list dnsName);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array dnsName))): (array dnsName)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<dnsName> (\n    ...values: (list of (array dnsName))\n): (array dnsName);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -29994,8 +32722,8 @@ impl_bag_size_dnsName_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -30025,8 +32753,8 @@ afw_function_definition_bag_size_dnsName = {
     AFW_UTF8_LITERAL("afwBagSizeDnsName"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list dnsName)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dnsName> (\n    value: (list dnsName)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array dnsName)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<dnsName> (\n    value: (array dnsName)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -30956,10 +33684,10 @@ impl_is_in_dnsName_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("dnsName"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -30988,8 +33716,8 @@ afw_function_definition_is_in_dnsName = {
     AFW_UTF8_LITERAL("afwIsInDnsName"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether dnsName value is in list of dnsName list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: dnsName, list: (list dnsName)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dnsName> (\n    value: dnsName,\n    list: (list dnsName)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: dnsName, array: (array dnsName)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<dnsName> (\n    value: dnsName,\n    array: (array dnsName)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -31653,10 +34381,10 @@ impl_one_and_only_dnsName_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -31692,8 +34420,8 @@ afw_function_definition_one_and_only_dnsName = {
     AFW_UTF8_LITERAL("afwOneAndOnlyDnsName"),
     AFW_UTF8_LITERAL("Converts a one value list to a dnsName value"),
     AFW_UTF8_LITERAL("This converts a list of dnsName values that contains one value to a single dnsName value."),
-    AFW_UTF8_LITERAL("(list: (list list)): dnsName"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a dnsName value */\nfunction one_and_only<dnsName> (\n    list: (list list)\n): dnsName;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): dnsName"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a dnsName value */\nfunction one_and_only<dnsName> (\n    array: (array array)\n): dnsName;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -32268,8 +34996,8 @@ impl_at_least_one_member_of_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -32294,8 +35022,8 @@ impl_at_least_one_member_of_double_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -32326,8 +35054,8 @@ afw_function_definition_at_least_one_member_of_double = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfDouble"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in double list1 is in double list2."),
-    AFW_UTF8_LITERAL("(list1: (list double), list2: (list double)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<double> (\n    list1: (list double),\n    list2: (list double)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array double), list2: (array double)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<double> (\n    list1: (array double),\n    list2: (array double)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -32385,8 +35113,8 @@ impl_bag_double_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -32411,8 +35139,8 @@ impl_bag_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -32442,8 +35170,8 @@ afw_function_definition_bag_double = {
     AFW_UTF8_LITERAL("afwBagDouble"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of double values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list double))): (list double)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<double> (\n    ...values: (list of (list double))\n): (list double);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array double))): (array double)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<double> (\n    ...values: (list of (array double))\n): (array double);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -32527,8 +35255,8 @@ impl_bag_size_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -32558,8 +35286,8 @@ afw_function_definition_bag_size_double = {
     AFW_UTF8_LITERAL("afwBagSizeDouble"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list double)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<double> (\n    value: (list double)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array double)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<double> (\n    value: (array double)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -33696,8 +36424,8 @@ impl_intersection_double_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -33722,8 +36450,8 @@ impl_intersection_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -33748,8 +36476,8 @@ impl_intersection_double_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -33780,8 +36508,8 @@ afw_function_definition_intersection_double = {
     AFW_UTF8_LITERAL("afwIntersectionDouble"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of double with the values that are common to both list of double list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list double), list2: (list double)): (list double)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<double> (\n    list1: (list double),\n    list2: (list double)\n): (list double);\n"),
+    AFW_UTF8_LITERAL("(list1: (array double), list2: (array double)): (array double)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<double> (\n    list1: (array double),\n    list2: (array double)\n): (array double);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -34239,10 +36967,10 @@ impl_is_in_double_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -34271,8 +36999,8 @@ afw_function_definition_is_in_double = {
     AFW_UTF8_LITERAL("afwIsInDouble"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether double value is in list of double list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: double, list: (list double)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<double> (\n    value: double,\n    list: (list double)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: double, array: (array double)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<double> (\n    value: double,\n    array: (array double)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -35400,10 +38128,10 @@ impl_one_and_only_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -35439,8 +38167,8 @@ afw_function_definition_one_and_only_double = {
     AFW_UTF8_LITERAL("afwOneAndOnlyDouble"),
     AFW_UTF8_LITERAL("Converts a one value list to a double value"),
     AFW_UTF8_LITERAL("This converts a list of double values that contains one value to a single double value."),
-    AFW_UTF8_LITERAL("(list: (list list)): double"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a double value */\nfunction one_and_only<double> (\n    list: (list list)\n): double;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): double"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a double value */\nfunction one_and_only<double> (\n    array: (array array)\n): double;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -35783,8 +38511,8 @@ impl_set_equals_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -35809,8 +38537,8 @@ impl_set_equals_double_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -35841,8 +38569,8 @@ afw_function_definition_set_equals_double = {
     AFW_UTF8_LITERAL("afwSetEqualsDouble"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if double list1 and double list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list double), list2: (list double)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<double> (\n    list1: (list double),\n    list2: (list double)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array double), list2: (array double)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<double> (\n    list1: (array double),\n    list2: (array double)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -35926,8 +38654,8 @@ impl_subset_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -35952,8 +38680,8 @@ impl_subset_double_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -35984,8 +38712,8 @@ afw_function_definition_subset_double = {
     AFW_UTF8_LITERAL("afwSubsetDouble"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in double list1 are all in double list2."),
-    AFW_UTF8_LITERAL("(list1: (list double), list2: (list double)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<double> (\n    list1: (list double),\n    list2: (list double)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array double), list2: (array double)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<double> (\n    list1: (array double),\n    list2: (array double)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -36418,8 +39146,8 @@ impl_union_double_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -36444,8 +39172,8 @@ impl_union_double_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -36475,8 +39203,8 @@ afw_function_definition_union_double = {
     AFW_UTF8_LITERAL("afwUnionDouble"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of double contains all of the unique values in two or more list of double values."),
-    AFW_UTF8_LITERAL("(lists_1: (list double), lists_2: (list double), ...lists_rest: (list of (list double))): (list double)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<double> (\n    lists_1: (list double),\n    lists_2: (list double),\n    ...lists_rest: (list of (list double))\n): (list double);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array double), lists_2: (array double), ...lists_rest: (list of (array double))): (array double)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<double> (\n    lists_1: (array double),\n    lists_2: (array double),\n    ...lists_rest: (list of (array double))\n): (array double);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -36534,8 +39262,8 @@ impl_bag_expression_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("expression"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -36560,8 +39288,8 @@ impl_bag_expression_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("expression"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -36591,8 +39319,8 @@ afw_function_definition_bag_expression = {
     AFW_UTF8_LITERAL("afwBagExpression"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of expression values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list expression))): (list expression)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<expression> (\n    ...values: (list of (list expression))\n): (list expression);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array expression))): (array expression)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<expression> (\n    ...values: (list of (array expression))\n): (array expression);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -36676,8 +39404,8 @@ impl_bag_size_expression_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("expression"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -36707,8 +39435,8 @@ afw_function_definition_bag_size_expression = {
     AFW_UTF8_LITERAL("afwBagSizeExpression"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list expression)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<expression> (\n    value: (list expression)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array expression)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<expression> (\n    value: (array expression)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -38568,8 +41296,8 @@ impl_bag_function_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -38594,8 +41322,8 @@ impl_bag_function_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -38625,8 +41353,8 @@ afw_function_definition_bag_function = {
     AFW_UTF8_LITERAL("afwBagFunction"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of function values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list function))): (list function)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<function> (\n    ...values: (list of (list function))\n): (list function);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array function))): (array function)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<function> (\n    ...values: (list of (array function))\n): (array function);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -38710,8 +41438,8 @@ impl_bag_size_function_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -38741,8 +41469,8 @@ afw_function_definition_bag_size_function = {
     AFW_UTF8_LITERAL("afwBagSizeFunction"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list function)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<function> (\n    value: (list function)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array function)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<function> (\n    value: (array function)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -40226,8 +42954,8 @@ impl_at_least_one_member_of_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -40252,8 +42980,8 @@ impl_at_least_one_member_of_hexBinary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -40284,8 +43012,8 @@ afw_function_definition_at_least_one_member_of_hexBinary = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfHexBinary"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in hexBinary list1 is in hexBinary list2."),
-    AFW_UTF8_LITERAL("(list1: (list hexBinary), list2: (list hexBinary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<hexBinary> (\n    list1: (list hexBinary),\n    list2: (list hexBinary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array hexBinary), list2: (array hexBinary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<hexBinary> (\n    list1: (array hexBinary),\n    list2: (array hexBinary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -40343,8 +43071,8 @@ impl_bag_hexBinary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -40369,8 +43097,8 @@ impl_bag_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -40400,8 +43128,8 @@ afw_function_definition_bag_hexBinary = {
     AFW_UTF8_LITERAL("afwBagHexBinary"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of hexBinary values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list hexBinary))): (list hexBinary)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<hexBinary> (\n    ...values: (list of (list hexBinary))\n): (list hexBinary);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array hexBinary))): (array hexBinary)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<hexBinary> (\n    ...values: (list of (array hexBinary))\n): (array hexBinary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -40485,8 +43213,8 @@ impl_bag_size_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -40516,8 +43244,8 @@ afw_function_definition_bag_size_hexBinary = {
     AFW_UTF8_LITERAL("afwBagSizeHexBinary"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list hexBinary)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<hexBinary> (\n    value: (list hexBinary)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array hexBinary)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<hexBinary> (\n    value: (array hexBinary)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -41395,8 +44123,8 @@ impl_intersection_hexBinary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -41421,8 +44149,8 @@ impl_intersection_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -41447,8 +44175,8 @@ impl_intersection_hexBinary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -41479,8 +44207,8 @@ afw_function_definition_intersection_hexBinary = {
     AFW_UTF8_LITERAL("afwIntersectionHexBinary"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of hexBinary with the values that are common to both list of hexBinary list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list hexBinary), list2: (list hexBinary)): (list hexBinary)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<hexBinary> (\n    list1: (list hexBinary),\n    list2: (list hexBinary)\n): (list hexBinary);\n"),
+    AFW_UTF8_LITERAL("(list1: (array hexBinary), list2: (array hexBinary)): (array hexBinary)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<hexBinary> (\n    list1: (array hexBinary),\n    list2: (array hexBinary)\n): (array hexBinary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -41706,10 +44434,10 @@ impl_is_in_hexBinary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -41738,8 +44466,8 @@ afw_function_definition_is_in_hexBinary = {
     AFW_UTF8_LITERAL("afwIsInHexBinary"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether hexBinary value is in list of hexBinary list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: hexBinary, list: (list hexBinary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<hexBinary> (\n    value: hexBinary,\n    list: (list hexBinary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: hexBinary, array: (array hexBinary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<hexBinary> (\n    value: hexBinary,\n    array: (array hexBinary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -42403,10 +45131,10 @@ impl_one_and_only_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -42442,8 +45170,8 @@ afw_function_definition_one_and_only_hexBinary = {
     AFW_UTF8_LITERAL("afwOneAndOnlyHexBinary"),
     AFW_UTF8_LITERAL("Converts a one value list to a hexBinary value"),
     AFW_UTF8_LITERAL("This converts a list of hexBinary values that contains one value to a single hexBinary value."),
-    AFW_UTF8_LITERAL("(list: (list list)): hexBinary"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a hexBinary value */\nfunction one_and_only<hexBinary> (\n    list: (list list)\n): hexBinary;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): hexBinary"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a hexBinary value */\nfunction one_and_only<hexBinary> (\n    array: (array array)\n): hexBinary;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -42527,8 +45255,8 @@ impl_set_equals_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -42553,8 +45281,8 @@ impl_set_equals_hexBinary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -42585,8 +45313,8 @@ afw_function_definition_set_equals_hexBinary = {
     AFW_UTF8_LITERAL("afwSetEqualsHexBinary"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list hexBinary), list2: (list hexBinary)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<hexBinary> (\n    list1: (list hexBinary),\n    list2: (list hexBinary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array hexBinary), list2: (array hexBinary)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<hexBinary> (\n    list1: (array hexBinary),\n    list2: (array hexBinary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -42670,8 +45398,8 @@ impl_subset_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -42696,8 +45424,8 @@ impl_subset_hexBinary_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -42728,8 +45456,8 @@ afw_function_definition_subset_hexBinary = {
     AFW_UTF8_LITERAL("afwSubsetHexBinary"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in hexBinary list1 are all in hexBinary list2."),
-    AFW_UTF8_LITERAL("(list1: (list hexBinary), list2: (list hexBinary)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<hexBinary> (\n    list1: (list hexBinary),\n    list2: (list hexBinary)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array hexBinary), list2: (array hexBinary)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<hexBinary> (\n    list1: (array hexBinary),\n    list2: (array hexBinary)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -42903,8 +45631,8 @@ impl_union_hexBinary_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -42929,8 +45657,8 @@ impl_union_hexBinary_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -42960,8 +45688,8 @@ afw_function_definition_union_hexBinary = {
     AFW_UTF8_LITERAL("afwUnionHexBinary"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of hexBinary contains all of the unique values in two or more list of hexBinary values."),
-    AFW_UTF8_LITERAL("(lists_1: (list hexBinary), lists_2: (list hexBinary), ...lists_rest: (list of (list hexBinary))): (list hexBinary)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<hexBinary> (\n    lists_1: (list hexBinary),\n    lists_2: (list hexBinary),\n    ...lists_rest: (list of (list hexBinary))\n): (list hexBinary);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array hexBinary), lists_2: (array hexBinary), ...lists_rest: (list of (array hexBinary))): (array hexBinary)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<hexBinary> (\n    lists_1: (array hexBinary),\n    lists_2: (array hexBinary),\n    ...lists_rest: (list of (array hexBinary))\n): (array hexBinary);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -43095,7 +45823,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__all_of,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("all_of"),
     AFW_UTF8_LITERAL("all_of"),
     AFW_UTF8_LITERAL("all_of"),
@@ -43214,8 +45942,8 @@ impl_all_of_all_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -43240,8 +45968,8 @@ impl_all_of_all_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -43265,7 +45993,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of_all = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__all_of_all,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("all_of_all"),
     AFW_UTF8_LITERAL("all_of_all"),
     AFW_UTF8_LITERAL("all_of_all"),
@@ -43273,8 +46001,8 @@ afw_function_definition_all_of_all = {
     AFW_UTF8_LITERAL("afwAllOfAll"),
     AFW_UTF8_LITERAL("All combinations true"),
     AFW_UTF8_LITERAL("Returns true if the result of calling predicate with all of the combination of values from list1 and list2 returns true."),
-    AFW_UTF8_LITERAL("(predicate: (function (any value1: any, value2: any): boolean), list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* All combinations true */\nfunction all_of_all (\n    predicate: (function (any value1: any, value2: any): boolean),\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(predicate: (function (any value1: any, value2: any): boolean), list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* All combinations true */\nfunction all_of_all (\n    predicate: (function (any value1: any, value2: any): boolean),\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_all_of_all,
     NULL,
@@ -43384,8 +46112,8 @@ impl_all_of_any_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -43410,8 +46138,8 @@ impl_all_of_any_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -43435,7 +46163,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_all_of_any = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__all_of_any,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("all_of_any"),
     AFW_UTF8_LITERAL("all_of_any"),
     AFW_UTF8_LITERAL("all_of_any"),
@@ -43443,8 +46171,8 @@ afw_function_definition_all_of_any = {
     AFW_UTF8_LITERAL("afwAllOfAny"),
     AFW_UTF8_LITERAL("Combinations of all in list1 and any in list2 true"),
     AFW_UTF8_LITERAL("This function returns true if the result of calling predicate with all of the combination of values from list1 and any of the values of list2 returns true."),
-    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any): boolean), list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Combinations of all in list1 and any in list2 true */\nfunction all_of_any (\n    predicate: (function (value1: any, value2: any): boolean),\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any): boolean), list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Combinations of all in list1 and any in list2 true */\nfunction all_of_any (\n    predicate: (function (value1: any, value2: any): boolean),\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_all_of_any,
     NULL,
@@ -43578,7 +46306,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__any_of,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("any_of"),
     AFW_UTF8_LITERAL("any_of"),
     AFW_UTF8_LITERAL("any_of"),
@@ -43697,8 +46425,8 @@ impl_any_of_all_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -43723,8 +46451,8 @@ impl_any_of_all_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -43748,7 +46476,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of_all = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__any_of_all,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("any_of_all"),
     AFW_UTF8_LITERAL("any_of_all"),
     AFW_UTF8_LITERAL("any_of_all"),
@@ -43756,8 +46484,8 @@ afw_function_definition_any_of_all = {
     AFW_UTF8_LITERAL("afwAnyOfAll"),
     AFW_UTF8_LITERAL("Combinations of any in list1 and all in list2 true"),
     AFW_UTF8_LITERAL("Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true."),
-    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any):boolean), list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Combinations of any in list1 and all in list2 true */\nfunction any_of_all (\n    predicate: (function (value1: any, value2: any):boolean),\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any):boolean), list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Combinations of any in list1 and all in list2 true */\nfunction any_of_all (\n    predicate: (function (value1: any, value2: any):boolean),\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_any_of_all,
     NULL,
@@ -43867,8 +46595,8 @@ impl_any_of_any_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -43893,8 +46621,8 @@ impl_any_of_any_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -43918,7 +46646,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_any_of_any = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__any_of_any,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("any_of_any"),
     AFW_UTF8_LITERAL("any_of_any"),
     AFW_UTF8_LITERAL("any_of_any"),
@@ -43926,8 +46654,8 @@ afw_function_definition_any_of_any = {
     AFW_UTF8_LITERAL("afwAnyOfAny"),
     AFW_UTF8_LITERAL("Any combinations true"),
     AFW_UTF8_LITERAL("This function returns true if the result of calling predicate with any of the combination of values from list1 and list2 returns true."),
-    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any): boolean), list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Any combinations true */\nfunction any_of_any (\n    predicate: (function (value1: any, value2: any): boolean),\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(predicate: (function (value1: any, value2: any): boolean), list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Any combinations true */\nfunction any_of_any (\n    predicate: (function (value1: any, value2: any): boolean),\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_any_of_any,
     NULL,
@@ -43985,8 +46713,8 @@ impl_filter_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -44061,7 +46789,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_filter = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__filter,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("filter"),
     AFW_UTF8_LITERAL("filter"),
     AFW_UTF8_LITERAL("filter"),
@@ -44069,8 +46797,8 @@ afw_function_definition_filter = {
     AFW_UTF8_LITERAL("afwFilter"),
     AFW_UTF8_LITERAL("Filter a list"),
     AFW_UTF8_LITERAL("This produces a list containing only values from another list that pass a predicate test."),
-    AFW_UTF8_LITERAL("(predicate: (function (... values: any): boolean), values_1: any, ...values_rest: (list of any)): list"),
-    AFW_UTF8_LITERAL("/* Filter a list */\nfunction filter (\n    predicate: (function (... values: any): boolean),\n    values_1: any,\n    ...values_rest: (list of any)\n): list;\n"),
+    AFW_UTF8_LITERAL("(predicate: (function (... values: any): boolean), values_1: any, ...values_rest: (list of any)): array"),
+    AFW_UTF8_LITERAL("/* Filter a list */\nfunction filter (\n    predicate: (function (... values: any): boolean),\n    values_1: any,\n    ...values_rest: (list of any)\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_filter,
     NULL,
@@ -44204,7 +46932,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_find = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__find,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("find"),
     AFW_UTF8_LITERAL("find"),
     AFW_UTF8_LITERAL("find"),
@@ -44271,8 +46999,8 @@ impl_map_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -44347,7 +47075,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_map = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__map,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("map"),
     AFW_UTF8_LITERAL("map"),
     AFW_UTF8_LITERAL("map"),
@@ -44355,8 +47083,8 @@ afw_function_definition_map = {
     AFW_UTF8_LITERAL("afwMap"),
     AFW_UTF8_LITERAL("Maps values of a list"),
     AFW_UTF8_LITERAL("This function creates a list of the results of calling functor with each value of the first list in values"),
-    AFW_UTF8_LITERAL("(functor: (function (... values: any): any), values_1: any, ...values_rest: (list of any)): list"),
-    AFW_UTF8_LITERAL("/* Maps values of a list */\nfunction map (\n    functor: (function (... values: any): any),\n    values_1: any,\n    ...values_rest: (list of any)\n): list;\n"),
+    AFW_UTF8_LITERAL("(functor: (function (... values: any): any), values_1: any, ...values_rest: (list of any)): array"),
+    AFW_UTF8_LITERAL("/* Maps values of a list */\nfunction map (\n    functor: (function (... values: any): any),\n    values_1: any,\n    ...values_rest: (list of any)\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_map,
     NULL,
@@ -44492,10 +47220,10 @@ impl_reduce_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("This is a list to be reduced."),
     -1,
@@ -44517,7 +47245,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reduce = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__reduce,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("reduce"),
     AFW_UTF8_LITERAL("reduce"),
     AFW_UTF8_LITERAL("reduce"),
@@ -44525,8 +47253,8 @@ afw_function_definition_reduce = {
     AFW_UTF8_LITERAL("afwReduce"),
     AFW_UTF8_LITERAL("Reduce values of a list to a single value"),
     AFW_UTF8_LITERAL("Reduce calls functor for each value in list with two parameters, accumulator and value, and must return a value of any dataType. Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls. The dataType of the return value should normally be the same as accumulator, but this is not required."),
-    AFW_UTF8_LITERAL("(functor: (function (accumulator: any, value: any): any), accumulator: any, list: list): any"),
-    AFW_UTF8_LITERAL("/* Reduce values of a list to a single value */\nfunction reduce (\n    functor: (function (accumulator: any, value: any): any),\n    accumulator: any,\n    list: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(functor: (function (accumulator: any, value: any): any), accumulator: any, array: array): any"),
+    AFW_UTF8_LITERAL("/* Reduce values of a list to a single value */\nfunction reduce (\n    functor: (function (accumulator: any, value: any): any),\n    accumulator: any,\n    array: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_reduce,
     NULL,
@@ -44584,8 +47312,8 @@ impl_sort_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -44636,10 +47364,10 @@ impl_sort_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("This is the list to sort."),
     -1,
@@ -44660,7 +47388,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_sort = {
     &afw_value_function_definition_inf,
     (const afw_object_t *)&impl_object__sort,
-    AFW_UTF8_LITERAL("higher_order_list"),
+    AFW_UTF8_LITERAL("higher_order_array"),
     AFW_UTF8_LITERAL("sort"),
     AFW_UTF8_LITERAL("sort"),
     AFW_UTF8_LITERAL("sort"),
@@ -44668,8 +47396,8 @@ afw_function_definition_sort = {
     AFW_UTF8_LITERAL("afwSort"),
     AFW_UTF8_LITERAL("Sort values in a list"),
     AFW_UTF8_LITERAL("This produces a list with values sorted based on result of compareFunction. The compareFunction is passed two values from the list and must return an integer less than 0 if the first value is less than the second value, 0 if they are equal, and a integer greater than 0 if the first value is greater than the second value."),
-    AFW_UTF8_LITERAL("(compareFunction: (function (value1: any, value2: any): integer), list: list): list"),
-    AFW_UTF8_LITERAL("/* Sort values in a list */\nfunction sort (\n    compareFunction: (function (value1: any, value2: any): integer),\n    list: list\n): list;\n"),
+    AFW_UTF8_LITERAL("(compareFunction: (function (value1: any, value2: any): integer), array: array): array"),
+    AFW_UTF8_LITERAL("/* Sort values in a list */\nfunction sort (\n    compareFunction: (function (value1: any, value2: any): integer),\n    array: array\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_sort,
     NULL,
@@ -44727,8 +47455,8 @@ impl_bag_hybrid_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hybrid"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -44753,8 +47481,8 @@ impl_bag_hybrid_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hybrid"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -44784,8 +47512,8 @@ afw_function_definition_bag_hybrid = {
     AFW_UTF8_LITERAL("afwBagHybrid"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of hybrid values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list hybrid))): (list hybrid)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<hybrid> (\n    ...values: (list of (list hybrid))\n): (list hybrid);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array hybrid))): (array hybrid)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<hybrid> (\n    ...values: (list of (array hybrid))\n): (array hybrid);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -44869,8 +47597,8 @@ impl_bag_size_hybrid_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("hybrid"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -44900,8 +47628,8 @@ afw_function_definition_bag_size_hybrid = {
     AFW_UTF8_LITERAL("afwBagSizeHybrid"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list hybrid)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<hybrid> (\n    value: (list hybrid)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array hybrid)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<hybrid> (\n    value: (array hybrid)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -46761,8 +49489,8 @@ impl_bag_ia5String_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -46787,8 +49515,8 @@ impl_bag_ia5String_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -46818,8 +49546,8 @@ afw_function_definition_bag_ia5String = {
     AFW_UTF8_LITERAL("afwBagIa5String"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of ia5String values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list ia5String))): (list ia5String)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<ia5String> (\n    ...values: (list of (list ia5String))\n): (list ia5String);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array ia5String))): (array ia5String)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<ia5String> (\n    ...values: (list of (array ia5String))\n): (array ia5String);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -46903,8 +49631,8 @@ impl_bag_size_ia5String_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -46934,8 +49662,8 @@ afw_function_definition_bag_size_ia5String = {
     AFW_UTF8_LITERAL("afwBagSizeIa5String"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list ia5String)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<ia5String> (\n    value: (list ia5String)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array ia5String)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<ia5String> (\n    value: (array ia5String)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -49370,8 +52098,8 @@ impl_at_least_one_member_of_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -49396,8 +52124,8 @@ impl_at_least_one_member_of_integer_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -49428,8 +52156,8 @@ afw_function_definition_at_least_one_member_of_integer = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfInteger"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in integer list1 is in integer list2."),
-    AFW_UTF8_LITERAL("(list1: (list integer), list2: (list integer)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<integer> (\n    list1: (list integer),\n    list2: (list integer)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array integer), list2: (array integer)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<integer> (\n    list1: (array integer),\n    list2: (array integer)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -49487,8 +52215,8 @@ impl_bag_integer_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -49513,8 +52241,8 @@ impl_bag_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -49544,8 +52272,8 @@ afw_function_definition_bag_integer = {
     AFW_UTF8_LITERAL("afwBagInteger"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of integer values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list integer))): (list integer)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<integer> (\n    ...values: (list of (list integer))\n): (list integer);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array integer))): (array integer)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<integer> (\n    ...values: (list of (array integer))\n): (array integer);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -49629,8 +52357,8 @@ impl_bag_size_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -49660,8 +52388,8 @@ afw_function_definition_bag_size_integer = {
     AFW_UTF8_LITERAL("afwBagSizeInteger"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list integer)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<integer> (\n    value: (list integer)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array integer)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<integer> (\n    value: (array integer)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -50566,8 +53294,8 @@ impl_intersection_integer_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -50592,8 +53320,8 @@ impl_intersection_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -50618,8 +53346,8 @@ impl_intersection_integer_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -50650,8 +53378,8 @@ afw_function_definition_intersection_integer = {
     AFW_UTF8_LITERAL("afwIntersectionInteger"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of integer with the values that are common to both list of integer list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list integer), list2: (list integer)): (list integer)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<integer> (\n    list1: (list integer),\n    list2: (list integer)\n): (list integer);\n"),
+    AFW_UTF8_LITERAL("(list1: (array integer), list2: (array integer)): (array integer)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<integer> (\n    list1: (array integer),\n    list2: (array integer)\n): (array integer);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -50761,10 +53489,10 @@ impl_is_in_integer_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -50793,8 +53521,8 @@ afw_function_definition_is_in_integer = {
     AFW_UTF8_LITERAL("afwIsInInteger"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether integer value is in list of integer list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: integer, list: (list integer)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<integer> (\n    value: integer,\n    list: (list integer)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: integer, array: (array integer)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<integer> (\n    value: integer,\n    array: (array integer)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -52181,10 +54909,10 @@ impl_one_and_only_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -52220,8 +54948,8 @@ afw_function_definition_one_and_only_integer = {
     AFW_UTF8_LITERAL("afwOneAndOnlyInteger"),
     AFW_UTF8_LITERAL("Converts a one value list to a integer value"),
     AFW_UTF8_LITERAL("This converts a list of integer values that contains one value to a single integer value."),
-    AFW_UTF8_LITERAL("(list: (list list)): integer"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a integer value */\nfunction one_and_only<integer> (\n    list: (list list)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): integer"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a integer value */\nfunction one_and_only<integer> (\n    array: (array array)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -52305,8 +55033,8 @@ impl_set_equals_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -52331,8 +55059,8 @@ impl_set_equals_integer_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -52363,8 +55091,8 @@ afw_function_definition_set_equals_integer = {
     AFW_UTF8_LITERAL("afwSetEqualsInteger"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if integer list1 and integer list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list integer), list2: (list integer)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<integer> (\n    list1: (list integer),\n    list2: (list integer)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array integer), list2: (array integer)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<integer> (\n    list1: (array integer),\n    list2: (array integer)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -52448,8 +55176,8 @@ impl_subset_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -52474,8 +55202,8 @@ impl_subset_integer_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -52506,8 +55234,8 @@ afw_function_definition_subset_integer = {
     AFW_UTF8_LITERAL("afwSubsetInteger"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in integer list1 are all in integer list2."),
-    AFW_UTF8_LITERAL("(list1: (list integer), list2: (list integer)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<integer> (\n    list1: (list integer),\n    list2: (list integer)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array integer), list2: (array integer)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<integer> (\n    list1: (array integer),\n    list2: (array integer)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -52948,8 +55676,8 @@ impl_union_integer_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -52974,8 +55702,8 @@ impl_union_integer_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -53005,8 +55733,8 @@ afw_function_definition_union_integer = {
     AFW_UTF8_LITERAL("afwUnionInteger"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of integer contains all of the unique values in two or more list of integer values."),
-    AFW_UTF8_LITERAL("(lists_1: (list integer), lists_2: (list integer), ...lists_rest: (list of (list integer))): (list integer)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<integer> (\n    lists_1: (list integer),\n    lists_2: (list integer),\n    ...lists_rest: (list of (list integer))\n): (list integer);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array integer), lists_2: (array integer), ...lists_rest: (list of (array integer))): (array integer)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<integer> (\n    lists_1: (array integer),\n    lists_2: (array integer),\n    ...lists_rest: (list of (array integer))\n): (array integer);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -53064,8 +55792,8 @@ impl_bag_ipAddress_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -53090,8 +55818,8 @@ impl_bag_ipAddress_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -53121,8 +55849,8 @@ afw_function_definition_bag_ipAddress = {
     AFW_UTF8_LITERAL("afwBagIpAddress"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of ipAddress values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list ipAddress))): (list ipAddress)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<ipAddress> (\n    ...values: (list of (list ipAddress))\n): (list ipAddress);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array ipAddress))): (array ipAddress)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<ipAddress> (\n    ...values: (list of (array ipAddress))\n): (array ipAddress);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -53206,8 +55934,8 @@ impl_bag_size_ipAddress_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -53237,8 +55965,8 @@ afw_function_definition_bag_size_ipAddress = {
     AFW_UTF8_LITERAL("afwBagSizeIpAddress"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list ipAddress)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<ipAddress> (\n    value: (list ipAddress)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array ipAddress)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<ipAddress> (\n    value: (array ipAddress)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -54052,10 +56780,10 @@ impl_is_in_ipAddress_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -54084,8 +56812,8 @@ afw_function_definition_is_in_ipAddress = {
     AFW_UTF8_LITERAL("afwIsInIpAddress"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether ipAddress value is in list of ipAddress list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: ipAddress, list: (list ipAddress)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<ipAddress> (\n    value: ipAddress,\n    list: (list ipAddress)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: ipAddress, array: (array ipAddress)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<ipAddress> (\n    value: ipAddress,\n    array: (array ipAddress)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -54865,10 +57593,10 @@ impl_one_and_only_ipAddress_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -54904,8 +57632,8 @@ afw_function_definition_one_and_only_ipAddress = {
     AFW_UTF8_LITERAL("afwOneAndOnlyIpAddress"),
     AFW_UTF8_LITERAL("Converts a one value list to a ipAddress value"),
     AFW_UTF8_LITERAL("This converts a list of ipAddress values that contains one value to a single ipAddress value."),
-    AFW_UTF8_LITERAL("(list: (list list)): ipAddress"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a ipAddress value */\nfunction one_and_only<ipAddress> (\n    list: (list list)\n): ipAddress;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): ipAddress"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a ipAddress value */\nfunction one_and_only<ipAddress> (\n    array: (array array)\n): ipAddress;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -56305,2734 +59033,6 @@ afw_function_definition_journal_mark_consumed = {
     false,
     false,
     false,
-    false
-};
-
-/* ---------- add_entries ---------- */
-
-static const afw_utf8_t
-impl_object_path__add_entries =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/add_entries");
-
-static const afw_runtime_object_indirect_t
-impl_object__add_entries = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_add_entries,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__add_entries
-        }
-    },
-    (void *)&afw_function_definition_add_entries
-};
-
-static const afw_value_function_parameter_t
-impl_add_entries_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The modified target list."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_add_entries_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("target"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Target list. This list must not be immutable."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_add_entries_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("source"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Source list(s)."),
-    1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_add_entries_parameters[] = {
-    &impl_add_entries_parameter_1,
-    &impl_add_entries_parameter_2,
-    NULL
-};
-
-static const afw_utf8_t
-impl_add_entries_sideEffects[] = {
-    AFW_UTF8_LITERAL("Target list is modified."),
-    { NULL }
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_add_entries = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__add_entries,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("add_entries"),
-    AFW_UTF8_LITERAL("add_entries"),
-    AFW_UTF8_LITERAL("add_entries"),
-    AFW_UTF8_LITERAL("addEntries"),
-    AFW_UTF8_LITERAL("afwAddEntries"),
-    AFW_UTF8_LITERAL("Add entries of one or more lists to another"),
-    AFW_UTF8_LITERAL("Add the entries of one or more lists to another."),
-    AFW_UTF8_LITERAL("(target: list, source_1: list, ...source_rest: (list of list)): list"),
-    AFW_UTF8_LITERAL("/* Add entries of one or more lists to another */\nfunction add_entries (\n    target: list,\n    source_1: list,\n    ...source_rest: (list of list)\n): list;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_add_entries,
-    NULL,
-    2,
-    -1,
-    &impl_add_entries_parameters[0],
-    2,
-    &impl_add_entries_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    &impl_add_entries_sideEffects[0],
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    false,
-    false
-};
-
-/* ---------- bag<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__bag_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/bag_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__bag_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_bag_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__bag_list
-        }
-    },
-    (void *)&afw_function_definition_bag_list
-};
-
-static const afw_value_function_parameter_t
-impl_bag_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_bag_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("values"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    0,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_bag_list_parameters[] = {
-    &impl_bag_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__bag_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("bag<list>"),
-    AFW_UTF8_LITERAL("bag"),
-    AFW_UTF8_LITERAL("bag_list"),
-    AFW_UTF8_LITERAL("bagList"),
-    AFW_UTF8_LITERAL("afwBagList"),
-    AFW_UTF8_LITERAL("Makes a list from values"),
-    AFW_UTF8_LITERAL("Takes any number of list values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list list))): (list list)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<list> (\n    ...values: (list of (list list))\n): (list list);\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_bag,
-    NULL,
-    0,
-    -1,
-    &impl_bag_list_parameters[0],
-    1,
-    &impl_bag_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_bag,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- bag_size<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__bag_size_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/bag_size_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__bag_size_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_bag_size_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__bag_size_list
-        }
-    },
-    (void *)&afw_function_definition_bag_size_list
-};
-
-static const afw_value_function_parameter_t
-impl_bag_size_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_bag_size_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_bag_size_list_parameters[] = {
-    &impl_bag_size_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_size_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__bag_size_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("bag_size<list>"),
-    AFW_UTF8_LITERAL("bag_size"),
-    AFW_UTF8_LITERAL("bag_size_list"),
-    AFW_UTF8_LITERAL("bagSizeList"),
-    AFW_UTF8_LITERAL("afwBagSizeList"),
-    AFW_UTF8_LITERAL("Returns the number of values in a bag"),
-    AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list list)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<list> (\n    value: (list list)\n): integer;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_bag_size,
-    NULL,
-    1,
-    1,
-    &impl_bag_size_list_parameters[0],
-    1,
-    &impl_bag_size_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_bag_size,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- clone<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__clone_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/clone_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__clone_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_clone_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__clone_list
-        }
-    },
-    (void *)&afw_function_definition_clone_list
-};
-
-static const afw_value_function_parameter_t
-impl_clone_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The cloned list value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_clone_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The list value to clone."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_clone_list_parameters[] = {
-    &impl_clone_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_clone_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__clone_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("clone<list>"),
-    AFW_UTF8_LITERAL("clone"),
-    AFW_UTF8_LITERAL("clone_list"),
-    AFW_UTF8_LITERAL("cloneList"),
-    AFW_UTF8_LITERAL("afwCloneList"),
-    AFW_UTF8_LITERAL("Clone list value"),
-    AFW_UTF8_LITERAL("Deep clone a list value."),
-    AFW_UTF8_LITERAL("(value: list): list"),
-    AFW_UTF8_LITERAL("/* Clone list value */\nfunction clone<list> (\n    value: list\n): list;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_clone,
-    NULL,
-    1,
-    1,
-    &impl_clone_list_parameters[0],
-    1,
-    &impl_clone_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_clone,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- eq<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__eq_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eq_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__eq_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_eq_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__eq_list
-        }
-    },
-    (void *)&afw_function_definition_eq_list
-};
-
-static const afw_value_function_parameter_t
-impl_eq_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_eq_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_eq_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_eq_list_parameters[] = {
-    &impl_eq_list_parameter_1,
-    &impl_eq_list_parameter_2,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_eq_list_errorsThrown[] = {
-    "error", "conversion",
-    "reason", "arg2 cannot be converted to the data type of arg1.",
-    NULL,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eq_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__eq_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("eq<list>"),
-    AFW_UTF8_LITERAL("eq"),
-    AFW_UTF8_LITERAL("eq_list"),
-    AFW_UTF8_LITERAL("eqList"),
-    AFW_UTF8_LITERAL("afwEqList"),
-    AFW_UTF8_LITERAL("Checks for equal"),
-    AFW_UTF8_LITERAL("Determine if list arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you want false to be returned if arg1 and arg2's data type don't match."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for equal */\nfunction eq<list> (\n    arg1: list,\n    arg2: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL("=="),
-    afw_function_execute_eq,
-    NULL,
-    2,
-    2,
-    &impl_eq_list_parameters[0],
-    2,
-    &impl_eq_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    &impl_eq_list_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_eq,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- eqx<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__eqx_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eqx_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__eqx_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_eqx_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__eqx_list
-        }
-    },
-    (void *)&afw_function_definition_eqx_list
-};
-
-static const afw_value_function_parameter_t
-impl_eqx_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_eqx_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_eqx_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_eqx_list_parameters[] = {
-    &impl_eqx_list_parameter_1,
-    &impl_eqx_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eqx_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__eqx_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("eqx<list>"),
-    AFW_UTF8_LITERAL("eqx"),
-    AFW_UTF8_LITERAL("eqx_list"),
-    AFW_UTF8_LITERAL("eqxList"),
-    AFW_UTF8_LITERAL("afwEqxList"),
-    AFW_UTF8_LITERAL("Checks for equal and type"),
-    AFW_UTF8_LITERAL("Determine if for list arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for equal and type */\nfunction eqx<list> (\n    arg1: list,\n    arg2: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL("==="),
-    afw_function_execute_eqx,
-    NULL,
-    2,
-    2,
-    &impl_eqx_list_parameters[0],
-    2,
-    &impl_eqx_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_eqx,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- ge<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ge_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__ge_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_ge_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__ge_list
-        }
-    },
-    (void *)&afw_function_definition_ge_list
-};
-
-static const afw_value_function_parameter_t
-impl_ge_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_ge_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_ge_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_ge_list_parameters[] = {
-    &impl_ge_list_parameter_1,
-    &impl_ge_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ge_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__ge_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("ge<list>"),
-    AFW_UTF8_LITERAL("ge"),
-    AFW_UTF8_LITERAL("ge_list"),
-    AFW_UTF8_LITERAL("geList"),
-    AFW_UTF8_LITERAL("afwGeList"),
-    AFW_UTF8_LITERAL("Checks for greater than or equal"),
-    AFW_UTF8_LITERAL("Checks for list arg1 is greater than or equal to list arg2 and return the boolean result."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for greater than or equal */\nfunction ge<list> (\n    arg1: list,\n    arg2: list\n): boolean;\n"),
-    AFW_UTF8_LITERAL(">="),
-    afw_function_execute_ge,
-    NULL,
-    2,
-    2,
-    &impl_ge_list_parameters[0],
-    2,
-    &impl_ge_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_ge,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- gt<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__gt_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__gt_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_gt_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__gt_list
-        }
-    },
-    (void *)&afw_function_definition_gt_list
-};
-
-static const afw_value_function_parameter_t
-impl_gt_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_gt_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_gt_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_gt_list_parameters[] = {
-    &impl_gt_list_parameter_1,
-    &impl_gt_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_gt_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__gt_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("gt<list>"),
-    AFW_UTF8_LITERAL("gt"),
-    AFW_UTF8_LITERAL("gt_list"),
-    AFW_UTF8_LITERAL("gtList"),
-    AFW_UTF8_LITERAL("afwGtList"),
-    AFW_UTF8_LITERAL("Checks for greater than"),
-    AFW_UTF8_LITERAL("Checks for list arg1 is greater than list arg2 and return the boolean result."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for greater than */\nfunction gt<list> (\n    arg1: list,\n    arg2: list\n): boolean;\n"),
-    AFW_UTF8_LITERAL(">"),
-    afw_function_execute_gt,
-    NULL,
-    2,
-    2,
-    &impl_gt_list_parameters[0],
-    2,
-    &impl_gt_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_gt,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- includes<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__includes_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/includes_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__includes_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_includes_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__includes_list
-        }
-    },
-    (void *)&afw_function_definition_includes_list
-};
-
-static const afw_value_function_parameter_t
-impl_includes_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Indicates if the element is found"),
-    AFW_UTF8_LITERAL("Indicates if the element is found in list."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_includes_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("The list to search"),
-    AFW_UTF8_LITERAL("The list to search."),
-    -1,
-    false,
-    false,
-    true,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_includes_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("searchElement"),
-    AFW_UTF8_LITERAL("Element to find"),
-    AFW_UTF8_LITERAL("Element to find."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_includes_list_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("fromIndex"),
-    AFW_UTF8_LITERAL("Index in the list to start"),
-    AFW_UTF8_LITERAL("Index in the list to start search."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_includes_list_parameters[] = {
-    &impl_includes_list_parameter_1,
-    &impl_includes_list_parameter_2,
-    &impl_includes_list_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_includes_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__includes_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("includes<list>"),
-    AFW_UTF8_LITERAL("includes"),
-    AFW_UTF8_LITERAL("includes_list"),
-    AFW_UTF8_LITERAL("includesList"),
-    AFW_UTF8_LITERAL("afwIncludesList"),
-    AFW_UTF8_LITERAL("Checks whether or not a list contains any value"),
-    AFW_UTF8_LITERAL("Checks whether or not a list contains any value."),
-    AFW_UTF8_LITERAL("(list: list, searchElement: any, fromIndex?: integer): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether or not a list contains any value */\nfunction includes<list> (\n    list: list          /* The list to search */,\n    searchElement: any  /* Element to find */,\n    fromIndex?: integer /* Index in the list to start */\n): boolean; /* Indicates if the element is found */\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_includes_list,
-    NULL,
-    2,
-    3,
-    &impl_includes_list_parameters[0],
-    3,
-    &impl_includes_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_includes,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- is<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__is_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/is_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__is_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_is_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__is_list
-        }
-    },
-    (void *)&afw_function_definition_is_list
-};
-
-static const afw_value_function_parameter_t
-impl_is_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_is_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Value to check"),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_is_list_parameters[] = {
-    &impl_is_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_is_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__is_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("is<list>"),
-    AFW_UTF8_LITERAL("is"),
-    AFW_UTF8_LITERAL("is_list"),
-    AFW_UTF8_LITERAL("isList"),
-    AFW_UTF8_LITERAL("afwIsList"),
-    AFW_UTF8_LITERAL("Checks whether value is dataType list"),
-    AFW_UTF8_LITERAL("Checks whether value is dataType list and return the boolean result."),
-    AFW_UTF8_LITERAL("(value: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether value is dataType list */\nfunction is<list> (\n    value: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_is,
-    NULL,
-    1,
-    1,
-    &impl_is_list_parameters[0],
-    1,
-    &impl_is_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_is,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- join ---------- */
-
-static const afw_utf8_t
-impl_object_path__join =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/join");
-
-static const afw_runtime_object_indirect_t
-impl_object__join = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_join,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__join
-        }
-    },
-    (void *)&afw_function_definition_join
-};
-
-static const afw_value_function_parameter_t
-impl_join_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Joined list values."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_join_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list of values (statements) of any data type."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_join_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("separator"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The separator to use. If not specified, a comma (,) is used."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_join_parameters[] = {
-    &impl_join_parameter_1,
-    &impl_join_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_join = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__join,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("join"),
-    AFW_UTF8_LITERAL("join"),
-    AFW_UTF8_LITERAL("join"),
-    AFW_UTF8_LITERAL("join"),
-    AFW_UTF8_LITERAL("afwJoin"),
-    AFW_UTF8_LITERAL("Join the string values of list elements"),
-    AFW_UTF8_LITERAL("Concatenate the string values of the elements of a list with a separator."),
-    AFW_UTF8_LITERAL("(value: list, separator?: string): string"),
-    AFW_UTF8_LITERAL("/* Join the string values of list elements */\nfunction join (\n    value: list,\n    separator?: string\n): string;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_join,
-    NULL,
-    1,
-    2,
-    &impl_join_parameters[0],
-    2,
-    &impl_join_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_join,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- le<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__le_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__le_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_le_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__le_list
-        }
-    },
-    (void *)&afw_function_definition_le_list
-};
-
-static const afw_value_function_parameter_t
-impl_le_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_le_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_le_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_le_list_parameters[] = {
-    &impl_le_list_parameter_1,
-    &impl_le_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_le_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__le_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("le<list>"),
-    AFW_UTF8_LITERAL("le"),
-    AFW_UTF8_LITERAL("le_list"),
-    AFW_UTF8_LITERAL("leList"),
-    AFW_UTF8_LITERAL("afwLeList"),
-    AFW_UTF8_LITERAL("Checks for less than or equal"),
-    AFW_UTF8_LITERAL("Checks for list arg1 is less than or equal to list arg2 and return the boolean result."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for less than or equal */\nfunction le<list> (\n    arg1: list,\n    arg2: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL("<="),
-    afw_function_execute_le,
-    NULL,
-    2,
-    2,
-    &impl_le_list_parameters[0],
-    2,
-    &impl_le_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_le,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- length<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__length_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/length_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__length_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_length_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__length_list
-        }
-    },
-    (void *)&afw_function_definition_length_list
-};
-
-static const afw_value_function_parameter_t
-impl_length_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_length_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Returns the number of entries in a list or code points in others."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_length_list_parameters[] = {
-    &impl_length_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_length_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__length_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("length<list>"),
-    AFW_UTF8_LITERAL("length"),
-    AFW_UTF8_LITERAL("length_list"),
-    AFW_UTF8_LITERAL("lengthList"),
-    AFW_UTF8_LITERAL("afwLengthList"),
-    AFW_UTF8_LITERAL("Returns number of codepoints or entries in value"),
-    AFW_UTF8_LITERAL("This is a polymorphic function where list can be any of the supported data types. Return the integer number of entries in datatype list or codepoints in others."),
-    AFW_UTF8_LITERAL("(value: list): integer"),
-    AFW_UTF8_LITERAL("/* Returns number of codepoints or entries in value */\nfunction length<list> (\n    value: list\n): integer;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_length,
-    NULL,
-    1,
-    1,
-    &impl_length_list_parameters[0],
-    1,
-    &impl_length_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_length,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- list ---------- */
-
-static const afw_utf8_t
-impl_object_path__list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/list");
-
-static const afw_runtime_object_indirect_t
-impl_object__list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__list
-        }
-    },
-    (void *)&afw_function_definition_list
-};
-
-static const afw_value_function_parameter_t
-impl_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The constructed list."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("values"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A value can refer to any adaptable value belonging to any data type or a list expression. In the case of a list expression, indicated by '...' followed by an expression that results in a list, every element within that list is included in the newly created list."),
-    0,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_list_parameters[] = {
-    &impl_list_parameter_1,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_list_errorsThrown[] = {
-    "error", "cast_error",
-    "reason", "value could not be converted",
-    NULL,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("afwList"),
-    AFW_UTF8_LITERAL("Construct a list with 0 or more elements"),
-    AFW_UTF8_LITERAL("Construct a list with 0 or more elements."),
-    AFW_UTF8_LITERAL("(...values: (list of any)): list"),
-    AFW_UTF8_LITERAL("/* Construct a list with 0 or more elements */\nfunction list (\n    ...values: (list of any)\n): list;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_list,
-    NULL,
-    0,
-    -1,
-    &impl_list_parameters[0],
-    1,
-    &impl_list_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    &impl_list_errorsThrown[0],
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- lt<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__lt_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__lt_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_lt_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__lt_list
-        }
-    },
-    (void *)&afw_function_definition_lt_list
-};
-
-static const afw_value_function_parameter_t
-impl_lt_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_lt_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_lt_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_lt_list_parameters[] = {
-    &impl_lt_list_parameter_1,
-    &impl_lt_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_lt_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__lt_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("lt<list>"),
-    AFW_UTF8_LITERAL("lt"),
-    AFW_UTF8_LITERAL("lt_list"),
-    AFW_UTF8_LITERAL("ltList"),
-    AFW_UTF8_LITERAL("afwLtList"),
-    AFW_UTF8_LITERAL("Checks for less than"),
-    AFW_UTF8_LITERAL("Checks for list arg1 is less that list arg2 and return the boolean result."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for less than */\nfunction lt<list> (\n    arg1: list,\n    arg2: list\n): boolean;\n"),
-    AFW_UTF8_LITERAL("<"),
-    afw_function_execute_lt,
-    NULL,
-    2,
-    2,
-    &impl_lt_list_parameters[0],
-    2,
-    &impl_lt_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_lt,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- ne<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ne_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ne_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__ne_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_ne_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__ne_list
-        }
-    },
-    (void *)&afw_function_definition_ne_list
-};
-
-static const afw_value_function_parameter_t
-impl_ne_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_ne_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_ne_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_ne_list_parameters[] = {
-    &impl_ne_list_parameter_1,
-    &impl_ne_list_parameter_2,
-    NULL
-};
-
-static const afw_utf8_z_t *
-impl_ne_list_errorsThrown[] = {
-    "error", "conversion",
-    "reason", "arg2 cannot be converted to the data type of arg1.",
-    NULL,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ne_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__ne_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("ne<list>"),
-    AFW_UTF8_LITERAL("ne"),
-    AFW_UTF8_LITERAL("ne_list"),
-    AFW_UTF8_LITERAL("neList"),
-    AFW_UTF8_LITERAL("afwNeList"),
-    AFW_UTF8_LITERAL("Checks for not equal"),
-    AFW_UTF8_LITERAL("Determine if list arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you want true to be returned if arg1 and arg2's data type don't match."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for not equal */\nfunction ne<list> (\n    arg1: list,\n    arg2: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL("!="),
-    afw_function_execute_ne,
-    NULL,
-    2,
-    2,
-    &impl_ne_list_parameters[0],
-    2,
-    &impl_ne_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    &impl_ne_list_errorsThrown[0],
-    NULL,
-    afw_data_type_method_number_ne,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- nex<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__nex_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/nex_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__nex_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_nex_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__nex_list
-        }
-    },
-    (void *)&afw_function_definition_nex_list
-};
-
-static const afw_value_function_parameter_t
-impl_nex_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_nex_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_nex_list_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_nex_list_parameters[] = {
-    &impl_nex_list_parameter_1,
-    &impl_nex_list_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nex_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__nex_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("nex<list>"),
-    AFW_UTF8_LITERAL("nex"),
-    AFW_UTF8_LITERAL("nex_list"),
-    AFW_UTF8_LITERAL("nexList"),
-    AFW_UTF8_LITERAL("afwNexList"),
-    AFW_UTF8_LITERAL("Checks for not equal value or type"),
-    AFW_UTF8_LITERAL("Determine if for list arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison."),
-    AFW_UTF8_LITERAL("(arg1: list, arg2: any): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for not equal value or type */\nfunction nex<list> (\n    arg1: list,\n    arg2: any\n): boolean;\n"),
-    AFW_UTF8_LITERAL("!=="),
-    afw_function_execute_nex,
-    NULL,
-    2,
-    2,
-    &impl_nex_list_parameters[0],
-    2,
-    &impl_nex_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_nex,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- reverse ---------- */
-
-static const afw_utf8_t
-impl_object_path__reverse =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/reverse");
-
-static const afw_runtime_object_indirect_t
-impl_object__reverse = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_reverse,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__reverse
-        }
-    },
-    (void *)&afw_function_definition_reverse
-};
-
-static const afw_value_function_parameter_t
-impl_reverse_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list with elements reversed."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_reverse_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list to reverse."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_reverse_parameters[] = {
-    &impl_reverse_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_reverse = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__reverse,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("reverse"),
-    AFW_UTF8_LITERAL("reverse"),
-    AFW_UTF8_LITERAL("reverse"),
-    AFW_UTF8_LITERAL("reverse"),
-    AFW_UTF8_LITERAL("afwReverse"),
-    AFW_UTF8_LITERAL("Return list with elements reversed"),
-    AFW_UTF8_LITERAL("Reverse the order of the elements in a list. If the list is typed, the resulting list will be the same type."),
-    AFW_UTF8_LITERAL("(list: list): list"),
-    AFW_UTF8_LITERAL("/* Return list with elements reversed */\nfunction reverse (\n    list: list\n): list;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_reverse,
-    NULL,
-    1,
-    1,
-    &impl_reverse_parameters[0],
-    1,
-    &impl_reverse_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_reverse,
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- slice ---------- */
-
-static const afw_utf8_t
-impl_object_path__slice =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/slice");
-
-static const afw_runtime_object_indirect_t
-impl_object__slice = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_slice,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__slice
-        }
-    },
-    (void *)&afw_function_definition_slice
-};
-
-static const afw_value_function_parameter_t
-impl_slice_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list containing the selected values. If all of the values are the same data type, the list will be a list of that data type."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_slice_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The list to slice."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_slice_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("startIndex"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the zero based starting index. Use negative number to index from the end of the list. If not specified, an index of 0 is assumed."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_slice_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("endIndex"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the zero based ending index. If positive, this is one more than the index of the last value to include in the list. If negative, the index is from the end of the list. If not specified, the slice is from startIndex up to and including the end of the list."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_slice_parameters[] = {
-    &impl_slice_parameter_1,
-    &impl_slice_parameter_2,
-    &impl_slice_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_slice = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__slice,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("slice"),
-    AFW_UTF8_LITERAL("slice"),
-    AFW_UTF8_LITERAL("slice"),
-    AFW_UTF8_LITERAL("slice"),
-    AFW_UTF8_LITERAL("afwSlice"),
-    AFW_UTF8_LITERAL("Return a consecutive slice of values from a list"),
-    AFW_UTF8_LITERAL("This function extracts a consecutive slice of values from a list."),
-    AFW_UTF8_LITERAL("(list: list, startIndex?: integer, endIndex?: integer): list"),
-    AFW_UTF8_LITERAL("/* Return a consecutive slice of values from a list */\nfunction slice (\n    list: list,\n    startIndex?: integer,\n    endIndex?: integer\n): list;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_slice,
-    NULL,
-    1,
-    3,
-    &impl_slice_parameters[0],
-    3,
-    &impl_slice_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- to_string<list> ---------- */
-
-static const afw_utf8_t
-impl_object_path__to_string_list =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_string_list");
-
-static const afw_runtime_object_indirect_t
-impl_object__to_string_list = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_to_string_list,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__to_string_list
-        }
-    },
-    (void *)&afw_function_definition_to_string_list
-};
-
-static const afw_value_function_parameter_t
-impl_to_string_list_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The string representation of the value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_to_string_list_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("A list value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_to_string_list_parameters[] = {
-    &impl_to_string_list_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_to_string_list = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__to_string_list,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("to_string<list>"),
-    AFW_UTF8_LITERAL("to_string"),
-    AFW_UTF8_LITERAL("to_string_list"),
-    AFW_UTF8_LITERAL("toStringList"),
-    AFW_UTF8_LITERAL("afwToStringList"),
-    AFW_UTF8_LITERAL("Converts value to string"),
-    AFW_UTF8_LITERAL("Converts list value to string. For list values, the to_string() value for each entry is returned separated with commas."),
-    AFW_UTF8_LITERAL("(value: list): string"),
-    AFW_UTF8_LITERAL("/* Converts value to string */\nfunction to_string<list> (\n    value: list\n): string;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_convert,
-    NULL,
-    1,
-    1,
-    &impl_to_string_list_parameters[0],
-    1,
-    &impl_to_string_list_returns,
-    NULL,
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    NULL,
-    NULL,
-    afw_data_type_method_number_to_string,
-    0,
-    false,
-    false,
-    false,
-    true,
     false
 };
 
@@ -62649,8 +62649,8 @@ impl_model_default_modify_object_action_parameter_4 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("entries"),
     AFW_UTF8_LITERAL(""),
@@ -62737,8 +62737,8 @@ afw_function_definition_model_default_modify_object_action = {
     AFW_UTF8_LITERAL("afwModelDefaultModifyObjectAction"),
     AFW_UTF8_LITERAL("Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor."),
     AFW_UTF8_LITERAL("This function returns a _AdaptiveAction_ object for the default action performed if a onModifyObject parameter is not specified on the associated _AdaptiveModelObjectType_. The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects. This function can be called as part of a onModify expression or for testing."),
-    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, objectId: string, entries: list, modelId?: string, context?: (object _AdaptiveContextType_)): (object _AdaptiveAction_)"),
-    AFW_UTF8_LITERAL("/* Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor. */\nfunction model_default_modify_object_action (\n    adaptorId: string,\n    objectType: string,\n    objectId: string,\n    entries: list,\n    modelId?: string,\n    context?: (object _AdaptiveContextType_)\n): (object _AdaptiveAction_);\n"),
+    AFW_UTF8_LITERAL("(adaptorId: string, objectType: string, objectId: string, entries: array, modelId?: string, context?: (object _AdaptiveContextType_)): (object _AdaptiveAction_)"),
+    AFW_UTF8_LITERAL("/* Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor. */\nfunction model_default_modify_object_action (\n    adaptorId: string,\n    objectType: string,\n    objectId: string,\n    entries: array,\n    modelId?: string,\n    context?: (object _AdaptiveContextType_)\n): (object _AdaptiveAction_);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_model_default_modify_object_action,
     NULL,
@@ -63422,8 +63422,8 @@ impl_bag_null_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -63448,8 +63448,8 @@ impl_bag_null_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -63479,8 +63479,8 @@ afw_function_definition_bag_null = {
     AFW_UTF8_LITERAL("afwBagNull"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of null values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list null))): (list null)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<null> (\n    ...values: (list of (list null))\n): (list null);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array null))): (array null)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<null> (\n    ...values: (list of (array null))\n): (array null);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -63564,8 +63564,8 @@ impl_bag_size_null_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -63595,8 +63595,8 @@ afw_function_definition_bag_size_null = {
     AFW_UTF8_LITERAL("afwBagSizeNull"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list null)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<null> (\n    value: (list null)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array null)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<null> (\n    value: (array null)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -64010,8 +64010,8 @@ impl_bag_objectId_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -64036,8 +64036,8 @@ impl_bag_objectId_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -64067,8 +64067,8 @@ afw_function_definition_bag_objectId = {
     AFW_UTF8_LITERAL("afwBagObjectId"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of objectId values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list objectId))): (list objectId)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<objectId> (\n    ...values: (list of (list objectId))\n): (list objectId);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array objectId))): (array objectId)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<objectId> (\n    ...values: (list of (array objectId))\n): (array objectId);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -64152,8 +64152,8 @@ impl_bag_size_objectId_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -64183,8 +64183,8 @@ afw_function_definition_bag_size_objectId = {
     AFW_UTF8_LITERAL("afwBagSizeObjectId"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list objectId)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<objectId> (\n    value: (list objectId)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array objectId)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<objectId> (\n    value: (array objectId)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -65758,8 +65758,8 @@ impl_bag_objectPath_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -65784,8 +65784,8 @@ impl_bag_objectPath_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -65815,8 +65815,8 @@ afw_function_definition_bag_objectPath = {
     AFW_UTF8_LITERAL("afwBagObjectPath"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of objectPath values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list objectPath))): (list objectPath)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<objectPath> (\n    ...values: (list of (list objectPath))\n): (list objectPath);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array objectPath))): (array objectPath)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<objectPath> (\n    ...values: (list of (array objectPath))\n): (array objectPath);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -65900,8 +65900,8 @@ impl_bag_size_objectPath_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -65931,8 +65931,8 @@ afw_function_definition_bag_size_objectPath = {
     AFW_UTF8_LITERAL("afwBagSizeObjectPath"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list objectPath)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<objectPath> (\n    value: (list objectPath)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array objectPath)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<objectPath> (\n    value: (array objectPath)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -67798,8 +67798,8 @@ impl_bag_object_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -67824,8 +67824,8 @@ impl_bag_object_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -67855,8 +67855,8 @@ afw_function_definition_bag_object = {
     AFW_UTF8_LITERAL("afwBagObject"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of object values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list object))): (list object)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<object> (\n    ...values: (list of (list object))\n): (list object);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array object))): (array object)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<object> (\n    ...values: (list of (array object))\n): (array object);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -67940,8 +67940,8 @@ impl_bag_size_object_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -67971,8 +67971,8 @@ afw_function_definition_bag_size_object = {
     AFW_UTF8_LITERAL("afwBagSizeObject"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list object)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<object> (\n    value: (list object)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array object)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<object> (\n    value: (array object)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -70580,8 +70580,8 @@ impl_bag_password_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -70606,8 +70606,8 @@ impl_bag_password_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -70637,8 +70637,8 @@ afw_function_definition_bag_password = {
     AFW_UTF8_LITERAL("afwBagPassword"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of password values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list password))): (list password)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<password> (\n    ...values: (list of (list password))\n): (list password);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array password))): (array password)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<password> (\n    ...values: (list of (array password))\n): (array password);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -70722,8 +70722,8 @@ impl_bag_size_password_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -70753,8 +70753,8 @@ afw_function_definition_bag_size_password = {
     AFW_UTF8_LITERAL("afwBagSizePassword"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list password)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<password> (\n    value: (list password)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array password)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<password> (\n    value: (array password)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -72900,8 +72900,8 @@ impl_at_least_one_member_of_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -72926,8 +72926,8 @@ impl_at_least_one_member_of_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -72977,8 +72977,8 @@ afw_function_definition_at_least_one_member_of = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOf"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in <dataType> list1 is in <dataType> list2."),
-    AFW_UTF8_LITERAL("`<dataType>`(list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of `<dataType>`(\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of `<dataType>`(\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -73036,8 +73036,8 @@ impl_bag_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -73062,8 +73062,8 @@ impl_bag_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -73098,7 +73098,7 @@ impl_bag_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
@@ -73127,8 +73127,8 @@ afw_function_definition_bag = {
     AFW_UTF8_LITERAL("afwBag"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of <dataType> values and returns a list of list."),
-    AFW_UTF8_LITERAL("`<dataType>`(...values: (list of list)): list"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag `<dataType>`(\n    ...values: (list of list)\n): list;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(...values: (list of array)): array"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag `<dataType>`(\n    ...values: (list of array)\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -73212,8 +73212,8 @@ impl_bag_size_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -73248,7 +73248,7 @@ impl_bag_size_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
@@ -73277,8 +73277,8 @@ afw_function_definition_bag_size = {
     AFW_UTF8_LITERAL("afwBagSize"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("`<dataType>`(value: list): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size `<dataType>`(\n    value: list\n): integer;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(value: array): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size `<dataType>`(\n    value: array\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -73505,7 +73505,7 @@ impl_clone_parameters[] = {
 
 static const afw_utf8_t
 impl_clone_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     { NULL }
 };
@@ -74491,7 +74491,7 @@ impl_eq_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -74825,7 +74825,7 @@ impl_eqx_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -75277,7 +75277,7 @@ impl_ge_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -75454,7 +75454,7 @@ impl_gt_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -75820,7 +75820,7 @@ impl_includes_parameters[] = {
 static const afw_utf8_t
 impl_includes_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     { NULL }
 };
@@ -76073,8 +76073,8 @@ impl_intersection_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -76099,8 +76099,8 @@ impl_intersection_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -76125,8 +76125,8 @@ impl_intersection_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -76176,8 +76176,8 @@ afw_function_definition_intersection = {
     AFW_UTF8_LITERAL("afwIntersection"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of <dataType> with the values that are common to both list of <dataType> list1 and list2."),
-    AFW_UTF8_LITERAL("`<dataType>`(list1: list, list2: list): list"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection `<dataType>`(\n    list1: list,\n    list2: list\n): list;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(list1: array, list2: array): array"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection `<dataType>`(\n    list1: array,\n    list2: array\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -76297,7 +76297,7 @@ impl_is_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
@@ -76438,10 +76438,10 @@ impl_is_in_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -76491,8 +76491,8 @@ afw_function_definition_is_in = {
     AFW_UTF8_LITERAL("afwIsIn"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether <dataType> value is in list of <dataType> list and returns the boolean result."),
-    AFW_UTF8_LITERAL("`<dataType>`(value: dataType, list: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in `<dataType>`(\n    value: dataType,\n    list: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(value: dataType, array: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in `<dataType>`(\n    value: dataType,\n    array: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -76816,7 +76816,7 @@ impl_le_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -76952,7 +76952,7 @@ impl_length_parameters[] = {
 static const afw_utf8_t
 impl_length_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     { NULL }
 };
@@ -77117,7 +77117,7 @@ impl_lt_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -77970,7 +77970,7 @@ impl_ne_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -78278,7 +78278,7 @@ impl_nex_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
@@ -78636,10 +78636,10 @@ impl_one_and_only_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -78696,8 +78696,8 @@ afw_function_definition_one_and_only = {
     AFW_UTF8_LITERAL("afwOneAndOnly"),
     AFW_UTF8_LITERAL("Converts a one value list to a <dataType> value"),
     AFW_UTF8_LITERAL("This converts a list of <dataType> values that contains one value to a single <dataType> value."),
-    AFW_UTF8_LITERAL("`<dataType>`(list: (list list)): dataType"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a <dataType> value */\nfunction one_and_only `<dataType>`(\n    list: (list list)\n): dataType;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(array: (array array)): dataType"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a <dataType> value */\nfunction one_and_only `<dataType>`(\n    array: (array array)\n): dataType;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -79914,8 +79914,8 @@ impl_set_equals_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -79940,8 +79940,8 @@ impl_set_equals_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -79991,8 +79991,8 @@ afw_function_definition_set_equals = {
     AFW_UTF8_LITERAL("afwSetEquals"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if <dataType> list1 and <dataType> list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("`<dataType>`(list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals `<dataType>`(\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals `<dataType>`(\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -80050,8 +80050,8 @@ impl_split_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -80168,8 +80168,8 @@ afw_function_definition_split = {
     AFW_UTF8_LITERAL("afwSplit"),
     AFW_UTF8_LITERAL("Split at a separator"),
     AFW_UTF8_LITERAL("Split <dataType> value into an list of strings using a separator."),
-    AFW_UTF8_LITERAL("`<dataType>`(value: dataType, separator?: string, limit?: integer): list"),
-    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split `<dataType>`(\n    value: dataType,\n    separator?: string,\n    limit?: integer\n): list;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(value: dataType, separator?: string, limit?: integer): array"),
+    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split `<dataType>`(\n    value: dataType,\n    separator?: string,\n    limit?: integer\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -80403,8 +80403,8 @@ impl_subset_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -80429,8 +80429,8 @@ impl_subset_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -80480,8 +80480,8 @@ afw_function_definition_subset = {
     AFW_UTF8_LITERAL("afwSubset"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in <dataType> list1 are all in <dataType> list2."),
-    AFW_UTF8_LITERAL("`<dataType>`(list1: list, list2: list): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset `<dataType>`(\n    list1: list,\n    list2: list\n): boolean;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(list1: array, list2: array): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset `<dataType>`(\n    list1: array,\n    list2: array\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -82528,7 +82528,7 @@ impl_to_string_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
@@ -83005,8 +83005,8 @@ impl_union_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -83031,8 +83031,8 @@ impl_union_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -83081,8 +83081,8 @@ afw_function_definition_union = {
     AFW_UTF8_LITERAL("afwUnion"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of <dataType> contains all of the unique values in two or more list of <dataType> values."),
-    AFW_UTF8_LITERAL("`<dataType>`(lists_1: list, lists_2: list, ...lists_rest: (list of list)): list"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union `<dataType>`(\n    lists_1: list,\n    lists_2: list,\n    ...lists_rest: (list of list)\n): list;\n"),
+    AFW_UTF8_LITERAL("`<dataType>`(lists_1: array, lists_2: array, ...lists_rest: (list of array)): array"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union `<dataType>`(\n    lists_1: array,\n    lists_2: array,\n    ...lists_rest: (list of array)\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     NULL,
@@ -85350,8 +85350,8 @@ impl_at_least_one_member_of_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -85376,8 +85376,8 @@ impl_at_least_one_member_of_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -85408,8 +85408,8 @@ afw_function_definition_at_least_one_member_of_rfc822Name = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfRfc822Name"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in rfc822Name list1 is in rfc822Name list2."),
-    AFW_UTF8_LITERAL("(list1: (list rfc822Name), list2: (list rfc822Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<rfc822Name> (\n    list1: (list rfc822Name),\n    list2: (list rfc822Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array rfc822Name), list2: (array rfc822Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<rfc822Name> (\n    list1: (array rfc822Name),\n    list2: (array rfc822Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -85467,8 +85467,8 @@ impl_bag_rfc822Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -85493,8 +85493,8 @@ impl_bag_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -85524,8 +85524,8 @@ afw_function_definition_bag_rfc822Name = {
     AFW_UTF8_LITERAL("afwBagRfc822Name"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of rfc822Name values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list rfc822Name))): (list rfc822Name)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<rfc822Name> (\n    ...values: (list of (list rfc822Name))\n): (list rfc822Name);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array rfc822Name))): (array rfc822Name)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<rfc822Name> (\n    ...values: (list of (array rfc822Name))\n): (array rfc822Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -85609,8 +85609,8 @@ impl_bag_size_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -85640,8 +85640,8 @@ afw_function_definition_bag_size_rfc822Name = {
     AFW_UTF8_LITERAL("afwBagSizeRfc822Name"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list rfc822Name)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<rfc822Name> (\n    value: (list rfc822Name)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array rfc822Name)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<rfc822Name> (\n    value: (array rfc822Name)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -86279,8 +86279,8 @@ impl_intersection_rfc822Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -86305,8 +86305,8 @@ impl_intersection_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -86331,8 +86331,8 @@ impl_intersection_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -86363,8 +86363,8 @@ afw_function_definition_intersection_rfc822Name = {
     AFW_UTF8_LITERAL("afwIntersectionRfc822Name"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of rfc822Name with the values that are common to both list of rfc822Name list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list rfc822Name), list2: (list rfc822Name)): (list rfc822Name)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<rfc822Name> (\n    list1: (list rfc822Name),\n    list2: (list rfc822Name)\n): (list rfc822Name);\n"),
+    AFW_UTF8_LITERAL("(list1: (array rfc822Name), list2: (array rfc822Name)): (array rfc822Name)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<rfc822Name> (\n    list1: (array rfc822Name),\n    list2: (array rfc822Name)\n): (array rfc822Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -86474,10 +86474,10 @@ impl_is_in_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -86506,8 +86506,8 @@ afw_function_definition_is_in_rfc822Name = {
     AFW_UTF8_LITERAL("afwIsInRfc822Name"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether rfc822Name value is in list of rfc822Name list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: rfc822Name, list: (list rfc822Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<rfc822Name> (\n    value: rfc822Name,\n    list: (list rfc822Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: rfc822Name, array: (array rfc822Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<rfc822Name> (\n    value: rfc822Name,\n    array: (array rfc822Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -87430,10 +87430,10 @@ impl_one_and_only_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -87469,8 +87469,8 @@ afw_function_definition_one_and_only_rfc822Name = {
     AFW_UTF8_LITERAL("afwOneAndOnlyRfc822Name"),
     AFW_UTF8_LITERAL("Converts a one value list to a rfc822Name value"),
     AFW_UTF8_LITERAL("This converts a list of rfc822Name values that contains one value to a single rfc822Name value."),
-    AFW_UTF8_LITERAL("(list: (list list)): rfc822Name"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a rfc822Name value */\nfunction one_and_only<rfc822Name> (\n    list: (list list)\n): rfc822Name;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): rfc822Name"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a rfc822Name value */\nfunction one_and_only<rfc822Name> (\n    array: (array array)\n): rfc822Name;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -87821,8 +87821,8 @@ impl_set_equals_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -87847,8 +87847,8 @@ impl_set_equals_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -87879,8 +87879,8 @@ afw_function_definition_set_equals_rfc822Name = {
     AFW_UTF8_LITERAL("afwSetEqualsRfc822Name"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list rfc822Name), list2: (list rfc822Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<rfc822Name> (\n    list1: (list rfc822Name),\n    list2: (list rfc822Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array rfc822Name), list2: (array rfc822Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<rfc822Name> (\n    list1: (array rfc822Name),\n    list2: (array rfc822Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -87964,8 +87964,8 @@ impl_subset_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -87990,8 +87990,8 @@ impl_subset_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -88022,8 +88022,8 @@ afw_function_definition_subset_rfc822Name = {
     AFW_UTF8_LITERAL("afwSubsetRfc822Name"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in rfc822Name list1 are all in rfc822Name list2."),
-    AFW_UTF8_LITERAL("(list1: (list rfc822Name), list2: (list rfc822Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<rfc822Name> (\n    list1: (list rfc822Name),\n    list2: (list rfc822Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array rfc822Name), list2: (array rfc822Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<rfc822Name> (\n    list1: (array rfc822Name),\n    list2: (array rfc822Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -88197,8 +88197,8 @@ impl_union_rfc822Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -88223,8 +88223,8 @@ impl_union_rfc822Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -88254,8 +88254,8 @@ afw_function_definition_union_rfc822Name = {
     AFW_UTF8_LITERAL("afwUnionRfc822Name"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of rfc822Name contains all of the unique values in two or more list of rfc822Name values."),
-    AFW_UTF8_LITERAL("(lists_1: (list rfc822Name), lists_2: (list rfc822Name), ...lists_rest: (list of (list rfc822Name))): (list rfc822Name)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<rfc822Name> (\n    lists_1: (list rfc822Name),\n    lists_2: (list rfc822Name),\n    ...lists_rest: (list of (list rfc822Name))\n): (list rfc822Name);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array rfc822Name), lists_2: (array rfc822Name), ...lists_rest: (list of (array rfc822Name))): (array rfc822Name)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<rfc822Name> (\n    lists_1: (array rfc822Name),\n    lists_2: (array rfc822Name),\n    ...lists_rest: (list of (array rfc822Name))\n): (array rfc822Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -88462,8 +88462,8 @@ impl_bag_script_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -88488,8 +88488,8 @@ impl_bag_script_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -88519,8 +88519,8 @@ afw_function_definition_bag_script = {
     AFW_UTF8_LITERAL("afwBagScript"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of script values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list script))): (list script)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<script> (\n    ...values: (list of (list script))\n): (list script);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array script))): (array script)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<script> (\n    ...values: (list of (array script))\n): (array script);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -88604,8 +88604,8 @@ impl_bag_size_script_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -88635,8 +88635,8 @@ afw_function_definition_bag_size_script = {
     AFW_UTF8_LITERAL("afwBagSizeScript"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list script)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<script> (\n    value: (list script)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array script)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<script> (\n    value: (array script)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -88979,8 +88979,8 @@ impl_const_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("name"),
     AFW_UTF8_LITERAL(""),
@@ -89064,8 +89064,8 @@ afw_function_definition_const = {
     AFW_UTF8_LITERAL("afwConst"),
     AFW_UTF8_LITERAL("Define one or more constants in the current block"),
     AFW_UTF8_LITERAL("Define one or more statically scoped constants local to the current script block with a permanent value. These constants can be accessed from the current block and inner blocks, but can not be assigned a different value."),
-    AFW_UTF8_LITERAL("(name: (list string), value: any, type?: (object _AdaptiveValueMeta_)): any"),
-    AFW_UTF8_LITERAL("/* Define one or more constants in the current block */\nfunction const (\n    name: (list string),\n    value: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
+    AFW_UTF8_LITERAL("(name: (array string), value: any, type?: (object _AdaptiveValueMeta_)): any"),
+    AFW_UTF8_LITERAL("/* Define one or more constants in the current block */\nfunction const (\n    name: (array string),\n    value: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_const,
     NULL,
@@ -89264,8 +89264,8 @@ impl_do_while_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
@@ -89296,8 +89296,8 @@ afw_function_definition_do_while = {
     AFW_UTF8_LITERAL("afwDoWhile"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) at least once while a condition is true"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) at least once while a condition is true. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(condition: boolean, body: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_do_while,
     NULL,
@@ -89818,8 +89818,8 @@ impl_for_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("initial"),
     AFW_UTF8_LITERAL(""),
@@ -89870,8 +89870,8 @@ impl_for_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("increment"),
     AFW_UTF8_LITERAL(""),
@@ -89896,8 +89896,8 @@ impl_for_parameter_4 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
@@ -89930,8 +89930,8 @@ afw_function_definition_for = {
     AFW_UTF8_LITERAL("afwFor"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true with a list of initial and increment values"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value."),
-    AFW_UTF8_LITERAL("(initial?: list, condition?: boolean, increment?: list, body?: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction for (\n    initial?: list,\n    condition?: boolean,\n    increment?: list,\n    body?: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(initial?: array, condition?: boolean, increment?: array, body?: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction for (\n    initial?: array,\n    condition?: boolean,\n    increment?: array,\n    body?: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_for,
     NULL,
@@ -90015,8 +90015,8 @@ impl_foreach_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("name"),
     AFW_UTF8_LITERAL(""),
@@ -90067,8 +90067,8 @@ impl_foreach_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
@@ -90100,8 +90100,8 @@ afw_function_definition_foreach = {
     AFW_UTF8_LITERAL("afwForeach"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true with a list of initial and increment values"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
-    AFW_UTF8_LITERAL("(name: (list string), value: any, body?: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction foreach (\n    name: (list string),\n    value: any,\n    body?: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(name: (array string), value: any, body?: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true with a list of initial and increment values */\nfunction foreach (\n    name: (array string),\n    value: any,\n    body?: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_foreach,
     NULL,
@@ -90497,8 +90497,8 @@ impl_if_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("then"),
     AFW_UTF8_LITERAL(""),
@@ -90523,8 +90523,8 @@ impl_if_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("else"),
     AFW_UTF8_LITERAL(""),
@@ -90556,8 +90556,8 @@ afw_function_definition_if = {
     AFW_UTF8_LITERAL("afwIf"),
     AFW_UTF8_LITERAL("If/then/else function"),
     AFW_UTF8_LITERAL("Evaluate one of two different values depending on test condition."),
-    AFW_UTF8_LITERAL("(condition: boolean, then: list, else?: list): any"),
-    AFW_UTF8_LITERAL("/* If/then/else function */\nfunction if (\n    condition: boolean,\n    then: list,\n    else?: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(condition: boolean, then: array, else?: array): any"),
+    AFW_UTF8_LITERAL("/* If/then/else function */\nfunction if (\n    condition: boolean,\n    then: array,\n    else?: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_if,
     NULL,
@@ -90900,8 +90900,8 @@ impl_let_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("name"),
     AFW_UTF8_LITERAL(""),
@@ -90985,8 +90985,8 @@ afw_function_definition_let = {
     AFW_UTF8_LITERAL("afwLet"),
     AFW_UTF8_LITERAL("Declare one or more variables in the current block"),
     AFW_UTF8_LITERAL("Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."),
-    AFW_UTF8_LITERAL("(name: (list string), value?: any, type?: (object _AdaptiveValueMeta_)): any"),
-    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction let (\n    name: (list string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
+    AFW_UTF8_LITERAL("(name: (array string), value?: any, type?: (object _AdaptiveValueMeta_)): any"),
+    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction let (\n    name: (array string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_let,
     NULL,
@@ -92149,8 +92149,8 @@ impl_try_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
@@ -92175,8 +92175,8 @@ impl_try_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("finally"),
     AFW_UTF8_LITERAL(""),
@@ -92201,8 +92201,8 @@ impl_try_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("catch"),
     AFW_UTF8_LITERAL(""),
@@ -92261,8 +92261,8 @@ afw_function_definition_try = {
     AFW_UTF8_LITERAL("afwTry"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) as a try block with optional catch and finally statements"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(body: list, finally?: list, catch?: list, error?: (object _AdaptiveObjectType_)): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: list,\n    finally?: list,\n    catch?: list,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"),
+    AFW_UTF8_LITERAL("(body: array, finally?: array, catch?: array, error?: (object _AdaptiveObjectType_)): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: array,\n    finally?: array,\n    catch?: array,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_try,
     NULL,
@@ -92372,8 +92372,8 @@ impl_while_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("body"),
     AFW_UTF8_LITERAL(""),
@@ -92404,8 +92404,8 @@ afw_function_definition_while = {
     AFW_UTF8_LITERAL("afwWhile"),
     AFW_UTF8_LITERAL("Evaluate a list of values (statements) while a condition is true"),
     AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate a list of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(condition: boolean, body: list): any"),
-    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: list\n): any;\n"),
+    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate a list of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_while,
     NULL,
@@ -94896,8 +94896,8 @@ impl_at_least_one_member_of_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -94922,8 +94922,8 @@ impl_at_least_one_member_of_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -94954,8 +94954,8 @@ afw_function_definition_at_least_one_member_of_string = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfString"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in string list1 is in string list2."),
-    AFW_UTF8_LITERAL("(list1: (list string), list2: (list string)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<string> (\n    list1: (list string),\n    list2: (list string)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array string), list2: (array string)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<string> (\n    list1: (array string),\n    list2: (array string)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -95039,8 +95039,8 @@ impl_bag_size_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -95070,8 +95070,8 @@ afw_function_definition_bag_size_string = {
     AFW_UTF8_LITERAL("afwBagSizeString"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list string)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<string> (\n    value: (list string)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array string)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<string> (\n    value: (array string)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -95129,8 +95129,8 @@ impl_bag_string_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -95155,8 +95155,8 @@ impl_bag_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -95186,8 +95186,8 @@ afw_function_definition_bag_string = {
     AFW_UTF8_LITERAL("afwBagString"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of string values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list string))): (list string)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<string> (\n    ...values: (list of (list string))\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array string))): (array string)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<string> (\n    ...values: (list of (array string))\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -96807,8 +96807,8 @@ impl_intersection_string_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -96833,8 +96833,8 @@ impl_intersection_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -96859,8 +96859,8 @@ impl_intersection_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -96891,8 +96891,8 @@ afw_function_definition_intersection_string = {
     AFW_UTF8_LITERAL("afwIntersectionString"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of string with the values that are common to both list of string list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list string), list2: (list string)): (list string)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<string> (\n    list1: (list string),\n    list2: (list string)\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(list1: (array string), list2: (array string)): (array string)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<string> (\n    list1: (array string),\n    list2: (array string)\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -97002,10 +97002,10 @@ impl_is_in_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -97034,8 +97034,8 @@ afw_function_definition_is_in_string = {
     AFW_UTF8_LITERAL("afwIsInString"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether string value is in list of string list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: string, list: (list string)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<string> (\n    value: string,\n    list: (list string)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: string, array: (array string)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<string> (\n    value: string,\n    array: (array string)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -98565,10 +98565,10 @@ impl_one_and_only_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -98604,8 +98604,8 @@ afw_function_definition_one_and_only_string = {
     AFW_UTF8_LITERAL("afwOneAndOnlyString"),
     AFW_UTF8_LITERAL("Converts a one value list to a string value"),
     AFW_UTF8_LITERAL("This converts a list of string values that contains one value to a single string value."),
-    AFW_UTF8_LITERAL("(list: (list list)): string"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a string value */\nfunction one_and_only<string> (\n    list: (list list)\n): string;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): string"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a string value */\nfunction one_and_only<string> (\n    array: (array array)\n): string;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -99512,8 +99512,8 @@ impl_set_equals_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -99538,8 +99538,8 @@ impl_set_equals_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -99570,8 +99570,8 @@ afw_function_definition_set_equals_string = {
     AFW_UTF8_LITERAL("afwSetEqualsString"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if string list1 and string list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list string), list2: (list string)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<string> (\n    list1: (list string),\n    list2: (list string)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array string), list2: (array string)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<string> (\n    list1: (array string),\n    list2: (array string)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -99629,8 +99629,8 @@ impl_split_string_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -99740,8 +99740,8 @@ afw_function_definition_split_string = {
     AFW_UTF8_LITERAL("afwSplitString"),
     AFW_UTF8_LITERAL("Split at a separator"),
     AFW_UTF8_LITERAL("Split string value into an list of strings using a separator."),
-    AFW_UTF8_LITERAL("(value: string, separator?: string, limit?: integer): list"),
-    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split<string> (\n    value: string,\n    separator?: string,\n    limit?: integer\n): list;\n"),
+    AFW_UTF8_LITERAL("(value: string, separator?: string, limit?: integer): array"),
+    AFW_UTF8_LITERAL("/* Split at a separator */\nfunction split<string> (\n    value: string,\n    separator?: string,\n    limit?: integer\n): array;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_split,
     NULL,
@@ -100092,8 +100092,8 @@ impl_subset_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -100118,8 +100118,8 @@ impl_subset_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -100150,8 +100150,8 @@ afw_function_definition_subset_string = {
     AFW_UTF8_LITERAL("afwSubsetString"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in string list1 are all in string list2."),
-    AFW_UTF8_LITERAL("(list1: (list string), list2: (list string)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<string> (\n    list1: (list string),\n    list2: (list string)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array string), list2: (array string)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<string> (\n    list1: (array string),\n    list2: (array string)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -102107,8 +102107,8 @@ impl_union_string_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -102133,8 +102133,8 @@ impl_union_string_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -102164,8 +102164,8 @@ afw_function_definition_union_string = {
     AFW_UTF8_LITERAL("afwUnionString"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of string contains all of the unique values in two or more list of string values."),
-    AFW_UTF8_LITERAL("(lists_1: (list string), lists_2: (list string), ...lists_rest: (list of (list string))): (list string)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<string> (\n    lists_1: (list string),\n    lists_2: (list string),\n    ...lists_rest: (list of (list string))\n): (list string);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array string), lists_2: (array string), ...lists_rest: (list of (array string))): (array string)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<string> (\n    lists_1: (array string),\n    lists_2: (array string),\n    ...lists_rest: (list of (array string))\n): (array string);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -102481,8 +102481,8 @@ impl_bag_size_template_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -102512,8 +102512,8 @@ afw_function_definition_bag_size_template = {
     AFW_UTF8_LITERAL("afwBagSizeTemplate"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list template)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<template> (\n    value: (list template)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array template)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<template> (\n    value: (array template)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -102571,8 +102571,8 @@ impl_bag_template_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -102597,8 +102597,8 @@ impl_bag_template_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -102628,8 +102628,8 @@ afw_function_definition_bag_template = {
     AFW_UTF8_LITERAL("afwBagTemplate"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of template values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list template))): (list template)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<template> (\n    ...values: (list of (list template))\n): (list template);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array template))): (array template)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<template> (\n    ...values: (list of (array template))\n): (array template);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -104515,8 +104515,8 @@ impl_at_least_one_member_of_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -104541,8 +104541,8 @@ impl_at_least_one_member_of_time_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -104573,8 +104573,8 @@ afw_function_definition_at_least_one_member_of_time = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfTime"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in time list1 is in time list2."),
-    AFW_UTF8_LITERAL("(list1: (list time), list2: (list time)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<time> (\n    list1: (list time),\n    list2: (list time)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array time), list2: (array time)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<time> (\n    list1: (array time),\n    list2: (array time)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -104658,8 +104658,8 @@ impl_bag_size_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -104689,8 +104689,8 @@ afw_function_definition_bag_size_time = {
     AFW_UTF8_LITERAL("afwBagSizeTime"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list time)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<time> (\n    value: (list time)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array time)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<time> (\n    value: (array time)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -104748,8 +104748,8 @@ impl_bag_time_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -104774,8 +104774,8 @@ impl_bag_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -104805,8 +104805,8 @@ afw_function_definition_bag_time = {
     AFW_UTF8_LITERAL("afwBagTime"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of time values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list time))): (list time)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<time> (\n    ...values: (list of (list time))\n): (list time);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array time))): (array time)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<time> (\n    ...values: (list of (array time))\n): (array time);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -105614,8 +105614,8 @@ impl_intersection_time_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -105640,8 +105640,8 @@ impl_intersection_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -105666,8 +105666,8 @@ impl_intersection_time_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -105698,8 +105698,8 @@ afw_function_definition_intersection_time = {
     AFW_UTF8_LITERAL("afwIntersectionTime"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of time with the values that are common to both list of time list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list time), list2: (list time)): (list time)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<time> (\n    list1: (list time),\n    list2: (list time)\n): (list time);\n"),
+    AFW_UTF8_LITERAL("(list1: (array time), list2: (array time)): (array time)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<time> (\n    list1: (array time),\n    list2: (array time)\n): (array time);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -105809,10 +105809,10 @@ impl_is_in_time_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -105841,8 +105841,8 @@ afw_function_definition_is_in_time = {
     AFW_UTF8_LITERAL("afwIsInTime"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether time value is in list of time list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: time, list: (list time)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<time> (\n    value: time,\n    list: (list time)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: time, array: (array time)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<time> (\n    value: time,\n    array: (array time)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -106854,10 +106854,10 @@ impl_one_and_only_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -106893,8 +106893,8 @@ afw_function_definition_one_and_only_time = {
     AFW_UTF8_LITERAL("afwOneAndOnlyTime"),
     AFW_UTF8_LITERAL("Converts a one value list to a time value"),
     AFW_UTF8_LITERAL("This converts a list of time values that contains one value to a single time value."),
-    AFW_UTF8_LITERAL("(list: (list list)): time"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a time value */\nfunction one_and_only<time> (\n    list: (list list)\n): time;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): time"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a time value */\nfunction one_and_only<time> (\n    array: (array array)\n): time;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -106978,8 +106978,8 @@ impl_set_equals_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -107004,8 +107004,8 @@ impl_set_equals_time_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -107036,8 +107036,8 @@ afw_function_definition_set_equals_time = {
     AFW_UTF8_LITERAL("afwSetEqualsTime"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if time list1 and time list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list time), list2: (list time)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<time> (\n    list1: (list time),\n    list2: (list time)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array time), list2: (array time)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<time> (\n    list1: (array time),\n    list2: (array time)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -107121,8 +107121,8 @@ impl_subset_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -107147,8 +107147,8 @@ impl_subset_time_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -107179,8 +107179,8 @@ afw_function_definition_subset_time = {
     AFW_UTF8_LITERAL("afwSubsetTime"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in time list1 are all in time list2."),
-    AFW_UTF8_LITERAL("(list1: (list time), list2: (list time)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<time> (\n    list1: (list time),\n    list2: (list time)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array time), list2: (array time)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<time> (\n    list1: (array time),\n    list2: (array time)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -107478,8 +107478,8 @@ impl_union_time_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -107504,8 +107504,8 @@ impl_union_time_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("time"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -107535,8 +107535,8 @@ afw_function_definition_union_time = {
     AFW_UTF8_LITERAL("afwUnionTime"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of time contains all of the unique values in two or more list of time values."),
-    AFW_UTF8_LITERAL("(lists_1: (list time), lists_2: (list time), ...lists_rest: (list of (list time))): (list time)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<time> (\n    lists_1: (list time),\n    lists_2: (list time),\n    ...lists_rest: (list of (list time))\n): (list time);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array time), lists_2: (array time), ...lists_rest: (list of (array time))): (array time)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<time> (\n    lists_1: (array time),\n    lists_2: (array time),\n    ...lists_rest: (list of (array time))\n): (array time);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -107968,8 +107968,8 @@ impl_at_least_one_member_of_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -107994,8 +107994,8 @@ impl_at_least_one_member_of_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -108026,8 +108026,8 @@ afw_function_definition_at_least_one_member_of_x500Name = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfX500Name"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in x500Name list1 is in x500Name list2."),
-    AFW_UTF8_LITERAL("(list1: (list x500Name), list2: (list x500Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<x500Name> (\n    list1: (list x500Name),\n    list2: (list x500Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array x500Name), list2: (array x500Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<x500Name> (\n    list1: (array x500Name),\n    list2: (array x500Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -108111,8 +108111,8 @@ impl_bag_size_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -108142,8 +108142,8 @@ afw_function_definition_bag_size_x500Name = {
     AFW_UTF8_LITERAL("afwBagSizeX500Name"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list x500Name)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<x500Name> (\n    value: (list x500Name)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array x500Name)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<x500Name> (\n    value: (array x500Name)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -108201,8 +108201,8 @@ impl_bag_x500Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -108227,8 +108227,8 @@ impl_bag_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -108258,8 +108258,8 @@ afw_function_definition_bag_x500Name = {
     AFW_UTF8_LITERAL("afwBagX500Name"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of x500Name values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list x500Name))): (list x500Name)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<x500Name> (\n    ...values: (list of (list x500Name))\n): (list x500Name);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array x500Name))): (array x500Name)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<x500Name> (\n    ...values: (list of (array x500Name))\n): (array x500Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -108897,8 +108897,8 @@ impl_intersection_x500Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -108923,8 +108923,8 @@ impl_intersection_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -108949,8 +108949,8 @@ impl_intersection_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -108981,8 +108981,8 @@ afw_function_definition_intersection_x500Name = {
     AFW_UTF8_LITERAL("afwIntersectionX500Name"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of x500Name with the values that are common to both list of x500Name list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list x500Name), list2: (list x500Name)): (list x500Name)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<x500Name> (\n    list1: (list x500Name),\n    list2: (list x500Name)\n): (list x500Name);\n"),
+    AFW_UTF8_LITERAL("(list1: (array x500Name), list2: (array x500Name)): (array x500Name)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<x500Name> (\n    list1: (array x500Name),\n    list2: (array x500Name)\n): (array x500Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -109092,10 +109092,10 @@ impl_is_in_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -109124,8 +109124,8 @@ afw_function_definition_is_in_x500Name = {
     AFW_UTF8_LITERAL("afwIsInX500Name"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether x500Name value is in list of x500Name list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: x500Name, list: (list x500Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<x500Name> (\n    value: x500Name,\n    list: (list x500Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: x500Name, array: (array x500Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<x500Name> (\n    value: x500Name,\n    array: (array x500Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -110048,10 +110048,10 @@ impl_one_and_only_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -110087,8 +110087,8 @@ afw_function_definition_one_and_only_x500Name = {
     AFW_UTF8_LITERAL("afwOneAndOnlyX500Name"),
     AFW_UTF8_LITERAL("Converts a one value list to a x500Name value"),
     AFW_UTF8_LITERAL("This converts a list of x500Name values that contains one value to a single x500Name value."),
-    AFW_UTF8_LITERAL("(list: (list list)): x500Name"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a x500Name value */\nfunction one_and_only<x500Name> (\n    list: (list list)\n): x500Name;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): x500Name"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a x500Name value */\nfunction one_and_only<x500Name> (\n    array: (array array)\n): x500Name;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -110315,8 +110315,8 @@ impl_set_equals_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -110341,8 +110341,8 @@ impl_set_equals_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -110373,8 +110373,8 @@ afw_function_definition_set_equals_x500Name = {
     AFW_UTF8_LITERAL("afwSetEqualsX500Name"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if x500Name list1 and x500Name list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list x500Name), list2: (list x500Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<x500Name> (\n    list1: (list x500Name),\n    list2: (list x500Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array x500Name), list2: (array x500Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<x500Name> (\n    list1: (array x500Name),\n    list2: (array x500Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -110458,8 +110458,8 @@ impl_subset_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -110484,8 +110484,8 @@ impl_subset_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -110516,8 +110516,8 @@ afw_function_definition_subset_x500Name = {
     AFW_UTF8_LITERAL("afwSubsetX500Name"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in x500Name list1 are all in x500Name list2."),
-    AFW_UTF8_LITERAL("(list1: (list x500Name), list2: (list x500Name)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<x500Name> (\n    list1: (list x500Name),\n    list2: (list x500Name)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array x500Name), list2: (array x500Name)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<x500Name> (\n    list1: (array x500Name),\n    list2: (array x500Name)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -110691,8 +110691,8 @@ impl_union_x500Name_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -110717,8 +110717,8 @@ impl_union_x500Name_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -110748,8 +110748,8 @@ afw_function_definition_union_x500Name = {
     AFW_UTF8_LITERAL("afwUnionX500Name"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of x500Name contains all of the unique values in two or more list of x500Name values."),
-    AFW_UTF8_LITERAL("(lists_1: (list x500Name), lists_2: (list x500Name), ...lists_rest: (list of (list x500Name))): (list x500Name)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<x500Name> (\n    lists_1: (list x500Name),\n    lists_2: (list x500Name),\n    ...lists_rest: (list of (list x500Name))\n): (list x500Name);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array x500Name), lists_2: (array x500Name), ...lists_rest: (list of (array x500Name))): (array x500Name)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<x500Name> (\n    lists_1: (array x500Name),\n    lists_2: (array x500Name),\n    ...lists_rest: (list of (array x500Name))\n): (array x500Name);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -110957,8 +110957,8 @@ impl_bag_size_xpathExpression_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -110988,8 +110988,8 @@ afw_function_definition_bag_size_xpathExpression = {
     AFW_UTF8_LITERAL("afwBagSizeXpathExpression"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list xpathExpression)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<xpathExpression> (\n    value: (list xpathExpression)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array xpathExpression)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<xpathExpression> (\n    value: (array xpathExpression)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -111047,8 +111047,8 @@ impl_bag_xpathExpression_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -111073,8 +111073,8 @@ impl_bag_xpathExpression_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -111104,8 +111104,8 @@ afw_function_definition_bag_xpathExpression = {
     AFW_UTF8_LITERAL("afwBagXpathExpression"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of xpathExpression values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list xpathExpression))): (list xpathExpression)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<xpathExpression> (\n    ...values: (list of (list xpathExpression))\n): (list xpathExpression);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array xpathExpression))): (array xpathExpression)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<xpathExpression> (\n    ...values: (list of (array xpathExpression))\n): (array xpathExpression);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -113393,8 +113393,8 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -113419,8 +113419,8 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -113451,8 +113451,8 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwAtLeastOneMemberOfYearMonthDuration"),
     AFW_UTF8_LITERAL("Checks for at least one value in common"),
     AFW_UTF8_LITERAL("Returns boolean true if at least one value in yearMonthDuration list1 is in yearMonthDuration list2."),
-    AFW_UTF8_LITERAL("(list1: (list yearMonthDuration), list2: (list yearMonthDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<yearMonthDuration> (\n    list1: (list yearMonthDuration),\n    list2: (list yearMonthDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array yearMonthDuration), list2: (array yearMonthDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks for at least one value in common */\nfunction at_least_one_member_of<yearMonthDuration> (\n    list1: (array yearMonthDuration),\n    list2: (array yearMonthDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_at_least_one_member_of,
     NULL,
@@ -113536,8 +113536,8 @@ impl_bag_size_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("value"),
     AFW_UTF8_LITERAL(""),
@@ -113567,8 +113567,8 @@ afw_function_definition_bag_size_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwBagSizeYearMonthDuration"),
     AFW_UTF8_LITERAL("Returns the number of values in a bag"),
     AFW_UTF8_LITERAL("This returns the integer number of values in list."),
-    AFW_UTF8_LITERAL("(value: (list yearMonthDuration)): integer"),
-    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<yearMonthDuration> (\n    value: (list yearMonthDuration)\n): integer;\n"),
+    AFW_UTF8_LITERAL("(value: (array yearMonthDuration)): integer"),
+    AFW_UTF8_LITERAL("/* Returns the number of values in a bag */\nfunction bag_size<yearMonthDuration> (\n    value: (array yearMonthDuration)\n): integer;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag_size,
     NULL,
@@ -113626,8 +113626,8 @@ impl_bag_yearMonthDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -113652,8 +113652,8 @@ impl_bag_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("values"),
     AFW_UTF8_LITERAL(""),
@@ -113683,8 +113683,8 @@ afw_function_definition_bag_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwBagYearMonthDuration"),
     AFW_UTF8_LITERAL("Makes a list from values"),
     AFW_UTF8_LITERAL("Takes any number of yearMonthDuration values and returns a list of list."),
-    AFW_UTF8_LITERAL("(...values: (list of (list yearMonthDuration))): (list yearMonthDuration)"),
-    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<yearMonthDuration> (\n    ...values: (list of (list yearMonthDuration))\n): (list yearMonthDuration);\n"),
+    AFW_UTF8_LITERAL("(...values: (list of (array yearMonthDuration))): (array yearMonthDuration)"),
+    AFW_UTF8_LITERAL("/* Makes a list from values */\nfunction bag<yearMonthDuration> (\n    ...values: (list of (array yearMonthDuration))\n): (array yearMonthDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_bag,
     NULL,
@@ -114322,8 +114322,8 @@ impl_intersection_yearMonthDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -114348,8 +114348,8 @@ impl_intersection_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -114374,8 +114374,8 @@ impl_intersection_yearMonthDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -114406,8 +114406,8 @@ afw_function_definition_intersection_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwIntersectionYearMonthDuration"),
     AFW_UTF8_LITERAL("Returns intersection of two lists"),
     AFW_UTF8_LITERAL("Returns a list of yearMonthDuration with the values that are common to both list of yearMonthDuration list1 and list2."),
-    AFW_UTF8_LITERAL("(list1: (list yearMonthDuration), list2: (list yearMonthDuration)): (list yearMonthDuration)"),
-    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<yearMonthDuration> (\n    list1: (list yearMonthDuration),\n    list2: (list yearMonthDuration)\n): (list yearMonthDuration);\n"),
+    AFW_UTF8_LITERAL("(list1: (array yearMonthDuration), list2: (array yearMonthDuration)): (array yearMonthDuration)"),
+    AFW_UTF8_LITERAL("/* Returns intersection of two lists */\nfunction intersection<yearMonthDuration> (\n    list1: (array yearMonthDuration),\n    list2: (array yearMonthDuration)\n): (array yearMonthDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_intersection,
     NULL,
@@ -114517,10 +114517,10 @@ impl_is_in_yearMonthDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
-    AFW_UTF8_LITERAL("list"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -114549,8 +114549,8 @@ afw_function_definition_is_in_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwIsInYearMonthDuration"),
     AFW_UTF8_LITERAL("Checks whether a value is in a list"),
     AFW_UTF8_LITERAL("Checks whether yearMonthDuration value is in list of yearMonthDuration list and returns the boolean result."),
-    AFW_UTF8_LITERAL("(value: yearMonthDuration, list: (list yearMonthDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<yearMonthDuration> (\n    value: yearMonthDuration,\n    list: (list yearMonthDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(value: yearMonthDuration, array: (array yearMonthDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether a value is in a list */\nfunction is_in<yearMonthDuration> (\n    value: yearMonthDuration,\n    array: (array yearMonthDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_is_in,
     NULL,
@@ -115330,10 +115330,10 @@ impl_one_and_only_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
     -1,
@@ -115369,8 +115369,8 @@ afw_function_definition_one_and_only_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwOneAndOnlyYearMonthDuration"),
     AFW_UTF8_LITERAL("Converts a one value list to a yearMonthDuration value"),
     AFW_UTF8_LITERAL("This converts a list of yearMonthDuration values that contains one value to a single yearMonthDuration value."),
-    AFW_UTF8_LITERAL("(list: (list list)): yearMonthDuration"),
-    AFW_UTF8_LITERAL("/* Converts a one value list to a yearMonthDuration value */\nfunction one_and_only<yearMonthDuration> (\n    list: (list list)\n): yearMonthDuration;\n"),
+    AFW_UTF8_LITERAL("(array: (array array)): yearMonthDuration"),
+    AFW_UTF8_LITERAL("/* Converts a one value list to a yearMonthDuration value */\nfunction one_and_only<yearMonthDuration> (\n    array: (array array)\n): yearMonthDuration;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_one_and_only,
     NULL,
@@ -115454,8 +115454,8 @@ impl_set_equals_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -115480,8 +115480,8 @@ impl_set_equals_yearMonthDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -115512,8 +115512,8 @@ afw_function_definition_set_equals_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwSetEqualsYearMonthDuration"),
     AFW_UTF8_LITERAL("Checks whether two lists are subsets of each other"),
     AFW_UTF8_LITERAL("Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2 are subsets of each other and return the boolean result."),
-    AFW_UTF8_LITERAL("(list1: (list yearMonthDuration), list2: (list yearMonthDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<yearMonthDuration> (\n    list1: (list yearMonthDuration),\n    list2: (list yearMonthDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array yearMonthDuration), list2: (array yearMonthDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Checks whether two lists are subsets of each other */\nfunction set_equals<yearMonthDuration> (\n    list1: (array yearMonthDuration),\n    list2: (array yearMonthDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_set_equals,
     NULL,
@@ -115597,8 +115597,8 @@ impl_subset_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list1"),
     AFW_UTF8_LITERAL(""),
@@ -115623,8 +115623,8 @@ impl_subset_yearMonthDuration_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("list2"),
     AFW_UTF8_LITERAL(""),
@@ -115655,8 +115655,8 @@ afw_function_definition_subset_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwSubsetYearMonthDuration"),
     AFW_UTF8_LITERAL("Determines if the first list is a subset of second list"),
     AFW_UTF8_LITERAL("Returns boolean true if the unique values in yearMonthDuration list1 are all in yearMonthDuration list2."),
-    AFW_UTF8_LITERAL("(list1: (list yearMonthDuration), list2: (list yearMonthDuration)): boolean"),
-    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<yearMonthDuration> (\n    list1: (list yearMonthDuration),\n    list2: (list yearMonthDuration)\n): boolean;\n"),
+    AFW_UTF8_LITERAL("(list1: (array yearMonthDuration), list2: (array yearMonthDuration)): boolean"),
+    AFW_UTF8_LITERAL("/* Determines if the first list is a subset of second list */\nfunction subset<yearMonthDuration> (\n    list1: (array yearMonthDuration),\n    list2: (array yearMonthDuration)\n): boolean;\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_subset,
     NULL,
@@ -115830,8 +115830,8 @@ impl_union_yearMonthDuration_returns = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL(""),
@@ -115856,8 +115856,8 @@ impl_union_yearMonthDuration_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_list_direct,
-    AFW_UTF8_LITERAL("list"),
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     AFW_UTF8_LITERAL("lists"),
     AFW_UTF8_LITERAL(""),
@@ -115887,8 +115887,8 @@ afw_function_definition_union_yearMonthDuration = {
     AFW_UTF8_LITERAL("afwUnionYearMonthDuration"),
     AFW_UTF8_LITERAL("Returns union of two or more string lists"),
     AFW_UTF8_LITERAL("Returns a list of yearMonthDuration contains all of the unique values in two or more list of yearMonthDuration values."),
-    AFW_UTF8_LITERAL("(lists_1: (list yearMonthDuration), lists_2: (list yearMonthDuration), ...lists_rest: (list of (list yearMonthDuration))): (list yearMonthDuration)"),
-    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<yearMonthDuration> (\n    lists_1: (list yearMonthDuration),\n    lists_2: (list yearMonthDuration),\n    ...lists_rest: (list of (list yearMonthDuration))\n): (list yearMonthDuration);\n"),
+    AFW_UTF8_LITERAL("(lists_1: (array yearMonthDuration), lists_2: (array yearMonthDuration), ...lists_rest: (list of (array yearMonthDuration))): (array yearMonthDuration)"),
+    AFW_UTF8_LITERAL("/* Returns union of two or more string lists */\nfunction union<yearMonthDuration> (\n    lists_1: (array yearMonthDuration),\n    lists_2: (array yearMonthDuration),\n    ...lists_rest: (list of (array yearMonthDuration))\n): (array yearMonthDuration);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_union,
     NULL,
@@ -116108,6 +116108,26 @@ impl_function_bindings[] = {
     &afw_function_definition_to_string_anyURI,
     &afw_function_definition_union_anyURI,
     &afw_function_definition_url_encode_anyURI,
+    &afw_function_definition_add_entries,
+    &afw_function_definition_array,
+    &afw_function_definition_bag_array,
+    &afw_function_definition_bag_size_array,
+    &afw_function_definition_clone_array,
+    &afw_function_definition_eq_array,
+    &afw_function_definition_eqx_array,
+    &afw_function_definition_ge_array,
+    &afw_function_definition_gt_array,
+    &afw_function_definition_includes_array,
+    &afw_function_definition_is_array,
+    &afw_function_definition_join,
+    &afw_function_definition_le_array,
+    &afw_function_definition_length_array,
+    &afw_function_definition_lt_array,
+    &afw_function_definition_ne_array,
+    &afw_function_definition_nex_array,
+    &afw_function_definition_reverse,
+    &afw_function_definition_slice,
+    &afw_function_definition_to_string_array,
     &afw_function_definition_at_least_one_member_of_base64Binary,
     &afw_function_definition_bag_base64Binary,
     &afw_function_definition_bag_size_base64Binary,
@@ -116433,26 +116453,6 @@ impl_function_bindings[] = {
     &afw_function_definition_journal_get_next_for_consumer,
     &afw_function_definition_journal_get_next_for_consumer_after_cursor,
     &afw_function_definition_journal_mark_consumed,
-    &afw_function_definition_add_entries,
-    &afw_function_definition_bag_list,
-    &afw_function_definition_bag_size_list,
-    &afw_function_definition_clone_list,
-    &afw_function_definition_eq_list,
-    &afw_function_definition_eqx_list,
-    &afw_function_definition_ge_list,
-    &afw_function_definition_gt_list,
-    &afw_function_definition_includes_list,
-    &afw_function_definition_is_list,
-    &afw_function_definition_join,
-    &afw_function_definition_le_list,
-    &afw_function_definition_length_list,
-    &afw_function_definition_list,
-    &afw_function_definition_lt_list,
-    &afw_function_definition_ne_list,
-    &afw_function_definition_nex_list,
-    &afw_function_definition_reverse,
-    &afw_function_definition_slice,
-    &afw_function_definition_to_string_list,
     &afw_function_definition_and,
     &afw_function_definition_n_of,
     &afw_function_definition_not,

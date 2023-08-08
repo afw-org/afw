@@ -157,7 +157,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_yearMonthDuration
@@ -239,7 +239,7 @@ Converts a one value list to a yearMonthDuration value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_yearMonthDuration
@@ -407,13 +407,13 @@ sub intersection_yearMonthDuration {
 }
 
 sub is_in_yearMonthDuration {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<yearMonthDuration>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -478,12 +478,12 @@ sub nex_yearMonthDuration {
 }
 
 sub one_and_only_yearMonthDuration {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<yearMonthDuration>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

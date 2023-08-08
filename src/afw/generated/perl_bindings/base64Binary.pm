@@ -191,7 +191,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_base64Binary
@@ -261,7 +261,7 @@ Converts a one value list to a base64Binary value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_base64Binary
@@ -450,13 +450,13 @@ sub is_base64Binary {
 }
 
 sub is_in_base64Binary {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<base64Binary>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -510,12 +510,12 @@ sub nex_base64Binary {
 }
 
 sub one_and_only_base64Binary {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<base64Binary>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

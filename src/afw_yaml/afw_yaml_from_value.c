@@ -59,7 +59,7 @@ static void convert_boolean_to_yaml(
 
 static void convert_list_to_yaml(
     from_value_wa_t *wa,
-    const afw_list_t *list);
+    const afw_array_t *list);
 
 static void convert_object_to_yaml(
     from_value_wa_t *wa,
@@ -327,7 +327,7 @@ void convert_boolean_to_yaml(
 
 void convert_list_to_yaml(
     from_value_wa_t *wa,
-    const afw_list_t *list)
+    const afw_array_t *list)
 {
     const afw_iterator_t *list_iterator;
     const afw_value_t *next;
@@ -336,14 +336,14 @@ void convert_list_to_yaml(
 
 
     list_iterator = NULL;
-    next = afw_list_get_next_value(list, &list_iterator, wa->p, wa->xctx);
+    next = afw_array_get_next_value(list, &list_iterator, wa->p, wa->xctx);
 
     while (next) {
         (wa->indent)++;
         convert_value_to_yaml(wa, next);
         (wa->indent)--;
         put_ws(wa);
-        next = afw_list_get_next_value(list, &list_iterator,
+        next = afw_array_get_next_value(list, &list_iterator,
             wa->p, wa->xctx);
         if (next) {
             impl_puts(wa, "- ");
@@ -433,9 +433,9 @@ void convert_value_to_yaml(
     value_data_type = afw_value_get_data_type(value, wa->xctx);
 
     /* If value is a list, convert list to yaml. */
-    if (afw_value_is_list(value)) {
+    if (afw_value_is_array(value)) {
         put_ws(wa);
-        convert_list_to_yaml(wa, ((afw_value_list_t *)value)->internal);
+        convert_list_to_yaml(wa, ((afw_value_array_t *)value)->internal);
     }
 
     /* If value is object, convert object to yaml. */

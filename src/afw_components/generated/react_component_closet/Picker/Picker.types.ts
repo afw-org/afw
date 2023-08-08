@@ -12,7 +12,7 @@ export interface IPickerProps {
     description?:                       string;
     /**
      * items
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Picker_Item)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Picker_Item)
      * 
      * Items to be displayed by this Picker layout.
      */

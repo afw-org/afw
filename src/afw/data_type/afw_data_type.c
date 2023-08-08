@@ -934,26 +934,26 @@ impl_afw_data_type_ipAddress_utf8_to_internal(
 }
 
 
-/* Data type list to utf8. */
+/* Data type array to utf8. */
 static const afw_utf8_t *
-impl_afw_data_type_list_internal_to_utf8(
+impl_afw_data_type_array_internal_to_utf8(
     const afw_data_type_t * instance,
     const void * from_internal,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_value_list_t list;
+    afw_value_array_t array;
 
-    list.inf = &afw_value_evaluated_list_inf;
-    list.internal = *(const afw_list_t **)from_internal;
-    return afw_json_from_value((const afw_value_t *)&list, NULL,
+    array.inf = &afw_value_evaluated_array_inf;
+    array.internal = *(const afw_array_t **)from_internal;
+    return afw_json_from_value((const afw_value_t *)&array, NULL,
         p, xctx);
 }
 
 
-/* Data type list to internal. */
+/* Data type array to internal. */
 static void
-impl_afw_data_type_list_utf8_to_internal(
+impl_afw_data_type_array_utf8_to_internal(
     const afw_data_type_t * instance,
     void * to_internal,
     const afw_utf8_t * from_utf8,
@@ -964,23 +964,23 @@ impl_afw_data_type_list_utf8_to_internal(
 
     value = afw_json_to_value(from_utf8, NULL, p, xctx);
 
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(value, list, xctx);
+    AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
 
-    *((const afw_list_t **)to_internal) =
-        ((afw_value_list_t *)value)->internal;
+    *((const afw_array_t **)to_internal) =
+        ((afw_value_array_t *)value)->internal;
 }
 
 
-/* Data type list compare. */
+/* Data type array compare. */
 static int
-impl_afw_data_type_list_compare_internal(
+impl_afw_data_type_array_compare_internal(
     const afw_data_type_t * instance,
     const void * value1,
     const void * value2,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *list1 = *(const afw_list_t * const *)value1;
-    const afw_list_t *list2 = *(const afw_list_t * const *)value2;
+    const afw_array_t *array1 = *(const afw_array_t * const *)value1;
+    const afw_array_t *array2 = *(const afw_array_t * const *)value2;
     const afw_iterator_t *iterator1;
     const afw_iterator_t *iterator2;
     const void *internal1;
@@ -990,9 +990,9 @@ impl_afw_data_type_list_compare_internal(
     int result;
 
     for (iterator1 = NULL, iterator2 = NULL, result = 0; result == 0;) {
-        afw_list_get_next_internal(list1, &iterator1,
+        afw_array_get_next_internal(array1, &iterator1,
             &data_type1, &internal1, xctx);
-        afw_list_get_next_internal(list2, &iterator2,
+        afw_array_get_next_internal(array2, &iterator2,
             &data_type2, &internal2, xctx);
 
         if (!internal1) {
@@ -1009,7 +1009,7 @@ impl_afw_data_type_list_compare_internal(
 
         if (!data_type1) {
             AFW_THROW_ERROR_Z(general,
-                "list needs data type for compare",
+                "array needs data type for compare",
                 xctx);
         }
 
@@ -1346,32 +1346,32 @@ impl_afw_data_type_direct_clone_internal(
 }
 
 
-/* list clone. */
+/* array clone. */
 static void
-impl_afw_data_type_list_clone_internal(
+impl_afw_data_type_array_clone_internal(
     const afw_data_type_t * instance,
     void * to_internal,
     const void * from_internal,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *from;
-    const afw_list_t *to;
+    const afw_array_t *from;
+    const afw_array_t *to;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
     const afw_value_t *cloned_value;
     const afw_data_type_t *data_type;
 
-    from = *(const afw_list_t * *)from_internal;
-    data_type = afw_list_get_data_type(from, xctx);
-    to = afw_list_of_create(data_type, p, xctx);
-    memcpy(to_internal, &to, sizeof(const afw_list_t *));
+    from = *(const afw_array_t * *)from_internal;
+    data_type = afw_array_get_data_type(from, xctx);
+    to = afw_array_of_create(data_type, p, xctx);
+    memcpy(to_internal, &to, sizeof(const afw_array_t *));
 
     for (iterator = NULL;;) {
-        value = afw_list_get_next_value(from, &iterator, p, xctx);
+        value = afw_array_get_next_value(from, &iterator, p, xctx);
         if (!value) break;
         cloned_value = afw_value_clone(value, p, xctx);
-        afw_list_add_value(to, cloned_value, xctx);
+        afw_array_add_value(to, cloned_value, xctx);
     }
 }
 
@@ -1667,17 +1667,17 @@ impl_afw_data_type_typed_to_string_value_compiler_listing(
 
 
 static void
-impl_afw_data_type_list_value_compiler_listing(
+impl_afw_data_type_array_value_compiler_listing(
     const afw_data_type_t *instance,
     const afw_writer_t *writer,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *list;
+    const afw_array_t *array;
     const afw_iterator_t *iterator;
     const afw_value_t *entry;
 
-    list = ((const afw_value_list_t *)value)->internal;
+    array = ((const afw_value_array_t *)value)->internal;
     afw_value_compiler_listing_begin_value(writer, value, NULL, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -1685,7 +1685,7 @@ impl_afw_data_type_list_value_compiler_listing(
 
     for (iterator = NULL;;)
     {
-        entry = afw_list_get_next_value(list, &iterator, writer->p, xctx);
+        entry = afw_array_get_next_value(array, &iterator, writer->p, xctx);
         if (!entry) break;
         afw_value_compiler_listing_value(entry, writer, xctx);
     }
@@ -1844,18 +1844,18 @@ impl_afw_data_type_typed_to_string_write_as_expression(
 
 
 static void
-impl_afw_data_type_list_write_as_expression(
+impl_afw_data_type_array_write_as_expression(
     const afw_data_type_t *instance,
     const afw_writer_t *writer,
     const void *from_internal,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *list;
+    const afw_array_t *array;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
     afw_size_t i;
 
-    list = *(const afw_list_t * const *)from_internal;
+    array = *(const afw_array_t * const *)from_internal;
 
     afw_writer_write_z(writer, "[", xctx);
     if (writer->tab) {
@@ -1863,7 +1863,7 @@ impl_afw_data_type_list_write_as_expression(
     }
 
     for (i = 0, iterator = NULL;
-        (value = afw_list_get_next_value(list, &iterator, writer->p, xctx));
+        (value = afw_array_get_next_value(array, &iterator, writer->p, xctx));
         i++)
     {
         if (i != 0) {      
@@ -2061,6 +2061,16 @@ IMPL_DATA_TYPE_INF(
     typed_string)         /* as expression     */
 
 IMPL_DATA_TYPE_INF(
+    array,                /* data type id      */
+    array,                /* to utf8           */
+    array,                /* to internal       */
+    array,                /* compare           */
+    from_pointer,         /* conversion        */
+    array,                /* clone             */
+    array,                /* compiler listing  */
+    array)                /* as expression     */
+
+IMPL_DATA_TYPE_INF(
     base64Binary,         /* data type id      */
     base64Binary,         /* to utf8           */
     base64Binary,         /* to internal       */
@@ -2199,16 +2209,6 @@ IMPL_DATA_TYPE_INF(
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
     typed_string)         /* as expression     */
-
-IMPL_DATA_TYPE_INF(
-    list,                 /* data type id      */
-    list,                 /* to utf8           */
-    list,                 /* to internal       */
-    list,                 /* compare           */
-    from_pointer,         /* conversion        */
-    list,                 /* clone             */
-    list,                 /* compiler listing  */
-    list)                 /* as expression     */
 
 IMPL_DATA_TYPE_INF(
     null,                 /* data type id      */

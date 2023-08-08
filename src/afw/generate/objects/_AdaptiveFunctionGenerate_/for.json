@@ -7,7 +7,7 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is a list of values (statements) to evaluate before the loop starts. The values will normally be a call to the 'assign' function.",
             "name": "initial",
             "optional": true
@@ -19,13 +19,13 @@
             "optional": true
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is a list of values (statements) to evaluate after each iteration of the loop. The values will normally be a call to the 'assign' function.",
             "name": "increment",
             "optional": true
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is a list of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered.",
             "name": "body",
             "optional": true

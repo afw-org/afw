@@ -22,7 +22,7 @@
         },
         "errorsThrown": {
             "brief": "Errors thrown by this function",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
             "description": "Errors that can be thrown by this function.",
             "label": "Errors Thrown",

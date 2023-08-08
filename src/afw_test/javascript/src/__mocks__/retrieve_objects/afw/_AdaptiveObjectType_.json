@@ -121,7 +121,7 @@
                     "label": "Data",
                     "description": "The data for the Chart.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Chart_Data",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "animateDuration": {
@@ -518,7 +518,7 @@
                     "label": "Item",
                     "description": "Item to display under this Menu.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Menu_Item",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -668,7 +668,7 @@
                     "label": "Options",
                     "description": "The available options for the ChoiceGroup component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_ChoiceGroup_Option",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "label": {
@@ -1252,7 +1252,7 @@
                     "label": "Show Properties",
                     "description": "Display the specified properties.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "filterExcludeProperties": {
@@ -1262,7 +1262,7 @@
                     "label": "Hide Properties",
                     "description": "Do not display the specified properties.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "filterExcludeEmbeddedProperties": {
@@ -1281,7 +1281,7 @@
                     "label": "Inclusive Property Conditions",
                     "description": "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued).",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "filterCondAndProperties": {
@@ -1291,7 +1291,7 @@
                     "label": "Exclusive Property Conditions",
                     "description": "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued).",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -1463,7 +1463,7 @@
                     "label": "Items",
                     "description": "The list of items to be managed.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_ListEditor_Item",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "editable": {
@@ -1993,7 +1993,7 @@
                     "label": "Tabs",
                     "description": "The tabs that are defined for this Tabs component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tabs_Tab",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "gapSpace": {
@@ -2396,7 +2396,7 @@
                     "label": "Rows",
                     "description": "The layout row components that are contained by this Responsive.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_ResponsiveRow",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "justify": {
@@ -3029,7 +3029,7 @@
                                 "errors": [
                                     "no property type"
                                 ],
-                                "dataType": "list"
+                                "dataType": "array"
                             }
                         },
                         "hasErrors": true,
@@ -3280,7 +3280,7 @@
                     "label": "Preferred Components",
                     "description": "Sets preferences for components for Adaptive Properties.",
                     "dataTypeParameter": "object _AdaptiveLayout_ObjectResponsive_preferredComponent",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "object": {
@@ -3581,7 +3581,7 @@
                     "label": "Side Effects",
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Side effects for this function.",
                     "allowQuery": true
                 },
@@ -3661,7 +3661,7 @@
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "defaultValue": false,
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "This function will call the appropriate function when the first parameter is one of these data types",
                     "allowQuery": true
                 },
@@ -3700,7 +3700,7 @@
                     "label": "Parameters",
                     "description": "These are the function's parameters.",
                     "dataTypeParameter": "object _AdaptiveFunctionParameter_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The function's parameters"
                 },
                 "op": {
@@ -3970,7 +3970,7 @@
                     "label": "Children",
                     "description": "The children of this Tree Node.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -4137,7 +4137,7 @@
                     },
                     "allowQuery": true,
                     "brief": "The URIs of the collections this object type is a part of",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "label": "Collection URIs"
@@ -4239,7 +4239,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of keywords associated with this object type",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "label": "Tags"
@@ -4581,7 +4581,7 @@
                     },
                     "label": "Subject",
                     "description": "The initiator of the request.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The initiator of the request"
                 }
             },
@@ -4839,7 +4839,7 @@
                     "label": "Stopping Instances",
                     "description": "Reference count of stopping instances.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Reference count of stopping instances",
                     "allowQuery": true
                 },
@@ -6038,7 +6038,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "The function's parameters",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "object _AdaptiveFunctionParameter_",
                     "description": "These are the function's parameters.",
                     "label": "Parameters",
@@ -6088,7 +6088,7 @@
                     },
                     "allowQuery": true,
                     "brief": "This function will call the appropriate function when the first parameter is one of these data types",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "defaultValue": false,
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
@@ -6157,7 +6157,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Side effects for this function.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "label": "Side Effects",
@@ -7060,7 +7060,7 @@
                     },
                     "allowQuery": true,
                     "brief": "The URIs of the collections this object type is a part of",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "label": "Collection URIs"
@@ -7141,7 +7141,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of keywords associated with this object type",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "label": "Tags"
@@ -7153,7 +7153,7 @@
                     "label": "Resolved Parent Paths",
                     "description": "This is the associated object's direct parent paths before they were resolved by object option composite.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The associated object's direct parent paths"
                 },
                 "reconcilable": {
@@ -7192,7 +7192,7 @@
                     "label": "Parent Paths",
                     "description": "This is the associated object's direct parent paths.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The associated object's direct parent paths"
                 },
                 "objectTypes": {
@@ -7240,7 +7240,7 @@
                     "label": "Errors",
                     "description": "Object errors.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Object errors"
                 },
                 "description": {
@@ -7260,7 +7260,7 @@
                     },
                     "label": "Ancestor Paths",
                     "description": "This is all of the associated object's ancestor paths.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The associated object's ancestor paths"
                 },
                 "allowDelete": {
@@ -7521,7 +7521,7 @@
                     "label": "Sup",
                     "description": "Superior classes.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "STRUCTURAL": {
                     "_meta_": {
@@ -7538,7 +7538,7 @@
                     "label": "Name",
                     "description": "Name of class.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "MUST": {
                     "_meta_": {
@@ -7547,7 +7547,7 @@
                     "label": "Required",
                     "description": "Required attributes of class.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "MAY": {
                     "_meta_": {
@@ -7556,7 +7556,7 @@
                     "label": "Optional",
                     "description": "Optional attributes of class.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "DESC": {
                     "_meta_": {
@@ -7672,7 +7672,7 @@
                     "label": "Actions",
                     "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
                     "dataTypeParameter": "object _AdaptiveResponseAction_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of _AdaptiveResponseAction_ objects"
                 }
             },
@@ -7802,7 +7802,7 @@
                     "label": "Contains",
                     "description": "The layout components that are contained by this List component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -7985,7 +7985,7 @@
                     "label": "Collection URIs",
                     "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The URIs of the collections this map is part of",
                     "allowQuery": true
                 }
@@ -8090,7 +8090,7 @@
                     "label": "Side Effects",
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Side effects for this function.",
                     "allowQuery": true
                 },
@@ -8168,7 +8168,7 @@
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "defaultValue": false,
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "This function will call the appropriate function when the first parameter is one of these data types",
                     "allowQuery": true
                 },
@@ -8201,7 +8201,7 @@
                     "label": "Parameters",
                     "description": "These are the function's parameters.",
                     "dataTypeParameter": "object _AdaptiveFunctionParameter_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The function's parameters"
                 },
                 "op": {
@@ -8255,7 +8255,7 @@
                     "label": "Errors Thrown",
                     "description": "Errors that can be thrown by this function.",
                     "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Errors thrown by this function"
                 },
                 "details": {
@@ -9034,7 +9034,7 @@
                     "label": "Includes",
                     "description": "All other flags that this flag includes.  When setting this flat, all of the flags in this list will also be set",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "All other flags that this flag includes",
                     "allowQuery": true
                 },
@@ -9052,7 +9052,7 @@
                     "label": "Included By",
                     "description": "All of the flags that include this flag.  When setting flags in this list, this flag will also be set.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "All of the flags that include this flag",
                     "allowQuery": true
                 },
@@ -9137,7 +9137,7 @@
                     "label": "Applicable Flags",
                     "description": "All the applicable flags that are set when this flag is set.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "All the applicable flags that are set when this flag is set",
                     "allowQuery": true
                 }
@@ -9264,7 +9264,7 @@
                     "required": true,
                     "label": "Rows",
                     "description": "The rows that are defined for this Table component.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "isHeaderVisible": {
@@ -9293,7 +9293,7 @@
                     "label": "Columns",
                     "description": "The columns that are defined for this Table component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Table_Column",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -9847,7 +9847,7 @@
                     "label": "Selected Keys",
                     "description": "The key(s) that are selected for the Dropdown component.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "options": {
@@ -9857,7 +9857,7 @@
                     "label": "Options",
                     "description": "Specifies the available options for the dropdown.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Dropdown_Option",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "multiselect": {
@@ -10622,7 +10622,7 @@
                     },
                     "label": "Protocols",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "libz_version": {
                     "_meta_": {
@@ -10651,7 +10651,7 @@
                     },
                     "label": "Features",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "brotli_version": {
                     "_meta_": {
@@ -11682,7 +11682,7 @@
                     "label": "Authorization Results",
                     "description": "Authorization result.",
                     "dataTypeParameter": "_AdaptiveAuthorizationResult_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Authorization result"
                 }
             },
@@ -11742,7 +11742,7 @@
                     },
                     "label": "Query Tokens",
                     "description": "Decoded query tokens of URI.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Decoded query tokens of URI"
                 },
                 "query": {
@@ -11769,7 +11769,7 @@
                     },
                     "label": "Path Tokens",
                     "description": "Decoded path tokens of URI.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Decoded path tokens of URI"
                 },
                 "path": {
@@ -11877,7 +11877,7 @@
                     },
                     "label": "Fragment Tokens",
                     "description": "Decoded fragment tokens of URI.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Decoded fragment tokens of URI"
                 },
                 "fragment": {
@@ -12126,7 +12126,7 @@
                     "required": false,
                     "description": "This is a list of actions to perform.  Either the actions or function property must be specified.",
                     "dataTypeParameter": "object _AdaptiveAction_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of actions to perform"
                 },
                 "_flags_": {
@@ -12137,7 +12137,7 @@
                     "label": "Flags",
                     "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed.  If the \"actions\" property is specified, this is the default \"_flags_\" property for actions.  Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of flags to set"
                 }
             },
@@ -12614,7 +12614,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of default flags to be set when a scope (request) is created.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of the flagId of default flags that will be set when a scope (request) is created.  Flags in this list that are not yet registered will be set as a default when/if they are registered.  Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                     "label": "Default Flags",
@@ -12648,7 +12648,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of extensions to load at startup",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                     "label": "Extensions",
@@ -13283,7 +13283,7 @@
                     "label": "Columns",
                     "description": "The layout columns that are contained by this ResponsiveRow component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_ResponsiveCol",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -13697,7 +13697,7 @@
                     },
                     "allowQuery": true,
                     "brief": "A list of allowed values for this adaptive value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
                     "label": "Allowed Values"
                 },
@@ -13717,7 +13717,7 @@
                     },
                     "allowQuery": true,
                     "brief": "The URIs of the collection this value meta is a part of",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "label": "Collection URIs"
@@ -13857,7 +13857,7 @@
                     },
                     "allowQuery": false,
                     "brief": "Possible values of this value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "Possible values of this value.  This can be the typed value or the string value.",
                     "label": "Possible Values"
                 },
@@ -13897,7 +13897,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of keywords and terms associated with values with this meta",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "label": "Tags"
@@ -14316,7 +14316,7 @@
                     "label": "For",
                     "description": "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl).",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "contains": {
@@ -14802,7 +14802,7 @@
                     },
                     "label": "Property Names",
                     "description": "Property names.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Property names"
                 },
                 "originalPath": {
@@ -14999,7 +14999,7 @@
                     "label": "Items",
                     "description": "Breadcrumb items",
                     "dataTypeParameter": "_AdaptiveLayoutComponentType_BreadcrumbItem",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Breadcrumb items",
                     "allowWrite": true
                 }
@@ -15075,7 +15075,7 @@
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "defaultValue": false,
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowQuery": true
                 },
                 "polymorphic": {
@@ -15106,7 +15106,7 @@
                     "label": "Parameters",
                     "description": "These are the function's parameters.",
                     "dataTypeParameter": "object _AdaptiveFunctionParameter_",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "functionDeclarationId": {
                     "_meta_": {
@@ -15449,7 +15449,7 @@
                     },
                     "label": "Properties",
                     "description": "Properties that were requested for retrieval.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Properties that were requested for retrieval"
                 },
                 "obligations": {
@@ -15459,7 +15459,7 @@
                     "label": "Obligations",
                     "description": "Obligation ids that must be satisfied.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Obligation ids that must be satisfied"
                 },
                 "errors": {
@@ -15470,7 +15470,7 @@
                     "label": "Errors",
                     "description": "Error that occurred.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Error that occurred"
                 },
                 "decision": {
@@ -15496,7 +15496,7 @@
                     "label": "Applicable Policies",
                     "description": "This is a list of ids of all policies whose target and condition matched during this check.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of ids of matching policies"
                 },
                 "advice": {
@@ -15506,7 +15506,7 @@
                     "label": "Advice",
                     "description": "Advice ids.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Advice ids"
                 }
             },
@@ -15922,7 +15922,7 @@
                     "label": "Registers",
                     "description": "Each entry is a string of the form \"<registry type>/<registry key>\", where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc.  If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered.  See afw/afw_environment.h for more information.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of entries this extension registers"
                 },
                 "modulePath": {
@@ -16531,7 +16531,7 @@
                 "label": "Contains",
                 "description": "This declares a list of items to be rendered inside the Box.",
                 "dataTypeParameter": "object _AdaptiveLayoutComponentType_BoxItem",
-                "dataType": "list",
+                "dataType": "array",
                 "brief": "Items inside of the Box",
                 "allowWrite": true
             },
@@ -16576,7 +16576,7 @@
                             "_meta_": {
                                 "objectType": "_AdaptiveMetaPropertyType_"
                             },
-                            "dataType": "list"
+                            "dataType": "array"
                         },
                         "allowWrite": {
                             "_meta_": {
@@ -16964,7 +16964,7 @@
                     "label": "Flags",
                     "description": "This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed.  Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of flags to set for this function"
                 }
             },
@@ -17347,7 +17347,7 @@
                     "label": "Tags",
                     "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of keywords and terms associated with values with this meta"
                 },
                 "runtime": {
@@ -17387,7 +17387,7 @@
                     },
                     "label": "Possible Values",
                     "description": "Possible values of this value.  This can be the typed value or the string value.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Possible values of this value",
                     "allowQuery": false
                 },
@@ -17527,7 +17527,7 @@
                     "label": "Collection URIs",
                     "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The URIs of the collection this value meta is a part of",
                     "allowQuery": true
                 },
@@ -17547,7 +17547,7 @@
                     },
                     "label": "Allowed Values",
                     "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "A list of allowed values for this adaptive value",
                     "allowQuery": true
                 },
@@ -17702,7 +17702,7 @@
                     "label": "Options",
                     "description": "The available options for the ToggleButtons component.",
                     "dataTypeParameter": "object",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "label": {
@@ -18498,7 +18498,7 @@
                     },
                     "allowQuery": true,
                     "brief": "A list of allowed values for this adaptive value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
                     "label": "Allowed Values"
                 },
@@ -18518,7 +18518,7 @@
                     },
                     "allowQuery": true,
                     "brief": "The URIs of the collection this value meta is a part of",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "label": "Collection URIs"
@@ -18658,7 +18658,7 @@
                     },
                     "allowQuery": false,
                     "brief": "Possible values of this value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "Possible values of this value.  This can be the typed value or the string value.",
                     "label": "Possible Values"
                 },
@@ -18698,7 +18698,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of keywords and terms associated with values with this meta",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "label": "Tags"
@@ -18752,7 +18752,7 @@
                     "label": "Errors",
                     "description": "Property errors.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Property errors"
                 },
                 "allowWrite": {
@@ -18985,7 +18985,7 @@
                     },
                     "allowQuery": true,
                     "brief": "A list of allowed values for this adaptive value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
                     "label": "Allowed Values"
                 },
@@ -19005,7 +19005,7 @@
                     },
                     "allowQuery": true,
                     "brief": "The URIs of the collection this value meta is a part of",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "anyURI",
                     "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "label": "Collection URIs"
@@ -19145,7 +19145,7 @@
                     },
                     "allowQuery": false,
                     "brief": "Possible values of this value",
-                    "dataType": "list",
+                    "dataType": "array",
                     "description": "Possible values of this value.  This can be the typed value or the string value.",
                     "label": "Possible Values"
                 },
@@ -19185,7 +19185,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "brief": "List of keywords and terms associated with values with this meta",
-                    "dataType": "list",
+                    "dataType": "array",
                     "dataTypeParameter": "string",
                     "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "label": "Tags"
@@ -19611,7 +19611,7 @@
                     "label": "Tags",
                     "description": "Tags that can be used to query for this tag.  One possible purpose is to use a tag to define a category of tags.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Tags that can be used to query for this tag"
                 },
                 "tagId": {
@@ -19796,7 +19796,7 @@
                     },
                     "label": "Cookies",
                     "description": "Cookie(s) to send.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 "autoReferer": {
                     "_meta_": {
@@ -19920,7 +19920,7 @@
                     "label": "Selected Keys",
                     "description": "The keys of nodes in this tree that are selected.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "expandedKeys": {
@@ -19930,7 +19930,7 @@
                     "label": "Expanded Keys",
                     "description": "The keys of nodes in this tree that are expanded.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "dense": {
@@ -19950,7 +19950,7 @@
                     "label": "Children",
                     "description": "The children of this Tree.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -20280,7 +20280,7 @@
                     "label": "Stopping Instances",
                     "description": "Reference counts of stopping instances.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Reference counts of stopping instances",
                     "allowQuery": true
                 },
@@ -21616,7 +21616,7 @@
                     "label": "Steps",
                     "description": "The list of steps to be displayed for a the Stepper component.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "activeStep": {
@@ -21742,7 +21742,7 @@
                     "label": "Item",
                     "description": "Item to be displayed by this Nav layout.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Nav_Item",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 }
             },
@@ -21963,7 +21963,7 @@
                     "label": "Tags",
                     "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of keywords associated with this object type"
                 },
                 "runtime": {
@@ -22076,7 +22076,7 @@
                     "label": "Collection URIs",
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The URIs of the collections this object type is a part of",
                     "allowQuery": true
                 },
@@ -22249,7 +22249,7 @@
                     "label": "Extensions",
                     "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of extensions to load at startup"
                 },
                 "description": {
@@ -22283,7 +22283,7 @@
                     "label": "Default Flags",
                     "description": "This is a list of the flagId of default flags that will be set when a scope (request) is created.  Flags in this list that are not yet registered will be set as a default when/if they are registered.  Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of default flags to be set when a scope (request) is created."
                 },
                 "defaultAdaptorId": {
@@ -24670,7 +24670,7 @@
                     "label": "Options",
                     "description": "The available options for the Autocomplete component.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Autocomplete_Option",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "label": {
@@ -25103,7 +25103,7 @@
                     "label": "Contains",
                     "description": "A list of components to be contained by this Toolbar.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "alignItems": {
@@ -25398,7 +25398,7 @@
                     "label": "Selected Keys",
                     "description": "The key(s) that are selected for the Dropdown component.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "options": {
@@ -25408,7 +25408,7 @@
                     "label": "Options",
                     "description": "Specifies the available options for the dropdown.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Dropdown_Option",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "multiselect": {
@@ -26162,7 +26162,7 @@
                     "label": "Items",
                     "description": "Items to be displayed by this Picker layout.",
                     "dataTypeParameter": "object _AdaptiveLayoutComponentType_Picker_Item",
-                    "dataType": "list",
+                    "dataType": "array",
                     "allowWrite": true
                 },
                 "description": {

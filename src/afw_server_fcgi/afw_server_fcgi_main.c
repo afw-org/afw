@@ -195,11 +195,11 @@ int main(int argc, const char * const * argv) {
 
         conf = afw_content_type_raw_to_value(args.content_type_in,
             conf_file, &args.conf_file, xctx->p, xctx);
-        if (!afw_value_is_list(conf)) {
+        if (!afw_value_is_array(conf)) {
             AFW_THROW_ERROR_Z(general, "Invalid configuration.", xctx);
         }
         afw_environment_configure_with_object_list(
-            ((const afw_value_list_t *)conf)->internal,
+            ((const afw_value_array_t *)conf)->internal,
             &args.conf_file, xctx);
 
         /* Create server. */

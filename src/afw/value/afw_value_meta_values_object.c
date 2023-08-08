@@ -15,21 +15,21 @@
 
 
 
-#define impl_afw_list_get_entry_meta afw_list_impl_get_entry_meta
-#define impl_afw_list_get_next_entry_meta afw_list_impl_get_next_entry_meta
+#define impl_afw_array_get_entry_meta afw_array_impl_get_entry_meta
+#define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
 
 
-/* Declares and rti/inf defines for interface afw_list */
+/* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_value_meta_values_object"
-#include "afw_list_impl_declares.h"
+#include "afw_array_impl_declares.h"
 
 
 /*
- * Implementation of method release for interface afw_list.
+ * Implementation of method release for interface afw_array.
  */
 void
-impl_afw_list_release(
-    const afw_list_t *instance,
+impl_afw_array_release(
+    const afw_array_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -38,11 +38,11 @@ impl_afw_list_release(
 }
 
 /*
- * Implementation of method get_count for interface afw_list.
+ * Implementation of method get_count for interface afw_array.
  */
 afw_size_t
-impl_afw_list_get_count(
-    const afw_list_t *instance,
+impl_afw_array_get_count(
+    const afw_array_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -51,11 +51,11 @@ impl_afw_list_get_count(
 }
 
 /*
- * Implementation of method get_data_type for interface afw_list.
+ * Implementation of method get_data_type for interface afw_array.
  */
 const afw_data_type_t *
-impl_afw_list_get_data_type(
-    const afw_list_t *instance,
+impl_afw_array_get_data_type(
+    const afw_array_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -64,11 +64,11 @@ impl_afw_list_get_data_type(
 }
 
 /*
- * Implementation of method get_entry_internal for interface afw_list.
+ * Implementation of method get_entry_internal for interface afw_array.
  */
 afw_boolean_t
-impl_afw_list_get_entry_internal(
-    const afw_list_t *instance,
+impl_afw_array_get_entry_internal(
+    const afw_array_t *instance,
     afw_integer_t index,
     const afw_data_type_t **data_type,
     const void **internal,
@@ -80,11 +80,11 @@ impl_afw_list_get_entry_internal(
 }
 
 /*
- * Implementation of method get_entry_value for interface afw_list.
+ * Implementation of method get_entry_value for interface afw_array.
  */
 const afw_value_t *
-impl_afw_list_get_entry_value(
-    const afw_list_t *instance,
+impl_afw_array_get_entry_value(
+    const afw_array_t *instance,
     afw_integer_t index,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -95,11 +95,11 @@ impl_afw_list_get_entry_value(
 }
 
 /*
- * Implementation of method get_next_internal for interface afw_list.
+ * Implementation of method get_next_internal for interface afw_array.
  */
 afw_boolean_t
-impl_afw_list_get_next_internal(
-    const afw_list_t *instance,
+impl_afw_array_get_next_internal(
+    const afw_array_t *instance,
     const afw_iterator_t **iterator,
     const afw_data_type_t **data_type,
     const void **internal,
@@ -111,11 +111,11 @@ impl_afw_list_get_next_internal(
 }
 
 /*
- * Implementation of method get_next_value for interface afw_list.
+ * Implementation of method get_next_value for interface afw_array.
  */
 const afw_value_t *
-impl_afw_list_get_next_value(
-    const afw_list_t *instance,
+impl_afw_array_get_next_value(
+    const afw_array_t *instance,
     const afw_iterator_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -126,11 +126,11 @@ impl_afw_list_get_next_value(
 }
 
 /*
- * Implementation of method get_setter for interface afw_list.
+ * Implementation of method get_setter for interface afw_array.
  */
-const afw_list_setter_t *
-impl_afw_list_get_setter(
-    const afw_list_t *instance,
+const afw_array_setter_t *
+impl_afw_array_get_setter(
+    const afw_array_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -149,10 +149,10 @@ afw_value_meta_values_list_for_object_create(
     afw_value_meta_values_object_list_self_t *self;
 
     self = afw_xctx_calloc_type(afw_value_meta_values_object_list_self_t, xctx);
-    self->pub.inf = &impl_afw_list_inf;
+    self->pub.inf = &impl_afw_array_inf;
     self->p = p;
     AFW_VALUE_ASSERT_IS_DATA_TYPE(value, object, xctx);
     self->value = (const afw_value_object_t *)value;
 
-    return afw_value_create_list((const afw_list_t *)self, p, xctx);
+    return afw_value_create_array((const afw_array_t *)self, p, xctx);
 }

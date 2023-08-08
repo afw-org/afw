@@ -27,7 +27,7 @@ export interface IBoxProps {
     alignItems?:                        string;
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_BoxItem)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_BoxItem)
      * 
      * Items inside of the Box
      * 

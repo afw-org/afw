@@ -139,12 +139,12 @@
         {
             "_meta_": {
                 "path": "/afw/_AdaptiveFunctionCategory_/list",
-                "objectId": "list",
+                "objectId": "array",
                 "objectType": "_AdaptiveFunctionCategory_"
             },
             "description": "These function are related to data type list.\n\nThe \"<list>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
             "dataTypeCategory": true,
-            "category": "list",
+            "category": "array",
             "brief": "Data type list related functions"
         },
         {
@@ -475,12 +475,12 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunctionCategory_/higher_order_list",
-                "objectId": "higher_order_list",
+                "path": "/afw/_AdaptiveFunctionCategory_/higher_order_array",
+                "objectId": "higher_order_array",
                 "objectType": "_AdaptiveFunctionCategory_"
             },
             "description": "Higher-order list functions.",
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "brief": "Higher-order list functions"
         },
         {

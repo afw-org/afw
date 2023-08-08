@@ -14,9 +14,9 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
-            "dataTypeParameter": "list",
-            "name": "list"
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "name": "array"
         }
     ],
     "polymorphic": true,

@@ -72,7 +72,7 @@
             "label": "Extensions",
             "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
             "dataTypeParameter": "string",
-            "dataType": "list",
+            "dataType": "array",
             "brief": "List of extensions to load at startup"
         },
         "description": {
@@ -106,7 +106,7 @@
             "label": "Default Flags",
             "description": "This is a list of the flagId of default flags that will be set when a scope (request) is created.  Flags in this list that are not yet registered will be set as a default when/if they are registered.  Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
             "dataTypeParameter": "string",
-            "dataType": "list",
+            "dataType": "array",
             "brief": "List of default flags to be set when a scope (request) is created."
         },
         "defaultAdaptorId": {

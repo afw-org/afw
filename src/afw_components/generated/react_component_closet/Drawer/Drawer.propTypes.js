@@ -15,7 +15,7 @@ export const propTypes = {
     anchor:                             PropTypes.string,
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_DrawerItem)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_DrawerItem)
      * 
      * Items inside of the Drawer
      * This declares a list of items to be rendered inside the Drawer.

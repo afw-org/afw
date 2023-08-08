@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_boolean",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "boolean",
             "name": "value"
         }

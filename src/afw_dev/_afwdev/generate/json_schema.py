@@ -95,7 +95,7 @@ def _parse_dataTypeParameter_for_list(mutable_objectTypes_needed,
     t = dataTypeParameter.split(" ", 1)
     if len(t) == 0:
         return None
-    if t[0] == 'list':
+    if t[0] == 'array':
         items = {'type':'array'}
         if len(t) > 1:
             t = t[0].split(" ", 1)
@@ -232,7 +232,7 @@ def _convert_propertyType(
                 description=propertyType.get('description'),
                 title=propertyType.get('label'))
             property['$ref'] = ref_prefix + param + ref_suffix
-        elif ptype == 'ListOf':
+        elif ptype == 'ArrayOf':
             items = _parse_dataTypeParameter_for_list(mutable_objectTypes_needed,
                 options, param, ref_prefix, ref_suffix)           
             if "description" in propertyType:

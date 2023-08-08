@@ -9,13 +9,13 @@
     "functionLabel": "at_least_one_member_of_boolean",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "boolean",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "boolean",
             "description": "The second list.",
             "name": "list2"

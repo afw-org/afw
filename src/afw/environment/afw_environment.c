@@ -637,7 +637,7 @@ impl_check_manifest_cb(
     afw_utf8_t registry_key;
     const afw_utf8_t *entry;
     const afw_iterator_t *iterator;
-    const afw_list_t *list;
+    const afw_array_t *list;
     impl_check_manifest_cb_context_t *ctx = context;
 
     if (!object) {
@@ -649,17 +649,17 @@ impl_check_manifest_cb(
         return false;
     }
 
-    if (!afw_value_is_list_of_string(registers_value) &&
-        !afw_value_is_list_of_anyURI(registers_value))
+    if (!afw_value_is_array_of_string(registers_value) &&
+        !afw_value_is_array_of_anyURI(registers_value))
     {
         return false;
     }
 
     /* Loop through entries. */
-    list = ((const afw_value_list_t *)registers_value)->internal;
+    list = ((const afw_value_array_t *)registers_value)->internal;
     for (iterator = NULL;;)
     {
-        afw_list_get_next_internal(list, &iterator, NULL,
+        afw_array_get_next_internal(list, &iterator, NULL,
             (const void **)&entry, xctx);
         if (!entry) {
             break;

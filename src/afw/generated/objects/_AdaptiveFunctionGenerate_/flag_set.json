@@ -8,7 +8,7 @@
     "functionLabel": "flag_set",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "List of flagId of flags to set or unset.",
             "name": "flagId"

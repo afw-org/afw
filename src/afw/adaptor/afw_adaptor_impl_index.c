@@ -71,10 +71,10 @@ afw_boolean_t afw_adaptor_impl_index_object_type_applicable(
     afw_xctx_t        * xctx)
 {
     const afw_utf8_t   * nextObjectType;
-    const afw_list_t   * objectTypes;
+    const afw_array_t   * objectTypes;
     const afw_iterator_t * object_type_iterator;
 
-    objectTypes = afw_object_old_get_property_as_list(
+    objectTypes = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_objectType, xctx);
 
     /* no objectTypes means all/any are applicable */
@@ -82,7 +82,7 @@ afw_boolean_t afw_adaptor_impl_index_object_type_applicable(
         return true;
 
     object_type_iterator = NULL;
-    nextObjectType = afw_list_of_string_get_next(
+    nextObjectType = afw_array_of_string_get_next(
         objectTypes, &object_type_iterator, xctx);
     if (nextObjectType == NULL)
         return true;
@@ -92,7 +92,7 @@ afw_boolean_t afw_adaptor_impl_index_object_type_applicable(
         if (afw_utf8_equal(nextObjectType, object_type_id))
             return true;
  
-        nextObjectType = afw_list_of_string_get_next(
+        nextObjectType = afw_array_of_string_get_next(
             objectTypes, &object_type_iterator, xctx);
     }
 
@@ -152,16 +152,16 @@ afw_boolean_t afw_adaptor_impl_index_option_case_insensitive(
     const afw_object_t * indexDefinition,
     afw_xctx_t        * xctx)
 {
-    const afw_list_t  * options;
+    const afw_array_t  * options;
     const afw_value_t * option;
     const afw_iterator_t * option_iterator;
 
-    options = afw_object_old_get_property_as_list(
+    options = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_options, xctx);
    
     if (options) { 
         option_iterator = NULL;
-        option = afw_list_get_next_value(options, &option_iterator,
+        option = afw_array_get_next_value(options, &option_iterator,
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
@@ -172,7 +172,7 @@ afw_boolean_t afw_adaptor_impl_index_option_case_insensitive(
                     return true;
             }
 
-            option = afw_list_get_next_value(
+            option = afw_array_get_next_value(
                 options, &option_iterator, xctx->p, xctx);
         }
     }
@@ -191,16 +191,16 @@ afw_boolean_t afw_adaptor_impl_index_option_unique(
     const afw_object_t * indexDefinition,
     afw_xctx_t        * xctx)
 {
-    const afw_list_t  * options;
+    const afw_array_t  * options;
     const afw_value_t * option;
     const afw_iterator_t * option_iterator;
 
-    options = afw_object_old_get_property_as_list(
+    options = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_options, xctx);
   
     if (options) { 
         option_iterator = NULL;
-        option = afw_list_get_next_value(options, &option_iterator,
+        option = afw_array_get_next_value(options, &option_iterator,
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
@@ -211,7 +211,7 @@ afw_boolean_t afw_adaptor_impl_index_option_unique(
                     return true;
             }
 
-            option = afw_list_get_next_value(
+            option = afw_array_get_next_value(
                 options, &option_iterator, xctx->p, xctx);
         }
     }
@@ -236,19 +236,19 @@ void afw_adaptor_impl_index_apply(
     const int            operation,
     afw_xctx_t        * xctx)
 {
-    const afw_list_t  * options;
+    const afw_array_t  * options;
     const afw_value_t * option;
     const afw_iterator_t * option_iterator;
     afw_boolean_t       case_sensitive = true;
     afw_boolean_t       unique = false;
     const afw_utf8_t  * value_string;
 
-    options = afw_object_old_get_property_as_list(
+    options = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_options, xctx);
 
     if (options) {
         option_iterator = NULL;
-        option = afw_list_get_next_value(options, &option_iterator,
+        option = afw_array_get_next_value(options, &option_iterator,
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
@@ -261,7 +261,7 @@ void afw_adaptor_impl_index_apply(
                     unique = true;
             }
 
-            option = afw_list_get_next_value(
+            option = afw_array_get_next_value(
                 options, &option_iterator, xctx->p, xctx);
         }
     }
@@ -387,7 +387,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
     }
 
     /* if we have multiple values, then index each one */
-    else if (afw_value_is_list(eval))
+    else if (afw_value_is_array(eval))
     {
         int i;
         index_values = afw_value_as_array_of_values(
@@ -426,8 +426,8 @@ void afw_adaptor_impl_index_open_definition(
     const afw_pool_t               * pool,
     afw_xctx_t                    * xctx)
 {
-    const afw_list_t *objectType;
-    const afw_list_t *options;
+    const afw_array_t *objectType;
+    const afw_array_t *options;
     const afw_value_t *option;
     const afw_iterator_t *option_iterator;
     const afw_iterator_t *object_type_iterator;
@@ -436,11 +436,11 @@ void afw_adaptor_impl_index_open_definition(
     afw_boolean_t reverse = false;
     afw_boolean_t integer = false;
 
-    options = afw_object_old_get_property_as_list(
+    options = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_options, xctx);
     if (options) {
         option_iterator = NULL;
-        option = afw_list_get_next_value(options, &option_iterator,
+        option = afw_array_get_next_value(options, &option_iterator,
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
@@ -455,23 +455,23 @@ void afw_adaptor_impl_index_open_definition(
                     unique = true;
             }
 
-            option = afw_list_get_next_value(
+            option = afw_array_get_next_value(
                 options, &option_iterator, xctx->p, xctx);
         }
     }
 
-    objectType = afw_object_old_get_property_as_list(
+    objectType = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_objectType, xctx);
 
     if (objectType) {
         object_type_iterator = NULL;
-        object_type_id = afw_list_of_string_get_next(
+        object_type_id = afw_array_of_string_get_next(
             objectType, &object_type_iterator, xctx);
         while (object_type_id) {
             afw_adaptor_impl_index_open(indexer, object_type_id, 
                 key, integer, unique, reverse, pool, xctx);
             
-            object_type_id = afw_list_of_string_get_next(
+            object_type_id = afw_array_of_string_get_next(
                 objectType, &object_type_iterator, xctx);
         }
     } else {
@@ -620,7 +620,7 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_remove(
     const afw_adaptor_impl_index_t     * indexer;
     impl_retrieve_objects_cb_context_t   ctx;
     const afw_object_t                 * indexDefinition;
-    const afw_list_t                   * objectTypes;
+    const afw_array_t                   * objectTypes;
     const afw_object_t                 * result;
     const afw_iterator_t               * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
@@ -657,12 +657,12 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_remove(
         indexer, indexer->indexDefinitions, xctx);
 
     /* get all applicable objectTypes */
-    objectTypes = afw_object_old_get_property_as_list(
+    objectTypes = afw_object_old_get_property_as_array(
         indexDefinition, &afw_s_objectType, xctx);
     if (objectTypes) {
         object_type_iterator = NULL;
 
-        object_type_id = afw_list_of_string_get_next(
+        object_type_id = afw_array_of_string_get_next(
             objectTypes, &object_type_iterator, xctx);
         do 
         {
@@ -684,7 +684,7 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_remove(
             }
 
             if (object_type_id)
-                object_type_id = afw_list_of_string_get_next(
+                object_type_id = afw_array_of_string_get_next(
                     objectTypes, &object_type_iterator, xctx);
 
         } while (object_type_id);
@@ -703,9 +703,9 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_create(
     const afw_utf8_t  * adaptorId,
     const afw_utf8_t  * key,
     const afw_utf8_t  * value,
-    const afw_list_t  * objectType,
+    const afw_array_t  * objectType,
     const afw_utf8_t  * filter,
-    const afw_list_t  * options,
+    const afw_array_t  * options,
     afw_boolean_t       retroactive,
     afw_boolean_t       test,
     const afw_pool_t  * pool,
@@ -754,7 +754,7 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_create(
             &afw_s_value, value, xctx);
 
     if (objectType)
-        afw_object_set_property_as_list(indexDefinition,
+        afw_object_set_property_as_array(indexDefinition,
             &afw_s_objectType, objectType, xctx);
    
     if (filter)
@@ -762,7 +762,7 @@ AFW_DEFINE(const afw_object_t *) afw_adaptor_impl_index_create(
             &afw_s_filter, filter, xctx);
    
     if (options)
-        afw_object_set_property_as_list(indexDefinition,
+        afw_object_set_property_as_array(indexDefinition,
             &afw_s_options, options, xctx);
 
     ctx.instance = indexer;
@@ -1441,7 +1441,7 @@ static int afw_adaptor_impl_index_compare(
     }
 
     /* all we can do with Lists is check for equivalence */
-    else if (afw_value_is_list(value)) {
+    else if (afw_value_is_array(value)) {
         values = afw_value_as_array_of_values(value, xctx->p, xctx);
         for (i = 0; values[i]; i++) {
             v = values[i];

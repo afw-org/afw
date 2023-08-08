@@ -646,12 +646,12 @@ typedef struct afw_runtime_property_s
 afw_runtime_property_t;
 
 /**
- * Opaque typedef for afw_runtime_unresolved_const_list_t.
+ * Opaque typedef for afw_runtime_unresolved_const_array_t.
  *
  * See afw_runtime.h for struct and more information.
  */
-typedef struct afw_runtime_unresolved_const_list_s
-afw_runtime_unresolved_const_list_t;
+typedef struct afw_runtime_unresolved_const_array_s
+afw_runtime_unresolved_const_array_t;
 
 /**
  * Opaque typedef for afw_runtime_unresolved_const_object_t.

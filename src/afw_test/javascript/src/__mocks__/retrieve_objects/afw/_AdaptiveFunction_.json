@@ -92,7 +92,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of rfc822Name value.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -105,7 +105,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of rfc822Name value.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -260,7 +260,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -274,7 +274,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -371,7 +371,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -385,7 +385,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -494,7 +494,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The first list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -508,7 +508,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The second list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -758,7 +758,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of time value.",
                 "dataTypeParameter": "time",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -774,7 +774,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of time value that can be specified 0 or more times.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -818,11 +818,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -976,7 +976,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -990,7 +990,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -1829,7 +1829,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dayTimeDuration value.",
                 "dataTypeParameter": "dayTimeDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -1846,7 +1846,7 @@
                     "details": "This parameter is a list of dayTimeDuration value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -1879,7 +1879,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dayTimeDuration value.",
                 "dataTypeParameter": "dayTimeDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -1895,7 +1895,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of dayTimeDuration value that can be specified 0 or more times.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -2112,7 +2112,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -2126,7 +2126,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -2218,7 +2218,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dateTime value.",
                 "dataTypeParameter": "dateTime",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -2235,7 +2235,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -2249,7 +2249,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -2512,7 +2512,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The first list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -2526,7 +2526,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The second list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -2559,7 +2559,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "An list of strings.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphicDataTypes": [
@@ -2636,7 +2636,7 @@
                 "details": "This function returns a list of string value.",
                 "description": "This is a list of the flagId of flags used to determine the default active flags.",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -2757,7 +2757,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of x500Name value.",
                 "dataTypeParameter": "x500Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -2774,7 +2774,7 @@
                     "details": "This parameter is a list of x500Name value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -3239,11 +3239,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of dateTime value.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -3542,11 +3542,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of date value.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -3939,7 +3939,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The first list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -3952,7 +3952,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The second list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4086,7 +4086,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "Variable name(s).",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -4111,7 +4111,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4343,7 +4343,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of hexBinary value.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -4356,7 +4356,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of hexBinary value.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4404,7 +4404,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4513,7 +4513,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -4527,7 +4527,7 @@
                     "details": "This parameter is a list of dateTime value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4559,7 +4559,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns a list of <dataType> value.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphicDataTypes": [
@@ -4591,7 +4591,7 @@
                     "minArgs": 2,
                     "details": "This parameter is a list of <dataType> value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -4705,7 +4705,7 @@
             "description": "Returns true if all values in a list pass the predicate test.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "allOf",
             "brief": "All values pass a test",
             "afwCamelCaseFunctionLabel": "afwAllOf"
@@ -4887,7 +4887,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of integer value.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -5216,7 +5216,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of rfc822Name value.",
                 "dataTypeParameter": "rfc822Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -5232,7 +5232,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of rfc822Name value that can be specified 0 or more times.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -5326,7 +5326,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of ipAddress value.",
                     "dataTypeParameter": "ipAddress",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -5754,11 +5754,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of boolean value.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -5851,7 +5851,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of integer value.",
                 "dataTypeParameter": "integer",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -5868,7 +5868,7 @@
                     "details": "This parameter is a list of integer value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -5981,11 +5981,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of dnsName value.",
                     "dataTypeParameter": "dnsName",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -6055,11 +6055,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is a list to be reduced.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -6068,7 +6068,7 @@
             "description": "Reduce calls functor for each value in list with two parameters, accumulator and value, and must return a value of any dataType.  Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls.  The dataType of the return value should normally be the same as accumulator, but this is not required.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "reduce",
             "brief": "Reduce values of a list to a single value",
             "afwCamelCaseFunctionLabel": "afwReduce"
@@ -6374,7 +6374,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -6388,7 +6388,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -6497,7 +6497,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The list of the flagId of flags used to determine the default active flags.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -6702,7 +6702,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dateTime value.",
                 "dataTypeParameter": "dateTime",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -6718,7 +6718,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of dateTime value that can be specified 0 or more times.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -7217,7 +7217,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of date value.",
                 "dataTypeParameter": "date",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -7233,7 +7233,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of date value that can be specified 0 or more times.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -7415,7 +7415,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "List of objects retrieved.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -7530,7 +7530,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dateTime value.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -7647,11 +7647,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -7777,7 +7777,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "Bag of objects retrieved.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -7862,11 +7862,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -8001,7 +8001,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "List of modifications.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -8131,11 +8131,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -8394,7 +8394,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of time value.",
                 "dataTypeParameter": "time",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -8411,7 +8411,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The first list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -8425,7 +8425,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The second list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -8758,7 +8758,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -8772,7 +8772,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -8965,10 +8965,10 @@
                     "polymorphicDataTypeParameter": true,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -9074,7 +9074,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -9087,7 +9087,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -9135,7 +9135,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of boolean value.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -9148,7 +9148,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of boolean value.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -9304,7 +9304,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The first list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -9318,7 +9318,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The second list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -9479,11 +9479,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of base64Binary value.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -9980,7 +9980,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "A list containing the selected values.  If all of the values are the same data type, the list will be a list of that data type.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -9992,11 +9992,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "The list to slice.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -10031,7 +10031,7 @@
             "description": "This function extracts a consecutive slice of values from a list.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "list",
+            "category": "array",
             "camelCaseFunctionLabel": "slice",
             "brief": "Return a consecutive slice of values from a list",
             "afwCamelCaseFunctionLabel": "afwSlice"
@@ -10172,7 +10172,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of yearMonthDuration value.",
                 "dataTypeParameter": "yearMonthDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -10189,7 +10189,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -10203,7 +10203,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10356,7 +10356,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of rfc822Name value.",
                 "dataTypeParameter": "rfc822Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -10373,7 +10373,7 @@
                     "details": "This parameter is a list of rfc822Name value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10409,7 +10409,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "The modified target list.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -10425,7 +10425,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "Target list.  This list must not be immutable.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -10438,7 +10438,7 @@
                     "minArgs": 1,
                     "details": "This parameter is a list value that can be specified 1 or more times.",
                     "description": "Source list(s).",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10447,7 +10447,7 @@
             "description": "Add the entries of one or more lists to another.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "list",
+            "category": "array",
             "camelCaseFunctionLabel": "addEntries",
             "brief": "Add entries of one or more lists to another",
             "afwCamelCaseFunctionLabel": "afwAddEntries"
@@ -10484,7 +10484,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dateTime value.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -10497,7 +10497,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dateTime value.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10530,7 +10530,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "An list of strings.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -10698,7 +10698,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of ipAddress value.",
                 "dataTypeParameter": "ipAddress",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -10714,7 +10714,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of ipAddress value that can be specified 0 or more times.",
                     "dataTypeParameter": "ipAddress",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10979,7 +10979,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The first list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -10993,7 +10993,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The second list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11163,7 +11163,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The first list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -11176,7 +11176,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The second list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11251,7 +11251,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns a list value.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -11276,11 +11276,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "These are the parameters passed to functor with the exception that the first list is passed one value at a time.  At least one list is required.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11289,7 +11289,7 @@
             "description": "This function creates a list of the results of calling functor with each value of the first list in args",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "map",
             "brief": "Maps values of a list",
             "afwCamelCaseFunctionLabel": "afwMap"
@@ -11489,7 +11489,7 @@
                     "name": "arg",
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11520,7 +11520,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of double value.",
                 "dataTypeParameter": "double",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -11536,7 +11536,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of double value that can be specified 0 or more times.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11680,7 +11680,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "This is a list of values to evaluate before the loop starts. The values will normally be a call to the \"assign\" function.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -11706,7 +11706,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "This is a list of values to evaluate after each iteration of the loop.  The values will normally be a call to the \"assign\" function.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -11719,7 +11719,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11751,7 +11751,7 @@
                 "details": "This function returns a list of string value.",
                 "description": "This is a list of the flagId of flags that are set by default when a scope (request) is created.",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -11857,7 +11857,7 @@
                 "details": "This function returns a list of string value.",
                 "description": "This is a list of the flagId of flags that are set in the current scope (request).",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": false,
             "polymorphic": false,
@@ -11920,7 +11920,7 @@
                     "name": "list1",
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -11932,7 +11932,7 @@
                     "name": "list2",
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -11963,7 +11963,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of time value.",
                 "dataTypeParameter": "time",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -11980,7 +11980,7 @@
                     "details": "This parameter is a list of time value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -12477,7 +12477,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of integer value.",
                 "dataTypeParameter": "integer",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -12494,7 +12494,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The first list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -12508,7 +12508,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The second list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -12557,7 +12557,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The first list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -12571,7 +12571,7 @@
                     "details": "This parameter is a list of time value.",
                     "description": "The second list.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -12632,7 +12632,7 @@
                     "name": "list1",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -12644,7 +12644,7 @@
                     "name": "list2",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -12653,7 +12653,7 @@
             "description": "Returns true if the result of calling predicate with all of the combination of values from list1 and list2 returns true.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "allOfAll",
             "brief": "All combinations true",
             "afwCamelCaseFunctionLabel": "afwAllOfAll"
@@ -12691,7 +12691,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The first list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -12705,7 +12705,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The second list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -13163,7 +13163,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of double value.",
                 "dataTypeParameter": "double",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -13180,7 +13180,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The first list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -13194,7 +13194,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The second list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -13227,7 +13227,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of base64Binary value.",
                 "dataTypeParameter": "base64Binary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -13243,7 +13243,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of base64Binary value that can be specified 0 or more times.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -13862,7 +13862,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The first list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -13876,7 +13876,7 @@
                     "details": "This parameter is a list of integer value.",
                     "description": "The second list.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -14029,7 +14029,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The name of one or more constants to defined in the current block.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -14285,7 +14285,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The first list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -14299,7 +14299,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The second list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -14454,7 +14454,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dateTime value.",
                 "dataTypeParameter": "dateTime",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -14471,7 +14471,7 @@
                     "details": "This parameter is a list of dateTime value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "dateTime",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -14650,7 +14650,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of anyURI value.",
                 "dataTypeParameter": "anyURI",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -14666,7 +14666,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of anyURI value that can be specified 0 or more times.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -14699,7 +14699,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "An list of strings.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -14896,7 +14896,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "List of flagId of flags to set or unset.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -15225,11 +15225,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of ipAddress value.",
                     "dataTypeParameter": "ipAddress",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -15278,7 +15278,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The first list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -15292,7 +15292,7 @@
                     "details": "This parameter is a list of double value.",
                     "description": "The second list.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -15325,7 +15325,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of date value.",
                 "dataTypeParameter": "date",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -15342,7 +15342,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The first list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -15356,7 +15356,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The second list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -15417,7 +15417,7 @@
                     "name": "list1",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -15429,7 +15429,7 @@
                     "name": "list2",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -15438,7 +15438,7 @@
             "description": "This function returns true if the result of calling predicate with all of the combination of values from list1 and any of the values of list2 returns true.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "allOfAny",
             "brief": "Combinations of all in list1 and any in list2 true",
             "afwCamelCaseFunctionLabel": "afwAllOfAny"
@@ -16173,7 +16173,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "List of asserts and modifications.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -16305,7 +16305,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of hexBinary value.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -16338,7 +16338,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of anyURI value.",
                 "dataTypeParameter": "anyURI",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -16355,7 +16355,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The first list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -16369,7 +16369,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The second list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -16418,7 +16418,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "A list of values of any data type.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -16441,8 +16441,8 @@
             "description": "Concatenate the string values of the elements of a list with a separator.",
             "deprecated": false,
             "dataTypeMethodNumber": 53,
-            "dataType": "list",
-            "category": "list",
+            "dataType": "array",
+            "category": "array",
             "camelCaseFunctionLabel": "join",
             "brief": "Join the string values of list elements",
             "afwCamelCaseFunctionLabel": "afwJoin"
@@ -16569,7 +16569,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of base64Binary value.",
                 "dataTypeParameter": "base64Binary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -16586,7 +16586,7 @@
                     "details": "This parameter is a list of base64Binary value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17136,11 +17136,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17563,7 +17563,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -17577,7 +17577,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17633,11 +17633,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of rfc822Name value.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17670,7 +17670,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of boolean value.",
                 "dataTypeParameter": "boolean",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -17686,7 +17686,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of boolean value that can be specified 0 or more times.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17854,7 +17854,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The first list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -17868,7 +17868,7 @@
                     "details": "This parameter is a list of anyURI value.",
                     "description": "The second list.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17917,7 +17917,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The first list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -17931,7 +17931,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The second list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -17964,7 +17964,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dnsName value.",
                 "dataTypeParameter": "dnsName",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -17980,7 +17980,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of dnsName value that can be specified 0 or more times.",
                     "dataTypeParameter": "dnsName",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -18295,11 +18295,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of integer value.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -18332,7 +18332,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of string value.",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -18348,7 +18348,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of string value that can be specified 0 or more times.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -18678,7 +18678,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of date value.",
                 "dataTypeParameter": "date",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -18695,7 +18695,7 @@
                     "details": "This parameter is a list of date value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -18728,7 +18728,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "This is the resulting filtered list.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -18766,7 +18766,7 @@
             "description": "This produces a list containing only values from another list that pass a predicate test.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "filter",
             "brief": "Filter a list",
             "afwCamelCaseFunctionLabel": "afwFilter"
@@ -19170,7 +19170,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The first list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -19184,7 +19184,7 @@
                     "details": "This parameter is a list of date value.",
                     "description": "The second list.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -19292,11 +19292,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -19591,7 +19591,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The flagId of flags to be added or removed.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -20458,7 +20458,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of string value.",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -20475,7 +20475,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The first list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -20489,7 +20489,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The second list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -20735,7 +20735,7 @@
             "description": "Test arg returning boolean True if it is data type list.  Use is_list_of_list() instead to test for a list of list.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "list",
+            "category": "array",
             "camelCaseFunctionLabel": "isList",
             "brief": "Checks whether value is dataType list",
             "afwCamelCaseFunctionLabel": "afwIsList"
@@ -20848,7 +20848,7 @@
         {
             "_meta_": {
                 "path": "/afw/_AdaptiveFunction_/list",
-                "objectId": "list",
+                "objectId": "array",
                 "objectType": "_AdaptiveFunction_"
             },
             "scriptSupportNumber": 0,
@@ -20862,7 +20862,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "Converted value",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -20881,13 +20881,13 @@
                 }
             ],
             "functionPrototype": "*** coming soon ***",
-            "functionLabel": "list",
-            "functionId": "list",
+            "functionLabel": "array",
+            "functionId": "array",
             "description": "Converts 1 or more args to a list.  If an arg is a list, its individual values are included.\n\nIf the data types of all values in the resulting list are the same, the list will be a list of that data type.  Otherwise, the resulting list will be untyped.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "list",
-            "camelCaseFunctionLabel": "list",
+            "category": "array",
+            "camelCaseFunctionLabel": "array",
             "afwCamelCaseFunctionLabel": "afwList"
         },
         {
@@ -20944,7 +20944,7 @@
             "description": "Returns true if any value in a list pass the predicate test.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "anyOf",
             "brief": "Any values pass a test",
             "afwCamelCaseFunctionLabel": "afwAnyOf"
@@ -21023,11 +21023,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -21060,7 +21060,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of double value.",
                 "dataTypeParameter": "double",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -21077,7 +21077,7 @@
                     "details": "This parameter is a list of double value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -21125,7 +21125,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of time value.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -21138,7 +21138,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of time value.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -21220,7 +21220,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "This the the resulting sorted list.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -21246,11 +21246,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is the list to sort.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -21259,7 +21259,7 @@
             "description": "This produces a list with values sorted based on result of compareFunction.  The compareFunction is passed two values from the list and must return an integer less than 0 if the first value is less than the second value, 0 if they are equal, and a integer greater than 0 if the first value is greater than the second value.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "sort",
             "brief": "Sort values in a list",
             "afwCamelCaseFunctionLabel": "afwSort"
@@ -21367,7 +21367,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns a list of <dataType> value.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphicDataTypes": [
@@ -21400,7 +21400,7 @@
                     "name": "args",
                     "minArgs": 0,
                     "details": "This parameter is a list of <dataType> value that can be specified 0 or more times.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -21575,7 +21575,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of hexBinary value.",
                 "dataTypeParameter": "hexBinary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -21591,7 +21591,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of hexBinary value that can be specified 0 or more times.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -22064,7 +22064,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of integer value.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -22077,7 +22077,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of integer value.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -22507,7 +22507,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The first list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -22521,7 +22521,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The second list.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -22569,7 +22569,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of base64Binary value.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23222,11 +23222,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23282,11 +23282,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23467,7 +23467,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23586,7 +23586,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "To Addresses.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -23699,11 +23699,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23751,7 +23751,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of double value.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -23764,7 +23764,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of double value.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -23868,11 +23868,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24331,7 +24331,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is a list of values that are evaluated for each iteration of the loop.  Each value in body is evaluated in order until the end of the list or until a \"break\", \"continue\", \"return\" or \"throw\" function is encountered.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24380,7 +24380,7 @@
                 "ia5String",
                 "integer",
                 "ipAddress",
-                "list",
+                "array",
                 "null",
                 "object",
                 "objectId",
@@ -24650,7 +24650,7 @@
                     "details": "This parameter is a list of string value.",
                     "description": "The name of one or more variables to declared in the current block.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -24707,7 +24707,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of anyURI value.",
                 "dataTypeParameter": "anyURI",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -24724,7 +24724,7 @@
                     "details": "This parameter is a list of anyURI value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24867,7 +24867,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -24881,7 +24881,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24914,7 +24914,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of x500Name value.",
                 "dataTypeParameter": "x500Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -24931,7 +24931,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -24945,7 +24945,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24978,7 +24978,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of yearMonthDuration value.",
                 "dataTypeParameter": "yearMonthDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -24995,7 +24995,7 @@
                     "details": "This parameter is a list of yearMonthDuration value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25143,11 +25143,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of double value.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25373,7 +25373,7 @@
                     "name": "list1",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -25385,7 +25385,7 @@
                     "name": "list2",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25394,7 +25394,7 @@
             "description": "Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "anyOfAll",
             "brief": "Combinations of any in list1 and all in list2 true",
             "afwCamelCaseFunctionLabel": "afwAnyOfAll"
@@ -25608,7 +25608,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of double value.",
                     "dataTypeParameter": "double",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25657,7 +25657,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -25671,7 +25671,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25727,11 +25727,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of x500Name value.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -25793,7 +25793,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "HTTP Headers.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -25909,7 +25909,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of boolean value.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -26096,7 +26096,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of dayTimeDuration value.",
                 "dataTypeParameter": "dayTimeDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -26113,7 +26113,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -26127,7 +26127,7 @@
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -26175,7 +26175,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dnsName value.",
                     "dataTypeParameter": "dnsName",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -26394,7 +26394,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -26408,7 +26408,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -26709,7 +26709,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -26812,11 +26812,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of hexBinary value.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27088,7 +27088,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -27102,7 +27102,7 @@
                     "details": "This parameter is a list of x500Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27135,7 +27135,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of yearMonthDuration value.",
                 "dataTypeParameter": "yearMonthDuration",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -27151,7 +27151,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of yearMonthDuration value that can be specified 0 or more times.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27242,7 +27242,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of boolean value.",
                 "dataTypeParameter": "boolean",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -27259,7 +27259,7 @@
                     "details": "This parameter is a list of boolean value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27307,7 +27307,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -27320,7 +27320,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of dayTimeDuration value.",
                     "dataTypeParameter": "dayTimeDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27424,11 +27424,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27535,7 +27535,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of anyURI value.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -27548,7 +27548,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of anyURI value.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -27752,7 +27752,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of time value.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28017,7 +28017,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of rfc822Name value.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28120,11 +28120,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28351,7 +28351,7 @@
                     "name": "list1",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -28363,7 +28363,7 @@
                     "name": "list2",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28372,7 +28372,7 @@
             "description": "This function returns true if the result of calling predicate with any of the combination of values from list1 and list2 returns true.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "anyOfAny",
             "brief": "Any combinations true",
             "afwCamelCaseFunctionLabel": "afwAnyOfAny"
@@ -28464,11 +28464,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of anyURI value.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28609,7 +28609,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of rfc822Name value.",
                 "dataTypeParameter": "rfc822Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -28626,7 +28626,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The first list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -28640,7 +28640,7 @@
                     "details": "This parameter is a list of rfc822Name value.",
                     "description": "The second list.",
                     "dataTypeParameter": "rfc822Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28892,7 +28892,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of hexBinary value.",
                 "dataTypeParameter": "hexBinary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -28909,7 +28909,7 @@
                     "details": "This parameter is a list of hexBinary value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -28957,7 +28957,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of date value.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -28970,7 +28970,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of date value.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -29074,7 +29074,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns a list of <dataType> value.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphicDataTypes": [
@@ -29106,7 +29106,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The first list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -29119,7 +29119,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of <dataType> value.",
                     "description": "The second list.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -29212,7 +29212,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of anyURI value.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -29245,7 +29245,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of string value.",
                 "dataTypeParameter": "string",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -29262,7 +29262,7 @@
                     "details": "This parameter is a list of string value that can be specified 2 or more times.",
                     "description": "Two or more lists.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -29959,7 +29959,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of x500Name value.",
                 "dataTypeParameter": "x500Name",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -29975,7 +29975,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of x500Name value that can be specified 0 or more times.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -30226,7 +30226,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -30240,7 +30240,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -30273,7 +30273,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of base64Binary value.",
                 "dataTypeParameter": "base64Binary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -30290,7 +30290,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -30304,7 +30304,7 @@
                     "details": "This parameter is a list of base64Binary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -30434,7 +30434,7 @@
             "description": "The predicate is called for each value in the first list in args until true is returned, then that value is returned.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "higher_order_list",
+            "category": "higher_order_array",
             "camelCaseFunctionLabel": "find",
             "brief": "Returns the first value in a list that passes a test",
             "afwCamelCaseFunctionLabel": "afwFind"
@@ -30693,11 +30693,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -30914,7 +30914,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of x500Name value.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -30958,11 +30958,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31011,7 +31011,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "A list value.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31021,8 +31021,8 @@
             "description": "Converts list arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
             "deprecated": false,
             "dataTypeMethodNumber": 26,
-            "dataType": "list",
-            "category": "list",
+            "dataType": "array",
+            "category": "array",
             "camelCaseFunctionLabel": "toStringList",
             "brief": "Converts value to string",
             "afwCamelCaseFunctionLabel": "afwToStringList"
@@ -31325,7 +31325,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list value.",
                 "description": "A list with elements reversed.",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -31337,11 +31337,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "A list to reverse.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31351,8 +31351,8 @@
             "description": "Reverse the order of the elements in a list.  If the list is typed, the resulting list will be the same type.",
             "deprecated": false,
             "dataTypeMethodNumber": 54,
-            "dataType": "list",
-            "category": "list",
+            "dataType": "array",
+            "category": "array",
             "camelCaseFunctionLabel": "reverse",
             "brief": "Return list with elements reversed",
             "afwCamelCaseFunctionLabel": "afwReverse"
@@ -31374,7 +31374,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of hexBinary value.",
                 "dataTypeParameter": "hexBinary",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -31391,7 +31391,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The first list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -31405,7 +31405,7 @@
                     "details": "This parameter is a list of hexBinary value.",
                     "description": "The second list.",
                     "dataTypeParameter": "hexBinary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31461,11 +31461,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of time value.",
                     "dataTypeParameter": "time",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31569,11 +31569,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31823,11 +31823,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31875,7 +31875,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of string value.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -31888,7 +31888,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of string value.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -31993,11 +31993,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -32137,11 +32137,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of list value.",
-                    "dataTypeParameter": "list",
-                    "dataType": "list"
+                    "dataTypeParameter": "array",
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -32250,7 +32250,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The first list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -32264,7 +32264,7 @@
                     "details": "This parameter is a list of yearMonthDuration value.",
                     "description": "The second list.",
                     "dataTypeParameter": "yearMonthDuration",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -32342,7 +32342,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of integer value.",
                 "dataTypeParameter": "integer",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -32358,7 +32358,7 @@
                     "minArgs": 0,
                     "details": "This parameter is a list of integer value that can be specified 0 or more times.",
                     "dataTypeParameter": "integer",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -32670,11 +32670,11 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "list",
+                    "name": "array",
                     "minArgs": -1,
                     "details": "This parameter is a list of string value.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -32904,7 +32904,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is the body of a structured block that is evaluated if \"condition\" is true.  See the \"body\" parameter of the \"block\" function for information on how the body is processed.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -32917,7 +32917,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "This is the body of a structured block that is evaluated if \"condition\" is false.  If not specified and condition is false, a null value is returned.  See the \"body\" parameter of the \"block\" function for information on how the body is processed.",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -33146,7 +33146,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of string value.",
                     "dataTypeParameter": "string",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -33473,7 +33473,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of x500Name value.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -33486,7 +33486,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of x500Name value.",
                     "dataTypeParameter": "x500Name",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -33635,7 +33635,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "This is a list of modifications.  Variable custom::actions can be used to access this value in model expressions.  Entries are of the form:\n\n    [\n        \"add_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"remove_property\",\n        \"property name\" or [\"property name\", ... ]\n    ]\n\n    [\n        \"remove_value\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]\n\n    [\n        \"set_property\",\n        \"property name\" or [\"property name\", ... ],\n        value\n    ]",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -33884,7 +33884,7 @@
                 "minArgs": -1,
                 "details": "This function returns a list of boolean value.",
                 "dataTypeParameter": "boolean",
-                "dataType": "list"
+                "dataType": "array"
             },
             "pure": true,
             "polymorphic": false,
@@ -33901,7 +33901,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The first list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -33915,7 +33915,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The second list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -33964,7 +33964,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The first list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -33978,7 +33978,7 @@
                     "details": "This parameter is a list of boolean value.",
                     "description": "The second list.",
                     "dataTypeParameter": "boolean",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -34172,7 +34172,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of base64Binary value.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -34185,7 +34185,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of base64Binary value.",
                     "dataTypeParameter": "base64Binary",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -34233,7 +34233,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value.",
                     "description": "expression tuple to compile.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {
@@ -34291,7 +34291,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list of date value.",
                     "dataTypeParameter": "date",
-                    "dataType": "list"
+                    "dataType": "array"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -34366,7 +34366,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a list value that is optional.",
                     "description": "HTTP Headers.",
-                    "dataType": "list"
+                    "dataType": "array"
                 },
                 {
                     "_meta_": {

@@ -272,12 +272,12 @@ int main(int argc, const char * const *argv)
             conf_file = afw_file_to_memory(&self->conf, 0, xctx->p, xctx);
             conf = afw_content_type_raw_to_value(self->content_type,
                 conf_file, &self->conf, xctx->p, xctx);
-            if (!afw_value_is_list(conf)) {
+            if (!afw_value_is_array(conf)) {
                 AFW_THROW_ERROR_Z(general, "Invalid configuration.",
                     xctx);
             }
             afw_environment_configure_with_object_list(
-                ((const afw_value_list_t *)conf)->internal,
+                ((const afw_value_array_t *)conf)->internal,
                 &self->conf, xctx);
         }
 

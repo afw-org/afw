@@ -39,7 +39,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
 /* Used by retrieve_objects*() */
 typedef struct impl_retrieve_cb_ctx_s {
     const afw_pool_t *p;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *objectCallback;
     const afw_value_t *userData;
     const afw_object_options_t *object_options;
@@ -62,7 +62,7 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
         /** @fixme Need corresponding releases. */
         if (ctx->list) {
             afw_object_add_reference(object, xctx);
-            afw_list_add_value(ctx->list,
+            afw_array_add_value(ctx->list,
                 afw_value_create_object(object, ctx->p, xctx), xctx);
         }
         else {
@@ -435,7 +435,7 @@ afw_function_execute_add_object_with_uri(
  *       2 - similar to 1 with ';' for '&' and ',' for '|'.
  *       
  *       3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
- *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
+ *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *       comma separated list of any comparison or conjunction.
  *
  * Returns:
@@ -1010,7 +1010,7 @@ afw_function_execute_get_object_with_uri(
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -1024,7 +1024,7 @@ afw_function_execute_get_object_with_uri(
  *
  *   objectId - (string) Id of object to modify.
  *
- *   entries - (list) List of modifications. Entries are of the form:
+ *   entries - (array) List of modifications. Entries are of the form:
  *       
  *           [
  *               'add_value',
@@ -1075,7 +1075,7 @@ afw_function_execute_modify_object(
     const afw_value_string_t *adaptorId;
     const afw_value_string_t *objectType;
     const afw_value_string_t *objectId;
-    const afw_value_list_t *entries;
+    const afw_value_array_t *entries;
     const afw_value_object_t *journal;
     const afw_value_object_t *adaptorTypeSpecific;
     const afw_object_t *journal_entry;
@@ -1087,7 +1087,7 @@ afw_function_execute_modify_object(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId,
         3, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries,
-        4, list);
+        4, array);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(journal,
         5, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adaptorTypeSpecific,
@@ -1125,7 +1125,7 @@ afw_function_execute_modify_object(
  * ```
  *   function modify_object_with_uri(
  *       uri: anyURI,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -1136,7 +1136,7 @@ afw_function_execute_modify_object(
  *   uri - (anyURI) URI of object to modify. If a URI begins with a single
  *       slash ('/'), it is the local object path.
  *
- *   entries - (list) List of asserts and modifications. Entries are of the
+ *   entries - (array) List of asserts and modifications. Entries are of the
  *       form:
  *       
  *           [
@@ -1186,7 +1186,7 @@ afw_function_execute_modify_object_with_uri(
     afw_function_execute_t *x)
 {
     const afw_value_anyURI_t *uri;
-    const afw_value_list_t *entries;
+    const afw_value_array_t *entries;
     const afw_value_object_t *journal;
     const afw_value_object_t *adaptorTypeSpecific;
     const afw_object_t *journal_entry;
@@ -1195,7 +1195,7 @@ afw_function_execute_modify_object_with_uri(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(uri,
         1, anyURI);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries,
-        2, list);
+        2, array);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(journal,
         3, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adaptorTypeSpecific,
@@ -1280,7 +1280,7 @@ afw_function_execute_reconcile_object(
     const afw_utf8_t *adaptor_id;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *object_id;
-    const afw_list_t *entries;
+    const afw_array_t *entries;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
     checkOnly = NULL;
@@ -1313,7 +1313,7 @@ afw_function_execute_reconcile_object(
     /* If checkOnly, just add return journal entry with modify entries. */
     if (checkOnly && checkOnly->internal) {
         /** @fixme Make part of journal object. */
-        return afw_value_create_list(entries, x->p, x->xctx);
+        return afw_value_create_array(entries, x->p, x->xctx);
     }
 
 
@@ -1560,7 +1560,7 @@ afw_function_execute_replace_object_with_uri(
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -1589,7 +1589,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -1607,7 +1607,7 @@ afw_function_execute_retrieve_objects(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.list = afw_list_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.list = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
     criteria = NULL;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId,
@@ -1645,7 +1645,7 @@ afw_function_execute_retrieve_objects(
         (adaptorTypeSpecific) ? adaptorTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    return afw_value_create_list(ctx.list, x->p, x->xctx);
+    return afw_value_create_array(ctx.list, x->p, x->xctx);
 }
 
 
@@ -2103,7 +2103,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -2128,7 +2128,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -2144,7 +2144,7 @@ afw_function_execute_retrieve_objects_with_uri(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.list = afw_list_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.list = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
     criteria = NULL;
     journal_entry = afw_object_create_managed(x->p, x->xctx);
 
@@ -2192,7 +2192,7 @@ afw_function_execute_retrieve_objects_with_uri(
         x->p, x->xctx);
 
     /* Return retrieved objects as a list. */
-    return afw_value_create_list(ctx.list, x->p, x->xctx);
+    return afw_value_create_array(ctx.list, x->p, x->xctx);
 }
 
 
@@ -2328,7 +2328,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
         x->p, x->xctx);
 
     /* Return retrieved objects as a list. */
-    return afw_value_create_list(ctx.list, x->p, x->xctx);
+    return afw_value_create_array(ctx.list, x->p, x->xctx);
 }
 
 

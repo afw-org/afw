@@ -28,9 +28,9 @@ class function
      *
      * Takes any number of function values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_function(, $values = null)
     {
@@ -52,7 +52,7 @@ class function
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */

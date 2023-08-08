@@ -153,7 +153,7 @@
                     "label": "Registers",
                     "description": "Each entry is a string of the form \"<registry type>/<registry key>\", where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc.  If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered.  See afw/afw_environment.h for more information.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of entries this extension registers"
                 },
                 "modulePath": {
@@ -207,7 +207,7 @@
                     "label": "Tags",
                     "description": "This is a list of keywords and terms associated with this object type.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of keywords associated with this object type"
                 },
                 "runtime": {
@@ -287,7 +287,7 @@
                     "label": "Collection URIs",
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The URIs of the collections this object type is a part of",
                     "allowQuery": true
                 },
@@ -447,7 +447,7 @@
                     "label": "Side Effects",
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Side effects for this function.",
                     "allowQuery": true
                 },
@@ -514,7 +514,7 @@
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "defaultValue": false,
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "This function will call the appropriate function when the first parameter is one of these data types",
                     "allowQuery": true
                 },
@@ -543,7 +543,7 @@
                     "label": "Parameters",
                     "description": "These are the function's parameters.",
                     "dataTypeParameter": "object _AdaptiveFunctionParameter_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The function's parameters"
                 },
                 "op": {
@@ -582,7 +582,7 @@
                     "label": "Errors Thrown",
                     "description": "Errors that can be thrown by this function.",
                     "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Errors thrown by this function"
                 },
                 "details": {
@@ -720,7 +720,7 @@
                     "label": "Tags",
                     "description": "This is a list of keywords and terms associated with values with the meta.  An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag.  Adaptive Framework reserves the definition of all tags that begin with \"_Adaptive\".",
                     "dataTypeParameter": "string",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "List of keywords and terms associated with values with this meta"
                 },
                 "runtime": {
@@ -748,7 +748,7 @@
                 "possibleValues": {
                     "label": "Possible Values",
                     "description": "Possible values of this value.  This can be the typed value or the string value.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "Possible values of this value",
                     "allowQuery": false
                 },
@@ -846,7 +846,7 @@
                     "label": "Collection URIs",
                     "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
                     "dataTypeParameter": "anyURI",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "The URIs of the collection this value meta is a part of",
                     "allowQuery": true
                 },
@@ -860,7 +860,7 @@
                 "allowedValues": {
                     "label": "Allowed Values",
                     "description": "This is a list of the allowed values for this adaptive value.  The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
-                    "dataType": "list",
+                    "dataType": "array",
                     "brief": "A list of allowed values for this adaptive value",
                     "allowQuery": true
                 },

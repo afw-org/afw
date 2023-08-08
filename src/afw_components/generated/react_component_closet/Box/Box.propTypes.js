@@ -78,7 +78,7 @@ export const propTypes = {
     alignItems:                         PropTypes.string,
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_BoxItem)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_BoxItem)
      * 
      * Items inside of the Box
      * This declares a list of items to be rendered inside the Box.

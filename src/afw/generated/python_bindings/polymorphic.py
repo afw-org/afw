@@ -139,9 +139,9 @@ def at_least_one_member_of(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -171,10 +171,10 @@ def bag(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -202,7 +202,7 @@ def bag_size(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -844,12 +844,12 @@ def intersection(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -898,7 +898,7 @@ def is_(session, value):
 
     return response['actions'][0]['result']
 
-def is_in(session, value, list):
+def is_in(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -909,7 +909,7 @@ def is_in(session, value, list):
 
         value ():
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -920,7 +920,7 @@ def is_in(session, value, list):
     action = {
         "function": "is_in",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -1380,7 +1380,7 @@ def normalize_to_lower_case(session, string):
 
     return response['actions'][0]['result']
 
-def one_and_only(session, list):
+def one_and_only(session, array):
     '''
     Converts a one value list to a <dataType> value
 
@@ -1389,7 +1389,7 @@ def one_and_only(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     None: 
@@ -1399,7 +1399,7 @@ def one_and_only(session, list):
 
     action = {
         "function": "one_and_only",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -1663,9 +1663,9 @@ def set_equals(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -1704,7 +1704,7 @@ def split(session, value, separator=None, limit=None):
         part of value is ignored.
 
     Returns:
-    list: An list of strings.
+    array: An list of strings.
     '''
 
     request = session.Request()
@@ -1770,9 +1770,9 @@ def subset(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -2349,10 +2349,10 @@ def union(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

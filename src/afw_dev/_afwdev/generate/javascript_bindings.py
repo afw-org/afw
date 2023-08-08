@@ -37,7 +37,7 @@ def typescript_type(dataType):
         return 'number'
     elif dataType == 'null':
         return 'null'
-    elif dataType == 'list':
+    elif dataType == 'array':
         return 'any[]'
     elif dataType == 'object':
         return 'object'

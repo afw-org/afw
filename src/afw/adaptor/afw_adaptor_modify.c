@@ -24,7 +24,7 @@ impl_value_set_property = {
 
 /* Work area used for reconcile. */
 typedef struct impl_reconcile_wa_s {
-    const afw_list_t *entries;
+    const afw_array_t *entries;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
 } impl_reconcile_wa_t;
@@ -165,13 +165,13 @@ afw_adaptor_modify_entry_type_value(
 /* Create modify entries from list of tuple lists in specified pool. */
 AFW_DEFINE(const afw_adaptor_modify_entry_t * const *)
 afw_adaptor_modify_entries_from_list(
-    const afw_list_t *list, const afw_pool_t *p, afw_xctx_t *xctx)
+    const afw_array_t *list, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     apr_array_header_t *ary;
     const afw_iterator_t *entry_i;
     const afw_iterator_t *tuple_i;
     const afw_iterator_t *names_i;
-    const afw_list_t *tuple;
+    const afw_array_t *tuple;
     afw_adaptor_modify_entry_t *entry;
     const afw_utf8_t *s;
     const afw_value_t *value;
@@ -185,7 +185,7 @@ afw_adaptor_modify_entries_from_list(
 
         /* Get next tuple.  Break out of loop if there are no more. */
         tuple_i = NULL;
-        tuple = afw_list_of_list_get_next(list, &entry_i, xctx);
+        tuple = afw_array_of_array_get_next(list, &entry_i, xctx);
         if (!tuple) {
             break;
         }
@@ -194,7 +194,7 @@ afw_adaptor_modify_entries_from_list(
         entry = afw_pool_calloc_type(p, afw_adaptor_modify_entry_t, xctx);
 
         /* Entry type. */
-        s = afw_list_of_string_get_next(tuple, &tuple_i, xctx);
+        s = afw_array_of_string_get_next(tuple, &tuple_i, xctx);
         if (!s) {
             goto error;
         }
@@ -204,7 +204,7 @@ afw_adaptor_modify_entries_from_list(
         }
 
         /* Entry name/names. */
-        value = afw_list_get_next_value(tuple, &tuple_i, p, xctx);
+        value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
         if (!value) {
             goto error;
         }
@@ -215,10 +215,10 @@ afw_adaptor_modify_entries_from_list(
             property_name_entry->property_name.s = s->s;
             property_name_entry->property_name.len = s->len;
         }
-        else if (afw_value_is_list(value)) {
+        else if (afw_value_is_array(value)) {
             for (names_i = NULL, prev_property_name_list = NULL;;) {
-                s = afw_list_of_string_get_next(
-                    ((const afw_value_list_t *)value)->internal,
+                s = afw_array_of_string_get_next(
+                    ((const afw_value_array_t *)value)->internal,
                     &names_i, xctx);
                 if (!s) {
                     if (!prev_property_name_list) {
@@ -241,7 +241,7 @@ afw_adaptor_modify_entries_from_list(
         }
 
         /* Get value. */
-        entry->value = afw_list_get_next_value(tuple, &tuple_i, p, xctx);
+        entry->value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
         if ((entry->value && !entry_type_has_value[entry->type]) ||
             (!entry->value && entry_type_has_value[entry->type]))
         {
@@ -250,7 +250,7 @@ afw_adaptor_modify_entries_from_list(
 
         /* It's an error if there is a 4th value in tuple. */
         if (entry->value) {
-            if (afw_list_get_next_value(tuple, &tuple_i, p, xctx)) {
+            if (afw_array_get_next_value(tuple, &tuple_i, p, xctx)) {
                 goto error;
             }
         }
@@ -272,37 +272,37 @@ error:
 
 
 /* Create modify entries from list of tuple lists in specified pool. */
-AFW_DEFINE(const afw_list_t *)
+AFW_DEFINE(const afw_array_t *)
 afw_adaptor_modify_entries_to_list(
     const afw_adaptor_modify_entry_t * const *entries,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_list_t *result;
-    const afw_list_t *tuple;
-    const afw_list_t *name_list;
+    const afw_array_t *result;
+    const afw_array_t *tuple;
+    const afw_array_t *name_list;
     const afw_object_path_property_name_entry_t *property_name_entry;
     const afw_adaptor_modify_entry_t * const *e;
     const afw_value_t *value;
 
     /* Create list for result. */
-    result = afw_list_of_create(afw_data_type_list, p, xctx);
+    result = afw_array_of_create(afw_data_type_array, p, xctx);
 
     /* Process all modify entries. */
     for (e = entries; *e; e++) {
 
         /* Create a new list for tuple. */
-        tuple = afw_list_create_generic(p, xctx);
+        tuple = afw_array_create_generic(p, xctx);
 
         /* Entry type. */
         value = afw_adaptor_modify_entry_type_value((*e)->type);
         if (!value) {
             AFW_THROW_ERROR_Z(general, "Invalid type", xctx);
         }
-        afw_list_add_value(tuple, value, xctx);
+        afw_array_add_value(tuple, value, xctx);
 
         /* Property name or list of names. */
         if ((*e)->first_property_name_entry->next) {
-            name_list = afw_list_create_generic(p, xctx);
+            name_list = afw_array_create_generic(p, xctx);
             for (property_name_entry = (*e)->first_property_name_entry;
                 property_name_entry;
                 property_name_entry = property_name_entry->next)
@@ -310,25 +310,25 @@ afw_adaptor_modify_entries_to_list(
                 value = afw_value_create_string(
                     &property_name_entry->property_name,
                     p, xctx);
-                afw_list_add_value(name_list, value, xctx);
+                afw_array_add_value(name_list, value, xctx);
             }
-            value = afw_value_create_list(name_list, p, xctx);
+            value = afw_value_create_array(name_list, p, xctx);
         }
         else {
             value = afw_value_create_string(
                 &(*e)->first_property_name_entry->property_name,
                 p, xctx);
         }
-        afw_list_add_value(tuple, value, xctx);
+        afw_array_add_value(tuple, value, xctx);
 
         /* Value. */
         if ((*e)->value) {
-            afw_list_add_value(tuple, (*e)->value, xctx);
+            afw_array_add_value(tuple, (*e)->value, xctx);
         }
 
         /* Add tuple to result list. */
-        value = afw_value_create_list(tuple, p, xctx);
-        afw_list_add_value(result, value, xctx);
+        value = afw_value_create_array(tuple, p, xctx);
+        afw_array_add_value(result, value, xctx);
 
     }
 
@@ -350,7 +350,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
     const afw_object_path_property_name_entry_t *first_property_name_entry;
     const afw_value_t *value, *old_value = NULL;
     const afw_value_t *new_value;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_object_t *obj;
     const afw_utf8_t *property_name = NULL;
     const afw_utf8_t *s;
@@ -386,9 +386,9 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
             if (old_value) {
 
                 /* If old value is a list, just add new value to it. */
-                if (afw_value_is_list(old_value)) {
-                    list = afw_value_as_list(old_value, xctx);
-                    afw_list_add_value(list, value, xctx);
+                if (afw_value_is_array(old_value)) {
+                    list = afw_value_as_array(old_value, xctx);
+                    afw_array_add_value(list, value, xctx);
                 }
 
                 /*
@@ -400,10 +400,10 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                  * by converting values or indication properties in error.
                  */
                 else {
-                    list = afw_list_create_generic(object->p, xctx);
-                    afw_list_add_value(list, old_value, xctx);
-                    afw_list_add_value(list, value, xctx);
-                    value = afw_value_create_list(list,
+                    list = afw_array_create_generic(object->p, xctx);
+                    afw_array_add_value(list, old_value, xctx);
+                    afw_array_add_value(list, value, xctx);
+                    value = afw_value_create_array(list,
                         p, xctx);
                     impl_set_property(object, first_property_name_entry, value,
                         xctx);
@@ -439,11 +439,11 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
 
             if (old_value) {
 
-                if (afw_value_is_list(old_value)) {
-                    list = ((const afw_value_list_t *)old_value)
+                if (afw_value_is_array(old_value)) {
+                    list = ((const afw_value_array_t *)old_value)
                         ->internal;
-                    afw_list_remove_value(list, value, xctx);
-                    new_value = afw_value_create_list(list, p, xctx);
+                    afw_array_remove_value(list, value, xctx);
+                    new_value = afw_value_create_array(list, p, xctx);
                     impl_set_property(object, first_property_name_entry,
                             new_value, xctx);
                 }
@@ -505,11 +505,11 @@ impl_add_reconcile_property(
     const afw_utf8_t *embedding_property_name,
     const afw_object_type_property_type_t *pt,
     const afw_utf8_t *property_name,
-    const afw_list_t *property_names,
+    const afw_array_t *property_names,
     const afw_value_t *value)
 {
-    const afw_list_t *new_property_names;
-    const afw_list_t *tuple;
+    const afw_array_t *new_property_names;
+    const afw_array_t *tuple;
     const afw_value_t *v;
 
     if (embedding_pt && !embedding_pt->allow_write) {
@@ -528,39 +528,39 @@ impl_add_reconcile_property(
         //*/
     }
 
-    tuple = afw_list_create_generic(wa->p, wa->xctx);
+    tuple = afw_array_create_generic(wa->p, wa->xctx);
 
     /* Entry type. */
     v = (const afw_value_t *)((value)
         ? &entry_type_value[afw_adaptor_modify_entry_type_set_property]
         : &entry_type_value[afw_adaptor_modify_entry_type_remove_property]);
-    afw_list_add_value(tuple, v, wa->xctx);
+    afw_array_add_value(tuple, v, wa->xctx);
 
     /* Property name. */
     if (property_names) {
-        new_property_names = afw_list_create_or_clone(
+        new_property_names = afw_array_create_or_clone(
             property_names, afw_data_type_string, false,
             wa->p, wa->xctx);
         v = afw_value_create_string(property_name,
             wa->p, wa->xctx);
-        afw_list_add_value(new_property_names, v, wa->xctx);
-        v = afw_value_create_list(new_property_names,
+        afw_array_add_value(new_property_names, v, wa->xctx);
+        v = afw_value_create_array(new_property_names,
             wa->p, wa->xctx);
     }
     else {
         v = afw_value_create_string(property_name,
             wa->p, wa->xctx);
     }
-    afw_list_add_value(tuple, v, wa->xctx);
+    afw_array_add_value(tuple, v, wa->xctx);
 
     /* Value */
     if (value) {
-        afw_list_add_value(tuple, value, wa->xctx);
+        afw_array_add_value(tuple, value, wa->xctx);
     }
 
     /* Add tuple to entries. */
-    v = afw_value_create_list(tuple, wa->p, wa->xctx);
-    afw_list_add_value(wa->entries, v, wa->xctx);
+    v = afw_value_create_array(tuple, wa->p, wa->xctx);
+    afw_array_add_value(wa->entries, v, wa->xctx);
 }
 
 
@@ -570,7 +570,7 @@ impl_reconcile_object(
     const afw_object_type_property_type_t *embedding_pt,
     const afw_utf8_t *embedding_property_name,
     const afw_object_type_t *object_type,
-    const afw_list_t *property_names,
+    const afw_array_t *property_names,
     const afw_object_t *original,
     const afw_object_t *modified,
     const afw_object_t *journal_entry)
@@ -580,7 +580,7 @@ impl_reconcile_object(
     const afw_value_t *original_value;
     const afw_value_t *modified_value;
     const afw_value_t *value;
-    const afw_list_t *new_property_names;
+    const afw_array_t *new_property_names;
     const afw_object_type_property_type_t *pt;
     const afw_object_type_t *property_object_type;
     const afw_utf8_t *object_type_id;
@@ -629,12 +629,12 @@ impl_reconcile_object(
             /* Handled case where original and modified are both objects */
             if (afw_value_is_object(modified_value)) {
                 new_property_names =
-                    afw_list_create_or_clone(
+                    afw_array_create_or_clone(
                         property_names, afw_data_type_string, false,
                         wa->p, wa->xctx);
                 value = afw_value_create_string(property_name,
                     wa->p, wa->xctx);
-                afw_list_add_value(new_property_names, value, wa->xctx);
+                afw_array_add_value(new_property_names, value, wa->xctx);
 
                 /* Try getting object type id from pt. */
                 object_type_id = pt->data_type_parameter;
@@ -732,7 +732,7 @@ afw_adaptor_modify_needed_to_reconcile(
     const afw_utf8_t * *adaptor_id,
     const afw_utf8_t * *object_type_id,
     const afw_utf8_t * *object_id,
-    const afw_list_t * *entries,
+    const afw_array_t * *entries,
     const afw_object_t *original,
     const afw_object_t *modified,
     const afw_object_t *journal_entry,
@@ -776,7 +776,7 @@ afw_adaptor_modify_needed_to_reconcile(
             AFW_UTF8_FMT_ARG(*adaptor_id));
     }
 
-    wa.entries = afw_list_of_create(afw_data_type_list, p, xctx);
+    wa.entries = afw_array_of_create(afw_data_type_array, p, xctx);
     wa.p = p;
     wa.xctx = xctx;
 
@@ -794,7 +794,7 @@ afw_adaptor_modify_object(
     const afw_utf8_t *adaptor_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_list_t *entries,
+    const afw_array_t *entries,
     const afw_object_t *journal_entry,
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx)
@@ -828,7 +828,7 @@ afw_adaptor_modify_object(
         &afw_s_objectType, object_type_id, xctx);
     afw_object_set_property_as_string(request,
         &afw_s_objectId, object_id, xctx);
-    afw_object_set_property_as_list(request,
+    afw_object_set_property_as_array(request,
         &afw_s_entries, entries, xctx);
 
     /* Parse entries. */
@@ -880,8 +880,8 @@ afw_adaptor_modify_using_update_object(
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
-    const afw_list_t *entries;
-    const afw_list_t *entry;
+    const afw_array_t *entries;
+    const afw_array_t *entry;
     const afw_value_t *entry_value;
     const afw_value_t *property_name_value;
 
@@ -900,22 +900,22 @@ afw_adaptor_modify_using_update_object(
      */
 
     /* Convert update_object to list of modify entries. */
-    entries = afw_list_of_create(afw_data_type_list, xctx->p, xctx);
+    entries = afw_array_of_create(afw_data_type_array, xctx->p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(update_object,
         &iterator, &property_name, xctx)))
     {
         /* Add ["set_property", <property name>, value]. */
-        entry = afw_list_create_generic(xctx->p, xctx);
-        afw_list_add_value(entry,
+        entry = afw_array_create_generic(xctx->p, xctx);
+        afw_array_add_value(entry,
             (const afw_value_t *)&impl_value_set_property,
             xctx);
         property_name_value = afw_value_create_string(
             property_name, xctx->p, xctx);
-        afw_list_add_value(entry, property_name_value, xctx);
-        afw_list_add_value(entry, value, xctx);
-        entry_value = afw_value_create_list(entry, xctx->p, xctx);
-        afw_list_add_value(entries, entry_value, xctx);
+        afw_array_add_value(entry, property_name_value, xctx);
+        afw_array_add_value(entry, value, xctx);
+        entry_value = afw_value_create_array(entry, xctx->p, xctx);
+        afw_array_add_value(entries, entry_value, xctx);
     }
 
     /* Modify object. */

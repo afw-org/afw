@@ -130,7 +130,7 @@ DataType ::=
    'ia5String' |
    'integer' |
    'ipAddress' |
-   'list' |
+   'array' |
    'null' |
    'object' |
    'objectId' |
@@ -284,13 +284,13 @@ ParenthesizedExpression ::= '(' Expression ')' Parameters*
 
 MediaType ::= String
 
-ListOf ::= ( 'of' 'list' )* ( 'of' Type )
+ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
 
 DataTypeWithParameter ::= '('
               ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
               ( ( 'expression' | 'hybrid' | 'script' | 'template' ) ReturnType ) |
               ( 'function' FunctionSignature ) |
-              ( 'list' ListOf ) |
+              ( 'array' ArrayOf ) |
               ( ( 'object' | 'objectId' ) ObjectType ) |
               ( 'unevaluated' Type ) |
      ')'
@@ -401,7 +401,7 @@ ExpressionTupleOperation_lambda ::= '"lambda"' ','
 /* From afw_compile_parse_expression_tuple.c                                  */
 /* An list with ExpressionTupleValue property values.                         */
 
-ExpressionTupleOperation_list ::='"list"' ( "," ExpressionTupleValue )*
+ExpressionTupleOperation_list ::='"array"' ( "," ExpressionTupleValue )*
 
 /* From afw_compile_parse_expression_tuple.c                                  */
 /* An object with ExpressionTupleValue property values.                       */

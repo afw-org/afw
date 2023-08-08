@@ -77,7 +77,7 @@
         },
         "preferredComponents": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayout_ObjectResponsive_preferredComponent",
             "description": "Sets preferences for components for Adaptive Properties.",
             "label": "Preferred Components"

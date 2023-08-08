@@ -496,6 +496,9 @@ AFW_UTF8_LITERAL("animationPlayState");
 AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationTimingFunction =
 AFW_UTF8_LITERAL("animationTimingFunction");
 
+AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_array =
+AFW_UTF8_LITERAL("array");
+
 AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backfaceVisibility =
 AFW_UTF8_LITERAL("backfaceVisibility");
 
@@ -996,9 +999,6 @@ AFW_UTF8_LITERAL("lgDown");
 
 AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_lineHeight =
 AFW_UTF8_LITERAL("lineHeight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_list =
-AFW_UTF8_LITERAL("list");
 
 AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_listStyle =
 AFW_UTF8_LITERAL("listStyle");

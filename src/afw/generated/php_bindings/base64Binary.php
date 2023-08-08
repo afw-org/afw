@@ -29,8 +29,8 @@ class base64Binary
      * Returns boolean true if at least one value in base64Binary list1 is in
      * base64Binary list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -53,9 +53,9 @@ class base64Binary
      *
      * Takes any number of base64Binary values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_base64Binary(, $values = null)
     {
@@ -77,7 +77,7 @@ class base64Binary
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -249,10 +249,10 @@ class base64Binary
      * Returns a list of base64Binary with the values that are common to both
      * list of base64Binary list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_base64Binary(, $list1, $list2)
     {
@@ -298,11 +298,11 @@ class base64Binary
      * returns the boolean result.
      *
      * @param base64Binary $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_base64Binary(, $value, $list)
+    public function is_in_base64Binary(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -310,7 +310,7 @@ class base64Binary
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -426,18 +426,18 @@ class base64Binary
      * This converts a list of base64Binary values that contains one value to
      * a single base64Binary value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return base64Binary
      */
-    public function one_and_only_base64Binary(, $list)
+    public function one_and_only_base64Binary(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<base64Binary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -449,8 +449,8 @@ class base64Binary
      * Returns boolean true if base64Binary list1 and base64Binary list2 are
      * subsets of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -474,8 +474,8 @@ class base64Binary
      * Returns boolean true if the unique values in base64Binary list1 are
      * all in base64Binary list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -522,9 +522,9 @@ class base64Binary
      * Returns a list of base64Binary contains all of the unique values in
      * two or more list of base64Binary values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_base64Binary(, $lists)
     {

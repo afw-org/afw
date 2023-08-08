@@ -254,7 +254,7 @@ impl_adapt_object_from_adaptor(
     const afw_query_criteria_t *criteria,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_value_list_t *parent_paths;
+    const afw_value_array_t *parent_paths;
     afw_model_internal_context_t *ctx;
     const afw_object_t *object;
     int top;
@@ -517,7 +517,7 @@ impl_get_converted_entry(
                 &entry->converted.property_name, &entry->converted.value,
                 old_entry->property_name, old_entry->value,
                 NULL /** @fixme include conf? */, wa->p, wa->xctx);
-            if (afw_value_is_list(entry->converted.value)) {
+            if (afw_value_is_array(entry->converted.value)) {
                 entry->converted.value = afw_value_one_and_only(
                     entry->converted.value,
                     wa->p, wa->xctx);
@@ -1484,7 +1484,7 @@ afw_model_internal_complete_ctx_default_modify_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
 {
-    const afw_list_t *mapped_entry;
+    const afw_array_t *mapped_entry;
     const afw_adaptor_modify_entry_t * const * entry;
     const afw_object_path_property_name_entry_t *first_property_name_entry;
     const afw_utf8_t *mapped_property_name;
@@ -1492,8 +1492,8 @@ afw_model_internal_complete_ctx_default_modify_object(
     const afw_value_t *value;
 
     /* Make a mapped entries list. */
-    ctx->mapped_entries = afw_list_create_with_options(
-        0, afw_data_type_list, ctx->p, xctx);
+    ctx->mapped_entries = afw_array_create_with_options(
+        0, afw_data_type_array, ctx->p, xctx);
 
     /* Process all entries. */
     for (entry = ctx->modify_entries; *entry; entry++, mapped_entry++)
@@ -1508,9 +1508,9 @@ afw_model_internal_complete_ctx_default_modify_object(
         }
 
         /* Make a skeleton modify entry list and add it. */
-        mapped_entry = afw_list_create_generic(ctx->p, xctx);
-        value = afw_value_create_list(mapped_entry, ctx->p, xctx);
-        afw_list_add_value(ctx->mapped_entries, value, xctx);
+        mapped_entry = afw_array_create_generic(ctx->p, xctx);
+        value = afw_value_create_array(mapped_entry, ctx->p, xctx);
+        afw_array_add_value(ctx->mapped_entries, value, xctx);
 
         /* Add type to entry. */
         if ((*entry)->type < 0 ||
@@ -1519,7 +1519,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid modify type %d",
                 (*entry)->type);
         }
-        afw_list_add_value(mapped_entry,
+        afw_array_add_value(mapped_entry,
             afw_adaptor_modify_entry_type_value((*entry)->type), xctx);
 
         /* Add mapped name to entry. */
@@ -1531,7 +1531,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                 "Property name " AFW_UTF8_FMT_Q " invalid",
                 AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
         }
-        afw_list_add_value(mapped_entry,
+        afw_array_add_value(mapped_entry,
             model_property_type->mapped_property_name_value, xctx);
 
         /* Add value if there is one. */
@@ -1547,7 +1547,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                     ctx->p, xctx);
                 afw_memory_clear(&ctx->property_level);
             }
-            afw_list_add_value(mapped_entry, value, xctx);
+            afw_array_add_value(mapped_entry, value, xctx);
         }
     }
 }
@@ -1572,7 +1572,7 @@ impl_afw_adaptor_session_modify_object(
     afw_model_internal_context_t *ctx;
     const afw_value_t *value;
     const afw_object_t *journal_entry;
-    const afw_list_t *entries_list;
+    const afw_array_t *entries_list;
     int top;
     afw_boolean_t use_default_processing;
 
@@ -1602,7 +1602,7 @@ impl_afw_adaptor_session_modify_object(
             use_default_processing = false;
             entries_list = afw_adaptor_modify_entries_to_list(entry,
                 ctx->p, xctx);
-            ctx->modify_entries_value = afw_value_create_list(entries_list,
+            ctx->modify_entries_value = afw_value_create_array(entries_list,
                 ctx->p, xctx);
             value = afw_value_evaluate(ctx->model_object_type->onModifyObject,
                 ctx->p, xctx);

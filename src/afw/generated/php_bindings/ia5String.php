@@ -28,9 +28,9 @@ class ia5String
      *
      * Takes any number of ia5String values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_ia5String(, $values = null)
     {
@@ -52,7 +52,7 @@ class ia5String
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */

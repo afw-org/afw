@@ -74,9 +74,9 @@ afw_function_execute_index_create(
     const afw_value_string_t *adaptorId;
     const afw_value_string_t *key;
     const afw_value_string_t *value = NULL;
-    const afw_value_list_t *objectType = NULL;
+    const afw_value_array_t *objectType = NULL;
     const afw_value_string_t *filter = NULL;
-    const afw_value_list_t *options = NULL;
+    const afw_value_array_t *options = NULL;
     const afw_value_boolean_t *retroactive = NULL;
     const afw_value_boolean_t *test = NULL;
     const afw_value_t *parsedFilter;
@@ -107,7 +107,7 @@ afw_function_execute_index_create(
     }
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType, 4, list);
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType, 4, array);
     }
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
@@ -124,7 +124,7 @@ afw_function_execute_index_create(
     }
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(6)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 6, list);
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 6, array);
     }
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(7)) {

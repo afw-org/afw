@@ -111,7 +111,7 @@ struct afw_model_internal_context_s {
     const afw_value_t *modify_entries_value;
 
     /** @brief Mapped entries for modify. */
-    const afw_list_t *mapped_entries;
+    const afw_array_t *mapped_entries;
 
     /* current:: property level. */
     struct {

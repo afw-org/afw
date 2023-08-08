@@ -24,7 +24,7 @@
         },
         "tags": {
             "brief": "Tags that can be used to query for this tag",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
             "label": "Tags"

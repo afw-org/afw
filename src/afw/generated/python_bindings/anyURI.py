@@ -43,9 +43,9 @@ def at_least_one_member_of_anyURI(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -75,10 +75,10 @@ def bag_anyURI(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -106,7 +106,7 @@ def bag_size_anyURI(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -382,12 +382,12 @@ def intersection_anyURI(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -435,7 +435,7 @@ def is_anyURI(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_anyURI(session, value, list):
+def is_in_anyURI(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -446,7 +446,7 @@ def is_in_anyURI(session, value, list):
 
         value (anyURI):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -457,7 +457,7 @@ def is_in_anyURI(session, value, list):
     action = {
         "function": "is_in<anyURI>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -674,7 +674,7 @@ def nex_anyURI(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_anyURI(session, list):
+def one_and_only_anyURI(session, array):
     '''
     Converts a one value list to a anyURI value
 
@@ -683,7 +683,7 @@ def one_and_only_anyURI(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     anyURI: 
@@ -693,7 +693,7 @@ def one_and_only_anyURI(session, list):
 
     action = {
         "function": "one_and_only<anyURI>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -893,9 +893,9 @@ def set_equals_anyURI(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -934,7 +934,7 @@ def split_anyURI(session, value, separator=None, limit=None):
         part of value is ignored.
 
     Returns:
-    list: An list of strings.
+    array: An list of strings.
     '''
 
     request = session.Request()
@@ -1000,9 +1000,9 @@ def subset_anyURI(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -1102,10 +1102,10 @@ def union_anyURI(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

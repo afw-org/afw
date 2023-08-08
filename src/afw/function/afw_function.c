@@ -94,7 +94,7 @@ afw_function_execute_convert(
 
 
 /* Evaluate function parameter. */
-/* Note: only called by higher_order_list at the moment */
+/* Note: only called by higher_order_array at the moment */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_function_parameter(
     const afw_value_t *function_arg,
@@ -180,7 +180,7 @@ afw_function_evaluate_parameter(
 
     /* Error if result data type doesn't match parameter's defined data type. */
     if (parameter->data_type && result_data_type) {
-        if (parameter->data_type != afw_data_type_list && //@fixme don't require
+        if (parameter->data_type != afw_data_type_array && //@fixme don't require
             (parameter->data_type != result_data_type))
         {
             AFW_THROW_ERROR_FZ(general, xctx,

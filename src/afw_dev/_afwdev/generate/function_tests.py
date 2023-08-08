@@ -79,7 +79,7 @@ def arg_to_json(dataType, value):
         s = '"' + value + '"'
         return s
 
-    elif (dataType == 'list'):
+    elif (dataType == 'array'):
         return to_json(value)
 
     elif (dataType != 'null') and value is None:

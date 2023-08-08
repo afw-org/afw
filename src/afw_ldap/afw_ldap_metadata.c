@@ -235,7 +235,7 @@ impl_get_value(impl_lexical_t *self)
     const afw_value_t *val;
     afw_size_t count;
     const afw_utf8_octet_t *save_c;
-    const afw_list_t *list;
+    const afw_array_t *list;
     afw_utf8_t *s;
     afw_utf8_t string;
 
@@ -272,9 +272,9 @@ impl_get_value(impl_lexical_t *self)
 
         /* Allocate list to hold strings and populate it. */
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
-        list = afw_list_create_wrapper_for_array(s, false,
+        list = afw_array_create_wrapper_for_array(s, false,
             afw_data_type_string, count, self->p, self->xctx);
-        val = afw_value_create_list(list, self->p, self->xctx);
+        val = afw_value_create_array(list, self->p, self->xctx);
         for (;;) {
             tkn = impl_get_token(self);
             if (afw_utf8_z_equal(tkn, ")")) break;
@@ -403,7 +403,7 @@ impl_parse_definition(
     const afw_utf8_t *id;
     const afw_utf8_t *e;
     const afw_utf8_t *name;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_iterator_t *iterator;
     const afw_iterator_t *iterator2;
 
@@ -412,17 +412,17 @@ impl_parse_definition(
 
     value = afw_object_get_property(metadata->schema_object, name_in_schema, xctx);
     if (!value) return NULL;
-    if (!afw_value_is_list_of_string(value)) {
+    if (!afw_value_is_array_of_string(value)) {
         AFW_THROW_ERROR_Z(general, "Expecting list of strings", xctx);
     }
-    list = ((const afw_value_list_t *)value)->internal;
+    list = ((const afw_value_array_t *)value)->internal;
 
     /* Create hash table. */
     ht = apr_hash_make(afw_pool_get_apr_pool(p));
 
     /* Process each definition in list. */
     for (iterator = NULL;;) {
-        afw_list_get_next_internal(list, &iterator, NULL, (const void **)&e, xctx);
+        afw_array_get_next_internal(list, &iterator, NULL, (const void **)&e, xctx);
         if (!e) {
             break;
         }
@@ -439,11 +439,11 @@ impl_parse_definition(
                 AFW_THROW_ERROR_Z(general, "Error parsing schema", xctx);
             }
         }
-        if (afw_value_is_list_of_string(name_value)) {
+        if (afw_value_is_array_of_string(name_value)) {
             for (iterator2 = NULL;;)
             {
-                afw_list_get_next_internal(
-                    ((const afw_value_list_t *)name_value)->internal,
+                afw_array_get_next_internal(
+                    ((const afw_value_array_t *)name_value)->internal,
                     &iterator2, NULL, (const void **)&name, xctx);
                 if (!name) {
                     break;
@@ -625,7 +625,7 @@ impl_make_property_type_and_handler_hash_tables(
                 else {
                     afw_object_set_property(
                         attribute_type->property_type_object,
-                        &afw_s_dataType, afw_data_type_list_id_value, 
+                        &afw_s_dataType, afw_data_type_array_id_value, 
                         xctx);
                     if (attribute_type->data_type_id_value) {
                         afw_object_set_property(
@@ -708,7 +708,7 @@ impl_a_property_to_object_type(
 {
     const afw_object_t *prop;
     const afw_object_t *parent;
-    afw_value_list_t *parent_paths;
+    afw_value_array_t *parent_paths;
     const afw_utf8_t *s;
     afw_ldap_metadata_attribute_type_t *attribute_type;
 
@@ -728,8 +728,8 @@ impl_a_property_to_object_type(
         name->s, name->len);
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
-        parent_paths = afw_value_allocate_list(prop->p, xctx);
-        parent_paths->internal = afw_list_create_wrapper_for_array(
+        parent_paths = afw_value_allocate_array(prop->p, xctx);
+        parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
     }
@@ -750,7 +750,7 @@ impl_properties_to_object_type(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_utf8_t *s;
     const afw_iterator_t *iterator;
     afw_utf8_t req_pn;
@@ -759,11 +759,11 @@ impl_properties_to_object_type(
     req_pn.len = strlen(req_pn.s);
     value = afw_object_get_property(object_class_object, &req_pn, xctx);
     if (!value) return;
-    if (afw_value_is_list_of_string(value)) {
-        list = ((const afw_value_list_t *)value)->internal;
+    if (afw_value_is_array_of_string(value)) {
+        list = ((const afw_value_array_t *)value)->internal;
         for (iterator = NULL;;)
         {
-            afw_list_get_next_internal(list,
+            afw_array_get_next_internal(list,
                 &iterator, NULL, (const void **)&s, xctx);
             if (!s) {
                 break;
@@ -843,7 +843,7 @@ impl_add_parents_and_property_types(
     afw_ldap_object_type_attribute_t *object_type_attribute;
     afw_ldap_object_type_attribute_t *parent_object_type_attribute;
     afw_ldap_metadata_attribute_type_t *attribute_type;
-    afw_value_list_t *parent_paths;
+    afw_value_array_t *parent_paths;
     const afw_utf8_t *property_name;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *s;
@@ -851,7 +851,7 @@ impl_add_parents_and_property_types(
     const afw_utf8_t *parent_id;
     const afw_utf8_t *parent_id2;
     const afw_iterator_t *iterator;
-    const afw_list_t *list;
+    const afw_array_t *list;
     afw_size_t count;
     afw_size_t count2;
     afw_size_t i;
@@ -923,13 +923,13 @@ impl_add_parents_and_property_types(
         }
 
         /* Note: All of this can be improve.  Was retrofitting a change. */
-        else if (afw_value_is_list_of_string(value)) {
-            list = ((afw_value_list_t *)value)->internal;
-            count = afw_list_get_count(list, xctx);
+        else if (afw_value_is_array_of_string(value)) {
+            list = ((afw_value_array_t *)value)->internal;
+            count = afw_array_get_count(list, xctx);
             ids = afw_pool_calloc(p, count * sizeof(afw_utf8_t), xctx);
             parent_id = ids;
             for (iterator = NULL;;) {
-                afw_list_get_next_internal(list, &iterator, NULL,
+                afw_array_get_next_internal(list, &iterator, NULL,
                     (const void **)&s, xctx);
                 if (!s) {
                     break;
@@ -953,8 +953,8 @@ impl_add_parents_and_property_types(
 
     /* If there are parents, add parent paths and add attributes to list. */
     if (count2 > 0) {
-        parent_paths = afw_value_allocate_list(p, xctx);
-        parent_paths->internal = afw_list_of_create(
+        parent_paths = afw_value_allocate_array(p, xctx);
+        parent_paths->internal = afw_array_of_create(
             afw_data_type_anyURI, p, xctx);
         for (i = 0; i < count; i++, parent_id++) {
             parent = impl_get(metadata->object_type_objects,
@@ -967,7 +967,7 @@ impl_add_parents_and_property_types(
 
             /* Set parent path. */
             s = afw_object_meta_get_path(parent, xctx);
-            afw_list_of_anyURI_add(parent_paths->internal, s, xctx);
+            afw_array_of_anyURI_add(parent_paths->internal, s, xctx);
 
             /* Make sure parent is processed first. */
             parent_object_class_object =

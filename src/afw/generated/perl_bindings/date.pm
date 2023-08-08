@@ -199,7 +199,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_date
@@ -299,7 +299,7 @@ Converts a one value list to a date value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_date
@@ -502,13 +502,13 @@ sub is_date {
 }
 
 sub is_in_date {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<date>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -584,12 +584,12 @@ sub nex_date {
 }
 
 sub one_and_only_date {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<date>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

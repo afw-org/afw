@@ -9,7 +9,7 @@
     "functionLabel": "bag_integer",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
             "minArgs": 0,
             "name": "values",
@@ -18,7 +18,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "integer"
     },
     "useExecuteFunction": "afw_function_execute_bag"

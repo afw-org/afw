@@ -18,7 +18,7 @@ export interface IToggleButtonsProps {
     label?:                             string;
     /**
      * options
-     * Data Type: (list, object)
+     * Data Type: (array, object)
      * 
      * The available options for the ToggleButtons component.
      */

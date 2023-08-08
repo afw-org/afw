@@ -29,8 +29,8 @@ class boolean
      * Returns boolean true if at least one value in boolean list1 is in
      * boolean list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -53,9 +53,9 @@ class boolean
      *
      * Takes any number of boolean values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_boolean(, $values = null)
     {
@@ -77,7 +77,7 @@ class boolean
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -225,10 +225,10 @@ class boolean
      * Returns a list of boolean with the values that are common to both list
      * of boolean list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_boolean(, $list1, $list2)
     {
@@ -274,11 +274,11 @@ class boolean
      * the boolean result.
      *
      * @param boolean $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_boolean(, $value, $list)
+    public function is_in_boolean(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -286,7 +286,7 @@ class boolean
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -401,18 +401,18 @@ class boolean
      * This converts a list of boolean values that contains one value to a
      * single boolean value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function one_and_only_boolean(, $list)
+    public function one_and_only_boolean(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -424,8 +424,8 @@ class boolean
      * Returns boolean true if boolean list1 and boolean list2 are subsets of
      * each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -449,8 +449,8 @@ class boolean
      * Returns boolean true if the unique values in boolean list1 are all in
      * boolean list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -497,9 +497,9 @@ class boolean
      * Returns a list of boolean contains all of the unique values in two or
      * more list of boolean values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_boolean(, $lists)
     {

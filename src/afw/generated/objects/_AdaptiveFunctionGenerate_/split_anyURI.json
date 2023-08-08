@@ -28,7 +28,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "An list of strings."
     },
     "useExecuteFunction": "afw_function_execute_split"

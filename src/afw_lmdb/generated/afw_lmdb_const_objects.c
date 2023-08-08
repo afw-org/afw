@@ -355,7 +355,7 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_1_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -366,8 +366,8 @@ static const afw_runtime_unresolved_property_t
 impl_1_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_1_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_1_list_collectionURIs
     }
 };
 
@@ -990,7 +990,7 @@ impl_6_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_6_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_6_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -1001,8 +1001,8 @@ static const afw_runtime_unresolved_property_t
 impl_6_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_6_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_6_list_collectionURIs
     }
 };
 
@@ -1625,7 +1625,7 @@ impl_14_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_14_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_14_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -1636,8 +1636,8 @@ static const afw_runtime_unresolved_property_t
 impl_14_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_14_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_14_list_collectionURIs
     }
 };
 
@@ -1748,7 +1748,7 @@ impl_22_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_22_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_22_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -1759,8 +1759,8 @@ static const afw_runtime_unresolved_property_t
 impl_22_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_22_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_22_list_collectionURIs
     }
 };
 
@@ -2199,7 +2199,7 @@ impl_24_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_24_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_24_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -2210,8 +2210,8 @@ static const afw_runtime_unresolved_property_t
 impl_24_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_24_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_24_list_collectionURIs
     }
 };
 
@@ -2503,7 +2503,7 @@ impl_30_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_30_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_30_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -2514,8 +2514,8 @@ static const afw_runtime_unresolved_property_t
 impl_30_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_30_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_30_list_collectionURIs
     }
 };
 
@@ -3041,7 +3041,7 @@ impl_34_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_34_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_34_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -3052,8 +3052,8 @@ static const afw_runtime_unresolved_property_t
 impl_34_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_34_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_34_list_collectionURIs
     }
 };
 
@@ -3338,7 +3338,7 @@ impl_41_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_41_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_41_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -3349,8 +3349,8 @@ static const afw_runtime_unresolved_property_t
 impl_41_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_41_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_41_list_collectionURIs
     }
 };
 
@@ -3615,7 +3615,7 @@ impl_45_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_45_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_45_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -3626,8 +3626,8 @@ static const afw_runtime_unresolved_property_t
 impl_45_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_45_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_45_list_collectionURIs
     }
 };
 
@@ -3892,7 +3892,7 @@ impl_49_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_49_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_49_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -3903,8 +3903,8 @@ static const afw_runtime_unresolved_property_t
 impl_49_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_49_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_49_list_collectionURIs
     }
 };
 

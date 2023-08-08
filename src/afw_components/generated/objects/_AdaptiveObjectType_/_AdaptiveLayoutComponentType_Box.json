@@ -105,7 +105,7 @@
         },
         "contains": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_BoxItem",
             "brief": "Items inside of the Box",
             "description": "This declares a list of items to be rendered inside the Box.",

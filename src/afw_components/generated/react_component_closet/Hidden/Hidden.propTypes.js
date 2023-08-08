@@ -13,7 +13,7 @@ export const propTypes = {
     contains:                           PropTypes.oneOfType([ PropTypes.element, PropTypes.object ]),
     /**
      * for
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The breakpoint conditions for which the contained component will be
      * hidden (xs, sm, md, lg, xl).

@@ -16,7 +16,7 @@
         },
         "contains": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
             "description": "A list of components to be contained by this Toolbar.",
             "label": "Contains",

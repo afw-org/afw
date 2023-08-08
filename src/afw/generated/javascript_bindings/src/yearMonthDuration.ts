@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in yearMonthDuration list1 is
  * in yearMonthDuration list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -35,7 +35,7 @@ export function afwAtLeastOneMemberOfYearMonthDuration(client : any, list1 : any
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -52,9 +52,9 @@ export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
 /**
  * Takes any number of yearMonthDuration values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagYearMonthDuration(client : any, values? : any[]) : any {
 
@@ -159,11 +159,11 @@ export function afwGtYearMonthDuration(client : any, arg1 : any, arg2 : any) : a
  * Returns a list of yearMonthDuration with the values that are common to
  * both list of yearMonthDuration list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionYearMonthDuration(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -182,17 +182,17 @@ export function afwIntersectionYearMonthDuration(client : any, list1 : any[], li
  * 
  * @param {yearMonthDuration} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInYearMonthDuration(client : any, value : any, list : any[]) : any {
+export function afwIsInYearMonthDuration(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<yearMonthDuration>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -306,16 +306,16 @@ export function afwNexYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
  * This converts a list of yearMonthDuration values that contains one value
  * to a single yearMonthDuration value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {yearMonthDuration}
  */
-export function afwOneAndOnlyYearMonthDuration(client : any, list : any[]) : any {
+export function afwOneAndOnlyYearMonthDuration(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<yearMonthDuration>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -324,9 +324,9 @@ export function afwOneAndOnlyYearMonthDuration(client : any, list : any[]) : any
  * Returns boolean true if yearMonthDuration list1 and yearMonthDuration
  * list2 are subsets of each other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -345,9 +345,9 @@ export function afwSetEqualsYearMonthDuration(client : any, list1 : any[], list2
  * Returns boolean true if the unique values in yearMonthDuration list1 are
  * all in yearMonthDuration list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -384,9 +384,9 @@ export function afwToStringYearMonthDuration(client : any, value : any) : any {
  * Returns a list of yearMonthDuration contains all of the unique values in
  * two or more list of yearMonthDuration values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionYearMonthDuration(client : any, lists : any[]) : any {
 

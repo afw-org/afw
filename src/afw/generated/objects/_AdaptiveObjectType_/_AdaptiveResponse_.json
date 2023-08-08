@@ -11,7 +11,7 @@
     "propertyTypes": {
         "actions": {
             "brief": "List of _AdaptiveResponseAction_ objects",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveResponseAction_",
             "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
             "label": "Actions"

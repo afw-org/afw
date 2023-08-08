@@ -18,14 +18,14 @@
         },
         "filterCondAndProperties": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued).",
             "label": "Exclusive Property Conditions"
         },
         "filterCondOrProperties": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued).",
             "label": "Inclusive Property Conditions"
@@ -38,14 +38,14 @@
         },      
         "filterProperties": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Display the specified properties.",
             "label": "Show Properties"
         },
         "filterExcludeProperties": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Do not display the specified properties.",
             "label": "Hide Properties"

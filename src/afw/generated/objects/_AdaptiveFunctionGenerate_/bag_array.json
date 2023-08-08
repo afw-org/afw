@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwBagArray",
+    "brief": "Makes a list from values",
+    "camelCaseFunctionLabel": "bagArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Takes any number of array values and returns a list of list.",
+    "functionId": "bag<array>",
+    "functionLabel": "bag_array",
+    "parameters": [
+        {
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "array"
+    },
+    "useExecuteFunction": "afw_function_execute_bag"
+}

@@ -245,7 +245,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 last_index_of_anyURI
@@ -347,7 +347,7 @@ Converts a one value list to a anyURI value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_index_of_anyURI
@@ -724,13 +724,13 @@ sub is_anyURI {
 }
 
 sub is_in_anyURI {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<anyURI>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -810,12 +810,12 @@ sub nex_anyURI {
 }
 
 sub one_and_only_anyURI {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<anyURI>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

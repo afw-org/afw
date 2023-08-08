@@ -400,7 +400,7 @@ afw_function_execute_model_default_delete_object_action(
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
@@ -420,9 +420,9 @@ afw_function_execute_model_default_delete_object_action(
  *       custom::objectId can be used to access this value in model
  *       expressions.
  *
- *   entries - (list) This is a list of modifications. Variable custom::actions
- *       can be used to access this value in model expressions. Entries are of
- *       the form:
+ *   entries - (array) This is a list of modifications. Variable
+ *       custom::actions can be used to access this value in model expressions.
+ *       Entries are of the form:
  *       
  *           [
  *               'add_value',
@@ -469,7 +469,7 @@ afw_function_execute_model_default_modify_object_action(
     const afw_value_string_t *adaptorId_value;
     const afw_value_string_t *objectType_value;
     const afw_value_string_t *objectId_value;
-    const afw_value_list_t *entries_value;
+    const afw_value_array_t *entries_value;
     const afw_value_string_t *modelId_value;
     const afw_value_object_t *context_value;
     const afw_object_t *result;
@@ -479,7 +479,7 @@ afw_function_execute_model_default_modify_object_action(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId_value, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType_value, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId_value, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries_value, 4, list);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries_value, 4, array);
 
     modelId_value = NULL;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
@@ -543,7 +543,7 @@ afw_function_execute_model_default_modify_object_action(
         ctx->mapped_object_type_id, xctx);
     afw_object_set_property_as_string(result, &afw_s_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_list(result, &afw_s_entries,
+    afw_object_set_property_as_array(result, &afw_s_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_object(result, x->p, xctx);
@@ -694,7 +694,7 @@ afw_function_execute_model_default_replace_object_action(
         ctx->mapped_object_type_id, xctx);
     afw_object_set_property_as_string(result, &afw_s_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_list(result, &afw_s_entries,
+    afw_object_set_property_as_array(result, &afw_s_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_object(result, x->p, xctx);

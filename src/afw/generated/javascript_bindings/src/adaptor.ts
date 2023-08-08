@@ -166,7 +166,7 @@ export function afwAddObjectWithUri(client : any, uri : any, object : object, jo
  *     2 - similar to 1 with ';' for '&' and ',' for '|'.
  *     
  *     3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
- *     ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
+ *     ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *     comma separated list of any comparison or conjunction.
  * 
  * @returns {string} Query string representation of the query criteria.
@@ -401,7 +401,7 @@ export function afwGetObjectWithUri(client : any, uri : any, options? : object, 
  * 
  * @param {string} objectId - Id of object to modify.
  * 
- * @param {list} entries - List of modifications. Entries are of the form:
+ * @param {array} entries - List of modifications. Entries are of the form:
  *     
  *     [
  *     'add_value',
@@ -469,7 +469,7 @@ export function afwModifyObject(client : any, objectType : string, objectId : st
  * @param {anyURI} uri - URI of object to modify. If a URI begins with a
  *     single slash ('/'), it is the local object path.
  * 
- * @param {list} entries - List of asserts and modifications. Entries are of
+ * @param {array} entries - List of asserts and modifications. Entries are of
  *     the form:
  *     
  *     [
@@ -676,7 +676,7 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {list} This is the list of objects retrieved.
+ * @returns {array} This is the list of objects retrieved.
  */
 export function afwRetrieveObjects(client : any, objectType : string, adaptorId? : string, queryCriteria? : object, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -917,7 +917,7 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {list} This is the list of objects retrieved.
+ * @returns {array} This is the list of objects retrieved.
  */
 export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : object, adaptorTypeSpecific? : object) : any {
 

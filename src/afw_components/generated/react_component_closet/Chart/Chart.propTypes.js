@@ -31,7 +31,7 @@ export const propTypes = {
     animateDuration:                    PropTypes.number,
     /**
      * data
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Chart_Data)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Chart_Data)
      * 
      * The data for the Chart.
      */

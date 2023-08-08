@@ -29,8 +29,8 @@ class hexBinary
      * Returns boolean true if at least one value in hexBinary list1 is in
      * hexBinary list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -53,9 +53,9 @@ class hexBinary
      *
      * Takes any number of hexBinary values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_hexBinary(, $values = null)
     {
@@ -77,7 +77,7 @@ class hexBinary
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -248,10 +248,10 @@ class hexBinary
      * Returns a list of hexBinary with the values that are common to both
      * list of hexBinary list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_hexBinary(, $list1, $list2)
     {
@@ -297,11 +297,11 @@ class hexBinary
      * returns the boolean result.
      *
      * @param hexBinary $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_hexBinary(, $value, $list)
+    public function is_in_hexBinary(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -309,7 +309,7 @@ class hexBinary
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -424,18 +424,18 @@ class hexBinary
      * This converts a list of hexBinary values that contains one value to a
      * single hexBinary value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return hexBinary
      */
-    public function one_and_only_hexBinary(, $list)
+    public function one_and_only_hexBinary(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -447,8 +447,8 @@ class hexBinary
      * Returns boolean true if hexBinary list1 and hexBinary list2 are
      * subsets of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -472,8 +472,8 @@ class hexBinary
      * Returns boolean true if the unique values in hexBinary list1 are all
      * in hexBinary list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -520,9 +520,9 @@ class hexBinary
      * Returns a list of hexBinary contains all of the unique values in two
      * or more list of hexBinary values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_hexBinary(, $lists)
     {

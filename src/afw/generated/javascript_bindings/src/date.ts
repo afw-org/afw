@@ -34,9 +34,9 @@ export function afwAddYearMonthDurationDate(client : any, arg1 : any, arg2 : any
 /**
  * Returns boolean true if at least one value in date list1 is in date list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -54,9 +54,9 @@ export function afwAtLeastOneMemberOfDate(client : any, list1 : any[], list2 : a
 /**
  * Takes any number of date values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagDate(client : any, values? : any[]) : any {
 
@@ -73,7 +73,7 @@ export function afwBagDate(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -200,11 +200,11 @@ export function afwGtDate(client : any, arg1 : any, arg2 : any) : any {
  * Returns a list of date with the values that are common to both list of
  * date list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionDate(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -240,17 +240,17 @@ export function afwIsDate(client : any, value : any) : any {
  * 
  * @param {date} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInDate(client : any, value : any, list : any[]) : any {
+export function afwIsInDate(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<date>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -391,16 +391,16 @@ export function afwNexDate(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of date values that contains one value to a single
  * date value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {date}
  */
-export function afwOneAndOnlyDate(client : any, list : any[]) : any {
+export function afwOneAndOnlyDate(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<date>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -409,9 +409,9 @@ export function afwOneAndOnlyDate(client : any, list : any[]) : any {
  * Returns boolean true if date list1 and date list2 are subsets of each
  * other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -430,9 +430,9 @@ export function afwSetEqualsDate(client : any, list1 : any[], list2 : any[]) : a
  * Returns boolean true if the unique values in date list1 are all in date
  * list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -489,9 +489,9 @@ export function afwToStringDate(client : any, value : any) : any {
  * Returns a list of date contains all of the unique values in two or more
  * list of date values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionDate(client : any, lists : any[]) : any {
 

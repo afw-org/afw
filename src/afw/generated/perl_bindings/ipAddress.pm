@@ -131,7 +131,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_ipAddress
@@ -212,7 +212,7 @@ Converts a one value list to a ipAddress value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_match_ipAddress
@@ -327,13 +327,13 @@ sub ipAddress {
 }
 
 sub is_in_ipAddress {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<ipAddress>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -398,12 +398,12 @@ sub nex_ipAddress {
 }
 
 sub one_and_only_ipAddress {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<ipAddress>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

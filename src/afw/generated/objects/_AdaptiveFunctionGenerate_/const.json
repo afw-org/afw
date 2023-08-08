@@ -8,7 +8,7 @@
     "functionLabel": "const",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The name of one or more constants to defined in the current block.",
             "name": "name"

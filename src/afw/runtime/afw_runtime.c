@@ -116,9 +116,9 @@ impl_resolve_untyped_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-static const afw_list_t *
+static const afw_array_t *
 impl_resolve_list(
-    const afw_runtime_unresolved_const_list_t *unresolved,
+    const afw_runtime_unresolved_const_array_t *unresolved,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -553,7 +553,7 @@ impl_resolve_untyped_object(
 {
      
     afw_runtime_const_object_instance_t *resolved;
-    const afw_list_t *parent_paths;
+    const afw_array_t *parent_paths;
     const afw_object_t *delta;
 
     resolved = afw_pool_calloc_type(p,
@@ -570,11 +570,11 @@ impl_resolve_untyped_object(
     if (unresolved->parent_paths) {
         delta = afw_object_meta_get_nonempty_delta(
             (const afw_object_t *)resolved, xctx);
-        parent_paths = afw_list_create_wrapper_for_array(
+        parent_paths = afw_array_create_wrapper_for_array(
             (const void *)unresolved->parent_paths, false,
             afw_data_type_anyURI, unresolved->parent_paths_count,
             p, xctx);
-        afw_object_set_property_as_list(delta,
+        afw_object_set_property_as_array(delta,
             &afw_s_parentPaths, parent_paths, xctx);
     }
 
@@ -582,21 +582,21 @@ impl_resolve_untyped_object(
 }
 
 
-static const afw_list_t *
+static const afw_array_t *
 impl_resolve_list(
-    const afw_runtime_unresolved_const_list_t *unresolved,
+    const afw_runtime_unresolved_const_array_t *unresolved,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *data_type;
-    const afw_list_t *result;
+    const afw_array_t *result;
 
     data_type = afw_environment_get_data_type(&unresolved->data_type_id, xctx);
     if (!data_type) {
         AFW_THROW_ERROR_Z(general, "Unsupported data type", xctx);
     }
 
-    result = afw_list_create_wrapper_for_array(unresolved->array,
+    result = afw_array_create_wrapper_for_array(unresolved->array,
         false, data_type, unresolved->count, p, xctx);
     return result;
 }
@@ -611,7 +611,7 @@ impl_resolve_property(
 {
     afw_runtime_property_t *resolved;
     const afw_object_t *object;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_utf8_t *string;
     const afw_utf8_t *name;
 
@@ -636,9 +636,9 @@ impl_resolve_property(
             unresolved->value.integer, p, xctx);
         break;
 
-    case afw_runtime_unresolved_primitive_type_list:
-        list = impl_resolve_list(unresolved->value.list, p, xctx);
-        resolved->value = afw_value_create_list(list, p, xctx);
+    case afw_runtime_unresolved_primitive_type_array:
+        list = impl_resolve_list(unresolved->value.array, p, xctx);
+        resolved->value = afw_value_create_array(list, p, xctx);
         break;
 
     case afw_runtime_unresolved_primitive_type_object:
@@ -704,7 +704,7 @@ afw_runtime_resolve_const_object(
     afw_xctx_t *xctx)
 {
     afw_runtime_const_object_instance_t *o;
-    afw_value_list_t *parent_paths;
+    afw_value_array_t *parent_paths;
 
     /* Allocate memory for const object. */
     o = afw_pool_calloc_type(p,
@@ -726,8 +726,8 @@ afw_runtime_resolve_const_object(
     o->pub.meta.object_uri = unresolved->path;
 
     if (unresolved->parent_path.len > 0) {
-        parent_paths = afw_value_allocate_list(p, xctx);
-        parent_paths->internal = afw_list_create_wrapper_for_array(
+        parent_paths = afw_value_allocate_array(p, xctx);
+        parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)&unresolved->parent_path, false,
             afw_data_type_anyURI, 1, p, xctx);
         afw_object_meta_set_parent_paths((const afw_object_t *)o,
@@ -781,7 +781,7 @@ impl_check_manifest_cb(
     const afw_utf8_t *module_path;
     const afw_utf8_t *entry;
     const afw_iterator_t *iterator;
-    const afw_list_t *list;
+    const afw_array_t *list;
     impl_check_manifest_cb_context_t *ctx = context;
     afw_utf8_t s;
 
@@ -794,17 +794,17 @@ impl_check_manifest_cb(
         return false;
     }
 
-    if (!afw_value_is_list_of_string(providesObjects_value) &&
-        !afw_value_is_list_of_anyURI(providesObjects_value))
+    if (!afw_value_is_array_of_string(providesObjects_value) &&
+        !afw_value_is_array_of_anyURI(providesObjects_value))
     {
         return false;
     }
 
     /* Loop through entries. */
-    list = ((const afw_value_list_t *)providesObjects_value)->internal;
+    list = ((const afw_value_array_t *)providesObjects_value)->internal;
     for (iterator = NULL;;)
     {
-        afw_list_get_next_internal(list, &iterator, NULL,
+        afw_array_get_next_internal(list, &iterator, NULL,
             (const void **)&entry, xctx);
         if (!entry) {
             break;

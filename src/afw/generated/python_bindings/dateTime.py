@@ -79,9 +79,9 @@ def at_least_one_member_of_dateTime(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -111,10 +111,10 @@ def bag_dateTime(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -142,7 +142,7 @@ def bag_size_dateTime(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -342,12 +342,12 @@ def intersection_dateTime(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -395,7 +395,7 @@ def is_dateTime(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_dateTime(session, value, list):
+def is_in_dateTime(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -406,7 +406,7 @@ def is_in_dateTime(session, value, list):
 
         value (dateTime):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -417,7 +417,7 @@ def is_in_dateTime(session, value, list):
     action = {
         "function": "is_in<dateTime>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -633,7 +633,7 @@ def nex_dateTime(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_dateTime(session, list):
+def one_and_only_dateTime(session, array):
     '''
     Converts a one value list to a dateTime value
 
@@ -642,7 +642,7 @@ def one_and_only_dateTime(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     dateTime: 
@@ -652,7 +652,7 @@ def one_and_only_dateTime(session, list):
 
     action = {
         "function": "one_and_only<dateTime>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -672,9 +672,9 @@ def set_equals_dateTime(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -705,9 +705,9 @@ def subset_dateTime(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -834,10 +834,10 @@ def union_dateTime(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

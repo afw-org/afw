@@ -49,7 +49,7 @@ impl_call_script_function(
     afw_name_value_t *cur;
     const afw_value_t *const *rest_argv;
     afw_size_t rest_argc;
-    const afw_list_t *rest_list;
+    const afw_array_t *rest_list;
     int local_top;
 
     result = NULL;
@@ -101,9 +101,9 @@ impl_call_script_function(
                 }
 
                 /* Create rest list. */
-                rest_list = afw_list_const_create_array_of_values(
+                rest_list = afw_array_const_create_array_of_values(
                     rest_argv, rest_argc, p, xctx);
-                value = afw_value_create_list(rest_list, p, xctx);
+                value = afw_value_create_array(rest_list, p, xctx);
             }
 
             /* If not rest parameter */

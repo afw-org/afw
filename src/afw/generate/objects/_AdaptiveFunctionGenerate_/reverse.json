@@ -1,6 +1,6 @@
 {
     "brief": "Return list with elements reversed",
-    "category": "list",
+    "category": "array",
     "dataTypeMethod": true,
     "description": "Reverse the order of the elements in a list. If the list is typed, the resulting list will be the same type.",
     "functionId": "reverse",
@@ -8,13 +8,13 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "A list to reverse.",
-            "name": "list"
+            "name": "array"
         }
     ],
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "A list with elements reversed."
     }
 }

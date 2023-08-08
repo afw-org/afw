@@ -20,7 +20,7 @@ export const propTypes = {
     alignItems:                         PropTypes.oneOf(["flex-start", "center", "flex-end", "stretch", "baseline"]),
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_)
      * 
      * A list of components to be contained by this Toolbar.
      */

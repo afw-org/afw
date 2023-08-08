@@ -54,8 +54,8 @@ class string
      * Returns boolean true if at least one value in string list1 is in
      * string list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -78,7 +78,7 @@ class string
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -100,9 +100,9 @@ class string
      *
      * Takes any number of string values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_string(, $values = null)
     {
@@ -409,10 +409,10 @@ class string
      * Returns a list of string with the values that are common to both list
      * of string list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_string(, $list1, $list2)
     {
@@ -435,11 +435,11 @@ class string
      * boolean result.
      *
      * @param string $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_string(, $value, $list)
+    public function is_in_string(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -447,7 +447,7 @@ class string
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -727,18 +727,18 @@ class string
      * This converts a list of string values that contains one value to a
      * single string value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return string
      */
-    public function one_and_only_string(, $list)
+    public function one_and_only_string(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -888,8 +888,8 @@ class string
      * Returns boolean true if string list1 and string list2 are subsets of
      * each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -919,7 +919,7 @@ class string
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return list An list of strings.
+     * @return array An list of strings.
      */
     public function split_string(, $value, $separator = null, $limit = null)
     {
@@ -995,8 +995,8 @@ class string
      * Returns boolean true if the unique values in string list1 are all in
      * string list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -1359,9 +1359,9 @@ class string
      * Returns a list of string contains all of the unique values in two or
      * more list of string values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_string(, $lists)
     {

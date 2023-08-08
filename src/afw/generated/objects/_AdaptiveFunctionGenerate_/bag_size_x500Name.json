@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_x500Name",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "x500Name",
             "name": "value"
         }

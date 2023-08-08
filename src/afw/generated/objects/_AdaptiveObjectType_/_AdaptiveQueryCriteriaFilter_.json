@@ -11,7 +11,7 @@
     "propertyTypes": {
         "filters": {
             "brief": "Filters",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveQueryCriteriaFilter_",
             "description": "This is a list of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
             "label": "Filters"

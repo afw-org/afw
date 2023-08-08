@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_hybrid",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "hybrid",
             "name": "value"
         }

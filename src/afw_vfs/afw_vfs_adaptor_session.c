@@ -61,7 +61,7 @@ impl_read_file_object(
     const afw_utf8_t *data_string;
     const afw_memory_t *data_binary;
     const afw_utf8_t *vfs_path;
-    const afw_list_t *filenames;
+    const afw_array_t *filenames;
     afw_value_dateTime_t *dateTime;
     afw_utf8_t adjusted;
     FILE *fd;
@@ -127,8 +127,8 @@ impl_read_file_object(
             AFW_UTF8_FMT_ARG(object_id));
         afw_object_set_property_as_anyURI(object,
             &afw_vfs_s_vfsPath, vfs_path, xctx);
-        filenames = afw_list_of_create(afw_data_type_string, p, xctx);
-        afw_object_set_property_as_list(object,
+        filenames = afw_array_of_create(afw_data_type_string, p, xctx);
+        afw_object_set_property_as_array(object,
             &afw_vfs_s_data, filenames, xctx);
         for (;;) {
 
@@ -155,7 +155,7 @@ impl_read_file_object(
                 buff[size - 1] = '/';
                 memcpy(buff, finfo.name, size - 1);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
-                afw_list_add_value(filenames,
+                afw_array_add_value(filenames,
                     afw_value_create_string(data_string, p, xctx),
                     xctx);
             }
@@ -166,7 +166,7 @@ impl_read_file_object(
                 buff = afw_pool_malloc(p, size, xctx);
                 memcpy(buff, finfo.name, size);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
-                afw_list_add_value(filenames,
+                afw_array_add_value(filenames,
                     afw_value_create_string(data_string, p, xctx),
                     xctx);
             }

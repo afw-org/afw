@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_ipAddress",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "ipAddress",
             "name": "value"
         }

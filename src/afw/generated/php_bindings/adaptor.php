@@ -205,7 +205,7 @@ class adaptor
      *                       
      *                       3 - comparisons 'op(name,value)' where 'op' will
      *                       be 'eq', 'ne', 'ge', ..., plus conjunctions
-     *                       'and(list)' and 'or(list)' where 'list' is a
+     *                       'and(list)' and 'or(list)' where 'array' is a
      *                       comma separated list of any comparison or
      *                       conjunction.
      *
@@ -482,34 +482,34 @@ class adaptor
      * @param string $objectType Id of adaptive object type of object to
      *                           modify.
      * @param string $objectId Id of object to modify.
-     * @param list $entries List of modifications. Entries are of the form:
-     *                      
-     *                      [
-     *                      'add_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_property',
-     *                      'property name' or ['property name', ...
-     *                      ]
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'set_property',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
+     * @param array $entries List of modifications. Entries are of the form:
+     *                       
+     *                       [
+     *                       'add_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_property',
+     *                       'property name' or ['property name', ...
+     *                       ]
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'set_property',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
@@ -563,35 +563,35 @@ class adaptor
      *
      * @param anyURI $uri URI of object to modify. If a URI begins with a
      *                    single slash ('/'), it is the local object path.
-     * @param list $entries List of asserts and modifications. Entries are of
-     *                      the form:
-     *                      
-     *                      [
-     *                      'add_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_property',
-     *                      'property name' or ['property name', ...
-     *                      ]
-     *                      ]
-     *                      
-     *                      [
-     *                      'remove_value',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
-     *                      
-     *                      [
-     *                      'set_property',
-     *                      'property name' or ['property name', ...
-     *                      ],
-     *                      value
-     *                      ]
+     * @param array $entries List of asserts and modifications. Entries are
+     *                       of the form:
+     *                       
+     *                       [
+     *                       'add_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_property',
+     *                       'property name' or ['property name', ...
+     *                       ]
+     *                       ]
+     *                       
+     *                       [
+     *                       'remove_value',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
+     *                       
+     *                       [
+     *                       'set_property',
+     *                       'property name' or ['property name', ...
+     *                       ],
+     *                       value
+     *                       ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
@@ -808,7 +808,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return list This is the list of objects retrieved.
+     * @return array This is the list of objects retrieved.
      */
     public function retrieve_objects(, $objectType, $adaptorId = null, $queryCriteria = null, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1082,7 +1082,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return list This is the list of objects retrieved.
+     * @return array This is the list of objects retrieved.
      */
     public function retrieve_objects_with_uri(, $uri, $options = null, $adaptorTypeSpecific = null)
     {

@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwSort",
     "brief": "Sort values in a list",
     "camelCaseFunctionLabel": "sort",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "This produces a list with values sorted based on result of compareFunction. The compareFunction is passed two values from the list and must return an integer less than 0 if the first value is less than the second value, 0 if they are equal, and a integer greater than 0 if the first value is greater than the second value.",
     "functionId": "sort",
     "functionLabel": "sort",
@@ -14,14 +14,14 @@
             "name": "compareFunction"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is the list to sort.",
-            "name": "list"
+            "name": "array"
         }
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "This the the resulting sorted list."
     }
 }

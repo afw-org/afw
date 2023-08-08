@@ -13,10 +13,10 @@ def bag_dnsName(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -44,7 +44,7 @@ def bag_size_dnsName(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -258,7 +258,7 @@ def is_dnsName(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_dnsName(session, value, list):
+def is_in_dnsName(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -269,7 +269,7 @@ def is_in_dnsName(session, value, list):
 
         value (dnsName):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -280,7 +280,7 @@ def is_in_dnsName(session, value, list):
     action = {
         "function": "is_in<dnsName>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -426,7 +426,7 @@ def nex_dnsName(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_dnsName(session, list):
+def one_and_only_dnsName(session, array):
     '''
     Converts a one value list to a dnsName value
 
@@ -435,7 +435,7 @@ def one_and_only_dnsName(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     dnsName: 
@@ -445,7 +445,7 @@ def one_and_only_dnsName(session, list):
 
     action = {
         "function": "one_and_only<dnsName>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)

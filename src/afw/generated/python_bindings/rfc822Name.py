@@ -14,9 +14,9 @@ def at_least_one_member_of_rfc822Name(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -46,10 +46,10 @@ def bag_rfc822Name(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -77,7 +77,7 @@ def bag_size_rfc822Name(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -242,12 +242,12 @@ def intersection_rfc822Name(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -266,7 +266,7 @@ def intersection_rfc822Name(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def is_in_rfc822Name(session, value, list):
+def is_in_rfc822Name(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -277,7 +277,7 @@ def is_in_rfc822Name(session, value, list):
 
         value (rfc822Name):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -288,7 +288,7 @@ def is_in_rfc822Name(session, value, list):
     action = {
         "function": "is_in<rfc822Name>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -497,7 +497,7 @@ def nex_rfc822Name(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_rfc822Name(session, list):
+def one_and_only_rfc822Name(session, array):
     '''
     Converts a one value list to a rfc822Name value
 
@@ -506,7 +506,7 @@ def one_and_only_rfc822Name(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     rfc822Name: 
@@ -516,7 +516,7 @@ def one_and_only_rfc822Name(session, list):
 
     action = {
         "function": "one_and_only<rfc822Name>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -598,9 +598,9 @@ def set_equals_rfc822Name(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -631,9 +631,9 @@ def subset_rfc822Name(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -694,10 +694,10 @@ def union_rfc822Name(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

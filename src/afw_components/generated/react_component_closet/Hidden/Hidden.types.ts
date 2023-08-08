@@ -11,7 +11,7 @@ export interface IHiddenProps {
     contains?:                          any;
     /**
      * for
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The breakpoint conditions for which the contained component will be
      * hidden (xs, sm, md, lg, xl).

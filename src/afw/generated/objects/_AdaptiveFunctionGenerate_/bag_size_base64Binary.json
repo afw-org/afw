@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_base64Binary",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "name": "value"
         }

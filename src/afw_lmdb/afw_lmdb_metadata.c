@@ -10,11 +10,11 @@
 #include "afw_lmdb_internal.h"
 #include "afw_lmdb_metadata.h"
 
-const afw_list_t * impl_get_schema_columns(
+const afw_array_t * impl_get_schema_columns(
     afw_lmdb_adaptor_session_t *session,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
-const afw_list_t * impl_get_schema_tables(
+const afw_array_t * impl_get_schema_tables(
     afw_lmdb_adaptor_session_t *session,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -60,7 +60,7 @@ void afw_lmdb_metadata_refresh(
 }
 
 /* Used by afw_lmdb_adaptor_session() to retrieve metadata objects. */
-const afw_list_t * afw_lmdb_metadata_retrieve_objects(
+const afw_array_t * afw_lmdb_metadata_retrieve_objects(
     afw_lmdb_adaptor_session_t * self,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
@@ -75,7 +75,7 @@ const afw_list_t * afw_lmdb_metadata_retrieve_objects(
     }
 
     /* If none of above, return empty list. */
-    return afw_list_create_generic(xctx->p, xctx);
+    return afw_array_create_generic(xctx->p, xctx);
 }
 
 /* Determine if afw_lmdb_metadata.c handles an ObjectType. */

@@ -191,7 +191,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_hexBinary
@@ -261,7 +261,7 @@ Converts a one value list to a hexBinary value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_hexBinary
@@ -450,13 +450,13 @@ sub is_hexBinary {
 }
 
 sub is_in_hexBinary {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<hexBinary>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -510,12 +510,12 @@ sub nex_hexBinary {
 }
 
 sub one_and_only_hexBinary {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<hexBinary>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

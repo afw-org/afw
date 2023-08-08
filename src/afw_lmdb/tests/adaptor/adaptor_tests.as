@@ -77,7 +77,7 @@ assert(
 );
 
 // test retrieve_objects
-const objects: list = retrieve_objects('lmdb', '_AdaptiveObject_');
+const objects: array = retrieve_objects('lmdb', '_AdaptiveObject_');
 //print(bag_size(objects));
 
 return 0;

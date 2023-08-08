@@ -51,8 +51,8 @@ class anyURI
      * Returns boolean true if at least one value in anyURI list1 is in
      * anyURI list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -75,9 +75,9 @@ class anyURI
      *
      * Takes any number of anyURI values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_anyURI(, $values = null)
     {
@@ -99,7 +99,7 @@ class anyURI
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -311,10 +311,10 @@ class anyURI
      * Returns a list of anyURI with the values that are common to both list
      * of anyURI list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_anyURI(, $list1, $list2)
     {
@@ -359,11 +359,11 @@ class anyURI
      * boolean result.
      *
      * @param anyURI $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_anyURI(, $value, $list)
+    public function is_in_anyURI(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -371,7 +371,7 @@ class anyURI
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -541,18 +541,18 @@ class anyURI
      * This converts a list of anyURI values that contains one value to a
      * single anyURI value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return anyURI
      */
-    public function one_and_only_anyURI(, $list)
+    public function one_and_only_anyURI(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -702,8 +702,8 @@ class anyURI
      * Returns boolean true if anyURI list1 and anyURI list2 are subsets of
      * each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -733,7 +733,7 @@ class anyURI
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return list An list of strings.
+     * @return array An list of strings.
      */
     public function split_anyURI(, $value, $separator = null, $limit = null)
     {
@@ -785,8 +785,8 @@ class anyURI
      * Returns boolean true if the unique values in anyURI list1 are all in
      * anyURI list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -863,9 +863,9 @@ class anyURI
      * Returns a list of anyURI contains all of the unique values in two or
      * more list of anyURI values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_anyURI(, $lists)
     {

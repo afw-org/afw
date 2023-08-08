@@ -7,7 +7,7 @@
     "parameters": [
     ],
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "string",
         "description": "This is a list of the flagId of flags that are set in the current execution context (xctx)."
     }

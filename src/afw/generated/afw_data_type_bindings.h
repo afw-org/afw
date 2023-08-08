@@ -27,6 +27,7 @@
 
 #include "afw_data_type_any_binding.h"
 #include "afw_data_type_anyURI_binding.h"
+#include "afw_data_type_array_binding.h"
 #include "afw_data_type_base64Binary_binding.h"
 #include "afw_data_type_boolean_binding.h"
 #include "afw_data_type_date_binding.h"
@@ -41,7 +42,6 @@
 #include "afw_data_type_ia5String_binding.h"
 #include "afw_data_type_integer_binding.h"
 #include "afw_data_type_ipAddress_binding.h"
-#include "afw_data_type_list_binding.h"
 #include "afw_data_type_null_binding.h"
 #include "afw_data_type_object_binding.h"
 #include "afw_data_type_objectId_binding.h"
@@ -66,6 +66,7 @@
 #define AFW_DATA_TYPES_MAP(XX) \
     XX(any) \
     XX(anyURI) \
+    XX(array) \
     XX(base64Binary) \
     XX(boolean) \
     XX(date) \
@@ -80,7 +81,6 @@
     XX(ia5String) \
     XX(integer) \
     XX(ipAddress) \
-    XX(list) \
     XX(null) \
     XX(object) \
     XX(objectId) \

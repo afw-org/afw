@@ -37,7 +37,7 @@
  *    'ia5String' |
  *    'integer' |
  *    'ipAddress' |
- *    'list' |
+ *    'array' |
  *    'null' |
  *    'object' |
  *    'objectId' |
@@ -815,13 +815,13 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
  *# This is media-type in a quoted string
  * MediaType ::= String
  *
- * ListOf ::= ( 'of' 'list' )* ( 'of' Type )
+ * ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
  * 
  * DataTypeWithParameter ::= '('
  *               ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
  *               ( ( 'expression' | 'hybrid' | 'script' | 'template' ) ReturnType ) |
  *               ( 'function' FunctionSignature ) |
- *               ( 'list' ListOf ) |
+ *               ( 'array' ArrayOf ) |
  *               ( ( 'object' | 'objectId' ) ObjectType ) |
  *               ( 'unevaluated' Type ) |
  *      ')'
@@ -913,8 +913,8 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                         afw_compile_parse_FunctionSignature(parser, NULL, NULL);
                 }
 
-                /* ListOf */
-                else if (afw_utf8_equal(dataType, &afw_s_list))
+                /* ArrayOf */
+                else if (afw_utf8_equal(dataType, &afw_s_array))
                 {
                     if (!afw_compile_token_is_name_z("of")) {
                         AFW_COMPILE_THROW_ERROR_Z(
@@ -927,7 +927,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                         type->list_type = list_type;
                     }
                     afw_compile_get_token();
-                    if (!afw_compile_token_is_name(&afw_s_list)) {
+                    if (!afw_compile_token_is_name(&afw_s_array)) {
                         list_type->dimension++;
                     }
                     else {

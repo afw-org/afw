@@ -119,6 +119,12 @@ AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowWrite;
 /** @brief afw_utf8_t for string anyURI */
 AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_anyURI;
 
+/** @brief define for quoted string array */
+#define AFW_VFS_Q_array "array"
+
+/** @brief afw_utf8_t for string array */
+AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_array;
+
 /** @brief define for quoted string boolean */
 #define AFW_VFS_Q_boolean "boolean"
 
@@ -202,12 +208,6 @@ AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_isDirectory;
 
 /** @brief afw_utf8_t for string label */
 AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_label;
-
-/** @brief define for quoted string list */
-#define AFW_VFS_Q_list "list"
-
-/** @brief afw_utf8_t for string list */
-AFW_VFS_DECLARE_CONST_DATA(afw_utf8_t) afw_vfs_s_list;
 
 /** @brief define for quoted string markExecutable */
 #define AFW_VFS_Q_markExecutable "markExecutable"

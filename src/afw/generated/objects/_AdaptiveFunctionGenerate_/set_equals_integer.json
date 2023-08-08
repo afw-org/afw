@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_integer",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
             "name": "list2"
         }

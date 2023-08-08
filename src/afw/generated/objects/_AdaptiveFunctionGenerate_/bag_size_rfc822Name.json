@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_rfc822Name",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "name": "value"
         }

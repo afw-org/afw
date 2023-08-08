@@ -515,11 +515,11 @@ afw_command_local_server_create(
             (const afw_memory_t *)&impl_default_afw_conf,
             &self->command_self->conf,
             p, xctx);
-        if (!afw_value_is_list(conf)) {
+        if (!afw_value_is_array(conf)) {
             AFW_THROW_ERROR_Z(general, "Invalid internal configuration", xctx);
         }
         afw_environment_configure_with_object_list(
-            ((const afw_value_list_t *)conf)->internal,
+            ((const afw_value_array_t *)conf)->internal,
             &self->command_self->conf, xctx);
     }
 

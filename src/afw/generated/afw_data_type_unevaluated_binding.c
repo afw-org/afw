@@ -151,13 +151,13 @@ impl_data_type_object_unevaluated = {
     (void *)&afw_data_type_unevaluated_direct
 };
 
-/* Value for empty list of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_unevaluated;
+/* Value for empty array of unevaluated. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_unevaluated;
 
-/* Value for empty list of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_unevaluated;
+/* Value for empty array of unevaluated. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_unevaluated;
 
 /* Data type unevaluated instance. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
@@ -174,8 +174,8 @@ afw_data_type_unevaluated_direct = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("const afw_value_t *"),
     sizeof(const afw_value_t *),
-    (const afw_list_t *)&impl_empty_list_of_unevaluated,
-    (const afw_value_t *)&impl_value_empty_list_of_unevaluated,
+    (const afw_array_t *)&impl_empty_array_of_unevaluated,
+    (const afw_value_t *)&impl_value_empty_array_of_unevaluated,
     &afw_value_evaluated_unevaluated_inf,
     afw_compile_type_error,
     false,
@@ -186,19 +186,19 @@ afw_data_type_unevaluated_direct = {
     false
 };
 
-/* Value for empty list of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_list_wrapper_for_array_self_t)
-impl_empty_list_of_unevaluated = {
-    &afw_list_wrapper_for_array_inf,
+/* Value for empty array of unevaluated. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+impl_empty_array_of_unevaluated = {
+    &afw_array_wrapper_for_array_inf,
     &afw_data_type_unevaluated_direct,
     0
 };
 
-/* Value for empty list of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_list_t)
-impl_value_empty_list_of_unevaluated = {
-    &afw_value_permanent_list_inf,
-    (const afw_list_t *)&impl_empty_list_of_unevaluated
+/* Value for empty array of unevaluated. */
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+impl_value_empty_array_of_unevaluated = {
+    &afw_value_permanent_array_inf,
+    (const afw_array_t *)&impl_empty_array_of_unevaluated
 };
 
 /* Data type struct for unevaluated. */
@@ -504,10 +504,10 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from list of unevaluated. */
+/* Get next value from array of unevaluated. */
 AFW_DEFINE(const afw_value_t *)
-afw_list_of_unevaluated_get_next_source(
-    const afw_list_t *instance,
+afw_array_of_unevaluated_get_next_source(
+    const afw_array_t *instance,
     const afw_iterator_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
@@ -515,7 +515,7 @@ afw_list_of_unevaluated_get_next_source(
     const void *internal;
     const afw_data_type_t *data_type;
 
-    afw_list_get_next_internal(instance, iterator, &data_type, &internal, xctx);
+    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
     if (!internal) {
         return NULL;
     }
@@ -532,44 +532,44 @@ afw_list_of_unevaluated_get_next_source(
     return *(const afw_value_t * *)internal;
 }
 
-/* Add value from list of unevaluated */
+/* Add value from array of unevaluated */
 AFW_DEFINE(void)
-afw_list_of_unevaluated_add(
-    const afw_list_t *instance,
+afw_array_of_unevaluated_add(
+    const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
     const afw_value_t *internal;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
     internal = value;
-    afw_list_setter_add_internal(setter, 
+    afw_array_setter_add_internal(setter, 
         afw_data_type_unevaluated,
         (const void *)&internal, xctx);
 }
 
-/* Remove value from list of unevaluated */
+/* Remove value from array of unevaluated */
 AFW_DEFINE(void)
-afw_list_of_unevaluated_remove(
-    const afw_list_t *instance,
+afw_array_of_unevaluated_remove(
+    const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
     const afw_value_t *internal;
-    const afw_list_setter_t *setter;
+    const afw_array_setter_t *setter;
 
-    setter = afw_list_get_setter(instance, xctx);
+    setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
     internal = value;
-    afw_list_setter_remove_internal(setter, 
+    afw_array_setter_remove_internal(setter, 
         afw_data_type_unevaluated,
         (const void *)&internal, xctx);
 }

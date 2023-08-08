@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_base64Binary",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "name": "list2"
         }

@@ -19,7 +19,7 @@
         },
         "children": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Tree_Node",
             "description": "The children of this Tree Node.",
             "label": "Children"

@@ -38,7 +38,7 @@ export const propTypes = {
     label:                              PropTypes.string,
     /**
      * options
-     * Data Type: (list, object _AdaptiveLayoutComponentType_ChoiceGroup_Option)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_ChoiceGroup_Option)
      * 
      * The available options for the ChoiceGroup component.
      */

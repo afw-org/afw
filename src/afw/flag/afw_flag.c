@@ -98,7 +98,7 @@ impl_flag_add_included_by(
     /* Determined if flag id has already been added once. */
     already_included = false;
     if (included_by->includes_value) for (iterator = NULL;;) {
-        afw_list_get_next_internal(included_by->includes_value->internal,
+        afw_array_get_next_internal(included_by->includes_value->internal,
             &iterator, &data_type, (const void **)&flag_id, xctx);
         if (!flag_id) break;
         if (afw_utf8_equal(flag_id, flag->flag_id)) {
@@ -109,9 +109,9 @@ impl_flag_add_included_by(
 
     /* If not an included_by->includes_value, make one. */
     else {
-        included_by->includes_value = (const afw_value_list_t *)
-            afw_value_create_list(
-                afw_list_of_create(
+        included_by->includes_value = (const afw_value_array_t *)
+            afw_value_create_array(
+                afw_array_of_create(
                     afw_data_type_string, p, xctx),
                 p, xctx);
     }
@@ -121,17 +121,17 @@ impl_flag_add_included_by(
 
         /* Add included_by to this flags included_by. */
         if (!flag->included_by_value) {
-            flag->included_by_value = (const afw_value_list_t *)
-                afw_value_create_list(
-                    afw_list_of_create(
+            flag->included_by_value = (const afw_value_array_t *)
+                afw_value_create_array(
+                    afw_array_of_create(
                         afw_data_type_string, p, xctx),
                     p, xctx);
         }
-        afw_list_add_value(flag->included_by_value->internal,
+        afw_array_add_value(flag->included_by_value->internal,
             included_by->flag_id_value, xctx);
 
         /* Add flag to includes of included_by. */
-        afw_list_add_value(included_by->includes_value->internal,
+        afw_array_add_value(included_by->includes_value->internal,
             flag->flag_id_value, xctx);
     }
 
@@ -159,7 +159,7 @@ impl_flag_add_included_by(
 
     /* Add flag to this included_by and to all the flags it is included by. */
     if (included_by->included_by_value) for (iterator = NULL;;) {
-        afw_list_get_next_internal(included_by->included_by_value->internal,
+        afw_array_get_next_internal(included_by->included_by_value->internal,
             &iterator, &data_type, (const void **)&flag_id, xctx);
         if (!flag_id) break;
         parent = (afw_flag_t *)afw_environment_get_flag(flag_id, xctx);
@@ -845,7 +845,7 @@ afw_flag_set_to_defaults_plus_array(
 /* Set new default flags list. */
 AFW_DEFINE(void)
 afw_flag_set_default_flag_ids(
-    const afw_list_t *default_flag_ids,
+    const afw_array_t *default_flag_ids,
     afw_xctx_t *xctx)
 {
     afw_environment_internal_t *internal_env =
@@ -860,13 +860,13 @@ afw_flag_set_default_flag_ids(
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
         p = afw_pool_create(xctx->env->p, xctx);
-        count = afw_list_get_count(default_flag_ids, xctx);
+        count = afw_array_get_count(default_flag_ids, xctx);
         ids = afw_pool_malloc(p, (count + 1) * sizeof(afw_utf8_t *), xctx);
         ids[count] = NULL;
 
         iterator = NULL;
         for (id = ids;; id++) {
-            afw_list_get_next_internal(default_flag_ids,
+            afw_array_get_next_internal(default_flag_ids,
                 &iterator, &data_type, (const void **)&s, xctx);
             if (!s) break;
             if (!afw_data_type_is_string(data_type)) {

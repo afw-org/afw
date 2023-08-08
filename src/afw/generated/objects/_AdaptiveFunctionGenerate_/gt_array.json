@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGtArray",
+    "brief": "Checks for greater than",
+    "camelCaseFunctionLabel": "gtArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Checks for array arg1 is greater than array arg2 and return the boolean result.",
+    "functionId": "gt<array>",
+    "functionLabel": "gt_array",
+    "op": ">",
+    "parameters": [
+        {
+            "dataType": "array",
+            "name": "arg1"
+        },
+        {
+            "dataType": "array",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_gt"
+}

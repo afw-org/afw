@@ -40,7 +40,7 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
  * either an unevaluated expression tuple adaptive value or a string
  * containing the compiler listing.
  * 
- * @param {list} expression_tuple - expression tuple to compile.
+ * @param {array} expression_tuple - expression tuple to compile.
  * 
  * @param {} listing - If specified, a compiler listing is produced instead
  *     of an unevaluated expression tuple value.

@@ -14,9 +14,9 @@ interface IAnyObject {
 /**
  * Takes any number of function values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagFunction(client : any, values? : any[]) : any {
 
@@ -33,7 +33,7 @@ export function afwBagFunction(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */

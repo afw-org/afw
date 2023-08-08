@@ -51,7 +51,7 @@ def compile_expression_tuple(session, expression_tuple, listing=None):
 
     Parameters:
 
-        expression_tuple (list): expression tuple to compile.
+        expression_tuple (array): expression tuple to compile.
 
         listing (): If specified, a compiler listing is produced instead of
         an unevaluated expression tuple value.

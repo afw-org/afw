@@ -9,13 +9,13 @@
     "functionLabel": "subset_base64Binary",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "description": "The second list.",
             "name": "list2"

@@ -115,17 +115,17 @@ afw_data_type_t;
 typedef struct afw_data_type_inf_s
 afw_data_type_inf_t;
 
-typedef struct afw_list_setter_s
-afw_list_setter_t;
+typedef struct afw_array_setter_s
+afw_array_setter_t;
 
-typedef struct afw_list_setter_inf_s
-afw_list_setter_inf_t;
+typedef struct afw_array_setter_inf_s
+afw_array_setter_inf_t;
 
-typedef struct afw_list_s
-afw_list_t;
+typedef struct afw_array_s
+afw_array_t;
 
-typedef struct afw_list_inf_s
-afw_list_inf_t;
+typedef struct afw_array_inf_s
+afw_array_inf_t;
 
 typedef struct afw_log_factory_s
 afw_log_factory_t;

@@ -158,7 +158,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_rfc822Name
@@ -253,7 +253,7 @@ Converts a one value list to a rfc822Name value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_match_rfc822Name
@@ -434,13 +434,13 @@ sub intersection_rfc822Name {
 }
 
 sub is_in_rfc822Name {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<rfc822Name>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -517,12 +517,12 @@ sub nex_rfc822Name {
 }
 
 sub one_and_only_rfc822Name {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<rfc822Name>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

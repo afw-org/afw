@@ -16,7 +16,7 @@
     ],
     "polymorphic": true,
     "polymorphicDataTypes": [
-        "list",
+        "array",
         "object"
     ],
     "polymorphicExecuteFunction": "afw_function_execute_clone",

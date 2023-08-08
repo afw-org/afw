@@ -31,7 +31,7 @@
 #include "afw_os.h"
 #include "afw_data_type_typedefs.h"
 #include "afw_error.h"
-#include "afw_list.h"
+#include "afw_array.h"
 #include "afw_object.h"
 #include "afw_pool.h"
 #include "afw_xctx.h"

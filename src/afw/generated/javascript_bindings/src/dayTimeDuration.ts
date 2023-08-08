@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in dayTimeDuration list1 is in
  * dayTimeDuration list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -35,9 +35,9 @@ export function afwAtLeastOneMemberOfDayTimeDuration(client : any, list1 : any[]
 /**
  * Takes any number of dayTimeDuration values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagDayTimeDuration(client : any, values? : any[]) : any {
 
@@ -54,7 +54,7 @@ export function afwBagDayTimeDuration(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -177,11 +177,11 @@ export function afwGtDayTimeDuration(client : any, arg1 : any, arg2 : any) : any
  * Returns a list of dayTimeDuration with the values that are common to both
  * list of dayTimeDuration list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionDayTimeDuration(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -218,17 +218,17 @@ export function afwIsDayTimeDuration(client : any, value : any) : any {
  * 
  * @param {dayTimeDuration} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInDayTimeDuration(client : any, value : any, list : any[]) : any {
+export function afwIsInDayTimeDuration(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<dayTimeDuration>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -324,16 +324,16 @@ export function afwNexDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
  * This converts a list of dayTimeDuration values that contains one value to
  * a single dayTimeDuration value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {dayTimeDuration}
  */
-export function afwOneAndOnlyDayTimeDuration(client : any, list : any[]) : any {
+export function afwOneAndOnlyDayTimeDuration(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<dayTimeDuration>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -342,9 +342,9 @@ export function afwOneAndOnlyDayTimeDuration(client : any, list : any[]) : any {
  * Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2
  * are subsets of each other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -363,9 +363,9 @@ export function afwSetEqualsDayTimeDuration(client : any, list1 : any[], list2 :
  * Returns boolean true if the unique values in dayTimeDuration list1 are all
  * in dayTimeDuration list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -402,9 +402,9 @@ export function afwToStringDayTimeDuration(client : any, value : any) : any {
  * Returns a list of dayTimeDuration contains all of the unique values in two
  * or more list of dayTimeDuration values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionDayTimeDuration(client : any, lists : any[]) : any {
 

@@ -5264,7 +5264,7 @@ impl_53_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_53_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_53_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -5275,8 +5275,8 @@ static const afw_runtime_unresolved_property_t
 impl_53_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_53_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_53_list_collectionURIs
     }
 };
 
@@ -5617,7 +5617,7 @@ impl_65_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -6000,7 +6000,7 @@ impl_59_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_59_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_59_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -6011,8 +6011,8 @@ static const afw_runtime_unresolved_property_t
 impl_59_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_59_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_59_list_collectionURIs
     }
 };
 
@@ -6267,7 +6267,7 @@ impl_69_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_69_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_69_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -6278,8 +6278,8 @@ static const afw_runtime_unresolved_property_t
 impl_69_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_69_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_69_list_collectionURIs
     }
 };
 
@@ -6383,7 +6383,7 @@ impl_75_array_allowedValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_75_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_75_array_allowedValues) / sizeof(afw_utf8_t),
@@ -6394,8 +6394,8 @@ static const afw_runtime_unresolved_property_t
 impl_75_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_75_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_75_list_allowedValues
     }
 };
 
@@ -6482,7 +6482,7 @@ impl_76_array_allowedValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_76_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_76_array_allowedValues) / sizeof(afw_utf8_t),
@@ -6493,8 +6493,8 @@ static const afw_runtime_unresolved_property_t
 impl_76_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_76_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_76_list_allowedValues
     }
 };
 
@@ -6590,7 +6590,7 @@ impl_77_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -6661,7 +6661,7 @@ impl_78_array_allowedValues[] = {
     AFW_UTF8_LITERAL("row-reverse")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_78_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_78_array_allowedValues) / sizeof(afw_utf8_t),
@@ -6672,8 +6672,8 @@ static const afw_runtime_unresolved_property_t
 impl_78_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_78_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_78_list_allowedValues
     }
 };
 
@@ -6769,7 +6769,7 @@ impl_79_array_allowedValues[] = {
     AFW_UTF8_LITERAL("start")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_79_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_79_array_allowedValues) / sizeof(afw_utf8_t),
@@ -6780,8 +6780,8 @@ static const afw_runtime_unresolved_property_t
 impl_79_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_79_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_79_list_allowedValues
     }
 };
 
@@ -6870,7 +6870,7 @@ impl_80_array_allowedValues[] = {
     AFW_UTF8_LITERAL("wrap-reverse")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_80_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_80_array_allowedValues) / sizeof(afw_utf8_t),
@@ -6881,8 +6881,8 @@ static const afw_runtime_unresolved_property_t
 impl_80_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_80_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_80_list_allowedValues
     }
 };
 
@@ -7074,7 +7074,7 @@ impl_73_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_73_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_73_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -7085,8 +7085,8 @@ static const afw_runtime_unresolved_property_t
 impl_73_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_73_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_73_list_collectionURIs
     }
 };
 
@@ -7532,7 +7532,7 @@ impl_81_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_81_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_81_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -7543,8 +7543,8 @@ static const afw_runtime_unresolved_property_t
 impl_81_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_81_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_81_list_collectionURIs
     }
 };
 
@@ -7636,7 +7636,7 @@ impl_89_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -7769,7 +7769,7 @@ impl_87_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_87_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_87_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -7780,8 +7780,8 @@ static const afw_runtime_unresolved_property_t
 impl_87_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_87_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_87_list_collectionURIs
     }
 };
 
@@ -8083,7 +8083,7 @@ impl_90_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_90_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_90_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -8094,8 +8094,8 @@ static const afw_runtime_unresolved_property_t
 impl_90_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_90_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_90_list_collectionURIs
     }
 };
 
@@ -8208,7 +8208,7 @@ impl_96_array_possibleValues[] = {
     AFW_UTF8_LITERAL("secondary")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_96_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_96_array_possibleValues) / sizeof(afw_utf8_t),
@@ -8219,8 +8219,8 @@ static const afw_runtime_unresolved_property_t
 impl_96_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_96_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_96_list_possibleValues
     }
 };
 
@@ -8584,7 +8584,7 @@ impl_102_array_possibleValues[] = {
     AFW_UTF8_LITERAL("small")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_102_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_102_array_possibleValues) / sizeof(afw_utf8_t),
@@ -8595,8 +8595,8 @@ static const afw_runtime_unresolved_property_t
 impl_102_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_102_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_102_list_possibleValues
     }
 };
 
@@ -8666,7 +8666,7 @@ impl_103_array_possibleValues[] = {
     AFW_UTF8_LITERAL("split")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_103_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_103_array_possibleValues) / sizeof(afw_utf8_t),
@@ -8677,8 +8677,8 @@ static const afw_runtime_unresolved_property_t
 impl_103_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_103_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_103_list_possibleValues
     }
 };
 
@@ -8843,7 +8843,7 @@ impl_94_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_94_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_94_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -8854,8 +8854,8 @@ static const afw_runtime_unresolved_property_t
 impl_94_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_94_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_94_list_collectionURIs
     }
 };
 
@@ -9281,7 +9281,7 @@ impl_104_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_104_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_104_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -9292,8 +9292,8 @@ static const afw_runtime_unresolved_property_t
 impl_104_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_104_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_104_list_collectionURIs
     }
 };
 
@@ -9433,7 +9433,7 @@ impl_113_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -9699,7 +9699,7 @@ impl_110_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_110_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_110_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -9710,8 +9710,8 @@ static const afw_runtime_unresolved_property_t
 impl_110_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_110_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_110_list_collectionURIs
     }
 };
 
@@ -9976,7 +9976,7 @@ impl_116_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_116_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_116_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -9987,8 +9987,8 @@ static const afw_runtime_unresolved_property_t
 impl_116_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_116_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_116_list_collectionURIs
     }
 };
 
@@ -10481,7 +10481,7 @@ impl_120_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_120_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_120_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -10492,8 +10492,8 @@ static const afw_runtime_unresolved_property_t
 impl_120_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_120_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_120_list_collectionURIs
     }
 };
 
@@ -10643,7 +10643,7 @@ impl_130_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -10748,7 +10748,7 @@ impl_131_array_possibleValues[] = {
     AFW_UTF8_LITERAL("vertical")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_131_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_131_array_possibleValues) / sizeof(afw_utf8_t),
@@ -10759,8 +10759,8 @@ static const afw_runtime_unresolved_property_t
 impl_131_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_131_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_131_list_possibleValues
     }
 };
 
@@ -11009,7 +11009,7 @@ impl_127_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_127_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_127_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -11020,8 +11020,8 @@ static const afw_runtime_unresolved_property_t
 impl_127_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_127_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_127_list_collectionURIs
     }
 };
 
@@ -11380,7 +11380,7 @@ impl_134_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_134_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_134_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -11391,8 +11391,8 @@ static const afw_runtime_unresolved_property_t
 impl_134_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_134_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_134_list_collectionURIs
     }
 };
 
@@ -11885,7 +11885,7 @@ impl_140_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_140_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_140_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -11896,8 +11896,8 @@ static const afw_runtime_unresolved_property_t
 impl_140_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_140_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_140_list_collectionURIs
     }
 };
 
@@ -12343,7 +12343,7 @@ impl_147_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_147_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_147_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -12354,8 +12354,8 @@ static const afw_runtime_unresolved_property_t
 impl_147_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_147_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_147_list_collectionURIs
     }
 };
 
@@ -12787,7 +12787,7 @@ impl_161_array_possibleValues[] = {
     AFW_UTF8_LITERAL("treeitem")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_161_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_161_array_possibleValues) / sizeof(afw_utf8_t),
@@ -12798,8 +12798,8 @@ static const afw_runtime_unresolved_property_t
 impl_161_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_161_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_161_list_possibleValues
     }
 };
 
@@ -13081,7 +13081,7 @@ impl_153_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_153_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_153_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -13092,8 +13092,8 @@ static const afw_runtime_unresolved_property_t
 impl_153_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_153_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_153_list_collectionURIs
     }
 };
 
@@ -13586,7 +13586,7 @@ impl_164_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_164_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_164_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -13597,8 +13597,8 @@ static const afw_runtime_unresolved_property_t
 impl_164_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_164_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_164_list_collectionURIs
     }
 };
 
@@ -14091,7 +14091,7 @@ impl_171_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_171_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_171_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -14102,8 +14102,8 @@ static const afw_runtime_unresolved_property_t
 impl_171_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_171_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_171_list_collectionURIs
     }
 };
 
@@ -14484,7 +14484,7 @@ impl_184_array_possibleValues[] = {
     AFW_UTF8_LITERAL("xl")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_184_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_184_array_possibleValues) / sizeof(afw_utf8_t),
@@ -14495,8 +14495,8 @@ static const afw_runtime_unresolved_property_t
 impl_184_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_184_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_184_list_possibleValues
     }
 };
 
@@ -14909,7 +14909,7 @@ impl_178_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_178_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_178_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -14920,8 +14920,8 @@ static const afw_runtime_unresolved_property_t
 impl_178_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_178_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_178_list_collectionURIs
     }
 };
 
@@ -15270,7 +15270,7 @@ impl_189_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_189_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_189_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -15281,8 +15281,8 @@ static const afw_runtime_unresolved_property_t
 impl_189_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_189_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_189_list_collectionURIs
     }
 };
 
@@ -15420,7 +15420,7 @@ impl_194_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_194_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_194_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -15431,8 +15431,8 @@ static const afw_runtime_unresolved_property_t
 impl_194_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_194_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_194_list_collectionURIs
     }
 };
 
@@ -15528,7 +15528,7 @@ impl_198_array_allowedValues[] = {
     AFW_UTF8_LITERAL("top")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_198_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_198_array_allowedValues) / sizeof(afw_utf8_t),
@@ -15539,8 +15539,8 @@ static const afw_runtime_unresolved_property_t
 impl_198_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_198_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_198_list_allowedValues
     }
 };
 
@@ -15636,7 +15636,7 @@ impl_199_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -15773,7 +15773,7 @@ impl_201_array_allowedValues[] = {
     AFW_UTF8_LITERAL("temporary")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_201_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_201_array_allowedValues) / sizeof(afw_utf8_t),
@@ -15784,8 +15784,8 @@ static const afw_runtime_unresolved_property_t
 impl_201_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_201_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_201_list_allowedValues
     }
 };
 
@@ -15957,7 +15957,7 @@ impl_196_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_196_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_196_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -15968,8 +15968,8 @@ static const afw_runtime_unresolved_property_t
 impl_196_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_196_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_196_list_collectionURIs
     }
 };
 
@@ -16300,7 +16300,7 @@ impl_208_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -16367,7 +16367,7 @@ impl_209_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -16539,7 +16539,7 @@ impl_202_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_202_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_202_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -16550,8 +16550,8 @@ static const afw_runtime_unresolved_property_t
 impl_202_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_202_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_202_list_collectionURIs
     }
 };
 
@@ -16872,7 +16872,7 @@ impl_216_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -16939,7 +16939,7 @@ impl_217_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -17111,7 +17111,7 @@ impl_210_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_210_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_210_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -17122,8 +17122,8 @@ static const afw_runtime_unresolved_property_t
 impl_210_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_210_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_210_list_collectionURIs
     }
 };
 
@@ -17415,7 +17415,7 @@ impl_218_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_218_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_218_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -17426,8 +17426,8 @@ static const afw_runtime_unresolved_property_t
 impl_218_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_218_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_218_list_collectionURIs
     }
 };
 
@@ -17920,7 +17920,7 @@ impl_223_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_223_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_223_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -17931,8 +17931,8 @@ static const afw_runtime_unresolved_property_t
 impl_223_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_223_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_223_list_collectionURIs
     }
 };
 
@@ -18291,7 +18291,7 @@ impl_230_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_230_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_230_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -18302,8 +18302,8 @@ static const afw_runtime_unresolved_property_t
 impl_230_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_230_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_230_list_collectionURIs
     }
 };
 
@@ -18463,7 +18463,7 @@ impl_238_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -18930,7 +18930,7 @@ impl_235_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_235_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_235_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -18941,8 +18941,8 @@ static const afw_runtime_unresolved_property_t
 impl_235_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_235_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_235_list_collectionURIs
     }
 };
 
@@ -19147,7 +19147,7 @@ impl_244_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_244_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_244_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -19158,8 +19158,8 @@ static const afw_runtime_unresolved_property_t
 impl_244_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_244_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_244_list_collectionURIs
     }
 };
 
@@ -19364,7 +19364,7 @@ impl_247_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_247_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_247_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -19375,8 +19375,8 @@ static const afw_runtime_unresolved_property_t
 impl_247_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_247_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_247_list_collectionURIs
     }
 };
 
@@ -19725,7 +19725,7 @@ impl_250_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_250_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_250_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -19736,8 +19736,8 @@ static const afw_runtime_unresolved_property_t
 impl_250_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_250_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_250_list_collectionURIs
     }
 };
 
@@ -20096,7 +20096,7 @@ impl_255_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_255_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_255_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20107,8 +20107,8 @@ static const afw_runtime_unresolved_property_t
 impl_255_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_255_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_255_list_collectionURIs
     }
 };
 
@@ -20201,7 +20201,7 @@ impl_262_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -20390,7 +20390,7 @@ impl_260_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_260_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_260_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20401,8 +20401,8 @@ static const afw_runtime_unresolved_property_t
 impl_260_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_260_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_260_list_collectionURIs
     }
 };
 
@@ -20552,7 +20552,7 @@ impl_267_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -20684,7 +20684,7 @@ impl_264_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_264_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_264_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20695,8 +20695,8 @@ static const afw_runtime_unresolved_property_t
 impl_264_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_264_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_264_list_collectionURIs
     }
 };
 
@@ -20961,7 +20961,7 @@ impl_268_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_268_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_268_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20972,8 +20972,8 @@ static const afw_runtime_unresolved_property_t
 impl_268_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_268_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_268_list_collectionURIs
     }
 };
 
@@ -21066,7 +21066,7 @@ impl_274_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -21255,7 +21255,7 @@ impl_272_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_272_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_272_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -21266,8 +21266,8 @@ static const afw_runtime_unresolved_property_t
 impl_272_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_272_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_272_list_collectionURIs
     }
 };
 
@@ -21790,7 +21790,7 @@ impl_276_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_276_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_276_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -21801,8 +21801,8 @@ static const afw_runtime_unresolved_property_t
 impl_276_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_276_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_276_list_collectionURIs
     }
 };
 
@@ -22172,7 +22172,7 @@ impl_290_array_possibleValues[] = {
     AFW_UTF8_LITERAL("warning")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_290_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_290_array_possibleValues) / sizeof(afw_utf8_t),
@@ -22183,8 +22183,8 @@ static const afw_runtime_unresolved_property_t
 impl_290_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_290_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_290_list_possibleValues
     }
 };
 
@@ -22319,7 +22319,7 @@ impl_284_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_284_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_284_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -22330,8 +22330,8 @@ static const afw_runtime_unresolved_property_t
 impl_284_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_284_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_284_list_collectionURIs
     }
 };
 
@@ -22680,7 +22680,7 @@ impl_291_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_291_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_291_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -22691,8 +22691,8 @@ static const afw_runtime_unresolved_property_t
 impl_291_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_291_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_291_list_collectionURIs
     }
 };
 
@@ -22887,7 +22887,7 @@ impl_296_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_296_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_296_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -22898,8 +22898,8 @@ static const afw_runtime_unresolved_property_t
 impl_296_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_296_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_296_list_collectionURIs
     }
 };
 
@@ -22982,7 +22982,7 @@ impl_301_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -23104,7 +23104,7 @@ impl_299_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_299_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_299_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -23115,8 +23115,8 @@ static const afw_runtime_unresolved_property_t
 impl_299_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_299_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_299_list_collectionURIs
     }
 };
 
@@ -23572,7 +23572,7 @@ impl_302_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_302_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_302_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -23583,8 +23583,8 @@ static const afw_runtime_unresolved_property_t
 impl_302_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_302_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_302_list_collectionURIs
     }
 };
 
@@ -23943,7 +23943,7 @@ impl_309_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_309_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_309_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -23954,8 +23954,8 @@ static const afw_runtime_unresolved_property_t
 impl_309_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_309_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_309_list_collectionURIs
     }
 };
 
@@ -24105,7 +24105,7 @@ impl_317_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -24314,7 +24314,7 @@ impl_314_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_314_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_314_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -24325,8 +24325,8 @@ static const afw_runtime_unresolved_property_t
 impl_314_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_314_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_314_list_collectionURIs
     }
 };
 
@@ -24581,7 +24581,7 @@ impl_319_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_319_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_319_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -24592,8 +24592,8 @@ static const afw_runtime_unresolved_property_t
 impl_319_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_319_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_319_list_collectionURIs
     }
 };
 
@@ -24718,7 +24718,7 @@ impl_325_array_possibleValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_325_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_325_array_possibleValues) / sizeof(afw_utf8_t),
@@ -24729,8 +24729,8 @@ static const afw_runtime_unresolved_property_t
 impl_325_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_325_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_325_list_possibleValues
     }
 };
 
@@ -24801,7 +24801,7 @@ impl_326_array_possibleValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_326_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_326_array_possibleValues) / sizeof(afw_utf8_t),
@@ -24812,8 +24812,8 @@ static const afw_runtime_unresolved_property_t
 impl_326_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_326_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_326_list_possibleValues
     }
 };
 
@@ -24884,7 +24884,7 @@ impl_327_array_possibleValues[] = {
     AFW_UTF8_LITERAL("space-between")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_327_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_327_array_possibleValues) / sizeof(afw_utf8_t),
@@ -24895,8 +24895,8 @@ static const afw_runtime_unresolved_property_t
 impl_327_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_327_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_327_list_possibleValues
     }
 };
 
@@ -24936,7 +24936,7 @@ impl_328_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -25044,7 +25044,7 @@ impl_329_array_possibleValues[] = {
     40
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_329_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_329_array_possibleValues) / sizeof(afw_integer_t),
@@ -25055,8 +25055,8 @@ static const afw_runtime_unresolved_property_t
 impl_329_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_329_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_329_list_possibleValues
     }
 };
 
@@ -25191,7 +25191,7 @@ impl_323_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_323_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_323_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -25202,8 +25202,8 @@ static const afw_runtime_unresolved_property_t
 impl_323_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_323_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_323_list_collectionURIs
     }
 };
 
@@ -25488,7 +25488,7 @@ impl_330_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_330_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_330_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -25499,8 +25499,8 @@ static const afw_runtime_unresolved_property_t
 impl_330_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_330_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_330_list_collectionURIs
     }
 };
 
@@ -25593,7 +25593,7 @@ impl_336_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -25718,7 +25718,7 @@ impl_334_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_334_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_334_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -25729,8 +25729,8 @@ static const afw_runtime_unresolved_property_t
 impl_334_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_334_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_334_list_collectionURIs
     }
 };
 
@@ -25861,7 +25861,7 @@ impl_339_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_339_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_339_array_possibleValues) / sizeof(afw_integer_t),
@@ -25872,8 +25872,8 @@ static const afw_runtime_unresolved_property_t
 impl_339_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_339_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_339_list_possibleValues
     }
 };
 
@@ -25951,7 +25951,7 @@ impl_340_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_340_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_340_array_possibleValues) / sizeof(afw_integer_t),
@@ -25962,8 +25962,8 @@ static const afw_runtime_unresolved_property_t
 impl_340_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_340_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_340_list_possibleValues
     }
 };
 
@@ -26041,7 +26041,7 @@ impl_341_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_341_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_341_array_possibleValues) / sizeof(afw_integer_t),
@@ -26052,8 +26052,8 @@ static const afw_runtime_unresolved_property_t
 impl_341_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_341_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_341_list_possibleValues
     }
 };
 
@@ -26131,7 +26131,7 @@ impl_342_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_342_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_342_array_possibleValues) / sizeof(afw_integer_t),
@@ -26142,8 +26142,8 @@ static const afw_runtime_unresolved_property_t
 impl_342_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_342_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_342_list_possibleValues
     }
 };
 
@@ -26221,7 +26221,7 @@ impl_343_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_343_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_343_array_possibleValues) / sizeof(afw_integer_t),
@@ -26232,8 +26232,8 @@ static const afw_runtime_unresolved_property_t
 impl_343_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_343_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_343_list_possibleValues
     }
 };
 
@@ -26311,7 +26311,7 @@ impl_344_array_possibleValues[] = {
     12
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_344_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_344_array_possibleValues) / sizeof(afw_integer_t),
@@ -26322,8 +26322,8 @@ static const afw_runtime_unresolved_property_t
 impl_344_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_344_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_344_list_possibleValues
     }
 };
 
@@ -26461,7 +26461,7 @@ impl_337_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_337_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_337_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -26472,8 +26472,8 @@ static const afw_runtime_unresolved_property_t
 impl_337_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_337_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_337_list_collectionURIs
     }
 };
 
@@ -26792,7 +26792,7 @@ impl_345_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_345_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_345_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -26803,8 +26803,8 @@ static const afw_runtime_unresolved_property_t
 impl_345_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_345_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_345_list_collectionURIs
     }
 };
 
@@ -27518,7 +27518,7 @@ impl_350_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_350_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_350_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -27529,8 +27529,8 @@ static const afw_runtime_unresolved_property_t
 impl_350_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_350_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_350_list_collectionURIs
     }
 };
 
@@ -27824,7 +27824,7 @@ impl_365_array_possibleValues[] = {
     AFW_UTF8_LITERAL("warning")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_365_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_365_array_possibleValues) / sizeof(afw_utf8_t),
@@ -27835,8 +27835,8 @@ static const afw_runtime_unresolved_property_t
 impl_365_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_365_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_365_list_possibleValues
     }
 };
 
@@ -27961,7 +27961,7 @@ impl_360_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_360_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_360_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -27972,8 +27972,8 @@ static const afw_runtime_unresolved_property_t
 impl_360_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_360_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_360_list_collectionURIs
     }
 };
 
@@ -28553,7 +28553,7 @@ impl_366_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_366_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_366_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -28564,8 +28564,8 @@ static const afw_runtime_unresolved_property_t
 impl_366_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_366_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_366_list_collectionURIs
     }
 };
 
@@ -28837,7 +28837,7 @@ impl_374_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_374_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_374_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -28848,8 +28848,8 @@ static const afw_runtime_unresolved_property_t
 impl_374_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_374_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_374_list_collectionURIs
     }
 };
 
@@ -28989,7 +28989,7 @@ impl_381_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -29121,7 +29121,7 @@ impl_378_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_378_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_378_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -29132,8 +29132,8 @@ static const afw_runtime_unresolved_property_t
 impl_378_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_378_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_378_list_collectionURIs
     }
 };
 
@@ -39816,7 +39816,7 @@ impl_382_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_382_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_382_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -39827,8 +39827,8 @@ static const afw_runtime_unresolved_property_t
 impl_382_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_382_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_382_list_collectionURIs
     }
 };
 
@@ -39921,7 +39921,7 @@ impl_572_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -40112,7 +40112,7 @@ impl_575_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -40331,7 +40331,7 @@ impl_570_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_570_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_570_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -40342,8 +40342,8 @@ static const afw_runtime_unresolved_property_t
 impl_570_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_570_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_570_list_collectionURIs
     }
 };
 
@@ -40963,7 +40963,7 @@ impl_577_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_577_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_577_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -40974,8 +40974,8 @@ static const afw_runtime_unresolved_property_t
 impl_577_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_577_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_577_list_collectionURIs
     }
 };
 
@@ -41116,7 +41116,7 @@ impl_586_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_586_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_586_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -41127,8 +41127,8 @@ static const afw_runtime_unresolved_property_t
 impl_586_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_586_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_586_list_collectionURIs
     }
 };
 
@@ -41278,7 +41278,7 @@ impl_591_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -41410,7 +41410,7 @@ impl_588_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_588_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_588_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -41421,8 +41421,8 @@ static const afw_runtime_unresolved_property_t
 impl_588_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_588_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_588_list_collectionURIs
     }
 };
 
@@ -41764,7 +41764,7 @@ impl_592_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_592_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_592_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -41775,8 +41775,8 @@ static const afw_runtime_unresolved_property_t
 impl_592_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_592_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_592_list_collectionURIs
     }
 };
 
@@ -42490,7 +42490,7 @@ impl_597_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_597_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_597_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -42501,8 +42501,8 @@ static const afw_runtime_unresolved_property_t
 impl_597_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_597_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_597_list_collectionURIs
     }
 };
 
@@ -43062,7 +43062,7 @@ impl_607_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_607_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_607_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -43073,8 +43073,8 @@ static const afw_runtime_unresolved_property_t
 impl_607_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_607_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_607_list_collectionURIs
     }
 };
 
@@ -43346,7 +43346,7 @@ impl_615_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_615_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_615_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -43357,8 +43357,8 @@ static const afw_runtime_unresolved_property_t
 impl_615_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_615_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_615_list_collectionURIs
     }
 };
 
@@ -43640,7 +43640,7 @@ impl_619_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_619_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_619_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -43651,8 +43651,8 @@ static const afw_runtime_unresolved_property_t
 impl_619_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_619_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_619_list_collectionURIs
     }
 };
 
@@ -44125,7 +44125,7 @@ impl_623_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_623_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_623_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -44136,8 +44136,8 @@ static const afw_runtime_unresolved_property_t
 impl_623_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_623_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_623_list_collectionURIs
     }
 };
 
@@ -44344,7 +44344,7 @@ impl_634_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -44563,7 +44563,7 @@ impl_630_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_630_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_630_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -44574,8 +44574,8 @@ static const afw_runtime_unresolved_property_t
 impl_630_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_630_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_630_list_collectionURIs
     }
 };
 
@@ -44700,7 +44700,7 @@ impl_638_array_possibleValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_638_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_638_array_possibleValues) / sizeof(afw_utf8_t),
@@ -44711,8 +44711,8 @@ static const afw_runtime_unresolved_property_t
 impl_638_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_638_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_638_list_possibleValues
     }
 };
 
@@ -44783,7 +44783,7 @@ impl_639_array_possibleValues[] = {
     AFW_UTF8_LITERAL("stretch")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_639_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_639_array_possibleValues) / sizeof(afw_utf8_t),
@@ -44794,8 +44794,8 @@ static const afw_runtime_unresolved_property_t
 impl_639_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_639_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_639_list_possibleValues
     }
 };
 
@@ -44835,7 +44835,7 @@ impl_640_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -45001,7 +45001,7 @@ impl_642_array_possibleValues[] = {
     AFW_UTF8_LITERAL("space-evenly")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_642_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_642_array_possibleValues) / sizeof(afw_utf8_t),
@@ -45012,8 +45012,8 @@ static const afw_runtime_unresolved_property_t
 impl_642_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_642_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_642_list_possibleValues
     }
 };
 
@@ -45085,7 +45085,7 @@ impl_643_array_possibleValues[] = {
     40
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_643_list_possibleValues = {
     AFW_UTF8_LITERAL("integer"),
     sizeof(impl_643_array_possibleValues) / sizeof(afw_integer_t),
@@ -45096,8 +45096,8 @@ static const afw_runtime_unresolved_property_t
 impl_643_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_643_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_643_list_possibleValues
     }
 };
 
@@ -45242,7 +45242,7 @@ impl_636_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_636_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_636_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -45253,8 +45253,8 @@ static const afw_runtime_unresolved_property_t
 impl_636_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_636_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_636_list_collectionURIs
     }
 };
 
@@ -45670,7 +45670,7 @@ impl_644_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_644_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_644_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -45681,8 +45681,8 @@ static const afw_runtime_unresolved_property_t
 impl_644_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_644_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_644_list_collectionURIs
     }
 };
 
@@ -45765,7 +45765,7 @@ impl_652_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -45899,7 +45899,7 @@ impl_654_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -45966,7 +45966,7 @@ impl_655_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -46118,7 +46118,7 @@ impl_650_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_650_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_650_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -46129,8 +46129,8 @@ static const afw_runtime_unresolved_property_t
 impl_650_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_650_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_650_list_collectionURIs
     }
 };
 
@@ -46223,7 +46223,7 @@ impl_658_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -46626,7 +46626,7 @@ impl_656_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_656_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_656_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -46637,8 +46637,8 @@ static const afw_runtime_unresolved_property_t
 impl_656_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_656_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_656_list_collectionURIs
     }
 };
 
@@ -46773,7 +46773,7 @@ impl_665_array_possibleValues[] = {
     AFW_UTF8_LITERAL("textSecondary")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_665_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_665_array_possibleValues) / sizeof(afw_utf8_t),
@@ -46784,8 +46784,8 @@ static const afw_runtime_unresolved_property_t
 impl_665_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_665_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_665_list_possibleValues
     }
 };
 
@@ -46872,7 +46872,7 @@ impl_666_array_possibleValues[] = {
     AFW_UTF8_LITERAL("9")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_666_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_666_array_possibleValues) / sizeof(afw_utf8_t),
@@ -46883,8 +46883,8 @@ static const afw_runtime_unresolved_property_t
 impl_666_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_666_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_666_list_possibleValues
     }
 };
 
@@ -46969,7 +46969,7 @@ impl_667_array_possibleValues[] = {
     AFW_UTF8_LITERAL("span")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_667_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_667_array_possibleValues) / sizeof(afw_utf8_t),
@@ -46980,8 +46980,8 @@ static const afw_runtime_unresolved_property_t
 impl_667_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_667_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_667_list_possibleValues
     }
 };
 
@@ -47194,7 +47194,7 @@ impl_663_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_663_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_663_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -47205,8 +47205,8 @@ static const afw_runtime_unresolved_property_t
 impl_663_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_663_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_663_list_collectionURIs
     }
 };
 
@@ -47596,7 +47596,7 @@ impl_675_array_possibleValues[] = {
     AFW_UTF8_LITERAL("none")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_675_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_675_array_possibleValues) / sizeof(afw_utf8_t),
@@ -47607,8 +47607,8 @@ static const afw_runtime_unresolved_property_t
 impl_675_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_675_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_675_list_possibleValues
     }
 };
 
@@ -47840,7 +47840,7 @@ impl_679_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -47908,7 +47908,7 @@ impl_680_array_allowedValues[] = {
     AFW_UTF8_LITERAL("vertical")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_680_list_allowedValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_680_array_allowedValues) / sizeof(afw_utf8_t),
@@ -47919,8 +47919,8 @@ static const afw_runtime_unresolved_property_t
 impl_680_property_allowedValues = {
     "allowedValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_680_list_allowedValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_680_list_allowedValues
     }
 };
 
@@ -48507,7 +48507,7 @@ impl_669_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_669_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_669_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -48518,8 +48518,8 @@ static const afw_runtime_unresolved_property_t
 impl_669_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_669_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_669_list_collectionURIs
     }
 };
 
@@ -48633,7 +48633,7 @@ impl_688_array_possibleValues[] = {
     AFW_UTF8_LITERAL("none")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_688_list_possibleValues = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_688_array_possibleValues) / sizeof(afw_utf8_t),
@@ -48644,8 +48644,8 @@ static const afw_runtime_unresolved_property_t
 impl_688_property_possibleValues = {
     "possibleValues",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_688_list_possibleValues
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_688_list_possibleValues
     }
 };
 
@@ -48733,7 +48733,7 @@ impl_686_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_686_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_686_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -48744,8 +48744,8 @@ static const afw_runtime_unresolved_property_t
 impl_686_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_686_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_686_list_collectionURIs
     }
 };
 
@@ -48828,7 +48828,7 @@ impl_691_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -48895,7 +48895,7 @@ impl_692_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -49019,7 +49019,7 @@ impl_694_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -49086,7 +49086,7 @@ impl_695_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "list"
+        .string = "array"
     }
 };
 
@@ -49452,7 +49452,7 @@ impl_689_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_689_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_689_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -49463,8 +49463,8 @@ static const afw_runtime_unresolved_property_t
 impl_689_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_689_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_689_list_collectionURIs
     }
 };
 
@@ -49853,7 +49853,7 @@ impl_699_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_699_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_699_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -49864,8 +49864,8 @@ static const afw_runtime_unresolved_property_t
 impl_699_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_699_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_699_list_collectionURIs
     }
 };
 
@@ -50274,7 +50274,7 @@ impl_705_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
-static const afw_runtime_unresolved_const_list_t
+static const afw_runtime_unresolved_const_array_t
 impl_705_list_collectionURIs = {
     AFW_UTF8_LITERAL("string"),
     sizeof(impl_705_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -50285,8 +50285,8 @@ static const afw_runtime_unresolved_property_t
 impl_705_property_collectionURIs = {
     "collectionURIs",
     {
-        .type = afw_runtime_unresolved_primitive_type_list,
-        .list = &impl_705_list_collectionURIs
+        .type = afw_runtime_unresolved_primitive_type_array,
+        .array = &impl_705_list_collectionURIs
     }
 };
 

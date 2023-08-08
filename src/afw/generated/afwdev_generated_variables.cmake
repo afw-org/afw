@@ -37,6 +37,9 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     adaptor/afw_adaptor_replace.h
     adaptor/afw_adaptor_retrieve.h
     application/afw_application_internal.h
+    array/afw_array.h
+    array/afw_array_impl.h
+    array/afw_array_internal.h
     array_template/afw_array_template.h
     ascii/afw_ascii.h
     associative_array/afw_associative_array.h
@@ -71,6 +74,8 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_adaptor_object_type_cache_impl_declares.h
     generated/afw_adaptor_session_impl_declares.h
     generated/afw_adaptor_transaction_impl_declares.h
+    generated/afw_array_impl_declares.h
+    generated/afw_array_setter_impl_declares.h
     generated/afw_authorization_handler_factory_impl_declares.h
     generated/afw_authorization_handler_impl_declares.h
     generated/afw_connection_impl_declares.h
@@ -79,6 +84,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_content_type_object_list_writer_impl_declares.h
     generated/afw_data_type_anyURI_binding.h
     generated/afw_data_type_any_binding.h
+    generated/afw_data_type_array_binding.h
     generated/afw_data_type_base64Binary_binding.h
     generated/afw_data_type_bindings.h
     generated/afw_data_type_boolean_binding.h
@@ -95,7 +101,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_impl_declares.h
     generated/afw_data_type_integer_binding.h
     generated/afw_data_type_ipAddress_binding.h
-    generated/afw_data_type_list_binding.h
     generated/afw_data_type_null_binding.h
     generated/afw_data_type_objectId_binding.h
     generated/afw_data_type_objectPath_binding.h
@@ -120,8 +125,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_generated.h
     generated/afw_interface.h
     generated/afw_interface_opaques.h
-    generated/afw_list_impl_declares.h
-    generated/afw_list_setter_impl_declares.h
     generated/afw_log_factory_impl_declares.h
     generated/afw_log_impl_declares.h
     generated/afw_object_associative_array_impl_declares.h
@@ -150,9 +153,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     include/afw_minimal.h
     json/afw_json.h
     json/afw_json_internal.h
-    list/afw_list.h
-    list/afw_list_impl.h
-    list/afw_list_internal.h
     lock/afw_lock.h
     log/afw_log.h
     log/afw_log_deprecated.h
@@ -208,6 +208,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/action
     ${CMAKE_CURRENT_SOURCE_DIR}/adaptor
     ${CMAKE_CURRENT_SOURCE_DIR}/application
+    ${CMAKE_CURRENT_SOURCE_DIR}/array
     ${CMAKE_CURRENT_SOURCE_DIR}/array_template
     ${CMAKE_CURRENT_SOURCE_DIR}/ascii
     ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
@@ -228,7 +229,6 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/generated
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/json
-    ${CMAKE_CURRENT_SOURCE_DIR}/list
     ${CMAKE_CURRENT_SOURCE_DIR}/lock
     ${CMAKE_CURRENT_SOURCE_DIR}/log
     ${CMAKE_CURRENT_SOURCE_DIR}/memory
@@ -271,6 +271,11 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     adaptor/afw_adaptor_replace.c
     adaptor/afw_adaptor_retrieve.c
     application/afw_application.c
+    array/afw_array.c
+    array/afw_array_const_array.c
+    array/afw_array_impl.c
+    array/afw_array_memory.c
+    array/afw_array_wrapper_for_array.c
     ascii/afw_ascii.c
     associative_array/afw_associative_array.c
     authorization/afw_authorization.c
@@ -305,6 +310,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_adaptor.c
     function/afw_function_administrative.c
     function/afw_function_anyURI.c
+    function/afw_function_array.c
     function/afw_function_base64Binary.c
     function/afw_function_compiler.c
     function/afw_function_date.c
@@ -312,12 +318,11 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_double.c
     function/afw_function_expression.c
     function/afw_function_hexBinary.c
-    function/afw_function_higher_order_list.c
+    function/afw_function_higher_order_array.c
     function/afw_function_hybrid.c
     function/afw_function_indexes.c
     function/afw_function_integer.c
     function/afw_function_journal.c
-    function/afw_function_list.c
     function/afw_function_logical.c
     function/afw_function_miscellaneous.c
     function/afw_function_model.c
@@ -337,6 +342,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_const_objects.c
     generated/afw_data_type_anyURI_binding.c
     generated/afw_data_type_any_binding.c
+    generated/afw_data_type_array_binding.c
     generated/afw_data_type_base64Binary_binding.c
     generated/afw_data_type_bindings.c
     generated/afw_data_type_boolean_binding.c
@@ -352,7 +358,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_ia5String_binding.c
     generated/afw_data_type_integer_binding.c
     generated/afw_data_type_ipAddress_binding.c
-    generated/afw_data_type_list_binding.c
     generated/afw_data_type_null_binding.c
     generated/afw_data_type_objectId_binding.c
     generated/afw_data_type_objectPath_binding.c
@@ -376,11 +381,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_strings.c
     json/afw_json.c
     json/afw_json_from_value.c
-    list/afw_list.c
-    list/afw_list_const_array.c
-    list/afw_list_impl.c
-    list/afw_list_memory.c
-    list/afw_list_wrapper_for_array.c
     lock/afw_lock.c
     log/afw_log.c
     log/afw_log_deprecated.c

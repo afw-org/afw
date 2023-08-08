@@ -8,7 +8,7 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "Two or more lists.",
             "minArgs": 2,
             "name": "lists",
@@ -34,7 +34,7 @@
     ],
     "polymorphicExecuteFunction": "afw_function_execute_union",
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "polymorphicDataTypeParameter": true
     }
 }

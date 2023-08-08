@@ -9,7 +9,7 @@
     "functionLabel": "union",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "Two or more lists.",
             "minArgs": 2,
             "name": "lists",
@@ -36,7 +36,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_union",
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "polymorphicDataTypeParameter": true
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"

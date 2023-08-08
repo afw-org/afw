@@ -28,7 +28,7 @@ class template
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -50,9 +50,9 @@ class template
      *
      * Takes any number of template values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_template(, $values = null)
     {

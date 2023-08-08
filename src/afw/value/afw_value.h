@@ -670,7 +670,7 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_list_expression(A_VALUE) \
+#define afw_value_is_array_expression(A_VALUE) \
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_list_expression_inf \
@@ -1436,7 +1436,7 @@ afw_value_script_function_definition_create(
  * @return Created afw_value_t.
  */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_list_expression(
+afw_value_create_array_expression(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_t *internal,
     const afw_pool_t *p, afw_xctx_t *xctx);

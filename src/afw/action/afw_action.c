@@ -231,9 +231,9 @@ afw_action_perform(
     const afw_object_t *response,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_list_t *actions;
+    const afw_array_t *actions;
     const afw_object_t *action_entry;
-    const afw_list_t *action_response_entries;
+    const afw_array_t *action_response_entries;
     const afw_object_t *action_response_entry;
     const afw_value_t *action_response_entry_value;
     const afw_utf8_t *functionId;
@@ -294,19 +294,19 @@ afw_action_perform(
         }
 
         /* Make sure actions property is multiple actions list. */
-        if (!afw_value_is_list(value)) {
+        if (!afw_value_is_array(value)) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
                 "Property " AFW_UTF8_FMT_Q " of actions is missing or invalid",
                 AFW_UTF8_FMT_ARG(name));
         }
-        actions = ((const afw_value_list_t *)value)->internal;
+        actions = ((const afw_value_array_t *)value)->internal;
 
         /* Create list for action response entries if not application/x-afw. */
         action_response_entries = NULL;
         if (!afw_content_type_is_application_afw(response_content_type)) {
-            action_response_entries = afw_list_of_create(
+            action_response_entries = afw_array_of_create(
                 afw_data_type_object, response->p, xctx);
-            afw_object_set_property_as_list(response, &afw_s_actions,
+            afw_object_set_property_as_array(response, &afw_s_actions,
                 action_response_entries, xctx);
         }
 
@@ -314,7 +314,7 @@ afw_action_perform(
         for (iterator = NULL, action_number = 1; ; action_number++) {
 
             /* Get next action.  If there are not more, break. */
-            value = afw_list_get_next_value(actions, &iterator,
+            value = afw_array_get_next_value(actions, &iterator,
                 response->p, xctx);
             if (!value) break;
 
@@ -338,7 +338,7 @@ afw_action_perform(
             action_response_entry_value = afw_value_create_object(
                 action_response_entry, response->p, xctx);
             if (!afw_content_type_is_application_afw(response_content_type)) {
-                afw_list_add_value(action_response_entries,
+                afw_array_add_value(action_response_entries,
                     action_response_entry_value, xctx);
             }
 

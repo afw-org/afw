@@ -58,6 +58,12 @@ afw_register_data_type_infs(
         &afw_value_evaluated_anyURI_inf,
         xctx);
 
+    /* Register value inf id evaluated_array */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_array_inf.rti.implementation_id,
+        &afw_value_evaluated_array_inf,
+        xctx);
+
     /* Register value inf id evaluated_base64Binary */
     afw_environment_register_value_inf(
         &afw_value_evaluated_base64Binary_inf.rti.implementation_id,
@@ -140,12 +146,6 @@ afw_register_data_type_infs(
     afw_environment_register_value_inf(
         &afw_value_evaluated_ipAddress_inf.rti.implementation_id,
         &afw_value_evaluated_ipAddress_inf,
-        xctx);
-
-    /* Register value inf id evaluated_list */
-    afw_environment_register_value_inf(
-        &afw_value_evaluated_list_inf.rti.implementation_id,
-        &afw_value_evaluated_list_inf,
         xctx);
 
     /* Register value inf id evaluated_null */

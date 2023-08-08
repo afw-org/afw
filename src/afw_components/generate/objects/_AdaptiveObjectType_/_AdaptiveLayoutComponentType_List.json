@@ -17,7 +17,7 @@
         },
         "contains": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_",
             "description": "The layout components that are contained by this List component.",
             "label": "Contains"

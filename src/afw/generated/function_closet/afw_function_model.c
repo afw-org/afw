@@ -170,7 +170,7 @@ afw_function_execute_model_default_delete_object_action(
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
@@ -190,9 +190,9 @@ afw_function_execute_model_default_delete_object_action(
  *       custom::objectId can be used to access this value in model
  *       expressions.
  *
- *   entries - (list) This is a list of modifications. Variable custom::actions
- *       can be used to access this value in model expressions. Entries are of
- *       the form:
+ *   entries - (array) This is a list of modifications. Variable
+ *       custom::actions can be used to access this value in model expressions.
+ *       Entries are of the form:
  *       
  *           [
  *               'add_value',

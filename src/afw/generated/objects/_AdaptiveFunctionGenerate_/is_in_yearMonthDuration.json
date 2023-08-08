@@ -13,9 +13,9 @@
             "name": "value"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
-            "name": "list"
+            "name": "array"
         }
     ],
     "pure": true,

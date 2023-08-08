@@ -8,13 +8,13 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "The first list.",
             "name": "list1",
             "polymorphicDataTypeParameter": true
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "The second list.",
             "name": "list2",
             "polymorphicDataTypeParameter": true
@@ -39,7 +39,7 @@
     ],
     "polymorphicExecuteFunction": "afw_function_execute_intersection",
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "polymorphicDataTypeParameter": true
     }
 }

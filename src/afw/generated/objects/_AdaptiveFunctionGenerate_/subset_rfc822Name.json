@@ -9,13 +9,13 @@
     "functionLabel": "subset_rfc822Name",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "description": "The second list.",
             "name": "list2"

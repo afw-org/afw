@@ -1,0 +1,38 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIncludesArray",
+    "brief": "Checks whether or not a list contains any value",
+    "camelCaseFunctionLabel": "includesArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Checks whether or not a list contains any value.",
+    "functionId": "includes<array>",
+    "functionLabel": "includes_array",
+    "parameters": [
+        {
+            "brief": "The list to search",
+            "dataType": "array",
+            "description": "The list to search.",
+            "name": "array",
+            "polymorphicDataType": true
+        },
+        {
+            "brief": "Element to find",
+            "description": "Element to find.",
+            "name": "searchElement"
+        },
+        {
+            "brief": "Index in the list to start",
+            "dataType": "integer",
+            "description": "Index in the list to start search.",
+            "name": "fromIndex",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "brief": "Indicates if the element is found",
+        "dataType": "boolean",
+        "description": "Indicates if the element is found in list."
+    },
+    "useExecuteFunction": "afw_function_execute_includes_array"
+}

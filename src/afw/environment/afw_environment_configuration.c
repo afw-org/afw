@@ -63,7 +63,7 @@ afw_environment_configure_with_object(
 /* Configure environment with list of configuration entries. */
 AFW_DEFINE(void)
 afw_environment_configure_with_object_list(
-    const afw_list_t *entry_list,
+    const afw_array_t *entry_list,
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
@@ -82,7 +82,7 @@ afw_environment_configure_with_object_list(
     for (iterator = NULL, count = 1;; count++) {
 
         /* Get next configuration entry. */
-        value = afw_list_get_next_value(entry_list, &iterator,
+        value = afw_array_get_next_value(entry_list, &iterator,
             xctx->p, xctx);
         if (!value) break;
 

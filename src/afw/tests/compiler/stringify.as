@@ -62,7 +62,7 @@ assert(result == "\"\"");
 
 return 0;
 
-//? test: stringify-list
+//? test: stringify-array
 //? description: Test stringify of strings
 //? skip: false
 //? expect: 0

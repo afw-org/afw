@@ -8,7 +8,7 @@
     "pure": true,
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "value",
             "polymorphicDataTypeParameter": true
         }
@@ -30,7 +30,7 @@
         "ia5String",
         "integer",
         "ipAddress",
-        "list",
+        "array",
         "null",
         "object",
         "objectId",

@@ -28,9 +28,9 @@ class ipAddress
      *
      * Takes any number of ipAddress values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_ipAddress(, $values = null)
     {
@@ -52,7 +52,7 @@ class ipAddress
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -201,11 +201,11 @@ class ipAddress
      * returns the boolean result.
      *
      * @param ipAddress $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_ipAddress(, $value, $list)
+    public function is_in_ipAddress(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -213,7 +213,7 @@ class ipAddress
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -351,18 +351,18 @@ class ipAddress
      * This converts a list of ipAddress values that contains one value to a
      * single ipAddress value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return ipAddress
      */
-    public function one_and_only_ipAddress(, $list)
+    public function one_and_only_ipAddress(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<ipAddress>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

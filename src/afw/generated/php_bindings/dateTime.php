@@ -79,8 +79,8 @@ class dateTime
      * Returns boolean true if at least one value in dateTime list1 is in
      * dateTime list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -103,9 +103,9 @@ class dateTime
      *
      * Takes any number of dateTime values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_dateTime(, $values = null)
     {
@@ -127,7 +127,7 @@ class dateTime
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -281,10 +281,10 @@ class dateTime
      * Returns a list of dateTime with the values that are common to both
      * list of dateTime list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_dateTime(, $list1, $list2)
     {
@@ -330,11 +330,11 @@ class dateTime
      * the boolean result.
      *
      * @param dateTime $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_dateTime(, $value, $list)
+    public function is_in_dateTime(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -342,7 +342,7 @@ class dateTime
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -513,18 +513,18 @@ class dateTime
      * This converts a list of dateTime values that contains one value to a
      * single dateTime value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return dateTime
      */
-    public function one_and_only_dateTime(, $list)
+    public function one_and_only_dateTime(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -536,8 +536,8 @@ class dateTime
      * Returns boolean true if dateTime list1 and dateTime list2 are subsets
      * of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -561,8 +561,8 @@ class dateTime
      * Returns boolean true if the unique values in dateTime list1 are all in
      * dateTime list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -659,9 +659,9 @@ class dateTime
      * Returns a list of dateTime contains all of the unique values in two or
      * more list of dateTime values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_dateTime(, $lists)
     {

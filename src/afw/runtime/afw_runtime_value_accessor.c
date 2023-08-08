@@ -241,7 +241,7 @@ afw_runtime_value_accessor_stopping_adaptor_instances(
     const afw_value_t *result;
     afw_integer_t *entry;
     const afw_utf8_t *adaptor_id;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     /* A copy is required since it may change by a different thread. */
     adaptor_id = *(const afw_utf8_t **)internal;
@@ -265,9 +265,9 @@ afw_runtime_value_accessor_stopping_adaptor_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_list_create_wrapper_for_array(entry, false,
+        list = afw_array_create_wrapper_for_array(entry, false,
             afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_list(list, p, xctx);
+        result = afw_value_create_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -299,7 +299,7 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const afw_value_t *result;
     afw_integer_t *entry;
     const afw_utf8_t *authorization_handler_id;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     /* A copy is required since it may change by a different thread. */
     authorization_handler_id = *(const afw_utf8_t **)internal;
@@ -325,9 +325,9 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_list_create_wrapper_for_array(entry, false,
+        list = afw_array_create_wrapper_for_array(entry, false,
             afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_list(list, p, xctx);
+        result = afw_value_create_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -426,19 +426,19 @@ afw_runtime_value_accessor_applicable_flags(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_flag_t *self = internal;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_flag_t *flag;
     afw_size_t i;
 
-    list = afw_list_create_generic(p, xctx);
+    list = afw_array_create_generic(p, xctx);
     for (i = 0; i < self->applicable_flags_count_allocated; i++) {
         if (self->applicable_flags[i]) {
             flag = afw_flag_get_by_index(i, xctx);
-            afw_list_add_value(list, flag->flag_id_value, xctx);
+            afw_array_add_value(list, flag->flag_id_value, xctx);
         }
     }
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }
 
 
@@ -450,7 +450,7 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     /* If internal is NULL, return NULL. */
     if (!internal || !*(void **)internal)
@@ -459,7 +459,7 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     }
 
     /* Must be data type list. */
-    if (prop->data_type != afw_data_type_list) {
+    if (prop->data_type != afw_data_type_array) {
         AFW_THROW_ERROR_Z(general,
             "data type must be list for value accessor array_of_pointers.",
             xctx);
@@ -471,9 +471,9 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     }
 
     /* Support for pointer to array of internals. */
-    list = afw_list_create_wrapper_for_array(*((const void * const *)internal),
+    list = afw_array_create_wrapper_for_array(*((const void * const *)internal),
         false, prop->data_type_parameter_data_type, -1, p, xctx);
-    result = afw_value_create_list(list, p, xctx);
+    result = afw_value_create_array(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
 
     return result;
@@ -488,12 +488,12 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
 {
     const afw_object_t * const *objects =
         *(const afw_object_t * const * const *)internal;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
-    list = afw_list_const_create_null_terminated_array_of_objects(objects,
+    list = afw_array_const_create_null_terminated_array_of_objects(objects,
         p, xctx);
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }
 
 
@@ -507,7 +507,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_z_t * const *s_z;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_object_t *object;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
@@ -518,8 +518,8 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
         return NULL;
     }
 
-    list = afw_list_create_generic(p, xctx);
-    result = afw_value_create_list(list, p, xctx);
+    list = afw_array_create_generic(p, xctx);
+    result = afw_value_create_array(list, p, xctx);
 
     for (; *s_z; s_z++)
     {
@@ -533,7 +533,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
             value = afw_value_create_string_from_u8z(*s_z, p, xctx);
             afw_object_set_property(object, property_name, value, xctx);
         }
-        afw_list_add_value(list,
+        afw_array_add_value(list,
             afw_value_create_object(object, p, xctx), xctx);
     }
 
@@ -548,7 +548,7 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
     /* If internal is NULL, return NULL. */
     if (!internal || !*(void **)internal)
@@ -557,7 +557,7 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     }
 
     /* Must be data type list. */
-    if (prop->data_type != afw_data_type_list) {
+    if (prop->data_type != afw_data_type_array) {
         AFW_THROW_ERROR_Z(general,
             "data type must be list for value accessor array_of_pointers.",
             xctx);
@@ -569,9 +569,9 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     }
 
     /* Support for pointer to array of pointers. */
-    list = afw_list_create_wrapper_for_array(*((const void * const *)internal),
+    list = afw_array_create_wrapper_for_array(*((const void * const *)internal),
         true, prop->data_type_parameter_data_type, -1, p, xctx);
-    result = afw_value_create_list(list, p, xctx);
+    result = afw_value_create_array(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
 
     return result;
@@ -586,11 +586,11 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t * const *values =  (const afw_value_t * const *)internal;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
-    list = afw_list_const_create_null_terminated_array_of_values(values, p, xctx);
+    list = afw_array_const_create_null_terminated_array_of_values(values, p, xctx);
 
-    return afw_value_create_list(list, p, xctx);
+    return afw_value_create_array(list, p, xctx);
 }
 
 

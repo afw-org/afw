@@ -76,14 +76,14 @@ afw_function_execute_assert(
  *
  * ```
  *   function compile_expression_tuple(
- *       expression_tuple: list,
+ *       expression_tuple: array,
  *       listing?: any
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   expression_tuple - (list) expression tuple to compile.
+ *   expression_tuple - (array) expression tuple to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression tuple value.

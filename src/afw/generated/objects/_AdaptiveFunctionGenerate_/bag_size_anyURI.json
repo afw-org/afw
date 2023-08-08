@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_anyURI",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "name": "value"
         }

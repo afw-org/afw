@@ -5,7 +5,7 @@
 export interface IListProps {
     /**
      * contains
-     * Data Type: (list, object _AdaptiveLayoutComponentType_)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_)
      * 
      * The layout components that are contained by this List component.
      */

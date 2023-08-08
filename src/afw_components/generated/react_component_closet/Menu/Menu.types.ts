@@ -5,7 +5,7 @@
 export interface IMenuProps {
     /**
      * items
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Menu_Item)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Menu_Item)
      * 
      * Item to display under this Menu.
      */

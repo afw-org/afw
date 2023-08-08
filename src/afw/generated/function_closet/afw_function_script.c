@@ -167,7 +167,7 @@ afw_function_execute_compile_script(
  *
  * ```
  *   function const(
- *       name: (list string),
+ *       name: (array string),
  *       value: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
@@ -175,7 +175,7 @@ afw_function_execute_compile_script(
  *
  * Parameters:
  *
- *   name - (list string) The name of one or more constants to defined in the
+ *   name - (array string) The name of one or more constants to defined in the
  *       current block.
  *
  *   value - (any dataType) This is the value of the constant(s).
@@ -255,7 +255,7 @@ afw_function_execute_continue(
  * ```
  *   function do_while(
  *       condition: boolean,
- *       body: list
+ *       body: array
  *   ): any;
  * ```
  *
@@ -264,10 +264,10 @@ afw_function_execute_continue(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values (statements) that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a 'break', 'continue', 'return' or
- *       'throw' function is encountered.
+ *   body - (array) This is a list of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the list or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
  *
  * Returns:
  *
@@ -350,27 +350,27 @@ afw_function_execute_evaluate_script(
  *
  * ```
  *   function for(
- *       initial?: list,
+ *       initial?: array,
  *       condition?: boolean,
- *       increment?: list,
- *       body?: list
+ *       increment?: array,
+ *       body?: array
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   initial - (optional list) This is a list of values (statements) to
+ *   initial - (optional array) This is a list of values (statements) to
  *       evaluate before the loop starts. The values will normally be a call to
  *       the 'assign' function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
- *   increment - (optional list) This is a list of values (statements) to
+ *   increment - (optional array) This is a list of values (statements) to
  *       evaluate after each iteration of the loop. The values will normally be
  *       a call to the 'assign' function.
  *
- *   body - (optional list) This is a list of values (statements) that are
+ *   body - (optional array) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the list or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
@@ -411,19 +411,19 @@ afw_function_execute_for(
  *
  * ```
  *   function foreach(
- *       name: (list string),
+ *       name: (array string),
  *       value: any,
- *       body?: list
+ *       body?: array
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (list string) Variable name(s).
+ *   name - (array string) Variable name(s).
  *
  *   value - (any dataType) Any list, object or single value.
  *
- *   body - (optional list) This is a list of values (statements) that are
+ *   body - (optional array) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the list or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
@@ -460,8 +460,8 @@ afw_function_execute_foreach(
  * ```
  *   function if(
  *       condition: boolean,
- *       then: list,
- *       else?: list
+ *       then: array,
+ *       else?: array
  *   ): any;
  * ```
  *
@@ -470,11 +470,11 @@ afw_function_execute_foreach(
  *   condition - (boolean) If true, parameter 'then' is evaluated for result.
  *       If false, parameter 'else' is evaluated.
  *
- *   then - (list) This is the body of a structured block that is evaluated if
+ *   then - (array) This is the body of a structured block that is evaluated if
  *       'condition' is true. See the 'body' parameter of the 'block' function
  *       for information on how the body is processed.
  *
- *   else - (optional list) This is the body of a structured block that is
+ *   else - (optional array) This is the body of a structured block that is
  *       evaluated if 'condition' is false. If not specified and condition is
  *       false, a null value is returned. See the 'body' parameter of the
  *       'block' function for information on how the body is processed.
@@ -512,7 +512,7 @@ afw_function_execute_if(
  *
  * ```
  *   function let(
- *       name: (list string),
+ *       name: (array string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
@@ -520,7 +520,7 @@ afw_function_execute_if(
  *
  * Parameters:
  *
- *   name - (list string) The name of one or more variables to declared in the
+ *   name - (array string) The name of one or more variables to declared in the
  *       current block.
  *
  *   value - (optional any dataType) This is the initial value of the
@@ -751,27 +751,27 @@ afw_function_execute_throw(
  *
  * ```
  *   function try(
- *       body: list,
- *       finally?: list,
- *       catch?: list,
+ *       body: array,
+ *       finally?: array,
+ *       catch?: array,
  *       error?: (object _AdaptiveObjectType_)
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   body - (list) This is a list of values (statements) that are evaluated.
+ *   body - (array) This is a list of values (statements) that are evaluated.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional list) This is a list of values (statements) that are
+ *   finally - (optional array) This is a list of values (statements) that are
  *       evaluated after the try and catch statements even if an error occurs.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   catch - (optional list) This is a list of values (statements) that are
+ *   catch - (optional array) This is a list of values (statements) that are
  *       evaluated when an error is thrown while evaluating the body. Each
  *       value in body is evaluated in order until the end of the list or until
  *       a 'break', 'continue', 'return' or 'throw' function is encountered.
@@ -816,7 +816,7 @@ afw_function_execute_try(
  * ```
  *   function while(
  *       condition: boolean,
- *       body: list
+ *       body: array
  *   ): any;
  * ```
  *
@@ -825,10 +825,10 @@ afw_function_execute_try(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values (statements) that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a 'break', 'continue', 'return' or
- *       'throw' function is encountered.
+ *   body - (array) This is a list of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the list or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
  *
  * Returns:
  *

@@ -45,7 +45,7 @@
         },
         "defaultFlags": {
             "brief": "List of default flags to be set when an execution context (xctx) is created.",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "This is a list of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
             "label": "Default Flags",
@@ -70,7 +70,7 @@
         },
         "extensionModulePaths": {
             "brief": "List of modulePaths of extensions to load at startup",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "This is a list of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
             "label": "Extension Module Paths",
@@ -78,7 +78,7 @@
         },
         "extensions": {
             "brief": "List of extensionIds to load at startup",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "This is a list of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
             "label": "Extensions",

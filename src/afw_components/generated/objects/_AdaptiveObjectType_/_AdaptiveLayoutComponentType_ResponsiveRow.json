@@ -12,7 +12,7 @@
     "propertyTypes": {
         "columns": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_ResponsiveCol",
             "description": "The layout columns that are contained by this ResponsiveRow component.",
             "label": "Columns",

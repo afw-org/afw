@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("model", "MyObjectType2");
+const objects: array = retrieve_objects("model", "MyObjectType2");
 
 // we should have one object to start with
 const obj: object = objects[0];
@@ -28,7 +28,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("model", "MyObjectType3");
+const objects: array = retrieve_objects("model", "MyObjectType3");
 
 // we should have one object to start with
 const obj: object = objects[0];
@@ -45,7 +45,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("model", "MyObjectType4");
+const objects: array = retrieve_objects("model", "MyObjectType4");
 
 // we should have one object to start with
 const obj: object = objects[0];

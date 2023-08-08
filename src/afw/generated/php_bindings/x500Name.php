@@ -29,8 +29,8 @@ class x500Name
      * Returns boolean true if at least one value in x500Name list1 is in
      * x500Name list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -53,7 +53,7 @@ class x500Name
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -75,9 +75,9 @@ class x500Name
      *
      * Takes any number of x500Name values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_x500Name(, $values = null)
     {
@@ -203,10 +203,10 @@ class x500Name
      * Returns a list of x500Name with the values that are common to both
      * list of x500Name list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_x500Name(, $list1, $list2)
     {
@@ -229,11 +229,11 @@ class x500Name
      * the boolean result.
      *
      * @param x500Name $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_x500Name(, $value, $list)
+    public function is_in_x500Name(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -241,7 +241,7 @@ class x500Name
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -404,18 +404,18 @@ class x500Name
      * This converts a list of x500Name values that contains one value to a
      * single x500Name value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return x500Name
      */
-    public function one_and_only_x500Name(, $list)
+    public function one_and_only_x500Name(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<x500Name>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -452,8 +452,8 @@ class x500Name
      * Returns boolean true if x500Name list1 and x500Name list2 are subsets
      * of each other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -477,8 +477,8 @@ class x500Name
      * Returns boolean true if the unique values in x500Name list1 are all in
      * x500Name list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -525,9 +525,9 @@ class x500Name
      * Returns a list of x500Name contains all of the unique values in two or
      * more list of x500Name values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_x500Name(, $lists)
     {

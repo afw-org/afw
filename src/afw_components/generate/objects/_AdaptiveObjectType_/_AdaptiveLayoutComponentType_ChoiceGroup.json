@@ -24,7 +24,7 @@
         },
         "options": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_ChoiceGroup_Option",
             "description": "The available options for the ChoiceGroup component.",
             "label": "Options",

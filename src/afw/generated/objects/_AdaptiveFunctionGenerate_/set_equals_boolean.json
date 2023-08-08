@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_boolean",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "boolean",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "boolean",
             "name": "list2"
         }

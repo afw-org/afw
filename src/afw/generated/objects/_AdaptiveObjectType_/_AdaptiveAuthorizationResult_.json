@@ -11,14 +11,14 @@
     "propertyTypes": {
         "advice": {
             "brief": "Advice ids",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "Advice ids.",
             "label": "Advice"
         },
         "applicablePolicies": {
             "brief": "List of ids of matching policies",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "This is a list of ids of all policies whose target and condition matched during this check.",
             "label": "Applicable Policies"
@@ -33,7 +33,7 @@
         },
         "errors": {
             "brief": "Errors that occurred",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "_AdaptiveError_",
             "description": "Error that occurred.",
             "label": "Errors",
@@ -41,14 +41,14 @@
         },
         "obligations": {
             "brief": "Obligation ids that must be satisfied",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "Obligation ids that must be satisfied.",
             "label": "Obligations"
         },
         "properties": {
             "brief": "Properties that were requested for retrieval",
-            "dataType": "list",
+            "dataType": "array",
             "description": "Properties that were requested for retrieval.",
             "label": "Properties"
         }

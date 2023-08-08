@@ -3017,6 +3017,18 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_session;
 /** @brief afw_utf8_t for string afw_adaptor_transaction */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_transaction;
 
+/** @brief define for quoted string afw_array */
+#define AFW_Q_afw_array "afw_array"
+
+/** @brief afw_utf8_t for string afw_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_array;
+
+/** @brief define for quoted string afw_array_setter */
+#define AFW_Q_afw_array_setter "afw_array_setter"
+
+/** @brief afw_utf8_t for string afw_array_setter */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_array_setter;
+
 /** @brief define for quoted string afw_authorization_handler */
 #define AFW_Q_afw_authorization_handler "afw_authorization_handler"
 
@@ -3106,18 +3118,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_ldap;
 
 /** @brief afw_utf8_t for string afw_ldap_adaptor */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_ldap_adaptor;
-
-/** @brief define for quoted string afw_list */
-#define AFW_Q_afw_list "afw_list"
-
-/** @brief afw_utf8_t for string afw_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_list;
-
-/** @brief define for quoted string afw_list_setter */
-#define AFW_Q_afw_list_setter "afw_list_setter"
-
-/** @brief afw_utf8_t for string afw_list_setter */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_afw_list_setter;
 
 /** @brief define for quoted string afw_lmdb */
 #define AFW_Q_afw_lmdb "afw_lmdb"
@@ -3617,6 +3617,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_arguments;
 /** @brief afw_utf8_t for string array */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_array;
 
+/** @brief define for quoted string array_includes */
+#define AFW_Q_array_includes "array_includes"
+
+/** @brief afw_utf8_t for string array_includes */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_array_includes;
+
 /** @brief define for quoted string as */
 #define AFW_Q_as "as"
 
@@ -3887,6 +3893,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag;
 /** @brief afw_utf8_t for string bag_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_anyURI;
 
+/** @brief define for quoted string bag_array */
+#define AFW_Q_bag_array "bag_array"
+
+/** @brief afw_utf8_t for string bag_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_array;
+
 /** @brief define for quoted string bag_base64Binary */
 #define AFW_Q_bag_base64Binary "bag_base64Binary"
 
@@ -3971,12 +3983,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_integer;
 /** @brief afw_utf8_t for string bag_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_ipAddress;
 
-/** @brief define for quoted string bag_list */
-#define AFW_Q_bag_list "bag_list"
-
-/** @brief afw_utf8_t for string bag_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_list;
-
 /** @brief define for quoted string bag_null */
 #define AFW_Q_bag_null "bag_null"
 
@@ -4030,6 +4036,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size;
 
 /** @brief afw_utf8_t for string bag_size_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size_anyURI;
+
+/** @brief define for quoted string bag_size_array */
+#define AFW_Q_bag_size_array "bag_size_array"
+
+/** @brief afw_utf8_t for string bag_size_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size_array;
 
 /** @brief define for quoted string bag_size_base64Binary */
 #define AFW_Q_bag_size_base64Binary "bag_size_base64Binary"
@@ -4114,12 +4126,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size_integer;
 
 /** @brief afw_utf8_t for string bag_size_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size_ipAddress;
-
-/** @brief define for quoted string bag_size_list */
-#define AFW_Q_bag_size_list "bag_size_list"
-
-/** @brief afw_utf8_t for string bag_size_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_bag_size_list;
 
 /** @brief define for quoted string bag_size_null */
 #define AFW_Q_bag_size_null "bag_size_null"
@@ -4529,11 +4535,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_class;
 /** @brief afw_utf8_t for string clone */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_clone;
 
-/** @brief define for quoted string clone_list */
-#define AFW_Q_clone_list "clone_list"
+/** @brief define for quoted string clone_array */
+#define AFW_Q_clone_array "clone_array"
 
-/** @brief afw_utf8_t for string clone_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_clone_list;
+/** @brief afw_utf8_t for string clone_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_clone_array;
 
 /** @brief define for quoted string clone_object */
 #define AFW_Q_clone_object "clone_object"
@@ -5867,6 +5873,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq;
 /** @brief afw_utf8_t for string eq_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq_anyURI;
 
+/** @brief define for quoted string eq_array */
+#define AFW_Q_eq_array "eq_array"
+
+/** @brief afw_utf8_t for string eq_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq_array;
+
 /** @brief define for quoted string eq_base64Binary */
 #define AFW_Q_eq_base64Binary "eq_base64Binary"
 
@@ -5963,12 +5975,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq_integer;
 /** @brief afw_utf8_t for string eq_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq_ipAddress;
 
-/** @brief define for quoted string eq_list */
-#define AFW_Q_eq_list "eq_list"
-
-/** @brief afw_utf8_t for string eq_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eq_list;
-
 /** @brief define for quoted string eq_object */
 #define AFW_Q_eq_object "eq_object"
 
@@ -6059,6 +6065,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx;
 /** @brief afw_utf8_t for string eqx_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx_anyURI;
 
+/** @brief define for quoted string eqx_array */
+#define AFW_Q_eqx_array "eqx_array"
+
+/** @brief afw_utf8_t for string eqx_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx_array;
+
 /** @brief define for quoted string eqx_base64Binary */
 #define AFW_Q_eqx_base64Binary "eqx_base64Binary"
 
@@ -6142,12 +6154,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx_integer;
 
 /** @brief afw_utf8_t for string eqx_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx_ipAddress;
-
-/** @brief define for quoted string eqx_list */
-#define AFW_Q_eqx_list "eqx_list"
-
-/** @brief afw_utf8_t for string eqx_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_eqx_list;
 
 /** @brief define for quoted string eqx_object */
 #define AFW_Q_eqx_object "eqx_object"
@@ -6707,6 +6713,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge;
 /** @brief afw_utf8_t for string ge_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge_anyURI;
 
+/** @brief define for quoted string ge_array */
+#define AFW_Q_ge_array "ge_array"
+
+/** @brief afw_utf8_t for string ge_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge_array;
+
 /** @brief define for quoted string ge_base64Binary */
 #define AFW_Q_ge_base64Binary "ge_base64Binary"
 
@@ -6790,12 +6802,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge_integer;
 
 /** @brief afw_utf8_t for string ge_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge_ipAddress;
-
-/** @brief define for quoted string ge_list */
-#define AFW_Q_ge_list "ge_list"
-
-/** @brief afw_utf8_t for string ge_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ge_list;
 
 /** @brief define for quoted string ge_object */
 #define AFW_Q_ge_object "ge_object"
@@ -6941,6 +6947,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt;
 /** @brief afw_utf8_t for string gt_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt_anyURI;
 
+/** @brief define for quoted string gt_array */
+#define AFW_Q_gt_array "gt_array"
+
+/** @brief afw_utf8_t for string gt_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt_array;
+
 /** @brief define for quoted string gt_base64Binary */
 #define AFW_Q_gt_base64Binary "gt_base64Binary"
 
@@ -7024,12 +7036,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt_integer;
 
 /** @brief afw_utf8_t for string gt_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt_ipAddress;
-
-/** @brief define for quoted string gt_list */
-#define AFW_Q_gt_list "gt_list"
-
-/** @brief afw_utf8_t for string gt_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_gt_list;
 
 /** @brief define for quoted string gt_object */
 #define AFW_Q_gt_object "gt_object"
@@ -7187,11 +7193,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_subset;
 /** @brief afw_utf8_t for string hexBinary_union */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_union;
 
-/** @brief define for quoted string higher_order_list */
-#define AFW_Q_higher_order_list "higher_order_list"
+/** @brief define for quoted string higher_order_array */
+#define AFW_Q_higher_order_array "higher_order_array"
 
-/** @brief afw_utf8_t for string higher_order_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_higher_order_list;
+/** @brief afw_utf8_t for string higher_order_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_higher_order_array;
 
 /** @brief define for quoted string hints */
 #define AFW_Q_hints "hints"
@@ -7349,11 +7355,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_includesFlags;
 /** @brief afw_utf8_t for string includes_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_includes_anyURI;
 
-/** @brief define for quoted string includes_list */
-#define AFW_Q_includes_list "includes_list"
+/** @brief define for quoted string includes_array */
+#define AFW_Q_includes_array "includes_array"
 
-/** @brief afw_utf8_t for string includes_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_includes_list;
+/** @brief afw_utf8_t for string includes_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_includes_array;
 
 /** @brief define for quoted string includes_string */
 #define AFW_Q_includes_string "includes_string"
@@ -7823,6 +7829,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_NaN;
 /** @brief afw_utf8_t for string is_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_anyURI;
 
+/** @brief define for quoted string is_array */
+#define AFW_Q_is_array "is_array"
+
+/** @brief afw_utf8_t for string is_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_array;
+
 /** @brief define for quoted string is_base64Binary */
 #define AFW_Q_is_base64Binary "is_base64Binary"
 
@@ -8020,12 +8032,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_integer;
 
 /** @brief afw_utf8_t for string is_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_ipAddress;
-
-/** @brief define for quoted string is_list */
-#define AFW_Q_is_list "is_list"
-
-/** @brief afw_utf8_t for string is_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_is_list;
 
 /** @brief define for quoted string is_null */
 #define AFW_Q_is_null "is_null"
@@ -8279,6 +8285,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le;
 /** @brief afw_utf8_t for string le_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le_anyURI;
 
+/** @brief define for quoted string le_array */
+#define AFW_Q_le_array "le_array"
+
+/** @brief afw_utf8_t for string le_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le_array;
+
 /** @brief define for quoted string le_base64Binary */
 #define AFW_Q_le_base64Binary "le_base64Binary"
 
@@ -8362,12 +8374,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le_integer;
 
 /** @brief afw_utf8_t for string le_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le_ipAddress;
-
-/** @brief define for quoted string le_list */
-#define AFW_Q_le_list "le_list"
-
-/** @brief afw_utf8_t for string le_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_le_list;
 
 /** @brief define for quoted string le_object */
 #define AFW_Q_le_object "le_object"
@@ -8459,11 +8465,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length;
 /** @brief afw_utf8_t for string length_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length_anyURI;
 
-/** @brief define for quoted string length_list */
-#define AFW_Q_length_list "length_list"
+/** @brief define for quoted string length_array */
+#define AFW_Q_length_array "length_array"
 
-/** @brief afw_utf8_t for string length_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length_list;
+/** @brief afw_utf8_t for string length_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_length_array;
 
 /** @brief define for quoted string length_string */
 #define AFW_Q_length_string "length_string"
@@ -8506,18 +8512,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_limit;
 
 /** @brief afw_utf8_t for string line */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_line;
-
-/** @brief define for quoted string list */
-#define AFW_Q_list "list"
-
-/** @brief afw_utf8_t for string list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_list;
-
-/** @brief define for quoted string list_includes */
-#define AFW_Q_list_includes "list_includes"
-
-/** @brief afw_utf8_t for string list_includes */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_list_includes;
 
 /** @brief define for quoted string load */
 #define AFW_Q_load "load"
@@ -8584,6 +8578,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt;
 
 /** @brief afw_utf8_t for string lt_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt_anyURI;
+
+/** @brief define for quoted string lt_array */
+#define AFW_Q_lt_array "lt_array"
+
+/** @brief afw_utf8_t for string lt_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt_array;
 
 /** @brief define for quoted string lt_base64Binary */
 #define AFW_Q_lt_base64Binary "lt_base64Binary"
@@ -8668,12 +8668,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt_integer;
 
 /** @brief afw_utf8_t for string lt_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt_ipAddress;
-
-/** @brief define for quoted string lt_list */
-#define AFW_Q_lt_list "lt_list"
-
-/** @brief afw_utf8_t for string lt_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_lt_list;
 
 /** @brief define for quoted string lt_object */
 #define AFW_Q_lt_object "lt_object"
@@ -9275,6 +9269,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne;
 /** @brief afw_utf8_t for string ne_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne_anyURI;
 
+/** @brief define for quoted string ne_array */
+#define AFW_Q_ne_array "ne_array"
+
+/** @brief afw_utf8_t for string ne_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne_array;
+
 /** @brief define for quoted string ne_base64Binary */
 #define AFW_Q_ne_base64Binary "ne_base64Binary"
 
@@ -9358,12 +9358,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne_integer;
 
 /** @brief afw_utf8_t for string ne_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne_ipAddress;
-
-/** @brief define for quoted string ne_list */
-#define AFW_Q_ne_list "ne_list"
-
-/** @brief afw_utf8_t for string ne_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ne_list;
 
 /** @brief define for quoted string ne_object */
 #define AFW_Q_ne_object "ne_object"
@@ -9473,6 +9467,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex;
 /** @brief afw_utf8_t for string nex_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex_anyURI;
 
+/** @brief define for quoted string nex_array */
+#define AFW_Q_nex_array "nex_array"
+
+/** @brief afw_utf8_t for string nex_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex_array;
+
 /** @brief define for quoted string nex_base64Binary */
 #define AFW_Q_nex_base64Binary "nex_base64Binary"
 
@@ -9556,12 +9556,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex_integer;
 
 /** @brief afw_utf8_t for string nex_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex_ipAddress;
-
-/** @brief define for quoted string nex_list */
-#define AFW_Q_nex_list "nex_list"
-
-/** @brief afw_utf8_t for string nex_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_nex_list;
 
 /** @brief define for quoted string nex_object */
 #define AFW_Q_nex_object "nex_object"
@@ -12557,6 +12551,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string;
 /** @brief afw_utf8_t for string to_string_anyURI */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string_anyURI;
 
+/** @brief define for quoted string to_string_array */
+#define AFW_Q_to_string_array "to_string_array"
+
+/** @brief afw_utf8_t for string to_string_array */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string_array;
+
 /** @brief define for quoted string to_string_base64Binary */
 #define AFW_Q_to_string_base64Binary "to_string_base64Binary"
 
@@ -12634,12 +12634,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string_integer;
 
 /** @brief afw_utf8_t for string to_string_ipAddress */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string_ipAddress;
-
-/** @brief define for quoted string to_string_list */
-#define AFW_Q_to_string_list "to_string_list"
-
-/** @brief afw_utf8_t for string to_string_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_to_string_list;
 
 /** @brief define for quoted string to_string_null */
 #define AFW_Q_to_string_null "to_string_null"

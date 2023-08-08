@@ -264,7 +264,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *       2 - similar to 1 with ';' for '&' and ',' for '|'.
  *       
  *       3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
- *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
+ *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *       comma separated list of any comparison or conjunction.
  *
  * Returns:
@@ -553,7 +553,7 @@ afw_function_definition_modify_object;
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -567,7 +567,7 @@ afw_function_definition_modify_object;
  *
  *   objectId - (string) Id of object to modify.
  *
- *   entries - (list) List of modifications. Entries are of the form:
+ *   entries - (array) List of modifications. Entries are of the form:
  *       
  *           [
  *               'add_value',
@@ -633,7 +633,7 @@ afw_function_definition_modify_object_with_uri;
  * ```
  *   function modify_object_with_uri(
  *       uri: anyURI,
- *       entries: list,
+ *       entries: array,
  *       journal?: object,
  *       adaptorTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
@@ -644,7 +644,7 @@ afw_function_definition_modify_object_with_uri;
  *   uri - (anyURI) URI of object to modify. If a URI begins with a single
  *       slash ('/'), it is the local object path.
  *
- *   entries - (list) List of asserts and modifications. Entries are of the
+ *   entries - (array) List of asserts and modifications. Entries are of the
  *       form:
  *       
  *           [
@@ -875,7 +875,7 @@ afw_function_definition_retrieve_objects;
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -904,7 +904,7 @@ afw_function_definition_retrieve_objects;
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -1151,7 +1151,7 @@ afw_function_definition_retrieve_objects_with_uri;
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -1176,7 +1176,7 @@ afw_function_definition_retrieve_objects_with_uri;
  *
  * Returns:
  *
- *   (list) This is the list of objects retrieved.
+ *   (array) This is the list of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -1599,14 +1599,14 @@ afw_function_definition_flag_get_active;
  * ```
  *   function flag_get_active(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags that are set in the
+ *   (array string) This is a list of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -1632,14 +1632,14 @@ afw_function_definition_flag_get_active_defaults;
  * ```
  *   function flag_get_active_defaults(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags that are set by
+ *   (array string) This is a list of the flagId of flags that are set by
  *       default when a new execution context (xctx) is created.
  */
 const afw_value_t *
@@ -1667,14 +1667,14 @@ afw_function_definition_flag_get_defaults;
  * ```
  *   function flag_get_defaults(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags used to determine the
+ *   (array string) This is a list of the flagId of flags used to determine the
  *       default active flags.
  */
 const afw_value_t *
@@ -1706,14 +1706,14 @@ afw_function_definition_flag_modify_defaults;
  *
  * ```
  *   function flag_modify_defaults(
- *       flagId: (list string),
+ *       flagId: (array string),
  *       add?: boolean
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) The flagId of flags to be added or removed.
+ *   flagId - (array string) The flagId of flags to be added or removed.
  *
  *   add - (optional boolean) Specify true to add and false to remove flags. If
  *       not specified, flags are added.
@@ -1751,13 +1751,13 @@ afw_function_definition_flag_replace_defaults;
  *
  * ```
  *   function flag_replace_defaults(
- *       flagId: (list string)
+ *       flagId: (array string)
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) The list of the flagId of flags used to determine
+ *   flagId - (array string) The list of the flagId of flags used to determine
  *       the default active flags.
  *
  * Returns:
@@ -1785,14 +1785,14 @@ afw_function_definition_flag_set;
  *
  * ```
  *   function flag_set(
- *       flagId: (list string),
+ *       flagId: (array string),
  *       setTo?: boolean
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) List of flagId of flags to set or unset.
+ *   flagId - (array string) List of flagId of flags to set or unset.
  *
  *   setTo - (optional boolean) Specify true to set and false to unset. If not
  *       specified, flags are set.
@@ -2061,16 +2061,16 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *
  * ```
  *   function at_least_one_member_of<anyURI>(
- *       list1: (list anyURI),
- *       list2: (list anyURI)
+ *       list1: (array anyURI),
+ *       list2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list anyURI) The first list.
+ *   list1 - (array anyURI) The first list.
  *
- *   list2 - (list anyURI) The second list.
+ *   list2 - (array anyURI) The second list.
  *
  * Returns:
  *
@@ -2098,17 +2098,17 @@ afw_function_definition_bag_anyURI;
  *
  * ```
  *   function bag<anyURI>(
- *       ...values: (list of (list anyURI))
- *   ): (list anyURI);
+ *       ...values: (list of (array anyURI))
+ *   ): (array anyURI);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list anyURI)
+ *   values - (0 or more array anyURI)
  *
  * Returns:
  *
- *   (list anyURI)
+ *   (array anyURI)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -2132,13 +2132,13 @@ afw_function_definition_bag_size_anyURI;
  *
  * ```
  *   function bag_size<anyURI>(
- *       value: (list anyURI)
+ *       value: (array anyURI)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list anyURI)
+ *   value - (array anyURI)
  *
  * Returns:
  *
@@ -2447,20 +2447,20 @@ afw_function_definition_intersection_anyURI;
  *
  * ```
  *   function intersection<anyURI>(
- *       list1: (list anyURI),
- *       list2: (list anyURI)
- *   ): (list anyURI);
+ *       list1: (array anyURI),
+ *       list2: (array anyURI)
+ *   ): (array anyURI);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list anyURI) The first list.
+ *   list1 - (array anyURI) The first list.
  *
- *   list2 - (list anyURI) The second list.
+ *   list2 - (array anyURI) The second list.
  *
  * Returns:
  *
- *   (list anyURI)
+ *   (array anyURI)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -2520,7 +2520,7 @@ afw_function_definition_is_in_anyURI;
  * ```
  *   function is_in<anyURI>(
  *       value: anyURI,
- *       list: (list anyURI)
+ *       array: (array anyURI)
  *   ): boolean;
  * ```
  *
@@ -2528,7 +2528,7 @@ afw_function_definition_is_in_anyURI;
  *
  *   value - (anyURI)
  *
- *   list - (list anyURI)
+ *   array - (array anyURI)
  *
  * Returns:
  *
@@ -2794,13 +2794,13 @@ afw_function_definition_one_and_only_anyURI;
  *
  * ```
  *   function one_and_only<anyURI>(
- *       list: (list list)
+ *       array: (array array)
  *   ): anyURI;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -3034,16 +3034,16 @@ afw_function_definition_set_equals_anyURI;
  *
  * ```
  *   function set_equals<anyURI>(
- *       list1: (list anyURI),
- *       list2: (list anyURI)
+ *       list1: (array anyURI),
+ *       list2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list anyURI)
+ *   list1 - (array anyURI)
  *
- *   list2 - (list anyURI)
+ *   list2 - (array anyURI)
  *
  * Returns:
  *
@@ -3074,7 +3074,7 @@ afw_function_definition_split_anyURI;
  *       value: anyURI,
  *       separator?: string,
  *       limit?: integer
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -3090,7 +3090,7 @@ afw_function_definition_split_anyURI;
  *
  * Returns:
  *
- *   (list) An list of strings.
+ *   (array) An list of strings.
  *
  * Implemented by afw_function_execute_split()
  *
@@ -3153,16 +3153,16 @@ afw_function_definition_subset_anyURI;
  *
  * ```
  *   function subset<anyURI>(
- *       list1: (list anyURI),
- *       list2: (list anyURI)
+ *       list1: (array anyURI),
+ *       list2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list anyURI) The first list.
+ *   list1 - (array anyURI) The first list.
  *
- *   list2 - (list anyURI) The second list.
+ *   list2 - (array anyURI) The second list.
  *
  * Returns:
  *
@@ -3272,19 +3272,19 @@ afw_function_definition_union_anyURI;
  *
  * ```
  *   function union<anyURI>(
- *       lists_1: (list anyURI),
- *       lists_2: (list anyURI),
- *       ...lists_rest: (list of (list anyURI))
- *   ): (list anyURI);
+ *       lists_1: (array anyURI),
+ *       lists_2: (array anyURI),
+ *       ...lists_rest: (list of (array anyURI))
+ *   ): (array anyURI);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list anyURI) Two or more lists.
+ *   lists - (2 or more array anyURI) Two or more lists.
  *
  * Returns:
  *
- *   (list anyURI)
+ *   (array anyURI)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -3329,6 +3329,774 @@ afw_function_definition_url_encode_anyURI;
 /** @} */
 
 
+/** @addtogroup afw_functions_array array functions
+ *
+ * array adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition add_entries */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_add_entries;
+
+/**
+ * @brief Adaptive Function `add_entries`
+ * @param x function execute parameter.
+ *
+ * Add the entries of one or more lists to another.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function add_entries(
+ *       target: array,
+ *       source_1: array,
+ *       ...source_rest: (list of array)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   target - (array) Target list. This list must not be immutable.
+ *
+ *   source - (1 or more array) Source list(s).
+ *
+ * Returns:
+ *
+ *   (array) The modified target list.
+ */
+const afw_value_t *
+afw_function_execute_add_entries(
+    afw_function_execute_t *x);
+
+/** @brief Function definition array */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_array;
+
+/**
+ * @brief Adaptive Function `array`
+ * @param x function execute parameter.
+ *
+ * Construct an array with 0 or more elements.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function array(
+ *       ...values: (list of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more any dataType) A value can refer to any adaptable value
+ *       belonging to any data type or an array expression. In the case of an
+ *       array expression, indicated by '...' followed by an expression that
+ *       results in an array, every element within that array is included in
+ *       the newly created array.
+ *
+ * Returns:
+ *
+ *   (array) The constructed array.
+ *
+ * Errors thrown:
+ *
+ *   cast_error - value could not be converted
+ */
+const afw_value_t *
+afw_function_execute_array(
+    afw_function_execute_t *x);
+
+/** @brief Function definition bag<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_bag_array;
+
+/**
+ * @brief Adaptive Function `bag<array>`
+ * @param x function execute parameter.
+ *
+ * Takes any number of array values and returns a list of list.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function bag<array>(
+ *       ...values: (list of (array array))
+ *   ): (array array);
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (0 or more array array)
+ *
+ * Returns:
+ *
+ *   (array array)
+ *
+ * Implemented by afw_function_execute_bag()
+ *
+ * __________
+ */
+
+/** @brief Function definition bag_size<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_bag_size_array;
+
+/**
+ * @brief Adaptive Function `bag_size<array>`
+ * @param x function execute parameter.
+ *
+ * This returns the integer number of values in list.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function bag_size<array>(
+ *       value: (array array)
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array array)
+ *
+ * Returns:
+ *
+ *   (integer)
+ *
+ * Implemented by afw_function_execute_bag_size()
+ *
+ * __________
+ */
+
+/** @brief Function definition clone<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_clone_array;
+
+/**
+ * @brief Adaptive Function `clone<array>`
+ * @param x function execute parameter.
+ *
+ * Deep clone a array value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function clone<array>(
+ *       value: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array) The array value to clone.
+ *
+ * Returns:
+ *
+ *   (array) The cloned array value.
+ *
+ * Implemented by afw_function_execute_clone()
+ *
+ * __________
+ */
+
+/** @brief Function definition eq<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eq_array;
+
+/**
+ * @brief Adaptive Function `eq<array>`
+ * @param x function execute parameter.
+ *
+ * Determine if array arg1 is equal to the value of arg2 converted to the data
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+ * you want false to be returned if arg1 and arg2's data type don't match.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eq<array>(
+ *       arg1: array,
+ *       arg2: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Errors thrown:
+ *
+ *   conversion - arg2 cannot be converted to the data type of arg1.
+ *
+ * Implemented by afw_function_execute_eq()
+ *
+ * __________
+ */
+
+/** @brief Function definition eqx<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eqx_array;
+
+/**
+ * @brief Adaptive Function `eqx<array>`
+ * @param x function execute parameter.
+ *
+ * Determine if for array arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eqx<array>(
+ *       arg1: array,
+ *       arg2: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_eqx()
+ *
+ * __________
+ */
+
+/** @brief Function definition ge<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_ge_array;
+
+/**
+ * @brief Adaptive Function `ge<array>`
+ * @param x function execute parameter.
+ *
+ * Checks for array arg1 is greater than or equal to array arg2 and return the
+ * boolean result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function ge<array>(
+ *       arg1: array,
+ *       arg2: array
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (array)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_ge()
+ *
+ * __________
+ */
+
+/** @brief Function definition gt<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_gt_array;
+
+/**
+ * @brief Adaptive Function `gt<array>`
+ * @param x function execute parameter.
+ *
+ * Checks for array arg1 is greater than array arg2 and return the boolean
+ * result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function gt<array>(
+ *       arg1: array,
+ *       arg2: array
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (array)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_gt()
+ *
+ * __________
+ */
+
+/** @brief Function definition includes<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_includes_array;
+
+/**
+ * @brief Adaptive Function `includes<array>`
+ * @param x function execute parameter.
+ *
+ * Checks whether or not a list contains any value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function includes<array>(
+ *       array: array,
+ *       searchElement: any,
+ *       fromIndex?: integer
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (``<Type>``) The list to search.
+ *
+ *   searchElement - (any dataType) Element to find.
+ *
+ *   fromIndex - (optional integer) Index in the list to start search.
+ *
+ * Returns:
+ *
+ *   (boolean) Indicates if the element is found in list.
+ *
+ * Implemented by afw_function_execute_includes_array()
+ *
+ * __________
+ */
+
+/** @brief Function definition is<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_is_array;
+
+/**
+ * @brief Adaptive Function `is<array>`
+ * @param x function execute parameter.
+ *
+ * Checks whether value is dataType array and return the boolean result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function is<array>(
+ *       value: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) Value to check.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_is()
+ *
+ * __________
+ */
+
+/** @brief Function definition join */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_join;
+
+/**
+ * @brief Adaptive Function `join`
+ * @param x function execute parameter.
+ *
+ * Concatenate the string values of the elements of a list with a separator.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function join(
+ *       value: array,
+ *       separator?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array) A list of values (statements) of any data type.
+ *
+ *   separator - (optional string) The separator to use. If not specified, a
+ *       comma (,) is used.
+ *
+ * Returns:
+ *
+ *   (string) Joined list values.
+ */
+const afw_value_t *
+afw_function_execute_join(
+    afw_function_execute_t *x);
+
+/** @brief Function definition le<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_le_array;
+
+/**
+ * @brief Adaptive Function `le<array>`
+ * @param x function execute parameter.
+ *
+ * Checks for array arg1 is less than or equal to array arg2 and return the
+ * boolean result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function le<array>(
+ *       arg1: array,
+ *       arg2: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_le()
+ *
+ * __________
+ */
+
+/** @brief Function definition length<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_length_array;
+
+/**
+ * @brief Adaptive Function `length<array>`
+ * @param x function execute parameter.
+ *
+ * This is a polymorphic function where array can be any of the supported data
+ * types. Return the integer number of entries in datatype list or codepoints
+ * in others.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function length<array>(
+ *       value: array
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array) Returns the number of entries in a list or code points in
+ *       others.
+ *
+ * Returns:
+ *
+ *   (integer)
+ *
+ * Implemented by afw_function_execute_length()
+ *
+ * __________
+ */
+
+/** @brief Function definition lt<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_lt_array;
+
+/**
+ * @brief Adaptive Function `lt<array>`
+ * @param x function execute parameter.
+ *
+ * Checks for array arg1 is less that array arg2 and return the boolean result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function lt<array>(
+ *       arg1: array,
+ *       arg2: array
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (array)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_lt()
+ *
+ * __________
+ */
+
+/** @brief Function definition ne<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_ne_array;
+
+/**
+ * @brief Adaptive Function `ne<array>`
+ * @param x function execute parameter.
+ *
+ * Determine if array arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function ne<array>(
+ *       arg1: array,
+ *       arg2: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Errors thrown:
+ *
+ *   conversion - arg2 cannot be converted to the data type of arg1.
+ *
+ * Implemented by afw_function_execute_ne()
+ *
+ * __________
+ */
+
+/** @brief Function definition nex<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_nex_array;
+
+/**
+ * @brief Adaptive Function `nex<array>`
+ * @param x function execute parameter.
+ *
+ * Determine if for array arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function nex<array>(
+ *       arg1: array,
+ *       arg2: any
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (array)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_nex()
+ *
+ * __________
+ */
+
+/** @brief Function definition reverse */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_reverse;
+
+/**
+ * @brief Adaptive Function `reverse`
+ * @param x function execute parameter.
+ *
+ * Reverse the order of the elements in a list. If the list is typed, the
+ * resulting list will be the same type.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function reverse(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) A list to reverse.
+ *
+ * Returns:
+ *
+ *   (array) A list with elements reversed.
+ */
+const afw_value_t *
+afw_function_execute_reverse(
+    afw_function_execute_t *x);
+
+/** @brief Function definition slice */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_slice;
+
+/**
+ * @brief Adaptive Function `slice`
+ * @param x function execute parameter.
+ *
+ * This function extracts a consecutive slice of values from a list.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function slice(
+ *       array: array,
+ *       startIndex?: integer,
+ *       endIndex?: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The list to slice.
+ *
+ *   startIndex - (optional integer) This is the zero based starting index. Use
+ *       negative number to index from the end of the list. If not specified,
+ *       an index of 0 is assumed.
+ *
+ *   endIndex - (optional integer) This is the zero based ending index. If
+ *       positive, this is one more than the index of the last value to include
+ *       in the list. If negative, the index is from the end of the list. If
+ *       not specified, the slice is from startIndex up to and including the
+ *       end of the list.
+ *
+ * Returns:
+ *
+ *   (array) A list containing the selected values. If all of the values are
+ *       the same data type, the list will be a list of that data type.
+ */
+const afw_value_t *
+afw_function_execute_slice(
+    afw_function_execute_t *x);
+
+/** @brief Function definition to_string<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_to_string_array;
+
+/**
+ * @brief Adaptive Function `to_string<array>`
+ * @param x function execute parameter.
+ *
+ * Converts array value to string. For list values, the to_string() value for
+ * each entry is returned separated with commas.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_string<array>(
+ *       value: array
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array) A array value.
+ *
+ * Returns:
+ *
+ *   (string) The string representation of the value.
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @} */
+
+
 /** @addtogroup afw_functions_base64Binary base64Binary functions
  *
  * base64Binary adaptive functions.
@@ -3354,16 +4122,16 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *
  * ```
  *   function at_least_one_member_of<base64Binary>(
- *       list1: (list base64Binary),
- *       list2: (list base64Binary)
+ *       list1: (array base64Binary),
+ *       list2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list base64Binary) The first list.
+ *   list1 - (array base64Binary) The first list.
  *
- *   list2 - (list base64Binary) The second list.
+ *   list2 - (array base64Binary) The second list.
  *
  * Returns:
  *
@@ -3391,17 +4159,17 @@ afw_function_definition_bag_base64Binary;
  *
  * ```
  *   function bag<base64Binary>(
- *       ...values: (list of (list base64Binary))
- *   ): (list base64Binary);
+ *       ...values: (list of (array base64Binary))
+ *   ): (array base64Binary);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list base64Binary)
+ *   values - (0 or more array base64Binary)
  *
  * Returns:
  *
- *   (list base64Binary)
+ *   (array base64Binary)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -3425,13 +4193,13 @@ afw_function_definition_bag_size_base64Binary;
  *
  * ```
  *   function bag_size<base64Binary>(
- *       value: (list base64Binary)
+ *       value: (array base64Binary)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list base64Binary)
+ *   value - (array base64Binary)
  *
  * Returns:
  *
@@ -3691,20 +4459,20 @@ afw_function_definition_intersection_base64Binary;
  *
  * ```
  *   function intersection<base64Binary>(
- *       list1: (list base64Binary),
- *       list2: (list base64Binary)
- *   ): (list base64Binary);
+ *       list1: (array base64Binary),
+ *       list2: (array base64Binary)
+ *   ): (array base64Binary);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list base64Binary) The first list.
+ *   list1 - (array base64Binary) The first list.
  *
- *   list2 - (list base64Binary) The second list.
+ *   list2 - (array base64Binary) The second list.
  *
  * Returns:
  *
- *   (list base64Binary)
+ *   (array base64Binary)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -3764,7 +4532,7 @@ afw_function_definition_is_in_base64Binary;
  * ```
  *   function is_in<base64Binary>(
  *       value: base64Binary,
- *       list: (list base64Binary)
+ *       array: (array base64Binary)
  *   ): boolean;
  * ```
  *
@@ -3772,7 +4540,7 @@ afw_function_definition_is_in_base64Binary;
  *
  *   value - (base64Binary)
  *
- *   list - (list base64Binary)
+ *   array - (array base64Binary)
  *
  * Returns:
  *
@@ -3960,13 +4728,13 @@ afw_function_definition_one_and_only_base64Binary;
  *
  * ```
  *   function one_and_only<base64Binary>(
- *       list: (list list)
+ *       array: (array array)
  *   ): base64Binary;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -3999,16 +4767,16 @@ afw_function_definition_set_equals_base64Binary;
  *
  * ```
  *   function set_equals<base64Binary>(
- *       list1: (list base64Binary),
- *       list2: (list base64Binary)
+ *       list1: (array base64Binary),
+ *       list2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list base64Binary)
+ *   list1 - (array base64Binary)
  *
- *   list2 - (list base64Binary)
+ *   list2 - (array base64Binary)
  *
  * Returns:
  *
@@ -4037,16 +4805,16 @@ afw_function_definition_subset_base64Binary;
  *
  * ```
  *   function subset<base64Binary>(
- *       list1: (list base64Binary),
- *       list2: (list base64Binary)
+ *       list1: (array base64Binary),
+ *       list2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list base64Binary) The first list.
+ *   list1 - (array base64Binary) The first list.
  *
- *   list2 - (list base64Binary) The second list.
+ *   list2 - (array base64Binary) The second list.
  *
  * Returns:
  *
@@ -4110,19 +4878,19 @@ afw_function_definition_union_base64Binary;
  *
  * ```
  *   function union<base64Binary>(
- *       lists_1: (list base64Binary),
- *       lists_2: (list base64Binary),
- *       ...lists_rest: (list of (list base64Binary))
- *   ): (list base64Binary);
+ *       lists_1: (array base64Binary),
+ *       lists_2: (array base64Binary),
+ *       ...lists_rest: (list of (array base64Binary))
+ *   ): (array base64Binary);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list base64Binary) Two or more lists.
+ *   lists - (2 or more array base64Binary) Two or more lists.
  *
  * Returns:
  *
- *   (list base64Binary)
+ *   (array base64Binary)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -4157,16 +4925,16 @@ afw_function_definition_at_least_one_member_of_boolean;
  *
  * ```
  *   function at_least_one_member_of<boolean>(
- *       list1: (list boolean),
- *       list2: (list boolean)
+ *       list1: (array boolean),
+ *       list2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list boolean) The first list.
+ *   list1 - (array boolean) The first list.
  *
- *   list2 - (list boolean) The second list.
+ *   list2 - (array boolean) The second list.
  *
  * Returns:
  *
@@ -4194,17 +4962,17 @@ afw_function_definition_bag_boolean;
  *
  * ```
  *   function bag<boolean>(
- *       ...values: (list of (list boolean))
- *   ): (list boolean);
+ *       ...values: (list of (array boolean))
+ *   ): (array boolean);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list boolean)
+ *   values - (0 or more array boolean)
  *
  * Returns:
  *
- *   (list boolean)
+ *   (array boolean)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -4228,13 +4996,13 @@ afw_function_definition_bag_size_boolean;
  *
  * ```
  *   function bag_size<boolean>(
- *       value: (list boolean)
+ *       value: (array boolean)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list boolean)
+ *   value - (array boolean)
  *
  * Returns:
  *
@@ -4459,20 +5227,20 @@ afw_function_definition_intersection_boolean;
  *
  * ```
  *   function intersection<boolean>(
- *       list1: (list boolean),
- *       list2: (list boolean)
- *   ): (list boolean);
+ *       list1: (array boolean),
+ *       list2: (array boolean)
+ *   ): (array boolean);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list boolean) The first list.
+ *   list1 - (array boolean) The first list.
  *
- *   list2 - (list boolean) The second list.
+ *   list2 - (array boolean) The second list.
  *
  * Returns:
  *
- *   (list boolean)
+ *   (array boolean)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -4532,7 +5300,7 @@ afw_function_definition_is_in_boolean;
  * ```
  *   function is_in<boolean>(
  *       value: boolean,
- *       list: (list boolean)
+ *       array: (array boolean)
  *   ): boolean;
  * ```
  *
@@ -4540,7 +5308,7 @@ afw_function_definition_is_in_boolean;
  *
  *   value - (boolean)
  *
- *   list - (list boolean)
+ *   array - (array boolean)
  *
  * Returns:
  *
@@ -4727,13 +5495,13 @@ afw_function_definition_one_and_only_boolean;
  *
  * ```
  *   function one_and_only<boolean>(
- *       list: (list list)
+ *       array: (array array)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -4766,16 +5534,16 @@ afw_function_definition_set_equals_boolean;
  *
  * ```
  *   function set_equals<boolean>(
- *       list1: (list boolean),
- *       list2: (list boolean)
+ *       list1: (array boolean),
+ *       list2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list boolean)
+ *   list1 - (array boolean)
  *
- *   list2 - (list boolean)
+ *   list2 - (array boolean)
  *
  * Returns:
  *
@@ -4804,16 +5572,16 @@ afw_function_definition_subset_boolean;
  *
  * ```
  *   function subset<boolean>(
- *       list1: (list boolean),
- *       list2: (list boolean)
+ *       list1: (array boolean),
+ *       list2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list boolean) The first list.
+ *   list1 - (array boolean) The first list.
  *
- *   list2 - (list boolean) The second list.
+ *   list2 - (array boolean) The second list.
  *
  * Returns:
  *
@@ -4877,19 +5645,19 @@ afw_function_definition_union_boolean;
  *
  * ```
  *   function union<boolean>(
- *       lists_1: (list boolean),
- *       lists_2: (list boolean),
- *       ...lists_rest: (list of (list boolean))
- *   ): (list boolean);
+ *       lists_1: (array boolean),
+ *       lists_2: (array boolean),
+ *       ...lists_rest: (list of (array boolean))
+ *   ): (array boolean);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list boolean) Two or more lists.
+ *   lists - (2 or more array boolean) Two or more lists.
  *
  * Returns:
  *
- *   (list boolean)
+ *   (array boolean)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -4963,14 +5731,14 @@ afw_function_definition_compile_expression_tuple;
  *
  * ```
  *   function compile_expression_tuple(
- *       expression_tuple: list,
+ *       expression_tuple: array,
  *       listing?: any
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   expression_tuple - (list) expression tuple to compile.
+ *   expression_tuple - (array) expression tuple to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression tuple value.
@@ -5893,16 +6661,16 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *
  * ```
  *   function at_least_one_member_of<dateTime>(
- *       list1: (list dateTime),
- *       list2: (list dateTime)
+ *       list1: (array dateTime),
+ *       list2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dateTime) The first list.
+ *   list1 - (array dateTime) The first list.
  *
- *   list2 - (list dateTime) The second list.
+ *   list2 - (array dateTime) The second list.
  *
  * Returns:
  *
@@ -5930,17 +6698,17 @@ afw_function_definition_bag_dateTime;
  *
  * ```
  *   function bag<dateTime>(
- *       ...values: (list of (list dateTime))
- *   ): (list dateTime);
+ *       ...values: (list of (array dateTime))
+ *   ): (array dateTime);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list dateTime)
+ *   values - (0 or more array dateTime)
  *
  * Returns:
  *
- *   (list dateTime)
+ *   (array dateTime)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -5964,13 +6732,13 @@ afw_function_definition_bag_size_dateTime;
  *
  * ```
  *   function bag_size<dateTime>(
- *       value: (list dateTime)
+ *       value: (array dateTime)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list dateTime)
+ *   value - (array dateTime)
  *
  * Returns:
  *
@@ -6201,20 +6969,20 @@ afw_function_definition_intersection_dateTime;
  *
  * ```
  *   function intersection<dateTime>(
- *       list1: (list dateTime),
- *       list2: (list dateTime)
- *   ): (list dateTime);
+ *       list1: (array dateTime),
+ *       list2: (array dateTime)
+ *   ): (array dateTime);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dateTime) The first list.
+ *   list1 - (array dateTime) The first list.
  *
- *   list2 - (list dateTime) The second list.
+ *   list2 - (array dateTime) The second list.
  *
  * Returns:
  *
- *   (list dateTime)
+ *   (array dateTime)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -6274,7 +7042,7 @@ afw_function_definition_is_in_dateTime;
  * ```
  *   function is_in<dateTime>(
  *       value: dateTime,
- *       list: (list dateTime)
+ *       array: (array dateTime)
  *   ): boolean;
  * ```
  *
@@ -6282,7 +7050,7 @@ afw_function_definition_is_in_dateTime;
  *
  *   value - (dateTime)
  *
- *   list - (list dateTime)
+ *   array - (array dateTime)
  *
  * Returns:
  *
@@ -6552,13 +7320,13 @@ afw_function_definition_one_and_only_dateTime;
  *
  * ```
  *   function one_and_only<dateTime>(
- *       list: (list list)
+ *       array: (array array)
  *   ): dateTime;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -6591,16 +7359,16 @@ afw_function_definition_set_equals_dateTime;
  *
  * ```
  *   function set_equals<dateTime>(
- *       list1: (list dateTime),
- *       list2: (list dateTime)
+ *       list1: (array dateTime),
+ *       list2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dateTime)
+ *   list1 - (array dateTime)
  *
- *   list2 - (list dateTime)
+ *   list2 - (array dateTime)
  *
  * Returns:
  *
@@ -6629,16 +7397,16 @@ afw_function_definition_subset_dateTime;
  *
  * ```
  *   function subset<dateTime>(
- *       list1: (list dateTime),
- *       list2: (list dateTime)
+ *       list1: (array dateTime),
+ *       list2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dateTime) The first list.
+ *   list1 - (array dateTime) The first list.
  *
- *   list2 - (list dateTime) The second list.
+ *   list2 - (array dateTime) The second list.
  *
  * Returns:
  *
@@ -6776,19 +7544,19 @@ afw_function_definition_union_dateTime;
  *
  * ```
  *   function union<dateTime>(
- *       lists_1: (list dateTime),
- *       lists_2: (list dateTime),
- *       ...lists_rest: (list of (list dateTime))
- *   ): (list dateTime);
+ *       lists_1: (array dateTime),
+ *       lists_2: (array dateTime),
+ *       ...lists_rest: (list of (array dateTime))
+ *   ): (array dateTime);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list dateTime) Two or more lists.
+ *   lists - (2 or more array dateTime) Two or more lists.
  *
  * Returns:
  *
- *   (list dateTime)
+ *   (array dateTime)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -6858,16 +7626,16 @@ afw_function_definition_at_least_one_member_of_date;
  *
  * ```
  *   function at_least_one_member_of<date>(
- *       list1: (list date),
- *       list2: (list date)
+ *       list1: (array date),
+ *       list2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list date) The first list.
+ *   list1 - (array date) The first list.
  *
- *   list2 - (list date) The second list.
+ *   list2 - (array date) The second list.
  *
  * Returns:
  *
@@ -6895,17 +7663,17 @@ afw_function_definition_bag_date;
  *
  * ```
  *   function bag<date>(
- *       ...values: (list of (list date))
- *   ): (list date);
+ *       ...values: (list of (array date))
+ *   ): (array date);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list date)
+ *   values - (0 or more array date)
  *
  * Returns:
  *
- *   (list date)
+ *   (array date)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -6929,13 +7697,13 @@ afw_function_definition_bag_size_date;
  *
  * ```
  *   function bag_size<date>(
- *       value: (list date)
+ *       value: (array date)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list date)
+ *   value - (array date)
  *
  * Returns:
  *
@@ -7166,20 +7934,20 @@ afw_function_definition_intersection_date;
  *
  * ```
  *   function intersection<date>(
- *       list1: (list date),
- *       list2: (list date)
- *   ): (list date);
+ *       list1: (array date),
+ *       list2: (array date)
+ *   ): (array date);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list date) The first list.
+ *   list1 - (array date) The first list.
  *
- *   list2 - (list date) The second list.
+ *   list2 - (array date) The second list.
  *
  * Returns:
  *
- *   (list date)
+ *   (array date)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -7239,7 +8007,7 @@ afw_function_definition_is_in_date;
  * ```
  *   function is_in<date>(
  *       value: date,
- *       list: (list date)
+ *       array: (array date)
  *   ): boolean;
  * ```
  *
@@ -7247,7 +8015,7 @@ afw_function_definition_is_in_date;
  *
  *   value - (date)
  *
- *   list - (list date)
+ *   array - (array date)
  *
  * Returns:
  *
@@ -7515,13 +8283,13 @@ afw_function_definition_one_and_only_date;
  *
  * ```
  *   function one_and_only<date>(
- *       list: (list list)
+ *       array: (array array)
  *   ): date;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -7554,16 +8322,16 @@ afw_function_definition_set_equals_date;
  *
  * ```
  *   function set_equals<date>(
- *       list1: (list date),
- *       list2: (list date)
+ *       list1: (array date),
+ *       list2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list date)
+ *   list1 - (array date)
  *
- *   list2 - (list date)
+ *   list2 - (array date)
  *
  * Returns:
  *
@@ -7592,16 +8360,16 @@ afw_function_definition_subset_date;
  *
  * ```
  *   function subset<date>(
- *       list1: (list date),
- *       list2: (list date)
+ *       list1: (array date),
+ *       list2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list date) The first list.
+ *   list1 - (array date) The first list.
  *
- *   list2 - (list date) The second list.
+ *   list2 - (array date) The second list.
  *
  * Returns:
  *
@@ -7701,19 +8469,19 @@ afw_function_definition_union_date;
  *
  * ```
  *   function union<date>(
- *       lists_1: (list date),
- *       lists_2: (list date),
- *       ...lists_rest: (list of (list date))
- *   ): (list date);
+ *       lists_1: (array date),
+ *       lists_2: (array date),
+ *       ...lists_rest: (list of (array date))
+ *   ): (array date);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list date) Two or more lists.
+ *   lists - (2 or more array date) Two or more lists.
  *
  * Returns:
  *
- *   (list date)
+ *   (array date)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -7748,16 +8516,16 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *
  * ```
  *   function at_least_one_member_of<dayTimeDuration>(
- *       list1: (list dayTimeDuration),
- *       list2: (list dayTimeDuration)
+ *       list1: (array dayTimeDuration),
+ *       list2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first list.
  *
- *   list2 - (list dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second list.
  *
  * Returns:
  *
@@ -7785,17 +8553,17 @@ afw_function_definition_bag_dayTimeDuration;
  *
  * ```
  *   function bag<dayTimeDuration>(
- *       ...values: (list of (list dayTimeDuration))
- *   ): (list dayTimeDuration);
+ *       ...values: (list of (array dayTimeDuration))
+ *   ): (array dayTimeDuration);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list dayTimeDuration)
+ *   values - (0 or more array dayTimeDuration)
  *
  * Returns:
  *
- *   (list dayTimeDuration)
+ *   (array dayTimeDuration)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -7819,13 +8587,13 @@ afw_function_definition_bag_size_dayTimeDuration;
  *
  * ```
  *   function bag_size<dayTimeDuration>(
- *       value: (list dayTimeDuration)
+ *       value: (array dayTimeDuration)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list dayTimeDuration)
+ *   value - (array dayTimeDuration)
  *
  * Returns:
  *
@@ -8052,20 +8820,20 @@ afw_function_definition_intersection_dayTimeDuration;
  *
  * ```
  *   function intersection<dayTimeDuration>(
- *       list1: (list dayTimeDuration),
- *       list2: (list dayTimeDuration)
- *   ): (list dayTimeDuration);
+ *       list1: (array dayTimeDuration),
+ *       list2: (array dayTimeDuration)
+ *   ): (array dayTimeDuration);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first list.
  *
- *   list2 - (list dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second list.
  *
  * Returns:
  *
- *   (list dayTimeDuration)
+ *   (array dayTimeDuration)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -8126,7 +8894,7 @@ afw_function_definition_is_in_dayTimeDuration;
  * ```
  *   function is_in<dayTimeDuration>(
  *       value: dayTimeDuration,
- *       list: (list dayTimeDuration)
+ *       array: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
@@ -8134,7 +8902,7 @@ afw_function_definition_is_in_dayTimeDuration;
  *
  *   value - (dayTimeDuration)
  *
- *   list - (list dayTimeDuration)
+ *   array - (array dayTimeDuration)
  *
  * Returns:
  *
@@ -8322,13 +9090,13 @@ afw_function_definition_one_and_only_dayTimeDuration;
  *
  * ```
  *   function one_and_only<dayTimeDuration>(
- *       list: (list list)
+ *       array: (array array)
  *   ): dayTimeDuration;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -8361,16 +9129,16 @@ afw_function_definition_set_equals_dayTimeDuration;
  *
  * ```
  *   function set_equals<dayTimeDuration>(
- *       list1: (list dayTimeDuration),
- *       list2: (list dayTimeDuration)
+ *       list1: (array dayTimeDuration),
+ *       list2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dayTimeDuration)
+ *   list1 - (array dayTimeDuration)
  *
- *   list2 - (list dayTimeDuration)
+ *   list2 - (array dayTimeDuration)
  *
  * Returns:
  *
@@ -8399,16 +9167,16 @@ afw_function_definition_subset_dayTimeDuration;
  *
  * ```
  *   function subset<dayTimeDuration>(
- *       list1: (list dayTimeDuration),
- *       list2: (list dayTimeDuration)
+ *       list1: (array dayTimeDuration),
+ *       list2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first list.
  *
- *   list2 - (list dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second list.
  *
  * Returns:
  *
@@ -8472,19 +9240,19 @@ afw_function_definition_union_dayTimeDuration;
  *
  * ```
  *   function union<dayTimeDuration>(
- *       lists_1: (list dayTimeDuration),
- *       lists_2: (list dayTimeDuration),
- *       ...lists_rest: (list of (list dayTimeDuration))
- *   ): (list dayTimeDuration);
+ *       lists_1: (array dayTimeDuration),
+ *       lists_2: (array dayTimeDuration),
+ *       ...lists_rest: (list of (array dayTimeDuration))
+ *   ): (array dayTimeDuration);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list dayTimeDuration) Two or more lists.
+ *   lists - (2 or more array dayTimeDuration) Two or more lists.
  *
  * Returns:
  *
- *   (list dayTimeDuration)
+ *   (array dayTimeDuration)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -8518,17 +9286,17 @@ afw_function_definition_bag_dnsName;
  *
  * ```
  *   function bag<dnsName>(
- *       ...values: (list of (list dnsName))
- *   ): (list dnsName);
+ *       ...values: (list of (array dnsName))
+ *   ): (array dnsName);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list dnsName)
+ *   values - (0 or more array dnsName)
  *
  * Returns:
  *
- *   (list dnsName)
+ *   (array dnsName)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -8552,13 +9320,13 @@ afw_function_definition_bag_size_dnsName;
  *
  * ```
  *   function bag_size<dnsName>(
- *       value: (list dnsName)
+ *       value: (array dnsName)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list dnsName)
+ *   value - (array dnsName)
  *
  * Returns:
  *
@@ -8818,7 +9586,7 @@ afw_function_definition_is_in_dnsName;
  * ```
  *   function is_in<dnsName>(
  *       value: dnsName,
- *       list: (list dnsName)
+ *       array: (array dnsName)
  *   ): boolean;
  * ```
  *
@@ -8826,7 +9594,7 @@ afw_function_definition_is_in_dnsName;
  *
  *   value - (dnsName)
  *
- *   list - (list dnsName)
+ *   array - (array dnsName)
  *
  * Returns:
  *
@@ -9013,13 +9781,13 @@ afw_function_definition_one_and_only_dnsName;
  *
  * ```
  *   function one_and_only<dnsName>(
- *       list: (list list)
+ *       array: (array array)
  *   ): dnsName;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -9203,16 +9971,16 @@ afw_function_definition_at_least_one_member_of_double;
  *
  * ```
  *   function at_least_one_member_of<double>(
- *       list1: (list double),
- *       list2: (list double)
+ *       list1: (array double),
+ *       list2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list double) The first list.
+ *   list1 - (array double) The first list.
  *
- *   list2 - (list double) The second list.
+ *   list2 - (array double) The second list.
  *
  * Returns:
  *
@@ -9240,17 +10008,17 @@ afw_function_definition_bag_double;
  *
  * ```
  *   function bag<double>(
- *       ...values: (list of (list double))
- *   ): (list double);
+ *       ...values: (list of (array double))
+ *   ): (array double);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list double)
+ *   values - (0 or more array double)
  *
  * Returns:
  *
- *   (list double)
+ *   (array double)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -9274,13 +10042,13 @@ afw_function_definition_bag_size_double;
  *
  * ```
  *   function bag_size<double>(
- *       value: (list double)
+ *       value: (array double)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list double)
+ *   value - (array double)
  *
  * Returns:
  *
@@ -9609,20 +10377,20 @@ afw_function_definition_intersection_double;
  *
  * ```
  *   function intersection<double>(
- *       list1: (list double),
- *       list2: (list double)
- *   ): (list double);
+ *       list1: (array double),
+ *       list2: (array double)
+ *   ): (array double);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list double) The first list.
+ *   list1 - (array double) The first list.
  *
- *   list2 - (list double) The second list.
+ *   list2 - (array double) The second list.
  *
  * Returns:
  *
- *   (list double)
+ *   (array double)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -9749,7 +10517,7 @@ afw_function_definition_is_in_double;
  * ```
  *   function is_in<double>(
  *       value: double,
- *       list: (list double)
+ *       array: (array double)
  *   ): boolean;
  * ```
  *
@@ -9757,7 +10525,7 @@ afw_function_definition_is_in_double;
  *
  *   value - (double)
  *
- *   list - (list double)
+ *   array - (array double)
  *
  * Returns:
  *
@@ -10082,13 +10850,13 @@ afw_function_definition_one_and_only_double;
  *
  * ```
  *   function one_and_only<double>(
- *       list: (list list)
+ *       array: (array array)
  *   ): double;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -10193,16 +10961,16 @@ afw_function_definition_set_equals_double;
  *
  * ```
  *   function set_equals<double>(
- *       list1: (list double),
- *       list2: (list double)
+ *       list1: (array double),
+ *       list2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list double)
+ *   list1 - (array double)
  *
- *   list2 - (list double)
+ *   list2 - (array double)
  *
  * Returns:
  *
@@ -10231,16 +10999,16 @@ afw_function_definition_subset_double;
  *
  * ```
  *   function subset<double>(
- *       list1: (list double),
- *       list2: (list double)
+ *       list1: (array double),
+ *       list2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list double) The first list.
+ *   list1 - (array double) The first list.
  *
- *   list2 - (list double) The second list.
+ *   list2 - (array double) The second list.
  *
  * Returns:
  *
@@ -10374,19 +11142,19 @@ afw_function_definition_union_double;
  *
  * ```
  *   function union<double>(
- *       lists_1: (list double),
- *       lists_2: (list double),
- *       ...lists_rest: (list of (list double))
- *   ): (list double);
+ *       lists_1: (array double),
+ *       lists_2: (array double),
+ *       ...lists_rest: (list of (array double))
+ *   ): (array double);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list double) Two or more lists.
+ *   lists - (2 or more array double) Two or more lists.
  *
  * Returns:
  *
- *   (list double)
+ *   (array double)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -10420,17 +11188,17 @@ afw_function_definition_bag_expression;
  *
  * ```
  *   function bag<expression>(
- *       ...values: (list of (list expression))
- *   ): (list expression);
+ *       ...values: (list of (array expression))
+ *   ): (array expression);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list expression)
+ *   values - (0 or more array expression)
  *
  * Returns:
  *
- *   (list expression)
+ *   (array expression)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -10454,13 +11222,13 @@ afw_function_definition_bag_size_expression;
  *
  * ```
  *   function bag_size<expression>(
- *       value: (list expression)
+ *       value: (array expression)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list expression)
+ *   value - (array expression)
  *
  * Returns:
  *
@@ -11007,17 +11775,17 @@ afw_function_definition_bag_function;
  *
  * ```
  *   function bag<function>(
- *       ...values: (list of (list function))
- *   ): (list function);
+ *       ...values: (list of (array function))
+ *   ): (array function);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list function)
+ *   values - (0 or more array function)
  *
  * Returns:
  *
- *   (list function)
+ *   (array function)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -11041,13 +11809,13 @@ afw_function_definition_bag_size_function;
  *
  * ```
  *   function bag_size<function>(
- *       value: (list function)
+ *       value: (array function)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list function)
+ *   value - (array function)
  *
  * Returns:
  *
@@ -11475,16 +12243,16 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *
  * ```
  *   function at_least_one_member_of<hexBinary>(
- *       list1: (list hexBinary),
- *       list2: (list hexBinary)
+ *       list1: (array hexBinary),
+ *       list2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list hexBinary) The first list.
+ *   list1 - (array hexBinary) The first list.
  *
- *   list2 - (list hexBinary) The second list.
+ *   list2 - (array hexBinary) The second list.
  *
  * Returns:
  *
@@ -11512,17 +12280,17 @@ afw_function_definition_bag_hexBinary;
  *
  * ```
  *   function bag<hexBinary>(
- *       ...values: (list of (list hexBinary))
- *   ): (list hexBinary);
+ *       ...values: (list of (array hexBinary))
+ *   ): (array hexBinary);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list hexBinary)
+ *   values - (0 or more array hexBinary)
  *
  * Returns:
  *
- *   (list hexBinary)
+ *   (array hexBinary)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -11546,13 +12314,13 @@ afw_function_definition_bag_size_hexBinary;
  *
  * ```
  *   function bag_size<hexBinary>(
- *       value: (list hexBinary)
+ *       value: (array hexBinary)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list hexBinary)
+ *   value - (array hexBinary)
  *
  * Returns:
  *
@@ -11811,20 +12579,20 @@ afw_function_definition_intersection_hexBinary;
  *
  * ```
  *   function intersection<hexBinary>(
- *       list1: (list hexBinary),
- *       list2: (list hexBinary)
- *   ): (list hexBinary);
+ *       list1: (array hexBinary),
+ *       list2: (array hexBinary)
+ *   ): (array hexBinary);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list hexBinary) The first list.
+ *   list1 - (array hexBinary) The first list.
  *
- *   list2 - (list hexBinary) The second list.
+ *   list2 - (array hexBinary) The second list.
  *
  * Returns:
  *
- *   (list hexBinary)
+ *   (array hexBinary)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -11884,7 +12652,7 @@ afw_function_definition_is_in_hexBinary;
  * ```
  *   function is_in<hexBinary>(
  *       value: hexBinary,
- *       list: (list hexBinary)
+ *       array: (array hexBinary)
  *   ): boolean;
  * ```
  *
@@ -11892,7 +12660,7 @@ afw_function_definition_is_in_hexBinary;
  *
  *   value - (hexBinary)
  *
- *   list - (list hexBinary)
+ *   array - (array hexBinary)
  *
  * Returns:
  *
@@ -12080,13 +12848,13 @@ afw_function_definition_one_and_only_hexBinary;
  *
  * ```
  *   function one_and_only<hexBinary>(
- *       list: (list list)
+ *       array: (array array)
  *   ): hexBinary;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -12119,16 +12887,16 @@ afw_function_definition_set_equals_hexBinary;
  *
  * ```
  *   function set_equals<hexBinary>(
- *       list1: (list hexBinary),
- *       list2: (list hexBinary)
+ *       list1: (array hexBinary),
+ *       list2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list hexBinary)
+ *   list1 - (array hexBinary)
  *
- *   list2 - (list hexBinary)
+ *   list2 - (array hexBinary)
  *
  * Returns:
  *
@@ -12157,16 +12925,16 @@ afw_function_definition_subset_hexBinary;
  *
  * ```
  *   function subset<hexBinary>(
- *       list1: (list hexBinary),
- *       list2: (list hexBinary)
+ *       list1: (array hexBinary),
+ *       list2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list hexBinary) The first list.
+ *   list1 - (array hexBinary) The first list.
  *
- *   list2 - (list hexBinary) The second list.
+ *   list2 - (array hexBinary) The second list.
  *
  * Returns:
  *
@@ -12230,19 +12998,19 @@ afw_function_definition_union_hexBinary;
  *
  * ```
  *   function union<hexBinary>(
- *       lists_1: (list hexBinary),
- *       lists_2: (list hexBinary),
- *       ...lists_rest: (list of (list hexBinary))
- *   ): (list hexBinary);
+ *       lists_1: (array hexBinary),
+ *       lists_2: (array hexBinary),
+ *       ...lists_rest: (list of (array hexBinary))
+ *   ): (array hexBinary);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list hexBinary) Two or more lists.
+ *   lists - (2 or more array hexBinary) Two or more lists.
  *
  * Returns:
  *
- *   (list hexBinary)
+ *   (array hexBinary)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -12252,9 +13020,9 @@ afw_function_definition_union_hexBinary;
 /** @} */
 
 
-/** @addtogroup afw_functions_higher_order_list higher_order_list functions
+/** @addtogroup afw_functions_higher_order_array higher_order_array functions
  *
- * higher_order_list adaptive functions.
+ * higher_order_array adaptive functions.
  *
  * @{
  */
@@ -12319,8 +13087,8 @@ afw_function_definition_all_of_all;
  * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
@@ -12330,9 +13098,9 @@ afw_function_definition_all_of_all;
  *       predicate is passed two parameters, the first is a value from list1
  *       and the second is a value from list2.
  *
- *   list1 - (list)
+ *   list1 - (array)
  *
- *   list2 - (list)
+ *   list2 - (array)
  *
  * Returns:
  *
@@ -12362,8 +13130,8 @@ afw_function_definition_all_of_any;
  * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
@@ -12373,9 +13141,9 @@ afw_function_definition_all_of_any;
  *       is passed two parameters, the first is a value from list1 and the
  *       second is a value from list2.
  *
- *   list1 - (list)
+ *   list1 - (array)
  *
- *   list2 - (list)
+ *   list2 - (array)
  *
  * Returns:
  *
@@ -12445,8 +13213,8 @@ afw_function_definition_any_of_all;
  * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
@@ -12456,9 +13224,9 @@ afw_function_definition_any_of_all;
  *       passed two parameters, the first is a value from list1 and the second
  *       is a value from list2.
  *
- *   list1 - (list)
+ *   list1 - (array)
  *
- *   list2 - (list)
+ *   list2 - (array)
  *
  * Returns:
  *
@@ -12487,8 +13255,8 @@ afw_function_definition_any_of_any;
  * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
@@ -12498,9 +13266,9 @@ afw_function_definition_any_of_any;
  *       is passed two parameters, the first is a value from list1 and the
  *       second is a value from list2.
  *
- *   list1 - (list)
+ *   list1 - (array)
  *
- *   list2 - (list)
+ *   list2 - (array)
  *
  * Returns:
  *
@@ -12531,7 +13299,7 @@ afw_function_definition_filter;
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
  *       ...values_rest: (list of any)
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -12546,7 +13314,7 @@ afw_function_definition_filter;
  *
  * Returns:
  *
- *   (list) This is the resulting filtered list.
+ *   (array) This is the resulting filtered list.
  */
 const afw_value_t *
 afw_function_execute_filter(
@@ -12614,7 +13382,7 @@ afw_function_definition_map;
  *       functor: (function (... values: any): any),
  *       values_1: any,
  *       ...values_rest: (list of any)
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -12627,7 +13395,7 @@ afw_function_definition_map;
  *
  * Returns:
  *
- *   (list)
+ *   (array)
  */
 const afw_value_t *
 afw_function_execute_map(
@@ -12656,7 +13424,7 @@ afw_function_definition_reduce;
  *   function reduce(
  *       functor: (function (accumulator: any, value: any): any),
  *       accumulator: any,
- *       list: list
+ *       array: array
  *   ): any;
  * ```
  *
@@ -12670,7 +13438,7 @@ afw_function_definition_reduce;
  *       to functor(). Normally, the dataType of accumulator will be the
  *       dataTape for the reduce() return value, but this is not required.
  *
- *   list - (list) This is a list to be reduced.
+ *   array - (array) This is a list to be reduced.
  *
  * Returns:
  *
@@ -12703,8 +13471,8 @@ afw_function_definition_sort;
  * ```
  *   function sort(
  *       compareFunction: (function (value1: any, value2: any): integer),
- *       list: list
- *   ): list;
+ *       array: array
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -12712,11 +13480,11 @@ afw_function_definition_sort;
  *   compareFunction - (function (value1: any, value2: any): integer) This
  *       function is called with two value from list.
  *
- *   list - (list) This is the list to sort.
+ *   array - (array) This is the list to sort.
  *
  * Returns:
  *
- *   (list) This the the resulting sorted list.
+ *   (array) This the the resulting sorted list.
  */
 const afw_value_t *
 afw_function_execute_sort(
@@ -12749,17 +13517,17 @@ afw_function_definition_bag_hybrid;
  *
  * ```
  *   function bag<hybrid>(
- *       ...values: (list of (list hybrid))
- *   ): (list hybrid);
+ *       ...values: (list of (array hybrid))
+ *   ): (array hybrid);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list hybrid)
+ *   values - (0 or more array hybrid)
  *
  * Returns:
  *
- *   (list hybrid)
+ *   (array hybrid)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -12783,13 +13551,13 @@ afw_function_definition_bag_size_hybrid;
  *
  * ```
  *   function bag_size<hybrid>(
- *       value: (list hybrid)
+ *       value: (array hybrid)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list hybrid)
+ *   value - (array hybrid)
  *
  * Returns:
  *
@@ -13335,17 +14103,17 @@ afw_function_definition_bag_ia5String;
  *
  * ```
  *   function bag<ia5String>(
- *       ...values: (list of (list ia5String))
- *   ): (list ia5String);
+ *       ...values: (list of (array ia5String))
+ *   ): (array ia5String);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list ia5String)
+ *   values - (0 or more array ia5String)
  *
  * Returns:
  *
- *   (list ia5String)
+ *   (array ia5String)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -13369,13 +14137,13 @@ afw_function_definition_bag_size_ia5String;
  *
  * ```
  *   function bag_size<ia5String>(
- *       value: (list ia5String)
+ *       value: (array ia5String)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list ia5String)
+ *   value - (array ia5String)
  *
  * Returns:
  *
@@ -14045,16 +14813,16 @@ afw_function_definition_at_least_one_member_of_integer;
  *
  * ```
  *   function at_least_one_member_of<integer>(
- *       list1: (list integer),
- *       list2: (list integer)
+ *       list1: (array integer),
+ *       list2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list integer) The first list.
+ *   list1 - (array integer) The first list.
  *
- *   list2 - (list integer) The second list.
+ *   list2 - (array integer) The second list.
  *
  * Returns:
  *
@@ -14082,17 +14850,17 @@ afw_function_definition_bag_integer;
  *
  * ```
  *   function bag<integer>(
- *       ...values: (list of (list integer))
- *   ): (list integer);
+ *       ...values: (list of (array integer))
+ *   ): (array integer);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list integer)
+ *   values - (0 or more array integer)
  *
  * Returns:
  *
- *   (list integer)
+ *   (array integer)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -14116,13 +14884,13 @@ afw_function_definition_bag_size_integer;
  *
  * ```
  *   function bag_size<integer>(
- *       value: (list integer)
+ *       value: (array integer)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list integer)
+ *   value - (array integer)
  *
  * Returns:
  *
@@ -14383,20 +15151,20 @@ afw_function_definition_intersection_integer;
  *
  * ```
  *   function intersection<integer>(
- *       list1: (list integer),
- *       list2: (list integer)
- *   ): (list integer);
+ *       list1: (array integer),
+ *       list2: (array integer)
+ *   ): (array integer);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list integer) The first list.
+ *   list1 - (array integer) The first list.
  *
- *   list2 - (list integer) The second list.
+ *   list2 - (array integer) The second list.
  *
  * Returns:
  *
- *   (list integer)
+ *   (array integer)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -14422,7 +15190,7 @@ afw_function_definition_is_in_integer;
  * ```
  *   function is_in<integer>(
  *       value: integer,
- *       list: (list integer)
+ *       array: (array integer)
  *   ): boolean;
  * ```
  *
@@ -14430,7 +15198,7 @@ afw_function_definition_is_in_integer;
  *
  *   value - (integer)
  *
- *   list - (list integer)
+ *   array - (array integer)
  *
  * Returns:
  *
@@ -14825,13 +15593,13 @@ afw_function_definition_one_and_only_integer;
  *
  * ```
  *   function one_and_only<integer>(
- *       list: (list list)
+ *       array: (array array)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -14864,16 +15632,16 @@ afw_function_definition_set_equals_integer;
  *
  * ```
  *   function set_equals<integer>(
- *       list1: (list integer),
- *       list2: (list integer)
+ *       list1: (array integer),
+ *       list2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list integer)
+ *   list1 - (array integer)
  *
- *   list2 - (list integer)
+ *   list2 - (array integer)
  *
  * Returns:
  *
@@ -14902,16 +15670,16 @@ afw_function_definition_subset_integer;
  *
  * ```
  *   function subset<integer>(
- *       list1: (list integer),
- *       list2: (list integer)
+ *       list1: (array integer),
+ *       list2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list integer) The first list.
+ *   list1 - (array integer) The first list.
  *
- *   list2 - (list integer) The second list.
+ *   list2 - (array integer) The second list.
  *
  * Returns:
  *
@@ -15049,19 +15817,19 @@ afw_function_definition_union_integer;
  *
  * ```
  *   function union<integer>(
- *       lists_1: (list integer),
- *       lists_2: (list integer),
- *       ...lists_rest: (list of (list integer))
- *   ): (list integer);
+ *       lists_1: (array integer),
+ *       lists_2: (array integer),
+ *       ...lists_rest: (list of (array integer))
+ *   ): (array integer);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list integer) Two or more lists.
+ *   lists - (2 or more array integer) Two or more lists.
  *
  * Returns:
  *
- *   (list integer)
+ *   (array integer)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -15095,17 +15863,17 @@ afw_function_definition_bag_ipAddress;
  *
  * ```
  *   function bag<ipAddress>(
- *       ...values: (list of (list ipAddress))
- *   ): (list ipAddress);
+ *       ...values: (list of (array ipAddress))
+ *   ): (array ipAddress);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list ipAddress)
+ *   values - (0 or more array ipAddress)
  *
  * Returns:
  *
- *   (list ipAddress)
+ *   (array ipAddress)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -15129,13 +15897,13 @@ afw_function_definition_bag_size_ipAddress;
  *
  * ```
  *   function bag_size<ipAddress>(
- *       value: (list ipAddress)
+ *       value: (array ipAddress)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list ipAddress)
+ *   value - (array ipAddress)
  *
  * Returns:
  *
@@ -15361,7 +16129,7 @@ afw_function_definition_is_in_ipAddress;
  * ```
  *   function is_in<ipAddress>(
  *       value: ipAddress,
- *       list: (list ipAddress)
+ *       array: (array ipAddress)
  *   ): boolean;
  * ```
  *
@@ -15369,7 +16137,7 @@ afw_function_definition_is_in_ipAddress;
  *
  *   value - (ipAddress)
  *
- *   list - (list ipAddress)
+ *   array - (array ipAddress)
  *
  * Returns:
  *
@@ -15591,13 +16359,13 @@ afw_function_definition_one_and_only_ipAddress;
  *
  * ```
  *   function one_and_only<ipAddress>(
- *       list: (list list)
+ *       array: (array array)
  *   ): ipAddress;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -16041,774 +16809,6 @@ afw_function_definition_journal_mark_consumed;
 const afw_value_t *
 afw_function_execute_journal_mark_consumed(
     afw_function_execute_t *x);
-
-/** @} */
-
-
-/** @addtogroup afw_functions_list list functions
- *
- * list adaptive functions.
- *
- * @{
- */
-
-/** @brief Function definition add_entries */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_add_entries;
-
-/**
- * @brief Adaptive Function `add_entries`
- * @param x function execute parameter.
- *
- * Add the entries of one or more lists to another.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function add_entries(
- *       target: list,
- *       source_1: list,
- *       ...source_rest: (list of list)
- *   ): list;
- * ```
- *
- * Parameters:
- *
- *   target - (list) Target list. This list must not be immutable.
- *
- *   source - (1 or more list) Source list(s).
- *
- * Returns:
- *
- *   (list) The modified target list.
- */
-const afw_value_t *
-afw_function_execute_add_entries(
-    afw_function_execute_t *x);
-
-/** @brief Function definition bag<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_list;
-
-/**
- * @brief Adaptive Function `bag<list>`
- * @param x function execute parameter.
- *
- * Takes any number of list values and returns a list of list.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<list>(
- *       ...values: (list of (list list))
- *   ): (list list);
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more list list)
- *
- * Returns:
- *
- *   (list list)
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_size_list;
-
-/**
- * @brief Adaptive Function `bag_size<list>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in list.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<list>(
- *       value: (list list)
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (list list)
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition clone<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_clone_list;
-
-/**
- * @brief Adaptive Function `clone<list>`
- * @param x function execute parameter.
- *
- * Deep clone a list value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function clone<list>(
- *       value: list
- *   ): list;
- * ```
- *
- * Parameters:
- *
- *   value - (list) The list value to clone.
- *
- * Returns:
- *
- *   (list) The cloned list value.
- *
- * Implemented by afw_function_execute_clone()
- *
- * __________
- */
-
-/** @brief Function definition eq<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eq_list;
-
-/**
- * @brief Adaptive Function `eq<list>`
- * @param x function execute parameter.
- *
- * Determine if list arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eq<list>(
- *       arg1: list,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_eq()
- *
- * __________
- */
-
-/** @brief Function definition eqx<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eqx_list;
-
-/**
- * @brief Adaptive Function `eqx<list>`
- * @param x function execute parameter.
- *
- * Determine if for list arg1 is equal to the value and data type of arg2 then
- * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
- * converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eqx<list>(
- *       arg1: list,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_eqx()
- *
- * __________
- */
-
-/** @brief Function definition ge<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ge_list;
-
-/**
- * @brief Adaptive Function `ge<list>`
- * @param x function execute parameter.
- *
- * Checks for list arg1 is greater than or equal to list arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<list>(
- *       arg1: list,
- *       arg2: list
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (list)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_gt_list;
-
-/**
- * @brief Adaptive Function `gt<list>`
- * @param x function execute parameter.
- *
- * Checks for list arg1 is greater than list arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<list>(
- *       arg1: list,
- *       arg2: list
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (list)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
-/** @brief Function definition includes<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_includes_list;
-
-/**
- * @brief Adaptive Function `includes<list>`
- * @param x function execute parameter.
- *
- * Checks whether or not a list contains any value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function includes<list>(
- *       list: list,
- *       searchElement: any,
- *       fromIndex?: integer
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   list - (``<Type>``) The list to search.
- *
- *   searchElement - (any dataType) Element to find.
- *
- *   fromIndex - (optional integer) Index in the list to start search.
- *
- * Returns:
- *
- *   (boolean) Indicates if the element is found in list.
- *
- * Implemented by afw_function_execute_includes_list()
- *
- * __________
- */
-
-/** @brief Function definition is<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_is_list;
-
-/**
- * @brief Adaptive Function `is<list>`
- * @param x function execute parameter.
- *
- * Checks whether value is dataType list and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function is<list>(
- *       value: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) Value to check.
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_is()
- *
- * __________
- */
-
-/** @brief Function definition join */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_join;
-
-/**
- * @brief Adaptive Function `join`
- * @param x function execute parameter.
- *
- * Concatenate the string values of the elements of a list with a separator.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function join(
- *       value: list,
- *       separator?: string
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   value - (list) A list of values (statements) of any data type.
- *
- *   separator - (optional string) The separator to use. If not specified, a
- *       comma (,) is used.
- *
- * Returns:
- *
- *   (string) Joined list values.
- */
-const afw_value_t *
-afw_function_execute_join(
-    afw_function_execute_t *x);
-
-/** @brief Function definition le<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_le_list;
-
-/**
- * @brief Adaptive Function `le<list>`
- * @param x function execute parameter.
- *
- * Checks for list arg1 is less than or equal to list arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<list>(
- *       arg1: list,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition length<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_length_list;
-
-/**
- * @brief Adaptive Function `length<list>`
- * @param x function execute parameter.
- *
- * This is a polymorphic function where list can be any of the supported data
- * types. Return the integer number of entries in datatype list or codepoints
- * in others.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function length<list>(
- *       value: list
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (list) Returns the number of entries in a list or code points in
- *       others.
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_length()
- *
- * __________
- */
-
-/** @brief Function definition list */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_list;
-
-/**
- * @brief Adaptive Function `list`
- * @param x function execute parameter.
- *
- * Construct a list with 0 or more elements.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function list(
- *       ...values: (list of any)
- *   ): list;
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more any dataType) A value can refer to any adaptable value
- *       belonging to any data type or a list expression. In the case of a list
- *       expression, indicated by '...' followed by an expression that results
- *       in a list, every element within that list is included in the newly
- *       created list.
- *
- * Returns:
- *
- *   (list) The constructed list.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- */
-const afw_value_t *
-afw_function_execute_list(
-    afw_function_execute_t *x);
-
-/** @brief Function definition lt<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_lt_list;
-
-/**
- * @brief Adaptive Function `lt<list>`
- * @param x function execute parameter.
- *
- * Checks for list arg1 is less that list arg2 and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<list>(
- *       arg1: list,
- *       arg2: list
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (list)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
- *
- * __________
- */
-
-/** @brief Function definition ne<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ne_list;
-
-/**
- * @brief Adaptive Function `ne<list>`
- * @param x function execute parameter.
- *
- * Determine if list arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
- * if you want true to be returned if arg1 and arg2's data type don't match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ne<list>(
- *       arg1: list,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_ne()
- *
- * __________
- */
-
-/** @brief Function definition nex<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nex_list;
-
-/**
- * @brief Adaptive Function `nex<list>`
- * @param x function execute parameter.
- *
- * Determine if for list arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function nex<list>(
- *       arg1: list,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (list)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition reverse */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_reverse;
-
-/**
- * @brief Adaptive Function `reverse`
- * @param x function execute parameter.
- *
- * Reverse the order of the elements in a list. If the list is typed, the
- * resulting list will be the same type.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function reverse(
- *       list: list
- *   ): list;
- * ```
- *
- * Parameters:
- *
- *   list - (list) A list to reverse.
- *
- * Returns:
- *
- *   (list) A list with elements reversed.
- */
-const afw_value_t *
-afw_function_execute_reverse(
-    afw_function_execute_t *x);
-
-/** @brief Function definition slice */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_slice;
-
-/**
- * @brief Adaptive Function `slice`
- * @param x function execute parameter.
- *
- * This function extracts a consecutive slice of values from a list.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function slice(
- *       list: list,
- *       startIndex?: integer,
- *       endIndex?: integer
- *   ): list;
- * ```
- *
- * Parameters:
- *
- *   list - (list) The list to slice.
- *
- *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the list. If not specified,
- *       an index of 0 is assumed.
- *
- *   endIndex - (optional integer) This is the zero based ending index. If
- *       positive, this is one more than the index of the last value to include
- *       in the list. If negative, the index is from the end of the list. If
- *       not specified, the slice is from startIndex up to and including the
- *       end of the list.
- *
- * Returns:
- *
- *   (list) A list containing the selected values. If all of the values are the
- *       same data type, the list will be a list of that data type.
- */
-const afw_value_t *
-afw_function_execute_slice(
-    afw_function_execute_t *x);
-
-/** @brief Function definition to_string<list> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_to_string_list;
-
-/**
- * @brief Adaptive Function `to_string<list>`
- * @param x function execute parameter.
- *
- * Converts list value to string. For list values, the to_string() value for
- * each entry is returned separated with commas.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function to_string<list>(
- *       value: list
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   value - (list) A list value.
- *
- * Returns:
- *
- *   (string) The string representation of the value.
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
 
 /** @} */
 
@@ -17854,7 +17854,7 @@ afw_function_definition_model_default_modify_object_action;
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string,
- *       entries: list,
+ *       entries: array,
  *       modelId?: string,
  *       context?: (object _AdaptiveContextType_)
  *   ): (object _AdaptiveAction_);
@@ -17874,9 +17874,9 @@ afw_function_definition_model_default_modify_object_action;
  *       custom::objectId can be used to access this value in model
  *       expressions.
  *
- *   entries - (list) This is a list of modifications. Variable custom::actions
- *       can be used to access this value in model expressions. Entries are of
- *       the form:
+ *   entries - (array) This is a list of modifications. Variable
+ *       custom::actions can be used to access this value in model expressions.
+ *       Entries are of the form:
  *       
  *           [
  *               'add_value',
@@ -18118,17 +18118,17 @@ afw_function_definition_bag_null;
  *
  * ```
  *   function bag<null>(
- *       ...values: (list of (list null))
- *   ): (list null);
+ *       ...values: (list of (array null))
+ *   ): (array null);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list null)
+ *   values - (0 or more array null)
  *
  * Returns:
  *
- *   (list null)
+ *   (array null)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -18152,13 +18152,13 @@ afw_function_definition_bag_size_null;
  *
  * ```
  *   function bag_size<null>(
- *       value: (list null)
+ *       value: (array null)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list null)
+ *   value - (array null)
  *
  * Returns:
  *
@@ -18303,17 +18303,17 @@ afw_function_definition_bag_objectId;
  *
  * ```
  *   function bag<objectId>(
- *       ...values: (list of (list objectId))
- *   ): (list objectId);
+ *       ...values: (list of (array objectId))
+ *   ): (array objectId);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list objectId)
+ *   values - (0 or more array objectId)
  *
  * Returns:
  *
- *   (list objectId)
+ *   (array objectId)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -18337,13 +18337,13 @@ afw_function_definition_bag_size_objectId;
  *
  * ```
  *   function bag_size<objectId>(
- *       value: (list objectId)
+ *       value: (array objectId)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list objectId)
+ *   value - (array objectId)
  *
  * Returns:
  *
@@ -18805,17 +18805,17 @@ afw_function_definition_bag_objectPath;
  *
  * ```
  *   function bag<objectPath>(
- *       ...values: (list of (list objectPath))
- *   ): (list objectPath);
+ *       ...values: (list of (array objectPath))
+ *   ): (array objectPath);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list objectPath)
+ *   values - (0 or more array objectPath)
  *
  * Returns:
  *
- *   (list objectPath)
+ *   (array objectPath)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -18839,13 +18839,13 @@ afw_function_definition_bag_size_objectPath;
  *
  * ```
  *   function bag_size<objectPath>(
- *       value: (list objectPath)
+ *       value: (array objectPath)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list objectPath)
+ *   value - (array objectPath)
  *
  * Returns:
  *
@@ -19383,17 +19383,17 @@ afw_function_definition_bag_object;
  *
  * ```
  *   function bag<object>(
- *       ...values: (list of (list object))
- *   ): (list object);
+ *       ...values: (list of (array object))
+ *   ): (array object);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list object)
+ *   values - (0 or more array object)
  *
  * Returns:
  *
- *   (list object)
+ *   (array object)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -19417,13 +19417,13 @@ afw_function_definition_bag_size_object;
  *
  * ```
  *   function bag_size<object>(
- *       value: (list object)
+ *       value: (array object)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list object)
+ *   value - (array object)
  *
  * Returns:
  *
@@ -20144,17 +20144,17 @@ afw_function_definition_bag_password;
  *
  * ```
  *   function bag<password>(
- *       ...values: (list of (list password))
- *   ): (list password);
+ *       ...values: (list of (array password))
+ *   ): (array password);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list password)
+ *   values - (0 or more array password)
  *
  * Returns:
  *
- *   (list password)
+ *   (array password)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -20178,13 +20178,13 @@ afw_function_definition_bag_size_password;
  *
  * ```
  *   function bag_size<password>(
- *       value: (list password)
+ *       value: (array password)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list password)
+ *   value - (array password)
  *
  * Returns:
  *
@@ -20815,16 +20815,16 @@ afw_function_definition_at_least_one_member_of;
  *
  * ```
  *   function at_least_one_member_of <dataType>(
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first list.
  *
- *   list2 - (list ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -20852,25 +20852,25 @@ afw_function_definition_bag;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, null, object, objectId, objectPath, password, rfc822Name,
- *   script, string, template, time, x500Name, xpathExpression,
+ *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
  * Declaration:
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (list of list)
- *   ): list;
+ *       ...values: (list of array)
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list ``<Type>``)
+ *   values - (0 or more array ``<Type>``)
  *
  * Returns:
  *
- *   (list ``<Type>``)
+ *   (array ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20894,21 +20894,21 @@ afw_function_definition_bag_size;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, null, object, objectId, objectPath, password, rfc822Name,
- *   script, string, template, time, x500Name, xpathExpression,
+ *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
  * Declaration:
  *
  * ```
  *   function bag_size <dataType>(
- *       value: list
+ *       value: array
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list ``<Type>``)
+ *   value - (array ``<Type>``)
  *
  * Returns:
  *
@@ -20973,7 +20973,7 @@ afw_function_definition_clone;
  *
  * Supported `<dataType>`:
  *
- *   list, object.
+ *   array, object.
  *
  * Declaration:
  *
@@ -21265,7 +21265,7 @@ afw_function_definition_eq;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21358,7 +21358,7 @@ afw_function_definition_eqx;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21490,7 +21490,7 @@ afw_function_definition_ge;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21536,7 +21536,7 @@ afw_function_definition_gt;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21629,7 +21629,7 @@ afw_function_definition_includes;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, list, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -21728,20 +21728,20 @@ afw_function_definition_intersection;
  *
  * ```
  *   function intersection <dataType>(
- *       list1: list,
- *       list2: list
- *   ): list;
+ *       list1: array,
+ *       list2: array
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first list.
  *
- *   list2 - (list ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second list.
  *
  * Returns:
  *
- *   (list ``<Type>``)
+ *   (array ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21765,8 +21765,8 @@ afw_function_definition_is;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, null, object, objectId, objectPath, password, rfc822Name,
- *   script, string, template, time, x500Name, xpathExpression,
+ *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration, unevaluated.
  *
  * Declaration:
@@ -21815,7 +21815,7 @@ afw_function_definition_is_in;
  * ```
  *   function is_in <dataType>(
  *       value: dataType,
- *       list: list
+ *       array: array
  *   ): boolean;
  * ```
  *
@@ -21823,7 +21823,7 @@ afw_function_definition_is_in;
  *
  *   value - (``<Type>``)
  *
- *   list - (list ``<Type>``)
+ *   array - (array ``<Type>``)
  *
  * Returns:
  *
@@ -21898,7 +21898,7 @@ afw_function_definition_le;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21943,7 +21943,7 @@ afw_function_definition_length;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, list, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -21985,7 +21985,7 @@ afw_function_definition_lt;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22235,7 +22235,7 @@ afw_function_definition_ne;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, regexp,
+ *   ipAddress, array, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22324,7 +22324,7 @@ afw_function_definition_nex;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, list, object, objectId, objectPath, password, rfc822Name,
+ *   ipAddress, array, object, objectId, objectPath, password, rfc822Name,
  *   regexp, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22452,13 +22452,13 @@ afw_function_definition_one_and_only;
  *
  * ```
  *   function one_and_only <dataType>(
- *       list: (list list)
+ *       array: (array array)
  *   ): dataType;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -22800,16 +22800,16 @@ afw_function_definition_set_equals;
  *
  * ```
  *   function set_equals <dataType>(
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list ``<Type>``)
+ *   list1 - (array ``<Type>``)
  *
- *   list2 - (list ``<Type>``)
+ *   list2 - (array ``<Type>``)
  *
  * Returns:
  *
@@ -22844,7 +22844,7 @@ afw_function_definition_split;
  *       value: dataType,
  *       separator?: string,
  *       limit?: integer
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -22860,7 +22860,7 @@ afw_function_definition_split;
  *
  * Returns:
  *
- *   (list) An list of strings.
+ *   (array) An list of strings.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22932,16 +22932,16 @@ afw_function_definition_subset;
  *
  * ```
  *   function subset <dataType>(
- *       list1: list,
- *       list2: list
+ *       list1: array,
+ *       list2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first list.
  *
- *   list2 - (list ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second list.
  *
  * Returns:
  *
@@ -23562,7 +23562,7 @@ afw_function_definition_to_string;
  *
  *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
  *   double, expression, hexBinary, hybrid, ia5String, integer, ipAddress,
- *   list, null, object, objectId, objectPath, password, rfc822Name, string,
+ *   array, null, object, objectId, objectPath, password, rfc822Name, string,
  *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
@@ -23735,19 +23735,19 @@ afw_function_definition_union;
  *
  * ```
  *   function union <dataType>(
- *       lists_1: list,
- *       lists_2: list,
- *       ...lists_rest: (list of list)
- *   ): list;
+ *       lists_1: array,
+ *       lists_2: array,
+ *       ...lists_rest: (list of array)
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list ``<Type>``) Two or more lists.
+ *   lists - (2 or more array ``<Type>``) Two or more lists.
  *
  * Returns:
  *
- *   (list ``<Type>``)
+ *   (array ``<Type>``)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24409,16 +24409,16 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *
  * ```
  *   function at_least_one_member_of<rfc822Name>(
- *       list1: (list rfc822Name),
- *       list2: (list rfc822Name)
+ *       list1: (array rfc822Name),
+ *       list2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first list.
  *
- *   list2 - (list rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second list.
  *
  * Returns:
  *
@@ -24446,17 +24446,17 @@ afw_function_definition_bag_rfc822Name;
  *
  * ```
  *   function bag<rfc822Name>(
- *       ...values: (list of (list rfc822Name))
- *   ): (list rfc822Name);
+ *       ...values: (list of (array rfc822Name))
+ *   ): (array rfc822Name);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list rfc822Name)
+ *   values - (0 or more array rfc822Name)
  *
  * Returns:
  *
- *   (list rfc822Name)
+ *   (array rfc822Name)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -24480,13 +24480,13 @@ afw_function_definition_bag_size_rfc822Name;
  *
  * ```
  *   function bag_size<rfc822Name>(
- *       value: (list rfc822Name)
+ *       value: (array rfc822Name)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list rfc822Name)
+ *   value - (array rfc822Name)
  *
  * Returns:
  *
@@ -24673,20 +24673,20 @@ afw_function_definition_intersection_rfc822Name;
  *
  * ```
  *   function intersection<rfc822Name>(
- *       list1: (list rfc822Name),
- *       list2: (list rfc822Name)
- *   ): (list rfc822Name);
+ *       list1: (array rfc822Name),
+ *       list2: (array rfc822Name)
+ *   ): (array rfc822Name);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first list.
  *
- *   list2 - (list rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second list.
  *
  * Returns:
  *
- *   (list rfc822Name)
+ *   (array rfc822Name)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -24712,7 +24712,7 @@ afw_function_definition_is_in_rfc822Name;
  * ```
  *   function is_in<rfc822Name>(
  *       value: rfc822Name,
- *       list: (list rfc822Name)
+ *       array: (array rfc822Name)
  *   ): boolean;
  * ```
  *
@@ -24720,7 +24720,7 @@ afw_function_definition_is_in_rfc822Name;
  *
  *   value - (rfc822Name)
  *
- *   list - (list rfc822Name)
+ *   array - (array rfc822Name)
  *
  * Returns:
  *
@@ -24979,13 +24979,13 @@ afw_function_definition_one_and_only_rfc822Name;
  *
  * ```
  *   function one_and_only<rfc822Name>(
- *       list: (list list)
+ *       array: (array array)
  *   ): rfc822Name;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -25094,16 +25094,16 @@ afw_function_definition_set_equals_rfc822Name;
  *
  * ```
  *   function set_equals<rfc822Name>(
- *       list1: (list rfc822Name),
- *       list2: (list rfc822Name)
+ *       list1: (array rfc822Name),
+ *       list2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list rfc822Name)
+ *   list1 - (array rfc822Name)
  *
- *   list2 - (list rfc822Name)
+ *   list2 - (array rfc822Name)
  *
  * Returns:
  *
@@ -25132,16 +25132,16 @@ afw_function_definition_subset_rfc822Name;
  *
  * ```
  *   function subset<rfc822Name>(
- *       list1: (list rfc822Name),
- *       list2: (list rfc822Name)
+ *       list1: (array rfc822Name),
+ *       list2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first list.
  *
- *   list2 - (list rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second list.
  *
  * Returns:
  *
@@ -25205,19 +25205,19 @@ afw_function_definition_union_rfc822Name;
  *
  * ```
  *   function union<rfc822Name>(
- *       lists_1: (list rfc822Name),
- *       lists_2: (list rfc822Name),
- *       ...lists_rest: (list of (list rfc822Name))
- *   ): (list rfc822Name);
+ *       lists_1: (array rfc822Name),
+ *       lists_2: (array rfc822Name),
+ *       ...lists_rest: (list of (array rfc822Name))
+ *   ): (array rfc822Name);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list rfc822Name) Two or more lists.
+ *   lists - (2 or more array rfc822Name) Two or more lists.
  *
  * Returns:
  *
- *   (list rfc822Name)
+ *   (array rfc822Name)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -25290,17 +25290,17 @@ afw_function_definition_bag_script;
  *
  * ```
  *   function bag<script>(
- *       ...values: (list of (list script))
- *   ): (list script);
+ *       ...values: (list of (array script))
+ *   ): (array script);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list script)
+ *   values - (0 or more array script)
  *
  * Returns:
  *
- *   (list script)
+ *   (array script)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -25324,13 +25324,13 @@ afw_function_definition_bag_size_script;
  *
  * ```
  *   function bag_size<script>(
- *       value: (list script)
+ *       value: (array script)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list script)
+ *   value - (array script)
  *
  * Returns:
  *
@@ -25440,7 +25440,7 @@ afw_function_definition_const;
  *
  * ```
  *   function const(
- *       name: (list string),
+ *       name: (array string),
  *       value: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
@@ -25448,7 +25448,7 @@ afw_function_definition_const;
  *
  * Parameters:
  *
- *   name - (list string) The name of one or more constants to defined in the
+ *   name - (array string) The name of one or more constants to defined in the
  *       current block.
  *
  *   value - (any dataType) This is the value of the constant(s).
@@ -25518,7 +25518,7 @@ afw_function_definition_do_while;
  * ```
  *   function do_while(
  *       condition: boolean,
- *       body: list
+ *       body: array
  *   ): any;
  * ```
  *
@@ -25527,10 +25527,10 @@ afw_function_definition_do_while;
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values (statements) that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a 'break', 'continue', 'return' or
- *       'throw' function is encountered.
+ *   body - (array) This is a list of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the list or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
  *
  * Returns:
  *
@@ -25685,27 +25685,27 @@ afw_function_definition_for;
  *
  * ```
  *   function for(
- *       initial?: list,
+ *       initial?: array,
  *       condition?: boolean,
- *       increment?: list,
- *       body?: list
+ *       increment?: array,
+ *       body?: array
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   initial - (optional list) This is a list of values (statements) to
+ *   initial - (optional array) This is a list of values (statements) to
  *       evaluate before the loop starts. The values will normally be a call to
  *       the 'assign' function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
- *   increment - (optional list) This is a list of values (statements) to
+ *   increment - (optional array) This is a list of values (statements) to
  *       evaluate after each iteration of the loop. The values will normally be
  *       a call to the 'assign' function.
  *
- *   body - (optional list) This is a list of values (statements) that are
+ *   body - (optional array) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the list or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
@@ -25741,19 +25741,19 @@ afw_function_definition_foreach;
  *
  * ```
  *   function foreach(
- *       name: (list string),
+ *       name: (array string),
  *       value: any,
- *       body?: list
+ *       body?: array
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (list string) Variable name(s).
+ *   name - (array string) Variable name(s).
  *
  *   value - (any dataType) Any list, object or single value.
  *
- *   body - (optional list) This is a list of values (statements) that are
+ *   body - (optional array) This is a list of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the list or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
@@ -25861,8 +25861,8 @@ afw_function_definition_if;
  * ```
  *   function if(
  *       condition: boolean,
- *       then: list,
- *       else?: list
+ *       then: array,
+ *       else?: array
  *   ): any;
  * ```
  *
@@ -25871,11 +25871,11 @@ afw_function_definition_if;
  *   condition - (boolean) If true, parameter 'then' is evaluated for result.
  *       If false, parameter 'else' is evaluated.
  *
- *   then - (list) This is the body of a structured block that is evaluated if
+ *   then - (array) This is the body of a structured block that is evaluated if
  *       'condition' is true. See the 'body' parameter of the 'block' function
  *       for information on how the body is processed.
  *
- *   else - (optional list) This is the body of a structured block that is
+ *   else - (optional array) This is the body of a structured block that is
  *       evaluated if 'condition' is false. If not specified and condition is
  *       false, a null value is returned. See the 'body' parameter of the
  *       'block' function for information on how the body is processed.
@@ -25980,7 +25980,7 @@ afw_function_definition_let;
  *
  * ```
  *   function let(
- *       name: (list string),
+ *       name: (array string),
  *       value?: any,
  *       type?: (object _AdaptiveValueMeta_)
  *   ): any;
@@ -25988,7 +25988,7 @@ afw_function_definition_let;
  *
  * Parameters:
  *
- *   name - (list string) The name of one or more variables to declared in the
+ *   name - (array string) The name of one or more variables to declared in the
  *       current block.
  *
  *   value - (optional any dataType) This is the initial value of the
@@ -26352,27 +26352,27 @@ afw_function_definition_try;
  *
  * ```
  *   function try(
- *       body: list,
- *       finally?: list,
- *       catch?: list,
+ *       body: array,
+ *       finally?: array,
+ *       catch?: array,
  *       error?: (object _AdaptiveObjectType_)
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   body - (list) This is a list of values (statements) that are evaluated.
+ *   body - (array) This is a list of values (statements) that are evaluated.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional list) This is a list of values (statements) that are
+ *   finally - (optional array) This is a list of values (statements) that are
  *       evaluated after the try and catch statements even if an error occurs.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   catch - (optional list) This is a list of values (statements) that are
+ *   catch - (optional array) This is a list of values (statements) that are
  *       evaluated when an error is thrown while evaluating the body. Each
  *       value in body is evaluated in order until the end of the list or until
  *       a 'break', 'continue', 'return' or 'throw' function is encountered.
@@ -26412,7 +26412,7 @@ afw_function_definition_while;
  * ```
  *   function while(
  *       condition: boolean,
- *       body: list
+ *       body: array
  *   ): any;
  * ```
  *
@@ -26421,10 +26421,10 @@ afw_function_definition_while;
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (list) This is a list of values (statements) that are evaluated for
- *       each iteration of the loop. Each value in body is evaluated in order
- *       until the end of the list or until a 'break', 'continue', 'return' or
- *       'throw' function is encountered.
+ *   body - (array) This is a list of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the list or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
  *
  * Returns:
  *
@@ -27121,16 +27121,16 @@ afw_function_definition_at_least_one_member_of_string;
  *
  * ```
  *   function at_least_one_member_of<string>(
- *       list1: (list string),
- *       list2: (list string)
+ *       list1: (array string),
+ *       list2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list string) The first list.
+ *   list1 - (array string) The first list.
  *
- *   list2 - (list string) The second list.
+ *   list2 - (array string) The second list.
  *
  * Returns:
  *
@@ -27158,13 +27158,13 @@ afw_function_definition_bag_size_string;
  *
  * ```
  *   function bag_size<string>(
- *       value: (list string)
+ *       value: (array string)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list string)
+ *   value - (array string)
  *
  * Returns:
  *
@@ -27192,17 +27192,17 @@ afw_function_definition_bag_string;
  *
  * ```
  *   function bag<string>(
- *       ...values: (list of (list string))
- *   ): (list string);
+ *       ...values: (list of (array string))
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list string)
+ *   values - (0 or more array string)
  *
  * Returns:
  *
- *   (list string)
+ *   (array string)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -27654,20 +27654,20 @@ afw_function_definition_intersection_string;
  *
  * ```
  *   function intersection<string>(
- *       list1: (list string),
- *       list2: (list string)
- *   ): (list string);
+ *       list1: (array string),
+ *       list2: (array string)
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list string) The first list.
+ *   list1 - (array string) The first list.
  *
- *   list2 - (list string) The second list.
+ *   list2 - (array string) The second list.
  *
  * Returns:
  *
- *   (list string)
+ *   (array string)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -27693,7 +27693,7 @@ afw_function_definition_is_in_string;
  * ```
  *   function is_in<string>(
  *       value: string,
- *       list: (list string)
+ *       array: (array string)
  *   ): boolean;
  * ```
  *
@@ -27701,7 +27701,7 @@ afw_function_definition_is_in_string;
  *
  *   value - (string)
  *
- *   list - (list string)
+ *   array - (array string)
  *
  * Returns:
  *
@@ -28137,13 +28137,13 @@ afw_function_definition_one_and_only_string;
  *
  * ```
  *   function one_and_only<string>(
- *       list: (list list)
+ *       array: (array array)
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -28377,16 +28377,16 @@ afw_function_definition_set_equals_string;
  *
  * ```
  *   function set_equals<string>(
- *       list1: (list string),
- *       list2: (list string)
+ *       list1: (array string),
+ *       list2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list string)
+ *   list1 - (array string)
  *
- *   list2 - (list string)
+ *   list2 - (array string)
  *
  * Returns:
  *
@@ -28417,7 +28417,7 @@ afw_function_definition_split_string;
  *       value: string,
  *       separator?: string,
  *       limit?: integer
- *   ): list;
+ *   ): array;
  * ```
  *
  * Parameters:
@@ -28433,7 +28433,7 @@ afw_function_definition_split_string;
  *
  * Returns:
  *
- *   (list) An list of strings.
+ *   (array) An list of strings.
  *
  * Implemented by afw_function_execute_split()
  *
@@ -28536,16 +28536,16 @@ afw_function_definition_subset_string;
  *
  * ```
  *   function subset<string>(
- *       list1: (list string),
- *       list2: (list string)
+ *       list1: (array string),
+ *       list2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list string) The first list.
+ *   list1 - (array string) The first list.
  *
- *   list2 - (list string) The second list.
+ *   list2 - (array string) The second list.
  *
  * Returns:
  *
@@ -29145,19 +29145,19 @@ afw_function_definition_union_string;
  *
  * ```
  *   function union<string>(
- *       lists_1: (list string),
- *       lists_2: (list string),
- *       ...lists_rest: (list of (list string))
- *   ): (list string);
+ *       lists_1: (array string),
+ *       lists_2: (array string),
+ *       ...lists_rest: (list of (array string))
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list string) Two or more lists.
+ *   lists - (2 or more array string) Two or more lists.
  *
  * Returns:
  *
- *   (list string)
+ *   (array string)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -29259,13 +29259,13 @@ afw_function_definition_bag_size_template;
  *
  * ```
  *   function bag_size<template>(
- *       value: (list template)
+ *       value: (array template)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list template)
+ *   value - (array template)
  *
  * Returns:
  *
@@ -29293,17 +29293,17 @@ afw_function_definition_bag_template;
  *
  * ```
  *   function bag<template>(
- *       ...values: (list of (list template))
- *   ): (list template);
+ *       ...values: (list of (array template))
+ *   ): (array template);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list template)
+ *   values - (0 or more array template)
  *
  * Returns:
  *
- *   (list template)
+ *   (array template)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -29846,16 +29846,16 @@ afw_function_definition_at_least_one_member_of_time;
  *
  * ```
  *   function at_least_one_member_of<time>(
- *       list1: (list time),
- *       list2: (list time)
+ *       list1: (array time),
+ *       list2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list time) The first list.
+ *   list1 - (array time) The first list.
  *
- *   list2 - (list time) The second list.
+ *   list2 - (array time) The second list.
  *
  * Returns:
  *
@@ -29883,13 +29883,13 @@ afw_function_definition_bag_size_time;
  *
  * ```
  *   function bag_size<time>(
- *       value: (list time)
+ *       value: (array time)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list time)
+ *   value - (array time)
  *
  * Returns:
  *
@@ -29917,17 +29917,17 @@ afw_function_definition_bag_time;
  *
  * ```
  *   function bag<time>(
- *       ...values: (list of (list time))
- *   ): (list time);
+ *       ...values: (list of (array time))
+ *   ): (array time);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list time)
+ *   values - (0 or more array time)
  *
  * Returns:
  *
- *   (list time)
+ *   (array time)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -30159,20 +30159,20 @@ afw_function_definition_intersection_time;
  *
  * ```
  *   function intersection<time>(
- *       list1: (list time),
- *       list2: (list time)
- *   ): (list time);
+ *       list1: (array time),
+ *       list2: (array time)
+ *   ): (array time);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list time) The first list.
+ *   list1 - (array time) The first list.
  *
- *   list2 - (list time) The second list.
+ *   list2 - (array time) The second list.
  *
  * Returns:
  *
- *   (list time)
+ *   (array time)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -30198,7 +30198,7 @@ afw_function_definition_is_in_time;
  * ```
  *   function is_in<time>(
  *       value: time,
- *       list: (list time)
+ *       array: (array time)
  *   ): boolean;
  * ```
  *
@@ -30206,7 +30206,7 @@ afw_function_definition_is_in_time;
  *
  *   value - (time)
  *
- *   list - (list time)
+ *   array - (array time)
  *
  * Returns:
  *
@@ -30508,13 +30508,13 @@ afw_function_definition_one_and_only_time;
  *
  * ```
  *   function one_and_only<time>(
- *       list: (list list)
+ *       array: (array array)
  *   ): time;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -30547,16 +30547,16 @@ afw_function_definition_set_equals_time;
  *
  * ```
  *   function set_equals<time>(
- *       list1: (list time),
- *       list2: (list time)
+ *       list1: (array time),
+ *       list2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list time)
+ *   list1 - (array time)
  *
- *   list2 - (list time)
+ *   list2 - (array time)
  *
  * Returns:
  *
@@ -30585,16 +30585,16 @@ afw_function_definition_subset_time;
  *
  * ```
  *   function subset<time>(
- *       list1: (list time),
- *       list2: (list time)
+ *       list1: (array time),
+ *       list2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list time) The first list.
+ *   list1 - (array time) The first list.
  *
- *   list2 - (list time) The second list.
+ *   list2 - (array time) The second list.
  *
  * Returns:
  *
@@ -30696,19 +30696,19 @@ afw_function_definition_union_time;
  *
  * ```
  *   function union<time>(
- *       lists_1: (list time),
- *       lists_2: (list time),
- *       ...lists_rest: (list of (list time))
- *   ): (list time);
+ *       lists_1: (array time),
+ *       lists_2: (array time),
+ *       ...lists_rest: (list of (array time))
+ *   ): (array time);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list time) Two or more lists.
+ *   lists - (2 or more array time) Two or more lists.
  *
  * Returns:
  *
- *   (list time)
+ *   (array time)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -30869,16 +30869,16 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *
  * ```
  *   function at_least_one_member_of<x500Name>(
- *       list1: (list x500Name),
- *       list2: (list x500Name)
+ *       list1: (array x500Name),
+ *       list2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list x500Name) The first list.
+ *   list1 - (array x500Name) The first list.
  *
- *   list2 - (list x500Name) The second list.
+ *   list2 - (array x500Name) The second list.
  *
  * Returns:
  *
@@ -30906,13 +30906,13 @@ afw_function_definition_bag_size_x500Name;
  *
  * ```
  *   function bag_size<x500Name>(
- *       value: (list x500Name)
+ *       value: (array x500Name)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list x500Name)
+ *   value - (array x500Name)
  *
  * Returns:
  *
@@ -30940,17 +30940,17 @@ afw_function_definition_bag_x500Name;
  *
  * ```
  *   function bag<x500Name>(
- *       ...values: (list of (list x500Name))
- *   ): (list x500Name);
+ *       ...values: (list of (array x500Name))
+ *   ): (array x500Name);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list x500Name)
+ *   values - (0 or more array x500Name)
  *
  * Returns:
  *
- *   (list x500Name)
+ *   (array x500Name)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -31133,20 +31133,20 @@ afw_function_definition_intersection_x500Name;
  *
  * ```
  *   function intersection<x500Name>(
- *       list1: (list x500Name),
- *       list2: (list x500Name)
- *   ): (list x500Name);
+ *       list1: (array x500Name),
+ *       list2: (array x500Name)
+ *   ): (array x500Name);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list x500Name) The first list.
+ *   list1 - (array x500Name) The first list.
  *
- *   list2 - (list x500Name) The second list.
+ *   list2 - (array x500Name) The second list.
  *
  * Returns:
  *
- *   (list x500Name)
+ *   (array x500Name)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -31172,7 +31172,7 @@ afw_function_definition_is_in_x500Name;
  * ```
  *   function is_in<x500Name>(
  *       value: x500Name,
- *       list: (list x500Name)
+ *       array: (array x500Name)
  *   ): boolean;
  * ```
  *
@@ -31180,7 +31180,7 @@ afw_function_definition_is_in_x500Name;
  *
  *   value - (x500Name)
  *
- *   list - (list x500Name)
+ *   array - (array x500Name)
  *
  * Returns:
  *
@@ -31439,13 +31439,13 @@ afw_function_definition_one_and_only_x500Name;
  *
  * ```
  *   function one_and_only<x500Name>(
- *       list: (list list)
+ *       array: (array array)
  *   ): x500Name;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -31516,16 +31516,16 @@ afw_function_definition_set_equals_x500Name;
  *
  * ```
  *   function set_equals<x500Name>(
- *       list1: (list x500Name),
- *       list2: (list x500Name)
+ *       list1: (array x500Name),
+ *       list2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list x500Name)
+ *   list1 - (array x500Name)
  *
- *   list2 - (list x500Name)
+ *   list2 - (array x500Name)
  *
  * Returns:
  *
@@ -31554,16 +31554,16 @@ afw_function_definition_subset_x500Name;
  *
  * ```
  *   function subset<x500Name>(
- *       list1: (list x500Name),
- *       list2: (list x500Name)
+ *       list1: (array x500Name),
+ *       list2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list x500Name) The first list.
+ *   list1 - (array x500Name) The first list.
  *
- *   list2 - (list x500Name) The second list.
+ *   list2 - (array x500Name) The second list.
  *
  * Returns:
  *
@@ -31627,19 +31627,19 @@ afw_function_definition_union_x500Name;
  *
  * ```
  *   function union<x500Name>(
- *       lists_1: (list x500Name),
- *       lists_2: (list x500Name),
- *       ...lists_rest: (list of (list x500Name))
- *   ): (list x500Name);
+ *       lists_1: (array x500Name),
+ *       lists_2: (array x500Name),
+ *       ...lists_rest: (list of (array x500Name))
+ *   ): (array x500Name);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list x500Name) Two or more lists.
+ *   lists - (2 or more array x500Name) Two or more lists.
  *
  * Returns:
  *
- *   (list x500Name)
+ *   (array x500Name)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -31711,13 +31711,13 @@ afw_function_definition_bag_size_xpathExpression;
  *
  * ```
  *   function bag_size<xpathExpression>(
- *       value: (list xpathExpression)
+ *       value: (array xpathExpression)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list xpathExpression)
+ *   value - (array xpathExpression)
  *
  * Returns:
  *
@@ -31745,17 +31745,17 @@ afw_function_definition_bag_xpathExpression;
  *
  * ```
  *   function bag<xpathExpression>(
- *       ...values: (list of (list xpathExpression))
- *   ): (list xpathExpression);
+ *       ...values: (list of (array xpathExpression))
+ *   ): (array xpathExpression);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list xpathExpression)
+ *   values - (0 or more array xpathExpression)
  *
  * Returns:
  *
- *   (list xpathExpression)
+ *   (array xpathExpression)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -32409,16 +32409,16 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *
  * ```
  *   function at_least_one_member_of<yearMonthDuration>(
- *       list1: (list yearMonthDuration),
- *       list2: (list yearMonthDuration)
+ *       list1: (array yearMonthDuration),
+ *       list2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first list.
  *
- *   list2 - (list yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second list.
  *
  * Returns:
  *
@@ -32446,13 +32446,13 @@ afw_function_definition_bag_size_yearMonthDuration;
  *
  * ```
  *   function bag_size<yearMonthDuration>(
- *       value: (list yearMonthDuration)
+ *       value: (array yearMonthDuration)
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (list yearMonthDuration)
+ *   value - (array yearMonthDuration)
  *
  * Returns:
  *
@@ -32480,17 +32480,17 @@ afw_function_definition_bag_yearMonthDuration;
  *
  * ```
  *   function bag<yearMonthDuration>(
- *       ...values: (list of (list yearMonthDuration))
- *   ): (list yearMonthDuration);
+ *       ...values: (list of (array yearMonthDuration))
+ *   ): (array yearMonthDuration);
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more list yearMonthDuration)
+ *   values - (0 or more array yearMonthDuration)
  *
  * Returns:
  *
- *   (list yearMonthDuration)
+ *   (array yearMonthDuration)
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -32674,20 +32674,20 @@ afw_function_definition_intersection_yearMonthDuration;
  *
  * ```
  *   function intersection<yearMonthDuration>(
- *       list1: (list yearMonthDuration),
- *       list2: (list yearMonthDuration)
- *   ): (list yearMonthDuration);
+ *       list1: (array yearMonthDuration),
+ *       list2: (array yearMonthDuration)
+ *   ): (array yearMonthDuration);
  * ```
  *
  * Parameters:
  *
- *   list1 - (list yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first list.
  *
- *   list2 - (list yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second list.
  *
  * Returns:
  *
- *   (list yearMonthDuration)
+ *   (array yearMonthDuration)
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -32713,7 +32713,7 @@ afw_function_definition_is_in_yearMonthDuration;
  * ```
  *   function is_in<yearMonthDuration>(
  *       value: yearMonthDuration,
- *       list: (list yearMonthDuration)
+ *       array: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
@@ -32721,7 +32721,7 @@ afw_function_definition_is_in_yearMonthDuration;
  *
  *   value - (yearMonthDuration)
  *
- *   list - (list yearMonthDuration)
+ *   array - (array yearMonthDuration)
  *
  * Returns:
  *
@@ -32944,13 +32944,13 @@ afw_function_definition_one_and_only_yearMonthDuration;
  *
  * ```
  *   function one_and_only<yearMonthDuration>(
- *       list: (list list)
+ *       array: (array array)
  *   ): yearMonthDuration;
  * ```
  *
  * Parameters:
  *
- *   list - (list list)
+ *   array - (array array)
  *
  * Returns:
  *
@@ -32983,16 +32983,16 @@ afw_function_definition_set_equals_yearMonthDuration;
  *
  * ```
  *   function set_equals<yearMonthDuration>(
- *       list1: (list yearMonthDuration),
- *       list2: (list yearMonthDuration)
+ *       list1: (array yearMonthDuration),
+ *       list2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list yearMonthDuration)
+ *   list1 - (array yearMonthDuration)
  *
- *   list2 - (list yearMonthDuration)
+ *   list2 - (array yearMonthDuration)
  *
  * Returns:
  *
@@ -33021,16 +33021,16 @@ afw_function_definition_subset_yearMonthDuration;
  *
  * ```
  *   function subset<yearMonthDuration>(
- *       list1: (list yearMonthDuration),
- *       list2: (list yearMonthDuration)
+ *       list1: (array yearMonthDuration),
+ *       list2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (list yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first list.
  *
- *   list2 - (list yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second list.
  *
  * Returns:
  *
@@ -33094,19 +33094,19 @@ afw_function_definition_union_yearMonthDuration;
  *
  * ```
  *   function union<yearMonthDuration>(
- *       lists_1: (list yearMonthDuration),
- *       lists_2: (list yearMonthDuration),
- *       ...lists_rest: (list of (list yearMonthDuration))
- *   ): (list yearMonthDuration);
+ *       lists_1: (array yearMonthDuration),
+ *       lists_2: (array yearMonthDuration),
+ *       ...lists_rest: (list of (array yearMonthDuration))
+ *   ): (array yearMonthDuration);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more list yearMonthDuration) Two or more lists.
+ *   lists - (2 or more array yearMonthDuration) Two or more lists.
  *
  * Returns:
  *
- *   (list yearMonthDuration)
+ *   (array yearMonthDuration)
  *
  * Implemented by afw_function_execute_union()
  *
@@ -33189,6 +33189,9 @@ afw_function_definition_yearMonthDuration;
     XX(to_string)                                                              \
     XX(union)                                                                  \
     XX(url_encode)                                                             \
+    XX(clone)                                                                  \
+    XX(join)                                                                   \
+    XX(reverse)                                                                \
     XX(decode_to_string)                                                       \
     XX(add_dayTimeDuration)                                                    \
     XX(add_yearMonthDuration)                                                  \
@@ -33211,9 +33214,6 @@ afw_function_definition_yearMonthDuration;
     XX(evaluate)                                                               \
     XX(mod)                                                                    \
     XX(to_double)                                                              \
-    XX(clone)                                                                  \
-    XX(join)                                                                   \
-    XX(reverse)                                                                \
     XX(encode_as_base64Binary)                                                 \
     XX(encode_as_hexBinary)                                                    \
     XX(eq_ignore_case)                                                         \
@@ -33359,6 +33359,7 @@ afw_function_execute_at_least_one_member_of(
  * Implementation for functions:
  *
  * bag<anyURI>
+ * bag<array>
  * bag<base64Binary>
  * bag<boolean>
  * bag<dateTime>
@@ -33373,7 +33374,6 @@ afw_function_execute_at_least_one_member_of(
  * bag<ia5String>
  * bag<integer>
  * bag<ipAddress>
- * bag<list>
  * bag<null>
  * bag<objectId>
  * bag<objectPath>
@@ -33398,6 +33398,7 @@ afw_function_execute_bag(
  * Implementation for functions:
  *
  * bag_size<anyURI>
+ * bag_size<array>
  * bag_size<base64Binary>
  * bag_size<boolean>
  * bag_size<dateTime>
@@ -33412,7 +33413,6 @@ afw_function_execute_bag(
  * bag_size<ia5String>
  * bag_size<integer>
  * bag_size<ipAddress>
- * bag_size<list>
  * bag_size<null>
  * bag_size<objectId>
  * bag_size<objectPath>
@@ -33436,7 +33436,7 @@ afw_function_execute_bag_size(
  *
  * Implementation for functions:
  *
- * clone<list>
+ * clone<array>
  * clone<object>
  */
 const afw_value_t *
@@ -33450,6 +33450,7 @@ afw_function_execute_clone(
  *
  * anyURI
  * to_string<anyURI>
+ * to_string<array>
  * base64Binary
  * to_string<base64Binary>
  * boolean
@@ -33477,7 +33478,6 @@ afw_function_execute_clone(
  * to_string<integer>
  * ipAddress
  * to_string<ipAddress>
- * to_string<list>
  * null
  * to_string<null>
  * objectId
@@ -33561,6 +33561,7 @@ afw_function_execute_ends_with(
  * Implementation for functions:
  *
  * eq<anyURI>
+ * eq<array>
  * eq<base64Binary>
  * eq<boolean>
  * eq<dateTime>
@@ -33575,7 +33576,6 @@ afw_function_execute_ends_with(
  * eq<ia5String>
  * eq<integer>
  * eq<ipAddress>
- * eq<list>
  * eq<objectId>
  * eq<objectPath>
  * eq<object>
@@ -33601,6 +33601,7 @@ afw_function_execute_eq(
  * Implementation for functions:
  *
  * eqx<anyURI>
+ * eqx<array>
  * eqx<base64Binary>
  * eqx<boolean>
  * eqx<dateTime>
@@ -33615,7 +33616,6 @@ afw_function_execute_eq(
  * eqx<ia5String>
  * eqx<integer>
  * eqx<ipAddress>
- * eqx<list>
  * eqx<objectId>
  * eqx<objectPath>
  * eqx<object>
@@ -33641,6 +33641,7 @@ afw_function_execute_eqx(
  * Implementation for functions:
  *
  * ge<anyURI>
+ * ge<array>
  * ge<base64Binary>
  * ge<boolean>
  * ge<dateTime>
@@ -33655,7 +33656,6 @@ afw_function_execute_eqx(
  * ge<ia5String>
  * ge<integer>
  * ge<ipAddress>
- * ge<list>
  * ge<objectId>
  * ge<objectPath>
  * ge<object>
@@ -33680,6 +33680,7 @@ afw_function_execute_ge(
  * Implementation for functions:
  *
  * gt<anyURI>
+ * gt<array>
  * gt<base64Binary>
  * gt<boolean>
  * gt<dateTime>
@@ -33694,7 +33695,6 @@ afw_function_execute_ge(
  * gt<ia5String>
  * gt<integer>
  * gt<ipAddress>
- * gt<list>
  * gt<objectId>
  * gt<objectPath>
  * gt<object>
@@ -33726,14 +33726,14 @@ afw_function_execute_includes(
     afw_function_execute_t *x);
 
 /**
- * @brief Function implementation function afw_function_execute_includes_list
+ * @brief Function implementation function afw_function_execute_includes_array
  *
  * Implementation for functions:
  *
- * includes<list>
+ * includes<array>
  */
 const afw_value_t *
-afw_function_execute_includes_list(
+afw_function_execute_includes_array(
     afw_function_execute_t *x);
 
 /**
@@ -33778,6 +33778,7 @@ afw_function_execute_intersection(
  * Implementation for functions:
  *
  * is<anyURI>
+ * is<array>
  * is<base64Binary>
  * is<boolean>
  * is<dateTime>
@@ -33792,7 +33793,6 @@ afw_function_execute_intersection(
  * is<ia5String>
  * is<integer>
  * is<ipAddress>
- * is<list>
  * is<null>
  * is<objectId>
  * is<objectPath>
@@ -33857,6 +33857,7 @@ afw_function_execute_last_index_of(
  * Implementation for functions:
  *
  * le<anyURI>
+ * le<array>
  * le<base64Binary>
  * le<boolean>
  * le<dateTime>
@@ -33871,7 +33872,6 @@ afw_function_execute_last_index_of(
  * le<ia5String>
  * le<integer>
  * le<ipAddress>
- * le<list>
  * le<objectId>
  * le<objectPath>
  * le<object>
@@ -33896,7 +33896,7 @@ afw_function_execute_le(
  * Implementation for functions:
  *
  * length<anyURI>
- * length<list>
+ * length<array>
  * length<string>
  */
 const afw_value_t *
@@ -33909,6 +33909,7 @@ afw_function_execute_length(
  * Implementation for functions:
  *
  * lt<anyURI>
+ * lt<array>
  * lt<base64Binary>
  * lt<boolean>
  * lt<dateTime>
@@ -33923,7 +33924,6 @@ afw_function_execute_length(
  * lt<ia5String>
  * lt<integer>
  * lt<ipAddress>
- * lt<list>
  * lt<objectId>
  * lt<objectPath>
  * lt<object>
@@ -33980,6 +33980,7 @@ afw_function_execute_min(
  * Implementation for functions:
  *
  * ne<anyURI>
+ * ne<array>
  * ne<base64Binary>
  * ne<boolean>
  * ne<dateTime>
@@ -33994,7 +33995,6 @@ afw_function_execute_min(
  * ne<ia5String>
  * ne<integer>
  * ne<ipAddress>
- * ne<list>
  * ne<objectId>
  * ne<objectPath>
  * ne<object>
@@ -34020,6 +34020,7 @@ afw_function_execute_ne(
  * Implementation for functions:
  *
  * nex<anyURI>
+ * nex<array>
  * nex<base64Binary>
  * nex<boolean>
  * nex<dateTime>
@@ -34034,7 +34035,6 @@ afw_function_execute_ne(
  * nex<ia5String>
  * nex<integer>
  * nex<ipAddress>
- * nex<list>
  * nex<objectId>
  * nex<objectPath>
  * nex<object>

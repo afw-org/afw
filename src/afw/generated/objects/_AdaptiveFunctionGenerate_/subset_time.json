@@ -9,13 +9,13 @@
     "functionLabel": "subset_time",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "time",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "time",
             "description": "The second list.",
             "name": "list2"

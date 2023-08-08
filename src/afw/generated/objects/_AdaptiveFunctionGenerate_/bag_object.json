@@ -9,7 +9,7 @@
     "functionLabel": "bag_object",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object",
             "minArgs": 0,
             "name": "values",
@@ -18,7 +18,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "object"
     },
     "useExecuteFunction": "afw_function_execute_bag"

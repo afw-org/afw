@@ -9,7 +9,7 @@
         "arguments": {
             "allowQuery": true,
             "brief": "The function arguments",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionTestArgument_",
             "description": "These are the arguments to pass to the function to be tested.",
             "label": "Arguments",

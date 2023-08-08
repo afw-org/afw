@@ -142,7 +142,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_dnsName
@@ -211,7 +211,7 @@ Converts a one value list to a dnsName value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_match_dnsName
@@ -337,13 +337,13 @@ sub is_dnsName {
 }
 
 sub is_in_dnsName {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<dnsName>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -397,12 +397,12 @@ sub nex_dnsName {
 }
 
 sub one_and_only_dnsName {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<dnsName>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -31,7 +31,7 @@
 #include "afw_file_internal.h"
 #include "afw_function_bindings.h"
 #include "afw_json_internal.h"
-#include "afw_list_internal.h"
+#include "afw_array_internal.h"
 #include "afw_log_internal.h"
 #include "afw_model_internal.h"
 #include "afw_model_location.h"

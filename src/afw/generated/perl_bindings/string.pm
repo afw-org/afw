@@ -311,7 +311,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_string
@@ -464,7 +464,7 @@ Converts a one value list to a string value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 regexp_index_of_string
@@ -1030,13 +1030,13 @@ sub intersection_string {
 }
 
 sub is_in_string {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<string>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -1171,12 +1171,12 @@ sub normalize_to_lower_case_string {
 }
 
 sub one_and_only_string {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<string>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

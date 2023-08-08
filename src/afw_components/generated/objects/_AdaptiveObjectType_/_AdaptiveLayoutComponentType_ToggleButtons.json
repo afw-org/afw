@@ -23,7 +23,7 @@
         },
         "options": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object",
             "description": "The available options for the ToggleButtons component.",
             "label": "Options",

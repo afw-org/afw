@@ -612,7 +612,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The campus location this role is attached to, as defined by the institution.",
                         "label": "Campus",
@@ -623,7 +623,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Campus Code",
@@ -634,7 +634,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
                         "label": "Department",
@@ -645,7 +645,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Department Code",
@@ -686,7 +686,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
                         "label": "Manager",
@@ -697,7 +697,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
                         "label": "Organization",
@@ -708,7 +708,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Organization Code",
@@ -817,7 +817,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The official title for this role.",
                         "label": "Title",
@@ -871,7 +871,7 @@
                         "label": "Major",
                         "description": "A list of student's major(s).",
                         "dataTypeParameter": "object major",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "degree": {
@@ -901,7 +901,7 @@
                         "label": "Degree",
                         "description": "A list of degrees.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "courseMembership": {
@@ -912,7 +912,7 @@
                         "label": "Course Membership",
                         "description": "A list of course memberships.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "courseAffiliation": {
@@ -934,7 +934,7 @@
                         "label": "Course Affiliation",
                         "description": "Person's affiliation/role with a course.  Based on MACE-Dir work.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "classYear": {
@@ -976,7 +976,7 @@
                         "label": "Title",
                         "description": "The official title for this role.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "terminationReason": {
@@ -1085,7 +1085,7 @@
                         "label": "Organization Code",
                         "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "organization": {
@@ -1096,7 +1096,7 @@
                         "label": "Organization",
                         "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "manager": {
@@ -1107,7 +1107,7 @@
                         "label": "Manager",
                         "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "leaveEnds": {
@@ -1148,7 +1148,7 @@
                         "label": "Department Code",
                         "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "department": {
@@ -1159,7 +1159,7 @@
                         "label": "Department",
                         "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "campusCode": {
@@ -1170,7 +1170,7 @@
                         "label": "Campus Code",
                         "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "campus": {
@@ -1181,7 +1181,7 @@
                         "label": "Campus",
                         "description": "The campus location this role is attached to, as defined by the institution.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "affiliation": {
@@ -1227,7 +1227,7 @@
                         "label": "Url",
                         "description": "A list of URLs.",
                         "dataTypeParameter": "object url",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "test": {
                         "_meta_": {
@@ -1247,7 +1247,7 @@
                         "label": "Telephone Number",
                         "description": "A list of telephone numbers.",
                         "dataTypeParameter": "object telephoneNumber",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "role": {
                         "_meta_": {
@@ -1257,7 +1257,7 @@
                         "label": "Role",
                         "description": "Parent attribute for Role attributes.",
                         "dataTypeParameter": "object PersonRole",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "primaryCampus": {
                         "_meta_": {
@@ -1287,7 +1287,7 @@
                         "label": "Photo",
                         "description": "A list of photos.",
                         "dataTypeParameter": "object photo",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "name": {
                         "_meta_": {
@@ -1297,7 +1297,7 @@
                         "label": "Name",
                         "description": "A list of names.",
                         "dataTypeParameter": "object name",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "identityProof": {
                         "_meta_": {
@@ -1307,7 +1307,7 @@
                         "label": "Identity Proof",
                         "description": "A list of identity proofs.",
                         "dataTypeParameter": "object identityProof",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "identifier": {
                         "_meta_": {
@@ -1317,7 +1317,7 @@
                         "label": "Identifier",
                         "description": "A list of identifiers.",
                         "dataTypeParameter": "object identifier",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "gender": {
                         "_meta_": {
@@ -1337,7 +1337,7 @@
                         "label": "Ethnicity",
                         "description": "The ethnicity of the person (US Census).",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "allowQuery": true
                     },
                     "emailAddress": {
@@ -1348,7 +1348,7 @@
                         "label": "Email Address",
                         "description": "A list of email addresses.",
                         "dataTypeParameter": "object emailAddress",
-                        "dataType": "list"
+                        "dataType": "array"
                     },
                     "dateOfBirth": {
                         "_meta_": {
@@ -1368,7 +1368,7 @@
                         "label": "Address",
                         "description": "A list of physical addresses.",
                         "dataTypeParameter": "object address",
-                        "dataType": "list"
+                        "dataType": "array"
                     }
                 },
                 "description": "Person Core Attributes",
@@ -1397,7 +1397,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The campus location this role is attached to, as defined by the institution.",
                         "label": "Campus",
@@ -1408,7 +1408,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Campus Code",
@@ -1419,7 +1419,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
                         "label": "Department",
@@ -1430,7 +1430,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Department Code",
@@ -1471,7 +1471,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
                         "label": "Manager",
@@ -1482,7 +1482,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
                         "label": "Organization",
@@ -1493,7 +1493,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
                         "label": "Organization Code",
@@ -1602,7 +1602,7 @@
                             "objectType": "_AdaptiveModelPropertyType_"
                         },
                         "allowQuery": true,
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "The official title for this role.",
                         "label": "Title",

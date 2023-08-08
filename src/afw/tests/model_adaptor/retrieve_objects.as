@@ -12,7 +12,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-const objects: list = retrieve_objects("model", "MyObjectType1");
+const objects: array = retrieve_objects("model", "MyObjectType1");
 
 // we should have one object to start with
 const obj: object = objects[0];

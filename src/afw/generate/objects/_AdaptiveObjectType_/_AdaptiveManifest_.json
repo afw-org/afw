@@ -39,14 +39,14 @@
         },
         "providesObjects": {
             "brief": "List of object paths provided by this extension",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Each entry is the path of an afw adaptor object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
             "label": "Provides Objects"
         },
         "registers": {
             "brief": "List of entries this extension registers",
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
             "label": "Registers"

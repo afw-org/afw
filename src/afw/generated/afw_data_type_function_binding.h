@@ -107,15 +107,15 @@ afw_value_permanent_function_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated list of function.
+ * @brief Macro to determine if value is evaluated array of function.
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_list_of_function(A_VALUE) \
+#define afw_value_is_array_of_function(A_VALUE) \
 ( \
-    afw_value_is_list(A_VALUE) && \
-    afw_list_get_data_type( \
-        ((const afw_value_list_t *)(A_VALUE))->internal, \
+    afw_value_is_array(A_VALUE) && \
+    afw_array_get_data_type( \
+        ((const afw_value_array_t *)(A_VALUE))->internal, \
         xctx) == afw_data_type_function \
 )
 
@@ -336,8 +336,8 @@ afw_object_set_property_as_function(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from list of function.
- * @param instance of list.
+ * @brief Get next value from array of function.
+ * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
@@ -346,14 +346,14 @@ afw_object_set_property_as_function(
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
-#define afw_list_of_function_get_next( \
-    list, iterator, xctx) \
-    afw_list_of_function_get_next_source( \
-    list, iterator, AFW__FILE_LINE__, xctx)
+#define afw_array_of_function_get_next( \
+    array, iterator, xctx) \
+    afw_array_of_function_get_next_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from list of function.
- * @param instance of list.
+ * @brief Get next value from array of function.
+ * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
@@ -363,33 +363,33 @@ afw_object_set_property_as_function(
  * you want to start from the first value again.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_list_of_function_get_next_source(
-    const afw_list_t *instance,
+afw_array_of_function_get_next_source(
+    const afw_array_t *instance,
     const afw_iterator_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from list of function.
- * @param instance of list.
+ * @brief Add value from array of function.
+ * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_list_of_function_add(
-    const afw_list_t *instance,
+afw_array_of_function_add(
+    const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from list of function.
- * @param instance of list.
+ * @brief Remove value from array of function.
+ * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_list_of_function_remove(
-    const afw_list_t *instance,
+afw_array_of_function_remove(
+    const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 

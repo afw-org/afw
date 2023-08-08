@@ -9,13 +9,13 @@
     "functionLabel": "intersection_anyURI",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The second list.",
             "name": "list2"
@@ -23,7 +23,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "anyURI"
     },
     "useExecuteFunction": "afw_function_execute_intersection"

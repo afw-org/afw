@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_hexBinary",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "name": "list2"
         }

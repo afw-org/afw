@@ -33,14 +33,14 @@
  * ```
  *   function flag_get_active(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags that are set in the
+ *   (array string) This is a list of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -48,9 +48,9 @@ afw_function_execute_flag_get_active(
     afw_function_execute_t *x)
 {
     afw_size_t i, count;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
-    list = afw_list_create_with_options(0, afw_data_type_string,
+    list = afw_array_create_with_options(0, afw_data_type_string,
         x->p, x->xctx);
 
     for (i = 0, count = x->xctx->flags_count;
@@ -58,12 +58,12 @@ afw_function_execute_flag_get_active(
         i++)
     {
         if (x->xctx->flags[i]) {
-            afw_list_add_internal(list, afw_data_type_string,
+            afw_array_add_internal(list, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
 
-    return afw_value_create_list(list, x->p, x->xctx);
+    return afw_value_create_array(list, x->p, x->xctx);
 }
 
 
@@ -86,14 +86,14 @@ afw_function_execute_flag_get_active(
  * ```
  *   function flag_get_active_defaults(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags that are set by
+ *   (array string) This is a list of the flagId of flags that are set by
  *       default when a new execution context (xctx) is created.
  */
 const afw_value_t *
@@ -101,9 +101,9 @@ afw_function_execute_flag_get_active_defaults(
     afw_function_execute_t *x)
 {
     afw_size_t i, count;
-    const afw_list_t *list;
+    const afw_array_t *list;
 
-    list = afw_list_create_with_options(0, afw_data_type_string,
+    list = afw_array_create_with_options(0, afw_data_type_string,
         x->p, x->xctx);
 
     for (i = 0, count = x->xctx->env->flags_count_registered;
@@ -111,12 +111,12 @@ afw_function_execute_flag_get_active_defaults(
         i++)
     {
         if (x->xctx->env->default_flags[i]) {
-            afw_list_add_internal(list, afw_data_type_string,
+            afw_array_add_internal(list, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
 
-    return afw_value_create_list(list, x->p, x->xctx);
+    return afw_value_create_array(list, x->p, x->xctx);
 }
 
 
@@ -141,14 +141,14 @@ afw_function_execute_flag_get_active_defaults(
  * ```
  *   function flag_get_defaults(
  *   
- *   ): (list string);
+ *   ): (array string);
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (list string) This is a list of the flagId of flags used to determine the
+ *   (array string) This is a list of the flagId of flags used to determine the
  *       default active flags.
  */
 const afw_value_t *
@@ -157,12 +157,12 @@ afw_function_execute_flag_get_defaults(
 {
     const afw_environment_internal_t *env_internal =
         (const afw_environment_internal_t *)x->xctx->env;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_utf8_t * const *flag_id;
     const afw_utf8_t *s;
     afw_xctx_t *xctx = x->xctx;
 
-    list = afw_list_create_with_options(0, afw_data_type_string,
+    list = afw_array_create_with_options(0, afw_data_type_string,
         x->p, x->xctx);
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
@@ -170,14 +170,14 @@ afw_function_execute_flag_get_defaults(
             for (flag_id = env_internal->default_flag_ids; *flag_id; flag_id++)
             {
                 s = afw_utf8_clone(*flag_id, x->p, x->xctx);
-                afw_list_add_internal(list, afw_data_type_string, s, x->xctx);
+                afw_array_add_internal(list, afw_data_type_string, s, x->xctx);
             }
         }
 
     }
     AFW_LOCK_END;
 
-    return afw_value_create_list(list, x->p, x->xctx);
+    return afw_value_create_array(list, x->p, x->xctx);
 }
 
 
@@ -206,14 +206,14 @@ afw_function_execute_flag_get_defaults(
  *
  * ```
  *   function flag_modify_defaults(
- *       flagId: (list string),
+ *       flagId: (array string),
  *       add?: boolean
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) The flagId of flags to be added or removed.
+ *   flagId - (array string) The flagId of flags to be added or removed.
  *
  *   add - (optional boolean) Specify true to add and false to remove flags. If
  *       not specified, flags are added.
@@ -226,7 +226,7 @@ const afw_value_t *
 afw_function_execute_flag_modify_defaults(
     afw_function_execute_t *x)
 {
-    const afw_value_list_t *list_value;
+    const afw_value_array_t *list_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
     const afw_iterator_t *iterator;
@@ -234,7 +234,7 @@ afw_function_execute_flag_modify_defaults(
     const void *internal;
     afw_boolean_t add;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, list);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, array);
 
     add = true;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
@@ -245,7 +245,7 @@ afw_function_execute_flag_modify_defaults(
 
     for (iterator = NULL;;)
     {
-        afw_list_get_next_internal(
+        afw_array_get_next_internal(
             list_value->internal,
             &iterator,
             &data_type,
@@ -294,13 +294,13 @@ afw_function_execute_flag_modify_defaults(
  *
  * ```
  *   function flag_replace_defaults(
- *       flagId: (list string)
+ *       flagId: (array string)
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) The list of the flagId of flags used to determine
+ *   flagId - (array string) The list of the flagId of flags used to determine
  *       the default active flags.
  *
  * Returns:
@@ -311,9 +311,9 @@ const afw_value_t *
 afw_function_execute_flag_replace_defaults(
     afw_function_execute_t *x)
 {
-    const afw_value_list_t *list_value;
+    const afw_value_array_t *list_value;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, list);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, array);
 
     afw_flag_set_default_flag_ids(list_value->internal, x->xctx);
 
@@ -338,14 +338,14 @@ afw_function_execute_flag_replace_defaults(
  *
  * ```
  *   function flag_set(
- *       flagId: (list string),
+ *       flagId: (array string),
  *       setTo?: boolean
  *   ): null;
  * ```
  *
  * Parameters:
  *
- *   flagId - (list string) List of flagId of flags to set or unset.
+ *   flagId - (array string) List of flagId of flags to set or unset.
  *
  *   setTo - (optional boolean) Specify true to set and false to unset. If not
  *       specified, flags are set.
@@ -358,7 +358,7 @@ const afw_value_t *
 afw_function_execute_flag_set(
     afw_function_execute_t *x)
 {
-    const afw_value_list_t *list_value;
+    const afw_value_array_t *list_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
     const afw_iterator_t *iterator;
@@ -366,7 +366,7 @@ afw_function_execute_flag_set(
     const void *internal;
     afw_boolean_t set_to;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, list);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list_value, 1, array);
 
     set_to = true;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
@@ -377,7 +377,7 @@ afw_function_execute_flag_set(
 
     for (iterator = NULL;;)
     {
-        afw_list_get_next_internal(
+        afw_array_get_next_internal(
             list_value->internal,
             &iterator,
             &data_type,

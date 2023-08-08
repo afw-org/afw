@@ -13,7 +13,7 @@ def bag_size_xpathExpression(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -42,10 +42,10 @@ def bag_xpathExpression(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

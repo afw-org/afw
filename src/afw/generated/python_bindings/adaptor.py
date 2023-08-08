@@ -198,7 +198,7 @@ def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adapto
         2 - similar to 1 with ';' for '&' and ',' for '|'.
         
         3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
-        ..., plus conjunctions 'and(list)' and 'or(list)' where 'list' is a
+        ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
         comma separated list of any comparison or conjunction.
 
     Returns:
@@ -502,7 +502,7 @@ def modify_object(session, objectType, objectId, entries, adaptorId=None, journa
 
         objectId (string): Id of object to modify.
 
-        entries (list): List of modifications. Entries are of the form:
+        entries (array): List of modifications. Entries are of the form:
         
         [
         'add_value',
@@ -582,8 +582,8 @@ def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpeci
         uri (anyURI): URI of object to modify. If a URI begins with a single
         slash ('/'), it is the local object path.
 
-        entries (list): List of asserts and modifications. Entries are of the
-        form:
+        entries (array): List of asserts and modifications. Entries are of
+        the form:
         
         [
         'add_value',
@@ -837,7 +837,7 @@ def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, op
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    list: This is the list of objects retrieved.
+    array: This is the list of objects retrieved.
     '''
 
     request = session.Request()
@@ -1126,7 +1126,7 @@ def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=No
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    list: This is the list of objects retrieved.
+    array: This is the list of objects retrieved.
     '''
 
     request = session.Request()

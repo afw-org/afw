@@ -43,7 +43,7 @@
       "description": "Person Core Attributes",
       "propertyTypes": {
         "address": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object address",
           "description": "A list of physical addresses.",
           "label": "Address",
@@ -57,7 +57,7 @@
           "required": false
         },
         "emailAddress": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object emailAddress",
           "description": "A list of email addresses.",
           "label": "Email Address",
@@ -65,7 +65,7 @@
         },
         "ethnicity": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The ethnicity of the person (US Census).",
           "label": "Ethnicity",
@@ -79,28 +79,28 @@
           "required": false
         },
         "identifier": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object identifier",
           "description": "A list of identifiers.",
           "label": "Identifier",
           "required": false
         },
         "identityProof": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object identityProof",
           "description": "A list of identity proofs.",
           "label": "Identity Proof",
           "required": false
         },
         "name": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object name",
           "description": "A list of names.",
           "label": "Name",
           "required": false
         },
         "photo": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object photo",
           "description": "A list of photos.",
           "label": "Photo",
@@ -121,14 +121,14 @@
           "required": false
         },
         "role": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object PersonRole",
           "description": "Parent attribute for Role attributes.",
           "label": "Role",
           "required": false
         },
         "telephoneNumber": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object telephoneNumber",
           "description": "A list of telephone numbers.",
           "label": "Telephone Number",
@@ -142,7 +142,7 @@
           "required": false
         },
         "url": {
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object url",
           "description": "A list of URLs.",
           "label": "Url",
@@ -173,7 +173,7 @@
         },
         "campus": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The campus location this role is attached to, as defined by the institution.",
           "label": "Campus",
@@ -181,7 +181,7 @@
         },
         "campusCode": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "Machine readable identifier for a campus. This value is unlikely to have meaning outside of a specific institution.",
           "label": "Campus Code",
@@ -189,7 +189,7 @@
         },
         "department": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The name of the department the role is attached to (multiple values are permitted if multiple departments sponsor a single role).",
           "label": "Department",
@@ -197,7 +197,7 @@
         },
         "departmentCode": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "Machine readable identifier for a department. This value is unlikely to have meaning outside of a specific institution.",
           "label": "Department Code",
@@ -226,7 +226,7 @@
         },
         "manager": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The identifier (preferably of time enterprise) describing the manager for this role.",
           "label": "Manager",
@@ -234,7 +234,7 @@
         },
         "organization": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The name of the organization/institution the role is attached to (multiple values are permitted if multiple organizations sponsor a single role).",
           "label": "Organization",
@@ -242,7 +242,7 @@
         },
         "organizationCode": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "Machine readable identifier for an organization.  This value is unlikely to have meaning outside of a specific institution.",
           "label": "Organization Code",
@@ -324,7 +324,7 @@
         },
         "title": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "The official title for this role.",
           "label": "Title",
@@ -359,7 +359,7 @@
         },
         "courseAffiliation": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "Person's affiliation/role with a course.  Based on MACE-Dir work.",
           "label": "Course Affiliation",
@@ -378,7 +378,7 @@
         },
         "courseMembership": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "A list of course memberships.",
           "label": "Course Membership",
@@ -386,7 +386,7 @@
         },
         "degree": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "string",
           "description": "A list of degrees.",
           "label": "Degree",
@@ -413,7 +413,7 @@
         },
         "major": {
           "allowQuery": true,
-          "dataType": "list",
+          "dataType": "array",
           "dataTypeParameter": "object major",
           "description": "A list of student's major(s).",
           "label": "Major",

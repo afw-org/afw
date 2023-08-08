@@ -58,7 +58,7 @@
         "MyObjectType6": {
             "propertyTypes": {
                 "TestOnPropertyList": {
-                    "dataType": "list",
+                    "dataType": "array",
                     "onGetProperty": "#! afw\n\nlet  l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
                     "onSetProperty": "#! afw\n\n//let x = current::value[0];\nreturn \"x\";"
                 }

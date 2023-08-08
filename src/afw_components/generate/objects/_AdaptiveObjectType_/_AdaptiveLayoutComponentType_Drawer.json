@@ -50,7 +50,7 @@
         },
         "contains": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_DrawerItem",
             "brief": "Items inside of the Drawer",
             "description": "This declares a list of items to be rendered inside the Drawer.",

@@ -53,8 +53,8 @@ class date
      * Returns boolean true if at least one value in date list1 is in date
      * list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -77,9 +77,9 @@ class date
      *
      * Takes any number of date values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_date(, $values = null)
     {
@@ -101,7 +101,7 @@ class date
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -255,10 +255,10 @@ class date
      * Returns a list of date with the values that are common to both list of
      * date list1 and list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
-     * @return list
+     * @return array
      */
     public function intersection_date(, $list1, $list2)
     {
@@ -303,11 +303,11 @@ class date
      * boolean result.
      *
      * @param date $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_date(, $value, $list)
+    public function is_in_date(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -315,7 +315,7 @@ class date
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -486,18 +486,18 @@ class date
      * This converts a list of date values that contains one value to a
      * single date value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return date
      */
-    public function one_and_only_date(, $list)
+    public function one_and_only_date(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -509,8 +509,8 @@ class date
      * Returns boolean true if date list1 and date list2 are subsets of each
      * other and return the boolean result.
      *
-     * @param list $list1
-     * @param list $list2
+     * @param array $list1
+     * @param array $list2
      *
      * @return boolean
      */
@@ -534,8 +534,8 @@ class date
      * Returns boolean true if the unique values in date list1 are all in
      * date list2.
      *
-     * @param list $list1 The first list.
-     * @param list $list2 The second list.
+     * @param array $list1 The first list.
+     * @param array $list2 The second list.
      *
      * @return boolean
      */
@@ -607,9 +607,9 @@ class date
      * Returns a list of date contains all of the unique values in two or
      * more list of date values.
      *
-     * @param list $lists Two or more lists.
+     * @param array $lists Two or more lists.
      *
-     * @return list
+     * @return array
      */
     public function union_date(, $lists)
     {

@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_time",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "time",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "time",
             "name": "list2"
         }

@@ -183,7 +183,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_time
@@ -294,7 +294,7 @@ Converts a one value list to a time value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_time
@@ -474,13 +474,13 @@ sub intersection_time {
 }
 
 sub is_in_time {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<time>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -567,12 +567,12 @@ sub nex_time {
 }
 
 sub one_and_only_time {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<time>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

@@ -17,7 +17,7 @@
         },
         "items": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_ListEditor_Item",
             "description": "The list of items to be managed.",
             "label": "Items"

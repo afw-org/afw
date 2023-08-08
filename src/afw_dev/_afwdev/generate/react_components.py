@@ -25,7 +25,7 @@ def js_value(objectTypes, dataType, dataTypeParameter, possibleValues):
     elif dataType == 'boolean':
         return 'true'
 
-    elif dataType == 'list':
+    elif dataType == 'array':
         if possibleValues != None:
             return nfc.json_dumps(possibleValues, sort_keys=True)
 
@@ -74,7 +74,7 @@ def js_value(objectTypes, dataType, dataTypeParameter, possibleValues):
                     value = 1
                 elif propertyType.get('dataType') == 'boolean':
                     value = True
-                elif propertyType.get('dataType') == 'list':
+                elif propertyType.get('dataType') == 'array':
                     value = []
                     if propertyType.get('dataTypeParameter') == 'string':
                         value.append('abc')
@@ -97,7 +97,7 @@ def js_value(objectTypes, dataType, dataTypeParameter, possibleValues):
                 value = 1
             elif otherProperties.get('dataType') == 'boolean':
                 value = True
-            elif otherProperties.get('dataType') == 'list':
+            elif otherProperties.get('dataType') == 'array':
                 value = []
                 if otherProperties.get('dataTypeParameter') == 'string':
                     value.append('abc')
@@ -137,7 +137,7 @@ def prop_value(objectTypes, dataType, dataTypeParameter, possibleValues):
     elif dataType == 'boolean':
         return '{true}'
 
-    elif dataType == 'list':
+    elif dataType == 'array':
         if possibleValues != None:
             return '{' + nfc.json_dumps(possibleValues, sort_keys=True) + '}'
 
@@ -186,7 +186,7 @@ def prop_value(objectTypes, dataType, dataTypeParameter, possibleValues):
                     value = 1
                 elif propertyType.get('dataType') == 'boolean':
                     value = True
-                elif propertyType.get('dataType') == 'list':
+                elif propertyType.get('dataType') == 'array':
                     value = []
                     if propertyType.get('dataTypeParameter') == 'string':
                         value.append('abc')
@@ -209,7 +209,7 @@ def prop_value(objectTypes, dataType, dataTypeParameter, possibleValues):
                 value = 1
             elif otherProperties.get('dataType') == 'boolean':
                 value = True
-            elif otherProperties.get('dataType') == 'list':
+            elif otherProperties.get('dataType') == 'array':
                 value = []
                 if otherProperties.get('dataTypeParameter') == 'string':
                     value.append('abc')
@@ -258,7 +258,7 @@ def typescript_type(objectTypes, dataType, dataTypeParameter, possibleValues):
         else:
             return 'any'
 
-    elif dataType == 'list':
+    elif dataType == 'array':
         if dataTypeParameter == None:
             return 'any[]'
         if dataTypeParameter == 'string':
@@ -317,7 +317,7 @@ def prop_type(objectTypes, dataType, dataTypeParameter, possibleValues):
         else:
             return 'PropTypes.object'
 
-    elif dataType == 'list':
+    elif dataType == 'array':
         if dataTypeParameter == None:
             return 'PropTypes.array'
         if dataTypeParameter == 'string':
@@ -365,7 +365,7 @@ def js_type(objectTypes, dataType, dataTypeParameter, possibleValues):
     elif dataType == 'object':           
         return 'object'
 
-    elif dataType == 'list':
+    elif dataType == 'array':
         return 'array'
 
     else:
@@ -650,7 +650,7 @@ def generate_typescript_types(fd, objectTypes, objectType, componentType, implem
                 generate_type_shape(fd, propertyName, objectTypes, dataTypeParameter)
                 shapes[dataTypeParameter] = True
 
-        elif propertyType.get('dataType') == 'list':
+        elif propertyType.get('dataType') == 'array':
             dataTypeParameter = propertyType.get('dataTypeParameter')
             if dataTypeParameter != None:
                 if dataTypeParameter.split()[0] == 'object':
@@ -742,7 +742,7 @@ def generate_prop_types(fd, objectTypes, objectType, componentType, implementati
                 generate_prop_shape(fd, propertyName, objectTypes, dataTypeParameter)
                 shapes[dataTypeParameter] = True
 
-        elif propertyType.get('dataType') == 'list':
+        elif propertyType.get('dataType') == 'array':
             dataTypeParameter = propertyType.get('dataTypeParameter')
             if dataTypeParameter != None:
                 if dataTypeParameter.split()[0] == 'object':

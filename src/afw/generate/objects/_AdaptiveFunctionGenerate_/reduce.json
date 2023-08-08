@@ -1,6 +1,6 @@
 {
     "brief": "Reduce values of a list to a single value",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "Reduce calls functor for each value in list with two parameters, accumulator and value, and must return a value of any dataType. Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls. The dataType of the return value should normally be the same as accumulator, but this is not required.",
     "functionId": "reduce",
     "functionLabel": "reduce",
@@ -17,9 +17,9 @@
             "name": "accumulator"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "This is a list to be reduced.",
-            "name": "list"
+            "name": "array"
         }
     ],
     "returns": {

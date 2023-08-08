@@ -33,7 +33,7 @@
 
 /* Create function for list expression value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_list_expression(
+afw_value_create_array_expression(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -73,7 +73,7 @@ impl_afw_value_get_data_type(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    return afw_data_type_list;
+    return afw_data_type_array;
 }
 
 /*

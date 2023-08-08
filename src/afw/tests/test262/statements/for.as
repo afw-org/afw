@@ -188,7 +188,7 @@ for ({index = 0; index = index + 1;}; index < 100; index = index * 2;) {
 return 0;
 
 //? test: for-12
-//? description: Allow destructuring list in for expression
+//? description: Allow destructuring array in for expression
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw

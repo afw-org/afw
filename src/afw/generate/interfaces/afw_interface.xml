@@ -2316,9 +2316,9 @@ impl_raw_end_object_list = {
       </description>
     </variable>
 
-    <variable name="empty_list" type="const afw_list_t *">
+    <variable name="empty_list" type="const afw_array_t *">
       <description>
-        Instance of afw_list for an empty list of this data type.
+        Instance of afw_array for an empty list of this data type.
       </description>
     </variable>
 
@@ -2611,13 +2611,13 @@ impl_raw_end_object_list = {
   </interface>
 
 
-  <interface name="afw_list_setter" id="afwls">
+  <interface name="afw_array_setter" id="afwls">
 
     <description>
       Adaptive list setter interface.
     </description>
 
-    <variable name="list" type="const afw_list_t *">
+    <variable name="list" type="const afw_array_t *">
       <description>
         This is the associated list.
       </description>
@@ -2632,7 +2632,7 @@ impl_raw_end_object_list = {
         an error.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this object instance.</description>
       </parameter>
 
@@ -2659,7 +2659,7 @@ impl_raw_end_object_list = {
         an error.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this object instance.</description>
       </parameter>
 
@@ -2684,7 +2684,7 @@ impl_raw_end_object_list = {
         internal value.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2715,7 +2715,7 @@ impl_raw_end_object_list = {
         Add a value to a list.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2739,7 +2739,7 @@ impl_raw_end_object_list = {
         internal value at a specified index.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2776,7 +2776,7 @@ impl_raw_end_object_list = {
         Insert a value to a list at a specified index.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2805,7 +2805,7 @@ impl_raw_end_object_list = {
         Remove all values from a list.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2824,7 +2824,7 @@ impl_raw_end_object_list = {
         internal value.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>
           Pointer to this value list instance.
         </description>
@@ -2856,7 +2856,7 @@ impl_raw_end_object_list = {
         Remove a single value from list.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2879,7 +2879,7 @@ impl_raw_end_object_list = {
         Set a value by index.
       </description>
 
-      <parameter name="instance" type="const afw_list_setter_t *">
+      <parameter name="instance" type="const afw_array_setter_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2902,7 +2902,7 @@ impl_raw_end_object_list = {
   </interface>
 
 
-  <interface name="afw_list" id="afwl">
+  <interface name="afw_array" id="afwl">
 
     <description>
       Adaptive value list interface.
@@ -2915,7 +2915,7 @@ impl_raw_end_object_list = {
         if value list is part of an adaptive adaptor session.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2934,7 +2934,7 @@ impl_raw_end_object_list = {
         Return the number of values in list.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2955,7 +2955,7 @@ impl_raw_end_object_list = {
         Return the data type if typed list or NULL.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -2976,7 +2976,7 @@ impl_raw_end_object_list = {
         Get the meta object of list entry by index.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>
           Pointer to this value list instance.
         </description>
@@ -3013,7 +3013,7 @@ impl_raw_end_object_list = {
         determine how to interpret.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>
           Pointer to this value list instance.
         </description>
@@ -3059,7 +3059,7 @@ impl_raw_end_object_list = {
         this function will create an adaptive value in the specified pool to return.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>
           Pointer to this value list instance.
         </description>
@@ -3098,7 +3098,7 @@ impl_raw_end_object_list = {
         from the first value again.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -3135,7 +3135,7 @@ impl_raw_end_object_list = {
         any time you want to start from the first value again.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>
           Pointer to this value list instance.
         </description>
@@ -3184,7 +3184,7 @@ impl_raw_end_object_list = {
         this function will create an adaptive value in the specified pool to return.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>Pointer to this value list instance.</description>
       </parameter>
 
@@ -3217,7 +3217,7 @@ impl_raw_end_object_list = {
         Return the list's setter interface or NULL if immutable.
       </description>
 
-      <parameter name="instance" type="const afw_list_t *">
+      <parameter name="instance" type="const afw_array_t *">
         <description>
           Pointer to this object instance.
         </description>
@@ -3227,7 +3227,7 @@ impl_raw_end_object_list = {
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_list_setter_t *">
+      <return type="const afw_array_setter_t *">
         <description>
           List's setter interface or NULL if immutable.
         </description>

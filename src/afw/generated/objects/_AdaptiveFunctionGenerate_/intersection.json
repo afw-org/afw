@@ -9,13 +9,13 @@
     "functionLabel": "intersection",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "The first list.",
             "name": "list1",
             "polymorphicDataTypeParameter": true
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "description": "The second list.",
             "name": "list2",
             "polymorphicDataTypeParameter": true
@@ -41,7 +41,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_intersection",
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "polymorphicDataTypeParameter": true
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"

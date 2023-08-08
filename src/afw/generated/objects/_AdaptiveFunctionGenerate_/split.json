@@ -34,7 +34,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_split",
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "description": "An list of strings."
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"

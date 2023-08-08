@@ -148,6 +148,9 @@ AFW_UTF8_LITERAL("allowEntity");
 AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowQuery =
 AFW_UTF8_LITERAL("allowQuery");
 
+AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_array =
+AFW_UTF8_LITERAL("array");
+
 AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_attributeTypes =
 AFW_UTF8_LITERAL("attributeTypes");
 
@@ -201,9 +204,6 @@ AFW_UTF8_LITERAL("ldapSyntaxes");
 
 AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap_extension =
 AFW_UTF8_LITERAL("ldap_extension");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_list =
-AFW_UTF8_LITERAL("list");
 
 AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_matchingRuleUse =
 AFW_UTF8_LITERAL("matchingRuleUse");

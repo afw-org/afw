@@ -312,7 +312,7 @@
         {
             "_meta_": {
                 "path": "/afw/_AdaptiveDataType_/list",
-                "objectId": "list",
+                "objectId": "array",
                 "objectType": "_AdaptiveDataType_"
             },
             "scalar": false,
@@ -323,8 +323,8 @@
             "directReturn": true,
             "description": "Data type list holds a list of adaptive value.  The list can have value all of one data type or of different data types.",
             "dataTypeParameterType": "dataType",
-            "dataType": "list",
-            "cType": "const afw_list_t *",
+            "dataType": "array",
+            "cType": "const afw_array_t *",
             "brief": "A list of adaptive values"
         },
         {

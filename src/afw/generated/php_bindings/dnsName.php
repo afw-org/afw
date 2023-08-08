@@ -28,9 +28,9 @@ class dnsName
      *
      * Takes any number of dnsName values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_dnsName(, $values = null)
     {
@@ -52,7 +52,7 @@ class dnsName
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */
@@ -224,11 +224,11 @@ class dnsName
      * the boolean result.
      *
      * @param dnsName $value
-     * @param list $list
+     * @param array $array
      *
      * @return boolean
      */
-    public function is_in_dnsName(, $value, $list)
+    public function is_in_dnsName(, $value, $array)
     {
         $request = $this->$session->request();
 
@@ -236,7 +236,7 @@ class dnsName
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -351,18 +351,18 @@ class dnsName
      * This converts a list of dnsName values that contains one value to a
      * single dnsName value.
      *
-     * @param list $list
+     * @param array $array
      *
      * @return dnsName
      */
-    public function one_and_only_dnsName(, $list)
+    public function one_and_only_dnsName(, $array)
     {
         $request = $this->$session->request();
 
         $request->set("function", "one_and_only<dnsName>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list", $list);
+        $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

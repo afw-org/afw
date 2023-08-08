@@ -39,7 +39,7 @@ typedef struct afw_environment_internal_s {
     afw_xctx_t *base_xctx;
 
     /* Configuration object. */
-    const afw_list_t *configuration;
+    const afw_array_t *configuration;
 
     /* Hash table of registry type name to registry type number. */
     apr_hash_t *registry_names_ht;

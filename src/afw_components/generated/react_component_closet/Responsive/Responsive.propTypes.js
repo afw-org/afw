@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ResponsiveRow = {
     /**
      * Property: columns
-     * Data Type: (list, object _AdaptiveLayoutComponentType_ResponsiveCol)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_ResponsiveCol)
      * 
      * The layout columns that are contained by this ResponsiveRow component.
      */
@@ -38,7 +38,7 @@ export const propTypes = {
     justify:                            PropTypes.oneOf(["flex-start", "center", "flex-end", "space-between", "space-around"]),
     /**
      * rows
-     * Data Type: (list, object _AdaptiveLayoutComponentType_ResponsiveRow)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_ResponsiveRow)
      * 
      * The layout row components that are contained by this Responsive.
      */

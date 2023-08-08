@@ -38,9 +38,9 @@ return 0;
 return 1;
 
 //? test: return_list
-//? description: Returns list
+//? description: Returns array
 //? expect: ...
-list([ 
+array([ 
     "a", 
     "b", 
     "c" 
@@ -48,7 +48,7 @@ list([
 //? source: ...
 #!/usr/bin/env afw
 
-return list([
+return array([
     "a", 
     "b", 
     "c"

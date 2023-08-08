@@ -58,7 +58,7 @@ export function afwExtensionLoadByModulePath(client : any, module_path : string)
  * Get a list of of the flagId of flags that are set in the current execution
  * context (xctx).
  * 
- * @returns {list} This is a list of the flagId of flags that are set in the
+ * @returns {array} This is a list of the flagId of flags that are set in the
  *     current execution context (xctx).
  */
 export function afwFlagGetActive(client : any) : any {
@@ -74,7 +74,7 @@ export function afwFlagGetActive(client : any) : any {
  * Get a list of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
  * 
- * @returns {list} This is a list of the flagId of flags that are set by
+ * @returns {array} This is a list of the flagId of flags that are set by
  *     default when a new execution context (xctx) is created.
  */
 export function afwFlagGetActiveDefaults(client : any) : any {
@@ -93,7 +93,7 @@ export function afwFlagGetActiveDefaults(client : any) : any {
  * these flags and the flags they include are set as the active default
  * flags.
  * 
- * @returns {list} This is a list of the flagId of flags used to determine
+ * @returns {array} This is a list of the flagId of flags used to determine
  *     the default active flags.
  */
 export function afwFlagGetDefaults(client : any) : any {
@@ -117,7 +117,7 @@ export function afwFlagGetDefaults(client : any) : any {
  * change to persist, change the defaultFlags property in the application
  * config.
  * 
- * @param {list} flagId - The flagId of flags to be added or removed.
+ * @param {array} flagId - The flagId of flags to be added or removed.
  * 
  * @param {boolean} add - Specify true to add and false to remove flags. If
  *     not specified, flags are added.
@@ -149,7 +149,7 @@ export function afwFlagModifyDefaults(client : any, flagId : any[], add? : boole
  * change to persist, change the defaultFlags property in the application
  * config.
  * 
- * @param {list} flagId - The list of the flagId of flags used to determine
+ * @param {array} flagId - The list of the flagId of flags used to determine
  *     the default active flags.
  * 
  * @returns {null}
@@ -167,7 +167,7 @@ export function afwFlagReplaceDefaults(client : any, flagId : any[]) : any {
 /**
  * Set or unset one or more active xctx (request) flags.
  * 
- * @param {list} flagId - List of flagId of flags to set or unset.
+ * @param {array} flagId - List of flagId of flags to set or unset.
  * 
  * @param {boolean} setTo - Specify true to set and false to unset. If not
  *     specified, flags are set.

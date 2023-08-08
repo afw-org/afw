@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwMap",
     "brief": "Maps values of a list",
     "camelCaseFunctionLabel": "map",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "This function creates a list of the results of calling functor with each value of the first list in values",
     "functionId": "map",
     "functionLabel": "map",
@@ -20,6 +20,6 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list"
+        "dataType": "array"
     }
 }

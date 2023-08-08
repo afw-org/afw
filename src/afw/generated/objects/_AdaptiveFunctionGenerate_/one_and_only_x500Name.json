@@ -15,9 +15,9 @@
     "functionLabel": "one_and_only_x500Name",
     "parameters": [
         {
-            "dataType": "list",
-            "dataTypeParameter": "list",
-            "name": "list"
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "name": "array"
         }
     ],
     "pure": true,

@@ -40,7 +40,7 @@
             "required": false
         },
         "tests": {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveDataTypeTestCase_",
             "brief": "Datatype test cases",
             "description": "This describes the test cases for testing a data type.",

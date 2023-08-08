@@ -71,6 +71,26 @@ typedef struct afw_value_anyURI_s
 /** @} */
 
 /**
+ * @addtogroup afw_c_api_data_type_array
+ * @{
+ */
+
+/** @brief Typedef for data type array internal. */
+typedef const afw_array_t * afw_data_type_array_internal_t;
+
+/** @brief Typedef for data type array parameter. */
+typedef const afw_array_t * afw_data_type_array_parameter_t;
+
+/** @brief Typedef for data type array return. */
+typedef const afw_array_t * afw_data_type_array_return_t;
+
+/** @brief Typedef for data type array evaluated value. */
+typedef struct afw_value_array_s
+    afw_value_array_t;
+
+/** @} */
+
+/**
  * @addtogroup afw_c_api_data_type_base64Binary
  * @{
  */
@@ -347,26 +367,6 @@ typedef const afw_utf8_t * afw_data_type_ipAddress_return_t;
 /** @brief Typedef for data type ipAddress evaluated value. */
 typedef struct afw_value_ipAddress_s
     afw_value_ipAddress_t;
-
-/** @} */
-
-/**
- * @addtogroup afw_c_api_data_type_list
- * @{
- */
-
-/** @brief Typedef for data type list internal. */
-typedef const afw_list_t * afw_data_type_list_internal_t;
-
-/** @brief Typedef for data type list parameter. */
-typedef const afw_list_t * afw_data_type_list_parameter_t;
-
-/** @brief Typedef for data type list return. */
-typedef const afw_list_t * afw_data_type_list_return_t;
-
-/** @brief Typedef for data type list evaluated value. */
-typedef struct afw_value_list_s
-    afw_value_list_t;
 
 /** @} */
 

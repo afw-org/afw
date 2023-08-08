@@ -728,7 +728,7 @@ afw_object_path_parsed_to_object(
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
-    const afw_list_t *list;
+    const afw_array_t *list;
     const afw_value_t *value;
     const afw_object_path_property_name_entry_t *name;
 
@@ -770,14 +770,14 @@ afw_object_path_parsed_to_object(
     }
 
     if (parsed->first_property_name) {
-        list = afw_list_of_create(
+        list = afw_array_of_create(
             afw_data_type_string, p, xctx);
         for (name = parsed->first_property_name; name; name = name->next) {
             value = afw_value_create_string(&name->property_name,
                 p, xctx);
-            afw_list_add_value(list, value, xctx);
+            afw_array_add_value(list, value, xctx);
         }
-        afw_object_set_property_as_list(result,
+        afw_object_set_property_as_array(result,
             &afw_s_propertyTypes, list, xctx);
     }
 

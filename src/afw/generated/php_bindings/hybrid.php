@@ -28,9 +28,9 @@ class hybrid
      *
      * Takes any number of hybrid values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_hybrid(, $values = null)
     {
@@ -52,7 +52,7 @@ class hybrid
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */

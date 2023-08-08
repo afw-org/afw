@@ -28,7 +28,7 @@
         "ia5String",
         "integer",
         "ipAddress",
-        "list",
+        "array",
         "null",
         "object",
         "objectId",

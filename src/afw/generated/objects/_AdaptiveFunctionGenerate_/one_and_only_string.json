@@ -15,9 +15,9 @@
     "functionLabel": "one_and_only_string",
     "parameters": [
         {
-            "dataType": "list",
-            "dataTypeParameter": "list",
-            "name": "list"
+            "dataType": "array",
+            "dataTypeParameter": "array",
+            "name": "array"
         }
     ],
     "pure": true,

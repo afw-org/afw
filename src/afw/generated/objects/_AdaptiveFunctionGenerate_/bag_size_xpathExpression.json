@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_xpathExpression",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "xpathExpression",
             "name": "value"
         }

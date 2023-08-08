@@ -420,7 +420,7 @@ afw_adaptor_impl_throw_property_required(
  */
 AFW_DECLARE(void)
 afw_adaptor_impl_call_object_cb_from_list(
-    const afw_list_t *list,
+    const afw_array_t *list,
     void * context,
     afw_object_cb_t callback,
     afw_xctx_t *xctx);

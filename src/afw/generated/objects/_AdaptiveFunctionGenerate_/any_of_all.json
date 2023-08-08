@@ -3,7 +3,7 @@
     "afwCamelCaseFunctionLabel": "afwAnyOfAll",
     "brief": "Combinations of any in list1 and all in list2 true",
     "camelCaseFunctionLabel": "anyOfAll",
-    "category": "higher_order_list",
+    "category": "higher_order_array",
     "description": "Returns true if the result of calling predicate with all of the combination of values from list2 and any of the values of list1 returns true.",
     "functionId": "any_of_all",
     "functionLabel": "any_of_all",
@@ -15,11 +15,11 @@
             "name": "predicate"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "name": "list2"
         }
     ],

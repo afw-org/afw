@@ -35,7 +35,7 @@
         "ia5String",
         "integer",
         "ipAddress",
-        "list",
+        "array",
         "object",
         "objectId",
         "objectPath",

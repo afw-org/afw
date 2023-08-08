@@ -176,7 +176,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_adaptor_t *layout_adaptor;
     const afw_object_t *context_type_object;
     const afw_object_t *variable_definitions_object;
-    const afw_list_t *default_flags;
+    const afw_array_t *default_flags;
     const afw_utf8_t * const *extension_id;
     const afw_utf8_t * const *module_path;
     const afw_utf8_t *detail_source_location;
@@ -363,7 +363,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         env->application_object, &afw_s_rootFilePaths, xctx);
 
     /* defaultFlags */
-    default_flags = afw_object_old_get_property_as_list(env->application_object,
+    default_flags = afw_object_old_get_property_as_array(env->application_object,
         &afw_s_defaultFlags, xctx);
     if (default_flags) {
         afw_flag_set_default_flag_ids(default_flags, xctx);

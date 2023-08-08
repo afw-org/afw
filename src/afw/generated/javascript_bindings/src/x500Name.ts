@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in x500Name list1 is in
  * x500Name list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -35,7 +35,7 @@ export function afwAtLeastOneMemberOfX500Name(client : any, list1 : any[], list2
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -52,9 +52,9 @@ export function afwBagSizeX500Name(client : any, value : any[]) : any {
 /**
  * Takes any number of x500Name values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagX500Name(client : any, values? : any[]) : any {
 
@@ -159,11 +159,11 @@ export function afwGtX500Name(client : any, arg1 : any, arg2 : any) : any {
  * Returns a list of x500Name with the values that are common to both list of
  * x500Name list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionX500Name(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -182,17 +182,17 @@ export function afwIntersectionX500Name(client : any, list1 : any[], list2 : any
  * 
  * @param {x500Name} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInX500Name(client : any, value : any, list : any[]) : any {
+export function afwIsInX500Name(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<x500Name>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -326,16 +326,16 @@ export function afwNexX500Name(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of x500Name values that contains one value to a
  * single x500Name value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {x500Name}
  */
-export function afwOneAndOnlyX500Name(client : any, list : any[]) : any {
+export function afwOneAndOnlyX500Name(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<x500Name>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -365,9 +365,9 @@ export function afwRegexpMatchX500Name(client : any, value : any, regexp : strin
  * Returns boolean true if x500Name list1 and x500Name list2 are subsets of
  * each other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -386,9 +386,9 @@ export function afwSetEqualsX500Name(client : any, list1 : any[], list2 : any[])
  * Returns boolean true if the unique values in x500Name list1 are all in
  * x500Name list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -425,9 +425,9 @@ export function afwToStringX500Name(client : any, value : any) : any {
  * Returns a list of x500Name contains all of the unique values in two or
  * more list of x500Name values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionX500Name(client : any, lists : any[]) : any {
 

@@ -9,12 +9,12 @@
     "functionLabel": "set_equals_rfc822Name",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "name": "list2"
         }

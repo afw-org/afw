@@ -36,9 +36,9 @@ export function afwAddString(client : any, string : string, values : any) : any 
  * Returns boolean true if at least one value in string list1 is in string
  * list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -56,7 +56,7 @@ export function afwAtLeastOneMemberOfString(client : any, list1 : any[], list2 :
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -73,9 +73,9 @@ export function afwBagSizeString(client : any, value : any[]) : any {
 /**
  * Takes any number of string values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagString(client : any, values? : any[]) : any {
 
@@ -332,11 +332,11 @@ export function afwIndexOfString(client : any, value : string, subString : strin
  * Returns a list of string with the values that are common to both list of
  * string list1 and list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwIntersectionString(client : any, list1 : any[], list2 : any[]) : any {
 
@@ -355,17 +355,17 @@ export function afwIntersectionString(client : any, list1 : any[], list2 : any[]
  * 
  * @param {string} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInString(client : any, value : string, list : any[]) : any {
+export function afwIsInString(client : any, value : string, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<string>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -593,16 +593,16 @@ export function afwNormalizeToLowerCaseString(client : any, string : string) : a
  * This converts a list of string values that contains one value to a single
  * string value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {string}
  */
-export function afwOneAndOnlyString(client : any, list : any[]) : any {
+export function afwOneAndOnlyString(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<string>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -731,9 +731,9 @@ export function afwReplaceString(client : any, value : string, match : string, r
  * Returns boolean true if string list1 and string list2 are subsets of each
  * other and return the boolean result.
  * 
- * @param {list} list1 -
+ * @param {array} list1 -
  * 
- * @param {list} list2 -
+ * @param {array} list2 -
  * 
  * @returns {boolean}
  */
@@ -760,7 +760,7 @@ export function afwSetEqualsString(client : any, list1 : any[], list2 : any[]) :
  * @param {integer} limit - This is the maximum number of splits. Any
  *     remaining part of value is ignored.
  * 
- * @returns {list} An list of strings.
+ * @returns {array} An list of strings.
  */
 export function afwSplitString(client : any, value : string, separator? : string, limit? : number) : any {
 
@@ -822,9 +822,9 @@ export function afwString(client : any, values : any) : any {
  * Returns boolean true if the unique values in string list1 are all in
  * string list2.
  * 
- * @param {list} list1 - The first list.
+ * @param {array} list1 - The first list.
  * 
- * @param {list} list2 - The second list.
+ * @param {array} list2 - The second list.
  * 
  * @returns {boolean}
  */
@@ -1109,9 +1109,9 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
  * Returns a list of string contains all of the unique values in two or more
  * list of string values.
  * 
- * @param {list} lists - Two or more lists.
+ * @param {array} lists - Two or more lists.
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwUnionString(client : any, lists : any[]) : any {
 

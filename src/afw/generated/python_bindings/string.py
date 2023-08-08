@@ -47,9 +47,9 @@ def at_least_one_member_of_string(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -79,7 +79,7 @@ def bag_size_string(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -108,10 +108,10 @@ def bag_string(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -510,12 +510,12 @@ def intersection_string(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -534,7 +534,7 @@ def intersection_string(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def is_in_string(session, value, list):
+def is_in_string(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -545,7 +545,7 @@ def is_in_string(session, value, list):
 
         value (string):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -556,7 +556,7 @@ def is_in_string(session, value, list):
     action = {
         "function": "is_in<string>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -918,7 +918,7 @@ def normalize_to_lower_case_string(session, string):
 
     return response['actions'][0]['result']
 
-def one_and_only_string(session, list):
+def one_and_only_string(session, array):
     '''
     Converts a one value list to a string value
 
@@ -927,7 +927,7 @@ def one_and_only_string(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     string: 
@@ -937,7 +937,7 @@ def one_and_only_string(session, list):
 
     action = {
         "function": "one_and_only<string>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -1137,9 +1137,9 @@ def set_equals_string(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -1178,7 +1178,7 @@ def split_string(session, value, separator=None, limit=None):
         part of value is ignored.
 
     Returns:
-    list: An list of strings.
+    array: An list of strings.
     '''
 
     request = session.Request()
@@ -1275,9 +1275,9 @@ def subset_string(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -1754,10 +1754,10 @@ def union_string(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

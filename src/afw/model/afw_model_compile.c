@@ -394,8 +394,8 @@ impl_harvest_object_type(
     const afw_object_t *propertyTypes;
     const afw_utf8_t *property_name;
     const afw_iterator_t *iterator;
-    const afw_value_list_t *from_parent_paths;
-    afw_value_list_t *to_parent_paths;
+    const afw_value_array_t *from_parent_paths;
+    afw_value_array_t *to_parent_paths;
     const afw_utf8_t *path;
     afw_boolean_t flag;
     afw_boolean_t found;
@@ -417,13 +417,13 @@ impl_harvest_object_type(
     value = afw_object_meta_get_property(object,
         &afw_s_resolvedParentPaths, xctx);
     if (value) {
-        AFW_VALUE_ASSERT_IS_DATA_TYPE(value, list, xctx);
-        from_parent_paths = (const afw_value_list_t *)value;
-        to_parent_paths = afw_value_allocate_list(p, xctx);
+        AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
+        from_parent_paths = (const afw_value_array_t *)value;
+        to_parent_paths = afw_value_allocate_array(p, xctx);
         to_parent_paths->internal =  
-            afw_list_of_create(afw_data_type_anyURI, p, xctx);
+            afw_array_of_create(afw_data_type_anyURI, p, xctx);
         for (iterator = NULL;;) {
-            path = afw_list_of_utf8_get_next(
+            path = afw_array_of_utf8_get_next(
                 from_parent_paths->internal, &iterator, xctx);
             if (!path) break;
             if (afw_utf8_starts_with(path, model->objectType_path)) {
@@ -431,10 +431,10 @@ impl_harvest_object_type(
                     "/*/_AdaptiveObjectType_/" AFW_UTF8_FMT,
                     (int)(path->len - model->objectType_path->len),
                     (char *)(path->s + model->objectType_path->len));
-                afw_list_of_anyURI_add(to_parent_paths->internal, s, xctx);
+                afw_array_of_anyURI_add(to_parent_paths->internal, s, xctx);
             }
             else {
-                afw_list_of_anyURI_add(to_parent_paths->internal, path, xctx);
+                afw_array_of_anyURI_add(to_parent_paths->internal, path, xctx);
             }
         }
         afw_object_meta_set_property(result,

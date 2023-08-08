@@ -70,7 +70,7 @@ static void convert_value_to_ubjson(
 
 static void convert_list_to_ubjson(
     from_value_wa_t * wa,
-    const afw_list_t * list);
+    const afw_array_t * list);
 
 static void convert_object_to_ubjson(
     from_value_wa_t * wa,
@@ -338,7 +338,7 @@ static void convert_bag_to_ubjson(
 
 static void convert_list_to_ubjson(
     from_value_wa_t * wa,
-    const afw_list_t * list)
+    const afw_array_t * list)
 {
     const afw_iterator_t *list_iterator;
     const afw_value_t *next;
@@ -351,12 +351,12 @@ static void convert_list_to_ubjson(
     }
 
     list_iterator = NULL;
-    next = afw_list_get_next_value(list, &list_iterator,
+    next = afw_array_get_next_value(list, &list_iterator,
         wa->p, wa->xctx);
     
     while (next) {
         convert_value_to_ubjson(wa, next);
-        next = afw_list_get_next_value(list, &list_iterator,
+        next = afw_array_get_next_value(list, &list_iterator,
             wa->p, wa->xctx);
     }
 
@@ -392,8 +392,8 @@ static void convert_value_to_ubjson(
     /* Get data type. */
     value_data_type = afw_value_get_data_type(value, wa->xctx);
 
-    if (afw_value_is_list(value)) {
-        convert_list_to_ubjson(wa, afw_value_as_list(value, wa->xctx));
+    if (afw_value_is_array(value)) {
+        convert_list_to_ubjson(wa, afw_value_as_array(value, wa->xctx));
     }
 
     else if (afw_value_is_object(value)) {

@@ -12,7 +12,7 @@ export interface ITabsProps {
     gapSpace?:                          number;
     /**
      * tabs
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Tabs_Tab)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Tabs_Tab)
      * 
      * The tabs that are defined for this Tabs component.
      */

@@ -169,7 +169,7 @@ of like conjunctions except for outer '&'. (default)
 2 - similar to 1 with ';' for '&' and ',' for '|'.
 
 3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge', ...,
-plus conjunctions 'and(list)' and 'or(list)' where 'list' is a comma
+plus conjunctions 'and(list)' and 'or(list)' where 'array' is a comma
 separated list of any comparison or conjunction.
 
 =head3 convert_query_string_to_AdaptiveQueryCriteria

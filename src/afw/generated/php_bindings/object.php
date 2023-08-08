@@ -82,9 +82,9 @@ class object
      *
      * Takes any number of object values and returns a list of list.
      *
-     * @param list $values
+     * @param array $values
      *
-     * @return list
+     * @return array
      */
     public function bag_object(, $values = null)
     {
@@ -106,7 +106,7 @@ class object
      *
      * This returns the integer number of values in list.
      *
-     * @param list $value
+     * @param array $value
      *
      * @return integer
      */

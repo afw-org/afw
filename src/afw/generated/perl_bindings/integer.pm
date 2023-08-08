@@ -211,7 +211,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 is_integer
@@ -344,7 +344,7 @@ Converts a one value list to a integer value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_integer
@@ -568,13 +568,13 @@ sub intersection_integer {
 }
 
 sub is_in_integer {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<integer>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -695,12 +695,12 @@ sub nex_integer {
 }
 
 sub one_and_only_integer {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<integer>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

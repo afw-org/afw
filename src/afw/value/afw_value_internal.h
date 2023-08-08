@@ -556,7 +556,7 @@ typedef struct afw_value_meta_object_self_s {
 
 
 typedef struct afw_value_meta_values_object_list_self_s {
-    afw_list_t pub;
+    afw_array_t pub;
     const afw_pool_t *p;
     const afw_value_object_t *value;
 } afw_value_meta_values_object_list_self_t;
@@ -564,9 +564,9 @@ typedef struct afw_value_meta_values_object_list_self_s {
 
 
 typedef struct afw_value_meta_values_list_list_self_s {
-    afw_list_t pub;
+    afw_array_t pub;
     const afw_pool_t *p;
-    const afw_value_list_t *value;
+    const afw_value_array_t *value;
 } afw_value_meta_values_list_list_self_t;
 
 

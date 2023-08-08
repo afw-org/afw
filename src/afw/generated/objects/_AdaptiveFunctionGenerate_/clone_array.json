@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCloneArray",
+    "brief": "Clone array value",
+    "camelCaseFunctionLabel": "cloneArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Deep clone a array value.",
+    "functionId": "clone<array>",
+    "functionLabel": "clone_array",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array value to clone.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "The cloned array value."
+    },
+    "useExecuteFunction": "afw_function_execute_clone"
+}

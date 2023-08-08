@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwGeArray",
+    "brief": "Checks for greater than or equal",
+    "camelCaseFunctionLabel": "geArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Checks for array arg1 is greater than or equal to array arg2 and return the boolean result.",
+    "functionId": "ge<array>",
+    "functionLabel": "ge_array",
+    "op": ">=",
+    "parameters": [
+        {
+            "dataType": "array",
+            "name": "arg1"
+        },
+        {
+            "dataType": "array",
+            "name": "arg2"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_ge"
+}

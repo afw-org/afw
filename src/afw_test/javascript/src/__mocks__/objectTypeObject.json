@@ -190,8 +190,8 @@
                 "10.0.1.1"
             ]
         },
-        "list": {
-            "dataType": "list",
+        "array": {
+            "dataType": "array",
             "label": "List Label",
             "brief": "This is a list",
             "testValues": [

@@ -54,7 +54,7 @@ void afw_lmdb_metadata_refresh(
 /**
  * @brief Called by afw_lmdb_adaptor_session() to retrieve metadata objects.
  */
-const afw_list_t * afw_lmdb_metadata_retrieve_objects(
+const afw_array_t * afw_lmdb_metadata_retrieve_objects(
     afw_lmdb_adaptor_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,

@@ -86,7 +86,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -320,7 +320,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -539,7 +539,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -749,7 +749,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -1280,7 +1280,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -1531,7 +1531,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -1742,7 +1742,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -1877,7 +1877,7 @@
                         },
                         "description": "The modify entries.",
                         "label": "Modify Entries",
-                        "dataType": "list"
+                        "dataType": "array"
                     }
                 }
             },
@@ -1969,7 +1969,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -2188,7 +2188,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -2406,7 +2406,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -2838,7 +2838,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -3071,7 +3071,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",
@@ -3585,7 +3585,7 @@
                         "label": "Extensions",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "dataTypeParameter": "string",
-                        "dataType": "list",
+                        "dataType": "array",
                         "brief": "List of extensions to load at startup"
                     },
                     "qualifiedVariables": {
@@ -3781,7 +3781,7 @@
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "brief": "List of extensions to load at startup",
-                        "dataType": "list",
+                        "dataType": "array",
                         "dataTypeParameter": "string",
                         "description": "This is a list of extensionId of extensions to load at startup.  Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "label": "Extensions",

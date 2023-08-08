@@ -85,8 +85,8 @@ class administrative
      * execution context (xctx).
      *
      *
-     * @return list This is a list of the flagId of flags that are set in the
-     *              current execution context (xctx).
+     * @return array This is a list of the flagId of flags that are set in
+     *               the current execution context (xctx).
      */
     public function flag_get_active()
     {
@@ -107,8 +107,8 @@ class administrative
      * execution context (xctx) is created.
      *
      *
-     * @return list This is a list of the flagId of flags that are set by
-     *              default when a new execution context (xctx) is created.
+     * @return array This is a list of the flagId of flags that are set by
+     *               default when a new execution context (xctx) is created.
      */
     public function flag_get_active_defaults()
     {
@@ -132,8 +132,8 @@ class administrative
      * the active default flags.
      *
      *
-     * @return list This is a list of the flagId of flags used to determine
-     *              the default active flags.
+     * @return array This is a list of the flagId of flags used to determine
+     *               the default active flags.
      */
     public function flag_get_defaults()
     {
@@ -161,7 +161,7 @@ class administrative
      * you want the change to persist, change the defaultFlags property in
      * the application config.
      *
-     * @param list $flagId The flagId of flags to be added or removed.
+     * @param array $flagId The flagId of flags to be added or removed.
      * @param boolean $add Specify true to add and false to remove flags. If
      *                     not specified, flags are added.
      *
@@ -197,8 +197,8 @@ class administrative
      * you want the change to persist, change the defaultFlags property in
      * the application config.
      *
-     * @param list $flagId The list of the flagId of flags used to determine
-     *                     the default active flags.
+     * @param array $flagId The list of the flagId of flags used to determine
+     *                      the default active flags.
      *
      * @return null
      */
@@ -220,7 +220,7 @@ class administrative
      *
      * Set or unset one or more active xctx (request) flags.
      *
-     * @param list $flagId List of flagId of flags to set or unset.
+     * @param array $flagId List of flagId of flags to set or unset.
      * @param boolean $setTo Specify true to set and false to unset. If not
      *                       specified, flags are set.
      *

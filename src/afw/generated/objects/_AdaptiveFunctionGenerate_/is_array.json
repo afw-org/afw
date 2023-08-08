@@ -1,0 +1,21 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIsArray",
+    "brief": "Checks whether value is dataType array",
+    "camelCaseFunctionLabel": "isArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Checks whether value is dataType array and return the boolean result.",
+    "functionId": "is<array>",
+    "functionLabel": "is_array",
+    "parameters": [
+        {
+            "description": "Value to check",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_is"
+}

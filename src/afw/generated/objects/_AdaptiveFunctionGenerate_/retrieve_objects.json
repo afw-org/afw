@@ -45,7 +45,7 @@
     ],
     "returns": {
         "brief": "Objects retrieved or undefined",
-        "dataType": "list",
+        "dataType": "array",
         "description": "This is the list of objects retrieved."
     }
 }

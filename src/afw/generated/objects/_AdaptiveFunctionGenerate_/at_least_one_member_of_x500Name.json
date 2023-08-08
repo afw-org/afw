@@ -9,13 +9,13 @@
     "functionLabel": "at_least_one_member_of_x500Name",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "x500Name",
             "description": "The first list.",
             "name": "list1"
         },
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "x500Name",
             "description": "The second list.",
             "name": "list2"

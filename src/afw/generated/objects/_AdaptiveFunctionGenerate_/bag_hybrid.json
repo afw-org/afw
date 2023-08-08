@@ -9,7 +9,7 @@
     "functionLabel": "bag_hybrid",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "hybrid",
             "minArgs": 0,
             "name": "values",
@@ -18,7 +18,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "list",
+        "dataType": "array",
         "dataTypeParameter": "hybrid"
     },
     "useExecuteFunction": "afw_function_execute_bag"

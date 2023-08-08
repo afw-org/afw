@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_ia5String",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "ia5String",
             "name": "value"
         }

@@ -180,7 +180,7 @@ Checks whether a value is in a list
     $value
 
 
-    $list
+    $array
 
 
 =head3 le_dayTimeDuration
@@ -250,7 +250,7 @@ Converts a one value list to a dayTimeDuration value
 
 =head4 Parameters
 
-    $list
+    $array
 
 
 =head3 set_equals_dayTimeDuration
@@ -428,13 +428,13 @@ sub is_dayTimeDuration {
 }
 
 sub is_in_dayTimeDuration {
-    my ($value, $list) = @_;
+    my ($value, $array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "is_in<dayTimeDuration>");
     $request->set("value", $value);
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }
@@ -488,12 +488,12 @@ sub nex_dayTimeDuration {
 }
 
 sub one_and_only_dayTimeDuration {
-    my ($list) = @_;
+    my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "one_and_only<dayTimeDuration>");
-    $request->set("list", $list);
+    $request->set("array", $array);
 
     return $request->getResult();
 }

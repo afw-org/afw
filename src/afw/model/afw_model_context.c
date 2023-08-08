@@ -696,8 +696,8 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_modifyEntries =
 {
     &afw_s_modifyEntries,
-    &afw_value_evaluated_list_inf,
-    &afw_data_type_list_direct,
+    &afw_value_evaluated_array_inf,
+    &afw_data_type_array_direct,
     "Modify Entries",
     "of list"
 };

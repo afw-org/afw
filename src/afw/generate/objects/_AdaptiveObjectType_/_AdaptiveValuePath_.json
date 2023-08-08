@@ -63,7 +63,7 @@
         },
         "propertyNames": {
             "brief": "Property names",
-            "dataType": "list",
+            "dataType": "array",
             "description": "Property names.",
             "label": "Property Names"
         },

@@ -14,7 +14,7 @@ interface IAnyObject {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -31,9 +31,9 @@ export function afwBagSizeTemplate(client : any, value : any[]) : any {
 /**
  * Takes any number of template values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagTemplate(client : any, values? : any[]) : any {
 

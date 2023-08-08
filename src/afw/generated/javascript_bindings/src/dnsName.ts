@@ -14,9 +14,9 @@ interface IAnyObject {
 /**
  * Takes any number of dnsName values and returns a list of list.
  * 
- * @param {list} values -
+ * @param {array} values -
  * 
- * @returns {list}
+ * @returns {array}
  */
 export function afwBagDnsName(client : any, values? : any[]) : any {
 
@@ -33,7 +33,7 @@ export function afwBagDnsName(client : any, values? : any[]) : any {
 /**
  * This returns the integer number of values in list.
  * 
- * @param {list} value -
+ * @param {array} value -
  * 
  * @returns {integer}
  */
@@ -174,17 +174,17 @@ export function afwIsDnsName(client : any, value : any) : any {
  * 
  * @param {dnsName} value -
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {boolean}
  */
-export function afwIsInDnsName(client : any, value : any, list : any[]) : any {
+export function afwIsInDnsName(client : any, value : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "is_in<dnsName>";
     _action["value"] = value;
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }
@@ -280,16 +280,16 @@ export function afwNexDnsName(client : any, arg1 : any, arg2 : any) : any {
  * This converts a list of dnsName values that contains one value to a single
  * dnsName value.
  * 
- * @param {list} list -
+ * @param {array} array -
  * 
  * @returns {dnsName}
  */
-export function afwOneAndOnlyDnsName(client : any, list : any[]) : any {
+export function afwOneAndOnlyDnsName(client : any, array : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "one_and_only<dnsName>";
-    _action["list"] = list;
+    _action["array"] = array;
 
     return client.perform(_action);
 }

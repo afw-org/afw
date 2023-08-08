@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: check_function_categories
-//? description: Check each function's category against a list of _AdaptiveFunctionCategory_ objects.
+//? description: Check each function's category against an array of _AdaptiveFunctionCategory_ objects.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw

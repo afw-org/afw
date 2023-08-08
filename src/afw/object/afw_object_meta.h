@@ -390,7 +390,7 @@ afw_object_meta_add_parent_path(
  * @param xctx of caller.
  * @return parent paths value or NULL.
  */
-AFW_DECLARE(const afw_value_list_t *)
+AFW_DECLARE(const afw_value_array_t *)
 afw_object_meta_get_parent_paths_value(
     const afw_object_t *instance,
     afw_xctx_t *xctx);
@@ -564,7 +564,7 @@ afw_object_meta_set_object_type_id(
 AFW_DECLARE(void)
 afw_object_meta_set_parent_paths(
     const afw_object_t *instance,
-    const afw_value_list_t *parent_paths,
+    const afw_value_array_t *parent_paths,
     afw_xctx_t *xctx);
 
 

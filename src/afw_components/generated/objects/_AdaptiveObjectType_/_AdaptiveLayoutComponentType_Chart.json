@@ -23,7 +23,7 @@
         },
         "data": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Chart_Data",
             "description": "The data for the Chart.",
             "label": "Data"

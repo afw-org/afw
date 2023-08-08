@@ -30,7 +30,7 @@
         },
         "items": {
             "allowWrite": true,
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "object _AdaptiveLayoutComponentType_Picker_Item",
             "description": "Items to be displayed by this Picker layout.",
             "label": "Items"

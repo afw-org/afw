@@ -73,9 +73,9 @@ def at_least_one_member_of_integer(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -105,10 +105,10 @@ def bag_integer(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -136,7 +136,7 @@ def bag_size_integer(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -363,12 +363,12 @@ def intersection_integer(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -387,7 +387,7 @@ def intersection_integer(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def is_in_integer(session, value, list):
+def is_in_integer(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -398,7 +398,7 @@ def is_in_integer(session, value, list):
 
         value (integer):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -409,7 +409,7 @@ def is_in_integer(session, value, list):
     action = {
         "function": "is_in<integer>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -733,7 +733,7 @@ def nex_integer(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_integer(session, list):
+def one_and_only_integer(session, array):
     '''
     Converts a one value list to a integer value
 
@@ -742,7 +742,7 @@ def one_and_only_integer(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     integer: 
@@ -752,7 +752,7 @@ def one_and_only_integer(session, list):
 
     action = {
         "function": "one_and_only<integer>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -772,9 +772,9 @@ def set_equals_integer(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -805,9 +805,9 @@ def subset_integer(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -929,10 +929,10 @@ def union_integer(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()

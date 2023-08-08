@@ -9,7 +9,7 @@
     "functionLabel": "bag_size_integer",
     "parameters": [
         {
-            "dataType": "list",
+            "dataType": "array",
             "dataTypeParameter": "integer",
             "name": "value"
         }

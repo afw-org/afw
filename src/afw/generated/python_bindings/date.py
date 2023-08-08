@@ -46,9 +46,9 @@ def at_least_one_member_of_date(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -78,10 +78,10 @@ def bag_date(session, values=None):
 
     Parameters:
 
-        values (list):
+        values (array):
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -109,7 +109,7 @@ def bag_size_date(session, value):
 
     Parameters:
 
-        value (list):
+        value (array):
 
     Returns:
     integer: 
@@ -309,12 +309,12 @@ def intersection_date(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
@@ -362,7 +362,7 @@ def is_date(session, value):
 
     return response['actions'][0]['result']
 
-def is_in_date(session, value, list):
+def is_in_date(session, value, array):
     '''
     Checks whether a value is in a list
 
@@ -373,7 +373,7 @@ def is_in_date(session, value, list):
 
         value (date):
 
-        list (list):
+        array (array):
 
     Returns:
     boolean: 
@@ -384,7 +384,7 @@ def is_in_date(session, value, list):
     action = {
         "function": "is_in<date>",
         "value": value,
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -600,7 +600,7 @@ def nex_date(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def one_and_only_date(session, list):
+def one_and_only_date(session, array):
     '''
     Converts a one value list to a date value
 
@@ -609,7 +609,7 @@ def one_and_only_date(session, list):
 
     Parameters:
 
-        list (list):
+        array (array):
 
     Returns:
     date: 
@@ -619,7 +619,7 @@ def one_and_only_date(session, list):
 
     action = {
         "function": "one_and_only<date>",
-        "list": list
+        "array": array
     }
 
     request.add_action(action)
@@ -639,9 +639,9 @@ def set_equals_date(session, list1, list2):
 
     Parameters:
 
-        list1 (list):
+        list1 (array):
 
-        list2 (list):
+        list2 (array):
 
     Returns:
     boolean: 
@@ -672,9 +672,9 @@ def subset_date(session, list1, list2):
 
     Parameters:
 
-        list1 (list): The first list.
+        list1 (array): The first list.
 
-        list2 (list): The second list.
+        list2 (array): The second list.
 
     Returns:
     boolean: 
@@ -768,10 +768,10 @@ def union_date(session, lists):
 
     Parameters:
 
-        lists (list): Two or more lists.
+        lists (array): Two or more lists.
 
     Returns:
-    list: 
+    array: 
     '''
 
     request = session.Request()
