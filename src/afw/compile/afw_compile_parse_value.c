@@ -187,7 +187,7 @@ afw_compile_parse_List(
             argc - 1, argv, true, parser->p, parser->xctx);
     }
 
-    /* Else if no entries yet, result is empty list. */
+    /* Else if no entries yet, result is empty array. */
     else if (!list) {
         list = afw_array_create_generic(parser->p, parser->xctx);
         afw_array_set_immutable(list, parser->xctx);

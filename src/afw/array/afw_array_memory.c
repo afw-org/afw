@@ -24,29 +24,29 @@
 #include "afw_array_impl_declares.h"
 #include "afw_array_setter_impl_declares.h"
 
-typedef struct afw_memory_internal_list_s
-afw_memory_internal_list_t;
+typedef struct afw_memory_internal_array_s
+afw_memory_internal_array_t;
 
-typedef struct afw_memory_internal_list_entry_s
-afw_memory_internal_list_entry_t;
+typedef struct afw_memory_internal_array_entry_s
+afw_memory_internal_array_entry_t;
 
-typedef struct afw_memory_internal_list_ring_s
-afw_memory_internal_list_ring_t;
+typedef struct afw_memory_internal_array_ring_s
+afw_memory_internal_array_ring_t;
 
-struct afw_memory_internal_list_entry_s {
-    APR_RING_ENTRY(afw_memory_internal_list_entry_s) link;
+struct afw_memory_internal_array_entry_s {
+    APR_RING_ENTRY(afw_memory_internal_array_entry_s) link;
     const afw_value_t *value;
 };
 
-APR_RING_HEAD(afw_memory_internal_list_ring_s,
-    afw_memory_internal_list_entry_s);
+APR_RING_HEAD(afw_memory_internal_array_ring_s,
+    afw_memory_internal_array_entry_s);
 
-struct afw_memory_internal_list_s {
+struct afw_memory_internal_array_s {
     afw_array_t pub;
     const afw_pool_t *p;
     const afw_data_type_t *data_type;
     afw_array_setter_t setter;
-    afw_memory_internal_list_ring_t *ring;
+    afw_memory_internal_array_ring_t *ring;
     afw_boolean_t immutable;
     afw_boolean_t generic;
 };
@@ -60,24 +60,24 @@ afw_array_create_with_options(
     afw_xctx_t *xctx)
 {
 
-    afw_memory_internal_list_t *self;
-    afw_memory_internal_list_ring_t *ring;
+    afw_memory_internal_array_t *self;
+    afw_memory_internal_array_ring_t *ring;
 
     /* Allocate memory for self. */
-    self = afw_pool_calloc_type(p, afw_memory_internal_list_t, xctx);
+    self = afw_pool_calloc_type(p, afw_memory_internal_array_t, xctx);
 
-    /* Allocate memory for value list ring container. */
-    ring = afw_pool_calloc_type(p, afw_memory_internal_list_ring_t, xctx);
+    /* Allocate memory for value array ring container. */
+    ring = afw_pool_calloc_type(p, afw_memory_internal_array_ring_t, xctx);
 
     /* Initialize self. */
     self->pub.inf = &impl_afw_array_inf;
     self->p = p;
     self->data_type = data_type;
     self->generic = data_type == NULL;
-    APR_RING_INIT(ring, afw_memory_internal_list_entry_s, link);
+    APR_RING_INIT(ring, afw_memory_internal_array_entry_s, link);
     self->ring = ring;
     self->setter.inf = &impl_afw_array_setter_inf;
-    self->setter.list = (const afw_array_t *)self;
+    self->setter.array = (const afw_array_t *)self;
 
     /* Return new object. */
     return (const afw_array_t *)self;
@@ -100,7 +100,7 @@ impl_afw_array_release(
      */
 
     /*
-     * Storage for value list is allocated in the pool provided, so nothing
+     * Storage for value array is allocated in the pool provided, so nothing
      * needs to be done.
      */
 }
@@ -115,12 +115,12 @@ impl_afw_array_get_count(
     const afw_array_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
+    afw_memory_internal_array_entry_t *ep;
     afw_size_t count;
 
     count = 0;
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         count++;
@@ -139,7 +139,7 @@ impl_afw_array_get_data_type(
     const afw_array_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
 
     return self->data_type;
 }
@@ -188,8 +188,8 @@ impl_afw_array_get_entry_value(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
+    afw_memory_internal_array_entry_t *ep;
     afw_size_t count;
     const afw_value_t *value;
     afw_size_t i;
@@ -202,7 +202,7 @@ impl_afw_array_get_entry_value(
 
     count = 0;
     value = NULL;
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         if (count >= i) {
@@ -228,15 +228,15 @@ impl_afw_array_get_next_internal(
     const void * * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
+    afw_memory_internal_array_entry_t *ep;
 
     /* If iterator is NULL, locate first else locate next and update iterator. */
     if (!*iterator) {
         ep = APR_RING_FIRST(self->ring);
     }
     else {
-        ep = (afw_memory_internal_list_entry_t *)*iterator;
+        ep = (afw_memory_internal_array_entry_t *)*iterator;
         ep = APR_RING_NEXT(ep, link);
     }
     *iterator = (afw_iterator_t *)ep;
@@ -244,7 +244,7 @@ impl_afw_array_get_next_internal(
 
     /* If sentinel, return !found. */
     if (ep == APR_RING_SENTINEL(self->ring,
-        afw_memory_internal_list_entry_s, link))
+        afw_memory_internal_array_entry_s, link))
     {
         *internal = NULL;
         if (data_type) {
@@ -275,21 +275,21 @@ impl_afw_array_get_next_value(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
+    afw_memory_internal_array_entry_t *ep;
 
     /* If iterator is NULL, locate first else locate next and update iterator. */
     if (!*iterator) {
         ep = APR_RING_FIRST(self->ring);
     }
     else {
-        ep = (afw_memory_internal_list_entry_t *)*iterator;
+        ep = (afw_memory_internal_array_entry_t *)*iterator;
         ep = APR_RING_NEXT(ep, link);
     }
 
     /* If sentinel, return !found. */
     if (ep == APR_RING_SENTINEL(self->ring,
-        afw_memory_internal_list_entry_s, link))
+        afw_memory_internal_array_entry_s, link))
     {
         *iterator = NULL;
         return NULL;
@@ -310,7 +310,7 @@ impl_afw_array_get_setter(
     const afw_array_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self = (afw_memory_internal_list_t *)instance;
+    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
 
     return (self->immutable) ? NULL : &self->setter;
 }
@@ -325,8 +325,8 @@ impl_afw_array_setter_set_immutable(
     const afw_array_setter_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
 
     self->immutable = true;
 }
@@ -342,9 +342,9 @@ impl_afw_array_setter_determine_data_type_and_set_immutable(
     const afw_array_setter_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *ep;
 
     /* Make immutable if not already. */
     if (self->immutable) {
@@ -356,7 +356,7 @@ impl_afw_array_setter_determine_data_type_and_set_immutable(
     if (!self->data_type) {
         for (ep = APR_RING_FIRST(self->ring);
             ep != APR_RING_SENTINEL(self->ring,
-                afw_memory_internal_list_entry_s, link);
+                afw_memory_internal_array_entry_s, link);
             ep = APR_RING_NEXT(ep, link))
         {
             if (!self->data_type) {
@@ -390,8 +390,8 @@ impl_afw_array_setter_add_internal(
     const void * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
     value = afw_value_evaluated_create(internal, data_type, self->p, xctx);
@@ -408,16 +408,16 @@ impl_afw_array_setter_add_value(
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *ep;
 
     /*
      * If generic, set data type on first entry and set to NULL if any entry
      * after that has a different data type.
      */
     if (self->generic) {
-        if (APR_RING_EMPTY(self->ring, afw_memory_internal_list_entry_s, link))
+        if (APR_RING_EMPTY(self->ring, afw_memory_internal_array_entry_s, link))
         {
             if (value) {
                 self->data_type = afw_value_get_data_type(value, xctx);;
@@ -437,13 +437,13 @@ impl_afw_array_setter_add_value(
         afw_value_get_data_type(value, xctx))
     {
         AFW_THROW_ERROR_Z(general,
-            "Value data_type is not list's data type.", xctx);
+            "Value data_type is not array's data type.", xctx);
     }
 
     /* Add value. */
-    ep = afw_pool_calloc_type(self->p, afw_memory_internal_list_entry_t, xctx);
+    ep = afw_pool_calloc_type(self->p, afw_memory_internal_array_entry_t, xctx);
     ep->value = value;
-    APR_RING_INSERT_TAIL(self->ring, ep, afw_memory_internal_list_entry_s, link);
+    APR_RING_INSERT_TAIL(self->ring, ep, afw_memory_internal_array_entry_s, link);
 }
 
 
@@ -459,8 +459,8 @@ impl_afw_array_setter_insert_internal(
     afw_size_t index,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
     value = afw_value_evaluated_create(internal, data_type, self->p, xctx);
@@ -479,14 +479,14 @@ impl_afw_array_setter_insert_value(
     afw_size_t index,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *lep;
-    afw_memory_internal_list_entry_t *nep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *lep;
+    afw_memory_internal_array_entry_t *nep;
     afw_size_t count;
 
     /* Add value. */
-    nep = afw_pool_calloc_type(self->p, afw_memory_internal_list_entry_t, xctx);
+    nep = afw_pool_calloc_type(self->p, afw_memory_internal_array_entry_t, xctx);
     nep->value = value;
     
     /*
@@ -494,7 +494,7 @@ impl_afw_array_setter_insert_value(
      * after that has a different data type.
      */
     if (self->generic) {
-        if (APR_RING_EMPTY(self->ring, afw_memory_internal_list_entry_s, link))
+        if (APR_RING_EMPTY(self->ring, afw_memory_internal_array_entry_s, link))
         {
             self->data_type = afw_value_get_data_type(value, xctx);;
         }
@@ -511,18 +511,18 @@ impl_afw_array_setter_insert_value(
         afw_value_get_data_type(value, xctx))
     {
         AFW_THROW_ERROR_Z(general,
-            "Value data_type is not list's data type.", xctx);
+            "Value data_type is not array's data type.", xctx);
     }
 
     /* If index is 0, insert at head. */
     if (index == 0) {
-        APR_RING_INSERT_HEAD(self->ring, nep, afw_memory_internal_list_entry_s, link);
+        APR_RING_INSERT_HEAD(self->ring, nep, afw_memory_internal_array_entry_s, link);
         return;
     }
 
     /* Insert before the current entry at index if not past end. */
     count = 0;
-    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         if (index == count) {
@@ -533,7 +533,7 @@ impl_afw_array_setter_insert_value(
     }
 
     /* If index past end, insert at tail. */
-    APR_RING_INSERT_TAIL(self->ring, nep, afw_memory_internal_list_entry_s, link);
+    APR_RING_INSERT_TAIL(self->ring, nep, afw_memory_internal_array_entry_s, link);
 }
 
 
@@ -547,11 +547,11 @@ impl_afw_array_setter_remove_all_values(
     afw_xctx_t *xctx)
 
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
 
-    /* Clear list. */
-    APR_RING_INIT(self->ring, afw_memory_internal_list_entry_s, link);
+    /* Clear array. */
+    APR_RING_INIT(self->ring, afw_memory_internal_array_entry_s, link);
 
     /* If generic, clear data type. */
     if (self->generic) {
@@ -571,12 +571,12 @@ impl_afw_array_setter_remove_internal(
     const void * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *ep;
 
     /* Search for matching value.  If found, remove it. */
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         if (afw_value_get_data_type(ep->value, xctx) == data_type &&
@@ -589,7 +589,7 @@ impl_afw_array_setter_remove_internal(
         }
     }
 
-    AFW_THROW_ERROR_Z(general, "Value not in list", xctx);
+    AFW_THROW_ERROR_Z(general, "Value not in array", xctx);
 }
 
 
@@ -603,12 +603,12 @@ impl_afw_array_setter_remove_value(
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *ep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *ep;
 
     /* Search for matching value.  If found, remove it. */
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
@@ -616,7 +616,7 @@ impl_afw_array_setter_remove_value(
             /* If generic and no more entries, set data type to NULL. */
             if (self->generic &&
                 APR_RING_EMPTY(self->ring,
-                    afw_memory_internal_list_entry_s, link))
+                    afw_memory_internal_array_entry_s, link))
                 {
                     self->data_type = NULL;
                 }
@@ -624,7 +624,7 @@ impl_afw_array_setter_remove_value(
         }
     }
 
-    AFW_THROW_ERROR_Z(general, "Value not in list", xctx);
+    AFW_THROW_ERROR_Z(general, "Value not in array", xctx);
 }
 
 
@@ -639,9 +639,9 @@ impl_afw_array_setter_set_value_by_index(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_list_t *self =
-        (afw_memory_internal_list_t *)((afw_array_setter_t *)instance)->list;
-    afw_memory_internal_list_entry_t *lep;
+    afw_memory_internal_array_t *self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_entry_t *lep;
     afw_size_t count;
 
     /*
@@ -649,7 +649,7 @@ impl_afw_array_setter_set_value_by_index(
      * after that has a different data type.
      */
     if (self->generic) {
-        if (APR_RING_EMPTY(self->ring, afw_memory_internal_list_entry_s, link))
+        if (APR_RING_EMPTY(self->ring, afw_memory_internal_array_entry_s, link))
         {
             self->data_type = afw_value_get_data_type(value, xctx);;
         }
@@ -666,12 +666,12 @@ impl_afw_array_setter_set_value_by_index(
         afw_value_get_data_type(value, xctx))
     {
         AFW_THROW_ERROR_Z(general,
-            "Value data_type is not list's data type.", xctx);
+            "Value data_type is not array's data type.", xctx);
     }
 
     /* Insert before the current entry at index if not past end. */
     count = 0;
-    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_list_entry_s,
+    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_array_entry_s,
         link)
     {
         if (index == count) {
@@ -687,10 +687,10 @@ impl_afw_array_setter_set_value_by_index(
 }
 
 
-/* Create or clone of a list. */
+/* Create or clone of an array. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_or_clone(
-    const afw_array_t *list,
+    const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -701,17 +701,17 @@ afw_array_create_or_clone(
     const afw_data_type_t *use_data_type;
 
     use_data_type = data_type;
-    if (list) {
-        use_data_type = afw_array_get_data_type(list, xctx);
+    if (array) {
+        use_data_type = afw_array_get_data_type(array, xctx);
         if (data_type && use_data_type && data_type != use_data_type)
         {
             AFW_THROW_ERROR_Z(general, "data_type does not match", xctx);
         }
     }
     result = afw_array_of_create(use_data_type, p, xctx);
-    if (list) for (iterator = NULL;;)
+    if (array) for (iterator = NULL;;)
     {
-        value = afw_array_get_next_value(list, &iterator, p, xctx);
+        value = afw_array_get_next_value(array, &iterator, p, xctx);
         if (!value) {
             break;
         }
@@ -726,7 +726,7 @@ afw_array_create_or_clone(
 
 
 
-/* Create a typed list from a value. */
+/* Create a typed array from a value. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_of_create_from_value(
     const afw_data_type_t *data_type,
@@ -734,34 +734,34 @@ afw_array_of_create_from_value(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_data_type_t *value_data_type;
-    const afw_array_t *value_list;
-    const afw_array_t *old_list;
+    const afw_array_t *value_array;
+    const afw_array_t *old_array;
     const afw_iterator_t *iterator;
     const afw_value_t *v;
 
     value_data_type = afw_value_get_data_type(value, xctx);
 
     if (value_data_type == afw_data_type_array) {
-        value_list = ((afw_value_array_t *)value)->internal;
-        value_data_type = afw_array_get_data_type(value_list, xctx);
+        value_array = ((afw_value_array_t *)value)->internal;
+        value_data_type = afw_array_get_data_type(value_array, xctx);
         if (value_data_type != data_type) {
-            old_list = value_list;
-            value_list = afw_array_of_create(data_type, p, xctx);
+            old_array = value_array;
+            value_array = afw_array_of_create(data_type, p, xctx);
             for (iterator = NULL;;) {
-                v = afw_array_get_next_value(old_list, &iterator, p, xctx);
+                v = afw_array_get_next_value(old_array, &iterator, p, xctx);
                 if (!v) {
                     break;
                 }
                 v = afw_value_convert(v, data_type, true, p, xctx);
-                afw_array_add_value(value_list, v, xctx);
+                afw_array_add_value(value_array, v, xctx);
             }        
         }
     }
     else {
         v = afw_value_convert(value, data_type, true, p, xctx);
-        value_list = afw_array_create_wrapper_for_array(
+        value_array = afw_array_create_wrapper_for_array(
             AFW_VALUE_INTERNAL(v), false, data_type, 1, p, xctx);
     }
 
-    return value_list;
+    return value_array;
 }

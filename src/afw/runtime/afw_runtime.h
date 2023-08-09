@@ -358,7 +358,7 @@ afw_runtime_env_set_object(
 
 
 /**
- * @brief Set a array of object pointers in the environment's runtime objects.
+ * @brief Set an array of object pointers in the environment's runtime objects.
  * @param objects NULL terminated array of object pointers.
  * @param overwrite whether to throw error is object with path exists.
  * @param xctx of caller.

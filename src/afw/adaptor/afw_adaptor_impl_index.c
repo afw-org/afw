@@ -33,7 +33,7 @@
  *      is described by an AFW expression.
  *
  *  The "objectType" property optionally determines a list of applicable objectType(s)
- *      this index definition. An empty list implies any/all objectType's.
+ *      this index definition. An empty array implies any/all objectType's.
  *
  *  The "filter" property optionally determines if a given object is applicable for
  *      this index definition.  It is also represented by an AFW expression.

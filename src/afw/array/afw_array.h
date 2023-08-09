@@ -226,9 +226,9 @@ afw_array_create_wrapper_for_array(
 
 
 /**
- * @brief Self for immutable list wrapper for a array
+ * @brief Self for immutable list wrapper for an array
  *
- * This is self for immutable list wrapper for a array.  This can defined
+ * This is self for immutable list wrapper for an array.  This can defined
  * and filled out in a local variable instead of calling
  * afw_array_create_wrapper_for_array() if the instance is only needed
  * temporarily.  Helper macro AFW_LIST_WRAPPER_FOR_ARRAY_P() can be used to do

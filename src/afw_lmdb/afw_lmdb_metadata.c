@@ -74,7 +74,7 @@ const afw_array_t * afw_lmdb_metadata_retrieve_objects(
     if (afw_utf8_equal(object_type_id, &AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META)) {
     }
 
-    /* If none of above, return empty list. */
+    /* If none of above, return empty array. */
     return afw_array_create_generic(xctx->p, xctx);
 }
 

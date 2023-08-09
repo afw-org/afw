@@ -760,7 +760,7 @@ AFW_DEFINE(const afw_adaptor_t *)
       </parameter>
 
       <parameter name="entry" type="const afw_adaptor_modify_entry_t * const *">
-        <description>NULL terminated list of pointers to adaptor modify entries.</description>
+        <description>NULL terminated array of pointers to adaptor modify entries.</description>
       </parameter>
 
       <parameter name="adaptor_type_specific" type="const afw_object_t *">
@@ -2272,8 +2272,8 @@ impl_raw_end_object_list = {
         If len is 0, no parameter is allowed following the data type id.
 
         If "dataType", the data type id can be followed by another data type id.
-        For example data type "list" can be followed by the data type of entries
-        in the list.
+        For example data type "array" can be followed by the data type of entries
+        in the array.
 
         If "objectType", the data_type_id can be followed by an object type id.
         This is the case
@@ -2316,15 +2316,15 @@ impl_raw_end_object_list = {
       </description>
     </variable>
 
-    <variable name="empty_list" type="const afw_array_t *">
+    <variable name="empty_array" type="const afw_array_t *">
       <description>
-        Instance of afw_array for an empty list of this data type.
+        Instance of afw_array for an empty array of this data type.
       </description>
     </variable>
 
-    <variable name="empty_list_value" type="const afw_value_t *">
+    <variable name="empty_array_value" type="const afw_value_t *">
       <description>
-        Instance of afw_value for an empty list of this data type.
+        Instance of afw_value for an empty array of this data type.
       </description>
     </variable>
 
@@ -2614,21 +2614,21 @@ impl_raw_end_object_list = {
   <interface name="afw_array_setter" id="afwls">
 
     <description>
-      Adaptive list setter interface.
+      Adaptive array setter interface.
     </description>
 
-    <variable name="list" type="const afw_array_t *">
+    <variable name="array" type="const afw_array_t *">
       <description>
-        This is the associated list.
+        This is the associated array.
       </description>
     </variable>
 
     <method name="set_immutable">
 
       <description>
-        Set list to immutable. No error is throw if already immutable.
+        Set array to immutable. No error is throw if already immutable.
 
-        Once a list is set to immutable, all other set calls will throw
+        Once an array is set to immutable, all other set calls will throw
         an error.
       </description>
 
@@ -2647,15 +2647,15 @@ impl_raw_end_object_list = {
     <method name="determine_data_type_and_set_immutable">
 
       <description>
-        Determine data type of entries then set list to immutable.
+        Determine data type of entries then set array to immutable.
 
         An error is throw if already immutable.
 
-        If data type of values in list is not already known and all
-        values is list have the same data type, make the list a list of
+        If data type of values in array is not already known and all
+        values is array have the same data type, make the array an array of
         that data type.
 
-        Once a list is set to immutable, all other set calls will throw
+        Once an array is set to immutable, all other set calls will throw
         an error.
       </description>
 
@@ -2669,7 +2669,7 @@ impl_raw_end_object_list = {
 
       <return type="const afw_data_type_t *">
         <description>
-          This is the data type of all values in the list or NULL
+          This is the data type of all values in the array or NULL
           if unknown or different.
         </description>
       </return>
@@ -2680,12 +2680,12 @@ impl_raw_end_object_list = {
     <method name="add_internal">
 
       <description>
-        Add a value to a list that only holds one data type using its
+        Add a value to an array that only holds one data type using its
         internal value.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="data_type" type="const afw_data_type_t *">
@@ -2712,11 +2712,11 @@ impl_raw_end_object_list = {
     <method name="add_value">
 
       <description>
-        Add a value to a list.
+        Add a value to an array.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="value" type="const afw_value_t *">
@@ -2735,12 +2735,12 @@ impl_raw_end_object_list = {
     <method name="insert_internal">
 
       <description>
-        Insert a value to a list that only holds one data type using its
+        Insert a value to an array that only holds one data type using its
         internal value at a specified index.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="data_type" type="const afw_data_type_t *">
@@ -2773,11 +2773,11 @@ impl_raw_end_object_list = {
     <method name="insert_value">
 
       <description>
-        Insert a value to a list at a specified index.
+        Insert a value to an array at a specified index.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="value" type="const afw_value_t *">
@@ -2802,11 +2802,11 @@ impl_raw_end_object_list = {
     <method name="remove_all_values">
 
       <description>
-        Remove all values from a list.
+        Remove all values from an array.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -2820,13 +2820,13 @@ impl_raw_end_object_list = {
     <method name="remove_internal">
 
       <description>
-        Remove a single value from list that only holds one data type using its
+        Remove a single value from array that only holds one data type using its
         internal value.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
         <description>
-          Pointer to this value list instance.
+          Pointer to this value array instance.
         </description>
       </parameter>
 
@@ -2853,11 +2853,11 @@ impl_raw_end_object_list = {
     <method name="remove_value">
 
       <description>
-        Remove a single value from list.
+        Remove a single value from array.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="value" type="const afw_value_t *">
@@ -2880,7 +2880,7 @@ impl_raw_end_object_list = {
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="index" type="afw_size_t">
@@ -2905,18 +2905,18 @@ impl_raw_end_object_list = {
   <interface name="afw_array" id="afwl">
 
     <description>
-      Adaptive value list interface.
+      Adaptive value array interface.
     </description>
 
     <method name="release">
 
       <description>
-        Release resources associated with adaptive value list. This will automatically be called
-        if value list is part of an adaptive adaptor session.
+        Release resources associated with adaptive value array. This will automatically be called
+        if value array is part of an adaptive adaptor session.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -2931,11 +2931,11 @@ impl_raw_end_object_list = {
     <method name="get_count">
 
       <description>
-        Return the number of values in list.
+        Return the number of values in array.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -2943,7 +2943,7 @@ impl_raw_end_object_list = {
       </parameter>
 
       <return type="afw_size_t">
-        <description>Number of values in list.</description>
+        <description>Number of values in array.</description>
       </return>
 
     </method>
@@ -2952,11 +2952,11 @@ impl_raw_end_object_list = {
     <method name="get_data_type">
 
       <description>
-        Return the data type if typed list or NULL.
+        Return the data type if typed array or NULL.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -2964,7 +2964,7 @@ impl_raw_end_object_list = {
       </parameter>
 
       <return type="const afw_data_type_t *">
-        <description>Data type of typed list.</description>
+        <description>Data type of typed array.</description>
       </return>
 
     </method>
@@ -2973,18 +2973,18 @@ impl_raw_end_object_list = {
     <method name="get_entry_meta">
 
       <description>
-        Get the meta object of list entry by index.
+        Get the meta object of array entry by index.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
         <description>
-          Pointer to this value list instance.
+          Pointer to this value array instance.
         </description>
       </parameter>
 
       <parameter name="index" type="afw_integer_t">
         <description>
-          Zero-based index of list entry to return.
+          Zero-based index of array entry to return.
         </description>
       </parameter>
 
@@ -3009,19 +3009,19 @@ impl_raw_end_object_list = {
     <method name="get_entry_internal">
 
       <description>
-        Get internal entry of list entry by index. See data_type to
+        Get internal entry of array entry by index. See data_type to
         determine how to interpret.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
         <description>
-          Pointer to this value list instance.
+          Pointer to this value array instance.
         </description>
       </parameter>
 
       <parameter name="index" type="afw_integer_t">
         <description>
-          Zero-based index of list entry to return.
+          Zero-based index of array entry to return.
         </description>
       </parameter>
 
@@ -3052,22 +3052,22 @@ impl_raw_end_object_list = {
     <method name="get_entry_value">
 
       <description>
-        Get value of list entry by index.
+        Get value of array entry by index.
 
-        For some lists, methods get_internal_by_index() is more efficient.
-        If the list implementation stores only the internal part of a value,
+        For some arrays, methods get_internal_by_index() is more efficient.
+        If the array implementation stores only the internal part of a value,
         this function will create an adaptive value in the specified pool to return.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
         <description>
-          Pointer to this value list instance.
+          Pointer to this value array instance.
         </description>
       </parameter>
 
       <parameter name="index" type="afw_integer_t">
         <description>
-          Zero-based index of list entry to return.
+          Zero-based index of array entry to return.
         </description>
       </parameter>
 
@@ -3093,13 +3093,13 @@ impl_raw_end_object_list = {
     <method name="get_next_entry_meta">
 
       <description>
-        Get next value in list and update iterator. Set the iterator to NULL
+        Get next value in array and update iterator. Set the iterator to NULL
         before the first call of this method and any time you want to start
         from the first value again.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="iterator" type="const afw_iterator_t * *">
@@ -3128,7 +3128,7 @@ impl_raw_end_object_list = {
     <method name="get_next_internal">
 
       <description>
-        Get next internal in list and update iterator. See data_type to
+        Get next internal in array and update iterator. See data_type to
         determine how to interpret.
 
         Set the iterator to NULL before the first call of this method and
@@ -3137,7 +3137,7 @@ impl_raw_end_object_list = {
 
       <parameter name="instance" type="const afw_array_t *">
         <description>
-          Pointer to this value list instance.
+          Pointer to this value array instance.
         </description>
       </parameter>
 
@@ -3174,18 +3174,18 @@ impl_raw_end_object_list = {
     <method name="get_next_value">
 
       <description>
-        Get next value in list and update iterator. Set the iterator to NULL
+        Get next value in array and update iterator. Set the iterator to NULL
         before the first call of this method and any time you want to start
         from the first value again.
 
-        For some lists, methods get_next_internal() and
+        For some arrays, methods get_next_internal() and
         get_next_internal_and_data_type() are more efficient.
-        If the list implementation stores only the internal part of a value,
+        If the array implementation stores only the internal part of a value,
         this function will create an adaptive value in the specified pool to return.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
-        <description>Pointer to this value list instance.</description>
+        <description>Pointer to this value array instance.</description>
       </parameter>
 
       <parameter name="iterator" type="const afw_iterator_t * *">
@@ -3214,7 +3214,7 @@ impl_raw_end_object_list = {
     <method name="get_setter">
 
       <description>
-        Return the list's setter interface or NULL if immutable.
+        Return the array's setter interface or NULL if immutable.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -4533,7 +4533,7 @@ AFW_DEFINE(const afw_request_handler_t *)
     </variable>
 
     <variable name="accept" type="const afw_utf8_t * const *">
-      <description>NULL terminated list of acceptable response content types.</description>
+      <description>NULL terminated array of acceptable response content types.</description>
     </variable>
 
     <variable name="error_info" type="const afw_object_t *">
@@ -5827,9 +5827,9 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="get_evaluated_metas">
 
       <description>
-        This method returns a list value of with the result of calling afw_value_get_evaluated_meta()
+        This method returns an array value of with the result of calling afw_value_get_evaluated_meta()
         for each entry in a value instance. If this is not a value instance with an iterator,
-        such as object or list, a list value with a single value is returned.
+        such as object or array, an array value with a single value is returned.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
@@ -5850,7 +5850,7 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <return type="const afw_value_t *">
         <description>
-          The this is an evaluated list value that can be used to access the value's entry meta.
+          The this is an evaluated array value that can be used to access the value's entry meta.
         </description>
       </return>
 

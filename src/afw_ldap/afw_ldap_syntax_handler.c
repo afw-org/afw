@@ -685,7 +685,7 @@ impl_syntax_handler_list_boolean_to_value(
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
-        return afw_data_type_boolean->empty_list_value;
+        return afw_data_type_boolean->empty_array_value;
     }
 
     e = afw_pool_malloc(p, sizeof(afw_boolean_t) * count, xctx);
@@ -777,7 +777,7 @@ impl_syntax_handler_list_generalized_time_to_value(
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
-        return afw_data_type_dateTime->empty_list_value;
+        return afw_data_type_dateTime->empty_array_value;
     }
     e = afw_pool_malloc(p, sizeof(afw_dateTime_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
@@ -862,7 +862,7 @@ impl_syntax_handler_list_integer_to_value(
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
-        return afw_data_type_integer->empty_list_value;
+        return afw_data_type_integer->empty_array_value;
     }
     e = afw_pool_malloc(p, sizeof(afw_integer_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
@@ -905,7 +905,7 @@ impl_syntax_handler_list_string_to_value(
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
-        return afw_data_type_string->empty_list_value;
+        return afw_data_type_string->empty_array_value;
     }
 
     e = afw_pool_malloc(p, sizeof(afw_utf8_t) * count, xctx);

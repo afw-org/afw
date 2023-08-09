@@ -27,7 +27,7 @@
 #undef AFW_IMPLEMENTATION_INF_LABEL
 
 
-/* Create a immutable list wrapper for a array. */
+/* Create a immutable list wrapper for an array. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_wrapper_for_array(
     const void *internal,
@@ -95,9 +95,9 @@ afw_array_convert_to_array_of_strings(
     /* Get count. */
     count = afw_array_get_count(list, xctx);
 
-    /* If count is 0, return empty list of string. */
+    /* If count is 0, return empty array of string. */
     if (count == 0) {
-        return afw_data_type_string->empty_list;
+        return afw_data_type_string->empty_array;
     }
 
     /* Allocate array for internal values and self for wrapper. */

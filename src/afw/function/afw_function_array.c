@@ -146,7 +146,7 @@ afw_function_execute_array(
             }
         }
 
-        /* If not a array expression, add evaluated argument as element. */
+        /* If not an array expression, add evaluated argument as element. */
         else {
             entry = afw_value_evaluate(*arg, x->p, x->xctx);
             afw_array_add_value(array, entry, x->xctx);

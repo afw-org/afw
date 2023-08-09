@@ -135465,7 +135465,7 @@ impl_1325;
 static const afw_value_string_t
 impl_1325_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive value list interface.")
+    AFW_UTF8_LITERAL("Adaptive value array interface.")
 };
 
 static const afw_runtime_property_t
@@ -135532,7 +135532,7 @@ impl_1326;
 static const afw_value_string_t
 impl_1326_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive list setter interface.")
+    AFW_UTF8_LITERAL("Adaptive array setter interface.")
 };
 
 static const afw_runtime_property_t

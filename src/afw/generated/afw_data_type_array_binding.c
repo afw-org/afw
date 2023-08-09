@@ -166,7 +166,7 @@ afw_data_type_array_direct = {
     (const afw_object_t *)&impl_data_type_object_array,
     AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("An array of adaptive values"),
-    AFW_UTF8_LITERAL("Data type array holds a array of adaptive value. The array can have value all of one data type or of different data types."),
+    AFW_UTF8_LITERAL("Data type array holds an array of adaptive value. The array can have value all of one data type or of different data types."),
     AFW_UTF8_LITERAL("ArrayOf"),
     afw_data_type_number_array,
     AFW_UTF8_LITERAL(""),

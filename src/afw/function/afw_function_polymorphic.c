@@ -208,7 +208,7 @@ afw_function_execute_bag(
     afw_size_t i;
 
     if (x->argc == 0) {
-        return x->data_type->empty_list_value;
+        return x->data_type->empty_array_value;
     }
 
     list = afw_array_of_create(x->data_type, x->p, x->xctx);

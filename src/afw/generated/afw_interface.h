@@ -686,7 +686,7 @@ struct afw_adaptor_session_inf_s {
  *     for more information.
  * @param object_type_id Object type of object to modify.
  * @param object_id Object id of object to modify.
- * @param entry NULL terminated list of pointers to adaptor modify entries.
+ * @param entry NULL terminated array of pointers to adaptor modify entries.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.          If the adaptor type supports this parameter,
  *     the object type of the          object is available via the afw adaptor
@@ -2096,8 +2096,8 @@ struct afw_data_type_s {
     afw_utf8_t jsonSchemaStringFormat;
     afw_utf8_t cType;
     afw_size_t c_type_size;
-    const afw_array_t * empty_list;
-    const afw_value_t * empty_list_value;
+    const afw_array_t * empty_array;
+    const afw_value_t * empty_array_value;
     const afw_value_inf_t * evaluated_value_inf;
     afw_compile_type_t compile_type;
     afw_boolean_t json_implies_data_type;
@@ -2348,7 +2348,7 @@ struct afw_data_type_inf_s {
  * @addtogroup afw_array_setter_interface afw_array_setter
  *
  * 
- * Adaptive list setter interface.
+ * Adaptive array setter interface.
  * 
  *
  * @{
@@ -2358,7 +2358,7 @@ struct afw_data_type_inf_s {
 /** @brief Interface afw_array_setter public struct. */
 struct afw_array_setter_s {
     const afw_array_setter_inf_t *inf;
-    const afw_array_t * list;
+    const afw_array_t * array;
 };
 
 /** @brief define for interface afw_array_setter name. */
@@ -2484,7 +2484,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method add_internal of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to add of type data_type->cType.
  * @param xctx This is the caller's xctx.
@@ -2504,7 +2504,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method add_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value A value.
  * @param xctx This is the caller's xctx.
  */
@@ -2521,7 +2521,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method insert_internal of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to add of type data_type->cType.
  * @param index The zero based index for insert.
@@ -2544,7 +2544,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method insert_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value A value.
  * @param index The zero based index for insert.
  * @param xctx This is the caller's xctx.
@@ -2564,7 +2564,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method remove_all_values of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_remove_all_values( \
@@ -2578,7 +2578,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method remove_internal of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param data_type The data type of internal.
  * @param internal The internal value to delete of type data_type->cType.
  * @param xctx This is the caller's xctx.
@@ -2598,7 +2598,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method remove_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value Value.
  * @param xctx This is the caller's xctx.
  */
@@ -2615,7 +2615,7 @@ struct afw_array_setter_inf_s {
 
 /**
  * @brief Call method set_value_by_index of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param index Index relative to 0.
  * @param value Value.
  * @param xctx This is the caller's xctx.
@@ -2639,7 +2639,7 @@ struct afw_array_setter_inf_s {
  * @addtogroup afw_array_interface afw_array
  *
  * 
- * Adaptive value list interface.
+ * Adaptive value array interface.
  * 
  *
  * @{
@@ -2746,7 +2746,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method release of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx This is the caller's xctx.
  */
 #define afw_array_release( \
@@ -2760,7 +2760,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_count of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx This is the caller's xctx.
  */
 #define afw_array_get_count( \
@@ -2774,7 +2774,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_data_type of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx This is the caller's xctx.
  */
 #define afw_array_get_data_type( \
@@ -2788,8 +2788,8 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_entry_meta of interface afw_array
- * @param instance Pointer to this value list instance.
- * @param index Zero-based index of list entry to return.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
@@ -2808,8 +2808,8 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_entry_internal of interface afw_array
- * @param instance Pointer to this value list instance.
- * @param index Zero-based index of list entry to return.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
  * @param data_type Place to put data type pointer or NULL.
  * @param internal Place to put data_type->cType pointer to the internal at the
  *     specified index.          This will be set to NULL if index is out of
@@ -2833,8 +2833,8 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_entry_value of interface afw_array
- * @param instance Pointer to this value list instance.
- * @param index Zero-based index of list entry to return.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  */
@@ -2853,7 +2853,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_next_entry_meta of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
@@ -2873,7 +2873,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_next_internal of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
  * @param data_type Place to put data type pointer or NULL.
  * @param internal Place to put data_type->cType pointer to next internal.     
@@ -2897,7 +2897,7 @@ struct afw_array_inf_s {
 
 /**
  * @brief Call method get_next_value of interface afw_array
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
  * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.

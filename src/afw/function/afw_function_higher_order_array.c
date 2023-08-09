@@ -746,10 +746,10 @@ afw_function_execute_map(
     if (!data.mapped_list) {
         if (data_type)
         {
-            return data_type->empty_list_value;
+            return data_type->empty_array_value;
         }
         else {
-            return afw_data_type_null->empty_list_value;
+            return afw_data_type_null->empty_array_value;
         }
     }
 
@@ -967,7 +967,7 @@ afw_function_execute_sort(
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 2, array);
 
-    /* Get the data type and count.  If count is 0, return empty list. */
+    /* Get the data type and count.  If count is 0, return empty array. */
     data_type = afw_array_get_data_type(list->internal, ctx.xctx);
     if (!data_type) {
         AFW_THROW_ERROR_Z(general,
@@ -976,7 +976,7 @@ afw_function_execute_sort(
     ctx.c_type_size = data_type->c_type_size;
     ctx.count = afw_array_get_count(list->internal, ctx.xctx);
     if (ctx.count == 0) {
-        return data_type->empty_list_value;
+        return data_type->empty_array_value;
     }
 
     /* Allocate two values of the correct data type. */
