@@ -29,11 +29,12 @@ class object
      * Add the properties of one object to another replacing existing
      * properties by the same name.
      *
-     * @param object $target Target object. This object must not be
-     *                       immutable.
+     * @param object $target Target object or undefined if result will only
+     *                       contain the properties of source objects. The
+     *                       object must be mutable, if specified.
      * @param object $source Source object(s).
      *
-     * @return object The modified target object.
+     * @return object The resulting object.
      */
     public function add_properties(, $target, $source)
     {

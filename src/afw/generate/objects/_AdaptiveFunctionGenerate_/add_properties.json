@@ -4,23 +4,24 @@
     "description": "Add the properties of one object to another replacing existing properties by the same name.",
     "functionId": "add_properties",
     "functionLabel": "add_properties",
-    "pure": false,
     "parameters": [
         {
+            "canBeUndefined": true,
             "dataType": "object",
-            "description": "Target object. This object must not be immutable.",
+            "description": "Target object or undefined if result will only contain the properties of source objects. The object must be mutable, if specified.",
             "name": "target"
         },
         {
-            "minArgs": 1,
             "dataType": "object",
             "description": "Source object(s).",
+            "minArgs": 1,
             "name": "source"
         }
     ],
+    "pure": false,
     "returns": {
         "dataType": "object",
-        "description": "The modified target object."
+        "description": "The resulting object."
     },
     "sideEffects": [
         "Target object is modified."

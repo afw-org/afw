@@ -40,13 +40,15 @@
  *
  * Parameters:
  *
- *   target - (object) Target object. This object must not be immutable.
+ *   target - (object) Target object or undefined if result will only contain
+ *       the properties of source objects. The object must be mutable, if
+ *       specified.
  *
  *   source - (1 or more object) Source object(s).
  *
  * Returns:
  *
- *   (object) The modified target object.
+ *   (object) The resulting object.
  */
 const afw_value_t *
 afw_function_execute_add_properties(

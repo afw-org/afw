@@ -15,11 +15,13 @@ interface IAnyObject {
  * Add the properties of one object to another replacing existing properties
  * by the same name.
  * 
- * @param {object} target - Target object. This object must not be immutable.
+ * @param {object} target - Target object or undefined if result will only
+ *     contain the properties of source objects. The object must be mutable,
+ *     if specified.
  * 
  * @param {object} source - Source object(s).
  * 
- * @returns {object} The modified target object.
+ * @returns {object} The resulting object.
  */
 export function afwAddProperties(client : any, target : object, source : object) : any {
 

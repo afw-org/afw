@@ -349,8 +349,7 @@ afw_compile_parse_Object(
                             obj, parser->p, parser->xctx);
                     }
                     else {
-                        result = afw_value_create_object(obj,
-                            parser->p, parser->xctx);
+                        result = NULL;
                     }
                     afw_compile_args_add_value(args, result);
                     is_object_expression = false;

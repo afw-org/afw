@@ -40,13 +40,15 @@
  *
  * Parameters:
  *
- *   target - (object) Target object. This object must not be immutable.
+ *   target - (object) Target object or undefined if result will only contain
+ *       the properties of source objects. The object must be mutable, if
+ *       specified.
  *
  *   source - (1 or more object) Source object(s).
  *
  * Returns:
  *
- *   (object) The modified target object.
+ *   (object) The resulting object.
  */
 const afw_value_t *
 afw_function_execute_add_properties(
@@ -59,7 +61,12 @@ afw_function_execute_add_properties(
     const afw_value_t *value;
     afw_size_t count;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(target, 1, object);
+    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(target, 1, object);
+    if (!target) {
+        target = afw_value_allocate_object(x->p, x->xctx);
+        ((afw_value_object_t *)target)->internal =
+            afw_object_create(x->p, x->xctx);
+    }
 
     for (count = 2; count <= x->argc; count++)
     {

@@ -8,8 +8,9 @@
     "functionLabel": "add_properties",
     "parameters": [
         {
+            "canBeUndefined": true,
             "dataType": "object",
-            "description": "Target object. This object must not be immutable.",
+            "description": "Target object or undefined if result will only contain the properties of source objects. The object must be mutable, if specified.",
             "name": "target"
         },
         {
@@ -22,7 +23,7 @@
     "pure": false,
     "returns": {
         "dataType": "object",
-        "description": "The modified target object."
+        "description": "The resulting object."
     },
     "sideEffects": [
         "Target object is modified."

@@ -14,12 +14,14 @@ def add_properties(session, target, source):
 
     Parameters:
 
-        target (object): Target object. This object must not be immutable.
+        target (object): Target object or undefined if result will only
+        contain the properties of source objects. The object must be mutable,
+        if specified.
 
         source (object): Source object(s).
 
     Returns:
-    object: The modified target object.
+    object: The resulting object.
     '''
 
     request = session.Request()

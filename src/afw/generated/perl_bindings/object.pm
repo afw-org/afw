@@ -47,7 +47,8 @@ Add properties of one object to another
 
     $target
 
-Target object. This object must not be immutable.
+Target object or undefined if result will only contain the properties of
+source objects. The object must be mutable, if specified.
 
     $source
 
